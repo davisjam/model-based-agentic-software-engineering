@@ -353,31 +353,31 @@ a claim the book asserts and cannot yet stand behind.
 
 ## Inset audit — the two-track book chapters
 
-Run this book-specialized check when the document type is an engineering book and a chapter runs a
-**pedagogical inset** — the boxed second track that teaches established background so the mainline can carry
-the argument ([`document-types.md`](document-types.md) §"Pedagogical insets"). Skip it for the other
-document types and for a chapter with no inset. For each inset, ask the seven questions:
+Run this book-specialized check when a chapter contains a background primer or worked-case inset
+([`document-types.md`](document-types.md) §"Pedagogical insets"). Read the chapter once without its optional
+insets and once with them. For each inset, ask the seven questions:
 
-- **Needed here?** Is this background needed at *this exact point* in the argument?
-- **Visibly separate?** Is it visibly separate from the book's own argument (boxed as a second track, not
-  braided into a mainline paragraph)?
-- **Expert-skippable?** Can a reader who knows the concept skip it without losing the mainline?
-- **Newcomer rejoins?** Can a reader without the background read it and rejoin the argument?
-- **One concept, not a survey?** Does it teach one usable concept rather than survey a field?
+- **Useful here?** Does this background or case help with the engineering question at this point?
+- **Visibly separate?** Is it boxed as a second reading track?
+- **Skippable?** Without the inset, do the mainline's explanations, referents, and transitions still make
+  sense? Pay particular attention to the first paragraph after the inset.
+- **Context complete?** Can the intended reader follow the inset without prior knowledge of the background
+  or subsystem it introduces?
+- **Focused contribution?** Does a primer teach a usable concept, or a worked case develop related
+  engineering questions, without becoming a survey or product inventory?
 - **Operationally sound?** Is the simplified account operationally sound — scoped, and teaching no false
   operational rule? This question is the audit hook for the [`voice.md`](voice.md) §"Teach the curious
   engineer" classifier: a simplification that leaves the reader a *wrong* rule is a **correctness** finding
   (first tier), not a voice nitpick; a merely-imprecise-to-a-specialist account is fine once its scope
   clause is present.
-- **No mainline repeat?** Does the mainline avoid re-teaching the inset's concept after pointing into it
-  once?
+- **Adds explanatory work?** On the full reading path, does each return add evidence, a distinction, or
+  reasoning? Check especially for repeated conclusions and qualifications after successive examples.
 
-**Fix.** A "no" on *needed / visibly-separate / one-concept* is a placement or shaping fix — box the braided
-primer, cut a survey down to one concept, or move background the reader does not need here. A "no" on
-*expert-skippable / newcomer-rejoins* means the two tracks are not cleanly separated — tighten the mainline
-so it reads without the inset, or fill the inset so it stands alone. A "no" on *operationally sound* is a
-correctness break — scope the simplification or fix the false rule. A "no" on *no-mainline-repeat* is the
-progressive-density fix: compress the second mention to an invocation.
+**Fix.** A "no" on *useful / visibly-separate / focused* calls for a placement or shaping change. A "no" on
+*skippable / context-complete* means the reading paths need repair: restore missing explanation or name a
+referent in the mainline, or introduce the needed context in the inset. A "no" on *operationally sound* is a
+correctness break — scope the simplification or fix the false rule. A "no" on *adds explanatory work*
+calls for removing repeated assertions while preserving the concrete case and any new reasoning.
 
 ---
 

@@ -18,6 +18,7 @@
 \RequirePackage{fancyvrb}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{caption}
+\RequirePackage{afterpage}
 \RequirePackage{microtype}
 \RequirePackage{xurl}
 \RequirePackage{hyperref}
@@ -82,7 +83,17 @@
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 % The colored frame is an artifact; the box content remains tagged paragraphs in a Div.
 \newcommand{\bookboxtagbegin}{\ifdefined\tagstructbegin\par\tagpdfparaOff\tagstructbegin{tag=Div}\fi}
-\newcommand{\bookboxtagtext}{\ifdefined\tagpdfparaOn\tagpdfparaOn\fi}
+% tcolorbox's breakable minipage uses the legacy footnote writer. Restore
+% LaTeX's tagged writer, retaining minipage placement and mark/note links.
+\ExplSyntaxOn
+\newcommand{\bookboxfootnotes}{
+  \cs_if_exist:NT \fnote_footnotetext:n {
+    \cs_set_eq:cN { @footnotetext } \fnote_footnotetext:n
+    \AssignSocketPlug{fntext/process}{mp}
+  }
+}
+\ExplSyntaxOff
+\newcommand{\bookboxtagtext}{\ifdefined\tagpdfparaOn\tagpdfparaOn\fi\bookboxfootnotes}
 \newcommand{\bookboxtagpause}{\ifdefined\tagpdfparaOff\par\tagpdfparaOff\fi}
 \newcommand{\bookboxtagend}{\ifdefined\tagstructend\tagstructend\tagpdfparaOn\fi}
 % Shipout artwork is decoration as a whole, including TikZ's internal boxes.
@@ -93,10 +104,7 @@
   {\tag_mc_artifact_group_begin:n {}}
   {\tag_mc_artifact_group_end:}
 \ExplSyntaxOff
-\newenvironment{bookbox}[2]{%
-  \bookboxtagbegin
-  \begingroup
-  \def\bookboxtitle{#2}%
+\newcommand{\bookboxcolors}[1]{%
   \ifstrequal{#1}{decision}{\definecolor{boxrule}{HTML}{9A3F12}\definecolor{boxfill}{HTML}{FAF1E6}}{}%
   \ifstrequal{#1}{tradeoff}{\definecolor{boxrule}{HTML}{7C6BB0}\definecolor{boxfill}{HTML}{F2EFFB}}{}%
   \ifstrequal{#1}{inset}{\definecolor{boxrule}{HTML}{7C6BB0}\definecolor{boxfill}{HTML}{F2EFFB}}{}%
@@ -109,9 +117,83 @@
   \ifstrequal{#1}{case-study}{\definecolor{boxrule}{HTML}{2F5169}\definecolor{boxfill}{HTML}{E7EDF3}}{}%
   \ifstrequal{#1}{warning}{\definecolor{boxrule}{HTML}{B23B3B}\definecolor{boxfill}{HTML}{FBEAEA}}{}%
   \ifstrequal{#1}{exercise}{\definecolor{boxrule}{HTML}{9A3F12}\definecolor{boxfill}{HTML}{FAF1E6}}{}%
+}
+\newenvironment{bookbox}[2]{%
+  \bookboxtagbegin
+  \begingroup
+  \def\bookboxtitle{#2}%
+  \bookboxcolors{#1}%
   \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext\setlength{\parskip}{0.45em}\setlength{\parindent}{1.2em}}]
   \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
 }{\end{tcolorbox}\endgroup\bookboxtagend}
+
+% afterpage backs out of a just-starting paragraph before its already queued
+% paragraph hooks run. Use the kernel's raw paragraph operations when saving
+% and restoring it, so modern tagging hooks run exactly once. Ordinary figure
+% and caption construction remains tagged normally.
+\makeatletter
+\patchcmd{\AP@savetop}
+  {\noindent\else\indent}
+  {\noexpand\RawNoindent\else\noexpand\RawIndent}
+  {}{\PackageError{house}{Cannot adapt afterpage paragraph restart}{Review afterpage compatibility.}}
+\patchcmd{\AP@savetop}
+  {\par\else}
+  {\RawParEnd\else}
+  {}{\PackageError{house}{Cannot adapt afterpage paragraph save}{Review afterpage compatibility.}}
+\patchcmd{\AP@savetop}
+  {\everypar{}\noindent}
+  {\everypar{}\noexpand\RawNoindent}
+  {}{\PackageError{house}{Cannot adapt afterpage display restart}{Review afterpage compatibility.}}
+\makeatother
+
+% Figure pages are scheduled after the current text page has filled. They
+% remain ordinary full-width floats. Flush every
+% figure (including its publication-inserted monochrome partner) before removing
+% it. The background/title are artifacts; figures/captions retain normal tags.
+% Coalesce groups from one inset while the current prose page is filling.
+% One flush avoids empty float pages between callbacks for the same inset.
+\newcommand{\bookinsetfigurepagesdefer}[4]{%
+  \ifcsdef{bookinsetpending@#1}
+    {\csgappto{bookinsetpending@#1}{#4}}
+    {\csgdef{bookinsetpending@#1}{#4}%
+     \afterpage{%
+       \bookinsetfigurepagesbegin{#2}{#3}%
+       \csuse{bookinsetpending@#1}%
+       \csgundef{bookinsetpending@#1}%
+       \bookinsetfigurepagesend}}}
+\newlength{\bookinsetfigureleft}
+\newlength{\bookinsetfiguretop}
+\newcommand{\bookinsetfigurepagesbegin}[2]{%
+  % afterpage has already finished the text page; clearing again emits a blank.
+  \begingroup
+  \bookboxcolors{#1}%
+  \AddToHook{shipout/background}[book-inset-figures]{%
+    \begin{bookdecorative}
+    \ifodd\value{page}%
+      \setlength{\bookinsetfigureleft}{\dimexpr1in+\hoffset+\oddsidemargin\relax}%
+    \else
+      \setlength{\bookinsetfigureleft}{\dimexpr1in+\hoffset+\evensidemargin\relax}%
+    \fi
+    \setlength{\bookinsetfiguretop}{\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[boxfill]
+        ([xshift=\dimexpr\bookinsetfigureleft-8pt\relax,yshift=\dimexpr-\bookinsetfiguretop+4pt\relax]current page.north west)
+        rectangle
+        ([xshift=\dimexpr\bookinsetfigureleft+\textwidth+8pt\relax,yshift=\dimexpr-\bookinsetfiguretop-\textheight\relax]current page.north west);
+      \draw[boxrule,line width=2pt]
+        ([xshift=\dimexpr\bookinsetfigureleft-8pt\relax,yshift=\dimexpr-\bookinsetfiguretop+4pt\relax]current page.north west)
+        --
+        ([xshift=\dimexpr\bookinsetfigureleft-8pt\relax,yshift=\dimexpr-\bookinsetfiguretop-\textheight\relax]current page.north west);
+      \node[anchor=south west,inner sep=0pt,text width=\textwidth,align=left,
+        font=\booksans\small\bfseries,text=boxrule]
+        at ([xshift=\bookinsetfigureleft,yshift=\dimexpr-\bookinsetfiguretop+10pt\relax]current page.north west)
+        {\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}\enspace(continued)};
+    \end{tikzpicture}
+    \end{bookdecorative}}}
+\newcommand{\bookinsetfigurepagesend}{%
+  \clearpage
+  \RemoveFromHook{shipout/background}[book-inset-figures]%
+  \endgroup}
 \newcommand{\pandocbounded}[1]{#1}
 \newenvironment{CSLReferences}[2]{\begin{list}{}{\setlength{\leftmargin}{1.5em}\setlength{\itemindent}{-1.5em}\setlength{\itemsep}{0.5em}}\item[]}{\end{list}}
 \newcommand{\CSLBlock}[1]{#1\par}

@@ -1,0 +1,240 @@
+{
+  "source": "book/assets/docable-validation-scheduling.svg",
+  "candidate": "book/tikz/figures/docable-validation-scheduling.tex",
+  "source_sha256": "706e5b7120fcb5babe326ae6dd175e25dec6e7b77b7bcb8c6150c847b394bba4",
+  "candidate_sha256": "f42cb5537ebe3c2da1ce1c8330a86492076f22068c07f00ee5f1073af946070e",
+  "claim": "Separating integration from broad validation. The redesign lets several merges share a scheduled run of broad checks, reducing repeated work while delaying defect detection. Full validation still precedes deployment.",
+  "provenance": {
+    "lecture": "course/lectures/act-2-delegation-and-control/05-building-with-agents/2-7-Inside-an-Agentic-Software-Factory.pptx",
+    "lecture_date": "2026-11-03",
+    "source_slides": [
+      26,
+      27
+    ],
+    "primary_visual_source": 27,
+    "refining_evidence": "/Users/davisjam/Projects/ada-tool/docs/field-notes/fast-land-async-ci-design-261103.md"
+  },
+  "figure_job": "Show that expensive validation can run independently of each merge while preserving cheap integration checks, failure response, and validation before deployment.",
+  "visual_proposition": "One coupled path becomes three paths with distinct triggers, so the broad suite no longer gates each transition to the next work.",
+  "topology": "Before row: agent, combined merge-and-validation stage, next work. After: parallel operational rows keyed by change, periodic timer, and deployment request. The rows are different trigger paths, not sequential production steps.",
+  "required_terms": [
+    "Merge and full validation",
+    "Cheap checks",
+    "Merge",
+    "Next work",
+    "Every 30 minutes",
+    "Timer",
+    "Broad checks of main",
+    "One sweep at a time",
+    "Pause dispatch",
+    "Full validation",
+    "Deploy"
+  ],
+  "forbidden_implications": [
+    "Every merge launches an expensive background sweep.",
+    "The 30-minute schedule bounds failure-detection latency.",
+    "All failures stop dispatch irrespective of alert classification.",
+    "Dispatch can resume only after a repair has been independently verified.",
+    "Cheap merge checks alone authorize deployment.",
+    "The source establishes whether full validation occurred microscopically before or after a merge in the older arrangement."
+  ],
+  "source_figure_defects": "Slide27 displays Agent -> Merge -> Full validation -> Next work, but its notes describe reducing checks required before integration. The teaching adaptation groups merge and full validation into one coupled stage instead of inventing an ordering. Slide27 also visually connects merge to periodic validation; the field note establishes a clock trigger, so three independent rows replace that ambiguous edge.",
+  "bw_encoding": "White interiors and black rules throughout. Wording, arrows and separate rows carry the distinction without color. SVG role tints are redundant.",
+  "bold": "Bold identifies stages and path headings; annotations and explanatory details remain regular. Ordinary body text in two-line sweep/response boxes is regular.",
+  "routing": "Straight horizontal arrows. The shortest terminal approach is 18bp. No route or glyph crossings. Broad-validation and deployment paths have matching node alignment.",
+  "redesign": "Redrawn from slide27 at textbook scale. Keeps the before/after process relationship and full deployment validation; adds source-grounded independent periodic trigger and single-sweep guard. Omits source-slide footer slogans, passing-sweep no-op, installation gap, and premature-resolution incident.",
+  "d2_limitations": "Three independent rows must stay parallel rather than form a serial process. Exact aligned printing geometry is shared with native TikZ, with explicit control over typography and edge-label clearance.",
+  "alt": "Before, integration and full validation were coupled, so subsequent work waited for the broad suite. After, three paths have distinct triggers. For each change, the agent runs cheap checks, merges, and moves to the next work. Independently, a timer schedules broad checks of main every 30 minutes, with at most one sweep running. A blocking failure pauses dispatch and prompts diagnosis and repair. A deployment request still requires full validation to pass before deployment. The timer, rather than each merge, triggers the broad sweep. The cadence is the nominal schedule, not a bound on detection latency.",
+  "layout_contracts": {
+    "peer_groups": [
+      {
+        "name": "Periodic-check path",
+        "labels": [
+          "Timer",
+          "Broad checks of main",
+          "Pause dispatch"
+        ],
+        "align": [
+          "top",
+          "bottom"
+        ],
+        "equal_height": true,
+        "tolerance_pt": 1
+      },
+      {
+        "name": "Deployment path",
+        "labels": [
+          "Deployment request",
+          "Full validation",
+          "Deploy"
+        ],
+        "align": [
+          "top",
+          "bottom"
+        ],
+        "equal_height": true,
+        "tolerance_pt": 1
+      }
+    ]
+  },
+  "typography_evidence": [
+    {
+      "source_text": "Before: integration and validation coupled",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "stage or path title",
+      "candidate_text": "Before: integration and validation coupled",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "After: separate triggers for different checks",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "stage or path title",
+      "candidate_text": "After: separate triggers for different checks",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Cheap checks",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "stage or path title",
+      "candidate_text": "Cheap checks",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Every 30 minutes",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "stage or path title",
+      "candidate_text": "Every 30 minutes",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Broad checks of main",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "stage or path title",
+      "candidate_text": "Broad checks of main",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Full validation",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal"
+      },
+      "semantic_role": "stage or path title",
+      "candidate_text": "Full validation",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "One sweep at a time",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "explanatory annotation",
+      "candidate_text": "One sweep at a time",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Next work waits for full validation.",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "explanatory annotation",
+      "candidate_text": "Next work waits for full validation.",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "blocking",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "normal"
+      },
+      "semantic_role": "explanatory annotation",
+      "candidate_text": "blocking",
+      "candidate_style": "regular"
+    }
+  ],
+  "typography_render_checks": [
+    {
+      "text": "Before: integration and validation coupled",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "After: separate triggers for different checks",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Cheap checks",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Every 30 minutes",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Broad checks of main",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Full validation",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "One sweep at a time",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Next work waits for full validation.",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "blocking",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "qa": {
+    "compiler": "XeLaTeX TeX Live 2025 using book/tikz/mage-figures.sty and inherited MAGE SourceSans3 profile",
+    "warnings": [],
+    "width_bp": 441.99,
+    "height_bp": 405.0,
+    "minimum_prose_font_pt": 10,
+    "measured_pdf_font_sizes_bp": [
+      9.9626,
+      10.4608,
+      10.9589
+    ],
+    "monochrome": true,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 9,
+    "reviewed_peer_groups": 2,
+    "svg_audit_findings": 0,
+    "inspection": "Actual lecture slides26/27 inspected before design. Color SVG and native grayscale proofs reviewed at final composition: no overflow, colliding labels, or disconnected edge labels. Timer is explicit; no merge-to-sweep arrow. Combined old merge/validation box avoids disputed before/after ordering. Final trim removes 10bp of unused left canvas without moving or scaling geometry or fonts; native width 441.99bp leaves room for the pool’s 6pt preview border.",
+    "proof_pdf": "/private/tmp/factory-ci-figure/proof.pdf",
+    "proof_sha256": "10ac61d98e0a4f39d0aa5b9582de095407a4843d888a65fda3eac60085e16100"
+  },
+  "questions": []
+}

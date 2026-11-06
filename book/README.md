@@ -19,6 +19,14 @@ with the existing `catalog.py build`. `tools/mage_latex.py sync --check` rejects
 projections. The compiler rejects errors, unresolved references/citations, missing
 glyphs, overfull boxes, and other warnings; underfull boxes are explicitly tolerated.
 
+The full `mage-book.pdf` places each color figure immediately before its native
+black-and-white version from `tikz/`, including chapter navigation maps. The build
+checks the monochrome drawings at their authored print sizes and retains the
+original captions, numbering and internal links. Registered charts that are already
+monochrome appear once; their pixels are checked during assembly. The author
+photograph also appears once. The web edition uses only the original SVG artwork.
+The separate figure-review build uses the same pairing rules.
+
 Ordinary LaTeX headings, prose, lists, tables, equations, and citations are native.
 `\citep{key}` keeps bibliography identities in `references.bib`; `\autoref{label}`
 keeps figure/table references. The small `\magevalue{...}`, `\mageaside{...}`, and

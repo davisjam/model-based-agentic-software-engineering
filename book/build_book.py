@@ -1392,6 +1392,8 @@ def inline(s: str) -> str:
     # Runs before the markdown-link pass so a `[^label]` is consumed as a footnote, not mis-read as a link.
     s = _FOOTNOTE_REF_RE.sub(lambda m: _stash_cite(_render_footnote_marker(m.group(1))), s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
+    # Triple emphasis must close its inner element before the outer one.
+    s = re.sub(r"\*\*\*(.+?)\*\*\*", r"<strong><em>\1</em></strong>", s)
     # Bold: non-greedy so an inner *italic* span survives (e.g. `**a typed *derived* edge**`); the
     # italic pass below then converts the inner single-asterisk pair. (`[^*]+` used to fail whenever a
     # bold span wrapped an italic one, leaking a literal `**` into the page.)
@@ -1619,7 +1621,8 @@ def _book_ir():
 
 
 def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = None,
-               section_prefix: str | None = None) -> str:
+               section_prefix: str | None = None, *,
+               _index_occ: dict[tuple[str, str], int] | None = None) -> str:
     """Convert the markdown subset the chapters use into HTML.
 
     `anchor_map` (optional) maps `(concept-slug, "def"|"ex", occurrence-on-this-page)` → the anchor id the
@@ -1661,7 +1664,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_onepager: list[bool] = []       # a `<!-- case-onepager -->` marker armed for the next table (card)
     pending_convergence_key: list[bool] = []  # a `<!-- convergence-spread-key -->` marker → next table is the slim key
     spread_state: list[dict] = []           # open convergence spread(s): {start, split} indices into `out`
-    occ: dict[tuple[str, str], int] = {}    # per-page (slug, kind) → next occurrence index
+    # Nested insets share page occurrence order; pending anchors remain local.
+    occ = {} if _index_occ is None else _index_occ
 
     def _with_label(frag: str) -> str:
         """Attach an armed `<!-- label: key -->` as `data-label` on the float's opening tag, so the
@@ -2020,7 +2024,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                                      is_epigraph=epigraph_armed, is_inline_quote=inlinequote_armed,
                                      is_sidenote=sidenote_armed,
                                      box_family=boxfamily_armed, inset_domain=insetdomain_armed,
-                                     box_weight=boxweight_armed))
+                                     box_weight=boxweight_armed, anchor_map=anchor_map,
+                                     _index_occ=occ))
             continue
         # Gap-marker callouts (`[FILL IN: …]` / `[MORE CHAPTERS FOLLOW: …]`) — the IR classifies these as
         # PARA (they are prose-shaped), so the renderer keeps the shape test for them just ahead of prose.
@@ -2286,7 +2291,9 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
                        is_principlebox: bool = False, is_epigraph: bool = False,
                        is_inline_quote: bool = False, is_sidenote: bool = False,
                        box_family: "str | None" = None,
-                       inset_domain: "str | None" = None, box_weight: "str | None" = None) -> str:
+                       inset_domain: "str | None" = None, box_weight: "str | None" = None,
+                       anchor_map: dict[tuple[str, str, int], str] | None = None,
+                       _index_occ: dict[tuple[str, str], int] | None = None) -> str:
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
     to a styled `inset-title` paragraph (no document-outline break). An explicit `<!-- box-family: X -->`
@@ -2308,7 +2315,7 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     UNARMED em-led aside (`> *A footnote on …*`; the em-lead convention is not an accepted declaration) —
     which the blockquote-placement lint flags as an error: nothing lands in the rail undeclared."""
     inner_md = "\n".join(_strip_blockquote_prefix(ln) for ln in block.splitlines())
-    inner_html = md_to_html(inner_md)
+    inner_html = md_to_html(inner_md, anchor_map=anchor_map, _index_occ=_index_occ)
     inner_html = re.sub(r"<h[1-6]([^>]*)>(.*?)</h[1-6]>", r'<p class="inset-title"\1>\2</p>', inner_html, flags=re.S)
     # A concept-inset heading is authored as `### Inset I<N> — <Title>` so the source carries a stable
     # number for editing; the DISPLAYED label shows the TITLE ONLY. Strip the `Inset I<N> —` prefix from
@@ -3575,7 +3582,7 @@ _CRAZY_IDEAS_PAGES: list[tuple[str, str]] = [
 # APPENDIX D — Operator's Reference. Hand-authored, like the stacks Part and the skill recipe: a front-door
 # page whose opening prose lives here, then one authored markdown page per operational reference card under
 # `appendix-operators-reference/`. No catalogue projection — these are reference surfaces the author keeps at
-# the bench, not a mechanism map. Built to grow: the Operator's Dashboard is the first card (D.1); later
+# the bench, not a mechanism map. A worked workflow precedes the Operator's Dashboard; later
 # editions add lifecycle / conversion / decision-heuristic cards as further pages in `_OPERATORS_REFERENCE_PAGES`.
 _OPERATORS_REFERENCE_DIR = HERE / "appendix-operators-reference"
 
@@ -3584,8 +3591,10 @@ _OPERATORS_REFERENCE_DIR = HERE / "appendix-operators-reference"
 _APPENDIX_OPERATORS_REFERENCE_OPENING_SLUG = "appendix-operators-reference"
 
 # The authored content pages under the front-door → (page-slug stem, display title). The Operator's Dashboard
-# is the first (D.1); absent-on-disk files are skipped, so the front-door alone still renders without them.
+# leads the card deck after the worked workflow; absent-on-disk files are skipped.
 _OPERATORS_REFERENCE_PAGES: list[tuple[str, str]] = [
+    # Worked reference, not an operator card; keep before the card deck so its page-span bounds stay intact.
+    ("a-worked-factory-workflow", "A Worked Factory Workflow"),
     ("operators-dashboard", "The Operator's Dashboard"),
     # The operator-card deck (Appendix-D). One card = one page; the deck is declared in
     # book-models/operator-cards.json and its evidence-resolution gate is BLOCKING in `catalog.py validate`.
@@ -4914,11 +4923,25 @@ def _harvest_concept_tags(chapters: list[dict]) -> tuple[dict, dict]:
         return reg.setdefault(
             slug, {"display": registry_names[slug], "def": None, "examples": []})
 
+    def _tag_lines(md: str):
+        # Follow the renderer's blockquote recursion and skip literal code.
+        # Peeling leading markers also handles a box-family tag glued to its inset.
+        for block in _split_blocks(md):
+            lines = block.strip("\n").splitlines()
+            while lines and _MARKER_COMMENT_RE.match(lines[0].strip()):
+                yield lines.pop(0)
+            if not lines:
+                continue
+            if all(line.strip().startswith(">") for line in lines):
+                yield from _tag_lines("\n".join(_strip_blockquote_prefix(line) for line in lines))
+            elif not lines[0].strip().startswith("```"):
+                yield from lines
+
     for pg in chapters:
         pslug = pg["slug"]
         pmap = page_maps.setdefault(pslug, {})
         per_page_occ: dict[tuple[str, str], int] = {}
-        for line in pg["body_md"].splitlines():
+        for line in _tag_lines(pg["body_md"]):
             s = line.strip()
             md = INDEX_DEF_RE.match(s)
             if md:
@@ -6487,7 +6510,7 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         problems.append("Contents table of contents spilled past one page")
 
     # Native insets occupy the full text measure in normal flow. Preserve inset
-    # presence and the one-inset-per-page rule; the independent margin and blank
+    # presence and the one-authored-opening-per-page rule; margin and blank
     # page sensors hold overflow and whitespace. A right-float outside strip no
     # longer exists in this layout, so measuring it would be a vacuous pass.
     import check_native_insets
@@ -6495,7 +6518,7 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     if inset_findings:
         problems.extend("native inset: " + finding for finding in inset_findings)
     else:
-        print("PDF NATIVE-INSET SENSOR: PASS — all inset titles present; at most one per page.")
+        print("PDF NATIVE-INSET SENSOR: PASS — all titles present; at most one authored opening per page.")
 
     # BLANK-PAGE RATCHET: no page may be left mostly blank by a NEW pagination failure (a forced break
     # abandoning a page, or an unbreakable downstream object dragging its whole block over). The sensor
@@ -6675,10 +6698,14 @@ def build_pdf() -> int:
     sys.path.insert(0, str(ROOT / "tools"))
     import mage_latex
     from pdf_structure import check_pdf
+    from pdf_optimize import deduplicate_pdf
 
     _emit_writing_style_export()
     try:
         pdf_out = mage_latex.build_pdf()
+        # Paired artwork can repeat identical font/vector resources. Merge those
+        # objects without rasterizing figures or altering their printed content.
+        deduplicate_pdf(pdf_out)
         # Lossless object-stream packing retains vector artwork and the tag tree.
         packed = pdf_out.with_suffix('.packed.pdf')
         qpdf_repack(pdf_out, packed)
@@ -6691,6 +6718,10 @@ def build_pdf() -> int:
                   sections=len(re.findall(r"\\section\*?\{", source)),
                   tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}"),
                   figures=source.count(r"\begin{figure}"))
+        import mage_tikz_links
+        figure_manifest = json.loads((driver.parent / 'grayscale-figures.json').read_text())
+        mage_tikz_links.verify_book(pdf_out, driver.with_suffix('.aux'), figure_manifest,
+                                    anchor_prefix='tikz-figure:')
         assert_pdf_size(pdf_out)
         return verify_pdf(pdf_out)
     except (RuntimeError, ValueError, OSError) as error:
@@ -7107,7 +7138,7 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    # `--pdf` is the opt-in print edition (the native LaTeX render); default is the WEB build —
+    # `--pdf` builds the native print edition and a fresh EPUB; default is the WEB build —
     # which, since the C3 publish swap, IS the MkDocs emission: build_pages() renders every page body
     # and book/book_mkdocs.py projects the tree (the blockquote-placement gate runs there, over the
     # emitted bodies). A local `--pdf` ALSO emits the per-section review PDFs by default (additive);
@@ -7115,6 +7146,9 @@ if __name__ == "__main__":
     # `_pdf_split_enabled` (env + flag).
     if "--pdf" in args:
         rc = build_pdf()
+        if rc == 0:
+            import book_epub
+            rc = book_epub.main([])
         if rc == 0 and _pdf_split_enabled(args):
             rc = build_pdf_split() or rc  # section PDFs are additive; a section failure surfaces as nonzero
         raise SystemExit(rc)

@@ -1,0 +1,267 @@
+{
+  "source": "book/assets/docable-work-order-flow.svg",
+  "candidate": "book/tikz/figures/docable-work-order-flow.tex",
+  "source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
+  "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
+  "claim": "From engineering intent to completed work. The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.",
+  "provenance": {
+    "lecture": "course/lectures/act-2-delegation-and-control/05-building-with-agents/2-7-Inside-an-Agentic-Software-Factory.pptx",
+    "lecture_date": "2026-11-03",
+    "source_slides": [
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24
+    ]
+  },
+  "figure_job": "Show how a reviewed work order turns one engineering priority into parallel implementation followed by independent completion review.",
+  "visual_proposition": "A single reviewed plan fans out to concurrent agents, reconverges for integration and audit, and closes only after its completion criteria are met.",
+  "topology": "Vertical plan and orchestration spine; two equal peer implementation branches; shared integration rail; completion audit with one outer return to orchestration for repair.",
+  "required_terms": [
+    "Engineer",
+    "Reviewed work order",
+    "Orchestrator",
+    "Agent A",
+    "Agent B",
+    "Integration and checks",
+    "Independent completion audit",
+    "Work order closed"
+  ],
+  "forbidden_implications": [
+    "The engineer must prompt every implementation phase.",
+    "Worktree isolation establishes correctness.",
+    "A completion audit constitutes a correctness proof.",
+    "Closing the work order authorizes deployment.",
+    "This simplified flow specifies exactly when all validation tiers run."
+  ],
+  "bw_encoding": "All nodes have white interiors. Their labels and topology carry the roles; stage colors in the SVG are redundant. No grayscale role distinction is required.",
+  "bold": "Node titles distinguish named actors, artifacts and lifecycle stages from regular explanatory details. Both parallel agent nodes receive equal treatment.",
+  "routing": "Orthogonal directed flow with >=14 bp terminal approach in the shortest branches. Shared rails preserve peer fan-out/convergence. The single outer return enters the orchestrator from the right without crossing nodes or labels.",
+  "redesign": "Synthesis of the lecture workflow rather than slide reproduction. Detailed templates and hook behavior belong in prose/table; this drawing retains scheduling, isolation, integration, completion review and repair.",
+  "d2_limitations": "Custom geometry keeps exact peer alignment and a single orthogonal outer return at fixed print width, while preserving matching native TikZ coordinates; the house d2 version does not expose equivalent orthogonal route control.",
+  "alt": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness.",
+  "layout_contracts": {
+    "peer_groups": [
+      {
+        "name": "Parallel implementation agents",
+        "labels": [
+          "Agent A",
+          "Agent B"
+        ],
+        "align": [
+          "top",
+          "bottom"
+        ],
+        "equal_height": true,
+        "equal_width": true,
+        "tolerance_pt": 1
+      }
+    ]
+  },
+  "typography_evidence": [
+    {
+      "source_text": "Engineer",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Engineer",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Reviewed work order",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Reviewed work order",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Orchestrator",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Orchestrator",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Agent A",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Agent A",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Agent B",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Agent B",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Integration and checks",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Integration and checks",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Independent completion audit",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Independent completion audit",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Work order closed",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "10.5"
+      },
+      "semantic_role": "stage or actor title",
+      "candidate_text": "Work order closed",
+      "candidate_style": "bold"
+    },
+    {
+      "source_text": "Schedules ready phases",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "normal",
+        "font-size": "9.5"
+      },
+      "semantic_role": "explanatory annotation",
+      "candidate_text": "Schedules ready phases",
+      "candidate_style": "regular"
+    },
+    {
+      "source_text": "Repair work",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "normal",
+        "font-size": "9.5"
+      },
+      "semantic_role": "explanatory annotation",
+      "candidate_text": "Repair work",
+      "candidate_style": "regular"
+    }
+  ],
+  "typography_render_checks": [
+    {
+      "text": "Engineer",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Reviewed work order",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Orchestrator",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Agent A",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Agent B",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Integration and checks",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Independent completion audit",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Work order closed",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Schedules ready phases",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Repair work",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "qa": {
+    "compiler": "XeLaTeX TeX Live 2025 using book/tikz/mage-figures.sty and inherited MAGE SourceSans3 font profile",
+    "warnings": [],
+    "width_bp": 401.99,
+    "height_bp": 449.99,
+    "minimum_prose_font_pt": 9.5,
+    "measured_pdf_font_sizes_bp": [
+      9.4645,
+      10.4608
+    ],
+    "monochrome": true,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 8,
+    "reviewed_peer_groups": 1,
+    "svg_audit_findings": 0,
+    "inspection": "SVG and native TikZ proofs visually inspected. All text fits; no strokes through labels; source and grayscale topology agree. Equal parallel agent boxes; repair return clears the right branch. Native 400 × 450 bp authored canvas (standalone output 401.99 × 449.99 bp).",
+    "proof_pdf": "/private/tmp/factory-figure-draft/proof.pdf",
+    "proof_sha256": "92323f9e68dcf87b5874d2417d518a9e8f7ba388fd6d9cb45e43b6c681e9fb41"
+  },
+  "questions": [],
+  "book_pool_validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "1a37e295049c64bf4da3d22c30a117aab9d9d0310bc717ce549cdbcccc1b825f",
+    "page": 82,
+    "width_bp": 405.973,
+    "height_bp": 455.972,
+    "geometry_findings": 0,
+    "unapproved_compile_diagnostics": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 10,
+    "status": "passed"
+  }
+}

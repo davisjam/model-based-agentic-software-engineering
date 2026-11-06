@@ -18,7 +18,7 @@
     <marker id="entEvo-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
   <rect x="0" y="0" width="1040" height="720" fill="#fdfcf9"/>
-  <text x="520" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The repair was model &#8594; model — a distinction lost, then preserved</text>
+  <text x="520" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Upload admission must distinguish finite and unlimited entitlement</text>
 
   <!-- panel frames -->
   <rect x="30"  y="70"  width="470" height="280" rx="12" fill="none" stroke="#e4e0d8" stroke-width="2"/>
@@ -38,11 +38,11 @@
   <line x1="260" y1="259" x2="308" y2="259" stroke="#2f5169" stroke-width="2" marker-end="url(#entEvo-ah-blue)"/>
   <rect x="312" y="236" width="168" height="46" rx="9" fill="#e8eef3" stroke="#2f5169" stroke-width="2"/>
   <text x="396" y="265" text-anchor="middle" font-size="19" fill="#1c1917">credits &#8805; pages?</text>
-  <text x="275" y="322" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">an adequate reduction — for this domain</text>
+  <text x="275" y="322" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">credit balance determines upload permission</text>
 
-  <!-- ============ Panel 2: THE SYSTEM EVOLVES ============ -->
+  <!-- ============ Panel 2: UNLIMITED GROUPS ADDED ============ -->
   <circle cx="568" cy="98" r="15" fill="#1f7a4d"/><text x="568" y="104" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">2</text>
-  <text x="594" y="105" font-size="20" font-weight="700" fill="#1c1917">THE SYSTEM EVOLVES</text>
+  <text x="594" y="105" font-size="20" font-weight="700" fill="#1c1917">UNLIMITED GROUPS ADDED</text>
   <text x="594" y="129" font-size="17" font-style="italic" fill="#57534e">unlimited entitlement is introduced</text>
   <rect x="640" y="150" width="180" height="50" rx="9" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
   <text x="730" y="181" text-anchor="middle" font-size="19" fill="#1c1917">Group</text>
@@ -52,24 +52,24 @@
   <text x="646" y="271" text-anchor="middle" font-size="19" fill="#1c1917">finite(credits)</text>
   <rect x="754" y="242" width="176" height="46" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="842" y="271" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">unlimited</text>
-  <text x="775" y="322" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the entitlement state space has grown</text>
+  <text x="775" y="322" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">groups now provide finite or unlimited use</text>
 
   <!-- chronology arrows between panels -->
   <line x1="500" y1="210" x2="536" y2="210" stroke="#57534e" stroke-width="2.4" marker-end="url(#entEvo-ah-muted)"/>
   <path d="M 775 350 C 775 372, 265 368, 265 386" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#entEvo-ah-muted)"/>
   <line x1="500" y1="545" x2="536" y2="545" stroke="#57534e" stroke-width="2.4" marker-end="url(#entEvo-ah-muted)"/>
 
-  <!-- ============ Panel 3: STALE ADMISSION MODEL ============ -->
+  <!-- ============ Panel 3: BALANCE-ONLY PREFLIGHT ============ -->
   <circle cx="58" cy="418" r="15" fill="#9a3f12"/><text x="58" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">3</text>
-  <text x="84" y="425" font-size="20" font-weight="700" fill="#9a3f12">STALE ADMISSION MODEL</text>
-  <text x="84" y="449" font-size="17" font-style="italic" fill="#57534e">one representation does not evolve</text>
+  <text x="84" y="425" font-size="20" font-weight="700" fill="#9a3f12">BALANCE-ONLY PREFLIGHT</text>
+  <text x="84" y="449" font-size="17" font-style="italic" fill="#57534e">the client still receives only a balance</text>
   <rect x="60" y="470" width="150" height="46" rx="9" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
   <text x="135" y="499" text-anchor="middle" font-size="19" fill="#1c1917">groups</text>
   <line x1="210" y1="493" x2="252" y2="493" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#entEvo-ah-rust)"/>
   <rect x="256" y="470" width="224" height="46" rx="9" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
   <text x="368" y="499" text-anchor="middle" font-size="19" fill="#1c1917">&#931; finite credits only</text>
-  <text x="368" y="545" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">&#8220;unlimited&#8221; has no representation —</text>
-  <text x="368" y="567" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">the distinction is discarded here</text>
+  <text x="368" y="545" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">the return value omits</text>
+  <text x="368" y="567" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">the unlimited flag</text>
   <line x1="368" y1="516" x2="368" y2="525" stroke="#9a3f12" stroke-width="2.2"/>
   <rect x="90" y="600" width="120" height="44" rx="9" fill="#f6e8e0" stroke="#9a3f12" stroke-width="2"/>
   <text x="150" y="628" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">0 credits</text>
@@ -81,12 +81,12 @@
   <line x1="376" y1="622" x2="414" y2="622" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#entEvo-ah-rust)"/>
   <rect x="418" y="600" width="78" height="44" rx="9" fill="#9a3f12"/>
   <text x="457" y="628" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">REJECT</text>
-  <text x="265" y="682" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the server&#8217;s correct admission logic is never reached</text>
+  <text x="265" y="682" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">client rejection prevents the server check</text>
 
-  <!-- ============ Panel 4: REVISED MODEL ============ -->
+  <!-- ============ Panel 4: EXPLICIT ADMISSION DECISION ============ -->
   <circle cx="568" cy="418" r="15" fill="#155c38"/><text x="568" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">4</text>
-  <text x="594" y="425" font-size="20" font-weight="700" fill="#155c38">REVISED MODEL</text>
-  <text x="594" y="449" font-size="17" font-style="italic" fill="#57534e">the distinction survives the reduction</text>
+  <text x="594" y="425" font-size="20" font-weight="700" fill="#155c38">EXPLICIT ADMISSION DECISION</text>
+  <text x="594" y="449" font-size="17" font-style="italic" fill="#57534e">the decision checks both entitlement kinds</text>
   <rect x="560" y="470" width="220" height="66" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="670" y="496" text-anchor="middle" font-size="19" fill="#1c1917">group entitlements</text>
   <text x="670" y="521" text-anchor="middle" font-size="17" font-style="italic" fill="#155c38">finite | unlimited</text>
@@ -103,5 +103,5 @@
   <text x="662" y="568" text-anchor="end" font-size="17" font-style="italic" fill="#57534e">same user</text>
   <rect x="576" y="600" width="188" height="44" rx="9" fill="#155c38"/>
   <text x="670" y="628" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">admit_unlimited</text>
-  <text x="775" y="682" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the implementation now consumes the model</text>
+  <text x="775" y="682" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">client and server use the admission decision</text>
 </svg>

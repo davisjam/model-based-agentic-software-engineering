@@ -2,7 +2,7 @@
 
 **Operational reference for running a Governed Engineering Environment**
 
-This appendix is an operational reference for a Governed Engineering Environment. Use each card to answer a specific operating question, then return to the work.
+This appendix is an operational reference for a Governed Engineering Environment. A worked factory workflow first connects work orders, dispatch, validation, and recovery. The following cards answer specific operating questions; use the relevant card, then return to the work.
 
 The deck supports four jobs: orient, diagnose, act, and certify. The cards within each group answer a specific operating question. Operating Doctrine summarizes the rules that govern the rest.
 

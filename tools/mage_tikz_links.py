@@ -109,7 +109,7 @@ def overlay(links, available):
     return '\n'.join(rows)+'\n'
 
 
-def verify_book(pdf, aux, manifest):
+def verify_book(pdf, aux, manifest, anchor_prefix='tikz-candidate:'):
     """Check every carried region's size, placement and internal destination."""
     from pathlib import Path
     from pypdf import PdfReader
@@ -122,7 +122,7 @@ def verify_book(pdf, aux, manifest):
     for source, info in manifest.items():
         expected = info.get('links', [])
         if not expected: continue
-        anchor = 'tikz-candidate:' + Path(source).stem
+        anchor = anchor_prefix + Path(source).stem
         page_number = reader.get_destination_page_number(destinations[anchor])
         actual = []
         for ref in reader.pages[page_number].get('/Annots', []):

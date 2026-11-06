@@ -208,13 +208,14 @@ class _Walker:
         line = self.parser.CurrentLineNumber
         self._order += 1
         order = self._order
+        attrs = lfo.presentation_attrs(attrs)
         mtx = self._push_style(attrs)
 
-        if tag == "defs":
+        if tag in lfo.NON_RENDERING_CONTAINERS:
             self._defs_depth += 1
             return
         if self._defs_depth > 0:
-            return  # inside <defs>: symbols/markers/gradients paint by reference, not in place
+            return  # definition/mask/clip contents do not paint at this position
 
         if tag == "text":
             base = self._new_line(attrs, mtx, order, line, is_root=True)
@@ -301,7 +302,7 @@ class _Walker:
 
     def _end(self, name: str) -> None:
         tag = self._tag(name)
-        if tag == "defs" and self._defs_depth > 0:
+        if tag in lfo.NON_RENDERING_CONTAINERS and self._defs_depth > 0:
             self._defs_depth -= 1
         elif tag == "text" and self._text_stack:
             ctx = self._text_stack.pop()

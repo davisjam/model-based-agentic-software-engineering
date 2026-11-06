@@ -706,17 +706,37 @@ def check_float_ref() -> "tuple[list[Finding], dict]":
         _sys.path.insert(0, BOOK)
     import book_ir as _ir  # noqa: E402 — the typed book IR lives under book/
 
+    def reading_order(ch):
+        for block in ch.blocks:
+            if block.kind is _ir.BlockKind.BLOCKQUOTE:
+                # Match the renderer's recursive inset parsing. A whole quoted
+                # block's refs otherwise share one position and hide its floats.
+                inner = "\n".join(_ir.bb._strip_blockquote_prefix(line)
+                                  for line in block.raw.splitlines())
+                nested = _ir._parse_chapter({"slug": ch.slug, "part": ch.part,
+                                             "chapter_title": ch.title, "body_md": inner})
+                yield from reading_order(nested)
+            else:
+                yield block
+
     doc = _ir.parse_book()
-    labels = doc.labels()
+    ordered = [(ch, list(reading_order(ch))) for ch in doc.chapters]
+    labels = {block.label for _, blocks in ordered for block in blocks
+              if block.is_float and block.label}
+    refs = []
     src_by_slug = {os.path.splitext(os.path.basename(f))[0]: f for f in _chapter_src_files()}
     findings: list[Finding] = []
     floats = 0
-    for ch in doc.chapters:
+    for ch, blocks in ordered:
         src = src_by_slug.get(ch.slug, ch.slug)
         first_ref: dict[str, int] = {}
-        for r in ch.refs():
-            first_ref[r.key] = min(r.block_index, first_ref.get(r.key, r.block_index))
-        for b in ch.floats():
+        for position, block in enumerate(blocks):
+            for ref in block.refs:
+                first_ref.setdefault(ref.key, position)
+                refs.append(ref)
+        for position, b in enumerate(blocks):
+            if not b.is_float:
+                continue
             floats += 1
             if not b.label:
                 findings.append(Finding(src, ch.slug,
@@ -725,11 +745,11 @@ def check_float_ref() -> "tuple[list[Finding], dict]":
             elif b.label not in first_ref:
                 findings.append(Finding(src, ch.slug,
                     f"{ch.slug} — {b.kind.value} '{b.label}' is never introduced by a [ref:{b.label}]"))
-            elif first_ref[b.label] >= b.index:
+            elif first_ref[b.label] >= position:
                 findings.append(Finding(src, ch.slug,
                     f"{ch.slug} — {b.kind.value} '{b.label}': its first [ref:] is at/after the float, "
                     f"so it does not introduce it"))
-    for r in doc.refs():
+    for r in refs:
         if r.key not in labels:
             findings.append(Finding(src_by_slug.get(r.chapter_slug, r.chapter_slug), r.chapter_slug,
                 f"{r.chapter_slug} — [ref:{r.key}] resolves to no <!-- label: {r.key} --> float"))

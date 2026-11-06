@@ -9,7 +9,7 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[strong,text width=6cm,fill=black!8] (n1) at (0,-1.8) {\textbf{Structured document model}\\\textit{The sanctioned seam}};
 \draw[edge] (n0) -- node[lab,right] {\textit{operates through}} (n1);
 \node[n,text width=6cm] (n2) at (0,-3.6) {Format-specific implementation};
-\draw[edge] (n1) -- node[lab,right] {\textit{realized through}} (n2);
+\draw[edge] (n1) -- node[lab,right] {\textit{implemented by}} (n2);
 \node[n,text width=2.3cm] (f0) at (-4.5,-5.5) {DOCX};
 \draw[edge] (n2.south) -- (0,-4.5) -| (f0.north);
 \node[n,text width=2.3cm] (f1) at (-1.5,-5.5) {PPTX};

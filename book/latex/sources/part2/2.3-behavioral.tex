@@ -1,9 +1,5 @@
-% mage-auto-heading: the-canonical-move-states-transitions-and-executions
-% mage-auto-heading: docable-recovery-ordering
-% mage-auto-heading: recovery-ordering-model-behavioral
-% mage-auto-heading: what-the-model-makes-checkable
-% mage-auto-heading: docable-ownership-under-contention
-% mage-auto-heading: in-flight-lease-ownership
+% mage-auto-heading: modeling-behavior-with-states-and-transitions
+% mage-auto-heading: ownership-under-contention
 % mage-auto-heading: one-representation-several-questions
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
@@ -13,13 +9,13 @@
 
 \chapter{Behavioral Models: What May Happen?}
 
-A structural model holds a system still; a behavioral model lets it move. It suppresses most of what a component \emph{is} and keeps what it may \emph{do} over time --- the states a job may occupy, the transitions permitted between them, and the orderings those transitions allow or forbid. Where a dependency graph answers \emph{what is connected to what?}, a behavioral model answers a question that only arises once time is admitted: what may happen, and in what order?
+A behavioral model represents how a system acts or changes over time. It may describe the messages exchanged by components, the order of steps in a workflow, or how a quantity changes continuously. Where a structural model like a dependency graph answers \emph{what is connected to what?}, a behavioral model asks \emph{what may happen, and in what order?} The representation should preserve the distinctions needed to answer the engineering question while leaving out implementation details that do not affect it.
 
-\section{The Canonical Move: States, Transitions, and Executions}\label{heading:the-canonical-move-states-transitions-and-executions}
+\section{Modeling Behavior with States and Transitions}\label{heading:modeling-behavior-with-states-and-transitions}
 
-% <!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | Engineering has long represented behavior as states and transitions — automata, labeled transition systems, statecharts, temporal specifications — all keeping states and transitions and discarding the code that realizes them. -->
+% <!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | State-transition models make lifecycle and recovery questions explicit; state machines, labeled transition systems, and statecharts represent behavior, while temporal specifications state properties over executions. -->
 
-Engineering has represented behavior this way for a long time. A finite-state machine names the legal states of a system and the transitions between them; a labeled transition system adds the events that label those transitions; statecharts add hierarchy and concurrency so that large behaviors stay legible;\citep{harel1987} a temporal specification describes a property of whole executions rather than of any single state. These forms differ in expressiveness, but they share one reduction: they keep the states and the transitions, and they discard the code that implements each one.
+For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them. This is the form of behavioral modeling developed here. A finite-state machine names a finite set of states and the transitions between them. A labeled transition system associates transitions with actions or events. Statecharts add hierarchy and concurrency to organize more complex behavior.\citep{harel1987} Temporal specifications let us state properties over executions, such as whether every started job eventually finishes. These representations support reasoning about order, reachability, and progress without retaining the code that implements each operation.
 
 % <!-- point: the-reduction-is-what-makes-behavior-checkable | Reducing a service to states and transitions turns "can it reach a state it should never occupy?" from a reconstruction over scattered handlers into a question a person or tool can answer. -->
 
@@ -28,59 +24,17 @@ That reduction is what makes behavior checkable. A job-processing service descri
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/canonical-behavioral-c9de560202.pdf}
-\caption{\emph{The behavioral move: states and transitions.} A model keeps the legal states and the permitted transitions and discards the code; the transition it omits --- here the skip from IDLE straight to DONE --- is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.}
+\caption{\emph{The behavioral move: states and transitions.} This example specifies an allowed lifecycle: a job must pass through RUNNING before DONE, so the direct IDLE-to-DONE transition is forbidden. A behavioral model can instead describe possible behavior to be checked against a requirement. Its nodes and edges then represent what may happen, including behavior the check might reject.}
 \label{canonical-behavioral}
 \end{figure}
 
-% <!-- point: semantics-are-states-and-permitted-transitions-and-the-omissions-are-the-obligations | A node is a legal state, an edge a permitted transition, a path an admitted execution; the transitions the model omits are the behaviors it declares illegal, and the property's shape selects the checker. -->
+% <!-- point: semantics-are-states-and-permitted-transitions-and-the-omissions-are-the-obligations | A behavioral model represents states and transitions; it can specify allowed behavior or describe behavior to be checked against a requirement. Safety and liveness properties ask different questions over the admitted executions. -->
 
-A node is a legal state; a directed edge is a permitted transition; a path through the graph is an execution the model admits. The key content is often negative: the transitions the model omits are exactly the behaviors it declares illegal. Once behavior is explicit, the questions form a progression from local to global --- is this single transition legal? is this state reachable at all? can a legal execution reach a forbidden state? can the system deadlock? must some event eventually occur? The first are \textbf{safety} questions: a finite execution prefix that demonstrates a violation refutes them. The last is a \textbf{liveness} question, which requires reasoning about whether a desired event eventually occurs; no finite prefix alone establishes that the event will never occur. A model can make either expressible, and the choice of check --- transition validation, reachability search, invariant checking, or temporal model checking\citep{baier-katoen2008} --- follows from the shape of the property rather than from a preference for one method.
+Nodes represent states, and directed edges represent transitions. A path from an initial state describes an execution admitted by the model. The model's purpose tells us how to interpret that execution. A specification declares allowed behavior, as \autoref{canonical-behavioral} does: omitting a direct \texttt{IDLE~→~DONE} transition forbids that step. A model of an implementation can instead represent behavior we intend to investigate, including states or transitions that may violate a requirement. Representing a state therefore does not, by itself, declare it acceptable.
 
-A behavioral model does not make the system behave. It makes the behavior something one can reason about before it runs.
+The required property tells us what to check over those executions. ``A job never reaches \texttt{DONE} before \texttt{RUNNING}'' is a \textbf{safety} property: any violation has a finite execution prefix that demonstrates it. ``Every started job eventually finishes or fails'' is a \textbf{liveness} property: observing a finite period of waiting does not establish that the wait will last forever. Reachability asks whether a state can occur; it serves a safety check when the state being sought violates a required invariant. The choice among transition validation, reachability search, invariant checking, and temporal model checking follows from the property we want to establish.\citep{baier-katoen2008}
 
-\section{DocAble: Recovery Ordering}\label{heading:docable-recovery-ordering}
-
-DocAble must preserve the ordering between publishing a recovered artifact and updating the database record that references it: the record may not name an artifact that has not yet been published. Reduced to its states, that concern is a small model.
-
-% <!-- box-family: model-card -->
-
-\begin{quote}
-\mbox{}%
-\subsubsection{Recovery-ordering model · Behavioral}\label{heading:recovery-ordering-model-behavioral}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Engineering question} --- In what order may recovery publish an artifact and update the record that refers to it?
-\item
-  \textbf{Model} --- a transition system over the recovery lifecycle; the decisive fact is a transition that does \emph{not} exist.
-\item
-  \textbf{Property} --- the database record may refer to the fallback artifact only after that artifact has been durably published.
-\item
-  \textbf{Quality attribute} --- data integrity; crash-safety.
-\end{itemize}
-\end{quote}
-
-% <!-- point: the-decisive-fact-is-an-absent-edge-between-staged-and-durable | The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the model excludes executions in which the record points at a not-yet-durable artifact. -->
-
-The recovery lifecycle runs through several states, but the obligation lives in two of them. An artifact is first written locally (\texttt{FALLBACK\_STAGED}) and only later published to durable storage (\texttt{FALLBACK\_UPLOADED}). The record may advance to \texttt{DB\_UPDATED} only from the durable state. \autoref{recovery-ordering-model} draws the ordering, and the fact that matters is the edge that does \emph{not} exist: there is no direct \texttt{FALLBACK\_STAGED\ →\ DB\_UPDATED} transition. The model therefore excludes executions in which the record points at a merely staged artifact. Local staging and durable publication are different states, and the whole obligation rides on keeping them apart.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/recovery-ordering-model-70e2639fc3.pdf}
-\caption{\emph{Recovery-ordering model.} The decisive fact is the absent transition from FALLBACK\_STAGED directly to DB\_UPDATED.}
-\label{recovery-ordering-model}
-\end{figure}
-
-% <!-- point: the-model-exposes-the-ordering-a-transition-table-holds-it | Over the model the obligation is a reachability property — DB_UPDATED is reachable only through FALLBACK_UPLOADED — that the model exposes and a checker can search; whether a transition table refuses the short-circuit is a Chapter 3 question of enforcement. | terms: soft-vs-hard-governance -->
-
-Stated over the model, the property is a reachability claim: \texttt{DB\_UPDATED} is reachable only through \texttt{FALLBACK\_UPLOADED}. That is a property the model \emph{exposes} and makes checkable --- one can search the transition system for any path into \texttt{DB\_UPDATED} that skips durable publication. Whether the running recovery path is \emph{held} to the ordering --- whether a transition table refuses the short-circuit step --- is a question of enforcement, addressed in \magevalue{chapter:alignment}. This is a \textbf{hard} obligation: the machinery refuses the violation rather than merely reporting it.
-
-\section{What the Model Makes Checkable}\label{heading:what-the-model-makes-checkable}
-
-% <!-- point: not-every-behavioral-obligation-is-a-safety-property | The recovery model answers a safety question one counterexample settles; "every job eventually terminates" is liveness, ranging over infinite executions, and needs a different checker. -->
-
-The recovery model answers a safety question --- can a bad state be reached? --- and one counterexample would settle it. Not every behavioral obligation has that shape. "Every job eventually reaches a terminal state" is a liveness claim: no successful run proves the system can never stall, so the obligation ranges over infinite executions rather than reachable states, and it needs a different checker. \autoref{behavioral-property-classes} places the three classes side by side.
+A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{DONE} to pass through \texttt{RUNNING} can exclude premature completion, yet a job could remain in \texttt{RUNNING} indefinitely. To investigate eventual termination, include the ways processing can wait, retry, finish, or fail, and state the assumptions under which progress is expected. The question determines which of those details the model must preserve. \autoref{behavioral-property-classes} distinguishes transition legality, reachability, and eventual progress.
 
 \begin{figure}[htbp]
 \centering
@@ -89,46 +43,152 @@ The recovery model answers a safety question --- can a bad state be reached? ---
 \label{behavioral-property-classes}
 \end{figure}
 
-% <!-- point: the-recovery-ordering-is-a-slice-of-a-larger-lifecycle | Once behavior is explicit the right reasoning becomes available per property; the three-state recovery ordering is a sharp slice of a fuller job lifecycle chosen for crash-safe publication. -->
+\section{Ownership Under Contention}\label{heading:ownership-under-contention}
 
-The point is not that DocAble should apply every one of these techniques. It is that once behavior has an explicit representation, the right form of reasoning becomes available for each kind of property, and the checker follows from the property rather than from habit. The recovery ordering is itself a sharp slice of a larger behavioral model: a DocAble job carries a full lifecycle --- queued, leased, remediating, completed or failed --- with its own legal transitions. The full lifecycle answers broader workflow questions; the three-state recovery ordering is the sharper reduction for crash-safe publication.
+% <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question. -->
 
-% <!-- point: behavioral-boundary | The recovery model makes an ordering obligation explicit and searchable; it does not establish that the implementation realizes it, prove it is the right ordering, or decide the consequence of a violation. -->
+When several workers can process the same job, \emph{who owns this job?} depends on their claims. A worker may stop responding, its claim may expire, and another worker may acquire the job. The original worker can later return and attempt to act using its old claim. An ownership model must retain enough information to distinguish the current right to act from a claim that is no longer valid.
 
-The recovery-ordering model makes an ordering obligation explicit and searchable. It does not, by itself, establish that the implementation realizes the model, prove that this is the right ordering for the product, or decide what should happen when the ordering is violated. It gives engineering a precise object to check and a precise thing to align.
+\autoref{ownership-constructs} distinguishes four familiar constructs used to represent access and ownership.
 
-Structural models froze time; this section let it flow but assumed a single actor moving through states. The next question is what happens when several actors reach for the same work at once.
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Constructs for access and ownership]{\emph{Constructs for access and ownership.} Locks, leases, capabilities, and claims express different aspects of a worker\textquotesingle s right to act.}\label{ownership-constructs}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Construct
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it expresses
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Lock & Coordinates access to a resource. An exclusive lock admits one holder at a time. \\
+Lease & Grants a right for a limited period; expiry can make that right available for reassignment.\citep{graycheriton1989} \\
+Capability & Carries authority to perform specified operations on a resource; that authority need not be exclusive. \\
+Claim & Records a worker's assignment to a job and the conditions under which that assignment is valid. \\
+\end{longtable}
+}
 
-\section{DocAble: Ownership Under Contention}\label{heading:docable-ownership-under-contention}
-
-% <!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | With many workers, a crash, and a reclaim sweep, "who owns this job?" acquires time and contention; engineering's vocabulary of locks, leases, and claims relates a holder to a resource over time, and an ownership model keeps those relationships and discards the rest. -->
-
-With one worker, \emph{who owns this job?} has an obvious answer. Add many workers, a crash, and a sweep that reclaims abandoned work, and the same question acquires time and contention: ownership can be claimed, can expire, and can be reclaimed, and a holder that went away can return to find its claim gone. Engineering has a long vocabulary for control over a shared resource: locks and leases,\citep{graycheriton1989} capability and claim relationships, and the lifecycle of a claim from acquisition through expiry to reclamation. An ownership model keeps those relationships and discards the rest --- who holds what, on what terms, and for how long.
+These constructs can be combined. For a leased job, the ownership model records the worker's claim and how expiry or reassignment changes it. The next distinction is between successive claims on the same job.
 
 % <!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
 
 A claim binds a holder to a resource and carries the facts that make contention decidable: which holder, which generation of claim, and when it expires. The generation is the fact a bare "A owns X" edge cannot express --- it distinguishes a \emph{current} claim from a \emph{superseded} one. The difficult failures arise from the interleavings: the orders in which concurrent claims, expiries, and reclaims can occur. So the characteristic analysis is state-space exploration over those sequences, with an invariant checked at each reachable configuration --- the behavioral toolkit of this section pointed at a concurrency question.
 
+For example, a worker may hold a job, lose its claim after a timeout, and later return with an old completion request. The current owner alone is insufficient to decide whether that request still applies: the model must distinguish successive claims on the same job. Recording a claim generation supplies that distinction. At this level, a job is leased exactly when it has a current claim; the claim represents ownership directly. DocAble\textquotesingle s recovery and ownership models show how such small additions support two concrete crash-safety questions.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: WORKED EXAMPLE -->
+
+% <!-- box-weight: deep-dive -->
+
+% mage-box-prefix:
+
+\begin{bookbox}{inset}{Worked example --- Recovery and ownership of a document job}
+\label{inset-docable-behavior}
+DocAble distributes document accessibility work across workers. A worker can fail while producing a corrected document, and another worker may have to recover the job. Safe recovery therefore involves two related questions: when is a recovered artifact safe to publish as the result, and which worker currently has the right to complete the job? Separate models preserve the facts each question needs.
+
+\textbf{Publishing a recovered result}
+
+DocAble must preserve the ordering between publishing a recovered artifact and updating the database record that references it: the record may not name an artifact that has not yet been published. Reduced to its states, that concern is a small model.
+
+\textbf{Recovery-ordering model · Behavioral}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engineering question} --- In what order may recovery publish an artifact and update the record that refers to it?
+\end{itemize}
+
+
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Model} --- a transition system over the recovery lifecycle; the decisive fact is a transition that does \emph{not} exist.
+\end{itemize}
+
+
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Property} --- the database record may refer to the fallback artifact only after that artifact has been uploaded to persistent storage.
+\end{itemize}
+
+
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Quality attribute} --- data integrity; crash-safety.
+\end{itemize}
+
+% <!-- point: the-decisive-fact-is-an-absent-edge-between-staged-and-durable | The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the model excludes executions in which the record points at a not-yet-durable artifact. -->
+
+The recovery lifecycle runs through several states, but the obligation lives in two of them. An artifact is first written locally (\texttt{FALLBACK\_STAGED}) and only later published to durable storage (\texttt{FALLBACK\_UPLOADED}). The record may advance to \texttt{DB\_UPDATED} only from the durable state. \autoref{recovery-ordering-model} draws the ordering, and the fact that matters is the edge that does \emph{not} exist: there is no direct \texttt{FALLBACK\_STAGED~→~DB\_UPDATED} transition. The model therefore excludes executions in which the record points at a merely staged artifact. A local file and a file in persistent storage are different states; the model keeps them distinct so that an update cannot refer to a file available only on the failed worker.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/recovery-ordering-model-70e2639fc3.pdf}
+\caption{\emph{Recovery-ordering model.} The decisive fact is the absent transition from FALLBACK\_STAGED directly to DB\_UPDATED.}
+\label{recovery-ordering-model}
+\end{figure}
+
+% <!-- point: the-model-exposes-the-ordering-a-transition-table-holds-it | Checking recovery order means searching modeled paths for a database update before the artifact is uploaded; in a larger lifecycle, an absent direct edge alone would not rule out an indirect bypass. -->
+
+To check the ordering, search for a path to \texttt{DB\_UPDATED} that does not pass through \texttt{FALLBACK\_UPLOADED}. Such a path would allow the record to refer to the recovered artifact before it is stored persistently. In a larger lifecycle, checking only for the direct \texttt{FALLBACK\_STAGED~→~DB\_UPDATED} edge would miss an indirect route through other states.
+
+\textbf{What does the ordering establish?}
+
+% <!-- point: not-every-behavioral-obligation-is-a-safety-property | Recovery can preserve publication order yet wait or retry forever; asking for eventual completion adds a liveness question and requires the relevant waiting, retry, and progress assumptions in the model. -->
+
+The recovery ordering rules out updating the record too early. It says nothing about whether the upload ever completes: a process could preserve the order while waiting or retrying forever. Requiring eventual completion adds a liveness question. To investigate it, the model must represent the ways recovery can wait or retry and state the assumptions under which progress is expected. \autoref{behavioral-property-classes} contrasts local transition checks, reachability questions, and temporal properties.
+
+% <!-- point: the-recovery-ordering-is-a-slice-of-a-larger-lifecycle | The recovery model keeps the states needed to check publication order; a fuller job lifecycle can support broader workflow questions when it includes the relevant transitions. -->
+
+The three-state recovery model is a reduction for checking publication order. DocAble's fuller job lifecycle includes queued, leased, remediating, and completed or failed states. That model can address broader workflow questions when it includes the relevant transitions; the smaller recovery model keeps only what the ordering question needs.
+
+\textbf{Distinguishing a current owner from a returning one}
+
 DocAble leases each in-flight job to one worker. A lease carries an owner, a monotonically increasing generation, and a lifetime; when a lease looks abandoned it can be reclaimed and the job re-leased to another worker at the next generation.
 
-% <!-- box-family: model-card -->
-
-\begin{quote}
-\mbox{}%
-\subsubsection{In-flight lease · Ownership}\label{heading:in-flight-lease-ownership}
+\textbf{In-flight lease · Ownership}
 
 \begin{itemize}
 \tightlist
 \item
   \textbf{Engineering question} --- Who currently owns this in-flight work, and can a returning stale owner disturb the current claim?
+\end{itemize}
+
+
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Model} --- a claim relating a worker to a job, stamped with a generation and a lifetime; reclaim advances the generation.
+\end{itemize}
+
+
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Property} --- a stale claim cannot clear or supersede the current one.
+\end{itemize}
+
+
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Quality attribute} --- correctness under concurrency; crash-safety.
 \end{itemize}
-\end{quote}
 
 % <!-- point: leased-iff-owner-is-the-models-definition | A job is leased exactly when it has an owner; the two are the same fact from two sides, so the model represents ownership as the presence of a current claim — this is what "leased" means, and it sets up the invariant that follows. -->
 
@@ -147,13 +207,12 @@ The consequential invariant is about time and contention. Suppose worker A holds
 \label{in-flight-ownership-states}
 \end{figure}
 
-% <!-- point: ownership-boundary | The generation exposes the question — is this release applicable to the current claim? — and the model's job ends at making that invariant precise and checkable; whether the release path refuses the stale release is a hard guard for Chapter 3, verified by exhaustive search over the interleavings. | terms: soft-vs-hard-governance -->
-
-The generation \emph{exposes} the question --- is this release applicable to the current claim? --- and the model\textquotesingle s job ends at making that invariant precise and checkable. Whether the release path \emph{holds} the line is enforcement for \magevalue{chapter:alignment}: a \textbf{hard} guard that refuses the stale release rather than merely reporting it, with an exhaustive search over the interleavings serving as its verification.
+The publication model separates a local artifact from a durably stored one. The ownership model separates a current claim from a superseded one. In each case, the useful addition is a distinction that changes whether a state change is acceptable. The models make those distinctions available for analysis; the later Alignment chapter examines the mechanisms that enforce them.
+\end{bookbox}
 
 % <!-- point: the-lease-model-omits-the-processing-topology | The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model. -->
 
-Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation are the consequential properties for this question; how the job\textquotesingle s work is partitioned is not. Indeed, the implementation changed over time in ways that optimized its performance but not its semantics. We changed the pointers to the code, but not the model.
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job\textquotesingle s work is partitioned does not. DocAble\textquotesingle s implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes. The inset explains what an invariant requires and how a checker evaluates one.
 
 % <!-- index-def: invariant -->
 
@@ -169,7 +228,7 @@ Notice what this model omits: the processing topology. Ownership, generation, li
 \label{inset-invariant}
 An \textbf{invariant} is a property required to hold over a declared domain of states, structures, or observations. In a behavioral state machine, the invariant may be a predicate that must hold in every reachable state; in a structural model, it may require every observed dependency to belong to a declared set; in a measurement model, it may require a quantity to remain within a hard capacity bound. State both the property \emph{and} the domain the checker claims to establish it over.
 
-Take a behavioral illustration. A job carries two fields at once --- a \texttt{status} of \texttt{free}, \texttt{leased}, or \texttt{done}, and a \texttt{lease\_owner} that names the holding worker or is empty. At the model level, leased-iff-owner was a definition; an implementation that represents the two sides as separately written fields turns it into a property that can fail, which is exactly why you write the invariant down. "A job is leased if and only if it has an owner" is a predicate over the pair: \texttt{(status\ ==\ "leased")\ ==\ (lease\_owner\ is\ not\ None)}. A \texttt{free} status with a lingering \texttt{lease\_owner} is a stale lease; a \texttt{leased} status with no owner is a lost lease. Separating the two writes can make either inconsistent state reachable, and both break the predicate. The predicate becomes mechanically meaningful when a checker evaluates it over the declared reachable state space:
+Take a behavioral illustration. A job carries two fields at once --- a \texttt{status} of \texttt{free}, \texttt{leased}, or \texttt{done}, and a \texttt{lease\_owner} that names the holding worker or is empty. At the model level, leased-iff-owner was a definition; an implementation that represents the two sides as separately written fields turns it into a property that can fail, which is exactly why you write the invariant down. "A job is leased if and only if it has an owner" is a predicate over the pair: \texttt{(status~==~"leased")~==~(lease\_owner~is~not~None)}. A \texttt{free} status with a lingering \texttt{lease\_owner} is a stale lease; a \texttt{leased} status with no owner is a lost lease. Separating the two writes can make either inconsistent state reachable, and both break the predicate. The predicate becomes mechanically meaningful when a checker evaluates it over the declared reachable state space:
 
 \begin{verbatim}
 STATES = product({"free", "leased", "done"}, {None, "worker-1", "worker-2"})
@@ -183,7 +242,7 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
 
 % <!-- point: the-lease-answers-ownership-behavioral-and-measurement-questions-at-once | Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions. -->
 
-The lease is the chapter\textquotesingle s clearest case of one representation answering several classes of question. Read it as an ownership model and it says who controls a job. Read the same claims as a behavioral model and they trace a lifecycle --- claimed, held, expired, reclaimed. Count the active leases and the same representation becomes a measurement: how much work is genuinely in flight right now. \autoref{in-flight-lease-overlap} sets the three readings side by side.
+A lease illustrates how one representation can answer several classes of question. Read it as an ownership model and it says who controls a job. Read the same claims as a behavioral model and they trace a lifecycle --- claimed, held, expired, reclaimed. Count the active leases and the same representation becomes a measurement: how much work is genuinely in flight right now. \autoref{in-flight-lease-overlap} sets the three readings side by side.
 
 \begin{figure}[htbp]
 \centering

@@ -65,6 +65,19 @@ EXCLUDE_PREFIXES = ("velocity-", "cover")
 
 SVG_NS = "http://www.w3.org/2000/svg"
 _BOLD_WEIGHTS = {"bold", "600", "700", "800", "900"}
+# These elements define reusable or clipping content; their children do not
+# paint at their definition position, even when they appear outside <defs>.
+NON_RENDERING_CONTAINERS = {"defs", "mask", "clipPath", "symbol", "marker"}
+
+
+def presentation_attrs(attrs: dict[str, str]) -> dict[str, str]:
+    """Inline CSS declarations override equivalent SVG presentation attributes."""
+    resolved = dict(attrs)
+    for declaration in attrs.get("style", "").split(";"):
+        name, separator, value = declaration.partition(":")
+        if separator:
+            resolved[name.strip()] = value.strip().removesuffix("!important").strip()
+    return resolved
 
 
 @dataclass(frozen=True)
@@ -141,7 +154,7 @@ class Finding:
 
 def _inherited(el: ET.Element, ancestors: list[ET.Element], attr: str, default: str) -> str:
     for node in [el, *reversed(ancestors)]:
-        v = node.get(attr)
+        v = presentation_attrs(node.attrib).get(attr)
         if v is not None:
             return v
     return default
@@ -154,6 +167,8 @@ def parse_svg(path: pathlib.Path) -> tuple[list[TextEl], list[Rect]]:
 
     def walk(el: ET.Element, ancestors: list[ET.Element]) -> None:
         tag = _tag(el)
+        if tag in NON_RENDERING_CONTAINERS:
+            return
         if tag == "rect":
             # An invisible anchor rect (fill:none AND stroke:none) is not a visible box — it is the
             # text-label-node convention (a transparent <rect> carrying an id so a graph edge can target a
@@ -164,23 +179,43 @@ def parse_svg(path: pathlib.Path) -> tuple[list[TextEl], list[Rect]]:
             if not (fill == "none" and stroke == "none"):
                 rects.append(Rect(_f(el, "x"), _f(el, "y"), _f(el, "width"), _f(el, "height")))
         elif tag == "text":
-            content = "".join(el.itertext()).strip()
-            if content:
-                fs_raw = _inherited(el, ancestors, "font-size", "16")
+            # Positioned tspans are separate visual lines. Concatenating them
+            # invents a long label that the browser never paints.
+            x, y = _f(el, "x"), _f(el, "y")
+            content = el.text or ""
+            owner, parents = el, ancestors
+
+            def emit() -> None:
+                value = content.strip()
+                if not value:
+                    return
+                fs_raw = _inherited(owner, parents, "font-size", "16")
                 try:
                     fs = float(fs_raw.replace("px", ""))
                 except ValueError:
                     fs = 16.0
-                fw = _inherited(el, ancestors, "font-weight", "normal")
+                fw = _inherited(owner, parents, "font-weight", "normal")
                 weight = "bold" if fw in _BOLD_WEIGHTS else "normal"
-                style = "italic" if _inherited(el, ancestors, "font-style", "normal") == "italic" else "normal"
-                ls_raw = _inherited(el, ancestors, "letter-spacing", "0")
+                style = "italic" if _inherited(owner, parents, "font-style", "normal") == "italic" else "normal"
+                ls_raw = _inherited(owner, parents, "letter-spacing", "0")
                 try:
                     ls = float(ls_raw.replace("px", ""))
                 except ValueError:
                     ls = 0.0
-                texts.append(TextEl(content, _f(el, "x"), _f(el, "y"), fs,
-                                    f"{weight}|{style}", ls))
+                texts.append(TextEl(value, x, y, fs, f"{weight}|{style}", ls))
+
+            for child in el:
+                positioned = _tag(child) == "tspan" and any(
+                    key in child.attrib for key in ("x", "y", "dy"))
+                if positioned:
+                    emit()
+                    content = ""
+                    x = _f(child, "x", x)
+                    y = _f(child, "y", y) + _f(child, "dy")
+                    owner, parents = child, [*ancestors, el]
+                content += "".join(child.itertext()) + (child.tail or "")
+            emit()
+            return
         for child in el:
             walk(child, [*ancestors, el])
 

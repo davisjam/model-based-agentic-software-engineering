@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """book_epub.py — the EPUB3 (reflowable ebook) projection of the MAGE book: the 4th IR projection.
 
-Peer of `book_typst.py` (print PDF) and `book_mkdocs.py` (published web edition): one typed book IR,
-four projections. Like the MkDocs emitter this re-renders nothing — `build_book.build_pages()` runs
+The native LaTeX manuscript projects to generated Markdown and the typed book IR used by the
+web and EPUB editions. Like `book_mkdocs.py`, this emitter re-renders nothing — `build_book.build_pages()` runs
 every content pass and returns each page's rendered body (header + content + chapter nav + foot);
 this emitter makes those bodies ePub-safe and packs an EPUB3 container:
 
   book/mage-book.epub      gitignored (binary — created, never committed; CI publishes it at
-                           /book/mage-book.epub, beside the PDF, like the handbook's ePub)
+                           /book/mage-book/mage-book.epub, beside the PDF)
     mimetype               application/epub+zip — first entry, STORED uncompressed (OCF requirement)
     META-INF/container.xml points at the package document
     OEBPS/content.opf      Dublin Core metadata (from book-manifest.json, the cover-identity SSOT)
@@ -16,7 +16,7 @@ this emitter makes those bodies ePub-safe and packs an EPUB3 container:
     OEBPS/nav.xhtml        EPUB3 nav (toc + landmarks); the Part hierarchy comes from the SAME
                            nav-grouping helper the web edition uses (book_mkdocs._nav_entries)
     OEBPS/cover.xhtml
-    OEBPS/cover.jpg        the TITLED cover: the print edition's own Typst cover page (artwork +
+    OEBPS/cover.jpg        the TITLED cover: the print edition's own LaTeX cover page (artwork +
                            live title/author type) rendered to a raster — not the bare art layer —
                            so the shelf cover can never drift from the PDF's (the handbook lesson)
     OEBPS/<slug>.xhtml     one page per build_pages() record
@@ -39,10 +39,13 @@ download buttons and the contents list — whose two ePub jobs the container its
 cover page and nav.xhtml). Every in-book `index.html` link is rewritten to nav.xhtml accordingly.
 
 Usage:
-  python3 book/book_epub.py            # build_pages + emit book/mage-book.epub
+  python3 book/build_book.py --pdf --no-split  # fresh PDF and EPUB
+  python3 book/book_epub.py                   # fresh EPUB only
+  python3 book/book_epub.py --check           # validate the existing container
 
-Deps beyond stdlib: `typst` on PATH + Pillow — the same opt-in toolset the `--pdf` path already
-requires (Pillow via book/requirements-pdf.txt); both back the cover render only.
+Deps beyond stdlib: LuaLaTeX + Poppler on PATH + Pillow — the same opt-in toolset the `--pdf` path already
+requires (Pillow via book/requirements-pdf.txt). The native-to-Markdown freshness check also
+uses Pandoc, as the web and PDF builds do.
 """
 from __future__ import annotations
 
@@ -52,6 +55,9 @@ import json
 import pathlib
 import re
 import sys
+import tempfile
+import posixpath
+from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
 import zipfile
 
@@ -62,7 +68,7 @@ sys.path.insert(0, str(HERE))
 import build_book    # noqa: E402 — the canonical build; this emitter projects its page records
 import book_mkdocs   # noqa: E402 — shared nav grouping + the cn-follow note-marker helper
 sys.path.insert(0, str(ROOT / "tools"))
-import cover_assets  # noqa: E402 — the ONE typst-cover->PNG + thumb helper (repo-root tools/)
+import cover_assets  # noqa: E402 — the ONE LaTeX-cover->PNG + thumb helper (repo-root tools/)
 
 _EPUB_FILENAME = build_book._PDF_FILENAME[: -len(".pdf")] + ".epub"  # mage-book.epub — one stem, per edition suffix
 EPUB_OUT = HERE / _EPUB_FILENAME
@@ -178,17 +184,18 @@ def _page_xhtml(rec: dict, slugset: "set[str]") -> str:
         body=f'<div class="{rec["main_cls"]}">\n{body}\n</div>')
 
 
-# ── cover: the print edition's own Typst cover page, rendered to a raster ────────────────────────
+# ── cover: the print edition's own LaTeX cover page, rendered to a raster ────────────────────────
 
 
-def _render_cover_jpg(work_dir: pathlib.Path) -> bytes:
-    """Compile the SAME Typst cover page the PDF opens with (artwork + live title/author lockup —
+def _render_cover_jpg(work_dir: pathlib.Path, *, update_thumbnail: bool = True) -> bytes:
+    """Compile the SAME LaTeX cover page the PDF opens with (artwork + live title/author lockup —
     the TITLED cover, not the bare art layer) to a one-page PNG, then recompress it to JPEG (the
     artwork is photographic; PNG would quadruple the container). 180 ppi on a US-letter page ->
     1530x1980 px, comfortably above e-reader cover-view resolution."""
     cover_png = cover_assets.mage_cover_png(work_dir)
     # Refresh the landing thumbnail from the SAME render — a retitle can never leave a stale raster.
-    cover_assets.write_thumb(cover_png, cover_assets.MAGE_THUMB)
+    if update_thumbnail:
+        cover_assets.write_thumb(cover_png, cover_assets.MAGE_THUMB)
     try:
         from PIL import Image  # noqa: E402 — the --pdf toolset (book/requirements-pdf.txt)
     except ImportError:
@@ -315,7 +322,8 @@ _CONTAINER_XML = """<?xml version="1.0" encoding="utf-8"?>
 
 
 def emit(chapters: "list[dict]", extras: "list[dict]",
-         out: pathlib.Path = EPUB_OUT) -> "tuple[int, int]":
+         out: pathlib.Path = EPUB_OUT, *, work_dir: pathlib.Path | None = None,
+         update_thumbnail: bool = True) -> "tuple[int, int]":
     """Emit the EPUB3 container from the build's page records. Returns (spine page count, bytes)."""
     emitted = {c["slug"] for c in chapters} | {e["slug"] for e in extras}
     expected = build_book.expected_page_slugs()
@@ -331,7 +339,7 @@ def emit(chapters: "list[dict]", extras: "list[dict]",
 
     print("== book_epub emit plan ==")
     print(f"  spine pages : {len(spine_recs)} (chapters {len(chapters)} + generated {len(spine_recs) - len(chapters)}; web landing excluded)")
-    print(f"  cover       : Typst print cover -> cover.jpg (titled; 180 ppi)")
+    print(f"  cover       : LaTeX print cover -> cover.jpg (titled; 180 ppi)")
     print(f"  stylesheet  : {EPUB_CSS.relative_to(ROOT)} (reflowable-first, no embedded fonts)")
     print(f"  out         : {out}")
 
@@ -344,7 +352,8 @@ def emit(chapters: "list[dict]", extras: "list[dict]",
         if not (HERE / rel).is_file():
             raise SystemExit(f"book_epub: a page references missing asset {HERE / rel}")
 
-    cover_jpg = _render_cover_jpg(HERE / "_typst")
+    cover_jpg = _render_cover_jpg(work_dir or ROOT / "latex/build/epub",
+                                   update_thumbnail=update_thumbnail)
     cover_xhtml = _COVER_XHTML.replace("{alt}", _esc(
         f'{build_book._BOOK_MANIFEST["title"]} — {build_book._BOOK_MANIFEST["author"]} (cover)'))
     nav = _nav_xhtml(chapters, extras)
@@ -366,18 +375,25 @@ def emit(chapters: "list[dict]", extras: "list[dict]",
         zi.external_attr = 0o644 << 16
         zf.writestr(zi, data)
 
-    with zipfile.ZipFile(out, "w") as zf:
-        _entry(zf, "mimetype", b"application/epub+zip", compress=zipfile.ZIP_STORED)
-        _entry(zf, "META-INF/container.xml", _CONTAINER_XML.encode("utf-8"))
-        _entry(zf, "OEBPS/content.opf", opf.encode("utf-8"))
-        _entry(zf, "OEBPS/nav.xhtml", nav.encode("utf-8"))
-        _entry(zf, "OEBPS/cover.xhtml", cover_xhtml.encode("utf-8"))
-        _entry(zf, "OEBPS/cover.jpg", cover_jpg)
-        _entry(zf, "OEBPS/epub.css", EPUB_CSS.read_bytes())
-        for slug in sorted(page_docs):
-            _entry(zf, f"OEBPS/{slug}.xhtml", page_docs[slug].encode("utf-8"))
-        for rel in asset_names:
-            _entry(zf, f"OEBPS/{rel}", (HERE / rel).read_bytes())
+    out = pathlib.Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    # Validate the complete new container before replacing a previously published edition.
+    with tempfile.TemporaryDirectory(prefix="mage-epub-", dir=out.parent) as directory:
+        staged = pathlib.Path(directory) / out.name
+        with zipfile.ZipFile(staged, "w") as zf:
+            _entry(zf, "mimetype", b"application/epub+zip", compress=zipfile.ZIP_STORED)
+            _entry(zf, "META-INF/container.xml", _CONTAINER_XML.encode("utf-8"))
+            _entry(zf, "OEBPS/content.opf", opf.encode("utf-8"))
+            _entry(zf, "OEBPS/nav.xhtml", nav.encode("utf-8"))
+            _entry(zf, "OEBPS/cover.xhtml", cover_xhtml.encode("utf-8"))
+            _entry(zf, "OEBPS/cover.jpg", cover_jpg)
+            _entry(zf, "OEBPS/epub.css", EPUB_CSS.read_bytes())
+            for slug in sorted(page_docs):
+                _entry(zf, f"OEBPS/{slug}.xhtml", page_docs[slug].encode("utf-8"))
+            for rel in asset_names:
+                _entry(zf, f"OEBPS/{rel}", (HERE / rel).read_bytes())
+        validate(staged)
+        staged.replace(out)
 
     size = out.stat().st_size
     print("== book_epub results ==")
@@ -386,13 +402,95 @@ def emit(chapters: "list[dict]", extras: "list[dict]",
     return len(spine_recs), size
 
 
+def validate(path: pathlib.Path) -> dict:
+    """Check EPUB container, manifest, spine, navigation, assets and local targets."""
+    ns = {"opf": "http://www.idpf.org/2007/opf", "x": _XHTML_NS}
+    with zipfile.ZipFile(path) as archive:
+        names = archive.namelist()
+        if len(names) != len(set(names)):
+            raise ValueError("EPUB contains duplicate ZIP members")
+        first = archive.infolist()[0]
+        if (first.filename != "mimetype" or first.compress_type != zipfile.ZIP_STORED
+                or archive.read("mimetype") != b"application/epub+zip"):
+            raise ValueError("EPUB mimetype must be first, uncompressed, and exact")
+        if archive.testzip() is not None:
+            raise ValueError("EPUB ZIP integrity failure")
+        container = ET.fromstring(archive.read("META-INF/container.xml"))
+        roots = container.findall("{urn:oasis:names:tc:opendocument:xmlns:container}rootfiles/{urn:oasis:names:tc:opendocument:xmlns:container}rootfile")
+        if len(roots) != 1:
+            raise ValueError("EPUB must have one package root")
+        package = roots[0].get("full-path")
+        opf = ET.fromstring(archive.read(package))
+        base = posixpath.dirname(package)
+        items = opf.findall("opf:manifest/opf:item", ns)
+        ids = [item.get("id") for item in items]
+        if len(ids) != len(set(ids)) or None in ids:
+            raise ValueError("EPUB manifest IDs must be unique")
+        resources = {item.get("id"): posixpath.normpath(posixpath.join(base, unquote(item.get("href", "")))) for item in items}
+        if len(resources.values()) != len(set(resources.values())):
+            raise ValueError("EPUB manifest hrefs must be unique")
+        for target in resources.values():
+            if target not in names:
+                raise ValueError("EPUB manifest resource missing: " + target)
+        if set(names) != set(resources.values()) | {"mimetype", "META-INF/container.xml", package}:
+            raise ValueError("EPUB has unmanifested resources")
+        spine = [item.get("idref") for item in opf.findall("opf:spine/opf:itemref", ns)]
+        if not spine or len(spine) != len(set(spine)) or any(key not in resources for key in spine):
+            raise ValueError("EPUB spine must uniquely reference manifested documents")
+        nav_items = [item for item in items if "nav" in item.get("properties", "").split()]
+        if len(nav_items) != 1:
+            raise ValueError("EPUB requires exactly one navigation document")
+        documents, anchors = {}, {}
+        for item in items:
+            if item.get("media-type") not in {"application/xhtml+xml", "image/svg+xml"}:
+                continue
+            target = resources[item.get("id")]
+            document = ET.fromstring(archive.read(target))
+            labels = [node.get("id") for node in document.iter() if node.get("id")]
+            if len(labels) != len(set(labels)):
+                raise ValueError("EPUB duplicate document ID: " + target)
+            documents[target], anchors[target] = document, set(labels)
+        nav_path = resources[nav_items[0].get("id")]
+        nav = documents[nav_path]
+        toc = [node for node in nav.iter() if node.tag == "{" + _XHTML_NS + "}nav"
+               and "toc" in node.get("{" + _EPUB_NS + "}type", "").split()]
+        if len(toc) != 1 or not toc[0].findall(".//x:a", ns):
+            raise ValueError("EPUB navigation must contain a populated table of contents")
+        checked = 0
+        for source, document in documents.items():
+            for node in document.iter():
+                for name, value in node.attrib.items():
+                    if name.rsplit("}", 1)[-1] not in {"href", "src"}:
+                        continue
+                    url = urlsplit(value)
+                    if url.scheme or url.netloc:
+                        continue
+                    target = posixpath.normpath(posixpath.join(posixpath.dirname(source), unquote(url.path))) if url.path else source
+                    if target not in names:
+                        raise ValueError(f"EPUB broken local resource: {source}: {value}")
+                    if url.fragment and unquote(url.fragment) not in anchors.get(target, set()):
+                        raise ValueError(f"EPUB broken fragment: {source}: {value}")
+                    checked += 1
+        return {"documents": len(documents), "spine_items": len(spine),
+                "resources": len(resources), "local_references": checked}
+
+
 def main(argv: "list[str] | None" = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", type=pathlib.Path, default=EPUB_OUT,
                     help=f"output path (default: {EPUB_OUT})")
+    ap.add_argument("--work-dir", type=pathlib.Path, help="directory for cover build intermediates")
+    ap.add_argument("--no-thumbnail", action="store_true", help="leave the website thumbnail unchanged")
+    ap.add_argument("--check", action="store_true", help="validate an existing EPUB without rebuilding")
     args = ap.parse_args(argv)
+    if args.check:
+        print(json.dumps(validate(args.out), indent=2))
+        return 0
+    import mage_latex
+    mage_latex.sync(check=True)
     chapters, extras = build_book.build_pages()
-    emit(chapters, extras, args.out)
+    emit(chapters, extras, args.out, work_dir=args.work_dir,
+         update_thumbnail=not args.no_thumbnail)
     return 0
 
 

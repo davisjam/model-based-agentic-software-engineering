@@ -1,7 +1,19 @@
 [
   {
+    "source": "book/assets/substrate-traversal.svg",
+    "pdf": "book/latex/assets/substrate-traversal-9c4cec4bf3.pdf"
+  },
+  {
+    "source": "book/assets/derive-generate-trace.svg",
+    "pdf": "book/latex/assets/derive-generate-trace-43fdd6c901.pdf"
+  },
+  {
     "source": "book/assets/modeling-substrate.svg",
     "pdf": "book/latex/assets/modeling-substrate-e3cfa6ca10.pdf"
+  },
+  {
+    "source": "book/assets/docable-execution-analysis.svg",
+    "pdf": "book/latex/assets/docable-execution-analysis-6a9c67363c.pdf"
   },
   {
     "source": "book/assets/attribution-model.svg",
@@ -10,14 +22,6 @@
   {
     "source": "book/assets/two-reductions-static-realized.svg",
     "pdf": "book/latex/assets/two-reductions-static-realized-a3b7edfa06.pdf"
-  },
-  {
-    "source": "book/assets/substrate-traversal.svg",
-    "pdf": "book/latex/assets/substrate-traversal-9c4cec4bf3.pdf"
-  },
-  {
-    "source": "book/assets/derive-generate-trace.svg",
-    "pdf": "book/latex/assets/derive-generate-trace-43fdd6c901.pdf"
   },
   {
     "source": "book/assets/model-sync-two-layer-net.svg",

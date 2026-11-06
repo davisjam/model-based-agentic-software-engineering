@@ -1,0 +1,383 @@
+{
+  "source": "book/assets/docable-execution-analysis.svg",
+  "chapter": "2.5-system-knowledge",
+  "claim": "*One declared dependency, two uses.* In the DOCX pipeline, with table-header repair enabled, the registry's read/write declarations supply the repair-before-check dependency to scheduling and to an analytical projection. The figure shows one Office resource dependency; other ordering constraints are omitted. PDF uses parallel declarations with blocking correspondence checks, as explained below.",
+  "topology": {
+    "description": "A registry container holds a directed repair-before-check dependency, then supplies two consumers: execution and analytical projection.",
+    "relations": [
+      [
+        "repair",
+        "check",
+        "producer before consumer",
+        "solid"
+      ],
+      [
+        "registry",
+        "execution",
+        "uses declarations",
+        "solid"
+      ],
+      [
+        "registry",
+        "analysis",
+        "projects resource edges",
+        "dashed"
+      ]
+    ]
+  },
+  "required_terms": [
+    "Registry declarations (DOCX)",
+    "Table-header repair",
+    "writes: table headers",
+    "Table-structure check",
+    "reads: table headers",
+    "producer before consumer",
+    "Execution machinery",
+    "orders repair before check",
+    "Python analytical graph",
+    "records the dependency",
+    "uses declarations",
+    "projects resource edges"
+  ],
+  "bw_encoding": "White nodes and container; the container boundary groups the two declarations. No tonal categories are needed. Solid and dashed arrows retain different uses.",
+  "redesign": "The approved teaching layout is retained at native print size. Color distinguishes the registry computations; grouping and labels carry that distinction in monochrome.",
+  "questions": [],
+  "alt": "The DOCX registry declares that table-header repair writes table headers and the table-structure check reads them, so repair precedes the check. The registry supplies this dependency to execution machinery through a solid arrow and to a Python analytical graph through a dashed projection arrow. Both uses share the declarations; PDF is outside the diagram.",
+  "review": {
+    "reference": "Approved 2026-11-05 inset figure; current authored SVG and native draft.",
+    "checks": [
+      "semantic roles and containment",
+      "edge endpoints and direction",
+      "source dashed meaning",
+      "native-size visual layout",
+      "bounded DOCX scope"
+    ],
+    "outcome": "The same declared dependency supplies execution and analysis; PDF is not drawn as sharing this registry.",
+    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "native_dimensions_cm": [
+      13.8467,
+      8.3515
+    ]
+  },
+  "style_review": {
+    "source": "book/assets/docable-execution-analysis.svg",
+    "candidate": "book/tikz/figures/docable-execution-analysis.tex",
+    "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+    "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+    "receipt": "book/tikz/receipts/docable-execution-analysis.json",
+    "decision": "retained",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "White nodes and container; the container boundary groups the two declarations. No tonal categories are needed.",
+    "bold": "The registry heading is bold to identify the shared source. Node and relation text is regular: the color drawing uses inherited D2 node/edge classes uniformly, without a contrasting weight-based category. Labels, containment, and solid versus dashed relations preserve the distinctions.",
+    "routing": "Vertical orthogonal edges; solid producer-before-consumer and scheduling use; dashed analytical projection. No diagonal exception.",
+    "shape": "Modestly rounded computation and consumer boxes; a thin rounded container groups registry facts.",
+    "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection.",
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+      "page": 139,
+      "width_bp": 392.504,
+      "height_bp": 236.736,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "status": "passed",
+      "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+    },
+    "book_references": [],
+    "reviewed_visually": true
+  },
+  "layout_review": {
+    "source": "book/assets/docable-execution-analysis.svg",
+    "candidate": "book/tikz/figures/docable-execution-analysis.tex",
+    "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+    "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+    "baseline_candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+    "decision": "retained",
+    "reason": "One computation dependency feeds two equal consumer boxes. Both source computations share width and center; consumers share width, height, top, and bottom. Long straight approaches preserve clear arrow entry.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      392.504,
+      236.736
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "Registry computations",
+          "labels": [
+            "Table-header repair",
+            "Table-structure check"
+          ],
+          "align": [
+            "center_x"
+          ],
+          "equal_width": true,
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "Execution and analysis consumers",
+          "labels": [
+            "Execution machinery",
+            "Python analytical graph"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_width": true,
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+      "page": 139,
+      "width_bp": 392.504,
+      "height_bp": 236.736,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "status": "passed",
+      "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+    },
+    "page_layout": {
+      "decision": "retained",
+      "reason": "A compact teaching figure; additional height would add no information. Native artwork fits the book print envelope without scaling.",
+      "before_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+      "after_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+      "before_dimensions_bp": [
+        392.504,
+        236.736
+      ],
+      "after_dimensions_bp": [
+        392.504,
+        236.736
+      ],
+      "before_font_sizes_pt": [
+        9,
+        10,
+        11
+      ],
+      "after_font_sizes_pt": [
+        9,
+        10,
+        11
+      ],
+      "reviewed_visually": true
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/docable-execution-analysis.svg",
+    "candidate": "book/tikz/figures/docable-execution-analysis.tex",
+    "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+    "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+    "decision": "retained",
+    "evidence": [
+      {
+        "source_text": "Registry declarations (DOCX)",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "container heading",
+        "candidate_text": "Registry declarations (DOCX)",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "Registry declarations (DOCX)",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Table-header repair",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "producer computation",
+        "candidate_text": "Table-header repair",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "Table-header repair",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Table-structure check",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "consumer computation",
+        "candidate_text": "Table-structure check",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "Table-structure check",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Execution machinery",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "execution use",
+        "candidate_text": "Execution machinery",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "Execution machinery",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Python analytical graph",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "analytical use",
+        "candidate_text": "Python analytical graph",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "Python analytical graph",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "producer before consumer",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "dependency direction",
+        "candidate_text": "producer before consumer",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "producer before consumer",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "uses declarations",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "scheduling relation",
+        "candidate_text": "uses declarations",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "uses declarations",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "projects resource edges",
+        "source_style": "Inherited D2 class; hierarchy expressed by position and containment.",
+        "semantic_role": "projection relation",
+        "candidate_text": "projects resource edges",
+        "candidate_style": "regular",
+        "source_locator": {
+          "svg": "book/assets/docable-execution-analysis.svg",
+          "text_element_context": "projects resource edges",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "reason": "Keep the registry heading distinct from node descriptions and relation labels; all entity names, read/write facts, and edge verbs remain exact. The color drawing does not encode a semantic distinction by contrasting bold and regular nodes.",
+    "checks": [
+      {
+        "text": "Registry declarations (DOCX)",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Table-header repair",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "writes: table headers",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Table-structure check",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "reads: table headers",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "producer before consumer",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Execution machinery",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "orders repair before check",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Python analytical graph",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "records the dependency",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "uses declarations",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "projects resource edges",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+      "page": 139,
+      "width_bp": 392.504,
+      "height_bp": 236.736,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "status": "passed",
+      "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+    },
+    "reviewed_visually": true
+  },
+  "full_pool_validation": {
+    "date": "2026-11-05",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+    "page": 139,
+    "width_bp": 392.504,
+    "height_bp": 236.736,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 12,
+    "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+    "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+    "status": "passed",
+    "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+  }
+}

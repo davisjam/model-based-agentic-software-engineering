@@ -91,81 +91,87 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
     title_match = re.search(r'<!-- chapter-title:\s*(.*?)\s*-->', raw) or re.search(r'^# (.+)$', raw, re.M)
     title = title_match[1] if title_match else source.stem
     destination.parent.mkdir(parents=True, exist_ok=True)
-    rec = dict(slug=source.stem, part=2, chapter=1, title=title, body_md=raw)
-    chapter = book_ir._parse_chapter(rec)
-    result = ['% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.']
-    pending_caption = None
-    pending_label = None
     assets = []
-    for block in chapter.blocks:
-        text = block.raw
-        if block.kind is book_ir.BlockKind.DIRECTIVE:
-            result.extend('% ' + line for line in text.splitlines())
-            match = re.match(r'<!--\s*(label|table):\s*(.*?)\s*-->', text)
-            if match and match[1] == 'label': pending_label = match[2]
-            if match and match[1] == 'table': pending_caption = match[2]
-            continue
-        if block.kind is book_ir.BlockKind.FIGURE:
-            match = re.match(r'<!-- figure:\s*(.*?)\s*\|\s*(.*?)\s*-->', text, re.S)
-            if not match: raise ValueError(text)
-            asset, caption = match.groups()
-            short_match = re.search(r'\s*\[short:\s*(.*?)\]', caption)
-            short = '[' + inline(short_match[1]) + ']' if short_match else ''
-            caption = re.sub(r'\s*\[short:.*?\]', '', caption)
-            path = ROOT / 'book' / asset
-            if not path.exists(): raise FileNotFoundError(path)
-            pdf = ROOT / 'book/latex/assets' / (path.stem + '-' + hashlib.sha256(str(path.relative_to(ROOT)).encode()).hexdigest()[:10] + '.pdf')
-            pdf.parent.mkdir(parents=True, exist_ok=True)
-            if path.suffix == '.svg':
-                if not pdf.exists() or path.stat().st_mtime > pdf.stat().st_mtime:
-                    subprocess.run(['rsvg-convert', '--format=pdf', '--output', str(pdf), str(path)], check=True)
-            else: pdf = path
-            assets.append({'source': str(path.relative_to(ROOT)), 'pdf': str(pdf.relative_to(ROOT))})
-            label = block.label or pending_label
-            result.append('\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{' + str(pdf.relative_to(ROOT)) + '}\n\\caption' + short + '{' + inline(caption) + '}\n' + (r'\label{' + label + '}\n' if label else '') + r'\end{figure}')
-            pending_label = None
-        elif block.kind is book_ir.BlockKind.BLOCKQUOTE:
-            inner = re.sub(r'^> ?', '', text, flags=re.M)
-            match = re.match(r'####\s+(.*?)\s*\{#([^}]+)\}\n+', inner)
-            if match:
-                heading, label = match.groups()
-                prefix = re.match(r'^Inset\s*[—–-]\s*', heading)
-                result.append(('% mage-box-prefix: ' + (prefix[0] if prefix else '')).rstrip())
-                result.append(r'\begin{bookbox}{inset}{' + inline(re.sub(r'^Inset\s*[—–-]\s*', '', heading)) + '}\n' + r'\label{' + label + '}\n' + inline(inner[match.end():]) + '\n' + r'\end{bookbox}')
-            else: result.append(inline(re.sub(r'^(>\s*)#(#{1,5} )', r'\1\2', text, flags=re.M)))
-        elif block.kind is book_ir.BlockKind.TABLE:
-            pending_caption = block.caption
-            pending_label = block.label
-            ast = json.loads(pandoc(prepare(text), 'markdown-smart+raw_attribute+tex_math_single_backslash', 'json'))
-            table = ast['blocks'][0]
-            if pending_caption:
-                caption = re.sub(r'\s*\[short:.*?\]', '', pending_caption)
-                caption_ast = json.loads(pandoc(prepare(caption), 'markdown-smart+raw_attribute+tex_math_single_backslash', 'json'))
-                short_match = re.search(r'\[short:\s*(.*?)\]', pending_caption)
-                short = json.loads(pandoc(prepare(short_match[1]), 'markdown-smart+raw_attribute', 'json'))['blocks'][0]['c'] if short_match else None
-                table['c'][1] = [short, caption_ast['blocks']]
-            if pending_label: table['c'][0][0] = pending_label
-            latex = pandoc(json.dumps(ast), 'json', 'latex')
-            result.append('{\\footnotesize\n' + latex + '\n}')
-            pending_label = pending_caption = None
-        elif block.kind is book_ir.BlockKind.CODE:
-            language = text.splitlines()[0].lstrip('`').strip()
-            result.append('% mage-code-language: ' + (language or 'text') + '\n' + pandoc(text, 'markdown', 'latex'))
-        elif block.kind is book_ir.BlockKind.EQ:
-            equation = re.match(r'<!-- eq:\s*(.*?)\s*-->', text, re.S)[1]
-            equation = re.sub(r'(?<!\\)\$', lambda m: r'\$', equation)
-            result.append('\\[\n' + equation + '\n\\]')
-        elif block.kind is book_ir.BlockKind.OTHER and block.directive == 'coda-rule':
-            result.append(r'\magerule{}')
-        elif block.kind is book_ir.BlockKind.HEADING and block.heading_level == 1:
-            result.append(r'\chapter{' + inline(title) + '}')
-        elif block.kind is book_ir.BlockKind.HEADING:
-            result.append(inline(text[1:]))
-        elif block.kind in { book_ir.BlockKind.PARA, book_ir.BlockKind.LIST, book_ir.BlockKind.ORDERED_LIST, book_ir.BlockKind.CODE}:
-            result.append(inline(text))
-        else:
-            raise ValueError(f'Unsupported manuscript block: {block.kind}: {text[:100]}')
-    native = '\n\n'.join(result)
+    def render_blocks(body):
+        # Insets contain the same figure and editorial directives as the chapter.
+        # Parse their bodies as blocks; Pandoc's inline path drops HTML comments.
+        body = re.sub(r'(?m)^(<!--[^\n]*-->)$', r'\n\1\n', body)
+        rec = dict(slug=source.stem, part=2, chapter=1, title=title, body_md=body)
+        chapter = book_ir._parse_chapter(rec)
+        result = []
+        pending_caption = None
+        pending_label = None
+        for block in chapter.blocks:
+            text = block.raw
+            if block.kind is book_ir.BlockKind.DIRECTIVE:
+                result.extend('% ' + line for line in text.splitlines())
+                match = re.match(r'<!--\s*(label|table):\s*(.*?)\s*-->', text)
+                if match and match[1] == 'label': pending_label = match[2]
+                if match and match[1] == 'table': pending_caption = match[2]
+                continue
+            if block.kind is book_ir.BlockKind.FIGURE:
+                match = re.match(r'<!-- figure:\s*(.*?)\s*\|\s*(.*?)\s*-->', text, re.S)
+                if not match: raise ValueError(text)
+                asset, caption = match.groups()
+                short_match = re.search(r'\s*\[short:\s*(.*?)\]', caption)
+                short = '[' + inline(short_match[1]) + ']' if short_match else ''
+                caption = re.sub(r'\s*\[short:.*?\]', '', caption)
+                path = ROOT / 'book' / asset
+                if not path.exists(): raise FileNotFoundError(path)
+                pdf = ROOT / 'book/latex/assets' / (path.stem + '-' + hashlib.sha256(str(path.relative_to(ROOT)).encode()).hexdigest()[:10] + '.pdf')
+                pdf.parent.mkdir(parents=True, exist_ok=True)
+                if path.suffix == '.svg':
+                    if not pdf.exists() or path.stat().st_mtime > pdf.stat().st_mtime:
+                        subprocess.run(['rsvg-convert', '--format=pdf', '--output', str(pdf), str(path)], check=True)
+                else: pdf = path
+                assets.append({'source': str(path.relative_to(ROOT)), 'pdf': str(pdf.relative_to(ROOT))})
+                label = block.label or pending_label
+                result.append('\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{' + str(pdf.relative_to(ROOT)) + '}\n\\caption' + short + '{' + inline(caption) + '}\n' + (r'\label{' + label + '}\n' if label else '') + r'\end{figure}')
+                pending_label = None
+            elif block.kind is book_ir.BlockKind.BLOCKQUOTE:
+                inner = re.sub(r'^> ?', '', text, flags=re.M)
+                match = re.match(r'####\s+(.*?)\s*\{#([^}]+)\}\n+', inner)
+                if match:
+                    heading, label = match.groups()
+                    prefix = re.match(r'^Inset\s*[—–-]\s*', heading)
+                    result.append(('% mage-box-prefix: ' + (prefix[0] if prefix else '')).rstrip())
+                    result.append(r'\begin{bookbox}{inset}{' + inline(re.sub(r'^Inset\s*[—–-]\s*', '', heading)) + '}\n' + r'\label{' + label + '}\n' + render_blocks(inner[match.end():]) + '\n' + r'\end{bookbox}')
+                else: result.append(inline(re.sub(r'^(>\s*)#(#{1,5} )', r'\1\2', text, flags=re.M)))
+            elif block.kind is book_ir.BlockKind.TABLE:
+                pending_caption = block.caption
+                pending_label = block.label
+                ast = json.loads(pandoc(prepare(text), 'markdown-smart+raw_attribute+tex_math_single_backslash', 'json'))
+                table = ast['blocks'][0]
+                if pending_caption:
+                    caption = re.sub(r'\s*\[short:.*?\]', '', pending_caption)
+                    caption_ast = json.loads(pandoc(prepare(caption), 'markdown-smart+raw_attribute+tex_math_single_backslash', 'json'))
+                    short_match = re.search(r'\[short:\s*(.*?)\]', pending_caption)
+                    short = json.loads(pandoc(prepare(short_match[1]), 'markdown-smart+raw_attribute', 'json'))['blocks'][0]['c'] if short_match else None
+                    table['c'][1] = [short, caption_ast['blocks']]
+                if pending_label: table['c'][0][0] = pending_label
+                latex = pandoc(json.dumps(ast), 'json', 'latex')
+                result.append('{\\footnotesize\n' + latex + '\n}')
+                pending_label = pending_caption = None
+            elif block.kind is book_ir.BlockKind.CODE:
+                language = text.splitlines()[0].lstrip('`').strip()
+                result.append('% mage-code-language: ' + (language or 'text') + '\n' + pandoc(text, 'markdown', 'latex'))
+            elif block.kind is book_ir.BlockKind.EQ:
+                equation = re.match(r'<!-- eq:\s*(.*?)\s*-->', text, re.S)[1]
+                equation = re.sub(r'(?<!\\)\$', lambda m: r'\$', equation)
+                result.append('\\[\n' + equation + '\n\\]')
+            elif block.kind is book_ir.BlockKind.OTHER and block.directive == 'coda-rule':
+                result.append(r'\magerule{}')
+            elif block.kind is book_ir.BlockKind.HEADING and block.heading_level == 1:
+                result.append(r'\chapter{' + inline(title) + '}')
+            elif block.kind is book_ir.BlockKind.HEADING:
+                result.append(inline(text[1:]))
+            elif block.kind in { book_ir.BlockKind.PARA, book_ir.BlockKind.LIST, book_ir.BlockKind.ORDERED_LIST, book_ir.BlockKind.CODE}:
+                result.append(inline(text))
+            else:
+                raise ValueError(f'Unsupported manuscript block: {block.kind}: {text[:100]}')
+        return '\n\n'.join(result)
+
+    native = '% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.\n\n' + render_blocks(raw)
     native = re.sub(r'(\\(?:sub)*section\{[^\n]+\}\\label\{)([^}]+)(\})', lambda m: m[1] + 'heading:' + m[2] + m[3], native)
     explicit = set(re.findall(r'\{#([A-Za-z0-9_-]+)\}', raw))
     auto = [label for label in re.findall(r'\\label\{heading:([^}]+)\}', native) if label not in explicit]
@@ -245,6 +251,21 @@ def compatibility(source: Path, output: Path):
     text = re.sub(r'(\\label\{)heading:([^}]+)(\})', r'\1\2\3', text)
     auto_headings = re.findall(r'^% mage-auto-heading: (.*)$', text, re.M)
     text = re.sub(r'^% mage-auto-heading: .*$', '', text, flags=re.M)
+    explicit_labels = set(re.findall(r'\\label\{([^}]+)\}', text)) - set(auto_headings)
+
+    def retain_authored_heading_ids(value):
+        # Pandoc normally omits an ID equal to its automatic heading slug.
+        # Our HTML/EPUB renderer needs that authored ID explicitly in Markdown.
+        # Do not turn Pandoc-generated IDs into new authored anchors.
+        if isinstance(value, dict):
+            if value.get('t') == 'Header' and value['c'][1][0] not in explicit_labels:
+                value['c'][1][0] = ''
+            for child in value.values():
+                retain_authored_heading_ids(child)
+        elif isinstance(value, list):
+            for child in value:
+                retain_authored_heading_ids(child)
+
     synthetic_chapter = r'\chapter{' not in text
     if synthetic_chapter: text = r'\chapter{MAGEPROJECTIONONLY}' + '\n' + text
     replacements = {}
@@ -252,18 +273,70 @@ def compatibility(source: Path, output: Path):
         key = 'MAGETOKEN' + str(len(replacements)) + 'END'
         replacements[key] = value
         return key
+    def restore_tokens(value):
+        # Restore nested values before a containing block adds line prefixes.
+        # A figure token expands to both a label and a figure directive.
+        for _ in range(len(replacements) + 1):
+            previous = value
+            for key, replacement in replacements.items():
+                value = value.replace(key, replacement)
+            if value == previous:
+                break
+        if re.search(r'MAGETOKEN[0-9]+END', value):
+            raise ValueError('Unresolved native-projection placeholder')
+        return value
     text = re.sub(r'\\textquotesingle(?:\{\}| )', lambda m: token("'"), text)
     text = text.replace('"', token('"'))
     text = text.replace('{[}', token('[')).replace('{]}', token(']'))
     text = text.replace(r'\item[$\square$]', r'\item ' + token('☐') + ' ')
+    def project_tables(ast, *, declared_only=False):
+        for i, block in enumerate(ast['blocks']):
+            wrapper_id = ''
+            if block['t'] == 'Div' and len(block['c'][1]) == 1 and block['c'][1][0]['t'] == 'Table':
+                wrapper_id = block['c'][0][0]
+                block = block['c'][1][0]
+            if block['t'] != 'Table': continue
+            table = block['c']
+            if declared_only and not (table[0][0] or wrapper_id or table[1][1]):
+                continue
+            caption_ast = dict(ast, blocks=table[1][1])
+            caption = pandoc(json.dumps(caption_ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash', '--markdown-headings=atx')
+            if table[1][0]:
+                short_ast = dict(ast, blocks=[{'t':'Plain', 'c':table[1][0]}])
+                caption += ' [short: ' + pandoc(json.dumps(short_ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash') + ']'
+            table[1] = [None, []]
+            table_id = table[0][0] or wrapper_id
+            table[0][0] = ''
+            def flatten(value):
+                if isinstance(value, list):
+                    result = []
+                    for child in value:
+                        if isinstance(child, dict) and child.get('t') == 'Div': result.extend(flatten(child['c'][1]))
+                        else: result.append(flatten(child))
+                    return result
+                if isinstance(value, dict): return {k: flatten(v) for k, v in value.items()}
+                return value
+            block = flatten(block)
+            table_md = pandoc(json.dumps(dict(ast, blocks=[block])), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-multiline_tables-grid_tables-simple_tables+pipe_tables', '--markdown-headings=atx')
+            table_md = re.sub(r'(?<=\|):(-+)(?=\|)', r'\1', table_md)
+            text_marker = '<!-- label: ' + table_id + ' -->\n<!-- table: ' + caption + ' -->\n' + table_md
+            ast['blocks'][i] = {'t':'Para', 'c':[{'t':'Str', 'c':token(text_marker)}]}
     def md(value):
+        # A generated table may be locally typeset at a smaller font size.
+        value = value.replace('{\\footnotesize\n', '{\n')
         guard_native(value)
         ast = json.loads(pandoc(value, 'latex', 'json'))
         def clean(value):
             if isinstance(value, list):
                 result = []
                 for child in value:
-                    if isinstance(child, dict) and child.get('t') == 'Div': result.extend(clean(child['c'][1]))
+                    if isinstance(child, dict) and child.get('t') == 'Div':
+                        children = clean(child['c'][1])
+                        if len(children) == 1 and children[0].get('t') == 'Table':
+                            # Pandoc stores a native table label on its wrapper.
+                            attr = children[0]['c'][0]
+                            attr[0] = attr[0] or child['c'][0][0]
+                        result.extend(children)
                     else: result.append(clean(child))
                 return result
             if isinstance(value, dict):
@@ -273,7 +346,12 @@ def compatibility(source: Path, output: Path):
                     raise ValueError('Unsupported LaTeX in nested projection: ' + repr(value))
                 return {k: clean(v) for k,v in value.items()}
             return value
-        return pandoc(json.dumps(strip_noops(clean(ast))), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-multiline_tables-grid_tables-simple_tables+pipe_tables', '--markdown-headings=atx')
+        ast = strip_noops(clean(ast))
+        # Insets need the same label/caption directives as mainline tables.
+        # Leave uncaptioned embedded tables in their existing pipe-table form.
+        project_tables(ast, declared_only=True)
+        retain_authored_heading_ids(ast)
+        return pandoc(json.dumps(ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-multiline_tables-grid_tables-simple_tables+pipe_tables-auto_identifiers', '--markdown-headings=atx')
     text = re.sub(r'\\magevalue\{([^}]+)\}', lambda m: token('{{' + m[1] + '}}'), text)
     text = re.sub(r'\\autoref\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
     text = re.sub(r'\\cite[pt]\{([^}]+)\}', lambda m: token('[cite: ' + m[1].replace(',', ';') + ']'), text)
@@ -309,10 +387,14 @@ def compatibility(source: Path, output: Path):
     text = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', figure, text, flags=re.S)
     def box(match):
         content = match[0]
-        heading = re.search(r'\\begin\{bookbox\}\{[^}]+\}\{([^}]+)\}', content)
+        kind = argument(content, r'\begin{bookbox}')
+        prefix = r'\begin{bookbox}{' + kind + '}'
+        heading = argument(content, prefix)
+        opening = prefix + '{' + heading + '}'
         label = argument(content, r'\label')
-        body = content[heading.end():].replace(r'\label{' + label + '}', '').replace(r'\end{bookbox}', '')
-        quote = '#### ' + (box_prefixes.pop(0) if box_prefixes else '') + md(heading[1]) + ' {#' + label + '}\n\n' + md(body)
+        body = content[len(opening):].replace(r'\label{' + label + '}', '', 1).removesuffix(r'\end{bookbox}')
+        quote = '#### ' + (box_prefixes.pop(0) if box_prefixes else '') + md(heading) + ' {#' + label + '}\n\n' + md(body)
+        quote = restore_tokens(quote)
         return '\n\n' + token('\n'.join('> ' + line if line else '>' for line in quote.splitlines())) + '\n\n'
     text = re.sub(r'\\begin\{bookbox\}.*?\\end\{bookbox\}', box, text, flags=re.S)
     text = text.replace('{\\footnotesize\n', '').replace('\n}\n', '\n')
@@ -342,50 +424,18 @@ def compatibility(source: Path, output: Path):
         elif isinstance(value, list):
             for child in value: restore_code(child)
     restore_code(ast)
-    for i, block in enumerate(ast['blocks']):
-        wrapper_id = ''
-        if block['t'] == 'Div' and len(block['c'][1]) == 1 and block['c'][1][0]['t'] == 'Table':
-            wrapper_id = block['c'][0][0]
-            block = block['c'][1][0]
-        if block['t'] != 'Table': continue
-        table = block['c']
-        caption_ast = dict(ast, blocks=table[1][1])
-        caption = pandoc(json.dumps(caption_ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash', '--markdown-headings=atx')
-        if table[1][0]:
-            short_ast = dict(ast, blocks=[{'t':'Plain', 'c':table[1][0]}])
-            caption += ' [short: ' + pandoc(json.dumps(short_ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash') + ']'
-        table[1] = [None, []]
-        table_id = table[0][0] or wrapper_id
-        table[0][0] = ''
-        def flatten(value):
-            if isinstance(value, list):
-                result = []
-                for child in value:
-                    if isinstance(child, dict) and child.get('t') == 'Div': result.extend(flatten(child['c'][1]))
-                    else: result.append(flatten(child))
-                return result
-            if isinstance(value, dict): return {k: flatten(v) for k, v in value.items()}
-            return value
-        block = flatten(block)
-        table_md = pandoc(json.dumps(dict(ast, blocks=[block])), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-multiline_tables-grid_tables-simple_tables+pipe_tables', '--markdown-headings=atx')
-        table_md = re.sub(r'(?<=\|):(-+)(?=\|)', r'\1', table_md)
-        text_marker = '<!-- label: ' + table_id + ' -->\n<!-- table: ' + caption + ' -->\n' + table_md
-        ast['blocks'][i] = {'t':'Para', 'c':[{'t':'Str', 'c':token(text_marker)}]}
+    project_tables(ast)
     for block in ast['blocks']:
         if block['t'] == 'BulletList':
             for item in block['c']:
                 for part in item:
                     if part['t'] == 'Para': part['t'] = 'Plain'
-    result = pandoc(json.dumps(ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash', '--markdown-headings=atx')
+    retain_authored_heading_ids(ast)
+    result = pandoc(json.dumps(ast), 'json', 'markdown-smart-tex_math_dollars+tex_math_single_backslash-auto_identifiers', '--markdown-headings=atx')
     if footnotes:
         result += '\n\n' + '\n\n'.join('[^' + k + ']: ' + v for k, v in footnotes.items())
     # Resolve nested placeholders introduced by captions, boxes, and footnotes.
-    for _ in range(len(replacements) + 1):
-        previous = result
-        for key, value in replacements.items(): result = result.replace(key, value)
-        if result == previous: break
-    if re.search(r'MAGETOKEN[0-9]+END', result):
-        raise ValueError('Unresolved native-projection placeholder')
+    result = restore_tokens(result)
     result = result.replace('%7B%7Bproduct_url%7D%7D', '{{product_url}}')
     for label in auto_headings:
         result = result.replace(' {#' + label + '}', '')
@@ -454,13 +504,15 @@ def _prepare_record(task):
     raw = record['body_md']
     occurrences = {}
     def index_marker(match):
-        kind = 'def' if match[1] == 'index-def' else 'ex'
-        key = (match[2], kind)
+        prefix, directive, term = match.groups()
+        kind = 'def' if directive == 'index-def' else 'ex'
+        key = (term, kind)
         occurrence = occurrences.get(key, 0)
         occurrences[key] = occurrence + 1
-        anchor = record['_index_anchors'][(match[2], kind, occurrence)]
-        return match[0] + '\n\n<!-- latex-index-anchor: ' + anchor + ' -->'
-    raw = re.sub(r'<!-- (index-def|index-example): ([^ >]+) -->', index_marker, raw)
+        anchor = record['_index_anchors'][(term, kind, occurrence)]
+        # Generated metadata must stay inside the same (possibly nested) inset.
+        return match[0] + '\n' + prefix.rstrip() + '\n' + prefix + '<!-- latex-index-anchor: ' + anchor + ' -->'
+    raw = re.sub(r'(?m)^((?:[ \t]*>[ \t]*)*)<!-- (index-def|index-example): ([^ >]+) -->', index_marker, raw)
     orientation = ''
     if record.get('is_part_page'):
         part = record['part']
@@ -518,6 +570,10 @@ def _prepare_record(task):
         height = FIGURE_HEIGHT_OVERRIDES_BP.get(label[1] if label else '', FIGURE_HEIGHT_BP)
         return content.replace(r'\includegraphics[', r'\includegraphics[height=' + str(height) + r'bp,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
+
+    # Print-only segmentation preserves native artwork size inside worked insets.
+    from mage_inset_print import isolate_inset_figures
+    latex = isolate_inset_figures(latex)
 
     from latex_build import bold_table_headers, single_page_tables, namespace_heading_links
     latex = bold_table_headers(latex)
@@ -776,7 +832,11 @@ def pdf_sources(driver):
 def build_pdf():
     import shutil
     import latex_build
+    import mage_tikz_review
+    import mage_tikz_links
+    pool, figure_manifest = mage_tikz_review.compile_candidates()
     driver = prepare_pdf()
+    figure_manifest = mage_tikz_review.publication_figures(driver, pool, figure_manifest)
     driver_text, chapter_texts, bibliography = pdf_sources(driver)
     import render_citations
     canonical = {entry['key']: {'type':entry['type'], 'fields':entry['fields']} for entry in render_citations.parse_bib((ROOT / 'book/references.bib').read_text())}
@@ -787,6 +847,8 @@ def build_pdf():
     if expected != emitted:
         raise RuntimeError(f'Native PDF citation mismatch: missing {sorted(expected-emitted)}; unexpected {sorted(emitted-expected)}')
     pdf = latex_build.compile_tex(driver)
+    mage_tikz_links.verify_book(pdf, driver.with_suffix('.aux'), figure_manifest,
+                                anchor_prefix='tikz-figure:')
     destination = ROOT / 'book/mage-book.pdf'
     shutil.copy2(pdf, destination)
     return destination

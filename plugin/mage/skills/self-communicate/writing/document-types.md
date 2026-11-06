@@ -80,16 +80,11 @@ Use [`textbook.md`](textbook.md) for paragraph-level teaching, explanatory lengt
   reader practice an inference. A chapter-ending synthesis can turn a developed argument into useful
   handles. Keep this productive repetition; cut repeated claims that do no additional explanatory work.
   Judge the contribution, not merely the repeated wording or level of abstraction.
-- **Some chapters are deliberately dual-purpose: worked argument plus optional primer.** A technical book
-  may need to *demonstrate* a real system and *teach* the background needed to understand it. Do not delete
-  the primer because it interrupts the argument. Separate the two tracks instead — the two-track move that
-  extends [`engineering.md`](engineering.md)'s rule that explanation and reference not be braided into one
-  paragraph:
-  - the **mainline** carries the book's argument and the worked system (the MAGE argument, the DocAble
-    evidence);
-  - an **inset** supplies the portable tutorial or reference concept (see §"Pedagogical insets" below);
-  - the mainline must stay intelligible to a reader who skims the inset;
-  - the inset must explain enough that a reader without the background can rejoin the argument.
+- **Some chapters offer two reading paths.** The mainline develops the argument with enough explanation
+  and examples to stand on its own. Optional insets can teach background or work through a production case
+  in greater depth (see §"Pedagogical insets" below). A production case need not stay in the mainline
+  merely because it supplies the book's evidence. Introduce the case where its details become useful,
+  and give readers enough context to follow it without assuming they already know the system.
 
   The test is not "could this material be moved elsewhere?" It is **"does the reader need it at this point,
   and can they choose how deeply to enter it?"** Progressive density applies to the repeated book concept,
@@ -188,20 +183,20 @@ completeness.
 
 ## Pedagogical insets — the optional second track
 
-The dual-purpose engineering book needs a construct the base taxonomy does not name: the **inset** — a
-boxed, skippable second reading track. The main argument should not assume every reader already knows
-automata, data-flow diagrams, invariants, model checking, or traceability. But teaching each concept inline
-buries the book's own contribution. An inset carries the teaching so the mainline carries the argument, and
-the reader chooses which track to read.
+An **inset** is a boxed, skippable second reading track. It can supply established background or develop a
+production case in depth. The mainline still owes the reader the explanation and examples needed to follow
+its argument; the inset lets the reader examine a concept or case more closely.
 
-**Use an inset when all three conditions hold:**
+### Background primers
+
+**Use a background primer when all three conditions hold:**
 
 1. the concept is needed to understand the worked example;
 2. it is established *background*, not the book's central contribution;
 3. some intended readers already know it (so inlining it would bore them, and cutting it would lose the
    newcomer).
 
-**An inset should:**
+**A background primer should:**
 
 - answer one literal question;
 - begin with the plain intuition;
@@ -210,13 +205,26 @@ the reader chooses which track to read.
 - end by stating what the reader should now be able to recognize or check;
 - not pretend to be a complete treatment.
 
-The surrounding prose points into the inset **once**, then uses the concept's canonical name without
-re-teaching it (the progressive-density discipline, [`voice.md`](voice.md)). **Inset titles are literal
+The surrounding prose points into the primer **once**, then uses the concept's canonical name without
+re-teaching it (the progressive-density discipline, [`voice.md`](voice.md)). **Primer titles are literal
 questions or definitions** — "What is an invariant?", "State properties versus sequence properties", "What
 does bounded model checking establish?" — not an ornamental title like "A brief mathematical excursion." An
 inset that teaches a simplified account still owes the [`voice.md`](voice.md) §"Teach the curious engineer"
 test: the simplification must be scoped and must not teach a false operational rule. The audit runs an
 inset-specific check over these ([`audit.md`](audit.md) §"Inset audit").
+
+### Worked-case insets
+
+Use a worked-case inset when a small example can teach the main idea and the production system adds a
+useful failure, constraint, or design decision. Introduce what that part of the system does and the
+question being answered before its local terms, identifiers, and machinery. Include the model or diagram
+the explanation relies on, then work through a concrete sequence or decision. An earlier introduction of
+the product does not supply context for every subsystem.
+
+Read the chapter both with and without its optional insets. After an inset, name any production fact still
+needed instead of referring to “this model” or “the implementation” when the referent exists only inside
+the box. On the full reading path, the case should add explanation; repeating the mainline's conclusion
+and qualifications does not earn another example. The [`audit.md`](audit.md) inset audit checks both paths.
 
 ## The contrast, stated plainly
 
@@ -243,9 +251,8 @@ apply that type's specialized rules on top of the type-independent passes:
 
 - **A book** — check the thesis actually recurs across chapters (not just the preface); each chapter opens
   with a frame; each chapter carries at least one visual; no section blows the length cap; the conclusion
-  returns to the thesis. For a chapter that runs a **pedagogical inset**, run the seven-question **inset
-  audit** ([`audit.md`](audit.md) §"Inset audit") — needed-here, visibly separate, expert-skippable,
-  newcomer-rejoins, one concept not a survey, operationally sound, no mainline repeat. Several of the
+  returns to the thesis. For a chapter that runs a background primer or worked-case inset, run the
+  **inset audit** ([`audit.md`](audit.md) §"Inset audit") over both reading paths. Several of the
   book-level checks are mechanical enough to enforce with a structural lint over the built book — that lint
   is the audit's automated arm; the audit runs the judgment the lint can't.
 - **A tutorial** — check there is no smuggled thesis, one running example, a visible win.

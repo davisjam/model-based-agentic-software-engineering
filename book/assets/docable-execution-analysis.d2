@@ -1,0 +1,16 @@
+# One claim: the Office registry's resource declarations supply both scheduling and analysis.
+# This diagram intentionally shows DOCX only; PDF correspondence is explained in prose.
+...@../d2-pilot/_house-style
+direction: down
+registry: Registry declarations (DOCX) {
+  class: paperbox
+  direction: right
+  style.font-size: 22
+  repair: "Table-header repair\nwrites: table headers" { class: modeling; style.font-size: 21 }
+  check: "Table-structure check\nreads: table headers" { class: modeling; style.font-size: 21 }
+  repair -> check: producer before consumer { class: flow; style.font-size: 18 }
+}
+runtime: "Execution machinery\norders repair before check" { class: panel; style.font-size: 21 }
+analysis: "Python analytical graph\nrecords the dependency" { class: panel; style.font-size: 21 }
+registry -> runtime: uses declarations { class: flow; style.font-size: 18 }
+registry -> analysis: projects resource edges { class: flow; style.font-size: 18; style.stroke-dash: 5 }

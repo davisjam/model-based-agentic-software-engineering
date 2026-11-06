@@ -1,8 +1,5 @@
 % mage-auto-heading: the-canonical-move-structure-and-dependency
-% mage-auto-heading: docable-document-mutation-structure
-% mage-auto-heading: document-mutation-model-structural
-% mage-auto-heading: docable-computation-and-composition
-% mage-auto-heading: remediation-computation-model-structural
+% mage-auto-heading: choose-the-relation-for-the-question
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Modeling -->
@@ -36,34 +33,61 @@ Once structure is explicit, the claims an engineer wants become graph properties
 
 % <!-- point: derived-structure-and-declared-structure-are-different-claims | Static analysis can derive the graph from code and engineers can declare it as intent; one describes what the system appears to do, the other what it is supposed to do, and Chapter 3 treats the difference. -->
 
-Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims --- one describes what the system appears to do, the other what it is supposed to do --- and \magevalue{chapter:alignment} treats the distinction carefully. For now the move is smaller: choose the structural relation that makes the engineering question explicit. DocAble uses that move at two grains.
+Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims: one describes what the system appears to do, the other what it is supposed to do. \magevalue{chapter:alignment} treats the distinction carefully.
 
-\section{DocAble: Document-Mutation Structure}\label{heading:docable-document-mutation-structure}
+\section{Choose the Relation for the Question}\label{heading:choose-the-relation-for-the-question}
+
+Suppose a web application\textquotesingle s user interface should reach its database only through an application service. A three-layer model can represent that boundary: user interface, application service, database. The property concerns paths. Every route from the interface to the database must cross the service; a direct interface-to-database edge would violate the intended architecture. The model can omit the service\textquotesingle s internal algorithms because those details do not decide whether the boundary is crossed.
+
+A build dependency graph answers a different question. Suppose two independent source files are compiled and their object files are then linked into one executable. Model the compilation tasks and the link task as nodes, with an edge from each compilation to linking. The two edges express what linking needs. A change to one compilation result affects the link task, but the graph gives no reason to rerun the other compilation. This is a dependency question, so the useful entities are tasks and their products rather than architectural layers.
+
+The relation\textquotesingle s meaning also matters within one workflow. A task may consume an earlier result as data, or inspect a condition solely to decide whether it should run. Both create dependencies, but they support different questions about how information contributes to the output. A model that records only an undifferentiated arrow cannot answer those questions. DocAble\textquotesingle s document-processing pipeline provides a worked example of both architectural boundaries and typed computation dependencies.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: WORKED EXAMPLE -->
+
+% <!-- box-weight: deep-dive -->
+
+% mage-box-prefix:
+
+\begin{bookbox}{inset}{Worked example --- Two structural views of document repair}
+\label{inset-docable-structural}
+DocAble is a service that repairs accessibility problems in documents, such as missing alternative text, unmarked table headers, or incorrect reading order. The same operation may need a different implementation for a Word document and a PDF. Its structural models let engineers separate two questions: where format-specific changes belong, and how the repair computations depend on one another.
+
+\textbf{Where may a document change?}
 
 DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures. Those libraries are necessary, but they sit behind a deliberate architectural boundary: most remediation logic works through DocAble\textquotesingle s structured-document abstractions rather than reaching into a format-specific implementation directly.
 
-% <!-- box-family: model-card -->
-
-\begin{quote}
-\mbox{}%
-\subsubsection{Document-mutation model · Structural}\label{heading:document-mutation-model-structural}
+\textbf{Document-mutation model · Structural}
 
 \begin{itemize}
 \tightlist
 \item
   \textbf{Engineering question} --- Where is document mutation supposed to occur?
+\end{itemize}
+
+\begin{itemize}
+\tightlist
 \item
-  \textbf{Model} --- a layered structural relation: remediation logic operates through a structured-document model, realized by format-specific implementations for DOCX, PPTX, XLSX, and PDF.
+  \textbf{Model} --- a layered structural relation: remediation logic operates through a structured-document model, with a separate implementation for each format: DOCX, PPTX, XLSX, and PDF.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Property} --- the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Quality attribute} --- architectural integrity and modifiability.
 \end{itemize}
-\end{quote}
 
-% <!-- point: a-structural-model-names-the-sanctioned-seam-for-document-mutation | The model draws one architectural relation — remediation reaches format-specific mutation through a structured-document seam, realized per format — and leaves queues, retries, sessions, and repair mechanics out. -->
+% <!-- point: a-structural-model-names-the-sanctioned-seam-for-document-mutation | The model draws one architectural relation — remediation reaches format-specific mutation through a structured-document seam, implemented per format — and leaves queues, retries, sessions, and repair mechanics out. -->
 
-The useful model is small. \autoref{document-mutation-model} draws it: remediation logic operates \emph{through} a structured-document model, which is \emph{realized through} a format-specific implementation, which finally touches the concrete DOCX, PPTX, XLSX, and PDF formats. It says nothing about queues, retries, deployment, user sessions, or the mechanics of individual repairs. Those facts are real but irrelevant to the question; the reduction preserves only the architectural boundary that matters.
+The necessary model is small. \autoref{document-mutation-model} draws it: remediation logic operates \emph{through} a structured-document model, which has a separate \emph{implementation} for each format---DOCX, PPTX, PDF, LaTeX, etc. It says nothing about queues, retries, deployment, user sessions, or the mechanics of individual repairs. Those facts are real but irrelevant to the question; the reduction preserves only the architectural boundary that matters.
 
 \begin{figure}[htbp]
 \centering
@@ -72,9 +96,9 @@ The useful model is small. \autoref{document-mutation-model} draws it: remediati
 \label{document-mutation-model}
 \end{figure}
 
-% <!-- point: a-model-precedes-the-constraint-that-protects-it | The model states the boundary as a path property — every ordinary mutation route crosses the seam — and exposes it to checking; a static control that flags a bypass is the Chapter 3 enforcement. | terms: soft-vs-hard-governance -->
+% <!-- point: a-model-precedes-the-constraint-that-protects-it | The model states the path requirement that ordinary mutation routes cross the structured-document seam; DocAble’s static analyses enforce it by rejecting direct access to raw format libraries. | terms: soft-vs-hard-governance -->
 
-The principal property is a path claim: every ordinary route to format-specific mutation crosses the seam, and no route reaches a raw format library directly. The model \emph{states} that relation and exposes it to checking; it does not, by existing, enforce it. \magevalue{chapter:alignment} returns to the same relation when a static control flags code that bypasses the seam. The model supplies the architectural claim; the mechanism enforces that claim. This obligation is a \textbf{hard} one --- a lint refuses the bypass --- but the refusal belongs to \magevalue{chapter:alignment}.
+The principal property is a path constraint: every ordinary route to format-specific mutation must cross the structured-document seam. The model makes that requirement explicit so that a checker can look for bypasses. Enforcement requires a further step: DocAble\textquotesingle s static analyses reject code that reaches a raw format library directly. In \magevalue{chapter:alignment}, we discuss mechanisms for enforcing this architectural relation.
 
 % <!-- point: a-structural-model-can-drift-from-the-system-it-describes | A structural model carries the opposite risk — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing. -->
 
@@ -82,30 +106,37 @@ The principal property is a path claim: every ordinary route to format-specific 
 
 A structural model carries the opposite risk too. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is \textbf{model drift}. Later sections make the correspondence explicit by deriving, generating, or tracing between model and implementation.
 
-\section{DocAble: Computation and Composition}\label{heading:docable-computation-and-composition}
+\textbf{What computations depend on one another?}
 
 % <!-- point: a-second-structural-question-reaches-inside-the-pipeline | A second structural question reaches inside remediation: which computations make up the pipeline, and how do they depend on one another; the first reduction treats each registered pass as a node. -->
 
 The document-mutation model asked where one kind of change belongs. A second structural question reaches further inside the system: what computations make up remediation, and how do they depend on one another? DocAble runs a document through a collection of registered remediation passes. A pass may detect a condition, produce information a later pass uses, decide whether remediation should proceed, apply a bounded change to the intermediate representation, or edit a larger region directly. That structure exists in the implementation whether or not a model names it. The first reduction is the obvious one: treat each registered pass as a node, and suppress the statements, library calls, and loops inside it.
 
-% <!-- box-family: model-card -->
-
-\begin{quote}
-\mbox{}%
-\subsubsection{Remediation-computation model · Structural}\label{heading:remediation-computation-model-structural}
+\textbf{Remediation-computation model · Structural}
 
 \begin{itemize}
 \tightlist
 \item
   \textbf{Engineering question} --- What consequential computations make up remediation, and how does information move among them?
+\end{itemize}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Model} --- a static directed graph whose nodes are registered computations and whose typed edges represent declared composition among them.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Property} --- declared data dependencies and control dependencies are distinguishable and consistent with pipeline ordering; each modeled computation also states how bounded its mutation is --- a typed, comparable patch for all or a declared subset of its edits, or a direct in-place edit --- and, on a separate axis, which apply seam a patch producer uses.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
 \item
   \textbf{Quality attribute} --- analyzability, modifiability, and architectural integrity.
 \end{itemize}
-\end{quote}
 
 % <!-- point: the-computation-model-distinguishes-data-flow-from-control-composition | DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run). -->
 
@@ -132,6 +163,9 @@ The computation model remains static with respect to any one run: it records no 
 
 % <!-- point: the-identity-spine-supports-added-views-without-enlarging-the-schema | Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero. -->
 
-The same identity spine can support additional engineering views without enlarging the structural schema each time. Properties such as complexity, bounded execution, latency, test coverage, and checker trust can live in separate providers keyed by computation identity. Declared properties state engineering intent; measured properties report observation and may have incomplete coverage. An unmeasured latency is therefore unknown, not zero. The model family grows by joining views around stable identities rather than by turning one graph into a model of everything.
+The same identities can support additional engineering views without enlarging the structural schema each time. Separate providers can record complexity, bounded execution, latency, test coverage, or checker trust against the same computation identity. Declared properties state engineering intent. Measured properties report observations and may have incomplete coverage. An unmeasured latency is therefore unknown, not zero. Joining these views lets engineers ask questions about combinations of properties while keeping each representation focused on its own question.
 
-The next section adds time: what states a thing occupies, and the orderings it is allowed to move through.
+The two reductions keep different relations because they support different changes. To investigate a bypass of the document abstraction, inspect the architectural paths. To investigate the effect of changing a repair pass, inspect its declared inputs, outputs, and dependents. Neither question requires a complete model of the product.
+\end{bookbox}
+
+A structural model earns its detail by the question it helps answer. Architectural paths, data dependencies, and control dependencies preserve different facts even when each is drawn with boxes and arrows. The next section adds time: what states a thing occupies, and what sequences of changes the model admits.

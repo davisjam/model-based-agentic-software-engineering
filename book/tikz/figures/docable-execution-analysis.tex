@@ -1,0 +1,18 @@
+% DOCX/Office teaching figure. DOCX/Office path only; PDF uses parallel checked declarations.
+% White nodes; a thin container groups registry facts. Solid = consumption/ordering;
+% dashed = analytical projection. All routing orthogonal; font inherited from book.
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=6pt,minimum height=1.05cm},
+head/.style={align=center,font=\bfseries\fontsize{11}{13}\selectfont},
+edge/.style={-Stealth,line width=.6pt},
+lab/.style={fill=white,inner sep=3pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[head] at (0,1.05) {Registry declarations (DOCX)};
+\node[n,text width=6.2cm] (repair) at (0,0) {Table-header repair\\writes: table headers};
+\node[n,text width=6.2cm] (check) at (0,-2.6) {Table-structure check\\reads: table headers};
+\draw[edge] (repair) -- node[lab] {producer before consumer} (check);
+\draw[rounded corners=3pt,black!45,line width=.5pt] (-4.7,.77) rectangle (4.7,-3.38);
+\node[n,text width=5.9cm] (execution) at (-3.65,-6.2) {Execution machinery\\orders repair before check};
+\node[n,text width=5.9cm] (analysis) at (3.65,-6.2) {Python analytical graph\\records the dependency};
+\draw[edge] (-3.65,-3.38) -- node[lab] {uses declarations} (execution.north);
+\draw[edge,dashed] (3.65,-3.38) -- node[lab] {projects resource edges} (analysis.north);
+\end{tikzpicture}

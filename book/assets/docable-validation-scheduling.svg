@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Teaching adaptation of 2026-11-03 DocAble factory lecture slide 27, with the periodic single-sweep trigger clarified from fast-land-async-ci-design-261103.md. The original slide places Merge before Full validation while its notes describe validation before integration; one combined stage here expresses their coupling without asserting a disputed internal order. -->
+<!-- Custom SVG: three aligned, explicitly independent trigger paths prevent a false merge-to-sweep trigger; exact orthogonal print geometry matches the native TikZ counterpart. semantic-families: agent, governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="810" viewBox="10 0 440 405" role="img" aria-labelledby="validation-title validation-desc" font-family="'Source Sans 3', Arial, sans-serif">
+<title id="validation-title">Separate fast integration from broad validation</title>
+<desc id="validation-desc">Before, integration and full validation were coupled, so subsequent work waited for the broad suite. After, three paths have distinct triggers. For each change, the agent runs cheap checks, merges, and moves to the next work. Independently, a timer schedules broad checks of main every 30 minutes, with at most one sweep running. A blocking failure pauses dispatch and prompts diagnosis and repair. A deployment request still requires full validation to pass before deployment. The timer, rather than each merge, triggers the broad sweep. The cadence is the nominal schedule, not a bound on detection latency.</desc>
+<defs><marker id="validation-arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#1c1917"/></marker></defs>
+<rect x="0" y="0" width="450" height="405" fill="#ffffff"/>
+<path d="M20,97 H440" stroke="#b8b3ac" stroke-width="0.5"/>
+<g fill="none" stroke="#1c1917" stroke-width="0.75">
+<polyline id="before-a" points="106,49 139,49" marker-end="url(#validation-arrow)"/>
+<polyline id="before-b" points="311,49 345,49" marker-end="url(#validation-arrow)"/>
+<polyline id="after-a" points="94,171 112,171" marker-end="url(#validation-arrow)"/>
+<polyline id="after-b" points="222,171 244,171" marker-end="url(#validation-arrow)"/>
+<polyline id="after-c" points="318,171 356,171" marker-end="url(#validation-arrow)"/>
+<polyline id="clock-trigger" points="104,264 124,264" marker-end="url(#validation-arrow)"/>
+<polyline id="blocking-failure" points="294,264 342,264" marker-end="url(#validation-arrow)"/>
+<polyline id="deployment-trigger" points="104,365 124,365" marker-end="url(#validation-arrow)"/>
+<polyline id="deployment-passes" points="294,365 342,365" marker-end="url(#validation-arrow)"/>
+</g>
+<g id="before-agent"><rect x="20" y="29" width="86" height="40" rx="2.5" fill="#e7edf3" stroke="#2f5169" stroke-width="0.65"/>
+<text x="63" y="52.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Agent</text>
+</g>
+<g id="before-validation"><rect x="139" y="29" width="172" height="40" rx="2.5" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.65"/>
+<text x="225" y="52.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Merge and full validation</text>
+</g>
+<g id="before-next"><rect x="345" y="29" width="86" height="40" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="388" y="52.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Next work</text>
+</g>
+<g id="after-agent"><rect x="20" y="151" width="74" height="40" rx="2.5" fill="#e7edf3" stroke="#2f5169" stroke-width="0.65"/>
+<text x="57" y="174.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Agent</text>
+</g>
+<g id="cheap"><rect x="112" y="151" width="110" height="40" rx="2.5" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.65"/>
+<text x="167" y="174.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Cheap checks</text>
+</g>
+<g id="merge"><rect x="244" y="151" width="74" height="40" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="281" y="174.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Merge</text>
+</g>
+<g id="next"><rect x="356" y="151" width="74" height="40" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="393" y="174.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Next work</text>
+</g>
+<g id="clock"><rect x="20" y="238" width="84" height="52" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="62" y="267.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Timer</text>
+</g>
+<g id="sweep"><rect x="124" y="238" width="170" height="52" rx="2.5" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.65"/>
+<text x="209" y="260.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Broad checks of main</text>
+<text x="209" y="274.5" text-anchor="middle" font-size="10" font-weight="400" fill="#1c1917">One sweep at a time</text>
+</g>
+<g id="repair"><rect x="342" y="238" width="98" height="52" rx="2.5" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.65"/>
+<text x="391" y="260.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Pause dispatch</text>
+<text x="391" y="274.5" text-anchor="middle" font-size="10" font-weight="400" fill="#1c1917">Diagnose; repair</text>
+</g>
+<g id="deploy-request"><rect x="20" y="343" width="84" height="44" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="62" y="361.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Deployment</text>
+<text x="62" y="375.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">request</text>
+</g>
+<g id="deploy-validation"><rect x="124" y="343" width="170" height="44" rx="2.5" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.65"/>
+<text x="209" y="368.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Full validation</text>
+</g>
+<g id="deploy"><rect x="342" y="343" width="98" height="44" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="391" y="368.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Deploy</text>
+</g>
+<text id="before-heading" x="20" y="16" text-anchor="start" font-size="11" font-weight="700" fill="#1c1917">Before: integration and validation coupled</text>
+<text id="before-wait" x="225" y="85" text-anchor="middle" font-size="10" font-weight="400" fill="#1c1917">Next work waits for full validation.</text>
+<text id="after-heading" x="20" y="115" text-anchor="start" font-size="11" font-weight="700" fill="#1c1917">After: separate triggers for different checks</text>
+<text id="each-change-heading" x="20" y="138" text-anchor="start" font-size="10" font-weight="700" fill="#1c1917">For each change</text>
+<text id="periodic-heading" x="20" y="225" text-anchor="start" font-size="10" font-weight="700" fill="#1c1917">Every 30 minutes</text>
+<text id="deploy-heading" x="20" y="326" text-anchor="start" font-size="10" font-weight="700" fill="#1c1917">For deployment</text>
+<text id="failure-label-1" x="318" y="242" text-anchor="middle" font-size="10" font-weight="400" fill="#1c1917">blocking</text>
+<text id="failure-label-2" x="318" y="254" text-anchor="middle" font-size="10" font-weight="400" fill="#1c1917">failure</text>
+<text id="pass-label" x="318" y="353" text-anchor="middle" font-size="10" font-weight="400" fill="#1c1917">passes</text>
+</svg>

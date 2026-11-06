@@ -6,7 +6,7 @@
 
 Software engineering has always relied on abstraction. Large systems exceed what any engineer can reason about directly, so engineers understand them through purposeful views. A dependency graph exposes relationships among components; a state machine exposes legal behavior; a schema exposes permitted structure; a quantitative model exposes a resource bound. Each representation preserves what an engineering question needs and suppresses what it does not.
 
-Explicit models have nevertheless remained secondary in much code-centric software practice because another representation costs work to create, maintain, and reconcile with a changing system. Commodity intelligence changes that economics. Agents can increasingly derive, regenerate, reconcile, and query structured representations cheaply. At the same time, rapid autonomous implementation increases their value: engineering knowledge that once needed to be reconstructed occasionally may otherwise be reconstructed across many tasks and fresh reasoning states.
+Explicit models cost work to create, maintain, and keep consistent with a changing system. Those costs help explain why models have often remained secondary to code in software practice. Commodity intelligence changes the economics: agents can help derive, regenerate, reconcile, and query structured representations. Rapid autonomous software implementation\mageaside{Here, implementation means writing software. Throughout the book, the term can also refer to an agent carrying out other kinds of delegated work, including specification, design, and validation.} also increases their value. Knowledge that an engineer once reconstructed for an occasional change may now be needed by many agents working on many tasks. A maintained model gives those tasks a shared starting point.
 
 % <!-- principlebox -->
 
@@ -33,13 +33,13 @@ Which model is useful depends on what the engineer needs to know. A concurrency 
 
 Engineering questions recur in several broad forms. Structural questions ask what exists and what is connected; behavioral questions ask what may happen; ownership questions ask who controls work; decision questions ask what is allowed; measurement questions ask how much and against what bound; provenance questions ask what happened and what evidence records it. These are useful views into the modeling repertoire, not a partition of engineering models. The same worker may appear as a component in one model, an actor in a lifecycle in another, and the owner of work in a third. This chapter develops three of these views in detail, then connects several models to answer questions that cross individual views.
 
-DocAble is the running example---the production accessibility service introduced in \magevalue{chapter:problem}. A document enters, remediation is distributed across workers and services, the result is validated, and a corrected document returns with a record of what changed. The real system is far more complicated than any single representation ahead. That is the point. Each model keeps only the relationships its question needs. The DocAble specifics ahead --- models, mechanisms, and counts --- describe the repository revision examined at the time of writing; the live system moves, and exact quantities belong to figures regenerated from it.
+% <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Mainline examples introduce modeling questions; optional worked insets develop the production case, while property, invariant, analysis, and enforcement retain distinct meanings. -->
 
-Consider a document-processing job in DocAble. We might want to know whether a job can have two workers modifying it at the same time. A model of job ownership lets us express that question precisely. We can then require that each job have at most one worker responsible for modifying it at any moment. This requirement must hold for every job, throughout its lifetime, not merely for the jobs we happen to inspect. We can analyze the model to look for situations that violate the requirement. Whether the implementation actually prevents those situations is a further question.
+The main text develops each modeling question through a small example. Four worked insets apply those ideas to DocAble, the production accessibility service introduced in \magevalue{chapter:problem}. DocAble accepts a document, distributes accessibility repairs across workers and services, validates the result, and returns the corrected document with a record of what changed. Each inset introduces the part of the system it needs, so the main argument remains readable without the case details.
 
-% <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | A worked example establishes four terms that stay distinct — property, invariant, analysis, enforcement — before each section names them; an invariant is a property required to hold throughout a scope, and enforcement is reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
+Four terms recur throughout the chapter. A \textbf{property} is a claim about a system that we can express using a model. An \textbf{invariant} is a property that must always hold within a specified scope. An \textbf{analysis} or check produces evidence about whether a property holds. \textbf{Enforcement} prevents violations through a mechanism in the running system or development process. \magevalue{chapter:alignment} examines enforcement.
 
-Each worked section begins with a familiar engineering representation, explains what we can express and analyze using it, and then applies it to DocAble. The example above illustrates four terms used throughout the chapter. A \textbf{property} is a claim about a system that we can express using a model, such as whether two workers can modify the same job concurrently. An \textbf{invariant} is a property that must always hold within a specified scope: in this case, every job must have at most one modifying worker at any moment. An \textbf{analysis} or check produces evidence about whether the property holds. \textbf{Enforcement} goes further by preventing violations in the running system or development process. \magevalue{chapter:alignment} examines enforcement.
+For example, a job-ownership model can record which worker may modify each job. ``Each job has at most one modifying worker'' is a property; requiring it throughout every job\textquotesingle s lifetime makes it an invariant. An analysis can search the modeled transitions for a state in which two workers both hold permission. In a service where a worker must claim the job before changing it, an atomic claim can enforce exclusive ownership: it assigns an unowned job to one worker and rejects competing claims.
 
 % <!-- box-family: inset -->
 
@@ -47,10 +47,9 @@ Each worked section begins with a familiar engineering representation, explains 
 \mbox{}%
 \subsubsection{Four questions for every model}\label{heading:four-questions-for-every-model}
 
-Every model section ahead opens on the same four lines:
+Read each worked model with these four questions in mind:
 
 \begin{itemize}
-\tightlist
 \item
   \textbf{Engineering question} --- what am I trying to know or decide?
 \item

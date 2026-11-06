@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>33</b> chapters · <b>227</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>33</b> chapters · <b>226</b> sections · <b>46</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -216,21 +216,21 @@
 <div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Constructing and Revising a Model</a></div>
 <p class="topic">These representations may be written as diagrams, tables, type declarations, or executable rules.</p>
 </div>
-<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--implementation-can-induce-a-model">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Implementation can induce a model</a></div>
-<p class="topic">The chapter has so far run in one direction: from question to model to realization.</p>
+<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--learning-from-implementation">
+<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Learning from implementation</a></div>
+<p class="topic">We can also learn what to model by building and trying an implementation.</p>
 </div>
 <div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--judging-what-an-agent-discovers">
 <div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Judging what an agent discovers</a></div>
-<p class="topic">An agent can bring engineering patterns learned from other systems into an exploratory realization.</p>
+<p class="topic">An exploratory implementation can introduce useful design choices that the engineer did not specify in advance.</p>
 </div>
 <div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--structure-and-semantics-make-representations-machine-operable">
 <div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Structure and Semantics Make Representations Machine-Operable</a></div>
 <p class="topic">A model can preserve the right distinctions without completely defining what those distinctions mean.</p>
 </div>
-<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--representations-support-accumulating-capabilities">
-<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Representations Support Accumulating Capabilities</a></div>
-<p class="topic">Increasing semantic commitment can make additional capabilities possible: typed relationships, machine-checkable properties, derivation, generation, traceability, composition, querying, and checking.</p>
+<div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--what-structured-models-make-possible">
+<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">What Structured Models Make Possible</a></div>
+<p class="topic">A model’s structure and semantics determine what tools can do with it.</p>
 </div>
 <div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--the-engineering-modeling-repertoire">
 <div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">The Engineering Modeling Repertoire</a></div>
@@ -243,66 +243,54 @@
 <div class="sec-h"><a href="../book/2.2-structural.html">The Canonical Move: Structure and Dependency</a></div>
 <p class="topic">A component diagram names which services exist; a dependency graph names which modules rest on which; a call graph names which procedures may invoke which; a data-flow diagram names how information moves through transformations; a deployment topology names what is connected across execution locations.</p>
 </div>
-<div class="section s2" id="sec-2-2-structural--docable-document-mutation-structure">
-<div class="sec-h"><a href="../book/2.2-structural.html">DocAble: Document-Mutation Structure</a></div>
-<p class="topic">DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures.</p>
-</div>
-<div class="section s2" id="sec-2-2-structural--docable-computation-and-composition">
-<div class="sec-h"><a href="../book/2.2-structural.html">DocAble: Computation and Composition</a></div>
-<p class="topic">The document-mutation model asked where one kind of change belongs.</p>
+<div class="section s2" id="sec-2-2-structural--choose-the-relation-for-the-question">
+<div class="sec-h"><a href="../book/2.2-structural.html">Choose the Relation for the Question</a></div>
+<p class="topic">Suppose a web application&#x27;s user interface should reach its database only through an application service.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-3-behavioral"><span class="tier-kick">Lesson</span><a href="../book/2.3-behavioral.html" class="ch-link">2.3-behavioral</a> <span class="ch-slug">2.3-behavioral</span></h3>
-<div class="section s2" id="sec-2-3-behavioral--the-canonical-move-states-transitions-and-executions">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">The Canonical Move: States, Transitions, and Executions</a></div>
-<p class="topic">Engineering has represented behavior this way for a long time.</p>
+<div class="section s2" id="sec-2-3-behavioral--modeling-behavior-with-states-and-transitions">
+<div class="sec-h"><a href="../book/2.3-behavioral.html">Modeling Behavior with States and Transitions</a></div>
+<p class="topic">For lifecycle and recovery questions, a state-transition model makes explicit which states matter and how the system can move between them.</p>
 </div>
-<div class="section s2" id="sec-2-3-behavioral--docable-recovery-ordering">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">DocAble: Recovery Ordering</a></div>
-<p class="topic">DocAble must preserve the ordering between publishing a recovered artifact and updating the database record that references it: the record may not name an artifact that has not yet been published.</p>
-</div>
-<div class="section s2" id="sec-2-3-behavioral--what-the-model-makes-checkable">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">What the Model Makes Checkable</a></div>
-<p class="topic">The recovery model answers a safety question — can a bad state be reached?</p>
-</div>
-<div class="section s2" id="sec-2-3-behavioral--docable-ownership-under-contention">
-<div class="sec-h"><a href="../book/2.3-behavioral.html">DocAble: Ownership Under Contention</a></div>
-<p class="topic">With one worker, *who owns this job?* has an obvious answer.</p>
+<div class="section s2" id="sec-2-3-behavioral--ownership-under-contention">
+<div class="sec-h"><a href="../book/2.3-behavioral.html">Ownership Under Contention</a></div>
+<p class="topic">When several workers can process the same job, *who owns this job?* depends on their claims.</p>
 </div>
 <div class="section s2" id="sec-2-3-behavioral--one-representation-several-questions">
 <div class="sec-h"><a href="../book/2.3-behavioral.html">One Representation, Several Questions</a></div>
-<p class="topic">The lease is the chapter&#x27;s clearest case of one representation answering several classes of question.</p>
+<p class="topic">A lease illustrates how one representation can answer several classes of question.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-4-decision"><span class="tier-kick">Lesson</span><a href="../book/2.4-decision.html" class="ch-link">2.4-decision</a> <span class="ch-slug">2.4-decision</span></h3>
 <div class="section s2" id="sec-2-4-decision--the-canonical-move-permitted-alternatives">
 <div class="sec-h"><a href="../book/2.4-decision.html">The Canonical Move: Permitted Alternatives</a></div>
-<p class="topic">Engineering represents permission in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,[cite: lampson1974] policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible.</p>
+<p class="topic">Engineering represents permitted alternatives in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,[cite: lampson1974] policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible.</p>
 </div>
-<div class="section s2" id="sec-2-4-decision--docable-service-flow-policy">
-<div class="sec-h"><a href="../book/2.4-decision.html">DocAble: Service-Flow Policy</a></div>
-<p class="topic">DocAble declares which of its services may communicate with which.</p>
+<div class="section s2" id="sec-2-4-decision--compare-the-decision-with-the-facts">
+<div class="sec-h"><a href="../book/2.4-decision.html">Compare the Decision with the Facts</a></div>
+<p class="topic">Suppose a report service may call a renderer, while the public web interface may call only the report service.</p>
 </div>
-<div class="section s2" id="sec-2-4-decision--docable-when-the-system-changed-but-the-model-did-not">
-<div class="sec-h"><a href="../book/2.4-decision.html">DocAble: When the System Changed but the Model Did Not</a></div>
-<p class="topic">The service-flow policy was declared as intent, ahead of any violation.</p>
+<div class="section s2" id="sec-2-4-decision--preserve-the-cases-a-decision-must-distinguish">
+<div class="sec-h"><a href="../book/2.4-decision.html">Preserve the Cases a Decision Must Distinguish</a></div>
+<p class="topic">The input representation can make a decision wrong before any rule is evaluated.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-2-5-system-knowledge"><span class="tier-kick">Lesson</span><a href="../book/2.5-system-knowledge.html" class="ch-link">2.5-system-knowledge</a> <span class="ch-slug">2.5-system-knowledge</span></h3>
 <div class="section s2" id="sec-2-5-system-knowledge--a-heterogeneous-modeling-substrate">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">A Heterogeneous Modeling Substrate</a></div>
-<p class="topic">DocAble&#x27;s models differ in shape on purpose.</p>
+<p class="topic">A **modeling substrate** is the collection of representations through which engineers and agents can recover and relate consequential system knowledge.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--what-happened-and-what-evidence-records-it">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">What happened, and what evidence records it</a></div>
-<p class="topic">That realized history deserves its own reduction.</p>
+<div class="section s3" id="sec-2-5-system-knowledge--execution-history-and-provenance">
+<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Execution History and Provenance</a></div>
+<p class="topic">A static model and a history answer different questions.</p>
 </div>
 <div class="section s3" id="sec-2-5-system-knowledge--questions-that-span-models">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">Questions that span models</a></div>
-<p class="topic">A model makes selected properties of a system available for reasoning.</p>
+<p class="topic">Some answers require a join.</p>
 </div>
 <div class="section s2" id="sec-2-5-system-knowledge--maintain-explicit-correspondence">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">Maintain Explicit Correspondence</a></div>
@@ -310,19 +298,19 @@
 </div>
 <div class="section s3" id="sec-2-5-system-knowledge--derive-when-implementation-owns-the-truth">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">Derive when implementation owns the truth</a></div>
-<p class="topic">The model is a projection of the code, reconciled at build time.</p>
+<p class="topic">The model is a projection of the implementation.</p>
 </div>
-<div class="section s3" id="sec-2-5-system-knowledge--generate-when-the-model-owns-the-truth">
-<div class="sec-h"><a href="../book/2.5-system-knowledge.html">Generate when the model owns the truth</a></div>
-<p class="topic">Code, configuration, or documentation are emitted from the model.</p>
+<div class="section s3" id="sec-2-5-system-knowledge--when-the-model-is-the-source-of-truth">
+<div class="sec-h"><a href="../book/2.5-system-knowledge.html">When the model is the source of truth</a></div>
+<p class="topic">**Generation** produces an artifact from a model: code, configuration, or documentation.</p>
 </div>
 <div class="section s3" id="sec-2-5-system-knowledge--trace-and-check-where-neither-owns-the-truth">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">Trace and check where neither owns the truth</a></div>
-<p class="topic">Where neither side can be fully derived from the other, the move is **traceability plus drift checking**.</p>
+<p class="topic">Where neither side can be fully derived from the other, **traceability** records their relationship explicitly.</p>
 </div>
 <div class="section s3" id="sec-2-5-system-knowledge--some-correspondence-remains-semantic">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">Some correspondence remains semantic</a></div>
-<p class="topic">Mechanical correspondence has a declared surface.</p>
+<p class="topic">Mechanical checks establish only the correspondences they evaluate.</p>
 </div>
 <div class="section s2" id="sec-2-5-system-knowledge--modeling-makes-properties-available-to-engineering">
 <div class="sec-h"><a href="../book/2.5-system-knowledge.html">Modeling Makes Properties Available to Engineering</a></div>
@@ -370,6 +358,10 @@
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Prevention and Observation</a></div>
 <p class="topic">On the work-facing side of the loop, the two complementary moves are prevention and observation; [ref:constraint-vs-sensor] draws the split.</p>
 </div>
+<div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--tests-and-models-work-together">
+<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Tests and Models Work Together</a></div>
+<p class="topic">Tests already preserve engineering intent.</p>
+</div>
 <div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--one-obligation-several-ways-to-hold-it">
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">One Obligation, Several Ways to Hold It</a></div>
 <p class="topic">A modeled obligation does not imply one particular enforcement technology.</p>
@@ -380,11 +372,11 @@
 </div>
 <div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--one-measurement-different-enforcement-decisions">
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">One Measurement, Different Enforcement Decisions</a></div>
-<p class="topic">Related measurements from DocAble&#x27;s GenAI cost-and-usage model support different enforcement decisions, and [ref:cost-enforcement-gradient] fans them across the roles.</p>
+<p class="topic">A service’s usage measurements can support several responses, depending on the policy attached to them.</p>
 </div>
 <div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--positive-and-negative-constraints">
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Positive and Negative Constraints</a></div>
-<p class="topic">Constraints are often introduced as prohibitions: this code must not call that library.</p>
+<p class="topic">Constraints can forbid an action or require an accompanying action.</p>
 </div>
 <div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--provenance-carried-admission">
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Provenance-Carried Admission</a></div>
@@ -411,7 +403,7 @@
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--correct-judgment-without-enforcement">
 <div class="sec-h"><a href="../book/3.4-governance-conversion.html">Correct Judgment Without Enforcement</a></div>
-<p class="topic">A merge automation drained a backlog of agent worktrees into the mainline each tick.</p>
+<p class="topic">Suppose a deployment pipeline checks that every required configuration value is present.</p>
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--engineering-capital">
 <div class="sec-h"><a href="../book/3.4-governance-conversion.html">Engineering Capital</a></div>
@@ -431,7 +423,7 @@
 </div>
 <div class="section s2" id="sec-3-5-when-guardrails-collide--model-interactions-between-controls">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Model Interactions Between Controls</a></div>
-<p class="topic">Two collisions from the case study make it concrete.</p>
+<p class="topic">Suppose one repository check requires a task’s changes to be squashed into one commit, while another rejects a commit whose diff exceeds a prescribed scope.</p>
 </div>
 <div class="section s2" id="sec-3-5-when-guardrails-collide--trace-obligations-to-mechanisms">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Trace Obligations to Mechanisms</a></div>
@@ -440,6 +432,10 @@
 <div class="section s2" id="sec-3-5-when-guardrails-collide--add-reconcile-and-retire-controls">
 <div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Add, Reconcile, and Retire Controls</a></div>
 <p class="topic">Governance conversion and coverage auditing provide complementary pressures.</p>
+</div>
+<div class="section s3" id="sec-3-5-when-guardrails-collide--preserve-engineering-freedom">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Preserve Engineering Freedom</a></div>
+<p class="topic">Alignment must preserve two kinds of freedom.</p>
 </div>
 </div>
 </section>

@@ -1,7 +1,7 @@
 {
   "source": "book/assets/entitlement-model-evolution.svg",
   "chapter": "2.4-decision",
-  "claim": "*One distinction, lost and preserved.* The scalar reduction cannot represent unlimited entitlement; the revised model preserves the distinction.",
+  "claim": "*Upload admission must distinguish finite and unlimited entitlement.* The old reduction passed only a finite balance to the client, so an unlimited user was rejected. The revised model records the entitlement kind and returns an admission decision.",
   "topology": {
     "description": "Replaced prose-only panels with four actual source mini-graphs: finite-credit aggregation, introduction of unlimited, stale finite-only rejection, and revised tagged entitlement/admission outcomes. Preserved dashed stale panel, strong revised panel, external explanatory annotations and explicit REJECT/admit_unlimited outcomes.",
     "native_draw_commands": [
@@ -25,40 +25,35 @@
     "1 · Original model",
     "Every entitlement is finite",
     "Group — credits: integer",
-    "Σ credits credits ≥ pages?",
-    "An adequate reduction",
-    "— for this domain",
-    "2 · The system evolves",
+    "credits",
+    "credits ≥ pages?",
+    "Credit balance determines upload permission",
+    "2 · Unlimited groups added",
     "Unlimited entitlement is introduced",
-    "Group",
-    "finite(credits) unlimited",
-    "The entitlement state space has grown",
-    "3 · Stale admission model",
-    "One representation does not evolve",
-    "groups Σ finite creditsonly",
-    "“Unlimited” has no",
-    "representation —",
-    "the distinction is",
-    "discarded here",
-    "0 credits 0 < 38 REJECT",
+    "finite(credits)",
     "unlimited",
-    "user",
-    "The server’s correct admission",
-    "logic is never reached",
-    "4 · Revised model",
-    "The distinction survives the reduction",
-    "Group",
-    "entitlements",
+    "Groups now provide finite or unlimited use",
+    "3 · Balance-only preflight",
+    "The client still receives only a balance",
+    "groups",
+    "finite credits only",
+    "The return value omits the unlimited flag",
+    "0 credits",
+    "0 < 38",
+    "REJECT",
+    "unlimited user",
+    "Client rejection prevents the server check",
+    "4 · Explicit admission decision",
+    "The decision checks both entitlement kinds",
+    "Group entitlements",
     "finite | unlimited",
-    "Admission",
-    "decision",
+    "Admission decision",
     "admit_unlimited",
     "same user",
     "Admit?",
     "Authorizing group",
     "Ordered plan",
-    "The implementation",
-    "now consumes the model"
+    "Client and server use the admission decision"
   ],
   "bw_encoding": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
   "redesign": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries. Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
@@ -105,33 +100,40 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
-    "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
+    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
+    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
     "fill": "Ordinary model nodes white; only the short REJECT/admit_unlimited outcome badges retain 70% with white text. Stale versus revised panels use dashed versus solid boundaries.",
     "bold": "Source-derived emphasis includes unlimited; 0 credits; REJECT; admit_unlimited. Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
     "routing": "Short orthogonal mini-graph forks and admission paths; panel sequence remains orthogonal.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "visual_review": "Reviewed revised color SVG and native print proof. Text remains within existing panels; labels identify the balance-only preflight and explicit admission decision. Fill, line styles and node/edge geometry are unchanged.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 29,
-      "width_bp": 414.814,
-      "height_bp": 353.747,
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "page": 1,
+      "width_bp": 414.8139953613281,
+      "height_bp": 353.74700927734375,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 9
     },
-    "book_references": []
+    "book_references": [],
+    "decision": "refined",
+    "text_revision": {
+      "date": "2026-11-05",
+      "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+    }
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "2cc438a2db698708713669d410c42f7f394748c67813f0dbaf8c453acbce2dea",
-    "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
-    "reason": "Restore emphasis on the unlimited mode, its lost zero-credit reduction, and admission outcome tokens. Stage headings already supply hierarchy. Local label spacing adjusted so bold REJECT stays on one line and the lost-distinction annotation remains separate from neighboring boxes.",
+    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
+    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+    "reason": "Retain source-derived bold admission outcomes and italic panel explanations while replacing abstract annotations with the client/server operations.",
     "evidence": [
       {
         "source_text": "unlimited",
@@ -212,28 +214,28 @@
         }
       },
       {
-        "source_text": "one representation does not evolve",
+        "source_text": "the client still receives only a balance",
         "source_style": "weight normal; italic; source size 17",
         "semantic_role": "named category versus explanatory text",
-        "candidate_text": "One representation does not evolve",
+        "candidate_text": "The client still receives only a balance",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/entitlement-model-evolution.svg",
           "element_text_path": "/svg/text[18]/text()",
-          "text_element_context": "one representation does not evolve",
+          "text_element_context": "the client still receives only a balance",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "the distinction survives the reduction",
+        "source_text": "the decision checks both entitlement kinds",
         "source_style": "weight normal; italic; source size 17",
         "semantic_role": "named category versus explanatory text",
-        "candidate_text": "The distinction survives the reduction",
+        "candidate_text": "The decision checks both entitlement kinds",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/entitlement-model-evolution.svg",
           "element_text_path": "/svg/text[30]/text()",
-          "text_element_context": "the distinction survives the reduction",
+          "text_element_context": "the decision checks both entitlement kinds",
           "matching_fragment_count": 1
         }
       }
@@ -270,12 +272,12 @@
         "italic": true
       },
       {
-        "text": "One representation does not evolve",
+        "text": "The client still receives only a balance",
         "bold": false,
         "italic": true
       },
       {
-        "text": "The distinction survives the reduction",
+        "text": "The decision checks both entitlement kinds",
         "bold": false,
         "italic": true
       },
@@ -286,40 +288,34 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 29,
-      "width_bp": 414.814,
-      "height_bp": 353.747,
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "page": 1,
+      "width_bp": 414.8139953613281,
+      "height_bp": 353.74700927734375,
       "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "semantic_typography_checks": 9
+    },
+    "text_revision": {
+      "date": "2026-11-05",
+      "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Raised entitlement split rails and reduced only surplus inline decision padding to restore readable arrow shafts.",
-    "candidate_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
+    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing entitlement model evolution layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
       "before_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
-      "after_sha256": "5fba916acea08311a028992bcecea825e11fe032217dd4d69dbab844916a5bd1",
+      "after_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
       "before_dimensions_bp": [
         414.8139953613281,
         353.74700927734375
@@ -341,23 +337,52 @@
       "reviewed_visually": true
     },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "page": 1,
+      "width_bp": 414.8139953613281,
+      "height_bp": 353.74700927734375,
+      "minimum_prose_font_pt": 9.5,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 29,
-      "width_bp": 414.814,
-      "height_bp": 353.747
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9,
+      "checked_terminal_approaches": 10,
+      "reviewed_peer_groups": 0,
+      "audit_sha256": "d68a0da19f18edd1bf30836280aea29d42a0bb2d3f3417f1121146f82f7634cf",
+      "status": "passed"
+    },
+    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
+    "baseline_candidate_sha256": "cd7f76c7228933e621c36bca1b389ffe4b97b0984fd37ea0a048a7acfe115cc4",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      414.8139953613281,
+      353.74700927734375
+    ],
+    "contracts": {},
+    "text_revision": {
+      "date": "2026-11-05",
+      "reason": "Author requested plain concrete annotations instead of model-to-model and lost/preserved-distinction slogans. Existing geometry, shapes, connectors and font sizes remain unchanged.",
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e"
+    }
+  },
+  "text_revision": {
+    "date": "2026-11-05",
+    "source_sha256": "908c44b58b67ba7a2b169b8e5339ad290b6a5c13fde65e22149531eb92b4f5dd",
+    "candidate_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
+    "reason": "Replace abstract lost/preserved-distinction language with the concrete client preflight failure and shared admission decision.",
+    "validation": {
+      "proof": "/private/tmp/mage-entitlement-followup/proof.pdf",
+      "proof_sha256": "92a4e0654299fbbd91901a619f0cb9f9c6643d04b8809c509a82206ce8fca29e",
+      "page": 1,
+      "width_bp": 414.8139953613281,
+      "height_bp": 353.74700927734375,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
     }
   }
 }

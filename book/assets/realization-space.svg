@@ -1,69 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- tolerance-integration figure round — realization-space.svg, the obligation/realization Venn (spec tolerance-integration-plan §3). Hand-SVG (bespoke set diagram, not d2). Fold to book/assets/. -->
 <!-- semantic-families: governance, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="1000" height="660"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700"
      role="img" aria-labelledby="rsTitle rsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rsTitle">Obligations bound a realization space without selecting one realization</title>
-  <desc id="rsDesc">A bounding box holds the software realization space. Inside it, two overlapping
-    translucent regions each contain the implementations that satisfy one engineering obligation: a
-    behavioral obligation on the left and an architectural obligation on the right. Their intersection is
-    the acceptable region, containing implementations that satisfy both. Many small dots mark distinct
-    possible realizations: a dense cluster inside the intersection, a few inside each region alone, and a
-    couple outside both. The dots within the intersection differ in structure and implementation while all
-    remaining acceptable; those remaining choices are the realization's degrees of freedom.</desc>
-
-  <!-- page ground + the bounding realization space (a wide panel: a container, not a label box) -->
-  <rect x="0" y="0" width="1000" height="660" fill="#fdfcf9"/>
-  <rect x="40" y="70" width="920" height="540" rx="12" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
-  <text x="500" y="48" text-anchor="middle" font-size="22" font-weight="700" fill="#57534e"
-        letter-spacing="1.5">SOFTWARE REALIZATION SPACE</text>
-
-  <!-- the two obligation regions: same governance hue, translucent so the intersection deepens -->
-  <ellipse cx="420" cy="350" rx="270" ry="200" fill="#9a3f12" fill-opacity="0.10"
-           stroke="#9a3f12" stroke-width="2.5"/>
-  <ellipse cx="620" cy="350" rx="270" ry="200" fill="#9a3f12" fill-opacity="0.10"
-           stroke="#9a3f12" stroke-width="2.5"/>
-
-  <!-- region labels (each sits in its own exclusive crescent) -->
-  <text x="250" y="225" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">satisfies behavioral</text>
-  <text x="250" y="250" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">obligation</text>
-  <text x="770" y="455" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">satisfies architectural</text>
-  <text x="770" y="480" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">obligation</text>
-
-  <!-- the acceptable region label, over the intersection -->
-  <text x="520" y="205" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">ACCEPTABLE</text>
-  <text x="520" y="233" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">REALIZATIONS</text>
-  <text x="520" y="264" text-anchor="middle" font-size="20" fill="#57534e">satisfies both</text>
-
-  <!-- realizations: dense inside the intersection -->
-  <g fill="#1c1917">
-    <circle cx="475" cy="315" r="5"/>
-    <circle cx="555" cy="320" r="5"/>
-    <circle cx="590" cy="300" r="5"/>
-    <circle cx="505" cy="350" r="5"/>
-    <circle cx="585" cy="355" r="5"/>
-    <circle cx="460" cy="385" r="5"/>
-    <circle cx="540" cy="390" r="5"/>
-    <circle cx="505" cy="420" r="5"/>
-    <circle cx="575" cy="435" r="5"/>
-    <circle cx="470" cy="460" r="5"/>
-    <circle cx="550" cy="465" r="5"/>
-    <circle cx="510" cy="485" r="5"/>
-    <!-- behavioral-only crescent (satisfies one obligation, not the other) -->
-    <circle cx="240" cy="330" r="5"/>
-    <circle cx="285" cy="370" r="5"/>
-    <circle cx="250" cy="410" r="5"/>
-    <!-- architectural-only crescent -->
-    <circle cx="760" cy="300" r="5"/>
-    <circle cx="800" cy="340" r="5"/>
-    <circle cx="745" cy="375" r="5"/>
-    <!-- outside both regions (satisfies neither) -->
-    <circle cx="130" cy="150" r="5"/>
-    <circle cx="880" cy="545" r="5"/>
+  <title id="rsTitle">Tolerance bounds acceptable implementations while leaving choices open</title>
+  <desc id="rsDesc">Possible software implementations for sorting lists of up to 1,000 names.
+    The left region contains implementations that return names in alphabetical order;
+    the right contains implementations that respond within 200 milliseconds.
+    The overlap contains implementations satisfying both requirements. Dots represent
+    distinct possible implementations, not measured algorithms. The timing bound sets
+    a tolerance; choices among acceptable implementations remain degrees of freedom.</desc>
+  <rect width="1000" height="700" fill="#fdfcf9"/>
+  <text x="500" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#57534e">POSSIBLE SOFTWARE IMPLEMENTATIONS</text>
+  <text x="500" y="66" text-anchor="middle" font-size="20" fill="#57534e">Lists of up to 1,000 names</text>
+  <rect x="40" y="90" width="920" height="510" rx="12" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <ellipse cx="400" cy="355" rx="270" ry="220" fill="#9a3f12" fill-opacity="0.10" stroke="#9a3f12" stroke-width="2.5"/>
+  <ellipse cx="600" cy="355" rx="270" ry="220" fill="#9a3f12" fill-opacity="0.10" stroke="#9a3f12" stroke-width="2.5"/>
+  <g text-anchor="middle" font-size="22" fill="#9a3f12">
+    <text x="220" y="292" font-weight="700">Alphabetical</text>
+    <text x="220" y="320" font-weight="700">ordering</text>
+    <text x="780" y="292" font-weight="700">Response time</text>
+    <text x="780" y="320">≤ 200 ms</text>
+    <text x="780" y="350" font-size="20">Tolerance</text>
   </g>
-
-  <!-- legend: define the dot glyph; the degrees-of-freedom framing lives in the caption -->
-  <circle cx="52" cy="632" r="5" fill="#1c1917"/>
-  <text x="68" y="638" font-size="20" fill="#57534e">a distinct possible realization</text>
+  <g text-anchor="middle" fill="#1c1917">
+    <text x="500" y="230" font-size="22" font-weight="700">ACCEPTABLE</text>
+    <text x="500" y="258" font-size="22" font-weight="700">IMPLEMENTATIONS</text>
+    <text x="500" y="290" font-size="20">Satisfy both</text>
+  </g>
+  <g fill="#1c1917">
+    <circle cx="455" cy="340" r="5"/><circle cx="535" cy="345" r="5"/>
+    <circle cx="570" cy="325" r="5"/><circle cx="485" cy="375" r="5"/>
+    <circle cx="565" cy="380" r="5"/><circle cx="440" cy="410" r="5"/>
+    <circle cx="520" cy="415" r="5"/><circle cx="485" cy="445" r="5"/>
+    <circle cx="555" cy="460" r="5"/><circle cx="450" cy="485" r="5"/>
+    <circle cx="530" cy="490" r="5"/><circle cx="490" cy="510" r="5"/>
+    <circle cx="220" cy="390" r="5"/><circle cx="265" cy="430" r="5"/>
+    <circle cx="230" cy="470" r="5"/><circle cx="760" cy="390" r="5"/>
+    <circle cx="790" cy="430" r="5"/><circle cx="745" cy="465" r="5"/>
+    <circle cx="130" cy="150" r="5"/><circle cx="880" cy="545" r="5"/>
+    <circle cx="52" cy="628" r="5"/>
+  </g>
+  <text x="68" y="635" font-size="20" fill="#57534e">A distinct possible implementation</text>
+  <text x="500" y="678" text-anchor="middle" font-size="20" fill="#1c1917">Degrees of freedom: choices among acceptable implementations</text>
 </svg>

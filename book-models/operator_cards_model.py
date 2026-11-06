@@ -44,9 +44,9 @@ _SOURCE = os.path.join(_HERE, "operator-cards.json")
 #: The dir the card pages live in (the parity target). Each card = one file = one page.
 _CARD_DIR = os.path.join(_BOOK, "appendix-operators-reference")
 
-#: Pages in _CARD_DIR that are NOT operator cards (the two hand-authored reference surfaces). Excluded from
+#: Pages in _CARD_DIR that are hand-authored reference surfaces rather than operator cards. Excluded from
 #: the reverse-orphan parity join, and a valid target for a PAGE: evidence_ref.
-_NON_CARD_PAGES = ("operators-dashboard", "from-drifted-wiki-to-trusted-model")
+_NON_CARD_PAGES = ("operators-dashboard", "from-drifted-wiki-to-trusted-model", "a-worked-factory-workflow")
 
 #: Card geometry axis + the closed derive-status set (a new status is a deliberate schema edit, not a typo).
 _VALID_GEOMETRY = ("portrait", "landscape")

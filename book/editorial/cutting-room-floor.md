@@ -2496,3 +2496,1840 @@ Reason: Preserve the approved distinction between a case’s emphasis and the me
 % <!-- point: mage-concentrates-on-the-tolerance-side-of-the-factory | MAGE concentrates on the tolerance side and does not prescribe a general process, so the distinction is not between factories that have tolerances and factories that do not, but between ways of representing them, establishing them, and making them consequential. | terms: tolerance -->
 ```
 
+
+## Factory workflow and validation placement, 3 November 2026
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 433–449.
+- Source revision: `cf326ba6ea659b2c3d24fd32a5457be5391ff7e2`.
+- Removal revision: uncommitted local edit.
+- Reason: Expanded the operating account from the November lecture and dated the subsequent change from synchronous merge-train validation to periodic checks.
+
+```latex
+\section{The Factory in Operation}\label{heading:the-factory-in-operation}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+% <!-- point: the-mature-production-flow | The mature production flow in one pass — what the build accumulated, in motion: intent becomes a work unit, realization fans out to isolated worktrees, and admission is serialized through an integration gate that regenerates the evidence against the actual candidate tree. -->
+
+With the representations and joins in place, the mature factory\textquotesingle s production flow can be walked in one pass. What follows is everything the build accumulated, in motion. Engineering intent becomes a named work unit; a brief carries the task, its scope, and the context selected for it; realization fans out to agents working in isolated copies of the repository. Nothing an agent produces reaches the production branch directly. Each candidate change queues for a merge train that rebuilds, re-lints, and re-tests the actual candidate tree --- the independent-evidence discipline a later episode in this subsection explains --- and only work that survives that gate lands. Parallelism lives entirely on the realization side; admission stays serialized through regenerated evidence.
+
+% <!-- point: task-scoped-context-connects-models-to-dispatch | Dynamic context injection supplies task-specific knowledge at dispatch and after planning; its extraction gate requires discovery, while separate controls enforce selected obligations. -->
+
+DocAble selects task-specific engineering knowledge through dynamic context injection (\magevalue{sec:the-agent-stack}). The initial work order supplies an anticipated file set; after planning, the agent repeats the extraction using its refined scope. A pre-commit gate requires evidence that discovery occurred, while separate controls enforce selected obligations. This lets the factory maintain a large modeling substrate without placing all of it into every agent's context.
+
+% <!-- point: repair-is-cheap-escalation-is-the-signal | Most failures die where they are cheap: the agent repairs against the accumulated local gates, a failed admission returns the work for another attempt, and only failures that resist local repair — or implicate the environment itself — reach the engineer. -->
+
+Between realization and admission sits repair, and most failures die there, where they are cheap. An agent whose change fails a local check --- the accumulated controls again, now doing their routine work --- repairs it and tries again; a candidate that fails the merge train\textquotesingle s gate is rejected without landing, and the work returns for another attempt. The engineer sees none of this. What reaches the engineer is the residue: failures that resist local repair, evidence the machinery cannot interpret, and --- the consequential class --- failures that implicate the engineering environment itself. Escalation, in this factory, is not a ticket queue; it is the moment a failure stops being an implementation problem and becomes an engineering one.
+```
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 487–487.
+- Source revision: `cf326ba6ea659b2c3d24fd32a5457be5391ff7e2`.
+- Removal revision: uncommitted local edit.
+- Reason: Preserved the original incident account while dating its merge-train response to the earlier arrangement.
+
+```latex
+\textbf{"Done" became a claim requiring independent evidence.} Two incidents, close together, made the rule non-negotiable. A lint gate hit a stray error, caught it in a catch-all that returned success, and let a run of commits land completely unlinted while the log said fine. A chain of pin tests passed green --- because a botched merge had landed them onto a tree missing the very field they were supposed to check. Both reported done; neither was. A report of "done" describes the producer\textquotesingle s claim, not the state of the repository, and the gap between the two is where a confident green hides. The durable response regenerated the evidence at the admission boundary: required tests and lints re-run against the actual candidate tree, gate failures made fail-loud --- a control cannot translate its own uncertainty into success --- and counts re-derived rather than accepted from the task report. The capital is not a standing habit of distrust; it is machinery that regenerates the evidence cheaply. That machinery is the merge train whose weekly funnel opened this subsection --- the same gate, measured in operation.
+```
+
+- Source: `book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex`, lines 28–28.
+- Source revision: `cf326ba6ea659b2c3d24fd32a5457be5391ff7e2`.
+- Removal revision: uncommitted local edit.
+- Reason: Clarified the distinction between little inherited human organizational process and the substantial coordination process subsequently built for agents.
+
+```latex
+DocAble\textquotesingle s emphasis on tolerance was partly a consequence of the problem that produced it. Accessibility supplied external requirements, including legal obligations, that the resulting documents had to satisfy. The project was also a side effort run by one engineer. There was little organizational process to design, and neither time nor appetite to inspect every implementation decision made by coding agents. The practical objective was therefore to encode consequential requirements precisely enough that agents could change the system freely while the resulting software continued to satisfy them. At the time, this struck me as the obvious way to build an agentic software factory. Having now compared it with commercial factories, I can see that it was specifically the obvious way for an "organization" with one human engineer and no spare humans to supervise the agents.
+```
+
+
+
+## Factory walkthrough refinement and async-CI placement, 3 November 2026
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, “The Factory in Operation,” lines 435–467.
+- Source revision: working tree based on `cf326ba6ea659b2c3d24fd32a5457be5391ff7e2`; includes the earlier uncommitted factory-workflow draft archived above.
+- Source excerpt SHA-256: `79519a6ebed2f1d0361894fde88341fd6bca388e6db9cd6a6e22d55e165d70cc`.
+- Removal date: 2026-11-03; removal revision: the change introducing this entry.
+- Reason: Author approved a compact Chapter 5 walkthrough with a table and process figure. The validation-bottleneck example is revised into Chapter 4, where it illustrates optimization of agent infrastructure. The installation gap and premature alert-resolution details are excluded at the author's request and preserved here. Existing appendix linkage is retained.
+
+```latex
+\section{The Factory in Operation}\label{heading:the-factory-in-operation}
+
+% Evidence: 3 November 2026 factory lecture, slides 4--12 and 18--24, and its index.md.
+% This operating description postdates the 31-week reconstruction above.
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+% <!-- point: the-mature-production-flow | The November factory turns priorities into reviewed work orders, parsed phase dependencies, scoped dispatch briefs, and independently examined completion evidence. -->
+
+\subsection{From a Priority to Completed Work}\label{heading:from-a-priority-to-completed-work}
+
+How does one engineer keep several agents working without continually prompting each one? By November 2026, I directed DocAble's work through a strategy document containing deployment requirements and near- and longer-term priorities. Selecting a substantial change started a planning process. An agent developed an epic: a persistent work order recording the goal, relevant engineering models, proposed design, validation obligations, and implementation phases. Another agent reviewed the plan; consequential questions that remained unresolved came back to me. This gave the orchestrator a plan it could execute while leaving priorities and unresolved engineering decisions with the engineer.
+
+The plan connected engineering intent to scheduling. Its phase table recorded dependencies and model assignments in a form the orchestrator could parse. A phase defining an interface could precede several implementation phases; those phases could proceed concurrently once their prerequisites existed. Each agent received a brief stating its scope, relevant source and models, verification work, and expected hand-back, and worked in an isolated Git worktree. Isolation separated working directories; integration still had to establish whether the changes worked together.
+
+% <!-- point: task-scoped-context-connects-models-to-dispatch | Dynamic context injection supplies task-specific knowledge at dispatch and after planning; its extraction gate requires discovery, while separate controls enforce selected obligations. -->
+
+DocAble selects task-specific engineering knowledge through dynamic context injection (\magevalue{sec:the-agent-stack}). The initial work order supplies an anticipated file set; after planning, the agent repeats the extraction using its refined scope. A pre-commit gate requires evidence that discovery occurred, while separate controls enforce selected obligations. This lets the factory maintain a large modeling substrate without placing all of it into every agent's context.
+
+Completion required another examination of the work. The implementation agent's first commit recorded its refined plan, and subsequent commits recorded progress against it. A separate agent then checked the epic's Definition of Done against the integrated changes and their evidence, routing deficiencies back for repair. Commit metadata could expose missing steps; deciding whether the implementation met its intended purpose still required judgment. The factory combined mechanical checks with agent review, using each for questions it could answer. {[}appendix: appendix-d-a-worked-factory-workflow{]} gives the artifact relationships and a worked operating example.
+
+\subsection{Moving Expensive Validation off the Merge Path}\label{heading:moving-expensive-validation-off-the-merge-path}
+
+% <!-- point: repair-is-cheap-escalation-is-the-signal | Earlier merge-train checks returned failed candidates for repair before admission; later periodic checks also exposed faults after integration, while failures in the process itself required engineering intervention. -->
+
+The placement of validation changed as the factory grew. In the earlier arrangement, each candidate queued for a merge train that rebuilt, re-linted, and re-tested the actual candidate tree before admitting it to the main branch. Failed candidates returned for repair. This regenerated evidence at integration, but increasingly made validation the bottleneck: completed changes arrived in batches more frequently than the full suite could finish. Increasing the number of implementation agents could not remove that downstream wait.
+
+% Evidence: fast-land-async-ci-design-261103.md; factory lecture slides 26--27.
+% The note reports deployment-scope lints, not every test running on each timer tick.
+% <!-- point: validation-placement-became-a-factory-design-decision | Cheap checks stayed before merge, expensive checks moved to a periodic single-worker sweep, and detected blocking failures interrupted further dispatch; deployment retained a separate validation boundary. -->
+
+I moved expensive checks out of the merge operation. Cheap checks remained synchronous; a periodic sweep examined the main branch in an isolated worktree, with a lock allowing only one sweep at a time. An intermediate implementation had started a background sweep after every merge, multiplying validation work as agents produced more changes and overloading the host. Making the sweep timer-driven separated its load from the number of merges. The dispatch gate was configured to refuse further ordinary work when a sweep reported a blocking failure, until the orchestrator acknowledged or resolved the alert. Deployment retained a separate full-validation step. This arrangement accepted temporary defects on the development branch and harder diagnosis across a batch of changes in exchange for less waiting at integration.
+
+The new arrangement also needed validation. On November 3, I found that the periodic job had been declared but never installed; later, an alert was marked resolved while its failing check remained red. Declared configuration and recorded resolution were insufficient evidence that the intended behavior had occurred. These failures exposed obligations for the factory itself: verify that the scheduled checks actually run, and verify recovery before treating a failure as cleared. The experience shows a decision about the location and timing of checks, with continuing maintenance costs; it does not establish a measured throughput improvement or a fixed bound on defect exposure.
+```
+
+
+## Textbook-register refinement of the factory additions — 3 November 2026
+
+Author requested a direct register pass over the new Chapter 4/5 material and reuse of the lecture’s CI visual. These working-tree passages are preserved before replacing abstract wording, clarifying discovery before implementation, and developing the reason combined changes still require validation. No additional case incidents are introduced.
+
+Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, lines 146–156; working tree based on `54233c034edb0bfa97ff23564e51d384f4ce821f`. Excerpt SHA-256: `8e6692a67ec755c13e8c941b15a2cbbf989b07a28d16a072f60b92fa28daed9b`.
+
+```tex
+\subsection{When Validation Becomes the Bottleneck}\label{heading:when-validation-becomes-the-bottleneck}
+
+The performance reasoning used to redesign document processing also applies to the agents' infrastructure. Before a November 2026 redesign, completed DocAble changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. Agents could finish more work than the validation stage could process. Adding agents would lengthen the queue. The next engineering question concerned the checks: which had to pass before each merge, and which could examine several changes together?
+
+An initial asynchronous arrangement launched expensive checks in the background after each merge. Merging no longer waited for them, but a burst of merges still launched a burst of validation workers and overloaded the host. The checking load remained coupled to the rate at which agents finished work. Moving a computation into the background had changed who waited for it; it had not reduced how often the computation ran.
+
+The redesign kept inexpensive checks before merge and scheduled broad repository checks independently, on a thirty-minute timer. Each sweep examined the main branch in an isolated worktree, and a lock permitted only one sweep at a time. Several merges could therefore share a run without creating competing validation workers. A blocking failure raised an alert, and a gate stopped new dispatch until the orchestrator acknowledged or handled it. Acknowledgment required attention to the failure, while repair remained a separate task. Before deployment, the full validation suite ran again against the candidate being shipped.
+
+This arrangement exchanged some detection speed for lower integration cost. A defect could remain on the main branch until a sweep found it, and a failure after several merges was harder to attribute than a failure immediately after one. The periodic checks therefore needed a response that could diagnose and repair failures, while deployment retained its own validation boundary. Optimizing the infrastructure required reasoning about both schedules and consequences: how much checking work each change caused, how long a defect could go unnoticed, and what could happen during that interval.
+
+Other stalls require different diagnoses. Before adding another mechanism, establish what kind of problem you have.
+```
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 440–485; working tree based on `54233c034edb0bfa97ff23564e51d384f4ce821f`. Excerpt SHA-256: `2bb377d764b3478d9b61727be6931586a7cbed7f683f9252a73b6cd29ad8d850`.
+
+```tex
+\subsection{From a Priority to Completed Work}\label{heading:from-a-priority-to-completed-work}
+
+How does one engineer keep several agents working without continually prompting each one? The workflow described here is the factory's November 3, 2026 configuration, following the measurements that end on October 14. I record priorities in a strategy document, including work that must precede the next deployment. An orchestrating agent selects ready work from that queue and coordinates its planning, implementation, and evaluation.
+
+A planning agent develops an \emph{epic}, a persistent work order for a change that needs several phases. The epic records why the work is worthwhile and what would count as completion. Its design document states what must hold in the changed system and maps named invariants to tests or analyses. Those properties bound acceptable changes while leaving implementation choices open. A separate agent reviews the plan; unresolved engineering decisions return to me. \autoref{work-order-artifacts} distinguishes the artifacts by what they record and how the factory uses them.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.22}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}@{}}
+\caption[DocAble's work-order artifacts]{The artifacts carry different decisions through the factory. Each has a reader or a mechanical consumer that uses it to direct or evaluate work.}\label{work-order-artifacts}\tabularnewline
+\toprule\noalign{}
+Artifact & What it records & How it is used \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Artifact & What it records & How it is used \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Strategy & Priorities and prerequisites for deployment & The orchestrator selects the next work. \\
+Epic work order & Scope, cost, phases, dependencies, completion criteria & The orchestrator schedules phases; the auditor evaluates completion. \\
+Design document & Structure, invariants, required evidence & Agents plan changes and find the checks that cover each property. \\
+Dispatch brief & One agent's assignment, scope, and verification & Checked before dispatch, then supplied to the agent in its isolated worktree. \\
+Completion record & Landed changes and supporting evidence & An independent agent audits the result against the work order. \\
+\end{longtable}
+}
+
+% <!-- point: task-scoped-context-connects-models-to-dispatch | An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred. -->
+
+The phase dependencies determine which agents can work concurrently, as \autoref{docable-work-order-flow} shows. The orchestrator dispatches ready phases into isolated Git worktrees. Each agent inspects its component and records a refined plan, including target files, in its first commit. Those files become inputs to \emph{Query Repo}, which retrieves the associated models, invariants, tests, and static checks. A pre-commit check requires a record that this discovery occurred. The agent can therefore consider known obligations before editing, instead of discovering them only when a check fails.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-work-order-flow.pdf}
+\caption[From engineering intent to completed work]{\emph{From engineering intent to completed work.} The orchestrator schedules independent phases from a reviewed work order, then an independent audit checks their integrated result against completion criteria and returns deficiencies for repair. Closing the work order and authorizing deployment are separate decisions.}
+\label{docable-work-order-flow}
+\end{figure}
+
+Completed changes pass inexpensive checks before integration. Broader validation runs periodically against the combined code, and the deployment process reruns the full validation suite. \magevalue{sec:engineering-the-environment} explains the bottleneck that motivated this arrangement and the cost of delaying some checks. Separate worktrees isolate edits; checks on the combined result remain necessary.
+
+% <!-- point: repair-is-cheap-escalation-is-the-signal | Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer. -->
+
+Finally, an independent agent audits the epic against its completion criteria. It checks that the expected changes landed and that the required evidence supports completion. Missing work or failed checks lead to repair and another review. Questions that resist repair, or expose a defect in the factory itself, return to the engineer. The work order closes after the audit accepts the result. {[}appendix: appendix-d-a-worked-factory-workflow{]} develops a worked example with the underlying artifacts.
+```
+
+
+## Chapter 2 opening — approved copyedits, 3 November 2026
+
+The author approved `20-modeling-economics` and `20-docable-introduction`, with “projects” replacing “selects” and the sentence about regenerated figures removed. The economic explanation and the introduction are retained below for editorial history.
+
+### 20-modeling-economics
+
+Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/00-part-intro.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/00-part-intro.tex`, line 9. Source revision: `9e1a77eaf7b5a1b97922d357ea0947d7fea32f29` (working tree). Native excerpt SHA-256: `66083e4d7cb80ce5d0b7a0bae5a7a27c973e1435157034156ef90fd10dc3c0b0`. Replaced on 2026-11-03 with the author-approved revision.
+
+```text
+Explicit models have nevertheless remained secondary in much code-centric software practice because another representation costs work to create, maintain, and reconcile with a changing system. Commodity intelligence changes that economics. Agents can increasingly derive, regenerate, reconcile, and query structured representations cheaply. At the same time, rapid autonomous implementation increases their value: engineering knowledge that once needed to be reconstructed occasionally may otherwise be reconstructed across many tasks and fresh reasoning states.
+```
+
+### 20-docable-introduction
+
+Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/00-part-intro.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/00-part-intro.tex`, line 36. Source revision: `9e1a77eaf7b5a1b97922d357ea0947d7fea32f29` (working tree). Native excerpt SHA-256: `44bff456a09adde3764dd14d9eff6ebe5819e9ce6bb957fc89607aa360653b9d`. Replaced on 2026-11-03 with the author-approved revision.
+
+```text
+DocAble is the running example—the production accessibility service introduced in {{chapter:problem}}. A document enters, remediation is distributed across workers and services, the result is validated, and a corrected document returns with a record of what changed. The real system is far more complicated than any single representation ahead. That is the point. Each model keeps only the relationships its question needs. The DocAble specifics ahead — models, mechanisms, and counts — describe the repository revision examined at the time of writing; the live system moves, and exact quantities belong to figures regenerated from it.
+```
+
+### Removed sentence from the reviewed introduction proposal
+
+The author requested deletion on 2026-11-03; the sentence was present only in the proposal.
+
+> Figures regenerated from the repository provide the exact quantities for that revision.
+
+
+## Chapter 2 project knowledge — approved copyedit, 4 November 2026
+
+Review item: `21-project-knowledge`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, line 23. Source revision: `f1b29ecf9cc275407f0a6c8a74d5d9d922475597` (working tree). Native excerpt SHA-256: `e2fdbbe95ab437fcb77b01386b123d9a0b503cab5a312af2f6d74c22724d2951`. Replaced on 2026-11-04 with the author-approved explanation of repeated reconstruction, using “Fresh out of the box” to introduce the absence of project knowledge.
+
+```text
+A foundation model knows programming languages, frameworks, databases, distributed systems, cloud infrastructure, testing practices, security concepts, and common architectural patterns. It does not arrive knowing the particular system in front of it: its boundaries, history, conventions, ownership, or current engineering state. That knowledge is distributed across source, configuration, documentation, registries, history, and the people who maintain the system. An agent can reconstruct what a task needs from those artifacts, but reconstruction consumes reasoning and is easily repeated across tasks and reasoning states.
+```
+
+
+## Chapter 2 prose and engineering models — approved copyedit, 4 November 2026
+
+Review item: `21-prose-and-engineer`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 48–52. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `4c0c091eae4d9bde9851bf8fd4305a86f7fad8658c3f98cf1edcac34e84f82a7`. Replaced on 2026-11-04 with the author-approved account of articulation, interpretation, and how constructing models helps engineers. The concluding possibilities use “may … may,” as requested.
+
+```text
+The problem is not only context-window size. Natural language is itself a representation, and often an appropriate one: it is cheap, expressive, and for many engineering questions entirely sufficient. But consequential engineering knowledge expressed only in prose has two difficulties. The engineer must articulate the relevant distinctions correctly, and each later reasoner — human or agent — must recover those distinctions correctly, in this task and again in the next. A structured model can preserve distinctions that would otherwise have to be restated or reconstructed. The representation can therefore change what both the engineer and the agent are capable of getting wrong. Some knowledge should stay in prose, and some judgment should stay human; {{chapter:theory}} returns to articulation and interpretation as separate sources of error with separate costs.
+
+<!-- point: models-are-also-for-the-engineer | Models are not only for the agent but also for the engineer: a representation can make distinctions visible, force consequential decisions to be made explicitly, and expose omissions prose leaves easy to overlook, so its value does not depend entirely on the agent interpreting it better than natural language. | terms: modeling-principle -->
+
+Models are not only for the agent. They are also for the engineer. A useful representation can make distinctions visible, force consequential decisions to be made explicitly, and expose omissions that ordinary prose leaves easy to overlook. Its value therefore does not depend entirely on whether an agent interprets it more accurately than natural language. Modeling improves the representation of engineering judgment before any agent attempts to act on it.
+```
+
+
+## Chapter 2 Modeling Principle and capacity — approved copyedit, 4 November 2026
+
+Review item: `21-principle-capacity`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, line 58. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `7d29733266817d74a762607bba046d15dee8b61a3ea9a8343b2b54aaaad00828`. Replaced on 2026-11-04 with the approved distinction between extending reasoning capacity and reducing the cost of manageable work. The canonical Modeling Principle is retained.
+
+```text
+**The Modeling Principle:** externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through. *In other words:* once a system exceeds what a reasoner can usefully hold in view, give recurring engineering questions purposeful representations.
+```
+
+
+## Chapter 2 requirements and specification practices — approved copyedit, 4 November 2026
+
+Review item: `21-requirements-tradition`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, line 60. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `aeb5c3628a9d2cafebec18d1f83bfa31cef24250456e6bfaef8ab345e13cbd62`. Replaced on 2026-11-04 with the approved explanation connecting software change to requirements and specifications, including concrete specification examples and a Chapter 2 then Chapter 3 signpost. Supporting citations are retained.
+
+```text
+Software engineering has long treated the externalization of intent as an engineering problem. Requirements engineering, for example, distinguishes stakeholder goals and environmental assumptions from specifications used to constrain a realization, and develops representations through which those claims can be analyzed, refined, and traced.[cite: zave1997darkcorners][cite: nuseibeh2000roadmap][cite: vanlamsweerde2009re] Important requirements may remain qualitative, incomplete, or dependent on assumptions about the environment. The inheritance MAGE takes from this tradition is the more basic move: make consequential engineering knowledge into an explicit object through which engineering can reason. {{chapter:alignment}} takes up the separate question of which obligations the engineered environment should enforce.
+```
+
+
+## Chapter 2 21-classical-implementation — approved copyedit, 4 November 2026
+
+Review item: `21-classical-implementation`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 70–72. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `6ecbfde9766519eabe993ae24eb59ba4617800ce4bd76aef137ca12d23c8cbf5`. Replaced on 2026-11-04 following author approval. Uses implementation consistently with the Chapter 1 convention and the author’s latest instruction. Retains the existing explanation, citations, and stable identifiers.
+
+```text
+<!-- point: mage-reuses-established-modeling-traditions | These representations share one engineering move — choose a form in which the property of interest becomes easier to express, inspect, or analyze than in the realized artifact; MAGE proposes no new modeling language, and this chapter illustrates the technique through selected established models. | terms: modeling-principle -->
+
+These representations differ in purpose and rigor, but they share the same engineering move: choose a form in which the property of interest becomes easier to express, inspect, or analyze than it is in the realized artifact. UML standardized notations for many structural and behavioral views,[cite: booch-uml] while requirements engineering developed representations for goals, assumptions, and specifications.[cite: vanlamsweerde2009re] MAGE does not propose a new modeling language. It does, however, use these established representations, and this chapter illustrates the technique through selected models.
+```
+
+
+## Chapter 2 21-models-in-agentic-work — approved copyedit, 4 November 2026
+
+Review item: `21-models-in-agentic-work`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 74–76. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `c3d0389b50173f82a5ba9b91b81817c0fdbe27567e71cb2f5d189be09d13ddf1`. Replaced on 2026-11-04 following author approval. Restores the original argument at the author’s request. Uses agents consistently in place of the switch between commodity intelligence and generative implementation, and retains the proposed closing sentence about construction and upkeep.
+
+```text
+<!-- point: mage-adopts-the-classical-move-under-changed-economics | What changes is the economics: commodity intelligence makes explicit representations cheaper to build and use, generative implementation makes them more valuable, and models can become part of the engineered environment through which agents work. | terms: modeling-principle, alignment-principle -->
+
+What changes is the economics. Commodity intelligence makes structured representations cheaper to construct, maintain, and consume; generative implementation simultaneously increases their leverage, because engineering knowledge must remain available across an increasing volume of autonomous work. Models can become part of the engineered environment through which agents work, preserving that knowledge across reasoning episodes and making selected properties available for Alignment.
+```
+
+
+## Chapter 2 21-architecture-implementation — approved copyedit, 4 November 2026
+
+Review item: `21-architecture-implementation`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 92–92. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `3d25fdaaccec5a29dca323ba01920af2e8204a0cd1ad3762d85d4f6c4ebb7d43`. Replaced on 2026-11-04 following author approval. Uses implementation consistently with the Chapter 1 convention and the author’s latest instruction. Retains the existing explanation, citations, and stable identifiers.
+
+```text
+> Software makes the relationship between model and realization unusually fluid because both are made of information. A schema can generate code; a state machine can drive behavior; a policy model can generate configuration; a dependency graph can become an execution plan. Such a representation can participate directly in the system while remaining selective about what it represents.
+>
+```
+
+
+## Chapter 2 reduction and entitlement preview — approved copyedit, 4 November 2026
+
+Review item: `21-entitlement-preview`. Source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/part2/2.1-context-is-the-first-modeling-problem.md`; canonical native source: `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 113–115. Source revision: `d737a31806f469a5102501b1f72bef055dfbaf1f` (working tree). Native excerpt SHA-256: `4969ffbe863a99d381300e99ff1527d3e4b653ae6a4c68db16673ce9952d46aa`. Replaced on 2026-11-04 with the approved hypothetical prepaid-credit and unlimited-subscription example. The example explains how a model can contain accurate information yet omit a distinction required for its decision, while leaving the detailed DocAble case for later in the chapter.
+
+```text
+<!-- point: a-reduction-must-preserve-the-distinctions-its-question-requires | A representation can contain accurate information and still be inadequate because its output cannot express a consequential case; a DocAble entitlement failure later in the chapter shows a reduction discarding a distinction the code had observed. | terms: model-as-map, modeling-principle -->
+
+Reduction is useful only if it preserves the distinctions the engineering question requires. A representation can contain accurate information and still be inadequate because its output has no way to express a consequential case. Later in this chapter, a DocAble entitlement failure shows exactly this: code observed that a group carried unlimited entitlement, then reduced entitlement to a finite-credit scalar that could not represent *unlimited* — the sum deliberately excluded the unlimited groups the code had just identified. An unlimited user became zero credits. The missing distinction produced a production failure and, in response, an explicit decision model.
+```
+
+
+## Chapter 2 tolerance, freedom, and implementation-space figure — approved revision, 4 November 2026
+
+Review item: `21-tolerance-and-freedom`, including `21-figure-implementation-space`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 119–124. Source revision: `ea4b6f751685ae6ecc0a1a19035edbc4b751aaf5` (working tree). Native excerpt SHA-256: `4aee3f2c822f8343a874308b61bcdc10f2f24fe77feeff94a3f50f6fa1a97ee9`. Applied on 2026-11-04 after author approval. Restores the teaching progression, distinguishes tolerance from remaining implementation choices, and moves the existing figure from the later implementation-space discussion to the sorting example. The figure now illustrates alphabetical order and the response-time bound; its stable label is retained for later references. The superseded figure and proposal sources are preserved in `tolerance-figure-before-2026-11-04.json` beside the review history.
+
+```text
+<!-- point: reduction-preserves-degrees-of-freedom | Obligations rarely fix one realization; a tolerance bounds permitted variation, a degree of freedom is a choice left open. | terms: model-as-map, scope-of-modeling, degrees-of-freedom, tolerance -->
+
+### Tolerance and degrees of freedom
+
+The suppressed detail has a realization-side consequence. Engineering obligations rarely determine a single acceptable realization. They constrain some variation and leave other choices open. This book uses two engineering terms for that distinction. A tolerance bounds the variation that an obligation permits; a degree of freedom is a realization choice left open because the governing obligations do not distinguish among its acceptable alternatives. Purposeful reduction therefore does two things at once: it represents the distinctions the engineering question requires while declining to settle choices that do not matter to that question. MAGE does not seek to close those degrees of freedom merely because they could be specified.
+```
+
+Original figure placement and caption:
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/realization-space-2a3916a20a.pdf}
+\caption{\emph{Obligations bound a realization space without selecting one realization.} Each region contains implementations satisfying one engineering obligation; their intersection contains implementations satisfying both. The points within that intersection may differ substantially in structure and implementation while remaining acceptable under the represented obligations. Those remaining choices are realization degrees of freedom.}
+\label{realization-space}
+\end{figure}
+```
+
+
+## Chapter 2 deferred implementation decisions — approved copyedit, 4 November 2026
+
+Review item: `21-deferred-implementation`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, lines 144–147. Source revision: `ea4b6f751685ae6ecc0a1a19035edbc4b751aaf5` (working tree). Native excerpt SHA-256: `83cc8e926a4d1167a4c98070d67e652130ab452c91094e93fe410683a631a855`. Replaced on 2026-11-04 following author approval: introduce the two reasons through a teaching question, and use implementation consistently. The remaining proposed explanation is retained.
+
+```text
+<!-- point: freedom-defers-commitment | Preserving a degree of freedom defers a decision to a reasoner better positioned to make it: information may arrive later, and the realizing agent can acquire evidence before deciding. | terms: degrees-of-freedom, scope-of-modeling -->
+
+Preserving a degree of freedom can defer a decision to a reasoner better positioned to make it. There are two distinct reasons. First, information may arrive later. The target environment, surrounding implementation, workload, available components, or consequences of earlier choices may not be known when the model is constructed. A decision made during realization can use information that an earlier decision could not. Second, the realizing agent can actively acquire evidence before deciding. It can construct alternatives, run pilots, benchmark them, measure their consequences, and tune the realization to its environment. Human engineers can of course do the same, as can evolutionary algorithms, autotuners, search procedures, and other optimization mechanisms. What changes with commodity intelligence is how broadly and cheaply this kind of exploration can be applied during ordinary realization. Closing a degree of freedom early can therefore replace a later, evidence-informed decision with an earlier guess. Engineering should constrain the choices whose consequences matter now while preserving choices that can be made better during realization.
+```
+
+
+## Chapter 2 21-parsimony — approved copyedit, 5 November 2026
+
+Review item: `21-parsimony`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Tolerance and degrees of freedom, lines 150–172. Source revision: `bcb99c75472c4aa01bf731ac069edb6e487fcd04` (working tree). Native excerpt SHA-256: `d2e97f94e54b57826f4f614d7fbf482b7b83cf358666a5f2943f2fffca1329f9`. Replaced on 2026-11-05 following author approval. Reason: Preserves the complementary top-down/bottom-up test and both failure directions. Replaces “Degrees of freedom reasons” and “Parsimony reasons” with engineers’ questions, removes two premature case previews, and keeps the useful return from a general rule to revision under evidence. Defines parsimony inline at first use as keeping only what is needed. Briefly recalls the distinction lost in the earlier subscription example, uses parsimonious consistently, and combines the explanation following the two failure-direction bullets into one paragraph.
+
+```text
+Parsimony provides the complementary test. Degrees of freedom reasons from the engineering obligation outward: what must the model preserve, and what may remain unspecified? Parsimony reasons from the proposed model inward: which of the distinctions it contains are actually required by the engineering question? A distinction that contributes neither to the question nor to a consequential obligation should earn its place or be removed. The aim is therefore not the smallest model, but the smallest model adequate to its purpose.
+
+<!-- point: reduction-fails-in-either-direction | Reduction fails in either direction: too little reproduces complexity and may needlessly constrain realization, while too much erases a consequential distinction. | terms: degrees-of-freedom, modeling-principle -->
+
+Adequacy fails in either direction.
+
+- **Too little reduction** — unnecessary distinctions reproduce the complexity the model exists to escape: they consume attention, create obligations to keep model and realization in correspondence, and may needlessly constrain realization.
+- **Too much reduction** — a consequential distinction disappears.
+- **A parsimonious reduction** — enough structure to preserve the obligation, plus whatever scaffolding this reasoner actually requires.
+
+<!-- point: mage-prefers-adequate-reductions-not-more-models | MAGE prefers adequate purposeful reductions, not more detailed models or stronger semantics; both detail and semantic precision must earn their carrying cost. | terms: modeling-principle, degrees-of-freedom, semantic-commitment -->
+
+MAGE therefore does not prefer more detailed models. It prefers adequate purposeful reductions, and sometimes the engineering improvement is deleting modeled structure. Nor, as a later section of this chapter shows, does MAGE prefer stronger semantic commitments merely because they are available. Both detail and semantic precision must earn their carrying cost. The examples ahead supply the boundary cases of this criterion: an ownership model whose omission proved genuinely free, and the entitlement reduction whose omission proved consequential.
+
+<!-- point: models-are-provisional-engineering-judgments | Degrees of freedom asks what present obligations permit leaving open; parsimony asks whether represented distinctions earn their place; neither judgment is final, because experience may reveal an omitted distinction was consequential or a represented one unnecessary. | terms: degrees-of-freedom, modeling-principle -->
+
+Degrees of freedom asks what our present engineering obligations permit us to leave open. Parsimony asks whether the distinctions we currently represent earn their place. Neither judgment is final: experience may reveal that an omitted distinction was consequential, or that a represented distinction was unnecessary. A model records a provisional engineering judgment.
+```
+
+
+## Chapter 2 21-quantitative-margin — approved copyedit, 5 November 2026
+
+Review item: `21-quantitative-margin`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Tolerance and degrees of freedom, lines 174–180. Source revision: `bcb99c75472c4aa01bf731ac069edb6e487fcd04` (working tree). Native excerpt SHA-256: `aa88541c2d0ca10ca42c84a446006262aed1216aabb61d74fb37a33da3d931f3`. Replaced on 2026-11-05 following author approval. Reason: Develops the existing point with the preceding latency example. Replaces “a numeric bound is rarely a single line,” “capacity envelope,” and “both statable” with the quantities and judgments a model supports. It does not add a new numerical claim. Companion terminology changes use implementation consistently with Chapter 1 and the author’s request.
+
+```text
+<!-- point: software-tolerance-is-often-qualitative | In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media. | terms: tolerance, degrees-of-freedom -->
+
+In software engineering, a tolerance can be numeric but is often qualitative. A latency budget may set a numerical bound: a response must complete within 200 ms. Coupling admits an intermediate form: an architecture may tolerate dependencies up to a measured threshold while also distinguishing kinds of coupling that are acceptable or prohibited. Other architectural tolerances are primarily qualitative: one component may depend on another through a declared interface but not reach directly into its implementation. The difference partly follows from the medium. Physical engineering often concerns continuous quantities such as length, voltage, pressure, or temperature, so tolerances naturally take numerical form. Software structures and behaviors are largely discrete—types, sets, relations, graphs, states, and transitions—so tolerances often define sets of acceptable realizations instead.
+
+<!-- point: a-measurement-model-can-carry-a-margin-not-just-a-target | Even a numeric bound is rarely a single line — a budget carries a margin, a capacity envelope leaves headroom — so a quantitative model can represent the band of acceptable variation, not just a target. | terms: tolerance -->
+
+Even a numeric bound is rarely a single line. A budget usually carries a margin; a capacity envelope leaves headroom. A quantitative model can represent not just a target but the band of acceptable variation around it, so that "within tolerance" and "over the line" are both statable.
+```
+
+
+## Chapter 2 implementation space — approved copyedit, 5 November 2026
+
+Review item: `21-implementation-space`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Tolerance and degrees of freedom, lines 180–184. Source revision: `bcb99c75472c4aa01bf731ac069edb6e487fcd04` (working tree). Native excerpt SHA-256: `91a00944c6fb52f99b8634f3b41d4d62b21f0b27ead15516c0d02e919d2f7e08`. Replaced on 2026-11-05 following author approval. Reason: identify software itself as the medium, use implementation consistently, and clarify the transition to the economics of agent implementation, with the final sentence break requested by the author.
+
+```text
+<!-- point: obligations-bound-a-region-without-choosing-a-point | Obligations bound the space of acceptable realizations without selecting a point; commodity intelligence makes exercising that freedom cheap, so Modeling names the consequential distinctions and Alignment enforces selected boundaries. | terms: degrees-of-freedom, tolerance -->
+
+Software's medium compounds this: because programs are constrained less by physical material than by the information they must accept, produce, and preserve, different implementations can satisfy the same obligations, so the space of acceptable realizations is often large.[cite: brooks1987] There are often many right answers. Engineering need not choose one point in that space merely because it could. It can instead specify the properties that distinguish acceptable from unacceptable realizations and leave the remaining choices open. Good engineering constrains the choices that matter and deliberately leaves the rest free. Commodity intelligence changes the economics of exercising that freedom: once realization becomes cheap, an autonomous reasoner can construct and revise implementations inside a space that would previously have been expensive for human engineers to explore. Modeling identifies the consequential distinctions; Alignment can enforce selected boundaries. The rest remains available to realization.
+
+[ref:realization-space] illustrates this relationship in the sorting example: the requirements bound an acceptable region without selecting one implementation.
+```
+
+
+## Chapter 2 capability and omission — approved copyedit, 5 November 2026
+
+Review item: `21-capability-and-omission`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Tolerance and degrees of freedom, lines 188–197. Source revision: `bcb99c75472c4aa01bf731ac069edb6e487fcd04` (working tree). Native excerpt SHA-256: `ff40d06475f61a557de607dbc2ec9ff04d15e5b5066c92c52f364176408c8665`. Replaced on 2026-11-05 following author approval. Reason: Emphasizes that the engineering problem sets the system’s obligations, regardless of who implements it. Applies the capability/scaffolding distinction to both humans and agents. Removes the repeated entitlement example and folds its remaining qualification into one sentence: the actor still needs the relevant information, in the model or from other evidence. Uses implementation consistently and retains the existing figure reference and proposed caption.
+
+```text
+<!-- point: capability-moves-the-specification-boundary-not-the-obligation | The obligation boundary is set by the engineering problem and does not move with agent capability; the specification boundary can move — greater capability reduces required scaffolding but cannot recover omitted semantics. -->
+
+How much must be written down depends partly on who realizes it. The engineering obligation determines what must remain true; a particular engineer or agent may also need representational scaffolding — examples, decomposition, intermediate constraints — to interpret and realize that obligation reliably. Obligation plus scaffolding form the specified region, and its two boundaries behave differently ([ref:specified-region]). The obligation boundary is set by the engineering problem, and agent capability does not move it: a more capable agent does not make a required ordering optional or a consequential distinction irrelevant. The specification boundary can move, because a more capable agent needs less scaffolding. Capability can reduce how much we must specify. It cannot reduce what must be true. The limit is semantic: capability can bridge omitted scaffolding, but it cannot recover omitted semantics — a distinction reduced away is not reconstructible downstream.
+
+<!-- label: specified-region -->
+<!-- figure: assets/specified-region.svg | *Obligation, scaffolding, and degrees of freedom.* The engineering obligation establishes the minimum consequential content that must be preserved. A particular agent may require additional scaffolding to interpret and realize that obligation reliably. Greater agent capability can reduce this scaffolding and enlarge the realized degrees of freedom, but it does not change the obligation itself. -->
+```
+
+
+## Chapter 2 freedom and uncertainty — approved copyedit, 5 November 2026
+
+Review item: `21-free-implementation-choices`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Not every unmodeled choice is free, lines 201–226. Source revision: `bcb99c75472c4aa01bf731ac069edb6e487fcd04` (working tree). Native excerpt SHA-256: `094c16599815226438e3cce13edff5186ec6b9f5aade275cc7afc9feb7cbb051`. Replaced on 2026-11-05 following author approval. Reason: Recalls the earlier distinction between known freedom and uncertainty, then merges the inset’s opening paragraphs around the new lesson: models can help engineers discover obligations they have not yet recognized. Keeps the closing explanation of why modeling can precede specification. Names the reviewer in the diagnostic and sets “NOT THAT!” in bold italic. Retains implementation terminology and stable identifiers.
+
+```text
+<!-- point: tacit-obligation-vs-genuinely-free | A tacit obligation can look free; the "not that" test reveals a boundary that was never written down. | terms: degrees-of-freedom, tolerance, modeling-principle -->
+
+### Not every unmodeled choice is free
+
+This also distinguishes tacit obligations from genuinely free choices. An unmodeled choice can look open even when engineers would reject some realizations of it. Then the choice was never wholly free. Human judgment was already imposing a boundary. What was missing was an explicit representation of the obligation or its tolerance. A genuinely free choice is different. Once the governing obligations are accounted for, engineering has no reason to distinguish among the remaining alternatives. A useful diagnostic follows: if a realization would provoke *not that*, some consequential boundary remains, whether or not anyone has written it down.
+
+<!-- point: unknown-tacit-explicit-free-are-states | Whether a choice is tacitly bounded or genuinely free is a present state, not a fixed one; it changes as engineers learn from the system. | terms: degrees-of-freedom, modeling-principle -->
+
+Whether a choice is tacitly bounded or genuinely free can change as engineers learn from the system. A region initially treated as free may expose a consequential distinction; investigation may also show that a suspected distinction does not matter.
+
+<!-- point: modeling-can-precede-complete-specification | Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered. | terms: modeling-principle, alignment-principle, degrees-of-freedom -->
+
+<!-- box-family: inset -->
+
+<!-- inset-domain: ENGINEERING -->
+
+> #### Inset — Uncertainty and unknown unknowns {#inset-uncertainty}
+>
+> Engineering distinguishes a choice deliberately left open from one whose consequences are not yet understood. The first is a degree of freedom. The second is uncertainty. In the harder case—sometimes called an unknown unknown—engineering has not yet recognized the consequential property, interaction, or failure well enough to ask the right question about it. An unmodeled region therefore should not be assumed to be free merely because no obligation has been stated.
+>
+> A model cannot directly represent what engineering has not yet recognized. It can, however, make uncertainty more inspectable. By reducing a complicated system to selected entities, relations, states, quantities, or alternatives, a model can make variation and interaction easier to compare and trace. Unexpected behavior can then expose distinctions that were difficult to see in the realized system directly. A degree of freedom is known freedom; uncertainty is not.
+>
+> This is one reason modeling can precede specification. Sometimes engineers construct a model because they know which property must hold. Sometimes they construct one to discover which properties matter.
+```
+
+
+## Chapter 2 revision under evidence — approved copyedit, 5 November 2026
+
+Review item: `21-revision-evidence`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Constructing and Revising a Model, lines 264–264. Source revision: `bcb99c75472c4aa01bf731ac069edb6e487fcd04` (working tree). Native excerpt SHA-256: `3a63ee861b9892d3af47dd7211deb7b7209c73df8a7ec63feb7da6fa7c084111`. Replaced on 2026-11-05 following author approval. Reason: Stops at “The later examples show both possibilities” as requested. Names the two possibilities before that sentence so the brief forward reference remains clear, and leaves the case details for their later treatment.
+
+```text
+Neither direction guarantees the boundary is right. Analysis, implementation, measurement, or failure may reveal that an omitted distinction mattered or that an included one did not. When the evidence changes the engineering judgment, revise the model. This is the theoretical role the chapter's two boundary cases play. The ownership model ahead is evidence that an omitted distinction really was a degree of freedom: the omission survived contact with the system. The entitlement reduction is evidence that an omitted distinction was consequential, so it is not merely a bad reduction. It demonstrates model revision under evidence: the engineer judged a distinction collapsible, and production proved otherwise.
+```
+
+## Chapter 2 executable and mental models — approved copyedit, 5 November 2026
+
+Review item: `21-executable-model-implementation`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, executable models and Constructing and Revising a Model, lines 242–256. Source revision: `9b35ec3658316edbd35819102f1ee77079b7d7ca` (working tree). Native excerpt SHA-256: `477fc728e914f8137f4db79f22fed08b097c85dd5ba6ea643ab4a6e25704c857`. Replaced on 2026-11-05 following author approval. Reason: Answers the two developed objections in turn. Removes the authorization detour, retains limits of type-system expressiveness and the smaller class view, and describes the worker-pool model as the engineer’s mental reduction of the implementation. A brief Magritte footnote distinguishes representation from object. The queue-growth question tests the model’s sufficiency. The general discussion now opens Constructing and Revising a Model and leads into the judgment of choosing distinctions.
+
+```text
+<!-- point: a-reduction-first-even-when-executable | A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts. | terms: model-as-map, executable-source-of-truth -->
+
+A representation remains a purposeful reduction even when it is executable. Some models in this chapter participate directly in execution or analysis: machines query them, derive artifacts from them, generate from them, or check properties over them. Software can therefore make the distance between architectural representation and realization unusually small. Executability changes what a model can do; it does not make the model a complete representation of the system. That is why the examples ahead are drawn as reductions before their implementations are discussed: the abstraction should remain visible apart from its encoding.
+
+## Constructing and Revising a Model
+
+<!-- section-terms: modeling-principle, degrees-of-freedom -->
+
+<!-- point: purposeful-reduction-is-judgment-not-algorithm | Purposeful reduction is a judgment process, not an algorithm: no procedure takes an engineering question and returns the right model, so the engineer reasons toward the boundary from more than one direction and revises it as evidence arrives. | terms: modeling-principle, degrees-of-freedom -->
+
+Purposeful reduction is a judgment process, not an algorithm. No procedure takes an engineering question and returns the right model. The engineer reasons toward the boundary — what the model must preserve, what it may leave free — from more than one direction, and revises it as evidence arrives.
+
+<!-- point: reason-top-down-from-the-question | Reasoning top-down from the question asks what must remain true and which distinctions expressing or evaluating that obligation requires; the model preserves those, and the remaining realization choices stay free. | terms: degrees-of-freedom, tolerance -->
+
+One direction is top-down, from the question. What must remain true? Which distinctions are required to express or evaluate that obligation? The model preserves those; the remaining realization choices stay free.
+```
+
+
+## 2026-11-05 — Semantic-commitment implementation terminology
+
+Review item: `21-semantic-implementation`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`. Source revision: `b7983dd7acab4f3dd66be70d36a8d5435151323e` (working tree). Native excerpt SHA-256: `6988a5ad4af9cac218a0bcc38c7b33905b9548a691f212bd6140d18831f3c6bc`. Author approved the proposed terminology changes; the original is preserved below.
+
+<!-- point: stronger-semantics-buy-capabilities-and-create-obligations | Stronger semantics buy capabilities and create obligations; they are not inherently better. | terms: semantic-commitment, degrees-of-freedom -->
+
+Greater semantic commitment buys capabilities, but it also creates obligations. More precise representations can be harder for people to author and read. Their concepts must be defined, their types and relationships maintained, and their correspondence with the realized system preserved. Stronger semantics are therefore not inherently better. The appropriate question is what the representation must support.
+
+<!-- point: the-spectrum-in-concrete-artifacts | Concrete artifacts illustrate the range; the rows are examples, not maturity levels. | terms: semantic-commitment, degrees-of-freedom -->
+
+[ref:semantic-commitment-spectrum] illustrates the range with concrete modeling artifacts, from an informal sketch through UML 2.5.1[cite: omg2017uml] and OpenAPI/JSON Schema to SysML v2 and its semantic foundation, KerML.[cite: omg2025sysml][cite: omg2025kerml] The rows are not maturity levels: stronger semantic commitment is useful only when the resulting precision and machine operability justify its cost. Nor does stronger semantics necessarily close more degrees of freedom. A SysML model may say less about a realization than an elaborate natural-language specification while saying what it does say much more precisely. Amount specified and precision of meaning are separate axes.
+
+<!-- label: semantic-commitment-spectrum -->
+<!-- table: *Semantic commitment is not model completeness.* The rows are examples, not maturity levels: a representation can define precisely what its modeled distinctions mean while deliberately leaving most realization choices open. [short: Degrees of semantic commitment, in concrete artifacts] -->
+| Semantic commitment (example) | Semantics supplied by the representation | Interpretation burden | Remaining realization freedom | Agentic implication |
+|---|---|---|---|---|
+| **Mostly implicit** (Informal box-and-arrow architecture sketch) | Almost none beyond marks and labels; the team supplies what boxes and arrows mean | Low for readers who share the context; high for anyone who does not | Very large | Agent must infer both the intended semantics and the realization |
+| **Notation with standardized semantics** (UML 2.5.1 state-machine diagrams) | Standardized model elements and relationships give diagrams meanings beyond their visual appearance | Requires notation knowledge and project context | Large; UML generally describes selected aspects rather than determining a program | Agent has substantially more structure to interpret, but considerable design and implementation remain |
+| **Machine-readable structured model** (OpenAPI 3.1 / JSON Schema; a typed repository model such as DocAble's registries and schemas) | Named entities, types, fields, constraints, references, and relationships are directly machine-readable | Structure is explicit, but domain intent remains contextual | Often still large: a schema can constrain externally relevant properties while leaving implementation open | Agent can query and transform explicit structure rather than reconstructing it from prose or code |
+| **Semantically defined engineering language** (SysML v2 + KerML 1.0) | Abstract syntax, types, relationships, expressions, constraints, and semantic foundations are defined as part of the language; machine-readable interchange is standardized | Substantial language and tool knowledge, but less semantics to reconstruct | Potentially very large: precise semantics do not imply complete specification | Tools can reliably interpret and compose more of the model; agents can reason over model elements and tool-produced results rather than rediscovering their meaning |
+
+<!-- point: the-columns-are-not-one-progression | Stronger commitment aids mechanical interpretation; it moves interpretation burden rather than removing it. | terms: semantic-commitment -->
+
+The columns do not form a single progression from weak to strong engineering. Greater semantic commitment usually makes more mechanical interpretation possible, but it does not simply lower the interpretation burden — it relocates it. An informal sketch asks almost nothing of a reader who already shares its context and a great deal of one who does not; a semantically defined language asks for language and tool knowledge up front, and in exchange leaves less meaning to be reconstructed each time the model is read. What changes across the rows is where the interpretive work is done, and by whom.
+
+<!-- point: semantic-precision-is-not-generative-completeness | Semantic precision and generative completeness are different properties. | terms: semantic-commitment, degrees-of-freedom -->
+
+This distinction matters particularly for generative implementation. Semantic precision and generative completeness are different properties. A model can have precisely defined meaning while remaining radically incomplete as a program. Conversely, a detailed prompt can say a great deal about an intended implementation while leaving much of its meaning informal. The question is not whether a model can generate the code. The question is which decisions the engineer has made explicit and which decisions the implementor remains authorized to make.
+
+
+## 2026-11-05 — Learning from implementation
+
+Review item: `21-learning-from-implementation`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 286–298. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `8f4d127f3b328ac17d26bd9a71a60db918fd5150eeb8542248cd8b7e41d1921c`. Removed on 5 November 2026 after author approval. Replaced the compressed account of prototyping with the approved explanation of learning from implementation and recording reusable engineering knowledge.
+
+```markdown
+<!-- point: the-most-important-evidence-comes-from-realization | The most important instance of revising from evidence is learning from realization itself. | terms: modeling-principle -->
+
+The most important instance of revising from evidence is learning from realization itself.
+
+### Implementation can induce a model
+
+<!-- point: the-direction-also-runs-in-reverse | The chapter has so far run from question to model to realization, but the direction also reverses: a cheap exploratory realization can expose constraints, tradeoffs, state distinctions, dependencies, and bounds that were invisible on paper. | terms: modeling-principle, degrees-of-freedom -->
+
+The chapter has so far run in one direction: from question to model to realization. The direction also reverses. A cheap exploratory realization can expose a constraint, a tradeoff, a state distinction, a dependency, a bound that was invisible on paper — distinctions no one knew to ask about.
+
+<!-- point: a-prototype-preserves-a-realization-not-the-knowledge | A prototype preserves a realization but not necessarily the engineering knowledge learned from it; after probing, extract the durable relationship into an explicit representation, or deleting the prototype deletes the knowledge. | terms: modeling-principle, externalized-knowledge -->
+
+A prototype preserves a realization, but not necessarily the engineering knowledge learned from it. After probing, extract the durable relationship into an explicit representation; otherwise deleting the prototype deletes the knowledge. The probe answers a question without preserving the answer. The model is the artifact that preserves it.
+```
+
+
+## 2026-11-05 — Preface: assurance and efficiency
+
+Review item: `preface-assurance-and-efficiency`. Source: `book/latex/sources/frontmatter/0.5-preface.tex`, Preface, line 30. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `fe94a76d11a76650af7924443cbe58265b465b8664b4baa85923d745c60c3f66`. Removed on 5 November 2026 after author approval. Replaced the general statement about recurring engineering effort with the approved distinction between human assurance and agent efficiency, including lower cost and use on more complex systems.
+
+```markdown
+MAGE identifies recurring engineering work, including reconstructing system knowledge and reviewing decisions, and asks which models or mechanisms could reduce that effort.
+```
+
+
+## 2026-11-05 — Tools and engineering decisions
+
+Review item: `21-tools-and-decisions`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, Tools inset, lines 415–419. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `7abfed80c56446c31f4ae9efbeb2211b20234c24637d0f8316135bbcb201ff43`. Removed on 5 November 2026 after author approval. Retains the engineering position and developed examples while naming engineers as the actors, clarifying the recorded ownership query, and keeping implementation terminology consistent.
+
+```markdown
+> MAGE seeks to move suitable work out of probabilistic reasoning and into engineered mechanisms. Today's agent harnesses do this partly through tools. A tool gives the agent an engineered capability it can invoke: querying repository state, parsing a file format, running a compiler, inspecting a dependency graph, applying a transformation, or executing some other operation whose mechanics need not be reconstructed through model reasoning each time.
+>
+> Tools change the division of labor inside the engineered system. Suppose an agent needs to determine which component owns a file. It might infer ownership from directory names, nearby code, and documentation. Or the environment might maintain an ownership model and expose a query over it. In the second case, the agent still has to decide why ownership matters and what to do with the answer, but it no longer has to infer the answer from indirect evidence. The same move applies to parsing, dependency analysis, schema validation, code transformation, and many other operations: suitable work can move from probabilistic reconstruction into mechanisms whose behavior is engineered directly. Merely exposing a tool does not guarantee that the agent will invoke it when appropriate, so consequential uses may need to be built into the surrounding workflow or checked at an enforcement boundary.
+>
+> This is why MAGE's concern is broader than tool use. A tool is one contemporary interface through which an engineered environment can expose knowledge or capability. The deeper design question is what the probabilistic implementor should actually have to realize. As more knowledge and suitable operations move into models, queries, transformations, validators, and other engineered mechanisms, reasoning can be concentrated on the decisions that still require it.
+```
+
+
+## 2026-11-05 — Name the uses of structure instead of an accumulating capability ladder
+
+Review item: `21-model-capabilities`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 446–454. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `411247e8f32c07ff7d8ed346124203f965bfb7993e8ffc34ff2346be5dbd5086`. Removed on 5 November 2026 after author approval. Applied the approved heading and paragraph, including the author’s short-sentence edits and removal of the required-sequence clause. The stable heading label is retained.
+
+```text
+\section{Representations Support Accumulating Capabilities}\label{heading:representations-support-accumulating-capabilities}
+
+% <!-- section-terms: modeling-principle, alignment-principle, capability-ladder -->
+
+% <!-- point: capability-comes-in-rungs | Increasing semantic commitment can make additional capabilities possible — not a required sequence or maturity model. | terms: capability-ladder, structured, semantic-commitment -->
+
+% <!-- index-def: capability-ladder -->
+
+Increasing semantic commitment can make additional capabilities possible: typed relationships, machine-checkable properties, derivation, generation, traceability, composition, querying, and checking. These capabilities do not arrive in a required sequence, nor do they define a maturity model. Different representations make different commitments because they serve different engineering purposes.
+```
+
+
+## 2026-11-05 — Use implementation choices and ordinary language for satisfying obligations
+
+Review item: `21-figure-implementation-choices`. Source: `book/tikz/figures/specified-region.tex`, §2.1, lines 9–11. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `84659ed6ec37f933a2453c0281d9c4c3b2fc8ad05baed6ec59d62d46e2af1ef5`. Removed on 5 November 2026 after author approval. Applied the approved labels to both native black-and-white and color SVG versions, preserving geometry and headings.
+
+```text
+\node[n,text width=7.5cm,fill=white] (s) at (0,-2.3) {\textbf{SCAFFOLDING}\\Additional structure this agent needs to interpret and realize the obligation reliably};
+\begin{scope}[on background layer]\node[draw,dashed,fill=white,inner sep=7pt,fit=(o)(s),label={[font=\fontsize{9}{11}\selectfont]above:{\textbf{SPECIFIED REGION}}}] {};\end{scope}
+\node[n,text width=7.5cm] (d) at (0,-5) {\textbf{DEGREES OF FREEDOM}\\Realization choices left to the agent};
+```
+
+
+## 2026-11-05 — Judging what an agent discovers
+
+Review item: `21-from-discovery-to-decision`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 298–324. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `e8d45718d987acc2ec0542b422939726acf452204297631d0da079b5c62ef99d`. Removed on 5 November 2026 after author approval. Applied the developed example distinguishing adopted requirements from observations, the direct answer about tests and TDD, and the chapter cross-references.
+
+```markdown
+### Judging what an agent discovers
+
+<!-- point: agents-import-patterns-but-design-is-contextual | An agent can bring patterns from other systems into an exploratory realization, but design is contextual: the engineer must judge which discovered choices suit the present system, and choices worth preserving should be extracted into explicit models rather than persist accidentally. | terms: modeling-principle, degrees-of-freedom -->
+
+An agent can bring engineering patterns learned from other systems into an exploratory realization. That can be valuable: the realization may embody a decomposition, boundary, state distinction, or constraint that the engineer had not specified in advance. But design is contextual. A pattern appropriate elsewhere may violate an obligation or erase a distinction that matters here. The engineer must therefore judge which choices discovered through implementation are appropriate to the present system. Choices worth preserving should be extracted into explicit models rather than left to persist accidentally in one realization.
+
+<!-- point: model-extraction-turns-transfer-into-local-law | Model extraction turns candidate knowledge transfer into local engineering law: the agent proposes a judgment through implementation, the engineer decides it should persist, and once explicit the judgment can be inspected, communicated, revised, and eventually enforced. | terms: modeling-principle, governance-conversion -->
+
+Model extraction turns candidate knowledge transfer into local engineering law. The agent can propose a judgment through implementation; the engineer decides that the judgment is appropriate here and should persist across later realizations. Once made explicit, that judgment can be inspected, communicated, revised, and eventually enforced. Until then, it remains merely a choice one realization happened to make.
+
+<!-- point: not-every-extraction-becomes-law | Not every extraction becomes law: descriptive discoveries can remain engineering knowledge, and law is the narrower case in which the engineer accepts the discovered choice as one that should persist. | terms: modeling-principle, externalized-knowledge -->
+
+Not every extraction becomes law. Some of what implementation reveals is descriptive — a measured bound, an interaction the system turns out to have — and is worth preserving as knowledge without any intent that later realizations conform to it. Law is the narrower case: the engineer accepts the discovered choice as one that should persist.
+
+<!-- pullquote -->
+
+> training supplies candidate patterns → implementation instantiates one → engineering judgment evaluates it in context → Modeling makes an accepted judgment durable → Alignment can later give selected judgments force
+
+<!-- point: human-authority-is-not-human-invention | The division of labor belongs to MAGE because human authority is not human invention: the agent may supply the insight, and the engineer decides what becomes durable. | terms: modeling-principle -->
+
+This division of labor is why the account belongs to MAGE rather than to good practice in general. Human authority is not human invention. The agent may supply the insight; the engineer decides what becomes durable.
+
+<!-- point: inference-is-not-institutional-memory | MAGE does not simply let a capable agent infer the architecture, because inference is not institutional memory or engineering authority: different agents, contexts, prompts, or future priors may infer differently, and rediscovering a decided structure on every task is needless epistemic decay. | terms: modeling-principle, externalized-knowledge -->
+
+The same distinction explains why MAGE does not simply say: give a sufficiently capable agent the code and let it infer the architecture. An agent may well infer a plausible architecture every time it is asked. But inference is not institutional memory, and it is not engineering authority. Different agents, contexts, prompts, or future priors may infer differently, and nothing in the system records which inference the engineers accepted. Once an engineer has decided that a discovered structure matters here, repeatedly asking intelligence to rediscover it is needless epistemic decay. {{chapter:one-problem-many-models}} develops these dynamics — realize, observe, model, align — across the system lifecycle.
+```
+
+
+## 2026-11-05 — Distinguish human assurance from agent efficiency
+
+Review item: `10-assurance-and-efficiency`. Source: `book/latex/sources/part1/1.1-the-printer.tex`, §1.1, lines 65–71. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `0abc0fcd2e8a980798b91caa81bf09bd3693b8eca3fe397fb60aa4f72eb7ecc6`. Replaced on 5 November 2026 after author approval; retained here for editorial recovery.
+
+```markdown
+MAGE is an engineering methodology for working with agents. Models make relevant engineering knowledge and intent explicit, and the engineered environment uses those models to guide work and enforce selected obligations. Engineers choose which decisions should persist across tasks and which can remain open to the agent's judgment. Leaving more judgment to the agent offers greater potential leverage, but can also increase the risk of an unacceptable result. How far to go along that spectrum is an engineering decision.
+
+<!-- point: modeling-and-alignment-supply-the-instruction-package | Modeling and Alignment supply the printer's missing instruction halves. | terms: printer-metaphor -->
+
+Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} develop these ideas. Modeling makes consequential properties explicit; Alignment enforces selected obligations during implementation.
+
+That environment need not simply reproduce the one built for human developers. Agents can consume and maintain representations at scales that would be impractical for people, and automated analyses can check properties that human review would otherwise have to reconstruct from implementation. The design question is therefore two-sided: what existing engineering machinery should agents inherit, and what stronger machinery becomes practical because the workers are now machines?
+```
+
+
+## 2026-11-05 — Explain how models distinguish accepted intent from incidental implementation choices
+
+Review item: `21-models-preserve-accepted-intent`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 260–262. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `c1c9ff808a0dcea5ef28980d8fe29ba44ab63d1bab3226d67a588285098b3d14`. Replaced on 5 November 2026 after author approval; retained here for editorial recovery.
+
+```markdown
+Your concept of a worker pool as a queue feeding eight workers is a mental model of the implementation. The implementation is the thing represented.[^model-object] It may contain hundreds or thousands of lines for synchronization, error handling, cancellation, and other details. You can reason with the smaller picture because you have already reduced the implementation to a model in your mind. An agent given only the code may have to reconstruct that picture before it can answer the same question. Modeling makes your understanding explicit: it records the queue, worker slots, assignment rule, and relevant state transitions so that another human or agent can reason through them. What you have in mind when you call the worker pool a model is what you would capture.
+
+But is that model sufficient for your engineering needs? Suppose you want to know whether and how quickly the queue will grow during a busy period. The concurrency limit cannot answer that question: two workloads can obey the same limit while one queue drains and the other grows. We need a model that relates arrival patterns, job service times, and worker capacity. It can omit the jobs’ business logic and the machinery that schedules individual threads, while retaining the quantities needed to reason about backlog. The concurrency model and this queueing model describe different properties of the same running pool.
+
+## Constructing and Revising a Model
+```
+
+
+## 2026-11-05 — Explain what externalized knowledge lets later agents reuse
+
+Review item: `21-preserving-meaning`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 436–442. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `1b06e95a618d52fce699edf22c8e0aa8ddea19e0fb2546c360dc099298f2e6cc`. Replaced on 5 November 2026 after author approval; retained here for editorial recovery.
+
+```markdown
+<!-- point: industry-already-lives-here | Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it. | terms: knowledge-representation, modeling-principle, externalized-knowledge -->
+
+Externalizing knowledge this way is the lightest form of Modeling, and much of current practice already stands on it. Spotify's public account describes a retrievable service catalog.[cite: spotify2026constraint] Cloudflare's describes standards externalized under stable identifiers.[cite: reimann2026codex] Shopify's describes a different form, in which agent sessions are mined into reusable skills.[cite: moreno2026river] DocAble assembles its graph from registries, schemas, and YAML joined on stable identifiers. Each makes selected engineering knowledge durable outside a single reasoning episode, allowing later agents to retrieve rather than reconstruct it.
+
+<!-- point: agents-make-the-semantics-tradeoff-newly-consequential | Agents lack shared context's continuity, so stronger commitment converts recurring interpretation into durable knowledge. | terms: semantic-commitment, externalized-knowledge -->
+
+Agentic systems make this tradeoff newly consequential. A human team can sustain surprisingly informal semantics through shared context: the same engineers repeatedly look at the same diagram and remember what its arrows mean. Agents do not provide the same continuity. Across tasks, contexts, models, and time, unstated semantics must be inferred again — the needless epistemic decay the previous section described, now at the level of meaning rather than structure. Stronger semantic commitment can therefore convert recurring interpretation into durable engineering knowledge. It does not eliminate agent reasoning; it lets engineers decide which meanings agents should no longer have to reconstruct.
+```
+
+
+## 2026-11-05 — Keep the practical test about work saved and costs incurred
+
+Review item: `21-selective-modeling-cost`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 456–456. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `f6be9b655b991c97e16ba3e10a9f3cf575799c6b9c41bbcfee7454502e88076f`. Replaced on 5 November 2026 after author approval; retained here for editorial recovery.
+
+```markdown
+<!-- point: the-consequence-is-selective-modeling | Selective modeling: model repeatedly reconstructed facts and repeatedly adjudicated properties; add commitment when it retires recurring work. | terms: capability-ladder, modeling-principle, semantic-commitment -->
+
+The practical rule remains selective modeling. Model facts that are repeatedly reconstructed and properties that are repeatedly adjudicated. A service catalogue may end repeated ownership discovery; an invariant may retire a recurring class of judgment. Add semantic commitment when the resulting reduction in recurring engineering work justifies carrying it.
+```
+
+
+## 2026-11-05 — Document-mutation implementation terminology
+
+Review item: `22-implementation-terminology`. Source: `book/latex/sources/part2/2.2-structural.tex`, §2.2, lines 47–66. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `9468e9355ea67a980a097f939f300871f53e45f22ea8ce7b6e86b04a5e9b4721`. Removed on 5 November 2026 after approval, including the author’s final shortened format example and “necessary model” wording.
+
+```markdown
+> #### Document-mutation model · Structural
+>
+> - **Engineering question** — Where is document mutation supposed to occur?
+>
+> - **Model** — a layered structural relation: remediation logic operates through a structured-document model, realized by format-specific implementations for DOCX, PPTX, XLSX, and PDF.
+>
+> - **Property** — the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.
+>
+> - **Quality attribute** — architectural integrity and modifiability.
+
+<!-- point: a-structural-model-names-the-sanctioned-seam-for-document-mutation | The model draws one architectural relation — remediation reaches format-specific mutation through a structured-document seam, realized per format — and leaves queues, retries, sessions, and repair mechanics out. -->
+
+The useful model is small. [ref:document-mutation-model] draws it: remediation logic operates *through* a structured-document model, which is *realized through* a format-specific implementation, which finally touches the concrete DOCX, PPTX, XLSX, and PDF formats. It says nothing about queues, retries, deployment, user sessions, or the mechanics of individual repairs. Those facts are real but irrelevant to the question; the reduction preserves only the architectural boundary that matters.
+```
+
+
+## 2026-11-05 — Reuse the engineering repertoire
+
+Review item: `21-engineering-repertoire`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, lines 504–510. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `03e00693d044cd4da5956aef1a95f90570801e390349c692617af5e93e016c70`. Removed on 5 November 2026 after approval. Preserves the teaching-mindset opening, consolidates the repertoire examples, and clarifies how engineers make that knowledge available to agents.
+
+```markdown
+> This chapter does not attempt to enumerate every useful model nor every consequential engineering question. Its purpose is to draw attention to the fact that your system has consequential questions, and that models provide a means of articulating those questions in representations that let engineers reason about those properties and give agents a succinct form in which to reason about them. The examples ahead illustrate that practice rather than exhaust it.
+>
+> But you are an engineer. Take this not as an invitation to invent a new modeling technique for every problem, but as a reminder to study the models, patterns, and analyses your field has already developed. Once the engineering question is known, start with the established repertoire. State machines capture legal transitions; dependency and data-flow graphs support reachability questions; schemas capture entities and relations; queueing and resource models expose capacity and contention; decision tables and constraint systems expose permitted combinations. Each comes with known semantics, applicable analyses, strengths, and tradeoffs.
+>
+> An engineer who needs to sort data does not ordinarily invent a sorting algorithm from first principles. The engineer recognizes the problem and selects among established algorithms according to the properties and tradeoffs that matter. Modeling works the same way: recognize the engineering question, then choose a representation that preserves what is needed to answer it. Occasionally the established repertoire is inadequate and invention is required. Recognizing when that is true, and devising the new abstraction, is precisely the kind of judgment for which engineers are valuable.
+>
+> There are books full of this accumulated knowledge. Software architecture, model-based systems engineering, formal methods, databases, distributed systems, operations research, performance engineering, and other fields document modeling techniques and the conditions under which they work. MAGE does not reproduce those catalogs. It provides a framework for deciding when such knowledge should become an explicit part of the engineered environment. A governed engineering environment can then make the relevant repertoire—or an approved subset of it—available directly to agents. [appendix: appendix-skill-recipe] shows one realization: DocAble's self-governance skill packages the MAGE engineering method for agents, including a modeling repertoire and modeling moves. The agent can recognize a situation, choose an appropriate Modeling or Alignment move, act through the environment, and learn from the resulting evidence rather than inventing its engineering method afresh on each task. The repertoire is reusable engineering knowledge; choosing from it remains engineering judgment.
+```
+
+
+## 2026-11-05 — Document-mutation figure relation
+
+Review item: `22-figure-mutation-implementation`. Source: `book/tikz/figures/document-mutation-model.tex`, §2.2, line 12. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Source SHA-256: `5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0`. Replaced on 5 November 2026 after author approval. Both color and black-and-white versions now name the relation “implemented by”; italic emphasis and edge endpoints are preserved.
+
+```tex
+\draw[edge] (n1) -- node[lab,right] {\textit{realized through}} (n2);
+```
+
+
+## 2026-11-05 — Use implementation in the behavioral point summary
+
+Review item: `23-implementation-annotation`. Source: `book/latex/sources/part2/2.3-behavioral.tex`, §2.3, line 20. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `8857e9bb7a51f65562eb60edc46aba2836151512ebee4475eaa45533da15c367`. Replaced on 5 November 2026 after author approval.
+
+```markdown
+<!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | Engineering has long represented behavior as states and transitions — automata, labeled transition systems, statecharts, temporal specifications — all keeping states and transitions and discarding the code that realizes them. -->
+```
+
+
+## 2026-11-05 — Connect the invariant inset to the preceding lease example
+
+Review item: `23-invariant-entry`. Source: `book/latex/sources/part2/2.3-behavioral.tex`, §2.3, line 156. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Native excerpt SHA-256: `c1610e9018dcec3242bcc8785a5133978723e10e776bbe1839630708169e2b4a`. Replaced on 5 November 2026 after author approval.
+
+```markdown
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation are the consequential properties for this question; how the job's work is partitioned is not. Indeed, the implementation changed over time in ways that optimized its performance but not its semantics. We changed the pointers to the code, but not the model.
+```
+
+
+## 2026-11-05 — Use implementation consistently in the established summary
+
+Review item: `26-implementation-terminology`. Source: `book/latex/sources/part2/2.6-modeling-summary.tex`, §2.6, review line 15. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Source SHA-256: `35478a6406e63296431e5ce8f0686a916452c9c67ffb21ab71b62280bb93c5b5`. Replaced on 5 November 2026 after author approval.
+
+```
+3.  **Choose degrees of freedom deliberately.** Every representation leaves some choices open. Reduce consequential freedom where doing so improves reasoning or control; preserve freedom where realization can safely remain open, or where later information can support a better choice.
+
+4.  **Maintain the correspondences you depend on.** Multiple representations create correspondence obligations. Derivation, generation, validation, shared identity, and other mechanisms can keep related representations sufficiently consistent for their intended uses.
+
+5.  **Distinguish correspondence from governance.** A model may describe another artifact, or realization may be required to follow the model. Decide which representation owns each consequential fact and which consumers must follow it.
+
+Modeling gives engineering judgment a durable representation. It does not establish that an agent understood that representation correctly, that the resulting artifact realizes it, or that the property continues to hold as the system changes. Those are problems of Alignment, which {{chapter:alignment}} takes up.
+```
+
+
+## 2026-11-05 — Call the edit record recorded history
+
+Review item: `25-figure-recorded-history`. Source: `book/tikz/figures/two-reductions-static-realized.tex`, §2.5, review line 23. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Source SHA-256: `b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47`. Replaced on 5 November 2026 after author approval.
+
+```
+\node[note,text width=13cm] (n) at (0,-6) {Static structure and realized history;\\join by computation identity when a question needs it.};
+```
+
+
+## 2026-11-05 — Executable-model point summary
+
+Review item: `25-executable-pattern`. Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, §2.5, line 194. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Replaced on 5 November 2026 after author approval. Metadata only; the published prose is unchanged.
+
+```markdown
+<!-- point: an-executable-model-is-its-schema-plus-its-checked-predicates | Operationally, an executable model is its structured schema plus the predicates a machine can check over that schema; a schema without checked predicates is only half the pattern. | terms: drift-gate, modeling-principle -->
+```
+
+
+## 2026-11-05 — Correspondence point summary
+
+Review item: `25-correspondence-summary`. Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, §2.5, line 132. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Replaced after author approval. Unpublished editorial metadata only; published text is unchanged.
+
+```markdown
+<!-- point: name-the-direction-of-derivation-up-front | A model and the code stay equal by derivation, and derivation runs in one of two directions; the machinery that keeps them equal depends on which. | terms: derivation-direction, model-from-code, model-to-code -->
+```
+
+
+## 2026-11-05 — Figure 1 appendix branches
+
+Sources: `book/tikz/figures/book-map.tex` and `book/assets/book-map.svg`, Figure 1. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree). Removed after author request: optional appendices should not be highlighted in the book’s main argument. The remaining color drawing is centered; the shaded Chapters 2–5 enclosure remains in both editions.
+
+```tex
+\node[n,text width=3.4cm] (a4) at (6,-6.96) {\textbf{\magebookref{chapter:appendix-part-1-practice}{Appendix Part I}}\\Practice\\\textit{Use and extend}};
+\draw[edge,dotted,-] (s4.east) -- (3.95,-7.2) |- (a4.west);
+\node[n,text width=3.4cm] (a5) at (6,-9.36) {\textbf{\magebookref{chapter:appendix-part-2-evidence}{Appendix Part II}}\\Evidence\\\textit{Inspect the\\empirical record}};
+\draw[edge,dotted,-] (s5.east) -- (3.95,-9) |- (a5.west);
+```
+
+```xml
+  <!-- CHAPTER 4 to Appendix Part I (DOTTED branch — related destination, not a step; quieter than the argument) -->
+  <line x1="512" y1="506" x2="604" y2="506" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-1" x="604" y="480" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
+  <text x="752" y="503" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part I · Practice</text>
+  <text x="752" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">use + extend</text>
+
+  <!-- CHAPTER 5 to Appendix Part II (DOTTED branch) -->
+  <line x1="512" y1="592" x2="604" y2="592" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-2" x="604" y="566" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
+  <text x="752" y="589" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part II · Evidence</text>
+  <text x="752" y="609" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
+
+```
+
+
+## 2026-11-05 — Duplicate selective-modeling editorial point
+
+Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, former line 454 (working tree). Removed the superseded duplicate annotation under the author’s authorization to apply unpublished editorial-point updates directly. The newer summary and all published prose remain.
+
+```tex
+% <!-- point: the-consequence-is-selective-modeling | Selective modeling: model repeatedly reconstructed facts and repeatedly adjudicated properties; add commitment when it retires recurring work. | terms: capability-ladder, modeling-principle, semantic-commitment -->
+```
+
+
+## 2026-11-05 — Bridge into the worked modeling insets
+
+Review item `21-worked-inset-bridge`. Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, working tree at `005947527192ae65b958fc9a37ce8746dbbc6391`. Replaced following author approval; the chapter now introduces simple mainline examples and optional worked cases.
+
+```markdown
+The sections ahead therefore do not survey the repertoire. They develop three kinds of modeling question through production examples from DocAble. Structural models ask what exists and how parts relate. Behavioral models ask what may happen and in what order. Decision models ask what is allowed or which alternative should be selected. Other questions require other representations; ownership, measurement, and provenance will appear where the examples need them. The final section asks what becomes possible when several such representations describe the same system and can be connected through shared identity.
+
+<!-- point: modeling-creates-surfaces-for-alignment | A model does not govern by existing; modeling makes a property explicit, and Alignment makes selected properties enforceable. | terms: modeling-principle, alignment-principle -->
+```
+
+
+## 2026-11-05 — Worked-inset bridge point summary
+
+Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex`, §2.1, working tree. Updated the unpublished annotation to match the approved bridge; author authorized direct editorial-point maintenance.
+
+```tex
+% <!-- point: the-sections-ahead-develop-three-kinds-of-modeling-question | The sections ahead do not survey the repertoire; they develop structural, behavioral, and decision questions through DocAble examples, other questions appear where the examples need them, and the final section asks what joining representations through shared identity makes possible. | terms: model-classes, modeling-principle -->
+```
+
+
+## 2026-11-05 — Approved Chapter 2 and 3 worked insets and supporting revisions
+
+Applied after the author approved all remaining changes and requested reading in context. Native LaTeX remains authoritative. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree).
+
+### 25-deep-dive-placement
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`; original projection SHA-256 `13e1625372e8c42c2888f727b5321fa9bb18163b2bda829f678a7507d1561cc1`.
+
+```markdown
+> #### Deep dive — Beneath commodity intelligence: why structure helps {#inset-beneath-commodity-intelligence}
+>
+> MAGE deliberately treats intelligence as a commodity. The method should not depend on a particular neural architecture, training recipe, or context-window size. Still, the language-model systems available in 2026 offer a useful view one level below that abstraction. They suggest why engineering the structure around an intelligent agent can matter as much as improving the intelligence itself.
+>
+> Access to state is not the same as reasoning over state. Modern language models can accept large contexts, but their ability to use those contexts depends on the reasoning the task requires. OOLONG, for example, was designed to require semantic processing and aggregation across much of a long input rather than retrieval of a few relevant passages. Frontier models degrade substantially on these tasks even when the input fits within their nominal context windows.[cite: bertsch2025oolong] Recursive Language Models (RLMs) make the distinction especially clear. Instead of placing a long input directly into the model's context, an RLM keeps it in an external environment that the model can inspect programmatically, decompose, and pass in pieces to recursive model calls. On several long-context tasks, this restructuring substantially improves performance, including on inputs far beyond the underlying model's context window.[cite: zhang2025rlm]
+>
+> This belongs to a broader shift from treating a language model as a function that produces an answer toward treating it as a reasoner operating within an environment. ReAct interleaves reasoning with actions that obtain new observations from an external environment;[cite: yao2023react] CodeAct extends this idea by allowing executable code to serve as an expressive action language.[cite: wang2024codeact] RLMs go further by making context management and decomposition themselves part of the interaction with the environment. The common lesson is not that any particular harness is universally correct. It is that the structure through which intelligence encounters a problem changes what that intelligence can effectively do.
+>
+> Recent work offers a possible explanation in terms of compositional generalization. Zhang, Li, and Khattab hypothesize that frontier models may already be highly capable on many bounded problems while remaining poorly "managed" on long-horizon ones: a larger task succeeds when it can be decomposed into smaller tasks that individual model calls can reliably solve.[cite: zhang2026mismanaged] Zhang and Khattab subsequently argue that a harness can supply some of this structure by transforming complicated external state into observations that remain locally familiar to the underlying model; their RLM experiments suggest that such structure can improve generalization across both task length and domains.[cite: zhang2026harness] These are developing results rather than a settled theory of language models, but they offer a useful substrate-level interpretation of an engineering observation: more intelligence and more context do not remove the need for structure.
+>
+> MAGE operates one level above this work. A generic agent harness can manage context, call tools, delegate subtasks, and decide how to decompose computation. Software engineering also provides semantic decompositions of the system itself. An architecture model exposes components and boundaries. A data-flow model exposes consequential paths. An automaton exposes legal state transitions. Ownership and obligation models expose ownership and constraints. Bidirectional links among models and implementation let an agent move from code to the relevant model, across related models, and back to the affected code rather than reconstructing all of that structure from a flat collection of source and prose.
+>
+> This distinction also marks the boundary between Modeling and Alignment. Modeling gives commodity intelligence representations in which consequential engineering relationships are explicit and traversable. Alignment makes selected obligations enforceable through mechanisms in the engineered environment—hooks, validators, tests, gates, runtime checks, and others. Better learned decomposition may improve how agents perform work inside that environment. It does not decide which customer, organizational, safety, or societal obligations the environment should preserve.
+>
+> The connection is therefore explanatory, not foundational. Future models may reason over much longer contexts, learn better decompositions, and require different harnesses. MAGE should survive those changes. Its engineering claim is more durable: capable reasoning becomes more useful when consequential system structure is made explicit, and consequential obligations become more reliable when the environment enforces them. Most importantly, those structures keep engineers in control of what the system is for, what it must preserve, and which tradeoffs are acceptable, even as increasingly capable machines take on more of the work required to realize those decisions.
+```
+
+### 25-worked-connected-models-inset
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`; original projection SHA-256 `13e1625372e8c42c2888f727b5321fa9bb18163b2bda829f678a7507d1561cc1`.
+
+```markdown
+<!-- point: different-questions-drew-different-models-joined-where-needed | The preceding sections drew different models because they asked different questions; DocAble keeps a family of structured representations connected by shared identity and traceability where engineers repeatedly need to relate views, not one large model. | terms: system-knowledge, modeling-substrate -->
+
+Different questions drew different models of the same product. Together, the models expose structures through which engineers can reason about DocAble: its components and dependencies, permitted behavior, ownership, policy, quantitative bounds, and realized history. The system keeps them as a family of structured representations, each built for an engineering purpose, connected by shared identity and traceability where engineers repeatedly need to relate one view to another. It would be natural to collapse these views into one large model, but DocAble has no such model, and MAGE requires none.
+
+## A Heterogeneous Modeling Substrate
+
+<!-- section-terms: system-knowledge, modeling-substrate -->
+
+<!-- point: a-heterogeneous-substrate-of-structured-records | DocAble's models differ in shape on purpose: roughly 130 structured model records plus data dialects share identities, derivations, query surfaces, and traceability where useful, are represented as data so map and territory stay separable, and nothing forces them into a single representation. | terms: modeling-substrate, representation-form, map-and-territory -->
+
+<!-- index-def: modeling-substrate -->
+
+DocAble's models differ in shape on purpose. Some are registries of components and their relations. Some represent state transitions. Some encode contracts or decisions. Others capture quantitative relationships or realized history. Roughly 130 structured model records plus several data dialects represent component identity and metadata, deployment topology, inter-service edges, data flow, required environment, state machines, and the governance graph itself. They share identities, derivations, query surfaces, and traceability where those relationships are useful, but nothing forces them into a single representation. The models are represented as data rather than importing the implementation they describe, keeping model and territory separable enough for correspondence to be checked. When a model is meant to provide independent evidence of correspondence, keep it distinguishable from the artifact it checks. {{chapter:software-factories}} returns to this modeling substrate as part of the governed engineering environment and shows how it is maintained and used in practice.
+
+<!-- point: the-unity-that-matters-is-semantic-not-syntactic | Nothing demands that the models share a file format or metamodel; they need only agree on the identities required to connect them — the same service, work item, or operation resolves across representations. | terms: modeling-substrate, join-key -->
+
+The unity that matters is semantic, not syntactic. A service named in a structural registry is the same service a flow model references. A work item in an ownership representation is the same work item whose lifecycle and measurements appear elsewhere. A provenance event identifies the operation whose effect it records. Nothing demands that these models share a file format or metamodel; they need only agree on the identities required to connect them ([ref:modeling-substrate]).
+
+<!-- label: modeling-substrate -->
+<!-- figure: assets/modeling-substrate.svg | *Heterogeneous models over shared identities.* DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system. -->
+
+<!-- point: derive-and-join-do-not-repeat | Prefer shared identity and derivation over independently maintained copies of the same fact; where duplication is unavoidable, make the correspondence explicit and checkable. | terms: derive-and-join, join-key -->
+
+<!-- index-def: derive-and-join -->
+
+That agreement follows one discipline: prefer shared identity and derivation over independently maintained copies of the same fact. Where one model needs a fact owned elsewhere, join through a stable identity or derive a projection. For example, the declared edge model is held in exact correspondence with the deployment edge set, and deployment then derives its access policy — one invocation grant per declared edge — from those edges rather than maintaining a second endpoint list; a journey model joins to those endpoints by call site rather than copying them. Where duplication is unavoidable, make the correspondence explicit and checkable. This reduces the number of independent truths that must be reconciled by hand.
+
+<!-- point: join-static-and-runtime-only-when-a-question-pays | Join static and runtime only when a question pays. | terms: derive-and-join, join-key -->
+
+Static and runtime representations need not collapse into one model either. A computation model can identify remediation work and its declared relations while a provenance record identifies the mutations realized during one run. Shared identity allows observations to join the structural model when a question requires it: DocAble associates staged-run latency and cost with computation identities. The per-session edit record remains separate because it answers a different question — what happened to this artifact — and is a separate provenance reduction rather than a per-run execution graph over computation nodes.
+
+### What happened, and what evidence records it
+
+<!-- point: observable-history-is-not-automatically-useful-a-provenance-model-selects-it | A system may emit millions of events yet leave a consequential question — what changed this artifact, which operation changed it, what evidence supports the account — hard to answer, so a provenance model selects and structures the history that answers it. -->
+
+That realized history deserves its own reduction. A production system may emit millions of events — logs, traces, metrics, audit records — while still making a consequential question difficult to answer: what changed this artifact, which operation changed it, and what evidence supports that account? A provenance model selects and structures the history needed to answer such questions. For DocAble, the consequential history is the history of changes to the user's document, so it records consequential mutations as structured operations: each operation names its target, the mutation made, the remediation pass responsible, and the evidence retained about the change ([ref:attribution-model]). The record is narrower than a general execution trace and more directly useful for explanation, debugging, and audit.
+
+<!-- label: attribution-model -->
+<!-- figure: assets/attribution-model.svg | *Attribution provenance model.* A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history. -->
+
+<!-- point: event-grain-is-part-of-the-provenance-model | Choosing the grain is part of the modeling decision — "document modified" is too coarse, a complete execution trace too fine; DocAble records consequential mutations as typed operations and derives audit, debugging, and changelog views from that history. -->
+
+Choosing the grain is part of the modeling decision. "Document modified" is too coarse to explain a consequential change; a complete execution trace leaves later reasoning to reconstruct which events matter. DocAble instead records consequential mutations as typed operations and derives audit, debugging, and changelog views from that history.
+
+<!-- point: a-typed-edit-record-replays-deterministically | During a PDF remediation session mutations are recorded as typed edit values in a per-session log, and a replay engine can apply the same sequence deterministically — one representation explains what happened and reproduces the mutations while omitting the reasoning that produced them. -->
+
+During a PDF remediation session, these mutations are recorded as typed edit values in a per-session log, and a replay engine can apply the same sequence deterministically. The representation can therefore explain what happened and reproduce the resulting mutations while omitting the reasoning, analyses, control decisions, and retries that produced them.
+
+<!-- point: record-and-replay-separate-three-questions | The computation graph asks what may compose, the provenance record says which mutations occurred in this run, and replay asks whether that history can be reproduced. -->
+
+The computation graph asks what computations may compose. The provenance record says which consequential mutations occurred in this run. Replay asks whether that realized history can be reproduced ([ref:two-reductions-static-realized]).
+
+<!-- label: two-reductions-static-realized -->
+<!-- figure: assets/two-reductions-static-realized.svg | *Computation structure versus realized history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one. -->
+
+<!-- point: provenance-boundary-model-records-a-lint-guarantees-every-mutator-stamps | The model records attribution per mutation; a structural check can establish that every mutator leaves an attribution record but not that the semantic account inside it is correct — this chapter models the evidence, Chapter 3 enforces the obligation. | terms: soft-vs-hard-governance -->
+
+A provenance model does not guarantee that every consequential operation actually leaves the required record. DocAble addresses that separately, by requiring typed mutation verbs to emit attribution and checking that obligation structurally. That check is a **hard** presence guarantee over a **soft** content claim: it can establish that every mutator leaves an attribution record, but not that the semantic account inside that record is correct — that remains the author's. This chapter models the evidence an operation should leave; {{chapter:alignment}} asks what mechanism enforces that obligation.
+
+### Questions that span models
+
+<!-- point: joining-models-makes-cross-representation-properties-available | A model makes selected properties of a system available for reasoning; joining models makes properties that cross those representations available for reasoning. | terms: derive-and-join, join-key, modeling-substrate -->
+
+A model makes selected properties of a system available for reasoning. Joining models makes properties that cross those representations available for reasoning. The structural model can answer a structural question, the deployment model a deployment question, the decision model a permission question — but some engineering obligations span them.
+
+<!-- point: the-interservice-edge-is-a-worked-join | One typed interservice-call edge joins to deployment configuration for the callee URL, to runtime identity for the required invocation grant, and to the service catalog for topology agreement; 28 modeled edges produce 10 distinct grants, a deployment plan no single artifact contains. | terms: derive-and-join, join-key -->
+
+DocAble's sharpest worked case is the interservice call edge. A typed edge records that one service may call another — but the same edge is joined to deployment configuration to determine the environment variable carrying the callee's URL, to the runtime identity a deployment executes under to derive the invocation grant the cloud's access-control configuration must contain, and to the service catalog to check that the documented topology agrees. Twenty-eight modeled call edges produce ten distinct invocation grants once shared runtime identities are accounted for. No single source artifact contains that deployment plan; it is derived by joining models. DocAble modeled the join after living the corresponding failure: service URLs were once wired correctly while the matching invocation grant was absent, and staging went down with authorization errors. The repair did not add another bespoke grant. It made URL wiring and authorization two consequences of the same modeled edge.
+
+<!-- point: connections-can-create-information | Connections can create information that no individual model contains: the call model lacks the environment-specific runtime identity, the deployment environment does not state the intended topology, and their join determines the permission that should exist. | terms: derive-and-join, join-key -->
+
+Connections can create information that no individual model contains. The call model does not contain the environment-specific runtime identity; the deployment environment does not independently state the intended call topology. Joining them determines the permission that should exist.
+
+<!-- point: a-declared-property-can-determine-what-evidence-must-exist | Declared invariant facts derive a verification tier, the tier mandates a checker kind, and a check joins the citation against the checker corpus on disk — so a declared property can determine what kind of evidence must exist. | terms: derive-and-join, drift-gate -->
+
+The same pattern reaches from models to their evidence. Each invariant in DocAble's composed state-machine model declares its facts: the participant lanes that touch a coordination point, the coordination primitive, and the temporal shape of the property. A derivation over those facts — never a hand-typed label — assigns the invariant a verification tier; the tier determines what kind of checker the invariant must cite; and a check joins each citation against the checker corpus on disk, failing when the mandated checker is missing. A declared property can therefore determine what kind of evidence must exist. The join makes the obligation derivable. {{chapter:alignment}} discusses the separate decision of whether such an obligation should block a commit.
+
+<!-- point: joins-are-also-where-information-is-lost | Each representation can be locally reasonable while their composition fails to preserve a distinction the engineering decision requires — the entitlement failure crossed exactly such a seam. | terms: derive-and-join, model-drift -->
+
+These crossings are also where information is lost. Each representation can be locally reasonable while their composition fails to preserve a distinction the engineering decision requires. The entitlement failure of the decision section is one example: the system possessed the fact that an entitlement was unlimited, but the representation presented to the admission decision had reduced that richer state to a scalar. A join through shared identity does not remove the risk; it gives the crossing a name and a place where the correspondence can be checked.
+
+<!-- point: an-agent-enters-through-the-object-its-task-names-and-traverses-outward | Semantic unity lets an agent enter the substrate at the entity its task names and follow relations outward, taking only the connected slice the question needs. | terms: modeling-substrate, join-key -->
+
+Shared identity also provides a query entry point. An agent — or an engineer — enters the substrate through the object its task names and follows identities outward across models: name a component and ask what it owns, what it depends on, which flow reaches it, what its lifecycle looks like. A canonical query surface makes those relationships traversable rather than rediscovered through repository search. The agent does not need *the whole model* — only the connected slice that answers the engineering question in front of it. [ref:substrate-traversal] draws that entry and outward walk.
+
+<!-- label: substrate-traversal -->
+<!-- figure: assets/substrate-traversal.svg | *Task-driven traversal.* A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question. -->
+
+## Maintain Explicit Correspondence
+
+<!-- section-terms: map-and-territory, traceability, drift-gate -->
+
+<!-- point: a-family-of-models-risks-a-second-system-of-record-that-diverges | A family of models invites an obvious danger — a second system of record that quietly diverges from the first — and the answer is to engineer the relationship between map and territory, not to stop modeling. | terms: map-and-territory, drift-gate -->
+
+<!-- index-def: map-and-territory -->
+
+Multiple models create a correspondence problem: represented facts can diverge from the system or from one another. Engineer the relationship between map and territory so divergence is caught rather than assumed away. Which machinery you reach for depends on which side is the source of truth.
+
+<!-- point: name-the-direction-of-derivation-up-front | Maintain correspondence by deriving a model from implementation, generating an artifact from a model, or checking traceability where neither side fully determines the other. | terms: derivation-direction, model-from-code, model-to-code -->
+
+<!-- index-def: derivation-direction -->
+
+Make the direction of correspondence explicit. Where the implementation is the source of truth, derive the model. Where the model is the source of truth, generate the downstream artifact. Where neither fully determines the other, maintain traceability and check the mechanically decidable correspondences. [ref:derive-generate-trace] lays the three cases side by side.
+
+<!-- index-def: model-from-code -->
+
+<!-- index-def: model-to-code -->
+
+### Derive when implementation owns the truth
+
+The model is a projection of the code, reconciled at build time. A component-zone registry reads the real directory tree; a journey's dependency list is induced from its real call sites. The drift check is a **reconciler** — it re-derives the model from the code and fails on divergence. This pattern is common when models are introduced into an existing codebase.
+
+### Generate when the model owns the truth
+
+Code, configuration, or documentation are emitted from the model. The service catalog and the wire-contract types are generated from the service-flow model. The drift check is a **freshness and provenance check** — the generated artifact carries a header, and a hand-edit or a stale regeneration is a finding.
+
+<!-- label: derive-generate-trace -->
+<!-- figure: assets/derive-generate-trace.svg | *Three correspondence patterns.* Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable. -->
+
+<!-- point: the-computation-model-is-the-generate-case-execution-follows-it | The remediation subsystem illustrates both directions around one source of truth: its explicit computation model is consumed by execution, so realization follows the model rather than reconstructing composition from node implementations — the generate case. | terms: map-and-territory, derive-and-join -->
+
+DocAble's remediation subsystem illustrates both directions around one source of truth. Its explicit computation model names remediation work and its composition, and the execution machinery consumes that model to determine dependency order and readiness. The model therefore governs composition operationally: this is the generate case in the consequential sense that realization follows the model rather than reconstructing composition from node implementations.
+
+<!-- point: a-separate-python-view-projects-the-model-for-analysis | A separate Python remediation-graph view projects that structure for analysis and governance — queryable, joinable, drift-checked — without becoming the runtime scheduler. -->
+
+A separate Python remediation-graph view projects that structure for analysis and governance. For Office formats, its edges derive from the same registry read/write metadata used by scheduling; for PDF, parallel typed declarations are held in correspondence by blocking checks. The view can therefore be queried, joined to other models, and checked for drift without itself becoming the runtime scheduler.
+
+<!-- point: one-source-of-truth-supports-both-directions | One source of truth supports both directions at once: execution consumes the authoritative model while analytical views derive from it or from parity-bound declarations; the question is which representation owns the fact and which consumers must follow it. -->
+
+One source of truth can thus support both directions at once: execution consumes the authoritative model, while analytical representations derive from it or from parity-bound declarations around it. The important question is which representation owns the fact and which consumers are required to follow it.
+
+<!-- point: derivation-solves-correspondence-not-architecture-quality | Derivation settles correspondence, not whether the architecture is good. | terms: map-and-territory, alignment-principle -->
+
+The graph is derived, but it remains a view: it suppresses method bodies, internal algorithms, runtime history, timing, and most document state, keeping only the entities and relations its structural questions need. Derivation prevents one kind of drift by construction — an engineer never authors the edges.
+
+<!-- point: where-neither-is-fully-derivable-maintain-traceability-and-check-decidable-predicates | Where neither side can be fully derived from the other, maintain traceability between them and check the predicates that are mechanically decidable. | terms: map-and-territory, traceability, drift-gate -->
+
+<!-- index-def: traceability -->
+
+### Trace and check where neither owns the truth
+
+Where neither side can be fully derived from the other, the move is **traceability plus drift checking**. Relate each model element to the implementation that realizes it, then check the correspondences a machine can decide. Keep that relation *live*: resolve the target against current code when the check runs, rather than storing a line number or a symbol name that is itself another snapshot able to drift. A deleted target then surfaces as a finding instead of a stale green edge. In DocAble a traceability gate resolves each model-to-code anchor through a language-aware resolver — one for each source language — and reports every anchor that no longer resolves. Before the gate existed, such renames could silently strand model references.
+
+<!-- point: two-layers-cover-the-relationship-mechanical-and-judgment | Mechanical correspondence has a declared surface: some claims are decidable, others remain semantic and require judgment, unmodeled properties have no model-based coverage, and a recurring miss is a candidate for refining the representation or adding a control. | terms: drift-gate, map-and-territory, model-drift -->
+
+### Some correspondence remains semantic
+
+Mechanical correspondence has a declared surface. Some claims are decidable: an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Other claims remain semantic and require judgment; unmodeled properties have no model-based coverage. A recurring miss is a candidate for refining the representation or adding a control ([ref:model-sync-two-layer-net]).
+
+<!-- label: model-sync-two-layer-net -->
+<!-- figure: assets/model-sync-two-layer-net.svg | *Coverage of model correspondence.* Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage. -->
+
+<!-- point: an-executable-model-is-its-schema-plus-its-checked-predicates | A structured schema plus checked predicates is one executable-model pattern; generation, simulation, transformation, and analysis are others, and correspondence to a changing system still requires checks or derivations. | terms: drift-gate, modeling-principle -->
+
+For invariant-bearing models, one useful executable pattern is a structured schema plus checked predicates over that schema. The schema defines entities, relations, fields, or states; the predicates state properties that a checker evaluates over the declared domain. Other executable models may instead drive generation, simulation, transformation, or analysis. A schema alone does not establish correspondence to a changing system; checks or derivations are needed where that correspondence matters. [ref:coherence-triangle] draws that relationship.
+
+<!-- label: coherence-triangle -->
+<!-- figure: assets/coherence-triangle.svg | *Checked predicates over a structured model.* A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability. -->
+
+<!-- point: no-synchronization-mechanism-proves-semantic-correctness | Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture. | terms: map-and-territory, drift-gate, modeling-principle -->
+
+None of this proves the model *right*. Synchronization does not establish that the model is correct, that the architecture it expresses is good, or that the modeled surface captures every relationship that matters. A pointer can resolve while its meaning has changed; a schema and its generated client can agree while a live producer emits something else. The guarantee the machinery offers is narrower:
+
+> **For the surface the model claims, check the correspondence that can actually be decided.**
+
+<!-- point: the-narrow-guarantee-is-the-boundary-part-iii-begins-at | The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, examining why correspondence does not by itself establish correctness. | terms: modeling-principle, alignment-principle, map-and-territory -->
+
+{{chapter:alignment}} examines why correspondence between a model and its implementation does not, by itself, establish correctness. Derive where implementation is the source of truth; generate where the model is the source of truth; trace and check where neither fully determines the other.
+
+## Modeling Makes Properties Available to Engineering
+
+<!-- point: a-model-does-not-govern-by-existing-it-makes-a-property-explicit | A model does not govern by existing: a structural model names a forbidden dependency without preventing it, a behavioral model an illegal transition without rejecting it, a measurement model a budget without stopping work — Modeling makes the property explicit, it does not enforce it. | terms: modeling-principle, alignment-principle -->
+
+A model does not govern the system merely by existing. A structural model can name a forbidden dependency without preventing it; a behavioral model can name an illegal transition without rejecting it; a measurement model can represent a budget without stopping work that exceeds it. Modeling makes these properties explicit. It does not enforce them.
+
+<!-- point: docable-attaches-no-hard-invariant-to-either-quantity | DocAble's cost-and-capacity model relates usage and pricing to an attributable cost against a budget and concurrency to a capacity demand against an envelope, and attaches no hard invariant to either quantity: the model says cost can be compared against a budget, not that it must not exceed one. | terms: soft-vs-hard-governance -->
+
+DocAble's quantitative model makes the point concretely. Usage and pricing determine an attributable GenAI cost, read against a declared budget; concurrency determines a capacity demand, read against a capacity envelope. The wording of the property is deliberate: the model says cost *can be compared* against a budget, not that cost *must not exceed* one. DocAble attaches no hard invariant to either quantity — cost is routed to the administrative pane for observation and accounting, while capacity is controlled through a runtime-tunable limit. In the configuration examined here, these quantities are observations rather than enforced bounds. A cost figure is evidence; whether crossing a budget should block work, raise an alarm, or simply be recorded is a separate question of enforcement.
+
+<!-- point: measurement-boundary-modeling-and-enforcement-are-separate | The cost-and-capacity model makes spending attributable and demand comparable to an envelope; it does not decide the budget, guarantee that the numbers are collected correctly, or enforce the bound. -->
+
+[ref:modeling-perp-enforcement] draws that separation: the model defines the quantity and the reference; whether a comparison is merely observed, used to adapt behavior, or enforced by a gate is Alignment's decision. The model that makes spending attributable does not decide the budget, guarantee that the numbers are collected correctly, or enforce the bound.
+
+<!-- label: modeling-perp-enforcement -->
+<!-- figure: assets/modeling-perp-enforcement.svg | *Modeling and enforcement are separate decisions.* The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate. -->
+
+<!-- point: relational-obligations-need-enough-representation | Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance. | terms: modeling-principle, alignment-principle -->
+
+Local syntactic obligations can often be checked with little explicit modeling. Architectural boundaries, temporal obligations, distributed ownership, provenance requirements, and end-to-end policies require enough representation to expose the relevant system relationships. Modeling makes those relationships available to analysis and, where appropriate, to governance.
+
+They are also available to design. A dependency graph may reveal that an execution boundary is artificial; a behavioral model may expose a recovery protocol that should change; a quantitative model may show that an otherwise plausible decomposition cannot meet its resource envelope. In each case, analysis of the model can change the architecture before implementation commits to the choice.
+
+<!-- point: alignment-does-not-require-a-separately-represented-model | Alignment does not require every obligation to have a separately represented model — some properties are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties available for analysis and enforcement. | terms: modeling-principle, alignment-principle -->
+
+Alignment does not require every obligation to have a separately represented model. Some properties are already observable at an action or artifact boundary and can be constrained directly. Models extend the range of properties available for analysis and enforcement.
+
+<!-- point: docable-models-arose-around-expensive-questions | DocAble's models arose around engineering questions that implementation alone made expensive or unsafe to reconstruct; different questions required different reductions, and shared identities connect them where a decision crosses views. | terms: modeling-principle, model-classes -->
+
+DocAble's models arose around engineering questions that implementation alone made expensive or unsafe to reconstruct: where mutation may occur, how remediation computations compose, who owns in-flight work, which services may communicate, whether a user is entitled to an operation, what bounds apply, and what happened during a run. Different questions required different reductions; shared identities connect them where a decision crosses views.
+
+<!-- point: part-iii-asks-which-obligations-the-environment-should-hold | Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them. | terms: modeling-principle, alignment-principle -->
+
+{{chapter:alignment}} asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.
+
+
+```
+
+### 33-dynamic-analysis
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+<!-- point: a-ci-suite-bundles-three-roles-without-collapsing-the-distinction | A CI suite bundles sensor, validator, and gate without collapsing the distinction among them. | terms: sensor, validator, gate, governance-package -->
+
+A CI test suite often bundles three roles: executing the code produces evidence, checking the result validates it, and failing the build gates progress. One artifact can perform several roles without collapsing the distinction among them.
+```
+
+### 33-test-gate-scope
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+> A mechanism can guarantee only the property it actually governs, under the assumptions on which its evidence and implementation depend. A validator can faithfully enforce the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state. Hard control therefore does not mean "the system is correct." It means that, within a stated scope, acceptance no longer depends on the agent voluntarily satisfying that obligation.
+```
+
+### 33-worked-ownership-and-tests
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+<!-- point: recovery-is-not-permission | The sharpest instance of the pair is ownership: the lease makes ownership visible and recoverable, the durable compare-and-set supplies the constraint. Recovery is not permission. | terms: constraint, sensor, constraints-and-sensors -->
+
+The sharpest instance of the pair is ownership of a unit of work. DocAble's in-flight lease makes active ownership visible and lets apparently abandoned work become recoverable. The lease does not itself grant final permission to perform the consequential side effect. A durable compare-and-set supplies that constraint: competing claimants cannot both acquire it, so at most one performs the effect. The lease may expire because a worker is merely slow, so redelivery cannot imply permission to repeat the effect. **Recovery is not permission.**
+
+## One Obligation, Several Ways to Hold It
+
+<!-- section-terms: constraint, validator, gate -->
+
+<!-- point: a-modeled-obligation-does-not-imply-one-enforcement | A modeled obligation does not imply one enforcement technology; ask what kind of property it is. -->
+
+A modeled obligation does not imply one particular enforcement technology. Ask first what kind of property it is and where the environment can enforce it.
+
+<!-- point: prefer-the-constraint-when-you-can-exclude-the-state | If an invalid state can be removed from the action space, prefer the constraint. -->
+
+If an invalid state can be removed from the action space, prefer the constraint. DocAble's work-item claim is the simple case: a database compare-and-set updates the row only while it remains in the expected prior state. Two competing claimants cannot both win the same transition. The ownership obligation is therefore carried by the runtime primitive itself rather than by a later checker.
+
+<!-- point: interleaving-properties-need-a-validator-over-the-state-space | Properties that live across sequences need a validator that reasons over the composed state space. -->
+
+Other properties live across sequences of otherwise legal actions. The in-flight lease is one example. Reclaiming a stale lease, issuing a new epoch, and receiving a late release from the previous holder are each individually plausible events; their interleaving can still violate the ownership invariant. Here the environment needs a validator that can reason over the composed state space. DocAble uses a small, purpose-built model checker: an executable transition model enumerates the reachable interleavings within explicit bounds and searches them for violations of the ownership invariants.[note: More precisely, this is bounded explicit-state model checking. "Bounded model checking" conventionally refers to bounded executions encoded for SAT/SMT solving; DocAble's checker exhaustively explores an explicitly bounded state space instead.] The checker is deliberately specialized to the protocol. For this small protocol, a purpose-built checker keeps the method close to the model and avoids unnecessary tooling.
+
+<!-- point: temporal-obligations-require-another-shape-of-evidence | Temporal obligations require another shape of evidence; a finite trace cannot establish eventuality. -->
+
+Temporal obligations require another shape of evidence. "No two workers own the same claim" is violated by one reachable bad state. "Every submitted job eventually terminates" is not. A finite trace can show progress, but it cannot establish that every fair execution eventually reaches a terminal state. A temporal model checker can reason about that stronger claim.
+
+<!-- point: mechanisms-match-properties-not-an-adoption-sequence | These mechanisms differ in what they make observable or enforceable; their ordering does not prescribe an adoption sequence — an environment uses the mechanisms appropriate to the obligations it must govern. -->
+
+These mechanisms differ in what they make observable or enforceable. Their ordering here does not prescribe an adoption sequence; an engineering environment uses the mechanisms appropriate to the obligations it must govern. The engineering preference remains the same throughout MAGE: make the bad state impossible when you can; otherwise produce proportionate evidence that an appropriate evaluator can use to decide the obligation. [ref:match-mechanism-to-property] sets the three matches out.
+
+<!-- label: match-mechanism-to-property -->
+<!-- figure: assets/match-mechanism-to-property.svg | *Match the mechanism to the property.* An obligation may be held structurally by excluding the invalid state, evaluated by exploring reachable states, or checked as a temporal property over executions (for example with TLA+/TLC). These are alternatives selected by the engineering claim. A gate is a separate decision that enforces the resulting verdict. -->
+
+
+```
+
+### 33-mainline-validator-example
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+The other two roles act on evidence and admission. A **validator** turns evidence into a judgment: does the observed call graph contain only permitted edges, did this journey establish its post-condition, does the provenance record account for every mutation? It reads the evidence a sensor produced — or derives it straight from the artifact — and asks whether it satisfies the obligation. A validator may be deterministic, probabilistic, or human; its verdict affects admission only when the environment acts on it. A correspondence validator can enforce agreement without making either representation govern execution. DocAble's remediation-graph parity check blocks drift between the projected graph and typed pass declarations even though the executable declarations remain upstream.
+```
+
+### 33-mainline-fresh-evidence
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing. | terms: validator, gate -->
+
+A loop may re-derive evidence at a later admission boundary rather than rely on the producing agent's self-report or on an earlier marker.[note: Re-derivation trades additional computation and latency for stronger assurance that the evidence corresponds to the artifact or state being admitted. Reusing or caching an earlier result can be a sound optimization when the system can establish that the relevant inputs have not changed; the optimization should preserve that correspondence rather than merely assume it.] Re-derivation can strengthen independence and freshness: the later mechanism evaluates the artifact or state that is actually being admitted. DocAble's definition-of-done audit takes this approach, recomputing its evidence at close rather than relying on evidence produced earlier in the task. The principle is simpler than the implementation choice: the thing asking to pass does not get to define what counts as having passed.
+```
+
+### 33-mainline-measurement-responses
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+Related measurements from DocAble's GenAI cost-and-usage model support different enforcement decisions, and [ref:cost-enforcement-gradient] fans them across the roles. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model can support observation, adaptation, graceful degradation, or hard admission control. The appropriate response depends on the obligation attached to the quantity.
+```
+
+### 33-mainline-positive-negative
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. [ref:positive-negative-obligation] sets the two forms side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.
+```
+
+### 33-mainline-provenance-example
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`; original projection SHA-256 `8121dcb5dc7b1a034517f5da82a71d9f99ccdd59eaa335ba4ad3876a65d9fa5e`.
+
+```markdown
+Other architectural obligations do not have such a convenient boundary. Suppose all color decisions must pass through a canonical color model before document mutation. The unwanted alternative is not necessarily a call to one forbidden API. A future implementation may combine otherwise legitimate resolvers, representations, and mutation APIs into a new path that reaches the same protected operation. Each call can be legal, and the path may not match any bypass anticipated by a source-time rule.
+```
+
+### 20-worked-inset-reading-path
+
+Source: `book/latex/sources/part2/00-part-intro.tex`; original projection SHA-256 `165b9ece6976145ac2f47b33c32242a23043474934a000d00488d10ad93722f1`.
+
+```markdown
+DocAble is the running example—the production accessibility service introduced in {{chapter:problem}}. A document enters, remediation is distributed across workers and services, the result is validated, and a corrected document returns with a record of what changed. Each model below projects from that larger system only the relationships needed for its engineering question. The models, mechanisms, and counts describe the repository revision examined at the time of writing.
+
+Consider a document-processing job in DocAble. We might want to know whether a job can have two workers modifying it at the same time. A model of job ownership lets us express that question precisely. We can then require that each job have at most one worker responsible for modifying it at any moment. This requirement must hold for every job, throughout its lifetime, not merely for the jobs we happen to inspect. We can analyze the model to look for situations that violate the requirement. Whether the implementation actually prevents those situations is a further question.
+
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | A worked example establishes four terms that stay distinct — property, invariant, analysis, enforcement — before each section names them; an invariant is a property required to hold throughout a scope, and enforcement is reserved for Chapter 3. | terms: model-classes, modeling-principle, alignment-principle -->
+
+Each worked section begins with a familiar engineering representation, explains what we can express and analyze using it, and then applies it to DocAble. The example above illustrates four terms used throughout the chapter. A **property** is a claim about a system that we can express using a model, such as whether two workers can modify the same job concurrently. An **invariant** is a property that must always hold within a specified scope: in this case, every job must have at most one modifying worker at any moment. An **analysis** or check produces evidence about whether the property holds. **Enforcement** goes further by preventing violations in the running system or development process. {{chapter:alignment}} examines enforcement.
+
+<!-- box-family: inset -->
+
+> #### Four questions for every model
+>
+> Every model section ahead opens on the same four lines:
+>
+> - **Engineering question** — what am I trying to know or decide?
+>
+> - **Model** — what representation makes the question tractable?
+>
+> - **Property** — what can I now state precisely?
+>
+> - **Quality attribute** — what engineering concern does that property serve?
+
+
+```
+
+### 22-worked-structural-inset
+
+Source: `book/latex/sources/part2/2.2-structural.tex`; original projection SHA-256 `7d43cd9aaebf8f917187354e42dbdd65a37eb0578a683e06574c0cad63da4600`.
+
+```markdown
+Static analysis can sometimes derive the graph from the implementation; in other cases engineers declare the architecture as intent. Those are different claims — one describes what the system appears to do, the other what it is supposed to do — and {{chapter:alignment}} treats the distinction carefully. For now the move is smaller: choose the structural relation that makes the engineering question explicit. DocAble uses that move at two grains.
+
+## DocAble: Document-Mutation Structure
+
+DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures. Those libraries are necessary, but they sit behind a deliberate architectural boundary: most remediation logic works through DocAble's structured-document abstractions rather than reaching into a format-specific implementation directly.
+
+<!-- box-family: model-card -->
+
+> #### Document-mutation model · Structural
+>
+> - **Engineering question** — Where is document mutation supposed to occur?
+>
+> - **Model** — a layered structural relation: remediation logic operates through a structured-document model, with a separate implementation for each format: DOCX, PPTX, XLSX, and PDF.
+>
+> - **Property** — the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.
+>
+> - **Quality attribute** — architectural integrity and modifiability.
+
+<!-- point: a-structural-model-names-the-sanctioned-seam-for-document-mutation | The model draws one architectural relation — remediation reaches format-specific mutation through a structured-document seam, implemented per format — and leaves queues, retries, sessions, and repair mechanics out. -->
+
+The necessary model is small. [ref:document-mutation-model] draws it: remediation logic operates *through* a structured-document model, which has a separate *implementation* for each format—DOCX, PPTX, PDF, LaTeX, etc. It says nothing about queues, retries, deployment, user sessions, or the mechanics of individual repairs. Those facts are real but irrelevant to the question; the reduction preserves only the architectural boundary that matters.
+
+<!-- label: document-mutation-model -->
+<!-- figure: assets/document-mutation-model.svg | *Document-mutation structural model.* The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision. -->
+
+<!-- point: a-model-precedes-the-constraint-that-protects-it | The model states the boundary as a path property — every ordinary mutation route crosses the seam — and exposes it to checking; a static control that flags a bypass is the Chapter 3 enforcement. | terms: soft-vs-hard-governance -->
+
+The principal property is a path claim: every ordinary route to format-specific mutation crosses the seam, and no route reaches a raw format library directly. The model *states* that relation and exposes it to checking; it does not, by existing, enforce it. {{chapter:alignment}} returns to the same relation when a static control flags code that bypasses the seam. The model supplies the architectural claim; the mechanism enforces that claim. This obligation is a **hard** one — a lint refuses the bypass — but the refusal belongs to {{chapter:alignment}}.
+
+<!-- point: a-structural-model-can-drift-from-the-system-it-describes | A structural model carries the opposite risk — the code moves and the drawing does not — so the boundary it shows quietly stops matching the system; that gap is model drift, and later sections keep the correspondence by deriving, generating, or tracing. -->
+
+<!-- index-def: model-drift -->
+
+A structural model carries the opposite risk too. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is **model drift**. Later sections make the correspondence explicit by deriving, generating, or tracing between model and implementation.
+
+## DocAble: Computation and Composition
+
+<!-- point: a-second-structural-question-reaches-inside-the-pipeline | A second structural question reaches inside remediation: which computations make up the pipeline, and how do they depend on one another; the first reduction treats each registered pass as a node. -->
+
+The document-mutation model asked where one kind of change belongs. A second structural question reaches further inside the system: what computations make up remediation, and how do they depend on one another? DocAble runs a document through a collection of registered remediation passes. A pass may detect a condition, produce information a later pass uses, decide whether remediation should proceed, apply a bounded change to the intermediate representation, or edit a larger region directly. That structure exists in the implementation whether or not a model names it. The first reduction is the obvious one: treat each registered pass as a node, and suppress the statements, library calls, and loops inside it.
+
+<!-- box-family: model-card -->
+
+> #### Remediation-computation model · Structural
+>
+> - **Engineering question** — What consequential computations make up remediation, and how does information move among them?
+>
+> - **Model** — a static directed graph whose nodes are registered computations and whose typed edges represent declared composition among them.
+>
+> - **Property** — declared data dependencies and control dependencies are distinguishable and consistent with pipeline ordering; each modeled computation also states how bounded its mutation is — a typed, comparable patch for all or a declared subset of its edits, or a direct in-place edit — and, on a separate axis, which apply seam a patch producer uses.
+>
+> - **Quality attribute** — analyzability, modifiability, and architectural integrity.
+
+<!-- point: the-computation-model-distinguishes-data-flow-from-control-composition | DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run). -->
+
+DocAble's remediation-computation model represents registered computations as nodes and distinguishes two kinds of composition. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. Treating both as a generic dependency would obscure a consequential distinction: information that contributes to a result is different from information that controls whether the computation occurs. [ref:from-nodes-to-composition] draws the resulting reduction.
+
+<!-- label: from-nodes-to-composition -->
+<!-- figure: assets/from-nodes-to-composition.svg | *From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs. -->
+
+<!-- point: the-contrast-between-the-two-structural-models | The first model preserves one architectural relation; the second preserves a family of typed compositional relations over the same system. -->
+
+The first model preserves one architectural relation. The second preserves a family of typed compositional relations over the same system.
+
+<!-- point: the-model-also-records-how-bounded-each-effect-is | The same model records how bounded each computation's effect is — a typed patch for all or part of its edits, or a direct in-place edit — exposing distinctions the implementation contains but does not represent uniformly. -->
+
+The same model also records how bounded each computation's effect is: some produce typed patches, some produce them for part of their work and edit directly for the rest, and most edit document state directly. These distinctions do not declare one form universally better. They make previously implicit differences available for engineering questions about composition and mutation.
+
+<!-- point: the-static-graph-is-not-one-execution-of-it | The computation model is static per run, but other views attach observations to its stable computation identities — DocAble joins staged-run latency and cost to those identities without turning the structural graph into an execution log. -->
+
+The computation model remains static with respect to any one run: it records no per-job invocation history, retries, or model fingerprint. Other views can nevertheless attach observations to its stable computation identities. DocAble joins staged-run telemetry to those identities, so measured latency and cost can be queried alongside the structural model without turning the structural graph into an execution log. The per-session mutation record remains separate: it records what happened to one artifact, not the execution history of the computation graph.
+
+<!-- point: the-identity-spine-supports-added-views-without-enlarging-the-schema | Additional engineering views attach by computation identity rather than enlarging the structural schema; declared properties state intent, measured properties report observation, so an unmeasured value is unknown, not zero. -->
+
+The same identity spine can support additional engineering views without enlarging the structural schema each time. Properties such as complexity, bounded execution, latency, test coverage, and checker trust can live in separate providers keyed by computation identity. Declared properties state engineering intent; measured properties report observation and may have incomplete coverage. An unmeasured latency is therefore unknown, not zero. The model family grows by joining views around stable identities rather than by turning one graph into a model of everything.
+
+The next section adds time: what states a thing occupies, and the orderings it is allowed to move through.
+
+```
+
+### 23-worked-behavioral-inset
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`; original projection SHA-256 `282e699c3b8776cffaed9b5f4b5fc3d86d38b6f0c227c1d0bb487a0e64b03c7e`.
+
+```markdown
+A structural model holds a system still; a behavioral model lets it move. It suppresses most of what a component *is* and keeps what it may *do* over time — the states a job may occupy, the transitions permitted between them, and the orderings those transitions allow or forbid. Where a dependency graph answers *what is connected to what?*, a behavioral model answers a question that only arises once time is admitted: what may happen, and in what order?
+
+## The Canonical Move: States, Transitions, and Executions
+
+<!-- point: behavior-has-a-long-repertoire-of-state-transition-representations | Engineering has long represented behavior as states and transitions — automata, labeled transition systems, statecharts, temporal specifications — all keeping states and transitions and discarding the code that implements them. -->
+
+Engineering has represented behavior this way for a long time. A finite-state machine names the legal states of a system and the transitions between them; a labeled transition system adds the events that label those transitions; statecharts add hierarchy and concurrency so that large behaviors stay legible;[cite: harel1987] a temporal specification describes a property of whole executions rather than of any single state. These forms differ in expressiveness, but they share one reduction: they keep the states and the transitions, and they discard the code that implements each one.
+
+<!-- point: the-reduction-is-what-makes-behavior-checkable | Reducing a service to states and transitions turns "can it reach a state it should never occupy?" from a reconstruction over scattered handlers into a question a person or tool can answer. -->
+
+That reduction is what makes behavior checkable. A job-processing service described only through its handlers, database writes, and retries hides the very question an engineer most needs to ask — can the system reach a state it should never occupy? The same service, reduced to a handful of states and the transitions between them, turns that question into one a person or a tool can actually answer ([ref:canonical-behavioral]).
+
+<!-- label: canonical-behavioral -->
+<!-- figure: assets/canonical-behavioral.svg | *The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits — here the skip from IDLE straight to DONE — is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives. -->
+
+<!-- point: semantics-are-states-and-permitted-transitions-and-the-omissions-are-the-obligations | A node is a legal state, an edge a permitted transition, a path an admitted execution; the transitions the model omits are the behaviors it declares illegal, and the property's shape selects the checker. -->
+
+A node is a legal state; a directed edge is a permitted transition; a path through the graph is an execution the model admits. The key content is often negative: the transitions the model omits are exactly the behaviors it declares illegal. Once behavior is explicit, the questions form a progression from local to global — is this single transition legal? is this state reachable at all? can a legal execution reach a forbidden state? can the system deadlock? must some event eventually occur? The first are **safety** questions: a finite execution prefix that demonstrates a violation refutes them. The last is a **liveness** question, which requires reasoning about whether a desired event eventually occurs; no finite prefix alone establishes that the event will never occur. A model can make either expressible, and the choice of check — transition validation, reachability search, invariant checking, or temporal model checking[cite: baier-katoen2008] — follows from the shape of the property rather than from a preference for one method.
+
+A behavioral model does not make the system behave. It makes the behavior something one can reason about before it runs.
+
+## DocAble: Recovery Ordering
+
+DocAble must preserve the ordering between publishing a recovered artifact and updating the database record that references it: the record may not name an artifact that has not yet been published. Reduced to its states, that concern is a small model.
+
+<!-- box-family: model-card -->
+
+> #### Recovery-ordering model · Behavioral
+>
+> - **Engineering question** — In what order may recovery publish an artifact and update the record that refers to it?
+>
+> - **Model** — a transition system over the recovery lifecycle; the decisive fact is a transition that does *not* exist.
+>
+> - **Property** — the database record may refer to the fallback artifact only after that artifact has been durably published.
+>
+> - **Quality attribute** — data integrity; crash-safety.
+
+<!-- point: the-decisive-fact-is-an-absent-edge-between-staged-and-durable | The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the model excludes executions in which the record points at a not-yet-durable artifact. -->
+
+The recovery lifecycle runs through several states, but the obligation lives in two of them. An artifact is first written locally (`FALLBACK_STAGED`) and only later published to durable storage (`FALLBACK_UPLOADED`). The record may advance to `DB_UPDATED` only from the durable state. [ref:recovery-ordering-model] draws the ordering, and the fact that matters is the edge that does *not* exist: there is no direct `FALLBACK_STAGED → DB_UPDATED` transition. The model therefore excludes executions in which the record points at a merely staged artifact. Local staging and durable publication are different states, and the whole obligation rides on keeping them apart.
+
+<!-- label: recovery-ordering-model -->
+<!-- figure: assets/recovery-ordering-model.svg | *Recovery-ordering model.* The decisive fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED. -->
+
+<!-- point: the-model-exposes-the-ordering-a-transition-table-holds-it | Over the model the obligation is a reachability property — DB_UPDATED is reachable only through FALLBACK_UPLOADED — that the model exposes and a checker can search; whether a transition table refuses the short-circuit is a Chapter 3 question of enforcement. | terms: soft-vs-hard-governance -->
+
+Stated over the model, the property is a reachability claim: `DB_UPDATED` is reachable only through `FALLBACK_UPLOADED`. That is a property the model *exposes* and makes checkable — one can search the transition system for any path into `DB_UPDATED` that skips durable publication. Whether the running recovery path is *held* to the ordering — whether a transition table refuses the short-circuit step — is a question of enforcement, addressed in {{chapter:alignment}}. This is a **hard** obligation: the machinery refuses the violation rather than merely reporting it.
+
+## What the Model Makes Checkable
+
+<!-- point: not-every-behavioral-obligation-is-a-safety-property | The recovery model answers a safety question one counterexample settles; "every job eventually terminates" is liveness, ranging over infinite executions, and needs a different checker. -->
+
+The recovery model answers a safety question — can a bad state be reached? — and one counterexample would settle it. Not every behavioral obligation has that shape. "Every job eventually reaches a terminal state" is a liveness claim: no successful run proves the system can never stall, so the obligation ranges over infinite executions rather than reachable states, and it needs a different checker. [ref:behavioral-property-classes] places the three classes side by side.
+
+<!-- label: behavioral-property-classes -->
+<!-- figure: assets/behavioral-property-classes.svg | *Behavioral models expose different classes of properties.* A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question. -->
+
+<!-- point: the-recovery-ordering-is-a-slice-of-a-larger-lifecycle | Once behavior is explicit the right reasoning becomes available per property; the three-state recovery ordering is a sharp slice of a fuller job lifecycle chosen for crash-safe publication. -->
+
+The point is not that DocAble should apply every one of these techniques. It is that once behavior has an explicit representation, the right form of reasoning becomes available for each kind of property, and the checker follows from the property rather than from habit. The recovery ordering is itself a sharp slice of a larger behavioral model: a DocAble job carries a full lifecycle — queued, leased, remediating, completed or failed — with its own legal transitions. The full lifecycle answers broader workflow questions; the three-state recovery ordering is the sharper reduction for crash-safe publication.
+
+<!-- point: behavioral-boundary | The recovery model makes an ordering obligation explicit and searchable; it does not establish that the implementation realizes it, prove it is the right ordering, or decide the consequence of a violation. -->
+
+The recovery-ordering model makes an ordering obligation explicit and searchable. It does not, by itself, establish that the implementation realizes the model, prove that this is the right ordering for the product, or decide what should happen when the ordering is violated. It gives engineering a precise object to check and a precise thing to align.
+
+Structural models froze time; this section let it flow but assumed a single actor moving through states. The next question is what happens when several actors reach for the same work at once.
+
+## DocAble: Ownership Under Contention
+
+<!-- point: ownership-has-a-long-vocabulary-of-claims-and-leases | With many workers, a crash, and a reclaim sweep, "who owns this job?" acquires time and contention; engineering's vocabulary of locks, leases, and claims relates a holder to a resource over time, and an ownership model keeps those relationships and discards the rest. -->
+
+With one worker, *who owns this job?* has an obvious answer. Add many workers, a crash, and a sweep that reclaims abandoned work, and the same question acquires time and contention: ownership can be claimed, can expire, and can be reclaimed, and a holder that went away can return to find its claim gone. Engineering has a long vocabulary for control over a shared resource: locks and leases,[cite: graycheriton1989] capability and claim relationships, and the lifecycle of a claim from acquisition through expiry to reclamation. An ownership model keeps those relationships and discards the rest — who holds what, on what terms, and for how long.
+
+<!-- point: a-claim-carries-the-facts-that-make-contention-decidable | A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking. -->
+
+A claim binds a holder to a resource and carries the facts that make contention decidable: which holder, which generation of claim, and when it expires. The generation is the fact a bare "A owns X" edge cannot express — it distinguishes a *current* claim from a *superseded* one. The difficult failures arise from the interleavings: the orders in which concurrent claims, expiries, and reclaims can occur. So the characteristic analysis is state-space exploration over those sequences, with an invariant checked at each reachable configuration — the behavioral toolkit of this section pointed at a concurrency question.
+
+DocAble leases each in-flight job to one worker. A lease carries an owner, a monotonically increasing generation, and a lifetime; when a lease looks abandoned it can be reclaimed and the job re-leased to another worker at the next generation.
+
+<!-- box-family: model-card -->
+
+> #### In-flight lease · Ownership
+>
+> - **Engineering question** — Who currently owns this in-flight work, and can a returning stale owner disturb the current claim?
+>
+> - **Model** — a claim relating a worker to a job, stamped with a generation and a lifetime; reclaim advances the generation.
+>
+> - **Property** — a stale claim cannot clear or supersede the current one.
+>
+> - **Quality attribute** — correctness under concurrency; crash-safety.
+
+<!-- point: leased-iff-owner-is-the-models-definition | A job is leased exactly when it has an owner; the two are the same fact from two sides, so the model represents ownership as the presence of a current claim — this is what "leased" means, and it sets up the invariant that follows. -->
+
+Start with what the model *means*. A job is leased exactly when it has an owner; the two are the same fact seen from two sides, so the model represents ownership as the presence of a current claim rather than as a separate flag that could disagree with it. That is a definition, not a property that could fail. It sets up the invariant that can.
+
+<!-- point: the-epoch-generation-makes-a-stale-release-inapplicable | Suppose A holds generation 7, stalls, and is reclaimed; the job is re-leased to B at generation 8; a late release from A carrying generation 7 must not clear B's generation-8 claim, and the generation makes that decidable. | terms: soft-vs-hard-governance -->
+
+The consequential invariant is about time and contention. Suppose worker A holds the claim at generation 7, appears to stall, and is reclaimed; the job is re-leased to worker B at generation 8. If A now wakes and tries to release using its generation-7 claim, that release must not clear B's current generation-8 claim. The generation makes the distinction decidable: a release carrying an old generation names a claim that no longer owns, so it is inapplicable to the current one.
+
+[ref:in-flight-ownership-states] draws the claim and its lifetime; the generation is the small addition that separates a live claim from a stale one.
+
+<!-- label: in-flight-ownership-states -->
+<!-- figure: assets/in-flight-ownership-states.svg | *In-flight ownership model.* A current claim records owner, epoch, and lifetime. Completion releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease. -->
+
+<!-- point: ownership-boundary | The generation exposes the question — is this release applicable to the current claim? — and the model's job ends at making that invariant precise and checkable; whether the release path refuses the stale release is a hard guard for Chapter 3, verified by exhaustive search over the interleavings. | terms: soft-vs-hard-governance -->
+
+The generation *exposes* the question — is this release applicable to the current claim? — and the model's job ends at making that invariant precise and checkable. Whether the release path *holds* the line is enforcement for {{chapter:alignment}}: a **hard** guard that refuses the stale release rather than merely reporting it, with an exhaustive search over the interleavings serving as its verification.
+
+<!-- point: the-lease-model-omits-the-processing-topology | The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model. -->
+
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job's work is partitioned does not. The implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes. The inset explains what an invariant requires and how a checker evaluates one.
+
+<!-- index-def: invariant -->
+
+<!-- box-family: inset -->
+
+<!-- inset-domain: FORMAL METHODS -->
+
+<!-- box-weight: callout -->
+
+> #### Inset — What is an invariant? {#inset-invariant}
+>
+> An **invariant** is a property required to hold over a declared domain of states, structures, or observations. In a behavioral state machine, the invariant may be a predicate that must hold in every reachable state; in a structural model, it may require every observed dependency to belong to a declared set; in a measurement model, it may require a quantity to remain within a hard capacity bound. State both the property *and* the domain the checker claims to establish it over.
+>
+> Take a behavioral illustration. A job carries two fields at once — a `status` of `free`, `leased`, or `done`, and a `lease_owner` that names the holding worker or is empty. At the model level, leased-iff-owner was a definition; an implementation that represents the two sides as separately written fields turns it into a property that can fail, which is exactly why you write the invariant down. "A job is leased if and only if it has an owner" is a predicate over the pair: `(status == "leased") == (lease_owner is not None)`. A `free` status with a lingering `lease_owner` is a stale lease; a `leased` status with no owner is a lost lease. Separating the two writes can make either inconsistent state reachable, and both break the predicate. The predicate becomes mechanically meaningful when a checker evaluates it over the declared reachable state space:
+>
+>     STATES = product({"free", "leased", "done"}, {None, "worker-1", "worker-2"})
+>     def invariant(s):                                    # leased iff owned
+>         return (s.status == "leased") == (s.lease_owner is not None)
+>     assert all(invariant(s) for s in reachable_states())  # check every reachable state
+
+## One Representation, Several Questions
+
+<!-- point: the-lease-answers-ownership-behavioral-and-measurement-questions-at-once | Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions. -->
+
+The lease is the chapter's clearest case of one representation answering several classes of question. Read it as an ownership model and it says who controls a job. Read the same claims as a behavioral model and they trace a lifecycle — claimed, held, expired, reclaimed. Count the active leases and the same representation becomes a measurement: how much work is genuinely in flight right now. [ref:in-flight-lease-overlap] sets the three readings side by side.
+
+<!-- label: in-flight-lease-overlap -->
+<!-- figure: assets/in-flight-lease-overlap.svg | *Model classes overlap.* The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects. -->
+
+<!-- point: overlap-confirms-the-classes-sort-questions-not-data-structures | The overlap follows from the distinction introduced at the chapter's opening: model classes identify engineering questions, not mutually exclusive data structures — the observation the closing section builds on to connect the models. -->
+
+The overlap follows from the distinction introduced at the opening of the chapter: model classes identify engineering questions, not mutually exclusive data structures. One purposeful representation can answer several when they share the same underlying facts. This is the observation the closing section builds on when it connects the models through shared identity.
+
+Ownership introduced permission implicitly: a stale claimant *may not* clear a current lease. The next family makes permission the whole question.
+
+```
+
+### 24-worked-decision-inset
+
+Source: `book/latex/sources/part2/2.4-decision.tex`; original projection SHA-256 `73bad8a9600c885b6d0aa8c46a1ce53ff4a9023cadcb281e060917cef51308ce`.
+
+```markdown
+The models so far have been descriptive: they say what the system *is* or *does*. A decision model says what the system *may* do. It represents alternatives and the rules that permit, require, or forbid them. That single change in mood — from *does* to *may* — is the subject of the section.
+
+## The Canonical Move: Permitted Alternatives
+
+<!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, access-control matrices, policy graphs, feature models, and constraint systems all represent permission; what unifies them is not their shape but their normative mood. -->
+
+Engineering represents permission in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,[cite: lampson1974] policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible. What unifies them is not their shape but their mood.
+
+<!-- point: same-arrow-different-mood-is-the-sharpest-case-of-topology-not-fixing-meaning | A structural edge and a decision edge can be drawn identically and mean opposite kinds of thing — a fact about what happens versus a rule about what is permitted; an absent decision edge means "not allowed," not "does not happen." -->
+
+This is the sharpest instance of the earlier lesson that topology does not fix meaning. A structural edge and a decision edge can be drawn identically and mean opposite kinds of thing: `A → B` as a structural edge says "A calls B," a fact about what happens; the same arrow as a decision edge says "A *may* call B," a rule about what is permitted. The consequence lives in the absent edge. A missing structural edge means "no such call happens"; a missing decision edge means "no such call is allowed." The gap between those two readings is the reason decision models exist ([ref:canonical-decision]).
+
+<!-- label: canonical-decision -->
+<!-- figure: assets/canonical-decision.svg | *The decision move: the same arrow, a different mood.* A structural edge states that a call happens; a decision edge states that it is permitted. The absent edge carries the weight — "not allowed," not "does not happen" — and the analyses check a declared policy for consistency and least privilege. -->
+
+<!-- point: a-declared-policy-turns-is-this-allowed-into-an-evaluation | Once permission is declared, the claims a policy designer wants become expressible — permitted/forbidden, mutual exclusion, prerequisites, consistency, completeness, least privilege — and "is this allowed?" becomes an evaluation rather than an argument. -->
+
+Once permission is declared, the claims a policy designer wants become expressible: which alternatives are permitted or forbidden, which are mutually exclusive, which imply prerequisites, whether the policy is internally consistent, whether it is complete over the cases that can arise, and whether it achieves least privilege. The analyses follow — evaluating a rule against a case, checking or solving constraints, detecting conflicts between rules, testing completeness and consistency. A declared policy turns "is this allowed?" into an evaluation rather than an argument.
+
+## DocAble: Service-Flow Policy
+
+DocAble declares which of its services may communicate with which. The model is a graph whose edges carry the normative reading: an edge means the call is part of the sanctioned policy, and an absent edge means the policy does not permit it.
+
+<!-- box-family: model-card -->
+
+> #### Service-flow model · Decision
+>
+> - **Engineering question** — Which service may call which, and what may be reached from outside?
+>
+> - **Model** — a declared graph of services and the permitted edges between them; the deployment is wired from the graph rather than the graph inferred from the deployment.
+>
+> - **Property** — internal communication is permitted only along a declared edge; one declared node is the public entry.
+>
+> - **Quality attribute** — least privilege; architectural integrity; security.
+
+<!-- point: the-service-flow-model-is-a-declared-source-of-truth-not-a-firewall | The declared graph is the single source of truth for permitted inter-service edges, with one node declared publicly reachable and every other edge authenticated; a completeness check requires each gated edge to be fully specified, and the deployment config is generated from the graph. | terms: soft-vs-hard-governance -->
+
+[ref:service-flow-model] draws the permitted calls. One node is declared publicly reachable; every other edge is an authenticated internal call. The model is the single source of truth for those edges, and the deployment is generated from it rather than inferred from it — so a completeness check can require every gated edge to be fully specified before the deployment is wired. That check is real and enforced, but it governs the *declaration's* internal consistency, not the running traffic: the model declares the topology; it is not a runtime firewall.
+
+<!-- label: service-flow-model -->
+<!-- figure: assets/service-flow-model.svg | *Service-flow model.* A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate. -->
+
+<!-- point: observed-versus-declared-is-correspondence-not-correctness | The observed call graph reveals that A calls C; the decision model states whether A may call C; agreement is correspondence, not correctness — a faithfully-obeyed rule can still be the wrong rule. -->
+
+Declaring the policy exposes a question the running system cannot answer for itself: do the services call only along declared edges? That is a correspondence between an observed structural fact and a declared decision, and the two are different claims. The observed call graph reveals that A calls C; the decision model states whether A *may* call C. [ref:observed-vs-declared] sets them side by side.
+
+<!-- label: observed-vs-declared -->
+<!-- figure: assets/observed-vs-declared.svg | *Observation and intent answer different questions.* The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness. -->
+
+<!-- point: docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question | DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question. -->
+
+Agreement between observation and policy would establish *correspondence* — the implementation matching the declared intent — not *correctness*: a faithfully-obeyed rule can still be the wrong rule. DocAble generates its deployment from the declared graph, but nothing at runtime reconciles observed traffic back against the declaration. Whether the deployed services stay on the declared edges, and what a departure should cost, is Alignment's question in {{chapter:alignment}}.
+
+## DocAble: When the System Changed but the Model Did Not
+
+<!-- point: the-entitlement-model-was-born-from-a-production-failure | The service-flow policy was declared in advance; DocAble's upload-admission decision acquired its model in the opposite order, after a production failure exposed a representation that could no longer express the decision. -->
+
+The service-flow policy was declared as intent, ahead of any violation. DocAble's upload-admission decision acquired its model in the opposite order: the system changed first, one representation of the decision did not, and the gap surfaced in production.
+
+<!-- point: upload-entitlement-flows-through-groups | A user receives upload entitlement through groups — finite-credit or unlimited — so the admission decision depends on two facts: how many credits remain and whether any entitlement is unlimited. -->
+
+DocAble admits an upload only when the user is entitled to it. A user receives that entitlement through groups. A group may carry a finite credit balance, drawn down as pages are processed, or it may provide unlimited use. The admission decision therefore depends on two different facts: how many finite credits are available, and whether any applicable entitlement is unlimited ([ref:entitlement-domain]).
+
+<!-- label: entitlement-domain -->
+<!-- figure: assets/entitlement-domain.svg | *The upload-entitlement domain.* A user belongs to one or more groups; a group carries either a finite credit balance or unlimited use. The admission decision needs both facts, so a representation that can express only the finite balance cannot answer the question the decision asks. -->
+
+<!-- point: the-scalar-was-adequate-until-the-domain-changed | DocAble originally had only finite-credit groups, so a scalar sum was an adequate admission representation; when unlimited groups arrived, no explicit model of the admission decision existed to carry the change. -->
+
+DocAble originally represented upload entitlement in finite credits alone. In that system, reducing a user's groups to a single number — the sum of their credit balances — was adequate for deciding whether a document could be processed. The product later gained unlimited groups, and the domain change altered the admission question: entitlement was no longer a single finite quantity. No explicit model of the upload-admission decision existed at the time. The decision lived in several implementation sites — a server-side reduction, a client-side preflight, the server's admission gate — each with its own hand-rolled representation of the user's groups.
+
+<!-- point: the-old-reduction-observed-the-distinction-and-discarded-it | The legacy reduction read each group's unlimited flag and used it to exclude unlimited groups from the credit sum; its scalar output had no place for "unlimited," so an unlimited user became zero credits — a representation failure, not missing information. -->
+
+One of those representations did not evolve. In August 2026, a user whose one group carried unlimited entitlement was blocked from uploading a thirty-eight-page document by a paywall: *the upload needs 38 credits, and you have 0*. The root cause was a legacy server function that reduced a user's groups to one scalar, the sum of their finite credit balances. The function was not ignorant of unlimited entitlement. It read each group's unlimited flag twice, using it once to *exclude* unlimited groups from the sum and once to compute a display label. Its output type simply had no place to put the fact, so the distinction died at the return statement. A purely-unlimited user became `0` credits; the client compared 0 against 38 and rejected the upload; the server's authoritative admission logic, which handled unlimited correctly, was never reached. This was a representation failure, not an information-availability failure. The implementation held the fact and threw it away.
+
+<!-- point: the-production-failure-produced-the-model | The root-cause analysis made the admission question explicit and produced an explicit entitlement decision model — with property tests, a cross-runtime parity corpus, and a shape check — in roughly five hours from RCA to deletion of the lossy reduction. -->
+
+The production failure produced the model. The root-cause analysis made the engineering question explicit — given the user's group entitlements and the requested work, should this upload be admitted, and under which entitlement? — and an explicit entitlement decision model landed in response. It did not land alone. The founding change carried property tests, a cross-runtime parity corpus pinning the server and the client to the same decision table, and a check on the model's shape. The legacy scalar reduction was deleted with no compatibility shim, the remaining display projections were re-sourced from the model, and the admission gates themselves were delegated to it. From root-cause analysis to model to deletion of the wrong representation took roughly five hours.
+
+<!-- box-family: model-card -->
+
+> #### Entitlement decision model · Decision
+>
+> - **Engineering question** — May this user upload this document, and under which entitlement?
+>
+> - **Model** — per-group entitlements that keep finite and unlimited as distinct cases; the output is a structured admission decision: admitted or not, the group that authorizes it, and the ordered plan by which the verdict was reached.
+>
+> - **Property** — an unlimited entitlement can never be reduced to zero credits; the displayed balance is a projection of the model, not an authority for admission.
+>
+> - **Quality attribute** — decision correctness; fidelity between the domain and its representations.
+
+<!-- point: the-repair-was-model-to-model | The repair changed the representation through which the decision was made, not merely the failing conditional: the revised model preserves the finite/unlimited distinction and states the admission decision explicitly, and the implementation was then changed to consume it. -->
+
+The repair did more than patch the conditional that failed. It changed the representation through which the decision was made. Upload entitlement could no longer be represented as a scalar credit balance: the revised model preserves finite and unlimited entitlement as distinct cases and represents the admission decision explicitly — whether the upload is admitted, which group supplies the entitlement, and the ordered plan used to reach the verdict. The implementation was then changed to consume that model. The same triggering state that once read as `0` credits now reads as *admit by unlimited entitlement*. The finite-credit scalar still exists where that quantity is the actual question, displaying remaining credits, but it is no longer used as a model of upload permission ([ref:entitlement-model-evolution]).
+
+<!-- label: entitlement-model-evolution -->
+<!-- figure: assets/entitlement-model-evolution.svg | *One distinction, lost and preserved.* The scalar reduction cannot represent unlimited entitlement; the revised model preserves the distinction. -->
+
+<!-- point: the-model-was-part-of-the-repair | The failure revealed a decision made through a representation that could no longer express the system's domain; making the decision explicit forced the representation to preserve the distinction the system had acquired. -->
+
+The revised decision model was part of the repair, rather than merely documentation of it. The failure revealed that an engineering decision was being made through a representation that could no longer express the system's domain, and making the decision explicit forced the representation to preserve the distinction the system had acquired. The opening section defined a model as a purposeful reduction that preserves the distinctions its question requires. The old scalar was a reasonable model of *how many finite credits remain*. It was never a sufficient model of *may this user upload*, and when the domain changed, the gap between those two questions became a production failure.
+
+<!-- point: an-explicit-model-would-have-made-the-obligation-visible | The author changed the domain in one place and did not carry the change into every representation of the same decision; when the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it. -->
+
+A note in the first person: I changed the domain in one place — groups could now be unlimited — and did not carry the change into every representation of the same decision. An explicit model would not have made the change automatically correct; it would have made the inconsistency visible as an engineering obligation. When the domain contains a consequential distinction, every representation used to reason about that decision must be capable of expressing it. {{chapter:alignment}} gives the recurring pattern here — a failure converted into explicit structure that later work inherits — a name.
+
+Decision models delimit what is allowed. The final section steps back from any single model to ask how a family of models works together as a system.
+
+```
+
+### 31-worked-context-inset
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`; original projection SHA-256 `c30dc24174acc4f90ae961a5d10531200d4cabfcc69d9c39774ace6f4aaf9735`.
+
+```markdown
+<!-- box-family: inset -->
+
+<!-- inset-domain: AI -->
+
+> #### Inset — Context Engineering: Making the Right Knowledge Available {#inset-context-engineering}
+>
+> Context engineering concerns what information is made available to a reasoner for a particular episode of work. Instructions, examples, retrieved material, prior decisions, and engineering models can all contribute to that working state. The problem is not fitting more information into a context window. It is selecting the right information, at the right abstraction, when the decision is made.
+>
+> MAGE gives context engineering durable engineering knowledge to draw from. Modeling externalizes engineering knowledge so that each agent does not have to reconstruct it from source code, documentation, and prior conversations. Context engineering can then select the relevant portions of that knowledge for the work at hand. The distinction is useful: Modeling engineers what is known; context engineering engineers what is presently available to reasoning. Retrieval, memory, compaction, skills, and other mechanisms may change how that selection is implemented, but the underlying engineering problem remains.
+>
+> One realization is *dynamic context injection* (DCI): the environment observes properties of the work, selects the engineering knowledge relevant to those properties, and places that knowledge into the agent’s reasoning context. This is context engineering: it changes what the agent can see when making a decision. Requiring the selection procedure to occur is a separate enforcement decision.
+>
+> DocAble selects this context twice. At dispatch, the environment matches the work order’s anticipated files against file-scoped constraint declarations and the models’ file-to-component mappings. It supplies applicable architectural invariants, lint rules, ownership declarations, and design-document references in the work order. After planning, the agent triggers a second extraction using its refined file set. That pass can surface obligations missed by the initial brief as the proposed change becomes more concrete. Both passes select knowledge for the task rather than placing the repository’s accumulated instructions into every agent’s context.[cite: davis2026docable]
+>
+> A Git pre-commit gate rejects the final agent-worktree commit when the dispatch has no recorded second-extraction event. The gate does not compare the extraction’s file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The extraction gate establishes that discovery occurred; separate correspondence checks and implementation gates enforce selected obligations. This distinction lets an engineer require a discovery procedure without mistaking its completion for compliance with the knowledge it retrieves.
+
+
+```
+
+### 31-mainline-runtime-boundary
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`; original projection SHA-256 `c30dc24174acc4f90ae961a5d10531200d4cabfcc69d9c39774ace6f4aaf9735`.
+
+```markdown
+The third enforcement boundary is the **artifact or runtime boundary**: the resulting system or running state. Types, narrow APIs, architectural seams, schemas, runtime permissions, and admission policies can make a forbidden state impossible to express or impossible to accept. DocAble's format seam (the worked example below) is the concrete case: one structured interface for document mutation, with a ban-lint on direct access.
+```
+
+### 31-retire-format-reprise
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`; original projection SHA-256 `c30dc24174acc4f90ae961a5d10531200d4cabfcc69d9c39774ace6f4aaf9735`.
+
+```markdown
+### Example — DocAble
+
+DocAble distributes its controls across the boundaries: a skill in the harness, an action hook, a pre-commit check, and — its sharpest — an application-boundary seam for document mutation. At the application boundary, DocAble represents document mutation through a sanctioned structured seam. Static controls reject ordinary code that bypasses that seam for the raw format library. The model states the architecture; the interface and lint enforce that relation.
+
+<!-- takeaway -->
+
+Place the enforcing mechanism at a boundary where the obligation is legible and the environment can evaluate or constrain the relevant work. The appropriate boundary depends on the obligation.
+
+
+```
+
+### 32-mainline-independent-obligation
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`; original projection SHA-256 `914652a5630bb06d6e8ac1135901bd44fa87f7c5f3b08a9ca73ad9fc928e1c74`.
+
+```markdown
+<!-- point: docable-requested-temporal-checking-for-an-obligation-its-models-already-carried | DocAble's temporal model checking ran the other way round: engineering fixed the obligation from the system's models, then requested an analysis suited to it; the independence that matters lies between the obligation's source and the realization judged against it. | terms: independent-obligation, agreement-vs-correctness -->
+
+DocAble's use of temporal model checking ran the other way round. The obligation came first: every submitted job must eventually reach a terminal state, a property over whole executions rather than over any single reachable bad state, and one the system's state and recovery models already carried. Only then was a formal analysis suited to that shape requested, a small TLA+ specification checked with TLC.[cite: lamport2002] The machine could help construct and run the verification. It did not infer the governing obligation from the implementation it was being asked to justify. The independence that matters was named earlier, and it is not the one between human and machine authorship. It runs between the source of the obligation and the realization being evaluated against it.
+
+
+```
+
+### 32-worked-correspondence-inset
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`; original projection SHA-256 `914652a5630bb06d6e8ac1135901bd44fa87f7c5f3b08a9ca73ad9fc928e1c74`.
+
+```markdown
+### Example — DocAble
+
+DocAble uses all three relations. Wire-contract tests ask whether independently represented sides of an interface correspond; they establish agreement, not external compliance: a synthetic payload can satisfy both sides while the real producer emits something else. PDF output can instead be checked against veraPDF, an independently implemented conformance oracle for the ISO standard. In Office workflows, the acceptance question may be whether Microsoft's own checker accepts the result. Agreement, conformance, and acceptance are useful evidence, but they are not interchangeable.
+
+<!-- worked-examples-end -->
+
+<!-- point: execution-consumes-the-computation-model-so-it-governs-composition | Execution consumes DocAble's explicit computation model to determine dependency order; the model governs composition, while node implementations determine only what each computation does. | terms: agreement-vs-correctness, independent-obligation -->
+
+DocAble's remediation pipeline gives a sharper example of correspondence and governance as separate properties. The execution machinery consumes the computation model {{chapter:modeling}} introduced — registered computations and their typed composition, represented explicitly rather than recovered from the pass bodies — to determine dependency order and readiness. The model therefore governs composition: node implementations determine what individual computations do, but they do not independently decide how the pipeline is assembled.[^static-graph]
+
+<!-- point: a-separate-analytical-view-projects-the-structure-for-governance | A separate Python remediation-graph view — 125 computations, 57 typed relations — projects the structure for analysis and governance, projected and parity-checked, without being the runtime scheduler. | terms: agreement-vs-correctness -->
+
+A separate Python remediation-graph view exposes that structure for analysis and governance. As of this writing, the view contains 125 computations and 57 typed relations: 32 data-flow edges, 24 control gates, and one cross-service relation. Fifty-five relations are projected and two remain authored seeds. For Office formats, the projection derives edges from registry read/write metadata also used by scheduling. For PDF, the analytical relation is projected from typed Produces, Consumes, and ConsumesForControl declarations and held to the executable territory by blocking parity checks.
+
+<!-- point: the-two-representations-play-different-governing-roles-even-with-strong-correspondence | The two representations play different governing roles even where correspondence is strong: making the view more faithful does not make it govern execution; a representation governs what the environment requires it to control. | terms: agreement-vs-correctness, independent-obligation -->
+
+The two representations therefore play different governing roles even where their correspondence is strong. The computation model is consumed by execution. The analytical view is consumed by analyses and checks. Making the view more faithful does not by itself make it govern execution; a representation governs what the environment requires it to control.
+
+<!-- point: a-validator-should-not-get-more-gating-power-than-its-evidence-surface-warrants | The Office parity checks run green but stay audit-only while one live pass runs outside the surface they enumerate; a validator should not receive more gating power than its evidence surface warrants. | terms: agreement-vs-correctness -->
+
+The Office checks expose a second limit. Nodes and edges are now projected and their parity checks run green, but those checks remain audit-only while one live pass still runs outside the registration surface the checks can enumerate. Promoting them to blocking before that escape is drained would certify a green result over an incomplete observation surface. A validator should not receive more gating power than its evidence surface warrants.
+
+[ref:fidelity-vs-authority] draws governing role and correspondence apart.
+
+<!-- label: fidelity-vs-authority -->
+<!-- figure: assets/fidelity-vs-authority.svg | *Correspondence strength and governing role are independent.* DocAble's execution machinery consumes an explicit computation model to determine remediation composition. A separate analytical graph view projects that structure and is held in correspondence with its upstream declarations. Stronger correspondence makes the view more trustworthy as a representation; it does not make the view govern execution. -->
+
+
+```
+
+### 32-mainline-work-unit
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`; original projection SHA-256 `914652a5630bb06d6e8ac1135901bd44fa87f7c5f3b08a9ca73ad9fc928e1c74`.
+
+```markdown
+The same gap appears inside a single task. Take a concrete obligation: *if this task substantially changes the call graph, the corresponding architectural model must still agree when the task closes.* A real task runs through several intermediate commits, and temporary disagreement during those commits can be legitimate. A pre-commit check therefore acts too early — it sees a fragment while the property belongs to the completed unit of work. At task return, the accumulated changes, model updates, tests, and other completion evidence can be weighed together — which is exactly where DocAble places its definition-of-done audit, over the whole unit of work rather than any single commit inside it.
+```
+
+### 32-mainline-approximate-boundary
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`; original projection SHA-256 `914652a5630bb06d6e8ac1135901bd44fa87f7c5f3b08a9ca73ad9fc928e1c74`.
+
+```markdown
+Real boundaries are sometimes approximate. In DocAble's own orchestration loop, the ideal moment to preserve durable session state would be the instant before a lossy compaction, but waiting for that exact hook leaves too little budget to write the hand-off comfortably. So the implemented mechanism fires earlier, when context is becoming full *and* the durable record has gone stale.
+```
+
+### 34-mainline-missing-enforcement
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`; original projection SHA-256 `ab94d534d2881138af84990e17a048c0366f803c9888e0e3f24df7f1d28b7279`.
+
+```markdown
+## Correct Judgment Without Enforcement
+
+<!-- section-terms: governance-conversion -->
+
+<!-- point: judgment-without-consequence-governance-conversion-can-delete-a-capability | Governance conversion can add a mechanism; it can also delete a capability the environment should never have offered. | terms: governance-conversion -->
+
+A merge automation drained a backlog of agent worktrees into the mainline each tick. Most rebased cleanly; a fraction conflicted, and a single convenience option resolved those conflicts by taking one side automatically. On overlapping edits it silently dropped content. An audit already understood the danger: a guard detected when a conflict touched substrate-class files, judged the resolution unsafe, and logged it correctly, as a warning only. The operation proceeded, and the tree lost content. [ref:judgment-without-consequence] traces the cascade.
+
+<!-- label: judgment-without-consequence -->
+<!-- figure: assets/judgment-without-consequence.svg | *Correct judgment without enforcement.* The system observed the dangerous condition and evaluated it correctly, but no enforcing mechanism acted on the verdict. The durable repair removed the unsafe capability rather than making the warning louder. -->
+
+The failure was not missing evidence. The system had evidence. Nor was evaluation missing: the audit correctly identified the danger. What it lacked was enforcement. The warning described a condition the environment still permitted.
+
+The durable repair did not make the warning louder. It removed the dangerous auto-resolution fallback and escalated ambiguous merges to a human instead. **Governance conversion can add a mechanism. It can also delete a capability the environment should never have offered.** Where a warning marks a known-dangerous condition intended to become enforced, its temporary status should be explicit, with an owner and resolution condition.
+
+
+```
+
+### 34-mainline-transfer
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`; original projection SHA-256 `ab94d534d2881138af84990e17a048c0366f803c9888e0e3f24df7f1d28b7279`.
+
+```markdown
+<!-- point: engineering-capital-can-transfer-between-projects | Engineering capital can transfer between projects in two forms: process automation reused or adapted directly, and principles applied to establish and enforce a new architecture. | terms: engineering-capital, modeling-principle, alignment-principle -->
+
+Engineering capital can also transfer between projects. After developing DocAble, I carried parts of its engineering environment into two subsequent projects, approximately 50,000 and 36,000 lines of code. First, I reused process automation directly, including Claude hooks and Git hooks, and adapted existing runbooks with relatively little effort. Second, I applied MAGE's Modeling and Alignment principles to establish a more structured architecture and enforce its obligations from the beginning. These investments appeared to accelerate initial development, although I did not conduct a controlled productivity comparison.
+```
+
+### 34-mainline-adaptation
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`; original projection SHA-256 `ab94d534d2881138af84990e17a048c0366f803c9888e0e3f24df7f1d28b7279`.
+
+```markdown
+Both projects nevertheless exposed new failure modes requiring further engineering. Reusable automation and established principles improved the starting conditions, but each project still required its own engineering. Engineering capital can therefore travel between projects without making their environments interchangeable.
+```
+
+### 34-mainline-stopping-points
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`; original projection SHA-256 `ab94d534d2881138af84990e17a048c0366f803c9888e0e3f24df7f1d28b7279`.
+
+```markdown
+DocAble contains examples of each non-governed stopping point, each for a different reason. Some cost controls are deliberately not enforced because imposing a hard daily budget remains a policy choice. DocAble measures governance conversion but does not target a required rate, because doing so would invite gaming. Some accessibility judgments remain outside deterministic enforcement because the available representation does not contain enough semantics to evaluate them reliably. **Non-enforcement is sometimes the engineered result.**
+```
+
+### 34-mainline-audit-to-control
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex`; original projection SHA-256 `ab94d534d2881138af84990e17a048c0366f803c9888e0e3f24df7f1d28b7279`.
+
+```markdown
+The mechanism that discovers an obligation need not be the mechanism that ultimately enforces it. DocAble's primitive-density lint remained an audit signal because high density was only a smell. The migration it provoked produced more specific types, boundaries, and drift controls whose predicates could justify stronger enforcement. {{chapter:one-problem-many-models}} follows that migration in detail.
+```
+
+### 35-mainline-control-collision
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`; original projection SHA-256 `26403c379b193f006cb7e04e3e694b65b4643c93ffe8bcc180b0d05516e33cfe`.
+
+```markdown
+Two collisions from the case study make it concrete. In the first, one control required a squashed commit while another treated the resulting broad diff as unauthorized scope expansion. Each was reasonable alone; together they imposed contradictory demands on the same commit set. In the second, two hooks fired on the same turn-end with no order declared between them, each able to block, and their composition was left implicit. Neither collision lives in any one control's code. Each lives in the space *between* two controls. That relation had not been represented. [ref:collision-edge] draws it.
+```
+
+### 35-worked-control-system-inset
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`; original projection SHA-256 `26403c379b193f006cb7e04e3e694b65b4643c93ffe8bcc180b0d05516e33cfe`.
+
+```markdown
+<!-- point: docable-implemented-governance-graph-is-intentionally-partial | DocAble's implemented governance graph is intentionally partial — a small high-value slice of the larger machinery, not comprehensive coverage. | terms: governance-graph, shared-resource -->
+
+DocAble's implemented governance graph is intentionally partial. It models only the high-value interactions for which recurring questions justified explicit representation, including those around the orchestrator lifecycle.
+
+<!-- point: shared-resource-is-a-useful-conservative-relation-not-a-proof-of-completeness | Shared resource is a useful conservative relation, not a proof that the graph captured every interaction. | terms: shared-resource, semantic-gap -->
+
+A shared resource is a conservative signal of interaction, not proof that every conflict has been captured. Within the represented surface, it lets engineers and tools ask useful questions before the controls interact in production work: which controls fire on this event, which touch this resource, which pairs have no declared order, and which known combinations impose incompatible requirements.
+
+<!-- point: decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges | Some candidate conflicts are mechanically decidable; others are semantic — a sensor produces evidence of the interaction, a validator or human judges whether it is a conflict. | terms: governance-graph, semantic-gap -->
+
+Some candidate conflicts are mechanically decidable: a lock cycle, two exclusive writers, or two same-slot mechanisms with no permitted ordering. Others are semantic. A static check can **sense** that two controls touch the same commit-set; a validator — or a human reviewer — must decide whether their requirements actually conflict. Again the four roles matter: producing evidence of an interaction is not the same as judging the interaction invalid. In the motivating commit-set collision, the machine could identify the shared resource, but judgment was still required to recognize the requirements as contradictory. The graph lets the environment surface the interaction for evaluation before the controls collide during work.
+
+<!-- point: diagnose-the-conflict-kind-before-weakening-an-obligation | Not every conflict between controls reflects a conflict between the obligations they enforce; incompatible obligations require revisiting requirements, while interfering mechanisms may be changed without weakening either obligation. | terms: governance-graph, shared-resource -->
+
+Not every conflict between controls reflects a conflict between the obligations they enforce. Two obligations may genuinely be incompatible, requiring engineers to revisit the requirements or specification. But compatible obligations can also be enforced by mechanisms that interfere with one another. In that case, changing the mechanisms or how they interact may resolve the conflict without weakening either obligation.
+
+<!-- point: three-turn-end-hooks-one-shared-slot | Worked example: three turn-end hooks, each reasonable alone, all writing the turn's closing message; the governance graph records exactly these three conflict edges among twenty-five mechanisms. | terms: governance-graph, shared-resource -->
+
+DocAble now represents the second of these conflicts in an explicit governance model. Among the automations that run when an agent finishes a turn, three matter here: one discourages premature termination, another prompts reflection on failures, and a third checks for stranded work. All three write to the turn's closing message. The governance graph contains twenty-five mechanisms and three conflict edges, all between these hooks. [ref:turn-end-ordering] shows their shared resource and the modeled ordering.
+
+<!-- label: turn-end-ordering -->
+<!-- figure: assets/turn-end-ordering.svg | *Three turn-end hooks, one shared resource.* All three hooks write to the turn's closing message, producing three conflict edges. The governance model computes an execution order, but the generic runtime driver that would enforce it has not yet been implemented. -->
+
+<!-- point: conflict-classes-and-resolutions-form-a-closed-vocabulary | The graph distinguishes four conflict kinds (contradiction, contention, ordering, soft-versus-hard) and five resolutions (merge, order, separate, accept, open); the goal is not a conflict-free graph but understood, appropriately resolved interactions. | terms: governance-graph, shared-resource -->
+
+The graph distinguishes four kinds of conflict: *contradiction*, when requirements are incompatible; *contention*, when mechanisms compete for a resource; *ordering*, when their execution sequence matters; and *soft versus hard*, when one mechanism can prevent another from achieving its purpose. Each conflict can be resolved by *merging* mechanisms, *ordering* them, *separating* their execution points, *accepting* the interaction, or leaving it *open* for later resolution. The goal is not a conflict-free graph; it is a graph whose consequential interactions are understood and appropriately resolved.
+
+The three turn-end conflicts are ordering conflicts. Their pairwise constraints establish a sequence: the premature-termination guard runs first, reflection second, and the stranded-work check last. The model computes this order by topological sorting; a cycle produces an error rather than an arbitrary sequence.
+
+<!-- point: what-the-model-enforces-today-is-detection-ordering-and-a-drift-report | What exists today: the model records conflicts and computes the resolution order, and a separate audit-only check reports model-vs-configuration discrepancies; the runtime driver is not yet built, so the order is a checkable design decision, not an enforced one. | terms: governance-graph -->
+
+The model currently records conflicts and computes their resolution order. A separate check reports discrepancies between the model and the harness's configured mechanisms. The generic runtime driver that would execute hooks according to the computed order has not yet been built. The order is therefore an explicit, checkable design decision, not yet an automatically enforced one.
+
+<!-- point: the-pileup-was-discovered-by-collision-the-model-reverses-that-direction | The original conflict was discovered when two hooks interfered during development; with the pair recorded, similar interactions can be examined as part of the design rather than discovered through failures. | terms: governance-graph -->
+
+The original conflict was discovered only after two hooks interfered during development. The model records that pair and lets engineers identify similar interactions before installing another automation. Instead of discovering conflicts through failures, engineers can examine them as part of the design.
+
+<!-- point: governance-interaction-graph-candidate-conflict-condition | Conflict detection follows a read/write criterion — same firing event, and one mechanism writes a resource the other accesses; classifying the conflict and resolving it are separate, later judgments. | terms: governance-graph, shared-resource, semantic-gap -->
+
+The governance model records conflicts according to a simple criterion. Each mechanism declares an execution event — its *slot* — and the sets of resources it reads (\(R\)) and writes (\(W\)). Two mechanisms have a **potential conflict** when they execute at the same event and at least one writes a resource the other accesses. Two readers do not conflict. The resulting graph \(G = (V, E)\) records these interactions as edges: an undirected edge joins distinct mechanisms \(u\) and \(v\) when
+
+<!-- eq: \operatorname{slot}(u) = \operatorname{slot}(v) \land (W_u \cap R_v) \cup (R_u \cap W_v) \cup (W_u \cap W_v) \neq \varnothing -->
+
+An edge identifies an interaction requiring attention; it does not establish that the underlying obligations are incompatible. The model separately classifies the conflict and records its resolution.
+
+
+```
+
+### 35-mainline-control-correspondence
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`; original projection SHA-256 `26403c379b193f006cb7e04e3e694b65b4643c93ffe8bcc180b0d05516e33cfe`.
+
+```markdown
+<!-- point: the-meta-model-stays-connected-where-controls-are-modeled-explicitly | Where DocAble models controls explicitly, entries can be anchored to their implementations and drift-checked, so a mis-placed control fails loud. | terms: traceability, teetering-tower -->
+
+The control model must remain connected to the controls it represents. Where DocAble models controls explicitly, entries can be anchored to their implementations and checked for drift, so a control the rule cannot place fails explicitly rather than dropping into a silent default bucket. This applies the broader rule from {{chapter:modeling}}: if engineers and agents are going to reason through a model of the control machinery, the model must stay connected to the territory it claims to describe.
+```
+
+### 35-remove-closing-case-repeats
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`; original projection SHA-256 `26403c379b193f006cb7e04e3e694b65b4643c93ffe8bcc180b0d05516e33cfe`.
+
+```markdown
+The control-machinery model is grounded primarily in the originating case.[^estate]
+
+<!-- worked-examples: governs-accumulated-governance -->
+
+### Example — Two Safety Rules {other}
+
+A building's fire system unlocks doors when it detects smoke; its security system may lock those same doors under an intrusion policy. Each rule is sensible in isolation while the pair demands incompatible states of the same resource. The contradiction belongs to the interaction, not to either rule's own logic.
+
+### Example — DocAble
+
+DocAble models its governance mechanisms as a system rather than only as individual scripts. Controls are anchored to their implementations, interaction relations identify shared resources, and coverage traces controls back to the obligations or failures that justify them. The model does not make every possible conflict mechanically decidable. It exposes enough structure to ask, before the next collision, which mechanisms interact and which important obligations have no adequate coverage.
+
+<!-- takeaway -->
+
+Governance conversion adds durable engineering structure; governing the control machinery keeps that structure coherent. Catalogue the controls, expose their interactions, trace them to the obligations they serve, and retire machinery that no longer earns its cost.
+
+<!-- worked-examples-end -->
+```
+
+
+## 2026-11-05 — Approved Chapter 2 comparison followups (batch 1)
+
+Applied after the author individually approved these comparison followups. Native LaTeX remains authoritative. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree).
+
+### 23-name-ownership-case
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`; original projection SHA-256 `8fecf5c7e2347af9ea43e0b178cf92c589dbf2c857ef2d6d74de3db9d21a2864`.
+
+```markdown
+Notice what this model omits: the processing topology. Ownership, generation, lifetime, and reclamation matter to the question of who controls a job; how the job's work is partitioned does not. The implementation changed over time to improve performance while preserving those ownership semantics. We changed the pointers to the code, but not the model. The ownership properties could therefore remain invariants across those changes. The inset explains what an invariant requires and how a checker evaluates one.
+```
+
+### 25-generation-and-interpretation
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`; original projection SHA-256 `a9db16186073ab6619d98d0da953230169814de44cf020a64c2cfabd7450a0a0`.
+
+```markdown
+<!-- point: name-the-direction-of-derivation-up-front | Maintain correspondence by deriving a model from implementation, generating an artifact from a model, or checking traceability where neither side fully determines the other. | terms: derivation-direction, model-from-code, model-to-code -->
+
+<!-- index-def: derivation-direction -->
+
+Make the direction of correspondence explicit. Where the implementation is the source of truth, derive the model. Where the model is the source of truth, generate the downstream artifact. Where neither fully determines the other, maintain traceability and check the mechanically decidable correspondences. Model-transformation languages make such relationships executable: OMG's Query/View/Transformation (QVT) standard can check a declared relation between models or update a target model to satisfy it.[cite: omg2016qvt] [ref:derive-generate-trace] lays the three cases side by side.
+
+<!-- index-def: model-from-code -->
+
+<!-- index-def: model-to-code -->
+
+### Derive when implementation owns the truth
+
+The model is a projection of the implementation. A component registry can read the directory tree; an observed dependency list can be induced from call sites. A drift check re-derives the selected facts and reports divergence from the maintained view. The correspondence covers what that derivation observes, not every property of the program.
+
+### Generate when the model owns the truth
+
+Code, configuration, or documentation can be emitted from a model. For example, a schema can generate the types used by interface clients. A freshness check compares the checked-in artifact with current generator output; provenance identifies the model and generation step that produced it. The generator preserves that declared correspondence while leaving open whether the schema expresses the right contract.
+
+<!-- label: derive-generate-trace -->
+<!-- figure: assets/derive-generate-trace.svg | *Three correspondence patterns.* Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable. -->
+
+<!-- point: the-computation-model-is-the-generate-case-execution-follows-it | A runner can read a task model to determine dependency order and readiness without generating a separate artifact. | terms: map-and-territory, derive-and-join -->
+
+A model can also direct work by being read during execution. Return to the build with two independent compilation tasks and one link task. The build declaration names each task and states that linking requires both object files. A runner reads those declarations to decide which tasks are ready: it may start the independent compilations, but it must wait for both results before linking. The compiler and linker still perform the individual operations. Their dependency order comes from the build declaration.
+
+The same declaration can answer a question without running the build. To find what a changed object file could affect, project the declared dependencies into a graph and follow its outgoing edges. In this example, the path reaches the link task. The runner uses the relationships to schedule work; the analytical view exposes them for queries and checks. DocAble's connected-models inset develops these two uses and shows how the correspondence differs across document formats.
+```
+
+### 25-correspondence-recap
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`; original projection SHA-256 `a9db16186073ab6619d98d0da953230169814de44cf020a64c2cfabd7450a0a0`.
+
+```markdown
+<!-- point: the-narrow-guarantee-is-the-boundary-part-iii-begins-at | The bounded guarantee — decide the decidable over the claimed surface — is the boundary Chapter 3 opens on, examining why correspondence does not by itself establish correctness. | terms: modeling-principle, alignment-principle, map-and-territory -->
+
+{{chapter:alignment}} examines why correspondence between a model and its implementation does not, by itself, establish correctness. Derive where implementation is the source of truth; generate where the model is the source of truth; trace and check where neither fully determines the other.
+```
+
+
+## 2026-11-05 — Approved Chapter 2 comparison followups (batch 2)
+
+Applied after the author individually approved these comparison followups. Native LaTeX remains authoritative. Source revision: `005947527192ae65b958fc9a37ce8746dbbc6391` (working tree).
+
+### 25-one-alignment-handoff
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`; original projection SHA-256 `f660483f6a6a11ed33df200b08d286bd78672d71e6567191bd36c2c50ad71425`.
+
+```markdown
+<!-- point: part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question | Models are useful without enforcement — they preserve decisions, expose relationships, and let engineers and agents reason from shared representations; Alignment adds another use by turning selected modeled properties into obligations. | terms: modeling-principle, alignment-principle -->
+
+Models are useful without enforcement. They preserve decisions, expose relationships, support analysis, and let engineers and agents reason from shared representations rather than reconstructing the same knowledge from prose or code. Alignment adds another use: some modeled properties can become obligations that constrain what the engineering process may admit. We turn to that next. {{chapter:software-factories}} returns to these models as part of the engineering environment surrounding agentic production, and {{chapter:theory}} examines when carrying explicit representations is worth their cost.
+```

@@ -1,0 +1,49 @@
+% Native grayscale counterpart to docable-work-order-flow.svg.
+% Authored at 400 x 450 bp, with identical topology and coordinates.
+% Source: DocAble factory lecture, 2026-11-03, slides 4--12 and 18--24.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,
+  font=\magefigurefont\fontsize{10.5}{12.5}\selectfont,
+  box/.style={draw=black,line width=.65pt,rounded corners=2.5pt,fill=white,inner sep=0pt,outer sep=0pt},
+  edge/.style={line width=.75pt},
+  flow/.style={edge,-{Latex[length=4.5pt,width=3.4pt]}},
+  title/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10.5}{12.5}\selectfont\bfseries},
+  note/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont}]
+\path[use as bounding box] (0,0) rectangle (400,450);
+\hyphenpenalty=10000
+\draw[flow] (190,46) -- (190,62);
+\draw[flow] (190,112) -- (190,128);
+\draw[edge] (190,172) -- (190,186);
+\draw[flow] (190,186) -- (108,186) -- (108,200);
+\draw[flow] (190,186) -- (272,186) -- (272,200);
+\draw[edge] (108,244) -- (108,260) -- (190,260);
+\draw[edge] (272,244) -- (272,260) -- (190,260);
+\draw[flow] (190,260) -- (190,276);
+\draw[flow] (190,320) -- (190,343);
+\draw[flow] (190,387) -- (190,415);
+\draw[flow] (295,365) -- (371,365) -- (371,150) -- (295,150);
+\node[box,minimum width=210bp,minimum height=42bp,fill=white] (engineer) at (190,25) {};
+\node[title] (engineer-title) at (190,19) {Engineer};
+\node[note] (engineer-detail) at (190,33) {Priorities and open decisions};
+\node[box,minimum width=210bp,minimum height=50bp,fill=white] (workorder) at (190,87) {};
+\node[title] (workorder-title) at (190,81) {Reviewed work order};
+\node[note] (workorder-detail) at (190,95) {Design, phases, dependencies};
+\node[box,minimum width=210bp,minimum height=44bp,fill=white] (orchestrator) at (190,150) {};
+\node[title] (orchestrator-title) at (190,144) {Orchestrator};
+\node[note] (orchestrator-detail) at (190,158) {Schedules ready phases};
+\node[box,minimum width=130bp,minimum height=44bp,fill=white] (agenta) at (108,222) {};
+\node[title] (agenta-title) at (108,216) {Agent A};
+\node[note] (agenta-detail) at (108,230) {Isolated worktree};
+\node[box,minimum width=130bp,minimum height=44bp,fill=white] (agentb) at (272,222) {};
+\node[title] (agentb-title) at (272,216) {Agent B};
+\node[note] (agentb-detail) at (272,230) {Isolated worktree};
+\node[box,minimum width=210bp,minimum height=44bp,fill=white] (integration) at (190,298) {};
+\node[title] (integration-title) at (190,292) {Integration and checks};
+\node[note] (integration-detail) at (190,306) {Merge changes; gather evidence};
+\node[box,minimum width=210bp,minimum height=44bp,fill=white] (audit) at (190,365) {};
+\node[title] (audit-title) at (190,359) {Independent completion audit};
+\node[note] (audit-detail) at (190,373) {Check work order and evidence};
+\node[box,minimum width=210bp,minimum height=30bp,fill=white] (accepted) at (190,430) {};
+\node[title] (accepted-title) at (190,430) {Work order closed};
+\node[note,anchor=center] (repair-label) at (333,351.5) {Repair work};
+\node[note,anchor=west] (accept-label) at (200,400.5) {Criteria met};
+\end{tikzpicture}

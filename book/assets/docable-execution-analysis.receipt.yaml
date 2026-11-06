@@ -1,0 +1,23 @@
+prose_claim: >
+  One declared DOCX resource dependency supplies both scheduling and an analytical projection.
+figure_job: >
+  Show a concrete header-repair/write and structure-check/read dependency, then its two consumers.
+visual_proposition: >
+  A registry container holds a producer-before-consumer edge and feeds execution machinery and a Python graph.
+required_vocabulary: >
+  Registry declarations (DOCX); table-header repair; writes: table headers; table-structure check;
+  reads: table headers; producer before consumer; execution machinery; Python analytical graph.
+topology: >
+  Two computation nodes in a registry container; directed producer-to-consumer relation;
+  solid scheduling-use arrow and dashed analytical-projection arrow to two peer outputs.
+forbidden_implications: >
+  This is one Office resource dependency, not the whole pipeline. PDF uses parallel typed declarations
+  with blocking correspondence checks; do not show PDF as reading this same registry. The Python graph
+  does not execute repairs. The dependency does not prove either pass semantically correct.
+redundant_visual_copy: none
+source_figure_defects: none
+intentional_changes: >
+  The native monochrome version retains the approved topology and wording. A thin boundary and labels
+  carry the role that color supplies in the web version. The registry heading is bold; no hierarchy
+  is implied between execution and analysis.
+d2_limitations: none

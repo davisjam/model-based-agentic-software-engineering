@@ -18,6 +18,13 @@ and the design record for the annotation work.
   fails the build).
 - **Book only:** `python3 book/build_book.py` renders just the book (stdlib-only, runs on a fresh
   checkout with nothing installed).
+- **Print and ebook:** `python3 book/build_book.py --pdf --no-split` builds the native LaTeX PDF
+  and a fresh `book/mage-book.epub`. For EPUB alone, run `python3 book/book_epub.py`. The EPUB
+  build verifies that generated Markdown matches the native manuscript, then packages the current
+  web page bodies and the native cover. It validates the container and internal links before
+  replacing the previous edition; failure stops publication. `python3 book/book_epub.py --check`
+  validates an existing EPUB without rebuilding it. CI publishes both downloads at
+  `/book/mage-book/`, and the book landing page links to them.
 - **Never hand-edit the `.html`.** Every page is generated and overwritten on the next build. Edit the
   markdown source, then rebuild.
 - **Mermaid needs `mmdc` on `PATH`.** The build renders each ` ```mermaid ` fence to a static SVG through
@@ -196,6 +203,25 @@ when it can't* rule). The inversion is deliberate, and the reasons are three:
 **So:** draw a Part 1–6 figure by hand (start from `figure_styles`; run `lint_design_token_drift.py` and
 `lint_figure_overflow.py` before saving). Draw an appendix Structure diagram in Mermaid. Do not reach for
 Mermaid inside a narrative chapter, and do not hand-roll an SVG for an appendix fill.
+
+### Figure review and PDF publication
+
+The web edition uses the original color artwork. PDF assembly reads
+`book/tikz/publication.json`: unreviewed figures show the color original followed by the
+native black-and-white drawing; entries in `approved_monochrome` use only the native
+drawing. Add the stable source path (for example, `book/assets/book-map.svg`), approval
+date, and reason after author approval. Figure numbers are not stable identifiers.
+
+`tools/mage_tikz_review.py` replaces only the graphic in an approved figure, preserving
+its numbered caption, label, alternate text, and links. The same policy covers chapter
+navigation maps. All native drawings still pass the monochrome, layout, typography,
+and link checks. Unknown or unused approval entries fail the build. Existing monochrome
+originals remain listed separately in `book/tikz/monochrome-originals.json`.
+
+Build normally with `python3 book/build_book.py --pdf --no-split`. The generated
+`book/latex/build/figure-pairings.json` records both pending pairs and approved standalone
+black-and-white figures. Do not edit generated chapters or remove color source assets;
+the web build continues to use them.
 
 ### Data from the case study — show the evidence, not just the number
 

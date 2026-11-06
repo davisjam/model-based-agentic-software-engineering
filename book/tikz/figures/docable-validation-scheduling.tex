@@ -1,0 +1,61 @@
+% Teaching adaptation of DocAble factory lecture slide 27 (2026-11-03).
+% Trigger separation clarified from fast-land-async-ci-design-261103.md.
+% Before combines merge/validation to preserve coupling without a disputed micro-order.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,
+  font=\magefigurefont\fontsize{10.5}{12.5}\selectfont,
+  box/.style={draw=black,line width=.65pt,rounded corners=2.5pt,fill=white,inner sep=0pt,outer sep=0pt},
+  flow/.style={line width=.75pt,-{Latex[length=4.5pt,width=3.4pt]}},
+  primary/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10.5}{12.5}\selectfont\bfseries},
+  note/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10}{12}\selectfont},
+  heading/.style={align=left,inner sep=0pt,font=\magefigurefont\fontsize{11}{13}\selectfont\bfseries}]
+\path[use as bounding box] (10,0) rectangle (450,405);
+\hyphenpenalty=10000
+\draw[black!35,line width=.5pt] (20,97) -- (440,97);
+\draw[flow] (106,49) -- (139,49);
+\draw[flow] (311,49) -- (345,49);
+\draw[flow] (94,171) -- (112,171);
+\draw[flow] (222,171) -- (244,171);
+\draw[flow] (318,171) -- (356,171);
+\draw[flow] (104,264) -- (124,264);
+\draw[flow] (294,264) -- (342,264);
+\draw[flow] (104,365) -- (124,365);
+\draw[flow] (294,365) -- (342,365);
+\node[box,minimum width=86bp,minimum height=40bp] (before-agent) at (63,49) {};
+\node[primary] (before-agent-text-0) at (63,49) {Agent};
+\node[box,minimum width=172bp,minimum height=40bp] (before-validation) at (225,49) {};
+\node[primary] (before-validation-text-0) at (225,49) {Merge and full validation};
+\node[box,minimum width=86bp,minimum height=40bp] (before-next) at (388,49) {};
+\node[primary] (before-next-text-0) at (388,49) {Next work};
+\node[box,minimum width=74bp,minimum height=40bp] (after-agent) at (57,171) {};
+\node[primary] (after-agent-text-0) at (57,171) {Agent};
+\node[box,minimum width=110bp,minimum height=40bp] (cheap) at (167,171) {};
+\node[primary] (cheap-text-0) at (167,171) {Cheap checks};
+\node[box,minimum width=74bp,minimum height=40bp] (merge) at (281,171) {};
+\node[primary] (merge-text-0) at (281,171) {Merge};
+\node[box,minimum width=74bp,minimum height=40bp] (next) at (393,171) {};
+\node[primary] (next-text-0) at (393,171) {Next work};
+\node[box,minimum width=84bp,minimum height=52bp] (clock) at (62,264) {};
+\node[primary] (clock-text-0) at (62,264) {Timer};
+\node[box,minimum width=170bp,minimum height=52bp] (sweep) at (209,264) {};
+\node[primary] (sweep-text-0) at (209,257) {Broad checks of main};
+\node[note] (sweep-text-1) at (209,271) {One sweep at a time};
+\node[box,minimum width=98bp,minimum height=52bp] (repair) at (391,264) {};
+\node[primary] (repair-text-0) at (391,257) {Pause dispatch};
+\node[note] (repair-text-1) at (391,271) {Diagnose; repair};
+\node[box,minimum width=84bp,minimum height=44bp] (deploy-request) at (62,365) {};
+\node[primary] (deploy-request-text-0) at (62,358) {Deployment};
+\node[primary] (deploy-request-text-1) at (62,372) {request};
+\node[box,minimum width=170bp,minimum height=44bp] (deploy-validation) at (209,365) {};
+\node[primary] (deploy-validation-text-0) at (209,365) {Full validation};
+\node[box,minimum width=98bp,minimum height=44bp] (deploy) at (391,365) {};
+\node[primary] (deploy-text-0) at (391,365) {Deploy};
+\node[heading,anchor=west] (before-heading) at (20,12.5) {Before: integration and validation coupled};
+\node[note,anchor=center] (before-wait) at (225,81.5) {Next work waits for full validation.};
+\node[heading,anchor=west] (after-heading) at (20,111.5) {After: separate triggers for different checks};
+\node[note,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,anchor=west] (each-change-heading) at (20,134.5) {For each change};
+\node[note,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,anchor=west] (periodic-heading) at (20,221.5) {Every 30 minutes};
+\node[note,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,anchor=west] (deploy-heading) at (20,322.5) {For deployment};
+\node[note,anchor=center] (failure-label-1) at (318,238.5) {blocking};
+\node[note,anchor=center] (failure-label-2) at (318,250.5) {failure};
+\node[note,anchor=center] (pass-label) at (318,349.5) {passes};
+\end{tikzpicture}

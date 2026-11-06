@@ -5,7 +5,7 @@
       "tier": "B",
       "kind": "set-diagram",
       "location": "part2",
-      "rationale": "obligation/realization Venn — two obligation regions and their acceptable intersection with distinct realization points; supporting caption names that obligations bound a region without selecting a point, and the remaining choices are degrees of freedom"
+      "rationale": "Sorting example: alphabetical order and the response-time tolerance bound an acceptable intersection while implementation choices remain open."
     },
     "assets/specified-region.svg": {
       "tier": "B",
@@ -1022,10 +1022,10 @@
       "rationale": "reclaim and reissue overlapping a stale holder's late release — supporting caption on why an epoch fence makes the old release inapplicable"
     },
     "assets/match-mechanism-to-property.svg": {
-      "tier": "B",
-      "kind": "decision-diagram",
+      "tier": "A",
+      "kind": "property-mechanism-comparison",
       "location": "part3",
-      "rationale": "an obligation forks on property kind to constraint, validator, or gate — supporting caption on matching mechanism to property, not a maturity ladder"
+      "rationale": "Anchor for matching evidence and enforcement to a job-protocol obligation: atomic claims, bounded exploration, temporal analysis, implementation tests, and admission gates have distinct roles."
     },
     "assets/question-to-consequence-progression.svg": {
       "tier": "B",
@@ -1266,6 +1266,54 @@
       "kind": "data",
       "location": "part5",
       "rationale": "Small measured comparison with completion denominators and inference-cost scope stated."
+    },
+    "assets/docable-work-order-flow.svg": {
+      "tier": "B",
+      "kind": "process-flow",
+      "location": "part5",
+      "rationale": "The reviewed work order supports concurrent implementation followed by integration and a distinct completion audit; deployment remains separate."
+    },
+    "inside-docables-software-factory::DocAble’s work-order artifacts": {
+      "tier": "C",
+      "kind": "reference-table",
+      "location": "part5",
+      "rationale": "Five operational artifacts, what each records, and who consumes it; concise reference accompanying the process explanation."
+    },
+    "assets/docable-validation-scheduling.svg": {
+      "tier": "B",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "The scheduling redesign reduces repeated validation while trading against detection delay; deployment retains full validation."
+    },
+    "assets/docable-execution-analysis.svg": {
+      "tier": "B",
+      "kind": "dependency-projection",
+      "location": "part2",
+      "rationale": "Worked DOCX dependency example: the same declared resource relation supplies scheduling and an analytical projection; the supporting caption scopes the Office example and distinguishes PDF correspondence."
+    },
+    "assets/deliver-context-two-layer.svg": {
+      "tier": "B",
+      "kind": "context-delivery",
+      "location": "part3",
+      "rationale": "Worked context-selection case: standing instructions and a retrieved task slice support reasoning; the separate discovery-event gate checks process evidence."
+    },
+    "modeling-behavior-and-execution::Constructs for access and ownership": {
+      "tier": "C",
+      "kind": "reference-table",
+      "location": "part2",
+      "rationale": "Reference table distinguishing access and ownership constructs."
+    },
+    "modeling-decision::Admission under one entitlement": {
+      "tier": "C",
+      "kind": "reference-table",
+      "location": "part2",
+      "rationale": "Reference decision table for a single finite or unlimited entitlement."
+    },
+    "engineering-the-environment::Diagnosing stalled work": {
+      "tier": "C",
+      "kind": "reference-table",
+      "location": "part4",
+      "rationale": "Reference table mapping four work limits to possible remedies."
     }
   }
 }

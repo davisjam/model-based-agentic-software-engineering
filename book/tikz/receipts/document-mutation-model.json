@@ -14,7 +14,7 @@
       [
         "n1",
         "n2",
-        "realized through",
+        "implemented by",
         ""
       ],
       [
@@ -77,32 +77,66 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
-    "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+    "source_sha256": "fcd4a77259421b666b99d5b1d5c8415d2e21552116cf212546112a64f6517206",
+    "candidate_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
     "fill": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
     "bold": "Source-derived emphasis includes Remediation logic; Structured document model. Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
     "routing": "Vertical chain and shared horizontal format fan-out rail.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-05",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
       "page": 18,
       "width_bp": 336.654,
       "height_bp": 221.049,
-      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 7
+      "semantic_typography_checks": 7,
+      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+      "status": "passed",
+      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
     },
-    "book_references": []
+    "book_references": [],
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-05",
+        "review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+          "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+          "fill": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
+          "bold": "Source-derived emphasis includes Remediation logic; Structured document model. Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
+          "routing": "Vertical chain and shared horizontal format fan-out rail.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 18,
+            "width_bp": 336.654,
+            "height_bp": 221.049,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 7
+          },
+          "book_references": []
+        }
+      }
+    ]
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
-    "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+    "source_sha256": "fcd4a77259421b666b99d5b1d5c8415d2e21552116cf212546112a64f6517206",
+    "candidate_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
     "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
     "evidence": [
       {
@@ -158,15 +192,15 @@
         }
       },
       {
-        "source_text": "realized through",
+        "source_text": "implemented by",
         "source_style": "weight normal; italic; source size 14",
         "semantic_role": "named category versus explanatory text",
-        "candidate_text": "realized through",
+        "candidate_text": "implemented by",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/document-mutation-model.svg",
           "element_text_path": "/svg/text[6]/text()",
-          "text_element_context": "realized through",
+          "text_element_context": "implemented by",
           "matching_fragment_count": 1
         }
       }
@@ -193,7 +227,7 @@
         "italic": true
       },
       {
-        "text": "realized through",
+        "text": "implemented by",
         "bold": false,
         "italic": true
       },
@@ -209,47 +243,179 @@
       }
     ],
     "validation": {
+      "date": "2026-11-05",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
       "page": 18,
       "width_bp": 336.654,
       "height_bp": 221.049,
-      "minimum_prose_font_pt": 9.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 7,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+      "status": "passed",
+      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-05",
+        "review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+          "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+          "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
+          "evidence": [
+            {
+              "source_text": "remediation logic",
+              "source_style": "weight 700; normal; source size 16.64",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Remediation logic",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/document-mutation-model.svg",
+                "element_text_path": "/svg/text[2]/text()",
+                "text_element_context": "remediation logic",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "structured document model",
+              "source_style": "weight 700; normal; source size 16.64",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Structured document model",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/document-mutation-model.svg",
+                "element_text_path": "/svg/text[4]/text()",
+                "text_element_context": "structured document model",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "the sanctioned seam",
+              "source_style": "weight normal; italic; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "The sanctioned seam",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/document-mutation-model.svg",
+                "element_text_path": "/svg/text[5]/text()",
+                "text_element_context": "the sanctioned seam",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "operates through",
+              "source_style": "weight normal; italic; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "operates through",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/document-mutation-model.svg",
+                "element_text_path": "/svg/text[3]/text()",
+                "text_element_context": "operates through",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "implemented by",
+              "source_style": "weight normal; italic; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "implemented by",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/document-mutation-model.svg",
+                "element_text_path": "/svg/text[6]/text()",
+                "text_element_context": "implemented by",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "Remediation logic",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Structured document model",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "The sanctioned seam",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "operates through",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "implemented by",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Format-specific implementation",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "DOCX",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 18,
+            "width_bp": 336.654,
+            "height_bp": 221.049,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 7,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        }
       }
-    }
+    ]
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "retained",
     "reason": "The four format alternatives already have matching heights and aligned top/bottom edges; their incoming fork has ample approach space.",
-    "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+    "candidate_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing document mutation model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
       "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
-      "after_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+      "after_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
       "before_dimensions_bp": [
         336.65399169921875,
         221.0489959716797
       ],
       "after_dimensions_bp": [
-        336.65399169921875,
-        221.0489959716797
+        336.654,
+        221.049
       ],
       "before_font_sizes_pt": [
         9.0,
@@ -262,23 +428,97 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-05",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
+      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
       "page": 18,
       "width_bp": 336.654,
-      "height_bp": 221.049
+      "height_bp": 221.049,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7,
+      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+      "status": "passed",
+      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-05",
+        "review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "retained",
+          "reason": "The four format alternatives already have matching heights and aligned top/bottom edges; their incoming fork has ample approach space.",
+          "candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing document mutation model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+            "after_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+            "before_dimensions_bp": [
+              336.65399169921875,
+              221.0489959716797
+            ],
+            "after_dimensions_bp": [
+              336.65399169921875,
+              221.0489959716797
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 18,
+            "width_bp": 336.654,
+            "height_bp": 221.049
+          }
+        }
+      }
+    ],
+    "source_sha256": "fcd4a77259421b666b99d5b1d5c8415d2e21552116cf212546112a64f6517206"
+  },
+  "terminology_revision": {
+    "date": "2026-11-05",
+    "review_item": "22-figure-mutation-implementation",
+    "source_sha256": "fcd4a77259421b666b99d5b1d5c8415d2e21552116cf212546112a64f6517206",
+    "candidate_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
+    "validation_status": "passed",
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+      "page": 18,
+      "width_bp": 336.654,
+      "height_bp": 221.049,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 7,
+      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+      "status": "passed",
+      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
     }
   }
 }

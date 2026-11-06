@@ -1,9 +1,11 @@
-# MAGE grayscale figure trials
+# MAGE grayscale figures and comparison edition
 
-These editable TikZ/PGFPlots candidates accompany the existing color artwork for
-publisher review. They do not replace the production figures. Each candidate is
-placed immediately after its original in the comparison book; original figure
-numbers and references are retained.
+The full `book/mage-book.pdf` uses `publication.json` to track author approval of
+each black-and-white figure. Pending figures show the color original immediately
+before its editable TikZ/PGFPlots version at the audited native print size. Approved
+figures show only the black-and-white version, with the original numbered caption
+and references. The web edition uses the original color artwork. The optional
+comparison book uses the same approval settings. See [the build guide](../BUILD.md#figure-review-and-pdf-publication).
 
 Run from the repository root with the PDF build dependencies installed:
 
@@ -29,10 +31,13 @@ a picture included directly in a book inherits that book’s active body family.
 The book embeds the resulting vectors with figure alternate text. Editable TikZ
 sources remain available to the publisher. `receipts/` records the claim,
 relationships, grayscale encoding, redesign choices, and unresolved editorial questions.
-These are review candidates, not a claim that every redesign has editorial approval.
+The receipts retain the history and editorial questions from the figure review.
 
-The eight newer empirical charts use the committed factory-archaeology CSVs and
-the existing category definitions. The historical churn chart uses the native
+Eight historical empirical drawings retain the committed factory-archaeology CSVs
+and category definitions in the source archive. Their four replacements use the
+October SEIP data and are already monochrome; `monochrome-originals.json` records
+these exceptions, and the PDF build checks their rendered pixels. Only figures
+actually present in the manuscript are paired. The historical churn chart uses the native
 manuscript's exact sixteen counts and a consistent positive/negative scale. The
 older velocity chart recovers the integer values encoded in the original SVG;
 its receipt records the original file hash and the discrepancy between nineteen
@@ -41,9 +46,9 @@ Seven navigation maps preserve station order and highlight the current chapter
 with a solid marker and bold type. The author photograph is retained as a
 photograph, outside the native drawing conversion.
 
-The comparison edition intentionally adds pages and is excluded from web
-publication. Color originals remain alongside the candidates; edits to originals
-follow explicit editorial direction and also reach the regular PDF and web edition.
+Both PDF editions intentionally add pages for figures still awaiting review.
+These alternatives are excluded from web publication. When a figure changes, keep its color SVG and native grayscale drawing
+consistent so the web and full PDF editions convey the same content.
 PDF structure checks verify tags and alternate text; they do not certify complete
 accessibility or replace review of the separate HTML edition.
 

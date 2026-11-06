@@ -12,10 +12,10 @@
   <title id="srTitle">Obligation, scaffolding, and degrees of freedom</title>
   <desc id="srDesc">A stacked diagram. The specified region groups two layers: the engineering
     obligation, holding consequential distinctions that must be preserved, and scaffolding, the
-    additional structure this agent needs to interpret and realize the obligation reliably. The
+    additional structure this agent needs to interpret and satisfy the obligation reliably. The
     obligation boundary between them is set by the engineering problem and does not move with
     capability. The specification boundary below the scaffolding is set by the obligation and by this
-    agent's capability. Below it sit the degrees of freedom: realization choices left to the agent.
+    agent's capability. Below it sit the degrees of freedom: implementation choices left to the agent.
     An upward arrow shows that greater agent capability can reduce required scaffolding.</desc>
 
   <defs>
@@ -51,7 +51,7 @@
   <rect x="250" y="216" width="480" height="104" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="490" y="248" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SCAFFOLDING</text>
   <text x="490" y="276" text-anchor="middle" font-size="20" fill="#57534e">additional structure this agent needs to</text>
-  <text x="490" y="300" text-anchor="middle" font-size="20" fill="#57534e">interpret and realize the obligation reliably</text>
+  <text x="490" y="300" text-anchor="middle" font-size="20" fill="#57534e">interpret and satisfy the obligation reliably</text>
 
   <!-- specification boundary: the lower edge of the specified region -->
   <line x1="232" y1="342" x2="748" y2="342" stroke="#1c1917" stroke-width="2.5"/>
@@ -63,7 +63,7 @@
   <!-- degrees of freedom -->
   <rect x="250" y="366" width="480" height="96" rx="10" fill="#fdfcf9" stroke="#57534e" stroke-width="1.5"/>
   <text x="490" y="400" text-anchor="middle" font-size="22" font-weight="700" fill="#57534e">DEGREES OF FREEDOM</text>
-  <text x="490" y="430" text-anchor="middle" font-size="20" fill="#57534e">realization choices left to the agent</text>
+  <text x="490" y="430" text-anchor="middle" font-size="20" fill="#57534e">implementation choices left to the agent</text>
 
   <!-- capability moves only the specification boundary, toward the obligation boundary, never across -->
   <line x1="215" y1="430" x2="215" y2="212" stroke="#2f5169" stroke-width="2" marker-end="url(#sr-a)"/>

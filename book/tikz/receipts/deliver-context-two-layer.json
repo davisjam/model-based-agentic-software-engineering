@@ -1,0 +1,333 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "chapter": "3.1-where-obligations-can-be-enforced",
+  "claim": "*Selecting context for the work.* Standing instructions and a retrieved task slice supply the agent’s context. DocAble repeats selection after planning, when the anticipated files are clearer. This information path supports reasoning; the separate extraction gate checks that the required discovery event occurred.",
+  "alt": "Engineering knowledge supplies a small standing context and a task-relevant slice retrieved as needed. Both feed agent context, which directs work. A dashed lifecycle-event feedback arrow returns from work to the task-relevant slice.",
+  "required_terms": [
+    "ENGINEERING KNOWLEDGE",
+    "models · rules · procedures",
+    "STANDING CONTEXT",
+    "mission · compact method",
+    "compact policy",
+    "TASK-RELEVANT SLICE",
+    "richer models, procedures,",
+    "examples — retrieved when needed",
+    "AGENT CONTEXT",
+    "WORK",
+    "lifecycle event re-surfaces what matters now",
+    "Keep standing context small enough to stay standing — retrieve the rest per task."
+  ],
+  "style_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+    "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+    "decision": "retained",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "White boxes; the named layers, solid/dashed borders and feedback arrow carry the categories.",
+    "bold": "Preserve bold layer headings and italic explanations/feedback.",
+    "routing": "Orthogonal shared split and join rails; the dashed lifecycle feedback uses an external right-hand return.",
+    "shape": "Modestly rounded boxes with equal standing and task-slice dimensions.",
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+      "page": 140,
+      "width_bp": 403.399,
+      "height_bp": 233.522,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "status": "passed",
+      "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+    },
+    "reviewed_visually": true,
+    "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+  },
+  "layout_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+    "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+    "decision": "retained",
+    "reason": "Two parallel context sources feed one agent context; lifecycle feedback returns from work to task retrieval.",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "context sources",
+          "labels": [
+            "STANDING CONTEXT",
+            "TASK-RELEVANT SLICE"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_width": true,
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+      "page": 140,
+      "width_bp": 403.399,
+      "height_bp": 233.522,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "status": "passed",
+      "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+    },
+    "reviewed_visually": true
+  },
+  "typography_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+    "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+    "decision": "retained",
+    "evidence": [
+      {
+        "source_text": "ENGINEERING KNOWLEDGE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "ENGINEERING KNOWLEDGE",
+        "candidate_style": "bold",
+        "semantic_role": "named layer"
+      },
+      {
+        "source_text": "models · rules · procedures",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "candidate_text": "models · rules · procedures",
+        "candidate_style": "italic",
+        "semantic_role": "description or feedback annotation"
+      },
+      {
+        "source_text": "STANDING CONTEXT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "STANDING CONTEXT",
+        "candidate_style": "bold",
+        "semantic_role": "named layer"
+      },
+      {
+        "source_text": "mission · compact method",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "mission · compact method",
+        "candidate_style": "regular",
+        "semantic_role": "description or feedback annotation"
+      },
+      {
+        "source_text": "compact policy",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "compact policy",
+        "candidate_style": "regular",
+        "semantic_role": "description or feedback annotation"
+      },
+      {
+        "source_text": "TASK-RELEVANT SLICE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "TASK-RELEVANT SLICE",
+        "candidate_style": "bold",
+        "semantic_role": "named layer"
+      },
+      {
+        "source_text": "richer models, procedures,",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "richer models, procedures,",
+        "candidate_style": "regular",
+        "semantic_role": "description or feedback annotation"
+      },
+      {
+        "source_text": "examples — retrieved when needed",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "examples — retrieved when needed",
+        "candidate_style": "regular",
+        "semantic_role": "description or feedback annotation"
+      },
+      {
+        "source_text": "AGENT CONTEXT",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "AGENT CONTEXT",
+        "candidate_style": "bold",
+        "semantic_role": "named layer"
+      },
+      {
+        "source_text": "WORK",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "candidate_text": "WORK",
+        "candidate_style": "bold",
+        "semantic_role": "named layer"
+      },
+      {
+        "source_text": "lifecycle event re-surfaces what matters now",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "candidate_text": "lifecycle event re-surfaces what matters now",
+        "candidate_style": "italic",
+        "semantic_role": "description or feedback annotation"
+      },
+      {
+        "source_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+        "source_style": {
+          "font-weight": "normal",
+          "font-style": "italic",
+          "font-size": "20"
+        },
+        "candidate_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+        "candidate_style": "italic",
+        "semantic_role": "description or feedback annotation"
+      }
+    ],
+    "checks": [
+      {
+        "text": "ENGINEERING KNOWLEDGE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "models · rules · procedures",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "STANDING CONTEXT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "mission · compact method",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "compact policy",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "TASK-RELEVANT SLICE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "richer models, procedures,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "examples — retrieved when needed",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "AGENT CONTEXT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "WORK",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "lifecycle event re-surfaces what matters now",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "reason": "Retain source headings, capitals, explanatory italics and exact labels.",
+    "validation": {
+      "date": "2026-11-05",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+      "page": 140,
+      "width_bp": 403.399,
+      "height_bp": 233.522,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "status": "passed",
+      "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+    },
+    "reviewed_visually": true
+  },
+  "full_pool_validation": {
+    "date": "2026-11-05",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+    "page": 140,
+    "width_bp": 403.399,
+    "height_bp": 233.522,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 12,
+    "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+    "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+    "status": "passed",
+    "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+  }
+}

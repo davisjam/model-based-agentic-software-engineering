@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Custom SVG: fixed peer branch/merge geometry and a noncrossing outer repair loop preserve the teaching relationships at a 400 bp print width. Companion native TikZ uses identical geometry. Source: DocAble factory lecture, 2026-11-03, slides 4–12 and 18–24. -->
+<!-- semantic-families: agent, modeling, governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 400 450" role="img" aria-labelledby="docable-workflow-title docable-workflow-desc" font-family="'Source Sans 3', Arial, sans-serif">
+<title id="docable-workflow-title">DocAble: from a priority to completed work</title>
+<desc id="docable-workflow-desc">An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness.</desc>
+<defs><marker id="workflow-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#1c1917"/></marker></defs>
+<rect x="0" y="0" width="400" height="450" fill="#ffffff"/>
+<g fill="none" stroke="#1c1917" stroke-width="0.75" stroke-linejoin="round">
+<polyline id="priority-to-plan" points="190,46 190,62" marker-end="url(#workflow-arrow)"/>
+<polyline id="plan-to-schedule" points="190,112 190,128" marker-end="url(#workflow-arrow)"/>
+<polyline id="dispatch-trunk" points="190,172 190,186"/>
+<polyline id="dispatch-a" points="190,186 108,186 108,200" marker-end="url(#workflow-arrow)"/>
+<polyline id="dispatch-b" points="190,186 272,186 272,200" marker-end="url(#workflow-arrow)"/>
+<polyline id="result-a" points="108,244 108,260 190,260"/>
+<polyline id="result-b" points="272,244 272,260 190,260"/>
+<polyline id="integration-entry" points="190,260 190,276" marker-end="url(#workflow-arrow)"/>
+<polyline id="audit-entry" points="190,320 190,343" marker-end="url(#workflow-arrow)"/>
+<polyline id="acceptance" points="190,387 190,415" marker-end="url(#workflow-arrow)"/>
+<polyline id="repair-loop" points="295,365 371,365 371,150 295,150" marker-end="url(#workflow-arrow)"/>
+</g>
+<g id="engineer"><rect x="85" y="4" width="210" height="42" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65"/>
+<text x="190" y="22.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Engineer</text>
+<text x="190" y="36.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Priorities and open decisions</text>
+</g>
+<g id="workorder"><rect x="85" y="62" width="210" height="50" rx="2.5" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="0.65"/>
+<text x="190" y="84.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Reviewed work order</text>
+<text x="190" y="98.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Design, phases, dependencies</text>
+</g>
+<g id="orchestrator"><rect x="85" y="128" width="210" height="44" rx="2.5" fill="#e7edf3" stroke="#2f5169" stroke-width="0.65"/>
+<text x="190" y="147.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Orchestrator</text>
+<text x="190" y="161.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Schedules ready phases</text>
+</g>
+<g id="agenta"><rect x="43" y="200" width="130" height="44" rx="2.5" fill="#e7edf3" stroke="#2f5169" stroke-width="0.65"/>
+<text x="108" y="219.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Agent A</text>
+<text x="108" y="233.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Isolated worktree</text>
+</g>
+<g id="agentb"><rect x="207" y="200" width="130" height="44" rx="2.5" fill="#e7edf3" stroke="#2f5169" stroke-width="0.65"/>
+<text x="272" y="219.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Agent B</text>
+<text x="272" y="233.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Isolated worktree</text>
+</g>
+<g id="integration"><rect x="85" y="276" width="210" height="44" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="190" y="295.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Integration and checks</text>
+<text x="190" y="309.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Merge changes; gather evidence</text>
+</g>
+<g id="audit"><rect x="85" y="343" width="210" height="44" rx="2.5" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.65"/>
+<text x="190" y="362.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Independent completion audit</text>
+<text x="190" y="376.5" text-anchor="middle" font-size="9.5" fill="#3d3935">Check work order and evidence</text>
+</g>
+<g id="accepted"><rect x="85" y="415" width="210" height="30" rx="2.5" fill="#ffffff" stroke="#57534e" stroke-width="0.65"/>
+<text x="190" y="433.5" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1c1917">Work order closed</text>
+</g>
+<text id="repair-label" x="333" y="355" text-anchor="middle" font-size="9.5" fill="#3d3935">Repair work</text>
+<text id="accept-label" x="200" y="404" text-anchor="start" font-size="9.5" fill="#3d3935">Criteria met</text>
+</svg>

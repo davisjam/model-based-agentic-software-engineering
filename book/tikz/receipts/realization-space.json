@@ -1,49 +1,53 @@
 {
   "source": "book/assets/realization-space.svg",
   "chapter": "2.1-context-is-the-first-modeling-problem",
-  "claim": "*Obligations bound a realization space without selecting one realization.* Each region contains implementations satisfying one engineering obligation; their intersection contains implementations satisfying both. The points within that intersection may differ substantially in structure and implementation while remaining acceptable under the represented obligations. Those remaining choices are realization degrees of freedom.",
+  "claim": "*Requirements bound the acceptable implementation space.* Each dot represents a possible implementation for lists of up to 1,000 names. Alphabetical ordering defines the left region, and the 200-millisecond response-time tolerance defines the right. Their intersection contains multiple acceptable implementations, leaving degrees of freedom such as the choice of algorithm.",
   "topology": {
-    "description": "Set intersection inside realization space; dots denote distinct possible implementations, not measured counts.",
+    "description": "Intersection of alphabetical-order and response-time requirements inside possible implementation space; dot count and position are schematic.",
     "relations": []
   },
   "required_terms": [
-    "Satisfies behavioral obligation",
-    "Satisfies architectural obligation",
-    "Acceptable realizations Satisfy both",
-    "Each dot is a distinct possible realization; acceptable choices retain degrees of freedom."
+    "POSSIBLE SOFTWARE IMPLEMENTATIONS",
+    "Lists of up to 1,000 names",
+    "Alphabetical ordering",
+    "Response time",
+    "Tolerance",
+    "ACCEPTABLE IMPLEMENTATIONS",
+    "Satisfy both",
+    "Degrees of freedom: choices among acceptable implementations"
   ],
-  "bw_encoding": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks.",
-  "redesign": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks. Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
+  "bw_encoding": "Light gray marks the ordering region; hatching marks the intersection. Dots denote possible implementations.",
+  "redesign": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
   "questions": [],
-  "alt": "A rectangle contains possible software realizations. Two overlapping ellipses represent satisfaction of behavioral and architectural obligations. The hatched intersection contains acceptable realizations satisfying both; one lobe is pale gray and the other white. Dots inside the intersection, in individual lobes and outside both denote distinct possible realizations, not measured frequencies.",
+  "alt": "Possible software implementations for sorting lists of up to 1,000 names. The left region contains implementations that return names in alphabetical order; the right contains implementations that respond within 200 milliseconds. The overlap contains implementations satisfying both requirements. Dots represent distinct possible implementations, not measured algorithms. The timing bound sets a tolerance; choices among acceptable implementations remain degrees of freedom.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "Approved sorting-example adaptation, 2026-11-04",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
+      "scope",
+      "set membership",
+      "tolerance and freedom labels",
       "native-size visual layout"
     ],
-    "outcome": "Existing gray lobe, white lobe and hatched intersection already distinguish sets in print. No drawing change required; reviewed dots and obligation labels.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "outcome": "Color SVG and grayscale TikZ proof inspected. Region labels fit, the overlap holds several distinct implementations, and timing tolerance and remaining choices are explicitly named.",
+    "strict_compile": "Zero unapproved diagnostics; geometry and typography checks passed.",
     "native_dimensions_cm": [
       12.3515,
-      8.7442
+      9.3702
     ]
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
-    "candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-    "fill": "Preserved 7% behavioral set territory and hatched intersection; these encode named set membership. Dots remain dark non-text marks.",
-    "bold": "Source-derived emphasis includes SOFTWARE REALIZATION SPACE; Satisfies behavioral obligation; Satisfies architectural obligation; ACCEPTABLE REALIZATIONS. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+    "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+    "fill": "Light gray marks the ordering region; hatching marks the intersection. Dots denote possible implementations.",
+    "bold": "Universe heading and requirement-region names are bold. Scope and explanations are regular.",
     "routing": "Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-    "validation": {
+    "visual_review": "Inspected color SVG and native-size grayscale proof on 2026-11-04; text and containment are legible.",
+    "book_references": [],
+    "previous_validation": {
       "proof": "latex/build/tikz/candidates.pdf",
       "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 13,
@@ -55,124 +59,121 @@
       "monochrome_pixels": true,
       "semantic_typography_checks": 5
     },
-    "book_references": []
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+      "page": 13,
+      "width_bp": 350.12,
+      "height_bp": 265.611,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+      "status": "passed",
+      "reviewed_date": "2026-11-04"
+    }
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "e2f77f2cd289d5b2c20afd3ae2cda0b77ebb3fc69353a5e78ee753cd459bc34d",
-    "candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+    "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+    "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
     "evidence": [
       {
-        "source_text": "SOFTWARE REALIZATION SPACE",
+        "source_text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
         "source_style": "weight 700, normal",
-        "semantic_role": "Universe heading (already bold)",
-        "candidate_text": "SOFTWARE REALIZATION SPACE",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "SOFTWARE REALIZATION SPACE",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "48"
-          }
-        ]
+        "semantic_role": "Named region or heading",
+        "candidate_text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "satisfies behavioral obligation",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named obligation regions",
-        "candidate_text": "Satisfies behavioral obligation",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "satisfies behavioral",
-            "weight": "700",
-            "style": "normal",
-            "x": "250",
-            "y": "225"
-          },
-          {
-            "text": "obligation",
-            "weight": "700",
-            "style": "normal",
-            "x": "250",
-            "y": "250"
-          }
-        ]
+        "source_text": "Lists of up to 1,000 names",
+        "source_style": "weight 400, normal",
+        "semantic_role": "Scope or explanation",
+        "candidate_text": "Lists of up to 1,000 names",
+        "candidate_style": "regular"
       },
       {
-        "source_text": "satisfies architectural obligation",
+        "source_text": "Alphabetical ordering",
         "source_style": "weight 700, normal",
-        "semantic_role": "Named obligation regions",
-        "candidate_text": "Satisfies architectural obligation",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "satisfies architectural",
-            "weight": "700",
-            "style": "normal",
-            "x": "770",
-            "y": "455"
-          },
-          {
-            "text": "obligation",
-            "weight": "700",
-            "style": "normal",
-            "x": "770",
-            "y": "480"
-          }
-        ]
+        "semantic_role": "Named region or heading",
+        "candidate_text": "Alphabetical ordering",
+        "candidate_style": "bold"
       },
       {
-        "source_text": "ACCEPTABLE REALIZATIONS",
+        "source_text": "Response time",
         "source_style": "weight 700, normal",
-        "semantic_role": "Intersection status (already bold)",
-        "candidate_text": "ACCEPTABLE REALIZATIONS",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "ACCEPTABLE",
-            "weight": "700",
-            "style": "normal",
-            "x": "520",
-            "y": "205"
-          },
-          {
-            "text": "REALIZATIONS",
-            "weight": "700",
-            "style": "normal",
-            "x": "520",
-            "y": "233"
-          }
-        ]
+        "semantic_role": "Named region or heading",
+        "candidate_text": "Response time",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Tolerance",
+        "source_style": "weight 400, normal",
+        "semantic_role": "Scope or explanation",
+        "candidate_text": "Tolerance",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "ACCEPTABLE IMPLEMENTATIONS",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named region or heading",
+        "candidate_text": "ACCEPTABLE IMPLEMENTATIONS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Satisfy both",
+        "source_style": "weight 400, normal",
+        "semantic_role": "Scope or explanation",
+        "candidate_text": "Satisfy both",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Degrees of freedom: choices among acceptable implementations",
+        "source_style": "weight 400, normal",
+        "semantic_role": "Scope or explanation",
+        "candidate_text": "Degrees of freedom: choices among acceptable implementations",
+        "candidate_style": "regular"
       }
     ],
     "checks": [
       {
-        "text": "SOFTWARE REALIZATION SPACE",
+        "text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
         "bold": true
       },
       {
-        "text": "Satisfies behavioral obligation",
+        "text": "Lists of up to 1,000 names",
+        "bold": false
+      },
+      {
+        "text": "Alphabetical ordering",
         "bold": true
       },
       {
-        "text": "Satisfies architectural obligation",
+        "text": "Response time",
         "bold": true
       },
       {
-        "text": "ACCEPTABLE REALIZATIONS",
+        "text": "Tolerance",
+        "bold": false
+      },
+      {
+        "text": "ACCEPTABLE IMPLEMENTATIONS",
         "bold": true
       },
       {
         "text": "Satisfy both",
         "bold": false
+      },
+      {
+        "text": "Degrees of freedom: choices among acceptable implementations",
+        "bold": false
       }
     ],
-    "validation": {
+    "previous_validation": {
       "proof": "latex/build/tikz/candidates.pdf",
       "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "page": 13,
@@ -195,37 +196,38 @@
           "SourceSans3-Regular"
         ]
       }
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+      "page": 13,
+      "width_bp": 350.12,
+      "height_bp": 265.611,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+      "status": "passed",
+      "reviewed_date": "2026-11-04"
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Overlapping sets and point locations encode realization-space relationships; there are no process-node peers to equalize.",
-    "candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
+    "decision": "refined",
+    "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
+    "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
     "page_layout": {
-      "decision": "retained",
-      "reason": "Retain spatial region/comparison layout: region geometry carries meaning and all explanations remain legible without making the spatial relations taller.",
-      "before_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-      "after_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-      "before_dimensions_bp": [
-        350.1199951171875,
-        246.9429931640625
-      ],
+      "decision": "refined",
+      "after_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+      "reviewed_visually": true,
       "after_dimensions_bp": [
-        350.1199951171875,
-        246.9429931640625
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
+        350.12,
+        265.611
+      ]
     },
-    "validation": {
+    "previous_validation": {
       "proof": "latex/build/tikz/candidates.pdf",
       "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
       "geometry_findings": 0,
@@ -243,6 +245,22 @@
       "page": 13,
       "width_bp": 350.12,
       "height_bp": 246.943
+    },
+    "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+      "page": 13,
+      "width_bp": 350.12,
+      "height_bp": 265.611,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+      "status": "passed",
+      "reviewed_date": "2026-11-04"
     }
   }
 }

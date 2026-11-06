@@ -1000,27 +1000,42 @@ def check_part_title_parity():
     return (FAIL if issues else PASS), issues
 
 
-# The bold-lead that opens the WHOLE canon statement of a thesis in a body chapter (`**The Modeling
-# Thesis.**` / `**The Alignment Thesis:**`) — the shape the Preface and 3.1 both use. Case-insensitive; the
-# trailing `.`/`:` tolerates either house punctuation.
-def _thesis_stated_whole(part_dir: str, thesis_name: str) -> bool:
-    """True when SOME chapter file under book/<part_dir>/ states the named thesis WHOLE — a
-    `**The <Name> Thesis.**` bold-lead AND an `In other words` in the same file (the canon §1.1/§1.2 shape:
-    Definition + In other words). Excludes the opener file (00-part-intro.md) — the whole statement must live
-    in a BODY chapter, not only the opener box."""
-    # Accept the retired "Thesis" name OR the current "Principle" name (book-wide Thesis→Principle
-    # retirement, 260816): the guard pins the survival of the WHOLE canon statement in a body chapter,
-    # not the surface term. Either named form satisfies the invariant.
-    lead = re.compile(rf"\*\*\s*The\s+{re.escape(thesis_name)}\s+(?:Thesis|Principle)\s*[.:]\s*\*\*", re.I)
+def _principle_stated_in_body(part_dir: str, name: str, point_slug: str) -> bool:
+    """Resolve a canonical point to a visible, nonempty principle statement in its body chapter.
+
+    Use the book IR's point-to-paragraph structure, not an incidental explanatory phrase such as
+    "In other words". A comment, code example, detached heading, or Part opener cannot stand in for
+    the statement. This checks presence and placement; semantic fidelity remains an editorial review.
+    """
+    import book_symbols as bs
+
+    ir = bs.book_ir
+    # Retain compatibility with the retired Thesis name and both house punctuation forms.
+    lead = re.compile(rf"\*\*\s*The\s+{re.escape(name)}\s+(?:Thesis|Principle)\s*[.:]\s*\*\*", re.I)
     d = os.path.join(ROOT, "book", part_dir)
     if not os.path.isdir(d):
         return False
     for fn in os.listdir(d):
         if not fn.endswith(".md") or fn.startswith("00-"):
             continue
-        text = open(os.path.join(d, fn), encoding="utf-8").read()
-        if lead.search(text) and re.search(r"in other words", text, re.I):
-            return True
+        with open(os.path.join(d, fn), encoding="utf-8") as source:
+            text = source.read()
+        chapter = ir.parse_records([{"slug": fn[:-3], "part": 0, "body_md": text}]).chapters[0]
+        blocks = chapter.blocks
+        for i, block in enumerate(blocks):
+            if block.point_slug != point_slug:
+                continue
+            j = i + 1
+            # Index metadata may sit between the point and its paragraph. A different point may not.
+            while (j < len(blocks) and blocks[j].kind is ir.BlockKind.DIRECTIVE
+                   and blocks[j].directive != "point"):
+                j += 1
+            if j == len(blocks) or blocks[j].kind is not ir.BlockKind.PARA:
+                continue
+            visible = re.sub(r"<!--.*?-->", "", blocks[j].raw, flags=re.S).strip()
+            match = lead.match(visible)
+            if match and re.search(r"\w", visible[match.end():]):
+                return True
     return False
 
 
@@ -1057,45 +1072,42 @@ def check_close_label_integrity():
 
 
 def check_canon_pins():
-    """R3 canon-fidelity guard + R5 cycle pin (rule-#33 parity; AUDIT-ONLY-first, rule #55).
+    """R3 principle-presence guard + R5 cycle pin (both blocking).
 
-    R3 — the Preface Modeling-box cut must not lose the canon. The FULL canon Modeling Thesis (Definition +
-    `In other words`) currently lives ONLY in the Preface, which the restructure cuts. Part 3 states the
-    Alignment Thesis whole in a body chapter (3.1); Part 2 does NOT yet state the Modeling Thesis whole. This
-    guard asserts each thesis is stated whole in a BODY chapter of its Part (Modeling → Part 2, Alignment →
-    Part 3), pinning the statement text to `argument_spine_declared.json` (the SSOT — Modeling/Alignment
-    claims). It reports the Modeling gap AUDIT-ONLY this wave; a follow-up promotes it BLOCKING once a Part-2
-    body chapter states it whole, at which point cutting the Preface box before Part 2 carries the canon fires
-    the gate.
+    R3 — each Modeling/Alignment claim in the argument spine must have its named statement at the
+    canonical paragraph point in a body chapter of its Part. Point IDs survive copyedits; a specific
+    transition phrase does not. Removing a statement, leaving only metadata, or moving it solely to
+    an opener still fails the guard.
 
     R5 — INV-3 (one backbone, many resolutions): the ONE 3-line-method wording (`canon_cycle_declared.json`)
     must be reused VERBATIM by every surface that states the MAGE cycle (the Part-IV opener box, the Preface
     cycle paragraph, the cycle figure), each carrying the `mage-cycle` anchor. Any anchored surface whose text
-    omits the pinned wording is a drift finding. Vacuous until the surfaces land in W2/W3 — registered now so
-    the drafters inherit the guard."""
+    omits the pinned wording is a drift finding."""
     import json as _json
 
     issues: list[str] = []
 
-    # R3 — pin the whole-statement presence to the argument-spine SSOT (rule #33).
+    # R3 — join the argument-spine claims to their stable manuscript points.
     spine_path = os.path.join(_BOOK_MODELS, "argument_spine_declared.json")
-    spine = _json.load(open(spine_path, encoding="utf-8"))
+    with open(spine_path, encoding="utf-8") as source:
+        spine = _json.load(source)
     by_id = {c["id"]: c for c in spine.get("spine", spine.get("claims", []))}
-    for thesis_id, thesis_name, part_dir in (
-        ("modeling-principle", "Modeling", "part2"),
-        ("alignment-principle", "Alignment", "part3"),
+    for principle_id, name, part_dir, point_slug in (
+        ("modeling-principle", "Modeling", "part2", "the-modeling-principle-in-its-weakest-form"),
+        ("alignment-principle", "Alignment", "part3", "the-alignment-principle-stated-whole"),
     ):
-        if thesis_id not in by_id:
-            issues.append(f"R3: argument_spine_declared.json carries no {thesis_id!r} claim to pin against")
+        if principle_id not in by_id:
+            issues.append(f"R3: argument_spine_declared.json carries no {principle_id!r} claim to pin against")
             continue
-        if not _thesis_stated_whole(part_dir, thesis_name):
+        if not _principle_stated_in_body(part_dir, name, point_slug):
             issues.append(
-                f"R3 canon guard: the whole {thesis_name} Thesis (bold-lead + 'In other words', pinned to "
-                f"argument-spine {thesis_id!r}) is not stated in any {part_dir}/ body chapter — it must be "
-                f"before the Preface {thesis_name}-box is cut, or the canon statement is lost")
+                f"R3 canon guard: {name} Principle statement is missing from point {point_slug!r} "
+                f"in {part_dir}/ body chapters (argument-spine {principle_id!r}); restore the point "
+                f"and its following named, nonempty statement. An opener or metadata alone is insufficient.")
 
     # R5 — the 3-line-method cycle pin. Any `mage-cycle`-anchored surface must carry the pinned wording.
-    cycle = _json.load(open(os.path.join(_BOOK_MODELS, "canon_cycle_declared.json"), encoding="utf-8"))
+    with open(os.path.join(_BOOK_MODELS, "canon_cycle_declared.json"), encoding="utf-8") as source:
+        cycle = _json.load(source)
     pinned = cycle["three_line_method"]
     anchor = cycle.get("anchor", "mage-cycle")
     if not pinned.strip():
@@ -1106,7 +1118,8 @@ def check_canon_pins():
         for fn in files:
             if not fn.endswith(".md"):
                 continue
-            text = open(os.path.join(root_, fn), encoding="utf-8").read()
+            with open(os.path.join(root_, fn), encoding="utf-8") as source:
+                text = source.read()
             if anchor_re.search(text) and pinned not in text:
                 issues.append(
                     f"R5 cycle pin: {rel(os.path.join(root_, fn))} carries the {anchor!r} anchor but does "

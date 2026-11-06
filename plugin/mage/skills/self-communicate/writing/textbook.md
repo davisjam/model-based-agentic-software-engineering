@@ -22,6 +22,12 @@ First person can expose an engineer's decision. Direct address can guide an infe
 can introduce a real design problem, and a list can make alternatives comparable. Use these when
 they teach; neither impersonal prose nor continuous prose is an end in itself.
 
+Use literature to develop the engineering explanation. Synthesize a body of work through the shared ideas
+the reader needs, with representative citations at the claims they support. Attribute borrowed concepts
+and vocabulary. Use individual studies or products when their specific results or mechanisms matter.
+In a teaching passage, close with what the engineer can understand or do; reserve arguments about the
+book's novelty or durability for a place where those questions are actually at issue.
+
 ## Judge length by explanatory work
 
 Before shortening, ask **what must the reader now infer?** Keep intuition, worked examples,

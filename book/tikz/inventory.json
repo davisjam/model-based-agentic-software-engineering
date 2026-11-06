@@ -2,15 +2,15 @@
   {
     "chapter": "0.1-how-to-read-this-book",
     "source": "assets/book-map.svg",
-    "caption": "*The book's argument.* The Preface and Chapter 1 establish the engineering problem. Chapters 2\u20135 develop and substantiate MAGE through its software-engineering case study. Chapters 6 and 7 abstract from that case to theory and broader engineering implications, and the Conclusion returns to the opening question through responsibility.",
+    "caption": "*The book's argument.* The Preface and Chapter 1 establish the engineering problem. Chapters 2–5 develop and substantiate MAGE through its software-engineering case study. Chapters 6 and 7 abstract from that case to theory and broader engineering implications, and the Conclusion returns to the opening question through responsibility.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/book-map.d2",
     "receipt": "book/d2-pilot/book-map.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The book's argument in three movements \u2014 the engineering question, the nested software-engineering case, and the engineering argument it substantiates, from the Preface's question to the Conclusion's answer",
-    "svg_description": "A single descent through the book's argument, in three movements. The Preface poses the opening\n    question: how do we safely grant autonomy to commodity intelligence? It leads to Chapter 1, The New Engineering\n    Problem \u2014 changed economics. A subtly shaded region then nests the software-engineering case \u2014 the chapters that\n    develop the mechanisms and supply the evidence. Inside it: Chapter 2, Modeling \u2014 make knowledge and intent\n    explicit. Then Chapter 3, Alignment \u2014 enforce selected obligations. Then Chapter 4, MAGE in Motion \u2014 the mechanisms\n    put in motion on a worked problem: model, align, work, convert; a dotted branch runs to Appendix Part I, Practice\n    (use and extend). Then Chapter 5, Agentic Software Factories \u2014 the production system that supplies the evidence: a\n    deep case, industrial variation, and what the factories show; a dotted branch runs to Appendix Part II, Evidence\n    (inspect the empirical record). The descent leaves the case region at Chapter 6, The Theory \u2014 the abstraction from\n    those factories: dynamics, economics, predictions, and scope conditions. Then Chapter 7, The Profession \u2014 how\n    software work reorganizes, agentic engineering beyond software, and the responsibility that remains the engineer's.\n    The descent ends at the Conclusion, which returns to the Preface's question and asks its converse: what cannot be\n    delegated? Responsibility. The dotted appendix branches are related destinations, not steps in the argument."
+    "svg_title": "The book's argument in three movements — the engineering question, the nested software-engineering case, and the engineering argument it substantiates, from the Preface's question to the Conclusion's answer",
+    "svg_description": "A single descent through the book's argument, in three movements. The Preface poses the opening\n    question: how do we safely grant autonomy to commodity intelligence? It leads to Chapter 1, The New Engineering\n    Problem — changed economics. A subtly shaded region then nests the software-engineering case — the chapters that\n    develop the mechanisms and supply the evidence. Inside it: Chapter 2, Modeling — make knowledge and intent\n    explicit. Then Chapter 3, Alignment — enforce selected obligations. Then Chapter 4, MAGE in Motion — the mechanisms\n    put in motion on a worked problem: model, align, work, convert; a dotted branch runs to Appendix Part I, Practice\n    (use and extend). Then Chapter 5, Agentic Software Factories — the production system that supplies the evidence: a\n    deep case, industrial variation, and what the factories show; a dotted branch runs to Appendix Part II, Evidence\n    (inspect the empirical record). The descent leaves the case region at Chapter 6, The Theory — the abstraction from\n    those factories: dynamics, economics, predictions, and scope conditions. Then Chapter 7, The Profession — how\n    software work reorganizes, agentic engineering beyond software, and the responsibility that remains the engineer's.\n    The descent ends at the Conclusion, which returns to the Preface's question and asks its converse: what cannot be\n    delegated? Responsibility. The dotted appendix branches are related destinations, not steps in the argument."
   },
   {
     "chapter": "0.3-the-mage-method-at-a-glance",
@@ -22,8 +22,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The MAGE method \u2014 scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.",
-    "svg_description": "A single centre spine reads top to bottom: Scale and Finite reasoning combined in one\n    node, a New engineering imbalance, the Modeling Principle, the Alignment Principle, the Governed\n    Engineering Environment, and Engineering Capital. Scale is the enduring source of a finite reasoning\n    horizon: large systems exceed any one reasoner, so relevant state must be abstracted or reconstructed,\n    which makes judgment scarce at scale. Commodity intelligence enters laterally at the New\n    Engineering Imbalance, making implementation abundant while judgment, representation, evidence, and\n    enforcement stay scarce; it changes the economics of the imbalance but does not cause the reasoning\n    horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent\n    explicit at useful scales, which exposes those properties for analysis and reaches\n    the Alignment Principle, where selected obligations are enforced through constraints, sensors, validators,\n    and gates. Passing through Alignment the spine enters the Governed Engineering Environment \u2014 the\n    synthesis of both principles \u2014 and effort compounds as Engineering Capital when future value exceeds its\n    carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment\n    back to adapt the models and controls, strengthening the environment. Two dashed failure paths lead\n    to Engineering Churn: weak representation is repaid as reconstruction, weak enforcement as repeated\n    adjudication. A light dotted long-range rail marks capital reopening the reasoning problem as scope\n    grows."
+    "svg_title": "The MAGE method — scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.",
+    "svg_description": "A single centre spine reads top to bottom: Scale and Finite reasoning combined in one\n    node, a New engineering imbalance, the Modeling Principle, the Alignment Principle, the Governed\n    Engineering Environment, and Engineering Capital. Scale is the enduring source of a finite reasoning\n    horizon: large systems exceed any one reasoner, so relevant state must be abstracted or reconstructed,\n    which makes judgment scarce at scale. Commodity intelligence enters laterally at the New\n    Engineering Imbalance, making implementation abundant while judgment, representation, evidence, and\n    enforcement stay scarce; it changes the economics of the imbalance but does not cause the reasoning\n    horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent\n    explicit at useful scales, which exposes those properties for analysis and reaches\n    the Alignment Principle, where selected obligations are enforced through constraints, sensors, validators,\n    and gates. Passing through Alignment the spine enters the Governed Engineering Environment — the\n    synthesis of both principles — and effort compounds as Engineering Capital when future value exceeds its\n    carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment\n    back to adapt the models and controls, strengthening the environment. Two dashed failure paths lead\n    to Engineering Churn: weak representation is repaid as reconstruction, weak enforcement as repeated\n    adjudication. A light dotted long-range rail marks capital reopening the reasoning problem as scope\n    grows."
   },
   {
     "chapter": "0.4-the-books-language",
@@ -36,7 +36,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "MAGE's working model ontology: six model classes and their engineering questions",
-    "svg_description": "Six model classes, each a box carrying the two engineering questions it answers.\n    Structural: what exists, how related. Behavioral: what may happen, in what order. Ownership: who\n    controls, for how long. Decision: what is allowed, what choice. Measurement: how much, what envelope.\n    Provenance: what happened, what evidence. The classes may overlap. Below them, a separate axis: the\n    representation form used to encode a model \u2014 graph, registry, state machine, contract, table, or\n    quantitative relation \u2014 distinct from the class. Connected through shared identity and traceability,\n    these models form the system's explicit engineering knowledge."
+    "svg_description": "Six model classes, each a box carrying the two engineering questions it answers.\n    Structural: what exists, how related. Behavioral: what may happen, in what order. Ownership: who\n    controls, for how long. Decision: what is allowed, what choice. Measurement: how much, what envelope.\n    Provenance: what happened, what evidence. The classes may overlap. Below them, a separate axis: the\n    representation form used to encode a model — graph, registry, state machine, contract, table, or\n    quantitative relation — distinct from the class. Connected through shared identity and traceability,\n    these models form the system's explicit engineering knowledge."
   },
   {
     "chapter": "0.4-the-books-language",
@@ -75,12 +75,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where the theory came from: the research provenance, one procedure read top to bottom, closing on depth and breadth",
-    "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from \u2014\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble \u2014 one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE \u2014 the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts \u2014 six independent industrial\n    systems. Stage four, comparative reconstruction \u2014 each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines \u2014 it does not validate \u2014 the theory. Stage\n    five, MAGE theory \u2014 the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
+    "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble — one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts — six independent industrial\n    systems. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage\n    five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
   },
   {
     "chapter": "1.1-the-printer",
     "source": "assets/engineering-leverage.svg",
-    "caption": "*Where engineering leverage acts.* When engineers write most implementation directly, much of their engineering leverage acts through the code. When agents provide abundant realization capacity, more of that leverage moves into the governed engineering environment\u2014the software analogue of the models, fabrication constraints, process instructions, and acceptance criteria surrounding a 3D printer. The environment becomes one means through which engineers retain control while delegating realization: it represents important engineering intent, constrains realization, and evaluates what the fleet produces. MAGE further contends that a governed engineering environment must become the primary means through which engineers exercise control as realization is increasingly delegated.",
+    "caption": "*Where engineering leverage acts.* When engineers write most implementation directly, much of their engineering leverage acts through the code. When agents provide abundant realization capacity, more of that leverage moves into the governed engineering environment—the software analogue of the models, fabrication constraints, process instructions, and acceptance criteria surrounding a 3D printer. The environment becomes one means through which engineers retain control while delegating realization: it represents important engineering intent, constrains realization, and evaluates what the fleet produces. MAGE further contends that a governed engineering environment must become the primary means through which engineers exercise control as realization is increasingly delegated.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/engineering-leverage.d2",
     "receipt": "book/d2-pilot/engineering-leverage.receipt.yaml",
@@ -100,8 +100,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "A running glimpse of DocAble \u2014 one object in, one object back",
-    "svg_description": "A single input-to-output panel with no internal structure. On the left, an inaccessible\n    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow\n    labelled the upload leads into DocAble, drawn as one closed box \u2014 the production system at\n    scholaccess.com \u2014 with a note that this shows what it does, not yet how. An arrow labelled the file,\n    remediated leads out to the right, to an accessible document with described images, reading order, and\n    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind\n    of production system these ideas govern \u2014 what it does, not yet how."
+    "svg_title": "A running glimpse of DocAble — one object in, one object back",
+    "svg_description": "A single input-to-output panel with no internal structure. On the left, an inaccessible\n    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow\n    labelled the upload leads into DocAble, drawn as one closed box — the production system at\n    scholaccess.com — with a note that this shows what it does, not yet how. An arrow labelled the file,\n    remediated leads out to the right, to an accessible document with described images, reading order, and\n    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind\n    of production system these ideas govern — what it does, not yet how."
   },
   {
     "chapter": "1.2-mage-by-example",
@@ -114,7 +114,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Processing one document in DocAble",
-    "svg_description": "A user submits a document (drawn as a document artifact), which creates a job that tracks\n    its processing. The work splits into chunks so several workers process it concurrently. Workers claim\n    work and call specialized services \u2014 generation, render, OCR, and document/format machinery \u2014 when\n    remediation needs those capabilities. Repaired pieces are merged and reassembled, the result is\n    validated, and the system returns both the remediated document (again a document artifact) and the\n    evidence describing consequential changes. Document artifacts are drawn with a folded corner; the job,\n    workers, and services are control boxes."
+    "svg_description": "A user submits a document (drawn as a document artifact), which creates a job that tracks\n    its processing. The work splits into chunks so several workers process it concurrently. Workers claim\n    work and call specialized services — generation, render, OCR, and document/format machinery — when\n    remediation needs those capabilities. Repaired pieces are merged and reassembled, the result is\n    validated, and the system returns both the remediated document (again a document artifact) and the\n    evidence describing consequential changes. Document artifacts are drawn with a folded corner; the job,\n    workers, and services are control boxes."
   },
   {
     "chapter": "1.3-the-agentic-substrate",
@@ -127,12 +127,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Agentic machinery and environment",
-    "svg_description": "Two columns supply the agent. The foundation model contributes semantic reasoning,\n    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness\n    contributes tool-mediated action, context management, interposition, and parallel execution. Both\n    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment \u2014\n    the models, obligations, evidence, and controls the engineer builds."
+    "svg_description": "Two columns supply the agent. The foundation model contributes semantic reasoning,\n    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness\n    contributes tool-mediated action, context management, interposition, and parallel execution. Both\n    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —\n    the models, obligations, evidence, and controls the engineer builds."
   },
   {
     "chapter": "1.3-the-agentic-substrate",
     "source": "assets/reasoning-horizon.svg",
-    "caption": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system\u2019s reasoning horizon.",
+    "caption": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system’s reasoning horizon.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/reasoning-horizon.d2",
     "receipt": "book/d2-pilot/reasoning-horizon.receipt.yaml",
@@ -158,20 +158,20 @@
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",
     "source": "assets/realization-space.svg",
-    "caption": "*Obligations bound a realization space without selecting one realization.* Each region contains implementations satisfying one engineering obligation; their intersection contains implementations satisfying both. The points within that intersection may differ substantially in structure and implementation while remaining acceptable under the represented obligations. Those remaining choices are realization degrees of freedom.",
+    "caption": "*Requirements bound the acceptable implementation space.* Each dot represents a possible implementation for lists of up to 1,000 names. Alphabetical ordering defines the left region, and the 200-millisecond response-time tolerance defines the right. Their intersection contains multiple acceptable implementations, leaving degrees of freedom such as the choice of algorithm.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Obligations bound a realization space without selecting one realization",
-    "svg_description": "A bounding box holds the software realization space. Inside it, two overlapping\n    translucent regions each contain the implementations that satisfy one engineering obligation: a\n    behavioral obligation on the left and an architectural obligation on the right. Their intersection is\n    the acceptable region, containing implementations that satisfy both. Many small dots mark distinct\n    possible realizations: a dense cluster inside the intersection, a few inside each region alone, and a\n    couple outside both. The dots within the intersection differ in structure and implementation while all\n    remaining acceptable; those remaining choices are the realization's degrees of freedom."
+    "svg_title": "Tolerance bounds acceptable implementations while leaving choices open",
+    "svg_description": "Possible software implementations for sorting lists of up to 1,000 names. The left region contains implementations that return names in alphabetical order; the right contains implementations that respond within 200 milliseconds. The overlap contains implementations satisfying both requirements. Dots represent distinct possible implementations, not measured algorithms. The timing bound sets a tolerance; choices among acceptable implementations remain degrees of freedom."
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",
     "source": "assets/specified-region.svg",
-    "caption": "*Obligation, scaffolding, and degrees of freedom.* The engineering obligation establishes the minimum consequential content that must be preserved. A particular agent may require additional scaffolding to interpret and realize that obligation reliably. Greater agent capability can reduce this scaffolding and enlarge the realized degrees of freedom, but it does not change the obligation itself.",
+    "caption": "*Obligation, scaffolding, and degrees of freedom.* The engineering obligation establishes the minimum consequential content that must be preserved. A particular agent may require additional scaffolding to interpret and satisfy that obligation reliably. Greater agent capability can reduce this scaffolding and leave more implementation choices open, but it does not change the obligation itself.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -179,7 +179,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Obligation, scaffolding, and degrees of freedom",
-    "svg_description": "A stacked diagram. The specified region groups two layers: the engineering\n    obligation, holding consequential distinctions that must be preserved, and scaffolding, the\n    additional structure this agent needs to interpret and realize the obligation reliably. The\n    obligation boundary between them is set by the engineering problem and does not move with\n    capability. The specification boundary below the scaffolding is set by the obligation and by this\n    agent's capability. Below it sit the degrees of freedom: realization choices left to the agent.\n    An upward arrow shows that greater agent capability can reduce required scaffolding."
+    "svg_description": "A stacked diagram. The specified region groups two layers: the engineering\n    obligation, holding consequential distinctions that must be preserved, and scaffolding, the\n    additional structure this agent needs to interpret and satisfy the obligation reliably. The\n    obligation boundary between them is set by the engineering problem and does not move with\n    capability. The specification boundary below the scaffolding is set by the obligation and by this\n    agent's capability. Below it sit the degrees of freedom: implementation choices left to the agent.\n    An upward arrow shows that greater agent capability can reduce required scaffolding."
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",
@@ -192,7 +192,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From engineering question to engineering consequence",
-    "svg_description": "A vertical progression. An engineering question leads to choosing a representation, whose\n    representative forms include a closed state or action space, a finite transition system, or temporal\n    behavior. The representation determines which analysis is appropriate \u2014 constraint solving, state\n    exploration, model checking, simulation, and static analysis are examples, none prescribed by the\n    representation alone. The path interprets the resulting evidence, then branches: the evidence can inform\n    architecture and design \u2014 comparing alternatives, revising boundaries, changing dependencies, allocating\n    resources \u2014 or it can expose a property whose obligation deserves enforcement, which hands off to Alignment\n    in Chapter 3, or both."
+    "svg_description": "A vertical progression. An engineering question leads to choosing a representation, whose\n    representative forms include a closed state or action space, a finite transition system, or temporal\n    behavior. The representation determines which analysis is appropriate — constraint solving, state\n    exploration, model checking, simulation, and static analysis are examples, none prescribed by the\n    representation alone. The path interprets the resulting evidence, then branches: the evidence can inform\n    architecture and design — comparing alternatives, revising boundaries, changing dependencies, allocating\n    resources — or it can expose a property whose obligation deserves enforcement, which hands off to Alignment\n    in Chapter 3, or both."
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",
@@ -210,7 +210,7 @@
   {
     "chapter": "2.2-structural",
     "source": "assets/canonical-structural.svg",
-    "caption": "*The structural move: entities and typed relations.* Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations \u2014 reachability, path, and cycle checks.",
+    "caption": "*The structural move: entities and typed relations.* Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations — reachability, path, and cycle checks.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -231,12 +231,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "DocAble's document-mutation model: mutation reaches formats through a sanctioned seam",
-    "svg_description": "Remediation logic operates through a structured document model, the sanctioned seam.\n    That model is realized through a format-specific implementation, which reaches the concrete formats\n    DOCX, PPTX, XLSX, and PDF. The structured document model marks where mutation is supposed to occur; it\n    does not by itself prevent code from bypassing the seam."
+    "svg_description": "Remediation logic operates through a structured document model, the sanctioned seam.\n    That model is implemented by a format-specific implementation, which reaches the concrete formats\n    DOCX, PPTX, XLSX, and PDF. The structured document model marks where mutation is supposed to occur; it\n    does not by itself prevent code from bypassing the seam."
   },
   {
     "chapter": "2.2-structural",
     "source": "assets/from-nodes-to-composition.svg",
-    "caption": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations \u2014 data-flow and cross-service \u2014 from control gates that a computation consults only to decide whether it runs.",
+    "caption": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -244,12 +244,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From computations to composition",
-    "svg_description": "Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations \u2014 125 computations are registered but only two relations were authored as seeds. Center: derive and type the relations. Right, composition made explicit: the projected relations split into two semantics \u2014 a payload-bearing group of thirty-three (thirty-two DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-four CONTROL_GATE relations. The transformation is two authored seeds to fifty-five projected, typed relations to thirty-three payload plus twenty-four control."
+    "svg_description": "Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations — 125 computations are registered but only two relations were authored as seeds. Center: derive and type the relations. Right, composition made explicit: the projected relations split into two semantics — a payload-bearing group of thirty-three (thirty-two DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-four CONTROL_GATE relations. The transformation is two authored seeds to fifty-five projected, typed relations to thirty-three payload plus twenty-four control."
   },
   {
     "chapter": "2.3-behavioral",
     "source": "assets/canonical-behavioral.svg",
-    "caption": "*The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits \u2014 here the skip from IDLE straight to DONE \u2014 is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.",
+    "caption": "*The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits — here the skip from IDLE straight to DONE — is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -314,7 +314,7 @@
   {
     "chapter": "2.4-decision",
     "source": "assets/canonical-decision.svg",
-    "caption": "*The decision move: the same arrow, a different mood.* A structural edge states that a call happens; a decision edge states that it is permitted. The absent edge carries the weight \u2014 \"not allowed,\" not \"does not happen\" \u2014 and the analyses check a declared policy for consistency and least privilege.",
+    "caption": "*The decision move: the same arrow, a different mood.* A structural edge states that a call happens; a decision edge states that it is permitted. The absent edge carries the weight — \"not allowed,\" not \"does not happen\" — and the analyses check a declared policy for consistency and least privilege.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -366,7 +366,7 @@
   {
     "chapter": "2.4-decision",
     "source": "assets/entitlement-model-evolution.svg",
-    "caption": "*One distinction, lost and preserved.* The scalar reduction cannot represent unlimited entitlement; the revised model preserves the distinction.",
+    "caption": "*Upload admission must distinguish finite and unlimited entitlement.* The old reduction passed only a finite balance to the client, so an unlimited user was rejected. The revised model records the entitlement kind and returns an admission decision.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -387,7 +387,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "DocAble's heterogeneous representations as peers around shared system identities",
-    "svg_description": "A radial arrangement. At the center sit shared system identities. Seven DocAble\n    representations \u2014 service registry, deployment topology, state machines, entitlement policy,\n    computation graph, provenance records, and measurements \u2014 are peers around the center, each joined\n    to it. No representation sits above another. Traceability, derivation, and query surfaces surround\n    them in a footer band, not inside the identity hub. The unity is semantic, not a hierarchy."
+    "svg_description": "A radial arrangement. At the center sit shared system identities. Seven DocAble\n    representations — service registry, deployment topology, state machines, entitlement policy,\n    computation graph, provenance records, and measurements — are peers around the center, each joined\n    to it. No representation sits above another. Traceability, derivation, and query surfaces surround\n    them in a footer band, not inside the identity hub. The unity is semantic, not a hierarchy."
   },
   {
     "chapter": "2.5-system-knowledge",
@@ -405,15 +405,15 @@
   {
     "chapter": "2.5-system-knowledge",
     "source": "assets/two-reductions-static-realized.svg",
-    "caption": "*Computation structure versus realized history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
+    "caption": "*Computation structure versus recorded history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/two-reductions-static-realized.d2",
     "receipt": "book/d2-pilot/two-reductions-static-realized.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Computation structure versus realized history",
-    "svg_description": "Two reductions of the same remediation system, side by side. Left: the static computation graph \u2014 named passes joined by a typed data edge and a typed control gate, modeling what computations may compose. Right: one session's edit record \u2014 a run that emits a sequence of typed PdfEdit operations, recording what mutations did occur. A dashed link between them marks that they are not joined today; a shared computation identity would join them, and the join is added when a question needs it."
+    "svg_title": "Computation structure versus recorded history",
+    "svg_description": "Two reductions of the same remediation system, side by side. Left: the static computation graph — named passes joined by a typed data edge and a typed control gate, modeling what computations may compose. Right: one session's edit record — a run that emits a sequence of typed PdfEdit operations, recording what mutations did occur. A dashed link between them marks that they are not joined today; a shared computation identity would join them, and the join is added when a question needs it."
   },
   {
     "chapter": "2.5-system-knowledge",
@@ -465,7 +465,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Checked predicates over a structured model: model, invariants, checker",
-    "svg_description": "A linear pipeline. A structured model of records, edges, and states supports predicates\n    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for\n    example the lease invariant leased if and only if an owner exists. A checker \u2014 a model check, a drift\n    lint, or a validator \u2014 evaluates them. A side arrow shows that a recurring failure yields a new or\n    refined invariant. This is one executable-model pattern, not the definition of executability."
+    "svg_description": "A linear pipeline. A structured model of records, edges, and states supports predicates\n    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for\n    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift\n    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or\n    refined invariant. This is one executable-model pattern, not the definition of executability."
   },
   {
     "chapter": "2.5-system-knowledge",
@@ -504,7 +504,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Four intervention boundaries: a guidance zone set apart from where enforcement can occur",
-    "svg_description": "Four boundaries sit in a row, ordered left to right by increasing semantic grain, not by\n    increasing strength of enforcement. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,\n    drawn agent-blue: prompts, briefs, engineering models, and examples shape reasoning input, and are enforced\n    only through a consuming mechanism. The other three \u2014 action, work unit, and artifact or runtime \u2014 sit\n    together in a zone labeled ENFORCEMENT CAN OCCUR HERE, drawn governance-rust: at the action boundary through\n    permissions, hooks, and tools; at the work-unit boundary through a task, a pull request, a build, a\n    deployment candidate; at the artifact or runtime boundary through types, API seams, admission, and\n    runtime policy. Place a mechanism at the earliest boundary where the obligation is legible and the\n    consequence can be affected."
+    "svg_description": "Four boundaries sit in a row, ordered left to right by increasing semantic grain, not by\n    increasing strength of enforcement. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,\n    drawn agent-blue: prompts, briefs, engineering models, and examples shape reasoning input, and are enforced\n    only through a consuming mechanism. The other three — action, work unit, and artifact or runtime — sit\n    together in a zone labeled ENFORCEMENT CAN OCCUR HERE, drawn governance-rust: at the action boundary through\n    permissions, hooks, and tools; at the work-unit boundary through a task, a pull request, a build, a\n    deployment candidate; at the artifact or runtime boundary through types, API seams, admission, and\n    runtime policy. Place a mechanism at the earliest boundary where the obligation is legible and the\n    consequence can be affected."
   },
   {
     "chapter": "3.2-models-and-the-semantic-gap",
@@ -517,7 +517,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Three relations an obligation can test: correspondence, conformance, acceptance",
-    "svg_description": "Three stacked bands. Correspondence asks whether two representations of one thing agree \u2014 a\n    bidirectional relation between an implementation and a representation, both of them internal. Conformance\n    asks whether the artifact satisfies an independent obligation. Acceptance asks whether the receiving\n    environment will take the artifact. Agreement, conformance, and acceptance are distinct kinds of evidence\n    and are not interchangeable."
+    "svg_description": "Three stacked bands. Correspondence asks whether two representations of one thing agree — a\n    bidirectional relation between an implementation and a representation, both of them internal. Conformance\n    asks whether the artifact satisfies an independent obligation. Acceptance asks whether the receiving\n    environment will take the artifact. Agreement, conformance, and acceptance are distinct kinds of evidence\n    and are not interchangeable."
   },
   {
     "chapter": "3.2-models-and-the-semantic-gap",
@@ -530,7 +530,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Governing role and correspondence are different relations",
-    "svg_description": "One authoritative computation model \u2014 computations, dependencies, and composition \u2014 sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it."
+    "svg_description": "One authoritative computation model — computations, dependencies, and composition — sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it."
   },
   {
     "chapter": "3.2-models-and-the-semantic-gap",
@@ -543,7 +543,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The semantic gap: move the mechanism to the boundary where the obligation is legible",
-    "svg_description": "A property that spans several events cannot be decided from any event alone. The bottom\n    row shows a sequence of small low-level events \u2014 commits, calls, a turn \u2014 under a line reading the\n    obligation is not decidable here. An upward arrow, labeled move mechanism, rises to a single wide box\n    at the top reading obligation legible, the completed unit of work. Move the mechanism to the earliest\n    boundary where the evidence the obligation needs is assembled."
+    "svg_description": "A property that spans several events cannot be decided from any event alone. The bottom\n    row shows a sequence of small low-level events — commits, calls, a turn — under a line reading the\n    obligation is not decidable here. An upward arrow, labeled move mechanism, rises to a single wide box\n    at the top reading obligation legible, the completed unit of work. Move the mechanism to the earliest\n    boundary where the evidence the obligation needs is assembled."
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
@@ -556,7 +556,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Constraint or sensor: a selection rule for the engineering obligation",
-    "svg_description": "An engineering obligation you must hold leads to one decision: can the unwanted state be\n    excluded cleanly? If yes, use a constraint, which narrows what may happen \u2014 a typed enumeration, a\n    permission, a narrow API. If no, use a sensor, which produces evidence of what happened \u2014 a metric, a\n    trace, a call scan, a log \u2014 for later evaluation. A constraint prevents the unwanted state; a sensor\n    reports it after the fact."
+    "svg_description": "An engineering obligation you must hold leads to one decision: can the unwanted state be\n    excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a\n    permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a\n    trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor\n    reports it after the fact."
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
@@ -608,20 +608,20 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Provenance-carried admission: a protected operation must derive through the sanctioned abstraction, which attaches provenance the boundary requires",
-    "svg_description": "A left-to-right flow. Implementation logic derives a needed operation through a sanctioned\n    abstraction \u2014 the sanctioned source of the operation \u2014 which attaches provenance to the resulting operation. The\n    operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting\n    the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not\n    enumerate them; it admits only operations that carry the sanctioned provenance."
+    "svg_description": "A left-to-right flow. Implementation logic derives a needed operation through a sanctioned\n    abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The\n    operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting\n    the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not\n    enumerate them; it admits only operations that carry the sanctioned provenance."
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
     "source": "assets/permitted-vs-acceptable.svg",
-    "caption": "*Obligations and permitted realizations.* The obligations jointly admit an acceptable region; the controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through \u2014 underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded \u2014 overconstraint.",
+    "caption": "*Obligations and permitted realizations.* The obligations jointly admit an acceptable region; the controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through — underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded — overconstraint.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Obligations and permitted realizations \u2014 underconstraint and overconstraint as the two mismatches",
-    "svg_description": "A bounding panel holds the software realization space. Inside it, two overlapping\n    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a\n    dashed one for the realizations the controls permit. Their overlap is the preserved freedom \u2014\n    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable\n    alternatives excluded. The permitted-only region at right is underconstraint:\n    unacceptable, yet permitted \u2014 a correctness risk."
+    "svg_title": "Obligations and permitted realizations — underconstraint and overconstraint as the two mismatches",
+    "svg_description": "A bounding panel holds the software realization space. Inside it, two overlapping\n    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a\n    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —\n    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable\n    alternatives excluded. The permitted-only region at right is underconstraint:\n    unacceptable, yet permitted — a correctness risk."
   },
   {
     "chapter": "3.4-governance-conversion",
@@ -634,7 +634,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Governance conversion: a failure is diagnosed for what was missing, and the missing\n    piece is encoded as durable structure that future work benefits from inheriting as engineering capital",
-    "svg_description": "A failure or surprise flows down into one question \u2014 what was missing \u2014 which fans\n    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate \u2014 you diagnose what the environment lacked and encode that."
+    "svg_description": "A failure or surprise flows down into one question — what was missing — which fans\n    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate — you diagnose what the environment lacked and encode that."
   },
   {
     "chapter": "3.4-governance-conversion",
@@ -647,7 +647,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Correct judgment without enforcement: the audit detected the danger and judged it unsafe, but the link from verdict to enforcement was severed, so the operation proceeded and content was lost",
-    "svg_description": "A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a\n    validator judges it unsafe \u2014 sensing and evaluation both work. But the link from that verdict to any\n    binding consequence is severed; the only thing emitted at the break is a warning. So the operation\n    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement\n    mechanism acted on the verdict. The durable repair removed the capability rather than making the warning\n    louder."
+    "svg_description": "A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a\n    validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any\n    binding consequence is severed; the only thing emitted at the break is a warning. So the operation\n    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement\n    mechanism acted on the verdict. The durable repair removed the capability rather than making the warning\n    louder."
   },
   {
     "chapter": "3.4-governance-conversion",
@@ -659,8 +659,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Where enforcement stops: three questions place any obligation in one of four states \u2014\n    residual, judgment required, evaluated only, or governed",
-    "svg_description": "A staircase of three questions. First: is the obligation explicit in a form the\n    environment can use? No leads to RESIDUAL \u2014 a reasoner must reconstruct it. Yes leads to the\n    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:\n    does the environment enforce the result? No leads to EVALUATED ONLY \u2014 evidence produced and evaluated, but\n    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different\n    obligations stop in different places."
+    "svg_title": "Where enforcement stops: three questions place any obligation in one of four states —\n    residual, judgment required, evaluated only, or governed",
+    "svg_description": "A staircase of three questions. First: is the obligation explicit in a form the\n    environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the\n    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:\n    does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but\n    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different\n    obligations stop in different places."
   },
   {
     "chapter": "3.5-when-guardrails-collide",
@@ -672,8 +672,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The conflict is the edge \u2014 two valid controls impose incompatible demands on one shared resource",
-    "svg_description": "Two control nodes \u2014 Control A, which requires a squashed commit, and Control B, which\n    rejects a broad diff \u2014 each correct when read alone. Both point by a solid arrow to one explicit shared\n    resource, the commit set, that they act on. Below the commit set, a rust node marks the incompatible\n    demands: the conflict belongs to the relation among the two controls and the resource they share, not to\n    either control's own implementation."
+    "svg_title": "The conflict is the edge — two valid controls impose incompatible demands on one shared resource",
+    "svg_description": "Two control nodes — Control A, which requires a squashed commit, and Control B, which\n    rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared\n    resource, the commit set, that they act on. Below the commit set, a rust node marks the incompatible\n    demands: the conflict belongs to the relation among the two controls and the resource they share, not to\n    either control's own implementation."
   },
   {
     "chapter": "3.5-when-guardrails-collide",
@@ -686,7 +686,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Three turn-end hooks write one shared slot; the model resolves the conflicts with a declared order",
-    "svg_description": "Three governance mechanisms, all firing when an agent ends a turn: one discourages\n    premature stops, one prompts reflection on failures, one checks for stranded work. Rust arrows between\n    them show the modeled order, left to right. All three write the same shared resource below \u2014 the\n    turn's closing message. An annotation notes that the typed governance graph holds twenty-five\n    mechanisms, that these three edges are its only conflicts, and that the order is computed by\n    topological sort, with a cycle reported as an error."
+    "svg_description": "Three governance mechanisms, all firing when an agent ends a turn: one discourages\n    premature stops, one prompts reflection on failures, one checks for stranded work. Rust arrows between\n    them show the modeled order, left to right. All three write the same shared resource below — the\n    turn's closing message. An annotation notes that the typed governance graph holds twenty-five\n    mechanisms, that these three edges are its only conflicts, and that the order is computed by\n    topological sort, with a cycle reported as an error."
   },
   {
     "chapter": "3.5-when-guardrails-collide",
@@ -698,21 +698,21 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Three views of one system of controls: catalogue, interaction graph, and coverage of\n    obligations against mechanisms \u2014 the same three controls seen through three relations",
-    "svg_description": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control \u2014 a coverage gap \u2014 and [C] traces to no obligation \u2014 an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs."
+    "svg_title": "Three views of one system of controls: catalogue, interaction graph, and coverage of\n    obligations against mechanisms — the same three controls seen through three relations",
+    "svg_description": "Three panels over the same three controls, carried by stable identities: [A] squash rule,\n    [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle\n    panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they\n    collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that\n    justify them: scope-bounded traces to [A] and brief-followed to [B], while the cost-ceiling obligation\n    has no control — a coverage gap — and [C] traces to no obligation — an orphan. The same control identities appear in every view; each view selects and adds the\n    relations its engineering question needs."
   },
   {
     "chapter": "4.1-the-dynamics-of-mage",
     "source": "assets/engineer-agent-interaction.svg",
-    "caption": "*Engineer\u2013agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.",
+    "caption": "*Engineer–agent interaction through Modeling and Alignment.* Engineers communicate intent and knowledge through natural language, specifications, and models; delegated realization returns evidence through review, testing, and analysis. The channels are complementary rather than sequential. Modeling makes selected engineering knowledge available to guide realization, while Alignment provides evidence for evaluating and revising it.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Engineer\u2013agent interaction through Modeling and Alignment",
-    "svg_description": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels \u2014 natural language, specification, and models \u2014\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels \u2014\n    review, testing, and analysis \u2014 that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence."
+    "svg_title": "Engineer–agent interaction through Modeling and Alignment",
+    "svg_description": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels — natural language, specification, and models —\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels —\n    review, testing, and analysis — that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence."
   },
   {
     "chapter": "4.1-the-dynamics-of-mage",
@@ -738,7 +738,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Incrementally extending the alignment kernel",
-    "svg_description": "Left, a numbered four-step procedure: 1 identify the kernel \u2014 model the properties that\n    must stay protected while the system changes; 2 actively align \u2014 use the models to change the system\n    until it satisfies the kernel; 3 extend \u2014 add the next models, subject to the constraints already\n    established; 4 repeat \u2014 each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region."
+    "svg_description": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region."
   },
   {
     "chapter": "4.2-one-problem-many-models",
@@ -769,7 +769,7 @@
   {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-graph-two-partitions.svg",
-    "caption": "*Two execution policies over the same remediation graph.* The graph contains actions\u2014page analysis, construction of document context, and GenAI queries\u2014and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes \u2014 so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.",
+    "caption": "*Two execution policies over the same remediation graph.* The graph contains actions—page analysis, construction of document context, and GenAI queries—and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes — so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -777,7 +777,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Two execution policies over one remediation graph of actions",
-    "svg_description": "One graph of actions \u2014 analyze page 1, 2, and 3; build document context; and GenAI query\n    for image 1, 2, and 3 \u2014 with information dependencies among them: each page analysis feeds the document\n    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page\n    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,\n    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by\n    when they are ready: the three page analyses run together, their results build the document context, and\n    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary."
+    "svg_description": "One graph of actions — analyze page 1, 2, and 3; build document context; and GenAI query\n    for image 1, 2, and 3 — with information dependencies among them: each page analysis feeds the document\n    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page\n    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,\n    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by\n    when they are ready: the three page analyses run together, their results build the document context, and\n    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary."
   },
   {
     "chapter": "4.2-one-problem-many-models",
@@ -816,12 +816,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "A residual turns prediction error into an engineering question",
-    "svg_description": "Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8\n    seconds; the difference is a residual that points to one of three causes \u2014 a wrong parameter, a wrong\n    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)\n    The loop this drives: model, predict, implement, measure, then explain the residual and refine the\n    model. Modeling therefore contributes both before implementation and after it."
+    "svg_description": "Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8\n    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong\n    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)\n    The loop this drives: model, predict, implement, measure, then explain the residual and refine the\n    model. Modeling therefore contributes both before implementation and after it."
   },
   {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-modeling-cycle.svg",
-    "caption": "*Modeling as a loop.* (a) Models produced after implementation: the linear design \u2192 implement \u2192 document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
+    "caption": "*Modeling as a loop.* (a) Models produced after implementation: the linear design → implement → document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -829,12 +829,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Modeling as a loop, not a linear documentation step",
-    "svg_description": "Two panels. (a) The process is not linear \u2014 design, then implement, then document with\n    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a\n    design; those drive implementation and then measurement; measurement refines the model, and the loop\n    continues while the questions justify the cost."
+    "svg_description": "Two panels. (a) The process is not linear — design, then implement, then document with\n    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a\n    design; those drive implementation and then measurement; measurement refines the model, and the loop\n    continues while the questions justify the cost."
   },
   {
     "chapter": "4.3-brownfield-engineering",
     "source": "assets/discovering-models-migration.svg",
-    "caption": "*Discovering models in a brownfield system.* Weak signals \u2014 primitive density, repeated shapes, the component and boundary view \u2014 identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate. [short: Discovering latent models \u2014 weak signals \u2192 partition {legitimate shape \u00b7 mechanical debt \u00b7 latent concept} \u2192 name the model \u2192 migrate consumers \u2192 narrower enforcement \u2192 stronger substrate]",
+    "caption": "*Discovering models in a brownfield system.* Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate. [short: Discovering latent models — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/discovering-models-migration.d2",
     "receipt": "book/d2-pilot/discovering-models-migration.receipt.yaml",
@@ -842,12 +842,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Discovering models during a brownfield migration: weak signals locate work, partitioning separates it, and only repeated shape that earns a name becomes a model",
-    "svg_description": "A top-down flow. An existing codebase is surveyed by weak discovery signals \u2014 primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy."
+    "svg_description": "A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy."
   },
   {
     "chapter": "4.3-brownfield-engineering",
     "source": "assets/squash-zero-promote.svg",
-    "caption": "*Audit, Drain, Promote.* A new lint lands audit-only \u2014 every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism's declared detection surface are refused at that boundary.",
+    "caption": "*Audit, Drain, Promote.* A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism's declared detection surface are refused at that boundary.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/squash-zero-promote.d2",
     "receipt": "book/d2-pilot/squash-zero-promote.receipt.yaml",
@@ -855,12 +855,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Squash, zero, promote: how a lint is worn into a legacy tree one step at a time",
-    "svg_description": "A new smell-detecting lint moves through three states, left to right. First it\n    lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight\n    agent. Then a fix wave \u2014 an agent making behavior-preserving edits under test coverage \u2014 drains\n    the finding count to zero; this is a loop that runs under the audit-only state until nothing is\n    left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit\n    that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the\n    class of smell can never return. Squash the findings, drive them to zero, then promote \u2014 and the\n    smells that leave stay gone."
+    "svg_description": "A new smell-detecting lint moves through three states, left to right. First it\n    lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight\n    agent. Then a fix wave — an agent making behavior-preserving edits under test coverage — drains\n    the finding count to zero; this is a loop that runs under the audit-only state until nothing is\n    left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit\n    that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the\n    class of smell can never return. Squash the findings, drive them to zero, then promote — and the\n    smells that leave stay gone."
   },
   {
     "chapter": "4.4-engineering-the-environment",
     "source": "assets/engineering-recurring-work.svg",
-    "caption": "*Engineering recurring work.* A governed engineering environment combines support for probabilistic reasoning with enforcement of selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to enforce. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, that encoding is governance conversion (\u00a73.4).",
+    "caption": "*Engineering recurring work.* A governed engineering environment combines support for probabilistic reasoning with enforcement of selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to enforce. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, that encoding is governance conversion (§3.4).",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -868,25 +868,25 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Engineering recurring work: a governed environment both supports reasoning and enforces selected obligations, and the cycle iterates",
-    "svg_description": "Recurring engineering work exposes a judgment and is handled by engineering the environment. The\n    environment supports the reasoner \u2014 models, knowledge, examples, procedures, context, skills, tools, evidence \u2014 and\n    enforces selected obligations \u2014 constraints, validators, permissions, gates, checks. A dashed arrow from\n    support to enforcement marks the recurring move of adding enforcement where feasible. The governed engineering\n    environment then hosts realization, enforcement mechanisms act on selected obligations, and work is realized. A\n    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and\n    failures, and its upper portion improves the environment \u2014 the governance conversion of Section 3.4, where recurring\n    judgment can be encoded economically."
+    "svg_description": "Recurring engineering work exposes a judgment and is handled by engineering the environment. The\n    environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and\n    enforces selected obligations — constraints, validators, permissions, gates, checks. A dashed arrow from\n    support to enforcement marks the recurring move of adding enforcement where feasible. The governed engineering\n    environment then hosts realization, enforcement mechanisms act on selected obligations, and work is realized. A\n    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and\n    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring\n    judgment can be encoded economically."
   },
   {
     "chapter": "4.4-engineering-the-environment",
     "source": "assets/two-evidence-boundaries.svg",
-    "caption": "*Two evidence boundaries.* Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change. [short: Two evidence boundaries \u2014 earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]",
+    "caption": "*Two evidence boundaries.* Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change. [short: Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Two evidence boundaries \u2014 earliest legible, and last safe before consequence.",
-    "svg_description": "A horizontal timeline runs from work begins on the left to consequence on the right. Two rust\n    diamond markers sit on the axis. The left diamond is the earliest legible boundary, where a property is\n    caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is\n    re-established before exposure. Between them, a note reads: relevant state may change between checks. The\n    two boundaries answer different questions \u2014 when can this be decided honestly, and what is the last point a\n    stale check can still be caught."
+    "svg_title": "Two evidence boundaries — earliest legible, and last safe before consequence.",
+    "svg_description": "A horizontal timeline runs from work begins on the left to consequence on the right. Two rust\n    diamond markers sit on the axis. The left diamond is the earliest legible boundary, where a property is\n    caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is\n    re-established before exposure. Between them, a note reads: relevant state may change between checks. The\n    two boundaries answer different questions — when can this be decided honestly, and what is the last point a\n    stale check can still be caught."
   },
   {
     "chapter": "5.1-software-factory",
     "source": "assets/process-design-and-tolerance.svg",
-    "caption": "*Two problems of factory engineering.* Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both. [short: Two problems of factory engineering \u2014 process design organizes production around the fabricator; tolerance bounds the product and measurement establishes whether a realization falls inside those bounds]",
+    "caption": "*Two problems of factory engineering.* Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both. [short: Two problems of factory engineering — process design organizes production around the fabricator; tolerance bounds the product and measurement establishes whether a realization falls inside those bounds]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -894,12 +894,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Process design organizes production around the fabricator; tolerance bounds the\n    product",
-    "svg_description": "One large frame labelled SOFTWARE FACTORY holds two engineering concerns of equal\n    standing, each introduced by a heading over a coloured rule. Across the top, under the heading\n    PROCESS DESIGN \u2014 how production proceeds, a dashed band labelled PRODUCTION PROCESS carries a\n    left-to-right path from engineering intent, through context and work, through a box labelled\n    Fabricator, and out to a realization. All four boxes are drawn at the same firm weight: the\n    fabricator is one station among them, not the centre of the picture. A bracket spans the whole path\n    from the first box to the last, and beneath it, set larger than any label on the path, an annotation\n    names what the process design determines: context, tools, routing, authority, sequencing. Below the\n    band, under the heading TOLERANCE \u2014 what variation in the product is acceptable, a wide bounded\n    region drawn in the governance colour is labelled ACCEPTABLE REGION. Dots inside it mark distinct\n    acceptable realizations the fabricator may choose among. A measurement arrow drops from the\n    realization to the top of that region, annotated with the mechanisms that establish where a\n    realization falls: tests, property-based testing, analysis, simulation, human judgment. From the\n    region two arrows of equal weight lead out, one labelled within tolerance to admitted change and one\n    labelled outside to revise or reject."
+    "svg_description": "One large frame labelled SOFTWARE FACTORY holds two engineering concerns of equal\n    standing, each introduced by a heading over a coloured rule. Across the top, under the heading\n    PROCESS DESIGN — how production proceeds, a dashed band labelled PRODUCTION PROCESS carries a\n    left-to-right path from engineering intent, through context and work, through a box labelled\n    Fabricator, and out to a realization. All four boxes are drawn at the same firm weight: the\n    fabricator is one station among them, not the centre of the picture. A bracket spans the whole path\n    from the first box to the last, and beneath it, set larger than any label on the path, an annotation\n    names what the process design determines: context, tools, routing, authority, sequencing. Below the\n    band, under the heading TOLERANCE — what variation in the product is acceptable, a wide bounded\n    region drawn in the governance colour is labelled ACCEPTABLE REGION. Dots inside it mark distinct\n    acceptable realizations the fabricator may choose among. A measurement arrow drops from the\n    realization to the top of that region, annotated with the mechanisms that establish where a\n    realization falls: tests, property-based testing, analysis, simulation, human judgment. From the\n    region two arrows of equal weight lead out, one labelled within tolerance to admitted change and one\n    labelled outside to revise or reject."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/build-stages-timeline.svg",
-    "caption": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July\u2013September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+    "caption": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -928,7 +928,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/f2_work_over_time.svg",
-    "caption": "*Work Over Time.* Epics \u2014 DocAble's unit of formalized engineering intent \u2014 created and closed per week from the convention's introduction in week 12. A record of intent formalized, not of a backlog drained: creation outpaces closure by roughly three to one. The first week's 111 openings are a formalization event, not a burst of ideation; the trace is invariant to the late-era landing-mechanism change.",
+    "caption": "*Work Over Time.* Epics — DocAble's unit of formalized engineering intent — created and closed per week from the convention's introduction in week 12. A record of intent formalized, not of a backlog drained: creation outpaces closure by roughly three to one. The first week's 111 openings are a formalization event, not a burst of ideation; the trace is invariant to the late-era landing-mechanism change.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -943,7 +943,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/f7_controls_accumulate.svg",
-    "caption": "*The Controls Accumulate.* Project-specific lint files (definition validated against this chapter's snapshot counts), gate/check scripts (independent definition), and system-model files at each week's last commit. The four-snapshot growth curve of the earlier draft, resolved into a 29-week series: flat through week 8, a sharp takeoff at weeks 9\u201311, then cumulative growth decoupled from weekly realization volume.",
+    "caption": "*The Controls Accumulate.* Project-specific lint files (definition validated against this chapter's snapshot counts), gate/check scripts (independent definition), and system-model files at each week's last commit. The four-snapshot growth curve of the earlier draft, resolved into a 29-week series: flat through week 8, a sharp takeoff at weeks 9–11, then cumulative growth decoupled from weekly realization volume.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -958,7 +958,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/f5_f6_capital_and_support_ratio.svg",
-    "caption": "*Factory Capital and the Support Ratio, Weekly.* Source-tree lines of code by category (left) and the support-to-production ratio (right) at each week's last commit \u2014 an independent re-derivation with its own category boundaries, with the two recoverable earlier snapshot ratios overlaid as diamonds. The trajectory matters more than any single value: below parity in the prototype weeks, parity crossed around weeks 5\u20136, a plateau near three-to-one in the mature era.",
+    "caption": "*Factory Capital and the Support Ratio, Weekly.* Source-tree lines of code by category (left) and the support-to-production ratio (right) at each week's last commit — an independent re-derivation with its own category boundaries, with the two recoverable earlier snapshot ratios overlaid as diamonds. The trajectory matters more than any single value: below parity in the prototype weeks, parity crossed around weeks 5–6, a plateau near three-to-one in the mature era.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -997,12 +997,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The modeling history",
-    "svg_description": "A top-to-bottom modeling history. DocAble began with a stable decomposition of remediation computations, so their node projection was meaningful, while their composition stayed implicit \u2014 carried by repeated traversal, shared-state reads, direct mutation, and special cases. As that composition accumulated global cost, modeling the relations exposed two previously implicit dimensions, shown as parallel columns: dependency semantics (DATA_FLOW, CONTROL_GATE, CROSS_SERVICE) and effect boundedness (TypedPatchProducer, DirectEditor, ReadOnly). Typed declarations then made the relationships projectable, a projected graph held by a blocking parity check. Analysis over that projected structure then motivated a redesign: an authoritative computation model that execution consumes to determine dependency order, with analytical views attaching by stable computation identity. Residual freedom remains. The progression runs from a partial model, to an analyzable one, to a model that participates directly in realization."
+    "svg_description": "A top-to-bottom modeling history. DocAble began with a stable decomposition of remediation computations, so their node projection was meaningful, while their composition stayed implicit — carried by repeated traversal, shared-state reads, direct mutation, and special cases. As that composition accumulated global cost, modeling the relations exposed two previously implicit dimensions, shown as parallel columns: dependency semantics (DATA_FLOW, CONTROL_GATE, CROSS_SERVICE) and effect boundedness (TypedPatchProducer, DirectEditor, ReadOnly). Typed declarations then made the relationships projectable, a projected graph held by a blocking parity check. Analysis over that projected structure then motivated a redesign: an authoritative computation model that execution consumes to determine dependency order, with analytical views attaching by stable computation identity. Residual freedom remains. The progression runs from a partial model, to an analyzable one, to a model that participates directly in realization."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/f13_mature_flow_funnel.svg",
-    "caption": "*The Admission Funnel, One Mature Week.* Merge-train runs in the mature era's highest-throughput full week: 592 started, 573 landed on main through the full integration gate, 10 aborted, 192 work spaces retired. Parallel realization fanned out; admission stayed serialized through regenerated evidence. The registry logs only this stage \u2014 upstream repair iterations are not retained as events.",
+    "caption": "*The Admission Funnel, One Mature Week.* Merge-train runs in the mature era's highest-throughput full week: 592 started, 573 landed on main through the full integration gate, 10 aborted, 192 work spaces retired. Parallel realization fanned out; admission stayed serialized through regenerated evidence. The registry logs only this stage — upstream repair iterations are not retained as events.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1032,15 +1032,15 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/measurement-no-gate.svg",
-    "caption": "*Modeled and Observed, Not Yet Binding.* A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose \u2014 representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.",
+    "caption": "*Modeled and Observed, Not Yet Binding.* A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose — representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/measurement-no-gate.d2",
     "receipt": "book/d2-pilot/measurement-no-gate.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Modeled and Observed, Not Yet Binding \u2014 the measurement history that stops before the gate",
-    "svg_description": "An engineering history, not a system model. A vertical chain. A silent hang and a bare\n    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,\n    whose evidence lets the environment report a would-be breach. The chain ends at report \u2014 and then an\n    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,\n    deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,\n    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on\n    purpose \u2014 modeled and observed, reported, not yet enforced."
+    "svg_title": "Modeled and Observed, Not Yet Binding — the measurement history that stops before the gate",
+    "svg_description": "An engineering history, not a system model. A vertical chain. A silent hang and a bare\n    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,\n    whose evidence lets the environment report a would-be breach. The chain ends at report — and then an\n    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,\n    deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,\n    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on\n    purpose — modeled and observed, reported, not yet enforced."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
@@ -1052,13 +1052,13 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The delegation staircase \u2014 five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes",
-    "svg_description": "A true staircase of five steps ascending from bottom-left to top-right. Step one at the\n    bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in\n    blue, what is now delegated, and in green, what the engineered environment now carries. Along the\n    left edge a green gauge thickens as the climb proceeds \u2014 representation and enforcement accumulate.\n    Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the\n    residual human focus moves from reading every diff at the bottom to system-level strategy and residual\n    semantic judgment at the top \u2014 the tactical burden shrinks but never reaches zero. Step one Co-coder:\n    delegated is code generation; the environment carries nothing durable beyond an ordinary repository;\n    the human reads every diff, holds the map, and admits the change. Step two QA: delegated is generation\n    plus a second agent's audit; the environment carries a probabilistic, episodic, advisory reviewer; the\n    human adjudicates findings. Step three Review lead: delegated is specialized review per region; the\n    environment carries deterministic checks for the decidable findings; the human does the semantic review\n    a check cannot settle. Step four Tech lead: delegated is bounded work inside one modeled zone; the\n    environment carries named zones and boundary rules; the human holds the system map and strategy. Step\n    five Architect: delegated is model-guided work across the whole system; the environment carries explicit\n    models, traceability, and controls; the human is left with residual semantics and strategy. A failure in\n    representation or enforcement can push work back down the staircase."
+    "svg_title": "The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes",
+    "svg_description": "A true staircase of five steps ascending from bottom-left to top-right. Step one at the\n    bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in\n    blue, what is now delegated, and in green, what the engineered environment now carries. Along the\n    left edge a green gauge thickens as the climb proceeds — representation and enforcement accumulate.\n    Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the\n    residual human focus moves from reading every diff at the bottom to system-level strategy and residual\n    semantic judgment at the top — the tactical burden shrinks but never reaches zero. Step one Co-coder:\n    delegated is code generation; the environment carries nothing durable beyond an ordinary repository;\n    the human reads every diff, holds the map, and admits the change. Step two QA: delegated is generation\n    plus a second agent's audit; the environment carries a probabilistic, episodic, advisory reviewer; the\n    human adjudicates findings. Step three Review lead: delegated is specialized review per region; the\n    environment carries deterministic checks for the decidable findings; the human does the semantic review\n    a check cannot settle. Step four Tech lead: delegated is bounded work inside one modeled zone; the\n    environment carries named zones and boundary rules; the human holds the system map and strategy. Step\n    five Architect: delegated is model-guided work across the whole system; the environment carries explicit\n    models, traceability, and controls; the human is left with residual semantics and strategy. A failure in\n    representation or enforcement can push work back down the staircase."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/f19_delegation_over_time.svg",
-    "caption": "*Weekly Commit Provenance as a Delegation Proxy.* The explicit human-or-unknown residual is about 5.5% of the window's 32,039 main commits \u2014 an upper bound on human-authored realization, since early agent commits predating the attribution convention land in the residual. Commit share is a different quantity from how much the engineer read.",
+    "caption": "*Weekly Commit Provenance as a Delegation Proxy.* The explicit human-or-unknown residual is about 5.5% of the window's 32,039 main commits — an upper bound on human-authored realization, since early agent commits predating the attribution convention land in the residual. Commit share is a different quantity from how much the engineer read.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1071,6 +1071,32 @@
     "svg_description": ""
   },
   {
+    "chapter": "4.4-engineering-the-environment",
+    "source": "assets/docable-validation-scheduling.svg",
+    "caption": "Separating integration from broad validation. The redesign lets several merges share a scheduled run of broad checks, reducing repeated work while delaying defect detection. Full validation still precedes deployment.",
+    "native_context": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "Native TikZ diagram with matching source SVG, adapted from the November 3 factory lecture",
+    "svg_title": "Separating integration from broad validation",
+    "svg_description": "Before, integration and full validation were coupled, so subsequent work waited for the broad suite. After, three paths have distinct triggers. For each change, the agent runs cheap checks, merges, and moves to the next work. Independently, a timer schedules broad checks of main every 30 minutes, with at most one sweep running. A blocking failure pauses dispatch and prompts diagnosis and repair. A deployment request still requires full validation to pass before deployment. The timer, rather than each merge, triggers the broad sweep. The cadence is the nominal schedule, not a bound on detection latency."
+  },
+  {
+    "chapter": "5.2-inside-docables-software-factory",
+    "source": "assets/docable-work-order-flow.svg",
+    "caption": "From engineering intent to completed work. The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.",
+    "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "Native TikZ diagram with matching source SVG, derived from the November 3 factory lecture",
+    "svg_title": "From engineering intent to completed work",
+    "svg_description": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness."
+  },
+  {
     "chapter": "5.3-other-agentic-software-factories",
     "source": "assets/six-entry-points.svg",
     "caption": "*Six Entry Points.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
@@ -1081,7 +1107,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Six entry points into a shared design space: where each organization begins and where it invests",
-    "svg_description": "A table of six industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms \u2014 a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission \u2014\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure \u2014 a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations \u2014 a modeling emphasis.\n    Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement \u2014 a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents \u2014 a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not a seventh case. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
+    "svg_description": "A table of six industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms — a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations — a modeling emphasis.\n    Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents — a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not a seventh case. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",
@@ -1093,8 +1119,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The MAGE Dynamic Model \u2014 one system, four dynamics",
-    "svg_description": "A single system diagram of eight constructs with four numbered dynamics\n    overlaid, read as a clockwise cycle. Prior engineering knowledge \u2014 standards,\n    requirements, brownfield assets, and prior lessons \u2014 sits at the top and feeds the\n    governed environment E through item 1, the blue bootstrap input. Agentic capacity, on the\n    left, exercises the governed environment E, the green hub on the right whose quality is\n    representation quality, obligation coverage, coherence, and economy. Agentic capacity\n    also drives agentic work; the environment E shapes realized performance; agentic work\n    produces realized performance \u2014 durable throughput, defect escape, and human attention.\n    A mismatch between work and environment, together with the realized-performance gap,\n    surfaces as governance pressure: churn, recurring failure, escaped defect, repeated\n    intervention, and control friction. Loop 2, the red pressure-or-discovery loop, carries\n    governance pressure into structural diagnosis, which asks whether a failure is a local\n    defect, a missing representation, weak enforcement, or a stale mechanism. Loop 3, the green\n    governance-adaptation loop, carries a structural diagnosis into governance adaptation \u2014\n    represent, constrain, validate, strengthen, reconcile, retire \u2014 and its return arrow reshapes the\n    environment E as a new, better E for the next round. Loop 4, the purple\n    capability-amplification loop, runs from the improved environment back up to agentic\n    capacity: a stronger environment enables bigger tasks and more concurrency, which reopens\n    the whole cycle and exposes new pressure. The neutral black arrows are the shared system\n    plumbing; the four coloured, numbered arrows are the dynamics the chapter walks. A\n    legend at the bottom names all four dynamics. Loops 2 and 3 together form a balancing loop,\n    marked B: churn drives diagnosis and adaptation, which reduce churn \u2014 a goal-seeking,\n    self-damping cycle toward fit. Loop 4 is a reinforcing loop, marked R: a better environment\n    raises ambition, which reopens the frontier \u2014 a self-amplifying cycle. Loop 1 is a bootstrap\n    input, not a feedback loop. The model is directional and middle-range, not a fitted law."
+    "svg_title": "The MAGE Dynamic Model — one system, four dynamics",
+    "svg_description": "A single system diagram of eight constructs with four numbered dynamics\n    overlaid, read as a clockwise cycle. Prior engineering knowledge — standards,\n    requirements, brownfield assets, and prior lessons — sits at the top and feeds the\n    governed environment E through item 1, the blue bootstrap input. Agentic capacity, on the\n    left, exercises the governed environment E, the green hub on the right whose quality is\n    representation quality, obligation coverage, coherence, and economy. Agentic capacity\n    also drives agentic work; the environment E shapes realized performance; agentic work\n    produces realized performance — durable throughput, defect escape, and human attention.\n    A mismatch between work and environment, together with the realized-performance gap,\n    surfaces as governance pressure: churn, recurring failure, escaped defect, repeated\n    intervention, and control friction. Loop 2, the red pressure-or-discovery loop, carries\n    governance pressure into structural diagnosis, which asks whether a failure is a local\n    defect, a missing representation, weak enforcement, or a stale mechanism. Loop 3, the green\n    governance-adaptation loop, carries a structural diagnosis into governance adaptation —\n    represent, constrain, validate, strengthen, reconcile, retire — and its return arrow reshapes the\n    environment E as a new, better E for the next round. Loop 4, the purple\n    capability-amplification loop, runs from the improved environment back up to agentic\n    capacity: a stronger environment enables bigger tasks and more concurrency, which reopens\n    the whole cycle and exposes new pressure. The neutral black arrows are the shared system\n    plumbing; the four coloured, numbered arrows are the dynamics the chapter walks. A\n    legend at the bottom names all four dynamics. Loops 2 and 3 together form a balancing loop,\n    marked B: churn drives diagnosis and adaptation, which reduce churn — a goal-seeking,\n    self-damping cycle toward fit. Loop 4 is a reinforcing loop, marked R: a better environment\n    raises ambition, which reopens the frontier — a self-amplifying cycle. Loop 1 is a bootstrap\n    input, not a feedback loop. The model is directional and middle-range, not a fitted law."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",
@@ -1107,7 +1133,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Probability on the production path, and the encoded property forking into the\n    tolerance the realization is evaluated against",
-    "svg_description": "The SOFTWARE FACTORY of the earlier figure, at identical proportions, with its\n    containers drawn in thin lines so that what this chapter adds stands in front of them. Across the\n    top, inside the dashed PRODUCTION PROCESS band, the same left-to-right path runs from engineering\n    intent, through a box labelled encoded property and drawn in the governance colour, through the\n    fabricator, and out to a realization. The bracket that spanned the whole path in the earlier figure\n    is here divided by two ticks into the three transitions of the path, and under each division stands\n    a probability term, set much larger and bolder than any other type in the figure: P of E over\n    intent to encoded property, P of I given E over encoded property to fabricator, and P of L given I\n    and E over fabricator to realization, with E for correct encoding, I for correct interpretation and\n    L for correct realization. A short phrase under each term names the step it scores. A note under the\n    first term reads: not raised by a better fabricator. A note under the other two reads: process\n    design and better agents raise these. Below the band the encoded property forks. A second line in\n    the governance colour leaves the bottom of that box, runs down past the band annotated supplies the\n    tolerance, and enters the bounded ACCEPTABLE REGION through its left side \u2014 a different route from\n    the production path. The region is carried by the heading TOLERANCE \u2014 what variation in the product\n    is acceptable, and dots inside it mark distinct acceptable realizations the fabricator may choose\n    among. Separately, a measurement arrow drops from the realization into the top of the same region,\n    annotated measurement, tests, property-based testing, analysis, simulation and human judgment. From\n    the region two arrows lead out, one labelled within tolerance to admitted change and one labelled\n    outside to revise or reject. One use of the encoded property reaches the fabricator; the other\n    outlives realization and takes part in judging its result."
+    "svg_description": "The SOFTWARE FACTORY of the earlier figure, at identical proportions, with its\n    containers drawn in thin lines so that what this chapter adds stands in front of them. Across the\n    top, inside the dashed PRODUCTION PROCESS band, the same left-to-right path runs from engineering\n    intent, through a box labelled encoded property and drawn in the governance colour, through the\n    fabricator, and out to a realization. The bracket that spanned the whole path in the earlier figure\n    is here divided by two ticks into the three transitions of the path, and under each division stands\n    a probability term, set much larger and bolder than any other type in the figure: P of E over\n    intent to encoded property, P of I given E over encoded property to fabricator, and P of L given I\n    and E over fabricator to realization, with E for correct encoding, I for correct interpretation and\n    L for correct realization. A short phrase under each term names the step it scores. A note under the\n    first term reads: not raised by a better fabricator. A note under the other two reads: process\n    design and better agents raise these. Below the band the encoded property forks. A second line in\n    the governance colour leaves the bottom of that box, runs down past the band annotated supplies the\n    tolerance, and enters the bounded ACCEPTABLE REGION through its left side — a different route from\n    the production path. The region is carried by the heading TOLERANCE — what variation in the product\n    is acceptable, and dots inside it mark distinct acceptable realizations the fabricator may choose\n    among. Separately, a measurement arrow drops from the realization into the top of the same region,\n    annotated measurement, tests, property-based testing, analysis, simulation and human judgment. From\n    the region two arrows lead out, one labelled within tolerance to admitted change and one labelled\n    outside to revise or reject. One use of the encoded property reaches the fabricator; the other\n    outlives realization and takes part in judging its result."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",
@@ -1120,7 +1146,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The determinization frontier: two routes by which repeated judgment becomes machinery",
-    "svg_description": "A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:\n    when a property is already decidable over the current artifact, Alignment encodes the predicate directly\n    into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,\n    Modeling changes the representation first, producing a structured relation. Both routes converge on a\n    shared step, a predicate evaluated over a model \u2014 Alignment's test is a predicate over the artifact taken\n    as its own trivial model, Modeling's check is a predicate over the externalized structured relation \u2014 and\n    both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the\n    two sides the determinization frontier."
+    "svg_description": "A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:\n    when a property is already decidable over the current artifact, Alignment encodes the predicate directly\n    into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,\n    Modeling changes the representation first, producing a structured relation. Both routes converge on a\n    shared step, a predicate evaluated over a model — Alignment's test is a predicate over the artifact taken\n    as its own trivial model, Modeling's check is a predicate over the externalized structured relation — and\n    both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the\n    two sides the determinization frontier."
   },
   {
     "chapter": "6.3-scope-conditions",
@@ -1133,7 +1159,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Value of explicit engineering versus feasible governability: a 2x2 of engineering investment",
-    "svg_description": "A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the\n    bottom to high at the top. The horizontal axis is feasible governability \u2014 representation, evidence, evaluation \u2014\n    from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit\n    judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more\n    explicit and repeatable. Upper right, high value and high feasible governability: invest in enforcement; the obligation\n    can be evaluated reliably enough to carry consequences, so build the machinery that enforces it. Lower left,\n    low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor\n    admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;\n    governability alone does not justify machinery."
+    "svg_description": "A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the\n    bottom to high at the top. The horizontal axis is feasible governability — representation, evidence, evaluation —\n    from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit\n    judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more\n    explicit and repeatable. Upper right, high value and high feasible governability: invest in enforcement; the obligation\n    can be evaluated reliably enough to carry consequences, so build the machinery that enforces it. Lower left,\n    low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor\n    admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;\n    governability alone does not justify machinery."
   },
   {
     "chapter": "7.1-reorganization-of-se",
@@ -1146,7 +1172,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where engineering effort moves across the lifecycle",
-    "svg_description": "Across the top, the five lifecycle phases in order \u2014 Requirements, Design,\n    Implementation, Validation, Operation and maintenance \u2014 connected by arrows; the lifecycle keeps its\n    phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The\n    human engineering judgment band, in rust, carries intent, abstractions, tradeoffs, acceptance, and\n    adaptation. The fleet band, in blue, carries implementation, analysis, transformation, and routine\n    remediation, concentrated under the Implementation phase. The governed environment band, in green,\n    carries models and context, permissions and constraints, evidence and validators, admission, and\n    operational controls across all phases. Implementation shifts disproportionately toward the fleet, and\n    human effort concentrates where consequential judgment and responsibility remain."
+    "svg_description": "Across the top, the five lifecycle phases in order — Requirements, Design,\n    Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its\n    phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The\n    human engineering judgment band, in rust, carries intent, abstractions, tradeoffs, acceptance, and\n    adaptation. The fleet band, in blue, carries implementation, analysis, transformation, and routine\n    remediation, concentrated under the Implementation phase. The governed environment band, in green,\n    carries models and context, permissions and constraints, evidence and validators, admission, and\n    operational controls across all phases. Implementation shifts disproportionately toward the fleet, and\n    human effort concentrates where consequential judgment and responsibility remain."
   },
   {
     "chapter": "7.2-software-rejoins-engineering",
@@ -1172,12 +1198,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Established traditions, new composition: engineering and AI traditions converge in MAGE",
-    "svg_description": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital \u2014 durable structure inherited\n    by subsequent work \u2014 toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old."
+    "svg_description": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited\n    by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old."
   },
   {
     "chapter": "7.3-agentic-engineering-beyond-software",
     "source": "assets/governing-consequential-work.png",
-    "caption": "*Governing consequential work.* The loop that stays constant across domains: people delegate work through a governed environment, remain responsible for the consequential outcome, and use evidence from that outcome to inform subsequent work. Only the outcome's form varies \u2014 an artifact that can be inspected, tested, and operated, or a decision whose consequences become observable through subsequent events.",
+    "caption": "*Governing consequential work.* The loop that stays constant across domains: people delegate work through a governed environment, remain responsible for the consequential outcome, and use evidence from that outcome to inform subsequent work. Only the outcome's form varies — an artifact that can be inspected, tested, and operated, or a decision whose consequences become observable through subsequent events.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1195,13 +1221,13 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Seven reference engineering stacks and the common relationships among their\n    capabilities \u2014 neither a required architecture nor an adoption order",
-    "svg_description": "Seven capability boxes. Model coherence (representation stays joined to reality) sits at\n    the top and commonly relates downward to two stacks: assurance (obligations get discharged) and\n    auditable transformation (change is legible). Those two commonly relate on to observe-react (detect and\n    act), which relates on to governance conversion (useful judgment becomes capital). The arrows show relationships\n    that recurred in practice, not a floor the stacks rest on. Two further stacks \u2014 resource mediation\n    (govern contention) and context delivery (right knowledge at the point of work) \u2014 sit detached at the\n    bottom with no inbound arrow, because they are useful independently of the other stacks."
+    "svg_title": "Seven reference engineering stacks and the common relationships among their\n    capabilities — neither a required architecture nor an adoption order",
+    "svg_description": "Seven capability boxes. Model coherence (representation stays joined to reality) sits at\n    the top and commonly relates downward to two stacks: assurance (obligations get discharged) and\n    auditable transformation (change is legible). Those two commonly relate on to observe-react (detect and\n    act), which relates on to governance conversion (useful judgment becomes capital). The arrows show relationships\n    that recurred in practice, not a floor the stacks rest on. Two further stacks — resource mediation\n    (govern contention) and context delivery (right knowledge at the point of work) — sit detached at the\n    bottom with no inbound arrow, because they are useful independently of the other stacks."
   },
   {
     "chapter": "appendix-a-model-coherence-stack",
     "source": "assets/model-coherence-stack.svg",
-    "caption": "The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check \u2014 model against world \u2014 which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE enforces the modeled property. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability.",
+    "caption": "The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check — model against world — which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE enforces the modeled property. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/model-coherence-stack.d2",
     "receipt": "book/d2-pilot/model-coherence-stack.receipt.yaml",
@@ -1214,7 +1240,7 @@
   {
     "chapter": "appendix-a-assurance-stack",
     "source": "assets/assurance-stack.svg",
-    "caption": "The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves \u2014 TEST for examples, LINT for structure, PROVE for semantics \u2014 and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the required spine.",
+    "caption": "The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves — TEST for examples, LINT for structure, PROVE for semantics — and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the required spine.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/assurance-stack.d2",
     "receipt": "book/d2-pilot/assurance-stack.receipt.yaml",
@@ -1222,7 +1248,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The Assurance stack: a spec becomes a census of obligations, each discharged by\n    appropriate evidence, joined back into coverage",
-    "svg_description": "A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS\n    establishes what population must be discharged. The discharge move fans into three lanes \u2014 TEST for\n    examples, LINT for structure, PROVE for semantics \u2014 applied as appropriate to each obligation. The three\n    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.\n    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at\n    the semantic level where the property becomes legible \u2014 a placement rule folded into prose, not a node."
+    "svg_description": "A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS\n    establishes what population must be discharged. The discharge move fans into three lanes — TEST for\n    examples, LINT for structure, PROVE for semantics — applied as appropriate to each obligation. The three\n    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.\n    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at\n    the semantic level where the property becomes legible — a placement rule folded into prose, not a node."
   },
   {
     "chapter": "appendix-a-auditable-transformation-stack",
@@ -1240,7 +1266,7 @@
   {
     "chapter": "appendix-a-observe-react-stack",
     "source": "assets/observe-react-stack.svg",
-    "caption": "The observe \u2192 react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.",
+    "caption": "The observe → react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/observe-react-stack.d2",
     "receipt": "book/d2-pilot/observe-react-stack.receipt.yaml",
@@ -1248,7 +1274,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and\n    blocking are dashed enhancements",
-    "svg_description": "An operating model states expected state. The solid load-bearing path runs WATCH \u2014 which\n    observes the runtime \u2014 to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale."
+    "svg_description": "An operating model states expected state. The solid load-bearing path runs WATCH — which\n    observes the runtime — to RESPOND, which recovers from an observed divergence. Two enhancements attach as\n    dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat\n    alongside the watch-respond path. BLOCK adds the power to prevent unsafe progress. This figure is the\n    canonical example of the shared notation: the load-bearing composition is a solid, heavy, filled-arrow\n    path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale."
   },
   {
     "chapter": "appendix-a-resource-mediation-stack",
@@ -1266,7 +1292,7 @@
   {
     "chapter": "appendix-a-governance-conversion-stack",
     "source": "assets/governance-conversion-stack.svg",
-    "caption": "The governance-conversion composition, a loop. The CONTROL MACHINERY \u2014 rules, gates, models, sensors \u2014 is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.",
+    "caption": "The governance-conversion composition, a loop. The CONTROL MACHINERY — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/governance-conversion-stack.d2",
     "receipt": "book/d2-pilot/governance-conversion-stack.receipt.yaml",
@@ -1274,12 +1300,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The Governance-Conversion stack: model the control machinery, find its gaps, interpret a\n    recurring failure into a durable control, update the estate, iterate",
-    "svg_description": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT \u2014 where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps."
+    "svg_description": "A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,\n    and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a\n    failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that\n    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This\n    is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are\n    possible implementations, not required steps."
   },
   {
     "chapter": "appendix-a-context-delivery-stack",
     "source": "assets/context-delivery-stack.svg",
-    "caption": "The context-delivery composition. Engineering knowledge \u2014 models, rules, decisions \u2014 splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.",
+    "caption": "The context-delivery composition. Engineering knowledge — models, rules, decisions — splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/context-delivery-stack.d2",
     "receipt": "book/d2-pilot/context-delivery-stack.receipt.yaml",
@@ -1287,7 +1313,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The Context-Delivery stack: standing policy and a retrieved task slice compose into\n    actor context that reaches the action; point-of-action reinforcement is a dashed enhancement",
-    "svg_description": "Engineering knowledge \u2014 models, rules, decisions \u2014 feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls."
+    "svg_description": "Engineering knowledge — models, rules, decisions — feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls."
   },
   {
     "chapter": "appendix-a-composing-a-stack",
@@ -1300,12 +1326,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From failure class to engineering stack: begin with a capability and the ways it can\n    fail, select mechanisms for the guarantees that close those failures, then keep only the load-bearing\n    composition",
-    "svg_description": "A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,\n    which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a\n    mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees\n    become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION \u2014 the smallest set\n    that keeps the capability claim honest \u2014 which is the ENGINEERING STACK. The transferable skill is\n    composition, not any particular mechanism."
+    "svg_description": "A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,\n    which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a\n    mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees\n    become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION — the smallest set\n    that keeps the capability claim honest — which is the ENGINEERING STACK. The transferable skill is\n    composition, not any particular mechanism."
   },
   {
     "chapter": "appendix-b-engineering-moves",
     "source": "assets/moves-overview-cheatsheet.svg",
-    "caption": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2\u20134: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
+    "caption": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2–4: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1313,12 +1339,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Figure B.0-1: ten recurring engineering problems, each paired with the move that retires it",
-    "svg_description": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree \u2014 make one authoritative.\n    Copies drift from authority \u2014 derive, don't copy. Model and reality diverge \u2014 check correspondence.\n    Assurance has invisible holes \u2014 derive the obligation set. Checks are too early or too late \u2014 put enforcement\n    where the property is legible. Actions evade governance \u2014 close the action surface. Rules exist but aren't\n    present at the decision \u2014 deliver knowledge where the decision occurs. Why gets lost after the change \u2014 carry\n    cause with consequence. Operators reconstruct the same procedure \u2014 externalize the judgment. Changes have\n    hidden dependents \u2014 make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea \u2014 improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable."
+    "svg_description": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree — make one authoritative.\n    Copies drift from authority — derive, don't copy. Model and reality diverge — check correspondence.\n    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put enforcement\n    where the property is legible. Actions evade governance — close the action surface. Rules exist but aren't\n    present at the decision — deliver knowledge where the decision occurs. Why gets lost after the change — carry\n    cause with consequence. Operators reconstruct the same procedure — externalize the judgment. Changes have\n    hidden dependents — make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea — improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable."
   },
   {
     "chapter": "appendix-b-make-fact-authoritative",
     "source": "assets/c1-make-fact-authoritative.svg",
-    "caption": "*One authoritative representation.* BEFORE \u2014 copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER \u2014 one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible.",
+    "caption": "*One authoritative representation.* BEFORE — copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER — one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/c1-make-fact-authoritative.d2",
     "receipt": "book/d2-pilot/c1-make-fact-authoritative.receipt.yaml",
@@ -1331,7 +1357,7 @@
   {
     "chapter": "appendix-b-derive-dont-copy",
     "source": "assets/c2-derive-dont-copy.svg",
-    "caption": "*Query, don't snapshot.* BAD \u2014 the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD \u2014 the check queries the model directly, so the next check sees the change.",
+    "caption": "*Query, don't snapshot.* BAD — the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD — the check queries the model directly, so the next check sees the change.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/c2-derive-dont-copy.d2",
     "receipt": "book/d2-pilot/c2-derive-dont-copy.receipt.yaml",
@@ -1352,7 +1378,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.3 Keep representation and reality in correspondence, checked in both directions",
-    "svg_description": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it \u2014 this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model \u2014 this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim."
+    "svg_description": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it — this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model — this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim."
   },
   {
     "chapter": "appendix-b-derive-the-obligation-set",
@@ -1365,7 +1391,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence",
-    "svg_description": "A vertical flow. A model derives the set of things that must be assured \u2014 what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding."
+    "svg_description": "A vertical flow. A model derives the set of things that must be assured — what must be tested.\n    That required set is compared against the evidence that actually exists. The comparison splits into two:\n    obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests\n    written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding."
   },
   {
     "chapter": "appendix-b-put-authority-where-legible",
@@ -1378,12 +1404,12 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.5 Put enforcement where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one",
-    "svg_description": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary \u2014 the last point before the point of no return. The consequence sits at the end of the line."
+    "svg_description": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary — the last point before the point of no return. The consequence sits at the end of the line."
   },
   {
     "chapter": "appendix-b-close-the-action-surface",
     "source": "assets/c6-close-action-surface.svg",
-    "caption": "*Open surface versus closed seam.* OPEN \u2014 an actor reaches a raw surface by many routes, including unknown ones. CLOSED \u2014 the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. The distinction is encoded by shape, line style, and weight rather than color.",
+    "caption": "*Open surface versus closed seam.* OPEN — an actor reaches a raw surface by many routes, including unknown ones. CLOSED — the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. The distinction is encoded by shape, line style, and weight rather than color.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/c6-close-action-surface.d2",
     "receipt": "book/d2-pilot/c6-close-action-surface.receipt.yaml",
@@ -1391,7 +1417,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.6 Close the action surface: replace open-ended routes with one bounded, named interface",
-    "svg_description": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes \u2014\n    a raw surface, another raw surface, a helper, and unknown paths \u2014 drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness."
+    "svg_description": "On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —\n    a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so\n    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:\n    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of\n    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,\n    and line weight, not by colour, so the contrast survives grayscale and colour-blindness."
   },
   {
     "chapter": "appendix-b-deliver-knowledge-at-decision",
@@ -1404,7 +1430,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.7 Deliver knowledge where the decision occurs: select the rules relevant to the work and bind them to the decision",
-    "svg_description": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid \u2014 the roles are legible by shape and weight, not colour."
+    "svg_description": "A body of rules and a unit of work both feed a selection step. The rules relevant to this\n    particular work are filtered through a selection funnel and delivered into the decision, so discovery is a\n    property of the environment rather than a test of the actor's memory or search skill. The knowledge input is\n    drawn as a stacked-document shape with a dashed edge; the work input as a solid box with a solid edge; the\n    funnel is a trapezoid — the roles are legible by shape and weight, not colour."
   },
   {
     "chapter": "appendix-b-carry-cause-with-consequence",
@@ -1430,7 +1456,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.9 Externalize recurring operational judgment: derive an operational model from the system model, then serve the operator",
-    "svg_description": "A system model carries what healthy looks like, the states a subsystem can be in, and the\n    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can\n    be generated \u2014 a procedure \u2014 and what still needs contextual reasoning \u2014 guidance. Both reach the operator.\n    Because the operational model is tied to the system model, the procedure does not drift away from the system it\n    is meant to explain."
+    "svg_description": "A system model carries what healthy looks like, the states a subsystem can be in, and the\n    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can\n    be generated — a procedure — and what still needs contextual reasoning — guidance. Both reach the operator.\n    Because the operational model is tied to the system model, the procedure does not drift away from the system it\n    is meant to explain."
   },
   {
     "chapter": "appendix-b-make-dependencies-queryable",
@@ -1443,7 +1469,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "C.10 Make hidden dependencies queryable: compute what a substrate change touches before it lands",
-    "svg_description": "A proposed change targets a substrate node. Three things depend on that node and interpret the\n    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because\n    each dependent declares its assumption explicitly, the set of affected dependents \u2014 the blast radius \u2014 is a\n    query computed before the change lands, rather than a grep-and-read exercise afterward."
+    "svg_description": "A proposed change targets a substrate node. Three things depend on that node and interpret the\n    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because\n    each dependent declares its assumption explicitly, the set of affected dependents — the blast radius — is a\n    query computed before the change lands, rather than a grep-and-read exercise afterward."
   },
   {
     "chapter": "appendix-models",
@@ -1455,7 +1481,7 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The executable-model pattern \u2014 the spine every later reference figure specializes",
+    "svg_title": "The executable-model pattern — the spine every later reference figure specializes",
     "svg_description": "An engineering question selects a representation. A model box is fed from the left by\n    authored intent along a solid arrow, and from the right by derived facts along a dashed arrow. The model\n    declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are\n    observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether\n    the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a\n    heavy bordered enforcement arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared\n    legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are\n    derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real\n    enforcement sits. Not every model traverses every edge; a useful representation may remain advisory."
   },
   {
@@ -1468,21 +1494,21 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Structure and boundaries \u2014 authored ownership and seams joined to the observed repository tree",
+    "svg_title": "Structure and boundaries — authored ownership and seams joined to the observed repository tree",
     "svg_description": "A component catalog, the authored structure, owns a web zone and permits a seam, both shown\n    along solid arrows. The web zone reaches the worker through a sanctioned seam, a solid arrow crossed by a\n    heavy gate glyph marking the one door a boundary check guards. A second crossing, from the web zone straight\n    to a raw format library, is a forbidden direct access: a dashed arrow struck through by a red X, a crossing\n    with no sanctioned door. Beneath, the observed repository tree is reverse-mapped up into the catalog along a\n    dashed arrow, so the model answers both what directory exists and who should own it. Legend as in Figure C-1;\n    weight, dash, and glyph carry the meaning without colour."
   },
   {
     "chapter": "appendix-c-behavior-and-ownership",
     "source": "assets/appendix-g-3-behavior-ownership.svg",
-    "caption": "*Behavior plus ownership.* The lifecycle FREE \u2192 LEASED \u2192 DONE is combined with a lease that records the current owner and expiry. The ownership invariant requires exactly one valid owner while LEASED and no active owner while FREE.",
+    "caption": "*Behavior plus ownership.* The lifecycle FREE → LEASED → DONE is combined with a lease that records the current owner and expiry. The ownership invariant requires exactly one valid owner while LEASED and no active owner while FREE.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/appendix-g-3-behavior-ownership.d2",
     "receipt": "book/d2-pilot/appendix-g-3-behavior-ownership.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Behavior plus ownership \u2014 a lifecycle with an ownership overlay that authorizes the worker",
-    "svg_description": "A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then\n    DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red\n    X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the\n    state by a solid specializes arrow \u2014 the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From\n    the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is\n    where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid\n    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning\n    without colour."
+    "svg_title": "Behavior plus ownership — a lifecycle with an ownership overlay that authorizes the worker",
+    "svg_description": "A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then\n    DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red\n    X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the\n    state by a solid specializes arrow — the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From\n    the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is\n    where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid\n    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning\n    without colour."
   },
   {
     "chapter": "appendix-c-execution-and-placement",
@@ -1494,8 +1520,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Stable topology, variable Host Execution Policy \u2014 the deploy graph holds; the policy varies",
-    "svg_description": "A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.\n    From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.\n    The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.\n    No heavy boundary appears here \u2014 the figure is descriptive, and the representative rule is that load rationing\n    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.\n    Legend as in Figure C-1; this figure shows a representation that stays advisory, with enforcement left to Chapter 3. Weight and dash carry the meaning without colour."
+    "svg_title": "Stable topology, variable Host Execution Policy — the deploy graph holds; the policy varies",
+    "svg_description": "A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.\n    From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.\n    The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.\n    No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing\n    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.\n    Legend as in Figure C-1; this figure shows a representation that stays advisory, with enforcement left to Chapter 3. Weight and dash carry the meaning without colour."
   },
   {
     "chapter": "appendix-c-measurement",
@@ -1507,8 +1533,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Measurement does not imply enforcement \u2014 a number earns a gate only when evidence warrants it",
-    "svg_description": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate \u2014 the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour."
+    "svg_title": "Measurement does not imply enforcement — a number earns a gate only when evidence warrants it",
+    "svg_description": "A running system is observed along a dashed arrow into a measurement box holding latency, cost,\n    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison\n    branches on whether enforcement is warranted. A no leads to a plain report-only box: the number is surfaced,\n    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission\n    gate — the one place enforcement sits. The lesson: represent first; add enforcement only when the evidence\n    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour."
   },
   {
     "chapter": "appendix-c-documentation-and-provenance",
@@ -1520,8 +1546,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Facts before prose \u2014 the strongest documentation is generated from facts the system already knows",
-    "svg_description": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box \u2014 free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour."
+    "svg_title": "Facts before prose — the strongest documentation is generated from facts the system already knows",
+    "svg_description": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box — free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour."
   },
   {
     "chapter": "appendix-c-joining-views",
@@ -1533,8 +1559,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Composition by reference \u2014 join small views on stable identities, not one mega-model",
-    "svg_description": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears \u2014 composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour."
+    "svg_title": "Composition by reference — join small views on stable identities, not one mega-model",
+    "svg_description": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears — composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour."
   },
   {
     "chapter": "appendix-d-brownfield-progress",
@@ -1547,7 +1573,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Two independent axes of brownfield progress: representation reach crossed with enforcement reach",
-    "svg_description": "A two-by-two matrix with two independent axes. The columns are enforcement reach \u2014\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary \u2014\n    running thin on the left to strong on the right. The rows are representation reach \u2014 how much of the\n    important system can be reasoned about through trustworthy externalized structure \u2014 running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach."
+    "svg_description": "A two-by-two matrix with two independent axes. The columns are enforcement reach —\n    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary —\n    running thin on the left to strong on the right. The rows are representation reach — how much of the\n    important system can be reasoned about through trustworthy externalized structure — running rich on\n    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich\n    representation with thin enforcement: the organization understands the system, but humans still catch\n    the violations. Rich representation with strong enforcement: a rich governed surface, trustworthy\n    models and enforcement at the right boundary. Thin representation with thin enforcement: reconstruction\n    plus a human gap, little externalized structure and little enforcement, so humans carry both. Thin\n    representation with strong enforcement: direct or local alignment, where tests, sandboxes, and\n    permissions govern what they observe directly and no rich model is required. The two axes are\n    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin\n    representation with strong enforcement is a real, healthy quadrant, not a way-station toward richer\n    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the\n    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with\n    representation reach; a blue right edge marks the cells with enforcement reach."
   },
   {
     "chapter": "appendix-e-applying-the-recipe",
@@ -1560,7 +1586,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Three complementary skills acting around one governed engineering environment",
-    "svg_description": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence \u2014 reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design."
+    "svg_description": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence — reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design."
   },
   {
     "chapter": "appendix-f-one-product-several-surfaces",
@@ -1586,7 +1612,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Change-scoped models, degrees of freedom, and inheritance",
-    "svg_description": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space \u2014 the choices the governing obligations leave open \u2014 within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits."
+    "svg_description": "A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and\n    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes\n    the realization space — the choices the governing obligations leave open — within which the agent realizes the\n    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to\n    history or, through governance conversion, into durable structure that future work inherits."
   },
   {
     "chapter": "appendix-f-operations-and-incidents",
@@ -1612,7 +1638,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Assurance across models and realization",
-    "svg_description": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties \u2014 architecture, behavior, data flow, access policy, invariants \u2014 about the realization \u2014\n    implementation, tests, static analysis, runtime evidence, memory safety \u2014 or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim."
+    "svg_description": "An obligation becomes an assurance claim. Establishing the claim can require evidence about\n    modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —\n    implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between\n    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim."
   },
   {
     "chapter": "appendix-f-from-local-mage-to-the-product-gee",
@@ -1625,7 +1651,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From local MAGE adoption to the product GEE",
-    "svg_description": "Five lifecycle surfaces \u2014 Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance \u2014 are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow."
+    "svg_description": "Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance — are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow."
   },
   {
     "chapter": "appendix-f-engineering-capital-across-time-and-space",
@@ -1643,7 +1669,7 @@
   {
     "chapter": "appendix-g-from-assistance-to-delegation",
     "source": "assets/adopting-assistance-to-delegation.svg",
-    "caption": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment \u2014 models carry context, evidence establishes properties, and mechanisms constrain and admit the result \u2014 and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
+    "caption": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment — models carry context, evidence establishes properties, and mechanisms constrain and admit the result — and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1651,7 +1677,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands",
-    "svg_description": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent \u2014 models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results \u2014 while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels."
+    "svg_description": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent — models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results — while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels."
   },
   {
     "chapter": "appendix-g-engineering-the-environment",
@@ -1669,7 +1695,7 @@
   {
     "chapter": "appendix-g-engineering-the-environment",
     "source": "assets/adopting-figures-recap.svg",
-    "caption": "*Four figures this appendix puts to work.* Each was developed earlier in the book and is reused here at organizational scale, not reintroduced: the value of explicit engineering against feasible governability (\u00a75.3), the governance-conversion loop (\u00a73.4), the support-apparatus ratio, and the redistribution of engineering effort (both in Chapter 5). The appendix refers back to these rather than re-deriving them.",
+    "caption": "*Four figures this appendix puts to work.* Each was developed earlier in the book and is reused here at organizational scale, not reintroduced: the value of explicit engineering against feasible governability (§5.3), the governance-conversion loop (§3.4), the support-apparatus ratio, and the redistribution of engineering effort (both in Chapter 5). The appendix refers back to these rather than re-deriving them.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1721,7 +1747,7 @@
   {
     "chapter": "appendix-field-guide",
     "source": "assets/field-guide-siemens.svg",
-    "caption": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model\u2194code admission.",
+    "caption": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1754,7 +1780,7 @@
     "generator": null,
     "data": [],
     "conversion": "PGFPlots; reconcile original historical data (do not substitute newer29week series)",
-    "svg_title": "Commits per week across the project\u2019s history \u2014 the velocity curve",
+    "svg_title": "Commits per week across the project’s history — the velocity curve",
     "svg_description": "A bar chart of commits per week over the 20-week build. Each bar is one week. The curve rises steeply as the agent fleet acquired capability, peaking through May, then dips during a hardening stretch. An inset panel reports commit size in lines of code. The shape is the argument in miniature: raw velocity is easy to buy, and the dip is where that velocity is spent making the output trustworthy rather than merely fast."
   },
   {
@@ -1767,8 +1793,8 @@
     "generator": null,
     "data": [],
     "conversion": "PGFPlots; reconcile original historical data (do not substitute newer29week series)",
-    "svg_title": "Path churn across four windows \u2014 web/ and backend/",
-    "svg_description": "A diverging bar chart of git churn on two code paths across the four\n    study windows. For each window, additions rise above a zero baseline and deletions fall\n    below it, drawn as one bar per path: web/, the Python web service and worker, in blue,\n    and backend/, the C# command-line tool and rule engine, in red. Mechanization is the\n    add-and-delete peak for both paths \u2014 backend/ alone adds 941,120 lines and deletes\n    286,378 in that window. After mechanization the deletions collapse: backend/ falls to\n    just 3,767 deleted lines at hardening, and both paths go net-additive in the later\n    windows as the built environment stabilizes the code. Absolute counts include generated\n    and vendored files, so this is a churn signal, not a count of hand-authored source."
+    "svg_title": "Path churn across four windows — web/ and backend/",
+    "svg_description": "A diverging bar chart of git churn on two code paths across the four\n    study windows. For each window, additions rise above a zero baseline and deletions fall\n    below it, drawn as one bar per path: web/, the Python web service and worker, in blue,\n    and backend/, the C# command-line tool and rule engine, in red. Mechanization is the\n    add-and-delete peak for both paths — backend/ alone adds 941,120 lines and deletes\n    286,378 in that window. After mechanization the deletions collapse: backend/ falls to\n    just 3,767 deleted lines at hardening, and both paths go net-additive in the later\n    windows as the built environment stabilizes the code. Absolute counts include generated\n    and vendored files, so this is a churn signal, not a count of hand-authored source."
   },
   {
     "chapter": "appendix-j-model-induction",
@@ -1780,7 +1806,7 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Models can be induced from the work: the same abstraction move \u2014 repeated form to named model \u2014 runs in software, knowledge work, and CAD",
+    "svg_title": "Models can be induced from the work: the same abstraction move — repeated form to named model — runs in software, knowledge work, and CAD",
     "svg_description": "A left rail states the general move as a column of stages joined by the method that\n    carries each step: realized work; then repeated low-level forms; then, by weak detectors, retrieval,\n    and clustering, candidate regularities; then, by contextual comparison, a candidate abstraction; then, by an\n    engineering judgment that adopts and names it, an explicit model or vocabulary; then future work that reasons\n    through the concept directly. Three columns to the right instantiate the same move. In software\n    (grounded in DocAble evidence): realized code, repeated primitive forms, candidate regularities such\n    as primitive density, a candidate abstraction (a repeated semantic shape), a typed vocabulary with relations, and tools and agents\n    that reuse it. In knowledge work (a generalization, inferred): documents and records, repeated terms\n    and relations, candidate synonym clusters, a candidate abstraction (a domain distinction), a canonical term with\n    relations, and a lexicon, ontology, or schema. In mechanical CAD (a generalization, inferred):\n    drawings and assemblies, repeated geometry and constraints, a candidate pattern or component, a candidate\n    abstraction (a design regularity), a named feature or constraint model, and a reusable engineering vocabulary. The\n    agent finds repetition, compares, and proposes structure; the engineer decides which distinctions\n    matter and names the concept."
   },
   {
@@ -1793,5 +1819,31 @@
     "generator": null,
     "data": [],
     "conversion": "Keep photograph; grayscale raster comparison, not meaningful TikZ geometry"
+  },
+  {
+    "chapter": "2.5-system-knowledge",
+    "source": "assets/docable-execution-analysis.svg",
+    "caption": "*One declared dependency, two uses.* In the DOCX pipeline, with table-header repair enabled, the registry's read/write declarations supply the repair-before-check dependency to scheduling and to an analytical projection. The figure shows one Office resource dependency; other ordering constraints are omitted. PDF uses parallel declarations with blocking correspondence checks, as explained below.",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "d2_source": "book/assets/docable-execution-analysis.d2",
+    "receipt": "book/assets/docable-execution-analysis.receipt.yaml",
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; DOCX resource dependency supplies execution and analytical projection.",
+    "svg_title": "One declared DOCX dependency, two uses",
+    "svg_description": "The DOCX registry declares that table-header repair writes table headers and the table-structure check reads them, so repair precedes the check. The registry supplies this dependency to execution machinery through a solid arrow and to a Python analytical graph through a dashed projection arrow. Both uses share the declarations; PDF is outside the diagram."
+  },
+  {
+    "chapter": "3.1-where-obligations-can-be-enforced",
+    "source": "assets/deliver-context-two-layer.svg",
+    "caption": "*Selecting context for the work.* Standing instructions and a retrieved task slice supply the agent’s context. DocAble repeats selection after planning, when the anticipated files are clearer. This information path supports reasoning; the separate extraction gate checks that the required discovery event occurred.",
+    "native_context": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "generator": null,
+    "data": [],
+    "conversion": "Native TikZ companion to the current authored color SVG",
+    "svg_title": "Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.",
+    "svg_description": "A green engineering-knowledge box holds models, rules, and procedures. It splits into two\n    layers: a solid green standing-context box (mission, compact method, compact policy) and a dashed green\n    task-relevant-slice box (retrieved when needed). Both feed into a blue agent-context box, which flows down\n    into a dark work box. A dashed rust lifecycle-event arrow loops from the work back up to the task-relevant\n    slice, re-surfacing what matters now. The point: keep standing context small enough to genuinely remain\n    standing, and retrieve richer slices per task rather than loading everything at once."
   }
 ]

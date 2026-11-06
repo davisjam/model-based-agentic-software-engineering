@@ -3,7 +3,7 @@
 <!-- semantic-families: modeling, governance, agent, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="1000" height="540"
      role="img" aria-labelledby="trTitle trDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="trTitle">Computation structure versus realized history</title>
+  <title id="trTitle">Computation structure versus recorded history</title>
   <desc id="trDesc">Two reductions of the same remediation system, side by side. Left: the static computation graph — named passes joined by a typed data edge and a typed control gate, modeling what computations may compose. Right: one session's edit record — a run that emits a sequence of typed PdfEdit operations, recording what mutations did occur. A dashed link between them marks that they are not joined today; a shared computation identity would join them, and the join is added when a question needs it.</desc>
   <defs>
     <marker id="tr-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
@@ -48,5 +48,5 @@
   <text x="735" y="442" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · SetReadingOrder</text>
   <text x="492" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">not joined today</text>
   <text x="247" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#155c38">static structure</text>
-  <text x="742" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#2f5169">realized history</text>
+  <text x="742" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#2f5169">recorded history</text>
 </svg>

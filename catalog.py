@@ -525,11 +525,12 @@ def catalogue_md_files() -> list[str]:
     `plugin/`) and the raw-asset / internal-continuity files, so the tooling never processes a mirror.
     """
     out = []
-    for f in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True):
-        rel = os.path.relpath(f, ROOT)
-        top = rel.split(os.sep)[0]
-        if os.sep in rel and top not in ROLE_DIRS:
-            continue  # nested under a non-catalogue dir (packaged copy, downloads, etc.)
+    # Select catalogue roots before recursion. Filtering a ROOT/** glob afterward
+    # still opens every dependency, generated tree, and packaged mirror.
+    paths = glob.glob(os.path.join(ROOT, "*.md"))
+    for role in ROLE_DIRS:
+        paths.extend(glob.glob(os.path.join(ROOT, role, "**", "*.md"), recursive=True))
+    for f in paths:
         if os.path.basename(f) in NOSERVE:
             continue  # internal continuity docs: not rendered/served
         if os.path.basename(f).startswith("HANDOFF"):
@@ -5884,8 +5885,8 @@ def cmd_deploy(args) -> int:
     github_pdf_gate = args.target == "github"
     print(f"== Deploy plan: target={args.target} ==")
     print("  1. validate   2. build   3. test (BLOCKING — aborts on any failure)   "
-          + ("3b. render PDF   " if want_pdf else "")
-          + ("3b. render PDF + size/integrity gate (BLOCKING)   " if github_pdf_gate else "")
+          + ("3b. render PDF + EPUB   " if want_pdf else "")
+          + ("3b. render PDF + EPUB and publication checks (BLOCKING)   " if github_pdf_gate else "")
           + ("4. serve on localhost" if args.target == "local"
              else "4. commit + push to origin main (CI deploys)"))
     if getattr(args, "pdf", False) and args.target == "github":
@@ -5903,26 +5904,25 @@ def cmd_deploy(args) -> int:
         print("ABORT: test suite failed — fix before deploying (run `catalog.py test` to see).")
         return 1
 
-    # opt-in local PDF render (the print-native Typst path; the default web build never touches it).
-    # `--pdf` regenerates book/mage-book.pdf so the local preview's "Download PDF" link serves the CURRENT
-    # book, not a stale gitignored copy. Publish (github) needs no flag — CI renders the PDF on every push.
+    # Opt-in local PDF and EPUB builds from the native LaTeX manuscript.
+    # `--pdf` regenerates both downloads so the local preview serves the current book. Publish (github) needs no flag — CI renders the PDF on every push.
     if want_pdf:
-        print("\n== Rendering PDF (book/mage-book.pdf) via Typst; content-integrity gate runs internally ==")
+        print("\n== Rendering PDF + EPUB from native LaTeX; publication checks run internally ==")
         pdf_build = subprocess.run([sys.executable, os.path.join("book", "build_book.py"), "--pdf"],
                                    cwd=ROOT)
         if pdf_build.returncode != 0:
-            print("ABORT: PDF render failed (see build_book.py --pdf output above).")
+            print("ABORT: PDF/EPUB build failed (see build_book.py --pdf output above).")
             return 1
 
     if args.target == "local":
-        # Best-effort regen of the landing cover thumbnails (gitignored, build-derived from the Typst
-        # covers) so the local preview's landing shows the CURRENT titles. Needs typst + Pillow; on
+        # Best-effort regen of the landing cover thumbnails (gitignored, build-derived from the native LaTeX
+        # covers) so the local preview's landing shows the CURRENT titles. Needs LuaLaTeX + Poppler + Pillow; on
         # failure print a notice and continue (mirrors the site/.venv graceful-degrade just below —
         # catalog.py stays stdlib-only, the Pillow/PyYAML imports live in the subprocess'd tool).
         if subprocess.run([sys.executable, os.path.join("tools", "cover_assets.py"), "regen"],
                           cwd=ROOT).returncode:
             print("\n  (cover thumbs not regenerated — landing may show a stale/missing cover; "
-                  "needs typst + Pillow.)")
+                  "needs LuaLaTeX + Poppler + Pillow.)")
 
         # The MAGE book web edition serves from the MkDocs-built tree at its PUBLISHED path
         # (/book/mage-book/ ← book/web/site). Building it needs the pinned site/.venv toolchain —
@@ -5944,15 +5944,17 @@ def cmd_deploy(args) -> int:
 
         class _LocalHandler(SimpleHTTPRequestHandler):
             """The repo tree, plus the published-layout mappings: /book/mage-book/ serves the
-            MkDocs-built book (same URLs as production), and its sibling PDF resolves to the
-            locally-rendered book/mage-book.pdf (the --pdf flag's artifact)."""
+            MkDocs-built book (same URLs as production), and PDF/EPUB downloads resolve to
+            the locally rendered book/mage-book.{pdf,epub} artifacts."""
 
             def translate_path(self, path):  # noqa: N802 — stdlib handler API
                 clean = path.split("?", 1)[0].split("#", 1)[0]
                 if clean == "/book/mage-book" or clean == "/book/mage-book/":
                     clean = "/book/mage-book/index.html"
-                if clean == "/book/mage-book/mage-book.pdf":
-                    return os.path.join(ROOT, "book", "mage-book.pdf")
+                for extension in (".pdf", ".epub"):
+                    filename = os.path.splitext(BOOK_MANIFEST["pdf_filename"])[0] + extension
+                    if clean == "/book/mage-book/" + filename:
+                        return os.path.join(ROOT, "book", filename)
                 if clean.startswith("/book/mage-book/"):
                     return os.path.join(book_site, clean[len("/book/mage-book/"):])
                 return super().translate_path(path)
@@ -5974,12 +5976,12 @@ def cmd_deploy(args) -> int:
     # renders on push. Mirrors the `local --pdf` abort pattern. CI still re-renders authoritatively on push.
     # `--no-split`: gate only the shipped whole-book PDF here — the per-section review PDFs are a local
     # convenience, not a published artifact, so the pre-push gate must not pay their ~9× compile cost.
-    print("\n== Pre-push PDF gate (book/mage-book.pdf) via Typst; content-integrity + size ceiling (8 MiB) ==")
+    print("\n== Pre-push PDF + EPUB build from native LaTeX; content, size, and container checks ==")
     pdf_gate = subprocess.run([sys.executable, os.path.join("book", "build_book.py"), "--pdf", "--no-split"],
                               cwd=ROOT)
     if pdf_gate.returncode != 0:
-        print("ABORT: PDF gate failed — will not push (see build_book.py --pdf output above; "
-              "a >8 MiB PDF or a content-integrity miss blocks the push).")
+        print("ABORT: PDF/EPUB gate failed — will not push (see build_book.py --pdf output above; "
+              "an invalid EPUB, a >8 MiB PDF, or a content-integrity miss blocks the push).")
         return 1
 
     # --github: stage the EXPLICIT manifest (never `git add -A`), commit, push.
@@ -6115,7 +6117,7 @@ def main() -> int:
     d = sub.add_parser("deploy", help="build, then serve locally (local) or publish to GitHub (github)")
     d.add_argument("target", choices=["local", "github"], help="local = serve on localhost; github = commit + push (CI deploys)")
     d.add_argument("--port", type=int, default=DEFAULT_PORT, help=f"localhost port for --local (default {DEFAULT_PORT})")
-    d.add_argument("--pdf", action="store_true", help="(local only) also render book/mage-book.pdf (print-native Typst path) so the local preview's Download-PDF link is current. Implied for github — the PDF is always rendered pre-push as a BLOCKING content-integrity + size (<=8 MiB) gate")
+    d.add_argument("--pdf", action="store_true", help="(local only) rebuild PDF and EPUB downloads from native LaTeX for local preview. Implied for github — both editions are rebuilt pre-push with BLOCKING content, size, and EPUB-container checks")
     d.add_argument("-m", "--message", default="deploy: rebuild site", help="commit message for github mode")
     args = p.parse_args()
     return {"validate": cmd_validate, "query": cmd_query, "summaries": cmd_summaries,

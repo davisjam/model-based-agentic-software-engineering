@@ -22,10 +22,6 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \draw[edge] (s6) -- (s7);
 \node[n,text width=7.2cm,fill=white] (s8) at (0,-15.84) {\textbf{Conclusion}\\What cannot be delegated?\\\textbf{RESPONSIBILITY.}};
 \draw[edge] (s7) -- (s8);
-\begin{scope}[on background layer]\node[draw,fill=white,inner xsep=7pt,inner ysep=13pt,fit=(s2)(s3)(s4)(s5),label={[font=\fontsize{10}{12}\selectfont]above:{}}] {};\end{scope}
+\begin{scope}[on background layer]\node[draw,fill=black!10,inner xsep=7pt,inner ysep=13pt,fit=(s2)(s3)(s4)(s5),label={[font=\fontsize{10}{12}\selectfont]above:{}}] {};\end{scope}
 \node[note,rotate=90] at (-4.5,-6.24){\textbf{SOFTWARE-ENGINEERING CASE}};
-\node[n,text width=3.4cm] (a4) at (6,-6.96) {\textbf{\magebookref{chapter:appendix-part-1-practice}{Appendix Part I}}\\Practice\\\textit{Use and extend}};
-\draw[edge,dotted,-] (s4.east) -- (3.95,-7.2) |- (a4.west);
-\node[n,text width=3.4cm] (a5) at (6,-9.36) {\textbf{\magebookref{chapter:appendix-part-2-evidence}{Appendix Part II}}\\Evidence\\\textit{Inspect the\\empirical record}};
-\draw[edge,dotted,-] (s5.east) -- (3.95,-9) |- (a5.west);
 \end{tikzpicture}

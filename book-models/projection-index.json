@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 862,
+    "total_sites": 859,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 520,
+      "book-web": 517,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -33,11 +33,11 @@
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 10
+            "occ": 13
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
-            "occ": 16
+            "occ": 19
           },
           {
             "file": "book/web/docs/1.3-the-agentic-substrate.md",
@@ -53,11 +53,11 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 46
+            "occ": 52
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 5
+            "occ": 9
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -65,11 +65,11 @@
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 18
+            "occ": 23
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
-            "occ": 2
+            "occ": 5
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
@@ -77,7 +77,7 @@
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
@@ -257,7 +257,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 90
+            "occ": 94
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -923,7 +923,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
@@ -1095,7 +1095,7 @@
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 73
+            "occ": 72
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
@@ -1119,15 +1119,15 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 137
+            "occ": 130
           },
           {
             "file": "book/web/docs/2.2-structural.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/2.3-behavioral.md",
-            "occ": 9
+            "occ": 7
           },
           {
             "file": "book/web/docs/2.4-decision.md",
@@ -1135,7 +1135,7 @@
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 19
+            "occ": 29
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -1143,23 +1143,23 @@
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 20
+            "occ": 14
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 28
+            "occ": 31
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 28
+            "occ": 25
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 10
+            "occ": 14
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
@@ -1179,7 +1179,7 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 61
+            "occ": 62
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -1531,7 +1531,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 120
+            "occ": 128
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1543,7 +1543,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 307
+            "occ": 308
           },
           {
             "file": "book/web/docs/index.md",
@@ -1559,7 +1559,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 23
+            "occ": 21
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1713,7 +1713,7 @@
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
@@ -2033,11 +2033,11 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 91
+            "occ": 92
           },
           {
             "file": "book/web/docs/2.2-structural.md",
-            "occ": 43
+            "occ": 45
           },
           {
             "file": "book/web/docs/2.3-behavioral.md",
@@ -2045,11 +2045,11 @@
           },
           {
             "file": "book/web/docs/2.4-decision.md",
-            "occ": 57
+            "occ": 48
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 111
+            "occ": 103
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -2065,7 +2065,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 24
+            "occ": 46
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
@@ -2073,7 +2073,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 20
+            "occ": 14
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -2389,7 +2389,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 372
+            "occ": 367
           },
           {
             "file": "book/web/docs/index.md",
@@ -2405,7 +2405,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 15
+            "occ": 13
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -3089,11 +3089,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 1
+            "occ": 13
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
@@ -3101,7 +3097,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 2
+            "occ": 5
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -3247,7 +3243,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 46
+            "occ": 45
           }
         ]
       },
@@ -3299,7 +3295,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -3311,22 +3307,14 @@
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/3.4-governance-conversion.md",
             "occ": 1
           },
           {
@@ -3445,7 +3433,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 37
+            "occ": 35
           }
         ]
       },

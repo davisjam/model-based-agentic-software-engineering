@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: book-map). frontma-260917 pass, realigned to the Chs. 4-7 structure
-     (realign-260922): the book's argument in THREE MOVEMENTS — the engineering question (Preface +
-     Chapter 1, OUTSIDE), the nested SOFTWARE-ENGINEERING CASE (Chapters 2-5, seated inside a subtly
-     shaded #eef2f6 no-stroke region that develops the mechanisms and supplies the evidence), and the
-     engineering argument it substantiates (Chapter 6 + Chapter 7, OUTSIDE — the abstraction from the
-     factories and its implications). A single clean descent runs from the Preface's opening question to
-     the Conclusion's answer + its converse; the Ch1->Ch2 arrow crosses INTO the case region and the
-     Ch5->Ch6 arrow crosses OUT, so the boundary crossings enact the epistemics. Two DOTTED branches hang
-     the appendix parts off the argument (Chapter 4 to Practice, Chapter 5 to Evidence), OUTSIDE the
-     region. RHYTHM: the vertical space is spent on WHITESPACE — air after the framing moves (Preface ->
-     Ch1 -> case), interior padding of the case region above Ch2 and below Ch5, a doubled gap + flanking
-     rules above Chapter 4 (the static->dynamic step), and an annotated Ch5 -> Ch6 gap ("abstract from the
-     factories"). Primary column 488 wide; appendix boxes quieted (lighter stroke + medium weight, type
-     stays at the font-band floor). REALIGN NOTE: Chapter 4 is a numbered chapter, not an interlude, so it
-     sheds the old "One Problem, Many Models" subtitle and keeps only its four moves; Chapter 5 is the
-     production-system chapter (Agentic Software Factories), which is what now SUPPLIES the evidence rather
-     than being titled "The Evidence". FONT NOTE: the viewBox width is held to 920 so every label
-     normalizes into the figure font band (abs x 1000/920 lands near body size) and renders near body size
-     in the PDF column. Palette: Umber Monograph tokens per chapter; Chapter 4 uses the muted matter
-     palette (Preface/Conclusion); the case region is a low-saturation pale blue drawn from Chapter 5's
-     evidence family (#e7edf3, lightened); appendix destinations muted #78716c with a dashed border. -->
+<!-- Hand-authored SVG (label: book-map). Three movements: the engineering question,
+     the software-engineering case in Chapters 2–5, and its theory and implications.
+     The centered main argument is the complete figure; optional appendices are omitted. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 942" width="920" height="942"
      role="group" aria-labelledby="bmTitle bmDesc"
@@ -30,26 +12,22 @@
     Problem — changed economics. A subtly shaded region then nests the software-engineering case — the chapters that
     develop the mechanisms and supply the evidence. Inside it: Chapter 2, Modeling — make knowledge and intent
     explicit. Then Chapter 3, Alignment — enforce selected obligations. Then Chapter 4, MAGE in Motion — the mechanisms
-    put in motion on a worked problem: model, align, work, convert; a dotted branch runs to Appendix Part I, Practice
-    (use and extend). Then Chapter 5, Agentic Software Factories — the production system that supplies the evidence: a
-    deep case, industrial variation, and what the factories show; a dotted branch runs to Appendix Part II, Evidence
-    (inspect the empirical record). The descent leaves the case region at Chapter 6, The Theory — the abstraction from
+    put in motion on a worked problem: model, align, work, convert. Then Chapter 5, Agentic Software Factories — the
+    production system that supplies the evidence: a deep case, industrial variation, and what the factories show. The descent leaves the case region at Chapter 6, The Theory — the abstraction from
     those factories: dynamics, economics, predictions, and scope conditions. Then Chapter 7, The Profession — how
     software work reorganizes, agentic engineering beyond software, and the responsibility that remains the engineer's.
     The descent ends at the Conclusion, which returns to the Preface's question and asks its converse: what cannot be
-    delegated? Responsibility. The dotted appendix branches are related destinations, not steps in the argument.</desc>
+    delegated? Responsibility.</desc>
 
   <defs>
     <marker id="bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
-    <marker id="bm-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#78716c"/>
-    </marker>
   </defs>
 
   <rect x="0" y="0" width="920" height="942" fill="#fdfcf9"/>
 
+  <g transform="translate(192 0)">
   <!-- THE SOFTWARE ENGINEERING CASE — the shaded region nesting Chapters 2-5 (renders beneath
        the nodes; its header renders AFTER the Ch1->Ch2 arrow, on a region-colored halo, so the descent passes
        under the label instead of striking through it) -->
@@ -96,22 +74,10 @@
   <text x="268" y="526" text-anchor="middle" font-size="18.4" font-weight="600" fill="#1c1917">model · align · work · convert</text>
   <line x1="268" y1="548" x2="268" y2="564" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- CHAPTER 4 to Appendix Part I (DOTTED branch — related destination, not a step; quieter than the argument) -->
-  <line x1="512" y1="506" x2="604" y2="506" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
-  <rect id="appendix-1" x="604" y="480" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
-  <text x="752" y="503" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part I · Practice</text>
-  <text x="752" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">use + extend</text>
-
   <!-- CHAPTER 5 — Agentic Software Factories (fleet blue; the production system that supplies the evidence) -->
   <rect id="part-5" x="24" y="564" width="488" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="268" y="589" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Chapter 5 · Agentic Software Factories</text>
   <text x="268" y="609" text-anchor="middle" font-size="18.4" font-weight="600" fill="#2f5169">deep case · industrial variation · production systems</text>
-
-  <!-- CHAPTER 5 to Appendix Part II (DOTTED branch) -->
-  <line x1="512" y1="592" x2="604" y2="592" stroke="#78716c" stroke-width="1.5" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
-  <rect id="appendix-2" x="604" y="566" width="296" height="52" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.4" stroke-dasharray="5 3"/>
-  <text x="752" y="589" text-anchor="middle" font-size="18.4" font-weight="600" fill="#57534e">Appendix Part II · Evidence</text>
-  <text x="752" y="609" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
 
   <!-- The descent leaves the case region: factories -> theory (the crossing gets its own air + label) -->
   <line x1="268" y1="620" x2="268" y2="682" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
@@ -134,4 +100,5 @@
   <text x="268" y="858" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
   <text x="268" y="882" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
   <text x="268" y="901" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
+  </g>
 </svg>

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "web": "color",
+  "pdf_default": "paired",
+  "approved_monochrome": {
+    "book/assets/book-map.svg": {
+      "approved_date": "2026-11-05",
+      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2\u20135 enclosure and the optional appendix branches removed."
+    }
+  }
+}

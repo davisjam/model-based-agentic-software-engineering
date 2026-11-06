@@ -1,9 +1,8 @@
+% mage-auto-heading: preserve-engineering-freedom
 % mage-auto-heading: catalogue-the-controls
 % mage-auto-heading: model-interactions-between-controls
 % mage-auto-heading: trace-obligations-to-mechanisms
 % mage-auto-heading: add-reconcile-and-retire-controls
-% mage-auto-heading: example-two-safety-rules-other
-% mage-auto-heading: example-docable
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Alignment -->
@@ -42,7 +41,7 @@ A catalogue can describe each control individually, but it cannot reveal conflic
 
 % <!-- point: each-collision-lives-in-the-space-between-two-controls-drawn-nowhere | A collision lives between two controls, drawn nowhere until the graph draws it. | terms: shared-resource, governance-graph -->
 
-Two collisions from the case study make it concrete. In the first, one control required a squashed commit while another treated the resulting broad diff as unauthorized scope expansion. Each was reasonable alone; together they imposed contradictory demands on the same commit set. In the second, two hooks fired on the same turn-end with no order declared between them, each able to block, and their composition was left implicit. Neither collision lives in any one control\textquotesingle s code. Each lives in the space \emph{between} two controls. That relation had not been represented. \autoref{collision-edge} draws it.
+Suppose one repository check requires a task's changes to be squashed into one commit, while another rejects a commit whose diff exceeds a prescribed scope. A task may satisfy the first rule only by violating the second. Inspecting either check alone will not reveal how their requirements interact. \autoref{collision-edge} draws the shared commit set on which both act. The engineer must examine that relation to decide whether the obligations conflict or the mechanisms need a different arrangement.
 
 \begin{figure}[htbp]
 \centering
@@ -55,56 +54,62 @@ Two collisions from the case study make it concrete. In the first, one control r
 
 The interaction graph uses controls as nodes and shared resources as the principal join key. A resource may be ordinary --- a lock, a file, a commit-set, a deployment slot --- or operational, such as a lifecycle event or a context budget. Controls need not call one another to interact; they only need to make potentially incompatible demands on the same modeled resource.
 
-% <!-- point: docable-implemented-governance-graph-is-intentionally-partial | DocAble's implemented governance graph is intentionally partial — a small high-value slice of the larger machinery, not comprehensive coverage. | terms: governance-graph, shared-resource -->
-
-DocAble\textquotesingle s implemented governance graph is intentionally partial. It models only the high-value interactions for which recurring questions justified explicit representation, including those around the orchestrator lifecycle.
-
 % <!-- point: shared-resource-is-a-useful-conservative-relation-not-a-proof-of-completeness | Shared resource is a useful conservative relation, not a proof that the graph captured every interaction. | terms: shared-resource, semantic-gap -->
 
 A shared resource is a conservative signal of interaction, not proof that every conflict has been captured. Within the represented surface, it lets engineers and tools ask useful questions before the controls interact in production work: which controls fire on this event, which touch this resource, which pairs have no declared order, and which known combinations impose incompatible requirements.
 
-% <!-- point: decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges | Some candidate conflicts are mechanically decidable; others are semantic — a sensor produces evidence of the interaction, a validator or human judges whether it is a conflict. | terms: governance-graph, semantic-gap -->
+% <!-- point: decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges | Some candidate conflicts are mechanically decidable; others require judgment about what the mechanisms demand. | terms: governance-graph, semantic-gap -->
 
-Some candidate conflicts are mechanically decidable: a lock cycle, two exclusive writers, or two same-slot mechanisms with no permitted ordering. Others are semantic. A static check can \textbf{sense} that two controls touch the same commit-set; a validator --- or a human reviewer --- must decide whether their requirements actually conflict. Again the four roles matter: producing evidence of an interaction is not the same as judging the interaction invalid. In the motivating commit-set collision, the machine could identify the shared resource, but judgment was still required to recognize the requirements as contradictory. The graph lets the environment surface the interaction for evaluation before the controls collide during work.
+Some candidate conflicts can be evaluated mechanically, such as a cycle in declared ordering requirements. Others need judgment. A static check can show that two controls touch the same commit set; a validator or human reviewer must determine whether their requirements conflict. Producing evidence of an interaction is different from judging it unacceptable. The graph makes the pair available for evaluation before the controls interfere during work.
 
 % <!-- point: diagnose-the-conflict-kind-before-weakening-an-obligation | Not every conflict between controls reflects a conflict between the obligations they enforce; incompatible obligations require revisiting requirements, while interfering mechanisms may be changed without weakening either obligation. | terms: governance-graph, shared-resource -->
 
 Not every conflict between controls reflects a conflict between the obligations they enforce. Two obligations may genuinely be incompatible, requiring engineers to revisit the requirements or specification. But compatible obligations can also be enforced by mechanisms that interfere with one another. In that case, changing the mechanisms or how they interact may resolve the conflict without weakening either obligation.
 
-% <!-- point: three-turn-end-hooks-one-shared-slot | Worked example: three turn-end hooks, each reasonable alone, all writing the turn's closing message; the governance graph records exactly these three conflict edges among twenty-five mechanisms. | terms: governance-graph, shared-resource -->
+% <!-- point: governance-interaction-graph-candidate-conflict-condition | A read/write relation identifies potential interactions at a shared event; classifying the conflict and resolving it are separate judgments. | terms: governance-graph, shared-resource, semantic-gap -->
 
-DocAble now represents the second of these conflicts in an explicit governance model. Among the automations that run when an agent finishes a turn, three matter here: one discourages premature termination, another prompts reflection on failures, and a third checks for stranded work. All three write to the turn\textquotesingle s closing message. The governance graph contains twenty-five mechanisms and three conflict edges, all between these hooks. \autoref{turn-end-ordering} shows their shared resource and the modeled ordering.
+A simple interaction model records each mechanism's execution event, or \emph{slot}, and the sets of resources it reads (\(R\)) and writes (\(W\)). Two mechanisms have a \textbf{potential conflict} when they execute at the same event and at least one writes a resource the other accesses. Two readers do not conflict under this relation. In a graph \(G = (V, E)\), an undirected edge joins distinct mechanisms \(u\) and \(v\) when
+
+\[
+\operatorname{slot}(u) = \operatorname{slot}(v) \land ((W_u \cap R_v) \cup (R_u \cap W_v) \cup (W_u \cap W_v)) \neq \varnothing
+\]
+
+An edge identifies an interaction requiring attention; it does not establish that the underlying obligations are incompatible. The model must record the evaluation and any chosen resolution separately.
+
+% <!-- point: three-turn-end-hooks-one-shared-slot | DocAble's worked control-system case connects a missing enforcement consequence to later modeling of interactions among three turn-end hooks. | terms: governance-graph, shared-resource -->
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: Case study -->
+
+% mage-box-prefix:
+
+\begin{bookbox}{inset}{Worked inset --- DocAble: Governing Development Automation}
+\label{inset-docable-control-system}
+Controls become software that must itself be understood and maintained. DocAble's development environment assigns work to agents in separate Git worktrees, merges their changes, and runs checks around the agents' work. That automation creates obligations of its own: preserve contributions during integration, recognize unfinished work, and avoid having one automation prevent another from doing its job. Two episodes show why evaluating each script in isolation was insufficient.
+
+In the first, merge automation processed a backlog of worktrees. A convenience option resolved conflicts by automatically taking one side, which silently dropped content when edits overlapped. An audit already detected conflicts affecting files that described or controlled the engineering environment and correctly judged automatic resolution unsafe. It only logged a warning, so the merge continued. The repair removed the unsafe fallback and sent ambiguous merges to a human. \autoref{judgment-without-consequence} shows the missing connection between the correct judgment and the permitted operation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/judgment-without-consequence-6c9128b4cf.pdf}
+\caption{\emph{A correct warning did not prevent loss.} The merge audit detected the dangerous conflict, but no mechanism acted on its verdict. The repair removed automatic resolution for ambiguous merges and required human involvement.}
+\label{judgment-without-consequence}
+\end{figure}
+
+A different problem arose among hooks that run when an agent finishes a turn. One discourages premature termination, another prompts reflection on failures, and a third checks for stranded work. All three write to the turn's closing message. Each can be useful alone, but their order affects whether the others can complete their work. The partial governance graph examined here records twenty-five mechanisms and three conflict edges, all among these hooks. It models selected interactions whose cost justified explicit representation, rather than claiming to cover every possible conflict. \autoref{turn-end-ordering} shows the order declared for these three hooks.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/turn-end-ordering-8b921a2d5a.pdf}
-\caption{\emph{Three turn-end hooks, one shared resource.} All three hooks write to the turn\textquotesingle s closing message, producing three conflict edges. The governance model computes an execution order, but the generic runtime driver that would enforce it has not yet been implemented.}
+\caption{\emph{Three hooks share the closing message.} The model orders the premature-termination guard, reflection, and the stranded-work check. It computes the order and reports cycles; the generic runtime driver needed to execute that computed order has not yet been implemented.}
 \label{turn-end-ordering}
 \end{figure}
 
-% <!-- point: conflict-classes-and-resolutions-form-a-closed-vocabulary | The graph distinguishes four conflict kinds (contradiction, contention, ordering, soft-versus-hard) and five resolutions (merge, order, separate, accept, open); the goal is not a conflict-free graph but understood, appropriately resolved interactions. | terms: governance-graph, shared-resource -->
+The graph classifies conflicts and records a resolution such as merging mechanisms, ordering them, separating their execution points, accepting the interaction, or leaving it open. For these three hooks, pairwise ordering constraints put the premature-termination guard first, reflection second, and the stranded-work check last. Topological sorting computes the sequence and reports a cycle as an error. A separate check reports discrepancies between the governance model and the configured mechanisms. The generic driver that would execute hooks in the computed order had not yet been built, so this ordering remained an explicit, checkable design decision rather than an automatically enforced sequence.
 
-The graph distinguishes four kinds of conflict: \emph{contradiction}, when requirements are incompatible; \emph{contention}, when mechanisms compete for a resource; \emph{ordering}, when their execution sequence matters; and \emph{soft versus hard}, when one mechanism can prevent another from achieving its purpose. Each conflict can be resolved by \emph{merging} mechanisms, \emph{ordering} them, \emph{separating} their execution points, \emph{accepting} the interaction, or leaving it \emph{open} for later resolution. The goal is not a conflict-free graph; it is a graph whose consequential interactions are understood and appropriately resolved.
-
-The three turn-end conflicts are ordering conflicts. Their pairwise constraints establish a sequence: the premature-termination guard runs first, reflection second, and the stranded-work check last. The model computes this order by topological sorting; a cycle produces an error rather than an arbitrary sequence.
-
-% <!-- point: what-the-model-enforces-today-is-detection-ordering-and-a-drift-report | What exists today: the model records conflicts and computes the resolution order, and a separate audit-only check reports model-vs-configuration discrepancies; the runtime driver is not yet built, so the order is a checkable design decision, not an enforced one. | terms: governance-graph -->
-
-The model currently records conflicts and computes their resolution order. A separate check reports discrepancies between the model and the harness\textquotesingle s configured mechanisms. The generic runtime driver that would execute hooks according to the computed order has not yet been built. The order is therefore an explicit, checkable design decision, not yet an automatically enforced one.
-
-% <!-- point: the-pileup-was-discovered-by-collision-the-model-reverses-that-direction | The original conflict was discovered when two hooks interfered during development; with the pair recorded, similar interactions can be examined as part of the design rather than discovered through failures. | terms: governance-graph -->
-
-The original conflict was discovered only after two hooks interfered during development. The model records that pair and lets engineers identify similar interactions before installing another automation. Instead of discovering conflicts through failures, engineers can examine them as part of the design.
-
-% <!-- point: governance-interaction-graph-candidate-conflict-condition | Conflict detection follows a read/write criterion — same firing event, and one mechanism writes a resource the other accesses; classifying the conflict and resolving it are separate, later judgments. | terms: governance-graph, shared-resource, semantic-gap -->
-
-The governance model records conflicts according to a simple criterion. Each mechanism declares an execution event --- its \emph{slot} --- and the sets of resources it reads (\(R\)) and writes (\(W\)). Two mechanisms have a \textbf{potential conflict} when they execute at the same event and at least one writes a resource the other accesses. Two readers do not conflict. The resulting graph \(G = (V, E)\) records these interactions as edges: an undirected edge joins distinct mechanisms \(u\) and \(v\) when
-
-\[
-\operatorname{slot}(u) = \operatorname{slot}(v) \land (W_u \cap R_v) \cup (R_u \cap W_v) \cup (W_u \cap W_v) \neq \varnothing
-\]
-
-An edge identifies an interaction requiring attention; it does not establish that the underlying obligations are incompatible. The model separately classifies the conflict and records its resolution.
+These episodes lead to different repairs. The merge failure required removing a dangerous capability; the hook interactions required an explicit account of shared resources and ordering. A catalogue of individual controls would not have supplied either conclusion by itself. Modeling the relevant behavior and interactions lets engineers decide what to remove, what to coordinate, and which accepted decisions still need an enforcing mechanism.
+\end{bookbox}
 
 \section{Trace Obligations to Mechanisms}\label{heading:trace-obligations-to-mechanisms}
 
@@ -149,31 +154,19 @@ Governance conversion and coverage auditing provide complementary pressures. Con
 
 The same audit also pushes against permanent accumulation. A control whose purpose has disappeared should be reconciled or retired; two controls that now overlap may be consolidated; a mechanism whose maintenance cost exceeds the failure it prevents may no longer be worth carrying. This echoes \magevalue{sec:governance-conversion}: \textbf{engineering capital is not the number of controls.} A control that no longer produces value has depreciated into overhead; the task now is to reconcile or retire it.
 
-% <!-- point: the-meta-model-stays-connected-where-controls-are-modeled-explicitly | Where DocAble models controls explicitly, entries can be anchored to their implementations and drift-checked, so a mis-placed control fails loud. | terms: traceability, teetering-tower -->
+% <!-- point: the-meta-model-stays-connected-where-controls-are-modeled-explicitly | Entries in a control model identify the implementing mechanism, and correspondence checks expose missing or unrecognized targets instead of silently treating them as covered. | terms: traceability, teetering-tower -->
 
-The control model must remain connected to the controls it represents. Where DocAble models controls explicitly, entries can be anchored to their implementations and checked for drift, so a control the rule cannot place fails explicitly rather than dropping into a silent default bucket. This applies the broader rule from \magevalue{chapter:modeling}: if engineers and agents are going to reason through a model of the control machinery, the model must stay connected to the territory it claims to describe.
+The control model must remain connected to the controls it represents. An entry can identify the script or configured permission that implements a control, while a correspondence check reports missing or unrecognized targets. The check should expose a gap in the relation rather than silently treating an unmatched control as covered. This applies the broader rule from \magevalue{chapter:modeling}: a model of the engineering environment must stay connected to the machinery that engineers and agents use it to reason about.
 
 % <!-- point: stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists | Stop the recursion unless experience earns more: a governance model can itself become bureaucracy. | terms: governance-graph, teetering-tower -->
 
 Do not recursively govern every relation merely because it can be modeled. Extend the control model only when a recurring engineering question or observed failure justifies the added machinery.
 
-The control-machinery model is grounded primarily in the originating case.\magefootnote{estate}{I found no comparable control-machinery model in the external systems reconstructed for \magevalue{chapter:software-factories}.}
-
-% <!-- worked-examples: governs-accumulated-governance -->
-
-\subsection{Example --- Two Safety Rules \{other\}}\label{heading:example-two-safety-rules-other}
-
-A building\textquotesingle s fire system unlocks doors when it detects smoke; its security system may lock those same doors under an intrusion policy. Each rule is sensible in isolation while the pair demands incompatible states of the same resource. The contradiction belongs to the interaction, not to either rule\textquotesingle s own logic.
-
-\subsection{Example --- DocAble}\label{heading:example-docable}
-
-DocAble models its governance mechanisms as a system rather than only as individual scripts. Controls are anchored to their implementations, interaction relations identify shared resources, and coverage traces controls back to the obligations or failures that justify them. The model does not make every possible conflict mechanically decidable. It exposes enough structure to ask, before the next collision, which mechanisms interact and which important obligations have no adequate coverage.
-
-% <!-- takeaway -->
+The worked control-machinery model is grounded primarily in the originating case.\magefootnote{estate}{I found no comparable control-machinery model in the external systems reconstructed for \magevalue{chapter:software-factories}.} Its broader value is a hypothesis for other engineering environments: the catalogue, interaction, and coverage views provide concrete questions to test when a growing set of controls becomes difficult to manage.
 
 Governance conversion adds durable engineering structure; governing the control machinery keeps that structure coherent. Catalogue the controls, expose their interactions, trace them to the obligations they serve, and retire machinery that no longer earns its cost.
 
-% <!-- worked-examples-end -->
+\subsection{Preserve Engineering Freedom}\label{heading:preserve-engineering-freedom}
 
 % <!-- point: alignment-distinguishes-what-must-be-governed-from-what-may-remain-open | Alignment must preserve two complementary freedoms — freedom of implementation (which acceptable realizations remain available) and freedom to extend the environment (whether additional controls can coexist); the realization-space model answers the first, the governance graph the second. | terms: governance-graph, alignment-principle -->
 

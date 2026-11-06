@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile native grayscale candidates and place each after its original in a review book.
+"""Compile native grayscale artwork for the full book and paired figure review.
 
 Assembly leaves production manuscript/assets unchanged. Authored revisions to
 color originals are reflected in both editions. Candidate PDFs are included at
@@ -115,61 +115,169 @@ def source_bundle():
     print('Editable TikZ source archive:',target,flush=True)
     return target
 
+def _original_source(mapping, path, options):
+    source = mapping.get(path, path)
+    pooled = (ROOT / source).with_suffix('.pages.json')
+    if pooled.exists():
+        page = re.search(r'(?:^|,)page=(\d+)', options)
+        if not page:
+            raise ValueError('Missing original pool page: ' + path)
+        source = json.loads(pooled.read_text())[page[1]]
+    return source
+
+
+def _verify_monochrome_original(path, options):
+    """A declared monochrome original must actually render without color."""
+    import fitz
+    import numpy as np
+    page = re.search(r'(?:^|,)page=(\d+)', options)
+    with fitz.open(ROOT / path) as doc:
+        pix = doc[int(page[1])-1 if page else 0].get_pixmap(colorspace=fitz.csRGB, alpha=False)
+        rgb = np.frombuffer(pix.samples, dtype=np.uint8).reshape(-1, 3).astype(int)
+        if np.any(rgb.max(axis=1) - rgb.min(axis=1) > 2):
+            raise ValueError('Visible color in declared monochrome original: ' + path)
+
+
+def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
+    """Use reviewed monochrome figures; pair the rest for author review.
+
+    Preserve original floats, captions, numbering and links. Legacy candidates
+    remain in the source archive but are not inserted into the current manuscript.
+    Already-monochrome originals are explicitly registered and raster-checked.
+    Validate all coverage before rewriting any generated chapter.
+    """
+    driver_text = driver.read_text()
+    chapters = [ROOT / p for p in re.findall(r'\\input\{([^}]+)\}', driver_text)]
+    available = set(re.findall(r'\\label\{([^}]+)\}', driver_text + '\n' +
+                              '\n'.join(p.read_text() for p in chapters)))
+    originals_path = BASE / 'monochrome-originals.json'
+    monochrome = json.loads(originals_path.read_text()) if originals_path.exists() else {}
+    policy = json.loads((BASE / 'publication.json').read_text())
+    if (policy.get('version') != 1 or policy.get('web') != 'color' or
+            policy.get('pdf_default') != 'paired'):
+        raise ValueError('Unsupported figure publication policy')
+    approved = policy['approved_monochrome']
+    if not isinstance(approved, dict):
+        raise ValueError('Monochrome approvals must be keyed by figure source')
+    for source, decision in approved.items():
+        if source not in manifest or source in monochrome:
+            raise ValueError('Approval has no replaceable monochrome candidate: ' + source)
+        if not isinstance(decision, dict) or not decision.get('approved_date'):
+            raise ValueError('Missing figure approval date: ' + source)
+    used, pairings, replacements, retained, approved_figures = [], [], {}, [], []
+
+    def image(source, label):
+        if source not in manifest:
+            raise ValueError('Missing publication grayscale figure: ' + source)
+        info = manifest[source]
+        receipt = json.loads((BASE / 'receipts' / f'{Path(source).stem}.json').read_text())
+        alt, stem = _text(str(receipt['alt'])), Path(source).stem
+        used.append(source)
+        record = {'source': source, 'original_label': label, 'candidate_page': info['page']}
+        (approved_figures if source in approved else pairings).append(record)
+        return (r'\leavevmode\hypertarget{' + anchor_prefix + stem + '}{}%\n' +
+                r'\magerecordfigureorigin{' + stem + '}%\n' +
+                mage_tikz_links.overlay(info.get('links', []), available) +
+                r'\includegraphics[page=' + str(info['page']) + ',alt={' + alt + '}]{' +
+                pool.relative_to(ROOT).as_posix() + '}')
+
+    for chapter in chapters:
+        text = chapter.read_text()
+        sidecar = chapter.with_suffix('.assets.json')
+        mapping = {a['pdf']: a['source'] for a in json.loads(sidecar.read_text())} if sidecar.exists() else {}
+        # Process original graphic positions only; a candidate must never pair with itself.
+        floats = list(re.finditer(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}', text, re.S))
+        edits = []
+        has_navigation_pair = False
+        for block in floats:
+            original = block[0]
+            graphics = list(mage_assets.graphics(original))
+            if len(graphics) != 1:
+                raise ValueError('Expected one graphic per original figure')
+            graphic_start, graphic_end, options, path = graphics[0]
+            source = _original_source(mapping, path, options)
+            if source.endswith('.jpg'):
+                continue
+            if source in monochrome:
+                _verify_monochrome_original(path, options)
+                retained.append(source)
+                continue
+            label = re.search(r'\\label\{([^}]+)\}', original)
+            if not label:
+                raise ValueError('Original figure has no stable label: ' + source)
+            if source in approved:
+                # Replace only the artwork. Keep its numbered caption, label,
+                # placement and all figure references in the manuscript.
+                edits.append((block.start() + graphic_start, block.start() + graphic_end,
+                              image(source, label[1])))
+                continue
+            # Consecutive floats retain figure order while allowing surrounding
+            # prose to fill the page. Forcing a clearpage here strands the prose
+            # preceding every pair, even when both drawings can float together.
+            extra = ('\n\\begin{figure}[tbp]\n\\centering\n' + image(source, label[1]) +
+                     '\n' + r'\caption*{Black-and-white version of Figure~\ref*{' + label[1] +
+                     '}.}\n\\end{figure}\n')
+            edits.append((block.end(), block.end(), extra))
+        for start, end, options, path in mage_assets.graphics(text):
+            if any(block.start() <= start < block.end() for block in floats):
+                continue
+            source = _original_source(mapping, path, options)
+            if source.endswith('.jpg'):
+                continue
+            if not re.fullmatch(r'book/(?:latex/)?assets/nav-subway-p\d+\.(?:pdf|svg)', source):
+                raise ValueError('Unpaired inline graphic: ' + source)
+            number = re.search(r'nav-subway-p(\d+)', source)[1]
+            source = f'book/assets/nav-subway-p{number}.svg'
+            if source in approved:
+                edits.append((start, end, image(source, 'navigation-' + number)))
+                continue
+            has_navigation_pair = True
+            edits.append((end, end, '\n\\par\\medskip\n' + image(source, 'navigation-' + number) +
+                          r'\par{\small Black-and-white navigation map.}\par' + '\n'))
+        for start, end, replacement in sorted(edits, reverse=True):
+            text = text[:start] + replacement + text[end:]
+        if has_navigation_pair and r'\clearpage' in text:
+            # Two navigation maps must share the orientation page with its
+            # question, principle and vocabulary. Tighten paragraph spacing
+            # locally, preserving the authored size of both maps and all type.
+            opening, separator, rest = text.partition(r'\clearpage')
+            heading_end = opening.index('\n') + 1
+            opening = (opening[:heading_end] + '\\begingroup\\setlength{\\parskip}{3pt}\n' +
+                       opening[heading_end:] + '\\par\\endgroup\n')
+            text = opening + separator + rest
+        replacements[chapter] = text
+    all_sources = used + retained
+    if len(all_sources) != len(set(all_sources)):
+        raise ValueError(f'Publication figure mismatch: duplicates={len(all_sources)-len(set(all_sources))}')
+    unused_approvals = set(approved) - set(used)
+    if unused_approvals:
+        raise ValueError('Approved figures absent from manuscript: ' + ', '.join(sorted(unused_approvals)))
+    active = {source: manifest[source] for source in used}
+    for chapter, text in replacements.items():
+        chapter.write_text(text)
+    driver.write_text(driver_text.replace(r'\begin{document}', mage_tikz_links.ORIGIN_SETUP + r'\begin{document}', 1))
+    (driver.parent / 'grayscale-figures.json').write_text(json.dumps(active, indent=2) + '\n')
+    (driver.parent / 'figure-pairings.json').write_text(json.dumps({
+        'pairs': pairings, 'approved_monochrome': approved_figures, 'monochrome_originals': retained,
+        'unused_archived_candidates': sorted(set(manifest)-set(used))}, indent=2) + '\n')
+    print(f'PDF artwork: {len(pairings)} color/black-and-white pairs; '
+          f'{len(approved_figures)} approved black-and-white figures; '
+          f'{len(retained)} already-monochrome originals retained.', flush=True)
+    return active
+
 def review_book(pool,manifest):
     driver=mage_latex.prepare_pdf(name='mage-figure-review')
-    driver_text=driver.read_text()
-    driver.write_text(driver_text.replace(r'\begin{document}',mage_tikz_links.ORIGIN_SETUP+r'\begin{document}'))
-    chapters=[ROOT/p for p in re.findall(r'\\input\{([^}]+)\}',driver_text)]
-    available=set(re.findall(r'\\label\{([^}]+)\}',driver_text+'\n'+'\n'.join(p.read_text() for p in chapters)))
-    pairings=[]
-    def candidate(source,label):
-        if source not in manifest:raise ValueError('No compiled TikZ candidate for '+source)
-        p=manifest[source];info=json.loads((BASE/'receipts'/f'{Path(source).stem}.json').read_text())
-        alt=_text(str(info['alt']))
-        pairings.append({'source':source,'original_label':label,'candidate_page':p['page']})
-        return (r'\leavevmode\hypertarget{tikz-candidate:'+Path(source).stem+r'}{}%'+ '\n'+
-                r'\magerecordfigureorigin{'+Path(source).stem+'}%\n'+
-                mage_tikz_links.overlay(p.get('links',[]),available)+r'\includegraphics[page='+str(p['page'])+',alt={'+alt+'}]{'+pool.relative_to(ROOT).as_posix()+'}')
-    for chapter in chapters:
-        text=chapter.read_text();side=chapter.with_suffix('.assets.json')
-        mapping={a['pdf']:a['source'] for a in json.loads(side.read_text())} if side.exists() else {}
-        def paired(match):
-            original=match[0];graphics=list(mage_assets.graphics(original))
-            if len(graphics)!=1:raise ValueError('Expected exactly one graphic per original figure')
-            source=mapping.get(graphics[0][3],graphics[0][3])
-            pooled=(ROOT/source).with_suffix('.pages.json')
-            if pooled.exists():
-                page=re.search(r'(?:^|,)page=(\d+)',graphics[0][2])
-                if not page:raise ValueError('Missing original pool page')
-                source=json.loads(pooled.read_text())[page[1]]
-            if source.endswith('.jpg'):return original # Photography is not redrawn as invented geometry.
-            label=re.search(r'\\label\{([^}]+)\}',original)
-            if not label:raise ValueError('Original figure has no stable review label')
-            image=candidate(source,label[1])
-            return original+'\n\\clearpage\n\\begin{figure}[p]\n\\centering\n'+image+'\n'+r'\caption*{Grayscale TikZ candidate for Figure~\ref*{'+label[1]+'}. Original immediately precedes this candidate.}\n\\end{figure}\n\\clearpage\n'
-        text=re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}',paired,text,flags=re.S)
-        # Orientation maps are inline graphics, outside numbered figure environments.
-        for start,end,options,path in reversed(list(mage_assets.graphics(text))):
-            source=path
-            pooled=(ROOT/path).with_suffix('.pages.json')
-            if pooled.exists():
-                page=re.search(r'(?:^|,)page=(\d+)',options)
-                if page:source=json.loads(pooled.read_text())[page[1]]
-            m=re.fullmatch(r'book/(?:latex/)?assets/nav-subway-p(\d+)\.(?:pdf|svg)',source)
-            if m:
-                source=f'book/assets/nav-subway-p{m[1]}.svg'
-                text=text[:end]+'\n\\par\\medskip\n'+candidate(source,'navigation-'+m[1])+r'\par{\small Grayscale TikZ navigation candidate.}\par'+'\n'+text[end:]
-        chapter.write_text(text)
-    expected=set(manifest)
-    actual=[p['source'] for p in pairings]
-    if len(actual)!=len(set(actual)) or set(actual)!=expected:
-        raise ValueError(f'Review pairing mismatch missing={expected-set(actual)}, extra={set(actual)-expected}')
-    # Pool the originals only after the source-to-candidate mapping is established.
-    mage_assets.pool_figures([str(p.relative_to(ROOT)) for p in chapters],driver.parent)
+    active = publication_figures(driver, pool, manifest, anchor_prefix='tikz-candidate:')
+    pairings = json.loads((driver.parent / 'figure-pairings.json').read_text())['pairs']
+    driver_text, chapters, _ = mage_latex.pdf_sources(driver)
     pdf=latex_build.compile_tex(driver)
     from pdf_structure import check_pdf
-    check_pdf(pdf,headings=40,sections=124,tables=43,figures=145+len(pairings))
-    mage_tikz_links.verify_book(pdf,driver.with_suffix('.aux'),manifest)
+    source = driver_text + '\n' + '\n'.join(chapters)
+    check_pdf(pdf, headings=mage_latex.bb._expected_chapter_headings(source),
+              sections=len(re.findall(r'\\section\*?\{', source)),
+              tables=source.count(r'\begin{longtable}') + source.count(r'\begin{table}'),
+              figures=source.count(r'\begin{figure}'))
+    mage_tikz_links.verify_book(pdf,driver.with_suffix('.aux'),active)
     output=ROOT/'latex/build/mage-figure-review.pdf';shutil.copy2(pdf,output)
     (BUILD/'pairings.json').write_text(json.dumps(pairings,indent=2)+'\n')
     notes=['MAGE figure review — editorial questions', '']
