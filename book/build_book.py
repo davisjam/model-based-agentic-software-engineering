@@ -6806,26 +6806,34 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
 def _split_jobs() -> int:
     """Worker count for the section compiles, clamped to 1..6 (`MAGE_PDF_SPLIT_JOBS` tunes it).
 
-    DEFAULT 1 — the fan-out is LANDED INERT, on purpose. The mechanism is here and reviewable, but the
-    speed claim behind it is NOT yet measured: the 261106 validation run could not complete because a
-    concurrent writer had left a book projection stale (`sync(check=True)` refuses, correctly), and the
-    host was at load average 48, so no comparison against the clean serial baseline was obtainable.
-    Landing an unmeasured concurrency change switched ON inside a push GATE is the wrong trade — one
-    per-task-vs-per-thread cache-assignment race was already found and fixed in review, which is
-    evidence for caution rather than against it. So this follows the repo's audit-only-first landing
-    discipline: the code lands with today's behaviour, and the default flips to 3 once someone measures
-    a quiet tree.
-    TO MEASURE: `MAGE_PDF_SPLIT_JOBS=3` on a tree whose projections are in sync, against the recorded
-    serial baseline of 752.9s for the 21 section documents (64 LuaLaTeX invocations, 772.8s of engine
-    time, whole-book render 3 passes / 223.1s) in `.scratch/prepush-optimization-261106.md`.
-    When flipping it on, 3 matches the pre-push hook's own pool: this machine routinely carries an agent
-    fleet, and the hook can have the print-toolchain container and the handbook render in its other two
-    slots, so an unbounded fan-out would oversubscribe the host the gate is trying to be cheap on.
+    DEFAULT 4 — measured 261106, and 4 because the knee sits there, not because 4 is the core count.
+    Eight sections compiled at each setting, the settings interleaved (1, 4, 2, 6, 4, 1) so a drifting
+    box load could not masquerade as a worker effect. Raw data: `.scratch/compile-sweep-261106*.jsonl`;
+    the readout is `.scratch/prepush-pool-measured-261106.md`.
+
+        workers   wall    overlap achieved   load (median)   peak RSS
+          1      378.6s        1.00x             94            762 MB
+          1      237.8s        1.00x             31            848 MB
+          2      210.6s        2.00x             52           1519 MB
+          4      140.8s        3.94x             44           3042 MB
+          4       82.4s        3.76x             41           2923 MB
+          6       84.0s        4.66x             30           2695 MB
+
+    Read the OVERLAP column, not the wall column: wall-clock on this host is confounded by the agent
+    fleet (the two serial runs differ by 1.59x on load alone, 94 against 31), while overlap compares a
+    run's own summed per-section times against its own wall and so is immune to drift between runs.
+    Overlap holds 94-98% of linear through 4 workers and falls to 78% at 6.
+
+    6 is not merely less efficient, it is not faster: 84.0s at load 30 against 82.4s at load 41, so the
+    wider pool lost while the box was QUIETER. The ceiling is contention for cores, not memory —
+    one LuaLaTeX peaks near 760 MB and four near 3 GB on a 36 GB host, so RAM was never the binding
+    constraint. A cap of 6 remains as the clamp because nothing above 4 pays and a typo should not be
+    able to oversubscribe a host the push gate is trying to be cheap on.
     """
     try:
-        n = int(os.environ.get("MAGE_PDF_SPLIT_JOBS", "1"))
+        n = int(os.environ.get("MAGE_PDF_SPLIT_JOBS", "4"))
     except ValueError:
-        n = 1
+        n = 4
     return max(1, min(6, n))
 
 

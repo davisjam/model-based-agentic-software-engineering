@@ -7,7 +7,7 @@
     "derived_ids": 213,
     "missing_topic_sentence": 6,
     "sections_drained": 168,
-    "paragraph_points": 774
+    "paragraph_points": 773
   },
   "chapters": [
     {
@@ -1429,11 +1429,6 @@
               "slug": "the-alignment-principle-stated-whole",
               "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.",
               "block_index": 48
-            },
-            {
-              "slug": "alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it",
-              "text": "Enforcement installed at a boundary is easiest to see in systems already using it.",
-              "block_index": 50
             }
           ]
         }
