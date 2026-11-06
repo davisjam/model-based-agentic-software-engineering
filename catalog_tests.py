@@ -60,6 +60,7 @@ from tests.book_models import (
     check_factory_vocabulary,
     check_figure_path_geometry,
     check_flagship_stack,
+    check_governed_literal_source_scope,
     check_hardcoded_ref_parity,
     check_industry_cases,
     check_link_integrity,
@@ -564,6 +565,17 @@ CHECKS = [
     # prove naive pairing gets it wrong, so the corpus cannot pass under the broken code. See tests/book_models.py.
     Check("book-models: figure-edge path geometry parses commands, not number positions", 1,
           lambda strict: check_figure_path_geometry(), audit_only=False),
+    # BLOCKING (green at landing): the governed-literal-leak gate polices the AUTHORED surface, not the
+    # generated projection. It once globbed `book/part*/*.md`, so a literal typed into a `.tex` manuscript
+    # was invisible, the appendix chapters sat outside the glob, and its remedy named a Markdown line the
+    # next `mage_latex.py sync` overwrites. Two halves, since either alone re-admits the bug: SCOPE (the
+    # scanned set is derived from book/latex/native-sources.json — a declared source is in, a declared
+    # projection is out, and the source-less appendix Markdown is in) and NORMALIZATION (a synthetic corpus
+    # of authored LaTeX lines, with the escaped/spacing rows also proving the RAW line misses them, so the
+    # corpus cannot pass under the pre-fix normalizer). The LINT stays audit-only at 29 findings; this pins
+    # its BEHAVIOR on synthetic input, which is green regardless of the drain. See tests/book_models.py.
+    Check("book-models: governed-literal gate scans authored LaTeX, not the generated projection", 1,
+          lambda strict: check_governed_literal_source_scope(), audit_only=False),
     # BLOCKING (promoted round-8 W3 after the drain): the C5 named-reference -> current-identity check — the
     # Part-IV "portable moves" close cites destinations by NAME; this proves each named label still matches the
     # destination's CURRENT identity (chapter title / operator-card title), catching map::territory drift IN

@@ -41,6 +41,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 
 from tests.common import FAIL, PASS, ROOT, SKIP, rel
 
@@ -1221,3 +1222,128 @@ def check_bookmath_native_mappings():
     except Exception as exc:
         return FAIL, [f"native math vocabulary failed strict LuaLaTeX compilation: {exc}"]
     return PASS, []
+
+
+def check_governed_literal_source_scope():
+    """The governed-literal-leak gate polices the AUTHORED surface, and LaTeX escaping cannot hide a literal
+    from it.
+
+    THE DEFECT CLASS THIS PINS. The gate once globbed `book/part*/*.md` — the GENERATED compatibility
+    projection. That cost it two ways at once. It could not see a literal typed into a `.tex` manuscript,
+    and the appendix chapters sat outside the glob entirely, so two thirds of the real sites were invisible;
+    and what it did report named a Markdown line nobody can fix in place, because the next
+    `tools/mage_latex.py sync` overwrites it. Separately, `56\\%` and `56%` are one literal and only the
+    unescaped spelling matched, so the one appendix the ledger cares most about reported clean.
+
+    TWO HALVES, because either alone re-admits the bug. SCOPE: the scanned set is derived from
+    `book/latex/native-sources.json`, so a declared source is in scope and a declared projection is not —
+    a future hardcoded glob fails here. NORMALIZATION: a synthetic corpus of authored-LaTeX lines, each row
+    naming the literals the gate must find. Rows marked `naive_blind` must ALSO prove that matching the raw
+    line misses them, so a corpus the pre-fix normalizer would have passed cannot masquerade as a pin — the
+    same control the figure-geometry corpus uses. Both directions are asserted: an already-governed site
+    (`\\magevalue{…}`, `{{token}}`, a percent-encoded `\\href` marker) must stay silent, a non-rendering `%`
+    comment must stay silent, and a rendering `% <!-- point: … -->` gloss must NOT, since three real
+    findings live in one."""
+    import lint_governed_literal_leak as gll  # noqa: E402 — path set above; the ledger-leak gate
+
+    issues: list[str] = []
+
+    # --- SCOPE: derived from the manifest, source side only.
+    sources = gll.native_sources()
+    scanned = dict(gll.authored_files())
+    for src in sources:
+        if scanned.get(src) != "tex":
+            issues.append(f"declared LaTeX source {src} is not scanned — the gate has drifted back onto a "
+                          "hardcoded glob; derive the set from book/latex/native-sources.json")
+    for projection in set(sources.values()) & set(scanned):
+        issues.append(f"generated projection {projection} is scanned — a finding there names a line the "
+                      "next `tools/mage_latex.py sync` overwrites; scan its LaTeX source instead")
+    # The hand-authored appendix Markdown has NO LaTeX source, so nothing else can police it.
+    for authored in ("book/appendix-fills/product/pdf-model.md", "book/appendix-notes/mutator-stamps.md"):
+        if scanned.get(authored) != "md":
+            issues.append(f"hand-authored {authored} is not scanned — it has no LaTeX source, so dropping "
+                          "the Markdown scan entirely would leave it ungoverned")
+
+    # --- NORMALIZATION: (label, authored LaTeX line, literals the gate must find, naive_blind)
+    deny, _owner = gll.build_denylist_with_owners()
+    ordered = sorted(deny, key=len, reverse=True)
+
+    def literals_in(text: str) -> list[str]:
+        found: list[str] = []
+        for literal in ordered:
+            if literal in found or any(literal in f and literal != f for f in found):
+                continue
+            if gll._find_raw(literal, text):
+                found.append(literal)
+        return sorted(found)
+
+    corpus = [
+        # The measured blind spot: the ledger's own percentages are all written `\%`.
+        ("escaped percent", r"The unmodeled surface fell to 56\% on the first run.", ["56%"], True),
+        ("escaped percent, decimal", r"Ninth & 7.89\% & Remaining orphan surface was small \\",
+         ["7.89%"], True),
+        # `\$` reads as a blind spot and is not one: the lookbehind admits a backslash, so this matched
+        # before the normalization too. Kept as a row so a tightened lookbehind cannot silently hide it.
+        ("escaped currency", r"Manual remediation & $\approx$ \$20,000 faculty labor \\",
+         ["$20,000"], False),
+        ("thin-space thousands separator", r"churn reached 371\,855 lines", ["371,855"], True),
+        ("non-breaking space in a multi-word literal",
+         r"the fleet landed 208~commits carrying a paired tag", ["208 commits"], True),
+        ("unicode minus survives", "net motion of −173 lines across 63 commits",
+         ["63 commits", "−173 lines"], False),
+        ("plain literal, no escape", r"exceeded 1,000 commits per week", ["1,000"], False),
+        # Already governed — the gate must stay silent on all three marker spellings.
+        ("already macro'd (LaTeX marker)",
+         r"a course costs \magevalue{diy_cost_per_course} to remediate by hand", [], False),
+        ("already tokenized (Markdown marker)", r"a course costs {{diy_cost_per_course}}", [], False),
+        ("percent-encoded href marker",
+         r"\href{\%7B\%7Bcommits_per_week\%7D\%7D}{the rate} held steady", [], False),
+        # Comments: the non-rendering ones are not prose; the structured decorators are.
+        ("non-rendering comment", r"% TODO revisit the 491,090 production-line figure", [], False),
+        ("non-rendering trailing comment", r"\item A row.  % the 491,090 figure is stale", [], False),
+        ("rendering point gloss",
+         r"% <!-- point: s | The snapshot contains 615,395 production lines. -->", ["615,395"], False),
+        # Discrimination: a prose numeral that is not a governed value must not fire.
+        ("superstring guard", r"a 156\% increase and a 1,500,000 total", [], False),
+        ("ungoverned math percentage", r"\(0.99^{3} \approx 97\%\) for three features", [], False),
+        ("governed ratio typeset in math", r"the ratio reached \(3.8\) at week 31", ["3.8"], False),
+    ]
+    for label, line, expected, naive_blind in corpus:
+        got = literals_in(gll._latex_to_scannable(line))
+        if got != sorted(expected):
+            issues.append(f"governed-literal normalization [{label}]: found {got}, expected "
+                          f"{sorted(expected)} in {line!r}")
+        if naive_blind and literals_in(line) == sorted(expected):
+            issues.append(f"governed-literal normalization [{label}] is not a pin: matching the RAW line "
+                          "already finds these literals, so the row cannot catch a lost normalization")
+
+    # --- An already-governed site is silent BY CONSTRUCTION. The three corpus rows above pass even with
+    # marker-blanking removed, because no token name happens to spell a denylisted literal — so they pin
+    # an accident of naming rather than the property. Assert the blanking itself.
+    for marker in (r"\magevalue{diy_cost_per_course}", "{{diy_cost_per_course}}"):
+        scannable = gll._latex_to_scannable(f"a course costs {marker} to remediate by hand")
+        if "diy_cost_per_course" in scannable:
+            issues.append(f"governed-literal normalization: {marker} survives into the scanned text — an "
+                          "already-governed site stays silent only while no token NAME spells a "
+                          "denylisted literal; blank the marker instead of relying on that")
+
+    # --- A code listing shows values as examples, and line numbers must survive the blanking.
+    with tempfile.TemporaryDirectory() as tmp:
+        probe = os.path.join(tmp, "listing.tex")
+        with open(probe, "w", encoding="utf-8") as fh:
+            fh.write("Prose carrying 1,000 commits per week.\n"
+                     "\\begin{verbatim}\n"
+                     "support_loc = 1,501,907\n"
+                     "\\end{verbatim}\n"
+                     "Prose carrying 56\\% of the surface.\n")
+        scanned_lines = {no: text for no, text in gll.scannable_lines(probe, "tex")}
+        if literals_in(scanned_lines.get(1, "")) != ["1,000"]:
+            issues.append("governed-literal listing probe: prose before a verbatim block was not scanned")
+        if literals_in(scanned_lines.get(3, "")) != []:
+            issues.append("governed-literal listing probe: a value INSIDE \\begin{verbatim} was scanned — "
+                          "a listing shows values as examples, not as claims")
+        if literals_in(scanned_lines.get(5, "")) != ["56%"]:
+            issues.append("governed-literal listing probe: line 5 lost its literal — either the verbatim "
+                          "blanking shifted the line numbering or the escaped percent stopped matching")
+
+    return (FAIL if issues else PASS), issues
