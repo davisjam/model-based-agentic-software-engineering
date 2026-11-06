@@ -4,7 +4,7 @@
 
 ### G.2.1 Weekly Commit Volume {#velocity}
 
-Weekly commit volume rose sharply as the agent fleet expanded, exceeded 1,000 commits per week during sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval {{chapter:software-factories}} identifies as hardening, then rose again.
+Weekly commit volume rose sharply as the agent fleet expanded, exceeded {{commits_per_week}} commits per week during sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval {{chapter:software-factories}} identifies as hardening, then rose again.
 
 During hardening, a larger share of classified commits concerned models, validation, tests, and control machinery. Commit counts do not establish why volume changed or whether productivity rose or fell.[^g-vacation] [ref:velocity-curve] plots the weekly series.
 

@@ -88,8 +88,42 @@ def _one_dp(value: float) -> str:
     return f"{value:.1f}"
 
 
+def _two_dp(value: float) -> str:
+    return f"{value:.2f}"
+
+
 def _millions(value: float) -> str:
     return f"{value / 1_000_000:.2f} million"
+
+
+# ── THE ROUNDING RULE, declared once as data ────────────────────────────────────────────────
+# Every governed quantity publishes TWO tokens: a RAW value (the exact measurement) and a
+# ROUNDED value for presentation. The author's ruling (261106): "we should have a 'rounded' and
+# 'raw' number so this stops being a question. Obviously in some contexts you would report one or
+# the other." A passage that says "roughly" or "about" binds the rounded token; a table or an
+# evidence appendix a reader might check against the data binds the raw one.
+#
+# The rounded value is DERIVED from the same measurement by the rules below — never typed in. A
+# hand-written rounded number is the duplication this module exists to remove, one level up: it
+# could disagree with its own raw sibling about which snapshot it describes.
+
+
+def _round_loc(value: float) -> str:
+    """Present a line count the way the book's prose already spells one.
+
+    Two forms, because the existing prose uses both and the threshold between them is the only
+    thing that decides which reads naturally: "approximately 491,000" below a million, "about
+    1.50 million" above it. Nearest thousand keeps three significant figures at this scale, so
+    the rounded form never implies more precision than the measurement supports.
+    """
+    if value < 1_000_000:
+        return f"{int(round(value, -3)):,}"
+    return _millions(value)
+
+
+def _round_ratio(value: float) -> str:
+    """One decimal place. The raw ratio carries two (3.45); a passage saying "about" wants 3.4."""
+    return _one_dp(value)
 
 
 #: Row classes. Only GOVERNED is ever written; the other two are compared and reported.
@@ -110,10 +144,22 @@ class Row:
     fmt: Callable[[float], str]
     scope: str
     klass: str = GOVERNED
+    round_fmt: "Callable[[float], str] | None" = None
 
     @property
     def governed(self) -> bool:
         return self.klass == GOVERNED
+
+    @property
+    def rounded_token(self) -> "str | None":
+        """The presentation sibling's token name, or None when the quantity has only one form.
+
+        CONVENTION, stated here because a `.tex` author picks between the two at the call site: the
+        BARE token is the raw measurement, and a `_rounded` suffix announces the presentation form.
+        So `\\magevalue{prod_loc}` is exact and `\\magevalue{prod_loc_rounded}` is approximate, and a
+        passage hedging with "roughly" or "about" names the suffixed one.
+        """
+        return f"{self.token}_rounded" if self.round_fmt else None
 
 
 def _bucket(dump: dict, key: str) -> int:
@@ -134,17 +180,19 @@ def _sum_buckets(dump: dict, keys: "tuple[str, ...]") -> int:
 #: token <- dump quantity. Correcting or extending the book coupling is a one-row edit here.
 ROWS: "tuple[Row, ...]" = (
     Row("prod_loc", lambda d: _bucket(d, "production_code"), _commas,
-        "run-cloc Production Code bucket"),
+        "run-cloc Production Code bucket", round_fmt=_round_loc),
     Row("support_loc", lambda d: _sum_buckets(d, SUPPORT_BUCKETS), _commas,
-        "tests+lints+load-bearing docs+agent infra+tools (EXCLUDES IaC and models)"),
+        "tests+lints+load-bearing docs+agent infra+tools (EXCLUDES IaC and models)",
+        round_fmt=_round_loc),
     Row("iac_loc", lambda d: _bucket(d, "infra_as_code"), _commas,
-        "run-cloc Infrastructure as Code bucket"),
+        "run-cloc Infrastructure as Code bucket", round_fmt=_round_loc),
     Row("system_model_loc", lambda d: _bucket(d, "system_model_meta"), _commas,
-        "run-cloc System-model meta-files bucket"),
+        "run-cloc System-model meta-files bucket", round_fmt=_round_loc),
     Row("total_loc", lambda d: int(d["system_totals"]["raw_code"]), _commas,
-        "whole-tree raw code (every bucket, snapshot/history docs included)"),
-    Row("support_ratio", lambda d: float(d["ratios"]["support_apparatus_x_prod"]), _one_dp,
-        "support_loc / prod_loc"),
+        "whole-tree raw code (every bucket, snapshot/history docs included)",
+        round_fmt=_round_loc),
+    Row("support_ratio", lambda d: float(d["ratios"]["support_apparatus_x_prod"]), _two_dp,
+        "support_loc / prod_loc", round_fmt=_round_ratio),
     Row("seip_prod_loc", lambda d: _bucket(d, "production_code"), _commas,
         "FROZEN at SEIP week 31; plotted in docable-seip-capital-261028.svg", FROZEN),
     Row("seip_apparatus_loc", lambda d: _sum_buckets(d, SEIP_APPARATUS_BUCKETS), _commas,
@@ -158,14 +206,50 @@ ROWS: "tuple[Row, ...]" = (
 )
 
 
-def parity_check(dump: dict) -> "list[str]":
-    """Prove SUPPORT_BUCKETS still reproduces run-cloc's OWN support ratio (the join-check).
+def parity_check(dump: dict) -> "tuple[list[str], list[str]]":
+    """Check the measurement against itself -> `(blocking, advisory)`.
+
+    Two severities, because they answer different questions and only one should stop a write.
+    BLOCKING means the numbers contradict each other — the bucket sum misses the tree total, or the
+    re-summed support rollup disagrees with the tool's own ratio. ADVISORY means a check could not
+    be RUN; the numbers may be fine and nothing proved otherwise.
+
+    The distinction is load-bearing here: run-cloc's file-level disjointness engine does not finish
+    at this repo's size (its per-row `--by-file` walk of one directory exceeds the tool's internal
+    180 s budget even on an unloaded host), so `partition_clean` is `null` on every obtainable
+    dump. Treating that as blocking would refuse every write forever; treating it as nothing would
+    publish an unproven claim. So it is reported, loudly, on every run.
 
     The dump publishes `ratios.support_apparatus_x_prod` but not the LoC subtotal behind it, so this
     module re-sums the declared buckets. That duplicated definition is held by this check: if the tool
     re-partitions its categories, the two disagree and we say so instead of shipping a stale rollup.
     """
     problems: "list[str]" = []
+    advisory: "list[str]" = []
+
+    # INV-RC-6 restated on OUR side: the PARTITION buckets sum to raw_code. run-cloc asserts this
+    # itself, so a clean dump already proves it — but restating it here is what lets this module
+    # report the partition state as a FACT rather than quoting someone else's assert.
+    #
+    # Read `subset_of` and skip any bucket that declares a parent. A sub-bucket is a labeled view
+    # of its parent, not a sibling: `remediation_engine` is `subset_of == "production_code"` and
+    # summing it alongside production_code overcounts by its own size. Two separate passes over
+    # this dump (261106) both made exactly that mistake and concluded the partition was broken by
+    # 326,257 lines. The tool publishes the discriminator; the error was not reading it.
+    buckets = dump["loc_buckets"]
+    partition = {k: v for k, v in buckets.items() if v.get("subset_of") is None}
+    subs = {k: v for k, v in buckets.items() if v.get("subset_of") is not None}
+    bucket_sum = sum(int(v["code"]) for v in partition.values())
+    raw_code = int(dump["system_totals"]["raw_code"])
+    if bucket_sum != raw_code:
+        problems.append(
+            f"PARTITION SUM FAILED: the {len(partition)} partition buckets sum to {bucket_sum:,} "
+            f"but system_totals.raw_code = {raw_code:,} (residual {raw_code - bucket_sum:+,}). "
+            "Buckets neither cover the tree nor stay disjoint — the category numbers are NOT "
+            f"trustworthy. Sub-buckets excluded from the sum, as declared: "
+            f"{ {k: v['subset_of'] for k, v in subs.items()} or 'none'}."
+        )
+
     prod = _bucket(dump, "production_code")
     mine = _sum_buckets(dump, SUPPORT_BUCKETS) / max(prod, 1)
     theirs = float(dump["ratios"]["support_apparatus_x_prod"])
@@ -175,19 +259,36 @@ def parity_check(dump: dict) -> "list[str]":
             f"own support_apparatus_x_prod = {theirs:.4f}. run-cloc's ratio_table definition has "
             "drifted from SUPPORT_BUCKETS — reconcile before trusting support_loc."
         )
-    partition = dump["meta"].get("partition_clean")
-    if partition is False:
+    clean = dump["meta"].get("partition_clean")
+    if clean is False:
         problems.append(
             "run-cloc reported partition_clean=False — files are double-counted or dropped; "
             "the bucket numbers are NOT trustworthy."
         )
-    elif partition is None:
-        problems.append(
-            "run-cloc's disjointness engine was SKIPPED (partition_clean=null"
-            f"{': ' + str(dump['meta'].get('verify_skipped_reason')) if dump['meta'].get('verify_skipped_reason') else ''})"
-            " — bucket disjointness is unproven for this run."
+    elif clean is None:
+        reason = dump["meta"].get("verify_skipped_reason")
+        advisory.append(
+            "FILE-LEVEL DISJOINTNESS UNPROVEN (partition_clean=null"
+            f"{': ' + str(reason) if reason else ''}). The bucket sum below covers the tree "
+            "exactly, so no lines are missing or counted twice IN AGGREGATE; what is unproven is "
+            "the per-FILE claim that no individual file lands in two buckets. Offsetting errors "
+            "would survive the aggregate check."
         )
-    return problems
+    if bucket_sum == raw_code:
+        advisory.append(
+            f"partition VERIFIED by sum: {len(partition)} declared partition buckets total "
+            f"{bucket_sum:,} = system_totals.raw_code exactly (residual 0). Sub-buckets excluded "
+            f"as declared: { {k: v['subset_of'] for k, v in subs.items()} or 'none'}."
+        )
+    unc = partition.get("uncategorized", {}).get("code", 0)
+    if unc and raw_code and unc / raw_code > 0.10:
+        advisory.append(
+            f"`uncategorized` holds {int(unc):,} lines — {100 * unc / raw_code:.1f}% of the tree. "
+            "This does not break the partition (it is a declared bucket and sums in), but it bounds "
+            "how much interpretive weight the category split can carry: a tenth-plus of the tree is "
+            "counted without being attributed to a purpose."
+        )
+    return problems, advisory
 
 
 def find_repo(explicit: "str | None") -> Path:
@@ -232,6 +333,24 @@ def resolve(dump: dict) -> "list[tuple[Row, str]]":
     return [(row, row.fmt(row.compute(dump))) for row in ROWS]
 
 
+def resolve_pairs(dump: dict) -> "list[tuple[str, str]]":
+    """Every token this module writes -> its value, raw and rounded, in paste order.
+
+    Both members of a pair come from ONE `row.compute(dump)` call, so a raw value and its rounded
+    sibling can never describe different snapshots. Only GOVERNED rows appear: a FROZEN citation is
+    not refreshed, so emitting a rounded form of it would publish a token nothing may update.
+    """
+    pairs: "list[tuple[str, str]]" = []
+    for row in ROWS:
+        if not row.governed:
+            continue
+        value = row.compute(dump)
+        pairs.append((row.token, row.fmt(value)))
+        if row.round_fmt:
+            pairs.append((f"{row.token}_rounded", row.round_fmt(value)))
+    return pairs
+
+
 def drift_table(resolved: "list[tuple[Row, str]]", metrics: dict) -> str:
     lines = [
         "| token | class | book claims | measured now | drift | scope |",
@@ -261,24 +380,33 @@ def provenance(dump: dict, repo: Path) -> str:
     )
 
 
-def paste_block(resolved: "list[tuple[Row, str]]", dump: dict, repo: Path) -> str:
-    """The copy-pasteable JSON fragment: governed rows only, plus the provenance key."""
-    body = {row.token: value for row, value in resolved if row.governed}
+def paste_block(dump: dict, repo: Path) -> str:
+    """The copy-pasteable JSON fragment: every written token, raw and rounded, plus provenance."""
+    body = dict(resolve_pairs(dump))
+    body["measurement_snapshot"] = _snapshot_date(dump)
     body["_cloc_snapshot_provenance"] = provenance(dump, repo)
     return json.dumps(body, indent=2, ensure_ascii=False)
 
 
-def write_metrics(resolved: "list[tuple[Row, str]]", dump: dict, repo: Path) -> "list[str]":
-    """Patch `metrics.json` in place: governed values + the provenance key. Key order is preserved for
-    existing keys (a minimal diff); new keys append. Returns the changed-token list."""
+def _snapshot_date(dump: dict) -> str:
+    """The measurement date as the book displays it (ISO, matching `measurement_snapshot`).
+
+    ONE snapshot token serves both presentation forms: the window a measurement describes is one
+    fact regardless of whether a passage quotes the raw or the rounded figure.
+    """
+    return str(dump["meta"].get("generated_at", ""))[:10]
+
+
+def write_metrics(dump: dict, repo: Path) -> "list[str]":
+    """Patch `metrics.json` in place: every governed token (raw + rounded), the snapshot date, and
+    the provenance key. Key order is preserved for existing keys (a minimal diff); new keys append.
+    Returns the changed-token list, so the caller reports exactly what moved."""
     metrics = load_metrics()
     changed: "list[str]" = []
-    for row, value in resolved:
-        if not row.governed:
-            continue
-        if str(metrics.get(row.token)) != value:
-            changed.append(f"{row.token}: {metrics.get(row.token, '(absent)')} -> {value}")
-        metrics[row.token] = value
+    for token, value in [*resolve_pairs(dump), ("measurement_snapshot", _snapshot_date(dump))]:
+        if str(metrics.get(token)) != value:
+            changed.append(f"{token}: {metrics.get(token, '(absent)')} -> {value}")
+        metrics[token] = value
     metrics["_cloc_snapshot_provenance"] = provenance(dump, repo)
     METRICS_PATH.write_text(json.dumps(metrics, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return changed
@@ -310,21 +438,37 @@ def main(argv: "list[str] | None" = None) -> int:
         out.write_text(json.dumps(dump, indent=2) + "\n", encoding="utf-8")
         print(f"dump saved: {out}", file=sys.stderr)
 
-    problems = parity_check(dump)
+    problems, advisory = parity_check(dump)
     resolved = resolve(dump)
     metrics = load_metrics()
 
     print("## Measurement\n")
     print(provenance(dump, repo))
+    print(f"\n**Partition: {'FAILED' if problems else 'verified'}** "
+          f"({len(problems)} blocking, {len(advisory)} advisory)\n")
     if problems:
-        print("\n### ⚠️ Measurement caveats\n")
+        print("### ⛔ Blocking — the measurement contradicts itself; nothing should be written\n")
         for p in problems:
             print(f"- {p}")
+    if advisory:
+        print("\n### Advisory — what was and was not proven\n")
+        for a in advisory:
+            print(f"- {a}")
     print("\n## Drift: what the book claims vs what the repo measures\n")
     print(drift_table(resolved, metrics))
-    print("\n## Paste into `book/data/metrics.json` (GOVERNED rows only)\n")
+
+    print("\n## Raw and rounded, per quantity\n")
+    print("| token | value | book claims | drift |")
+    print("|---|---|---|---|")
+    for token, value in [*resolve_pairs(dump),
+                         ("measurement_snapshot", _snapshot_date(dump))]:
+        current = str(metrics.get(token, "(absent)"))
+        print(f"| `{token}` | {value} | {current} | "
+              f"{'—' if current == value else '**yes**'} |")
+
+    print("\n## Paste into `book/data/metrics.json`\n")
     print("```json")
-    print(paste_block(resolved, dump, repo))
+    print(paste_block(dump, repo))
     print("```")
     for klass, heading in (
         (FROZEN, "Frozen — do NOT refresh (a published, figure-coupled citation)"),
@@ -339,7 +483,11 @@ def main(argv: "list[str] | None" = None) -> int:
                   f"this snapshot would read {value!r} — {row.scope}")
 
     if args.write:
-        changed = write_metrics(resolved, dump, repo)
+        if problems:
+            print("\nREFUSED to write: the measurement did not verify (see caveats above). "
+                  "A consistent stale set beats an inconsistent fresh one.")
+            return 1
+        changed = write_metrics(dump, repo)
         print(f"\nwrote {METRICS_PATH.relative_to(ROOT)} — {len(changed)} value(s) changed")
         for c in changed:
             print(f"  {c}")

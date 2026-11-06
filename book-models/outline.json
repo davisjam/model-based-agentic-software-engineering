@@ -29,7 +29,7 @@
           "heading_text": "Software agents",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 25,
           "points": []
         },
         {
@@ -38,7 +38,7 @@
           "heading_text": "The Governed Engineering Environment",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": []
         }
       ],
@@ -1515,7 +1515,7 @@
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
-              "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
+              "text": "Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering.",
               "block_index": 49
             },
             {
