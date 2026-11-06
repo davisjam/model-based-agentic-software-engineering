@@ -524,6 +524,9 @@ re-deriving these, so they live here:**
     expensive way (it condemns a slide that is correct). `deck-inspect` is already in presentation
     order; prefer it. The orchestrator made the same mistake a day earlier by indexing hidden slides on
     filenames while counting them in presentation order, and reported a 75-minute deck as 65.
+  - **Parking or resequencing a slide silently falsifies every speaker note that points at another
+    slide by position.** After any such change run `python3 tools/deck_note_refs.py <deck> --since
+    <ref-before-the-change>` and triage its HIGH band. Advisory, never a gate — see its docstring.
   - **A section is a slide-ID LIST, so reordering a slide does not move it between sections.** Parking
     a slide — `show="0"` plus a move behind the UNUSED divider — leaves its ID in whatever live section
     it started in, so the section still counts a hidden slide and the ranges stop being contiguous.
