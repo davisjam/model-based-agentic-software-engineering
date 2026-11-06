@@ -4333,3 +4333,235 @@ Source: `book/latex/sources/part2/2.5-system-knowledge.tex`; original projection
 
 Models are useful without enforcement. They preserve decisions, expose relationships, support analysis, and let engineers and agents reason from shared representations rather than reconstructing the same knowledge from prose or code. Alignment adds another use: some modeled properties can become obligations that constrain what the engineering process may admit. We turn to that next. {{chapter:software-factories}} returns to these models as part of the engineering environment surrounding agentic production, and {{chapter:theory}} examines when carrying explicit representations is worth their cost.
 ```
+
+
+## 2026-11-06 — Preface: familiar practices and the purpose of the book
+
+Source: `book/latex/sources/frontmatter/0.5-preface.tex`, “Why MAGE? Why Models?”, line 58. Source revision: `a7e67851b6fc25fe195731b42c564e7959af2346` (working tree). Native excerpt SHA-256: `b0850fb852e2aa7de6d972c1c40925efab988751b69dfa5c4c43f585b87e67cb`. Revised on 6 November 2026 at the author's request; removal revision pending.
+
+Reason: Replace the contribution statement with a short positioning paragraph that acknowledges agentic harnesses such as Kiro and explains the book's value in understanding, evaluating, and adapting familiar engineering practices. The established lineage and economic transition remain.
+
+```latex
+MAGE does not make architecture, abstraction, or formal verification new. Its contribution is to bring established engineering ideas together in an environment where intelligent agents perform much of the realization, consequential knowledge and obligations remain explicit, and the engineering process itself can be represented, analyzed, and governed. Commodity intelligence changes the economics of maintaining that arrangement.
+```
+
+
+## 2026-11-06 — Preface: system obligations across successive changes
+
+Source: `book/latex/sources/frontmatter/0.5-preface.tex`, “Why MAGE? Why Models?”, line 58. Source revision: `a7e67851b6fc25fe195731b42c564e7959af2346` (working tree). Native excerpt SHA-256: `4fb1e9b52f3115645740be1b1c4aa8ff81225bc8a5b1f2e2c5926a3e4d586cbb`. Revised on 6 November 2026 following the author's clarification; removal revision pending.
+
+Reason: The earlier positioning acknowledged familiar workflow practices but underplayed the book's question of retaining system-level understanding and control through successive agent-made changes. The replacement emphasizes interacting parts, enduring obligations, independent evidence and enforcement, and governance conversion without claiming those capabilities are exclusive to MAGE.
+
+```latex
+MAGE draws on established ideas in architecture, abstraction, and verification. Agentic harnesses such as Kiro already organize development through requirements, design, and implementation tasks, giving agents explicit representations to work from.\citep{kiro2026specs} Readers may recognize much of this practice. The book explains why these arrangements can help and develops the judgment needed to choose and adapt them. That requires understanding what each representation makes visible, what a check establishes, and which decisions still require human judgment. Engineers must also judge whether the benefits justify the cost of maintaining the supporting structure. Commodity intelligence changes the economics of that arrangement.
+```
+
+
+## 2026-11-06 — §2.4: entitlement repair and model evolution
+
+Review item: `24-entitlement-repair-synthesis`. Source: `book/latex/sources/part2/2.4-decision.tex`, “Worked example — Service calls and upload entitlement”, lines 156–209. Source revision: `991c1a04aa3ca2b87fa4a8aa9374c98cc6b0bddd` (working tree). Native excerpt SHA-256: `64c1916bc0c54d87f32a749c4015a51f2b92d6405542ec2d030fc9d52f4cd6a2`. Removed on 6 November 2026 after author approval; removal revision pending.
+
+Reason: Replace the original failure account with the verified sequence and numbered figure explanation. Explain why the simple balance rule initially needed no separate decision model, how unlimited entitlement made the policy harder to understand across implementation sites, and how the explicit model separated admission from display. Remove the compatibility-shim detail and elapsed-time claim at the author’s request.
+
+```latex
+% <!-- point: the-scalar-was-adequate-until-the-domain-changed | DocAble originally had only finite-credit groups, so a scalar sum was an adequate admission representation; when unlimited groups arrived, no explicit model of the admission decision existed to carry the change. -->
+
+DocAble originally represented upload entitlement in finite credits alone. In that system, reducing a user\textquotesingle s groups to a single number --- the sum of their credit balances --- was adequate for deciding whether a document could be processed. The product later gained unlimited groups, and the domain change altered the admission question: entitlement was no longer a single finite quantity. No explicit model of the upload-admission decision existed at the time. The decision lived in several implementation sites --- a server-side reduction, a client-side preflight, the server\textquotesingle s admission gate --- each with its own hand-rolled representation of the user\textquotesingle s groups.
+
+% <!-- point: the-old-reduction-observed-the-distinction-and-discarded-it | The legacy reduction read each group's unlimited flag and used it to exclude unlimited groups from the credit sum; its scalar output had no place for "unlimited," so an unlimited user became zero credits — a representation failure, not missing information. -->
+
+One of those representations did not evolve. In August 2026, a user whose one group carried unlimited entitlement was blocked from uploading a thirty-eight-page document by a paywall: \emph{the upload needs 38 credits, and you have 0}. The root cause was a legacy server function that reduced a user\textquotesingle s groups to one scalar, the sum of their finite credit balances. The function was not ignorant of unlimited entitlement. It read each group\textquotesingle s unlimited flag twice, using it once to \emph{exclude} unlimited groups from the sum and once to compute a display label. Its output type simply had no place to put the fact, so the distinction died at the return statement. A purely-unlimited user became \texttt{0} credits; the client compared 0 against 38 and rejected the upload; the server\textquotesingle s authoritative admission logic, which handled unlimited correctly, was never reached. This was a representation failure, not an information-availability failure. The implementation held the fact and threw it away.
+
+% <!-- point: the-production-failure-produced-the-model | The root-cause analysis made the admission question explicit and produced an explicit entitlement decision model — with property tests, a cross-runtime parity corpus, and a shape check — in roughly five hours from RCA to deletion of the lossy reduction. -->
+
+The root-cause analysis made the admission question explicit: given the user\textquotesingle s group entitlements and the requested work, should this upload be admitted, and under which entitlement? We introduced an entitlement decision model to answer it. Property tests checked the model, a cross-runtime parity corpus supplied shared test cases to check that server and client followed the same decision table, and a further check validated the model\textquotesingle s shape. We deleted the legacy scalar reduction without a compatibility shim. The display code then derived its values from the model, and the admission gates used the model\textquotesingle s decision. From root-cause analysis to deletion of the lossy representation took roughly five hours.
+
+\textbf{Entitlement decision model · Decision}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engineering question} --- May this user upload this document, and under which entitlement?
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Model} --- per-group entitlements that keep finite and unlimited as distinct cases; the output is a structured admission decision: admitted or not, the group that authorizes it, and the ordered plan by which the verdict was reached.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Property} --- an unlimited entitlement can never be reduced to zero credits; the displayed balance is a projection of the model, not an authority for admission.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Quality attribute} --- decision correctness; fidelity between the domain and its representations.
+\end{itemize}
+
+% <!-- point: the-repair-was-model-to-model | The repair changed the representation through which the decision was made, not merely the failing conditional: the revised model preserves the finite/unlimited distinction and states the admission decision explicitly, and the implementation was then changed to consume it. -->
+
+The repair did more than patch the conditional that failed. It changed the representation through which the decision was made. Upload entitlement could no longer be represented as a scalar credit balance: the revised model preserves finite and unlimited entitlement as distinct cases and represents the admission decision explicitly --- whether the upload is admitted, which group supplies the entitlement, and the ordered plan used to reach the verdict. The implementation was then changed to consume that model. The same triggering state that once read as \texttt{0} credits now reads as \emph{admit by unlimited entitlement}. The finite-credit scalar still exists where that quantity is the actual question, displaying remaining credits, but it is no longer used as a model of upload permission (\autoref{entitlement-model-evolution}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/entitlement-model-evolution-31ef2274cf.pdf}
+\caption{\emph{Upload admission must distinguish finite and unlimited entitlement.} The old reduction passed only a finite balance to the client, so an unlimited user was rejected. The revised model records the entitlement kind and returns an admission decision.}
+\label{entitlement-model-evolution}
+\end{figure}
+
+% <!-- point: the-model-was-part-of-the-repair | The failure revealed a decision made through a representation that could no longer express the system's domain; making the decision explicit forced the representation to preserve the distinction the system had acquired. -->
+
+The revised decision model was part of the repair, rather than merely documentation of it. The failure revealed that an engineering decision was being made through a representation that could no longer express the system\textquotesingle s domain, and making the decision explicit forced the representation to preserve the distinction the system had acquired. The opening section defined a model as a purposeful reduction that preserves the distinctions its question requires. The old scalar was a reasonable model of \emph{how many finite credits remain}. Once unlimited entitlement was introduced, that scalar was no longer a sufficient model of \emph{may this user upload}. The gap between those two questions then became a production failure.
+```
+
+
+## 2026-11-06 — §2.5: measurement and engineering use
+
+Review item: `25-measurement-and-engineering-use`. Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, “Modeling Makes Properties Available to Engineering”, lines 263–296. Source revision: `901b381f47e2a1dba8ffebd4586209d9130fd7d0` (working tree). Native excerpt SHA-256: `478aa23d0b2360f6a80bd39d0c5137438a1289da8a9d9c7a678c6a3c8aa1392e`. Removed on 6 November 2026 after author approval; removal revision pending.
+
+Reason: Consolidate repeated explanations of the Modeling/Alignment distinction, refer back to the earlier eight-worker example, retain the local Chapter 3 signpost and design examples, and make the chapter recap lead into the agent-reasoning inset. The fuller Chapter 3 handoff remains at the chapter’s end.
+
+```latex
+\section{Modeling Makes Properties Available to Engineering}\label{heading:modeling-makes-properties-available-to-engineering}
+
+% <!-- point: a-model-does-not-govern-by-existing-it-makes-a-property-explicit | Models make properties explicit; whether to enforce them is a separate decision. | terms: modeling-principle, alignment-principle -->
+
+A model does not govern the system merely by existing. A structural model can name a forbidden dependency without preventing it; a behavioral model can name an illegal transition without rejecting it; a measurement model can represent a budget without stopping work that exceeds it. Modeling makes these properties explicit. It does not enforce them.
+
+Suppose a worker-pool model records the number of running jobs and the capacity available to execute them. The comparison may help an operator plan a larger pool, help the system tune admission, or supply a hard rule that refuses work above the bound. Those uses require different mechanisms. The quantities and their units make the comparison meaningful; they do not decide what crossing the bound should do.
+
+% <!-- point: measurement-boundary-modeling-and-enforcement-are-separate | A measurement model defines quantities and their reference bounds; observation, adaptation, and enforcement require separate decisions and mechanisms. -->
+
+\autoref{modeling-perp-enforcement} draws that separation. A measurement can supply evidence without being a hard limit. Engineers must also decide who chooses the reference value, how the quantity is collected, and what action follows from the comparison.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-perp-enforcement-e698f185ed.pdf}
+\caption{\emph{Modeling and enforcement are separate decisions.} The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.}
+\label{modeling-perp-enforcement}
+\end{figure}
+
+% <!-- point: relational-obligations-need-enough-representation | Local syntactic obligations need little modeling; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need enough representation to expose the relevant relationships, which Modeling makes available to analysis and governance. | terms: modeling-principle, alignment-principle -->
+
+Local syntactic obligations can often be checked with little explicit modeling. Architectural boundaries, temporal obligations, distributed ownership, provenance requirements, and end-to-end policies require enough representation to expose the relevant system relationships. Modeling makes those relationships available to analysis and, where appropriate, to governance.
+
+They are also available to design. A dependency graph may reveal that an execution boundary is artificial; a behavioral model may expose a recovery protocol that should change; a quantitative model may show that an otherwise plausible decomposition cannot meet its resource envelope. In each case, analysis of the model can change the architecture before implementation commits to the choice.
+
+% <!-- point: alignment-does-not-require-a-separately-represented-model | Alignment does not require every obligation to have a separately represented model — some properties are observable at an action or artifact boundary and can be constrained directly; models extend the range of properties available for analysis and enforcement. | terms: modeling-principle, alignment-principle -->
+
+Alignment does not require every obligation to have a separately represented model. Some properties are already observable at an action or artifact boundary and can be constrained directly. Models extend the range of properties available for analysis and enforcement.
+
+% <!-- point: docable-models-arose-around-expensive-questions | Models are justified by engineering questions whose relevant distinctions would otherwise be expensive or unsafe to reconstruct; shared identities connect views where a decision crosses them. | terms: modeling-principle, model-classes -->
+
+The examples began with engineering questions: where a dependency belongs, which state changes are allowed, who owns a job, what a decision permits, and which facts must be joined. Different questions required different reductions. Shared identity and explicit correspondence connect them where a decision crosses views.
+
+\magevalue{chapter:alignment} asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient to enforce them.
+```
+
+
+## 2026-11-06 — §3.1: hooks, permissions, and enforcement decisions
+
+Review item: `31-hooks-without-method-defense`. Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, “Hooks and Permissions” inset, lines 94–98. Source revision: `7a89fa84cb6a5228d17bdfc433e7eb938a0eccfa` (working tree). Native excerpt SHA-256: `f41be643671e5ac8541546d3d9bae07c61df748e675ec937d863789828c9ac8c`. Removed on 6 November 2026 after author approval; removal revision pending.
+
+Reason: Introduce familiar permissions and hook examples before explaining where intervention occurs and what the configured mechanism does. Develop the engineering inference through evidence availability, warning versus blocking, and preventing a production write before it occurs. Remove repeated mechanisms and commentary about the book’s choice of abstractions.
+
+```latex
+MAGE\textquotesingle s Alignment principle appears in today\textquotesingle s agent harnesses partly through mechanisms that interpose on agent actions. Harnesses may require permission before a tool executes, restrict which tools or resources an agent can access, or invoke hooks when the agent attempts an operation. These mechanisms create places outside the producing model turn where the engineered environment can observe, constrain, or reject what the agent is trying to do.
+
+The mechanisms provide different kinds of control. Permissions and restricted tool surfaces can remove actions from the agent\textquotesingle s available repertoire---for example, allowing a deployment tool to read production state while denying it permission to modify that state. Pre-action hooks can inspect a proposed command or mutation and reject it when an obligation is violated. Post-action hooks can run checks or collect evidence after a change has occurred. Beyond the harness itself, tests, linters, type checkers, CI gates, policy engines, and deployment controls can evaluate larger units of work before they are accepted. What matters is not whether a mechanism is called a hook or a gate, but what obligation it checks and what it does when that obligation is violated.
+
+This is why MAGE describes governance mechanisms and enforcement boundaries rather than treating hooks or permissions as the abstraction. Harness features expose convenient contemporary control points, but the underlying engineering problem is broader: determine which obligations matter, where sufficient evidence exists to evaluate them, and what mechanism constrains or rejects unacceptable realization.
+```
+
+
+## 2026-11-06 — §3.1: boundary placement and useful feedback
+
+Review item: `31-feedback-as-actionable-evidence`. Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, “Return Evidence at the Earliest Useful Boundary”, lines 127–133. Source revision: `fd05c72d58f86c8326c28e22b6d0f03f7f830161` (working tree). Native excerpt SHA-256: `c0e68c08f493d1439e7358487fe73956601fe11f52d541a73f8061f8ad4fa688`. Removed on 6 November 2026 after author approval; removal revision pending.
+
+Reason: Preserve the explanatory connection between boundaries and feedback while identifying the evidence returned by checks and developing why delayed feedback can require reconstructing the earlier work. Context preservation before compaction remains in §3.2.
+
+```latex
+% <!-- point: every-boundary-determines-where-feedback-can-return | Every boundary also determines where feedback can return; earlier evidence means less to reconstruct. | terms: intervention-boundary, feedback -->
+
+% <!-- index-def: intervention-boundary -->
+
+% <!-- index-def: engineered-agent-loop -->
+
+The boundaries also decide where feedback can return. A harness can preserve durable state before a lossy compaction; an action hook can explain why a call was refused; CI can hand back a failing invariant while the change is still fresh in the window; a deployment validator can report which evidence failed admission. The earlier useful evidence returns, the less work an agent must reconstruct before repairing the miss.
+```
+
+
+## 2026-11-06 — §3.1: principle and concrete enforcement examples
+
+Review item: `31-keep-principle-at-chapter-bookends`. Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, lines 139–159. Source revision: `856020173aa5cbae85a85b766700b47d1425e318` (working tree). Native excerpt SHA-256: `92d4e7e7560ebe3bc659035fabe769fbadc0e03d3c624eed701b370cefe84de6`. Replaced on 6 November 2026 after author approval; replacement revision pending.
+
+Reason: Preserve the canonical Alignment Principle, remove the unnecessary Chapter 4 transition, and develop locally cited examples of Docker’s network proxy and Spotify’s required verification before pull-request creation. Add a Chapter 5 signpost to the fuller factory discussion. The principle, takeaway, and example markers are retained.
+
+```latex
+% <!-- point: the-alignment-principle-stated-whole | The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it. | terms: alignment-principle, intervention-boundary -->
+
+\textbf{The Alignment Principle:} make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission. \emph{In other words:} once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.
+
+% <!-- point: alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it | Enforcement installed at a boundary is easiest to see in systems already using it. | terms: alignment-principle, intervention-boundary -->
+
+\magevalue{chapter:one-problem-many-models} turns these mechanisms into method. For now, their placement is easiest to see in systems already using them.
+
+% <!-- worked-examples: alignment-principle -->
+
+\subsection{Example --- Docker}\label{heading:example-docker}
+
+Docker\textquotesingle s public account places enforcement in the environment, not its instructions: the agent acts only through a constrained tool seam, and the platform --- not the prompt --- decides what that seam permits. A move outside the boundary is refused, not merely discouraged. The permission is enforced at the action boundary: the agent cannot override it through its instructions.
+
+Spotify\textquotesingle s public account describes migration agents operating through a restricted API and a narrow Git interface, with every change clearing a merge gate before it lands. The gate, not the agent\textquotesingle s confidence, admits the work.
+
+% <!-- takeaway -->
+
+Place the enforcing mechanism at a boundary where the obligation is legible and the environment can evaluate or constrain the relevant work. The appropriate boundary depends on the obligation.
+
+% <!-- worked-examples-end -->
+```
+
+
+## 2026-11-06 — §3.2: traceability and the enforcement decision
+
+Review item: `32-traceability-without-novelty-frame`. Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, lines 23–25. Source revision: `28261de14442e437967093e63c975fed798b7e24` (working tree). Native excerpt SHA-256: `49e267d3705d393c78c770c5bb8f8cce187f22f193a3f8470fb9033ed8a66ac0`. Replaced on 6 November 2026 after author approval; replacement revision pending.
+
+Reason: Connect the engineering problem to requirements traceability the reader may already know, develop how the links support evaluation and change analysis, and retain the closing question about enforcing a finding. Preserve the stable point ID while updating its summary.
+
+```latex
+% <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Software engineering already connects intent to realization through requirements, traceability, verification, and acceptance; Alignment builds on that tradition but adds a further question — should the resulting judgment merely inform the work, or should the environment enforce it? | terms: independent-obligation, traceability -->
+
+Software engineering already has a long tradition of connecting engineering intent to realization through requirements, traceability, verification, and acceptance. A requirement may be traced to design elements, implementation, tests, and other evidence so that engineers can ask whether the intended obligation survived realization. Alignment builds on that tradition but asks an additional question: should the resulting judgment merely inform the work, or should the environment enforce it?
+```
+
+
+## 2026-11-06 — Preface footnote 1: the four engineering questions
+
+Review item: `preface-engineering-questions`. Source: `book/latex/sources/frontmatter/0.5-preface.tex`, the `functional-terms` footnote in the paragraph beginning “Now, the boundary between human intent and machine action is shifting”, line 28. Source revision: `28261de14442e437967093e63c975fed798b7e24` (working tree). Native excerpt SHA-256: `1f13770fb17554eec3552f843944cff9bcc69d2ba0a30acf11b9b3b19144fadf`. Removed on 6 November 2026 after author approval; removal revision pending.
+
+Reason: The footnote should perform one job — clarifying that functional terms such as interpret, reason, and judge describe capabilities rather than cognition. It also restated the book’s central motivation and then introduced four questions, which belong in the main text. The footnote now ends at “…imperfect realization of the general-purpose machine intelligence assumed here.”
+
+Disposition: Relocated, not merely cut. The four questions are inserted into the Chapter 1 part intro (`book/latex/sources/part1/00-part-intro.tex`), after the paragraph ending “…enforcing consequential engineering decisions across many changes.” Chapter 1 answers the questions across §§1.1–1.4 but never poses them together, so presenting them together gives a compact statement of the engineering problem before its components are developed. They may also serve a talk or a future revision; the original wording is preserved here for that use.
+
+Excerpt scope: The deleted sentence about cheap implementation that preceded the questions is retained with them, so the footnote’s original wording survives intact.
+
+```latex
+Implementation has become cheap enough that agents can produce and modify software at extraordinary speed. The engineering problem therefore shifts: What should we build? What must the agent know about the system? How will we know whether its changes are correct? Which rules must it obey?
+```
+
+
+## 2026-11-06 — Preface, “Why MAGE? Why Models?”: context versus models
+
+Review item: `preface-context-vs-models`. Source: `book/latex/sources/frontmatter/0.5-preface.tex`, closing paragraph of “Why MAGE? Why Models?”, line 62. Source revision: `28261de14442e437967093e63c975fed798b7e24` (working tree). Native excerpt SHA-256: `3df51a0a539180469fba32e4e3d8828fa6c8c385582256cef979e9404342a0f8`. Removed on 6 November 2026 after author approval; removal revision pending.
+
+Reason: The paragraph followed the section’s conclusion about engineering authority and preceded the book’s empirical origin story, so it diluted a substantial ending and weakened the transition. Its distinction is conceptually important and foreshadows Chapter 6’s encoding–realization decomposition, so it is preserved rather than discarded: better context improves the reasoner’s chances, while a better model can make the property explicit enough to analyze or check, reducing how often the question must be answered through inference.
+
+Disposition: The substance has been incorporated into Chapter 1 §1.4 (`book/latex/sources/part1/1.4-the-new-engineering-problem.tex`), immediately before the numbered Representation and Enforcement Problems, where the reasoning-horizon and probabilistic-reliability discussions have already supplied the necessary concepts. The original wording is preserved here for future comparison.
+
+```latex
+MAGE examines how software-engineering environments should change when machines can perform both reasoning and implementation. Better context can help an agent make a consequential judgment correctly. Better models can sometimes make the relevant property explicit enough that the environment can analyze or check it instead. The first improves the reasoner\textquotesingle s chances; the second can reduce how much judgment must be reconstructed and exercised again at all.
+```
