@@ -4531,26 +4531,33 @@ def check_no_raw_stats(_entries: list[Entry]) -> list[str]:
 
 
 # ── Visual Aids gallery: change-aware reuse ──────────────────────────────────────────────────────────
-# `book/build_visual_aids.py` emits a DEV/REVIEW artifact (every figure and table in the book, inlined)
-# and it dominated the site build: 335.1s of a 441.1s `catalog.py build` measured 261106 at load 59,
-# ~116s warm at load 25. Attributed, the cost is not the rendering — it is tree TRAVERSAL. The emitter
-# expands five `book/**/*.<ext>` globs with `recursive=True`, each of which walks the whole 1.5 GB book
-# tree (440 MB `node_modules` + 397 MB `_design` + 182 MB `latex`) BEFORE its own filter discards those
-# trees; 38s of the 84s `_referenced_basenames` warm cost is glob expansion against 9.4s of actual
-# reading. A sixth traversal expands the draft-SVG glob, and `_source_figures_by_slug` walks `book/` once
-# more.
+# `book/build_visual_aids.py` emits a DEV/REVIEW artifact (every figure and table in the book, inlined),
+# re-derived on every commit and every push — including a push that touches nothing but slide decks. It
+# depends only on the book's figure surface, and that is what this key measures: the `.o`/`.d` half of make,
+# at the CALL SITE.
 #
-# So the gallery is re-derived in full on every commit and every push, including a push that touches
-# nothing but slide decks. It depends only on the book's figure surface, and that is what this key
-# measures — the `.o`/`.d` half of make, at the CALL SITE (the emitter lives under `book/`, which this
-# change may not touch).
+# HISTORY, because the numbers that justified this key no longer describe the step. When the key landed the
+# emit was 335.1s of a 441.1s `catalog.py build` (measured 261106 at load 59), and the cost was tree
+# TRAVERSAL rather than rendering: six unpruned `book/` traversals, five of them `recursive=True` globs that
+# expanded the whole 1.5 GB tree before the emitter's own filter discarded `node_modules` and `_design`.
+# **That defect is fixed** — the emitter now prunes at the walk, 32,994 directory opens down to 833 and
+# 512,658 entries visited down to 15,983, for byte-identical output.
+#
+# So this key is no longer the thing holding the build up, and it should not be read as such. What survives
+# the prune is the real work the key still skips: ~2,400 file reads, 723 SVG inlines, a 10.6 MB write. It
+# costs 0.24s to compute. Keep it as a cheap guard, not as the fix; retiring it is a separate decision and
+# would mean retiring its eight-arm sabotage suite with it.
 #
 # DECLARED INPUTS, and why this set is complete:
 #   1. every TRACKED file under the roots the emitter scans (`book/`, `book-models/`, root `*.py`),
 #      identified by git's own blob id — exact content identity, read out of the index in ~0.01s;
 #   2. every path git reports as modified, staged, deleted or untracked under those roots, by
 #      (path, size, mtime_ns) — the same staleness heuristic git's own index uses;
-#   3. `book/list-of-figures.html`, which `build_book.py` emits and the gallery joins its numbering to;
+#   3. `book/web/docs/list-of-figures.md`, which `build_book.py` emits and the gallery joins its numbering
+#      to. It was `book/list-of-figures.html` until 261106, a path the MkDocs publish swap retired on
+#      2026-09-16 — so this input had been recording a permanently-absent file (`-`) and contributed
+#      nothing to the key for 51 days. It is a gitignored projection of tracked prose, so (1) covered it
+#      in practice; naming the real path keeps a declared input from being a dead one;
 #   4. every `*.svg` under `book/_design` — gitignored drafts are invisible to (1) and (2), and the
 #      gallery's draft section is derived from exactly that set.
 # The ONE declared exclusion: the gitignored GENERATED trees under `book/` that the emitter also scans
@@ -4596,7 +4603,7 @@ def _visual_aids_key_parts() -> "list[str] | None":
         rel = line[3:].strip().strip('"')
         rel = rel.split(" -> ")[-1]  # a rename reports `old -> new`; the new path is the input
         parts.append(f"{rel}\0{_stat_sig(os.path.join(ROOT, rel))}")
-    parts.append("lof\0" + _stat_sig(os.path.join(ROOT, "book", "list-of-figures.html")))
+    parts.append("lof\0" + _stat_sig(os.path.join(ROOT, "book", "web", "docs", "list-of-figures.md")))
     for svg in sorted(glob.glob(os.path.join(ROOT, "book", "_design", "**", "*.svg"), recursive=True)):
         parts.append(f"{os.path.relpath(svg, ROOT)}\0{_stat_sig(svg)}")
     return parts
