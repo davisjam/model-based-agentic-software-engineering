@@ -143,4 +143,159 @@ class CompiledTikzControls(unittest.TestCase):
                 self.assertEqual(found,expected)
 
 
+class TikzPoolReuseTests(unittest.TestCase):
+    """The shared figure pool's reuse key and stamp guard.
+
+    `compile_candidates()` runs twice per book push — the candidate gate and the book PDF build — so
+    the second consumer reuses the first's artifact. These tests cover the channels an end-to-end run
+    cannot reach safely: they build a FAKE input tree in a temp dir and never compile, so nothing here
+    can edit a file a live sibling's build is reading, and nothing can reach `latex/build/tikz/`.
+    """
+
+    SHARED_SENTINEL='% pool shared input\n'
+
+    def setUp(self):
+        import mage_tikz_review
+        self.pool=mage_tikz_review
+        self.root=Path(tempfile.mkdtemp(prefix='pool-key-'));self.addCleanup(shutil.rmtree,self.root,True)
+        self.base=self.root/'book/tikz'
+        (self.base/'figures').mkdir(parents=True);(self.base/'receipts').mkdir(parents=True)
+        self.figure=self.base/'figures/fig-one.tex'
+        self.figure.write_text(r'\begin{tikzpicture}\draw (0,0)--(1,1);\end{tikzpicture}')
+        self.receipt=self.base/'receipts/fig-one.json'
+        self.receipt.write_text('{"alt": "a line"}')
+        for name in ('inventory.json','layout-review.json','typography-review.json'):
+            (self.base/name).write_text('{"figures": []}')
+        for relative in self.pool._POOL_SHARED_INPUTS:
+            target=self.root/relative;target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_text(self.SHARED_SENTINEL)
+        self.build=self.root/'build';self.build.mkdir()
+        self._swap(ROOT=self.root,BASE=self.base,BUILD=self.build,
+                   STAMP=self.build/'candidates-pool-stamp.json',
+                   _engine_banner=lambda:'LuaHBTeX pinned-for-test')
+
+    def _swap(self,**values):
+        for name,value in values.items():
+            original=getattr(self.pool,name)
+            setattr(self.pool,name,value)
+            self.addCleanup(setattr,self.pool,name,original)
+
+    def key(self,driver='DRIVER',font='FONT'):
+        return self.pool._pool_cache_key([self.figure],driver,font)
+
+    # ── The key must move when any input the artifact derives from moves ──
+
+    def test_key_is_stable_when_nothing_changes(self):
+        self.assertEqual(self.key(),self.key())
+
+    def test_key_changes_on_figure_source_edit(self):
+        before=self.key()
+        self.figure.write_text(self.figure.read_text()+r'\relax')
+        self.assertNotEqual(before,self.key())
+
+    def test_key_changes_on_receipt_edit(self):
+        before=self.key()
+        self.receipt.write_text('{"alt": "a different description"}')
+        self.assertNotEqual(before,self.key())
+
+    def test_key_changes_on_each_review_contract(self):
+        """The geometry and typography audits read these; a contract edit must re-run them."""
+        for name in ('inventory.json','layout-review.json','typography-review.json'):
+            with self.subTest(contract=name):
+                before=self.key()
+                (self.base/name).write_text('{"figures": [], "edited": "%s"}'%name)
+                self.assertNotEqual(before,self.key(),f'{name} is outside the key')
+
+    def test_key_changes_on_every_declared_shared_input(self):
+        """Each declared shared input must actually reach the digest — a typo'd path would
+        otherwise sit in the tuple contributing a constant `<absent>` forever."""
+        for relative in self.pool._POOL_SHARED_INPUTS:
+            with self.subTest(shared=relative):
+                before=self.key()
+                (self.root/relative).write_text(self.SHARED_SENTINEL+f'% {relative}\n')
+                self.assertNotEqual(before,self.key(),f'{relative} is outside the key')
+                (self.root/relative).write_text(self.SHARED_SENTINEL)
+
+    def test_every_declared_shared_input_exists_in_the_real_tree(self):
+        """Guards the silent-drop direction the test above cannot see: a file renamed in the repo
+        keeps digesting as `<absent>`, so the key stops tracking it without any error."""
+        real=Path(__file__).resolve().parents[1]
+        missing=[r for r in self.pool._POOL_SHARED_INPUTS if not (real/r).is_file()]
+        self.assertEqual(missing,[],'declared pool inputs that no longer exist')
+
+    def test_key_changes_on_driver_font_driver_and_print_envelope(self):
+        import mage_latex
+        base=self.key()
+        self.assertNotEqual(base,self.key(driver='DRIVER2'),'driver text outside the key')
+        self.assertNotEqual(base,self.key(font='FONT2'),'font-reference driver outside the key')
+        original=mage_latex.FIGURE_WIDTH_BP
+        try:
+            mage_latex.FIGURE_WIDTH_BP=original+1
+            self.assertNotEqual(base,self.key(),'print envelope outside the key')
+        finally:
+            mage_latex.FIGURE_WIDTH_BP=original
+
+    # ── The guard must require key AND artifact, and fail OPEN in every other direction ──
+
+    def stamped(self):
+        """A complete, verifying pool: all artifacts present and a stamp written over them."""
+        (self.build/'candidates.pdf').write_bytes(b'%PDF-1.7 pool\n')
+        (self.build/'pages.json').write_text('{"book/a.svg": {"page": 1}}')
+        for name in ('geometry-audit.json','typography-audit.json'):
+            (self.build/name).write_text('{"findings": []}')
+        key=self.key();self.pool._pool_stamp_write(key)
+        return key
+
+    def test_reuse_hits_only_on_a_matching_key(self):
+        key=self.stamped()
+        self.assertIsNotNone(self.pool._pool_reuse(key))
+        self.assertIsNone(self.pool._pool_reuse('a-different-key'))
+
+    def test_reuse_returns_the_recorded_manifest(self):
+        key=self.stamped()
+        pdf,manifest=self.pool._pool_reuse(key)
+        self.assertEqual(pdf,self.build/'candidates.pdf')
+        self.assertEqual(manifest,{'book/a.svg':{'page':1}})
+
+    def test_reuse_refuses_a_tampered_or_truncated_artifact(self):
+        key=self.stamped()
+        (self.build/'candidates.pdf').write_bytes(b'truncated')
+        self.assertIsNone(self.pool._pool_reuse(key),'reuse trusted the stamp over the artifact')
+
+    def test_reuse_refuses_a_tampered_manifest(self):
+        key=self.stamped()
+        (self.build/'pages.json').write_text('{"book/a.svg": {"page": 99}}')
+        self.assertIsNone(self.pool._pool_reuse(key))
+
+    def test_reuse_refuses_when_an_audit_output_is_missing(self):
+        for name in self.pool._POOL_ARTIFACTS:
+            with self.subTest(artifact=name):
+                key=self.stamped()
+                (self.build/name).unlink()
+                self.assertIsNone(self.pool._pool_reuse(key),f'{name} absent and reuse still fired')
+
+    def test_reuse_fails_open_on_a_missing_or_corrupt_stamp(self):
+        key=self.stamped()
+        self.pool.STAMP.unlink()
+        self.assertIsNone(self.pool._pool_reuse(key))
+        self.pool.STAMP.write_text('{not json')
+        self.assertIsNone(self.pool._pool_reuse(key))
+
+    def test_a_partial_run_neither_reuses_nor_stamps(self):
+        """`--partial` compiles a SUBSET. It must not inherit a full pool, and a later full consumer
+        must not inherit its incomplete one — so the key is None and BOTH directions close at once."""
+        self.assertIsNone(self.pool._pool_key_for(True,[self.figure],'DRIVER','FONT'),
+                          'a partial run computed a key, so it can reuse or stamp a subset')
+        self.assertIsNotNone(self.pool._pool_key_for(False,[self.figure],'DRIVER','FONT'),
+                             'a full run must still be keyed')
+
+    def test_force_env_var_ignores_a_valid_stamp(self):
+        import os
+        key=self.stamped()
+        self.assertIsNotNone(self.pool._pool_reuse(key))
+        os.environ['MAGE_TIKZ_POOL_FORCE']='1'
+        self.addCleanup(os.environ.pop,'MAGE_TIKZ_POOL_FORCE',None)
+        self.assertIsNone(self.pool._pool_reuse(key))
+
+
 if __name__=='__main__':unittest.main()

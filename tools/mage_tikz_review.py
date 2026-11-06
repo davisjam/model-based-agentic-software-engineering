@@ -6,7 +6,7 @@ color originals are reflected in both editions. Candidate PDFs are included at
 native print size with alternate text; the publisher receives editable sources.
 """
 from __future__ import annotations
-import argparse,json,re,shutil,sys,subprocess,tempfile,zipfile
+import argparse,hashlib,json,os,re,shutil,sys,subprocess,tempfile,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
@@ -15,6 +15,118 @@ from mage_cover import _text
 from pypdf import PdfReader
 BASE=ROOT/'book/tikz'
 BUILD=ROOT/'latex/build/tikz'
+
+# ───────────────────────── Shared figure pool: one compile, two consumers ─────────────────────────
+# `compile_candidates()` has TWO consumers per book push and they do identical work:
+#
+#   1. the grayscale-candidate gate, run as `mage_tikz_review.py --figures-only`;
+#   2. the book PDF build, which pools the finished figure pages into the edition and needs this
+#      function's return values to do it.
+#
+# Both land in `latex/build/tikz/`. Pre-push orders them (1) then (2) through a phase dependency;
+# the publishing workflow runs (2) then (1) inside one job. So the second consumer reuses the
+# first's artifact when every input digests the same — and reuse is keyed on CONTENT, never on which
+# consumer ran first, because the two surfaces disagree about the order and neither is wrong.
+#
+# Contents, never mtimes: the drivers are rewritten on every call, so an mtime always looks new.
+#
+# The stamp is written only AFTER the compile converges and all four gates pass (page count,
+# monochrome raster, print envelope, geometry/typography audits), so it asserts "this exact PDF
+# passed these exact checks on these exact inputs". Reuse re-asserts the second half by re-digesting
+# the published artifacts rather than trusting the stamp. Every failure direction falls through to
+# compiling: a changed key, a missing or unparseable stamp, an artifact that no longer matches it, a
+# missing audit output. `MAGE_TIKZ_POOL_FORCE=1` ignores the stamp entirely.
+STAMP=BUILD/'candidates-pool-stamp.json'
+
+#: Shared inputs the pool's PDF and its audits derive from, beyond the per-figure sources: the TikZ
+#: preamble the driver inputs, the house style the font reference typesets under, and the gate code
+#: whose verdicts the stamp stands for.
+_POOL_SHARED_INPUTS=('book/tikz/mage-figures.sty','latex/house.sty','latex/book-fonts.tex',
+                     'tools/mage_tikz_review.py','tools/latex_build.py','tools/tikz_audit.py',
+                     'tools/mage_tikz_typography.py','tools/mage_tikz_links.py')
+
+#: Audit outputs a reusing consumer must find on disk — the compile path's side effects, which a
+#: later reader (the publication pooling, the figure-review book) expects to be present.
+_POOL_ARTIFACTS=('candidates.pdf','pages.json','geometry-audit.json','typography-audit.json')
+
+#: Set by `compile_candidates()` so a caller — and the timing harness — can tell reuse from compile.
+_pool_reused=None
+
+#: The font-metrics proof the typography audit measures the book's real body faces from. Hoisted to
+#: module scope so the reuse key can digest it: a change here changes the audit's reference and must
+#: invalidate the pool, which a string buried in the function body could not express.
+_FONT_DRIVER_TEX=r'''\documentclass[12pt]{book}
+\usepackage[mage]{house}
+\begin{document}
+\pagestyle{empty}
+Body text. \textbf{Bold text.} \textit{Italic text.} \textbf{\textit{Bold italic text.}}
+\end{document}
+'''
+
+def _sha(data:bytes)->str:
+    return hashlib.sha256(data).hexdigest()
+
+def _engine_banner()->str:
+    """The compiler's own version line. A toolchain change must invalidate the pool: the frozen CI
+    image and this host run different LuaLaTeX builds, and their output is not interchangeable."""
+    engine=shutil.which('lualatex')
+    if not engine:return 'absent'
+    try:
+        return subprocess.run([engine,'--version'],capture_output=True,text=True,
+                              timeout=60).stdout.splitlines()[0].strip()
+    except (OSError,subprocess.SubprocessError,IndexError):
+        return 'unknown'
+
+def _pool_key_for(partial,paths,driver_text,font_driver_text):
+    """The pool key, or None when this run must neither reuse nor stamp.
+
+    A `--partial` run compiles a SUBSET, so its artifact must never be stamped (a later full consumer
+    would reuse an incomplete pool) and must never reuse one (a full pool does not answer the subset's
+    question). Returning None closes BOTH directions at once — the same hazard class as a limited-mode
+    flag that is safe in its real caller and destructive in a test caller, so it is a guard in code
+    rather than a warning comment."""
+    if partial:return None
+    return _pool_cache_key(paths,driver_text,font_driver_text)
+
+def _pool_cache_key(paths,driver_text,font_driver_text)->str:
+    """Digest every input the pool's PDF, manifest and audits derive from."""
+    parts=[b'pool-v1',driver_text.encode(),font_driver_text.encode(),
+           _engine_banner().encode(),
+           f'{mage_latex.FIGURE_WIDTH_BP}x{mage_latex.FIGURE_HEIGHT_BP}'.encode()]
+    for path in paths:
+        parts.append(path.read_bytes())
+        parts.append((BASE/'receipts'/f'{path.stem}.json').read_bytes())
+    for name in ('inventory.json','layout-review.json','typography-review.json'):
+        parts.append((BASE/name).read_bytes())
+    for relative in _POOL_SHARED_INPUTS:
+        candidate=ROOT/relative
+        parts.append(candidate.read_bytes() if candidate.is_file() else b'<absent>')
+    return _sha(b'\x00'.join(parts))
+
+def _pool_reuse(key:str):
+    """Return `(pdf, manifest)` when a stamped, still-verifying pool matches `key`; else None."""
+    if os.environ.get('MAGE_TIKZ_POOL_FORCE'):return None
+    try:
+        stamp=json.loads(STAMP.read_text())
+    except (OSError,ValueError):
+        return None
+    if stamp.get('key')!=key:return None
+    for name in _POOL_ARTIFACTS:
+        if not (BUILD/name).is_file():return None
+    # Re-verify the artifacts themselves rather than trusting the stamp's word for them.
+    for name in ('candidates.pdf','pages.json'):
+        if stamp.get('digests',{}).get(name)!=_sha((BUILD/name).read_bytes()):return None
+    try:
+        manifest=json.loads((BUILD/'pages.json').read_text())
+    except ValueError:
+        return None
+    return BUILD/'candidates.pdf',manifest
+
+def _pool_stamp_write(key:str)->None:
+    """Record the key and the artifact digests, AFTER every gate has passed."""
+    STAMP.write_text(json.dumps({'key':key,'digests':{name:_sha((BUILD/name).read_bytes())
+                                                      for name in ('candidates.pdf','pages.json')}},
+                                indent=2)+'\n')
 
 def inventory():
     records=json.loads((BASE/'inventory.json').read_text())
@@ -25,6 +137,8 @@ def candidates():
     return [r for r in inventory() if not r['source'].endswith('.jpg')]
 
 def compile_candidates(partial=False):
+    global _pool_reused
+    _pool_reused=None
     BUILD.mkdir(parents=True,exist_ok=True)
     records=candidates()
     if partial:records=[r for r in records if (BASE/'figures'/f"{Path(r['source']).stem}.tex").exists()]
@@ -46,6 +160,14 @@ def compile_candidates(partial=False):
 \setlength\PreviewBorder{3pt}
 \begin{document}
 '''+ '\n'.join(r'\input{'+p.relative_to(ROOT).as_posix()+'}' for p in paths)+r'\end{document}')
+    key=_pool_key_for(partial,paths,driver.read_text(),_FONT_DRIVER_TEX)   # None on a --partial run
+    if key is not None:
+        shared=_pool_reuse(key)
+        if shared:
+            _pool_reused=True
+            print(f'Native TikZ pool: reusing {len(shared[1])} verified candidates '
+                  f'(inputs unchanged; artifacts re-verified).',flush=True)
+            return shared
     pdf=latex_build.compile_tex(driver)
     pages=PdfReader(pdf).pages
     if len(pages)!=len(paths):raise ValueError('Candidate page count differs from source count')
@@ -82,19 +204,15 @@ def compile_candidates(partial=False):
     # Use the real book style as the reference, so this gate follows future
     # edition font changes and catches local TikZ overrides/fallbacks too.
     font_driver=BUILD/'body-font-reference.tex'
-    font_driver.write_text(r'''\documentclass[12pt]{book}
-\usepackage[mage]{house}
-\begin{document}
-\pagestyle{empty}
-Body text. \textbf{Bold text.} \textit{Italic text.} \textbf{\textit{Bold italic text.}}
-\end{document}
-''')
+    font_driver.write_text(_FONT_DRIVER_TEX)
     body_fonts=reference_fonts(latex_build.compile_tex(font_driver))
     typography=json.loads((BASE/'typography-review.json').read_text())
     if partial:
         typography['figures']=[r for r in typography['figures'] if r['source'] in manifest]
     audit_typography(pdf,manifest,typography,BUILD/'typography-audit.json',body_fonts)
     print(f'Native TikZ pool: {len(pages)} candidates, all fit at their authored text sizes.',flush=True)
+    _pool_reused=False
+    if key is not None:_pool_stamp_write(key)   # only now: every gate above has passed
     return pdf,manifest
 
 def source_bundle():

@@ -61,7 +61,7 @@
           "section_id": "where-the-theory-came-from",
           "level": 2,
           "heading_text": "Where the theory came from",
-          "topic_sentence": "This book began with one hard engineering problem that emerged over months of building a real production system.",
+          "topic_sentence": "MAGE grew out of an engineering problem I encountered while building DocAble.",
           "id_source": "derived",
           "block_index": 25,
           "points": []
@@ -79,7 +79,7 @@
           "section_id": "the-originating-system",
           "level": 2,
           "heading_text": "The originating system",
-          "topic_sentence": "The originating system is DocAble, a production service for making documents accessible to people with disabilities.",
+          "topic_sentence": "DocAble is a web-based service for making documents accessible to people with disabilities.",
           "id_source": "derived",
           "block_index": 37,
           "points": []
@@ -106,7 +106,7 @@
           "section_id": "who-this-book-is-for",
           "level": 2,
           "heading_text": "Who this book is for",
-          "topic_sentence": "This book is for software engineers seeking to understand how autonomous agents change engineering practice.",
+          "topic_sentence": "This book is for several distinct audiences.",
           "id_source": "derived",
           "block_index": 55,
           "points": []
@@ -124,27 +124,27 @@
           "heading_text": "The Engineering Object",
           "topic_sentence": "Agent products and foundation models will continue to change.[note: Engineering predates machine learning in its use of models as purposeful representations of systems.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 24,
           "points": [
             {
               "slug": "the-agent-is-not-the-engineering-object",
               "text": "Foundation models and agent products keep changing; the durable engineering problem begins when an agent works autonomously where \"it usually works\" is not an acceptable standard.",
-              "block_index": 23
+              "block_index": 25
             },
             {
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is an engineering methodology that uses models and the engineered environment to guide work and enforce selected obligations; engineers choose which decisions persist and how much judgment to delegate in light of potential leverage and risk.",
-              "block_index": 25
+              "block_index": 27
             },
             {
               "slug": "modeling-and-alignment-supply-the-instruction-package",
               "text": "Modeling and Alignment supply the printer's missing instruction halves.",
-              "block_index": 29
+              "block_index": 31
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE shifts the primary engineering focus to the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 35
+              "block_index": 37
             }
           ]
         },
@@ -154,27 +154,27 @@
           "heading_text": "Examine the Environment First",
           "topic_sentence": "“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked.",
           "id_source": "explicit",
-          "block_index": 37,
+          "block_index": 39,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "Before blaming productive machinery, examine the engineer’s work in representing the problem, choosing required properties, and arranging how the result will be checked.",
-              "block_index": 39
+              "block_index": 41
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Agent inference can fill gaps in the engineering supplied to it, hiding omissions; a completed artifact does not establish that the inferred choices satisfy the intended properties or acceptable tradeoffs.",
-              "block_index": 41
+              "block_index": 43
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "Inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing a capability limit; failed output alone does not establish that limit.",
-              "block_index": 43
+              "block_index": 45
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 45
+              "block_index": 47
             }
           ]
         }
@@ -528,12 +528,12 @@
             {
               "slug": "the-two-problems-representation-and-enforcement",
               "text": "The two problems, related but distinct: the Representation Problem (how to represent a large system so relevant properties are reasoned about without reconstruction) answered by Modeling in Chapter 2, and the Enforcement Problem (how intent comes to bind autonomous work so satisfying obligations does not depend on the producer self-certifying) answered by Alignment in Chapter 3.",
-              "block_index": 4
+              "block_index": 6
             },
             {
               "slug": "modeling-and-alignment-complement-one-another",
               "text": "Modeling represents selected system properties; Alignment constrains work and evaluates results. In DocAble, the content representation supports comparison and the validator fails a job that loses original extracted content.",
-              "block_index": 9
+              "block_index": 11
             }
           ]
         },
@@ -543,12 +543,12 @@
           "heading_text": "The Methodology Extends Beyond Software",
           "topic_sentence": "The same questions will arise wherever humans delegate work to agents.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 14,
           "points": [
             {
               "slug": "the-problem-is-larger-than-software",
               "text": "Delegating work to agents raises the same engineering questions across domains, but the useful representations and credible evidence differ.",
-              "block_index": 13
+              "block_index": 15
             }
           ]
         }
@@ -1579,7 +1579,7 @@
         },
         {
           "slug": "software-engineering-has-a-traceability-heritage-alignment-builds-on",
-          "text": "Software engineering already connects intent to realization through requirements, traceability, verification, and acceptance; Alignment builds on that tradition but adds a further question — should the resulting judgment merely inform the work, or should the environment enforce it?",
+          "text": "Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis; engineers separately decide how an evaluation should affect the work.",
           "block_index": 6
         },
         {

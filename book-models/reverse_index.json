@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 227,
       "concepts": 89,
-      "labels": 91,
-      "refs": 108,
+      "labels": 92,
+      "refs": 109,
       "chapters": 76,
       "parts": 9,
       "points": 781,
@@ -3589,7 +3589,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-41",
+          "element": "1.1-the-printer::block-43",
           "role": "paragraph-point"
         }
       ]
@@ -3629,7 +3629,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-43",
+          "element": "1.1-the-printer::block-45",
           "role": "paragraph-point"
         }
       ]
@@ -3859,7 +3859,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-35",
+          "element": "1.1-the-printer::block-37",
           "role": "paragraph-point"
         }
       ]
@@ -3969,7 +3969,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-25",
+          "element": "1.1-the-printer::block-27",
           "role": "paragraph-point"
         }
       ]
@@ -4279,7 +4279,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-9",
+          "element": "1.4-the-new-engineering-problem::block-11",
           "role": "paragraph-point"
         }
       ]
@@ -4309,7 +4309,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-29",
+          "element": "1.1-the-printer::block-31",
           "role": "paragraph-point"
         }
       ]
@@ -6364,7 +6364,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-39",
+          "element": "1.1-the-printer::block-41",
           "role": "paragraph-point"
         }
       ]
@@ -6484,7 +6484,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-23",
+          "element": "1.1-the-printer::block-25",
           "role": "paragraph-point"
         }
       ]
@@ -7394,7 +7394,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-13",
+          "element": "1.4-the-new-engineering-problem::block-15",
           "role": "paragraph-point"
         }
       ]
@@ -7784,7 +7784,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-4",
+          "element": "1.4-the-new-engineering-problem::block-6",
           "role": "paragraph-point"
         }
       ]
@@ -8264,7 +8264,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-45",
+          "element": "1.1-the-printer::block-47",
           "role": "paragraph-point"
         }
       ]
@@ -10909,12 +10909,12 @@
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-4",
+          "element": "1.4-the-new-engineering-problem::block-11",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-9",
+          "element": "1.4-the-new-engineering-problem::block-6",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -11109,11 +11109,6 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-41",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
           "element": "1.1-the-printer::block-43",
           "role": "paragraph-term[tier-2]"
         },
@@ -11124,7 +11119,12 @@
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-38",
+          "element": "1.1-the-printer::block-47",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.1-the-printer::block-40",
           "role": "section-term[tier-1]"
         }
       ]
@@ -11184,12 +11184,12 @@
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-23",
+          "element": "1.1-the-printer::block-25",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-25",
+          "element": "1.1-the-printer::block-27",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -11904,7 +11904,7 @@
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-4",
+          "element": "1.4-the-new-engineering-problem::block-6",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -12869,7 +12869,7 @@
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-4",
+          "element": "1.4-the-new-engineering-problem::block-6",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -13269,12 +13269,12 @@
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-4",
+          "element": "1.4-the-new-engineering-problem::block-11",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-9",
+          "element": "1.4-the-new-engineering-problem::block-6",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13689,12 +13689,12 @@
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-29",
+          "element": "1.1-the-printer::block-3",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-3",
+          "element": "1.1-the-printer::block-31",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13754,7 +13754,7 @@
         },
         {
           "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-4",
+          "element": "1.4-the-new-engineering-problem::block-6",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -14869,11 +14869,6 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-39",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
           "element": "1.1-the-printer::block-41",
           "role": "paragraph-term[tier-2]"
         },
@@ -14884,7 +14879,12 @@
         },
         {
           "view": "outline",
-          "element": "1.1-the-printer::block-38",
+          "element": "1.1-the-printer::block-45",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.1-the-printer::block-40",
           "role": "section-term[tier-1]"
         }
       ]
