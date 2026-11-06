@@ -18,6 +18,12 @@ readings:
       items:
         - cite: anthropic2026harnesses
           annotation: 'Anthropic, ["Effective Harnesses for Long-Running Agents"](https://www.anthropic.com/research/effective-harnesses-for-long-running-agents). An agent working across many sessions starts each one with no memory of the last, so it tends to try too much at once or declare the work done too early. The post describes a fix: an "initializer" agent sets up a feature list, a progress log and git, and later sessions build one feature at a time with end-to-end tests and clean handoffs. Read it as harness design — the H in the Act II decomposition — rather than as vendor guidance.'
+    - heading: Kiro's specification and checking workflow
+      items:
+        - cite: kiro2026specs
+          annotation: 'Kiro, ["Specs"](https://kiro.dev/docs/specs/). Inspect the requirements, design, and task documents that Kiro maintains during development. Compare their roles with the work orders and design documents in Lecture 3. Which engineering decisions does the workflow make available for review?'
+        - cite: kiro2026correctness
+          annotation: 'Kiro, ["Correctness with Property-based Tests"](https://kiro.dev/docs/specs/correctness/). Read how the IDE connects requirements to generated properties and tests, including the stated limitations. Be ready to explain what an engineer should inspect when a generated property passes, and who should decide whether to change the requirement, implementation, or test when they disagree.'
     - heading: A factory applied to the code nobody wanted to touch
       items:
         - cite: launchdarkly2026factory
@@ -56,6 +62,8 @@ This unit concludes Act II by examining how engineers build software with agents
 **Lecture 2: Agentic Software Factories.** We extend the individual development environment into a production system. The factory metaphor introduces two complementary engineering problems, process design and tolerance. Industrial examples illustrate different ways organizations arrange agentic production, preserve engineering knowledge, and control the admission of changes.
 
 **Lecture 3: Inside an Agentic Software Factory.** We examine the development environment used to build DocAble, a document accessibility remediation service. A strategy document records priorities; structured work orders describe engineering obligations and implementation plans; an orchestrator schedules agents; and lifecycle hooks enforce or reinforce the processes they follow. Engineering models help agents discover constraints before modifying code, while validation and independent audits determine whether work is complete. The case illustrates both the opportunities and limitations of automated software production.
+
+The closing comparison examines Kiro, whose harness provides a specification workflow and connects requirements to generated property-based tests. Students apply the same engineering questions to both environments: what knowledge is represented, which checks supply evidence, and who may revise an obligation? The comparison shows how the ideas developed in Act II apply to an existing commercial tool.
 
 ## From delegation to a working agent
 
