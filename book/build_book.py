@@ -33,9 +33,11 @@ substituted at build time so the headline numbers live in one place.
 """
 from __future__ import annotations
 
+import concurrent.futures
 import functools
 import hashlib
 import html
+import itertools
 import json
 import os
 import pathlib
@@ -44,6 +46,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 from typing import Callable, NamedTuple
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -6800,8 +6803,74 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     return sections
 
 
+def _split_jobs() -> int:
+    """Worker count for the section compiles, clamped to 1..6 (`MAGE_PDF_SPLIT_JOBS` tunes it).
+
+    DEFAULT 1 — the fan-out is LANDED INERT, on purpose. The mechanism is here and reviewable, but the
+    speed claim behind it is NOT yet measured: the 261106 validation run could not complete because a
+    concurrent writer had left a book projection stale (`sync(check=True)` refuses, correctly), and the
+    host was at load average 48, so no comparison against the clean serial baseline was obtainable.
+    Landing an unmeasured concurrency change switched ON inside a push GATE is the wrong trade — one
+    per-task-vs-per-thread cache-assignment race was already found and fixed in review, which is
+    evidence for caution rather than against it. So this follows the repo's audit-only-first landing
+    discipline: the code lands with today's behaviour, and the default flips to 3 once someone measures
+    a quiet tree.
+    TO MEASURE: `MAGE_PDF_SPLIT_JOBS=3` on a tree whose projections are in sync, against the recorded
+    serial baseline of 752.9s for the 21 section documents (64 LuaLaTeX invocations, 772.8s of engine
+    time, whole-book render 3 passes / 223.1s) in `.scratch/prepush-optimization-261106.md`.
+    When flipping it on, 3 matches the pre-push hook's own pool: this machine routinely carries an agent
+    fleet, and the hook can have the print-toolchain container and the handbook render in its other two
+    slots, so an unbounded fan-out would oversubscribe the host the gate is trying to be cheap on.
+    """
+    try:
+        n = int(os.environ.get("MAGE_PDF_SPLIT_JOBS", "1"))
+    except ValueError:
+        n = 1
+    return max(1, min(6, n))
+
+
+def _split_texmf_cache(worker: int) -> pathlib.Path:
+    """A persistent per-worker LuaLaTeX cache, seeded by an APFS clone of the warm shared one.
+
+    Concurrent compilers racing a single luaotfload database can corrupt it, so each worker gets its
+    own. Seeding by clone means a worker does not pay the cold font-database rebuild the shared cache
+    exists to avoid; correctness never depends on the seed, only warmth does. This mirrors the pre-push
+    hook's per-phase caches, deliberately — one pattern for the same hazard.
+    """
+    base = ROOT / "latex" / "build" / ".texmf-var"
+    cache = ROOT / "latex" / "build" / f".texmf-var-split{worker}"
+    if not cache.is_dir():
+        if base.is_dir():
+            if subprocess.run(["cp", "-c", "-R", str(base), str(cache)],
+                              capture_output=True).returncode != 0:
+                shutil.rmtree(cache, ignore_errors=True)
+                try:
+                    shutil.copytree(base, cache)
+                except OSError:
+                    shutil.rmtree(cache, ignore_errors=True)
+        cache.mkdir(parents=True, exist_ok=True)
+    return cache
+
+
 def build_pdf_split() -> int:
-    """Compile each review section through the same native LaTeX assembly."""
+    """Compile each review section through the same native LaTeX assembly, several at a time.
+
+    The sections are mutually independent documents — each gets its own driver, its own output
+    directory under `book/latex/build/<name>/`, and its own output PDF — so they are the one genuinely
+    parallel part of the print build. Measured 261106: twenty-one sections compiled serially were the
+    larger half of a book-PDF phase that ran over twenty minutes while the pre-push hook's three-worker
+    pool sat one-third used, because the dominant phase was internally a chain of sequential LuaLaTeX
+    invocations. There is no `-j` for ONE LaTeX document; there is for twenty-one of them.
+
+    What is NOT parallel, and why: driver PREPARATION stays serial. `prepare_pdf` reads the whole-book
+    `book_ir` record set and the full build's generated chapter `.tex`, and it is cheap precisely because
+    the full render already ran — so it buys nothing from a pool and would race the shared book record
+    assembly. Only the compile-and-check half, which is all of the cost, fans out.
+
+    Same commands, same checks, same failure texts as the serial loop. Each section's output is buffered
+    and printed in SECTION ORDER rather than completion order, so the log reads identically to the serial
+    build; this repo has repeatedly lost a verdict to reading the wrong fragment of an interleaved log.
+    """
     import book_ir
     sys.path.insert(0, str(ROOT / "tools"))
     import mage_latex
@@ -6813,26 +6882,59 @@ def build_pdf_split() -> int:
     base = pathlib.Path(_PDF_FILENAME).stem
     for old in HERE.glob(f"{base}-[0-9][0-9]-*.pdf"):
         old.unlink()
+
     failures = []
+    prepared = []
     for index, (suffix, slugs) in enumerate(sections):
         if not slugs:
             failures.append(suffix)
             continue
+        name = f"{base}-{index:02d}-{suffix}"
         try:
-            name = f"{base}-{index:02d}-{suffix}"
-            driver = mage_latex.prepare_pdf(slugs=slugs, name=name)
-            pdf = compile_tex(driver)
+            prepared.append((suffix, name, mage_latex.prepare_pdf(slugs=slugs, name=name)))
+        except (RuntimeError, ValueError, OSError) as error:
+            print(f"ERROR: section {suffix}: {error}", file=sys.stderr)
+            failures.append(suffix)
+
+    jobs = _split_jobs()
+    # Caches are claimed PER THREAD, not per task. A `next(counter) % jobs` assignment looks equivalent
+    # and is not: with three workers, the fourth task to START would take cache 0 while the first task
+    # may still be holding it, which is precisely the concurrent-luaotfload race the caches exist to
+    # prevent. A pool thread runs one task at a time and is reused, so thread identity is the correct key.
+    cache_lock = threading.Lock()
+    cache_of_thread: dict[int, pathlib.Path] = {}
+    cache_ids = itertools.count()
+
+    def _my_cache() -> pathlib.Path:
+        key = threading.get_ident()
+        with cache_lock:
+            if key not in cache_of_thread:
+                cache_of_thread[key] = _split_texmf_cache(next(cache_ids))
+            return cache_of_thread[key]
+
+    def compile_section(task):
+        suffix, name, driver = task
+        try:
+            pdf = compile_tex(driver, texmf_cache=_my_cache())
             driver_text, chapter_texts, _ = mage_latex.pdf_sources(driver)
             source = driver_text + "\n" + "\n".join(chapter_texts)
             check_pdf(pdf, headings=_expected_chapter_headings(source),
                       sections=len(re.findall(r"\\section\*?\{", source)))
             destination = HERE / (name + ".pdf")
             shutil.copy2(pdf, destination)
-            print(f"Section PDF: {destination.name} ({_pdf_page_count(destination)} pages)")
+            return suffix, f"Section PDF: {destination.name} ({_pdf_page_count(destination)} pages)", None
         except (RuntimeError, ValueError, OSError) as error:
-            print(f"ERROR: section {suffix}: {error}", file=sys.stderr)
-            failures.append(suffix)
-    print(f"Native section PDFs: {len(sections) - len(failures)}/{len(sections)} passed")
+            return suffix, None, f"ERROR: section {suffix}: {error}"
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as pool:
+        for suffix, line, error in pool.map(compile_section, prepared):
+            if error:
+                print(error, file=sys.stderr)
+                failures.append(suffix)
+            else:
+                print(line)
+    print(f"Native section PDFs: {len(sections) - len(failures)}/{len(sections)} passed "
+          f"({jobs} worker(s))")
     return 1 if failures else 0
 
 

@@ -106,7 +106,8 @@ def namespace_heading_links(latex: str, slug: str) -> str:
                   lambda m: m[1] + destinations.get(m[2], m[2]) + m[3], latex)
 
 
-def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
+def compile_tex(source: Path, output_dir: Path | None = None, *,
+                texmf_cache: Path | str | None = None) -> Path:
     source = Path(source).resolve()
     output_dir = Path(output_dir).resolve() if output_dir else source.parent
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -117,7 +118,13 @@ def compile_tex(source: Path, output_dir: Path | None = None) -> Path:
     env["TEXINPUTS"] = str(ROOT / "latex") + os.pathsep + env.get("TEXINPUTS", "")
     # Reuse one local cache across whole books, excerpts and covers. Rebuilding the
     # system font database in every output directory dominates cold compile time.
-    cache = Path(env.get("MAGE_TEXMF_CACHE", str(ROOT / "latex" / "build" / ".texmf-var")))
+    #
+    # `texmf_cache` overrides it for ONE call, which is what makes concurrent compilation safe: two
+    # LuaLaTeX processes sharing one luaotfload database can corrupt it, so a caller that runs several
+    # compiles at once hands each worker its own cache. The env var stays the default for every serial
+    # caller, and an explicit argument beats it because the parallel caller cannot set per-thread environ.
+    cache = Path(texmf_cache or env.get("MAGE_TEXMF_CACHE",
+                                        str(ROOT / "latex" / "build" / ".texmf-var")))
     cache.mkdir(parents=True, exist_ok=True)
     env["TEXMFVAR"] = str(cache)
     env["TEXMFCACHE"] = str(cache)
