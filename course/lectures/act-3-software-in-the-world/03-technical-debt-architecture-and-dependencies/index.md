@@ -1,7 +1,14 @@
 ---
-title: "(Agentic) Technical Debt: Architecture and Dependencies"
+title: "Technical Debt in Agentic Software Engineering"
 readings:
   groups:
+    - heading: Three forms of debt in the age of AI
+      items:
+        - cite: storey2026tripledebt
+          annotation: 'Storey, ["From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"](https://queue.acm.org/doi/10.1145/3807966) (*ACM Queue* 24:2, June 2026). Read the whole article. Storey argues that two kinds of deterioration deserve names alongside technical debt rather than being folded into it: cognitive debt, the erosion of a team''s shared understanding of how its system works, and intent debt, the missing record of goals, constraints, and rationale that a later engineer or agent would need. The point to carry away is that the three reside in different places — the software, the people, the written record — and are therefore repaired by different work. Consider which of the three cheap agent-generated implementation grows fastest, and which of them your test suite can see at all.'
+        - cite: tavantzis2026cognitivedebt
+          locator: 'the findings on how cognitive debt manifests and what practitioners do about it'
+          annotation: 'Tavantzis, Trinkenreich, Greiler, J. C. Araújo, M. C. Araújo, Santos, Serebrenik, Storey, and Baldassarre, ["Cognitive Debt in the GenAI Era: Listening to Practitioners'' Voices on the Loss of Understanding"](https://arxiv.org/abs/2610.37888) (preprint, 27 October 2026; under review at ICSE-SEIP). Read the findings on how cognitive debt manifests and what practitioners do about it; the method section is optional. Reviewing 76 grey-literature sources, the authors report that cognitive debt accumulates behind working code and passing tests, particularly where AI-generated changes are accepted without the reviewer developing enough understanding to predict their consequences. The contribution is empirical rather than conceptual: practitioners already describe this failure, and they describe it as surfacing only once something must be changed or explained.'
     - heading: How architectural disorder emerges
       items:
         - cite: foote1999bigballofmud
@@ -15,6 +22,10 @@ readings:
       items:
         - cite: openssf2025evaluating
           annotation: 'OpenSSF Best Practices Working Group, ["Concise Guide for Evaluating Open Source Software"](https://best.openssf.org/Concise-Guide-for-Evaluating-Open-Source-Software.html) (2025). Read the whole guide, concentrating on necessity, authenticity, maintenance, dependency management, security practices and practical evaluation. It gives an engineering procedure for deciding whether to adopt a dependency, rather than simply telling you to scan for known vulnerabilities, and it distinguishes evaluating a project''s security practices from evaluating its suitability for your application.'
+    - heading: Optional reference — the triple-debt argument in brief
+      items:
+        - cite: storey2026cognitivedebtessay
+          annotation: 'Storey, ["How Generative and Agentic AI Shift Concern from Technical Debt to Cognitive Debt"](https://margaretstorey.com/blog/2026/02/09/cognitive-debt/) (February 2026). Optional. The shorter essay that precedes the *Queue* article, and the source of the student-team example this unit uses: a team that built software rapidly with AI and, several weeks later, could no longer explain why its design decisions had been made or how the parts were meant to work together. Read it if you want the argument before it was formalized into the triple-debt model.'
     - heading: Optional reference — service decomposition in depth
       items:
         - cite: fowler2014microservices
@@ -79,46 +90,78 @@ assignments: []
 instructor_notes: ""
 status: draft
 materials:
-  - title: "Lecture slides — (Agentic) Technical Debt: Architecture and Dependencies"
+  - title: "Lecture slides — Technical Debt in Agentic Software Engineering"
     src: 3-3-Agentic-Technical-Debt-Architecture-and-Dependencies.pptx
 ---
 
-**Premise.** *A working implementation is not necessarily one we can cheaply comprehend or safely change. Engineers must understand its architecture and dependencies to judge the costs and consequences of modifying it.*
+**Premise.** *A working implementation is not necessarily one we understand, one whose reasons anyone recorded, or one we can safely change. Engineers must judge all three before they can say what the next change will cost.*
 
 A coding agent can produce an application that satisfies its input/output specification, passes its tests, and runs in the intended environment. That is useful evidence about the implementation, and it settles less than it appears to. None of it establishes what the next consequential change will cost, or whether that change can be made safely. The question stays invisible until someone must make it.
 
-Two graphs decide that cost. The internal one records which parts of our own implementation depend on which others, and therefore which parts must change together. The external one records which inherited components we rely on, and what maintenance, compatibility, security, and licensing obligations arrive with them. This unit recovers both from a working implementation, then treats technical debt as a separate economic judgment about what to do with what we find.
+Three different things can have deteriorated behind such a system, and only one of them is in the code. The structure may make changes more expensive than they need to be. The team's shared understanding of how the system works may have thinned to the point where nobody can predict what a change touches. And the goals, constraints, and rationale that a later engineer or a later agent would need may never have been written down. This unit separates the three, then recovers the models and collects the evidence each one needs.
 
 ## Structure of this unit
 
-**Lecture: (Agentic) Technical Debt: Architecture and Dependencies.** A single lecture in two movements. The parentheses in the title mark a claim: technical debt and dependency management are longstanding engineering problems, and coding agents change their economics and the circumstances under which they arise, not their nature. Throughout, we ask what models and evidence support a decision to retain, restructure, update, or replace part of a working system.
+**Lecture: Technical Debt in Agentic Software Engineering.** *Understanding, architecture, and dependencies.* A single lecture in three movements. Technical debt, architecture, and dependency risk are longstanding engineering problems; coding agents change their economics and the circumstances under which they arise, not their nature. Throughout, we ask what models and evidence support a decision to retain, restructure, update, or replace part of a working system.
 
-**Movement 1: Technical debt and architecture recovery.** *What structure did we build, and what will it cost to change?* We examine when working software becomes difficult to change, recover and evaluate architecture from an existing implementation, compare architectural patterns as engineering choices, and treat technical debt as the economics of controlled restructuring.
+**Movement 1: Cognitive and intent debt.** *What do we understand about the software we obtained?* We adopt Storey's Triple Debt Model, separate deteriorating understanding from an unrecorded rationale, show that both survive a green test suite, and close by recovering an architecture — the first evidence in the unit that is not a passing test.
 
-**Movement 2: Dependencies and inherited obligations.** *What obligations accompany the components on which we rely?* We extend the analysis beyond the code we wrote to the software we inherited, covering dependencies, licenses, vulnerabilities, and provenance, and ask what gives engineers confidence in a working system they must change.
+**Movement 2: Architectural technical debt.** *Can we afford the structure the agent chose?* We define architectural technical debt in the established sense, price a structural compromise before examining any pattern, then work through weak boundaries and erosion, change-impact analysis, the modular monolith against separately deployed services, and what must stay true during a restructuring.
 
-## When working software becomes difficult to change
+**Movement 3: Dependency management and technical debt.** *What did we agree to maintain and trust?* We distinguish maintenance risk, security exposure, and distribution obligation from debt proper, then use dependency graphs, SBOMs, licenses, provenance, and vulnerability evidence to decide whether to retain, update, isolate, replace, or remove a component.
+
+## Three forms of debt
+
+Margaret-Anne Storey's Triple Debt Model names the three and says where each one lives. The distinction is the useful part: these are not three words for one kind of badness, and they are not repaired by the same work.
+
+| Debt | Where it resides | What has deteriorated |
+|---|---|---|
+| Technical debt | The software | Structure and implementation choices that increase future engineering costs |
+| Cognitive debt | The people who build it | Shared understanding of how the system works and how it can be changed |
+| Intent debt | Externalized knowledge | Recorded goals, constraints, and rationale needed to understand and evolve the system |
+
+Each can occur without the others. A system can have a clean architecture and substantial cognitive debt: nobody has left, and nobody can predict what a change will break. A system can be thoroughly documented and still carry heavy technical debt, because writing a compromise down does not make it cheap. And a team can understand a system perfectly while having recorded none of it, which is intent debt with no cognitive debt at all — until somebody leaves.
+
+Storey's own example is a student team that built software rapidly with AI. By week eight simple changes had become unexpectedly difficult, and the team first blamed messy code. The investigation found something else: no one could explain why particular design decisions had been made, or how the parts were supposed to work together. The features still shipped and the tests still passed. A grey-literature study of 76 practitioner sources reports the same shape, with cognitive debt accumulating behind working software and passing tests, particularly where AI-generated changes are accepted without the reviewer developing enough understanding to predict their consequences.
+
+The three debts call for three kinds of work, and the repairs do not substitute for one another.
+
+| Debt | What would show it | What repairs it |
+|---|---|---|
+| Cognitive | Can engineers explain the structure and predict what a change touches? | Guided investigation, review that teaches, deliberate knowledge sharing |
+| Intent | Are the consequential constraints and decisions recorded anywhere? | Models, decision records, specifications |
+| Technical | Do structural compromises make the changes we expect more expensive? | Refactoring, restructuring, replacement |
+
+Refactoring changes the code and leaves the team's understanding where it was, or worse, because the structure they half-understood has moved. Documentation records a decision and corrects no architecture. This is where models earn their place and also where the overclaim lies: a model of an obligation or a recorded decision is exactly the externalized knowledge intent debt is missing, so writing the architecture down reduces intent debt. It does not by itself reduce cognitive debt. **A model being available does not establish that any engineer understands it.** An accurate, current page nobody consults is not shared understanding.
+
+There is a diagnostic asymmetry worth naming, because it explains why cognitive debt goes unmanaged. Technical debt leaves evidence in the artifact, so a tool can look for it. Cognitive debt leaves evidence only in what people can and cannot do, so the only probe is to ask them.
+
+## Buying back the understanding
+
+Of the three debts, only one leaves evidence a tool can read. The repair for the other two is investigation, and architecture recovery is the concrete form it takes: it produces understanding where there was none, and it produces an artifact that records what was found.
 
 Consider the campus reservation service developed in the preceding units. It now has an execution environment, persistent storage, and a means of deploying updates. Suppose the university introduces laboratory reservations, which require different booking policies and approval procedures. The original application still works, but implementing the new requirement may reveal that reservation rules are scattered across HTTP handlers, database queries, and authorization checks.
-
-This is an architectural problem because the organization of the implementation affects the cost of change. Act I described architecture in terms of parts, responsibilities, boundaries, and interaction rules, and observed that architecture allocates coupling rather than eliminating it. Those decisions can be examined before implementation, and they can also be recovered from an existing system.
-
-The engineering question is not whether the code looks elegant. It is whether the existing structure makes consequential changes more expensive or risky than they need to be.
-
-## Recovering and evaluating architecture
 
 An engineer examining an unfamiliar implementation can construct a dependency model showing which components use which others. The recovered model is an abstraction, constructed to answer a particular engineering question rather than to describe every implementation detail. Recovery becomes informative when that model is set against the structure the architecture intended.
 
 ![Two panels hold the same three components in the same positions. The INTENDED MODEL panel stacks HTTP handlers above booking policy above persistence, with one arrow from HTTP handlers down to booking policy and a second from booking policy down to persistence; its note reads that each dependency points one layer down and no layer is skipped. The IMPLEMENTATION panel repeats those three components and both of those arrows, and adds a third edge drawn in red: it leaves the right side of HTTP handlers, routes down around the booking policy layer, and enters persistence directly. That edge is labeled a forbidden dependency, because HTTP reaches persistence while skipping booking policy. A closing note reads that recovery produces the right-hand graph, and that comparing it with the intended model is what locates the departure, which either graph alone leaves invisible.](figures/recovering-architecture.svg)
 
-Two conditions describe what such a comparison can reveal, and both are statements about structure. A Big Ball of Mud is an implementation with few stable or comprehensible boundaries; Foote and Yoder describe how repeated local changes under schedule pressure produce one without anyone deciding on it. Architectural erosion is a relationship rather than a structure: the implementation increasingly violates boundaries an intended architecture established. A system can exhibit one without the other. Code written without a design cannot erode from it.
+Recovery answers what the structure *is*. It says nothing about what keeping it will cost, and the recovered model records no reasons: nobody has told us why the structure is like this, so the intent is still missing even once the understanding is bought.
+
+## Architectural technical debt
+
+The established term for the cost side is **architectural technical debt** (ATD): technical debt incurred in consequential architectural decisions — how the system is decomposed, what its interfaces are, which frameworks and technologies it rests on — choices that later become constraints on how the system can evolve. Verdecchia, Kruchten, Lago, and Malavolta develop the definition from interviews with software architects; Kruchten, Nord, and Ozkaya's *Managing Technical Debt*, written at Carnegie Mellon's Software Engineering Institute, is the practitioner treatment. ATD is more precise than "architecture and design debt," which blurs two scales; design debt stays a separate recognized category only where a treatment actually examines detailed design compromises, and this unit does not.
+
+Three phrases carry the definition. *Consequential* narrows it to decisions that are expensive to revisit. *Decisions* locates the debt in a choice that could have gone otherwise, not in a file somebody dislikes. And *become constraints* is the mechanism: a decomposition chosen in week two is a constraint by year two, and the cost arrives when evolution meets it.
+
+Two further conditions are routinely mistaken for this debt, and both are statements about structure rather than cost. A Big Ball of Mud is an implementation with few stable or comprehensible boundaries; Foote and Yoder describe how repeated local changes under schedule pressure produce one without anyone deciding on it. Architectural erosion is a relationship rather than a structure: the implementation increasingly violates boundaries an intended architecture established. A system can exhibit one without the other. Code written without a design cannot erode from it.
 
 | Condition | What we observe | Model required | Engineering question |
 |---|---|---|---|
 | Big Ball of Mud | Weak or indiscernible boundaries | Recovered architecture | Is the structure adequate for the expected changes? |
 | Architectural erosion | Divergence from intended boundaries | Intended and recovered architectures | Should we restore the intended boundaries or revise them? |
 
-Neither condition is a verdict on the engineering. Each is an observation that a later economic judgment acts on.
+Neither condition is a verdict on the engineering. Each is a possible *symptom* of architectural technical debt, and an observation that a later economic judgment acts on.
 
 A recovered model can also reveal cycles, heavily depended-upon components, and dependencies that cross intended boundaries. Other useful evidence includes fan-in and fan-out, the number of components affected by a representative change, and change coupling: components that repeatedly change together even when their static dependencies do not explain why.
 
