@@ -136,9 +136,9 @@ A second problem is placement. \textbf{An obligation can be stated clearly and s
 \label{semantic-gap}
 \end{figure}
 
-% <!-- point: a-deployment-can-pass-every-check-and-still-serve-a-blank-page | A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system. | terms: semantic-gap, earliest-legible-boundary -->
+% <!-- point: a-deployment-can-pass-every-check-and-still-serve-a-blank-page | Test the served page in a browser at the earliest boundary where the relevant composition can be exercised; a successful HTTP fetch alone does not establish correct rendering. | terms: semantic-gap, earliest-legible-boundary -->
 
-A deployment can pass twenty checks and still serve a blank page. No earlier check necessarily failed: the relevant property --- does the deployed page correctly render the emitted data? --- does not exist at the source-file, build, or emission boundary. It becomes legible only after those pieces compose in the served system. A smoke check that fetches the served page is the earliest boundary that can decide it.
+A deployment can pass twenty checks and still serve a blank page. Those checks may have examined source files, build outputs, and emitted data without testing how the deployed application combines them. If the obligation is that the served page displays the expected data, a smoke test should load that page in a browser and assert that the expected content appears. The check belongs at the earliest boundary where the relevant composition can be exercised, which may be a preview or staging deployment. A successful HTTP fetch alone does not establish that the page rendered correctly.
 
 % <!-- point: model-drift-at-the-commit-is-the-wrong-granularity | Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work. | terms: model-drift, semantic-gap -->
 

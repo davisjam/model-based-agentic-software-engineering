@@ -4644,3 +4644,26 @@ Provenance-carried admission removes a particular degree of freedom: a protected
 
 This is a graph-shaped variation on architectural enforcement. Layering constrains which components may interact across a layered structure. Provenance-carried admission instead constrains a particular derivation through an otherwise richer interaction graph: many implementation paths may exist, but only a path through the sanctioned node can produce an operation permitted to cross the admission boundary.
 ```
+
+## Chapter 1 figure roadmap caption, 6 November 2026
+
+- Source: `book/latex/sources/part1/1.4-the-new-engineering-problem.tex`, line 43.
+- Source revision: `2c98ebd83129058a60187f4ae2c3aa0b7ec9ba6f`.
+- Status: author-approved caption shortening; Chapter 2 and Chapter 3 now label the corresponding figure nodes.
+- Reason: keep the standalone explanation while moving the chapter signposts into the figure.
+
+```latex
+\emph{From substrate to method.} Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE\textquotesingle s corresponding answers: Modeling and Alignment.
+```
+
+## 2026-11-06 — V6: Require evidence of rendering, not merely a successful fetch
+
+Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex`, line 139; revision `2c98ebd83129058a60187f4ae2c3aa0b7ec9ba6f`. Author-approved replacement.
+
+Reason: Restore the earliest-boundary lesson while requiring evidence of browser rendering. A preview or staging deployment may supply the relevant composition earlier; a successful HTTP fetch alone does not establish that scripts ran or expected content appeared.
+
+```latex
+% <!-- point: a-deployment-can-pass-every-check-and-still-serve-a-blank-page | A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system. | terms: semantic-gap, earliest-legible-boundary -->
+
+A deployment can pass twenty checks and still serve a blank page. No earlier check necessarily failed: the relevant property --- does the deployed page correctly render the emitted data? --- does not exist at the source-file, build, or emission boundary. It becomes legible only after those pieces compose in the served system. A smoke check that fetches the served page is the earliest boundary that can decide it.
+```

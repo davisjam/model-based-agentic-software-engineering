@@ -74,10 +74,14 @@
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   },
   "style_review": {
+    "source": "book/assets/one-docable-job.svg",
+    "candidate": "book/tikz/figures/one-docable-job.tex",
+    "receipt": "book/tikz/receipts/one-docable-job.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+    "source_sha256": "6300edbe94d48d45c6bc4a025743b718983793dd923845aff3a212131cc9f26b",
     "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
     "fill": "White ordinary nodes, including Evidence; folded document outlines distinguish artifacts.",
     "bold": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
@@ -96,14 +100,23 @@
       "monochrome_pixels": true,
       "semantic_typography_checks": 4
     },
-    "book_references": []
+    "book_references": [],
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 1,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/one-docable-job.svg",
+    "candidate": "book/tikz/figures/one-docable-job.tex",
     "decision": "refined",
-    "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+    "source_sha256": "6300edbe94d48d45c6bc4a025743b718983793dd923845aff3a212131cc9f26b",
     "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
-    "reason": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
     "evidence": [
       {
         "source_text": "split for parallel work",
@@ -138,6 +151,7 @@
         ]
       }
     ],
+    "reason": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
     "checks": [
       {
         "text": "split for parallel work",
@@ -166,26 +180,69 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 4,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "semantic_typography_checks": 4
+    },
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 1,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
     }
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source": "book/assets/one-docable-job.svg",
+    "candidate": "book/tikz/figures/one-docable-job.tex",
+    "source_sha256": "6300edbe94d48d45c6bc4a025743b718983793dd923845aff3a212131cc9f26b",
+    "baseline_candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
+    "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
     "decision": "refined",
     "reason": "Equal-height service peers and more room at worker fork, output collection, merge, validation, and result approaches.",
-    "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      378.0050048828125,
+      346.1000061035156
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "specialized services",
+          "labels": [
+            "Generation",
+            "Render",
+            "OCR",
+            "Document / format machinery"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 9,
+      "width_bp": 378.005,
+      "height_bp": 363.108
+    },
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing vertical progression: nodes already have comfortable padding and clear shafts at native text size; no remaining cap-driven compression.",
@@ -209,24 +266,23 @@
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 1,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 9,
-      "width_bp": 378.005,
-      "height_bp": 363.108
+      "typography_findings": 0,
+      "reviewed_visually": true
     }
+  },
+  "author_feedback_20261106": {
+    "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+    "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+    "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+    "page": 1,
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "reviewed_visually": true
   }
 }

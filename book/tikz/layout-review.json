@@ -608,8 +608,8 @@
       "reason": "New figure authored at its reviewed size in the same change as the colour source. The three routes are interchangeable alternatives and so are the three uses, which is why each row shares one rail and one node width rather than being ranked or sequenced; ranking any member would assert what the figure exists to deny. No peer contract is declared because the symmetry is authored into the coordinates rather than inferred from them.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
-        376.33901977539062,
-        289.30099487304688
+        376.3390197753906,
+        289.3009948730469
       ],
       "contracts": {},
       "validation": {
@@ -631,8 +631,8 @@
         "decision": "retained",
         "reason": "376.34 x 289.30 bp inside the 450 x 560 bp envelope, every label at 11 pt or larger, and no terminal shaft below the 9 pt approach floor. Added height would not improve this drawing.",
         "after_dimensions_bp": [
-          376.33901977539062,
-          289.30099487304688
+          376.3390197753906,
+          289.3009948730469
         ],
         "after_font_sizes_pt": [
           11.0,
@@ -705,7 +705,7 @@
     {
       "source": "book/assets/one-docable-job.svg",
       "candidate": "book/tikz/figures/one-docable-job.tex",
-      "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+      "source_sha256": "6300edbe94d48d45c6bc4a025743b718983793dd923845aff3a212131cc9f26b",
       "baseline_candidate_sha256": "9819af463a3aca52ac7915849030df05010bf5e90b49c944f7b3f14841862dd4",
       "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
       "decision": "refined",
@@ -775,12 +775,21 @@
           10.0
         ],
         "reviewed_visually": true
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 1,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
       }
     },
     {
       "source": "book/assets/agentic-substrate.svg",
       "candidate": "book/tikz/figures/agentic-substrate.tex",
-      "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
       "baseline_candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
       "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
       "decision": "retained",
@@ -833,6 +842,15 @@
           10.0,
           10.5
         ],
+        "reviewed_visually": true
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
         "reviewed_visually": true
       }
     },
@@ -914,9 +932,9 @@
     {
       "source": "book/assets/substrate-to-method.svg",
       "candidate": "book/tikz/figures/substrate-to-method.tex",
-      "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+      "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
       "baseline_candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
-      "candidate_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+      "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
       "decision": "refined",
       "reason": "Aligned comparison peers in each row without changing the trait/problem/method hierarchy.",
       "reviewed_visually": true,
@@ -996,6 +1014,15 @@
           9.0,
           10.0
         ],
+        "reviewed_visually": true
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 3,
+        "geometry_findings": 0,
+        "typography_findings": 0,
         "reviewed_visually": true
       }
     },

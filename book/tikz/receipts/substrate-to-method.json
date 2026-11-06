@@ -70,11 +70,15 @@
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   },
   "style_review": {
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "receipt": "book/tikz/receipts/substrate-to-method.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
-    "candidate_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
     "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
     "bold": "Source-derived emphasis includes SUBSTRATE TRAIT; PROBLEM; METHOD; Representation problem; Enforcement problem; Modeling; Alignment. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
@@ -93,16 +97,27 @@
       "semantic_typography_checks": 9
     },
     "book_references": [
+      "part:2",
+      "part:3",
       "part:1",
       "part:4"
-    ]
+    ],
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 3,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
     "decision": "refined",
-    "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
-    "candidate_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
     "evidence": [
       {
         "source_text": "SUBSTRATE TRAIT",
@@ -233,6 +248,7 @@
         ]
       }
     ],
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "checks": [
       {
         "text": "SUBSTRATE TRAIT",
@@ -269,6 +285,16 @@
       {
         "text": "Compact relevant",
         "bold": false
+      },
+      {
+        "text": "Chapter 2",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Chapter 3",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
@@ -281,26 +307,82 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "semantic_typography_checks": 9
+    },
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 3,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
     }
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+    "baseline_candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
+    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
     "decision": "refined",
     "reason": "Aligned comparison peers in each row without changing the trait/problem/method hierarchy.",
-    "candidate_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      408.88299560546875,
+      184.4949951171875
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "finite-state comparison row",
+          "labels": [
+            "Finite working state",
+            "Representation problem",
+            "Modeling"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "productive-work comparison row",
+          "labels": [
+            "Probabilistic productive work",
+            "Enforcement problem",
+            "Alignment"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 12,
+      "width_bp": 418.229,
+      "height_bp": 184.495
+    },
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing substrate to method layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -324,24 +406,24 @@
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 3,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 12,
-      "width_bp": 418.229,
-      "height_bp": 184.495
+      "typography_findings": 0,
+      "reviewed_visually": true
     }
-  }
+  },
+  "author_feedback_20261106": {
+    "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+    "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+    "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+    "page": 3,
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "reviewed_visually": true
+  },
+  "caption": "From substrate to method. Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem."
 }

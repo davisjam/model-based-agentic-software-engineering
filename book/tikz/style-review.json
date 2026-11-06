@@ -367,7 +367,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "929d167a7a68c9543a9247ca563aabfc47aa9a02313efd5649bc9d7705dd3dfd",
+      "source_sha256": "6300edbe94d48d45c6bc4a025743b718983793dd923845aff3a212131cc9f26b",
       "candidate_sha256": "4ba59a1c9894e7ade2e39736609ebd4bf540afd8f5e622dba9b8cc10f379f582",
       "fill": "White ordinary nodes, including Evidence; folded document outlines distinguish artifacts.",
       "bold": "Retain ordinary Job and Validate weights as explicitly requested; restore the source italic edge explanations.",
@@ -386,7 +386,16 @@
         "monochrome_pixels": true,
         "semantic_typography_checks": 4
       },
-      "book_references": []
+      "book_references": [],
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 1,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/agentic-substrate.svg",
@@ -396,7 +405,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
       "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
       "fill": "White foundation/harness components and Agent; 5% enclosing environment identifies shared context.",
       "bold": "Source-derived emphasis includes FOUNDATION MODEL; AGENTIC HARNESS; Agent. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
@@ -415,7 +424,16 @@
         "monochrome_pixels": true,
         "semantic_typography_checks": 4
       },
-      "book_references": []
+      "book_references": [],
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/reasoning-horizon.svg",
@@ -454,8 +472,8 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
-      "candidate_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+      "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+      "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
       "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
       "bold": "Source-derived emphasis includes SUBSTRATE TRAIT; PROBLEM; METHOD; Representation problem; Enforcement problem; Modeling; Alignment. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
       "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
@@ -474,9 +492,20 @@
         "semantic_typography_checks": 9
       },
       "book_references": [
+        "part:2",
+        "part:3",
         "part:1",
         "part:4"
-      ]
+      ],
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 3,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/realization-space.svg",

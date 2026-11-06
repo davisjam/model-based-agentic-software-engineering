@@ -158,7 +158,7 @@
   {
     "chapter": "1.4-the-new-engineering-problem",
     "source": "assets/substrate-to-method.svg",
-    "caption": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE's corresponding answers: Modeling and Alignment.",
+    "caption": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/substrate-to-method.d2",
     "receipt": "book/d2-pilot/substrate-to-method.receipt.yaml",
@@ -166,7 +166,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From substrate to method",
-    "svg_description": "Two derivations run left to right. In the first, a finite working state raises the\n    representation problem, which the method of modeling answers. In the second, probabilistic productive\n    work over observable, interposable seams raises the enforcement problem, which the method of alignment\n    answers. These are the two core activities Chapter 1 derives; Chapter 4 puts them in motion as the MAGE method."
+    "svg_description": "Two derivations run left to right. In the first, a finite working state raises the\n    representation problem, which modeling addresses in Chapter 2. In the second, probabilistic productive\n    work over observable, interposable seams raises the enforcement problem, which alignment addresses in Chapter 3. These are the two core activities Chapter 1 derives; Chapter 4 puts them in motion as the MAGE method."
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",

@@ -10,14 +10,14 @@
     {
       "source": "book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex",
       "projection": "book/frontmatter/0.1-how-to-read-this-book.md",
-      "source_hash": "389f03601dd20acfcd93bd0b0949ec1a4312fd10242b57625194c020ecdcec51",
-      "projection_hash": "a1e7f6d5262ce6eaf92c9576df604475b13236e34065368301a4b0cf209555bd"
+      "source_hash": "63866f1157202c44f7d711c9964f3da73a6581ba7b6023aef0c4f85ef7114f1c",
+      "projection_hash": "ba03b7b4710ccca8ce59c93d8d429a7a2e2dee3bd2e32fe4199971173c73011e"
     },
     {
       "source": "book/latex/sources/frontmatter/0.2-what-this-book-argues.tex",
       "projection": "book/frontmatter/0.2-what-this-book-argues.md",
-      "source_hash": "3998df15c539a4b938869266d310c7f7e4726afac416bf22de662239d1563d38",
-      "projection_hash": "147e34183809093bf16c52c46f4b17a2f959ae8b6033ea1c26c51e5e52b0d9e6"
+      "source_hash": "b9b56fbffa2fe493cbdd7ad299334452d115eae98e81ceb97e35c02a184630d9",
+      "projection_hash": "de7a23a301b0deefbfa25270fa5d76a706377f55db51538e32900df84ca89dc6"
     },
     {
       "source": "book/latex/sources/frontmatter/0.3-the-mage-method-at-a-glance.tex",
@@ -28,14 +28,14 @@
     {
       "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
       "projection": "book/frontmatter/0.4-the-books-language.md",
-      "source_hash": "1783a0186c7562a6edaa38a24770913688aa8414f83092647bf541aaa840a083",
-      "projection_hash": "17b92080fb502f1b76d8003786d71de9131aa74e12c1b922736b9d25b5b97928"
+      "source_hash": "78faeb6d9f7b4eb162b032cab5e9353c998f01ec10b1aaed9fc3c7c458a9bfe5",
+      "projection_hash": "92cd175ac758b1ded787f8a64acfe6bbfe801b64983e4c43fbe430c09f356cec"
     },
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
       "projection": "book/frontmatter/0.5-preface.md",
-      "source_hash": "3461a6910ace8c486dec7778c5456c7f3c70ce0f51dc1f63f22959808caaa7a5",
-      "projection_hash": "eb82105040e4275762ee8867e6959735aaee8770e48c3a655043a40a5723f178"
+      "source_hash": "7263ac9d7e134f37970504f457738a4490f38a2c3e626a19cc6d7a44eaeedc6e",
+      "projection_hash": "48feba0cd712df7f4ca0cfa8391d4e2d264ab3906db76e631aba7e2b851ffffd"
     },
     {
       "source": "book/latex/sources/part1/00-part-intro.tex",
@@ -52,8 +52,8 @@
     {
       "source": "book/latex/sources/part1/1.2-mage-by-example.tex",
       "projection": "book/part1/1.2-mage-by-example.md",
-      "source_hash": "cdee07ae225ef57a43745b2389d0d6470cea065785a1e5281883e829fdaa83a1",
-      "projection_hash": "99f7e61c8091b8849192962504d466fc756f317f1cb5aaeb6c600e2488fbc148"
+      "source_hash": "afdde98454e87f7e838889932c1b7a3ad87bc3f3d6c0a638016b0da3965b67c6",
+      "projection_hash": "bcf45e2393b4db55236542a345c575ddea313f8cf5c2c529ca35fe386846e990"
     },
     {
       "source": "book/latex/sources/part1/1.3-the-agentic-substrate.tex",
@@ -64,8 +64,8 @@
     {
       "source": "book/latex/sources/part1/1.4-the-new-engineering-problem.tex",
       "projection": "book/part1/1.4-the-new-engineering-problem.md",
-      "source_hash": "b999a04fe3cd11bf614091a1d9e5f01316a2c2b715b69fc69b7c94257a0e389b",
-      "projection_hash": "a9d1629da01745f280cfcdb18dafedea18728d3329237e4b27fd4b933f8cd114"
+      "source_hash": "3e87a085f2deb32c44832134e2317bd3edd57df1053de845fa8959fc8b51a25f",
+      "projection_hash": "6858d910e8bad6aab98f435c660c58a53798834bcfc68eefbf552c50c94e74f9"
     },
     {
       "source": "book/latex/sources/part1/1.5-problem-summary.tex",
@@ -130,8 +130,8 @@
     {
       "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
       "projection": "book/part3/3.2-models-and-the-semantic-gap.md",
-      "source_hash": "58301d480fceb8384ca104dee2865aad07eb42b38678b91ec9ab3e44da7bb48d",
-      "projection_hash": "5e77d31ddf10124a351274868dd933bdcab9a8ceda41005b92050a9147b5dd5e"
+      "source_hash": "d8f83fb1b5275edbce4a25e0f8092b13cd067d0d4e8002a9ac40050b9a12a687",
+      "projection_hash": "4f475ae8d5eedff4335b0bd972986e0feb472f345e3fc489ca08a704895edd72"
     },
     {
       "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
@@ -202,8 +202,8 @@
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "ddc2db1045e3760ff1cf42e7dbdc8fc9bff6418dd2e36f324cfacc080c2d7c64",
-      "projection_hash": "d83a858cd8a948f4450d70b3f091441f70a9a309c4f70982187d58550afc2a62"
+      "source_hash": "798649f6f35480d5af1a1b77e21c4123f27f7d9f9f6a645223f1f7a94c5963cc",
+      "projection_hash": "cad90a539c9f770f5847a78a39cbf4c2d5966d210accf3216a2135ee4baf73ec"
     },
     {
       "source": "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
@@ -484,8 +484,8 @@
     {
       "source": "book/latex/sources/appendix-evidence-ledger/evidence-tables.tex",
       "projection": "book/appendix-evidence-ledger/evidence-tables.md",
-      "source_hash": "8dd6dbe2e41e79cb6e0444dc983bdc7ac98821182c0b125961e87c73057435da",
-      "projection_hash": "f130159a34b856db111b1b4408cfd4d8700433ed99d1e4f147639fe43d31e95c"
+      "source_hash": "1bc3b31f4d9ae4849e1c4e4ff73a878852355cbba2421357260e853173cf8461",
+      "projection_hash": "5a5dd60769e7af9bf70e6a52bf6bc90928f14c9d749c8f4428df7723416911d4"
     },
     {
       "source": "book/latex/sources/appendix-engineering-moves/_opening.tex",

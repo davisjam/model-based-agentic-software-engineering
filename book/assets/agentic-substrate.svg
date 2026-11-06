@@ -60,20 +60,20 @@
   <text x="740" y="287" text-anchor="middle" font-size="20" fill="#1c1917">parallel execution</text>
 
   <!-- ===== ENGINEERED ENVIRONMENT container (green) — ENCLOSES the agent; drawn FIRST so it sits behind
-             the convergence arrows + the agent node. Its label rides the TOP edge as a container header. ===== -->
+             the convergence arrows + the agent node. Its heading and description sit below the agent, clear of incoming arrows. ===== -->
   <rect x="180" y="344" width="640" height="224" rx="14" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="500" y="373" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Engineered Environment</text>
-  <text x="500" y="395" text-anchor="middle" font-size="20" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls</text>
+  <text x="500" y="500" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Engineered Environment</text>
+  <text x="500" y="528" text-anchor="middle" font-size="20" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls</text>
 
   <!-- convergence: both substrate columns feed the agent, which sits INSIDE the environment.
-       Paths curve down the outer flanks (clear of the centred header) into the agent's top edge. -->
+       Orthogonal paths enter separate ports on the agent's top edge, above the container labels. -->
   <!-- edge: foundation-model -> agent (heads pre-aimed perpendicular into agent top) -->
-  <path d="M260,314 C260,410 452,420 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
+  <path d="M260,314 V330 H452 V378" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
   <!-- edge: agentic-harness -> agent -->
-  <path d="M570,314 L570,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
+  <path d="M740,314 V330 H548 V378" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
 
   <!-- AGENT node (blue) — inside the environment container -->
-  <rect id="agent" x="388.88" y="452" width="222.24" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
-  <text x="500" y="484" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agent</text>
-  <text x="500" y="506" text-anchor="middle" font-size="20" fill="#57534e">a tool-using reasoner</text>
+  <rect id="agent" x="388.88" y="380" width="222.24" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <text x="500" y="412" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agent</text>
+  <text x="500" y="434" text-anchor="middle" font-size="20" fill="#57534e">a tool-using reasoner</text>
 </svg>
