@@ -498,6 +498,21 @@ re-deriving these, so they live here:**
     answer. **So assert the precondition and the scan cannot lie to you:**
     `assert ids, "no shape ids found — wrong namespace"`. The membership of the failing set is the
     other tell: when a scan condemns work that was independently verified, suspect the scan.
+  - **The dual of that trap: a namespace-BLIND match COLLIDES. `tag.endswith('}sldId')` catches both
+    `p:sldId` and `p14:sldId`, and sums them.** The two bullets above are wrong-PREFIX errors — I
+    matched the wrong namespace — so following them does not save you here, where the error is
+    matching too much. The two tags carry different meanings: `p:sldId` inside `p:sldIdLst` is the
+    presentation order, `p14:sldId` inside a `p14:section` is section membership, and a whole-tree
+    `iter()` counts every slide once for each. Measured 261106: a **41**-slide deck reported as
+    **82** (41 + 41), and the conclusion drawn from that — "the deck has been duplicated" — would
+    have discarded a healthy in-flight restructure. Scope every match to its parent element. Related,
+    the same hour: an attribute-adjacency regex, `p14:section name="…"`, reported **0 sections** on a
+    deck holding **5**, because the attributes are not adjacent in the serialized form.
+  - **So for deck FACTS, stop hand-rolling the reader — `deck-inspect` already reports sections,
+    notes and the hidden flag** (the bullet below gives its output and its one parsing trap). Every
+    wrong answer in this family came from a probe written to answer a question the canonical reader
+    already answers. If you are about to write Python or a grep to count slides, resolve sections, or
+    find parked slides: don't.
   - **Better than the surgical fix: RE-EMIT, do not patch.** For every slide whose shape set changes,
     re-emit the whole `<p:timing>` tree through the typed timing mutator rather than editing the
     existing one — then an effect **cannot outlive its shape by construction**, where excision only
