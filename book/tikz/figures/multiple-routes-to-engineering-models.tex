@@ -1,0 +1,38 @@
+% The horizontal rails are collection bars, not process edges: each row of three joins ONE
+% rail so no route and no use reads as privileged or as a stage before another.
+\begin{tikzpicture}[font=\fontsize{11}{13}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=3pt,align=center,inner sep=5pt,minimum height=.9cm,fill=white},
+band/.style={draw,rounded corners=3pt,align=center,inner sep=6pt,line width=1.2pt,fill=white},
+rail/.style={line width=.65pt},
+edge/.style={-Stealth,line width=.65pt}]
+\node[font=\bfseries\fontsize{12}{14}\selectfont] at (6.5,1.35) {Multiple routes to engineering models};
+\node[anchor=west,font=\bfseries] at (.15,.75) {ROUTES IN};
+\node[n,text width=3.5cm] (requirements) at (1.9,0) {Requirements\\and intent};
+\node[n,text width=3.5cm] (exploration) at (6.5,0) {Agent exploration\\and discovery};
+\node[n,text width=3.5cm] (existing) at (11.1,0) {Existing systems\\and experience};
+\node[band,text width=12.3cm,minimum height=1.7cm] (models) at (6.5,-2.6)
+ {\textbf{MODELING}\\[2pt]
+  \textbf{Engineering models}\\
+  Knowledge · selected obligations};
+\draw[rail] (requirements.south) -- (1.9,-1.15);
+\draw[rail] (exploration.south) -- (6.5,-1.15);
+\draw[rail] (existing.south) -- (11.1,-1.15);
+\draw[rail] (1.9,-1.15) -- (11.1,-1.15);
+\draw[edge] (6.5,-1.15) -- (models.north);
+\draw[rail] (models.south) -- (6.5,-4.05);
+\draw[rail] (1.9,-4.05) -- (11.1,-4.05);
+\node[n,text width=3.5cm] (reason) at (1.9,-5.05) {Reason and design};
+\node[n,text width=3.5cm] (direct) at (6.5,-5.05) {Direct agent work};
+\node[n,text width=3.5cm] (evaluate) at (11.1,-5.05) {Evaluate and check};
+\node[anchor=east,font=\bfseries] at (12.85,-4.3) {USES OUT};
+\draw[edge] (1.9,-4.05) -- (reason.north);
+\draw[edge] (6.5,-4.05) -- (direct.north);
+\draw[edge] (11.1,-4.05) -- (evaluate.north);
+\draw[rail] (reason.south) -- (1.9,-6.1);
+\draw[rail] (direct.south) -- (6.5,-6.1);
+\draw[rail] (evaluate.south) -- (11.1,-6.1);
+\draw[rail] (1.9,-6.1) -- (11.1,-6.1);
+\node[band,text width=6.4cm] (further) at (6.5,-7.1) {\textbf{Further engineering awaits}};
+\draw[edge] (6.5,-6.1) -- (further.north);
+\node[font=\itshape] at (6.5,-8.05) {Three routes in, three uses out --- alternatives, not stages.};
+\end{tikzpicture}

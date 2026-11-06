@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fig 1.2 NEW (ch1-multiple-routes-261106). "Multiple routes to engineering models."
+     Three routes arrive at MODELING; three uses leave it; engineering continues past both.
+     The geometry carries the anti-waterfall claim: each row of three feeds ONE full-width
+     bus, so no route and no use looks privileged or sequenced — they are alternatives.
+       IN   — Requirements and intent | Agent exploration and discovery | Existing systems and experience
+       BAND — MODELING / Engineering models / Knowledge · selected obligations
+       OUT  — Reason and design | Direct agent work | Evaluate and check
+       TAIL — Further engineering awaits (modeling is not a phase that completes)
+     Palette: fleet blue #2f5169 (incoming routes), governed green #155c38/#1f7a4d (the model
+     and its uses), gray #57534e (neutral rails and explanatory text), rust #9a3f12 (the
+     continuing-engineering tail), ink #1c1917, page #fdfcf9.
+     Grayscale-survivable: every node labelled; the three-into-one-into-three structure and the
+     top-to-bottom order carry the meaning; hue only reinforces which row is route and which use. -->
+<!-- Connect-grammar: the two fan-in rows (routes->bus, uses->bus) and the fan-out row
+     (bus->uses) are annotated node->node. The horizontal buses themselves are collection
+     rails, not relationship edges, so they are left unannotated. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 690" width="1000" height="690"
+     role="img" aria-labelledby="mrTitle mrDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mrTitle">Multiple routes to engineering models</title>
+  <desc id="mrDesc">Three routes arrive at modeling from above and three uses leave it below. The
+    incoming routes are requirements and intent, agent exploration and discovery, and existing systems
+    and experience. Each joins one full-width rail, so none is privileged and none is a stage before
+    another; a single arrow carries the rail into modeling. Modeling yields engineering models, which
+    hold knowledge and the selected obligations drawn from it. From the model, one rail fans out to
+    three uses: reason and design, direct agent work, and evaluate and check. Those three rejoin a
+    rail that continues downward to further engineering, because engineering does not stop at the
+    model: later discoveries may motivate new or revised models.</desc>
+
+  <defs>
+    <marker id="mr-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="690" fill="#fdfcf9"/>
+
+  <!-- title band -->
+  <rect x="0" y="0" width="1000" height="54" fill="#f6f4ef"/>
+  <text x="500" y="35" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="2" fill="#1c1917">MULTIPLE ROUTES TO ENGINEERING MODELS</text>
+
+  <!-- ===== three routes IN ===== -->
+  <text x="30" y="82" font-size="20" font-weight="700" letter-spacing="1.5" fill="#2f5169">ROUTES IN</text>
+
+  <rect id="r-req" x="30" y="94" width="290" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="175" y="122" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Requirements</text>
+  <text x="175" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">and intent</text>
+
+  <rect id="r-explore" x="355" y="94" width="290" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="500" y="122" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agent exploration</text>
+  <text x="500" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">and discovery</text>
+
+  <rect id="r-existing" x="680" y="94" width="290" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="825" y="122" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Existing systems</text>
+  <text x="825" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">and experience</text>
+
+  <!-- fan-in: three stubs down to one rail, then one arrow into the band -->
+  <g fill="none" stroke="#57534e" stroke-width="2.4">
+    <!-- edge: r-req -> modeling -->
+    <path d="M175,160 L175,196"/>
+    <!-- edge: r-explore -> modeling -->
+    <path d="M500,160 L500,196"/>
+    <!-- edge: r-existing -> modeling -->
+    <path d="M825,160 L825,196"/>
+    <path d="M175,196 L825,196"/>
+    <path d="M500,196 L500,236" marker-end="url(#mr-k)"/>
+  </g>
+
+  <!-- ===== MODELING band ===== -->
+  <rect x="60" y="238" width="880" height="124" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3.4"/>
+  <text x="500" y="271" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="3" fill="#155c38">MODELING</text>
+  <text x="500" y="305" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineering models</text>
+  <text x="500" y="336" text-anchor="middle" font-size="20" fill="#57534e">Knowledge &#183; selected obligations</text>
+
+  <!-- fan-out: one rail from the band, then three arrows into the uses -->
+  <g fill="none" stroke="#57534e" stroke-width="2.4">
+    <path d="M500,362 L500,398"/>
+    <path d="M175,398 L825,398"/>
+    <!-- edge: modeling -> u-reason -->
+    <path d="M175,398 L175,434" marker-end="url(#mr-k)"/>
+    <!-- edge: modeling -> u-direct -->
+    <path d="M500,398 L500,434" marker-end="url(#mr-k)"/>
+    <!-- edge: modeling -> u-evaluate -->
+    <path d="M825,398 L825,434" marker-end="url(#mr-k)"/>
+  </g>
+
+  <!-- ===== three uses OUT ===== -->
+  <rect id="u-reason" x="30" y="436" width="290" height="58" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="175" y="472" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Reason and design</text>
+
+  <rect id="u-direct" x="355" y="436" width="290" height="58" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="500" y="472" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Direct agent work</text>
+
+  <rect id="u-evaluate" x="680" y="436" width="290" height="58" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="825" y="472" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Evaluate and check</text>
+
+  <text x="970" y="422" text-anchor="end" font-size="20" font-weight="700" letter-spacing="1.5" fill="#1f7a4d">USES OUT</text>
+
+  <!-- fan-in: three uses rejoin one rail, which continues downward -->
+  <g fill="none" stroke="#57534e" stroke-width="2.4">
+    <!-- edge: u-reason -> further -->
+    <path d="M175,494 L175,530"/>
+    <!-- edge: u-direct -> further -->
+    <path d="M500,494 L500,530"/>
+    <!-- edge: u-evaluate -> further -->
+    <path d="M825,494 L825,530"/>
+    <path d="M175,530 L825,530"/>
+    <path d="M500,530 L500,570" marker-end="url(#mr-k)"/>
+  </g>
+
+  <!-- ===== the tail: engineering does not stop at the model ===== -->
+  <rect x="245" y="572" width="510" height="56" rx="9" fill="#f3efe7" stroke="#9a3f12" stroke-width="3.2"/>
+  <text x="500" y="608" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Further engineering awaits</text>
+
+  <text x="500" y="664" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Three routes in, three uses out &#8212; alternatives, not stages.</text>
+</svg>
