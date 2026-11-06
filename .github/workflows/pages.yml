@@ -508,6 +508,8 @@ jobs:
           # --pdf path only.
           python3 -m pip install -r book/requirements-pdf.txt
           python3 -m pip install "pyyaml>=6,<7"
+          python3 -m unittest tests.test_anthropomorphic_pronouns
+          python3 tools/check_anthropomorphic_pronouns.py
           python3 -m unittest tests.test_tikz_audit
           python3 tools/test_mage_tikz_links.py
           python3 tools/test_mage_tikz_typography.py

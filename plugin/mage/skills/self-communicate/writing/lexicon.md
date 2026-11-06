@@ -137,6 +137,13 @@ inanimate antecedent (*a model whose inputs are marked*, *a control whose purpos
 which is the ordinary possessive relative in English and carries no personification; the ban list above
 deliberately omits *whose* for this reason. Audit it, then leave it.
 
+**One half of this is now mechanical.** `tools/check_anthropomorphic_pronouns.py` (in `book static
+checks`, pre-push and CI) refuses an authored source where a system noun takes the pronoun ATTACHED —
+*agent, who* / *model whom* — and nothing else. It cannot match *whose*, by construction rather than by
+allowlist. It knows nothing about referents, so the other half of the policy stays an editorial
+judgment: the check going green means no author wrote *the agent who*, never that a referent was
+inspected. Do not widen it to the forms above without re-running the audit that priced them.
+
 ---
 
 ## Architecture & design patterns
