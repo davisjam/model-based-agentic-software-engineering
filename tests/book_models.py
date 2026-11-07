@@ -1311,6 +1311,15 @@ def check_governed_literal_source_scope():
         ("superstring guard", r"a 156\% increase and a 1,500,000 total", [], False),
         ("ungoverned math percentage", r"\(0.99^{3} \approx 97\%\) for three features", [], False),
         ("governed ratio typeset in math", r"the ratio reached \(3.8\) at week 31", ["3.8"], False),
+        # A SECTION LOCATOR is a cross-reference, never a measured quantity. Once a one-decimal value enters
+        # the ledger, every `§N.M` in the manuscript becomes a candidate — `support_ratio_rounded` landing as
+        # `3.5` immediately produced a finding on the `§3.5` inside a rendering `point:` gloss. The second
+        # row is the one that matters: the narrowing must drop the LOCATOR, not suppress the whole line.
+        # Both rows also self-guard — if `3.8` ever leaves the denylist the positive row fails loudly rather
+        # than going vacuously green.
+        ("section locator is not a value", r"the control portfolio is deferred to §3.8.", [], False),
+        ("locator does not mask a real leak on the same line",
+         r"see §3.8; the ratio reached 3.8 at week 31", ["3.8"], False),
     ]
     for label, line, expected, naive_blind in corpus:
         got = literals_in(gll._latex_to_scannable(line))

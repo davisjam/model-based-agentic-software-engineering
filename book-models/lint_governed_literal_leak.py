@@ -290,10 +290,30 @@ def scannable_lines(rel: str, kind: str) -> "list[tuple[int, str]]":
     return out
 
 
+#: A SECTION LOCATOR, never a measured quantity. `§3.5` is a cross-reference to §3.5, so the `3.5` in it
+#: cannot be the support-ratio token typed raw — and once a one-decimal value enters the ledger, every
+#: `§N.M` in the manuscript starts tripping on it. Measured 261106: `support_ratio_rounded` landed as `3.5`
+#: and immediately produced one finding on the `§3.5` inside a `% <!-- point: … -->` gloss, the exact false
+#: positive the evidence-ledger design predicted for a bare one-decimal value. Narrowing the MATCHER is the
+#: fix rather than exempting the site: the next `§N.M` collision is a different line, and a per-site
+#: exemption would leave the class open. A noisy audit channel is one nobody reads.
+_LOCATOR_PREFIXES = ("§",)
+
+#: The characters that, immediately before a literal, make it part of a LARGER token rather than a value in
+#: its own right: word chars and the punctuation a number is built from, plus the locator marks above.
+#: Composed as an explicit class with the hyphen ESCAPED, because appending to a class whose last member was
+#: a trailing literal `-` silently turns that hyphen into a RANGE operator — `[\w.,%$-§]` is `$`..`§`, which
+#: swallows `(`, every digit and every letter. That is what the first attempt at this narrowing did, and
+#: the real-tree count still read 21 -> 20 because almost every finding happens to follow a space; only
+#: `tests/book_models.py`'s pinned normalization corpus refuted it, on `\(3.8\)`. Hence the escaped form.
+_PRECEDING_BLOCKERS = r"\w.,%$\-" + "".join(re.escape(p) for p in _LOCATOR_PREFIXES)
+
+
 def _find_raw(literal: str, stripped: str) -> bool:
     """The literal occurs in `stripped` not glued to an adjacent digit/word char that would make it part of
-    a larger token (so '56%' does not match inside '156%')."""
-    pat = re.compile(r"(?<![\w.,%$-])" + re.escape(literal) + r"(?![\w%])")
+    a larger token (so '56%' does not match inside '156%'), and not immediately behind a section-locator
+    mark (so '3.5' does not match inside '§3.5')."""
+    pat = re.compile(rf"(?<![{_PRECEDING_BLOCKERS}])" + re.escape(literal) + r"(?![\w%])")
     return bool(pat.search(stripped))
 
 

@@ -104,6 +104,11 @@ from tests.common import FAIL, PASS, SKIP, changed_vs_origin
 from tests.deploy import check_deploy_publishable
 from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid, check_lab_logo_url
 from tests.hooks import check_hook_operates_on_committing_tree
+from tests.notation_leak import (
+    check_no_notation_leak_rendered_surfaces,
+    check_notation_leak_surface_partition,
+    check_notation_leak_surface_selftest,
+)
 from tests.precommit_scope import check_force_stage_scope_and_receipt
 from tests.html import (
     check_lab_logo_single_sourced,
@@ -355,7 +360,30 @@ CHECKS = [
     Check("html: no flow content under <summary> (stdlib twin of T2 element-permitted-content)", 1, lambda strict: check_summary_no_flow_content()),
     Check("html: no aria-label on a bare div/span (stdlib twin of T2 aria-label-misuse)", 1, lambda strict: check_aria_label_on_bare_element()),
     Check("html: no empty <th> (stdlib twin of T2 empty-table-header)", 1, lambda strict: check_no_empty_table_header()),
-    Check("html: no book notation leaks (whole-vocabulary; marker / {{token}} / [+emph+])", 1, lambda strict: check_no_notation_leak()),
+    Check("html: no book notation leaks on the WEB projection (whole-vocabulary; marker / {{token}} / "
+          "[+emph+]) + one-token-resolver sole seam", 1, lambda strict: check_no_notation_leak()),
+    # The surfaces the web scan cannot see — the print pipeline's pandoc input, the compiled LaTeX
+    # chapters, the EPUB's XHTML, the stapled review markdown. A resolver cannot report a call it never
+    # received, so fail-loud-on-unknown-token gives NO coverage guarantee; only a per-surface scan of the
+    # emitted bytes does, and `{{commits_per_week}}` reached a published page on 261106 because the scan
+    # read one surface. All four artifacts are gitignored and built only by `--pdf` / `book_epub.py`, so
+    # this SKIPs with the emit command named when none is on disk — the posture check_caption_orphan_gate
+    # already takes for the rendered PDF. The roster prints every surface either way. See
+    # tests/notation_leak.py.
+    Check("book: no notation leaks on the PRINT + EPUB surfaces (same scan, declared roster)", 1,
+          lambda strict: check_no_notation_leak_rendered_surfaces()),
+    # Failure-injection self-test: the four surfaces above are gitignored, so the gate SKIPs on most
+    # trees — and a gate that skips by default is the kind that rots into a no-op unnoticed. This injects
+    # residue in each surface's WIRE form (including pandoc's `\{\{token\}\}` spelling, which the plain
+    # patterns cannot see) and asserts the scan still flags it, plus two negatives for the declared arm
+    # omissions.
+    Check("book: notation-leak scan still fires per surface (failure injection)", 1,
+          lambda strict: check_notation_leak_surface_selftest()),
+    # Every declared surface is owned by exactly one of the two registrations above. Nothing in Python
+    # holds that split, and a surface added to the roster but forgotten in both name tuples would be
+    # governed by neither — indistinguishable, from a script list, from a deliberate exclusion.
+    Check("book: every rendered surface is owned by exactly one notation-leak gate", 1,
+          lambda strict: check_notation_leak_surface_partition()),
     # BLOCKING (green at landing): a link-derived DPUB-ARIA role (doc-noteref / doc-biblioref / doc-glossref
     # / doc-backlink) on a non-<a> element — axe's aria-allowed-role rejects it, and it once blocked a
     # publish when the note-marker renderer put doc-noteref on a bare <sup>. A deterministic Tier-1 twin of
