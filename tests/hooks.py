@@ -367,19 +367,32 @@ def _commit_scope_findings() -> list[str]:
 
 
 def _commit_scope_harness() -> list[str]:
-    """The throwaway worktree must read the COMMIT, in BOTH directions — the sabotage control.
+    """The gate worktree must read the COMMIT, in every direction — the sabotage control.
 
     `pre-push` runs its content phases in a worktree at the pushed ref so a verdict stops being a
     function of whatever five agents happen to have on disk. A change that stops seeing siblings has
     to be shown to still go red on the PUSHER's own committed defect, or it is indistinguishable from
-    a weakened gate. So this walks the mechanism on a synthetic repo — two files, three commits,
-    nothing of this tree touched — and pins the two failure directions measured 261106:
+    a weakened gate. So this walks the mechanism on a synthetic repo — two files, two commits,
+    nothing of this tree touched — and pins FOUR arms.
 
-      - the FALSE RED: a sibling's uncommitted edit must not reach the worktree;
-      - the FALSE GREEN: a sibling's uncommitted FIX must not reach it either, so a defect that is
-        committed stays visible. That arm is the expensive one — it is the reading that would have
-        let a lander citing three keys with no bib entry past the gate and failed CI after the
-        transfer.
+    Three are the directions measured 261106, now run against the PERSISTENT tree rather than a
+    throwaway one, because the tree the gate actually uses is the one that has to be shown sound:
+
+      1. the pusher's OWN committed defect still goes red;
+      2. the FALSE RED: a sibling's uncommitted edit must not reach the worktree;
+      3. the FALSE GREEN: a sibling's uncommitted FIX must not reach it either, so a committed defect
+         stays visible. That arm is the expensive one — it is the reading that would have let a
+         lander citing three keys with no bib entry past the gate and failed CI after the transfer.
+
+    The fourth is new with persistence, and it is the failure mode persistence INTRODUCES. A reused
+    tree that drifts grades something other than the pushed commit, which is arm 3's false green
+    arriving through the door built to close it. Two sub-arms, because drift has two kinds:
+
+      4a. REPAIRABLE drift — a hostile untracked leftover, a modified tracked file, a HEAD left at
+          the previous push's commit. Each must be gone, and the tree equal to the ref.
+      4b. UNREPAIRABLE drift — a `skip-worktree` bit, under which git reports a clean status for a
+          file whose contents are wrong and `checkout` declines to rewrite it. This one must force
+          a REBUILD, which is what pins the fallback path as tested rather than merely written.
     """
     sys.path.insert(0, os.path.join(ROOT, "tools"))
     import gate_worktree  # noqa: E402 — resolved against ROOT, which is only known at import time
@@ -388,19 +401,31 @@ def _commit_scope_harness() -> list[str]:
     with tempfile.TemporaryDirectory(prefix="gc-commit-scope-") as tmp:
         repo = os.path.join(tmp, "repo")
         os.makedirs(repo)
+        # The persistent home lives INSIDE the temp dir, never at `default_home()`. A self-test that
+        # reaches the production cache would hand the next real push a tree built from a synthetic
+        # repository — the same mistake as a self-test that reaches the real gitdir, one directory
+        # over. `tools/git_env.py` records what that cost when it happened.
+        home = os.path.join(tmp, "home")
 
-        def git(*args: str) -> None:
+        def git(*args: str, at: str | None = None) -> None:
             # `git_env.git`, never a bare `subprocess.run(..., cwd=repo)`: git exports GIT_DIR into
             # every hook and the inherited value beats `cwd`, so this helper drove the REAL gitdir
             # on 261106 and configured it. `hermetic` also cuts the host's global/system config out,
             # so the synthetic repo's behaviour is a property of the four lines set below.
-            done = git_env.git(list(args), repo=repo, hermetic=True)
+            done = git_env.git(list(args), repo=at or repo, hermetic=True)
             if done.returncode:
                 issues.append(f"synthetic repo: git {' '.join(args)} failed: {done.stderr.strip()}")
 
-        def write(name: str, body: str) -> None:
-            with open(os.path.join(repo, name), "w", encoding="utf-8") as fh:
+        def write(name: str, body: str, at: str | None = None) -> None:
+            with open(os.path.join(at or repo, name), "w", encoding="utf-8") as fh:
                 fh.write(body)
+
+        def read(name: str, at: str) -> str:
+            try:
+                with open(os.path.join(at, name), encoding="utf-8") as fh:
+                    return fh.read()
+            except OSError as exc:
+                return f"<unreadable: {exc.strerror}>"
 
         git("init", "-q")
         git("config", "user.email", "gate@example.invalid")
@@ -412,41 +437,243 @@ def _commit_scope_harness() -> list[str]:
         # path into a temp dir is exactly the value that broke the real repo when it leaked.
         os.makedirs(os.path.join(tmp, "nohooks"))
         git("config", "core.hooksPath", os.path.join(tmp, "nohooks"))
+        # A synthetic SEED declaration, one entry per class the real one uses, so `prepare()` drives
+        # the actual create/reuse/seed/sweep code rather than a path that skips seeding. The real
+        # declaration cannot be used here — a two-file repository has no `node_modules` to link and
+        # no MkDocs projection to emit — and a harness that skipped seeding would leave every line
+        # of the incremental seed path unexercised in-gate, which is where it runs.
+        shared = os.path.join(tmp, "shared-install", "pkg")
+        os.makedirs(shared, exist_ok=True)
+        write("f", "shared\n", at=shared)
+        os.makedirs(os.path.join(repo, "assets"), exist_ok=True)
+        os.makedirs(os.path.join(repo, "harness-bin"), exist_ok=True)
+        write("assets/thumb.bin", "THUMB\n")
+        write("harness-bin/tool", "BINARY\n")
+        os.symlink(os.path.dirname(shared), os.path.join(repo, "linked"))
+        os.makedirs(os.path.join(repo, "members"), exist_ok=True)
+        write("members/entry-a", "CONTENT-ADDRESSED\n")
+        emitter = os.path.join(tmp, "emit.py")
+        with open(emitter, "w", encoding="utf-8") as fh:
+            # One page per tracked `.txt`, so the emitted tree is a function of the commit — and a
+            # page the PREVIOUS commit had and this one does not survives a write-over, which is the
+            # stale-page drift the emitter's remove-then-emit exists to stop.
+            fh.write("import os, glob\n"
+                     "os.makedirs('emitted/docs', exist_ok=True)\n"
+                     "for src in sorted(glob.glob('*.txt')):\n"
+                     "    open(os.path.join('emitted/docs', src + '.md'), 'w').write(\n"
+                     "        open(src).read())\n")
+        seed_set = (
+            ("linked", "symlink", "linked", False),
+            # The class that fixes the 261107 finding: a real directory under a directory-only
+            # ignore pattern, members linked. Declared here so the arms exercise it, and so the
+            # pattern/kind pairing above is pinned by something that runs rather than by prose.
+            ("members", "symlink-members", "members/", False),
+            ("assets/thumb.bin", "copy", "/assets/thumb.bin", False),
+            ("harness-bin", "copy-tree", "harness-bin/", False),
+            ("absent-by-design", "copy", "absent-by-design", True),
+        )
+        seed_emitters = (((emitter,), "emitted"),)
+
+        # The seeds must be invisible to git, exactly as the real ones are: a seed git tracks is not
+        # a seed, and one git reports as untracked makes `verify()` fail on every push.
+        write(".gitignore", "".join(f"{pattern}\n" for _r, _k, pattern, _o in seed_set)
+              + "".join(f"{emits}/\n" for _tail, emits in seed_emitters))
         write("claim.txt", "COMMITTED-GOOD\n")
         write("defect.txt", "COMMITTED-BAD\n")
-        git("add", "claim.txt", "defect.txt")
+        git("add", ".gitignore", "claim.txt", "defect.txt")
         git("commit", "-q", "-m", "base")
         if issues:
             return issues
-        pushed = git_env.git(["rev-parse", "HEAD"], repo=repo, hermetic=True).stdout.strip()
+        first = git_env.git(["rev-parse", "HEAD"], repo=repo, hermetic=True).stdout.strip()
+        # A SECOND commit, so the reuse path has a diff to apply, a stale HEAD to be caught at, and
+        # a page in the emitted tree (`gone.txt`) that the later commit retires.
+        write("gone.txt", "ONLY-IN-THE-FIRST-COMMIT\n")
+        git("add", "gone.txt")
+        git("commit", "-q", "-m", "a page the next commit retires")
+        first = git_env.git(["rev-parse", "HEAD"], repo=repo, hermetic=True).stdout.strip()
+        write("claim.txt", "COMMITTED-GOOD-2\n")
+        git("rm", "-q", "gone.txt")
+        git("add", "claim.txt")
+        git("commit", "-q", "-m", "second")
+        second = git_env.git(["rev-parse", "HEAD"], repo=repo, hermetic=True).stdout.strip()
+        if issues:
+            return issues
 
         # A sibling, mid-edit: one file broken in the working tree, one file FIXED in the working
-        # tree. Neither is committed, so neither may change the verdict.
+        # tree. Neither is committed, so neither may change any verdict below.
         write("claim.txt", "WORKTREE-BROKEN\n")
         write("defect.txt", "WORKTREE-FIXED\n")
 
-        wt = gate_worktree.GateWorktree(repo, pushed, label="selftest")
+        def stand(ref: str) -> gate_worktree.GateWorktree:
+            tree = gate_worktree.GateWorktree(repo, ref, label="selftest",
+                                              persistent=True, home=home,
+                                              seed_set=seed_set, seed_emitters=seed_emitters)
+            tree.prepare()
+            return tree
+
+        # ── Arms 1-3, on a freshly CREATED persistent tree ────────────────────────────────────────
+        wt = stand(first)
         try:
-            wt.create()
-            for name, want, direction in (("claim.txt", "COMMITTED-GOOD\n", "false RED"),
-                                          ("defect.txt", "COMMITTED-BAD\n", "false GREEN")):
-                with open(os.path.join(wt.path or "", name), encoding="utf-8") as fh:
-                    got = fh.read()
+            if wt.reused:
+                issues.append("the first prepare() REUSED a tree in a home that did not exist — "
+                              "the marker/identity gate in _usable() is not holding")
+            for name, want, arm in (("defect.txt", "COMMITTED-BAD\n", "1 (own committed defect)"),
+                                    ("claim.txt", "COMMITTED-GOOD\n", "2 (false RED)"),
+                                    ("defect.txt", "COMMITTED-BAD\n", "3 (false GREEN)")):
+                got = read(name, wt.path or "")
                 if got != want:
-                    issues.append(f"gate worktree read {got.strip()!r} for {name}, expected "
-                                  f"{want.strip()!r} — the {direction} direction is open")
-            created = wt.path
+                    issues.append(f"arm {arm}: gate worktree read {got.strip()!r} for {name}, "
+                                  f"expected {want.strip()!r} — that direction is open")
+            kept = wt.path
         finally:
-            wt.remove()
-        if created and os.path.exists(created):
-            issues.append(f"gate worktree {created} survived remove()")
-        wt.remove()  # idempotent: a second teardown must not reach for anything
+            wt.release()
+        if not kept or not os.path.isdir(kept):
+            issues.append("release() did not KEEP the persistent tree — every push would pay a "
+                          "cold checkout, which is the whole cost this form removes")
+
+        # ── Reuse: the same home, a different ref, rewritten by CHECKOUT not by recreation ────────
+        wt = stand(second)
+        try:
+            if not wt.reused:
+                issues.append("the second prepare() RECREATED the tree instead of checking the new "
+                              "ref out into it — the reuse path is not reached")
+            if wt.rebuilds:
+                issues.append(f"the second prepare() reported {wt.rebuilds} rebuild(s) on an "
+                              "undisturbed tree — reuse is being treated as drift")
+            if read("claim.txt", wt.path or "") != "COMMITTED-GOOD-2\n":
+                issues.append("the reused tree did not advance to the new ref's content")
+            if wt.path != kept:
+                issues.append(f"the reused tree moved from {kept} to {wt.path}")
+            # The symlink class must be VERIFIED in place, not re-created: `lexists` was enough for a
+            # tree that had just been born and says nothing about one handed back.
+            link = os.path.join(wt.path or "", "linked")
+            if not os.path.islink(link) or not os.path.isdir(link):
+                issues.append("the reused tree's symlinked seed is not a live symlink after reuse")
+            if not any("verified in place" in line and ", 0 verified" not in line
+                       for line in wt.log):
+                issues.append("no seed was verified in place on reuse — the incremental seed path "
+                              "is re-creating everything, which is the cost it exists to avoid")
+            # The retired page: `gone.txt` exists at `first` and not at `second`, so a re-emit that
+            # wrote OVER the previous tree would leave `gone.txt.md` behind for a glob to read.
+            if os.path.exists(os.path.join(wt.path or "", "emitted", "docs", "gone.txt.md")):
+                issues.append("a page from the PREVIOUS commit survived the re-emit — the emitted "
+                              "tree must be removed before emitting, not written over")
+        finally:
+            wt.release()
+
+        # The emitter must be REUSED when nothing moved: same ref, same tree OID, same key.
+        wt = stand(second)
+        try:
+            if not any("1 reused on an unmoved key" in line for line in wt.log):
+                issues.append("the emitted tree was re-emitted at an unchanged ref — the reuse key "
+                              "is not holding, so every push pays the emit")
+        finally:
+            wt.release()
+
+        # ── Arm 4a: REPAIRABLE drift — leftover, modification, stale HEAD ─────────────────────────
+        write("hostile.txt", "A PREVIOUS PUSH'S LEFTOVER\n", at=kept or "")
+        write("claim.txt", "DRIFTED-IN-THE-GATE-TREE\n", at=kept or "")
+        git("checkout", "--detach", "--force", first, at=kept or "")
+        wt = stand(second)
+        try:
+            for finding in wt.verify():
+                issues.append(f"arm 4a: prepare() handed back a tree that still fails verify(): "
+                              f"{finding}")
+            if os.path.exists(os.path.join(kept or "", "hostile.txt")):
+                issues.append("arm 4a: a hostile untracked leftover SURVIVED prepare() — a content "
+                              "check would read it, which is the stale-artifact false green")
+            if read("claim.txt", wt.path or "") != "COMMITTED-GOOD-2\n":
+                issues.append("arm 4a: a tracked file drifted in the gate tree was not restored to "
+                              "the pushed commit's content")
+        finally:
+            wt.release()
+
+        # ── Arm 4b: UNREPAIRABLE drift — the bit that makes a wrong file report clean ─────────────
+        # `skip-worktree` is the one drift channel `status --porcelain` is blind to BY DESIGN, and a
+        # persistent index is the only thing that can hold it open across pushes. It must force the
+        # rebuild, not be graded.
+        git("update-index", "--skip-worktree", "claim.txt", at=kept or "")
+        write("claim.txt", "UNWATCHED-AND-WRONG\n", at=kept or "")
+        before = git_env.git(["status", "--porcelain"], repo=kept or "", hermetic=True).stdout
+        if before.strip():
+            issues.append("arm 4b: the sabotage did not reproduce the blind spot — `status "
+                          "--porcelain` reported the skip-worktree file, so this arm proves nothing")
+        wt = stand(second)
+        try:
+            if not wt.rebuilds:
+                issues.append("arm 4b: a skip-worktree drift was GRADED, not rebuilt — the tree "
+                              "reports clean while holding content the commit does not have")
+            for finding in wt.verify():
+                issues.append(f"arm 4b: the rebuild did not clear the drift: {finding}")
+            if read("claim.txt", wt.path or "") != "COMMITTED-GOOD-2\n":
+                issues.append("arm 4b: the rebuilt tree does not hold the pushed commit's content")
+        finally:
+            wt.release()
+
+        # ── Concurrency: the loser keeps the SCOPE and gives up the SPEED ─────────────────────────
+        holder = stand(second)
+        try:
+            loser = gate_worktree.GateWorktree(repo, first, label="selftest",
+                                               persistent=True, home=home,
+                                               seed_set=seed_set, seed_emitters=seed_emitters)
+            loser.prepare()
+            try:
+                if loser.persistent:
+                    issues.append("a second concurrent prepare() took the persistent tree while a "
+                                  "live holder had the lock — two pushes at two refs in one tree")
+                if loser.path == holder.path:
+                    issues.append("the concurrent loser was handed the SAME tree as the holder")
+                for finding in loser.verify():
+                    issues.append(f"the concurrent loser's fallback tree fails verify(): {finding}")
+                if read("defect.txt", loser.path or "") != "COMMITTED-BAD\n":
+                    issues.append("the concurrent loser lost COMMIT scope, not just the speed — "
+                                  "the fallback must still grade the pushed commit")
+            finally:
+                loser.release()
+        finally:
+            holder.release()
+            holder._destroy()
 
     for rel, kind, pattern, _optional in gate_worktree.SEED:
         if pattern not in gate_worktree.gitignore_patterns(ROOT):
             issues.append(f"gate-worktree seed declares {rel} ({kind}) against .gitignore pattern "
                           f"{pattern!r}, which is no longer in .gitignore — the seed list has "
                           "drifted from the state git refuses to reproduce")
+        # A gitignore pattern ending in `/` matches a DIRECTORY, and to git a symlink is a file — so
+        # a `symlink` seed under such a pattern is reported `??` and makes the gate tree dirty, which
+        # is now a refused push. Measured 261107: `book/.mermaid-svg-cache` had been exactly that
+        # since the worktree landed, invisible because nothing had ever asked the tree whether it was
+        # clean. `symlink-members` materializes the real directory the pattern needs.
+        if kind == "symlink" and pattern.endswith("/"):
+            issues.append(f"gate-worktree seed {rel} is materialized as a SYMLINK under the "
+                          f"directory-only ignore pattern {pattern!r}, so git reports it untracked "
+                          "and verify() refuses the push — declare it `symlink-members` instead")
+        if kind in ("symlink-members", "copy-tree") and not pattern.endswith("/"):
+            issues.append(f"gate-worktree seed {rel} is materialized as a real DIRECTORY but its "
+                          f"ignore pattern {pattern!r} does not end in `/` — harmless today, but "
+                          "the pairing is the thing that keeps the seed invisible to git, so it is "
+                          "held rather than left to chance")
+    # Every declared seed must be in the sweep's keep set, and no ADOPTABLE may be. The first
+    # direction costs a re-seed per push; the second is the one that bites — a kept
+    # `book/mage-book.pdf` makes `adopt()` a no-op, because it refuses to overwrite, and the
+    # caption-orphan sensor then reads the PREVIOUS push's render with nothing in the log saying so.
+    for rel, kind, _pattern, _optional in gate_worktree.SEED:
+        if rel not in gate_worktree.KEEP_IGNORED:
+            issues.append(f"gate-worktree seed {rel} ({kind}) is not in KEEP_IGNORED, so the reuse "
+                          "sweep deletes it every push")
+    for rel in gate_worktree.ADOPTABLE:
+        if gate_worktree.kept_by_sweep(rel):
+            issues.append(f"adoptable {rel} is protected from the reuse sweep, so a stale copy "
+                          "survives and adopt() — which refuses to overwrite — becomes a no-op")
+    # The persistent home must be outside the repo working tree and outside the gitdir: inside the
+    # tree, `git status` in the main checkout reports it; inside the gitdir, the whole-gitdir
+    # fingerprint that proves a harness left the repository alone would change on every push.
+    home_dir = gate_worktree.default_home(ROOT, "prepush")
+    gitdir = git_env.git(["rev-parse", "--absolute-git-dir"], repo=ROOT).stdout.strip()
+    for forbidden, why in ((ROOT, "the repo working tree, where `git status` would report it"),
+                           (gitdir, "the gitdir, which git_env.fingerprint walks whole")):
+        if forbidden and (home_dir == forbidden or home_dir.startswith(forbidden + os.sep)):
+            issues.append(f"the persistent gate-worktree home {home_dir} is inside {why}")
     return issues
 
 
@@ -495,6 +722,25 @@ def _content_tree_findings() -> list[str]:
     for missing in sorted(declared - actual):
         issues.append(f"pre-push phase {missing!r} is declared commit-scoped but its body never "
                       "reads CONTENT — it still grades the working tree")
+
+    # THIRD half of the join, and the one the first two cannot see. A phase can read the right tree,
+    # run after its seeding, and still grade the main checkout — because git exports `GIT_DIR` into
+    # the hook, a child inherits it, and an inherited `GIT_DIR` BEATS `cwd`. Every git query a step
+    # makes then answers about the repository the hook came from. Measured 261107 in
+    # `.scratch/push5-261107.log`: the regen-drift check SKIPped naming the four tracked files dirty
+    # in the MAIN CHECKOUT, from inside a clean worktree at a detached HEAD.
+    for node in ast.walk(tree):
+        if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+                and node.func.attr == "Popen"):
+            continue
+        env = next((kw.value for kw in node.keywords if kw.arg == "env"), None)
+        scrubbed = (isinstance(env, ast.Call) and isinstance(env.func, ast.Attribute)
+                    and env.func.attr == "clean_env")
+        if not scrubbed:
+            issues.append(f"pre-push:{node.lineno} launches a phase step without passing "
+                          "env=git_env.clean_env(...) — the child inherits the GIT_DIR git exports "
+                          "into this hook, and an inherited GIT_DIR beats cwd, so every git query "
+                          "the step makes reads the MAIN CHECKOUT instead of the gate worktree")
 
     deps, error = _plan_graph()
     if error:

@@ -57,7 +57,7 @@ and forgotten here fails a test instead of a push.
 
 ## Which TREE a phase grades — the content phases read the pushed commit
 
-The phases in `CONTENT_PHASES` run in a throwaway worktree at the ref being pushed, seeded by
+The phases in `CONTENT_PHASES` run in a worktree at the ref being pushed, seeded by
 `tools/gate_worktree.py`. Their verdicts are claims about a COMMIT, and a working tree carrying five
 agents' half-finished edits is not one. Measured 261106: five readings across four checks in one
 session, three false REDS naming a sibling's uncommitted file, and — the expensive direction — one
@@ -79,10 +79,28 @@ rather than hidden: the rendered-PDF caption-orphan sensor in `tier1` reads `boo
 `tier1` ADOPTS the artifact the book-PDF phase just built. That sensor therefore keeps working-tree
 scope — unchanged from today, not weakened, while every other check in the phase gains commit scope.
 
-Seeding costs ~16s (worktree checkout, three `node_modules` symlinks, two cover thumbs, the 127-page
-`book/web/` emit) against a phase pair measured at 267s. `GC_PREPUSH_WORKTREE=0` runs the content
-phases in the checkout, as before — for a machine where `git worktree add` is unavailable. It is a
-real weakening and the hook says so when it is used.
+The tree is PERSISTENT and REUSED across pushes, at a stable location outside the repo working tree
+(`~/Library/Caches/gc-gate-worktree/<repo-digest>/prepush`, overridable with
+`GC_GATE_WORKTREE_HOME`). Reuse is by `git checkout --detach --force`, which rewrites only the files
+that differ — the point being that on this machine Microsoft Defender charges for file CREATION, so a
+fresh 2,914-file checkout per push pays a scan bill that reuse amortizes to the size of the diff. The
+throwaway form measured 32.0s at load 113 and 5.5s at load 12 for the same work (`.scratch/push4`,
+`push5`); the reused form pays a checkout and a verify.
+
+A reused tree is never trusted — it is PROVED. Before a single check runs, `prepare()` asserts
+`git -C <wt> rev-parse HEAD` equals the pushed sha AND `git -C <wt> status --porcelain` is empty, and
+on any mismatch DESTROYS the tree and rebuilds from scratch rather than grading it; only a second
+failure refuses the push. A drifted persistent tree would produce exactly the false green this gate
+was built to prevent, and would do it silently. Untracked leftovers are swept as hostile, keeping
+only the declared seeds.
+
+Two simultaneous pushes cannot share one tree, so the second takes the lock's word for it: the lock
+names its holder's PID, and a push that loses it falls back to a throwaway tree and says so. It keeps
+commit scope and gives up only the amortization — blocking would hold a push behind a twenty-minute
+gate, and refusing would spend a correctness gate's credibility on a speed optimization.
+
+`GC_PREPUSH_WORKTREE=0` runs the content phases in the checkout, as before — for a machine where
+`git worktree add` is unavailable. It is a real weakening and the hook says so when it is used.
 
 ## Scope selection — why some gates are skipped
 
@@ -173,6 +191,7 @@ from _hook_root import FORCE_STAGED_DERIVED_VIEWS, committing_toplevel, strip_ge
 
 ROOT = committing_toplevel()
 sys.path.insert(0, os.path.join(ROOT, "tools"))
+import git_env  # noqa: E402 — the scrubbed-git seam; every phase step's env goes through it
 from gate_worktree import GateWorktree, SeedGap  # noqa: E402 — resolved against the committing tree
 
 #: The phases whose verdict is a property of the pushed COMMIT, so they read a throwaway worktree at
@@ -343,12 +362,32 @@ class _PhaseCtx:
         self.buf.append(line)
 
     def run(self, argv: list[str], cwd: str | None = None, env: dict[str, str] | None = None) -> int:
+        """Run one step. EVERY step's environment is scrubbed of git's repository bindings.
+
+        Git exports `GIT_DIR` into a pre-push hook and a child inherits it, and an inherited `GIT_DIR`
+        BEATS `cwd`. So a step running in the gate worktree that shells out to git read the MAIN
+        CHECKOUT — which is the working-tree scope this whole phase pair exists to leave behind,
+        surviving one level down where nothing was looking.
+
+        Measured 261107, and the evidence was sitting in the push logs: `push5-261107.log` SKIPs
+        `html: committed generated pages equal a fresh render (regen drift)` with the reason
+        *"uncommitted source changes (4): book/latex/native-sources.json, catalogue-figure.html,
+        resources/talks/figures-slide-scale/substrate-to-method.slide.{py,svg}"* — the four tracked
+        files dirty in the MAIN CHECKOUT at that moment, named by a check running inside a clean
+        worktree at a detached HEAD. `push4-261106.log` ran the same check green, because main's
+        non-emitted tracked paths happened to be clean then. That is the false-RED/false-GREEN pair
+        in miniature, inside the control built to remove it.
+
+        The seed emitter was already scrubbed through `git_env.run`; the two content phases were not,
+        and they are the ones whose verdicts are the point. Scrubbing here rather than per phase makes
+        it deny-by-default: a step that wanted the ambient binding would be the defect.
+        """
         if PLAN:
             _PLANNED.append((self.name, list(argv)))
             return 0
         if _CANCEL.is_set():
             raise _Cancelled()
-        proc = subprocess.Popen(argv, cwd=cwd or ROOT, env=env,
+        proc = subprocess.Popen(argv, cwd=cwd or ROOT, env=git_env.clean_env(env),
                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         with _PROCS_LOCK:
             _PROCS.add(proc)
@@ -408,8 +447,13 @@ class _ContentTree:
         return self.wt.adopt(rel) if self.wt is not None else False
 
     def cleanup(self) -> None:
+        """`release`, not `remove`: the persistent tree is KEPT and only the lock is dropped.
+
+        A throwaway tree — the concurrency fallback, or `persistent=False` — is still removed, and
+        `release` is the one method that knows which it is holding.
+        """
         if self.wt is not None:
-            self.wt.remove()
+            self.wt.release()
             self.wt = None
 
 
@@ -547,15 +591,14 @@ def _phase_gate_worktree(ctx: _PhaseCtx) -> str | None:
                  "push; CI's --full still grades the commit")
         return None
     if PLAN:
-        _PLANNED.append(("gate worktree", ["git", "worktree", "add", "<tmp>/wt", "--detach",
-                                           PUSHED_REF]))
+        _PLANNED.append(("gate worktree", ["git", "-C", "<persistent>/gc-prepush", "checkout",
+                                           "--detach", "--force", PUSHED_REF]))
         return None
     worktree = GateWorktree(ROOT, PUSHED_REF, label="prepush")
     try:
-        worktree.create()
-        worktree.seed()
+        worktree.prepare()
     except SeedGap as gap:
-        worktree.remove()
+        worktree.release()
         return ("\npre-push: could not stand up the gate worktree — push refused.\n"
                 f"{gap}\n"
                 "Fix the seeding gap, or run with GC_PREPUSH_WORKTREE=0 to grade the working tree "
@@ -563,6 +606,11 @@ def _phase_gate_worktree(ctx: _PhaseCtx) -> str | None:
     CONTENT.wt = worktree
     for line in worktree.log:
         ctx.echo("pre-push: " + line)
+    # Printed on every push, not only on a rebuild: the one thing a reader of this log needs is
+    # whether the tree the next two phases grade IS the pushed commit, and a reused tree is exactly
+    # the case where that stops being obvious from the lines above.
+    ctx.echo(f"pre-push: verified — worktree HEAD == {PUSHED_REF[:9]} and `git status` empty"
+             + (f" (after {worktree.rebuilds} rebuild(s) on drift)" if worktree.rebuilds else ""))
     return None
 
 
@@ -831,7 +879,10 @@ if in_book or in_handbook:
     phases.append(Phase("print toolchain", _phase_toolchain, cost=3))
 
 # FIRST in submission order (highest cost wins the tie among ready phases), because both content
-# phases wait on it. ~16s; the pair behind it is ~267s.
+# phases wait on it. The pair behind it is ~267s. The cost stays pessimistic at 11 rather than being
+# lowered to the reused case: it is the FIRST-push and post-drift-rebuild cost that decides whether
+# this phase should be scheduled ahead of its two consumers, and a cost tuned to the happy path would
+# put the expensive case last.
 phases.append(Phase("gate worktree", _phase_gate_worktree, cost=11))
 
 phases.append(Phase("site build", _phase_site_build, deps=("gate worktree",), cost=4))
