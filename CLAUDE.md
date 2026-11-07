@@ -90,22 +90,48 @@ re-deriving these, so they live here:**
     wrong, and wrong in the dangerous direction: it told every agent the defense was broader than
     it is. Corrected 261104 after a deck agent used the pathspec defense exactly as documented and
     still swept three sibling files.
-    - **Mechanism — PARTLY PINNED, do not over-trust either direction.** `git commit -- <paths>`
-      builds a TEMPORARY index and exports it as `GIT_INDEX_FILE`; the hook's `git add` calls
-      inherit that env var and write into it. The hook's own module docstring asserts this is
-      sufficient to sweep ("A pathspec on the commit does not defend against this — the temp index
-      is the one git exports"), and a deck agent's commit on 261104 did sweep three siblings.
-      **But a CONTROL case the same hour did not:** a pathspec commit of `CLAUDE.md` alone, with
-      two of those same `interactive/*.html` dirty in the tree, carried only `CLAUDE.md` — and the
-      hook had run in full `gate + regenerate + stage` mode with no lock error, so its `git add`
-      succeeded and the staged HTML was nonetheless discarded. One difference between the cases is
-      that the control's HTML was already STAGED (`MM`) rather than merely dirty, but that was not
-      isolated and is not established as the discriminator.
-      So the honest statement is the OBSERVATION, not a mechanism: **a pathspec commit sometimes
-      sweeps the hook's force-staged paths and sometimes does not, and nothing in the output tells
-      you which happened.** Verify after every commit with `git show --stat HEAD` rather than
-      reasoning about which index git used. Pinning this properly is open work; an un-pinnable
-      attribution is a finding about the signal, not a reason to pick the comfortable story.
+    - **Mechanism — PINNED 261106, and the earlier "sometimes it sweeps, sometimes it does not" is
+      retired.** `git commit -- <paths>` does NOT consult your index. It builds a temporary index
+      from the **HEAD tree**, overlays the **working-tree** content of each named path, writes it to
+      `.git/next-index-<PID>.lock`, exports that as `GIT_INDEX_FILE`, and re-reads it after the
+      hook returns. So the hook's `git add` always reaches the commit, and an already-staged foreign
+      path always stays out. Measured in synthetic repos driven through `tools/git_env.py`; probe at
+      `.scratch/forcestage-mechanism-261106.py`, scenarios in `tests/precommit_scope.py`.
+      - **The `MM` hypothesis this entry used to carry is REFUTED.** Merely dirty (` M`), staged
+        then modified (`MM`), and staged with the worktree matching (`M `) ALL sweep. Staging has no
+        bearing: the temp index comes from HEAD and the `git add` reads the working tree, so the
+        real index's opinion never enters.
+      - **The 261104 control did not sweep because there was nothing to sweep.** A sweep commits the
+        sibling's CURRENT content, which makes that path clean; the next commit sweeps it only if
+        the owner has written again since. The control (`ae5402c80`, 14:54) came four minutes after
+        `b5705b628` had committed the last of the three `interactive/*.html`. The within-session
+        positive control is `e81e0fcce` at 14:41 — same hook, same glob, nothing to do with staging,
+        two minutes after a sweep, and it carried none either. Then 26 consecutive commits under the
+        still-unnarrowed glob carried no interactive page at all, because those agents had moved on
+        to their `tests/*.mjs`.
+      So the rule is deterministic: **a pathspec commit ALWAYS sweeps a dirty path the hook stages;
+      the sweep resets that path to clean, so the next commit sweeps only what has been written
+      since.** `git show --stat HEAD` after a commit is still worth running, but the hook now prints
+      the same information BEFORE the commit lands (see the receipt below), which is where it is
+      actually useful.
+    - **A pathspec commit also discards your own `git add -p` of a NAMED path.** The named path's
+      content comes from the working tree, so a half-staged file lands whole — including a
+      sibling's in-flight hunk in the same file. This is plain git, with no hook involved, and it is
+      what took half a conversion of `book/build_book.py` into `643ebe445` and left `main` calling
+      an undefined `_file_digest` (repaired by `3745e4562`, whose message misattributes it to the
+      force-stage). It is also how eight of another session's `cutting-room-floor.md` entries
+      reached `de2ba6b5d`. If you want exactly what you staged, commit from the index, not a pathspec.
+    - **The hook prints a receipt** (`hooks/_stage_scope.py`): what the commit will contain with
+      insertion counts, which paths the HOOK added beyond anything you named, and any path carrying
+      content you did not stage. Read it; it is the last thing before the commit lands. The hook
+      also narrows its force-stage to the paths its own run WROTE — a candidate dirty on entry that
+      the regeneration skipped is not the hook's to commit — landed AUDIT-ONLY behind
+      `ENFORCE_STAGE_SCOPE`, so today it NAMES those paths rather than withholding them.
+    - **Still open: a projection can land ahead of its source.** The derived views are regenerated
+      from the WORKING TREE, so a view whose source is edited but not committed here lands first —
+      `9be6b2eec` carried an `outline.json` encoding prose that did not land until `d9ca503ac`. The
+      force-stage boundary cannot see this (the artifact is clean on entry and the hook genuinely
+      wrote it); the receipt names it. Blame and bisect mislead across such a window.
     - **What the pathspec DOES defend:** foreign paths that were ALREADY STAGED when you commit —
       they stay staged for their owner. That is real and worth keeping. It does **not** defend
       against a file that is merely DIRTY in the working tree and matches one of the hook's
