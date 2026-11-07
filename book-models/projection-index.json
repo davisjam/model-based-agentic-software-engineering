@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 859,
+    "total_sites": 860,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 517,
+      "book-web": 518,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -274,12 +274,16 @@
           {
             "file": "book/web/docs/part-3-intro.md",
             "occ": 3
+          },
+          {
+            "file": "book/web/docs/part-4-intro.md",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 64
+            "occ": 65
           }
         ]
       },
@@ -1099,7 +1103,7 @@
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 69
+            "occ": 70
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
@@ -1571,7 +1575,7 @@
           },
           {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 21
+            "occ": 25
           },
           {
             "file": "book/web/docs/part-5-intro.md",
@@ -2417,7 +2421,7 @@
           },
           {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 3
+            "occ": 8
           },
           {
             "file": "book/web/docs/part-5-intro.md",
@@ -3225,7 +3229,7 @@
           },
           {
             "file": "book/web/docs/part-4-intro.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/part-5-intro.md",

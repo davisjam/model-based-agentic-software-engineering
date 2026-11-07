@@ -4709,3 +4709,33 @@ This is why Modeling and Alignment form a feedback loop in practice. A failure c
 ### W7 — Introduce engineering capital through its effect on future change
 
 Governance conversion motivates a useful accounting concept: **engineering capital**. The field has a mature metaphor for the opposite condition. Technical debt is a liability carried forward: an expedient decision today imposes costs on future change. Engineering capital is durable engineering structure that lowers the future cost or uncertainty of change.
+
+## 2026-11-06 — A89/A92: SDD acknowledgment and Chapter 4 inset
+
+Approved by the author after the explicit general-method/specific-workflow comparison and illustrative TDD analogy. Source revision: `a65aa9ae5f96babf9dfd16f1def2989746aef0cd`. Replaced passages are retained below; the Chapter 4 cycle and its multiple entry points remain in the manuscript.
+
+### A89 — Connect the reader’s SDD experience to the judgment the book develops
+
+Source: `book/frontmatter/0.5-preface.md`, starting at line 53. Native source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+
+MAGE draws on established ideas in architecture, abstraction, and verification. Agentic development environments such as Kiro already organize work around requirements, design, and implementation tasks.[cite: kiro2026specs] MAGE asks how engineers preserve understanding and control as the system evolves. That requires choosing which consequential relationships and invariants to represent, which obligations to enforce independently of the producing agent, and what evidence justifies accepting a change. It also requires governance conversion: using failures and repeated judgment to revise the models and controls that subsequent work inherits. The book develops the judgment needed to make those choices, including when the benefits of additional structure justify its maintenance cost. Commodity intelligence changes the economics of that arrangement.
+
+### A92 — Open with the chapter’s practical question and explain SDD in an inset
+
+Source: `book/part4/00-part-intro.md`, starting at line 5. Native source: `book/latex/sources/part4/00-part-intro.tex`.
+
+Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeling from Alignment so that each mechanism could be examined clearly. Engineering does not usually present them that way. As work proceeds, new evidence changes what engineers understand about the problem; one representation exposes the need for another; implementation tests assumptions; and analysis changes the design. This chapter brings the two principles together as an engineering method: making consequential properties explicit, placing enforcement where obligations can be checked, and converting recurring judgment into durable engineering structure.
+
+<!-- principlebox -->
+
+<!-- box-family: canonical -->
+
+> ### The MAGE cycle
+>
+> Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.
+>
+> **Repeat.**
+
+The chapter follows that cycle from four directions. {{sec:the-dynamics-of-mage}} develops the dynamics: models need not enter a system all at once; alignment can act first actively, then passively to preserve what it established; and because engineers often do not yet know the right models at the beginning of a project, implementation participates in discovering them. {{sec:interlude-one-problem-many-models}} follows those dynamics through one problem in DocAble: a memory failure that drives successive changes in representation and execution, then a connected family of models, each answering a different question. {{sec:brownfield-engineering}} enters a system that already exists, where the consequential structure arrived before the models that should describe it. {{sec:engineering-the-environment}} turns to the destination. A task begins from the representations, controls, and evidence the environment already owns; work exposes what those structures can and cannot answer; and each useful conversion changes what later work inherits. Useful durable structure becomes engineering capital — capital that can drift, depreciate, and cost more to maintain than it returns, so the chapter covers operation and retirement as well as accumulation.
+
+The question here is practical: **what should you do next?**
