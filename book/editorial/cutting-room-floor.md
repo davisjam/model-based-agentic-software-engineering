@@ -4691,3 +4691,21 @@ Reason: The earlier problem descriptions already introduce Chapters 2 and 3. Nam
 ```latex
 This book develops MAGE through software engineering, drawing on the DocAble case study. \magevalue{chapter:modeling} asks how to represent the knowledge needed for engineering decisions. \magevalue{chapter:alignment} asks how selected obligations can govern the work. \magevalue{chapter:theory} develops the theory and examines its scope and limits. \magevalue{chapter:profession} considers its implications beyond software.
 ```
+
+## 2026-11-06 — W6/W7: Governance conversion and engineering capital
+
+Approved review edits W6 and W7. W7 includes the author’s sentence break after “increases it” and “a shortcut today that makes future changes more costly.” Prior source revision: `cba8a987d0e24c6f60b352b78f7ac82924564194`.
+
+Source: `book/latex/sources/part3/3.4-governance-conversion.tex` (compatibility projection `book/part3/3.4-governance-conversion.md`).
+
+### W6 — Preserve the explanation of conversion and develop its feedback loop
+
+Viewed from {{chapter:problem}}, these interventions do different things to the probabilistic surface. Better representation can make a satisfactory realization cheaper to find by reducing reconstruction or exposing the property more directly. Better evidence can make the realized state more legible. A repeatable validator can carry an evaluation independently of the producer, and a constraint or gate can enforce that verdict. Governance conversion is therefore not simply the accumulation of checks. The goal is not to eliminate judgment; it is to spend human judgment where the choice is consequential and let machinery hold decisions that have already been made. Conversion is the process by which more of those settled decisions become structure that later work inherits.
+
+<!-- point: modeling-and-alignment-form-a-feedback-loop | Alignment failures expose tacit knowledge or obligations that Modeling can externalize. | terms: modeling-principle, alignment-principle, governance-conversion -->
+
+This is why Modeling and Alignment form a feedback loop in practice. A failure can expose knowledge that remained implicit, or reveal that a choice treated as a degree of freedom actually carried a tacit obligation or tolerance. Modeling can make that distinction explicit; Alignment can then give the resulting obligation appropriate evidence and enforcement. The environment improves when recurring reconstruction or judgment moves into durable structure that later work can inherit. [ref:governance-conversion-fig] draws the diagnosis.
+
+### W7 — Introduce engineering capital through its effect on future change
+
+Governance conversion motivates a useful accounting concept: **engineering capital**. The field has a mature metaphor for the opposite condition. Technical debt is a liability carried forward: an expedient decision today imposes costs on future change. Engineering capital is durable engineering structure that lowers the future cost or uncertainty of change.

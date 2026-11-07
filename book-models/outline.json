@@ -1915,7 +1915,7 @@
             },
             {
               "slug": "modeling-and-alignment-form-a-feedback-loop",
-              "text": "Alignment failures expose tacit knowledge or obligations that Modeling can externalize.",
+              "text": "Agent work supplies evidence for engineering decisions about models, obligations, and controls; later work uses the revised environment and supplies further evidence.",
               "block_index": 33
             }
           ]
@@ -1939,7 +1939,7 @@
           "section_id": "engineering-capital",
           "level": 2,
           "heading_text": "Engineering Capital",
-          "topic_sentence": "Governance conversion motivates a useful accounting concept: **engineering capital**.",
+          "topic_sentence": "Governance conversion motivates a useful concept: **engineering capital**.",
           "id_source": "derived",
           "block_index": 40,
           "points": [
