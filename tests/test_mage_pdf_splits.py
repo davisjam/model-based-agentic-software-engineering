@@ -21,7 +21,9 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "book"))
+sys.path.insert(0, str(ROOT / "tools"))
 import build_book
+import latex_reuse
 
 
 WORKFLOW = ROOT / ".github" / "workflows" / "pages.yml"
@@ -263,6 +265,79 @@ class SectionReuseKeyTests(unittest.TestCase):
                 "output_sha256": hashlib.sha256(pdf.read_bytes()).hexdigest()}))
             with patch.dict(os.environ, {"MAGE_PDF_SPLIT_FORCE": "1"}):
                 self.assertFalse(build_book._section_is_current(stamp, "abc", pdf))
+
+    def test_the_section_stamp_is_the_shared_record_plus_a_page_annotation(self):
+        """The record this build writes is `stamp_payload`'s, with `pages` riding alongside.
+
+        What this pins is the JOIN between a writer and a guard that now live in different files. A
+        rename inside the shared module would not fail here as an error — it would read as a stamp
+        that never matches, so every section recompiles on every run and nothing says why. The
+        three-field shape is also what every section stamp currently on disk carries.
+        """
+        with tempfile.TemporaryDirectory() as directory:
+            pdf = Path(directory) / "s.pdf"
+            pdf.write_bytes(b"%PDF-1.7 pretend")
+            record = {**latex_reuse.stamp_payload("abc", pdf), "pages": 28}
+            self.assertEqual(list(record), ["key", "output_sha256", "pages"])
+            self.assertEqual(record["output_sha256"],
+                             hashlib.sha256(pdf.read_bytes()).hexdigest())
+            stamp = Path(directory) / "s.cache.json"
+            stamp.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+            with patch.dict(os.environ, {}, clear=True):
+                self.assertTrue(build_book._section_is_current(stamp, "abc", pdf))
+
+    def test_the_page_count_annotates_the_stamp_and_decides_nothing(self):
+        """`pages` is this caller's own note, deliberately outside the shared record.
+
+        So the guard must ignore it — a wrong or absent page count is not a reason to recompile a
+        PDF whose bytes and inputs both check out. Pinned because the opposite is the tempting
+        tidy-up: folding `pages` into `stamp_payload` would make every other caller's stamps
+        narrower than this one's and turn a cosmetic field into a cache-invalidating one.
+        """
+        with tempfile.TemporaryDirectory() as directory:
+            pdf = Path(directory) / "s.pdf"
+            pdf.write_bytes(b"%PDF-1.7 pretend")
+            payload = latex_reuse.stamp_payload("abc", pdf)
+            stamp = Path(directory) / "s.cache.json"
+            for label, record in (("absent", payload),
+                                  ("wrong", {**payload, "pages": 999}),
+                                  ("right", {**payload, "pages": 28})):
+                with self.subTest(pages=label):
+                    stamp.write_text(json.dumps(record), encoding="utf-8")
+                    with patch.dict(os.environ, {}, clear=True):
+                        self.assertTrue(build_book._section_is_current(stamp, "abc", pdf))
+
+    def test_a_stamp_written_before_the_shared_record_landed_is_still_honoured(self):
+        """Migrating the writer must not invalidate the stamps already on the author's disk.
+
+        The literal below is the pre-migration format, frozen on purpose: reading it from the
+        shared module would make this test agree with whatever the module says today, which is the
+        one thing it must not do.
+        """
+        with tempfile.TemporaryDirectory() as directory:
+            pdf = Path(directory) / "s.pdf"
+            pdf.write_bytes(b"%PDF-1.7 pretend")
+            stamp = Path(directory) / "s.cache.json"
+            stamp.write_text(json.dumps({
+                "key": "abc",
+                "output_sha256": hashlib.sha256(pdf.read_bytes()).hexdigest(),
+                "pages": 28}, indent=2) + "\n", encoding="utf-8")
+            with patch.dict(os.environ, {}, clear=True):
+                self.assertTrue(build_book._section_is_current(stamp, "abc", pdf))
+
+    def test_the_build_does_not_spell_the_stamp_fields_itself(self):
+        """The fourth hand-rolled copy of the record is the failure this migration closed.
+
+        Three call sites wrote the record through the shared module while this one still spelled
+        `output_sha256` out; the duplicate was invisible because it was correct, which is what a
+        duplicate always is on the day it lands. So the check is on the spelling, not the value —
+        and it reads the source rather than the behaviour, because a re-hand-rolled record would
+        pass every behavioural test here and drift the next time the shared format moves.
+        """
+        source = (ROOT / "book" / "build_book.py").read_text(encoding="utf-8")
+        self.assertNotIn("output_sha256", source,
+                         "the stamp's field names belong to latex_reuse.stamp_payload")
+        self.assertIn("latex_reuse.stamp_payload(", source)
 
 
 # Captured at import, before any test mutates a shared input, so the edit test compares against a
