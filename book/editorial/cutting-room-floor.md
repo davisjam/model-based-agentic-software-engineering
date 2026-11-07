@@ -4680,3 +4680,14 @@ Neither move eliminates engineering judgment. Models preserve selected distincti
 
 Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} develop those two problems separately. \magevalue{chapter:modeling} asks what should be modeled. \magevalue{chapter:alignment} asks how selected engineering obligations come to be enforced.
 ```
+
+
+## 2026-11-06 — X1: Keep a compact Chapters 2–5 roadmap
+
+Review item: `X1` (`14-trim-repeat-roadmap`). Source: `book/latex/sources/part1/1.4-the-new-engineering-problem.tex`, line 55. Source revision: `ce9e52fc89fea2115639b38ae4f09943e8f6ec09`. Native excerpt SHA-256: `e41629f83d76205e9fbb4ed3ec46ed0d2f2f6ed71aa4606aa01840a3f353e47e`. Applied after explicit author approval.
+
+Reason: The earlier problem descriptions already introduce Chapters 2 and 3. Name Chapters 2–5 together here before the theory and implications signposts, preserving orientation without repeating those descriptions.
+
+```latex
+This book develops MAGE through software engineering, drawing on the DocAble case study. \magevalue{chapter:modeling} asks how to represent the knowledge needed for engineering decisions. \magevalue{chapter:alignment} asks how selected obligations can govern the work. \magevalue{chapter:theory} develops the theory and examines its scope and limits. \magevalue{chapter:profession} considers its implications beyond software.
+```
