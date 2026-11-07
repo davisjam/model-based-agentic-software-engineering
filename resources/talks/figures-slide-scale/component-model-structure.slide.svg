@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.0 220.3" width="288.0" height="220.3" role="group" aria-labelledby="cmTitle cmDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="cmTitle">One component registry, every tool reading the same ownership answer</title>
+  <desc id="cmDesc">The component registry feeds the boundary lints, the agent dispatch, and the
+    dynamic context injection, so every tool reads the same ownership answer. A reverse-mapping
+    test joins the registry to the real directory tree and fails the build if the declared zones
+    and the tree disagree in either direction.</desc>
+  <defs>
+    <marker id="cm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="288.0" height="220.3" fill="#fdfcf9"/>
+  <rect id="consumer-0" x="143.6" y="2.0" width="144.4" height="33.5" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="215.8" y="24.4" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">Boundary lints</text>
+  <rect id="consumer-1" x="143.6" y="45.5" width="144.4" height="33.5" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="215.8" y="67.9" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">Dispatch</text>
+  <rect id="consumer-2" x="143.6" y="89.0" width="144.4" height="33.5" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="215.8" y="111.4" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">Context injection</text>
+  <path id="registry" d="M 0.0,34.8 v 55.0 a 58.8,8.8 0 0 0 117.6,0 v -55.0" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <ellipse cx="58.8" cy="34.8" rx="58.8" ry="8.8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="58.8" y="62.1" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">Component</text>
+  <text x="58.8" y="81.6" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">registry</text>
+  <path d="M117.6,66.7 C130.6,66.7 130.6,18.8 141.6,18.8" fill="none" stroke="#1c1917" stroke-width="1.6" marker-end="url(#cm-ah)"/>
+  <path d="M117.6,66.7 C130.6,66.7 130.6,62.2 141.6,62.2" fill="none" stroke="#1c1917" stroke-width="1.6" marker-end="url(#cm-ah)"/>
+  <path d="M117.6,66.7 C130.6,66.7 130.6,105.8 141.6,105.8" fill="none" stroke="#1c1917" stroke-width="1.6" marker-end="url(#cm-ah)"/>
+  <path id="tree" d="M 0.0,147.3 v 55.0 a 58.8,8.8 0 0 0 117.6,0 v -55.0" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <ellipse cx="58.8" cy="147.3" rx="58.8" ry="8.8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="58.8" y="174.7" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">Real</text>
+  <text x="58.8" y="194.2" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">directory tree</text>
+  <polygon id="reverse-mapping-test" points="122.0,179.2 134.0,150.7 274.0,150.7 286.0,179.2 274.0,207.7 134.0,207.7" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="204.0" y="175.2" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">Reverse-mapping</text>
+  <text x="204.0" y="194.7" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">test</text>
+  <line x1="117.6" y1="179.2" x2="120.0" y2="179.2" stroke="#1c1917" stroke-width="1.6" marker-end="url(#cm-ah)"/>
+  <path d="M94.1,98.6 C111.7,141.3 96.0,136.7 140.0,148.7" fill="none" stroke="#1c1917" stroke-width="1.6" marker-end="url(#cm-ah)"/>
+</svg>

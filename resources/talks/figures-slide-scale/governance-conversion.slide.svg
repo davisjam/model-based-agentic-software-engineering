@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672.5 279.4" width="672.5" height="279.4" role="img" aria-labelledby="gcTitle gcDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
+    piece is encoded as durable structure that future work benefits from inheriting as engineering capital</title>
+  <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
+    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
+    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
+    gate. The five converge into durable engineering structure, which future work benefits from inheriting,
+    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another
+    gate — you diagnose what the environment lacked and encode that.</desc>
+  <defs>
+    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="672.5" height="279.4" fill="#fdfcf9"/>
+  <rect id="gc-failure" x="242.9" y="2.0" width="186.7" height="29.5" rx="7" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.0"/>
+  <text x="336.2" y="22.8" text-anchor="middle" font-size="17.25" font-weight="700" fill="#8a2f2f">FAILURE / SURPRISE</text>
+  <line x1="336.2" y1="32.5" x2="336.2" y2="39.5" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <rect id="gc-diagnosis" x="245.3" y="40.5" width="182.0" height="29.5" rx="7" fill="#fbf6e9" stroke="#a6801f" stroke-width="2.0"/>
+  <text x="336.2" y="61.3" text-anchor="middle" font-size="17.25" font-weight="700" fill="#7a5c12">What was missing?</text>
+  <rect id="gc-branch-representation" x="2.0" y="79.0" width="126.5" height="51.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.0"/>
+  <line x1="8.0" y1="103.5" x2="122.5" y2="103.5" stroke="#2f5169" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <text x="65.2" y="97.5" text-anchor="middle" font-size="16.25" font-weight="700" fill="#2f5169">representation</text>
+  <text x="65.2" y="124.0" text-anchor="middle" font-size="16.25" fill="#1c1917">model</text>
+  <rect id="gc-branch-obligation" x="137.5" y="79.0" width="126.5" height="51.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.0"/>
+  <line x1="143.5" y1="103.5" x2="258.0" y2="103.5" stroke="#2f5169" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <text x="200.8" y="97.5" text-anchor="middle" font-size="16.25" font-weight="700" fill="#2f5169">obligation</text>
+  <text x="200.8" y="124.0" text-anchor="middle" font-size="16.25" fill="#1c1917">invariant</text>
+  <rect id="gc-branch-evidence" x="273.0" y="79.0" width="126.5" height="51.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.0"/>
+  <line x1="279.0" y1="103.5" x2="393.5" y2="103.5" stroke="#2f5169" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <text x="336.2" y="97.5" text-anchor="middle" font-size="16.25" font-weight="700" fill="#2f5169">evidence</text>
+  <text x="336.2" y="124.0" text-anchor="middle" font-size="16.25" fill="#1c1917">sensor</text>
+  <rect id="gc-branch-evaluation" x="408.5" y="79.0" width="126.5" height="51.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.0"/>
+  <line x1="414.5" y1="103.5" x2="529.0" y2="103.5" stroke="#2f5169" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <text x="471.8" y="97.5" text-anchor="middle" font-size="16.25" font-weight="700" fill="#2f5169">evaluation</text>
+  <text x="471.8" y="124.0" text-anchor="middle" font-size="16.25" fill="#1c1917">validator</text>
+  <rect id="gc-branch-enforcement" x="544.0" y="79.0" width="126.5" height="51.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.0"/>
+  <line x1="550.0" y1="103.5" x2="664.5" y2="103.5" stroke="#2f5169" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <text x="607.2" y="97.5" text-anchor="middle" font-size="16.25" font-weight="700" fill="#2f5169">enforcement</text>
+  <text x="607.2" y="124.0" text-anchor="middle" font-size="16.25" fill="#1c1917">constraint / gate</text>
+  <path d="M336.2,70.0 L336.2,73.0" fill="none" stroke="#2f5169" stroke-width="2"/>
+  <path d="M65.2,73.0 L607.2,73.0" fill="none" stroke="#2f5169" stroke-width="2"/>
+  <line x1="65.2" y1="73.0" x2="65.2" y2="78.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <line x1="200.8" y1="73.0" x2="200.8" y2="78.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <line x1="336.2" y1="73.0" x2="336.2" y2="78.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <line x1="471.8" y1="73.0" x2="471.8" y2="78.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <line x1="607.2" y1="73.0" x2="607.2" y2="78.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <path d="M65.2,130.0 L65.2,135.0 L336.2,135.0" fill="none" stroke="#2f5169" stroke-width="1.6"/>
+  <path d="M200.8,130.0 L200.8,135.0 L336.2,135.0" fill="none" stroke="#2f5169" stroke-width="1.6"/>
+  <path d="M336.2,130.0 L336.2,135.0 L336.2,135.0" fill="none" stroke="#2f5169" stroke-width="1.6"/>
+  <path d="M471.8,130.0 L471.8,135.0 L336.2,135.0" fill="none" stroke="#2f5169" stroke-width="1.6"/>
+  <path d="M607.2,130.0 L607.2,135.0 L336.2,135.0" fill="none" stroke="#2f5169" stroke-width="1.6"/>
+  <line x1="336.2" y1="135.0" x2="336.2" y2="138.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <rect id="gc-durable" x="186.2" y="139.0" width="300.0" height="29.5" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="336.2" y="159.4" text-anchor="middle" font-size="16.25" font-weight="700" fill="#1c1917">DURABLE ENGINEERING STRUCTURE</text>
+  <line x1="336.2" y1="169.5" x2="336.2" y2="176.5" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <rect id="gc-future" x="151.5" y="177.5" width="369.5" height="29.5" rx="7" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.0"/>
+  <text x="336.2" y="197.9" text-anchor="middle" font-size="16.25" font-weight="700" fill="#2f5137">FUTURE WORK BENEFITS FROM INHERITING IT</text>
+  <line x1="336.2" y1="208.0" x2="336.2" y2="215.0" stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)"/>
+  <rect id="gc-capital" x="227.1" y="216.0" width="218.3" height="31.5" rx="9" fill="#3d6b4a" stroke="#2f5137" stroke-width="2.0"/>
+  <text x="336.2" y="237.8" text-anchor="middle" font-size="17.25" font-weight="700" fill="#ffffff">ENGINEERING CAPITAL</text>
+  <text x="336.2" y="268.8" text-anchor="middle" font-size="16.25" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
+</svg>

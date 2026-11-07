@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672.5 276.5" width="672.5" height="276.5" role="img" aria-labelledby="levTitle levDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="levTitle">Where engineering leverage acts</title>
+  <desc id="levDesc">Two pipelines are stacked for contrast. In the classical pipeline the engineer builds
+    the implementation directly, so the implementation is the primary engineered object: Engineer, then
+    Implementation, then Product. In the agentic pipeline agents build the implementation inside an
+    engineered environment the engineer constructs, so the environment becomes the primary engineered
+    lever: Engineer, then Engineered Environment, then Agents, then Implementation, then Product. A rust
+    badge marks the primary node in each row; it moves upstream from the implementation to the environment.
+    A footer strip unpacks the environment into models, obligations, evidence, controls, and
+    infrastructure.</desc>
+  <defs>
+    <marker id="lev-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="672.5" height="276.5" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="672.5" height="26.0" fill="#f6f4ef"/>
+  <text x="336.2" y="18.2" text-anchor="middle" font-size="18.0" font-weight="700" letter-spacing="1.8" fill="#1c1917">WHERE ENGINEERING LEVERAGE ACTS</text>
+  <text x="6" y="48.0" font-size="16.0" font-weight="700" letter-spacing="1.4" fill="#57534e">CLASSICAL</text>
+  <text x="106.4" y="48.0" font-size="16.0" font-style="italic" fill="#57534e">engineer writes the implementation</text>
+  <path d="M227.1,72.0 L263.1,72.0" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#lev-k)"/>
+  <path d="M418.5,72.0 L454.5,72.0" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#lev-k)"/>
+  <rect id="c-engineer" x="130.2" y="56.0" width="90.9" height="32.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="175.6" y="78.0" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect id="c-impl" x="267.1" y="54.0" width="145.4" height="36.0" rx="7" fill="#f3efe7" stroke="#9a3f12" stroke-width="3.0"/>
+  <text x="339.8" y="78.0" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Implementation</text>
+  <rect id="c-product" x="458.5" y="56.0" width="83.8" height="32.0" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="500.4" y="78.0" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Product</text>
+  <text x="339.8" y="104.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#9a3f12">primary engineered object</text>
+  <line x1="8" y1="113.0" x2="664.5" y2="113.0" stroke="#e4e0d8" stroke-width="1.4" stroke-dasharray="5 6"/>
+  <text x="6" y="133.0" font-size="16.0" font-weight="700" letter-spacing="1.4" fill="#155c38">AGENTIC</text>
+  <text x="89.4" y="133.0" font-size="16.0" font-style="italic" fill="#57534e">agents write the implementation</text>
+  <path d="M113.6,160.0 L134.6,160.0" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#lev-k)"/>
+  <path d="M265.6,160.0 L286.6,160.0" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#lev-k)"/>
+  <path d="M370.5,160.0 L391.5,160.0" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#lev-k)"/>
+  <path d="M545.9,160.0 L566.9,160.0" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#lev-k)"/>
+  <rect id="a-engineer" x="17.7" y="144.0" width="90.9" height="32.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="63.2" y="165.9" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect id="a-env" x="138.6" y="140.0" width="122.0" height="40.0" rx="7" fill="#e3f0e7" stroke="#9a3f12" stroke-width="3.0"/>
+  <text x="199.6" y="155.9" text-anchor="middle" font-size="17.0" font-weight="700" fill="#155c38">Engineered</text>
+  <text x="199.6" y="176.0" text-anchor="middle" font-size="17.0" font-weight="700" fill="#155c38">Environment</text>
+  <rect id="a-agents" x="290.6" y="144.0" width="74.9" height="32.0" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="328.1" y="165.9" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Agents</text>
+  <rect id="a-impl" x="395.5" y="144.0" width="145.4" height="32.0" rx="7" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <text x="468.2" y="165.9" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Implementation</text>
+  <rect id="a-product" x="570.9" y="144.0" width="83.8" height="32.0" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="612.8" y="165.9" text-anchor="middle" font-size="17.0" font-weight="700" fill="#1c1917">Product</text>
+  <text x="199.6" y="195.0" text-anchor="middle" font-size="16.0" font-weight="700" fill="#9a3f12">primary engineered lever</text>
+  <line x1="138.6" y1="180.0" x2="26.2" y2="203.0" stroke="#a8a29e" stroke-width="1.1" stroke-dasharray="3 4"/>
+  <line x1="260.6" y1="180.0" x2="646.2" y2="203.0" stroke="#a8a29e" stroke-width="1.1" stroke-dasharray="3 4"/>
+  <rect x="26.2" y="203.0" width="620.0" height="70.5" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="336.2" y="224.5" text-anchor="middle" font-size="16.0" font-weight="700" fill="#155c38">Governed Engineering Environment</text>
+  <text x="336.2" y="244.0" text-anchor="middle" font-size="16.0" font-style="italic" fill="#57534e">the engineered instructions around autonomous realization</text>
+  <text x="336.2" y="263.5" text-anchor="middle" font-size="16.0" fill="#57534e">models · obligations · evidence · controls · infrastructure</text>
+</svg>
