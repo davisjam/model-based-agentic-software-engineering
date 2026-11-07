@@ -6983,8 +6983,14 @@ def build_pdf_split() -> int:
             # Stamped only now — after the compile converged, the diagnostics allow-list passed, and
             # the structure gate passed. The stamp therefore asserts "this exact PDF passed on these
             # exact inputs", which is the claim a later reuse relies on.
-            stamp.write_text(json.dumps({"key": key,
-                                         "output_sha256": _file_digest(destination),
+            #
+            # The record comes from `latex_reuse.stamp_payload`, never hand-written, because the
+            # guard that reads it back is `latex_reuse.is_current` — one function must own both
+            # spellings or a renamed field reads as a permanent cache miss rather than as an error.
+            # `pages` rides alongside as this caller's own annotation: the guard compares the
+            # payload's own fields and ignores any others, so a field no reuse decision depends on
+            # belongs here rather than in the shared record.
+            stamp.write_text(json.dumps({**latex_reuse.stamp_payload(key, destination),
                                          "pages": pages}, indent=2) + "\n",
                              encoding="utf-8")
             return suffix, f"Section PDF: {destination.name} ({pages} pages)", None
