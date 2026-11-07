@@ -22,12 +22,20 @@ classes, all stdlib and instant:
 A faithful end-to-end check would build a worktree, commit through the hook, and diff the result. That costs
 a worktree per run and fails in interesting ways on a busy machine, so it stays out; the three classes above
 cover the resolution and both call-shapes that can reintroduce the loss.
+
+Later checks here DO build a synthetic repository, and one of them committed the same defect against the
+live repo. A self-test that can reach the repository it tests is not a self-test: `cwd=` loses to the `GIT_DIR` git
+exports into every hook, so the commit-scope harness configured the LIVE gitdir on 261106 — `core.bare`,
+a temp-dir `core.hooksPath` that silently disabled this repo's own pre-commit hook, and a synthetic author
+identity. Every git call below therefore goes through `git_env`, and `_AmbientGitdir` stands a decoy where
+the real gitdir was so a regression is both contained and reported.
 """
 from __future__ import annotations
 
 import ast
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -36,6 +44,9 @@ from tests.common import FAIL, PASS, ROOT
 
 sys.path.insert(0, os.path.join(ROOT, "hooks"))
 import _hook_root  # noqa: E402 — the resolver under test; lives beside the hook so it is importable before the root is known
+
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import git_env  # noqa: E402 — the scrubbed-git seam; resolved against ROOT, known only at import time
 
 _HOOK = os.path.join(ROOT, "hooks", "pre-commit")
 
@@ -258,7 +269,104 @@ def _shared_artifact_findings() -> list[str]:
     return []
 
 
+class _AmbientGitdir:
+    """A decoy gitdir, exported where the real one stood, fingerprinted across the harness run.
+
+    A self-test that can reach the repository it is testing is not a self-test. The harness below
+    builds a synthetic repository and drives it, and `cwd=` alone does not make that true: git
+    exports `GIT_DIR`, `GIT_WORK_TREE` and `GIT_INDEX_FILE` into every hook, a subprocess inherits
+    them, and the inherited value WINS. On 261106 the harness therefore ran `git init` and four
+    `git config` calls against the REAL gitdir — writing `core.bare = true`, a `core.hooksPath`
+    into a temp directory (an accidental `--no-verify` on a repo that bans it) and a synthetic
+    identity — then failed on the config it had just written, so it could never pass.
+
+    `git_env` is the fix. This is the control that keeps the fix honest, and it does two jobs at
+    once: a decoy stands in the environment so any write the harness still aims at its ambient
+    repository lands HERE, and the fingerprint reports it as a finding in the same run. Detection
+    and containment from one object, which is why the harness runs inside it always rather than in
+    a second check that would double the cost of the expensive part.
+    """
+
+    #: The names git exports into a hook that rebind a command to another repository. Set all
+    #: three: a scrub that misses one is not visible unless something tests for that one.
+    VARS = ("GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE")
+
+    def __init__(self) -> None:
+        self.parent: str | None = None
+        self.gitdir = ""
+        self.before: dict[str, str] = {}
+        self.saved: dict[str, str | None] = {}
+        self.error = ""
+
+    def __enter__(self) -> _AmbientGitdir:
+        self.parent = tempfile.mkdtemp(prefix="gc-ambient-decoy-")
+        tree = os.path.join(self.parent, "decoy")
+        os.makedirs(tree)
+        # Built through the scrubbed seam itself: creating the decoy under an inherited GIT_DIR
+        # would commit the very defect this object exists to catch.
+        done = git_env.git(["init", "-q", "."], repo=tree, hermetic=True)
+        if done.returncode:
+            self.error = f"could not build the decoy gitdir: {done.stderr.strip()[:200]}"
+            return self
+        self.gitdir = os.path.join(tree, ".git")
+        self.before = git_env.fingerprint(self.gitdir)
+        for name in self.VARS:
+            self.saved[name] = os.environ.get(name)
+        os.environ["GIT_DIR"] = self.gitdir
+        os.environ["GIT_WORK_TREE"] = tree
+        os.environ["GIT_INDEX_FILE"] = os.path.join(self.gitdir, "index")
+        return self
+
+    def __exit__(self, *exc: object) -> None:
+        for name, was in self.saved.items():
+            if was is None:
+                os.environ.pop(name, None)
+            else:
+                os.environ[name] = was
+        self.saved = {}
+
+    def findings(self) -> list[str]:
+        """What the harness wrote into the repository it was standing in. Empty is the only pass."""
+        if self.error:
+            return [self.error]
+        after = git_env.fingerprint(self.gitdir)
+        moved = sorted({p for p in set(self.before) | set(after)
+                        if self.before.get(p) != after.get(p)})
+        if not moved:
+            return []
+        return [f"the synthetic-repo harness WROTE into its ambient gitdir: {', '.join(moved[:8])}"
+                f"{' …' if len(moved) > 8 else ''}. Every git call that drives a chosen repository "
+                "must go through `git_env` — `cwd=` loses to an inherited GIT_DIR, and against the "
+                "real gitdir this writes core.bare/core.hooksPath/user.* into the live repo."]
+
+    def cleanup(self) -> None:
+        if self.parent is not None:
+            shutil.rmtree(self.parent, ignore_errors=True)
+            self.parent = None
+
+
 def _commit_scope_findings() -> list[str]:
+    """Run the commit-scope harness inside a decoy git environment, and grade both.
+
+    The harness is the sabotage control documented below; `_AmbientGitdir` is the control ON the
+    control, and the two run together so the expensive worktree build is paid once.
+    """
+    decoy = _AmbientGitdir()
+    try:
+        with decoy:
+            try:
+                issues = _commit_scope_harness()
+            except Exception as exc:  # noqa: BLE001 — a crash must not suppress the ambient verdict
+                # The harness raises on a missing seed or a refused worktree, and under a hostile
+                # environment it raises EARLY. Reporting that as a finding keeps the gitdir verdict
+                # below reachable, which is the one that says whether the live repo was written to.
+                issues = [f"commit-scope harness raised {type(exc).__name__}: {exc}"]
+        return issues + decoy.findings()
+    finally:
+        decoy.cleanup()
+
+
+def _commit_scope_harness() -> list[str]:
     """The throwaway worktree must read the COMMIT, in BOTH directions — the sabotage control.
 
     `pre-push` runs its content phases in a worktree at the pushed ref so a verdict stops being a
@@ -282,7 +390,11 @@ def _commit_scope_findings() -> list[str]:
         os.makedirs(repo)
 
         def git(*args: str) -> None:
-            done = subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True)
+            # `git_env.git`, never a bare `subprocess.run(..., cwd=repo)`: git exports GIT_DIR into
+            # every hook and the inherited value beats `cwd`, so this helper drove the REAL gitdir
+            # on 261106 and configured it. `hermetic` also cuts the host's global/system config out,
+            # so the synthetic repo's behaviour is a property of the four lines set below.
+            done = git_env.git(list(args), repo=repo, hermetic=True)
             if done.returncode:
                 issues.append(f"synthetic repo: git {' '.join(args)} failed: {done.stderr.strip()}")
 
@@ -295,8 +407,9 @@ def _commit_scope_findings() -> list[str]:
         git("config", "user.name", "gate")
         git("config", "commit.gpgsign", "false")
         # Point the synthetic repo at an EMPTY hooks dir rather than reaching for `--no-verify`,
-        # which this repo bans. `core.hooksPath` is set locally here, not globally, so a fresh
-        # `git init` already inherits nothing; this holds that true if a global one ever appears.
+        # which this repo bans. The `hermetic` env above already cuts global and system config out
+        # of reach, so this is local by construction; it stays written down because an absolute
+        # path into a temp dir is exactly the value that broke the real repo when it leaked.
         os.makedirs(os.path.join(tmp, "nohooks"))
         git("config", "core.hooksPath", os.path.join(tmp, "nohooks"))
         write("claim.txt", "COMMITTED-GOOD\n")
@@ -305,8 +418,7 @@ def _commit_scope_findings() -> list[str]:
         git("commit", "-q", "-m", "base")
         if issues:
             return issues
-        pushed = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo,
-                                capture_output=True, text=True).stdout.strip()
+        pushed = git_env.git(["rev-parse", "HEAD"], repo=repo, hermetic=True).stdout.strip()
 
         # A sibling, mid-edit: one file broken in the working tree, one file FIXED in the working
         # tree. Neither is committed, so neither may change the verdict.

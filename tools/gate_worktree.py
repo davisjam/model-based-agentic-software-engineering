@@ -27,8 +27,10 @@ the tree is never clean — actually runs.
 local state that the gates nonetheless require, and a worktree missing one opens on reds that NAME
 AN ASSET rather than a claim — the tell CLAUDE.md already records, having misled two agents. So the
 seed set is DECLARED as data below, with the `.gitignore` line that puts each path out of git's
-reach, and `tests/test_gate_worktree.py` holds the declaration against that file: an ignore rule
-that moves breaks a test instead of a push.
+reach, and the commit-scope check in `tests/hooks.py` holds the declaration against that file: an
+ignore rule that moves breaks a test instead of a push. (That check, not the
+`tests/test_gate_worktree.py` this paragraph named until 261106 — no such module was ever written,
+and a citation to a file nobody can open is how a reader concludes the guard does not exist.)
 
 Four classes, each resolved by its own cheapest route:
 
@@ -62,6 +64,8 @@ import subprocess
 import sys
 import tempfile
 import time
+
+import git_env
 
 #: A seeded path, its class, and the `.gitignore` pattern that keeps git from reproducing it.
 #: `optional` marks a path whose absence in the main checkout is a normal state rather than a gap
@@ -123,8 +127,17 @@ class SeedGap(Exception):
 WORKTREE_ADD_TIMEOUT = 420.0
 
 
-def _run(argv: list[str], cwd: str, timeout: float | None = None) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(argv, cwd=cwd, capture_output=True, text=True, timeout=timeout)
+def _git(args: list[str], repo: str, timeout: float | None = None) -> subprocess.CompletedProcess[str]:
+    """Every git call this module makes, bound to `repo` and to nothing the environment says.
+
+    `cwd=` loses to an inherited `GIT_DIR`, which git exports into every hook — and this module is
+    driven FROM a hook. In the pre-push run that binding happens to name the same repository, so the
+    exposure stays invisible there; in the self-test it names a different one, and a `git worktree
+    add` aimed at a synthetic repo then registers a worktree of the real one. `GIT_INDEX_FILE` is
+    the sharper half: a pathspec commit exports a temporary index, and `git worktree add` inheriting
+    it would write the new worktree's index over the committing one. `git_env.git` removes both.
+    """
+    return git_env.git(args, repo=repo, timeout=timeout)
 
 
 def _lock_holders(root: str) -> str:
@@ -132,8 +145,11 @@ def _lock_holders(root: str) -> str:
 
     `.git` is a FILE in this submodule, so the gitdir has to be resolved; and a `next-index-<PID>`
     lock beside `index.lock` is a stronger discriminator than the lock's size or age.
+
+    `--absolute-git-dir`, not `--git-dir`: the latter answers relative to the repository, and the
+    listing below runs in whatever directory the hook's python is standing in.
     """
-    gitdir = _run(["git", "rev-parse", "--git-dir"], root).stdout.strip()
+    gitdir = _git(["rev-parse", "--absolute-git-dir"], root).stdout.strip()
     if not gitdir:
         return ""
     holders = []
@@ -169,13 +185,13 @@ class GateWorktree:
         self.parent = tempfile.mkdtemp(prefix=f"gc-{self.label}-")
         path = os.path.join(self.parent, "wt")
         try:
-            out = _run(["git", "worktree", "add", path, "--detach", self.ref], self.root,
+            out = _git(["worktree", "add", path, "--detach", self.ref], self.root,
                        timeout=WORKTREE_ADD_TIMEOUT)
         except subprocess.TimeoutExpired:
             # The killed `add` may already have registered the worktree, so unregister through git
             # before reclaiming the directory. Never `git worktree prune`: it is repo-wide and would
             # reach other agents' entries.
-            _run(["git", "worktree", "remove", "--force", path], self.root, timeout=120)
+            _git(["worktree", "remove", "--force", path], self.root, timeout=120)
             shutil.rmtree(self.parent, ignore_errors=True)
             self.parent = None
             holders = _lock_holders(self.root)
@@ -236,7 +252,9 @@ class GateWorktree:
 
         t1 = time.monotonic()
         for tail, emits in SEED_EMITTERS:
-            out = _run([sys.executable, *tail], self.path)
+            # Scrubbed too: an emitter runs INSIDE the worktree and may shell out to git itself,
+            # and an inherited GIT_DIR would point it back at the checkout it was seeded from.
+            out = git_env.run([sys.executable, *tail], cwd=self.path)
             if out.returncode or not os.path.isdir(os.path.join(self.path, emits)):
                 raise SeedGap(f"seed emitter {' '.join(tail)} failed (expected {emits}):\n"
                               f"{out.stdout}{out.stderr}")
@@ -305,7 +323,7 @@ class GateWorktree:
         """
         if self.path is not None:
             try:
-                done = _run(["git", "worktree", "remove", "--force", self.path], self.root,
+                done = _git(["worktree", "remove", "--force", self.path], self.root,
                             timeout=120)
                 if done.returncode:
                     self.log.append(f"teardown: `git worktree remove` refused {self.path} "

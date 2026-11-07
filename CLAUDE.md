@@ -773,6 +773,30 @@ re-deriving these, so they live here:**
     perfectly healthy. Agent briefs should say this outright, or an agent reads 128 as a real failure
     and either gives up with work uncommitted or starts deleting locks.
 
+- **`warning: core.bare and core.worktree do not make sense` means something WROTE to the submodule's
+  gitdir config — and the line that shouts is not the damage.** Same family as the lock above: the
+  symptom surfaces in the working tree, the cause sits in `G=$(git rev-parse --git-dir)`. The warning
+  is followed by `fatal: unable to set up work tree using invalid config` or `fatal: this operation
+  must be run in a work tree`, every work-tree operation dies, and `git rev-parse --show-toplevel`
+  fails — so anything deriving a repo root from it reports nonsense. The discriminator is a **sibling
+  submodule**: the others read `bare = false`, so `true` here is always a leak, never a configuration
+  anyone chose.
+  - **Read the WHOLE config, not the shouting line.** The same 261106 leak also wrote
+    `core.hooksPath` to a temp directory that no longer existed — an accidental `--no-verify` on a
+    repo that bans it, announced by nothing. It was found only because `core.bare` broke loudly
+    beside it. Check `git log --format='%h %an <%ae>'` over recent commits too: a leaked `[user]`
+    section mis-attributes authorship, silently. (Today's came back clean; the window was real.)
+  - **Repair:** back the config up, then `core.bare false`, `core.hooksPath hooks` (the value
+    `catalog.py install-hooks` sets), and unset any leaked `user.*`. Verify with
+    `git rev-parse --show-toplevel` and `git config user.name`.
+  - **Cause, and the transferable half: a self-test that can reach the repository it is testing is
+    not a self-test.** A harness shelled out to `git` with `cwd=<tempdir>` while `GIT_DIR` was
+    inherited from the hook environment — and `GIT_DIR` BEATS `cwd`, so `git init` plus four
+    `git config` calls landed in the live repo. The control that leaked was built that morning to
+    stop one writer's state reaching another's commit. Every git call that drives a chosen
+    repository now goes through `tools/git_env.py`, which strips the binding variables and passes
+    `-C`; reach for it rather than `subprocess.run(["git", …], cwd=…)`.
+
 - **A push refused by the PDF gate is usually the BLANK-PAGE RATCHET, and it fires on ordinary
   end-of-division pages. Measured TWICE in one session, 261014.** The pre-push hook runs
   `book/build_book.py --pdf`, and its content-integrity gate is **the only check in the repo that
