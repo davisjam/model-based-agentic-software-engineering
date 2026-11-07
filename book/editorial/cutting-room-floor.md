@@ -4667,3 +4667,16 @@ Reason: Restore the earliest-boundary lesson while requiring evidence of browser
 
 A deployment can pass twenty checks and still serve a blank page. No earlier check necessarily failed: the relevant property --- does the deployed page correctly render the emitted data? --- does not exist at the source-file, build, or emission boundary. It becomes legible only after those pieces compose in the served system. A smoke check that fetches the served page is the earliest boundary that can decide it.
 ```
+
+
+## 2026-11-06 — X2: End the Chapter 1 summary on engineering judgment
+
+Review item: `X2` (`15-end-on-engineering-judgment`). Source: `book/latex/sources/part1/1.5-problem-summary.tex`, lines 18–20. Source revision: `fcddc4562ced4c88915d849cce60fdd1ef1da19a`. Native excerpt SHA-256: `8c405799e03ca7e0b7711107d55132664c8d055db6c04b5fb71d4e909fe77a09`. Applied after the author approved X2 with an idiom correction.
+
+Reason: Remove the repeated Chapter 2/3 roadmap from the summary, retaining the earlier signposts in §1.4. Replace “what should bind implementation” with “which obligations should be enforced.” The summary closes on the engineering choices.
+
+```latex
+Neither move eliminates engineering judgment. Models preserve selected distinctions rather than representing everything, and not every obligation can or should be mechanically enforced. The engineering task is to decide what should be explicit, what should bind implementation, what should remain open, and what evidence is sufficient for the consequence at stake.
+
+Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} develop those two problems separately. \magevalue{chapter:modeling} asks what should be modeled. \magevalue{chapter:alignment} asks how selected engineering obligations come to be enforced.
+```
