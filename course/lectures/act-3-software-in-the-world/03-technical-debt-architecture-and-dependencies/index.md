@@ -94,25 +94,25 @@ materials:
     src: 3-3-Agentic-Technical-Debt-Architecture-and-Dependencies.pptx
 ---
 
-**Premise.** *A working implementation is not necessarily one we understand, one whose reasons anyone recorded, or one we can safely change. Engineers must judge all three before they can say what the next change will cost.*
+**Premise.** *A working implementation is not necessarily one we understand, one whose reasons anyone recorded, or one we can safely change. The central problem is not simply that working software may contain debt. It is that implementation can precede engineering understanding.*
 
-A coding agent can produce an application that satisfies its input/output specification, passes its tests, and runs in the intended environment. That is useful evidence about the implementation, and it settles less than it appears to. None of it establishes what the next consequential change will cost, or whether that change can be made safely. The question stays invisible until someone must make it.
+We vibed an implementation, and it works. A coding agent took the specification and returned an application that deploys, passes its tests, and answers at its API. That specification fixed what the machine must do at its boundary with the world; it said little about how the machine is organized inside, and the agent chose that. So a green suite is evidence about the behavior we checked, not about the structure we received. What the next consequential change will cost, and whether it can be made safely, stays invisible until someone must make it.
 
-Three different things can have deteriorated behind such a system, and only one of them is in the code. The structure may make changes more expensive than they need to be. The team's shared understanding of how the system works may have thinned to the point where nobody can predict what a change touches. And the goals, constraints, and rationale that a later engineer or a later agent would need may never have been written down. This unit separates the three, then recovers the models and collects the evidence each one needs.
+Three different things can have deteriorated behind such a system, and only one of them is in the code: the structure, the team's shared understanding of how it works, and the recorded rationale a later engineer or a later agent would need. This unit separates the three, then recovers the models and collects the evidence each one needs.
 
 ## Structure of this unit
 
-**Lecture: Technical Debt in Agentic Software Engineering.** *Understanding, architecture, and dependencies.* A single lecture in three movements. Technical debt, architecture, and dependency risk are longstanding engineering problems; coding agents change their economics and the circumstances under which they arise, not their nature. Throughout, we ask what models and evidence support a decision to retain, restructure, update, or replace part of a working system.
+**Lecture: Technical Debt in Agentic Software Engineering.** *Understanding, architecture, and dependencies.* A single lecture in three parts. Technical debt, architecture, and dependency risk are longstanding engineering problems; coding agents change their economics and the circumstances under which they arise, not their nature. Throughout, we ask what models and evidence support a decision to retain, restructure, update, or replace part of a working system.
 
-**Movement 1: Cognitive and intent debt.** *What do we understand about the software we obtained?* We adopt Storey's Triple Debt Model, separate deteriorating understanding from an unrecorded rationale, show that both survive a green test suite, and close by recovering an architecture — the first evidence in the unit that is not a passing test.
+**Part I: Cognitive and intent debt.** *What do we understand about the software we obtained?* We adopt Storey's Triple Debt Model, separate deteriorating understanding from unrecorded rationale, show that both survive a green test suite, and close by recovering an architecture — the first evidence in the unit that is not a passing test.
 
-**Movement 2: Architectural technical debt.** *Can we afford the structure the agent chose?* We define architectural technical debt in the established sense, price a structural compromise before examining any pattern, then work through weak boundaries and erosion, change-impact analysis, the modular monolith against separately deployed services, and what must stay true during a restructuring.
+**Part II: Architectural technical debt.** *Can we afford the structure the agent chose?* We define architectural technical debt, price a structural compromise before examining any pattern, then work through weak boundaries and erosion, change-impact analysis, the modular monolith against separately deployed services, and what must stay true during a restructuring.
 
-**Movement 3: Dependency management and technical debt.** *What did we agree to maintain and trust?* We distinguish maintenance risk, security exposure, and distribution obligation from debt proper, then use dependency graphs, SBOMs, licenses, provenance, and vulnerability evidence to decide whether to retain, update, isolate, replace, or remove a component.
+**Part III: Dependency management and technical debt.** *What did we agree to maintain and trust?* We rule on one package the agent proposed: distinguishing maintenance risk, security exposure, and distribution obligation from debt proper, then using dependency graphs, SBOMs, licenses, provenance, and vulnerability evidence to decide whether to retain, update, isolate, replace, or remove it.
 
 ## Three forms of debt
 
-Margaret-Anne Storey's Triple Debt Model names the three and says where each one lives. The distinction is the useful part: these are not three words for one kind of badness, and they are not repaired by the same work.
+Margaret-Anne Storey's Triple Debt Model names the three and says where each one lives. The distinction is the useful part: these are not three words for one kind of badness.
 
 | Debt | Where it resides | What has deteriorated |
 |---|---|---|
@@ -120,7 +120,7 @@ Margaret-Anne Storey's Triple Debt Model names the three and says where each one
 | Cognitive debt | The people who build it | Shared understanding of how the system works and how it can be changed |
 | Intent debt | Externalized knowledge | Recorded goals, constraints, and rationale needed to understand and evolve the system |
 
-Each can occur without the others. A system can have a clean architecture and substantial cognitive debt: nobody has left, and nobody can predict what a change will break. A system can be thoroughly documented and still carry heavy technical debt, because writing a compromise down does not make it cheap. And a team can understand a system perfectly while having recorded none of it, which is intent debt with no cognitive debt at all — until somebody leaves.
+Each can occur without the others. A system can have a clean architecture and substantial cognitive debt: the structure is sound, everyone who built it is still on the team, and still nobody can predict what a change will break. A system can be thoroughly documented and still carry heavy technical debt, because writing a compromise down does not make it cheap. And a team can understand a system perfectly while having recorded none of it, which is intent debt with no cognitive debt at all — until somebody leaves.
 
 Storey's own example is a student team that built software rapidly with AI. By week eight simple changes had become unexpectedly difficult, and the team first blamed messy code. The investigation found something else: no one could explain why particular design decisions had been made, or how the parts were supposed to work together. The features still shipped and the tests still passed. A grey-literature study of 76 practitioner sources reports the same shape, with cognitive debt accumulating behind working software and passing tests, particularly where AI-generated changes are accepted without the reviewer developing enough understanding to predict their consequences.
 
@@ -134,13 +134,11 @@ The three debts call for three kinds of work, and the repairs do not substitute 
 
 Refactoring changes the code and leaves the team's understanding where it was, or worse, because the structure they half-understood has moved. Documentation records a decision and corrects no architecture. This is where models earn their place and also where the overclaim lies: a model of an obligation or a recorded decision is exactly the externalized knowledge intent debt is missing, so writing the architecture down reduces intent debt. It does not by itself reduce cognitive debt. **A model being available does not establish that any engineer understands it.** An accurate, current page nobody consults is not shared understanding.
 
-There is a diagnostic asymmetry worth naming, because it explains why cognitive debt goes unmanaged. Technical debt leaves evidence in the artifact, so a tool can look for it. Cognitive debt leaves evidence only in what people can and cannot do, so the only probe is to ask them.
-
 ## Buying back the understanding
 
-Of the three debts, only one leaves evidence a tool can read. The repair for the other two is investigation, and architecture recovery is the concrete form it takes: it produces understanding where there was none, and it produces an artifact that records what was found.
+There is a diagnostic asymmetry here, and it explains why cognitive debt goes unmanaged. Cognitive debt is the one that cannot be established from artifacts alone: a tool can read structure, and it can at least report whether a decision record exists and what it covers, so technical and intent debt each leave a partial trace. Understanding leaves none, so the only probe is to ask the engineers. The repair for what the artifacts do not show is investigation, and architecture recovery is the concrete form it takes: it produces understanding where there was none, and it produces an artifact that records what was found.
 
-Consider the campus reservation service developed in the preceding units. It now has an execution environment, persistent storage, and a means of deploying updates. Suppose the university introduces laboratory reservations, which require different booking policies and approval procedures. The original application still works, but implementing the new requirement may reveal that reservation rules are scattered across HTTP handlers, database queries, and authorization checks.
+Consider the campus reservation service of the preceding units, which now has an execution environment, persistent storage, and a means of deploying updates. The university introduces laboratory reservations, needing different booking policies and approval procedures. The application still works, but implementing the new requirement may reveal that reservation rules are scattered across HTTP handlers, database queries, and authorization checks.
 
 An engineer examining an unfamiliar implementation can construct a dependency model showing which components use which others. The recovered model is an abstraction, constructed to answer a particular engineering question rather than to describe every implementation detail. Recovery becomes informative when that model is set against the structure the architecture intended.
 
@@ -150,42 +148,48 @@ Recovery answers what the structure *is*. It says nothing about what keeping it 
 
 ## Architectural technical debt
 
-The established term for the cost side is **architectural technical debt** (ATD): technical debt incurred in consequential architectural decisions — how the system is decomposed, what its interfaces are, which frameworks and technologies it rests on — choices that later become constraints on how the system can evolve. Verdecchia, Kruchten, Lago, and Malavolta develop the definition from interviews with software architects; Kruchten, Nord, and Ozkaya's *Managing Technical Debt*, written at Carnegie Mellon's Software Engineering Institute, is the practitioner treatment. ATD is more precise than "architecture and design debt," which blurs two scales; design debt stays a separate recognized category only where a treatment actually examines detailed design compromises, and this unit does not.
+The established term for the cost side is **architectural technical debt** (ATD): technical debt incurred in consequential architectural decisions — how the system is decomposed, what its interfaces are, which frameworks and technologies it rests on — choices that later become constraints on how the system can evolve. Verdecchia, Kruchten, Lago, and Malavolta develop the definition from interviews with software architects; Kruchten, Nord, and Ozkaya's *Managing Technical Debt*, written at Carnegie Mellon's Software Engineering Institute, is the practitioner treatment.
 
 Three phrases carry the definition. *Consequential* narrows it to decisions that are expensive to revisit. *Decisions* locates the debt in a choice that could have gone otherwise, not in a file somebody dislikes. And *become constraints* is the mechanism: a decomposition chosen in week two is a constraint by year two, and the cost arrives when evolution meets it.
 
-Two further conditions are routinely mistaken for this debt, and both are statements about structure rather than cost. A Big Ball of Mud is an implementation with few stable or comprehensible boundaries; Foote and Yoder describe how repeated local changes under schedule pressure produce one without anyone deciding on it. Architectural erosion is a relationship rather than a structure: the implementation increasingly violates boundaries an intended architecture established. A system can exhibit one without the other. Code written without a design cannot erode from it.
+## Pricing a structural compromise
+
+Technical debt describes an economic consequence of a decision: **the expected additional cost of future work attributable to a design or implementation compromise.** It is not a verdict on how the code looks. A Big Ball of Mud built deliberately as a throwaway prototype may impose no cost on any work we intend to do, and a well-structured system can carry substantial debt from a slower algorithm chosen to meet a deadline, from postponed test automation, or from a library whose migration path is expensive. Undesirable structure and technical debt are two judgments, and the engineer's responsibility is to keep them separate.
+
+The definition is narrower than "any earlier choice that imposes future cost." Ordinary maintenance imposes future cost, and so does a sound tradeoff whose consequences were unavoidable; what makes a cost debt is the comparison with a plausible alternative available at the time. Fowler separates deliberate compromises from inadvertent ones and prudent decisions from reckless ones, which is why debt can be a defensible choice rather than evidence of poor engineering.
+
+Deciding whether to repay is a comparison over a horizon. Leaving the compromise in place costs something each time the system changes within that horizon. Correcting it costs an immediate investment plus the risk of the restructuring itself. Repayment is justified when the recurring cost over the expected lifetime exceeds that investment. Both sides depend on changes nobody has made yet, so this is a decision model rather than a measurement.
+
+A worked comparison makes the horizon concrete. Say the clean design costs ten staff-days, and the shortcut two now, half a staff-day per month in place, and twelve to retrofit. Retire at three months: 2 + (0.5 × 3) = 3.5 against ten, and the shortcut was right. Retrofit at twelve: 2 + (0.5 × 12) + 12 = 20 against the same ten, and the clean design was cheaper all along. One decision, two verdicts, separated only by the horizon. Every figure is assumed.
+
+## Weak boundaries and erosion
+
+Two structural conditions are routinely mistaken for this debt, and both describe shape rather than cost. A Big Ball of Mud is an implementation with few stable or comprehensible boundaries; Foote and Yoder describe how repeated local changes under schedule pressure produce one without anyone deciding on it. Architectural erosion is a relationship rather than a structure: the implementation increasingly violates boundaries an intended architecture established. A system can exhibit one without the other. Code written without a design cannot erode from it.
 
 | Condition | What we observe | Model required | Engineering question |
 |---|---|---|---|
 | Big Ball of Mud | Weak or indiscernible boundaries | Recovered architecture | Is the structure adequate for the expected changes? |
 | Architectural erosion | Divergence from intended boundaries | Intended and recovered architectures | Should we restore the intended boundaries or revise them? |
 
-Neither condition is a verdict on the engineering. Each is a possible *symptom* of architectural technical debt, and an observation that a later economic judgment acts on.
+Neither condition is a verdict on the engineering. Each is a possible *symptom* of architectural technical debt, an observation the economic judgment above then acts on.
 
-A recovered model can also reveal cycles, heavily depended-upon components, and dependencies that cross intended boundaries. Other useful evidence includes fan-in and fan-out, the number of components affected by a representative change, and change coupling: components that repeatedly change together even when their static dependencies do not explain why.
-
-These measurements require interpretation. A component with many dependents may represent a useful stable abstraction rather than a defect. Two modules that frequently change together may be implementing one responsibility that was divided poorly, or they may simply participate in a recurring feature. No single coupling score establishes maintainability.
+A recovered model can also reveal cycles, heavily depended-upon components, and dependencies that cross intended boundaries. Other useful evidence includes fan-in and fan-out, the number of components affected by a representative change, and change coupling: components that repeatedly change together even when their static dependencies do not explain why. All of it requires interpretation. A component with many dependents may be a useful stable abstraction rather than a defect, and two modules that change together may be one badly divided responsibility or simply one recurring feature. No single coupling score establishes maintainability.
 
 The useful question is more specific. If the reservation policy changes, which parts of the system must change with it? A dependency graph predicts an answer; an implementation probe or an examination of actual changes supplies evidence. When the model says booking policy is isolated and the change also touches HTTP handling and persistence, the model has failed to represent the coupling.
 
 ## Architectural patterns as engineering choices
 
-Architectural patterns describe recurring ways to organize software, together with expectations about their consequences. Act I introduced layering, pipelines and repositories, synchronous and event-driven communication, and ports and adapters. The patterns that organize whole applications differ mainly in where they place their boundaries: a monolith ships one deployable unit, a modular monolith keeps one deployment while establishing explicit internal boundaries, and a microservice architecture distributes responsibilities among independently deployable services. The reservation service can expose the same HTTP API under any of them, so the pattern name settles nothing by itself.
+Architectural patterns describe recurring ways to organize software, together with expectations about their consequences; Act I introduced layering, pipelines, repositories, event-driven communication, and ports and adapters. The patterns that organize whole applications differ mainly in where they place their boundaries: a monolith ships one deployable unit, a modular monolith keeps one deployment while establishing explicit internal boundaries, and a microservice architecture distributes responsibilities among independently deployable services. The reservation service can expose the same HTTP API under any of them, so the pattern name settles nothing.
 
-These alternatives trade different kinds of coupling. A modular monolith can isolate booking policy behind an interface while retaining local calls and transactions. Extracting booking into a separate service may permit independent deployment and scaling, but introduces network latency, distributed failure, interface compatibility, and decisions about data ownership. Moving a boundary from inside a process to a network interface does not automatically make the system easier to change.
+These alternatives trade different kinds of coupling. A modular monolith can isolate booking policy behind an interface while retaining local calls and transactions. Extracting booking into a separate service may permit independent deployment and scaling, at the price of network latency, partial failure, interface compatibility, and decisions about data ownership. Moving a boundary from inside a process to a network interface does not automatically make the system easier to change.
 
-For a small reservation application, the modular monolith may be the better choice. If different organizational teams must deploy and operate booking capabilities independently, service decomposition becomes more attractive. The decision follows from the expected changes and operational requirements, not from a general preference for smaller services.
+The semester's reservation service shows what the last of those costs. A reservation is confirmed only when the booking and its approval are both valid, and while both live in one deployable that rule is enforced inside a single transaction. Split booking from approval and each service owns part of the state the rule ranges over, so the single enforcement point is gone. Something must replace it: a coordinating protocol, a compensating action, or an accepted window of disagreement. That coordination obligation, not the latency, is the substantial price of the boundary — and a monolith is one deployable, not necessarily one unstructured system.
 
-## Technical debt and controlled restructuring
+For a small reservation application the modular monolith may be the better choice; where separate teams must deploy and operate booking capabilities independently, service decomposition becomes more attractive. The decision follows from the expected changes and the operational requirements, not from a preference for smaller services.
 
-Mud and erosion describe structure. Technical debt describes an economic consequence of a decision: **the expected additional cost of future work attributable to a design or implementation compromise.** The two judgments are independent. A Big Ball of Mud built deliberately as a throwaway prototype may impose no cost on any work we intend to do, and a well-structured system can carry substantial debt from a slower algorithm chosen to meet a deadline, from postponed test automation, or from a library whose migration path is expensive. The engineer's responsibility is to keep the structural observation separate from the economic judgment.
+## Restructuring under control
 
-This definition is narrower than "any earlier choice that imposes future cost." Ordinary maintenance imposes future cost, and so does a sound tradeoff whose consequences were unavoidable. What makes a cost debt is the comparison with a plausible alternative available at the time. Fowler separates deliberate compromises from inadvertent ones and prudent decisions from reckless ones, which is why debt can be a defensible choice rather than evidence of poor engineering. Not all architectural ugliness is debt, and not all debt is ugly.
-
-Deciding whether to repay is a comparison over a horizon. Leaving the compromise in place costs something each time the system changes within that horizon. Correcting it costs an immediate investment plus the risk of the restructuring itself. Repayment is justified when the recurring cost over the expected lifetime exceeds that investment. Both sides depend on changes nobody has made yet, so this is a decision model rather than a measurement.
-
-Restructuring is a controlled process, not a rewrite. Refactoring changes the internal structure of software while preserving its externally observable behavior. Before restructuring unfamiliar code, engineers may need characterization tests that establish what the existing implementation actually does. More consequential migrations may require old and new implementations to coexist while functionality moves incrementally, as in the strangler pattern. The order of work is what keeps the change controlled:
+Restructuring is a controlled process, not a rewrite. Refactoring changes the internal structure of software while preserving its externally observable behavior. Unfamiliar code may first need characterization tests that establish what the existing implementation actually does, and a consequential migration may require old and new implementations to coexist while functionality moves incrementally, as in the strangler pattern. The order of work is what keeps the change controlled:
 
 1. Recover the current structure and behavior.
 2. Identify the boundary to change.
@@ -195,13 +199,15 @@ Restructuring is a controlled process, not a rewrite. Refactoring changes the in
 
 Coding agents change this calculation because implementation and assurance costs need not decline together. Generating an alternative structure may become inexpensive. Establishing that it preserves the system's obligations can remain costly, because its behavior, its interfaces, and the properties its tests and controls pin must all survive the change. Cheaper implementation moves one term in the comparison and leaves the other where it was.
 
+It leaves the obligations untouched too. Driving implementation cost to a hundredth moves the point at which modularizing repays from four future changes to one, and never makes extracting services preferable at any horizon; that becomes the answer only when laboratory changes must ship on their own, which is a requirement no discount reaches.
+
 To practice this, see {lab:architecture-workbench}.
 
 ## Dependency management and technical debt
 
-An application's structure includes more than the code its developers wrote. Libraries, frameworks, runtimes, and build tools contribute functionality while introducing obligations nobody selected one at a time.
+An agent proposes a package. Recurring bookings need interval arithmetic, and it has selected when-lib 2.0.4, under LGPL-3.0, last released twenty-six months ago. Approve it, reject it, or name what is missing — almost nothing the decision needs is in that one line. This part supplies the rest, in the order the decision needs it: what the package brings with it, who maintains it, where the artifact came from, what the license obliges us to do if we distribute to a second campus, and whether any reported vulnerability is reachable.
 
-Before any of that is called debt, it is worth separating the several different things a dependency problem can be, because the responses differ.
+Libraries, frameworks, runtimes, and build tools all contribute functionality while introducing obligations nobody selected one at a time. Before any of that is called debt, separate the several different things a dependency problem can be, because the responses differ.
 
 | What we observe | What it is |
 |---|---|
@@ -211,13 +217,13 @@ Before any of that is called debt, it is worth separating the several different 
 | It cannot be upgraded without substantial rework | Potential technical debt |
 | The upgrade is postponed again while the migration grows | Dependency debt, accumulating |
 
-Only the last two are debt. An obligation is something we owe; a debt is a cost we chose to defer. A currently reachable vulnerability is a problem to fix whatever we conclude about debt, and discharging a licensing obligation is not repayment. Dependency-related technical debt is the narrower thing: the cost attributable to deferred updates, avoidable coupling, and difficult replacement. Three parallel debt labels would be tidier than this table and would be wrong, which is why the unit does not force dependencies into the triple-debt model.
+Only the last two are debt. An obligation is something we owe; a debt is a cost we chose to defer. A reachable vulnerability is a problem to fix whatever we conclude about debt, and discharging a licensing obligation is not repayment. Dependency-related technical debt is the narrower thing: the cost of deferred updates, avoidable coupling, and difficult replacement. Three parallel debt labels would be tidier and would be wrong, which is why the unit does not force dependencies into the triple-debt model.
 
 ![Two tinted columns hold two graphs. The INTERNAL STRUCTURE column, labeled code we wrote, stacks four components: HTTP handlers, then booking policy, then persistence, then the database, each joined to the next by a downward arrow. The EXTERNAL DEPENDENCIES column, labeled code we inherited, holds four packages: a web framework, an HTTP parser drawn indented beneath it, a date library, and a database driver. Three edges cross from the left column to the right: HTTP handlers uses the web framework, booking policy uses the date library, and persistence uses the database driver. One further edge stays inside the right column, drawn dashed from the web framework down to the HTTP parser, because the parser arrives transitively rather than by our own choice. A legend distinguishes the solid uses edges from the dashed transitive edge. Closing notes read that we can restructure the left graph and can only choose, isolate, or replace the right one, and that a direct dependency is one we chose while a transitive dependency arrives with it.](figures/internal-and-external-dependencies.svg)
 
-The two graphs carry different obligations: we can restructure the left one, and we can only choose, isolate, or replace the right. A dependency graph distinguishes direct dependencies, which an engineer selected, from transitive dependencies inherited through them. A software bill of materials (SBOM) records the components associated with a software artifact, usually with their versions and identifying information. These representations answer what is present and which components a vulnerability, compatibility change, or maintenance decision reaches.
+A dependency graph distinguishes direct dependencies, which an engineer selected, from transitive dependencies inherited through them. A software bill of materials (SBOM) records the components associated with a software artifact, usually with their versions and identifying information. These representations answer what is present, and which components a vulnerability, compatibility change, or maintenance decision reaches.
 
-Evidence about a component is not yet a decision about it. Provenance mechanisms report where an artifact came from and how it was built. Vulnerability scanners report selected known risks. Release histories report whether anyone is still maintaining it. None of this establishes that the component is free of defects or malicious behavior, and none of it says what to do. The engineer must reach a verdict on each component, and each question admits its own evidence and its own responses.
+Evidence about a component is not yet a decision about it. Provenance mechanisms report where an artifact came from and how it was built; vulnerability scanners report selected known risks; release histories report whether anyone is still maintaining it. None of this establishes that the component is free of defects or malicious behavior, and none of it says what to do. Each question admits its own evidence and its own responses.
 
 | Decision | Evidence required | Possible action |
 |---|---|---|
@@ -227,14 +233,20 @@ Evidence about a component is not yet a decision about it. Provenance mechanisms
 | Is its license acceptable? | License and intended distribution | Retain or replace |
 | Can we change it safely? | Compatibility and regression tests | Upgrade, fork, or migrate |
 
-The licensing row carries obligations the other rows do not. Permissive licenses generally allow broad reuse subject to conditions such as preserving notices. Copyleft licenses can impose additional requirements on redistribution or derivative works, depending on the license and how components are combined. License identifiers and machine-readable expressions help inventory these obligations, and identifying a license is not the same as determining the legal consequences of a particular use.
+The licensing row carries obligations the other rows do not. Permissive licenses generally allow broad reuse subject to conditions such as preserving notices; copyleft licenses can impose further requirements on redistribution or derivative works, depending on the license and how components are combined. Identifying a license is not the same as determining the legal consequences of a particular use. The agent's proposal is the live case: LGPL-3.0 is weak copyleft, so what we owe on distributing to a second campus turns on how when-lib is linked and whether we modified it.
 
-Every action in the table costs something. Updating a vulnerable library may require API changes; replacing it may introduce new defects; retaining it may leave unacceptable exposure. The dependency model supports the decision by connecting each component to the parts of the system that rely on it.
+Every action in the table costs something. Updating a vulnerable library may require API changes; replacing it may introduce new defects; retaining it may leave unacceptable exposure. Return to the agent's proposal with that evidence in hand and the question is rarely approve or reject, but approve under which conditions — a pinned version, an isolating interface, a recorded licensing judgment, or a replacement already scoped.
 
 ## Engineering confidence in a working system
 
-All three movements end in the same place: a model, and a decision the model does not make for us. An investigation reports what the team can and cannot explain, and a decision record reports what anybody bothered to write down. A recovered architecture reports where the coupling sits. A dependency inventory reports what we are carrying and from whom. None of them says whether to act, and that judgment is economic rather than structural.
+The unit closes on three engineering questions, each answered through a model, and each model organizing a particular kind of evidence.
 
-The models differ according to the engineering question. Dependency graphs and change-impact measurements help evaluate architectural coupling. SBOMs, provenance records, vulnerability information, and license inventories help evaluate inherited components. Tests, architectural rules, dependency policies, and release gates can then preserve selected obligations as the system changes.
+| Engineering question | Model | Evidence |
+|---|---|---|
+| Do we understand it, and did anyone record why? | Recovered structure, decision records, models of obligations | Can engineers explain the system and predict what a change touches? Are the constraints written down? |
+| Can we afford the structure we have? | Recovered dependency graph, a cost model over a horizon | Change-impact probes, characterization and invariant tests, architectural checks |
+| Can we rely on the components we inherited? | Dependency graph, SBOM, provenance records | Vulnerability, license, and provenance checks |
 
-A working implementation establishes that selected behavior has been realized, not that the system can be safely changed. Tests and controls are what supply evidence that the obligations those models identify remain satisfied. The next unit examines whether the system also meets quantitative requirements under realistic workloads and failures.
+None of the three models makes its decision. Each reports a fact — what the team can and cannot explain, what anybody bothered to write down, where the coupling sits, what we are carrying and from whom — and the judgment that follows is economic rather than structural.
+
+A working implementation establishes that selected behavior has been realized, not that the system can be safely changed. Tests, architectural rules, dependency policies, and release gates are what hold the obligations those models identify as the system changes. The next unit examines whether the system also meets quantitative requirements under realistic workloads and failures.
