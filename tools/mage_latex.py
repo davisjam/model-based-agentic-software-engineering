@@ -534,7 +534,7 @@ def _prepare_record(task):
         for label, field in [('Carrying forward','carrying_forward'),('New here','new_here_vocab')]:
             if vocab.get(field): orientation += '\n\\par\\medskip\n' + r'\textbf{' + label.upper() + '}\\par\n' + inline(' · '.join(vocab[field])) + '\n'
         orientation += '\n\\clearpage\n'
-    raw = bb._apply_gh_refs(bb._apply_design_tokens(bb._apply_part_refs(bb._apply_metrics(raw, bb._load_metrics()))))
+    raw = bb.apply_token_passes(raw)
     raw = re.sub(r'\[\[([^]|]+)(?:\|([^]]+))?\]\]', lambda m: '[' + (m[2] or m[1]) + '](../ABSTRACTIONS.html#' + m[1] + ')', raw)
     raw = re.sub(r'\[\+([^]]+)\+\]', r'*\1*', raw)
     md_source = directory / (slug + '.md')

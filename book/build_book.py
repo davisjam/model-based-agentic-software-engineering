@@ -902,6 +902,22 @@ def _apply_gh_refs(md: str) -> str:
     return _GH_MARKER_RE.sub(repl, md)
 
 
+def apply_token_passes(md: str, metrics: "dict[str, str] | None" = None) -> str:
+    """The book's whole token-resolution chain, in ONE place: metrics `{{token}}`, the stable-id
+    `{{chapter:…}}` / `{{sec:…}}` cross-references, `{{dt:…}}` design tokens, `[gh:…]` repo links.
+    Every surface that renders authored markdown routes through here — `parse_chapter` (the numbered
+    chapters and the back matter), `build_appendix_chapters` (the hand-authored appendices, which
+    assemble `body_md` outside the chapter parse chain), and the native-LaTeX build — so one resolver
+    serves every projection and no surface can silently resolve a SUBSET of the vocabulary.
+
+    Resolving a subset is the defect this function exists to prevent: the appendix path applied the
+    cross-reference pass alone, so `{{chapter:software-factories}}` resolved in appendix prose while
+    `{{commits_per_week}}` shipped as literal braces to the published evidence-ledger page — correct
+    on the LaTeX surface, unresolved on the web one (261106). Add a pass HERE, never at a caller."""
+    return _apply_gh_refs(_apply_design_tokens(_apply_part_refs(
+        _apply_metrics(md, _load_metrics() if metrics is None else metrics))))
+
+
 # ─────────────────────────── Bibliography & citations (references.bib → citations.json → two surfaces) ──
 # The bib is the single source of truth; Chicago is rendered ONCE by render_citations.py through Typst and
 # committed to book/data/citations.json, which BOTH surfaces consume so they cannot drift. Design:
@@ -1235,8 +1251,7 @@ def build_bibliography_page(chapters: list[dict], nav_last: str) -> "tuple[str, 
 
 
 def parse_chapter(path: pathlib.Path, part: int, chapter: int, metrics: dict[str, str]) -> dict:
-    text = _apply_gh_refs(_apply_design_tokens(
-        _apply_part_refs(_apply_metrics(path.read_text(encoding="utf-8"), metrics))))
+    text = apply_token_passes(path.read_text(encoding="utf-8"), metrics)
     meta = {k: v for k, v in META_RE.findall(text)}
     body = META_RE.sub("", text).strip()
     # Drop the leading H1 (# Chapter …) — we render it from metadata in the header. Skip any leading blank
@@ -3815,14 +3830,17 @@ def build_appendix_chapters(next_part: int, for_print: bool = False) -> list[dic
     part1 = _appendices_divider_record(next_part, _APPENDICES_PART1_SLUG, _APPENDICES_PART1_TITLE,
                                        _APPENDICES_PART1_SUBTITLE, "appendix-part-1-practice.md")
     recs = [part1] + _build_appendix_chapters_v2(next_part + 1, for_print)
-    # Resolve the stable-id cross-reference tokens in every appendix body. The appendix builders assemble
+    # Resolve the authored-token vocabulary in every appendix body. The appendix builders assemble
     # body_md from authored .md WITHOUT the chapter parse chain (parse_chapter is the numbered-chapter
-    # path), so a `{{chapter:<label>}}` / `{{sec:<label>}}` in appendix prose must be resolved here — this
-    # is the single entry every caller (web, print, glossary) routes through, so the appendix inherits the
-    # same resolution as the chapters in every projection.
+    # path), so appendix prose is resolved here — this is the single entry every caller (web, print,
+    # glossary) routes through, so the appendix inherits the same resolution as the chapters in every
+    # projection. Routes through the SHARED chain, not the cross-reference pass alone: resolving a
+    # subset here is what shipped a literal `{{commits_per_week}}` to the published evidence-ledger
+    # page while the LaTeX surface rendered its value (261106).
+    metrics = _load_metrics()
     for rec in recs:
         if rec.get("body_md"):
-            rec["body_md"] = _apply_part_refs(rec["body_md"])
+            rec["body_md"] = apply_token_passes(rec["body_md"], metrics)
     return recs
 
 
@@ -6852,8 +6870,6 @@ _SECTION_KEY_INPUTS = (
 #: Namespaces this book's keys from the handbook's. Changing it invalidates every section stamp once,
 #: which is the correct response to a change in what the key MEANS.
 _SECTION_CACHE_VERSION = "section-pdf-cache-v1"
-
-_file_digest = latex_reuse.file_digest
 
 
 def _section_cache_key(driver_text: str, chapter_texts: "list[str]", bibliography: str,

@@ -619,7 +619,60 @@ def check_no_notation_leak():
             issues.append(f"{rel(f)}: unresolved metric token {m.group(0)!r}")
         for m in emph_re.finditer(text):
             issues.append(f"{rel(f)}: leaked intra-word emphasis {m.group(0)!r}")
+    issues += _token_chain_sole_seam_findings()
     return (FAIL if issues else PASS), issues
+
+
+# The four token passes `build_book.apply_token_passes` composes. Each resolves one slice of the authored
+# vocabulary; the published page is correct only when a surface runs ALL of them.
+_TOKEN_PASSES = ("_apply_metrics", "_apply_part_refs", "_apply_design_tokens", "_apply_gh_refs")
+# Every module that renders authored markdown, and the ONE function in each that may compose the chain.
+_TOKEN_CHAIN_SITES = (("book/build_book.py", "apply_token_passes"), ("tools/mage_latex.py", None))
+
+
+def _token_chain_sole_seam_findings() -> list[str]:
+    """SOURCE arm of the gate above: the token chain is composed in exactly ONE place.
+
+    The output scan catches a leak that already happened; this catches the construction that permits
+    one. A surface that calls the passes itself resolves whichever SUBSET its author remembered, and
+    the omission is silent — correct-looking prose on one projection and literal braces on another.
+    Measured 261106: the appendix path called the cross-reference pass alone, so appendix
+    `{{chapter:…}}` references resolved while `{{commits_per_week}}` shipped as braces to the
+    published evidence-ledger page, which the LaTeX surface rendered as `1,000`. Nothing asserted the
+    two surfaces ran the same chain, so the omission survived a clean checkout.
+
+    Reading the names rather than the calls would be the weaker check: a caller may legitimately
+    MENTION a pass in a comment or a docstring. This walks the AST, so only a real call counts, and
+    it holds the join at the rung the compiler cannot — one resolver, every surface."""
+    import ast
+    issues: list[str] = []
+    for relpath, allowed_fn in _TOKEN_CHAIN_SITES:
+        path = os.path.join(ROOT, relpath)
+        if not os.path.isfile(path):
+            issues.append(f"{relpath}: token-chain site missing — the sole-seam assertion lost its subject")
+            continue
+        tree = ast.parse(open(path, encoding="utf-8").read(), filename=relpath)
+        # Enclosing function name per node, so a call can be attributed to the function that makes it.
+        enclosing: dict[ast.AST, str | None] = {}
+        for node in ast.walk(tree):
+            name = node.name if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) else None
+            for child in ast.iter_child_nodes(node):
+                enclosing[child] = name or enclosing.get(node)
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Call):
+                continue
+            f = node.func
+            called = f.attr if isinstance(f, ast.Attribute) else f.id if isinstance(f, ast.Name) else None
+            if called not in _TOKEN_PASSES:
+                continue
+            where = enclosing.get(node)
+            if where == allowed_fn:
+                continue
+            issues.append(
+                f"{relpath}: {where or '<module>'}() calls {called}() directly — compose the token "
+                f"chain only in build_book.apply_token_passes, or this surface resolves a SUBSET of "
+                f"the authored vocabulary and ships the rest as literal braces")
+    return issues
 
 
 def check_summary_no_flow_content():
