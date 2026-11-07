@@ -1,17 +1,17 @@
 {
   "_provenance": "AUTHORED source of truth for the book's headline numbers. Referenced from chapter prose via {{token}} substitution in build_book.py. A later pass refreshes the repo-derived figures from history-mining; the cost-model and policy figures are the book's canonical estimates. Edit here, never in the prose.",
-  "_loc_provenance": "LoC tokens (prod_loc, support_loc, iac_loc, system_model_loc, total_loc, support_ratio) are POINT-IN-TIME source-tree category counts measured 2026-08-03 on the system's repository (parent repo, HEAD ce0bde110fbb at measurement) via a categorized line-count tool. Category map: prod_loc=Production Code (491,090); support_loc=support-apparatus rollup (1,501,907 = tests + lints + load-bearing docs + agent infrastructure + tools; support_ratio 3.0 = support_loc/prod_loc); iac_loc=Infrastructure as Code (35,323); system_model_loc=System-model meta-files (28,507); total_loc=whole-tree code, raw (2,824,878; the tool also reports a semantic total of 2,083,089 that excludes snapshot/history docs — total_loc keeps the raw whole-tree definition the 2026-07-23 baseline used). NOTE on the iac/system-model jump vs the 2026-07-23 baseline (8,446 / 7,380): a category re-partition landed in the count tool late on 2026-07-23 (after the baseline run) that carved previously-UNCOUNTED deploy/** production source and top-level system-models/*.py modules into these two categories — the jump is a coverage fix in the tool, not organic growth. These are source-tree counts, NOT the 15.7M engineering-line churn figure from a repo-activity histogram over the git history (which measures added+deleted lines over time). D1/D2 RECONCILIATION (Part-5 assembly, 260806): prod_loc/support_loc are set to the delta-consistent 'now' snapshot (491,090 / 1,501,907) that reproduces the +45%/+21% support-ratio-curve growth deltas and equals the support-ratio table 'now — Aug 3' row; the earlier (higher) measurement is superseded and must not reappear. The EXACT canonical figure (choice of canonical SHA; design recommends 07af718a) is finalized at the read-only metrics-miner run and remains user-gated — these token values are the authoritative in-tree snapshot pending that confirmation.",
+  "_loc_provenance": "SUPERSEDED NARRATIVE, kept for the history it records. The LoC tokens it describes (prod_loc, support_loc, iac_loc, system_model_loc, total_loc, support_ratio) are no longer the 2026-08-03 figures below; they are refreshed to the declared study-window endpoint by book-models/refresh_book_metrics.py, and _cloc_snapshot_provenance is the live record. Read on for how the 2026-08-03 import was taken and why its categories are what they are. LoC tokens (prod_loc, support_loc, iac_loc, system_model_loc, total_loc, support_ratio) are POINT-IN-TIME source-tree category counts measured 2026-08-03 on the system's repository (parent repo, HEAD ce0bde110fbb at measurement) via a categorized line-count tool. Category map: prod_loc=Production Code (491,090); support_loc=support-apparatus rollup (1,501,907 = tests + lints + load-bearing docs + agent infrastructure + tools; support_ratio 3.0 = support_loc/prod_loc); iac_loc=Infrastructure as Code (35,323); system_model_loc=System-model meta-files (28,507); total_loc=whole-tree code, raw (2,824,878; the tool also reports a semantic total of 2,083,089 that excludes snapshot/history docs — total_loc keeps the raw whole-tree definition the 2026-07-23 baseline used). NOTE on the iac/system-model jump vs the 2026-07-23 baseline (8,446 / 7,380): a category re-partition landed in the count tool late on 2026-07-23 (after the baseline run) that carved previously-UNCOUNTED deploy/** production source and top-level system-models/*.py modules into these two categories — the jump is a coverage fix in the tool, not organic growth. These are source-tree counts, NOT the 15.7M engineering-line churn figure from a repo-activity histogram over the git history (which measures added+deleted lines over time). D1/D2 RECONCILIATION (Part-5 assembly, 260806): prod_loc/support_loc are set to the delta-consistent 'now' snapshot (491,090 / 1,501,907) that reproduces the +45%/+21% support-ratio-curve growth deltas and equals the support-ratio table 'now — Aug 3' row; the earlier (higher) measurement is superseded and must not reappear. The EXACT canonical figure (choice of canonical SHA; design recommends 07af718a) is finalized at the read-only metrics-miner run and remains user-gated — these token values are the authoritative in-tree snapshot pending that confirmation.",
   "_commit_provenance": "Commit tokens (commits_total, commits_per_week, commits_per_day, peak_week_commits, study_weeks) from a repo-activity histogram over the git history (commits metric) on the parent repo, measured 2026-08-03 at HEAD ce0bde110fbb (20 full weeks, 2026-03-12 -> 2026-07-23 week-starts, i.e. through 2026-07-29). commits_total=23,215 over 20 weeks; sustained rate ~200 commits/day (~1,000-1,400/week; 20-week mean 1,161/week); peak_week_commits=3,329 (week of 2026-05-21). commits_per_day was corrected 500 -> 200 (500/day implied ~3,500/week, a rate only the single peak week approached).",
   "study_weeks": "20",
   "study_window": "March–July 2026",
   "model_vendor": "Anthropic Claude (Opus and Sonnet, March–July 2026)",
   "peak_accounts": "four",
-  "prod_loc": "491,090",
-  "support_loc": "1,501,907",
-  "iac_loc": "35,323",
-  "system_model_loc": "28,507",
-  "total_loc": "2,824,878",
-  "support_ratio": "3.0",
+  "prod_loc": "659,409",
+  "support_loc": "2,272,116",
+  "iac_loc": "43,753",
+  "system_model_loc": "77,642",
+  "total_loc": "3,777,071",
+  "support_ratio": "3.45",
   "commits_total": "23,215",
   "commits_per_week": "1,000",
   "commits_per_day": "200",
@@ -47,12 +47,12 @@
   "missing_model_pilot_fraction": "0.56",
   "missing_model_pilot_percent": "56%",
   "missing_model_pilot_test_count": "144",
-  "prod_growth_multiple": "eighteen-fold",
+  "prod_growth_multiple": "24.5×",
   "orphan_after_first_epic": "39%",
   "project_elapsed_period": "about five months",
   "focused_study_period": "twenty weeks",
   "intensive_build_period": "the mechanization-and-hardening core",
-  "measurement_snapshot": "2026-08-03",
+  "measurement_snapshot": "2026-11-06",
   "faculty_loaded_hourly_cost": "$67",
   "ada_title_ii_since": "1990",
   "doj_web_rule_year": "2024",
@@ -63,10 +63,10 @@
   "_ledger_note": "Per-metric provenance ledger (§VII schema: metric ID / snapshot date / category def / source cmd / displayed rounding / consumers). `_`-prefixed so the loader strips it from {{token}} substitution — metadata only, zero renderer change. Miner-INDEPENDENT tokens land here now; the prod_loc/support_loc snapshot reconciliation to ONE canonical SHA (D1/D2) and prod_growth_multiple's exact decimal are miner-gated and land at Part-5 assembly.",
   "_ledger": {
     "prod_growth_multiple": {
-      "snapshot_date": "2026-08-03",
-      "category_def": "now-prod / prototype-prod (26,956), Production Code category",
-      "source_cmd": "derived: prod_loc / prototype-prod",
-      "rounding": "word-form 'eighteen-fold' — miner-independent (both 18.2x and 18.6x round to ~18x); the EXACT decimal (18.2 vs 18.6) rides the canonical prod_loc snapshot (D1) and is miner-gated",
+      "snapshot_date": "2026-11-06",
+      "category_def": "prod_loc at the study-window endpoint / production LoC at the prototype window (26,956), Production Code category",
+      "source_cmd": "derived by book-models/refresh_book_metrics.py: prod_loc / PROTOTYPE_PROD_LOC",
+      "rounding": "one decimal and the multiplication sign the evidence ledger's dated series uses (24.5×). It carried a word form ('eighteen-fold') while it was a hand-typed figure; a word form cannot be derived from a measurement, so the derived token publishes the numeral.",
       "consumers": [
         "5.2#support-ratio",
         "data-claims:support-ratio-curve.gloss"
@@ -110,9 +110,9 @@
       ]
     },
     "measurement_snapshot": {
-      "snapshot_date": "2026-08-03",
-      "category_def": "the LoC / commit census date",
-      "source_cmd": "categorized line-count + commit histogram",
+      "snapshot_date": "2026-11-06",
+      "category_def": "the declared study-window endpoint — the repository state every governed LoC token reports",
+      "source_cmd": "STUDY_WINDOW_END in book-models/refresh_book_metrics.py (override: --window-end)",
       "rounding": "ISO date",
       "consumers": [
         "5.2"
@@ -173,5 +173,13 @@
   "seip_dynamic": "153",
   "seip_prod_loc": "615,395",
   "seip_apparatus_loc": "2,333,471",
-  "seip_support_ratio": "3.8"
+  "seip_support_ratio": "3.8",
+  "prod_loc_rounded": "659,000",
+  "support_loc_rounded": "2.27 million",
+  "iac_loc_rounded": "44,000",
+  "system_model_loc_rounded": "78,000",
+  "total_loc_rounded": "3.78 million",
+  "support_ratio_rounded": "3.5",
+  "window_end_display": "Nov. 6",
+  "_cloc_snapshot_provenance": "STUDY WINDOW ENDS 2026-11-06 — every repo-derived token below reports the repository AS OF that endpoint, which is what `measurement_snapshot` carries and what the evidence ledger's window-end row is labelled. The endpoint is declared once, as STUDY_WINDOW_END in book-models/refresh_book_metrics.py; move it there (or with --window-end) and re-run with --write. Measured 2026-11-06T17:59:45.465161+00:00 by `tools/dev/run-cloc.py --stats-dump` on ada-tool at HEAD 7a37ba96d56c4c4cf20d93d202200d47693da6a4; file partition unverified. Refresh via `python3 book-models/refresh_book_metrics.py --write` — do not hand-edit these values. NOTE the two apparatus SCOPES: support_loc/support_ratio exclude infrastructure-as-code and system-model meta-files; seip_apparatus_loc/seip_support_ratio include them. The two ratios are different measurements, not two dates of one measurement."
 }

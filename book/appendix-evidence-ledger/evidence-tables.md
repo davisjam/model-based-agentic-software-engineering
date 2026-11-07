@@ -15,18 +15,21 @@ During hardening, a larger share of classified commits concerned models, validat
 
 ### G.2.2 Support-Apparatus Ratio {#support-ratio}
 
-Production and support-apparatus source were counted at four dated repository states across the seven primary source roots. The counting procedure fails if an expected root is absent. These counts are the source for the support-ratio curve in {{chapter:software-factories}}.
+Production and support-apparatus source were counted at five dated repository states across the seven primary source roots. The counting procedure fails if an expected root is absent. These counts are the source for the support-ratio curve in {{chapter:software-factories}}.
+
+The first four rows are historical states and are recorded as measured. The last row reports the repository at the study window’s declared endpoint; its date and its three figures come from the token registry, so moving the endpoint moves the row rather than inviting a retyped number.
 
 <!-- label:  -->
 <!-- table:  -->
-| Window                  | Production LoC |    Support LoC |   Support ratio |
-|------------------------|---------------:|---------------:|----------------:|
-| Prototype — Apr. 9      | 26,956 | 22,908 | 0.85× |
-| Mechanization — May 31  | 302,844 | 751,050 | 2.48× |
-| Hardening — Jun. 30     | 337,905 | 1,244,194 | 3.68× |
-| Final snapshot — Aug. 3 | 491,090 | 1,501,907 | 3.06× |
+| Window                      | Production LoC |    Support LoC |   Support ratio |
+|----------------------------|---------------:|---------------:|----------------:|
+| Prototype — Apr. 9          | 26,956 | 22,908 | 0.85× |
+| Mechanization — May 31      | 302,844 | 751,050 | 2.48× |
+| Hardening — Jun. 30         | 337,905 | 1,244,194 | 3.68× |
+| Study close — Aug. 3        | 491,090 | 1,501,907 | 3.06× |
+| Window end — {{window_end_display}} | {{prod_loc}} | {{support_loc}} | {{support_ratio}}× |
 
-Support-apparatus source began below parity with production source, crossed it by the mechanization snapshot, peaked at 3.68× during hardening, and stood at 3.06× at the final snapshot.
+Support-apparatus source began below parity with production source, crossed it by the mechanization snapshot, peaked at 3.68× during hardening, and fell to 3.06× by the Aug. 3 study close. It stood at {{support_ratio}}× at the window end, still below the hardening peak.
 
 These counts describe how source was distributed in this repository. The ratio is not a measure of engineering value, engineering-capital return, or a recommended target for another project.
 
@@ -61,14 +64,16 @@ Project-specific lint files and gate scripts were counted at four repository sta
 
 <!-- label:  -->
 <!-- table:  -->
-| Window         |     Lint files |   Gate scripts |
-|---------------|---------------:|---------------:|
-| Prototype      | 0 | 0 |
-| Mechanization  | 336 | 20 |
-| Hardening      | 595 | 76 |
-| Final snapshot | 747 | 102 |
+| Window        |     Lint files |   Gate scripts |
+|--------------|---------------:|---------------:|
+| Prototype     | 0 | 0 |
+| Mechanization | 336 | 20 |
+| Hardening     | 595 | 76 |
+| Study close   | 747 | 102 |
 
-Both counted surfaces begin at zero in the prototype snapshot. At the final snapshot, the 747 lint files contain 993 registered lint specifications.
+This series stops at the study close. Its windows are repository SHAs rather than calendar dates, and the counting rule for gate scripts is not recorded, so it cannot be extended to the window endpoint the way the support-ratio series above was.
+
+Both counted surfaces begin at zero in the prototype snapshot. At the study close, the 747 lint files contain 993 registered lint specifications.
 
 Two further repository counts show that at least some controls were created in response to observed failures:
 
@@ -127,13 +132,13 @@ The results are therefore field observations about one governed surface, not a g
 
 ## G.4 Model Coverage {#missing-model-drain}
 
-The traceability tracer measures the fraction of exercised code with no corresponding model claim. Repeated runs identified portions of the exercised surface that stayed outside the explicit model structure. Across the recorded sequence, the unmodeled fraction fell from 56% on the first run to 7.89% on the ninth.
+The traceability tracer measures the fraction of exercised code with no corresponding model claim. Repeated runs identified portions of the exercised surface that stayed outside the explicit model structure. Across the recorded sequence, the unmodeled fraction fell from {{missing_model_pilot_percent}} on the first run to 7.89% on the ninth.
 
 <!-- label:  -->
 <!-- table:  -->
 | Run | Unmodeled exercised surface | Note |
 |---|---|---|
-| First | 56% | Majority of exercised code traced to no model claim |
+| First | {{missing_model_pilot_percent}} | Majority of exercised code traced to no model claim |
 | Intermediate runs | declining | Successive model-loop Epics targeted large remaining orphan clusters |
 | Ninth | 7.89% | Remaining orphan surface was small and explicitly identified |
 
@@ -172,7 +177,7 @@ These quantities establish orders of magnitude relevant to the {{chapter:softwar
 | Quantity | Observed or estimated value | Basis |
 |---|---|---|
 | Accessibility-checker findings in a representative deck | 42 | One graduate instructional deck evaluated with the built-in accessibility checker |
-| Manual remediation, one teaching load | ≈ $20,000 estimated faculty labor | Findings/deck × minutes/finding × decks/course × loaded hourly rate |
+| Manual remediation, one teaching load | ≈ {{diy_cost_per_course}} estimated faculty labor | Findings/deck × minutes/finding × decks/course × loaded hourly rate |
 | Vendor remediation | $3–$40 / page | Market range collected during the study; not staffed for graduate-level subject annotation |
 | Automated processing, one representative deck | ≈ 1 minute; ≈ $1 direct processing cost | Warm-start service near the end of the study period |
 | Direct development cost | ≈ $60,000 | Roughly 20-week study; majority salary |

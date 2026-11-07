@@ -22,10 +22,21 @@ which the dump exposes only as a RATIO) is re-summed from declared bucket keys a
 against the dump's own ratio. If `run-cloc`'s definition drifts, that check fails loud rather than
 quietly reporting a stale rollup.
 
+WHAT "NOW" MEANS --- THE STUDY WINDOW ENDPOINT. The book's repo-derived figures are not "whatever
+the tree held when someone last ran this"; they are the state of the repository AT THE END OF A
+DECLARED STUDY WINDOW. That endpoint is `STUDY_WINDOW_END` below (overridable with `--window-end`),
+and every dated thing downstream derives from it: `measurement_snapshot`, the evidence ledger's
+window-end row label, and the per-token `_ledger` snapshot dates the writer touches. Before this was
+declared, the Preface meant "DocAble's size today" by `prod_loc` while the evidence appendix meant
+"the last row of a dated series", and the two could not both be satisfied. Fixing the endpoint
+collapses them: the series simply gains a row at the endpoint, and "today" and "the window's end"
+name the same date. Moving the window is a one-line edit here.
+
 THREE CLASSES OF ROW, because not every book number should be machine-written:
 
-  * GOVERNED  --- a LIVE "now" snapshot in a deterministic numeric format (comma-grouped integer,
-                  one-decimal ratio). Emitted as a copy-pasteable JSON block, and written by `--write`.
+  * GOVERNED  --- the repository state AT THE WINDOW ENDPOINT, in a deterministic numeric format
+                  (comma-grouped integer, one-decimal ratio). Emitted as a copy-pasteable JSON
+                  block, and written by `--write`.
   * FROZEN    --- a citation to a PUBLISHED, figure-coupled dataset. The `seip_*` tokens quote the
                   2026-10-28 SEIP manuscript export, whose week-31 values are also PLOTTED in
                   `book/assets/docable-seip-capital-261028.svg` (its caption states "Week 31 ratio is
@@ -50,6 +61,7 @@ CLI:
     python3 book-models/refresh_book_metrics.py --no-verify     # skip run-cloc's disjointness engine
     python3 book-models/refresh_book_metrics.py --write         # patch book/data/metrics.json in place
     python3 book-models/refresh_book_metrics.py --out .scratch/cloc   # also keep a timestamped record
+    python3 book-models/refresh_book_metrics.py --window-end 2026-12-04   # move the study window
 
 Exit codes: 0 = report produced (drift is information, not failure); 1 = runtime error;
 2 = the measurement could not be obtained (run-cloc missing / parent repo not found).
@@ -69,6 +81,24 @@ from typing import Callable
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 METRICS_PATH = ROOT / "book" / "data" / "metrics.json"
+
+#: THE STUDY WINDOW ENDPOINT — the one declared date this module's dated output derives from.
+#: The author fixed it to Friday 2026-11-06 and asked that it stay a parameter: "fix the study
+#: window to ending on Friday Nov 6 ... that window endpoint should be a parameter so we can update
+#: it later." So move the window HERE (or with `--window-end`) and re-run with `--write`; nothing
+#: else in the book spells the date. `measurement_snapshot`, the evidence ledger's window-end row
+#: label (`window_end_display`), and every `_ledger` snapshot date the writer touches all follow.
+STUDY_WINDOW_END = "2026-11-06"
+
+#: Production-code LoC at the first row of the evidence ledger's dated series (the prototype window,
+#: Apr. 9 2026). It is the denominator of `prod_growth_multiple` and a HISTORICAL measurement: it
+#: does not move when the window endpoint does.
+PROTOTYPE_PROD_LOC = 26_956
+
+#: Month forms as the evidence ledger's dated series already spells them ("Apr. 9", "Jun. 30",
+#: "Aug. 3"). Declared as data so the window-end row label matches its neighbours exactly.
+MONTH_ABBREV = ("Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+                "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec.")
 
 #: The run-cloc purpose buckets whose sum is the tool's own "support apparatus" rollup
 #: (`ratio_table`: tests + lints + load-bearing docs + agent infra + tools). Declared here as data so
@@ -122,8 +152,33 @@ def _round_loc(value: float) -> str:
 
 
 def _round_ratio(value: float) -> str:
-    """One decimal place. The raw ratio carries two (3.45); a passage saying "about" wants 3.4."""
+    """One decimal place. The raw ratio carries two (3.45); a passage saying "about" wants 3.5."""
     return _one_dp(value)
+
+
+def _multiple(value: float) -> str:
+    """A growth multiple, one decimal and the multiplication sign the evidence ledger uses."""
+    return f"{value:.1f}×"
+
+
+def parse_window_end(window_end: str) -> datetime:
+    """Parse the declared endpoint, failing loud on anything that is not an ISO date.
+
+    A silently-misread endpoint would date every written token wrongly and the book would carry it
+    without complaint, so this refuses rather than guesses.
+    """
+    try:
+        return datetime.strptime(window_end, "%Y-%m-%d")
+    except ValueError as exc:
+        raise SystemExit(
+            f"--window-end / STUDY_WINDOW_END must be an ISO date (YYYY-MM-DD); got {window_end!r}"
+        ) from exc
+
+
+def window_end_display(window_end: str) -> str:
+    """`2026-11-06` -> `Nov. 6` — the form the evidence ledger's dated series already spells."""
+    when = parse_window_end(window_end)
+    return f"{MONTH_ABBREV[when.month - 1]} {when.day}"
 
 
 #: Row classes. Only GOVERNED is ever written; the other two are compared and reported.
@@ -193,6 +248,11 @@ ROWS: "tuple[Row, ...]" = (
         round_fmt=_round_loc),
     Row("support_ratio", lambda d: float(d["ratios"]["support_apparatus_x_prod"]), _two_dp,
         "support_loc / prod_loc", round_fmt=_round_ratio),
+    # No rounded sibling: a one-decimal multiple IS the presentation form, and the word form the
+    # book used to carry ("eighteen-fold") cannot be derived from a measurement.
+    Row("prod_growth_multiple",
+        lambda d: _bucket(d, "production_code") / PROTOTYPE_PROD_LOC, _multiple,
+        f"prod_loc at the window end / production LoC at the prototype window ({PROTOTYPE_PROD_LOC:,})"),
     Row("seip_prod_loc", lambda d: _bucket(d, "production_code"), _commas,
         "FROZEN at SEIP week 31; plotted in docable-seip-capital-261028.svg", FROZEN),
     Row("seip_apparatus_loc", lambda d: _sum_buckets(d, SEIP_APPARATUS_BUCKETS), _commas,
@@ -206,7 +266,21 @@ ROWS: "tuple[Row, ...]" = (
 )
 
 
-def parity_check(dump: dict) -> "tuple[list[str], list[str]]":
+def window_pairs(window_end: str) -> "list[tuple[str, str]]":
+    """The tokens derived from the WINDOW ENDPOINT rather than from the measurement.
+
+    Both answer "when does this reading describe?", in the two forms the book spells it: an ISO
+    date for prose that states the snapshot, and the evidence ledger's abbreviated form for the
+    dated series' row label. One declared endpoint, so a table row and a Preface sentence cannot
+    drift apart — which is exactly how they drifted before the endpoint was declared.
+    """
+    return [
+        ("measurement_snapshot", window_end),
+        ("window_end_display", window_end_display(window_end)),
+    ]
+
+
+def parity_check(dump: dict, window_end: str) -> "tuple[list[str], list[str]]":
     """Check the measurement against itself -> `(blocking, advisory)`.
 
     Two severities, because they answer different questions and only one should stop a write.
@@ -288,6 +362,14 @@ def parity_check(dump: dict) -> "tuple[list[str], list[str]]":
             "how much interpretive weight the category split can carry: a tenth-plus of the tree is "
             "counted without being attributed to a purpose."
         )
+    measured_on = str(dump["meta"].get("generated_at", ""))[:10]
+    if measured_on and measured_on != window_end:
+        advisory.append(
+            f"MEASURED {measured_on}, REPORTED AS {window_end}: the dump was taken on a different "
+            "day than the declared study-window endpoint, so every written token dates the reading "
+            "to a tree state it does not describe. Re-measure on the endpoint, or move "
+            "STUDY_WINDOW_END / pass --window-end."
+        )
     return problems, advisory
 
 
@@ -365,12 +447,16 @@ def drift_table(resolved: "list[tuple[Row, str]]", metrics: dict) -> str:
     return "\n".join(lines)
 
 
-def provenance(dump: dict, repo: Path) -> str:
+def provenance(dump: dict, repo: Path, window_end: str) -> str:
     meta = dump["meta"]
     partition = meta.get("partition_clean")
     state = {True: "verified disjoint", False: "NOT DISJOINT", None: "unverified"}[partition]
     return (
-        f"Repo-derived LoC tokens measured {meta.get('generated_at', '?')} by "
+        f"STUDY WINDOW ENDS {window_end} — every repo-derived token below reports the repository "
+        "AS OF that endpoint, which is what `measurement_snapshot` carries and what the evidence "
+        "ledger's window-end row is labelled. The endpoint is declared once, as STUDY_WINDOW_END "
+        "in book-models/refresh_book_metrics.py; move it there (or with --window-end) and re-run "
+        f"with --write. Measured {meta.get('generated_at', '?')} by "
         f"`{meta.get('tool', 'run-cloc --stats-dump')}` on {repo.name} at HEAD "
         f"{meta.get('git_head', '?')}; file partition {state}. Refresh via "
         "`python3 book-models/refresh_book_metrics.py --write` — do not hand-edit these values. "
@@ -380,34 +466,40 @@ def provenance(dump: dict, repo: Path) -> str:
     )
 
 
-def paste_block(dump: dict, repo: Path) -> str:
+def written_pairs(dump: dict, window_end: str) -> "list[tuple[str, str]]":
+    """Everything `--write` lands: the measured tokens, then the window-derived ones."""
+    return [*resolve_pairs(dump), *window_pairs(window_end)]
+
+
+def paste_block(dump: dict, repo: Path, window_end: str) -> str:
     """The copy-pasteable JSON fragment: every written token, raw and rounded, plus provenance."""
-    body = dict(resolve_pairs(dump))
-    body["measurement_snapshot"] = _snapshot_date(dump)
-    body["_cloc_snapshot_provenance"] = provenance(dump, repo)
+    body = dict(written_pairs(dump, window_end))
+    body["_cloc_snapshot_provenance"] = provenance(dump, repo, window_end)
     return json.dumps(body, indent=2, ensure_ascii=False)
 
 
-def _snapshot_date(dump: dict) -> str:
-    """The measurement date as the book displays it (ISO, matching `measurement_snapshot`).
-
-    ONE snapshot token serves both presentation forms: the window a measurement describes is one
-    fact regardless of whether a passage quotes the raw or the rounded figure.
-    """
-    return str(dump["meta"].get("generated_at", ""))[:10]
-
-
-def write_metrics(dump: dict, repo: Path) -> "list[str]":
-    """Patch `metrics.json` in place: every governed token (raw + rounded), the snapshot date, and
-    the provenance key. Key order is preserved for existing keys (a minimal diff); new keys append.
-    Returns the changed-token list, so the caller reports exactly what moved."""
+def write_metrics(dump: dict, repo: Path, window_end: str) -> "list[str]":
+    """Patch `metrics.json` in place: every governed token (raw + rounded), the window-derived
+    tokens, the per-token ledger dates, and the provenance key. Key order is preserved for existing
+    keys (a minimal diff); new keys append. Returns the changed-token list, so the caller reports
+    exactly what moved."""
     metrics = load_metrics()
     changed: "list[str]" = []
-    for token, value in [*resolve_pairs(dump), ("measurement_snapshot", _snapshot_date(dump))]:
+    for token, value in written_pairs(dump, window_end):
         if str(metrics.get(token)) != value:
             changed.append(f"{token}: {metrics.get(token, '(absent)')} -> {value}")
         metrics[token] = value
-    metrics["_cloc_snapshot_provenance"] = provenance(dump, repo)
+    # The per-metric provenance ledger carries a `snapshot_date` per token. A refreshed value with
+    # a stale ledger date is the same two-sources-one-fact problem one level down, so the writer
+    # re-dates exactly the entries whose values it just wrote and leaves every other entry alone.
+    ledger = metrics.get("_ledger", {})
+    for token, _ in written_pairs(dump, window_end):
+        entry = ledger.get(token)
+        if isinstance(entry, dict) and entry.get("snapshot_date") != window_end:
+            changed.append(f"_ledger.{token}.snapshot_date: "
+                           f"{entry.get('snapshot_date', '(absent)')} -> {window_end}")
+            entry["snapshot_date"] = window_end
+    metrics["_cloc_snapshot_provenance"] = provenance(dump, repo, window_end)
     METRICS_PATH.write_text(json.dumps(metrics, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return changed
 
@@ -419,11 +511,16 @@ def main(argv: "list[str] | None" = None) -> int:
     ap.add_argument("--no-verify", action="store_true",
                     help="skip run-cloc's disjointness engine (faster; partition_clean becomes null)")
     ap.add_argument("--timeout", type=int, default=1800, help="measurement timeout in seconds")
+    ap.add_argument("--window-end", default=STUDY_WINDOW_END, metavar="YYYY-MM-DD",
+                    help=f"the study-window endpoint every written date derives from "
+                         f"(default: {STUDY_WINDOW_END})")
     ap.add_argument("--write", action="store_true", help="patch book/data/metrics.json in place")
     ap.add_argument("--out", metavar="PREFIX",
                     help="also save the raw dump to <PREFIX>-YYMMDD.HHMMSS.json")
     args = ap.parse_args(argv)
 
+    window_end = args.window_end
+    parse_window_end(window_end)  # fail loud before measuring, not after
     repo = find_repo(args.repo)
     if args.dump:
         dump = json.loads(Path(args.dump).read_text(encoding="utf-8"))
@@ -438,12 +535,12 @@ def main(argv: "list[str] | None" = None) -> int:
         out.write_text(json.dumps(dump, indent=2) + "\n", encoding="utf-8")
         print(f"dump saved: {out}", file=sys.stderr)
 
-    problems, advisory = parity_check(dump)
+    problems, advisory = parity_check(dump, window_end)
     resolved = resolve(dump)
     metrics = load_metrics()
 
     print("## Measurement\n")
-    print(provenance(dump, repo))
+    print(provenance(dump, repo, window_end))
     print(f"\n**Partition: {'FAILED' if problems else 'verified'}** "
           f"({len(problems)} blocking, {len(advisory)} advisory)\n")
     if problems:
@@ -460,15 +557,14 @@ def main(argv: "list[str] | None" = None) -> int:
     print("\n## Raw and rounded, per quantity\n")
     print("| token | value | book claims | drift |")
     print("|---|---|---|---|")
-    for token, value in [*resolve_pairs(dump),
-                         ("measurement_snapshot", _snapshot_date(dump))]:
+    for token, value in written_pairs(dump, window_end):
         current = str(metrics.get(token, "(absent)"))
         print(f"| `{token}` | {value} | {current} | "
               f"{'—' if current == value else '**yes**'} |")
 
     print("\n## Paste into `book/data/metrics.json`\n")
     print("```json")
-    print(paste_block(dump, repo))
+    print(paste_block(dump, repo, window_end))
     print("```")
     for klass, heading in (
         (FROZEN, "Frozen — do NOT refresh (a published, figure-coupled citation)"),
@@ -487,7 +583,7 @@ def main(argv: "list[str] | None" = None) -> int:
             print("\nREFUSED to write: the measurement did not verify (see caveats above). "
                   "A consistent stale set beats an inconsistent fresh one.")
             return 1
-        changed = write_metrics(dump, repo)
+        changed = write_metrics(dump, repo, window_end)
         print(f"\nwrote {METRICS_PATH.relative_to(ROOT)} — {len(changed)} value(s) changed")
         for c in changed:
             print(f"  {c}")
