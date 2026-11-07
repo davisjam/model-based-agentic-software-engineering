@@ -104,6 +104,7 @@ from tests.common import FAIL, PASS, SKIP, changed_vs_origin
 from tests.deploy import check_deploy_publishable
 from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid, check_lab_logo_url
 from tests.hooks import check_hook_operates_on_committing_tree
+from tests.precommit_scope import check_force_stage_scope_and_receipt
 from tests.html import (
     check_lab_logo_single_sourced,
     check_book_emitted_tree,
@@ -223,6 +224,12 @@ CHECKS = [
           lambda strict: check_deploy_publishable()),
     Check("hooks: pre-commit resolves its root from the COMMITTING tree and stages only under it", 1,
           lambda strict: check_hook_operates_on_committing_tree()),
+    # BLOCKING: the force-stage keeps to what the regeneration wrote, and the commit's staged set is
+    # reported before it lands. Three sweeps on 261106 were invisible to every other defence here —
+    # `git diff --stat` empty, the staged-deletion check empty, a pathspec no protection — so the
+    # scenarios are reconstructed against synthetic repositories rather than asserted about the source.
+    Check("hooks: pre-commit force-stages only what it wrote, and reports the staged set", 1,
+          lambda strict: check_force_stage_scope_and_receipt()),
     # BLOCKING (green at landing): the CI step that runs the workbench node suite installs the Python
     # that suite shells out to, EARLIER in its own run block. The 261002 push failed on exactly this —
     # the packages were in the workflow twice, both times in later steps, so the parity suite reached
