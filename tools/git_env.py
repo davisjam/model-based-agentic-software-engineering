@@ -59,7 +59,7 @@ def clean_env(base: Mapping[str, str] | None = None, *, hermetic: bool = False) 
     return env
 
 
-def git(args: Sequence[str], *, repo: str, hermetic: bool = False,
+def git(args: Sequence[str], *, repo: str, hermetic: bool = False, capture: bool = True,
         timeout: float | None = None) -> subprocess.CompletedProcess[str]:
     """Run one git command against `repo`, with no inherited binding left to contradict it.
 
@@ -68,10 +68,15 @@ def git(args: Sequence[str], *, repo: str, hermetic: bool = False,
     command line where a reader can see it. `cwd` points at the same place so a subcommand that
     resolves a relative path resolves it against the repository, not against whatever directory the
     caller happened to be in.
+
+    `capture=False` lets the command write straight to the caller's streams, and `stdout`/`stderr`
+    come back `None`. A `commit` runs the repo's own hooks and a `push` reports its transfer: both
+    are output a human reads as it happens, and swallowing it is how a seam gets bypassed by the
+    next caller who needs to see it.
     """
     return subprocess.run(["git", "-C", repo, *args], cwd=repo,
                           env=clean_env(hermetic=hermetic),
-                          capture_output=True, text=True, timeout=timeout)
+                          capture_output=capture, text=True, timeout=timeout)
 
 
 def run(argv: Sequence[str], *, cwd: str,

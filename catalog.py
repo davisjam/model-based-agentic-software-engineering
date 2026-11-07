@@ -32,6 +32,20 @@ sys.path.insert(0, os.path.join(ROOT, "book-models"))
 import design_tokens as _dtokens  # noqa: E402 — the design-token projector (stdlib-only)
 from svg_id_namespace import namespace_svg_ids  # noqa: E402 — shared inlined-SVG id-namespacer
 
+# The scrubbed-git seam. Every git call in this file names ROOT through it, because `cwd=ROOT` alone
+# does NOT bind a repository: git exports `GIT_DIR` / `GIT_WORK_TREE` / `GIT_INDEX_FILE` into every
+# hook, a child inherits them, and an inherited `GIT_DIR` BEATS `cwd`. This file runs from
+# `hooks/pre-commit` and from `hooks/pre-push`, so that binding is the normal case, not a corner.
+# Measured 261107 against a decoy gitdir: all four of this file's git readers answered about the
+# DECOY — `gitignored_top_dirs` returned nothing (so the site walks stop pruning `_drafts/`,
+# `node_modules/` and the scratch trees), `_head_blobs` fell from 2,937 blobs to 1 (so the
+# regen-drift gate compares every committed page against a repository that does not hold it), and
+# `_uncommitted_sources` returned empty (so that gate grades a DIRTY tree as a clean one, which is
+# the false-GREEN the gate exists to prevent). `install-hooks` configured the decoy and printed
+# success. Probe: `.scratch/gitdir-third-site-probe-261107.py`. Stdlib-only, so clone-and-run holds.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import git_env  # noqa: E402 — resolved against ROOT, known only at import time
+
 CSS_ROOT_BLOCK = _dtokens.css_root_block()
 FONTS_LINK = _dtokens.google_fonts_link()
 
@@ -194,8 +208,7 @@ def gitignored_top_dirs() -> frozenset[str]:
     if not dirs:
         return frozenset()
     try:
-        r = subprocess.run(["git", "-C", ROOT, "check-ignore", *dirs],
-                           capture_output=True, text=True, timeout=15)
+        r = git_env.git(["check-ignore", *dirs], repo=ROOT, timeout=15)
     except (OSError, subprocess.SubprocessError):
         return frozenset()
     # check-ignore exits 0 (some ignored), 1 (none ignored), 128 (not a git repo) — read stdout regardless.
@@ -4590,10 +4603,9 @@ def _visual_aids_key_parts() -> "list[str] | None":
     the input you touched from the input a sibling touched — a hash answers neither question."""
     parts: list[str] = ["v1"]
     try:
-        tracked = subprocess.run(["git", "-C", ROOT, "ls-files", "-s", "--", *_VA_KEY_ROOTS],
-                                 capture_output=True, text=True, timeout=60)
-        dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--untracked-files=all",
-                                "--", *_VA_KEY_ROOTS], capture_output=True, text=True, timeout=120)
+        tracked = git_env.git(["ls-files", "-s", "--", *_VA_KEY_ROOTS], repo=ROOT, timeout=60)
+        dirty = git_env.git(["status", "--porcelain", "--untracked-files=all",
+                             "--", *_VA_KEY_ROOTS], repo=ROOT, timeout=120)
     except (OSError, subprocess.SubprocessError):
         return None
     if tracked.returncode or dirty.returncode:
@@ -4664,7 +4676,7 @@ def emit_visual_aids() -> None:
         print("visual-aids: re-emitting — the input key could not be computed (git did not answer), "
               "so reuse is unsound", file=sys.stderr)
     rc = subprocess.run([sys.executable, os.path.join(ROOT, "book", "build_visual_aids.py")],
-                        cwd=ROOT).returncode
+                        cwd=ROOT, env=git_env.clean_env()).returncode
     if rc != 0:
         print("WARNING: visual-aids gallery regeneration failed — "
               "book/_design/visual-aids.html may be stale", file=sys.stderr)
@@ -5264,10 +5276,8 @@ def _head_blobs() -> "tuple[dict[str, str], str] | None":
     None is reported as a finding by the caller, never read as "nothing is committed" — a gate that takes
     a failed subprocess for an empty set passes silently, the one outcome worse than failing."""
     try:
-        fmt = subprocess.run(["git", "rev-parse", "--show-object-format"], cwd=ROOT,
-                             capture_output=True, text=True)
-        tree = subprocess.run(["git", "ls-tree", "-r", "-z", "HEAD"], cwd=ROOT,
-                              capture_output=True, text=True)
+        fmt = git_env.git(["rev-parse", "--show-object-format"], repo=ROOT)
+        tree = git_env.git(["ls-tree", "-r", "-z", "HEAD"], repo=ROOT)
     except OSError:
         return None
     if fmt.returncode or tree.returncode:
@@ -5298,8 +5308,7 @@ def _uncommitted_sources(emitted: "frozenset[str]") -> list[str]:
     that as dirt would make the gate skip in precisely the hosts it exists to protect — and a stale page
     rewritten by that build is the symptom, not interference."""
     try:
-        r = subprocess.run(["git", "diff", "--name-only", "-z", "HEAD"], cwd=ROOT,
-                           capture_output=True, text=True)
+        r = git_env.git(["diff", "--name-only", "-z", "HEAD"], repo=ROOT)
     except OSError:
         return None
     if r.returncode:
@@ -5366,8 +5375,10 @@ for rel, html in sorted(pages.items()):
 
 def _render_digests(seed: str) -> "dict[str, str] | None":
     """{page -> sha256 of its render} from a SEPARATE interpreter run under the given PYTHONHASHSEED."""
+    # The scrub FIRST in the dict literal, so the seed cannot be shadowed and no inherited `GIT_*`
+    # name can be re-added after it was removed.
     r = subprocess.run([sys.executable, "-c", _RENDER_DIGEST_PROG], cwd=ROOT, capture_output=True,
-                       text=True, env={**os.environ, "PYTHONHASHSEED": seed})
+                       text=True, env={**git_env.clean_env(), "PYTHONHASHSEED": seed})
     if r.returncode:
         return None
     out: dict[str, str] = {}
@@ -5442,7 +5453,8 @@ def cmd_build(_args) -> int:
     # Regenerate the packaged skill bundle from the same sources — same "can't drift" discipline as the
     # HTML. build is the one regeneration point (pre-commit hook, deploy, and CI all call it), so this
     # single wire-in keeps plugin/ fresh. Subprocess avoids a catalog <-> bundle_skill circular import.
-    rc = subprocess.run([sys.executable, os.path.join(ROOT, "bundle_skill.py")], cwd=ROOT).returncode
+    rc = subprocess.run([sys.executable, os.path.join(ROOT, "bundle_skill.py")], cwd=ROOT,
+                        env=git_env.clean_env()).returncode
     if rc != 0:
         print(f"WARNING: skill bundle regeneration failed (rc={rc}) — plugin/ may be stale", file=sys.stderr)
     # Build the book web edition as part of the same pipeline: build_book.py renders every page body and
@@ -5454,7 +5466,8 @@ def cmd_build(_args) -> int:
     # BEFORE they run.
     book_builder = os.path.join(ROOT, "book", "build_book.py")
     if os.path.isfile(book_builder):
-        rc_book = subprocess.run([sys.executable, book_builder], cwd=os.path.join(ROOT, "book")).returncode
+        rc_book = subprocess.run([sys.executable, book_builder], cwd=os.path.join(ROOT, "book"),
+                                 env=git_env.clean_env()).returncode
         if rc_book != 0:
             print(f"ABORT: book build failed (rc={rc_book}).", file=sys.stderr)
             return 1
@@ -5498,7 +5511,10 @@ def cmd_build(_args) -> int:
 def cmd_install_hooks(_args) -> int:
     """Point git at the tracked hooks/ dir: pre-commit runs validate+build+stage on every commit, and
     pre-push runs the full test suite (the CI gate) on every push."""
-    r = subprocess.run(["git", "config", "core.hooksPath", "hooks"], cwd=ROOT)
+    # Through the seam, and the ONE call here that writes repository CONFIG. Under an inherited
+    # binding this verb configured a different repository and still printed the line below — an
+    # install that reports success and installs nothing.
+    r = git_env.git(["config", "core.hooksPath", "hooks"], repo=ROOT, capture=False)
     if r.returncode == 0:
         print("core.hooksPath → hooks (pre-commit: validate + build + stage HTML; "
               "pre-push: catalog_tests.py --full, the CI gate)")
@@ -5509,8 +5525,14 @@ DEFAULT_PORT = 8137  # deliberately not 8080/8000 (common collisions)
 
 
 def _git(*args: str, capture: bool = False) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=ROOT, text=True,
-                          capture_output=capture)
+    """`deploy github`'s git: stage, commit, push, and read back HEAD — all against ROOT.
+
+    The WRITE side of this file, and the one place a rebound call does more than return a wrong
+    answer: an inherited `GIT_INDEX_FILE` would have `add` write somebody else's index, and an
+    inherited `GIT_DIR` would commit and push a different repository than the one that was built.
+    `capture=False` keeps the commit's hook output and the push's transfer report on the terminal.
+    """
+    return git_env.git(list(args), repo=ROOT, capture=capture)
 
 
 def cmd_data_claims(args) -> int:
@@ -6042,7 +6064,8 @@ def cmd_deploy(args) -> int:
         return 1
     # predeploy gate — BLOCKING (the suite is green as of the a11y remediation): abort the deploy if any
     # check fails. Tier-2 (axe/claude) SKIPs when the tool is absent, so a browser-less env won't block.
-    if subprocess.run([sys.executable, "catalog_tests.py"], cwd=ROOT).returncode != 0:
+    if subprocess.run([sys.executable, "catalog_tests.py"], cwd=ROOT,
+                      env=git_env.clean_env()).returncode != 0:
         print("ABORT: test suite failed — fix before deploying (run `catalog.py test` to see).")
         return 1
 
@@ -6051,7 +6074,7 @@ def cmd_deploy(args) -> int:
     if want_pdf:
         print("\n== Rendering PDF + EPUB from native LaTeX; publication checks run internally ==")
         pdf_build = subprocess.run([sys.executable, os.path.join("book", "build_book.py"), "--pdf"],
-                                   cwd=ROOT)
+                                   cwd=ROOT, env=git_env.clean_env())
         if pdf_build.returncode != 0:
             print("ABORT: PDF/EPUB build failed (see build_book.py --pdf output above).")
             return 1
@@ -6062,7 +6085,7 @@ def cmd_deploy(args) -> int:
         # failure print a notice and continue (mirrors the site/.venv graceful-degrade just below —
         # catalog.py stays stdlib-only, the Pillow/PyYAML imports live in the subprocess'd tool).
         if subprocess.run([sys.executable, os.path.join("tools", "cover_assets.py"), "regen"],
-                          cwd=ROOT).returncode:
+                          cwd=ROOT, env=git_env.clean_env()).returncode:
             print("\n  (cover thumbs not regenerated — landing may show a stale/missing cover; "
                   "needs LuaLaTeX + Poppler + Pillow.)")
 
@@ -6075,7 +6098,8 @@ def cmd_deploy(args) -> int:
         if os.path.exists(mkdocs):
             print("\n== Building the MAGE book web edition (mkdocs --strict, pinned site/.venv) ==")
             if subprocess.run([mkdocs, "build", "--strict", "-f",
-                               os.path.join(ROOT, "book", "web", "mkdocs.yml")], cwd=ROOT).returncode:
+                               os.path.join(ROOT, "book", "web", "mkdocs.yml")], cwd=ROOT,
+                              env=git_env.clean_env()).returncode:
                 print("ABORT: book web build failed (mkdocs --strict above).")
                 return 1
         elif not os.path.isdir(book_site):
@@ -6120,7 +6144,7 @@ def cmd_deploy(args) -> int:
     # convenience, not a published artifact, so the pre-push gate must not pay their ~9× compile cost.
     print("\n== Pre-push PDF + EPUB build from native LaTeX; content, size, and container checks ==")
     pdf_gate = subprocess.run([sys.executable, os.path.join("book", "build_book.py"), "--pdf", "--no-split"],
-                              cwd=ROOT)
+                              cwd=ROOT, env=git_env.clean_env())
     if pdf_gate.returncode != 0:
         print("ABORT: PDF/EPUB gate failed — will not push (see build_book.py --pdf output above; "
               "an invalid EPUB, a >8 MiB PDF, or a content-integrity miss blocks the push).")
@@ -6149,7 +6173,7 @@ def cmd_test(args) -> int:
     """Build, then run the tiered catalogue + skill test suite (see catalog_tests.py)."""
     cmd_build(None)
     cmd = [sys.executable, "catalog_tests.py"] + (["--strict"] if getattr(args, "strict", False) else [])
-    return subprocess.run(cmd, cwd=ROOT).returncode
+    return subprocess.run(cmd, cwd=ROOT, env=git_env.clean_env()).returncode
 
 
 def cmd_check_responsive(_args) -> int:
@@ -6170,7 +6194,7 @@ def cmd_check_responsive(_args) -> int:
     if not os.path.exists(script):
         print(f"ERROR: responsive-check script missing: {script}", file=sys.stderr)
         return 1
-    return subprocess.run(["node", script, index_html], cwd=ROOT).returncode
+    return subprocess.run(["node", script, index_html], cwd=ROOT, env=git_env.clean_env()).returncode
 
 
 def _served_html_pages() -> list[str]:
@@ -6207,7 +6231,7 @@ def cmd_check_console(_args) -> int:
         print("ERROR: no served HTML pages found after build", file=sys.stderr)
         return 1
     print(f"check-console: loading {len(pages)} served page(s) in headless Chrome...")
-    return subprocess.run(["node", script, *pages], cwd=ROOT).returncode
+    return subprocess.run(["node", script, *pages], cwd=ROOT, env=git_env.clean_env()).returncode
 
 
 def main() -> int:

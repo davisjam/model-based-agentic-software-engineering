@@ -39,6 +39,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from typing import NamedTuple
 
 from tests.common import FAIL, PASS, ROOT
 
@@ -123,7 +124,7 @@ def check_hook_operates_on_committing_tree():
     issues = (_resolution_findings() + _source_findings() + _latex_scope_findings()
               + _projection_findings() + _shared_artifact_findings()
               + _generated_scope_findings() + _commit_scope_findings()
-              + _content_tree_findings())
+              + _content_tree_findings() + _ambient_git_findings())
     return (FAIL if issues else PASS), issues
 
 
@@ -723,24 +724,9 @@ def _content_tree_findings() -> list[str]:
         issues.append(f"pre-push phase {missing!r} is declared commit-scoped but its body never "
                       "reads CONTENT — it still grades the working tree")
 
-    # THIRD half of the join, and the one the first two cannot see. A phase can read the right tree,
-    # run after its seeding, and still grade the main checkout — because git exports `GIT_DIR` into
-    # the hook, a child inherits it, and an inherited `GIT_DIR` BEATS `cwd`. Every git query a step
-    # makes then answers about the repository the hook came from. Measured 261107 in
-    # `.scratch/push5-261107.log`: the regen-drift check SKIPped naming the four tracked files dirty
-    # in the MAIN CHECKOUT, from inside a clean worktree at a detached HEAD.
-    for node in ast.walk(tree):
-        if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
-                and node.func.attr == "Popen"):
-            continue
-        env = next((kw.value for kw in node.keywords if kw.arg == "env"), None)
-        scrubbed = (isinstance(env, ast.Call) and isinstance(env.func, ast.Attribute)
-                    and env.func.attr == "clean_env")
-        if not scrubbed:
-            issues.append(f"pre-push:{node.lineno} launches a phase step without passing "
-                          "env=git_env.clean_env(...) — the child inherits the GIT_DIR git exports "
-                          "into this hook, and an inherited GIT_DIR beats cwd, so every git query "
-                          "the step makes reads the MAIN CHECKOUT instead of the gate worktree")
+    # The THIRD half of this join — a phase that reads the right tree and still grades the main
+    # checkout, because an inherited `GIT_DIR` beats `cwd` — is held by `_ambient_git_findings`
+    # below, over a declared file set that includes this hook and `catalog.py`.
 
     deps, error = _plan_graph()
     if error:
@@ -751,6 +737,146 @@ def _content_tree_findings() -> list[str]:
         elif "gate worktree" not in deps[phase]:
             issues.append(f"pre-push plan runs {phase!r} without waiting on 'gate worktree' — it "
                           "would grade an unseeded or absent tree")
+    return issues
+
+
+class _AmbientScope(NamedTuple):
+    """How far the ambient-git arms reach into one file.
+
+    `shapes` names the `subprocess.<attr>` launchers policed for the environment scrub; `no_bare_git`
+    additionally refuses a direct `git` argv, which must go through `git_env.git` instead. Narrowing
+    is declared per file and never discovered, because an undeclared exclusion and a forgotten one
+    read identically from a list of checked files.
+    """
+    shapes: tuple[str, ...]
+    no_bare_git: bool
+
+
+#: The files whose git calls an inherited environment can rebind, and what is held in each. Both run
+#: with `GIT_DIR` / `GIT_WORK_TREE` / `GIT_INDEX_FILE` exported into them by git, and an inherited
+#: `GIT_DIR` BEATS `cwd`, so naming a repository with `cwd=` alone names nothing.
+AMBIENT_GIT_SCOPE: "dict[str, _AmbientScope]" = {
+    # `hooks/pre-push`: the PHASE STEPS. Measured 261107 in `.scratch/push5-261107.log` — the
+    # regen-drift check SKIPped naming the four tracked files dirty in the MAIN CHECKOUT, from
+    # inside a clean worktree at a detached HEAD.
+    #
+    # DECLARED correctly ambient, and deliberately outside the `no_bare_git` arm: this hook's own
+    # `_git` helper asks one question — `git diff --name-only <remote>..<local>` for the push scope
+    # — about the repository that is PUSHING, which is exactly the repository the binding git
+    # exports into the hook names. Scrubbing it would buy nothing and the file is held elsewhere.
+    os.path.join("hooks", "pre-push"): _AmbientScope(("Popen",), False),
+    # `catalog.py`: EVERY launch shape, and no bare git. It runs from `hooks/pre-commit` and from
+    # `hooks/pre-push`, so a rebinding environment is its normal case rather than a corner. Measured
+    # 261107 against a decoy gitdir (`.scratch/gitdir-third-site-probe-261107.py`): all four of its
+    # git readers answered about the DECOY, and `install-hooks` configured the decoy while printing
+    # success. Its own git calls go through `git_env.git`, which takes `repo=` as a required
+    # keyword, so the compiler holds the target; its CHILDREN — the book build, the test suite, the
+    # render-digest re-entry — carry the scrub so a git call one level down cannot be rebound either.
+    "catalog.py": _AmbientScope(("run", "Popen", "call", "check_call", "check_output"), True),
+}
+
+
+def _scrubbed_env(env: "ast.expr | None") -> bool:
+    """Does this `env=` expression resolve to a scrubbed environment?
+
+    Two accepted shapes, and no third: `git_env.clean_env(...)` itself, or a dict whose FIRST
+    element unpacks it and adds only NAMED keys after it
+    (`{**git_env.clean_env(), "PYTHONHASHSEED": seed}`). Both restrictions earn their place.
+    `clean_env` DELETES the binding names, so a later `**os.environ` puts every one of them back —
+    and a second splat anywhere after the scrub can carry them whatever it is called. Such a call
+    reads as contained while being rebound, which is this failure wearing the fix's clothes.
+    """
+    if isinstance(env, ast.Call) and isinstance(env.func, ast.Attribute) and env.func.attr == "clean_env":
+        return True
+    if isinstance(env, ast.Dict) and env.keys and env.keys[0] is None:
+        return _scrubbed_env(env.values[0]) and not any(k is None for k in env.keys[1:])
+    return False
+
+
+def _ambient_tree_findings(rel: str, scope: _AmbientScope, tree: ast.AST) -> list[str]:
+    """The predicate itself, over one parsed file. Takes the tree so the sabotage arm below can
+    drive the shipped code against synthetic sources instead of a restatement of it."""
+    issues: list[str] = []
+    launches = [n for n in ast.walk(tree)
+                if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+                and n.func.attr in scope.shapes]
+    for node in launches:
+        argv = node.args[0] if node.args else None
+        head = (argv.elts[0].value if isinstance(argv, ast.List) and argv.elts
+                and isinstance(argv.elts[0], ast.Constant) else None)
+        if scope.no_bare_git and head == "git":
+            issues.append(f"{rel}:{node.lineno} drives `git` through a bare subprocess call — "
+                          "route it through `git_env.git(args, repo=...)`, which strips the "
+                          "inherited binding AND passes `-C`, so the two defences fail in "
+                          "different directions")
+            continue
+        if not _scrubbed_env(next((kw.value for kw in node.keywords if kw.arg == "env"), None)):
+            issues.append(f"{rel}:{node.lineno} launches a child without passing "
+                          "env=git_env.clean_env(...) — the child inherits the GIT_DIR git "
+                          "exports into this hook, and an inherited GIT_DIR beats cwd, so "
+                          "every git query it makes reads the WRONG REPOSITORY")
+    return issues
+
+
+def _ambient_git_findings() -> list[str]:
+    """No declared file may launch a child that inherits a repository binding, or drive git itself.
+
+    One check over `AMBIENT_GIT_SCOPE` rather than one check per file: the two halves of this class
+    are the same predicate, and two checks over two files drift apart the moment a third file joins.
+    """
+    issues: list[str] = []
+    for rel, scope in sorted(AMBIENT_GIT_SCOPE.items()):
+        path = os.path.join(ROOT, rel)
+        if not os.path.isfile(path):
+            issues.append(f"{rel} is declared in AMBIENT_GIT_SCOPE but is not on disk — the "
+                          "declaration names a file that moved, so nothing is being checked")
+            continue
+        with open(path, encoding="utf-8") as fh:
+            tree = ast.parse(fh.read(), filename=path)
+        # A declared file whose launches all vanished is a file this check stopped covering. Say so,
+        # rather than reporting the silence as a pass. This is a claim about a REAL file, so it sits
+        # here and not in the predicate, which also grades one-call synthetic sources.
+        if not any(isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+                   and n.func.attr in scope.shapes for n in ast.walk(tree)):
+            issues.append(f"{rel} contains no {'/'.join(scope.shapes)} call — either the launches "
+                          "moved out of this file or the declared shapes are wrong, and either way "
+                          "this check is now asserting nothing about it")
+        issues += _ambient_tree_findings(rel, scope, tree)
+    return issues + _ambient_sabotage_findings()
+
+
+#: (label, source, must the predicate report it?). Each is one way the containment can be undone or
+#: faked, with the shipped fix's own shape as the control. A check nobody has watched fail is not a
+#: check, and a one-time manual sabotage decays the moment the predicate is edited.
+_AMBIENT_SABOTAGE = (
+    ("the shipped shape — git through the seam",
+     'git_env.git(["status"], repo=ROOT)', False),
+    ("a child with the scrub",
+     'subprocess.run([sys.executable, "x.py"], cwd=ROOT, env=git_env.clean_env())', False),
+    ("a child with the scrub plus a named key (the render-digest shape)",
+     'subprocess.run(["x"], cwd=ROOT, env={**git_env.clean_env(), "PYTHONHASHSEED": s})', False),
+    ("a child with NO env — the 261107 defect",
+     'subprocess.run([sys.executable, "x.py"], cwd=ROOT)', True),
+    ("a child handed the ambient environment",
+     'subprocess.run(["x"], cwd=ROOT, env={**os.environ, "PYTHONHASHSEED": s})', True),
+    ("the scrub undone by a later splat — contained in shape, rebound in fact",
+     'subprocess.run(["x"], cwd=ROOT, env={**git_env.clean_env(), **os.environ})', True),
+    ("bare git, cwd only — the losing defence",
+     'subprocess.run(["git", "status"], cwd=ROOT, env=git_env.clean_env())', True),
+)
+
+
+def _ambient_sabotage_findings() -> list[str]:
+    """Drive the predicate against each sabotage, and report when its verdict inverts."""
+    scope = AMBIENT_GIT_SCOPE["catalog.py"]
+    issues = []
+    for label, src, want_finding in _AMBIENT_SABOTAGE:
+        got = bool(_ambient_tree_findings("synthetic", scope, ast.parse(src)))
+        if got != want_finding:
+            verdict = "REPORTED" if got else "passed"
+            issues.append(f"the ambient-git predicate {verdict} {label!r} ({src}) — it must "
+                          f"{'report' if want_finding else 'pass'} it, so the check no longer "
+                          "distinguishes a contained call from a rebound one")
     return issues
 
 
