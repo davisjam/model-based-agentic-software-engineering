@@ -1109,7 +1109,7 @@ def _render_cite_marker(spec: str) -> str:
 
 def _render_note_marker(escaped_text: str) -> str:
     """Render one `[note: …]` → a symbolic superscript (`*†‡§…`) + a right-gutter editorial note. `escaped_text`
-    is already HTML-escaped by inline() (a note body is plain editorial text, no inner markdown). The sup
+    has already passed through inline()'s escaping and formatting. The sup
     carries an aria-label so a screen reader announces "note N", not a bare symbol (decision #3)."""
     i = _CITE_STATE["note_i"]
     _CITE_STATE["note_i"] = i + 1
@@ -1408,7 +1408,6 @@ def inline(s: str) -> str:
         return f"\x00CITE{len(cite_spans) - 1}\x00"
 
     s = _CITE_MARKER_RE.sub(lambda m: _stash_cite(_render_cite_marker(m.group(1))), s)
-    s = _NOTE_MARKER_RE.sub(lambda m: _stash_cite(_render_note_marker(m.group(1).strip())), s)
     # Standard-markdown footnote references `[^label]` → an editorial-note mark + gutter note (definitions
     # were pulled out of the flow by `collect_footnote_defs` in md_to_html and stashed in `_CITE_STATE`).
     # Runs before the markdown-link pass so a `[^label]` is consumed as a footnote, not mis-read as a link.
@@ -1421,6 +1420,9 @@ def inline(s: str) -> str:
     # bold span wrapped an italic one, leaking a literal `**` into the page.)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<![\w*])\*(?!\s)([^*]+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", s)
+    # Format the authored note body before shielding its generated wrapper. Citations and code
+    # are already stashed, so their contents remain untouched while note emphasis renders.
+    s = _NOTE_MARKER_RE.sub(lambda m: _stash_cite(_render_note_marker(m.group(1).strip())), s)
     # Restore the stashed spans. A `[note:]` body can ITSELF contain stashed citation / code / emphasis
     # spans — they are all stashed BEFORE the note pass, so the note's own restored HTML re-introduces
     # their placeholders one level deep. A single restore pass leaves those nested placeholders in place;

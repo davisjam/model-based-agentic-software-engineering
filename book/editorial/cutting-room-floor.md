@@ -4739,3 +4739,207 @@ Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeli
 The chapter follows that cycle from four directions. {{sec:the-dynamics-of-mage}} develops the dynamics: models need not enter a system all at once; alignment can act first actively, then passively to preserve what it established; and because engineers often do not yet know the right models at the beginning of a project, implementation participates in discovering them. {{sec:interlude-one-problem-many-models}} follows those dynamics through one problem in DocAble: a memory failure that drives successive changes in representation and execution, then a connected family of models, each answering a different question. {{sec:brownfield-engineering}} enters a system that already exists, where the consequential structure arrived before the models that should describe it. {{sec:engineering-the-environment}} turns to the destination. A task begins from the representations, controls, and evidence the environment already owns; work exposes what those structures can and cannot answer; and each useful conversion changes what later work inherits. Useful durable structure becomes engineering capital — capital that can drift, depreciate, and cost more to maintain than it returns, so the chapter covers operation and retirement as well as accumulation.
 
 The question here is practical: **what should you do next?**
+
+## Authority and Implementation cross-cutting edits — 8 November 2026
+
+The following source spans were set aside when the author approved review items B32–B36 and A87. Unchanged anchor text is retained where it provides context.
+
+### B32 — Name the opportunity and the method for exercising authority (span 1)
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+- Section: Preface.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 52–52.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B32`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Name the opportunity and the method for exercising authority.
+
+```latex
+MAGE depends on the existence of meaningful degrees of freedom: choices that engineering can safely leave to commodity intelligence while retaining control over the properties that matter.
+```
+
+### B32 — Name the opportunity and the method for exercising authority (span 2)
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+- Section: Preface.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 54–54.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B32`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Name the opportunity and the method for exercising authority.
+
+```latex
+Software engineering has made this move repeatedly. Interfaces separate what a component provides from how it provides it. Virtual memory separates a program\textquotesingle s address space from physical memory. Compilers separate a source-level program from the machine instructions that realize it. MAGE applies the same instinct to autonomous implementation. Rather than lodging engineering intent and its enforcement in the agent itself, put both in the environment through which the agent works.
+```
+
+### B32 — Name the opportunity and the method for exercising authority (span 3)
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+- Section: Preface.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 56–56.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B32`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Name the opportunity and the method for exercising authority.
+
+```latex
+Some proposals for making AI-generated software trustworthy call for formal verification, using mathematical methods to establish that software satisfies specified properties.\citep{shafto2026} Compared with such proposals, the MAGE methodology may look rather ordinary. That is deliberate. Conventional engineering has long separated the engineering of an artifact from its physical realization. The familiar "Designed by Apple in California" inscription is an everyday example: the people who establish a product\textquotesingle s architecture, requirements, tolerances, and other engineering models need not be the people---or machines---that realize it. Other engineering disciplines rely on complementary representations of an artifact, use them to reason about different obligations, and establish that the realized artifact corresponds to them. MAGE brings that familiar pattern to software whose realization can increasingly be delegated to machines.
+```
+
+### B33 — State the constraint shift once and connect it to engineering control (span 1)
+
+- Source: `book/latex/sources/part1/00-part-intro.tex`.
+- Section: 1.0.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 6–6.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B33`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: State the constraint shift once and connect it to engineering control.
+
+```latex
+Engineering reorganizes when a constraint moves.\mageaside{The intuition is familiar from Amdahl\textquotesingle s law: accelerating one part of a computation increases the relative importance of the work that remains.\citep{amdahl1967} Goldratt\textquotesingle s Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another.\citep{goldratt1984} The same constraint logic applies to software-engineering economics.} Steam radically reduced the cost of mechanical power. Integrated circuits did the same for computation. Coding agents are now reducing the cost of software implementation. Humans and agents can both implement software, but capable agents can do in minutes or hours work that would have consumed days or weeks of skilled human effort. As implementation becomes abundant, the next-scarcest factors constrain output, so they draw investment and attention. Implementation was never the only scarce input to software engineering, but for most of the field\textquotesingle s history it consumed enough expert effort to limit what teams could attempt and how quickly they could change a system. As its marginal cost falls, other constraints become more visible: deciding what to build, representing a large system well enough to reason about it, producing evidence that a change is acceptable, and enforcing consequential engineering decisions across many changes.
+```
+
+### B33 — State the constraint shift once and connect it to engineering control (span 2)
+
+- Source: `book/latex/sources/part1/00-part-intro.tex`.
+- Section: 1.0.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 8–8.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B33`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: State the constraint shift once and connect it to engineering control.
+
+```latex
+When implementation becomes cheap, four engineering questions come into sharper focus: What should we build? What must the agent know about the system? How will we know whether its changes are correct? Which rules must it obey?
+```
+
+### B33 — State the constraint shift once and connect it to engineering control (span 3)
+
+- Source: `book/latex/sources/part1/00-part-intro.tex`.
+- Section: 1.0.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 23–23.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B33`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: State the constraint shift once and connect it to engineering control.
+
+```latex
+Abundance does not make implementation unimportant; it changes where additional engineering effort earns the greatest return. A factory with unlimited machine capacity and one inspector has not stopped manufacturing. Inspection has become the throughput constraint. Nor can inspection capacity be assumed to scale proportionally: sustained monitoring consumes finite human attention, and rare problems become especially difficult to detect as the stream of mostly acceptable output grows.\mageaside{Wolfe, Horowitz, and Kenner found that rare targets in visual search are disproportionately missed as their prevalence falls.\citep{wolfe2005rare} Sustained monitoring is itself costly: the vigilance literature finds it consumes attention, imposes workload, and degrades detection over a watch.\citep{warm2008vigilance} \magevalue{chapter:theory} returns to this evidence.} In software, agents can now produce changes faster than engineers can specify, understand, validate, and govern them. Models let later work reuse representations across many acts of implementation; validators and gates can likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding what to represent, what evidence to require, which obligations to enforce, and how the surrounding environment should preserve those decisions across later work. This chapter asks what follows from that shift: what remains hard, which properties of the new substrate matter, and what engineering problems they leave us to solve.
+```
+
+### B34 — Define professional responsibility as engineers direct delegated implementation (span 1)
+
+- Source: `book/latex/sources/part7/7.4-the-engineer.tex`.
+- Section: 7.4.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 20–20.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B34`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Define professional responsibility as engineers direct delegated implementation.
+
+```latex
+The broader theory does not erase the profession from which it came. It sharpens the question this chapter began with. If agents can increasingly implement changes, maintain models, run analyses, and propose engineering moves, what remains the engineer\textquotesingle s work?
+```
+
+### B34 — Define professional responsibility as engineers direct delegated implementation (span 2)
+
+- Source: `book/latex/sources/part7/7.4-the-engineer.tex`.
+- Section: 7.4.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 22–24.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B34`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Define professional responsibility as engineers direct delegated implementation.
+
+```latex
+% <!-- point: engineers-work-is-responsibility-for-meaning | The engineer's work is retaining informed control and responsibility for what the system should mean, not the tasks machines do poorly. -->
+
+The answer is not whatever tasks machines happen to perform poorly today. The engineer must retain informed control over the resulting system and remain responsible for it: for what the system is supposed to mean, which distinctions matter, which properties should hold, which representations deserve trust, what evidence is sufficient, which obligations should be enforced, and which tradeoffs are acceptable.
+```
+
+### B34 — Define professional responsibility as engineers direct delegated implementation (span 3)
+
+- Source: `book/latex/sources/part7/7.4-the-engineer.tex`.
+- Section: 7.4.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 26–28.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B34`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Define professional responsibility as engineers direct delegated implementation.
+
+```latex
+% <!-- point: work-authority-responsibility-come-apart | Work performed, authority exercised, and responsibility retained come apart under delegation and are not interchangeable; engineering responsibility does not depend on which activities remain beyond automation. -->
+
+Three things come apart under delegation. Work performed names the activities people or agents carry out; authority exercised names the decisions a person or mechanism is permitted to make; responsibility retained names accountability for the consequences of the whole engineering arrangement. They are related but not interchangeable: an agent can take over an activity without acquiring the authority to accept its result, and a mechanism can hold delegated authority without anyone\textquotesingle s responsibility being discharged. Engineering responsibility does not depend on which particular activities remain beyond automation. The engineer is defined by responsibility for an engineering system whose work can increasingly be delegated.
+```
+
+### B35 — Keep only the conclusion’s governance-taxonomy correction (span 1)
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Section: Conclusion.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 65–65.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B35`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Keep only the conclusion’s governance-taxonomy correction.
+
+```latex
+the mechanisms include types, validators, permissions, tests, and admission gates.
+```
+
+### B36 — Name the authority and responsibility of the engineer (span 1)
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Section: Conclusion.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 97–97.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `B36`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Name the authority and responsibility of the engineer.
+
+```latex
+\section{The part that stays yours}\label{heading:the-part-that-stays-yours}
+```
+
+### A87 — Begin the final section with its established professional position (span 1)
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Section: Conclusion.
+- Source revision before editing: `bf7b9daccc79d7fd0851aff498a4dfec71ee4b90`.
+- Source lines: 99–103.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry and the approved replacement.
+- Review item: `A87`; approved Authority and Implementation cross-cutting group.
+
+Reason: Preserve the previous wording and context while applying the author-approved revision: Begin the final section with its established professional position.
+
+```latex
+% <!-- point: no-stable-set-of-human-only-tasks | There is no stable collection of tasks only humans can perform; the boundary moves with capability, and what persists is the need for informed control over consequential work. -->
+
+There is a corresponding question about the engineer. If agents can increasingly perform implementation, specification, analysis, verification, and even the construction of the engineering environment, what remains for the person responsible for the work?
+
+There is no reason to expect a stable collection of tasks that only humans can perform. The boundary will move as capabilities improve. Engineering competence will change with it, as it has changed with earlier technologies. What persists is the need for informed control over consequential work: understanding what the engineering arrangement can establish, recognizing where its evidence is insufficient, and accepting responsibility for the decisions made under its authority.
+```
