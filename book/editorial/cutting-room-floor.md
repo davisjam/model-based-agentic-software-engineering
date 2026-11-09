@@ -18378,3 +18378,37 @@ The economic prediction adds a valuation problem to the tests of representation 
 ```latex
 The historic-building and accessibility examples make the same point. An obligation can be important, explicit, and legally binding without having a complete formal test. Engineering can still make the judgment better: make the obligation explicit, mechanize the parts that can be checked, and gather good evidence for the rest. The boundary can also move. Better models and measurements can turn judgments that once required an expert into properties the environment can check; better GenAI may make us willing to entrust increasingly difficult judgments to an artificial expert. Here, expert does not necessarily mean human: it means a reasoner capable of making the judgment well enough for the consequence at stake. The goal is therefore not to eliminate judgment, but to give each obligation the strongest form of evaluation and enforcement the available evidence can support.
 ```
+
+
+## Chapter 6 human-attention inset and economic transition — 9 November 2026
+
+Move the resource sentence into the inset's final paragraph and consolidate the following economic discussion into the author's paragraph on delivered value and carrying cost. Preserve original wording and placement below.
+
+### Human Attention: Conclude Inside the Inset
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:118`
+- Source revision: `042c397ac030b0812f44e29a1557677d0258d1cc`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved paragraph organization; the inset concludes its review-capacity argument, and the mainline introduces the broader economic criterion.
+
+```latex
+As agentic output grows, proportional human inspection becomes a bottleneck. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment.
+\end{bookbox}
+
+% <!-- point: human-attention-is-a-conserved-resource | Human attention is an engineering resource. -->
+
+Human attention is an engineering resource.
+```
+
+### Environment Return: Delivered Value and Carrying Cost
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:127`
+- Source revision: `042c397ac030b0812f44e29a1557677d0258d1cc`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved paragraph organization; the inset concludes its review-capacity argument, and the mainline introduces the broader economic criterion.
+
+```latex
+A low cost per correct change still does not establish that the changes were worth making. Product work may be valued for capabilities delivered to customers; security work, for risk retired; accessibility work, for documents made accessible and remediation effort avoided. The accounting names the expenditure, while the engineering decision must also consider the value of the result and the consequences of failure. A repair cost already charged to running the engineering process should not be counted again as a separate loss.
+
+Nor does an idle engineering environment necessarily become free. It may retain operating costs, and its engineering assets may need maintenance as dependencies, requirements, and tools change. Some structures remain useful for years with little attention; others lose fit quickly. This is why the return on an environment depends on its useful life and carrying cost, rather than on a one-time demonstration that it can produce correct software.
+```
