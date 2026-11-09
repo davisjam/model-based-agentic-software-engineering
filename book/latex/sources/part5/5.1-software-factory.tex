@@ -34,7 +34,7 @@ Two engineering techniques from that history are especially useful for understan
   \textbf{Tolerance} states which variation in the product is acceptable. A drawing can specify a dimension and its allowable variation without prescribing every motion of the machinist or every property of the finished part. Gauges and metrology then establish whether selected properties of the realized part fall within those bounds. The factory can therefore leave substantial freedom to the fabricator while retaining control over the properties that matter.\citep{winchester2018}
 \end{itemize}
 
-% <!-- noqa: book-float-ref — the figure carries its own vocabulary and is deliberately not introduced by a lead-in sentence; the labelled float is cross-referenced from {{sec:engineers-in-the-software-factory}} -->
+% <!-- noqa: book-float-ref — the figure carries its own vocabulary and is deliberately not introduced by a lead-in sentence; the labelled float is cross-referenced from the chapter coda, Engineering the Factory -->
 
 \begin{figure}[htbp]
 \centering
@@ -43,9 +43,9 @@ Two engineering techniques from that history are especially useful for understan
 \label{process-design-and-tolerance}
 \end{figure}
 
-% <!-- point: a-better-production-system-made-a-different-artifact-practical | A factory must solve both problems: an economically useful rate, and a product within acceptable bounds. Watt's engine needed cylinders bored more accurately than ordinary production could manage; Wilkinson's boring machinery supplied them. The advance was not a faster way to make an existing artifact but a production system that made a different artifact practical. | terms: tolerance -->
+% <!-- point: a-better-production-system-made-a-different-artifact-practical | Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance. | terms: tolerance -->
 
-A factory must solve both problems: production must proceed at an economically useful rate, and what it produces must remain within the bounds required for the product to work. Together, process design and tolerance allowed production to scale beyond the judgment of a single craftsperson. Watt\textquotesingle s improved steam engine provides an early example. The design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for Watt\textquotesingle s engine to perform as intended. The advance was therefore not simply a faster way to make an existing artifact. A more capable production system made a different artifact practical. As factories developed, this relationship generalized: some judgment remained with the skilled human fabricator, while other knowledge moved into drawings, tolerances, machinery, gauges, process plans, and inspection. The factory became capable of producing at a scale and consistency that could not depend on one person\textquotesingle s judgment being exercised over every part.
+Watt\textquotesingle s improved steam engine shows why production capability and product tolerance must develop together. Its design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for the engine to perform as intended. The advance was therefore more than a faster way to make an existing artifact. A more capable production system made a different artifact practical.
 
 \section{What Does a Software Factory Produce?}\label{heading:what-does-a-software-factory-produce}
 
@@ -57,25 +57,21 @@ The analogy requires one adjustment before we apply it to software. A physical f
 
 The output of a software factory is therefore not another copy of the product. It is the next working realization of the product. Software organizations repeatedly change an existing system: adding features, repairing defects, adapting to new environments, migrating dependencies, changing architectures, and responding to new requirements. Each production cycle begins with a working software system and attempts to produce a changed system that still works.
 
-% <!-- point: a-software-factory-is-a-production-system-for-controlled-change | The factory's job is to realize controlled change — the same object named by this book's definition of software engineering, so a software factory is the production system through which that change occurs. -->
+% <!-- point: a-software-factory-is-a-production-system-for-controlled-change | A software factory organizes controlled change while preserving control over consequential properties and consequences. -->
 
-The factory\textquotesingle s job is therefore to realize controlled change. As the Glossary states --- and the companion \emph{Software Engineering Handbook} develops more fully --- software engineering is the engineering discipline of controlled change in software systems. It creates and evolves software while preserving sufficient control over the properties and consequences that matter.\citep{davis2026sehandbook} A software factory is the production system through which that change occurs.
+The factory\textquotesingle s job is to realize controlled change: creating and evolving software while preserving sufficient control over the properties and consequences that matter.\citep{davis2026sehandbook} A software factory is the production system through which that change occurs.
 
 \begin{quote}
 \textbf{Software factory.} The engineered production system through which software changes are realized from engineering intent and evaluated, admitted, deployed, and improved.
 \end{quote}
 
-% <!-- point: a-factory-contains-more-than-its-fabricators | A factory contains more than its fabricators. Models say what should be made, tools are what the work is done with, and controls bound what may be done and what may be accepted. A gauge measures a part; at a quality gate, the same reading decides whether the part proceeds. -->
+% <!-- point: a-factory-contains-more-than-its-fabricators | A software factory combines models, tools, and controls; tests produce evidence and a gate makes a required result consequential at admission. -->
 
-A factory therefore contains more than its fabricators. Models say what should be made: drawings, process specifications, tolerances. Tools are what the work is done with: jigs position parts, gauges measure them, and fixtures hold them in place. Controls bound what may be done and what may be accepted: a permission a machinist does not have, a quality gate that rejects a part.
-
-% <!-- point: software-factories-contain-analogous-structures | Software factories hold all three: models describe the product, tools work on it, and controls bound both. A test is ordinarily a tool an agent runs and reasons about; it participates in a control when the result carries a consequence the agent cannot reason away. Fabricators build the product from models, using tools, subject to controls. -->
-
-Software factories hold all three. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound both: permissions, admission gates, and enforced policies. A test is ordinarily a tool --- an agent runs it and reasons about the result. It participates in a control when the result carries a consequence the agent cannot reason away: a failing test blocks admission. Fabricators build the product from models, using tools, subject to controls.
+A software factory contains more than its fabricators. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound what may be done and accepted through permissions, admission gates, and enforced policies. An agent can run a test and reason about its result. The test supplies evidence; a gate enforces a condition by requiring a passing result before admission. A failed test that is only reported leaves a different choice to the agent or reviewer. Fabricators build the product from models, using tools, subject to controls.
 
 % <!-- point: the-two-problems-specialize-to-changes-not-copies | The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one. | terms: tolerance -->
 
-Producing changes rather than copies also changes how the two problems of factory engineering apply. Process design organizes the production of changes: how engineering intent becomes work, how that work is decomposed and realized, what information and tools are available to the fabricator, and how a proposed change moves through evaluation and admission. Tolerance constrains the resulting realization: how much freedom the fabricator may exercise while the changed product remains acceptable. The factory does not need to reproduce the same artifact. It needs to repeatedly produce new realizations of an evolving artifact without losing the properties that matter.
+Producing changes rather than copies also changes how process design and tolerance apply. Process design organizes the production of changes: how engineering intent becomes work, how that work is decomposed and realized, what information and tools reach the fabricator, and how a proposed change moves through evaluation and admission. Tolerance constrains the resulting realization: how much freedom the fabricator may exercise while the changed product remains acceptable. These decisions concern an evolving system whose consequential properties must survive the change.
 
 % <!-- point: representations-of-software-carry-a-carrying-cost | Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost. -->
 
@@ -97,33 +93,33 @@ Earlier attempts to separate engineering judgment from implementation encountere
 
 The economic question was therefore never simply whether software should use models. It was where engineering judgment could be carried most economically without losing control. Craft production remains economical when transferring enough judgment out of fabrication would cost as much as leaving that judgment with the skilled human fabricator. Factory production becomes economical when reusable production structures can carry consequential judgment more cheaply than repeatedly exercising it during fabrication.
 
-% <!-- point: commodity-intelligence-changes-the-tradeoff | Commodity intelligence changes the tradeoff: agents are inexpensive and capable enough to resolve many ordinary realization decisions, so the production system can carry selected consequential judgments while leaving substantial realization freedom to the agent. | terms: commodity-intelligence -->
+% <!-- point: commodity-intelligence-changes-the-tradeoff | Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence. | terms: commodity-intelligence -->
 
-Commodity intelligence changes this tradeoff. In an agentic software factory, substantial realization work is performed by agents rather than human engineers. These fabricators are inexpensive and capable enough to resolve many ordinary realization decisions themselves. Engineering therefore need not choose between specifying most decisions upstream and paying skilled human programmers to resolve them downstream. The production system can instead carry selected consequential judgments while leaving substantial realization freedom to the agent.
+Commodity intelligence changes this tradeoff. In an agentic software factory, inexpensive agents can perform substantial realization work and resolve many ordinary implementation decisions. The production system can carry selected consequential judgments while leaving the agent substantial realization freedom, subject to the evidence required for acceptance.
 
 \section{Walking Through a Software Factory}\label{heading:walking-through-a-software-factory}
 
-% <!-- point: four-questions-orient-a-walkthrough | Four questions orient a walkthrough of an agentic software production system without assuming in advance how it should be organized: what it produces, what people do, how production is organized, and what the tolerances are. | terms: tolerance -->
+% <!-- point: four-questions-orient-a-walkthrough | Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied. | terms: tolerance -->
 
-The factory metaphor gives us a vocabulary for walking through an agentic software production system without assuming in advance how it should be organized. Four questions orient a walkthrough:
+Four questions orient a walkthrough without prescribing how the factory should be organized:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{What does the factory produce?} What kinds of controlled changes enter the production system, and where do they originate?
+  \textbf{What does the factory produce?} What changes enter it, and where do they originate?
 \item
-  \textbf{What do people do?} Which judgments remain with engineers, and which acts of realization or decision have been delegated to agents?
+  \textbf{What do people do?} Which judgments and acts of realization do people retain or delegate?
 \item
-  \textbf{How is production organized?} What process determines how work is represented, routed, realized, evaluated, admitted, deployed, and learned from?
+  \textbf{How is production organized?} How does work move through realization, evaluation, admission, and deployment, and how do lessons change that process?
 \item
-  \textbf{What are the tolerances?} Which properties of the resulting software must remain within bounds, how are those bounds represented, and what evidence establishes that a change satisfies them?
+  \textbf{What are the tolerances?} Which properties must remain within bounds, how are those bounds represented, and what evidence establishes compliance?
 \end{enumerate}
 
-% <!-- point: software-tolerances-take-more-forms-than-a-dimension | A software tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation — some checkable mechanically, others still requiring human judgment. | terms: tolerance -->
+% <!-- point: software-tolerances-take-more-forms-than-a-dimension | Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment. | terms: tolerance -->
 
-The last question deserves care. In physical manufacturing, a tolerance can often be written as a dimension and checked with a gauge. Software properties are more varied. A tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation. Some can be checked mechanically. Others still require human judgment. The engineering question is the same: what variation may the fabricator choose, and what variation must the factory control?
+Software tolerances include quantitative bounds, invariants, architectural constraints, and qualitative obligations that may still require human judgment; each identifies variation the factory must control while leaving other choices open.
 
-% <!-- point: the-four-questions-are-broader-than-mage | The four questions are deliberately broader than MAGE — a factory may answer them with tests, policies, human review, simulators, permission systems, or models — and the two case sections ask them of DocAble and of independently developed industrial systems. -->
+% <!-- point: the-four-questions-are-broader-than-mage | The next sections use the questions to examine DocAble longitudinally and other organizations through their public accounts. -->
 
-Those questions are deliberately broader than MAGE. A factory may answer them with tests, policies, human review, simulators, permission systems, or models. \magevalue{sec:inside-docables-software-factory} applies them to DocAble, where the production system can be observed longitudinally as realization capacity grows. \magevalue{sec:mage-in-the-wild} asks the same questions of independently developed industrial systems. Only after seeing those factories will we ask what their different arrangements imply for engineering under abundant realization.
+\magevalue{sec:inside-docables-software-factory} follows these questions through DocAble as its realization capacity grows; \magevalue{sec:mage-in-the-wild} uses them to examine different arrangements reported by other organizations.

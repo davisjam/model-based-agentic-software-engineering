@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-09",
+  "source_hashes": {
+    "book/data/docable-seip-261028/weekly.csv": "6cb4241c0de3ef893c8a5672d715da5f2c9bffd01e2e04b3995dca68780ea9f5",
+    "book/data/docable-seip-261028/code_size_mapped.csv": "e898133f255141c7b65710a58ec0cdb60a0c952ee09745886bb1ff89fef8d049",
+    "book/data/docable-seip-261028/size_groups.json": "1395158f9c3bb6ea384c2d1830019721e66980db48d6d9fc518fb21cdf85271c",
+    "book/data/docable-seip-261028/size_ratios.csv": "90a2d06a204680e27494a3315f26f30da2644735193b5f8a8fef73a6639978a4"
+  },
+  "evaluation_inputs": {
+    "data/benchmark/generated/evaluation-report.json": "8913364a7d8cdf72fa44968e7bd8c63ac9ed70a74f6502ba3141fcfa52d11c5d",
+    "data/benchmark/generated/reduction-summary.json": "532f1ffe8ae51003e21f63205b26bed3342040e77514a44009d36e2e29c740c7",
+    "data/benchmark/generated/rubric-summary.json": "a7da1c1f4fe0b35afe303414b3a03985397a2d85cbbd825b4e29d56bda2156ca"
+  },
+  "evaluation_extraction_checks": [
+    "full validation cohort only",
+    "independent reduction summaries agree",
+    "zero-original percentages stay undefined",
+    "increase counts use all assessed triples",
+    "selected rubric pass matches report",
+    "criterion groups conserve all gain/regression judgments"
+  ],
+  "note": "Frozen aggregate data. The source paper Figure 6 extractor independently compares generated reductions and retains unknown percentages; raw document IDs not required for the figure.",
+  "evaluation_source": "DocAble study sources, 2026-11-04 manuscript snapshot; cited as davis2026docable"
+}

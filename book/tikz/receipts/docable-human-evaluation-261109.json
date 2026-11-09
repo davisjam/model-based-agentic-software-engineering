@@ -1,0 +1,128 @@
+{
+  "id": "docable-human-evaluation-261109",
+  "date": "2026-11-09",
+  "status": "ready_for_parent_integration",
+  "source": "book/assets/docable-human-evaluation-261109.svg",
+  "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
+  "chapter": "5.2-inside-docables-software-factory",
+  "claim": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.",
+  "alt": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.",
+  "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
+  "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
+  "caption": "*Remediation compared with the human reference.* (a) Median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. DocAble led on PDF and DOCX checker reductions and image-description gains; the human workflow led on PPTX checker reductions. Parity denotes similar measured improvement, not equivalent accessibility. [short: Human-reference remediation results]",
+  "generator": "book/figures/docable-case-261109/generate.py",
+  "data": "book/data/docable-case-261109",
+  "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
+  "required_terms": [
+    "(a) Checker reduction",
+    "(b) Increased findings",
+    "(c) Semantic comparison",
+    "(d) Semantic changes"
+  ],
+  "native_validation": {
+    "status": "standalone_passed",
+    "date": "2026-11-09",
+    "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+    "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+    "width_bp": 411.6960144042969,
+    "height_bp": 439.9909973144531,
+    "minimum_prose_font_bp": 9.962639808654785,
+    "minimum_authored_text_TeX_pt": 10,
+    "monochrome_pixels": true,
+    "compile_diagnostics": [],
+    "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+  },
+  "layout_review": {
+    "source": "book/assets/docable-human-evaluation-261109.svg",
+    "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
+    "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
+    "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
+    "baseline_candidate_sha256": null,
+    "decision": "new",
+    "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+    "reviewed_visually": true,
+    "contracts": {},
+    "validation": {
+      "status": "standalone_passed",
+      "date": "2026-11-09",
+      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+      "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+      "width_bp": 411.6960144042969,
+      "height_bp": 439.9909973144531,
+      "minimum_prose_font_bp": 9.962639808654785,
+      "minimum_authored_text_TeX_pt": 10,
+      "monochrome_pixels": true,
+      "compile_diagnostics": [],
+      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/docable-human-evaluation-261109.svg",
+    "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
+    "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
+    "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
+    "decision": "new",
+    "evidence": [
+      {
+        "source_text": "(a) Checker reduction",
+        "candidate_text": "(a) Checker reduction",
+        "semantic_role": "Panel heading",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "(b) Increased findings",
+        "candidate_text": "(b) Increased findings",
+        "semantic_role": "Panel heading",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "(c) Semantic comparison",
+        "candidate_text": "(c) Semantic comparison",
+        "semantic_role": "Panel heading",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "(d) Semantic changes",
+        "candidate_text": "(d) Semantic changes",
+        "semantic_role": "Panel heading",
+        "candidate_style": "regular"
+      }
+    ],
+    "checks": [
+      {
+        "text": "(a) Checker reduction",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(b) Increased findings",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(c) Semantic comparison",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(d) Semantic changes",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "status": "standalone_passed",
+      "date": "2026-11-09",
+      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+      "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+      "width_bp": 411.6960144042969,
+      "height_bp": 439.9909973144531,
+      "minimum_prose_font_bp": 9.962639808654785,
+      "minimum_authored_text_TeX_pt": 10,
+      "monochrome_pixels": true,
+      "compile_diagnostics": [],
+      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    }
+  },
+  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults."
+}

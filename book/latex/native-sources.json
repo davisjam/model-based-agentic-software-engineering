@@ -82,8 +82,8 @@
     {
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
       "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
-      "source_hash": "79cb9f313e099424cf45dd35fb9a5c1d38558377c269c3ceafed2ff8054c87c5",
-      "projection_hash": "8dae8e9f8b370f5cd1ee4efb7687c93cbcf6896ef99e0a27acb024f3ee9d6571"
+      "source_hash": "b2ee4dad58fb2e122c7c2d62d1288e63b5b34a1857da0588b0846b7013d978c5",
+      "projection_hash": "0299a79e4459d81d2da2c4eb9febcc61a557221011318fed843eb010d9c2cbdf"
     },
     {
       "source": "book/latex/sources/part2/2.2-structural.tex",
@@ -190,38 +190,32 @@
     {
       "source": "book/latex/sources/part5/00-part-intro.tex",
       "projection": "book/part5/00-part-intro.md",
-      "source_hash": "4b7cf1808d1a5343f77fd7f363f03cbfce0ce1bbb8185d852abd1104fbb837cf",
-      "projection_hash": "6e5a3e816c8c3523681eeb0c8cceb59e54b021520b8e67dd9a2762b247bfa0d7"
+      "source_hash": "7a63a3fda7a8bbc70ebe0a9bc6c31ce241dab195ee792d7207421be5e76c3206",
+      "projection_hash": "dc2f05a33cf7a375d6bdeb4035266cffb74c8de5e5707f62a253fde5b6c00adc"
     },
     {
       "source": "book/latex/sources/part5/5.1-software-factory.tex",
       "projection": "book/part5/5.1-software-factory.md",
-      "source_hash": "58c3d8308e648393a068c9f428bfda3c05ecb93b7709ce3ce3038a69319ce59a",
-      "projection_hash": "0da1983548f266c680177cc3b343f716c143dce2fc67a3e06bafec6c731fda5a"
+      "source_hash": "36e1314778f096a94eba71465a0609786938234b295c987c3cb640661baf2176",
+      "projection_hash": "76cc4d628bd5a41197d3b85ca678f6faf89ce308585415fc35981550471fd746"
     },
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "798649f6f35480d5af1a1b77e21c4123f27f7d9f9f6a645223f1f7a94c5963cc",
-      "projection_hash": "cad90a539c9f770f5847a78a39cbf4c2d5966d210accf3216a2135ee4baf73ec"
+      "source_hash": "b49d6a8118024906b0a1c6006c0f3d5d5c88e344014651bf4be4d69cea80a35c",
+      "projection_hash": "213eb8d549f21d61e2614b0fb7da075a9905086deecd2214a782d24b24128afd"
     },
     {
       "source": "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
       "projection": "book/part5/5.3-other-agentic-software-factories.md",
-      "source_hash": "3292284a7b79ca42c896e61b9c545e8c609cb99e94b3485783b83e7ce47f197b",
-      "projection_hash": "d8ec0caad690ca9c9f698ed019b2617e18034ec40f62c95bcdc178936bafa38e"
-    },
-    {
-      "source": "book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex",
-      "projection": "book/part5/5.4-two-problems-of-factory-engineering.md",
-      "source_hash": "19444e5dc1344d57daf083b5af0fbf3765b844becd878add262199b583262353",
-      "projection_hash": "6d6f72f67a9c1cba9cdea356605d6cf194387327b4d489ae68c290d5e599da0c"
+      "source_hash": "6d2e6fe7b533a4c6b03ce50f056c7ec2fd61d680e4efe8fc6239c98c71c89594",
+      "projection_hash": "60e89dd99e31081efe2c06a36c53445fde4f186e241827aee8e893fe2091e58c"
     },
     {
       "source": "book/latex/sources/part5/5.5-engineering-the-factory.tex",
       "projection": "book/part5/5.5-engineering-the-factory.md",
-      "source_hash": "d6ec5d6be2c6ba5e8c0917c23c43a15c7646aebd9574776b566f29dec1097b82",
-      "projection_hash": "52c026ffeb54da5ec76ba5f9c8c9497aa1f23fcc8d50e6ecd79b82293a7a8854"
+      "source_hash": "c333482af6f1747fe48979b1005d072d1711d019e2b6e3a43e33978098cc6635",
+      "projection_hash": "5983313f07ae426257cbe964a545038ea930ed2eea0bf2453c4ae5e0d89d2177"
     },
     {
       "source": "book/latex/sources/part6/00-part-intro.tex",
@@ -478,14 +472,14 @@
     {
       "source": "book/latex/sources/appendix-evidence-ledger/_opening.tex",
       "projection": "book/appendix-evidence-ledger/_opening.md",
-      "source_hash": "ca148a087a38c6e2f72a3f7083f4a84e95b64209b52d62d3cf6b44579b0cf00a",
-      "projection_hash": "958872c9978a6dd92bfed18c600ee3dedfd6e54c4658d5349f7314893c284506"
+      "source_hash": "97a51a7a567a1902029083453893269b558b325cbd0a7507949c268229788d9f",
+      "projection_hash": "8b01a0e08926205d2711d6a9d63ccc6745f485a6b1c01500e95615f798c7becf"
     },
     {
       "source": "book/latex/sources/appendix-evidence-ledger/evidence-tables.tex",
       "projection": "book/appendix-evidence-ledger/evidence-tables.md",
-      "source_hash": "1bc3b31f4d9ae4849e1c4e4ff73a878852355cbba2421357260e853173cf8461",
-      "projection_hash": "5a5dd60769e7af9bf70e6a52bf6bc90928f14c9d749c8f4428df7723416911d4"
+      "source_hash": "77888b64126bd275fd3498a542629140ad60ea8f047a629bb728d6ed4d308384",
+      "projection_hash": "c95cac2a669c3cb0ee894656249df9d73735600fd2d240c2d02bf2234e0e61fb"
     },
     {
       "source": "book/latex/sources/appendix-engineering-moves/_opening.tex",
@@ -646,8 +640,8 @@
     {
       "source": "book/latex/sources/appendix-adopting-genai/learning-from-delegated-work.tex",
       "projection": "book/appendix-adopting-genai/learning-from-delegated-work.md",
-      "source_hash": "66f9137dcdf7289016ad5f2a3c8b2aed4df1d3963008be184e116dc590d46cb8",
-      "projection_hash": "1884951f163fdf3025796918190b8dea468e824cc4fbdddb78586b61bf93d261"
+      "source_hash": "61f067c975e04773453e9dcd00fe4d0e24add15042c73f47f23c8e5ca2bca7e9",
+      "projection_hash": "e636b8f9051153059fc6b863880bdc5d47b2506084c02b425c8f4128f9f8ddf3"
     },
     {
       "source": "book/latex/sources/appendix-adopting-genai/organizational-adoption.tex",
@@ -730,8 +724,8 @@
     {
       "source": "book/latex/sources/appendix-operators-reference/model-health.tex",
       "projection": "book/appendix-operators-reference/model-health.md",
-      "source_hash": "78f5950b8eecd203ad50c33154cb309709de63d29adac33a3a128f46698e894c",
-      "projection_hash": "c6511a0ce6aad2664f00b3e6d4efe307d52becaf711c4eac015ff03c8e201fac"
+      "source_hash": "29dcba5bc15ebfb0b590b887334139facbda89ae160514a71554fb2a1882e14f",
+      "projection_hash": "ff78b5e3f0ca7a15da1b5f653d8ab499ff4db8f68a9cd20b609b9972f0d7e68f"
     },
     {
       "source": "book/latex/sources/appendix-operators-reference/operating-doctrine.tex",

@@ -3,8 +3,8 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 148,
-  "refined_count": 70,
+  "candidate_count": 149,
+  "refined_count": 68,
   "reviewed_peer_groups": 87,
   "figures": [
     {
@@ -5414,78 +5414,6 @@
       }
     },
     {
-      "source": "book/assets/modeling-history.svg",
-      "candidate": "book/tikz/figures/modeling-history.tex",
-      "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
-      "baseline_candidate_sha256": "d07f23750dadf6fbd348df325b5c8c81cde5089e9f572d5317907b1b61222c0f",
-      "candidate_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
-      "decision": "refined",
-      "reason": "Reduce vertical padding in the dense sequential history to expose arrow shafts; four-line dependency/effect peers retain equal rank. Equalized the two peer box heights exactly. Restore comfortable box padding, use11pt body, and spread transformation ranks; dependency/effect peers retain equal heights.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        356.69500732421875,
-        411.9909973144531
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel rank 1",
-            "labels": [
-              "Dependency semantics DATA_FLOW CONTROL_GATE CROSS_SERVICE",
-              "Effect boundedness TypedPatchProducer DirectEditor ReadOnly"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ],
-        "terminal_exceptions": []
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 76,
-        "width_bp": 356.695,
-        "height_bp": 514.947
-      },
-      "page_layout": {
-        "decision": "refined",
-        "reason": "Restore comfortable box padding, use11pt body, and spread transformation ranks; dependency/effect peers retain equal heights.",
-        "before_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
-        "after_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
-        "before_dimensions_bp": [
-          356.69500732421875,
-          405.0169982910156
-        ],
-        "after_dimensions_bp": [
-          356.69500732421875,
-          514.947021484375
-        ],
-        "before_font_sizes_pt": [
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          11.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
       "source": "book/assets/f13_mature_flow_funnel.svg",
       "candidate": "book/tikz/figures/f13_mature_flow_funnel.tex",
       "source_sha256": "bccb59ceea71391f65e813f4ef0b881bb6433965524d9196793f643ecf919ac3",
@@ -5770,74 +5698,6 @@
         "after_dimensions_bp": [
           423.125,
           266.6619873046875
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/six-entry-points.svg",
-      "candidate": "book/tikz/figures/six-entry-points.tex",
-      "source_sha256": "89146475a75a86ab50e8ff8958a325f4edd4793a6cec484edf87e5f39c5e8107",
-      "baseline_candidate_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
-      "candidate_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
-      "decision": "retained",
-      "reason": "Retained: Tabular entry rows are evenly separated; badges and descriptions have different roles, not equal-height process peers.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        417.5539855957031,
-        360.7720031738281
-      ],
-      "contracts": {
-        "peer_groups": [],
-        "terminal_exceptions": []
-      },
-      "validation": {
-        "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
-        "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
-        "page": 2,
-        "width_bp": 417.554,
-        "height_bp": 319.669,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 11,
-        "body_fonts": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ],
-        "status": "passed",
-        "checked_terminal_approaches": 0,
-        "reviewed_peer_groups": 0,
-        "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Six company rows are evenly spaced after removing Zenseact. All six names, category badges, column meanings and footer remain readable in the current SVG and native render.",
-        "before_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
-        "after_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
-        "before_dimensions_bp": [
-          417.5539855957031,
-          360.7720031738281
-        ],
-        "after_dimensions_bp": [
-          417.5539855957031,
-          319.66900634765625
         ],
         "before_font_sizes_pt": [
           9.0,
@@ -10351,24 +10211,83 @@
         "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
       },
       "reviewed_visually": true
+    },
+    {
+      "source": "book/assets/docable-seip-longitudinal-261109.svg",
+      "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+      "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
+      "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+      "baseline_candidate_sha256": null,
+      "decision": "new",
+      "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+      "reviewed_visually": true,
+      "contracts": {},
+      "validation": {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
+        "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
+        "width_bp": 387.34600830078125,
+        "height_bp": 368.0270080566406,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      }
+    },
+    {
+      "source": "book/assets/docable-seip-composition-261109.svg",
+      "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
+      "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
+      "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+      "baseline_candidate_sha256": null,
+      "decision": "new",
+      "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+      "reviewed_visually": true,
+      "contracts": {},
+      "validation": {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+        "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+        "width_bp": 386.0299987792969,
+        "height_bp": 461.1679992675781,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      }
+    },
+    {
+      "source": "book/assets/docable-human-evaluation-261109.svg",
+      "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
+      "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
+      "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
+      "baseline_candidate_sha256": null,
+      "decision": "new",
+      "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+      "reviewed_visually": true,
+      "contracts": {},
+      "validation": {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+        "width_bp": 411.6960144042969,
+        "height_bp": 439.9909973144531,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      }
     }
   ],
   "validation": {
-    "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-    "geometry_findings": 0,
-    "unapproved_compile_diagnostics": 0,
-    "status": "passed",
-    "date": "2026-11-08",
-    "checked_terminal_approaches": 668,
-    "reviewed_peer_groups": 87,
-    "semantic_typography_checks": 935,
-    "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
-    "maximum_dimensions_bp": [
-      450,
-      560
-    ],
-    "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    "status": "pending",
+    "reason": "Candidate set changed during Chapter 5 revision; full figure pool will be rebuilt."
   },
   "page_layout_review": {
     "candidate_count": 146,
@@ -10471,6 +10390,152 @@
           "reviewed_visually": true
         }
       }
+    },
+    {
+      "retired_date": "2026-11-09",
+      "reason": "Author removed the factory taxonomy and entry-point overview; full source artwork retained.",
+      "review": {
+        "source": "book/assets/six-entry-points.svg",
+        "candidate": "book/tikz/figures/six-entry-points.tex",
+        "source_sha256": "89146475a75a86ab50e8ff8958a325f4edd4793a6cec484edf87e5f39c5e8107",
+        "baseline_candidate_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
+        "candidate_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
+        "decision": "retained",
+        "reason": "Retained: Tabular entry rows are evenly separated; badges and descriptions have different roles, not equal-height process peers.",
+        "reviewed_visually": true,
+        "baseline_dimensions_bp": [
+          417.5539855957031,
+          360.7720031738281
+        ],
+        "contracts": {
+          "peer_groups": [],
+          "terminal_exceptions": []
+        },
+        "validation": {
+          "proof": "latex/build/tikz-six-case-review/six-case-figures.pdf",
+          "proof_sha256": "e1b4b3528b157ca9838086e64ca9ddd18f9bcc75191a0060e192bb356a1c9fda",
+          "page": 2,
+          "width_bp": 417.554,
+          "height_bp": 319.669,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 11,
+          "body_fonts": [
+            "SourceSans3-Bold",
+            "SourceSans3-BoldIt",
+            "SourceSans3-It",
+            "SourceSans3-Regular"
+          ],
+          "status": "passed",
+          "checked_terminal_approaches": 0,
+          "reviewed_peer_groups": 0,
+          "audit_sha256": "d3586e5251586600161fdbcdb0b98046dbed7a754bd72815a9bf35f4a78863c4",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+        },
+        "page_layout": {
+          "decision": "retained",
+          "reason": "Six company rows are evenly spaced after removing Zenseact. All six names, category badges, column meanings and footer remain readable in the current SVG and native render.",
+          "before_sha256": "335ebc331c3906c58895dd973744de6408ddc9cc59370de298d47a9ce8969038",
+          "after_sha256": "1675cbbdeb2025cbbae128d504290c10ac4554fa08b5f3b2b1996359a8bf71d5",
+          "before_dimensions_bp": [
+            417.5539855957031,
+            360.7720031738281
+          ],
+          "after_dimensions_bp": [
+            417.5539855957031,
+            319.66900634765625
+          ],
+          "before_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "after_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "reviewed_visually": true
+        }
+      }
+    },
+    {
+      "source": "book/assets/modeling-history.svg",
+      "candidate": "book/tikz/figures/modeling-history.tex",
+      "source_sha256": "d851c72eddd25c7edbd316394d310056504a2990e5dca4d0f0d28ba51723410d",
+      "baseline_candidate_sha256": "d07f23750dadf6fbd348df325b5c8c81cde5089e9f572d5317907b1b61222c0f",
+      "candidate_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
+      "decision": "refined",
+      "reason": "Reduce vertical padding in the dense sequential history to expose arrow shafts; four-line dependency/effect peers retain equal rank. Equalized the two peer box heights exactly. Restore comfortable box padding, use11pt body, and spread transformation ranks; dependency/effect peers retain equal heights.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        356.69500732421875,
+        411.9909973144531
+      ],
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "parallel rank 1",
+            "labels": [
+              "Dependency semantics DATA_FLOW CONTROL_GATE CROSS_SERVICE",
+              "Effect boundedness TypedPatchProducer DirectEditor ReadOnly"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ],
+        "terminal_exceptions": []
+      },
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 76,
+        "width_bp": 356.695,
+        "height_bp": 514.947
+      },
+      "page_layout": {
+        "decision": "refined",
+        "reason": "Restore comfortable box padding, use11pt body, and spread transformation ranks; dependency/effect peers retain equal heights.",
+        "before_sha256": "e19c6619f68c091f3f04be0bb9e974634728960c95c6ddfe72247d918ccd3e92",
+        "after_sha256": "9bd38cb1d3469b743a5b8fba51046931c9455e7a003001a3632fafc4edd5b118",
+        "before_dimensions_bp": [
+          356.69500732421875,
+          405.0169982910156
+        ],
+        "after_dimensions_bp": [
+          356.69500732421875,
+          514.947021484375
+        ],
+        "before_font_sizes_pt": [
+          10.0
+        ],
+        "after_font_sizes_pt": [
+          11.0
+        ],
+        "reviewed_visually": true
+      },
+      "retired_on": "2026-11-09",
+      "retirement_reason": "Replaced or retired in the author-approved Chapter 5 evidence revision."
     }
   ],
   "governance_revision_date": "2026-11-08",
@@ -10490,6 +10555,23 @@
       ],
       "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
       "status": "passed"
+    },
+    {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
+      "checked_terminal_approaches": 668,
+      "reviewed_peer_groups": 87,
+      "semantic_typography_checks": 935,
+      "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
   ]
 }

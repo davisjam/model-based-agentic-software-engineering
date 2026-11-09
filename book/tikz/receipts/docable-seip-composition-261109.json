@@ -1,0 +1,104 @@
+{
+  "id": "docable-seip-composition-261109",
+  "date": "2026-11-09",
+  "status": "ready_for_parent_integration",
+  "source": "book/assets/docable-seip-composition-261109.svg",
+  "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
+  "chapter": "5.2-inside-docables-software-factory",
+  "claim": "Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.",
+  "alt": "Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.",
+  "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
+  "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+  "caption": "*The product and its supporting apparatus.* Production and apparatus composition at ten sampled revisions. The support ratio is apparatus divided by production: about 2.6× at week 11, 3.6× at week 21, and 3.8× at week 31. Lines between samples interpolate; they are not additional measurements. The apparatus’s size establishes investment, not its return. [short: Product and supporting apparatus]",
+  "generator": "book/figures/docable-case-261109/generate.py",
+  "data": "book/data/docable-case-261109",
+  "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
+  "required_terms": [
+    "(a) Production implementation",
+    "(b) Engineering apparatus"
+  ],
+  "native_validation": {
+    "status": "standalone_passed",
+    "date": "2026-11-09",
+    "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+    "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+    "width_bp": 386.0299987792969,
+    "height_bp": 461.1679992675781,
+    "minimum_prose_font_bp": 9.962639808654785,
+    "minimum_authored_text_TeX_pt": 10,
+    "monochrome_pixels": true,
+    "compile_diagnostics": [],
+    "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+  },
+  "layout_review": {
+    "source": "book/assets/docable-seip-composition-261109.svg",
+    "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
+    "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
+    "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+    "baseline_candidate_sha256": null,
+    "decision": "new",
+    "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+    "reviewed_visually": true,
+    "contracts": {},
+    "validation": {
+      "status": "standalone_passed",
+      "date": "2026-11-09",
+      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+      "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+      "width_bp": 386.0299987792969,
+      "height_bp": 461.1679992675781,
+      "minimum_prose_font_bp": 9.962639808654785,
+      "minimum_authored_text_TeX_pt": 10,
+      "monochrome_pixels": true,
+      "compile_diagnostics": [],
+      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/docable-seip-composition-261109.svg",
+    "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
+    "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
+    "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+    "decision": "new",
+    "evidence": [
+      {
+        "source_text": "(a) Production implementation",
+        "candidate_text": "(a) Production implementation",
+        "semantic_role": "Panel heading",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "(b) Engineering apparatus",
+        "candidate_text": "(b) Engineering apparatus",
+        "semantic_role": "Panel heading",
+        "candidate_style": "regular"
+      }
+    ],
+    "checks": [
+      {
+        "text": "(a) Production implementation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(b) Engineering apparatus",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "status": "standalone_passed",
+      "date": "2026-11-09",
+      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+      "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+      "width_bp": 386.0299987792969,
+      "height_bp": 461.1679992675781,
+      "minimum_prose_font_bp": 9.962639808654785,
+      "minimum_authored_text_TeX_pt": 10,
+      "monochrome_pixels": true,
+      "compile_diagnostics": [],
+      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    }
+  },
+  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults."
+}

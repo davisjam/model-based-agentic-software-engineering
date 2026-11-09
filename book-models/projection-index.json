@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 858,
+    "total_sites": 850,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 518,
+      "book-web": 510,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -53,7 +53,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 52
+            "occ": 56
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
@@ -101,15 +101,11 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 58
+            "occ": 35
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 54
-          },
-          {
-            "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
-            "occ": 8
+            "occ": 26
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
@@ -193,7 +189,7 @@
           },
           {
             "file": "book/web/docs/appendix-evidence-ledger.md",
-            "occ": 7
+            "occ": 14
           },
           {
             "file": "book/web/docs/appendix-f-product-management-and-maintenance.md",
@@ -249,15 +245,15 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 24
+            "occ": 22
           },
           {
             "file": "book/web/docs/book-index.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 99
+            "occ": 89
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -283,7 +279,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 65
+            "occ": 64
           }
         ]
       },
@@ -583,7 +579,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 13
+            "occ": 15
           },
           {
             "file": "catalogue-figure.html",
@@ -959,11 +955,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 1
+            "occ": 4
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1015,7 +1007,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1029,7 +1021,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 28
           }
         ]
       },
@@ -1127,7 +1119,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 130
+            "occ": 134
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -1191,23 +1183,19 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 32
+            "occ": 25
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 66
+            "occ": 49
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 113
-          },
-          {
-            "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
-            "occ": 21
+            "occ": 66
           },
           {
             "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 16
+            "occ": 10
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1431,7 +1419,7 @@
           },
           {
             "file": "book/web/docs/appendix-evidence-ledger.md",
-            "occ": 6
+            "occ": 11
           },
           {
             "file": "book/web/docs/appendix-f-assurance-and-compliance.md",
@@ -1539,7 +1527,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 153
+            "occ": 145
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1551,15 +1539,15 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 315
+            "occ": 309
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 27
+            "occ": 26
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1579,7 +1567,7 @@
           },
           {
             "file": "book/web/docs/part-5-intro.md",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/web/docs/part-6-intro.md",
@@ -1593,7 +1581,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 127
+            "occ": 126
           }
         ]
       },
@@ -1633,7 +1621,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 80
+            "occ": 78
           },
           {
             "file": "catalogue-figure.html",
@@ -1746,14 +1734,6 @@
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 4
-          },
-          {
-            "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 1
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -1903,7 +1883,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 49
+            "occ": 47
           }
         ]
       },
@@ -2043,7 +2023,7 @@
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
-            "occ": 92
+            "occ": 93
           },
           {
             "file": "book/web/docs/2.2-structural.md",
@@ -2103,19 +2083,11 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 90
+            "occ": 59
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/5.4-two-problems-of-factory-engineering.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/5.5-engineering-the-factory.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -2399,7 +2371,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 366
+            "occ": 349
           },
           {
             "file": "book/web/docs/index.md",
@@ -2441,7 +2413,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 105
           }
         ]
       },
@@ -3123,15 +3095,11 @@
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
-            "occ": 10
+            "occ": 8
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 7
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -3207,7 +3175,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 44
+            "occ": 42
           },
           {
             "file": "book/web/docs/figures.md",
@@ -3249,7 +3217,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 44
+            "occ": 43
           }
         ]
       },
@@ -3324,8 +3292,12 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/5.2-inside-docables-software-factory.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
@@ -3435,7 +3407,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 34
+            "occ": 35
           }
         ]
       },
@@ -3672,10 +3644,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/5.3-other-agentic-software-factories.md",
-            "occ": 4
-          },
-          {
             "file": "book/web/docs/7.3-agentic-engineering-beyond-software.md",
             "occ": 3
           },
@@ -3707,7 +3675,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 9
           }
         ]
       },

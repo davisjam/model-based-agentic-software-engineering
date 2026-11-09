@@ -916,7 +916,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/build-stages-timeline.svg",
-    "caption": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+    "caption": "*The build, in stages.* DocAble expanded from a feasibility probe through format support, institutional operation, and hardening. Each stage introduced obligations that changed the product and the environment governing its implementation. [short: DocAble’s development stages]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1005,19 +1005,6 @@
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
-    "source": "assets/modeling-history.svg",
-    "caption": "*The modeling history.* DocAble acquired a stable decomposition of remediation computations before it acquired an explicit model of their composition. As locally reasonable choices accumulated consequential global cost, modeling exposed dependency semantics and effect boundedness. Typed declarations made those relationships analyzable and checkable; later redesign made explicit composition authoritative for execution, while separate analytical views continued to grow around stable computation identities. The progression is from a partial model to a richer and increasingly consequential one, not from no model to model.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/modeling-history.d2",
-    "receipt": "book/d2-pilot/modeling-history.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The modeling history",
-    "svg_description": "A top-to-bottom modeling history. DocAble began with a stable decomposition of remediation computations, so their node projection was meaningful, while their composition stayed implicit — carried by repeated traversal, shared-state reads, direct mutation, and special cases. As that composition accumulated global cost, modeling the relations exposed two previously implicit dimensions, shown as parallel columns: dependency semantics (DATA_FLOW, CONTROL_GATE, CROSS_SERVICE) and effect boundedness (TypedPatchProducer, DirectEditor, ReadOnly). Typed declarations then made the relationships projectable, a projected graph held by a blocking parity check. Analysis over that projected structure then motivated a redesign: an authoritative computation model that execution consumes to determine dependency order, with analytical views attaching by stable computation identity. Residual freedom remains. The progression runs from a partial model, to an analyzable one, to a model that participates directly in realization."
-  },
-  {
-    "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/f13_mature_flow_funnel.svg",
     "caption": "*The Admission Funnel, One Mature Week.* Merge-train runs in the mature era's highest-throughput full week: 592 started, 573 landed on main through the full integration gate, 10 aborted, 192 work spaces retired. Parallel realization fanned out; admission stayed serialized through regenerated evidence. The registry logs only this stage — upstream repair iterations are not retained as events.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -1049,7 +1036,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/measurement-no-gate.svg",
-    "caption": "*Modeled and Observed, Not Yet Binding.* A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose — representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.",
+    "caption": "*Modeled and observed, not yet binding:* a timeout produced a provisional model and reportable evidence. Production admission does not depend on that model because its bound is not calibrated strongly enough to justify blocking. Observation can be useful before enforcement is warranted. [short: Measurement before enforcement]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/measurement-no-gate.d2",
     "receipt": "book/d2-pilot/measurement-no-gate.receipt.yaml",
@@ -1062,7 +1049,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/mage-staircase.svg",
-    "caption": "*The Delegation Staircase.* As explicit representation and environmental enforcement accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; enforcement moved repeatable admission decisions out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or enforcement could move work back down the staircase.",
+    "caption": "*The Delegation Staircase:* in DocAble’s observed development, stronger representations and environmental enforcement supported delegation of larger units of work. Human attention shifted toward system-level decisions and unresolved judgments. A failure in either representation or enforcement could return work to direct inspection. [short: DocAble’s delegation staircase]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -1103,7 +1090,7 @@
   {
     "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/docable-work-order-flow.svg",
-    "caption": "From engineering intent to completed work. The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.",
+    "caption": "*From engineering intent to completed work.* The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions. [short: From engineering intent to completed work]",
     "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
     "d2_source": null,
     "receipt": null,
@@ -1112,19 +1099,6 @@
     "conversion": "Native TikZ diagram with matching source SVG, derived from the November 3 factory lecture",
     "svg_title": "From engineering intent to completed work",
     "svg_description": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness."
-  },
-  {
-    "chapter": "5.3-other-agentic-software-factories",
-    "source": "assets/six-entry-points.svg",
-    "caption": "*Six other factory designs.* MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Six entry points into a shared design space: where each organization begins and where it invests",
-    "svg_description": "A table of six industrial systems, each entering the agentic engineering design space\n    through a different problem and investing in a different part of the environment. Cloudflare begins from\n    institutional policy and invests in machine-readable requirements and review mechanisms — a governance\n    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —\n    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and\n    reusable agent infrastructure — a knowledge emphasis. Siemens begins from model-first\n    engineering and invests in persistent executable engineering representations — a modeling emphasis.\n    Uber begins from software-factory economics at scale and invests in\n    benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance\n    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable\n    layer of context, provenance, verification, and governance around replaceable models and agents — a\n    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to\n    compare the observed structures, not another factory. Badge colour keys emphasis to the house semantic\n    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust\n    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim\n    any source implements the complete method."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",
@@ -1862,5 +1836,65 @@
     "conversion": "Native TikZ companion to the current authored color SVG",
     "svg_title": "Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.",
     "svg_description": "A green engineering-knowledge box holds models, rules, and procedures. It splits into two\n    layers: a solid green standing-context box (mission, compact method, compact policy) and a dashed green\n    task-relevant-slice box (retrieved when needed). Both feed into a blue agent-context box, which flows down\n    into a dark work box. A dashed rust lifecycle-event arrow loops from the work back up to the task-relevant\n    slice, re-surfacing what matters now. The point: keep standing context small enough to genuinely remain\n    standing, and retrieve richer slices per task rather than loading everything at once."
+  },
+  {
+    "chapter": "5.2-inside-docables-software-factory",
+    "source": "assets/docable-seip-longitudinal-261109.svg",
+    "caption": "*Development activity and engineering structure over 31 weeks:* (a) reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory’s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
+    "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/docable-seip-longitudinal-261109.json",
+    "generator": "book/figures/docable-case-261109/generate.py",
+    "data": [
+      "book/data/docable-case-261109/weekly.csv",
+      "book/data/docable-case-261109/code_size_mapped.csv",
+      "book/data/docable-case-261109/size_groups.json",
+      "book/data/docable-case-261109/size_ratios.csv",
+      "book/data/docable-case-261109/effectiveness.json"
+    ],
+    "conversion": "Native PGFPlots/TikZ generated from frozen aggregate data; SVG shares the same data.",
+    "svg_title": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions.",
+    "svg_description": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
+    "native_source": "book/tikz/figures/docable-seip-longitudinal-261109.tex"
+  },
+  {
+    "chapter": "5.2-inside-docables-software-factory",
+    "source": "assets/docable-seip-composition-261109.svg",
+    "caption": "*The product and its supporting apparatus:* composition at ten sampled revisions. The support ratio is apparatus divided by production: about 2.6× at week 11, 3.6× at week 21, and 3.8× at week 31. Lines between samples interpolate; the apparatus’s size establishes investment, not its return. [short: Product and supporting apparatus]",
+    "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/docable-seip-composition-261109.json",
+    "generator": "book/figures/docable-case-261109/generate.py",
+    "data": [
+      "book/data/docable-case-261109/weekly.csv",
+      "book/data/docable-case-261109/code_size_mapped.csv",
+      "book/data/docable-case-261109/size_groups.json",
+      "book/data/docable-case-261109/size_ratios.csv",
+      "book/data/docable-case-261109/effectiveness.json"
+    ],
+    "conversion": "Native PGFPlots/TikZ generated from frozen aggregate data; SVG shares the same data.",
+    "svg_title": "Production and apparatus source at 10 snapshots.",
+    "svg_description": "Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.",
+    "native_source": "book/tikz/figures/docable-seip-composition-261109.tex"
+  },
+  {
+    "chapter": "5.2-inside-docables-software-factory",
+    "source": "assets/docable-human-evaluation-261109.svg",
+    "caption": "*Remediation compared with the human reference:* (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Parity denotes similar measured improvement, not equivalent accessibility. [short: Human-reference remediation results]",
+    "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/docable-human-evaluation-261109.json",
+    "generator": "book/figures/docable-case-261109/generate.py",
+    "data": [
+      "book/data/docable-case-261109/weekly.csv",
+      "book/data/docable-case-261109/code_size_mapped.csv",
+      "book/data/docable-case-261109/size_groups.json",
+      "book/data/docable-case-261109/size_ratios.csv",
+      "book/data/docable-case-261109/effectiveness.json"
+    ],
+    "conversion": "Native PGFPlots/TikZ generated from frozen aggregate data; SVG shares the same data.",
+    "svg_title": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions.",
+    "svg_description": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.",
+    "native_source": "book/tikz/figures/docable-human-evaluation-261109.tex"
   }
 ]

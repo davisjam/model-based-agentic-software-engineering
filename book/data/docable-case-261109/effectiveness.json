@@ -1,0 +1,245 @@
+{
+  "experiment_id": "coe-uta-2026-validate",
+  "checker_rows": [
+    {
+      "format": "pdf",
+      "evaluator": "verapdf-ua1",
+      "arms": {
+        "human": {
+          "median_pct": 60.74322468238683,
+          "percentage_n": 10,
+          "percentage_status": "measured",
+          "increased": 0,
+          "assessed": 10,
+          "increased_pct": 0.0
+        },
+        "docable": {
+          "median_pct": 94.09946421704518,
+          "percentage_n": 10,
+          "percentage_status": "measured",
+          "increased": 0,
+          "assessed": 10,
+          "increased_pct": 0.0
+        }
+      }
+    },
+    {
+      "format": "docx",
+      "evaluator": "ms-office-a11y-instances",
+      "arms": {
+        "human": {
+          "median_pct": 66.66666666666667,
+          "percentage_n": 25,
+          "percentage_status": "measured",
+          "increased": 0,
+          "assessed": 29,
+          "increased_pct": 0.0
+        },
+        "docable": {
+          "median_pct": 75.0,
+          "percentage_n": 25,
+          "percentage_status": "measured",
+          "increased": 0,
+          "assessed": 29,
+          "increased_pct": 0.0
+        }
+      }
+    },
+    {
+      "format": "pptx",
+      "evaluator": "ms-office-a11y-instances",
+      "arms": {
+        "human": {
+          "median_pct": 84.78260869565217,
+          "percentage_n": 21,
+          "percentage_status": "measured",
+          "increased": 1,
+          "assessed": 22,
+          "increased_pct": 4.545454545454546
+        },
+        "docable": {
+          "median_pct": 34.285714285714285,
+          "percentage_n": 21,
+          "percentage_status": "measured",
+          "increased": 1,
+          "assessed": 22,
+          "increased_pct": 4.545454545454546
+        }
+      }
+    },
+    {
+      "format": "xlsx",
+      "evaluator": "ms-office-a11y-instances",
+      "arms": {
+        "human": {
+          "median_pct": null,
+          "percentage_n": 0,
+          "percentage_status": "zero_original",
+          "increased": 0,
+          "assessed": 1,
+          "increased_pct": 0.0
+        },
+        "docable": {
+          "median_pct": null,
+          "percentage_n": 0,
+          "percentage_status": "zero_original",
+          "increased": 0,
+          "assessed": 1,
+          "increased_pct": 0.0
+        }
+      }
+    }
+  ],
+  "semantic": {
+    "evaluator": "rubric-gpt52-3anchor-rescore",
+    "n": 62,
+    "counts": {
+      "better": 20,
+      "equal": 41,
+      "worse": 1
+    },
+    "percentages": {
+      "better": 32.25806451612903,
+      "equal": 66.12903225806451,
+      "worse": 1.6129032258064515
+    }
+  },
+  "criterion_groups": [
+    {
+      "label": "Alt text",
+      "criterion_ids": [
+        "G-51"
+      ],
+      "human_gains": 29,
+      "human_losses": 0,
+      "docable_gains": 32,
+      "docable_losses": 0
+    },
+    {
+      "label": "Complex images",
+      "criterion_ids": [
+        "G-54"
+      ],
+      "human_gains": 17,
+      "human_losses": 0,
+      "docable_gains": 38,
+      "docable_losses": 0
+    },
+    {
+      "label": "Reading order",
+      "criterion_ids": [
+        "G-12"
+      ],
+      "human_gains": 2,
+      "human_losses": 3,
+      "docable_gains": 2,
+      "docable_losses": 1
+    },
+    {
+      "label": "Headings",
+      "criterion_ids": [
+        "G-24"
+      ],
+      "human_gains": 0,
+      "human_losses": 0,
+      "docable_gains": 1,
+      "docable_losses": 2
+    },
+    {
+      "label": "Other criteria",
+      "criterion_ids": [
+        "DOCX-03",
+        "DOCX-04",
+        "DOCX-05",
+        "DOCX-06",
+        "DOCX-08",
+        "DOCX-11",
+        "DOCX-12",
+        "G-01",
+        "G-02",
+        "G-03",
+        "G-05",
+        "G-06",
+        "G-10",
+        "G-11",
+        "G-13",
+        "G-14",
+        "G-15",
+        "G-16",
+        "G-17",
+        "G-20",
+        "G-21",
+        "G-22",
+        "G-23",
+        "G-25",
+        "G-30",
+        "G-31",
+        "G-33",
+        "G-40",
+        "G-41",
+        "G-42",
+        "G-43",
+        "G-44",
+        "G-46",
+        "G-47",
+        "G-50",
+        "G-52",
+        "G-53",
+        "G-55",
+        "G-57",
+        "G-60",
+        "G-61",
+        "G-62",
+        "G-63",
+        "G-70",
+        "G-71",
+        "G-72",
+        "G-73",
+        "G-80",
+        "G-81",
+        "G-82",
+        "P-01",
+        "P-02",
+        "P-03",
+        "P-04",
+        "P-05",
+        "P-06",
+        "P-07",
+        "P-08",
+        "PDF-01",
+        "PDF-02",
+        "PDF-05",
+        "PDF-06",
+        "PDF-11",
+        "PDF-12",
+        "PDF-15",
+        "PPTX-01",
+        "PPTX-02",
+        "PPTX-03",
+        "PPTX-08",
+        "XLSX-01",
+        "XLSX-02",
+        "XLSX-03",
+        "XLSX-04",
+        "XLSX-07"
+      ],
+      "human_gains": 20,
+      "human_losses": 2,
+      "docable_gains": 43,
+      "docable_losses": 0
+    }
+  ],
+  "checks": [
+    "full validation cohort only",
+    "independent reduction summaries agree",
+    "zero-original percentages stay undefined",
+    "increase counts use all assessed triples",
+    "selected rubric pass matches report",
+    "criterion groups conserve all gain/regression judgments"
+  ],
+  "source_sha256": {
+    "data/benchmark/generated/evaluation-report.json": "8913364a7d8cdf72fa44968e7bd8c63ac9ed70a74f6502ba3141fcfa52d11c5d",
+    "data/benchmark/generated/reduction-summary.json": "532f1ffe8ae51003e21f63205b26bed3342040e77514a44009d36e2e29c740c7",
+    "data/benchmark/generated/rubric-summary.json": "a7da1c1f4fe0b35afe303414b3a03985397a2d85cbbd825b4e29d56bda2156ca"
+  }
+}

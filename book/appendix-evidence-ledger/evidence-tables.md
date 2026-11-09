@@ -2,6 +2,8 @@
 
 ## G.2 Build Scale and Repository Motion
 
+The following measurements preserve earlier repository windows and counting rules. They are historical receipts, not the data behind the revised 31-week figures in {{sec:inside-docables-software-factory}}. The consistently categorized March–October reconstruction appears in G.9 below. Keeping the windows separate prevents a change in counting procedure from appearing to be a change in the factory.
+
 ### G.2.1 Weekly Commit Volume {#velocity}
 
 Weekly commit volume rose sharply as the agent fleet expanded, exceeded {{commits_per_week}} commits per week during sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval {{chapter:software-factories}} identifies as hardening, then rose again.
@@ -15,14 +17,14 @@ During hardening, a larger share of classified commits concerned models, validat
 
 ### G.2.2 Support-Apparatus Ratio {#support-ratio}
 
-Production and support-apparatus source were counted at five dated repository states across the seven primary source roots. The counting procedure fails if an expected root is absent. These counts are the source for the support-ratio curve in {{chapter:software-factories}}.
+Production and support-apparatus source were counted at five dated repository states across the seven primary source roots. The counting procedure fails if an expected root is absent. These counts supported an earlier support-ratio series. They are not the source of the current 31-week composition figure.
 
-The first four rows are historical states and are recorded as measured. The last row reports the repository at the study window’s declared endpoint; its date and its three figures come from the token registry, so moving the endpoint moves the row rather than inviting a retyped number.
+The first four rows are historical states and are recorded as measured. The last row uses the earlier series’ declared endpoint and token registry. Its endpoint and categories differ from the frozen 31-week reconstruction in G.9; it must be read within this historical series.
 
 <!-- label:  -->
 <!-- table:  -->
-| Window                      | Production LoC |    Support LoC |   Support ratio |
-|----------------------------|---------------:|---------------:|----------------:|
+| Window                      | Production LoC | Support LoC    | Support ratio   |
+|----------------------------|---------------|---------------|----------------|
 | Prototype — Apr. 9          | 26,956 | 22,908 | 0.85× |
 | Mechanization — May 31      | 302,844 | 751,050 | 2.48× |
 | Hardening — Jun. 30         | 337,905 | 1,244,194 | 3.68× |
@@ -64,8 +66,8 @@ Project-specific lint files and gate scripts were counted at four repository sta
 
 <!-- label:  -->
 <!-- table:  -->
-| Window        |     Lint files |   Gate scripts |
-|--------------|---------------:|---------------:|
+| Window        |      Lint files |    Gate scripts |
+|--------------|----------------:|----------------:|
 | Prototype     | 0 | 0 |
 | Mechanization | 336 | 20 |
 | Hardening     | 595 | 76 |
@@ -170,6 +172,8 @@ The tasks were not independently sampled, and N=4 is too small to estimate a gen
 
 ## G.6 Cost and Scale Receipts {#cost-receipt}
 
+These are earlier, differently scoped estimates. In particular, the approximately $60,000 development figure concerns a roughly 20-week account. The later six-month estimate used in {{sec:inside-docables-software-factory}} is approximately $110,000, consisting of $90,000 engineering labor and $20,000 cloud expenditure. Both are author-supplied estimates, not independently audited accounting; G.9 records the later evaluation separately.
+
 These quantities establish orders of magnitude relevant to the {{chapter:software-factories}} discussion. Their units, scopes, and cost categories differ; they are not entries in a comparative cost model.
 
 <!-- label:  -->
@@ -202,15 +206,13 @@ The provisional bound need not be correct to be useful. The system keeps the sta
 
 <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
 
-### G.7.2 Cold-Start Contrast Case
+### G.7.2 Warm Endpoint Latency and a Resident-Runtime Prototype
 
-The contrasting case did justify an engineering decision.
+A July 23, 2026 engineering record distinguishes two measurements that an earlier account conflated. The production conformance endpoint measured 4,057 ms with a warm container and 6,628 ms cold. Even the warm path launched a Java virtual machine for each request. Changing the number of warm container instances would not remove that recurring subprocess-launch cost.
 
-The measured request-level cold-start value was 4,057 ms. That observation fed a topology model representing the longest cold-start path and motivated an architectural change. The resulting warm floor was 109 ms. The sequence is **request-level measurement (4,057 ms) → cold-start topology model → architectural change → 109 ms warm floor**.
+A toy Cloud Run service kept the Java runtime resident and measured 108.9 ms for a warm response. This comparison supported a resident-runtime redesign, but did not establish the production improvement under matched conditions. The primary record identifies the endpoint measurements under commit `436ef74899` and the prototype comparison under `d8c0ab3fa1`.
 
-The contrast does not imply that every measured quantity should eventually become a gate. Enforcement requires evidence adequate to the decision being made. The provisional cost model remained report-only; the stable, structurally interpretable cold-start observation justified architectural action.
-
-<!-- FUTURE: If retained as a quantitative receipt, document the measurement conditions for 4,057 ms and 109 ms — deployment state, hardware/service conditions, number of observations if available, and whether the reported values are single observations, maxima, medians, or another statistic. -->
+The contrast with G.7.1 concerns the engineering decision justified by the evidence: a recurring implementation cost motivated an architectural change, while a weakly calibrated rejection bound remained advisory. Neither case establishes that every useful measurement should become a gate.
 
 ## G.8 What This Ledger Does Not Measure {#does-not-measure}
 
@@ -227,5 +229,104 @@ Most quantities in this appendix are activity, structural, or within-case mechan
 These are not direct estimates of the broader outcomes needed to compare MAGE with another engineering process: durable throughput, defect escape, human-attention burden, or total cost of ownership. The case follows one production system, one primary engineer directing an agent fleet, and one contemporary model ecosystem; it did not collect those outcomes under a controlled counterfactual. The measurements therefore establish what happened within the case and which mechanisms were exercised, not the effects another organization should expect from adopting MAGE.
 
 The ledger's narrower purpose is traceability: the quantitative claims in {{chapter:software-factories}} can be inspected independently of the surrounding argument.
+
+## G.9 Current-Window DocAble Measurements {#docable-seip-current-window}
+
+This receipt records the data used in the revised {{sec:inside-docables-software-factory}}, drawn from the DocAble study’s manuscript sources and generated summaries.[cite: davis2026docable] It does not merge them with the historical windows above. The engineering reconstruction covers 31 complete seven-day weeks, March 12–October 14, 2026; the evaluation uses a separate held-out document partition. The factory workflow described as of November 3 is later than the engineering measurement window.
+
+### G.9.1 Longitudinal Definitions and Coverage {#seip-longitudinal-protocol}
+
+Work commits are dated by landing, not by inferred implementation time. The reconstruction expands squash landings into source commits, deduplicates hashes, and excludes merges, empty commits, and integration bookkeeping. Preserved worktree references recover truncated source lists. Thirty-three source objects remain unavailable and one squash has no source list, so the 36,578-commit series is incomplete.
+
+Epic completion counts require a dated affirmative whole-Epic completion claim. Directory moves, administrative retirement, and phase dates alone do not establish completion. The mining pass examined 638 distinct roots in the closed directory: 448 had dated completion claims, of which 428 fell in the complete window; 74 were administrative retirements and 116 lacked unambiguous completion evidence. These are documented claims, including accepted scoped research, rather than independent outcome audits. No completion records were recovered for weeks 1–10.
+
+Dispatch IDs are deduplicated across startup sentinels, archived dispatch markers, and preserved registry registrations, using the earliest explicit start or dispatch date. Archive filenames and termination dates are not launch dates. No records were recovered for weeks 1–11, and later retention varies. Missing or sparse records cannot establish an absence of work or a change in the underlying launch rate.
+
+<!-- label: work-over-time -->
+<!-- table: Activity recovered in the 31 complete weeks. Totals describe retained records under the stated counting rules, not productivity or independently verified engineering outcomes. [short: Activity and coverage in the current window] -->
+| Series | Count | Main coverage limit |
+|---|---|---|
+| Landed work commits | {{seip_commits}} | 33 unavailable source objects; one unresolved squash |
+| Agent dispatch IDs | {{seip_dispatches}} | No recovered records in weeks 1–11; uneven later retention |
+| Epic completion claims | {{seip_completions}} | No recovered records in weeks 1–10; incomplete completion evidence |
+
+Model identities are top-level Python modules that declared `MODEL_KIND` at a sampled snapshot. Earlier existence is reconstructed by path, so the later declaration convention does not create a false growth discontinuity. Models never given that declaration are outside the inventory. Multi-model consumers are distinct registered consumers of at least two models, not counts of relational operations.
+
+The static and dynamic verifier counts resolve declared references to existing files and deduplicate paths within each class. They exclude computed references and unregistered consumers, and do not count every test, test case, or execution. A registered file establishes available checking machinery, not a successful check run.
+
+<!-- label: control-growth-curve -->
+<!-- table: Model-linked artifacts at the last complete week. These counts establish represented structure and registered checking files, not correctness or execution. [short: Model-linked artifacts at week 31] -->
+| Artifact               |          Count |
+|-----------------------|---------------:|
+| Model modules          | {{seip_models}} |
+| Multi-model consumers  | {{seip_consumers}} |
+| Static verifier files  | {{seip_static}} |
+| Dynamic verifier files | {{seip_dynamic}} |
+
+The week-11 interpretation combines field notes from May 22 and 24 with a transparent query over commit subjects mentioning linting, typing, and associated analysis tools. It supports an account of a hardening campaign. It does not isolate a causal effect on productivity, nor date the first use of agents, planning, or checks from the first surviving records.
+
+### G.9.2 Production, Apparatus, and Support Ratio {#seip-support-composition}
+
+The current size series uses ten week-end snapshots and one fixed category mapping. `cloc` separates code from comments and blank lines. Early source roots are mapped to their later equivalents; overlapping report paths are assigned to the longest matching path, and per-file output checks that categories are disjoint. Dependencies, generated frontend copies, historical worktrees, and snapshot documentation are excluded. Indexed documentation must belong to a snapshot’s living-document indexes; changes in that convention can affect its series.
+
+Production comprises remediation, web processing, frontend, and shared services. Apparatus comprises tests, lints, tools, agent infrastructure, infrastructure-as-code, model metadata, and indexed documentation. The ratio is apparatus divided by production. Lines drawn between sampled revisions interpolate observations rather than adding measurements.
+
+<!-- label:  -->
+<!-- table: Consistently categorized production and apparatus counts from the current reconstruction. The support ratio describes source investment rather than its value or a recommended target. [short: Current-window support ratio] -->
+| Snapshot | Production lines | Apparatus lines | Apparatus / production |
+|---------|-----------------|----------------|-----------------------|
+| Week 1   | 1,577  | 0 | 0.00        |
+| Week 5   | 42,344  | 55,072 | 1.30        |
+| Week 9   | 233,586  | 361,866 | 1.55        |
+| Week 11  | 277,417  | 711,039 | 2.56        |
+| Week 13  | 285,265  | 917,527 | 3.22        |
+| Week 17  | 293,799  | 1,325,221 | 4.51        |
+| Week 21  | 440,973  | 1,577,492 | 3.58        |
+| Week 25  | 516,024  | 1,807,695 | 3.50        |
+| Week 29  | 579,841  | 2,104,013 | 3.63        |
+| Week 31  | {{seip_prod_loc}}   | {{seip_apparatus_loc}}  | {{seip_support_ratio}}         |
+
+### G.9.3 Human-Reference Evaluation {#docable-human-reference-protocol}
+
+The institutional collection contains {{seip_uta_pairs}} identifiable original/remediated pairs from {{seip_uta_courses}} courses. The {{seip_uta_workers}} trained undergraduates billed {{seip_uta_hours}} hours across approximately six months. Dividing hours by recovered pairs gives {{seip_uta_hours_per_pair}} hours per pair. At the assumed typical wage of ${{seip_uta_hourly_wage}} per hour, the estimate is ${{seip_uta_cost_per_pair}} in direct labor per pair. Identifiable pairs need not represent all work performed; the arithmetic is not a record of per-document labor or payroll.
+
+Format and matching eligibility yielded {{seip_eval_eligible}} pairs. A randomized document-level split stratified by format assigned {{seip_eval_development}} to development and {{seip_eval_attempts}} to validation: 29 DOCX, 22 PPTX, 11 PDF, and one XLSX. The spreadsheet had prior development exposure. DocAble completed {{seip_eval_completed}} attempts and failed on one PDF; the failed partial artifact is excluded from completed-output comparisons.
+
+Syntactic percentages use 100 × (original findings − output findings) / original findings, calculated separately per document and summarized by the median. Originals with no findings are excluded from percentages but retained when counting documents whose findings increased. Negative reductions remain negative. These are net count changes, not identity-matched newly introduced or resolved defects. Office counts include manual-review advisories and may flag the same object under several rules.
+
+<!-- label:  -->
+<!-- table: Median per-document reduction in checker findings; the human and DocAble conditions use the same completed triples within each format. [short: Human-reference checker reductions] -->
+| Format | Positive-baseline triples | Human reduction | DocAble reduction | Triples with increased findings, human / DocAble |
+|---|---|---|---|---|
+| PDF | 10 | 60.7% | 94.1% | 0/10 / 0/10 |
+| DOCX | 25 | 66.7% | 75.0% | 0/29 / 0/29 |
+| PPTX | 21 | 84.8% | 34.3% | 1/22 / 1/22 |
+| XLSX | 0 | Undefined | Undefined | 0/1 / 0/1 |
+
+Giving the failed PDF zero improvement yields a 90.4% median across all eleven assigned PDFs. That sensitivity gives failure no benefit; it is not a measured score for the partial artifact. Microsoft’s checker changed between the students’ summer remediation and the October evaluation. All document versions were assessed with the current instruments. Other supported formats, including ODF, LaTeX, and Typst, were not part of this comparison.
+
+The semantic procedure used GPT-5.2 judgments over text transcripts, randomized A/B labels for the two outputs, and the original as a third anchor. Criteria were drawn from standards and checker rules, but the weighting and one-point parity band were project methods. The model assigned criterion outcomes and transcript evidence; a deterministic scorer compared improvements and regressions against the original. Unconfirmed heuristic evidence was capped at minor severity. Unchanged and inconclusive judgments contributed no points.
+
+The rubric was developed on the development partition. Two validation passes used the resulting method without intervening revisions. The second pass had complete criterion records and yielded {{seip_eval_semantic_better}} better, {{seip_eval_semantic_parity}} parity, and {{seip_eval_semantic_worse}} worse scores for DocAble among {{seip_eval_completed}} outputs. The passes agreed on {{seip_eval_repeat_agreement}} document classifications; four crossed parity-band boundaries, with a maximum two-point change in the DocAble-minus-human difference. This assesses procedural consistency, not expert validity.
+
+Of {{seip_eval_rubric_rows}} criterion rows, {{seip_eval_inconclusive}} were inconclusive for DocAble, including {{seip_eval_adapters_pending}} with automatic adapters pending. The run did not include vision-tier or screen-reader assessments. It did not systematically measure complete preservation or visual fidelity. Gains and regressions in the figure count document–criterion judgments; they are not unique defects, and a net gain can coexist with regressions.
+
+The median runtime was {{seip_eval_runtime_median_minutes}} minutes across all {{seip_eval_attempts}} primary attempts, including failure; the range was approximately 0.10–14.09 minutes. Inference expenditure was measured for {{seip_eval_completed}} completed outputs: median ${{seip_eval_inference_median_usd}}, range approximately ${{seip_eval_inference_min_usd}}–${{seip_eval_inference_max_usd}}. Full cloud and total-cost measurements were unavailable for this cohort. The paper also reports coarse operational estimates of typical inference expenditure; these are distinct from the measured held-out distribution. Subsequent human review and correction were not measured, so these values do not establish labor saved or total institutional savings.
+
+### G.9.4 General-Purpose Agent Comparison {#docable-agent-comparison-receipt}
+
+This separate comparison used ten validation documents and community document tools: five PDFs, two DOCX, two PPTX, and one XLSX. Each agent used one configuration. The spreadsheet had prior development exposure. Original and human-artifact hashes matched the validation corpus, and agent results were joined with DocAble measurements for the same files.
+
+<!-- label: agent-remediation-comparison -->
+<!-- table: Medians cover completed attempts in the ten-document cohort. Fable timed out on one PDF. Agent inference costs are cache-aware API-equivalent estimates excluding cloud execution and evaluation. [short: Agent and service remediation comparison] -->
+| Method  |          Completed |         Minutes | Inference cost |
+|--------|-------------------:|----------------:|---------------:|
+| Opus    | 10/10 | 8.22 |         $2.466 |
+| Fable   | 9/10 | 7.77 |         $3.977 |
+| DocAble | 10/10 | 1.31 |         $0.084 |
+
+The DocAble cost median here is for these ten outputs, not the ${{seip_eval_inference_median_usd}} median over the 62 completed outputs in the main comparison. The paper presents this smaller cohort’s DocAble median more coarsely as less than $0.50.
+
+On the four PDFs completed by all configurations, median checker reductions were 89.7% for Opus, 91.8% for Fable, 100% for DocAble, and 75.3% for human remediation. Both agents exceeded DocAble on the two Word documents; the human workflow led on the two presentations. The spreadsheet had no original findings. These results concern automatic findings, runtime, and inference expenditure. They do not establish comparable semantic quality, and this small comparison cannot isolate a benefit from MAGE or a lasting capability boundary.
 
 [^g-vacation]: On some of these weeks, the author purportedly went on vacation.

@@ -6672,3 +6672,1772 @@ Reason: Author-approved maintenance paragraph, developed in connected prose.
 ```latex
 The governed engineering environment is itself a consequential system. Models drift. Controls become noisy. Assumptions expire. Evidence pipelines break. Gates preserve obsolete policy. Skills encode procedures that are no longer appropriate. The machinery this chapter has accumulated therefore requires the same observation, maintenance, reconciliation, and retirement it provides to the system it governs.
 ```
+
+
+## Chapter 5 structural revision — 2026-11-09
+
+Author approved the revised outline, then drafting and landing. Original authoritative native sources are preserved in full below. The external cases retain mechanisms and bounded measurements; taxonomy and commercial-advantage material are set aside. Only the specified Siemens research illustration moves to Chapter 2. Original Markdown projections are separately packaged for before/after review.
+
+Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. Removal revision: to be supplied by the integrating commit.
+
+### Update Chapter 5 navigation
+
+Source: `book/latex/sources/part5/00-part-intro.tex`, lines 1–29; SHA-256 `5a186401c3b62445e09f6f0cac0d16addbb54f781717e7d4f1ea55ef7d669362`. Reason: Update Chapter 5 navigation.
+
+```latex
+% mage-auto-heading: depth-and-breadth
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
+
+What happens to the software factory when agents substantially increase its capacity for realization?
+
+To answer that question, this chapter begins with an older change in production. The Industrial Revolution did more than increase the power available to make things. It changed how production was controlled. As machinery increased the rate of fabrication, engineers developed ways to organize production and to specify and measure the bounds within which its products had to remain.
+
+This chapter develops the software factory from that history and then examines contemporary agentic software factories. DocAble provides a case observed from the inside, including how its factory changed as production accelerated. Public accounts from other organizations show how different factories divide realization and supervision under different constraints.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Depth and breadth}\label{heading:depth-and-breadth}
+
+MAGE was developed through one deeply observed production build. That case provides chronology, mechanism, and repeated observations within one system.
+
+Independent industrial accounts provide a different kind of evidence: variation across systems built by other organizations under different constraints.
+
+\textbf{The first shows how the method developed. The second asks whether the same engineering problems and responses appear elsewhere.}
+\end{quote}
+
+\textbf{New here:} Software factory · Agentic software factory · Support ratio · Delegation staircase
+
+\magevalue{sec:the-software-factory} develops the software-factory concept from the history of manufacturing and asks what a production system must know and control when fabrication outruns direct human supervision. \magevalue{sec:inside-docables-software-factory} examines one such factory from the inside: DocAble, where agentic realization grew alongside the engineering structures needed to direct, evaluate, and admit its work. \magevalue{sec:mage-in-the-wild} then examines independently developed industrial systems to ask which of these pressures recur under different organizations, technologies, and allocations of human and machine authority. \magevalue{sec:engineers-in-the-software-factory} then returns to process design and tolerance to interpret what these different factories imply for the engineer\textquotesingle s role and for the purchased factory. A short coda prepares the ground for \magevalue{chapter:theory}\textquotesingle s elaboration of the theory needed to explain these differences.
+```
+
+### Shorten the factory introduction while preserving its history
+
+Source: `book/latex/sources/part5/5.1-software-factory.tex`, lines 1–129; SHA-256 `409f191efebbab1a605fd29d8fa4fb2f65c28ac102c8e5fa318c9492777147e0`. Reason: Shorten the factory introduction while preserving its history.
+
+```latex
+% mage-auto-heading: what-does-a-software-factory-produce
+% mage-auto-heading: walking-through-a-software-factory
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Agentic Software Factories -->
+
+% <!-- chapter-title: The Software Factory -->
+
+\chapter{The Software Factory}
+
+% <!-- section-terms: tolerance -->
+
+% <!-- point: the-printer-described-a-fabricator | The printer analogy explained fabricative technology — a machine that realizes a broad range of artifacts from a description of what should be made. | terms: printer-metaphor -->
+
+Earlier in this book, I compared coding agents to 2D and 3D printers. The comparison was about fabricative technology: unlike a specific-purpose tool such as a stapler, a fabricator can realize a broad range of artifacts from a description of what should be made.
+
+% <!-- point: the-printer-becomes-one-piece-of-the-factory | The printer metaphor expands rather than being replaced: once fabrication becomes a means of production, the fabricator sits inside a larger system that decides what should be made, organizes production, and judges what is acceptable. | terms: printer-metaphor -->
+
+We can now expand that metaphor. A fabricator does not operate alone. Once fabrication becomes a means of production, it sits inside a larger system that determines what should be made, organizes how production proceeds, and determines whether what was produced is acceptable. The printer becomes one piece of the factory.
+
+% <!-- point: scaling-fabrication-required-engineering-the-production-system | Interchangeable parts, mechanization, and machine tools each made production more repeatable and each exposed a problem, so scaling fabrication required engineering the production system around the fabricator. -->
+
+Factories developed to make production repeatable at scales that craft production could not support. Interchangeable parts allowed components made separately to participate in the same product. Mechanization increased the amount of work that machinery could perform. Machine tools increased precision and repeatability. Each advance also exposed a problem. Faster machinery could produce defects faster than people could inspect them; a design was of little use if the available machinery could not realize it accurately; interchangeable parts were not interchangeable if different shops produced incompatible dimensions. Scaling fabrication therefore required engineering the production system around the fabricator.
+
+% <!-- point: process-design-and-tolerance | Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable. | terms: tolerance -->
+
+Two engineering techniques from that history are especially useful for understanding software factories:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Process design} determines how production proceeds. Work is decomposed and sequenced; responsibilities, machinery, and information are arranged; measurements and decision points occur at selected stages. The process carries knowledge about how production should occur rather than requiring each fabricator to reconstruct it. Scientific management made this separation explicit by moving planning, work methods, instructions, and standards into a deliberately designed production system.\citep{taylor1911}
+\item
+  \textbf{Tolerance} states which variation in the product is acceptable. A drawing can specify a dimension and its allowable variation without prescribing every motion of the machinist or every property of the finished part. Gauges and metrology then establish whether selected properties of the realized part fall within those bounds. The factory can therefore leave substantial freedom to the fabricator while retaining control over the properties that matter.\citep{winchester2018}
+\end{itemize}
+
+% <!-- noqa: book-float-ref — the figure carries its own vocabulary and is deliberately not introduced by a lead-in sentence; the labelled float is cross-referenced from {{sec:engineers-in-the-software-factory}} -->
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/process-design-and-tolerance-7f14743861.pdf}
+\caption[Two problems of factory engineering --- process design organizes production around the fabricator; tolerance bounds the product and measurement establishes whether a realization falls inside those bounds]{\emph{Two problems of factory engineering.} Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both.}
+\label{process-design-and-tolerance}
+\end{figure}
+
+% <!-- point: a-better-production-system-made-a-different-artifact-practical | A factory must solve both problems: an economically useful rate, and a product within acceptable bounds. Watt's engine needed cylinders bored more accurately than ordinary production could manage; Wilkinson's boring machinery supplied them. The advance was not a faster way to make an existing artifact but a production system that made a different artifact practical. | terms: tolerance -->
+
+A factory must solve both problems: production must proceed at an economically useful rate, and what it produces must remain within the bounds required for the product to work. Together, process design and tolerance allowed production to scale beyond the judgment of a single craftsperson. Watt\textquotesingle s improved steam engine provides an early example. The design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for Watt\textquotesingle s engine to perform as intended. The advance was therefore not simply a faster way to make an existing artifact. A more capable production system made a different artifact practical. As factories developed, this relationship generalized: some judgment remained with the skilled human fabricator, while other knowledge moved into drawings, tolerances, machinery, gauges, process plans, and inspection. The factory became capable of producing at a scale and consistency that could not depend on one person\textquotesingle s judgment being exercised over every part.
+
+\section{What Does a Software Factory Produce?}\label{heading:what-does-a-software-factory-produce}
+
+% <!-- point: software-does-not-repeatedly-produce-instances | The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing. -->
+
+The analogy requires one adjustment before we apply it to software. A physical factory commonly produces many instances of a product. Software usually does not. Another copy of a program may cost almost nothing, while a software service may consist of one continuously evolving system serving millions of users.
+
+% <!-- point: the-output-is-the-next-working-realization | The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works. -->
+
+The output of a software factory is therefore not another copy of the product. It is the next working realization of the product. Software organizations repeatedly change an existing system: adding features, repairing defects, adapting to new environments, migrating dependencies, changing architectures, and responding to new requirements. Each production cycle begins with a working software system and attempts to produce a changed system that still works.
+
+% <!-- point: a-software-factory-is-a-production-system-for-controlled-change | The factory's job is to realize controlled change — the same object named by this book's definition of software engineering, so a software factory is the production system through which that change occurs. -->
+
+The factory\textquotesingle s job is therefore to realize controlled change. As the Glossary states --- and the companion \emph{Software Engineering Handbook} develops more fully --- software engineering is the engineering discipline of controlled change in software systems. It creates and evolves software while preserving sufficient control over the properties and consequences that matter.\citep{davis2026sehandbook} A software factory is the production system through which that change occurs.
+
+\begin{quote}
+\textbf{Software factory.} The engineered production system through which software changes are realized from engineering intent and evaluated, admitted, deployed, and improved.
+\end{quote}
+
+% <!-- point: a-factory-contains-more-than-its-fabricators | A factory contains more than its fabricators. Models say what should be made, tools are what the work is done with, and controls bound what may be done and what may be accepted. A gauge measures a part; at a quality gate, the same reading decides whether the part proceeds. -->
+
+A factory therefore contains more than its fabricators. Models say what should be made: drawings, process specifications, tolerances. Tools are what the work is done with: jigs position parts, gauges measure them, and fixtures hold them in place. Controls bound what may be done and what may be accepted: a permission a machinist does not have, a quality gate that rejects a part.
+
+% <!-- point: software-factories-contain-analogous-structures | Software factories hold all three: models describe the product, tools work on it, and controls bound both. A test is ordinarily a tool an agent runs and reasons about; it participates in a control when the result carries a consequence the agent cannot reason away. Fabricators build the product from models, using tools, subject to controls. -->
+
+Software factories hold all three. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound both: permissions, admission gates, and enforced policies. A test is ordinarily a tool --- an agent runs it and reasons about the result. It participates in a control when the result carries a consequence the agent cannot reason away: a failing test blocks admission. Fabricators build the product from models, using tools, subject to controls.
+
+% <!-- point: the-two-problems-specialize-to-changes-not-copies | The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one. | terms: tolerance -->
+
+Producing changes rather than copies also changes how the two problems of factory engineering apply. Process design organizes the production of changes: how engineering intent becomes work, how that work is decomposed and realized, what information and tools are available to the fabricator, and how a proposed change moves through evaluation and admission. Tolerance constrains the resulting realization: how much freedom the fabricator may exercise while the changed product remains acceptable. The factory does not need to reproduce the same artifact. It needs to repeatedly produce new realizations of an evolving artifact without losing the properties that matter.
+
+% <!-- point: representations-of-software-carry-a-carrying-cost | Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost. -->
+
+That task carries a cost that physical manufacturing can often amortize differently. A drawing for a manufactured part can remain useful across thousands of instances of that part. A representation of a software system describes a target that is itself being changed. Requirements, architecture descriptions, interface specifications, models, tests, and other engineering artifacts therefore incur a carrying cost: as the software changes, they may also have to change if they are to remain useful representations of it.
+
+% <!-- point: organizations-judge-the-carrying-cost-differently | Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate. -->
+
+Software organizations have made different economic judgments about that cost. Some have found enough durable value in explicit models, specifications, interface definitions, and other representations to justify creating and maintaining them; others have found it cheaper to keep skilled human engineers close to implementation, where they can resolve open questions about behavior, structure, interfaces, failure handling, and performance as the software changes.\citep{kautz2018mbse} Neither choice is intrinsically irrational. The tradeoff depends on how much reusable engineering knowledge a representation carries, how expensive that knowledge would be to reconstruct during implementation, and how expensive the representation is to keep accurate.
+
+% <!-- point: agile-is-intelligible-when-the-product-is-change | The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern. -->
+
+The Agile movement placed substantially greater weight on the second approach.\citep{agile-manifesto2001}\citep{scrumguide2020} Working software became the primary measure of progress; changing requirements were expected rather than exceptional; close collaboration was preferred to elaborate handoffs; and documentation was valuable insofar as it continued to serve the work. These choices make particular sense when the object of engineering is controlled change. A representation that does not change with the software can cease to describe the thing it is meant to govern. Keeping knowledgeable humans close to implementation accepts repeated human judgment partly in exchange for avoiding representations whose carrying cost may exceed their continuing value.
+
+% <!-- point: earlier-separation-attempts-met-the-same-tradeoff | Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply. -->
+
+Earlier attempts to separate engineering judgment from implementation encountered the same tradeoff from the other direction. Moving decisions upstream could allow implementation to be performed by less experienced programmers, but only if sufficiently detailed requirements, architecture, interfaces, or models carried the judgment that those programmers would otherwise need to supply. Producing those representations required skilled engineering labor, and maintaining them as the software changed added further cost. Leave more decisions open, however, and the organization again needed skilled human fabricators capable of resolving them during implementation.
+
+% <!-- point: the-question-was-where-judgment-is-carried-most-economically | The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply. -->
+
+The economic question was therefore never simply whether software should use models. It was where engineering judgment could be carried most economically without losing control. Craft production remains economical when transferring enough judgment out of fabrication would cost as much as leaving that judgment with the skilled human fabricator. Factory production becomes economical when reusable production structures can carry consequential judgment more cheaply than repeatedly exercising it during fabrication.
+
+% <!-- point: commodity-intelligence-changes-the-tradeoff | Commodity intelligence changes the tradeoff: agents are inexpensive and capable enough to resolve many ordinary realization decisions, so the production system can carry selected consequential judgments while leaving substantial realization freedom to the agent. | terms: commodity-intelligence -->
+
+Commodity intelligence changes this tradeoff. In an agentic software factory, substantial realization work is performed by agents rather than human engineers. These fabricators are inexpensive and capable enough to resolve many ordinary realization decisions themselves. Engineering therefore need not choose between specifying most decisions upstream and paying skilled human programmers to resolve them downstream. The production system can instead carry selected consequential judgments while leaving substantial realization freedom to the agent.
+
+\section{Walking Through a Software Factory}\label{heading:walking-through-a-software-factory}
+
+% <!-- point: four-questions-orient-a-walkthrough | Four questions orient a walkthrough of an agentic software production system without assuming in advance how it should be organized: what it produces, what people do, how production is organized, and what the tolerances are. | terms: tolerance -->
+
+The factory metaphor gives us a vocabulary for walking through an agentic software production system without assuming in advance how it should be organized. Four questions orient a walkthrough:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{What does the factory produce?} What kinds of controlled changes enter the production system, and where do they originate?
+\item
+  \textbf{What do people do?} Which judgments remain with engineers, and which acts of realization or decision have been delegated to agents?
+\item
+  \textbf{How is production organized?} What process determines how work is represented, routed, realized, evaluated, admitted, deployed, and learned from?
+\item
+  \textbf{What are the tolerances?} Which properties of the resulting software must remain within bounds, how are those bounds represented, and what evidence establishes that a change satisfies them?
+\end{enumerate}
+
+% <!-- point: software-tolerances-take-more-forms-than-a-dimension | A software tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation — some checkable mechanically, others still requiring human judgment. | terms: tolerance -->
+
+The last question deserves care. In physical manufacturing, a tolerance can often be written as a dimension and checked with a gauge. Software properties are more varied. A tolerance may be a quantitative bound, an invariant, a behavioral requirement, an architectural constraint, a security policy, or another statement of acceptable variation. Some can be checked mechanically. Others still require human judgment. The engineering question is the same: what variation may the fabricator choose, and what variation must the factory control?
+
+% <!-- point: the-four-questions-are-broader-than-mage | The four questions are deliberately broader than MAGE — a factory may answer them with tests, policies, human review, simulators, permission systems, or models — and the two case sections ask them of DocAble and of independently developed industrial systems. -->
+
+Those questions are deliberately broader than MAGE. A factory may answer them with tests, policies, human review, simulators, permission systems, or models. \magevalue{sec:inside-docables-software-factory} applies them to DocAble, where the production system can be observed longitudinally as realization capacity grows. \magevalue{sec:mage-in-the-wild} asks the same questions of independently developed industrial systems. Only after seeing those factories will we ask what their different arrangements imply for engineering under abundant realization.
+```
+
+### Compare six factories through distinct mechanisms and evidence
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 1–308; SHA-256 `2dae3ee2e8db723778e067654b3fdc89cf4fd4f4804b445a85a7276133778ff5`. Reason: Compare six factories through distinct mechanisms and evidence.
+
+```latex
+% mage-auto-heading: amazon
+% mage-auto-heading: internal-software-factories
+% mage-auto-heading: uber
+% mage-auto-heading: cloudflare
+% mage-auto-heading: spotify
+% mage-auto-heading: shopify
+% mage-auto-heading: the-factory-in-a-box
+% mage-auto-heading: model-first-factories
+% mage-auto-heading: what-the-factories-share-and-where-they-differ
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Agentic Software Factories -->
+
+% <!-- chapter-title: Other Agentic Software Factories -->
+
+\chapter{Other Agentic Software Factories}
+
+% <!-- point: one-system-one-engineer-one-problem-so-how-do-others-do-it | Amazon's internal reports and Kiro's public harness documentation provide the next comparison after DocAble; other accounts expose different parts of factory design and operation. -->
+
+DocAble showed how one engineer assembled a factory around coding agents. Amazon provides a useful next comparison: its reports of internal use can be read alongside Kiro's public harness documentation. We can examine which engineering responsibilities the harness supplies and which remain with the adopting team. The other cases broaden the comparison to factories whose public accounts expose different parts of their design and operation.
+
+% <!-- point: seven-reconstructions-differ-in-representation-direction-evidence-and-judgment | Seven companies' public accounts differ in representations, direction, evidence, human judgment, and whether the factory serves the organization's own work or other adopters. -->
+
+In this section, I reconstruct agentic software factories from public reports by seven companies: Amazon, Uber, GitLab, Cloudflare, Siemens, Spotify, and Shopify. These factories differ in what they represent, how they direct and constrain agents, what evidence they require, and where they retain human judgment. They also differ in a more basic way: some organizations are building factories for their own software, while others are building factories for somebody else to use.
+
+% <!-- point: the-public-sources-are-interested-accounts-read-conservatively | The sources are company-published accounts that mix technical communication with promotion, so reported architectures and measurements count as evidence of what an organization built and observed, while effectiveness and causal claims are treated cautiously and numbers keep their own definitions and denominators. -->
+
+These sources also require a conservative reading. Company engineering blogs, talks, and product documentation mix technical communication with organizational and product promotion. They can provide evidence about mechanisms, measurements, and operating experience, but they are not independent evaluations of the systems they describe. I therefore treat reported architectures and measurements as evidence of what an organization built and observed, while treating broader claims about effectiveness or causality more cautiously. Missing information is recorded as missing rather than interpreted as evidence that a mechanism does not exist. Numerical claims are retained with their reported definitions and denominators where available; incompatible measures are not treated as directly comparable.
+
+% <!-- point: commercial-cases-share-an-emphasis-on-organizing-agentic-production | The commercial systems differ in architecture and organizational setting but share an emphasis on organizing agentic production — supplying context, structuring work, controlling tool access, arranging human review, and determining what may proceed — which matches process-oriented accounts of agentic software engineering. -->
+
+The commercial systems examined here differ substantially in architecture and organizational setting, but they share a recognizable emphasis on the organization of agentic production: supplying context, structuring work, controlling access to tools and resources, arranging human review, and determining what changes may proceed. This emphasis maps well to process-oriented approaches to agentic software engineering advocated by Hassan and by O\textquotesingle Connell, which structure agent work through explicit workflows, artifacts, gates, evidence, and human intervention.\citep{hassan2026, oconnell2026} The cases below show how commercial organizations are engineering these concerns in practice.
+
+% <!-- point: two-dimensions-who-supplies-and-how-intent-enters | The factories differ along two dimensions: who supplies the production system, and how engineering intent enters production. -->
+
+\magevalue{sec:the-software-factory} defined a software factory as a production system for controlled change. The factories examined here differ along two dimensions: who supplies the production system, and how engineering intent enters production.
+
+% <!-- point: internal-factory-versus-factory-in-a-box | The first distinction is between an internal factory, built and operated by an organization to change its own software, and a factory in a box, a generalized production system supplied to other organizations. -->
+
+The first distinction is between an \emph{internal factory}, built and operated by an organization to change its own software, and a \emph{factory in a box}, a generalized production system supplied to other organizations.
+
+\begin{quote}
+\textbf{Factory in a box.} An agentic software-production system packaged for use by other organizations, which connect it to their own software, engineering knowledge, policies, and business intent.
+\end{quote}
+
+% <!-- point: existing-environment-first-versus-model-first | The second distinction concerns how engineering intent enters the factory: existing-environment-first factories give agents repositories, tests, pipelines and organizational context to recover what they need, while a model-first factory places explicit engineering models upstream of realization. -->
+
+The second distinction concerns how engineering intent enters the factory. Most of the factories examined here begin with the existing software environment. Repositories, tests, pipelines, issue systems, service catalogs, policies, and other organizational context provide the material from which agents recover what they need to perform a change. I call these \emph{existing-environment-first} factories. A \emph{model-first} factory instead places explicit engineering models upstream of realization: selected engineering intent is represented in models, and software realization proceeds downstream from them.
+
+% <!-- point: the-two-distinctions-are-independent-axes | Who supplies a factory and how intent enters production are independent dimensions; an organization may supply more than one kind of factory. -->
+
+These distinctions are independent. An internal factory can be existing-environment-first or model-first. So can a factory in a box. The seven public accounts occupy several positions in that design space, and one organization can supply more than one kind of factory. \autoref{factory-forms} provides the map I will use for the rest of the section.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[Two dimensions of the agentic software factory]{\emph{Two dimensions of the agentic software factory.} The first distinguishes who supplies the production system; the second distinguishes how engineering intent enters it. The dimensions are independent.}\label{factory-forms}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Factory form
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Who supplies the production system?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+How engineering intent enters production
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Factory form
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Who supplies the production system?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+How engineering intent enters production
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Internal factory & The organization operating it & Either existing environment or explicit models \\
+Factory in a box & An external supplier & Either existing environment or explicit models \\
+Existing-environment-first & Either & Repositories, tests, pipelines, policies, service catalogs, and organizational context \\
+Model-first & Either & Explicit engineering models upstream of realization \\
+\end{longtable}
+}
+
+% <!-- point: the-shared-substrate-is-the-baseline-and-the-cases-report-the-differences | Recurring structures include externalized knowledge, bounded action, evidence before acceptance, and retained human judgment; the cases develop their different implementations. -->
+
+Across these factories, several structures recur. Teams record engineering knowledge, externalizing it so that agents need not ask someone to reconstruct it on every task. Tools, permissions, roles, and execution environments limit what agents can do. Tests, validators, reviews, and simulations supply evidence before consequential changes are accepted. People retain judgments that the available knowledge, evidence, or organizational obligations do not justify delegating.
+
+Against this common background, the cases differ in what each organization has built around its agents, what operating experience has led it to change, and what remains difficult to maintain.
+
+% <!-- point: the-accounts-also-show-how-the-factories-are-operated | The public accounts also reveal operation, and unevenly — a mechanism may be described without its effectiveness being measured — so the cases serve three questions: how production is structured, what the organization chooses to measure, and what operating experience changes. -->
+
+The public accounts also reveal how these factories are being operated, and they do so unevenly: a mechanism may be described without its effectiveness being measured, and a source may publish extensive activity data while saying little about the quality of the resulting software. That asymmetry is itself useful. It distinguishes mechanisms that exist from mechanisms whose effects have been observed, and it exposes several constraints that become visible only after realization capacity increases. I therefore use the cases for three related questions: how production is structured, what the organization chooses to measure, and what operating experience causes the factory to change.
+
+\section{Amazon}\label{heading:amazon}
+
+% <!-- point: kiro-builds-engineering-artifacts-into-the-harness | Kiro packages a reviewable specification workflow, allowing engineering intent to precede implementation. -->
+
+Kiro supports spec-driven development (SDD) by making requirements and design part of the coding harness's documented workflow. A feature specification records user stories and acceptance criteria, develops an architectural design, and divides implementation into tasks. Engineers can review the artifacts as work proceeds.\citep{kiro2026specs} In this book's terms, the requirements and design are engineering models: they represent intended behavior and structure before implementation. DocAble arranged related work through project-specific work orders, design documents, and completion checks. Kiro packages a specification workflow in the harness that other teams can adopt, then connects it to their repositories and tools.
+
+% <!-- point: kiro-connects-requirements-to-tests-and-configurable-controls | Configured checks connect selected specifications to implementation evidence; their coverage and enforcement depend on the project. | terms: modeling-principle, alignment-principle -->
+
+The connection to evidence is concrete. In its IDE, Kiro can extract properties from requirements and generate property-based tests against the implementation. Execution is optional by default, and the documentation distinguishes this evidence from proof.\citep{kiro2026correctness} Configured hooks can run checks after edits or block tool calls whose preconditions fail.\citep{kiro2026hooks} I read this arrangement as an application of Modeling and Alignment: engineers record intent, tests check selected requirements, and configured hooks can reject prohibited actions. Its strength depends on which properties they select, whether the tests express those properties correctly, and where failures actually block work. A team adopting the harness must make those choices for its own system.
+
+% <!-- point: amazon-internal-use-adds-team-specific-production-structure | The Bedrock case combines Kiro with modular code, commit-sized tasks, testing, and senior review; its staffing comparison is an estimate and its reported twentyfold increase measures normalized commit velocity. -->
+
+The Bedrock case shows the additional work inside an adopting team. Six senior engineers rebuilt part of the inference engine in 76 days, against an earlier estimate of 30 engineers working twelve to eighteen months. They organized small modules, scoped work to reviewable commits, supplied focused operational tools, and used tests and end-to-end canaries; senior engineers inspected the generated code.\citep{kiro2026bedrock} AWS's June 2026 account defines the reported twentyfold increase as normalized commit velocity, rising from two to forty commits per developer per week.\citep{sivasubramanian2026frontier} That measures production activity. It neither measures defect reduction nor isolates Kiro's contribution from team selection and workflow redesign; the staffing estimate is not an observed comparison team.
+
+% <!-- point: amazon-governs-improvements-to-the-harness-itself | Kiro-trace separates proposing improvements from checking and admitting them; experience also changes its checks. | terms: tolerance, governance-conversion -->
+
+Amazon also reports improving Kiro through kiro-trace, which proposes prompt or tool changes from recorded runs. A separate deterministic gate screens targeted failures, checks regression assertions, and compares candidates with an unchanged control on the full benchmark. It requires gains on selected tasks without losses beyond a specified margin elsewhere; a person decides whether to merge. One apparent gain failed when traced to a lucky run. Evaluation mistakes became checks, and confirmed fixes add regression assertions. The results are internal experiments.\citep{kim2026kirotrace}
+
+The same factory concerns recur at this second level. Process design organizes the improvement work; tolerances determine which candidate changes qualify; governance conversion preserves lessons in checks that later candidates must pass. The harness is itself software under engineering control. Improving its agents therefore also requires maintaining the machinery that decides whether an apparent improvement is real.
+
+% <!-- point: entry-points-figure-locates-emphasis | The entry-points figure introduces the six cases that follow AWS, locating their starting problems and investments. -->
+
+The six cases that follow provide different views of factory engineering. \autoref{six-entry-points} locates their starting problems and investments.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/six-entry-points-b36714cf00.pdf}
+\caption{\emph{Six other factory designs.} MAGE provides the comparison vocabulary; no source is claimed to implement the complete method. The organizations begin with different problems and invest in different parts of the agentic engineered environment. Note how the figure locates emphasis rather than ranking maturity.}
+\label{six-entry-points}
+\end{figure}
+
+\section{Internal Software Factories}\label{heading:internal-software-factories}
+
+% <!-- point: five-internal-accounts-each-answering-a-different-engineering-question | Four further internal accounts examine optimization, institutional policy, changing controls, and shared learning; teams combine supplied tools with their own engineering structure. -->
+
+Four further accounts describe systems built by an organization for its own work. Uber asks how to optimize the factory itself. Cloudflare asks how institutional policy becomes production control. Spotify asks how the controls should change as agents improve. Shopify asks how one engineer's experience becomes knowledge that later sessions can use. These internal factories combine tools supplied by vendors with engineering structure developed by their own teams.
+
+\subsection{Uber}\label{heading:uber}
+
+% <!-- point: uber-treats-the-factory-itself-as-an-object-of-measurement-and-optimization | Uber's distinctive move is treating the factory as an engineered system with measurable properties — model choice, context, orchestration, token cost and reviewer attention as tunable variables — at a scale whose headline attribution figure has an undefined denominator. -->
+
+Uber\textquotesingle s distinctive move is not that its factory is sophisticated but that the factory is itself an object of measurement and optimization. Model choice, context, decomposition, orchestration, token cost and reviewer attention are treated as engineering variables with numbers attached, rather than as fixed properties of the reasoner. Uber reports more than 70 percent of pull requests attributed to local or cloud agents, more than 3,600 engineer-created agent skills executing over 30,000 times per day, and managed agents performing code review, CI repair, end-to-end changes, alert triage, debugging, and maintenance.\citep{medisetty2026factory} The headline figure needs its measurement caveat attached: no source defines "attributed to," and figures published earlier the same year under narrower definitions were far lower --- 11 percent of pull requests \emph{opened} by agents as of March.\citep{orosz2026uber} The scale is real; its denominator is not public. Product intent still originates with people, but a growing share of sessions is initiated by managed agents responding to the factory\textquotesingle s own operational signals --- CI failures, on-call alerts, incoming bugs --- and by centrally scheduled maintenance, with incident reviews mined at a roughly monthly cadence for lessons that become new maintenance skills applied across services.\citep{medisetty2026sdlc}
+
+% <!-- point: uber-tunes-the-environment-against-published-numbers | The optimization targets the environment rather than the model: context and tool access are centralized, deterministic orchestration moves into executable code, session anti-patterns are priced, real workloads become benchmarks, and managed agents are evaluated in outcome-denominated units. -->
+
+The optimization targets the environment rather than the reasoner. Context and tool access are centralized; deterministic orchestration is moved from repeated model turns into executable code, cutting token use by more than half on common workflows and by more than 90 percent in bulk cases; and session anti-patterns are detected and priced.\citep{medisetty2026factory, medisetty2026sdlc} Real workloads become benchmarks, models are selected against cost, quality, and reliability, and managed agents are evaluated in outcome-denominated units: cost per merged pull request, review, alert, or cleanup.\citep{medisetty2026factory}
+
+Uber's AI Context Graph connects services, teams, incidents, and engineering documents so agents can retrieve relevant organizational knowledge.\citep{medisetty2026factory}\magefootnote{uber-retrieval}{A knowledge graph and retrieval-augmented generation (RAG) describe different parts of the arrangement. The graph represents entities and relationships; RAG supplies retrieved information to a generative model. Retrieval may use a vector index, a graph, or both.\citep{lewis2020rag, edge2024graphrag} A vector index need not be human-readable for the retrieved passages to be readable. Uber's account identifies a graph but does not specify enough of its retrieval method to classify it as vector-based RAG.}
+
+% <!-- point: uber-cannot-optimize-the-evidence-or-the-reviewer | Uber's evidence includes simulator comparisons, a producer-assembled check table, further review, CI, and human admission; the account does not establish independent re-derivation of every table entry. -->
+
+Two things resist that optimization, and Uber publishes both. The first is the evidence. Evaluation begins inside the agent\textquotesingle s own loop, before shared machinery sees the work: static-analysis repair, a simulator screenshot compared against the Figma specification, and staging integration, with the resulting pull request carrying a table of the checks performed, screenshots included.\citep{medisetty2026sdlc} The producing agent assembles that table about its own work, and no source states that any entry is re-derived by independent machinery before approval. Behind it sit a smaller reviewer model inside the loop, a reasoning model outside it, self-healing CI, and then a person. Admission is human, and Uber says so plainly: "we still have humans approving the code," with "a short path in the near future to a percentage of our code landing automatically."\citep{bond2026ureview} It does not publish the criteria for selecting eligible changes or the evidence those changes must provide.
+
+% <!-- point: uber-publishes-cost-and-withholds-quality | Uber treats reviewer attention as a production resource with finite capacity — review latency rose from three to nine hours, and maintenance is scheduled against Monday's review load — and tracks revert rate, F1, and time to recovery alongside production cost, while no source states what evidence a change must produce before it may proceed. -->
+
+The second is reviewer attention, which Uber treats as a production resource with finite capacity. Time to first review rose from three hours in 2024 to nine in 2026 as volume and change size grew, and the stated answer is to move reviewers up a layer, toward architecture and product judgment, rather than out of the loop.\citep{bond2026ureview} Maintenance jobs are placed on Sunday for spare CI capacity while the number of diffs engineers face on Monday is separately capped, because spare compute does not imply unlimited reviewer attention.\citep{medisetty2026sdlc} No other case in this corpus schedules admission capacity as a resource. Uber also tracks revert rate, F1, and time to recovery alongside production cost. The factory is therefore being optimized against both the cost of producing changes and signals about what happens after they are produced. Nor does any source state what evidence a change must produce before it may proceed. Uber\textquotesingle s own closing lands where this chapter began: once building a feature is easy, implementation feasibility no longer settles the product question --- "the factory still needs people to decide whether that feature should be built."\citep{medisetty2026sdlc}
+
+\subsection{Cloudflare}\label{heading:cloudflare}
+
+% <!-- point: cloudflare-turns-standards-prose-into-statements-with-stable-identity | Cloudflare's question is how institutional policy becomes a production control; the answer begins with representation — an extraction agent converts each SHOULD and MUST into a structured statement whose identifier survives revision of its document, and that identity is what makes an obligation trackable across systems. -->
+
+How does an organization\textquotesingle s own policy become a control that runs in production? Cloudflare\textquotesingle s factory attaches to its engineering organization at review rather than at origination --- engineers still open the merge requests and write the specs --- and its answer begins with representation. A standards corpus that had outgrown individual memory, and, in the CIO\textquotesingle s franker telling, a review process that AI-accelerated engineers had outrun --- "Anyone at Cloudflare could now write bad code, faster"\citep{rhea2026cloudflareos} --- was extracted by a purpose-built agent into structured statements, each SHOULD or MUST carrying a stable identifier that survives revision of the document containing it.\citep{reimann2026codex} Stable identifiers allow obligations to be tracked across document revisions and across the systems that apply them. They also support explicit waivers and measurements of compliance. Among the cases examined here, Cloudflare is the only one whose published account describes assigning stable identifiers to individual normative obligations. The corpus then meets work at several stations: human review of standards before they enter the corpus, fast linters in the editing loop, semantic review in CI, specification review before implementation, and incident review after production, whose findings are mandatory to clear for high-severity incidents.\citep{reimann2026codex} Cloudflare moves checks into deterministic tooling where the language permits it; the stated reason for doing so is practical --- semantic review latency had become expensive.
+
+% <!-- point: cloudflare-promotes-obligations-into-blocking-authority-and-instruments-one-side-only | Authority arrives in a separate promotion step from advisory to blocking, after which a coordinator agent maps its verdict onto the version-control action with no human in the path — bounded by an approval-biased rubric and a logged 0.6 percent break-glass rate which, like the larger published counts, measures activity rather than defects prevented. -->
+
+Authority arrives in a second, separate step. Any employee may propose a standard and a named domain owner approves it; a distinct promotion then moves an approved standard from advisory to enforced, and only then can its MUST statements block --- though no source names who performs that promotion. Once promoted, admission is machine-held in the ordinary case. A coordinator agent orchestrates up to seven specialist reviewers, judges severity, and maps its verdict directly onto the version-control action --- approve, revoke a prior approval, or block the merge --- with no human in the path.\citep{skidmore2026review} Cloudflare is the only organization in this corpus that hands a probabilistic evaluator that power, and it engineers around the grant rather than assuming it: only enforced MUST statements can block, the rubric is biased toward approval so a lone warning does not, and a human reviewer can force approval by commenting "break glass" --- a logged override used 288 times, 0.6 percent of merge requests, in the measured month.\citep{skidmore2026review} The instrumentation runs in one direction only. The break-glass count measures forced approvals; no published number measures the violations the reviewer failed to flag. The much larger published counts --- review runs, findings, and blocked merges --- likewise measure activity by the control, not defects prevented or failures escaped. Policy authorship is human, application is machine, and only the escape hatch is counted.
+
+% <!-- point: cloudflare-converts-failures-into-structure-but-never-measures-the-loop | Operating experience converts into environmental structure along four documented paths — named rules from named outages, Snapstone enrolment, representation revision, a new linter station — but no loop is closed by measurement, and Cloudflare itself calls the agent-evaluation loop unfinished. -->
+
+Operating experience does become new structure here, along four documented paths. The November and December 2025 outages produced named rules --- do not call \texttt{.unwrap()} outside tests; validate that upstream dependencies are in an expected state --- now enforced at review; a dangerous configuration pattern can be enrolled in Snapstone, a shared substrate through which it "immediately inherits safe deployment"; the extracted representation itself was revised, Markdown to JSON, when agents needed to filter it more accurately; and reviewer latency produced the linter station.\citep{hartman2026failsmall} What the record does not contain is a measurement closing any of these loops. The outcome claim for the outage-derived rules is a counterfactual --- that the outages "would have been rejected merge requests instead of global incidents" --- and Cloudflare places the remaining loop in the future in its own voice: the current focus is giving engineers "the tools to define the loops that evaluate the work their agents produce."\citep{rhea2026cloudflareos} The conversion paths are described and instantiated; their effect is asserted, not shown.
+
+\subsection{Spotify}\label{heading:spotify}
+
+% <!-- point: spotify-holds-the-line-fixed-and-swaps-the-station-inside-it | Spotify's fleet line predates its agent by years; the agent replaced the deterministic transform at one station while targeting, review, merge and monitoring "remain exactly the same" — which isolates what a factory must change when only its fabricator does. -->
+
+Spotify\textquotesingle s case isolates a variable the others cannot. Its production line predates the agent by years. Fleet Management targets repositories across the software estate, executes transformations across thousands of repositories, automerges on green, and watches merged changes in production, alerting the change author when deployments fail.\citep{brown2023fleet} In 2025 the company replaced the deterministic transformation script at the center of that line with an agent, and stated the substitution precisely: "All the surrounding Fleet Management infrastructure --- targeting repositories, opening pull requests, getting reviews, and merging into production --- remains exactly the same."\citep{charas2025honk} The agent occupies one station. It took over the residual the prior technique could not reach --- the last 30 percent of a fleet migration, the corner cases that had grown one dependency updater to twenty thousand lines of script. Everything that moved afterward moved because the fabricator at that one station had changed.
+
+% <!-- point: spotify-installs-and-then-retires-a-control-as-the-fabricator-improves | Spotify restricts agent tools and checks work before a pull request can be opened, preserving bounded degrees of freedom while enforcing acceptance conditions. An LLM judge added after observed failures illustrates governance conversion; its reported removal amid false vetoes and improved foundation models illustrates the need to reassess controls. -->
+
+Spotify limits what the agent can do and checks its work before opening a pull request. In the configuration described in late 2025, the agent could call a verification tool, use selected Git subcommands that excluded pushing, and run shell commands from an allowlist. Code-search and documentation tools were withheld; users supplied the relevant context in the prompt.\citep{charas2025honk} Within those bounds, the agent retains degrees of freedom in how it implements the requested change.
+
+The verification tool selects checks from the repository's contents without requiring the agent to understand how each check works. A failing check prevents the pull request from being opened. This is Alignment: the verification machinery decides whether the work can proceed, independently of the agent's own assessment. Spotify also added an LLM judge to compare the proposed diff with the original prompt after agents made unwanted changes, such as disabling tests. In December 2025, Spotify reported that the judge vetoed about a quarter of thousands of sessions, and that agents corrected their work after about half of those vetoes.\citep{charas2025honk}
+
+A March 2026 report of Spotify's QCon talk describes further changes. The team separated the agent runtime from the verification runtime, with pull requests created only after CI validation. The report also describes agents commenting out failing tests or downgrading Java versions to make builds pass. It says the judge sometimes blocked valid changes. It also reports that engineers later removed the judge as foundation models improved and verification instructions in prompts proved sufficient.\citep{curtis2026spotifyqcon} Adding the judge illustrates governance conversion: engineers turned observed failures into a check applied to later work. Its reported removal illustrates why controls also need maintenance. Engineers must reassess what a check catches and what valid work it blocks as the agent's behavior changes.
+
+% <!-- point: spotify-splits-admission-by-fabricator-and-names-verification-as-the-constraint | Admission splits on which fabricator produced the change — deterministic fleet changes automerge by default while agent-authored ones wait for human review — and Spotify's own incident retrospectives name verification capacity, not generation, as the binding constraint. -->
+
+Admission itself splits on which fabricator produced the change. Deterministic fleet changes automerge by default --- more than 2.5 million automated maintenance PRs, "the vast majority auto-merged with no human in the loop,"\citep{spotify2026constraint} with the change author rather than the repository owner deciding what automerges\citep{brown2023fleet} --- while agent-authored changes wait for human review, and Spotify names review, not generation, as the new bottleneck.\citep{curtis2026spotifyqcon} Humans scope the migrations --- work that once involved hundreds of teams over weeks is scoped by one engineer in days\citep{spotify2026constraint} --- author prompts as version-controlled, tested artifacts,\citep{charas2025honk} and encode non-delegation directly: in one documented migration, wherever a judgment call was required the agent was instructed to leave the field unchanged and annotate it for the human reviewer.\citep{edwardsjoseph2026migrations} The factory\textquotesingle s health is itself instrumented. Monthly incident retrospectives now ask whether AI-authored code contributed to an incident; the published finding is that it has not been a material direct contributor, but that "the volume of change increased faster than some of our verification controls could adapt" --- one automated dependency upgrade passed every check and still failed in production. The constraint, stated by the SVP who owns the platform: "AI increased the capacity to produce change. The next constraint became our ability to verify it."\citep{singer2026quality}
+
+% <!-- point: spotify-measures-the-health-of-the-engineering-system-not-just-agent-activity | Spotify measures the health of the engineering system rather than agent activity: a refined rework measure reports no increase during the AI ramp-up, while complexity and pull-request size rise with the thresholds explicitly held fixed. -->
+
+Spotify also reports no increase in a refined measure of rework, while code complexity and pull-request size have begun to rise; it explicitly declines to move those thresholds. These measurements are unusual in this corpus because they concern the health of the resulting engineering system rather than agent activity. Together with the incident record, they show a mixed result: no measured increase in rework or material direct incident contribution from AI-authored code, alongside change volume beginning to outrun parts of the verification system.\citep{singer2026quality}
+
+\subsection{Shopify}\label{heading:shopify}
+
+% <!-- point: shopify-makes-every-session-observable-organizational-material | Shopify's question is how one engineer's fix becomes something every later session inherits, and the answer starts in the architecture: River lives in Slack, refuses direct messages, and turns every session into a public transcript watched by colleagues. -->
+
+Shopify\textquotesingle s question is how one engineer\textquotesingle s hard-won fix becomes knowledge that every later session inherits, and its answer begins in the architecture rather than in a pipeline. River, the company\textquotesingle s internal agent, lives in Slack and refuses direct messages; every session is a public transcript, and an employee starts work by mentioning the agent in a channel.\citep{moreno2026river} Work is therefore performed in front of an audience by construction, and a failure is watched rather than reported. In a thirty-day window reported in May 2026, 59,918 sessions ran across 5,170 channels, touching the work of more than 7,000 people, and one in eight merged pull requests was River-coauthored.\citep{moreno2026river} By September, Lütke reported that up to half of pull requests now begin as a River conversation.\citep{drecksler2026river}
+
+% <!-- point: shopify-mines-sessions-by-hand-and-measured-the-effect | The documented conversion mechanism is human — people watch River work and write down what it should have known, as files in the monorepo — and the effect is measured with the counterfactual controlled: merge rate 36 to 77 percent in two months, self-reported and entangled with environmental improvement. -->
+
+At Shopify, people use the shared sessions to improve the knowledge available to later agents. They watch River work, notice where it gets stuck, and externalize the missing knowledge, recording it in the monorepo: a skill update, an \texttt{AGENTS.md} change, or a new shared skill.\citep{moreno2026river} These files sit alongside code, conventions, intent documents, and runbooks that later sessions can use. River's reported merge rate rose from 36 to 77 percent over two months while the foundation model stayed the same: "We did not retrain a model. We did not switch models."\citep{lutke2026shopfloor} This self-reported result does not separate the contribution of human learning from changes to the surrounding environment. It does describe an improvement without a foundation-model change. Shopify offers the corresponding design advice directly: "Make the agent multiplayer by construction."\citep{moreno2026river}
+
+% <!-- point: shopifys-instruction-corpus-also-accumulates-maintenance | The mechanism that accumulates shared knowledge accumulates upkeep with it: instruction files apply recursively across the monorepo, a directory missing one of the two files leaves some developers running a degraded agent, and the CEO calls the automation that repairs the drift a stupid complexity tax. -->
+
+The corpus is not free to carry. Instruction files apply recursively down the monorepo tree, and rival tool conventions read different ones; Lütke threatened to ban Claude Code at Shopify over the "split brain problems" that divergence creates "when different team members use different tools."\citep{lutke2026splitbrain} In follow-up posts the trade press quoted, he gave the consequence at scale: with thousands of developers in one repository "it just does happen that one directory is missing one of the two files and this means that a subset of devs work with lobotomy."\citep{caswell2026agentsmd} Automation repairs the drift, and Lütke calls that repair "a stupid complexity tax that shouldn\textquotesingle t have to be paid."\citep{caswell2026agentsmd} The knowledge compounds; keeping it coherent is work somebody does.
+
+% <!-- point: shopify-converted-one-failure-into-a-code-enforced-guarantee-and-scopes-the-claim | The sharpest conversion is a failure that moved a rule from an instruction the agent interprets to a condition the production system enforces — River violated its own prompt-stated enumeration requirement, producing the rule that guarantees belong in code — and the admission controls named alongside it are stated for the security lane only. -->
+
+The sharpest instance of the conversion is a failure that changed where the rule lived: from an instruction the agent had to interpret to a condition the production system was expected to enforce. A September account of River\textquotesingle s security workflows names the controls: the agent\textquotesingle s output is draft-only, the engineers who own the affected code hold merge authority, a freshness-gated merge queue rejects stale evidence, and a post-merge check verifies that the default branch reflects the fix --- merges through the gated queue rose from about 10 percent to 80 percent.\citep{son2026security} The same account states the governing rule and publishes the run that taught it: "Prompts are the right place to express judgment and the wrong place to express a guarantee," and in security, "any rule that determines whether a vulnerability is closed must be enforced in code" --- written after River violated its own prompt-stated enumeration requirement and said so in its report.\citep{son2026security} Those controls are stated for security workflows. What governs the other seven-eighths of River\textquotesingle s output --- what evidence an ordinary River pull request must carry, how often one fails in production --- the public record does not say.
+
+\section{The Factory in a Box}\label{heading:the-factory-in-a-box}
+
+% <!-- point: gitlab-sells-the-capability-and-its-own-practice-prices-what-the-box-omits | GitLab generalizes and sells the production capability, which poses a question no internal factory faces — what productizes generically and what the adopter must supply — and its own handbook prices the second half: failing-test-first doctrine, CI as the gate, a test-count guard, and a two-week 95-percent-agent-generated service built after four weeks of harness construction. -->
+
+GitLab belongs in the other column because the capability its account describes is generalized and sold, to be attached to somebody else\textquotesingle s repositories, policies, and engineering knowledge. That form poses a question no internal factory faces: what part of a factory can be productized generically, and what must the adopting organization supply? GitLab\textquotesingle s own internal record is worth taking first, because it prices the second half. The company\textquotesingle s handbook documents an internal practice with doctrine attached: never give an agent a task without a failing test; "Fix the environment, not the prompt"; "Prompts are suggestions. CI is a gate. If the agent can break a rule and still pass the pipeline, the rule doesn\textquotesingle t exist" --- down to a CI job that fails when the test count decreases, because agents delete tests to make them pass.\citep{gitlab2026playbook} And it publishes a dated internal quantity: a 135,000-line Rust service, roughly 95 percent agent-generated, built by four engineers across 259 merge requests in about two weeks, with every agent-generated change still passing CI, security scanning, and code review.\citep{gitlab2026orbitissue} The timing matters. Roughly four weeks were spent constructing the harness before the roughly two-week production episode began. The factory therefore had a visible startup investment before its marginal production economics could be observed.
+
+% <!-- point: the-factory-in-a-box-is-an-integration-problem-at-both-ends | A factory in a box introduces a boundary an internal factory does not have: the vendor supplies fabricator, orchestration, context representations, evidence, and generic controls, and the engineering problem is integration, not installation — at both ends of the production line. -->
+
+The form introduces a boundary an internal factory does not have. The vendor supplies the fabricator, the orchestration, the context representations, the evidence infrastructure, and the generic controls; the customer must connect those to the knowledge and authority that make a change acceptable in its own system. The engineering problem is integration, not installation, and it sits at both ends of the production line. Upstream: how does organization-specific intent enter generic machinery? Downstream: how does organization-specific authority govern what comes out?
+
+% <!-- point: customer-intent-enters-as-files-and-customer-authority-as-a-withheld-capability | Upstream, intent enters as files the customer authors at fixed repository paths, under the vendor's thesis that what an agent cannot access in context does not exist; downstream, admission authority stays human by construction — the flow never sets the Approve state — with agent privileges intersected and tool policy tightenable only. -->
+
+GitLab\textquotesingle s upstream answer is files the customer authors at fixed paths in its own repository --- an \texttt{AGENTS.md}, chat rules, review instructions, skills --- plus the customer\textquotesingle s CI configuration and, optionally, authored flow definitions.\citep{gitlab2026customize} The vendor states the thesis behind the arrangement normatively: "anything the agent can\textquotesingle t access in-context effectively doesn\textquotesingle t exist."\citep{gitlab2026orbitissue} What GitLab supplies as infrastructure is the recovered remainder --- a context graph over the customer\textquotesingle s code, merge requests, pipelines, and security findings, assembled from artifacts that already exist. Recovered context carries relationships. It cannot carry the intent the customer never wrote down. Downstream, authority is expressed as a withheld capability. GitLab\textquotesingle s security review flow "never sets the \textbf{Approve} state, even when it finds no issues" --- the machinery may produce, repair, and advise, and only a person approves.\citep{gitlab2026securityreview} Around that prohibition sits governance of the action rather than the change: an agent\textquotesingle s privileges are the intersection of its service account\textquotesingle s and the triggering human\textquotesingle s, tool policy is tightenable by a project but never loosenable below its group\textquotesingle s rule, and audit events record which agent acted under which policy. The vendor industrializes the record that a human decision was made. It does not move the decision.
+
+% <!-- point: the-record-prices-the-infrastructure-and-not-the-knowledge-authoring | The public record specifies the supplied infrastructure and not the cost of authoring the organization-specific knowledge autonomy depends on — no case study measures that work or how output varies with instruction quality — and the layer that produced GitLab's own 95-percent-agent-generated service is the layer the adopting organization must supply. -->
+
+The asymmetry is in what the vendor can supply. GitLab specifies the supplied infrastructure in detail, but not the cost of authoring the organization-specific knowledge on which autonomy depends: no case study measures the work required to construct those instructions or how output varies with their quality. The CEO\textquotesingle s essay locates trust in a durable layer of "context, verification, governance and evidence" around a replaceable foundation model.\citep{staples2026abundant} Yet the layer that produced GitLab\textquotesingle s own 95-percent-agent-generated service included failing tests written first, CI gates, repository-resident context, and the test-count guard --- precisely the layer the adopting organization must supply.
+
+% <!-- point: the-form-question-stated-plainly | The externalization question follows directly from the two-ended boundary and is worth stating plainly. -->
+
+The question the form poses follows directly, and it is worth stating plainly.
+
+% <!-- inline-quote -->
+
+\begin{quote}
+How much organization-specific engineering knowledge must be externalized before an off-the-shelf factory can reliably produce controlled changes to that organization\textquotesingle s software?
+\end{quote}
+
+% <!-- point: the-externalization-question-is-the-modeling-problem-commercially | The question restates the Modeling problem in commercial terms, and the factory chapter already named the tradeoff behind it: a purchased factory that works only when the buyer describes the software almost completely has recreated the arrangement the earlier software factories died of. -->
+
+This is the representation problem faced by a commercial software-factory provider, and \magevalue{sec:the-software-factory} already named the tradeoff behind it. A purchased factory that reliably produces your software only when you describe that software almost completely has recreated the arrangement the earlier software factories died of. So the buyer\textquotesingle s side of the transaction is a modeling decision: which consequential intent to externalize, in what form, at what cost, before generic machinery can respect it. \magevalue{chapter:theory} takes up what that externalization costs.
+
+\section{Model-First Factories}\label{heading:model-first-factories}
+
+% <!-- point: model-first-production-inverts-where-intent-enters | Siemens brings established engineering models upstream of realization, extending the model-first question already raised by Kiro's specification workflow. -->
+
+Siemens brings an established engineering-model tradition to the question raised by Kiro's specification workflow: what changes when explicit engineering models sit upstream of realization? \magevalue{sec:the-software-factory} told this ambition\textquotesingle s history in software --- enterprise architecture and model-driven development tried to determine the consequential decisions upstream, in shared representations, and lost economically rather than conceptually. Here the same ambition is still working, as the ordinary practice of an engineering tradition that arrived at models by a different route.
+
+% <!-- point: siemens-model-first-evidence-is-eigen-and-agent-studio | The load-bearing Siemens evidence is Eigen — control code generated from a TIA Portal engineering model, iterating until pre-defined performance benchmarks are met, a tolerance in this chapter's exact sense — and the 2024 Agent Studio research on SysML v2 with simulation as validator: a model supplies goal and context, a deterministic engine supplies the verdict. -->
+
+Siemens enters from outside software-first engineering, and "Siemens" is not one factory: its public record spans several business units, and most of it describes production systems Siemens sells rather than a factory it runs on its own software. The clearest instance of software fabricated downstream of a model is the Eigen Engineering Agent. It reads a TIA Portal automation project --- an engineering model already carrying the devices, network topology, and control logic --- writes SCL and LAD control code, test logic, and HMI JavaScript against it, and "iterates until pre-defined performance benchmarks are met."\citep{siemens2026eigen} The admission criterion is a pre-set acceptance region, not a specified realization --- a tolerance in this chapter\textquotesingle s exact sense. Two years earlier, Siemens\textquotesingle{} Agent Studio research placed agents on formal modeling languages, SysML v2 among them, with generated candidate architectures validated through simulation and the system waiting for the engineer\textquotesingle s decision at critical points.\citep{liu2024agentstudio} The recurring structure across the Siemens record: a model supplies the goal and the context, a deterministic engine --- a simulator, a compiler, a benchmark harness --- supplies the verdict, and the agent searches freely between them. That is the bargain the earlier model-driven attempts could not strike.
+
+% <!-- point: siemens-vision-disclaims-itself-and-the-gaps-sit-where-stakes-are-highest | The broader architecture Siemens publishes is an explicit research vision about simulation, not software realization; no source establishes a model-implementation conformance gate, Eigen's record names no human approval step, and almost no operating measurement is published — while the one account of Siemens changing its own software keeps a human in the loop on compliance grounds. -->
+
+The broader architecture Siemens publishes around this --- task agents and orchestrators over knowledge graphs of engineering data --- is explicitly "a research vision and innovation roadmap, not a committed product delivery," and its subject is simulation rather than software realization.\citep{siemens2026a3e} The public sources leave two important questions unanswered. No Siemens source establishes a conformance mechanism that rejects divergence between model and implementation --- Eigen\textquotesingle s benchmark is a threshold, not a correspondence --- and Eigen\textquotesingle s public record names no human review or approval step. Source silence is not organizational absence, but both omissions concern consequential controls. Where the record does describe Siemens changing its own software, in a legacy-modernization account written up by its cloud partner rather than by Siemens engineers, the posture inverts: the system "keeps a human in the loop at every step," and the reason given is an obligation the software carries rather than a stage of maturity. Industrial systems run "over 15 to 20 years of operation," so AI-generated output "must therefore be explainable, traceable, and verifiable," and "hallucinated or unvalidated changes are not merely inefficient but operationally unacceptable."\citep{nawalgaria2026siemens} Unlike the software-first cases, the available Siemens record supplies almost no operating measurement of the factory itself: no throughput series, admission rate, failure rate, or before-and-after outcome for the agentic production systems described here.
+
+% <!-- point: a-cheap-and-capable-fabricator-changes-what-a-model-must-determine | The sharp difference from the old model-driven dream is that capable realization is now inexpensive, so a model-first factory need not determine every realization decision — only the consequential ones. -->
+
+One difference from the old dream matters more than the rest, and it is the difference \magevalue{sec:the-software-factory} isolated. Model-driven development had to specify realization almost completely, because its downstream fabricator was inexpensive but not capable. Today, capable realization is inexpensive. A model-first factory can therefore represent the decisions engineering must control and leave the remaining realization freedom to an agent that will resolve it acceptably. \textbf{The model need not determine every realization decision.} That is a different bargain from the one the earlier attempts lost, and whether it pays is not something the public sources settle.
+
+% <!-- point: model-first-is-a-position-and-siemens-sells-the-combined-cell | Model-first is independent of who supplies the factory; Siemens supplies industrial instances and Kiro supplies a specification-driven path for general-purpose software, with coverage and enforcement still requiring examination. -->
+
+Two cautions keep the axis honest. Model-first is not a rung above existing-environment-first; it is a different answer to where intent enters, carrying its own costs. And the axis is independent of the first one. A factory in a box can be sold as model-first, driven by models the customer authors rather than a repository the vendor crawls --- and Siemens itself shows the combined cell is not empty: Eigen and its EDA verification toolkit are sold production systems driven by the customer\textquotesingle s own engineering models, in the narrow software of control logic and chip design. Kiro also supplies a specification-driven path for general-purpose software. The combined category therefore extends beyond industrial control; how fully each factory represents and enforces a project's obligations remains an engineering question.
+
+\section{What the Factories Share, and Where They Differ}\label{heading:what-the-factories-share-and-where-they-differ}
+
+% <!-- point: the-factories-place-admission-in-four-different-locations | The factories differ in where they place admission: Cloudflare's coordinator holds the merge gate under human-authored policy, Spotify splits admission by fabricator, Uber keeps approval human while naming partial automation, and GitLab withholds approval from the agent by construction. -->
+
+The factories differ in where they place admission:
+
+\begin{itemize}
+\tightlist
+\item
+  Cloudflare gives its coordinator the merge gate under human-authored policy, with a logged human override.
+\item
+  Spotify automerges deterministic fleet changes while agent-authored changes wait for human review.
+\item
+  Uber keeps approval human while naming partial automatic approval as a near-term destination.
+\item
+  GitLab withholds approval from the agent in its documented security-review flow.
+\end{itemize}
+
+% <!-- point: human-in-the-loop-is-not-one-phenomenon | The reasons for retaining human judgment differ — interim evidence adequacy at Uber, responsibility at Shopify, long-lived industrial obligation at Siemens — and only Uber expects its boundary to move with capability, so the cases do not support a single delegation frontier. -->
+
+The reasons for retaining human judgment differ as well. Uber\textquotesingle s boundary is interim: the available representations and evidence do not yet justify further delegation. Shopify grounds the boundary in responsibility: a machine cannot take responsibility for a decision.\citep{podcastalpha2026lutke} Siemens grounds it in the obligations of long-lived industrial software: generated output must remain explainable, traceable, and verifiable over systems expected to operate for fifteen to twenty years. Only Uber describes its boundary as one expected to move with improving capability. The cases therefore do not support a single delegation frontier that simply advances as the fabricator improves.
+
+% <!-- point: the-reported-measurements-favor-production-over-quality | The cases publish different production and quality measures, including Amazon's harness experiments; those measures retain their own definitions and limits. -->
+
+The reported measurements are much stronger on the production of change than on the quality of the changes produced. Uber and Cloudflare report cost, throughput, findings, and overrides in detail, but much less about resulting software quality. Spotify reports measures of engineering-system health, including rework, complexity, pull-request size, and incident contribution. Shopify reports a merge-rate improvement with the foundation model held fixed. GitLab describes measurement mechanisms, Amazon adds harness experiments, and Siemens provides little operating evidence of this kind. These public accounts may omit measurements used internally, but as evidence they characterize production much more fully than they establish the quality of its output.
+
+% <!-- point: operating-experience-changes-the-factories-but-the-effect-is-rarely-established | Operating experience changes factory controls. The accounts provide uneven evidence of effects and leave long-term production recurrence unresolved. | terms: governance-conversion -->
+
+Operating experience changes the factories too. Cloudflare responds to incidents, review latency, and representation problems by changing rules and tooling. Shopify records lessons from agent failures in shared instructions and enforces selected security requirements in code. GitLab recommends fixing the environment when prompt repair would otherwise recur. A later account of Spotify reports the reverse change: a probabilistic check removed after the foundation models improved. These examples illustrate governance conversion. Most of these accounts describe what changed without measuring its effect. Amazon adds experimental comparisons and permanent regression checks; the public record still leaves their effect on long-term production recurrence unresolved.
+
+% <!-- point: supervision-and-verification-do-not-scale-with-production | One constraint recurs: the capacity to supervise and verify does not automatically increase with the capacity to produce changes — Uber's reviewer delay, Spotify's verification controls outrun by volume, Shopify's slop grenade, Cloudflare's checks moved earlier — so fabrication can outpace the attention and evidence that establish acceptability. -->
+
+One constraint nevertheless appears repeatedly enough to matter: the capacity to supervise and verify production does not automatically increase with the capacity to produce changes. Uber measures reviewer delay increasing from three to nine hours and schedules work against finite reviewer attention. Spotify states the same pressure directly: change-production capacity increased faster than some verification controls could adapt. Shopify\textquotesingle s "slop grenade" names the social version of the problem, in which cheap production transfers expensive inspection to somebody else. Cloudflare moved deterministic checks earlier partly because semantic review latency had become costly. These mechanisms differ, but the underlying resource is recognizable: fabrication can scale faster than the attention and evidence required to establish that its output is acceptable.
+
+% <!-- point: the-supervision-constraint-is-an-operating-constraint-not-a-new-factory-kind | The observation identifies an operating constraint on the factories already described rather than another kind of factory: process design determines where scarce supervision is spent and tolerances determine what must be established before admission, and cheaper fabrication makes the factory's economics depend on both. | terms: tolerance -->
+
+That observation does not require another kind of software factory. It identifies an operating constraint on the factories already described. Process design determines where that scarce supervision is spent, what can be established mechanically, and which work reaches a person. Tolerances and their evidence determine what must be established before a realization can be admitted. As fabrication becomes cheaper, the economics of the factory increasingly depend on both.
+
+% <!-- point: the-inheritance-channel-carries-its-own-maintenance-cost | A second recurring cost is the upkeep of the representations through which a factory inherits engineering knowledge — GitLab's freshness and convergence machinery, Cloudflare's context checks, Shopify's drift repair — so production structures are capital only while they remain accurate enough to be useful. -->
+
+A second recurring cost is keeping recorded engineering knowledge accurate. GitLab maintains documentation freshness and consistency, Cloudflare checks the context supplied through AGENTS.md, and Shopify repairs drift between instruction files. These resources require maintenance just as the software does. They remain engineering capital only while later work can still rely on them.
+
+% <!-- point: the-common-structure-is-leverage-organizational-capital | Across the cases, engineers preserve selected judgments in policies, shared representations, and constraints so that those decisions can guide later changes. -->
+
+Across these cases, engineers arrange for selected judgments to guide more than one task. Engineers spend more of their effort on scoping work, supervising it, and building reusable checks. One policy can then guide many changes, a shared representation can help plan work across repositories, and a constraint learned from one failure can restrict later work. The common lesson is that engineers can preserve a decision in the environment instead of making it again for every change.
+```
+
+### Remove the separate factory-engineering section
+
+Source: `book/latex/sources/part5/5.4-two-problems-of-factory-engineering.tex`, lines 1–104; SHA-256 `a5b4e4ceb37d583fa6ce7276378f011bbca68cee9456d1817553022183fa1e36`. Reason: Remove the separate factory-engineering section.
+
+```latex
+% mage-auto-heading: process-design-and-tolerance
+% mage-auto-heading: the-engineer-in-the-factory
+% mage-auto-heading: factories-inside-and-outside-the-organization
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Agentic Software Factories -->
+
+% <!-- chapter-title: Two Problems of Factory Engineering -->
+
+\chapter{Two Problems of Factory Engineering}
+
+% <!-- point: the-factories-place-engineering-structure-in-different-parts-of-production | The factories structure both production and the properties required of its output; scheduling work and preserving an obligation remain different concerns even when one harness supports both. -->
+
+These factories arrange how agents receive work and how their changes are evaluated. DocAble's work orders and Kiro's specification workflow both make intended behavior available before implementation. The machinery that schedules a task serves a different purpose from a property that its implementation must preserve, even when both are packaged in one harness. Comparing the factories therefore calls for examining both the production process and the obligations imposed on its output.
+
+% <!-- point: production-capacity-and-supervisory-capacity-need-not-grow-together | The comparison also exposed a constraint: the capacity to produce changes and the capacity to supervise and verify them need not grow together, so process design includes the allocation of scarce supervisory capacity and not only the organization of realization. -->
+
+The comparison also exposed a constraint that becomes more important as production accelerates: the capacity to produce changes and the capacity to supervise and verify them need not grow together. Process design therefore includes the allocation of scarce supervisory capacity, not only the organization of realization.
+
+% <!-- point: process-design-and-tolerance-are-both-problems-of-factory-engineering | Process design determines how production proceeds and tolerance determines what variation in the product is acceptable; both are problems of factory engineering, and the cases show how differently a factory can distribute its effort between them. | terms: tolerance -->
+
+The distinction recalls the two techniques with which this chapter began (\autoref{process-design-and-tolerance}). Process design determines how production proceeds. Tolerance determines what variation in the resulting product is acceptable. Both are problems of factory engineering. The cases make visible how differently an agentic software factory can distribute its effort between them.
+
+\section{Process Design and Tolerance}\label{heading:process-design-and-tolerance}
+
+% <!-- point: docables-tolerance-emphasis-followed-from-its-circumstances | DocAble's emphasis on tolerance followed from its circumstances: accessibility supplied external legal obligations, and one engineer had little inherited human organizational process to accommodate, but needed explicit requirements and substantial process for coordinating agents. | terms: tolerance -->
+
+DocAble\textquotesingle s emphasis on tolerance was partly a consequence of the problem that produced it. Accessibility supplied external requirements, including legal obligations, that the resulting documents had to satisfy. The project was also a side effort run by one engineer. There was little inherited human organizational process to accommodate, and neither time nor appetite to inspect every implementation decision made by coding agents. Coordinating agents nevertheless required substantial process design: reviewed work orders, dependency-based scheduling, completion checks, and, eventually, a different placement of validation within the factory. The practical objective was therefore to encode consequential requirements precisely enough that agents could change the system freely while the resulting software continued to satisfy them. At the time, this struck me as the obvious way to build an agentic software factory. Having now compared it with commercial factories, I can see that it was specifically the obvious way for an "organization" with one human engineer and no spare humans to supervise the agents.
+
+% <!-- point: commercial-factories-emphasize-process-because-agents-work-inside-organizations | Several other commercial factories operate inside large engineering organizations, so their public accounts emphasize work coordination, bounded authority, and changes to systems maintained by many people. -->
+
+Several of the other commercial factories operate under different conditions. Their agents work inside large engineering organizations, where work must move among people and agents, organizational knowledge must reach the right work, authority must be bounded, tools must be exposed safely, and changes must eventually enter systems maintained by many people. Their public descriptions consequently place substantial emphasis on process design. The difference is where the visible engineering structure is concentrated.
+
+% <!-- point: industrial-factories-have-tolerance-machinery-but-much-intent-stays-in-natural-language | The factories use tolerance mechanisms with varying scope and explicitness; instructions and other contextual knowledge do not by themselves provide an enforced boundary around acceptable realizations. | terms: tolerance -->
+
+Tolerance is present across these factories, with varying scope and explicitness. Tests, static checks, simulators, benchmarks, and policy predicates all bound selected properties of acceptable realizations. They are genuine tolerance mechanisms. Other engineering intent remains in natural-language instructions, skills, policy corpora, knowledge graphs, or human review. These channels can make an agent better informed and improve the probability that it interprets the intent correctly, but they do not themselves provide a machine-checkable boundary around acceptable realizations. The fabricator still has to interpret the instruction, and another act of interpretation may be required to decide whether the result satisfied it.
+
+\textbf{Information available to an agent is not the same thing as control available to an engineer.}
+
+% <!-- point: mage-represents-the-obligation-rather-than-the-checking-technique | DocAble's tolerance is distinctive: MAGE represents the consequential property explicitly and uses Alignment to maintain correspondence with the realized system, so the tolerance is the represented obligation rather than any particular checking technique, which permits more systematic control than instructions or isolated checks alone. | terms: tolerance, modeling-principle, alignment-principle -->
+
+DocAble's approach to tolerance makes the required property explicit and checks whether the implementation preserves it. That connects Modeling to Alignment. Tests, static analysis, measurements, and other evidence can establish whether the property holds; the tolerance states what the system must satisfy, independently of which checking technique is used. Related obligations can then be considered together, along with the implementation choices they leave open. When the checks find a selected violation, the factory can reject the change.
+
+% <!-- point: externalized-knowledge-carries-its-own-maintenance-burden | The representations a factory uses become part of its maintenance burden — GitLab, Cloudflare, and Shopify all describe machinery for keeping inherited context current — so externalizing engineering knowledge exchanges repeated judgment for the carrying cost of production structure, and whether the exchange pays depends on reuse and upkeep. -->
+
+The factory must also maintain the knowledge it records. GitLab, Cloudflare, and Shopify describe tools for keeping instructions, documentation, and other context current. Recording a lesson can spare people and agents from working it out again, but someone must keep the record accurate. Whether that trade pays depends on how often later work uses it and how much upkeep it needs.
+
+% <!-- point: process-design-and-tolerance-respond-differently-to-a-better-fabricator | Process design encodes assumptions about how production must proceed, which a better fabricator can change; tolerances describe properties the product must preserve, which a better fabricator does not change. | terms: tolerance -->
+
+The distinction matters because process design and tolerance respond differently to improvements in the fabricator. Process design often encodes assumptions about how production must proceed: how work is decomposed, what information is supplied, which tools are available, and where supervision occurs. Those assumptions can change as the fabricator and its interfaces improve. Tolerances describe properties of the product that production must preserve. A more capable fabricator may require a different process --- or much less process --- without changing the memory bound, security boundary, accessibility requirement, or deployment constraint that the resulting system must satisfy.
+
+% <!-- point: mage-concentrates-on-the-tolerance-side-of-the-factory | MAGE applies to process design and tolerance: Modeling supports reasoning about the work, Alignment constrains work and checks results, and governance conversion preserves lessons for later tasks; engineers choose the workflow and the degrees of freedom it leaves open. | terms: tolerance -->
+
+MAGE applies to process design as well as tolerance. DocAble's emphasis on tolerance reflects the needs of that project. Modeling helps engineers reason about how to organize work, for example by showing dependencies that affect how it can be divided. Alignment can constrain how the work proceeds and check its results: permissions can restrict tool access, and gates can require evidence before accepting a change. Engineers use governance conversion to turn lessons from recurring failures and repeated judgment into models, instructions, or checks that later work inherits. These structures can preserve process decisions as well as requirements for the software. MAGE leaves the particular workflow to the engineer, who must decide which choices to constrain and which to leave open as degrees of freedom for the agent.
+
+\section{The Engineer in the Factory}\label{heading:the-engineer-in-the-factory}
+
+% <!-- point: both-problems-require-judgment-that-shapes-later-production | Both problems require human judgment — about decomposition, information, authority, review, and admission on one side, and about which properties are consequential and what evidence establishes them on the other — exercised once so it shapes subsequent production, with the industrial cases showing the leverage directly. | terms: tolerance -->
+
+In both aspects of factory engineering, human engineers use their judgment to decide what the production system should carry. Process design requires decisions about decomposition, information, authority, tools, review, and admission. Tolerance requires decisions about which properties are consequential, how they should be represented, and what evidence should establish them. These structures allow judgment exercised once to shape subsequent production rather than requiring the same judgment to be exercised again for every realization. The industrial cases show the leverage directly: one policy, skill, verifier, or shared representation can govern a class of later work.
+
+% <!-- point: agents-sit-outside-the-accountability-mechanisms-that-delegate-judgment-to-people | Organizations delegate judgment to people partly through incentives and accountability, agents sit outside every one of those loops, and greater capability does not remove the difference, so the human engineer decides which decisions may remain with the agent and which need stronger control through the production system. -->
+
+Why not simply delegate that judgment to a sufficiently capable agent? Organizations have long delegated consequential judgment to people, but they do so partly through incentives and accountability: people can be trained, rewarded, promoted, disciplined, fired, held professionally responsible, or subjected to legal sanction.\citep{marchsimon1958} Coding agents cannot be promoted, disciplined, fired, or held legally accountable in the ways human employees can. Instructions, context, and process can shape their behavior, but they cannot reproduce these organizational mechanisms for delegating consequential judgment. Greater capability does not remove this difference. The human engineer therefore remains responsible for deciding which decisions may safely remain with the agent and which require stronger control through the production system.
+
+% <!-- point: tolerance-preserves-control-without-specifying-the-realization | A tolerance preserves engineering control without specifying realization: the engineer names the consequential property and the evidence required for it, the agent keeps the remaining degrees of freedom, and the task is to decide which judgments the factory carries forward. | terms: tolerance -->
+
+Tolerance provides one way to preserve that control without specifying realization completely. A memory model need not specify the implementation that satisfies the memory bound, nor must a deployment model determine the internal structure of every service. The engineer identifies the consequential property and the evidence required for it; the agent retains the remaining degrees of freedom. Process design can similarly constrain where and how the agent works. In either case, the engineer\textquotesingle s task is to decide which judgments the factory must carry forward and which may be supplied by the fabricator during realization.
+
+\section{Factories Inside and Outside the Organization}\label{heading:factories-inside-and-outside-the-organization}
+
+% <!-- point: the-cases-differ-in-who-supplies-the-factory | The cases differ in who supplies the factory: some are internal production systems whose owners engineer the factory their agents work through, while others move toward a reusable factory in a box supplied to organizations the provider does not own. -->
+
+The cases also differ in who supplies the factory. DocAble and several systems in \magevalue{sec:mage-in-the-wild} are substantially internal production systems: the organization engineering the software also engineers much of the factory through which agents participate in its production. Other systems move toward a factory in a box: a reusable production system supplied to organizations whose software, requirements, and engineering knowledge the factory provider does not own.
+
+% <!-- point: every-factory-joins-capability-to-organization-specific-intent | Every software factory must join productive capability to organization-specific engineering intent; an internal factory builds that connection directly, and a factory in a box must solve the same problem across an organizational boundary. -->
+
+Every software factory must join productive capability to organization-specific engineering intent. An internal factory can build that connection directly into its representations, processes, controls, and evidence mechanisms because the organization owns both the production system and the engineering knowledge it must carry. A factory in a box must solve the same problem across an organizational boundary.
+
+% <!-- point: a-provider-cannot-know-which-properties-are-consequential | A provider can supply agents, orchestration, context, execution, permissions, evidence infrastructure, and generic controls, but cannot know which properties of a customer's software are consequential, so the customer's engineering knowledge must enter a generic production system. -->
+
+The provider can supply agents, orchestration, context-delivery machinery, execution environments, permissions, evidence infrastructure, and generic controls. It cannot know in advance which properties of a customer\textquotesingle s software are consequential, which variation is acceptable, or what evidence should establish that an obligation has been satisfied. The customer must supply that engineering knowledge, and the factory must provide means for making it consequential in production. The external factory therefore makes an existing integration problem harder: organization-specific intent must enter a generic production system without returning every consequential judgment to human inspection of the resulting implementation.
+
+% <!-- point: joining-capacity-to-control-remains-an-open-design-space | How a factory in a box provides means of designing the production process, of representing and enforcing product tolerances, or both remains an open design space; the narrower point is that productive capacity and engineering control need not come from the same place. | terms: tolerance -->
+
+This remains an open design space. A factory in a box might provide richer means of designing the production process, richer means of representing and enforcing product tolerances, or both. Improvements in the underlying agents may also change which parts of the factory are worth carrying. The important point for the cases in this chapter is narrower: productive capacity and engineering control need not come from the same place, and an agentic factory must somehow join them.
+
+\subsection{Where Factory Advantage Comes From}\label{heading:where-factory-advantage-comes-from}
+
+% <!-- point: factory-advantage-depends-on-the-work | Reproducing observable functionality, implementing a specified change, and evolving software under unresolved requirements make different demands on inherited engineering knowledge. -->
+
+How much a factory helps depends on the work it is asked to support. Reproducing observable functionality gives an engineer an existing behavior to target. Implementing a specified change supplies a different target: a desired departure from the current system. Evolving software under ambiguous requirements also requires deciding what should change and what would make the result acceptable. These activities make different demands on inherited engineering knowledge. A capable agent might reproduce a feature without knowing why it was designed that way, yet need the missing rationale when deciding how the feature should change. This is a distinction among engineering questions, not a universal ranking of task difficulty.
+
+% <!-- point: preserved-knowledge-can-reduce-the-cost-of-continuing-evolution | Source access does not necessarily transfer the rationale and obligations needed to evolve software at comparable cost, but recipients may recover that knowledge or substitute other resources. -->
+
+The potential advantage lies in work that another engineer would otherwise have to repeat. Consider changing a document exporter. Its source reveals how it currently writes a file; an architectural decision may explain why it preserves an apparently redundant field, and a compatibility test may identify a downstream reader that depends on that field. Together, these resources can prevent a locally sensible change from breaking an obligation that was expensive to discover. Distributing source need not transfer all of that capacity. But a recipient might recover the missing knowledge from history, observations, or stronger agents, making the advantage smaller or temporary.
+
+% <!-- point: useful-factory-resources-need-not-provide-durable-commercial-advantage | Barney's resource-based account and Porter's activity-fit account help interpret a possible factory advantage without establishing that agentic factories possess one. -->
+
+A useful factory is not automatically a durable commercial advantage. Barney\textquotesingle s resource-based account asks whether resources are valuable and rare, difficult to imitate, and resistant to substitution.\citep{barney1991resources} Applied here, that asks whether a factory\textquotesingle s knowledge and machinery improve delivery in ways competitors cannot readily reproduce or replace. Porter emphasizes how activities fit together in sustaining competitive advantage.\citep{porter1996strategy} A model, its validator, and the process that keeps both current may help one another; copying just the model may transfer little benefit. These business arguments suggest how to interpret factory differences; they do not establish that any particular agentic factory has a lasting advantage.
+
+% <!-- point: factory-comparisons-must-count-reconstruction-and-upkeep | Factory comparisons require common obligations and must include construction or reconstruction, integration, operation, and upkeep; resources useful in one organization may not transfer economically to another. -->
+
+The comparison must include the cost of keeping the factory useful. Construction or reconstruction, integration, operation, and upkeep all belong in the account, alongside requirements discovery and validation of delivered changes. Obsolete guidance can make a factory worse, and resources useful inside one organization may be costly to adapt elsewhere. The engineering question is whether retaining or acquiring those resources improves delivery under the same obligations. Their commercial value also depends on whether customers continue to need the changes that the factory makes economical.
+```
+
+### Close on process design, tolerance, and engineering authority
+
+Source: `book/latex/sources/part5/5.5-engineering-the-factory.tex`, lines 1–22; SHA-256 `0cd7ce1e1af1b753f5038826fe307e31c2e30dbdecbf0df4ddf84f7167c79618`. Reason: Close on process design, tolerance, and engineering authority.
+
+```latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Agentic Software Factories -->
+
+% <!-- chapter-title: Coda: Engineering the Factory -->
+
+% <!-- coda: true -->
+
+\chapter{Coda: Engineering the Factory}
+
+% <!-- point: process-design-and-tolerance-describe-the-differences-without-a-maturity-model | The cases show software production reorganizing around capable agents, and the distinction between process design and tolerance describes how they differ without treating those differences as stages of a common maturity model. | terms: tolerance -->
+
+The cases in this chapter show several ways that software production is reorganizing around capable agents. Contemporary factories differ in where they place engineering knowledge, how they arrange production, how they divide work between people and agents, and how they evaluate what production yields. The distinction between process design and tolerance lets us describe those differences without treating them as stages of a common maturity model --- factory designers can reasonably place engineering control in different parts of the production system.
+
+% <!-- point: supervision-capacity-and-carrying-cost-become-visible-as-realization-gets-cheaper | The comparison also exposes two standing costs, both treated in the preceding section: supervisory capacity is finite, and engineering structure carries a maintenance burden. Agent capability changes both tradeoffs. | terms: tolerance -->
+
+The comparison also exposes two standing costs: supervisory capacity is finite, and engineering structure carries a maintenance burden (\{\{sec:engineers-in-the-software-factory\}\}). Agent capability changes both tradeoffs, because a better fabricator can reduce the process required around realization without removing the need to establish consequential properties of what it produces.
+
+% <!-- point: process-design-and-tolerance-give-machinery-for-the-theory-chapter | The same distinction supplies the means for the theory chapter: how engineering work is redistributed as realization becomes cheaper, why some judgments move into durable production structures, and where representation, evidence, and attention cost. | terms: tolerance -->
+
+It also gives us the means to go further. Process design asks how work, information, authority, evidence, and admission are arranged around a capable fabricator. Tolerance asks which variation the factory permits and which properties it must keep under engineering control. Together, those ideas let us model how engineering work is redistributed as realization becomes cheaper and more capable, why some judgments are worth moving into durable production structures, and where the costs of representation, evidence, and human attention should appear. \magevalue{chapter:theory} develops a mathematical model of agentic engineering and a dynamic model of engineering practice, then uses them to derive predictions about how agent capability, engineering structure, and the economics of controlled change interact.
+```
+
+
+## Chapter 5 evidence revision — 2026-11-09
+
+Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. Author requested retaining empirical density while consolidating figures, selecting six conversion episodes, and adding the Purdue human-remediation comparison. Displaced substantive copy is preserved below in its original native form; unique measurement details are retained in the revised evidence ledger.
+
+### book/latex/sources/appendix-evidence-ledger/_opening.tex
+
+Original lines 1–12; SHA-256 `205dfaca0a70720fb6f0720452da0e14295673f8c3b319e3d056a8c2b4db9558`.
+
+````latex
+% mage-auto-heading: g.1-how-to-read-this-ledger
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{G.1 How to Read This Ledger}\label{heading:g.1-how-to-read-this-ledger}
+
+\magevalue{chapter:software-factories} presents the DocAble case over time. This appendix carries the quantitative and repository-level receipts behind its numerical claims.
+
+Each section gives the measurement, its source or counting procedure, the observation window where one applies, the resulting values, and the main limit on interpretation. Unless stated otherwise, these are within-case descriptive measurements. They do not establish causal effects, comparative productivity, or portable target values.
+
+The measurements fall into six groups: build scale and repository motion; model correspondence and drift; model coverage; representation and navigation cost; development and processing costs; and the relationship between measurement and enforcement.
+
+The ledger exists for traceability. A number summarized in \magevalue{chapter:software-factories} should be recoverable here, together with the assumptions that bound it.
+
+````
+
+### book/latex/sources/appendix-evidence-ledger/evidence-tables.tex
+
+Original lines 1–406; SHA-256 `6fbfc9e368c175ea2469b98806744c50df428374336b1b15b8a5b9bf5555e641`.
+
+````latex
+% mage-auto-heading: g.2-build-scale-and-repository-motion
+% mage-auto-heading: g.3-model-correspondence-and-drift
+% mage-auto-heading: g.7.1-provisional-cost-and-time-model
+% mage-auto-heading: g.7.2-cold-start-contrast-case
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{G.2 Build Scale and Repository Motion}\label{heading:g.2-build-scale-and-repository-motion}
+
+\subsection{G.2.1 Weekly Commit Volume}\label{heading:velocity}
+
+Weekly commit volume rose sharply as the agent fleet expanded, exceeded \magevalue{commits_per_week} commits per week during sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval \magevalue{chapter:software-factories} identifies as hardening, then rose again.
+
+During hardening, a larger share of classified commits concerned models, validation, tests, and control machinery. Commit counts do not establish why volume changed or whether productivity rose or fell.\magefootnote{g-vacation}{On some of these weeks, the author purportedly went on vacation.} \autoref{velocity-curve} plots the weekly series.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/velocity-commits-per-week-fb298a5a8a.pdf}
+\caption{\emph{Weekly Commit Volume.} Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits.}
+\label{velocity-curve}
+\end{figure}
+
+% <!-- FUTURE: When available, add Epics-closed/week and reopens/week — either onto Figure H-1 or immediately after it. Commits measure activity; completed engineering units are a complementary measure closer to durable throughput. Insert the planned reviewer-capacity bound here once measured, and keep it a sensitivity analysis rather than an assertion about actual review speed. -->
+
+\subsection{G.2.2 Support-Apparatus Ratio}\label{heading:support-ratio}
+
+Production and support-apparatus source were counted at five dated repository states across the seven primary source roots. The counting procedure fails if an expected root is absent. These counts are the source for the support-ratio curve in \magevalue{chapter:software-factories}.
+
+The first four rows are historical states and are recorded as measured. The last row reports the repository at the study window's declared endpoint; its date and its three figures come from the token registry, so moving the endpoint moves the row rather than inviting a retyped number.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+Window & Production LoC & Support LoC & Support ratio \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Prototype --- Apr. 9 & 26,956 & 22,908 & 0.85× \\
+Mechanization --- May 31 & 302,844 & 751,050 & 2.48× \\
+Hardening --- Jun. 30 & 337,905 & 1,244,194 & 3.68× \\
+Study close --- Aug. 3 & 491,090 & 1,501,907 & 3.06× \\
+Window end --- \magevalue{window_end_display} & \magevalue{prod_loc} & \magevalue{support_loc} & \magevalue{support_ratio}× \\
+\end{longtable}
+}
+}
+
+Support-apparatus source began below parity with production source, crossed it by the mechanization snapshot, peaked at 3.68× during hardening, and fell to 3.06× by the Aug. 3 study close. It stood at \magevalue{support_ratio}× at the window end, still below the hardening peak.
+
+These counts describe how source was distributed in this repository. The ratio is not a measure of engineering value, engineering-capital return, or a recommended target for another project.
+
+\subsection{G.2.3 Product-Path Line Motion}\label{heading:churn}
+
+Lines added and deleted were counted over four windows for the two principal product paths:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{web/}} --- the Python service and worker.
+\item
+  \textbf{\texttt{backend/}} --- the C\# tool and rule engine.
+\end{itemize}
+
+Source: \texttt{git\ numstat} over the dated commit windows.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1579}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2105}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2105}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2105}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+web/ added
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+web/ deleted
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+backend/ added
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+backend/ deleted
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Prototype & 22,539 & 7,717 & 48,636 & 10,166 \\
+Mechanization & 371,855 & 161,044 & 941,120 & 286,378 \\
+Hardening & 179,649 & 33,983 & 109,188 & 3,767 \\
+Loop management & 96,825 & 14,332 & 116,313 & 9,708 \\
+\end{longtable}
+}
+}
+
+The mechanization window contains the largest add-and-delete volume, particularly in \texttt{backend/}. Deletions fall sharply in the later windows, and both paths become strongly net-additive. \autoref{churn-per-path} plots these counts.
+
+These counts are a repository-motion proxy, not the theoretical concept of churn used elsewhere in the book. Generated bundles and vendored trees are included where they occur; \magevalue{chapter:software-factories}\textquotesingle s accounting note describes that bounded inflation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/churn-per-path-261de74348.pdf}
+\caption{\emph{Product-Path Line Motion.} Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest observed line motion. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause.}
+\label{churn-per-path}
+\end{figure}
+
+\subsection{G.2.4 Growth of Countable Controls}\label{heading:control-growth}
+
+Project-specific lint files and gate scripts were counted at four repository states, using \texttt{git\ ls-tree} at the corresponding window SHA.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+Window & Lint files & Gate scripts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Prototype & 0 & 0 \\
+Mechanization & 336 & 20 \\
+Hardening & 595 & 76 \\
+Study close & 747 & 102 \\
+\end{longtable}
+}
+}
+
+This series stops at the study close. Its windows are repository SHAs rather than calendar dates, and the counting rule for gate scripts is not recorded, so it cannot be extended to the window endpoint the way the support-ratio series above was.
+
+Both counted surfaces begin at zero in the prototype snapshot. At the study close, the 747 lint files contain 993 registered lint specifications.
+
+Two further repository counts show that at least some controls were created in response to observed failures:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Paired fix-and-lint tags} --- 208 commits carry one.
+\item
+  \textbf{Incident-named lints} --- 27 lints name a specific dated incident in their text; spot checks confirmed that the sampled cases linked an observed failure to the resulting control.
+\end{itemize}
+
+These counts show both the growth of project-specific control machinery and a subset of cases where failures led to new controls. They do not show what fraction of all controls originated in failures rather than being designed prospectively, and raw control counts do not measure their value.
+
+% <!-- FUTURE: If practical, add the exact counting rule for fix-and-lint tags and incident-linked lints. A useful later complement would be the number of controls exercised after introduction — inventory and realized use are different quantities. -->
+
+\section{G.3 Model Correspondence and Drift}\label{heading:g.3-model-correspondence-and-drift}
+
+The measurements in this section concern model↔code correspondence only. Documentation drift is counted separately in G.3.5 and is excluded from the model-sync claim.
+
+The underlying question is narrow. After explicit models became reasoning surfaces, did model↔implementation drift occur, could derived checks detect it, and did the observed class recur after close?
+
+\subsection{G.3.1--G.3.4 Correspondence Results}\label{heading:model-sync-evidence}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Claim
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Measurement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Limitation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Model↔code drift existed before the derived floor & Re-run each closed Epic\textquotesingle s own lints against its closed state; classify findings by hand & Approximately 27 genuine model↔code drifts, including a production-blocking pointer drift and a fully typed function with zero consumers & Manual classification; no independently specified oracle \\
+Derived checks catch fresh drift & Re-run the derived floor at HEAD & 6 genuine catches: three traceability failures and three stale-anchor or stale-test failures & Small N; measures only governed surfaces \\
+Post-close recurrence of modeled, mechanically decidable drift & Census over 56 cumulative Epic closes & 0 observed across 56 cumulative Epic closes & Finite observation window; does not cover semantic or unmodeled drift \\
+Checks were exercised during continuing model-bridge change & \texttt{git\ numstat} over one week for the query/reactor, governance-graph, and frontend-build models & +8,970 / −173 lines across 63 commits & Line motion is a change-load proxy, not a measure of semantic difficulty \\
+\end{longtable}
+}
+}
+
+Manual review classified all approximately 27 pre-floor findings as genuine model↔code drift. Because that classification relied on human judgment rather than an independent criterion, the result establishes that drift existed before the floor, not the detector\textquotesingle s precision.
+
+The six HEAD catches were an unregistered model consumer, a missing component entry, a service-call-graph mismatch, and three stale-anchor or stale-test cases. A symbol-anchored drift lint, a consumer-registry-freshness check, and a service-call-graph drift lint detected them.
+
+Taken together, these observations establish a bounded within-case sequence: model↔code drift existed before the derived checks; the checks caught six fresh instances; and the modeled, mechanically decidable class did not recur across 56 closes during the measured window. They do not establish that the class was eliminated or that the mechanism prevents model drift.
+
+\subsection{G.3.5 Documentation Drift --- Excluded from the Model-Sync Claim}\label{heading:doc-hygiene-aside}
+
+Stale headers and stale prose numbers are documentation drift, not model↔code drift. They are counted separately because folding them into the correspondence measurements would inflate the model-sync evidence.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Documentation drift
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Refresh-window count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Detected by
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Resolution
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Status header frozen at a pre-close phase & 11 & Reading by a person or capable model & Close tooling rewrites the status atomically \\
+Stale prose number after the implementation moved past it & 9 & Model re-deriving the number from code & Routed one-line fix or audit finding \\
+\end{longtable}
+}
+}
+
+These observations concern prose that no derived correspondence check parses. They therefore say nothing about whether a model remains synchronized with implementation.
+
+\subsection{G.3.6 Scope of the Model-Sync Claim}\label{heading:model-sync-honest-reading}
+
+The correspondence mechanisms cover only modeled, mechanically decidable relationships, and the observed N is small. A semantic mismatch whose anchors still resolve may remain judgment-dependent, and an unmodeled region has no model-correspondence check at all.
+
+The results are therefore field observations about one governed surface, not a general catch rate or a proof of model correctness. Three cases stay distinct:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Derived correspondence} --- machinery can re-establish it from current artifacts.
+\item
+  \textbf{Semantic correspondence} --- it may still require judgment.
+\item
+  \textbf{Unmodeled regions} --- no model claim exists for them yet.
+\end{itemize}
+
+\section{G.4 Model Coverage}\label{heading:missing-model-drain}
+
+The traceability tracer measures the fraction of exercised code with no corresponding model claim. Repeated runs identified portions of the exercised surface that stayed outside the explicit model structure. Across the recorded sequence, the unmodeled fraction fell from \magevalue{missing_model_pilot_percent} on the first run to 7.89\% on the ninth.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Run
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Unmodeled exercised surface
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Note
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+First & \magevalue{missing_model_pilot_percent} & Majority of exercised code traced to no model claim \\
+Intermediate runs & declining & Successive model-loop Epics targeted large remaining orphan clusters \\
+Ninth & 7.89\% & Remaining orphan surface was small and explicitly identified \\
+\end{longtable}
+}
+}
+
+Three qualifications matter.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Coverage, not quality.} The metric measures coverage, not model quality. Code may trace to a model claim that is itself incomplete or poorly chosen.
+\item
+  \textbf{Operator-directed decline.} Each model-loop Epic targeted a large remaining orphan cluster. The decline reflects deliberate modeling work, not autonomous convergence.
+\item
+  \textbf{Not all orphans are debt.} An unmodeled exercised symbol may be a genuinely missing model, a missing anchor on an existing model, or implementation detail below the grain the model should represent. Backward tracing from exercised symbols to expected model edges distinguished these cases; only the first two necessarily call for more modeling. The unmodeled fraction measures absence of explicit representation, not engineering deficiency: the remainder may include unknown obligations, tacit obligations, and deliberately preserved degrees of freedom. MAGE does not prescribe zero as the target.
+\end{itemize}
+
+% <!-- FUTURE: Recover and publish all nine measurements, including denominator or relevant traceability counts if available. The present endpoint-only series supports the endpoint claim but is not yet the raw series the ledger ideally promises. -->
+
+\section{G.5 Representation and Navigation Cost}\label{heading:nav-pilot}
+
+A small exploratory pilot tested whether a model-derived navigation surface reduced the context an agent consumed while determining where to look in the repository.
+
+Across four tasks, model-guided navigation reduced reconstruction-token cost by a median of roughly 35\% relative to the from-scratch condition, with no observed loss of task-level correctness.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Measure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Baseline
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Model-guided
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Interpretation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Tasks & 4 & 4 & N too small for generalization \\
+Reconstruction-token cost & Full baseline & \textasciitilde35\% lower median & Directional evidence of reduced reconstruction effort \\
+Recorded correctness & Reference condition & No observed loss & The existing pilot does not support a general equivalence claim \\
+\end{longtable}
+}
+}
+
+The tasks were not independently sampled, and N=4 is too small to estimate a general effect. Within this small pilot, the result is consistent with the proposed mechanism: an explicit representation may reduce how much lower-level structure an agent must reconstruct before acting.
+
+% <!-- FUTURE: Supersede this subsection with the larger paired experiment already specified for the orchestrator — do not supplement it with another subsection. When those results exist, report task-level paired observations, tokens, tool/navigation calls, files opened, wall-clock time, and independently judged task success. -->
+
+\section{G.6 Cost and Scale Receipts}\label{heading:cost-receipt}
+
+These quantities establish orders of magnitude relevant to the \magevalue{chapter:software-factories} discussion. Their units, scopes, and cost categories differ; they are not entries in a comparative cost model.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Quantity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observed or estimated value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Basis
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Accessibility-checker findings in a representative deck & 42 & One graduate instructional deck evaluated with the built-in accessibility checker \\
+Manual remediation, one teaching load & ≈ \magevalue{diy_cost_per_course} estimated faculty labor & Findings/deck × minutes/finding × decks/course × loaded hourly rate \\
+Vendor remediation & \$3--\$40 / page & Market range collected during the study; not staffed for graduate-level subject annotation \\
+Automated processing, one representative deck & ≈ 1 minute; ≈ \$1 direct processing cost & Warm-start service near the end of the study period \\
+Direct development cost & ≈ \$60,000 & Roughly 20-week study; majority salary \\
+\end{longtable}
+}
+}
+
+The manual-remediation estimate and automated-processing figure use different units and cost categories. One estimates faculty labor across a teaching load; the other records direct processing cost for one representative deck. They indicate scale but are not a controlled cost comparison.
+
+The vendor range is a market observation, not a quality-adjusted comparison with DocAble. The development-cost figure is an order-of-magnitude direct-cost estimate, not audited project accounting.
+
+% <!-- FUTURE: Expand the ≈$20,000 estimate into its actual arithmetic once the underlying values are recovered. Attach provenance to the $3–$40/page vendor range. Break the ≈$60,000 direct-development estimate into salary, model/API, cloud, and other direct costs if those records are available. Add paired institutional-checker outcomes if available, and keep the resulting claim narrow — checker improvement is evidence about checker-detectable accessibility properties, not the complete experience of a disabled user. -->
+
+\section{G.7 Measurement Without Enforcement}\label{heading:measurement-seed}
+
+A measurement can be useful before it deserves enforcement.
+
+\subsection{G.7.1 Provisional Cost-and-Time Model}\label{heading:g.7.1-provisional-cost-and-time-model}
+
+A per-chunk worst-case cost-and-time estimate was recorded as a timestamped provisional model rather than embedded as a permanent code constant.
+
+Current instrumentation can report when an operation would exceed the provisional budget. Production admission does not depend on that estimate, because the observation base is not yet strong enough to justify a blocking threshold.
+
+The provisional bound need not be correct to be useful. The system keeps the stages separate: \textbf{observation → representation → reporting}. Because the evidence is insufficient, the estimate does not become a gate.
+
+% <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
+
+\subsection{G.7.2 Cold-Start Contrast Case}\label{heading:g.7.2-cold-start-contrast-case}
+
+The contrasting case did justify an engineering decision.
+
+The measured request-level cold-start value was 4,057 ms. That observation fed a topology model representing the longest cold-start path and motivated an architectural change. The resulting warm floor was 109 ms. The sequence is \textbf{request-level measurement (4,057 ms) → cold-start topology model → architectural change → 109 ms warm floor}.
+
+The contrast does not imply that every measured quantity should eventually become a gate. Enforcement requires evidence adequate to the decision being made. The provisional cost model remained report-only; the stable, structurally interpretable cold-start observation justified architectural action.
+
+% <!-- FUTURE: If retained as a quantitative receipt, document the measurement conditions for 4,057 ms and 109 ms — deployment state, hardware/service conditions, number of observations if available, and whether the reported values are single observations, maxima, medians, or another statistic. -->
+
+\section{G.8 What This Ledger Does Not Measure}\label{heading:does-not-measure}
+
+Most quantities in this appendix are activity, structural, or within-case mechanism measures:
+
+\begin{itemize}
+\tightlist
+\item
+  commits and line motion;
+\item
+  source distribution;
+\item
+  control counts;
+\item
+  model coverage;
+\item
+  correspondence catches and reopens;
+\item
+  exploratory navigation cost;
+\item
+  selected financial and runtime observations.
+\end{itemize}
+
+These are not direct estimates of the broader outcomes needed to compare MAGE with another engineering process: durable throughput, defect escape, human-attention burden, or total cost of ownership. The case follows one production system, one primary engineer directing an agent fleet, and one contemporary model ecosystem; it did not collect those outcomes under a controlled counterfactual. The measurements therefore establish what happened within the case and which mechanisms were exercised, not the effects another organization should expect from adopting MAGE.
+
+The ledger\textquotesingle s narrower purpose is traceability: the quantitative claims in \magevalue{chapter:software-factories} can be inspected independently of the surrounding argument.
+
+````
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex
+
+Original lines 1–688; SHA-256 `7eae7d064c5991780d925c943ab6a6104868453ab54c5557d3863eefe7d937a4`.
+
+````latex
+% mage-auto-heading: building-the-factory
+% mage-auto-heading: the-feasibility-probe
+% mage-auto-heading: the-two-rules-of-agentic-software-engineering
+% mage-auto-heading: the-build-in-stages
+% mage-auto-heading: the-build-measured-weekly
+% mage-auto-heading: what-accumulated-and-why
+% mage-auto-heading: inside-the-factory
+% mage-auto-heading: what-the-factory-knows
+% mage-auto-heading: the-joins-what-the-factory-can-derive-and-enforce
+% mage-auto-heading: the-computation-graph-a-representation-that-took-over-execution
+% mage-auto-heading: the-factory-in-operation
+% mage-auto-heading: from-a-priority-to-completed-work
+% mage-auto-heading: what-escalated-failures-became
+% mage-auto-heading: the-supervisors-job
+% mage-auto-heading: economics
+% mage-auto-heading: liability
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Agentic Software Factories -->
+
+% <!-- chapter-title: Inside DocAble's Software Factory -->
+
+\chapter{Inside DocAble\textquotesingle s Software Factory}
+
+% <!-- box-family: evidence -->
+
+\begin{quote}
+\mbox{}%
+\subsection{This section illustrates}\label{heading:illustrates}
+
+✓ The Modeling Principle · ✓ The Alignment Principle · ✓ Governance Conversion · ✓ Residual Human Judgment
+\end{quote}
+
+% <!-- point: one-engineer-directed-a-fleet | One engineer directed coding agents over the 31 complete weeks examined; the final snapshot contains 615,395 production lines, 2,333,471 apparatus lines, and 143 model modules. | terms: fleet-scale -->
+
+DocAble was built by one engineer (me) directing a fleet of coding agents. The record examined here spans \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. At the final snapshot, the system contained \magevalue{seip_prod_loc} lines of production code and \magevalue{seip_apparatus_loc} lines of engineering apparatus, including tests, checks, tools, infrastructure, models, and indexed documentation. The history identified \magevalue{seip_models} model modules. These measurements describe the resulting software and its engineering environment; they do not measure how much useful work each line or model represents.
+
+% <!-- point: the-engineers-role-was-engineering-not-implementation | New work did not originate in the agents or the factory's models. It came from engineering needs: goals, user feedback, production failures, standards obligations, advocacy guidance, and institutional use. The engineer decided which pressures became engineering work and made the consequential decisions about requirements, architecture, validation, and deployment. | terms: governed-engineering-environment -->
+
+New work did not originate primarily in the coding agents or the factory\textquotesingle s existing models. It came from engineering needs: my own goals for the system, user feedback, failures observed in production, changes and obligations in accessibility standards, public guidance from accessibility advocacy groups,\citep{nfb-accessible-documents-2014} and the demands introduced as the system moved into institutional use. I decided which of these pressures became engineering work and made the consequential decisions about requirements, architecture, validation, and deployment.
+
+% <!-- point: product-decisions-became-factory-obligations | Product requirements and architectural decisions became obligations for the environment in which coding agents changed DocAble. -->
+
+I was engineering two coupled systems: DocAble and the factory that produced it. The product had to improve accessibility while preserving the document properties its users depended on. Those requirements shaped the architecture, and the factory had to preserve the resulting decisions as agents changed the implementation. When a library operation destroyed existing accessibility structure, for example, the product acquired a typed mutation interface, and the development environment acquired a check rejecting writes outside that interface. The repair changed both what the product could do and how future agents could change it.
+
+% <!-- point: the-agents-performed-the-entire-implementation | The existing engineering environment shaped how the work could be realized: architecture, tests, models, instructions, validators, deployment machinery, and accumulated controls carried earlier decisions. Agents implemented inside it, and the engineer's attention went to direction, evidence, admission, and changing the production system. | terms: fleet-scale -->
+
+The existing engineering environment then shaped how that work could be realized. Architecture, tests, system models, project instructions, validators, deployment machinery, and accumulated controls carried decisions made during earlier work. Agents performed most of the implementation inside that environment. I inspected almost none of the code they produced. My attention went instead to deciding what should change, resolving consequential design questions, examining evidence and failures, deciding what work could be admitted, and changing the production system when later work should inherit an earlier judgment.
+
+% <!-- point: the-division-of-work-is-the-factory-examined | That division of work is the factory this section examines, in seven movements: the problem, the build with its longitudinal record, the mature factory's representations and machinery, its operation, the supervisor's changed job, the economics, and the liabilities that came with it. -->
+
+That division of work is the factory examined in this section. The section moves in seven steps: the problem the factory was built for; the build, read from the repository\textquotesingle s own weekly record; the mature factory\textquotesingle s representations and machinery; that factory in operation; the supervisor\textquotesingle s changed job; the economics; and the liabilities that came with it. The chronology matters because none of it arrived fully formed. As realization accelerated, failures exposed missing representations, controls, and supervisory surfaces; the production system changed in response.
+
+% <!-- point: requirements-ordinary-capacity-unusual | The requirements were ordinary production-software requirements; the unusual condition was the implementation capacity available to one engineer. | terms: governance-target-product -->
+
+The requirements were not unusual for production software. \magevalue{chapter:problem} introduced them by kind; this section states them in full, where they begin to do their work. What was unusual was the implementation capacity available to one engineer.
+
+\section{The Problem}\label{heading:nearly-free}
+
+% <!-- section-terms: doj-2024-rule, remediation-cost -->
+
+% <!-- point: the-rule-and-the-extension | The 2024 DOJ rule set WCAG 2.1 AA and a 2026 deadline; four days before the deadline, the Department extended it by a year. | terms: doj-2024-rule, ada-title-ii -->
+
+In 2024, the U.S. Department of Justice required state and local governments, including public universities and schools, to make covered web content and mobile applications conform to \magevalue{doj_technical_standard}.\citep{doj-web-accessibility-2024} The original compliance date for larger public entities was April 24, 2026. Four days before that deadline, the Department extended it by one year.\citep{doj2026extension}
+
+% <!-- point: the-explanation-was-a-production-problem | The Department's explanation described a production problem: technology, including generative AI, had not delivered remediation at scale. | terms: doj-2024-rule -->
+
+The Department\textquotesingle s explanation described a production problem. Public entities held large amounts of inaccessible material and limited staff to remediate it. Correspondence cited in the rule argued that current technology, "including generative AI," could not reliably automate the remediation of STEM materials at scale. The Department itself concluded that the advancement and availability of technology "did not meet the Department\textquotesingle s expectations."
+
+% <!-- point: institutional-remediation-made-the-workload-concrete | The undergraduate effort motivates requirements for scale and reviewable quality; its measured outcomes appear in Economics. -->
+
+The undergraduate remediation effort introduced in \magevalue{sec:mage-by-example} made the workload concrete: even trained staff needed substantial time to repair ordinary course materials. Automation would have to reduce that recurring effort while producing results instructors could review and trust. The comparison later in this section examines both the outputs and the remaining limits of the evidence.
+
+% <!-- point: box-checking-sharpened-the-target | The Department recorded a quality concern — that the workload would produce procedural box-checking rather than sustainable accessibility work — and that concern sharpened the target: passing a checker is neither making a document accessible nor producing work an institution could defend in a lawsuit. | terms: doj-2024-rule, wcag-conformance -->
+
+The Department also recorded a quality concern: institutions facing this workload might respond with rapid procedural box-checking rather than sustainable accessibility work. Passing an accessibility checker is not the same as making a document accessible --- or producing work an institution could defend in a lawsuit.\magefootnote{accessibility-litigation}{Digital-accessibility litigation is tracked continuously rather than reported as a closed figure. UsableNet\textquotesingle s ADA Accessibility Lawsuit Tracker enumerates federal and key state-court digital-accessibility cases on a monthly cadence, and recorded 4,928 web-accessibility lawsuits filed during 2025.\citep{usablenet-lawsuit-tracker} Laura Carlson maintains the higher-education-specific tally of lawsuits, complaints, and settlements.\citep{CarlsonHigherEdAccessibilityLawsuits} Both are living sources; the count above is the reading at the access date recorded in the bibliography, not a settled total.}
+
+% <!-- point: the-eight-requirements-stated-where-they-work | The eight requirements are stated in full here, where they do their work: {{sec:mage-by-example}} grouped them into kinds of obligation to establish the problem; stated in full, they explain why demonstrating semantic reasoning was only the beginning. | terms: governance-target-product -->
+
+\magevalue{sec:mage-by-example} grouped these obligations by kind to establish the nature of the problem. \autoref{docable-requirements} states the eight requirements: they explain why demonstrating semantic reasoning was only the beginning.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[The DocAble requirements]{What DocAble had to accomplish. The eight requirements, R1--R8 --- the specification the factory had to satisfy, which \magevalue{sec:mage-by-example} introduced by kind.}\label{docable-requirements}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+R1 · Multi-format remediation & Remediate educational documents in the formats people actually use, including Office (PowerPoint, Word, Excel) and PDF. \\
+R2 · Semantic remediation & Perform semantic repairs that require understanding document content, not only syntactic, deterministic transformations. \\
+R3 · Preserve the document & Retain content, appearance, and behavior except where remediation requires a change. \\
+R4 · Standards-grounded accessibility & Evaluate and repair documents against their governing obligations (WCAG 2.1 AA), not proxy checker scores. \\
+R5 · Evidence & Record what accessibility requirement motivated each change and what evidence supports the resulting document state. \\
+R6 · Reviewability & Make outputs auditably traceable: consequential automated changes are inspectable and, where appropriate, reversible. \\
+R7 · Production operation & Process real documents at practical sizes, costs, and latency. \\
+R8 · Institutional deployment & Operate as a deployed service that scales to thousands of faculty at one institution, and preferably nationwide. \\
+\end{longtable}
+}
+
+% <!-- point: requirements-explain-the-size | Semantic reasoning was only one requirement of eight. The capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation. Those obligations generated the engineering system around the model. | terms: governance-target-product -->
+
+These requirements explain why the resulting system grew large. Semantic reasoning was only one requirement of eight. A frontier model could supply a capability that had previously been missing. That capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation; each remained an engineering obligation. Those obligations generated the engineering system around the model.
+
+% <!-- point: the-first-question-was-whether-the-capability-was-real | Seven of the eight requirements were engineering. The first question was whether frontier models could supply the missing capability. | terms: feasibility-probe -->
+
+The first question was whether frontier models could supply the missing capability.
+
+\section{Building the Factory}\label{heading:building-the-factory}
+
+% <!-- section-terms: feasibility-probe, stage-sequence, support-ratio -->
+
+\subsection{The Feasibility Probe}\label{heading:the-feasibility-probe}
+
+% <!-- point: docable-began-with-a-feasibility-question | DocAble began with a feasibility question, because remediation requires semantic reasoning: figures, tables, reading order, hierarchy, emphasis, and visual arrangement all carry meaning a machine must recover to present through another channel. | terms: feasibility-probe, semantic-artifact -->
+
+% <!-- index-def: semantic-artifact -->
+
+DocAble began with a feasibility question. Document remediation requires semantic reasoning. A document is not merely a container of text: figures, tables, reading order, hierarchy, emphasis, and visual arrangement all carry meaning. Making that document accessible requires recovering enough of that meaning to present it through another channel --- to a screen reader, to a keyboard, or to a student who cannot see the figure a lecturer drew.
+
+% <!-- point: conventional-automation-could-not-supply-that-reasoning | Automated accessibility had historically been unable to supply that reasoning — too many formats, and too many ways of expressing the same idea, for conventional automation to enumerate — so modern frontier models were obvious candidates. | terms: semantic-gap, vision-language-model -->
+
+Automated accessibility had historically been unable to supply much of this reasoning. Documents come in too many formats, and humans express the same ideas in too many ways, for conventional automation to enumerate the possibilities. Earlier reasoning systems could not reliably bridge that semantic gap. Modern frontier models were obvious candidates.
+
+% <!-- point: the-probe-tested-the-uncertain-part-first | The probe gave a multimodal model pictures of equations, technical slides, and handwritten notes; it interpreted them and produced useful transcriptions and alternative text. | terms: feasibility-probe, vision-language-model -->
+
+I gave a multimodal model pictures of mathematical equations, technical slides, and handwritten notes. It had no trouble interpreting them and producing useful transcriptions and alternative text.
+
+% <!-- point: the-rest-was-engineering | The probe established that generative AI could supply the semantic reasoning remediation needed; building a reliable production system around it remained an engineering problem. | terms: feasibility-probe, semantic-gap -->
+
+The feasibility probe established that generative AI could supply the semantic reasoning needed for remediation. Building a reliable production system around that capability remained an engineering problem.
+
+% <!-- point: engineering-set-the-price-of-the-reasoning | Different structure-inference experiments illustrate how an engineered representation changes the reasoning task; unpaired fixtures do not establish an equivalent-quality speedup. | terms: feasibility-probe -->
+
+Later experiments examined what an engineered representation could contribute. In one setting, frontier agents inferred PDF structure from scratch through multiple tool interactions. In another, a frontier model inferred structure in one pass over a prepared scaffold on a separate clean-room prose fixture. The scaffolded pass achieved high agreement with that fixture's reference structure at much lower inference cost; cheaper models could also use the scaffold. The experiments involved different documents and interaction patterns, so they do not establish a matched cost reduction at equivalent quality. They do illustrate an engineering choice: what the model must reconstruct and what useful structure it can inherit. The whole-document agent comparison in the Economics section provides a more direct, though still small, comparison of remediation workflows.\citep{davis2026docable}
+
+% <!-- point: cost-was-only-one-reason-not-to-hand-the-document-to-the-model | Cost was one reason among several: DocAble separated semantic judgment from consequential mutation, so models reasoned over representations, typed operations changed the artifact, independent validators checked mechanically establishable properties, and provenance was embedded with mutations so the change record could be reconstructed from the document. -->
+
+Cost was only one reason not to make the model the remediation system. DocAble instead separated semantic judgment from consequential mutation. Models reasoned over representations; typed operations changed the artifact; independent validators checked properties that could be established mechanically; and provenance was embedded with consequential mutations, so that the eventual change record could be reconstructed from the document rather than trusted as a model-generated account.
+
+\subsection{The Two Rules of Agentic Software Engineering}\label{heading:the-two-rules-of-agentic-software-engineering}
+
+% <!-- point: not-reading-the-code-was-deliberate | Not reading the code was deliberate: inspecting agent-produced implementation would have bounded implementation throughput by the engineer's own reading capacity, so the first rule made reading the last resort and an engineering environment the surface through which work was directed and judged. | terms: fleet-scale -->
+
+I began with two rules.
+
+\textbf{Reading the code is the last resort.} Not reading the code was deliberate. If building DocAble required me to inspect the implementation produced by coding agents, then implementation throughput would remain bounded by my capacity to read code. The point was not to become faster at code review. It was to build an engineering environment in which I could direct work, understand the system, evaluate evidence, and decide whether changes were acceptable without routinely reconstructing those answers from implementation.
+
+% <!-- point: reading-the-code-was-the-escape-hatch | The rule did not forbid reading source: needing to read it pointed to a missing supervisory surface — a model, test, lint, instrument, or architectural boundary — so reading was the escape hatch, not the operating model. | terms: fleet-scale -->
+
+This did not mean that I refused to read source code. It meant that needing to read it pointed to a missing supervisory surface: a model, test, lint, instrument, architectural boundary, or other representation of the property I actually needed to reason about. Reading the code was the escape hatch, not the operating model.
+
+% <!-- point: good-fast-and-cheap-became-a-rule-for-the-factory | The second rule required the resulting system to be good, fast, and cheap — partly a DocAble requirement, partly a test of whether agents could help build a production system good enough to trust, fast enough to matter, and cheap enough to deploy at scale. -->
+
+\textbf{The resulting system should be good, fast, and cheap.} This was partly a requirement for DocAble and partly a test of agentic software engineering itself. I wanted to know whether agents could help build a production system that was not merely fast to develop, but good enough to trust, fast enough to matter, and cheap enough to deploy at scale. I therefore made all three requirements of the factory.
+
+% <!-- point: failing-any-one-of-the-three-fails-the-test | A fast factory producing poor software would fail the test, and so would a high-quality system that stayed prohibitively expensive to develop or operate; agentic implementation was valuable only if the engineering system around it achieved all three. -->
+
+A fast factory producing poor software would fail the test. So would a high-quality system whose development or operation remained prohibitively expensive. Agentic implementation was valuable only if the engineering system around it could achieve all three.
+
+\subsection{The Build, in Stages}\label{heading:the-build-in-stages}
+
+% <!-- point: the-build-moved-under-concrete-pressures | The build moved chronologically under concrete pressures: PowerPoint first, then more formats, deployment, real users, inadequate checkers, and hardening. Most new work entered through pressures outside the fabricator, which the engineer translated into engineering work that the accumulated production system then shaped. | terms: stage-sequence -->
+
+I opened an empty repository and began with PowerPoint. The first program walked the contents of a slide deck and sent figures and equations to a model for description. Colleagues asked whether it could handle PDFs, so I generalized the system to Word and Excel and began adding PDF support (R1); documents from other people immediately exposed assumptions my own files had not. Putting the system online --- \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} runs in beta at \href{\%7B\%7Bproduct_url\%7D\%7D}{scholaccess.com} --- introduced authentication, deployment, institutional use, and feedback from documents I had never seen (R8). Users then found outputs that passed existing accessibility checkers while losing semantic equivalence, so I replaced those checkers as the primary validation mechanism with validation grounded directly in the accessibility standards (R4). When the Department of Justice extended the compliance deadline, the immediate deadline pressure receded, and I shifted the project toward production hardening (R7). Most new work entered the factory through pressures outside the fabricator: new users and documents, observed failures, deployment demands, standards obligations, and my own engineering objectives. I translated those pressures into engineering work; the accumulated production system shaped how agents could realize it. \autoref{build-stages-timeline} gives the sequence. In a few months, a feasibility experiment had become a production software system.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/build-stages-timeline-a24e34269b.pdf}
+\caption{\emph{The Seven Build Stages.} Retrospective sequence from the March feasibility probe to the July--September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.}
+\label{build-stages-timeline}
+\end{figure}
+
+% <!-- point: what-the-engineer-did-while-agents-implemented | The engineer's role, visible in the stage narrative's own decisions: deciding what should change and on what evidence — retiring checker scores for standards-grounded validation, reading the deadline extension as a shift in engineering risk — while agents implemented, and changing the environment when a judgment should not recur. -->
+
+The stages also show how my work differed from the agents\textquotesingle{} work. Take the checker replacement apart: the decision --- retire checker scores as the primary validation and ground validation in the accessibility standards instead --- was mine; the implementation was the agents\textquotesingle; the evidence that forced the choice was the users\textquotesingle{} documents, which had passed the checkers and still lost meaning. The response to the deadline extension separates the same way: reading the extension as a shift in engineering risk, away from shipping against a date and toward production hardening, was my decision; the hardening work it implied was the agents\textquotesingle. That division held throughout: I directed consequential changes and established what evidence would justify accepting them; agents implemented and investigated; and when a failure exposed a weakness in the system or its engineering environment, I changed the environment so the same judgment would not have to be made again.
+
+% <!-- point: format-breadth-had-two-justifications | Supporting another document format had two distinct justifications: product value — users need the format — and information value: implementing it tests whether the architecture is general. | terms: governance-target-product -->
+
+One class of decisions concerned which formats to support. Multi-format remediation was already a product requirement: users needed Office and PDF. But I deliberately supported additional formats, including LibreOffice documents and editable sources such as LaTeX and Typst, partly for what implementing them could teach us about the architecture.
+
+If code is cheap and abstractions are expensive, how do we discover the right abstractions? One way is to use implementation to test them. An architecture developed around PowerPoint may appear general while quietly depending on its conventions. Supporting spreadsheets, other document formats, and editable source representations tests whether the interfaces capture the underlying remediation problem or merely the first formats implemented.
+
+% <!-- point: breadth-tests-depth | The technique: propose an abstraction, implement additional members of the format family, and examine where special cases appear — essential format differences separated from accidental assumptions, with the engineer deciding whether to revise. -->
+
+The technique is to propose an abstraction, implement additional members of the family, and examine where special cases appear. Some differences are essential to the formats; others reveal accidental assumptions in the architecture. The engineer must distinguish between them and decide whether to revise the abstraction. The additional implementations therefore serve two purposes: delivering useful capabilities and providing information about the design. When implementation is inexpensive, use implementation breadth to test abstraction depth.
+
+\subsection{The Build, Measured Weekly}\label{heading:the-build-measured-weekly}
+
+% <!-- point: four-traces-read-in-sequence | The SEIP reconstruction covers 31 complete weeks; work, recorded completions, controls, and source composition describe different aspects of the factory. -->
+
+The repository record lets us examine the build beyond the retrospective stage narrative. The SEIP reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026.\citep{davis2026docable} Four traces describe different aspects of the factory: landed work, documented completions and dispatches, accumulated models and verifiers, and the source supporting production. None alone measures productivity.
+
+The work-commit series in \autoref{realization-over-time} reconstructs \magevalue{seip_commits} landed commits. It expands merge-train squashes into their source commits, deduplicates them, and excludes empty commits and integration bookkeeping. This matters because a change in landing mechanism would otherwise look like a change in engineering activity. Some source objects remain unavailable, so the reconstruction is incomplete; a commit still says little about the value or correctness of the work it records.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-work-261028.pdf}
+\caption{\emph{Realization Over Time.} Reconstructed landed work commits in each complete seven-day project week, beginning March 12, 2026. Squash source commits are expanded and deduplicated; bookkeeping and empty commits are excluded. These counts measure recorded work, not product value or productivity.}
+\label{realization-over-time}
+\end{figure}
+
+An Epic represented formalized engineering intent: a substantial desired change with a rationale, a design, relevant models and invariants, and phased acceptance criteria. Design came before implementation; nontrivial designs received review by another model, and a Definition-of-Done review assessed completion. One Epic could require several dispatches and many commits. The revised mining pass counts dated affirmative completion claims rather than moves into a closed directory. It recovers \magevalue{seip_completions} completions and \magevalue{seip_dispatches} agent dispatches in the complete window (\autoref{work-over-time}). These are records of activity and claimed completion, not independent assessments of success. Early missing records and uneven dispatch retention prevent treating an empty week as no work or comparing weekly dispatch rates as if coverage were uniform.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-activity-261028.pdf}
+\caption{\emph{Recorded Work Over Time.} Documented Epic completions and recovered agent dispatches across the complete project weeks. Missing early records do not establish an absence of work. A completion is a recorded claim, not an independently verified outcome.}
+\label{work-over-time}
+\end{figure}
+
+Week 11 marks a deliberate change in how I governed that work. My contemporaneous notes describe moving repeated review obligations from probabilistic review into deterministic checks, while commit activity and the formalization of Epic records show the environment changing around that decision. The convergence supports the interpretation of a change in engineering practice. The first surviving Epic or dispatch record, however, dates a recording convention rather than proving that the underlying practice began that week.
+
+\subsection{The Controls Accumulate}\label{heading:control-growth}
+
+% <!-- point: the-control-count-is-evidence-of-investment | Models, multi-model consumers, and registered verifiers accumulated; their counts describe structure, not its quality. | terms: governance-conversion -->
+
+The third trace shows the structure that accumulated around implementation (\autoref{control-growth-curve}). At the last complete week, the reconstruction identifies \magevalue{seip_models} declared model modules, \magevalue{seip_consumers} consumers of at least two models, and \magevalue{seip_static} static and \magevalue{seip_dynamic} dynamic verifier files. Model existence is traced backward by path to avoid mistaking a later declaration convention for the moment the model was created. The verifier census counts existing files referenced by the registries; it does not count all tests or establish that each verifier ran. The engineering significance lies in what the structures represent and check, which the following examples examine.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-analyses-261028.pdf}
+\caption{\emph{Models and Verifiers Accumulate.} Declared model modules, consumers of multiple models, and registered static and dynamic verifier files at weekly snapshots. Counts describe represented structure and available checks, not their correctness or execution.}
+\label{control-growth-curve}
+\end{figure}
+
+\subsection{The Support Ratio}\label{heading:support-ratio-curve}
+
+% <!-- index-def: support-ratio -->
+% <!-- point: the-environment-outgrew-the-product | At ten consistently categorized revisions, supporting apparatus grew to several times production source; the ratio measures investment rather than its return. | terms: support-ratio, governance-target-product -->
+
+The fourth trace measures how much supporting source accumulated relative to production source (\autoref{support-ratio-curve}). Production includes remediation, web processing, frontend, and shared services. The supporting apparatus includes tests, lints, tools, agent infrastructure, infrastructure-as-code, model metadata, and indexed documentation. Historical snapshots and generated copies are excluded. These are code-line counts at ten sampled revisions, not weekly newline counts over the entire repository.
+
+Call apparatus divided by production the \textbf{support ratio}. It rises above parity early, reaches about 4.5 at week 17, and ends at \magevalue{seip_support_ratio}: \magevalue{seip_apparatus_loc} apparatus lines supporting \magevalue{seip_prod_loc} production lines. The composition matters as much as the ratio: tests, models, and infrastructure carry different obligations. Neither more source nor a higher ratio is a target. Supporting source earns the name engineering capital only while future work inherits useful capacity from it; the figure measures what accumulated, not its return.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-capital-261028.pdf}
+\caption{\emph{The Product and Its Supporting Apparatus.} Source composition and the apparatus-to-production ratio at ten sampled revisions through October 14. Lines between samples interpolate; they are not additional measurements. The apparatus includes tests, lints, tools, agent infrastructure, infrastructure-as-code, model metadata, and indexed documentation.}
+\label{support-ratio-curve}
+\end{figure}
+
+Together, the traces show sustained realization accompanied by an expanding engineering environment. They do not establish that a particular amount of modeling caused a particular increase in output. The rest of the case examines the mechanisms behind that accumulation: what decisions the structures preserved, which failures they addressed, and what work remained with the engineer.
+
+\subsection{What Accumulated, and Why}\label{heading:what-accumulated-and-why}
+
+% <!-- point: ordinary-and-agent-specific-changes | What accumulated was a factory around the implementation: some of it ordinary software engineering, other parts existing specifically because agents did the implementation. -->
+
+What had accumulated? Not only implementation, but a factory around it. Some of it was ordinary software engineering. Tests accumulated. Static analyses checked properties that mattered. Deployment gates became stronger. Architectural boundaries became explicit. Other parts existed specifically because agents were doing the implementation: task briefs, agent-facing project instructions, role-specific dispatch, mechanisms for selecting the context relevant to a task, and controls over concurrent work.
+
+% <!-- point: model-selection-was-an-engineering-decision | Model selection was itself an engineering decision: frontier models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator. -->
+
+Model selection was itself an engineering decision: frontier models were reserved for judgments where their additional capability earned their additional cost --- the cheapest-adequate-judge rule of \magevalue{sec:engineering-the-environment} applied to the fabricator rather than to the validator.
+
+% <!-- point: parallel-implementation-cheap-admission-serialized | The resulting arrangement made parallel implementation cheap while admission to the production system remained serialized through evidence: realization capacity fanned out without granting each fabricator authority to admit its work. -->
+
+The resulting arrangement made parallel implementation cheap while admission to the production system remained serialized through evidence. Realization capacity could fan out without granting each fabricator independent authority to admit its work.
+
+% <!-- point: the-two-sides-interacted | The distinction was not clean: the engineering environment and the product developed together. -->
+
+The distinction was not clean, because the two sides interacted. A model of the software architecture could guide an agent before it worked and support a deterministic check afterward. A failure discovered by an agent could expose an architectural weakness whose repair also made future agent work easier to control. The engineering environment and the product developed together.
+
+% <!-- point: the-environment-accumulated-in-sequence | The environment was absent at the start; April, May, and July each added durable structure in response to failures. | terms: governance-conversion -->
+
+And none of it was present when I started. In April, a production failure led me to introduce an explicit state model for a processing lifecycle. In May, duplicated descriptions of the system were consolidated into a shared modeling substrate. By July, properties represented in those models were determining what verification the repository required. Later failures led to additional models and controls for service interactions, deployment, entitlements, and resource use.
+
+% <!-- point: the-sequence-matters | The work began with a software problem and capable agents, not with MAGE or a plan for a factory; the structures appeared at the limits of directing agents without them. | terms: governance-conversion -->
+
+The sequence matters because I did not begin with MAGE, or with a plan for an agentic software factory. I began with a software problem and capable implementation agents. The engineering structures described in this chapter appeared as I encountered the limits of directing those agents without them.
+
+% <!-- point: the-exhibits-measure-what-the-requirements-cost | The exhibits record implementation and supporting structure accumulated while addressing the requirements, not the cost or causal contribution of each requirement. | terms: governance-target-product -->
+
+The exhibits record the implementation and supporting structure that accumulated while I addressed these requirements. They do not isolate the cost of any one requirement. The following examples show how particular obligations shaped that structure.
+
+% <!-- box-family: evidence -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Field note --- The counterfactual}\label{heading:fieldnote-counterfactual}
+
+One counterfactual rests on direct engineering judgment rather than repository data. \textbf{Within the actual constraints of this project---one primary engineer, an academic budget, and the development interval reported here---DocAble was not feasible for me without generative AI.} That is not a claim that a conventional engineering organization could not have built the system. The relevant counterfactual is the project that actually existed: under those constraints, I would not have attempted a production system at this scope without commodity implementation capacity.
+
+A second counterfactual concerns sustained delegation: \textbf{GenAI made DocAble feasible; the machinery that became MAGE made delegation at this rate feasible.} Once autonomous change volume exceeded anything I could inspect conventionally, raw model capability was no longer enough. Continuing at that rate required increasingly explicit representations of the system, independent evidence, constraints, validators, gates, and operating machinery through which the work could be understood and governed.
+
+This is a within-case engineering judgment, not a controlled causal estimate.
+\end{quote}
+
+% <!-- point: the-facts-reinterpreted-around-supervisory-capacity | DocAble did not solve abundant implementation by reading faster; it changed what the engineer had to supervise. | terms: governed-engineering-environment -->
+
+DocAble did not solve abundant implementation by finding a way for its engineer to read implementation faster. It changed \textbf{what the engineer had to supervise}. As implementation accelerated, the engineering environment grew to include representations of the system, controls over implementation, and mechanisms for converting recurring failures into durable constraints. The next sections examine the factory\textquotesingle s representations and operation, followed by the changes in the engineer\textquotesingle s supervisory role.
+
+\section{Inside the Factory}\label{heading:inside-the-factory}
+
+% <!-- section-terms: modeling-principle, alignment-principle, governed-engineering-environment -->
+
+% <!-- point: source-code-stopped-being-an-adequate-interface | Source code alone stopped being an adequate engineering interface as DocAble grew: repository search could locate a symbol but not say which services participated in a workflow, which component owned a piece of state, or what had to stay bounded as a path changed. | terms: modeling-principle -->
+
+Source code alone stopped being an adequate engineering interface as DocAble grew. Repository search could locate a symbol; it could not say which services participated in a workflow, which component owned a piece of state, or what had to stay bounded as a path changed. This subsection walks the interior of the factory the weekly series just measured: the representations the mature factory maintains, the joins that connect them, and the one representation that took over execution.
+
+\subsection{What the Factory Knows}\label{heading:what-the-factory-knows}
+
+% <!-- point: the-census-is-live-not-frozen | The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory. | terms: modeling-principle -->
+
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot. These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. The factory represents both the software it produces and the process that produces it.
+
+% <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
+
+The point is what those models afford. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} argued that a model is a purposeful reduction matched to an engineering question. What the earlier chapters could not yet show is the column a factory adds: the \textbf{supervisory consequence} --- what the engineer stops having to reconstruct from implementation because the representation carries it. \autoref{factory-census-specimens} shows six representative models, chosen for the variety of question, form, and consumer.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Census specimens and their supervisory consequences]{Six representative engineering models. Each row: the engineering question, the representation that answers it, what consumes it, and what the supervisor no longer reconstructs from implementation.}\label{factory-census-specimens}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Consumer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Supervisory consequence
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Consumer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Supervisory consequence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Can a job always terminate legally? & Composed cross-service state-machine model with per-invariant facts & Exhaustive-state checkers; the workers\textquotesingle{} own transition tables & Legal progress and termination are reasoned over states and transitions, not a multi-thousand-line worker \\
+How much memory can a job need? & Peak-memory sizing model that upper-bounds a job and derives the deployment memory tier & Deployment configuration; regression tests on the bound & A resource bound is inspected directly rather than reconstructed from allocation behavior \\
+Which services exist, and what may call what? & Deployment topology plus a typed inter-service call-edge model & Deploy machinery; agents localizing changes & Ownership and boundaries are read from the map, not rediscovered per change \\
+May this user submit this document? & Entitlement decision table --- the single policy authority for the admission decision & The front door at upload time & The admission rule is one table; changing policy is editing a model, not hunting scattered conditionals \\
+What may touch a document format\textquotesingle s internals? & Registry of external seams plus typed format models owning all mutation & Build-time ban checks on raw library access & A format-corruption class is excluded by construction rather than hunted after release \\
+Which step changed this document element? & Per-mutation provenance stamps projected into a derived changelog & The customer-facing changelog; forensic queries & Diagnosis is a lookup over evidence, not a cross-file investigation \\
+\end{longtable}
+}
+
+% <!-- point: the-supervisor-does-not-supervise-2mloc-through-2mloc | The recurring pattern: each representation replaces implementation-reading with a purpose-built supervisory surface — supervision runs through representations sized to the engineering question. | terms: modeling-principle -->
+
+Walk any row and the same pattern appears. The lifecycle model lets its supervisor reason about legal progress and termination rather than reading the worker that implements them; the memory budget lets the supervisor reason about a bound rather than reconstructing allocation behavior; the entitlement table preserves an admission-policy distinction as one authoritative representation rather than logic diffused through handlers. The implementation and its apparatus contain millions of lines. \textbf{Supervision does not require reading all of those lines} --- supervision runs through representations sized to the questions that matter.
+
+\subsection{The Joins: What the Factory Can Derive and Enforce}\label{heading:the-joins-what-the-factory-can-derive-and-enforce}
+
+% <!-- point: a-repository-of-documentation-is-not-a-supervisory-environment | Models alone would be documentation; the factory joins them and gives them consequences, which is the difference between describing knowledge and acting on it. | terms: alignment-principle -->
+
+A repository can contain excellent documentation and still supervise nothing. What separates DocAble\textquotesingle s models from documentation is that the environment \textbf{joins} them and \textbf{acts} on them: representations connect to other representations, and selected relations carry mechanical consequences. The architecture resembles proof checking in one limited respect: a powerful producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission.\citep{ringer2019qed} Three joins show the difference in increasing order of reach.
+
+% <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
+
+\textbf{Property facts → verification tier → required checker → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts: how many concurrent lanes touch it, whether it is a safety or a liveness property, what state it ranges over. From those facts the model \emph{derives} a verification tier --- an invariant crossing multiple concurrent lanes demands exhaustive state-space exploration; a single-lane invariant demands a property test; a temporal obligation demands a model checker run. The tier is not advice: a check walks the model and fails when a mandated checker does not exist on disk. The supervisor does not decide, invariant by invariant, what evidence concurrency deserves. The representation decides, and the environment enforces the decision.
+
+% <!-- point: the-iam-join-derives-grants | The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time. | terms: alignment-principle -->
+
+\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} The typed inter-service edge model declares which service calls which, over which plane, under which identity. Deployment machinery consumes those edges and derives the invoker grants and token audiences each service needs --- and a coherence gate asserts at deploy time that the granted permissions match the modeled relationships. Least-privilege wiring is not a checklist a human re-audits; it is a projection of the service graph.
+
+% <!-- point: the-provenance-join-derives-the-changelog | The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp. | terms: alignment-principle -->
+
+\textbf{Mutation → stamp → derived account.} Every mutating operation in the remediation core writes a provenance stamp --- the verb, the pass, the visibility of the change --- and the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator identifies mutating paths that fail to stamp their work. The account of what the factory did to a document is therefore evidence, not narrative.
+
+% <!-- pullquote -->
+
+\begin{quote}
+Modeling changed what the factory could know. Alignment changed what that knowledge could cause.
+\end{quote}
+
+\subsection{The Computation Graph: a Representation That Took Over Execution}\label{heading:the-computation-graph-a-representation-that-took-over-execution}
+
+% <!-- point: the-computations-stabilized-before-composition | The remediation core was decomposed into passes early; their composition stayed implicit until it accumulated global cost. | terms: modeling-principle -->
+
+The computation graph became the deepest of these joins over time. Its history shows why. The remediation core was organized early as passes --- identifiable units of computation --- and that decomposition proved durable. What stayed implicit was their composition: no pass declared, in one common vocabulary, what it produced, what it consumed, what it read only to decide whether to run, and how bounded its mutations were. Across a growing pipeline those locally reasonable freedoms interacted: work whose local complexity looked harmless accumulated quadratic behavior as passes re-derived state, and passes mutated the document through different mechanisms.
+
+% <!-- point: deriving-the-graph-exposed-the-distinctions | Deriving the missing composition exposed distinctions the code had never stated: data flow versus control gating, and the boundedness of each pass's mutations. | terms: modeling-principle -->
+
+The response was to represent the composition well enough to reason about it. Deriving the missing producer--consumer relations from the passes raised a sharper question --- consumer in what sense? Roughly two-thirds of the candidate relationships were not data flow at all but routing: a pass read a verdict only to decide whether it should run. So the passes acquired distinctions they had never expressed uniformly --- produces, consumes, consumes-for-control --- and the graph projects separate data-flow and control-gate relations from them. The same exercise classified every pass site by mutation kind: typed-patch producer, direct editor, or read-only. The counts did not say the direct editors were wrong; they showed where degrees of freedom remained. \autoref{modeling-history} draws the progression.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-history-b6b329bc6b.pdf}
+\caption{\emph{The modeling history.} DocAble acquired a stable decomposition of remediation computations before it acquired an explicit model of their composition. As locally reasonable choices accumulated consequential global cost, modeling exposed dependency semantics and effect boundedness. Typed declarations made those relationships analyzable and checkable; later redesign made explicit composition authoritative for execution, while separate analytical views continued to grow around stable computation identities. The progression is from a partial model to a richer and increasingly consequential one, not from no model to model.}
+\label{modeling-history}
+\end{figure}
+
+% <!-- point: the-representation-became-authoritative-for-execution | The pass declarations became the source the graph projects from, a blocking parity check holds them together, and a later redesign made the modeled dependencies authoritative for execution order. | terms: governance-conversion -->
+
+Two further moves made the representation consequential. First, the relationships stopped being a second hand-written truth: the pass declarations carry the typed IO, the graph projects its edges from them, and a blocking parity check fails when declaration and projection disagree. Second, a later redesign made the model authoritative for execution itself: the execution machinery consumes the modeled dependencies to determine when work becomes ready and in what order it may proceed, so composition no longer lives implicitly in the pass bodies. \magevalue{sec:interlude-one-problem-many-models} traces how that architecture emerged from a roughly 250 MB presentation that exceeded the limits of page-chunked execution. In the finished factory, the model determines execution rather than merely describing it. The analytical graph remains as a view over the modeled structure, carrying questions execution need not answer: critical paths, mutation boundedness, latency and cost, test coverage.
+
+% <!-- point: explicit-models-changed-what-was-checkable | Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return. | terms: modeling-principle -->
+
+Explicit models changed not only what the system recorded but what questions the environment could ask of it. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was written as small temporal specifications and checked mechanically; with recovery disabled, the checker produced exactly the stranded execution the property was meant to exclude. Checking the model created a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercised production operations against the executable model, and when one such test drifted red for days after production changed, the durable response was correspondence machinery --- model-to-implementation checks selected automatically when modeled surfaces change. The factory then added machinery to keep the map true.
+
+\subsection{Exploring Alternative Reasoning Engines}\label{exploring-alternative-reasoning-engines}
+
+% <!-- point: reasoning-substitution-reuses-engineered-operations | Model selection changes the reasoner assigned to a task; the OpenAI pilot changed reasoning orchestration while reusing DocAble's deterministic document operations. -->
+% Evidence: docable-deterministic-reasoning-separation-pilot-261029.md; openai-hosted-office-remediation-agent-261029 PHASE3-READOUT.md. Integration and corpus evaluation are distinct stages; shared prompt consumption remains a proposed follow-up.
+
+DocAble's separation of reasoning from deterministic document operations permits substitutions at different levels. For individual tasks, ModelSelector assigns an eligible foundation model using task-specific model tiers and capability requirements. The remediation graph remains unchanged; the model performing a particular judgment can change.
+
+In October 2026, I explored a broader substitution: replacing the graph's reasoning orchestration with a general-purpose OpenAI agent. The agent received a subset of DocAble's engineering models as obligations, leaving it to decide how to accomplish the remediation. Separate skills explained how to inspect documents, make semantic judgments, and invoke existing tools. Those tools supplied the production pipeline's accessibility checks, typed document mutations, and content-preservation validation.
+
+The integration took a few hours and required no changes to DocAble's deterministic C\# code. The agent selected and sequenced operations through existing typed interfaces. This preserved engineering work invested in document representation, mutation, and validation while changing the reasoning strategy. The pilot exercised an alternative to the graph's orchestration; it neither replaced the production pipeline nor established that every computation represented in the graph had an agent-driven counterpart.
+
+A preliminary result on a few typical PowerPoint presentations put the agent's inference expenditure at roughly four times that of the production pipeline. Quality remained an open engineering problem: two outputs could not be retrieved, retrieved outputs had lower deterministic accessibility scores than production outputs, and an independent semantic evaluation remained outstanding. These results favored the specialized configuration's observed economics without establishing an inherent advantage for graphs. The architectural result was the reuse of engineered document operations under a different reasoning strategy.
+
+\section{The Factory in Operation}\label{heading:the-factory-in-operation}
+
+% Evidence: 3 November 2026 factory lecture, slides 4--12 and 18--24, and its index.md.
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+% <!-- point: the-mature-production-flow | The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation, and independently audited completion; it follows the measurements ending October 14. -->
+
+\subsection{From a Priority to Completed Work}\label{heading:from-a-priority-to-completed-work}
+
+How does one engineer keep several agents working without continually prompting each one? The workflow described here is the factory's November 3, 2026 configuration, following the measurements that end on October 14. I record priorities in a strategy document, including work that must precede the next deployment. An orchestrating agent selects ready work from that queue and coordinates its planning, implementation, and evaluation.
+
+A planning agent develops an \emph{epic}, a persistent work order for a change that needs several phases. The epic records why the work is worthwhile and what would count as completion. Its design document states the properties the changed system must satisfy and identifies tests or analyses for the named invariants. Agents retain implementation choices within those requirements. A separate agent reviews the plan, and unresolved engineering decisions return to me. \autoref{work-order-artifacts} shows what each artifact records and how the factory uses it.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.22}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.39}}@{}}
+\caption[DocAble's work-order artifacts]{The artifacts record decisions that guide later work, from choosing a priority to checking whether the result meets its completion criteria.}\label{work-order-artifacts}\tabularnewline
+\toprule\noalign{}
+Artifact & What it records & How it is used \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Artifact & What it records & How it is used \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Strategy & Priorities and prerequisites for deployment & The orchestrator selects the next work. \\
+Epic work order & Scope, cost, phases, dependencies, and completion criteria & The orchestrator schedules phases, and the auditor evaluates completion. \\
+Design document & Structure, invariants, and required evidence & Agents plan changes and find the checks that cover each property. \\
+Dispatch brief & One agent's assignment, scope, and required verification & Checked before dispatch, then supplied to the agent in its isolated worktree. \\
+Completion record & Landed changes and supporting evidence & An independent agent audits the result against the work order. \\
+\end{longtable}
+}
+
+% <!-- point: task-scoped-context-connects-models-to-dispatch | An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred. -->
+
+The phase dependencies determine which agents can work concurrently, as \autoref{docable-work-order-flow} shows. The orchestrator dispatches ready phases into isolated Git worktrees. Each agent first inspects its assigned component and records a refined plan, including target files, in its first commit. Before changing the implementation, it supplies those files to \emph{Query Repo}, which retrieves the associated models, invariants, tests, and static checks. A pre-commit check requires a record that this discovery occurred. Known obligations can therefore inform the agent's implementation choices from the outset.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-work-order-flow.pdf}
+\caption[From engineering intent to completed work]{\emph{From engineering intent to completed work.} The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.}
+\label{docable-work-order-flow}
+\end{figure}
+
+Completed changes pass inexpensive checks before integration. Broader validation runs periodically against the combined code, and the deployment process reruns the full validation suite. Two changes may each work in isolation and still fail when combined, so separate worktrees do not remove the need to check the integrated result. \magevalue{sec:engineering-the-environment} explains the bottleneck that motivated this arrangement and the cost of delaying some checks.
+
+% <!-- point: repair-is-cheap-escalation-is-the-signal | Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer. -->
+
+Finally, an independent agent audits the epic against its completion criteria. It checks that the expected changes landed and that the required evidence supports completion. Missing work or failed checks lead to repair and another review. Problems the agents cannot resolve, including defects in the factory itself, return to me. The work order closes after the audit accepts the result. {[}appendix: appendix-d-a-worked-factory-workflow{]} develops a worked example with the underlying artifacts.
+
+\subsection{What Escalated Failures Became}\label{heading:what-escalated-failures-became}
+
+% <!-- point: governance-conversion-is-an-empirical-claim-about-durable-structure | Where did the machinery come from? Not grand design: governance conversion claims some episodes leave durable structure later work inherits, and this subsection reconstructs the episodes where that sequence is visible — the accumulation the build's control curve counted in aggregate, seen one episode at a time. | terms: governance-conversion -->
+
+Where did all this factory machinery come from? Not from a grand upfront design. The build section traced the accumulation of models and checks; what follows reconstructs where selected pieces of it came from, one episode at a time. Governance conversion makes an empirical claim: some engineering episodes leave behind durable structure that later work inherits instead of paying for the same judgment again. What follows reconstructs selected DocAble incidents where that sequence --- pressure, response, durable consequence --- is actually visible, organized by what each failure \emph{converted into} rather than by when it happened. It is not a claim that every structure arose from failure; the subsection ends with the ones that did not.
+
+% <!-- point: implicit-lifecycle-became-explicit-model | An implicit lifecycle and a retry reflex became an explicit lifecycle model, atomic claiming, and recovery as a decision over evidence. | terms: governance-conversion -->
+
+\textbf{An implicit lifecycle became an explicit behavioral model.} The dominant production failure was a slow generation call, and the lifecycle around it was implicit --- status written from scattered places, one terminal state masking many distinct failures, and requeue as the reflex recovery. Under a slow dependency that reflex became a storm: requeue, still slow, same timeout, requeue again --- the recovery amplifying load exactly when the system was already hurting, every attempt billing its full cost with nothing marking it a retry. What became durable was the explicit lifecycle model from the previous subsection: named states and legal transitions, atomic claiming that separates permission to act from recovery leases, and no automatic requeue on ordinary failure. A later stale-owner sweep exposed the next missing distinction --- slow is not dead --- and progress evidence supplied it. Recovery stopped being a reflex and became a decision over explicit state and evidence.
+
+% <!-- point: destructive-library-behavior-became-a-typed-seam | A convenient library call that silently destroyed accessibility structure became a canonical-library policy, a typed mutation seam, and a build-time ban — and the gate itself later had to be hardened. | terms: governance-conversion -->
+
+\textbf{Destructive library behavior became a typed seam and a ban.} An early path used a convenient scripting-language library to slice a document. The operation worked visually and silently destroyed the internal tag structure carrying the accessibility the product exists to add --- and nothing caught it. The response came in layers: a policy named the canonical library; a typed format model and API concentrated all mutation of that format through one seam; a build-time check refused raw access from elsewhere. Then the check itself failed --- a stale repository root caused real findings to be reported as green --- and the second-order incident forced the gate to be hardened too. The model stated the boundary; the check enforced it; the enforcement machinery itself still had to be maintained.
+
+% <!-- point: cross-service-assumptions-became-explicit-models | A file path sent across a service boundary became a typed client that makes the mistake unrepresentable, plus an explicit service graph — and a review found the bypass path the boundary did not govern. | terms: governance-conversion -->
+
+\textbf{A cross-service assumption became a typed client and an explicit service graph.} Another failure sent a local file path across a service boundary, where it became meaningless in the callee\textquotesingle s process. The replacement client accepted file content but not a local path --- the mistake became unrepresentable at the type level --- and an explicit service graph represented which services could call which, the same graph the access-grant join now derives from. A later human review found a second problem: an optional direct-client path could bypass shared rate limiting, key rotation, failover, and cost tracking entirely. A protection boundary only governs the paths that cross it.
+
+% <!-- point: an-instruction-satisfied-to-the-letter | "Use types," satisfied to the letter and voided in spirit, became a commodity-lint floor driven to zero plus induced typed abstractions region by region. | terms: stringly-typed, governance-conversion -->
+
+\textbf{An underspecified instruction became a lint floor and named abstractions.} By the time the system reached roughly 300,000 lines, regions built MVP-fast lacked coherent abstractions, so I told the agent to use typed Python. It did, in a sense: it used the type \texttt{string} for everything --- stringly-typed, the word "type" satisfied to the letter and voided in spirit. "Use types" specified a surface property, not the domain abstractions the types were supposed to represent, and the agent took the cheapest satisfying path. What made the period alarming was the speed with which a weakly specified direction could turn into a large amount of coherent wrong structure. The durable response combined a floor with structure: every commodity lint the language ecosystems ship was turned on and driven to zero, each made blocking once the repository conformed; then, region by region, dense primitive code was routed through induced typed domain abstractions, with the checks promoted as each governed surface reached conformance. A month later the 300,000 lines were roughly 200,000, and future work inherited named abstractions, boundaries, and regression checks rather than a rewritten snapshot.
+
+% <!-- point: optimizing-within-an-architecture-that-was-itself-the-constraint | Weeks of in-frame autoscaler optimization against the same ceiling became a decision rule: price the architectural change instead of commissioning another local optimization. | terms: velocity-exposes-the-danger, governance-conversion -->
+
+% <!-- index-def: velocity-exposes-the-danger -->
+
+\textbf{A recurring architectural ceiling became a decision rule.} The service cost tens of dollars a day while idle on a cluster. The first response stayed inside the existing architecture --- tune the autoscaler, reduce idle pods --- and for weeks the agents made it better and better, with every improvement colliding with the same boundary: cold pods took too long to return. The repeated failure was information about the \emph{frame} rather than the implementation inside it. The durable lesson was a decision rule --- when repeated in-frame optimization collides with the same architectural ceiling, price the architectural change rather than commissioning another round of local optimization --- and the eventual serverless migration encoded the decision in the system itself. A judgment becomes capital only when later work can inherit it; a lesson held in someone\textquotesingle s head remains expensive to reuse.
+
+% <!-- point: an-unmade-decision-is-where-the-agent-guesses-worst | A conflict handler with an unmade design decision silently deleted landed work for four days; the choice was made once, encoded, and the destructive default barred. | terms: optionality-is-poison, governance-conversion -->
+
+% <!-- index-def: optionality-is-poison -->
+
+\textbf{An unmade decision became a decision made once.} A merge automation kept stalling when two agents edited the same file, and the proposed one-flag fix --- on conflict, take one side and drop the other --- was signed off without asking what "drop the other side" meant. For four days it silently deleted real work from the main branch, the same commit heading landing again and again, each time a little smaller. The conflict handler contained a consequential design choice that had never been made explicitly: what information may be discarded when two changes overlap? At execution time the agent still had to choose, so it selected the locally expedient behavior. The resolver was changed to reconcile the conflicting files, and the destructive default was prohibited. The portable lesson is narrow: do not leave consequential semantics unresolved at a boundary where an autonomous actor must act.
+
+% <!-- point: two-green-reports-that-were-not-true | Two green reports — a lint gate swallowing its own error, pin tests landed onto a tree missing the checked field — became independent evidence regenerated at the admission boundary. | terms: done-is-a-claim, governance-conversion -->
+
+% <!-- index-def: done-is-a-claim -->
+
+\textbf{"Done" became a claim requiring independent evidence.} Two incidents, close together, made the rule non-negotiable. A lint gate hit a stray error, caught it in a catch-all that returned success, and let a run of commits land completely unlinted while the log said fine. A chain of pin tests passed green --- because a botched merge had landed them onto a tree missing the very field they were supposed to check. Both reported done; neither was. A report of "done" describes the producer\textquotesingle s claim, not the state of the repository, and the gap between the two is where a confident green hides. The durable response regenerated the evidence at the admission boundary: required tests and lints re-run against the actual candidate tree, gate failures made fail-loud --- a control cannot translate its own uncertainty into success --- and counts re-derived rather than accepted from the task report. The capital is not a standing habit of distrust; it is machinery that regenerates the evidence cheaply. That response produced the earlier merge-train arrangement. The November redesign changed when the broader checks ran while retaining the need to evaluate the actual integrated tree.
+
+% <!-- point: a-detector-that-measured-the-right-quantity-on-the-wrong-world | A content-free image detector, provably safe on the world it was measured on, would silence a Rothko; the cheap proxy lost the last word and a regression preserved the failure class. | terms: tests-for-agent-failure-modes, governance-conversion -->
+
+% <!-- index-def: tests-for-agent-failure-modes -->
+
+\textbf{An inadequate input representation became a routed judgment.} An agent wrote a clean, typed, careful detector: if an image\textquotesingle s pixels barely vary, skip the vision model and mark it decorative. Its own comment promised a false positive was "not possible" --- real photos and charts vary twenty times more than the cutoff. The margin was true, and it was measured on the wrong world. Hand it a Rothko, or Malevich\textquotesingle s black square, and the detector marks the painting decorative, and a blind student reading an art book gets silence where the subject should be. No threshold saves it, because a blank spacer and a low-variance artwork can be identical in the one quantity the code measures --- "content-free" is a judgment about an image in context, not a fact about pixels. The cheap proxy lost the last word: ambiguous cases route to a richer semantic judgment, and the regression evidence covers the failure class --- low-variance images that nevertheless carry content --- rather than the first example that exposed it.
+
+% <!-- point: bypasses-produced-empty-changelog-rows | Eleven mutation sites bypassing the stamp helper shipped blank changelogs; representation, migration, then gating turned provenance from inference into a lookup. | terms: governance-conversion -->
+
+\textbf{Forensic reconstruction became derived provenance.} A corrupted document once took four cross-file hops to trace back to the pass that wrote it, and verification then found eleven production sites writing through a low-level path that skipped the provenance stamp --- shipping empty changelog rows for a whole class of jobs while the code had changed plenty. The response is the provenance join described earlier. Its landing sequence matters: the wiring validator \emph{reported} first, because the inherited tree contained many violations; a fix wave drained the gap; only then was the obligation enforced at the admission boundary. Representation made the obligation observable; migration made it feasible; gating enforced it.
+
+% <!-- point: a-timeout-spoke-only-after-the-budget-was-spent | A silent eight-minute stall became a provisional per-chunk worst-case model that is deliberately NOT a gate — alignment need not culminate in blocking enforcement. | terms: governance-conversion -->
+
+\textbf{A silent stall became measurement --- and deliberately stopped there.} A document\textquotesingle s repair stalled in silence; the subprocess was killed by the job timeout after roughly eight minutes, the customer\textquotesingle s progress bar frozen at thirty-eight percent, the budget already spent. The incident produced a provisional per-chunk worst-case model against the job budget --- the seed kept as a timestamped datapoint in a file, not frozen as a constant in code --- and instrumentation that can report a would-be breach. \autoref{measurement-no-gate} draws where the chain deliberately stops: no production gate rejects a job on this model today, because the bound is not calibrated strongly enough to justify enforcement, and a false refusal could cost more than continued observation. \textbf{Alignment need not culminate in a blocking gate.} The counterpart shows measurement earning action when its evidence is adequate: a deterministically measured per-request cold-start floor of 4,057 ms, joined to a deployment-topology model, drove a re-architecture that cut the floor to 109 ms. Same progression from representation to evidence; different verdicts, each proportionate to the evidence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/measurement-no-gate-300b62ff05.pdf}
+\caption{\emph{Modeled and Observed, Not Yet Binding.} A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose --- representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.}
+\label{measurement-no-gate}
+\end{figure}
+
+% <!-- point: some-conversions-were-almost-mechanical | Some conversions were mechanical: a repeated review finding — a missing reserved prefix on inserted artifacts — became a blocking lint. | terms: governance-conversion -->
+
+\textbf{And some conversions were almost mechanical.} Invisible remediation artifacts were supposed to carry a reserved name prefix so a validator could always tell an inserted element from an authored one, and review kept catching insertions that skipped it. A prefix rule is entirely decidable, so the audit question became a blocking lint: the judgment moved from repeated inspection into the environment, where it fires the same way on every commit.
+
+% <!-- point: the-case-contains-both-routes-to-durable-structure | Not every structure was forced by failure: the reactive backend, the closed edit vocabulary, and the unified rule engine were designed from known obligations and simply held. | terms: governance-conversion -->
+
+\textbf{Not every structure was purchased by an incident.} The backend became reactive and stateless early, which later made the serverless migration cheap; the document editor routed human gestures and automated remediation through one closed edit vocabulary, which later supported a second producer without a second mutation path; the unified detect-and-repair engine consolidated two scanning paths for a clean architectural reason, and a later audit found the boundary holding. Report those as confirmation, not conversion. Some assets arose from incidents and were refined through repeated use; others were designed from known obligations and proved effective as the system evolved. The factory\textquotesingle s machinery accumulated along both paths, without a comprehensive plan established in advance.
+
+\section{The Supervisor\textquotesingle s Job}\label{heading:the-supervisors-job}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+% <!-- point: the-preceding-subsections-recorded-substitutions | The preceding subsections each already recorded a piece of the answer; the staircase names the same transformation chronologically, from the supervisor's chair. It is a chronology of DocAble, not a maturity model. | terms: governance-conversion -->
+
+What was the human doing while the factory accumulated? The engineer\textquotesingle s responsibilities changed as more work became delegated. The preceding subsections have each already recorded a piece of it; the staircase below names the same transformation chronologically, from the supervisor\textquotesingle s chair: each step moved some combination of system knowledge, realization work, evaluation, or admission out of direct human handling and into the engineered environment. Five stages name that progression in my own work: co-coder, QA, review lead, tech lead, and architect. What matters is what the engineered environment could carry at each stage. It is a chronology of DocAble, not a maturity model for other factories.
+
+% <!-- point: rungs-compressed | Each rung delegated what the environment had just become able to carry: reading, then evaluation, then decidable findings, then locality of reasoning, then system-level knowledge itself. | terms: governance-conversion -->
+
+\textbf{Co-coder:} direct human inspection carried everything --- I read the agent\textquotesingle s changes, judged them, merged them. It worked while volume stayed inside one person\textquotesingle s attention, and failed as an operating model once generation outran review. \textbf{QA:} evaluation was delegated before enforcement --- a second agent audited another agent\textquotesingle s work, episodically and probabilistically; its value was diagnostic, and its repeated decidable findings revealed questions that no longer needed a language model at all. \textbf{Review lead:} reviewers specialized by concern and region, and every finding that turned out to be mechanically decidable dropped into deterministic machinery, the probabilistic reviewers keeping the questions checks could not settle. \textbf{Tech lead:} representation made reasoning local --- named zones externalized ownership and boundaries so an agent could reason inside one region without first recovering the whole system, and selected obligations expressed over the zone model were enforced. \textbf{Architect:} by the final rung I rarely read implementation directly. Architectural, behavioral, ownership, and other models supplied the system views for planning and review; agents used the same representations to localize changes. Declaration did not make the models true --- model drift became its own failure class, which is why correspondence checking earned its place in the previous subsections. And at this rung the economics of restructuring inverted: a cross-format migration that touched \magevalue{refactor_files} files and rewrote \magevalue{refactor_lines} lines took about \magevalue{refactor_hours} hours of agent time over a dinner break. The hard part was never touching \magevalue{refactor_files} files; it was knowing those files should be touched. \autoref{mage-staircase} draws the climb.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-staircase-ad5d286bc2.pdf}
+\caption{\emph{The Delegation Staircase.} As explicit representation and environmental enforcement accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person\textquotesingle s head; enforcement moved repeatable admission decisions out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or enforcement could move work back down the staircase.}
+\label{mage-staircase}
+\end{figure}
+
+% <!-- point: the-staircase-has-two-interacting-supports | The staircase's two supports: Alignment moved enforcement of repeatable obligations out of direct review; Modeling moved system knowledge out of the engineer's head; weakness in either sent the work back down. | terms: alignment-principle, modeling-principle -->
+
+The staircase has two interacting supports, and delegation climbed only as far as they could carry it. \textbf{Alignment} moved enforcement of repeatable obligations out of direct human review: deterministic checks, permissions, boundaries, and gates enforced obligations I no longer inspected line by line. \textbf{Modeling} moved system knowledge out of my head: named zones and later explicit models let agents reason over larger engineering questions without reconstructing the whole repository each time. When representation was too weak, I fell back into reconstructing the map; when enforcement was too weak or unreliable, I fell back into reading diffs and verifying outcomes by hand. A miss sent the staircase backward.
+
+% <!-- point: human-attention-moved-to-a-functional-list | Functionally, the top of the climb rewrites the supervisor's job description: human attention moved away from supervising individual acts of realization and toward the work only judgment can do. | terms: governed-engineering-environment -->
+
+Functionally, the top of the climb rewrites the supervisor\textquotesingle s job description. As the MAGE layer strengthened, human attention moved away from supervising individual acts of realization and toward:
+
+\begin{itemize}
+\tightlist
+\item
+  deciding which external pressures become engineering work;
+\item
+  choosing which engineering questions are consequential enough to represent;
+\item
+  constructing and revising the representations themselves;
+\item
+  deciding which obligations deserve enforcement, and at what strength;
+\item
+  interpreting anomalous evidence the machinery surfaces;
+\item
+  resolving genuinely ambiguous tradeoffs;
+\item
+  connecting representations to one another --- the joins of the earlier subsection;
+\item
+  diagnosing failures in the engineered environment itself;
+\item
+  and deciding what experience should become durable structure.
+\end{itemize}
+
+% <!-- point: prompt-properties-preserved-useful-freedom | Prompt failures exposed evidence-grounding and prefix-ordering obligations; representing and checking these properties preserved freedom over prompt wording. -->
+
+Prompt design exposed two consequential properties I had initially left to the agents. Agents writing prompts for DocAble's remediation models imposed numerical demands, such as a minimum number of facts in an image description. When the available evidence could not support that many facts, the demand encouraged invention. They also placed variable document context before fixed instructions, losing opportunities to reuse the model's key-value cache. On one 70-slide presentation initially costing approximately \$1.50, moving fixed content to the prefix reduced inference cost approximately threefold.\citep{davis2026docable}
+
+I responded by modeling prompt properties by kind and adding checks. Requiring descriptions to be grounded in source evidence addressed the semantic problem more directly than replacing one numerical threshold with another. Requiring stable content to precede variable context addressed the economic problem without prescribing the prompt's wording. The remaining wording choices could stay with the agents. Neither response required me to write every prompt; both required deciding which properties of a prompt had consequences worth governing.
+
+% <!-- point: mage-afforded-supervision-by-changing-its-objects | MAGE afforded supervision by changing the objects through which supervision occurred — the section's observed substitutions named as one claim. It did not automate supervision, and human judgment remains central. | terms: governed-engineering-environment -->
+
+Implementation gave way to engineering intent as the unit of supervised work; reading source gave way to explicit representations of consequential properties; the producer\textquotesingle s claim gave way to independently regenerated evidence; routine inspection gave way to anomalies and escalations; per-diff review gave way to serialized admission decisions; isolated descriptions gave way to joins that carry consequences; and recurring local judgment was converted, episode by episode, into durable structure. \textbf{MAGE afforded supervision by changing the objects through which supervision occurred.} Not "MAGE automated supervision" --- human judgment remains central, and every item on the list is judgment. But supervisory effort no longer scales linearly with implementation volume for any property that can be represented and mechanized, and that is the difference between the co-coder reading every diff and the architect reading almost none.
+
+\section{Economics}\label{heading:economics}
+
+% <!-- section-terms: remediation-cost -->
+% <!-- point: the-accounting-prices-the-case | Construction, operation, and retained human review are different costs; the SEIP development estimate is author-supplied. -->
+
+A factory's startup cost, its marginal change cost, and its carrying cost are different numbers --- a separation \magevalue{sec:toward-a-theory-of-mage} develops formally. The SEIP accounting estimates approximately \$110,000 to develop DocAble over six months: \$90,000 in engineering labor and \$20,000 in cloud expenditure. These are author-supplied estimates, not an independently audited ledger.\citep{davis2026docable} Much of that expenditure purchased reusable capability. Dividing it by the documents processed during development would confuse the cost of building the factory with the cost of using it.
+
+\subsection{Human Remediation as a Reference}\label{heading:human-remediation-as-a-reference}
+
+% <!-- point: manual-remediation-provides-a-reference-not-an-oracle | The undergraduate corpus provides actual artifacts and billed labor; it does not establish expert ground truth or matched per-document labor savings. -->
+
+The undergraduate effort introduced in \magevalue{sec:mage-by-example} supplies a concrete reference. Across approximately six months, \magevalue{seip_uta_workers} trained undergraduates billed \magevalue{seip_uta_hours} hours, and the recovered corpus contains \magevalue{seip_uta_pairs} identifiable document pairs from \magevalue{seip_uta_courses} courses. The resulting \magevalue{seip_uta_hours_per_pair} hours per pair is a corpus-level ratio, not a stopwatch measurement for each document. The students' outputs are evidence of an institutional remediation workflow; they are not an expert oracle for accessibility.
+
+I developed DocAble using independently obtained documents and the accessibility standards, and withheld examination of the students' remediated files until near the end of development. This reduces one route to contamination without establishing complete blinding. One spreadsheet in the validation partition had prior development exposure.
+
+The recovered student outputs provided a reference for evaluating DocAble's remediation. Eligibility screening and a format-stratified split produced 63 validation documents; DocAble completed 62, failing on one PDF. In a blinded, transcript-based GPT-5.2 rubric assessment of those outputs, 20 scored better than the student output, 41 fell within a one-point band, and one scored worse. The rubric does not assess all visual properties or screen-reader usability, and Microsoft changed its checker after the students' remediation work. These findings support further evaluation, not a claim of complete accessibility.
+
+Median runtime across all 63 validation attempts was 1.4 minutes; median inference cost for the 62 completed outputs was \$0.066. Those quantities omit retained human review and do not include a complete cloud-cost accounting. Comparing billed human hours directly with unattended machine runtime would overstate what we know about labor savings. The practical question is how much competent review and correction remain after either workflow.
+
+\subsection{General-Purpose Agents and a Specialized Service}\label{heading:agents-and-specialized-service}
+
+% <!-- point: agent-comparison-tests-economics-without-a-capability-boundary | A small comparison finds mixed quality and lower observed runtime and inference cost for DocAble; rubric acquisition and delivery remain engineering concerns. -->
+
+Could a general-purpose agent perform the remediation directly? The SEIP comparison uses community document tools, unlike the DocAble tools reused in \hyperref[exploring-alternative-reasoning-engines]{Exploring Alternative Reasoning Engines}. It tests Opus and Fable on ten validation documents: five PDFs, two Word documents, two presentations, and one spreadsheet. Each agent used one configuration. \autoref{agent-remediation-comparison} summarizes completion, runtime, and inference cost for this ten-document cohort. Its DocAble cost figure concerns this smaller cohort, rather than the 62 completed outputs underlying the \$0.066 median above.
+
+{\footnotesize
+\begin{longtable}[]{@{}lrrr@{}}
+\caption[Agent and service remediation comparison]{Comparison of three remediation configurations on ten documents. Medians cover completed attempts; Fable timed out on one PDF. Agent inference costs are cache-aware API-equivalent estimates excluding cloud execution and evaluation.}\label{agent-remediation-comparison}\tabularnewline
+\toprule
+\textbf{Method} & \textbf{Completed} & \textbf{Minutes} & \textbf{Inference cost} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Method} & \textbf{Completed} & \textbf{Minutes} & \textbf{Inference cost} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Opus & 10/10 & 8.22 & \$2.466 \\
+Fable & 9/10 & 7.77 & \$3.977 \\
+DocAble & 10/10 & 1.31 & Less than \$0.50 \\
+\end{longtable}
+}
+
+Quality varied by format. On the four PDFs completed by every condition, median reductions in veraPDF findings were 89.7\% for Opus, 91.8\% for Fable, 100\% for DocAble, and 75.3\% for the student outputs. Both agents outperformed DocAble on Office checks for the two Word documents; the student outputs achieved the largest reductions for the two presentations. The spreadsheet had no original findings. Checker reductions measure selected properties, so neither the rankings nor completion establish overall accessibility.
+
+A capable general-purpose agent supplied with a sufficiently complete rubric and suitable tools could match or exceed DocAble. The engineering problem includes acquiring that rubric: experience with difficult documents reveals omissions that a plausible initial specification can miss. Some of this knowledge may become available through model training; some must be supplied as task-specific context or encoded in tools and checks. A specialized service packages accumulated knowledge and the workflow for users, and can reduce the cost of applying it repeatedly. Its advantage depends on the quality of that knowledge, operating economics, and usability. The comparison measures particular configurations at a particular time; it establishes neither a lasting capability boundary nor a causal benefit from MAGE.
+
+\subsection{What the Economics Establish}\label{heading:what-the-economics-establish}
+
+% <!-- point: measured-production-cost-leaves-review-and-carrying-cost-open | The evidence separates startup investment, inference expenditure, and remaining human work; it does not establish institutional savings or a market size. -->
+
+The three alternatives incur costs in different places. Manual remediation purchases labor for each document. A general-purpose agent needs a useful rubric, appropriate tools, and supervision. A specialized service incurs engineering and maintenance costs to make the recurring workflow easier and cheaper to run.
+
+The case makes a narrower economic claim than a university-wide savings estimate. Producing remediation outputs can require little inference expenditure once the supporting system exists. Establishing that those outputs serve their readers, integrating the service into institutional work, and maintaining it remain costs to measure. Software can distribute the resulting capability across courses and institutions, but replication does not eliminate review, integration, or upkeep. Those are part of evaluating the factory's return, rather than exceptions to it.
+
+\section{Liability}\label{heading:liability}
+
+% <!-- section-terms: governance-conversion -->
+
+% <!-- point: the-map-pointed-at-a-ghost | A model kept naming a moved symbol and stayed authoritative-looking for days — accumulated structure fails in its own ways. | terms: governance-conversion -->
+
+The factory also introduced substantial maintenance costs and new failure modes. One model named a code symbol that was later moved and renamed. Nothing invalidated the reference; the model continued to look authoritative, agents continued to reason from it, and the failure surfaced days later during deployment. A later audit showed the stale pointer was a class, not a one-off --- re-running closed work against current code found genuine model-to-code drifts a green definition of done had missed. That incident is why correspondence checking exists, and it generalizes.
+
+% <!-- point: accumulated-structure-has-carrying-costs | The liability list: models drift, controls conflict, evidence goes stale, gates encode obsolete assumptions, the support apparatus needs operating, and some of what accumulated stops being worth its upkeep. | terms: governance-conversion -->
+
+The models can drift, and the correspondence machinery that catches that drift must itself be maintained. Controls can conflict, and resolving a collision between two well-intentioned gates is supervisory work no model retires. Evidence goes stale: a baseline recorded under last quarter\textquotesingle s workload quietly stops meaning what its readers assume. Gates encode the assumptions of the incident that created them, and an obsolete assumption enforced mechanically is worse than one merely remembered. The support apparatus, about \magevalue{seip_support_ratio} times the production code at the final snapshot, must itself be operated, debugged, and paid for in attention. The structures that carry decisions forward must themselves be maintained, and some will stop being worth their upkeep: not all of what this factory accumulated will survive its next architectural turn.
+
+% <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence. | terms: field-report -->
+
+The evidence has clear limits. This is one longitudinal production case led by one primary engineer directing an agent fleet, using one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, build the same mechanisms, or achieve the same economics --- and checker scores do not establish complete end-user accessibility. What the case can establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted long enough to be exercised under continuing change.
+
+% <!-- point: turn-outward-to-other-factories | The transition: DocAble is one deliberately engineered response to abundant realization, so a factory has to be evaluated as a production system rather than by agent capability alone; the next question is whether independently developed factories exhibit the same pressures. -->
+
+DocAble shows one deliberately engineered response to abundant realization. The factory therefore has to be evaluated as a production system, including the structures that direct and supervise realization, rather than by agent capability alone. The next question is whether independently developed agentic software factories exhibit the same pressures --- and that question does not depend on anyone else having heard of MAGE.
+
+````

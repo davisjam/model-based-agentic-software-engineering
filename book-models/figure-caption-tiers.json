@@ -31,12 +31,6 @@
       "location": "part3",
       "rationale": "correspondence strength and authority direction drawn as two independent directed axes; supporting caption on stronger correspondence not moving the authority arrow"
     },
-    "assets/modeling-history.svg": {
-      "tier": "A",
-      "kind": "progression-diagram",
-      "location": "part5",
-      "rationale": "the top-to-bottom modeling history — a partial model growing the composition half it lacked, exposing dependency semantics and effect boundedness; anchor caption for the road-to-MAGE progression"
-    },
     "assets/process-design-and-tolerance.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
@@ -348,12 +342,6 @@
       "kind": "comparison",
       "location": "part5",
       "rationale": "six systems reconstruct regions of one theory; the map that opens Meet the six"
-    },
-    "assets/six-entry-points.svg": {
-      "tier": "B",
-      "kind": "comparison",
-      "location": "part5",
-      "rationale": "six systems enter the shared design space at different points; the R47 map that opens MAGE in the Wild"
     },
     "mage-in-the-wild::Two dimensions of the agentic software factory": {
       "tier": "B",
@@ -671,7 +659,7 @@
       "tier": "B",
       "kind": "timeline",
       "location": "part5",
-      "rationale": "the seven build stages as pressure->consequence (replaces the retired seven-stage table, R46)"
+      "rationale": "Revised caption identifies the retained teaching figure and scopes its inference without duplicating the mainline explanation."
     },
     "assets/phased-timeline.svg": {
       "tier": "B",
@@ -716,10 +704,10 @@
       "rationale": "two producers, one language"
     },
     "assets/mage-staircase.svg": {
-      "tier": "A",
+      "tier": "B",
       "kind": "synthesis",
       "location": "part5",
-      "rationale": "the road-to-MAGE staircase — chapter-summary synthesis"
+      "rationale": "Revised caption identifies the retained teaching figure and scopes its inference without duplicating the mainline explanation."
     },
     "assets/mage-dynamic-model.svg": {
       "tier": "A",
@@ -824,10 +812,10 @@
       "rationale": "the flagship format-seam history — five layers each forced by the residual the last one left, ending on the enforcement itself found mis-reporting; anchor caption naming every layer"
     },
     "assets/measurement-no-gate.svg": {
-      "tier": "A",
+      "tier": "B",
       "kind": "history-chain",
       "location": "part5",
-      "rationale": "the 5.4.8 measurement-without-gate FLAGSHIP — timeout to measurement to model to evidence to report to ?authority, the terminal authority node left deliberately open; anchor caption for the ungated-measurement beat (R46)"
+      "rationale": "Revised caption identifies the retained teaching figure and scopes its inference without duplicating the mainline explanation."
     },
     "toward-a-theory-of-mage::Mapping the software factory into the theory": {
       "tier": "A",
@@ -1136,10 +1124,10 @@
       "rationale": "the scale-at-a-glance box — production/support/IaC/model LoC and the sustained commit rate, offloaded from the prose so the body lands on 'I inspected almost none of the code'"
     },
     "inside-docables-software-factory::Census specimens and their supervisory consequences": {
-      "tier": "B",
-      "kind": "framework",
+      "tier": "C",
+      "kind": "evidence-table",
       "location": "part5",
-      "rationale": "the four-column census-specimen table (engineering question / representation / consumer / supervisory consequence) — the census shown by affordance rather than catalogue"
+      "rationale": "Reference receipt with its denominator and interpretation limit."
     },
     "assets/entitlement-domain.svg": {
       "tier": "B",
@@ -1161,9 +1149,9 @@
     },
     "inside-docables-software-factory::The DocAble requirements": {
       "tier": "C",
-      "kind": "requirements-index",
+      "kind": "evidence-table",
       "location": "part5",
-      "rationale": "the authoritative R1-R8 statement, placed where the factory has to satisfy them; the problem chapter introduced the obligations by kind"
+      "rationale": "Reference receipt with its denominator and interpretation limit."
     },
     "inside-docables-software-factory::The factory's observed construction and operating cost": {
       "tier": "B",
@@ -1243,30 +1231,6 @@
       "location": "part3",
       "rationale": "Two turn-end hooks require an explicit order: recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed by reflection."
     },
-    "assets/docable-seip-work-261028.svg": {
-      "tier": "B",
-      "kind": "data-chart",
-      "location": "part5",
-      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
-    },
-    "assets/docable-seip-activity-261028.svg": {
-      "tier": "B",
-      "kind": "data-chart",
-      "location": "part5",
-      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
-    },
-    "assets/docable-seip-analyses-261028.svg": {
-      "tier": "B",
-      "kind": "data-chart",
-      "location": "part5",
-      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
-    },
-    "assets/docable-seip-capital-261028.svg": {
-      "tier": "B",
-      "kind": "data-chart",
-      "location": "part5",
-      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
-    },
     "inside-docables-software-factory::Agent and service remediation comparison": {
       "tier": "B",
       "kind": "data",
@@ -1277,7 +1241,7 @@
       "tier": "B",
       "kind": "process-flow",
       "location": "part5",
-      "rationale": "The reviewed work order supports concurrent implementation followed by integration and a distinct completion audit; deployment remains separate."
+      "rationale": "Revised caption identifies the retained teaching figure and scopes its inference without duplicating the mainline explanation."
     },
     "inside-docables-software-factory::DocAble’s work-order artifacts": {
       "tier": "C",
@@ -1332,6 +1296,86 @@
       "kind": "table",
       "location": "book/part3/3.3-constraints-sensors-validators-gates.md",
       "rationale": "Supporting functional taxonomy; caption distinguishes the functions, permits composition, and attributes the classification."
+    },
+    "assets/docable-seip-longitudinal-261109.svg": {
+      "tier": "B",
+      "kind": "empirical-chart",
+      "location": "part5",
+      "rationale": "Supporting multi-panel data exhibit: identifies measures, cohorts and the inference they support."
+    },
+    "assets/docable-seip-composition-261109.svg": {
+      "tier": "B",
+      "kind": "empirical-chart",
+      "location": "part5",
+      "rationale": "Supporting multi-panel data exhibit: identifies measures, cohorts and the inference they support."
+    },
+    "assets/docable-human-evaluation-261109.svg": {
+      "tier": "B",
+      "kind": "empirical-chart",
+      "location": "part5",
+      "rationale": "Supporting multi-panel data exhibit: identifies measures, cohorts and the inference they support."
+    },
+    "evidence-tables::Activity and coverage in the current window": {
+      "tier": "C",
+      "kind": "evidence-table",
+      "location": "appendix-evidence-ledger",
+      "rationale": "Reference receipt with its denominator and interpretation limit."
+    },
+    "evidence-tables::Model-linked artifacts at week 31": {
+      "tier": "C",
+      "kind": "evidence-table",
+      "location": "appendix-evidence-ledger",
+      "rationale": "Reference receipt with its denominator and interpretation limit."
+    },
+    "evidence-tables::Current-window support ratio": {
+      "tier": "C",
+      "kind": "evidence-table",
+      "location": "appendix-evidence-ledger",
+      "rationale": "Reference receipt with its denominator and interpretation limit."
+    },
+    "evidence-tables::Human-reference checker reductions": {
+      "tier": "C",
+      "kind": "evidence-table",
+      "location": "appendix-evidence-ledger",
+      "rationale": "Reference receipt with its denominator and interpretation limit."
+    },
+    "evidence-tables::Agent and service remediation comparison": {
+      "tier": "C",
+      "kind": "evidence-table",
+      "location": "appendix-evidence-ledger",
+      "rationale": "Reference receipt with its denominator and interpretation limit."
+    }
+  },
+  "historical_tiers": {
+    "assets/modeling-history.svg": {
+      "tier": "A",
+      "kind": "progression-diagram",
+      "location": "part5",
+      "rationale": "the top-to-bottom modeling history — a partial model growing the composition half it lacked, exposing dependency semantics and effect boundedness; anchor caption for the road-to-MAGE progression"
+    },
+    "assets/docable-seip-work-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "assets/docable-seip-activity-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "assets/docable-seip-analyses-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "assets/docable-seip-capital-261028.svg": {
+      "tier": "B",
+      "kind": "data-chart",
+      "location": "part5",
+      "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
     }
   }
 }
