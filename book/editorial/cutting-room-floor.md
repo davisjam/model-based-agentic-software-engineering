@@ -12137,3 +12137,12 @@ The claim is about price, and it stops there. Moving an economic boundary does n
 
 The claim is bounded in two directions. MAGE does not depend on inventing new modeling or verification techniques, and it does not hold that model-first organization is where software engineering must arrive. What it claims is narrower. MAGE makes selected engineering representations authoritative within an increasingly automated production system, and applies the same approach to the production process itself. Commodity intelligence changes the economics of maintaining that arrangement: it is now buildable, and building it is an engineering problem in its own right.
 
+
+
+### A72 — Introduce the two traditions through their contribution
+
+Accepted by the author on 2026-11-09 after confirming the later novelty discussion remains.
+
+<!-- point: mage-composes-two-inheritances-around-delegated-realization | The novelty lies in composition rather than in the individual mechanisms: engineering contributed explicit models, constrained realization, evidence, and control; AI contributed structure placed outside the reasoner; commodity intelligence brings both into one production system. -->
+
+The novelty of MAGE lies less in its individual mechanisms than in their composition around delegated realization. Each part of the arrangement has a long history, and those histories belong to fields that developed largely independently of one another. [ref:established-traditions-new-composition] shows the two inheritances and where they meet.
