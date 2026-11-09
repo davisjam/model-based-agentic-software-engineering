@@ -17777,3 +17777,12 @@ Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 71
 ```latex
 Model-first engineering occupies one end of the representational design space: consequential knowledge is made explicit before autonomous realization begins.
 ```
+
+
+## Section 7.3: conditions for transfer — 9 November 2026
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, line 85. Source revision: `1e9cfaccb03463bb401f7f32edf0ec3f33a89cd5`. Removal revision: the commit introducing this entry. Remove the signposting paragraph after residual judgment; keep the next two paragraphs explaining partial transfer and domain-specific machinery.
+
+```latex
+These conditions also bound the claim. Where representation, correspondence, or control is inadequate, better agents or human supervision may be preferable to additional governance machinery. The later discussion of where the generalization fails examines those limits.
+```
