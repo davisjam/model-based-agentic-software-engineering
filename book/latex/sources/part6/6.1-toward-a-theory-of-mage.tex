@@ -105,6 +105,8 @@ This gives packaged agent systems a place in the theory. A capable reasoner and 
 
 Human attention is part of this accounting. A production system that generates changes cheaply but requires an expert to reconstruct each one has moved work onto that expert. The relevant cost includes the time needed to interpret the evidence, diagnose failures, and decide whether the result is acceptable. The following inset explains why increasing output can make this cost decisive.
 
+% <!-- point: human-attention-is-a-conserved-resource | Human attention is an engineering resource. -->
+
 % <!-- box-family: inset -->
 
 % <!-- inset-domain: HUMAN FACTORS -->
@@ -114,8 +116,6 @@ Human attention is part of this accounting. A production system that generates c
 \begin{bookbox}{inset}{Human Attention Is Not a Free Control}
 \label{inset-human-attention-not-a-free-control}
 Moving work from human execution to machine execution does not eliminate the cost of human attention if people must inspect the resulting stream. Software engineering has long relied on one engineer reviewing another\textquotesingle s work, but code review is imperfect. Studies document the improvements reviewers prompt and associate review coverage and participation with post-release quality.\citep{beller2014modern, mcintosh2014impact} At Microsoft, reviews spanning more files had a lower proportion of useful feedback, and developers reported that such reviews required more time and effort.\citep{bosu2015useful} As agents assume more implementation work, software engineering faces a problem familiar to industries that automated earlier. Bainbridge\textquotesingle s \emph{Ironies of Automation} described how automation can leave human operators responsible for monitoring rare failures and intervening when something goes wrong.\citep{bainbridge1983}
-
-% <!-- point: human-attention-is-a-conserved-resource | Human attention is an engineering resource. -->
 
 As agentic output grows, proportional human inspection becomes a bottleneck. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment. Human attention is an engineering resource.
 \end{bookbox}

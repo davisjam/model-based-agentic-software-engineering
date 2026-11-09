@@ -7,7 +7,7 @@
     "derived_ids": 171,
     "missing_topic_sentence": 5,
     "sections_drained": 131,
-    "paragraph_points": 574
+    "paragraph_points": 575
   },
   "chapters": [
     {
@@ -3520,9 +3520,14 @@
               "block_index": 42
             },
             {
+              "slug": "human-attention-is-a-conserved-resource",
+              "text": "Human attention is an engineering resource.",
+              "block_index": 44
+            },
+            {
               "slug": "factory-value-requires-more-than-correct-delivery",
               "text": "Correct delivery is a constraint, not a universal valuation of outcomes; upkeep, consequences and intended use determine whether the arrangement pays.",
-              "block_index": 47
+              "block_index": 48
             }
           ]
         },
@@ -3532,57 +3537,57 @@
           "heading_text": "The Inherited Engineering Environment",
           "topic_sentence": "Software engineering extends the model beyond one episode: each realization changes the conditions inherited by the next.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 50,
           "points": [
             {
               "slug": "se-needs-a-model-where-each-realization-changes-the-next",
               "text": "Software engineering extends the episode model: each realization becomes structure inherited by the next.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "independence-omits-the-inherited-environment",
               "text": "Each engineering episode inherits an environment and may change the conditions of later work; the dynamic relation is schematic, not a fitted law.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "coupling-creates-path-dependence-decay-self-reinforcing",
               "text": "The coupling creates path dependence: poor structure makes good realization harder, and decay can become self-reinforcing.",
-              "block_index": 56
+              "block_index": 57
             },
             {
               "slug": "theory-of-mage-informal-statement",
               "text": "Agentic capacity acts through an inherited environment, shaping durable throughput, defect escape and human-attention burden.",
-              "block_index": 58
+              "block_index": 59
             },
             {
               "slug": "diagnosis-and-authority-connect-pressure-to-adaptation",
               "text": "Pressure prompts useful adaptation only when someone can diagnose the structural cause and change the shared environment.",
-              "block_index": 61
+              "block_index": 62
             },
             {
               "slug": "four-properties-of-an-effective-environment",
               "text": "Useful representations, adequate coverage, coherence and economy describe environment fit independently of machinery counts.",
-              "block_index": 63
+              "block_index": 64
             },
             {
               "slug": "not-a-maturity-model-improve-the-limiting-part",
               "text": "The properties are dimensions for diagnosing what limits the work, not maturity stages; the appropriate response may improve representations or assurance, or reconcile and retire controls.",
-              "block_index": 71
+              "block_index": 72
             },
             {
               "slug": "definitions-of-the-three-outcomes",
               "text": "Durable throughput, defect escape and human-attention burden are outcomes; their candidate observables require explicit measurement choices.",
-              "block_index": 73
+              "block_index": 74
             },
             {
               "slug": "activity-counts-are-not-outcome",
               "text": "Easy-to-count quantities (commits, lines, control files, support ratio) measure activity or investment, not outcome.",
-              "block_index": 76
+              "block_index": 77
             },
             {
               "slug": "three-anchors-open-four-propositions",
               "text": "The production identity, lifecycle accounting and inherited environment motivate four conditional propositions requiring stronger empirical tests.",
-              "block_index": 78
+              "block_index": 79
             }
           ]
         }
