@@ -529,7 +529,7 @@ def _collect_glossary(chapters: list[dict]) -> None:
 # Part number → the source subdirectory that holds its chapters. Front matter is part 0, the
 # numbered parts run contiguously 1–7 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is MAGE in
 # Motion — the Ch4/Ch5 merger absorbed the old Part 5, "The MAGE Method", into it, and the 260922
-# renumber closed the resulting 4 → 6 gap — Part 5 is Agentic Software Factories, Part 6 is The
+# renumber closed the resulting 4 → 6 gap — Part 5 is DocAble Among Other Software Factories, Part 6 is The
 # Theory, Part 7 is The Profession), true back matter (the top-level Conclusion) is part 9. Appendix parts follow.
 _PART_DIRS = {
     0: "frontmatter",
@@ -558,7 +558,7 @@ _PART_TITLES = {
     2: "Modeling",
     3: "Alignment",
     4: "MAGE in Motion: Engineering Through Models",
-    5: "Agentic Software Factories",
+    5: "DocAble Among Other Software Factories",
     6: "The Theory",
     7: "The Profession",
     9: "Conclusion",   # the top-level Conclusion — its sole page is titled "Conclusion" too (subtitle dropped 260909), so the header/TOC/divider dedup branches suppress the double print

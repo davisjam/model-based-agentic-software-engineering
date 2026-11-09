@@ -65,7 +65,7 @@ book/
     4.2-one-problem-many-models.md
     4.3-brownfield-engineering.md
     4.4-engineering-the-environment.md
-  part5/  (Part 5 — Agentic Software Factories)
+  part5/  (Part 5 — DocAble Among Other Software Factories)
     5.1-software-factory.md … 5.4-what-the-factories-show.md
   part6/  (Part 6 — The Theory)
     6.1-toward-a-theory-of-mage.md … 6.5-what-the-theory-claims.md

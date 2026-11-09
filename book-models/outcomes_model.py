@@ -102,7 +102,7 @@ PART_TITLES = {
     2: "Modeling",
     3: "Alignment",
     4: "MAGE in Motion: Engineering Through Models",
-    5: "Agentic Software Factories",
+    5: "DocAble Among Other Software Factories",
     6: "The Theory",
     7: "The Profession",
     9: "Conclusion",

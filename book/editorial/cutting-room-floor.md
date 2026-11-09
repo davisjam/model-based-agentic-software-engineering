@@ -13030,3 +13030,47 @@ The transfer conditions predict their own failures, and the failures deserve nam
 
 Some consequential knowledge is tacit or embodied: the surgeon\textquotesingle s feel for tissue, the negotiator\textquotesingle s read of a room, the mechanic\textquotesingle s ear for a bearing going bad. Where the relevant state lives in trained perception rather than in any external record, there is no representation to maintain and nothing for a mechanism to hold. Some domains lack settled ground truth, or dispute it; evidence there cannot anchor enforcement because the parties do not agree on what the evidence shows. Some work changes its object by representing it. A disclosed negotiating position, a published trading model, and a community under observation all respond to their own description, so a representation is an intervention rather than a reduction, and correspondence in the engineering sense cannot be established. Highly novel work poses a different obstacle: stable models do not yet exist, so there is nothing for later work to inherit and no recurrence against which to amortize the structure. And some obligations cannot responsibly be interpreted apart from their context---a clinical decision, a use-of-force judgment---so moving them into machinery would not enforce the obligation. It would replace it with a proxy.
 ```
+
+## 2026-11-09 — Approved professional-practice revisions A78–A83
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, reserve capacity, supervision, full-system breadth, and capstone passages; source revision `c96228692`, original passages at native lines 72–355. Reason: author-approved replacements and A81 wording.
+
+### A78 — Name the dependency whose loss threatens reserve capacity
+
+Resilience gives another reason to preserve the human side of that frontier. A society whose engineering capacity exists only through machine intelligence has made that intelligence critical infrastructure. If the models become unavailable, untrustworthy, compromised, or controlled by someone else, the society has no independent engineering capacity to fall back on. Some human engineering competence may therefore remain valuable even when it is no longer the cheapest way to produce engineering work.
+
+### A79 — Keep foundation-model access distinct from engineering models
+
+<!-- point: resilience-favors-diversity-of-machine-intelligence | Resilience also favors diversity in where machine intelligence resides; local models can be independent reserve capacity. -->
+
+Resilience need not mean preserving only human reserve capacity. It may also favor diversity in where machine intelligence resides. If consequential engineering increasingly depends on models available only through a small number of remote providers, access to those providers becomes part of the engineering infrastructure on which individuals, firms, and societies depend. Smaller local or on-device models could provide another layer of reserve capacity: perhaps less capable than frontier systems, but inexpensive, independently operable, and sufficient when paired with strong representations, tools, and evidence. Whether that capability becomes technically or economically competitive is uncertain. The engineering principle is not. A resilient system should be wary of concentrating an essential productive capability behind a dependency it cannot itself control.
+
+### A80 — Connect retained expertise to the authority inset
+
+<!-- point: implementation-fungible-not-independent-human-capacity | Implementation becoming fungible does not mean a resilient society should let independent human engineering capacity disappear. -->
+
+MAGE predicts that implementation will become increasingly fungible and that fewer people will be needed to carry it. It does not follow that a resilient society should allow independent human engineering capacity to disappear with it.
+
+<!-- box-family: inset -->
+
+<!-- inset-domain: ENGINEERING PRACTICE -->
+
+<!-- inset-size: small -->
+
+> #### Inset — Engineering at the frontier of authority {#inset-frontier-authority}
+>
+> Engineering does not always decide whether to proceed. Its responsibility is to make the engineering case legible enough that those who do decide know what is understood, what can be assured, what remains uncertain, and what risk they are accepting.
+
+### A81 — Report supervisory-engineering evidence at the level measured
+
+<!-- point: early-evidence-supervisory-engineering-work | Early evidence describes supervisory engineering work; MAGE would give that supervision better reasoning surfaces. -->
+
+Early evidence shows part of this shift. A six-month longitudinal study of engineers adopting AI assistants found most of them writing less code and spending more time directing, checking, and correcting what the model produced — a mode its authors name *supervisory engineering work*. It did not come free: flow and cognitive load both eroded even as output held.[cite: vella2026impact] Their observations are consistent with this shift; MAGE's proposal is to give that supervision better reasoning surfaces — explicit models and evidence rather than an ever-growing stream of unfamiliar output.
+
+### A82 — Develop full-system breadth before the cross-domain decision
+
+Building DocAble made this breadth concrete for me. The work crossed regulatory obligations (the ADA, WCAG); product judgment (usability, user expectations, the limits of existing accessibility tools); document formats and their internal representations (PDF, Office, LibreOffice, LaTeX, Typst); accessibility semantics (reading order, alternative text, tables, structure); the architecture and structured models through which those formats could be changed safely; agent behavior and its boundaries; validation strong enough to separate plausible output from conforming output; and the memory, performance, deployment, and operational behavior of a cloud service. No single concern defined the system, and the consequential decisions were the ones that crossed domains. The decision record of {{chapter:software-factories}} shows the shape. Retiring accessibility-checker scores in favor of validation grounded in the standards crossed three domains in one decision: a regulatory reading of what the obligations actually require, a product observation that users' documents passed the checkers while losing meaning, and a change to the validation architecture. None of the three could have settled it alone.
+
+### A83 — Make the capstone’s closing requirement an explanation of evidence
+
+A capstone should therefore demonstrate more than a working artifact. Ask students to bring the **engineering case**.[^abet-capstone] The artifact should be one component of that case, alongside requirements, models, tradeoffs, measurements, validation evidence, and an explicit argument for acceptance. Students should also demonstrate that they can organize substantial work: decompose an objective, manage dependencies and integration, coordinate parallel realization, and adapt the plan as engineering evidence arrives. This extends rather than replaces the integrative purpose of the capstone. Students should demonstrate that they can produce a system while exercising informed control over it: organizing the work, evaluating the evidence for consequential properties, recognizing relevant assumptions and tradeoffs, and justifying acceptance of the result.

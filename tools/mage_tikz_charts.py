@@ -92,7 +92,7 @@ s=axis(b,'xbar,bar width=10pt,width=6.5cm,height=10.5cm,xmin=0,xmax=1.4,ymin=-.6
 write('f10_what_experience_became',s,'Restores the original twelve category bars. Three distinct gray fills preserve enforcement classes: 8 blocking, 2 advisory, 2 measurement. Exact original bucketing; three confirmations excluded.', ['governance_conversions.csv'])
 # Navigation is a seven-station ordered map; markers, not colour, indicate position.
 labels=['The Problem','Modeling','Alignment','MAGE in Motion','Factories','Theory','Profession']
-chapter_names=['The New Engineering Problem','Modeling','Alignment','MAGE in Motion: Engineering Through Models','Agentic Software Factories','The Theory','The Profession']
+chapter_names=['The New Engineering Problem','Modeling','Alignment','MAGE in Motion: Engineering Through Models','DocAble Among Other Software Factories','The Theory','The Profession']
 for part in range(1,8):
  s=r'\draw[line width=.7pt] (0,0)--(12.6,0);'+'\n'
  for i,label in enumerate(labels):
