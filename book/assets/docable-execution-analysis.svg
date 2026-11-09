@@ -1,28 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Custom SVG: compact print composition with explicit node/edge geometry and 9pt minimum labels at its reviewed width. Native monochrome partner remains independent. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 324 232" width="324" height="232" role="img" aria-labelledby="executionTitle executionDesc" font-family="'Source Sans 3', Arial, sans-serif">
-<title id="executionTitle">One declared DOCX dependency, two uses</title><desc id="executionDesc">For a DOCX job with table-header repair enabled, the registry declares that table-header repair writes table-header information and table-structure checking reads it. The producer precedes the consumer. The execution machinery uses these declarations to order work; a separate Python analytical graph projects the resource dependency. The figure covers one Office resource dependency only. PDF uses parallel typed declarations checked against the executable pipeline and is not drawn here.</desc>
-<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#57534e"/></marker></defs>
-<rect x="8" y="8" width="308" height="125" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8" />
-<text x="162" y="26" font-size="11" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="162" dy="0">Registry declarations (DOCX)</tspan></text>
-<rect x="40" y="42" width="244" height="34" rx="3" fill="#fff" stroke="#57534e" stroke-width="0.8" />
-<text x="162" y="55" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="162" dy="0">Table-header repair</tspan></text>
-<text x="162" y="68" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="162" dy="0">writes: table headers</tspan></text>
-<polyline points="162,76 162,96" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
-<text x="172" y="90" font-size="9" fill="#57534e" text-anchor="start"><tspan x="172" dy="0">producer before consumer</tspan></text>
-<rect x="40" y="96" width="244" height="30" rx="3" fill="#fff" stroke="#57534e" stroke-width="0.8" />
-<text x="162" y="108" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="162" dy="0">Table-structure check</tspan></text>
-<text x="162" y="120" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="162" dy="0">reads: table headers</tspan></text>
-<polyline points="83,133 83,172" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
-<polyline points="241,133 241,172" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)" stroke-dasharray="3 2"/>
-<rect x="39" y="138" width="88" height="13" fill="white"/><rect x="199" y="138" width="84" height="24" fill="white"/><text x="83" y="148" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="83" dy="0">uses declarations</tspan></text>
-<text x="241" y="148" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="241" dy="0">projects resource</tspan></text>
-<text x="241" y="159" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="241" dy="0">edges</tspan></text>
-<rect x="8" y="172" width="150" height="51" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
-<text x="83" y="188" font-size="10" fill="#2f5169" text-anchor="middle" font-weight="700"><tspan x="83" dy="0">Execution machinery</tspan></text>
-<text x="83" y="202" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="83" dy="0">orders repair before check</tspan></text>
-<rect x="166" y="172" width="150" height="51" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="0.8" />
-<text x="241" y="188" font-size="10" fill="#1f7a4d" text-anchor="middle" font-weight="700"><tspan x="241" dy="0">Python analytical graph</tspan></text>
-<text x="241" y="202" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="241" dy="0">records the dependency</tspan></text>
-
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 214" width="315" height="214" role="img" aria-labelledby="executionTitle executionDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><title id="executionTitle">One declared DOCX dependency, two uses</title><desc id="executionDesc">For a DOCX job with table-header repair enabled, the registry declares that table-header repair writes table-header information and table-structure checking reads it. The producer precedes the consumer. The execution machinery uses these declarations to order work; a separate Python analytical graph projects the resource dependency. The figure covers one Office resource dependency only. PDF uses parallel typed declarations checked against the executable pipeline and is not drawn here.</desc>
+<defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169" /></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e" /></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438" /></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917" /></marker></defs>
+<rect x="4" y="3" width="307" height="126" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="157.5" y="20.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Registry declarations (DOCX)</text>
+<rect x="39" y="32" width="237" height="32" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="157.5" y="46.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Table-header repair</text>
+<text x="157.5" y="58.0" text-anchor="middle" font-size="9" fill="#1c1917">writes: table headers</text>
+<path d="M157.5,64 L157.5,89" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<text x="163" y="80.0" text-anchor="start" font-size="9" fill="#1c1917">producer before consumer</text>
+<rect x="39" y="90" width="237" height="32" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="157.5" y="103.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Table-structure check</text>
+<text x="157.5" y="114.0" text-anchor="middle" font-size="9" fill="#1c1917">reads: table headers</text>
+<path d="M80,129 L80,170" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<text x="86" y="146.0" text-anchor="start" font-size="9" fill="#1c1917">uses declarations</text>
+<path d="M235,129 L235,170" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#a57534e)" />
+<text x="241" y="144.0" text-anchor="start" font-size="9" fill="#1c1917">projects resource</text>
+<text x="241" y="154.8" text-anchor="start" font-size="9" fill="#1c1917">edges</text>
+<rect x="4" y="171" width="150" height="38" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<text x="79" y="187.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Execution machinery</text>
+<text x="79" y="200.0" text-anchor="middle" font-size="9" fill="#1c1917">orders repair before check</text>
+<rect x="162" y="171" width="149" height="38" rx="4" fill="#e4efe8" stroke="#086438" stroke-width="0.8" />
+<text x="236.5" y="187.0" text-anchor="middle" font-size="10" fill="#086438" font-weight="700">Python analytical graph</text>
+<text x="236.5" y="200.0" text-anchor="middle" font-size="9" fill="#1c1917">records the dependency</text>
 </svg>

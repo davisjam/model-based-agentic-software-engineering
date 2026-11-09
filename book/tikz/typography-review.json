@@ -4,20 +4,27 @@
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
   "candidate_count": 148,
   "refined_count": 123,
-  "check_count": 903,
+  "check_count": 904,
   "shared_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
   "validation": {
-    "status": "passed",
-    "reviewed_on": "2026-11-09",
+    "date": "2026-11-09",
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+    "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+    "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+    "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+    "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
-    "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
-    "semantic_typography_checks": 903,
-    "checked_terminal_approaches": 646,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "candidate_count": 148,
+    "checked_terminal_approaches": 645,
     "reviewed_peer_groups": 85,
-    "unapproved_compile_diagnostics": 0
+    "semantic_typography_checks": 904,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
   },
   "figures": [
     {
@@ -1748,8 +1755,8 @@
       "source": "book/assets/model-classes.svg",
       "candidate": "book/tikz/figures/model-classes.tex",
       "decision": "refined",
-      "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
-      "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+      "source_sha256": "4f702c445c8ac74aea0614519274c061526314284b5703e07f3e61c5e4f84886",
+      "candidate_sha256": "dea908d27a48039330eee46b2198b4fc1eb6f22fe3befa833c682515595ddcf9",
       "evidence": [
         {
           "source_text": "STRUCTURAL",
@@ -1933,21 +1940,21 @@
           ]
         },
         {
-          "source_text": "what is allowed? which choice?",
+          "source_text": "what should happen next?",
           "source_style": "weight normal, italic",
           "semantic_role": "Question answered by the class, or qualification",
-          "candidate_text": "What is allowed? Which choice?",
+          "candidate_text": "What should happen next?",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "what is allowed?",
+              "text": "what should",
               "weight": "normal",
               "style": "italic",
               "x": "178",
               "y": "207"
             },
             {
-              "text": "which choice?",
+              "text": "happen next?",
               "weight": "normal",
               "style": "italic",
               "x": "178",
@@ -2093,7 +2100,7 @@
           "italic": true
         },
         {
-          "text": "What is allowed? Which choice?",
+          "text": "What should happen next?",
           "italic": true
         },
         {
@@ -2118,15 +2125,19 @@
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 3,
-        "width_bp": 376.339,
-        "height_bp": 232.164,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 3,
+        "width_bp": 376.339,
+        "height_bp": 232.164,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 16
       },
       "color_source_revision": {
@@ -2135,7 +2146,29 @@
         "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
+            "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 3,
+              "width_bp": 376.339,
+              "height_bp": 232.164,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 16
+            },
+            "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/gloss-agent-vocab.svg",
@@ -3819,8 +3852,8 @@
       "source": "book/assets/realization-space.svg",
       "candidate": "book/tikz/figures/realization-space.tex",
       "decision": "refined",
-      "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
-      "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+      "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
+      "candidate_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
       "evidence": [
         {
           "source_text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
@@ -3927,20 +3960,46 @@
         "semantic_typography_checks": 5
       },
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
-        "page": 13,
-        "width_bp": 350.12,
-        "height_bp": 265.611,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 8,
-        "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
         "status": "passed",
-        "reviewed_date": "2026-11-04"
-      }
+        "page": 14,
+        "width_bp": 333.872,
+        "height_bp": 245.599,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 8
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+            "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+              "page": 13,
+              "width_bp": 350.12,
+              "height_bp": 265.611,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 8,
+              "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+              "status": "passed",
+              "reviewed_date": "2026-11-04"
+            },
+            "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/specified-region.svg",
@@ -4267,8 +4326,8 @@
       "source": "book/assets/question-to-consequence-progression.svg",
       "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
       "decision": "refined",
-      "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
-      "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+      "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+      "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
       "evidence": [
         {
           "source_text": "engineering question",
@@ -4386,27 +4445,27 @@
       "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
       "checks": [
         {
-          "text": "Engineering question",
+          "text": "engineering question",
           "bold": true
         },
         {
-          "text": "Choose representation",
+          "text": "choose the representation",
           "bold": true
         },
         {
-          "text": "Choose analysis appropriate to the property",
+          "text": "choose an analysis appropriate to the property",
           "bold": true
         },
         {
-          "text": "Interpret evidence",
+          "text": "interpret the evidence",
           "bold": true
         },
         {
-          "text": "Inform architecture / design",
+          "text": "inform architecture / design",
           "bold": true
         },
         {
-          "text": "Decide what deserves enforcement",
+          "text": "decide what deserves enforcement",
           "bold": true
         },
         {
@@ -4414,20 +4473,24 @@
           "italic": true
         },
         {
-          "text": "Closed state/action space",
+          "text": "closed state / action space",
           "bold": false
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 15,
-        "width_bp": 396.181,
-        "height_bp": 310.754,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 16,
+        "width_bp": 315.522,
+        "height_bp": 338.367,
+        "minimum_prose_font_pt": 9.96,
         "semantic_typography_checks": 8
       },
       "color_source_revision": {
@@ -4436,7 +4499,29 @@
         "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+            "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 15,
+              "width_bp": 396.181,
+              "height_bp": 310.754,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 8
+            },
+            "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/modeling-repertoire.svg",
@@ -4984,8 +5069,8 @@
       "source": "book/assets/canonical-structural.svg",
       "candidate": "book/tikz/figures/canonical-structural.tex",
       "decision": "refined",
-      "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
-      "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+      "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+      "candidate_sha256": "db3ffed0c3e386ffbb704ac99b5e18a66082a6a74e605eee3cf6e60f3198efec",
       "evidence": [
         {
           "source_text": "WEB",
@@ -5226,15 +5311,19 @@
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 17,
-        "width_bp": 449.972,
-        "height_bp": 469.972,
-        "minimum_prose_font_pt": 11.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 18,
+        "width_bp": 289.522,
+        "height_bp": 220.166,
+        "minimum_prose_font_pt": 10.96,
         "semantic_typography_checks": 13
       },
       "color_source_revision": {
@@ -5243,14 +5332,36 @@
         "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+            "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 17,
+              "width_bp": 449.972,
+              "height_bp": 469.972,
+              "minimum_prose_font_pt": 11.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 13
+            },
+            "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/document-mutation-model.svg",
       "candidate": "book/tikz/figures/document-mutation-model.tex",
       "decision": "refined",
-      "source_sha256": "fcd4a77259421b666b99d5b1d5c8415d2e21552116cf212546112a64f6517206",
-      "candidate_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
+      "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
+      "candidate_sha256": "75a615f19d6b04c4bdffe214198c0130bdbc999e398f96de46c33cb9952c2f99",
       "evidence": [
         {
           "source_text": "remediation logic",
@@ -5321,17 +5432,17 @@
       "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
       "checks": [
         {
-          "text": "Remediation logic",
+          "text": "remediation logic",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Structured document model",
+          "text": "structured document model",
           "bold": true,
           "italic": false
         },
         {
-          "text": "The sanctioned seam",
+          "text": "the sanctioned seam",
           "bold": false,
           "italic": true
         },
@@ -5346,7 +5457,7 @@
           "italic": true
         },
         {
-          "text": "Format-specific implementation",
+          "text": "format-specific implementation",
           "bold": false,
           "italic": false
         },
@@ -5357,20 +5468,20 @@
         }
       ],
       "validation": {
-        "date": "2026-11-05",
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-        "page": 18,
-        "width_bp": 336.654,
-        "height_bp": 221.049,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7,
-        "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-        "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
         "status": "passed",
-        "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
+        "page": 19,
+        "width_bp": 240.023,
+        "height_bp": 226.923,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 7
       },
       "revision_history": [
         {
@@ -5499,6 +5610,30 @@
               "semantic_typography_checks": 7
             }
           }
+        },
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "fcd4a77259421b666b99d5b1d5c8415d2e21552116cf212546112a64f6517206",
+            "candidate_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
+            "validation": {
+              "date": "2026-11-05",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+              "page": 18,
+              "width_bp": 336.654,
+              "height_bp": 221.049,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 7,
+              "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+              "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+              "status": "passed",
+              "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
+            },
+            "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships."
+          }
         }
       ]
     },
@@ -5506,7 +5641,7 @@
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
       "decision": "refined",
-      "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+      "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
       "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
       "evidence": [
         {
@@ -5658,15 +5793,19 @@
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 19,
-        "width_bp": 390.839,
-        "height_bp": 275.664,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 20,
+        "width_bp": 390.839,
+        "height_bp": 275.664,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 8
       },
       "color_source_revision": {
@@ -5675,14 +5814,36 @@
         "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+            "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 19,
+              "width_bp": 390.839,
+              "height_bp": 275.664,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 8
+            },
+            "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/canonical-behavioral.svg",
       "candidate": "book/tikz/figures/canonical-behavioral.tex",
       "decision": "refined",
-      "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
-      "candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
+      "source_sha256": "140c0edfa111c00180f2492c9f69500612602e284196eb78c04b906758fe1529",
+      "candidate_sha256": "29811cb7e256dcf136b451f6aed33fbf8e6cf29519617ce73bde84a219250d5f",
       "evidence": [
         {
           "source_text": "IMPLEMENTATION",
@@ -5850,30 +6011,61 @@
           "italic": true
         },
         {
-          "text": "Handlers \u00b7 retries \u00b7 writes \u00b7 logging",
+          "text": "Handlers \u00b7 retries",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "writes \u00b7 logging",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 20,
-        "width_bp": 350.12,
-        "height_bp": 225.916,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 10
-      }
+        "status": "passed",
+        "page": 21,
+        "width_bp": 285.049,
+        "height_bp": 267.731,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 11
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+            "candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 20,
+              "width_bp": 350.12,
+              "height_bp": 225.916,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 10
+            },
+            "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/recovery-ordering-model.svg",
       "candidate": "book/tikz/figures/recovery-ordering-model.tex",
       "decision": "refined",
-      "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
-      "candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+      "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
+      "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
       "evidence": [
         {
           "source_text": "FALLBACK_STAGED",
@@ -5995,28 +6187,54 @@
           "italic": true
         },
         {
-          "text": "Forbidden / absent transition",
+          "text": "forbidden / absent transition",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Not part of the model",
+          "text": "not part of the model",
           "bold": false,
           "italic": true
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 21,
-        "width_bp": 357.207,
-        "height_bp": 186.777,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 22,
+        "width_bp": 229.716,
+        "height_bp": 201.973,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 7
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+            "candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 21,
+              "width_bp": 357.207,
+              "height_bp": 186.777,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 7
+            },
+            "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/behavioral-property-classes.svg",
@@ -6141,8 +6359,8 @@
       "source": "book/assets/in-flight-ownership-states.svg",
       "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
       "decision": "refined",
-      "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
-      "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+      "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
+      "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
       "evidence": [
         {
           "source_text": "CLAIMED",
@@ -6282,28 +6500,54 @@
           "italic": true
         },
         {
-          "text": "Claim ends cleanly",
+          "text": "claim ends cleanly",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Lease lapsed / stale",
+          "text": "lease lapsed / stale",
           "bold": false,
           "italic": true
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 23,
-        "width_bp": 361.022,
-        "height_bp": 206.879,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 24,
+        "width_bp": 261.523,
+        "height_bp": 194.834,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 8
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+            "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 23,
+              "width_bp": 361.022,
+              "height_bp": 206.879,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 8
+            },
+            "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/in-flight-lease-overlap.svg",
@@ -6542,8 +6786,8 @@
       "source": "book/assets/service-flow-model.svg",
       "candidate": "book/tikz/figures/service-flow-model.tex",
       "decision": "retained",
-      "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
-      "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+      "source_sha256": "c9614044a4b480a001046579f23d7b8f3a6f3f1c682146da3dd01ae277eb320e",
+      "candidate_sha256": "a54f1cef427a2343716f7bd02eaee5fa9615aa24d6fd5312bcf3ad2d2e8474cd",
       "evidence": [
         {
           "source_text": "OCR",
@@ -6573,17 +6817,43 @@
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 26,
-        "width_bp": 367.834,
-        "height_bp": 215.241,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 27,
+        "width_bp": 262.523,
+        "height_bp": 207.087,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 2
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+            "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 26,
+              "width_bp": 367.834,
+              "height_bp": 215.241,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 2
+            },
+            "reason": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/observed-vs-declared.svg",
@@ -6690,8 +6960,8 @@
       "source": "book/assets/entitlement-domain.svg",
       "candidate": "book/tikz/figures/entitlement-domain.tex",
       "decision": "refined",
-      "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
-      "candidate_sha256": "e4a968dc1c08667dccbd4d405e0d506cff3f10db73e0d31ed252c2e4a5b2d650",
+      "source_sha256": "cebbde1f71dd52111b92512fc9b4cdc71ac150d1893f010e9774bdf50e5c32b1",
+      "candidate_sha256": "1a7c8764f0d93e09778642422ccf238dbded67f5b4c7b1095ff07975ebc0e494",
       "evidence": [
         {
           "source_text": "Finite-credit group",
@@ -6834,12 +7104,12 @@
           "italic": false
         },
         {
-          "text": "Remaining credit balance",
+          "text": "a remaining credit balance",
           "bold": false,
           "italic": true
         },
         {
-          "text": "No credit limit",
+          "text": "no credit limit",
           "bold": false,
           "italic": true
         },
@@ -6849,12 +7119,12 @@
           "italic": true
         },
         {
-          "text": "credits remaining?",
+          "text": "how many credits remain?",
           "bold": false,
           "italic": true
         },
         {
-          "text": "any unlimited?",
+          "text": "is any entitlement unlimited?",
           "bold": false,
           "italic": true
         },
@@ -6865,17 +7135,43 @@
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 28,
-        "width_bp": 356.496,
-        "height_bp": 230.88,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 29,
+        "width_bp": 265.523,
+        "height_bp": 263.523,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 10
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "e1571523f70e1900de72970ce714eb23dbe8a0cd45d5cb7cca452dc10f2259ac",
+            "candidate_sha256": "e4a968dc1c08667dccbd4d405e0d506cff3f10db73e0d31ed252c2e4a5b2d650",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 28,
+              "width_bp": 356.496,
+              "height_bp": 230.88,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 10
+            },
+            "reason": "Finite and unlimited entitlement labels contrast with italic definitions; admission outcomes regain bold capitals."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/entitlement-model-evolution.svg",
@@ -7063,8 +7359,8 @@
       "source": "book/assets/modeling-substrate.svg",
       "candidate": "book/tikz/figures/modeling-substrate.tex",
       "decision": "refined",
-      "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-      "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+      "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
+      "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
       "evidence": [
         {
           "source_text": "SHARED SYSTEM",
@@ -7088,30 +7384,56 @@
           "italic": false
         },
         {
-          "text": "Service registry",
+          "text": "service registry",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 30,
-        "width_bp": 371.803,
-        "height_bp": 297.395,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 31,
+        "width_bp": 292.522,
+        "height_bp": 229.887,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 2
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+            "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 30,
+              "width_bp": 371.803,
+              "height_bp": 297.395,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 2
+            },
+            "reason": "Shared identities are the semantic hub, not just another representation; peer representation names remain regular."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/attribution-model.svg",
       "candidate": "book/tikz/figures/attribution-model.tex",
       "decision": "refined",
-      "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
-      "candidate_sha256": "45cbffb726b70da43ac4f00a52d2f61223c4a5f034a063092feb57185d23c673",
+      "source_sha256": "59d1ffe8cb3abfd2ad15fca751269b84e5fe3b7fed35f4a98a9d81acb1651ab4",
+      "candidate_sha256": "134b0d51b9e2f94d9e56713df536fd96ef68161c6252dcc0a9ade56959f9a04e",
       "evidence": [
         {
           "source_text": "RUN",
@@ -7238,35 +7560,61 @@
           "italic": false
         },
         {
-          "text": "Derived views",
+          "text": "derived views",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Audit \u00b7 debugging \u00b7 changelog",
+          "text": "audit \u00b7 debugging \u00b7 changelog",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 31,
-        "width_bp": 363.145,
-        "height_bp": 188.108,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 32,
+        "width_bp": 238.122,
+        "height_bp": 182.523,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 8
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
+            "candidate_sha256": "45cbffb726b70da43ac4f00a52d2f61223c4a5f034a063092feb57185d23c673",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 31,
+              "width_bp": 363.145,
+              "height_bp": 188.108,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 8
+            },
+            "reason": "Formal record names and schema fields regain label hierarchy; derived-view heading is italic, not another record type."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/two-reductions-static-realized.svg",
       "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
       "decision": "refined",
-      "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859",
-      "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+      "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650",
+      "candidate_sha256": "8bc30187d6f015ff158d1af5d6056a8a148353684f6f60fba2b5137194390568",
       "evidence": [
         {
           "source_text": "what computations may compose",
@@ -7337,12 +7685,12 @@
       "reason": "Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
       "checks": [
         {
-          "text": "What may compose",
+          "text": "what computations may compose",
           "bold": false,
           "italic": true
         },
         {
-          "text": "What one run did emit",
+          "text": "what mutations one run did emit",
           "bold": false,
           "italic": true
         },
@@ -7368,20 +7716,20 @@
         }
       ],
       "validation": {
-        "date": "2026-11-05",
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-        "page": 32,
-        "width_bp": 403.595,
-        "height_bp": 247.517,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 6,
-        "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-        "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
         "status": "passed",
-        "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+        "page": 33,
+        "width_bp": 338.022,
+        "height_bp": 264.994,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 6
       },
       "revision_history": [
         {
@@ -7504,6 +7852,30 @@
               "monochrome_pixels": true,
               "semantic_typography_checks": 6
             }
+          }
+        },
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859",
+            "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+            "validation": {
+              "date": "2026-11-05",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+              "page": 32,
+              "width_bp": 403.595,
+              "height_bp": 247.517,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 6,
+              "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+              "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+              "status": "passed",
+              "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+            },
+            "reason": "Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance."
           }
         }
       ]
@@ -7793,8 +8165,8 @@
       "source": "book/assets/model-sync-two-layer-net.svg",
       "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
       "decision": "refined",
-      "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-      "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
+      "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266",
+      "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
       "evidence": [
         {
           "source_text": "decidable claims",
@@ -7865,12 +8237,12 @@
       "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
       "checks": [
         {
-          "text": "Decidable claims",
+          "text": "decidable claims",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Semantic claims",
+          "text": "semantic claims",
           "bold": true,
           "italic": false
         },
@@ -7885,7 +8257,7 @@
           "italic": false
         },
         {
-          "text": "No model-based coverage",
+          "text": "no model-based coverage",
           "bold": false,
           "italic": true
         },
@@ -7896,17 +8268,43 @@
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 35,
-        "width_bp": 418.161,
-        "height_bp": 160.043,
-        "minimum_prose_font_pt": 9.0,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 36,
+        "width_bp": 311.622,
+        "height_bp": 193.072,
+        "minimum_prose_font_pt": 8.97,
         "semantic_typography_checks": 6
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+            "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 35,
+              "width_bp": 418.161,
+              "height_bp": 160.043,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 6
+            },
+            "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/coherence-triangle.svg",
@@ -8049,8 +8447,8 @@
       "source": "book/assets/modeling-perp-enforcement.svg",
       "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
       "decision": "refined",
-      "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
-      "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+      "source_sha256": "77419ed8d64c1be3922bc8bbc44fe004eaad7adc71f97aebcdeb6981e8e76167",
+      "candidate_sha256": "4d9293386493be518bcecbec793756ec953bc56c46541c5ebbc04a0878ddda17",
       "evidence": [
         {
           "source_text": "same model",
@@ -8095,7 +8493,7 @@
       "reason": "Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
       "checks": [
         {
-          "text": "Same model",
+          "text": "same model",
           "bold": true,
           "italic": false
         },
@@ -8110,28 +8508,54 @@
           "italic": true
         },
         {
-          "text": "Quantity",
+          "text": "quantity",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Observe",
+          "text": "observe",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 37,
-        "width_bp": 417.69,
-        "height_bp": 189.33,
-        "minimum_prose_font_pt": 9.5,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "status": "passed",
+        "page": 38,
+        "width_bp": 335.522,
+        "height_bp": 181.804,
+        "minimum_prose_font_pt": 9.46,
         "semantic_typography_checks": 5
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+            "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 37,
+              "width_bp": 417.69,
+              "height_bp": 189.33,
+              "minimum_prose_font_pt": 9.5,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 5
+            },
+            "reason": "Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/part3-nav-arc.svg",
@@ -22703,8 +23127,8 @@
     {
       "source": "book/assets/docable-execution-analysis.svg",
       "candidate": "book/tikz/figures/docable-execution-analysis.tex",
-      "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
-      "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+      "source_sha256": "9d5ec792a632f353bf1ec067f37515242c1ebac69a15fba5e1ea2e191a14c9f7",
+      "candidate_sha256": "37abfd2d36113bd9677649a7aa81b9fb50e40cee958d5c5ec08c5300841fd89b",
       "decision": "retained",
       "evidence": [
         {
@@ -22868,20 +23292,20 @@
         }
       ],
       "validation": {
-        "date": "2026-11-05",
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-        "page": 139,
-        "width_bp": 392.504,
-        "height_bp": 236.736,
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 12,
-        "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-        "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
         "status": "passed",
-        "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+        "page": 137,
+        "width_bp": 313.522,
+        "height_bp": 212.523,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 12
       },
       "reviewed_visually": true,
       "color_source_revision": {
@@ -22890,7 +23314,33 @@
         "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
+            "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
+            "validation": {
+              "date": "2026-11-05",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+              "page": 139,
+              "width_bp": 392.504,
+              "height_bp": 236.736,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 12,
+              "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+              "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+              "status": "passed",
+              "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+            },
+            "reason": "Keep the registry heading distinct from node descriptions and relation labels; all entity names, read/write facts, and edge verbs remain exact. The color drawing does not encode a semantic distinction by contrasting bold and regular nodes."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/deliver-context-two-layer.svg",
@@ -24724,6 +25174,19 @@
     {
       "status": "pending",
       "reason": "Candidate set changed during Chapter 5 revision; full figure pool will be rebuilt."
+    },
+    {
+      "status": "passed",
+      "reviewed_on": "2026-11-09",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+      "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+      "semantic_typography_checks": 903,
+      "checked_terminal_approaches": 646,
+      "reviewed_peer_groups": 85,
+      "unapproved_compile_diagnostics": 0
     }
   ]
 }

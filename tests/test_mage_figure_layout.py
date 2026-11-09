@@ -46,12 +46,10 @@ class FigurePrintLayoutTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.render(self.figure.replace(r'width=\linewidth', 'width=400bp'))
 
-    def test_reviewed_exhibit_flushes_before_following_discussion(self):
+    def test_legacy_forced_page_boundary_is_rejected(self):
         self.rule['figures']['compact']['flush_after'] = True
-        following = '\nField note and the next section.'
-        result = self.render(self.figure + following)
-        self.assertIn(r'\label{compact}\end{figure}' + '\n\\clearpage\n' + following, result)
-        self.assertIn(r'\caption{A {formatted} caption.}', result)
+        with self.assertRaisesRegex(ValueError, 'cannot force a page boundary'):
+            self.render(self.figure)
 
     def test_float_boundary_requires_an_explicit_boolean(self):
         self.rule['figures']['compact']['flush_after'] = 'yes'

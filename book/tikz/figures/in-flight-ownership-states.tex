@@ -1,17 +1,24 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[note,text width=2cm] (start) at (0,1.8) {claim};
-\node[n,text width=5cm,fill=white] (c) at (0,0) {\textbf{CLAIMED}\\\textit{owner · epoch · expires\_at}};
-\draw[edge] (start) -- (c);
-\node[n,text width=4.5cm,fill=white] (rel) at (-3.6,-2.7) {\textbf{RELEASED}\\\textit{Claim ends cleanly}};
-\node[n,text width=4.5cm,fill=white] (rec) at (3.6,-2.7) {\textbf{RECLAIMABLE}\\\textit{Lease lapsed / stale}};
-\draw[edge] (c.south) -- (0,-1.35) -- node[lab,above] {\textbf{completion}} (-3.6,-1.35) -- (rel.north);
-\draw[edge,dashed] (c.south) -- (0,-1.35) -- node[lab,above] {\textbf{expiry}} (3.6,-1.35) -- (rec.north);
-\draw[edge,dashed] (rec.east) -- ++(.45,0) |- node[lab,near end,above] {another actor\\may claim} (c.east);
-\node[note,text width=10cm] (n) at (0,-4.5) {Completion releases the claim; expiry makes it reclaimable.\\A live claim is distinguishable from a stale one — expiry is a state, not an accident.};
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (126,26.0) {claim};
+\draw[-Stealth,line width=.55pt] (126,29) -- (126,40);
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (50,41) rectangle (202,82);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (126,58.0) {CLAIMED};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (126,73.0) {owner \,\textperiodcentered\, epoch \,\textperiodcentered\, expires\_at};
+\draw[-Stealth,line width=.55pt] (94,82) -- (94,103) -- (64,103) -- (64,127);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (64,98.0) {completion};
+\draw[-Stealth,line width=.55pt,dashed] (161,82) -- (161,103) -- (196,103) -- (196,127);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (196,98.0) {expiry};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (8,128) rectangle (120,165);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (64,143.0) {RELEASED};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (64,157.0) {claim ends cleanly};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (140,128) rectangle (252,165);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (196,143.0) {RECLAIMABLE};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (196,157.0) {lease lapsed / stale};
+\draw[-Stealth,line width=.55pt,dashed] (252,146) -- (263,146) -- (263,61) -- (202,61);
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (233,84.0) {another actor};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (233,94.8) {may claim};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (135,185.0) {Completion releases the claim; expiry makes it reclaimable.};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (135,195.8) {A live claim is distinguishable from a stale one ---};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (135,206.6) {expiry is a state, not an accident.};
 \end{tikzpicture}

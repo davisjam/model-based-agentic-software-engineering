@@ -1,24 +1,28 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=3cm] (internet) at (0,0) {Internet};
-\node[n,text width=3cm,fill=white] (web) at (0,-1.6) {web};
-\draw[edge] (internet) -- (web);
-\node[n,text width=3.4cm,fill=white] (c0) at (-4.5,-3.4) {worker};
-\draw[edge] (web.south) -- (0,-2.5) -| (c0.north);
-\node[n,text width=3.4cm,fill=white] (c1) at (0.0,-3.4) {document editor};
-\draw[edge] (web.south) -- (0,-2.5) -| (c1.north);
-\node[n,text width=3.4cm,fill=white] (c2) at (4.5,-3.4) {other};
-\draw[edge] (web.south) -- (0,-2.5) -| (c2.north);
-\node[n,text width=2.7cm,fill=white] (s0) at (-3.6,-5.4) {generation};
-\draw[edge] (c0.south) -- (-4.5,-4.4) -| (s0.north);
-\node[n,text width=2.7cm,fill=white] (s1) at (0.0,-5.4) {render};
-\draw[edge] (c0.south) -- (-4.5,-4.4) -| (s1.north);
-\node[n,text width=2.7cm,fill=white] (s2) at (3.6,-5.4) {OCR};
-\draw[edge] (c0.south) -- (-4.5,-4.4) -| (s2.north);
-\node[note,text width=10cm] (key) at (0,-6.8) {Each arrow declares a permitted relationship.};
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (103,23) rectangle (167,47);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (135,39.0) {Internet};
+\draw[-Stealth,line width=.55pt] (135,47) -- (135,63);
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (104,64) rectangle (166,91);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (135,81.0) {web};
+\draw[-Stealth,line width=.55pt] (135,91) -- (135,105) -- (46.0,105) -- (46.0,119);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (8,120) rectangle (84,151);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (46.0,140.0) {worker};
+\draw[-Stealth,line width=.55pt] (135,91) -- (135,105) -- (135.0,105) -- (135.0,119);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (96,120) rectangle (174,151);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (135.0,134.0) {document};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (135.0,146.0) {editor};
+\draw[-Stealth,line width=.55pt] (135,91) -- (135,105) -- (224.0,105) -- (224.0,119);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (186,120) rectangle (262,151);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (224.0,140.0) {other};
+\draw[-Stealth,line width=.55pt] (46,151) -- (46,166) -- (44.0,166) -- (44.0,181);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (6,182) rectangle (82,206);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (44.0,198.0) {generation};
+\draw[-Stealth,line width=.55pt] (46,151) -- (46,166) -- (130.0,166) -- (130.0,181);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (97,182) rectangle (163,206);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (130.0,198.0) {render};
+\draw[-Stealth,line width=.55pt] (46,151) -- (46,166) -- (211.0,166) -- (211.0,181);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (178,182) rectangle (244,206);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (211.0,198.0) {OCR};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (135,222.0) {Each arrow declares a permitted relationship.};
 \end{tikzpicture}

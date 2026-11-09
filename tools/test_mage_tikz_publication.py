@@ -75,7 +75,7 @@ class PublicationTests(unittest.TestCase):
             with self.subTest(approved=approved):
                 source = self.candidate('nav-subway-p2', approved=approved)
                 text, _, report = self.assemble('\\chapter{Modeling}\n'
-                    f'\\includegraphics[width=8cm]{{{source}}}\n\\clearpage\nBody')
+                    f'\\includegraphics[width=8cm]{{{source}}}\n% mage-orientation-end\nBody')
                 self.assertEqual(text.count(r'\includegraphics'), 1 if approved else 2)
                 self.assertEqual('Black-and-white navigation map.' in text, not approved)
                 self.assertEqual(r'\setlength{\parskip}{3pt}' in text, not approved)

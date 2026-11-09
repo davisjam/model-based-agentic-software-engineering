@@ -10,7 +10,7 @@
     "Structural What exists? How related?",
     "Behavioral What may happen? In what order?",
     "Ownership Who controls? For how long?",
-    "Decision What is allowed? Which choice?",
+    "Decision What should happen next?",
     "Measurement How much? What envelope?",
     "Provenance What happened? What evidence?",
     "Classes may overlap.",
@@ -31,33 +31,37 @@
       "native-size visual layout"
     ],
     "outcome": "Common model-class gray distinguishes six peer purposes from the representation-form axis; no artificial rank among classes.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
       13.2764,
-      7.4144
+      8.1902
     ]
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
-    "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+    "source_sha256": "4f702c445c8ac74aea0614519274c061526314284b5703e07f3e61c5e4f84886",
+    "candidate_sha256": "dea908d27a48039330eee46b2198b4fc1eb6f22fe3befa833c682515595ddcf9",
     "fill": "All six purpose classes white and equal; the separate form axis supplies the other distinction.",
     "bold": "Source-derived emphasis includes STRUCTURAL; BEHAVIORAL; OWNERSHIP; DECISION; MEASUREMENT; PROVENANCE; REPRESENTATION FORM; MODEL CLASS. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 3,
-      "width_bp": 376.339,
-      "height_bp": 232.164,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 3,
+      "width_bp": 376.339,
+      "height_bp": 232.164,
+      "minimum_prose_font_pt": 8.97,
       "semantic_typography_checks": 16
     },
     "book_references": []
@@ -65,8 +69,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
-    "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+    "source_sha256": "4f702c445c8ac74aea0614519274c061526314284b5703e07f3e61c5e4f84886",
+    "candidate_sha256": "dea908d27a48039330eee46b2198b4fc1eb6f22fe3befa833c682515595ddcf9",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
       {
@@ -251,21 +255,21 @@
         ]
       },
       {
-        "source_text": "what is allowed? which choice?",
+        "source_text": "what should happen next?",
         "source_style": "weight normal, italic",
         "semantic_role": "Question answered by the class, or qualification",
-        "candidate_text": "What is allowed? Which choice?",
+        "candidate_text": "What should happen next?",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "what is allowed?",
+            "text": "what should",
             "weight": "normal",
             "style": "italic",
             "x": "178",
             "y": "207"
           },
           {
-            "text": "which choice?",
+            "text": "happen next?",
             "weight": "normal",
             "style": "italic",
             "x": "178",
@@ -410,7 +414,7 @@
         "italic": true
       },
       {
-        "text": "What is allowed? Which choice?",
+        "text": "What should happen next?",
         "italic": true
       },
       {
@@ -435,35 +439,27 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 3,
-      "width_bp": 376.339,
-      "height_bp": 232.164,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 16,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 3,
+      "width_bp": 376.339,
+      "height_bp": 232.164,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 16
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Equal-height three-line model-class peers in the two-row comparison.",
-    "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+    "candidate_sha256": "dea908d27a48039330eee46b2198b4fc1eb6f22fe3befa833c682515595ddcf9",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing model classes layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -488,24 +484,22 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
       "page": 3,
       "width_bp": 376.339,
-      "height_bp": 232.164
-    }
+      "height_bp": 232.164,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 16
+    },
+    "source_sha256": "4f702c445c8ac74aea0614519274c061526314284b5703e07f3e61c5e4f84886"
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -513,5 +507,483 @@
     "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
     "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
+          "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+          "fill": "All six purpose classes white and equal; the separate form axis supplies the other distinction.",
+          "bold": "Source-derived emphasis includes STRUCTURAL; BEHAVIORAL; OWNERSHIP; DECISION; MEASUREMENT; PROVENANCE; REPRESENTATION FORM; MODEL CLASS. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+          "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 3,
+            "width_bp": 376.339,
+            "height_bp": 232.164,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 16
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
+          "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+          "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+          "evidence": [
+            {
+              "source_text": "STRUCTURAL",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "STRUCTURAL",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "STRUCTURAL",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "178",
+                  "y": "90"
+                }
+              ]
+            },
+            {
+              "source_text": "BEHAVIORAL",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "BEHAVIORAL",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "BEHAVIORAL",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "480",
+                  "y": "90"
+                }
+              ]
+            },
+            {
+              "source_text": "OWNERSHIP",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "OWNERSHIP",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "OWNERSHIP",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "782",
+                  "y": "90"
+                }
+              ]
+            },
+            {
+              "source_text": "DECISION",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "DECISION",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "DECISION",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "178",
+                  "y": "184"
+                }
+              ]
+            },
+            {
+              "source_text": "MEASUREMENT",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "MEASUREMENT",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "MEASUREMENT",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "480",
+                  "y": "184"
+                }
+              ]
+            },
+            {
+              "source_text": "PROVENANCE",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "PROVENANCE",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "PROVENANCE",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "782",
+                  "y": "184"
+                }
+              ]
+            },
+            {
+              "source_text": "REPRESENTATION FORM",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model class or independent representation-form axis",
+              "candidate_text": "REPRESENTATION FORM",
+              "candidate_style": "bold capitals",
+              "source_fragments": [
+                {
+                  "text": "REPRESENTATION FORM",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "480",
+                  "y": "314"
+                }
+              ]
+            },
+            {
+              "source_text": "what exists? / how are parts related?",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "What exists? How related?",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "what exists?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "178",
+                  "y": "113"
+                },
+                {
+                  "text": "how are parts related?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "178",
+                  "y": "132"
+                }
+              ]
+            },
+            {
+              "source_text": "what may happen? in what order?",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "What may happen? In what order?",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "what may happen?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "480",
+                  "y": "113"
+                },
+                {
+                  "text": "in what order?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "480",
+                  "y": "132"
+                }
+              ]
+            },
+            {
+              "source_text": "who controls it? / for how long?",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "Who controls? For how long?",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "who controls it?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "782",
+                  "y": "113"
+                },
+                {
+                  "text": "for how long?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "782",
+                  "y": "132"
+                }
+              ]
+            },
+            {
+              "source_text": "what should happen next?",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "What should happen next?",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "what should",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "178",
+                  "y": "207"
+                },
+                {
+                  "text": "happen next?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "178",
+                  "y": "226"
+                }
+              ]
+            },
+            {
+              "source_text": "how much? what envelope?",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "How much? What envelope?",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "how much?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "480",
+                  "y": "207"
+                },
+                {
+                  "text": "what envelope?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "480",
+                  "y": "226"
+                }
+              ]
+            },
+            {
+              "source_text": "what happened? what evidence?",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "What happened? What evidence?",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "what happened?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "782",
+                  "y": "207"
+                },
+                {
+                  "text": "what evidence?",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "782",
+                  "y": "226"
+                }
+              ]
+            },
+            {
+              "source_text": "classes may overlap.",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "Classes may overlap.",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "classes may overlap.",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "480",
+                  "y": "256"
+                }
+              ]
+            },
+            {
+              "source_text": "Connected through shared identity and traceability, these models form the system\u2019s explicit engineering knowledge.",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Question answered by the class, or qualification",
+              "candidate_text": "Shared identity and traceability connect explicit engineering knowledge.",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "Connected through shared identity and traceability, these models form the system\u2019s explicit engineering knowledge.",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "480",
+                  "y": "394"
+                }
+              ]
+            },
+            {
+              "source_text": "MODEL CLASS \u2014 What engineering question does it answer?",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Model-class axis contrasted with representation-form axis",
+              "candidate_text": "MODEL CLASS \u2014 What engineering question does it answer?",
+              "candidate_style": "bold with capitalized axis name",
+              "source_fragments": [
+                {
+                  "text": "MODEL CLASS \u2014 What engineering question does it answer?",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "480",
+                  "y": "34"
+                }
+              ]
+            }
+          ],
+          "checks": [
+            {
+              "text": "STRUCTURAL",
+              "bold": true
+            },
+            {
+              "text": "BEHAVIORAL",
+              "bold": true
+            },
+            {
+              "text": "OWNERSHIP",
+              "bold": true
+            },
+            {
+              "text": "DECISION",
+              "bold": true
+            },
+            {
+              "text": "MEASUREMENT",
+              "bold": true
+            },
+            {
+              "text": "PROVENANCE",
+              "bold": true
+            },
+            {
+              "text": "REPRESENTATION FORM",
+              "bold": true
+            },
+            {
+              "text": "What exists? How related?",
+              "italic": true
+            },
+            {
+              "text": "What may happen? In what order?",
+              "italic": true
+            },
+            {
+              "text": "Who controls? For how long?",
+              "italic": true
+            },
+            {
+              "text": "What should happen next?",
+              "italic": true
+            },
+            {
+              "text": "How much? What envelope?",
+              "italic": true
+            },
+            {
+              "text": "What happened? What evidence?",
+              "italic": true
+            },
+            {
+              "text": "Classes may overlap.",
+              "italic": true
+            },
+            {
+              "text": "Shared identity and traceability connect explicit engineering knowledge.",
+              "italic": true
+            },
+            {
+              "text": "MODEL CLASS",
+              "bold": true
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 3,
+            "width_bp": 376.339,
+            "height_bp": 232.164,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 16,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "refined",
+          "reason": "Equal-height three-line model-class peers in the two-row comparison.",
+          "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing model classes layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+            "after_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
+            "before_dimensions_bp": [
+              376.3389892578125,
+              232.16400146484375
+            ],
+            "after_dimensions_bp": [
+              376.3389892578125,
+              232.16400146484375
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 3,
+            "width_bp": 376.339,
+            "height_bp": 232.164
+          }
+        }
+      }
+    }
+  ]
 }

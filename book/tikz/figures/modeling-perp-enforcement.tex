@@ -1,23 +1,33 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
-edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
-
-\node[head,text width=5.3cm] at (-3.8,1.4) {\magebookref{part:2}{Chapter 2} · Model};
-\node[head,text width=6.5cm] at (3.7,1.4) {\magebookref{part:3}{Chapter 3} · Enforcement decision};
-\node[n,fill=white,text width=1.6cm] (qty) at (-5.6,0) {Quantity};
-\node[n,fill=white,text width=1.6cm] (bound) at (-5.6,-1.7) {Bound};
-\node[n,fill=white,text width=2.3cm] (cmp) at (-2.3,-.85) {Comparison};
-\draw[edge] (qty.east) -- (-4.2,0) |- (cmp.west);
-\draw[edge] (bound.east) -- (-4.2,-1.7) |- (cmp.west);
-\node[n,fill=white,text width=4.5cm] (same) at (3.6,0) {\textbf{Same model}};
-\foreach \id/\x/\txt/\shade in {o/.4/Observe/5,a/2.6/Adapt/5,d/4.8/Degrade/30,g/7/Gate/30} {
- \node[n,fill=white,text width=1.5cm] (\id) at (\x,-2.3) {\txt};
- \draw[edge] (same.south) -- (3.6,-1.2) -| (\id.north);}
-\draw[black!40] (-.75,1) -- (-.75,-3.3);
-\node[note,text width=5.3cm] at (-3.8,-3.2) {\textit{What quantity and bound matter?}};
-\node[note,text width=6.5cm] at (3.7,-3.2) {\textit{What enforcement is justified?}};
-\node[note,text width=13.5cm] at (.8,-4.4) {The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.};
-
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.5}\selectfont }] at (78,36.0) {\magebookref{part:2}{CHAPTER 2} \,\textperiodcentered\, MODEL};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.5}\selectfont }] at (248.75,31.0) {\magebookref{part:3}{CHAPTER 3} \,\textperiodcentered\,};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.5}\selectfont }] at (248.75,41.8) {ENFORCEMENT DECISION};
+\draw[line width=.55pt] (159,27) -- (159,169);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (4,51) rectangle (61,76);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (32.5,67.0) {quantity};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (4,106) rectangle (61,131);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (32.5,122.0) {bound};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (80,79) rectangle (153,105);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (116.5,96.0) {comparison};
+\draw[-Stealth,line width=.55pt] (61,63.5) -- (70,63.5) -- (70,85) -- (80,85);
+\draw[-Stealth,line width=.55pt] (61,118.5) -- (70,118.5) -- (70,99) -- (80,99);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (195,54) rectangle (302,80);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (248.5,71.0) {same model};
+\draw[-Stealth,line width=.55pt] (248.5,80) -- (248.5,97) -- (184,97) -- (184,112);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (164,113) rectangle (204,138);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (184,129.0) {observe};
+\draw[-Stealth,line width=.55pt] (248.5,80) -- (248.5,97) -- (227,97) -- (227,112);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (207,113) rectangle (247,138);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (227,129.0) {adapt};
+\draw[-Stealth,line width=.55pt] (248.5,80) -- (248.5,97) -- (270,97) -- (270,112);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (250,113) rectangle (290,138);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (270,129.0) {degrade};
+\draw[-Stealth,line width=.55pt] (248.5,80) -- (248.5,97) -- (313,97) -- (313,112);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (293,113) rectangle (333,138);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (313,129.0) {gate};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9.5}{11.5}\selectfont }] at (78.5,155.0) {“What quantity and bound matter?”};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9.5}{11.5}\selectfont }] at (248.5,155.0) {“What enforcement is justified?”};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9.5}{11.5}\selectfont }] at (168.75,187.0) {The model defines the quantity and bound;};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9.5}{11.5}\selectfont }] at (168.75,197.8) {Alignment decides whether to observe, adapt, degrade, or gate.};
 \end{tikzpicture}

@@ -1096,27 +1096,27 @@
       "part": 2,
       "sections": [
         {
-          "section_id": "the-canonical-move-permitted-alternatives",
+          "section_id": "the-canonical-move-choosing-among-alternatives",
           "level": 2,
-          "heading_text": "The Canonical Move: Permitted Alternatives",
-          "topic_sentence": "Engineering represents permitted alternatives in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,[cite: lampson1974] policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible.",
+          "heading_text": "The Canonical Move: Choosing Among Alternatives",
+          "topic_sentence": "Decision tables map conditions to choices; rule systems state how evidence affects a decision; constraint systems distinguish admissible alternatives.",
           "id_source": "derived",
-          "block_index": 2,
+          "block_index": 3,
           "points": [
             {
               "slug": "permission-has-many-canonical-forms-unified-by-mood-not-shape",
-              "text": "Decision tables, rule systems, access-control matrices, policy graphs, feature models, and constraint systems can express which alternatives are permitted; their shape does not determine that purpose.",
-              "block_index": 3
+              "text": "Decision tables, rule systems, and constraint systems make choices explicit; policy is one kind of decision model, expressed through access-control matrices, policy graphs, and feature models as well as those general forms.",
+              "block_index": 4
             },
             {
               "slug": "same-arrow-different-mood-is-the-sharpest-case-of-topology-not-fixing-meaning",
               "text": "An observed-call edge and a permitted-call edge can look identical while answering different questions; in the illustrated models, a missing edge means no recorded call or no permitted call respectively.",
-              "block_index": 5
+              "block_index": 6
             },
             {
               "slug": "a-declared-policy-turns-is-this-allowed-into-an-evaluation",
               "text": "Once permission is declared, the claims a policy designer wants become expressible — permitted/forbidden, mutual exclusion, prerequisites, consistency, completeness, least privilege — and \"is this allowed?\" becomes an evaluation rather than an argument.",
-              "block_index": 8
+              "block_index": 9
             }
           ]
         },
@@ -1126,7 +1126,7 @@
           "heading_text": "Compare the Decision with the Facts",
           "topic_sentence": "Suppose a report service may call a renderer, while the public web interface may call only the report service.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 11,
           "points": []
         },
         {
@@ -1135,7 +1135,7 @@
           "heading_text": "Preserve the Cases a Decision Must Distinguish",
           "topic_sentence": "The input representation can make a decision wrong before any rule is evaluated.",
           "id_source": "derived",
-          "block_index": 14,
+          "block_index": 15,
           "points": []
         }
       ],
@@ -1295,12 +1295,12 @@
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
               "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
-              "block_index": 61
+              "block_index": 60
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
               "text": "Correspondence follows the source of truth: derive an implementation view, generate an artifact or interpret an authoritative model, and trace and check where neither representation fully determines the other.",
-              "block_index": 64
+              "block_index": 63
             }
           ]
         },
@@ -1310,37 +1310,37 @@
           "heading_text": "Modeling Makes Properties Available to Engineering",
           "topic_sentence": "Modeling makes a property explicit; engineers decide how to use it.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 65,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
               "text": "A worker-pool model makes quantities and capacity comparisons explicit; engineers still choose whether to use them for planning, admission tuning, or a hard refusal.",
-              "block_index": 67
+              "block_index": 66
             },
             {
               "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
               "text": "A measurement model defines quantities and their reference bounds; observation, adaptation, and enforcement require separate decisions and mechanisms.",
-              "block_index": 69
+              "block_index": 68
             },
             {
               "slug": "relational-obligations-need-enough-representation",
               "text": "Local syntactic obligations can often be checked directly; architectural boundaries, temporal obligations, distributed ownership, provenance, and end-to-end policy need representations that expose their system relationships.",
-              "block_index": 72
+              "block_index": 71
             },
             {
               "slug": "docable-models-arose-around-expensive-questions",
               "text": "Models are justified by engineering questions whose relevant distinctions would otherwise be expensive or unsafe to reconstruct; shared identities connect views where a decision crosses them.",
-              "block_index": 75
+              "block_index": 74
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-enforcement-is-a-separate-question",
               "text": "Models preserve decisions, expose relationships, and support analysis; the next engineering question is which obligations to enforce and through what evidence and mechanisms.",
-              "block_index": 82
+              "block_index": 81
             },
             {
               "slug": "part-iii-asks-which-obligations-the-environment-should-hold",
               "text": "Chapter 3 asks which obligations the engineered environment should enforce, where they become decidable, and what evidence and mechanisms are sufficient.",
-              "block_index": 83
+              "block_index": 82
             }
           ]
         }

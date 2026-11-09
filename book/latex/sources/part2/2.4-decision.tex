@@ -5,17 +5,19 @@
 
 % <!-- part-title: Modeling -->
 
-% <!-- chapter-title: Decision Models: What Is Allowed? -->
+% <!-- chapter-title: Decision Models: What Should Happen Next? -->
 
-\chapter{Decision Models: What Is Allowed?}
+\chapter{Decision Models: What Should Happen Next?}
 
-The preceding models already expressed obligations: a user interface must reach its database through the service layer, and a job must pass through \texttt{RUNNING} before \texttt{DONE}. A decision model focuses directly on the alternatives an engineer permits, requires, or forbids. It can answer which service may call another, or whether a user is entitled to upload a document.
+The preceding models already expressed obligations: a user interface must reach its database through the service layer, and a job must pass through \texttt{RUNNING} before \texttt{DONE}. A decision model makes explicit how to choose among alternatives: whether a result is acceptable, whether the evidence is sufficient, what to do after failure, or which strategy to try next. Its answer may be to accept, retry, repair, escalate, or stop.
 
-\section{The Canonical Move: Permitted Alternatives}\label{heading:the-canonical-move-permitted-alternatives}
+A behavioral model describes possible states and transitions. A decision model states how to choose among them using the available evidence, the cost of further work, and the attempts remaining. For example, a repair process may allow another attempt, escalation, or termination. A decision table can state when the observed failure justifies another attempt, when more evidence is needed, and when the remaining budget requires stopping. The model supplies criteria for the choice; a separate mechanism carries it out.
 
-% <!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, access-control matrices, policy graphs, feature models, and constraint systems can express which alternatives are permitted; their shape does not determine that purpose. -->
+\section{The Canonical Move: Choosing Among Alternatives}\label{heading:the-canonical-move-permitted-alternatives}
 
-Engineering represents permitted alternatives in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,\citep{lampson1974} policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible. These representations differ in shape, but each can make the rules for a decision explicit.
+% <!-- point: permission-has-many-canonical-forms-unified-by-mood-not-shape | Decision tables, rule systems, and constraint systems make choices explicit; policy is one kind of decision model, expressed through access-control matrices, policy graphs, and feature models as well as those general forms. -->
+
+Decision tables map conditions to choices; rule systems state how evidence affects a decision; constraint systems distinguish admissible alternatives. A policy is one kind of decision model: it specifies which alternatives an engineer permits, requires, or forbids. Access-control matrices record which subject may act on which object,\citep{lampson1974} policy graphs declare permitted relationships, and feature models constrain valid combinations of options.
 
 % <!-- point: same-arrow-different-mood-is-the-sharpest-case-of-topology-not-fixing-meaning | An observed-call edge and a permitted-call edge can look identical while answering different questions; in the illustrated models, a missing edge means no recorded call or no permitted call respectively. -->
 
@@ -124,7 +126,7 @@ DocAble declares which of its services may communicate with which. The model is 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/service-flow-model-7634fa9071.pdf}
-\caption{\emph{Service-flow model.} A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate.}
+\caption{\emph{Service-flow model.} An absent edge excludes a service relationship from the declared policy. The public web tier alone faces the outside; enforcing the policy on running traffic requires separate mechanisms.}
 \label{service-flow-model}
 \end{figure}
 
@@ -149,7 +151,7 @@ DocAble admits an upload only when the user is entitled to it. A user receives t
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/entitlement-domain-14ff87d0d6.pdf}
-\caption{\emph{The upload-entitlement domain.} A user belongs to one or more groups; a group carries either a finite credit balance or unlimited use. The admission decision needs both facts, so a representation that can express only the finite balance cannot answer the question the decision asks.}
+\caption{\emph{The upload-entitlement domain.} A finite balance alone cannot determine admission: the model must also preserve whether any applicable group grants unlimited use.}
 \label{entitlement-domain}
 \end{figure}
 
@@ -211,4 +213,4 @@ A note in the first person: I changed the domain in one place --- groups could n
 The two models give a decision an explicit domain: permitted service pairs in the first case, distinct entitlement alternatives in the second. That makes the decision inspectable and checkable. It also exposes what must change when the intended policy or the product\textquotesingle s domain changes.
 \end{bookbox}
 
-Decision models delimit the permitted alternatives while making the facts required for the decision explicit. The final section steps back from one representation to ask how a family of models can answer questions together.
+Decision models make the criteria for a choice explicit, whether the choice concerns permission or what to do next. The final section steps back from one representation to ask how a family of models can answer questions together.

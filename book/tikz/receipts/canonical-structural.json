@@ -60,33 +60,37 @@
       "native-size visual layout"
     ],
     "outcome": "Linear read-through dependency example in both versions, with readable relation labels and a separate crossed bypass.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      11.3639,
-      6.8138
+      10.2137,
+      7.767
     ]
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
-    "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+    "candidate_sha256": "db3ffed0c3e386ffbb704ac99b5e18a66082a6a74e605eee3cf6e60f3198efec",
     "fill": "White component peers, dark text, and a crossed dashed prohibited bypass.",
     "bold": "Source-derived emphasis includes WEB; API; CACHE; DATABASE; Question:; Semantics:; Analysis:. Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
     "routing": "Single vertical chain with a separately routed orthogonal prohibited bypass.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 17,
-      "width_bp": 449.972,
-      "height_bp": 469.972,
-      "minimum_prose_font_pt": 11.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 18,
+      "width_bp": 289.522,
+      "height_bp": 220.166,
+      "minimum_prose_font_pt": 10.96,
       "semantic_typography_checks": 13
     },
     "book_references": []
@@ -94,8 +98,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
-    "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+    "candidate_sha256": "db3ffed0c3e386ffbb704ac99b5e18a66082a6a74e605eee3cf6e60f3198efec",
     "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
     "evidence": [
       {
@@ -336,59 +340,49 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 17,
-      "width_bp": 449.972,
-      "height_bp": 469.972,
-      "minimum_prose_font_pt": 11.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 13,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 18,
+      "width_bp": 289.522,
+      "height_bp": 220.166,
+      "minimum_prose_font_pt": 10.96,
+      "semantic_typography_checks": 13
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "A single vertical WEB\u2013API\u2013CACHE\u2013DATABASE dependency chain replaces the fork. Equal component boxes, clear labeled terminals and a separately routed crossed bypass use the available page height.",
-    "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "candidate_sha256": "db3ffed0c3e386ffbb704ac99b5e18a66082a6a74e605eee3cf6e60f3198efec",
     "page_layout": {
       "decision": "refined",
       "reason": "Replace both component forks with the explicit read-through WEB\u2013API\u2013CACHE\u2013DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 17,
-      "width_bp": 449.972,
-      "height_bp": 469.972
-    }
+      "page": 18,
+      "width_bp": 289.522,
+      "height_bp": 220.166,
+      "minimum_prose_font_pt": 10.96,
+      "semantic_typography_checks": 13
+    },
+    "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b"
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -396,5 +390,347 @@
     "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
     "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
-  }
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "a88a218669b290e5af273c9b3eed41076861eae512d15616dc4e560652c0acad",
+    "prior_source_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 4,
+    "width_bp": 285.5369873046875,
+    "height_bp": 216.05999755859375,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+          "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+          "fill": "White component peers, dark text, and a crossed dashed prohibited bypass.",
+          "bold": "Source-derived emphasis includes WEB; API; CACHE; DATABASE; Question:; Semantics:; Analysis:. Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
+          "routing": "Single vertical chain with a separately routed orthogonal prohibited bypass.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 17,
+            "width_bp": 449.972,
+            "height_bp": 469.972,
+            "minimum_prose_font_pt": 11.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 13
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+          "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+          "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
+          "evidence": [
+            {
+              "source_text": "WEB",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "WEB",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[3]/text[1]",
+                "text_element_context": "WEB",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "API",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "API",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[3]/text[2]",
+                "text_element_context": "API",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "CACHE",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "CACHE",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[3]/text[3]",
+                "text_element_context": "CACHE",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "DATABASE",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "DATABASE",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[3]/text[4]",
+                "text_element_context": "DATABASE",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "Question:",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "Question:",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[7]/text[1]/tspan[1]",
+                "text_element_context": "Question:",
+                "matching_fragment_count": 2
+              }
+            },
+            {
+              "source_text": "Semantics:",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "Semantics:",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[7]/text[2]/tspan[1]",
+                "text_element_context": "Semantics:",
+                "matching_fragment_count": 2
+              }
+            },
+            {
+              "source_text": "Analysis:",
+              "source_style": "bold",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "Analysis:",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[7]/text[3]/tspan[1]",
+                "text_element_context": "Analysis:",
+                "matching_fragment_count": 2
+              }
+            },
+            {
+              "source_text": "Read-through cache example",
+              "source_style": "italic",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "Read-through cache example",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[1]/text[2]",
+                "text_element_context": "Read-through cache example",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "depends on",
+              "source_style": "italic",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "depends on",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[5]/text[1]",
+                "text_element_context": "depends on",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "reads through",
+              "source_style": "italic",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "reads through",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[5]/text[2]",
+                "text_element_context": "reads through",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "loads from",
+              "source_style": "italic",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "loads from",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[5]/text[3]",
+                "text_element_context": "loads from",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "forbidden",
+              "source_style": "italic",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "forbidden bypass",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[6]/text[1]",
+                "text_element_context": "forbidden",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "Entities and declared structural relations",
+              "source_style": "regular",
+              "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+              "candidate_text": "Entities and declared structural relations",
+              "candidate_style": "regular",
+              "source_locator": {
+                "svg": "book/assets/canonical-structural.svg",
+                "element_text_path": "/svg/g[7]/text[2]",
+                "text_element_context": "Semantics: Entities and declared structural relations",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "WEB",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "API",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CACHE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "DATABASE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Question:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Semantics:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Analysis:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Read-through cache example",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "depends on",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "reads through",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "loads from",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "forbidden bypass",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Entities and declared structural relations",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 17,
+            "width_bp": 449.972,
+            "height_bp": 469.972,
+            "minimum_prose_font_pt": 11.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 13,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "refined",
+          "reason": "A single vertical WEB\u2013API\u2013CACHE\u2013DATABASE dependency chain replaces the fork. Equal component boxes, clear labeled terminals and a separately routed crossed bypass use the available page height.",
+          "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Replace both component forks with the explicit read-through WEB\u2013API\u2013CACHE\u2013DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 17,
+            "width_bp": 449.972,
+            "height_bp": 469.972
+          }
+        }
+      }
+    }
+  ]
 }

@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 183,
       "concepts": 84,
-      "labels": 83,
-      "refs": 100,
+      "labels": 82,
+      "refs": 99,
       "chapters": 74,
       "parts": 9,
       "points": 579,
@@ -624,7 +624,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.4-decision::block-8",
+          "element": "2.4-decision::block-9",
           "role": "paragraph-point"
         }
       ]
@@ -734,7 +734,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-67",
+          "element": "2.5-system-knowledge::block-66",
           "role": "paragraph-point"
         }
       ]
@@ -2009,7 +2009,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-75",
+          "element": "2.5-system-knowledge::block-74",
           "role": "paragraph-point"
         }
       ]
@@ -2079,7 +2079,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "part-2-intro::block-13",
+          "element": "part-2-intro::block-15",
           "role": "paragraph-point"
         }
       ]
@@ -3179,7 +3179,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-69",
+          "element": "2.5-system-knowledge::block-68",
           "role": "paragraph-point"
         }
       ]
@@ -3474,7 +3474,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-61",
+          "element": "2.5-system-knowledge::block-60",
           "role": "paragraph-point"
         }
       ]
@@ -3784,7 +3784,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-82",
+          "element": "2.5-system-knowledge::block-81",
           "role": "paragraph-point"
         }
       ]
@@ -3804,7 +3804,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-83",
+          "element": "2.5-system-knowledge::block-82",
           "role": "paragraph-point"
         }
       ]
@@ -3814,7 +3814,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.4-decision::block-3",
+          "element": "2.4-decision::block-4",
           "role": "paragraph-point"
         }
       ]
@@ -4164,7 +4164,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-72",
+          "element": "2.5-system-knowledge::block-71",
           "role": "paragraph-point"
         }
       ]
@@ -4454,7 +4454,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.4-decision::block-5",
+          "element": "2.4-decision::block-6",
           "role": "paragraph-point"
         }
       ]
@@ -5514,7 +5514,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-64",
+          "element": "2.5-system-knowledge::block-63",
           "role": "paragraph-point"
         }
       ]
@@ -7564,12 +7564,12 @@
         }
       ]
     },
-    "section-id:the-canonical-move-permitted-alternatives": {
+    "section-id:the-canonical-move-choosing-among-alternatives": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "2.4-decision::the-canonical-move-permitted-alternatives",
+          "element": "2.4-decision::the-canonical-move-choosing-among-alternatives",
           "role": "section-anchor"
         }
       ]
@@ -8479,27 +8479,27 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-64",
+          "element": "2.5-system-knowledge::block-63",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-67",
+          "element": "2.5-system-knowledge::block-66",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-72",
+          "element": "2.5-system-knowledge::block-71",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-81",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
           "element": "2.5-system-knowledge::block-82",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-83",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -9234,7 +9234,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-61",
+          "element": "2.5-system-knowledge::block-60",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10454,12 +10454,12 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-61",
+          "element": "2.5-system-knowledge::block-60",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-64",
+          "element": "2.5-system-knowledge::block-63",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10569,7 +10569,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-75",
+          "element": "2.5-system-knowledge::block-74",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10869,37 +10869,37 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-61",
+          "element": "2.5-system-knowledge::block-60",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-64",
+          "element": "2.5-system-knowledge::block-63",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-67",
+          "element": "2.5-system-knowledge::block-66",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-72",
+          "element": "2.5-system-knowledge::block-71",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-75",
+          "element": "2.5-system-knowledge::block-74",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-81",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
           "element": "2.5-system-knowledge::block-82",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-83",
           "role": "paragraph-term[tier-2]"
         },
         {

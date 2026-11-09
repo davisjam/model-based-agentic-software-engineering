@@ -1,46 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- semantic-families: governance, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700"
-     role="img" aria-labelledby="rsTitle rsDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rsTitle">Tolerance bounds acceptable implementations while leaving choices open</title>
-  <desc id="rsDesc">Possible software implementations for sorting lists of up to 1,000 names.
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 337.5 247" width="337.5" height="247" role="img" aria-labelledby="rsTitle rsDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><ns0:title xmlns:ns0="http://www.w3.org/2000/svg" id="rsTitle">Tolerance bounds acceptable implementations while leaving choices open</ns0:title>
+  <ns0:desc xmlns:ns0="http://www.w3.org/2000/svg" id="rsDesc">Possible software implementations for sorting lists of up to 1,000 names.
     The left region contains implementations that return names in alphabetical order;
     the right contains implementations that respond within 200 milliseconds.
     The overlap contains implementations satisfying both requirements. Dots represent
     distinct possible implementations, not measured algorithms. The timing bound sets
-    a tolerance; choices among acceptable implementations remain degrees of freedom.</desc>
-  <rect width="1000" height="700" fill="#fdfcf9"/>
-  <text x="500" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#57534e">POSSIBLE SOFTWARE IMPLEMENTATIONS</text>
-  <text x="500" y="66" text-anchor="middle" font-size="20" fill="#57534e">Lists of up to 1,000 names</text>
-  <rect x="40" y="90" width="920" height="510" rx="12" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <ellipse cx="400" cy="355" rx="270" ry="220" fill="#9a3f12" fill-opacity="0.10" stroke="#9a3f12" stroke-width="2.5"/>
-  <ellipse cx="600" cy="355" rx="270" ry="220" fill="#9a3f12" fill-opacity="0.10" stroke="#9a3f12" stroke-width="2.5"/>
-  <g text-anchor="middle" font-size="22" fill="#9a3f12">
-    <text x="220" y="292" font-weight="700">Alphabetical</text>
-    <text x="220" y="320" font-weight="700">ordering</text>
-    <text x="780" y="292" font-weight="700">Response time</text>
-    <text x="780" y="320">≤ 200 ms</text>
-    <text x="780" y="350" font-size="20">Tolerance</text>
-  </g>
-  <g text-anchor="middle" fill="#1c1917">
-    <text x="500" y="230" font-size="22" font-weight="700">ACCEPTABLE</text>
-    <text x="500" y="258" font-size="22" font-weight="700">IMPLEMENTATIONS</text>
-    <text x="500" y="290" font-size="20">Satisfy both</text>
-  </g>
-  <g fill="#1c1917">
-    <circle cx="455" cy="340" r="5"/><circle cx="535" cy="345" r="5"/>
-    <circle cx="570" cy="325" r="5"/><circle cx="485" cy="375" r="5"/>
-    <circle cx="565" cy="380" r="5"/><circle cx="440" cy="410" r="5"/>
-    <circle cx="520" cy="415" r="5"/><circle cx="485" cy="445" r="5"/>
-    <circle cx="555" cy="460" r="5"/><circle cx="450" cy="485" r="5"/>
-    <circle cx="530" cy="490" r="5"/><circle cx="490" cy="510" r="5"/>
-    <circle cx="220" cy="390" r="5"/><circle cx="265" cy="430" r="5"/>
-    <circle cx="230" cy="470" r="5"/><circle cx="760" cy="390" r="5"/>
-    <circle cx="790" cy="430" r="5"/><circle cx="745" cy="465" r="5"/>
-    <circle cx="130" cy="150" r="5"/><circle cx="880" cy="545" r="5"/>
-    <circle cx="52" cy="628" r="5"/>
-  </g>
-  <text x="68" y="635" font-size="20" fill="#57534e">A distinct possible implementation</text>
-  <text x="500" y="678" text-anchor="middle" font-size="20" fill="#1c1917">Degrees of freedom: choices among acceptable implementations</text>
+    a tolerance; choices among acceptable implementations remain degrees of freedom.</ns0:desc>
+  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
+<text x="168.75" y="12.0" text-anchor="middle" font-size="10" fill="#57534e" font-weight="700">POSSIBLE SOFTWARE IMPLEMENTATIONS</text>
+<text x="168.75" y="26.0" text-anchor="middle" font-size="9" fill="#1c1917">Lists of up to 1,000 names</text>
+<rect x="5" y="35" width="327.5" height="177" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
+<ellipse cx="132" cy="124" rx="110" ry="80" fill="#f2e7df" stroke="#ad420d" stroke-width=".8"/>
+<ellipse cx="205" cy="124" rx="110" ry="80" fill="#f2e7df" fill-opacity=".45" stroke="#ad420d" stroke-width=".8"/>
+<text x="61" y="98.0" text-anchor="middle" font-size="9" fill="#ad420d" font-weight="700">Alphabetical</text>
+<text x="61" y="108.8" text-anchor="middle" font-size="9" fill="#ad420d" font-weight="700">ordering</text>
+<text x="278" y="99.0" text-anchor="middle" font-size="9" fill="#ad420d" font-weight="700">Response time</text>
+<text x="278" y="112.0" text-anchor="middle" font-size="9" fill="#ad420d">≤ 200 ms</text>
+<text x="278" y="125.0" text-anchor="middle" font-size="9" fill="#ad420d">Tolerance</text>
+<text x="169" y="78.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">ACCEPTABLE</text>
+<text x="169" y="90.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">IMPLEMENTATIONS</text>
+<text x="169" y="105.0" text-anchor="middle" font-size="9" fill="#1c1917">Satisfy both</text>
+<circle cx="35" cy="51" r="1.65" fill="#1c1917"/>
+<circle cx="67" cy="137" r="1.65" fill="#1c1917"/>
+<circle cx="82" cy="157" r="1.65" fill="#1c1917"/>
+<circle cx="70" cy="177" r="1.65" fill="#1c1917"/>
+<circle cx="142" cy="128" r="1.65" fill="#1c1917"/>
+<circle cx="165" cy="137" r="1.65" fill="#1c1917"/>
+<circle cx="181" cy="130" r="1.65" fill="#1c1917"/>
+<circle cx="194" cy="120" r="1.65" fill="#1c1917"/>
+<circle cx="206" cy="141" r="1.65" fill="#1c1917"/>
+<circle cx="156" cy="153" r="1.65" fill="#1c1917"/>
+<circle cx="179" cy="156" r="1.65" fill="#1c1917"/>
+<circle cx="167" cy="173" r="1.65" fill="#1c1917"/>
+<circle cx="192" cy="176" r="1.65" fill="#1c1917"/>
+<circle cx="155" cy="190" r="1.65" fill="#1c1917"/>
+<circle cx="181" cy="186" r="1.65" fill="#1c1917"/>
+<circle cx="273" cy="148" r="1.65" fill="#1c1917"/>
+<circle cx="288" cy="161" r="1.65" fill="#1c1917"/>
+<circle cx="275" cy="179" r="1.65" fill="#1c1917"/>
+<circle cx="311" cy="200" r="1.65" fill="#1c1917"/>
+<circle cx="9" cy="225" r="1.65" fill="#1c1917"/>
+<text x="16" y="228.0" text-anchor="start" font-size="9" fill="#1c1917">A distinct possible implementation</text>
+<text x="168.75" y="243.0" text-anchor="middle" font-size="9" fill="#1c1917">Degrees of freedom: choices among acceptable implementations</text>
 </svg>

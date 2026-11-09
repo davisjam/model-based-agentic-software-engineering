@@ -1,81 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Figure 2.6 concept (part2-v8-260814 re-author; folds to book/assets/).
-     REVISION per v8 editor guidance (2.6-3): harmonize EXACTLY with revised Chapter 3. Title/footer "One
-     Measurement, Different Enforcement Decisions". Part-II side is the MODEL ("what quantity and bound
-     matter?"); Part-III side is the ENFORCEMENT DECISION over the SAME model — observe, adapt, degrade,
-     gate. The DocAble armed/dormant configuration detail is REMOVED (not a general model concept).
-     Grammar: blue #2f5169 = the shared measurement model; gray #57534e = observe/adapt (report/steer);
-     rust #9a3f12 = degrade/gate (the consequential decisions). Hand-authored (two design-move panels
-     sharing one model). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380"
-     role="img" aria-labelledby="paTitle paDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="paTitle">One measurement, different enforcement decisions</title>
-  <desc id="paDesc">Chapter 2, the model, names a quantity and a reference bound and compares them, answering
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 337.5 204" width="337.5" height="204" role="img" aria-labelledby="paTitle paDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><title xmlns="http://www.w3.org/2000/svg" id="paTitle">One measurement, different enforcement decisions</title>
+  <desc xmlns="http://www.w3.org/2000/svg" id="paDesc">Chapter 2, the model, names a quantity and a reference bound and compares them, answering
     what quantity and bound matter. Chapter 3, the enforcement decision, takes the same model and chooses its
     force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the
     consequential decisions, in rust. Modeling and enforcement are separate moves over one shared model.</desc>
 
-  <defs>
-    <marker id="pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <text x="480" y="34" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">One Measurement, Different Enforcement Decisions</text>
-
-  <!-- divider -->
-  <line x1="475" y1="66" x2="475" y2="300" stroke="#d9d3c8" stroke-width="1.6"/>
-
-  <!-- ===== LEFT: CHAPTER 2 MODEL ===== -->
-  <text x="235" y="82" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#2f5169">CHAPTER 2 &#183; MODEL</text>
-  <!-- edges UNDER the boxes; source ends run to the quantity/bound centers, capped by their fill -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)">
-    <!-- edge: quantity -> comparison -->
-    <path d="M170,132.7 L219,132.7 L219,157.3 L268,157.3"/>
-    <!-- edge: bound -> comparison -->
-    <path d="M170,197.3 L219,197.3 L219,172.7 L268,172.7"/>
-  </g>
-  <g font-size="19.2" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect id="quantity" x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="105" y="131">quantity</text>
-    <rect id="bound" x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="105" y="211">bound</text>
-    <rect id="comparison" x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-    <text x="345" y="171">comparison</text>
-  </g>
-  <text x="235" y="262" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
-
-  <!-- ===== RIGHT: CHAPTER 3 ENFORCEMENT DECISION ===== -->
-  <text x="715" y="82" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#1c1917">CHAPTER 3 &#183; ENFORCEMENT DECISION</text>
-  <!-- fan to four enforcement decisions — one path per branch, all from the same-model centre (715,123) -->
-  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#pa-k)">
-    <!-- edge: same-model -> observe -->
-    <path d="M620,123 L554,123 L554,190"/>
-    <!-- edge: same-model -> adapt -->
-    <path d="M666.5,146 L666.5,190"/>
-    <!-- edge: same-model -> degrade -->
-    <path d="M767.5,146 L767.5,190"/>
-    <!-- edge: same-model -> gate -->
-    <path d="M810,130.7 L821.5,130.7 L821.5,206.7 L833,206.7"/>
-  </g>
-  <rect id="same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="715" y="129" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">same model</text>
-  <g font-size="19.2" font-weight="700" text-anchor="middle">
-    <rect id="observe" x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="554" y="220" fill="#57534e">observe</text>
-    <rect id="adapt" x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="664" y="220" fill="#57534e">adapt</text>
-    <rect id="degrade" x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-    <text x="774" y="220" fill="#9a3f12">degrade</text>
-    <rect id="gate" x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-    <text x="884" y="220" fill="#9a3f12">gate</text>
-  </g>
-  <text x="715" y="270" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">&#8220;What enforcement is justified?&#8221;</text>
-
-  <!-- footer: protect the point -->
-  <text x="480" y="348" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.</text>
+  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
+<text x="168.75" y="12.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">One Measurement, Different Enforcement Decisions</text>
+<text x="78" y="36.0" text-anchor="middle" font-size="9" fill="#2f5169" font-weight="700">CHAPTER 2 · MODEL</text>
+<text x="248.75" y="31.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">CHAPTER 3 ·</text>
+<text x="248.75" y="41.8" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">ENFORCEMENT DECISION</text>
+<path d="M159,27 L159,169" fill="none" stroke="#57534e" stroke-width=".8"/>
+<rect x="4" y="51" width="57" height="25" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="32.5" y="67.0" text-anchor="middle" font-size="10" fill="#2f5169" font-weight="700">quantity</text>
+<rect x="4" y="106" width="57" height="25" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="32.5" y="122.0" text-anchor="middle" font-size="10" fill="#2f5169" font-weight="700">bound</text>
+<rect x="80" y="79" width="73" height="26" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="116.5" y="96.0" text-anchor="middle" font-size="10" fill="#2f5169" font-weight="700">comparison</text>
+<path d="M61,63.5 L70,63.5 L70,85 L80,85" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<path d="M61,118.5 L70,118.5 L70,99 L80,99" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="195" y="54" width="107" height="26" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="248.5" y="71.0" text-anchor="middle" font-size="10" fill="#2f5169" font-weight="700">same model</text>
+<path d="M248.5,80 L248.5,97 L184,97 L184,112" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)"/>
+<rect x="164" y="113" width="40" height="25" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
+<text x="184" y="129.0" text-anchor="middle" font-size="9" fill="#57534e" font-weight="700">observe</text>
+<path d="M248.5,80 L248.5,97 L227,97 L227,112" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)"/>
+<rect x="207" y="113" width="40" height="25" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
+<text x="227" y="129.0" text-anchor="middle" font-size="9" fill="#57534e" font-weight="700">adapt</text>
+<path d="M248.5,80 L248.5,97 L270,97 L270,112" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)"/>
+<rect x="250" y="113" width="40" height="25" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
+<text x="270" y="129.0" text-anchor="middle" font-size="9" fill="#ad420d" font-weight="700">degrade</text>
+<path d="M248.5,80 L248.5,97 L313,97 L313,112" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)"/>
+<rect x="293" y="113" width="40" height="25" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
+<text x="313" y="129.0" text-anchor="middle" font-size="9" fill="#ad420d" font-weight="700">gate</text>
+<text x="78.5" y="155.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">“What quantity and bound matter?”</text>
+<text x="248.5" y="155.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">“What enforcement is justified?”</text>
+<text x="168.75" y="187.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">The model defines the quantity and bound;</text>
+<text x="168.75" y="197.8" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Alignment decides whether to observe, adapt, degrade, or gate.</text>
 </svg>

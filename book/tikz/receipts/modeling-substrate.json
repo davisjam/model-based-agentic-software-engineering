@@ -28,7 +28,7 @@
     "Provenance",
     "records",
     "Measurements",
-    "Traceability · derivation · query surfaces",
+    "Traceability \u00b7 derivation \u00b7 query surfaces",
     "Join representations where an engineering question crosses them."
   ],
   "bw_encoding": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
@@ -47,10 +47,10 @@
       "native font legibility"
     ],
     "outcome": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      13.1164,
-      10.4856
+      10.3195,
+      8.1099
     ]
   },
   "fidelity_review": {
@@ -76,23 +76,27 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-    "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
+    "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
     "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
     "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
     "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 30,
-      "width_bp": 371.803,
-      "height_bp": 297.395,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 31,
+      "width_bp": 292.522,
+      "height_bp": 229.887,
+      "minimum_prose_font_pt": 8.97,
       "semantic_typography_checks": 2
     },
     "book_references": []
@@ -100,8 +104,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-    "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
+    "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
     "reason": "Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
     "evidence": [
       {
@@ -131,35 +135,27 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 30,
-      "width_bp": 371.803,
-      "height_bp": 297.395,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 2,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 31,
+      "width_bp": 292.522,
+      "height_bp": 229.887,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 2
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "retained",
     "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row.",
-    "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+    "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing modeling substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -184,23 +180,170 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 30,
-      "width_bp": 371.803,
-      "height_bp": 297.395
+      "page": 31,
+      "width_bp": 292.522,
+      "height_bp": 229.887,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 2
+    },
+    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101"
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "3f0887b0ab48f81c999b5238f3a816b5fe0333364ad9fec6696857910413f2e0",
+    "prior_source_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 1,
+    "width_bp": 288.5369873046875,
+    "height_bp": 225.90199279785156,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+          "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
+          "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
+          "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 30,
+            "width_bp": 371.803,
+            "height_bp": 297.395,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 2
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+          "reason": "Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
+          "evidence": [
+            {
+              "source_text": "SHARED SYSTEM",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "SHARED SYSTEM IDENTITIES",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/modeling-substrate.svg",
+                "element_text_path": "/svg/text[2]/text()",
+                "text_element_context": "SHARED SYSTEM",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "SHARED SYSTEM IDENTITIES",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Service registry",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 30,
+            "width_bp": 371.803,
+            "height_bp": 297.395,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 2,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "retained",
+          "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row.",
+          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing modeling substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+            "after_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+            "before_dimensions_bp": [
+              371.8030090332031,
+              297.3949890136719
+            ],
+            "after_dimensions_bp": [
+              371.8030090332031,
+              297.3949890136719
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 30,
+            "width_bp": 371.803,
+            "height_bp": 297.395
+          }
+        }
+      }
     }
-  }
+  ]
 }

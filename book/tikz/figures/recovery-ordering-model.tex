@@ -1,16 +1,19 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=6cm,fill=white] (n0) at (0,0) {\textbf{FALLBACK\_STAGED}};
-\node[n,text width=6cm,fill=white] (n1) at (0,-2) {\textbf{FALLBACK\_UPLOADED}};
-\draw[edge] (n0) -- node[lab,right] {\textit{upload succeeds}} (n1);
-\node[n,text width=6cm,fill=white] (n2) at (0,-4) {\textbf{DB\_UPDATED}};
-\draw[edge] (n1) -- node[lab,right] {\textit{durable state updated}} (n2);
-\draw[edge,dashed] (n0.west) -- ++(-1.3,0) |- (n2.west);
-\node[note,fill=white,text width=2.5cm] (forbidden) at (-6,-2) {$\times$\\\textbf{Forbidden /}\\\textbf{absent}\\\textbf{transition}\\\textit{Not part of}\\\textit{the model}};
-\node[note,text width=10cm] (rule) at (0,-5.6) {Durable state may not name an artifact\\recovery has not yet published.};
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,26) rectangle (163,52);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (85.5,43.0) {FALLBACK\_STAGED};
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,83) rectangle (163,109);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (85.5,100.0) {FALLBACK\_UPLOADED};
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,140) rectangle (163,166);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (85.5,157.0) {DB\_UPDATED};
+\draw[-Stealth,line width=.55pt] (85.5,52) -- (85.5,82);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (91,69.0) {upload succeeds};
+\draw[-Stealth,line width=.55pt] (85.5,109) -- (85.5,139);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (91,126.0) {durable state updated};
+\draw[line width=.55pt,dashed] (163,39) -- (224,39) -- (224,153) -- (163,153);
+\node[fill=white,inner sep=2pt,font=\fontsize{14}{16}\selectfont] at (224,96) {$\times$};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,182.0) {forbidden / absent transition};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,192.8) {not part of the model};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (123.75,209.0) {Durable state may not name an artifact};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (123.75,219.8) {recovery has not yet published.};
 \end{tikzpicture}

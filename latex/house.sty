@@ -18,7 +18,6 @@
 \RequirePackage{fancyvrb}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{caption}
-\RequirePackage{afterpage}
 \RequirePackage{needspace}
 \RequirePackage{microtype}
 \RequirePackage{xurl}
@@ -132,6 +131,19 @@
 % This environment is inside an ordinary figure, never a floating child of a
 % breakable bookbox. Native partners retain their full artwork size in a centered
 % makebox, while the title and caption keep the normal inset text padding.
+% Opt-in inline illustrations retain the original breakable bookbox. The
+% Figure structure groups the caption and accessible artwork. A local minipage
+% keeps each diagram with its caption without entering LaTeX's float queues;
+% the surrounding inset remains breakable. No float package hooks are changed.
+\newenvironment{bookinlinefigure}[1]{%
+  \par
+  \ifdefined\tagstructbegin\tagpdfparaOff\tagstructbegin{tag=Figure,alt={#1}}\fi
+  \noindent\begin{minipage}{\linewidth}\captionsetup{type=figure}
+}{%
+  \end{minipage}\par\smallskip%
+  \ifdefined\tagstructend\tagstructend\tagpdfparaOn\fi
+}
+
 \newenvironment{bookinsetfigure}[2]{%
   \bookboxtagbegin
   \begingroup
@@ -140,73 +152,6 @@
   \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}\enspace(continued)}\par\smallskip
 }{\end{tcolorbox}\endgroup\bookboxtagend}
 
-% afterpage backs out of a just-starting paragraph before its already queued
-% paragraph hooks run. Use the kernel's raw paragraph operations when saving
-% and restoring it, so modern tagging hooks run exactly once. Ordinary figure
-% and caption construction remains tagged normally.
-\makeatletter
-\patchcmd{\AP@savetop}
-  {\noindent\else\indent}
-  {\noexpand\RawNoindent\else\noexpand\RawIndent}
-  {}{\PackageError{house}{Cannot adapt afterpage paragraph restart}{Review afterpage compatibility.}}
-\patchcmd{\AP@savetop}
-  {\par\else}
-  {\RawParEnd\else}
-  {}{\PackageError{house}{Cannot adapt afterpage paragraph save}{Review afterpage compatibility.}}
-\patchcmd{\AP@savetop}
-  {\everypar{}\noindent}
-  {\everypar{}\noexpand\RawNoindent}
-  {}{\PackageError{house}{Cannot adapt afterpage display restart}{Review afterpage compatibility.}}
-\makeatother
-
-% Figure pages are scheduled after the current text page has filled. They
-% remain ordinary full-width floats. Flush every
-% figure (including its publication-inserted monochrome partner) before removing
-% it. The background/title are artifacts; figures/captions retain normal tags.
-% Coalesce groups from one inset while the current prose page is filling.
-% One flush avoids empty float pages between callbacks for the same inset.
-\newcommand{\bookinsetfigurepagesdefer}[4]{%
-  \ifcsdef{bookinsetpending@#1}
-    {\csgappto{bookinsetpending@#1}{#4}}
-    {\csgdef{bookinsetpending@#1}{#4}%
-     \afterpage{%
-       \bookinsetfigurepagesbegin{#2}{#3}%
-       \csuse{bookinsetpending@#1}%
-       \csgundef{bookinsetpending@#1}%
-       \bookinsetfigurepagesend}}}
-\newlength{\bookinsetfigureleft}
-\newlength{\bookinsetfiguretop}
-\newcommand{\bookinsetfigurepagesbegin}[2]{%
-  % afterpage has already finished the text page; clearing again emits a blank.
-  \begingroup
-  \bookboxcolors{#1}%
-  \AddToHook{shipout/background}[book-inset-figures]{%
-    \begin{bookdecorative}
-    \ifodd\value{page}%
-      \setlength{\bookinsetfigureleft}{\dimexpr1in+\hoffset+\oddsidemargin\relax}%
-    \else
-      \setlength{\bookinsetfigureleft}{\dimexpr1in+\hoffset+\evensidemargin\relax}%
-    \fi
-    \setlength{\bookinsetfiguretop}{\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
-    \begin{tikzpicture}[remember picture,overlay]
-      \fill[boxfill]
-        ([xshift=\dimexpr\bookinsetfigureleft-8pt\relax,yshift=\dimexpr-\bookinsetfiguretop+4pt\relax]current page.north west)
-        rectangle
-        ([xshift=\dimexpr\bookinsetfigureleft+\textwidth+8pt\relax,yshift=\dimexpr-\bookinsetfiguretop-\textheight\relax]current page.north west);
-      \draw[boxrule,line width=2pt]
-        ([xshift=\dimexpr\bookinsetfigureleft-8pt\relax,yshift=\dimexpr-\bookinsetfiguretop+4pt\relax]current page.north west)
-        --
-        ([xshift=\dimexpr\bookinsetfigureleft-8pt\relax,yshift=\dimexpr-\bookinsetfiguretop-\textheight\relax]current page.north west);
-      \node[anchor=south west,inner sep=0pt,text width=\textwidth,align=left,
-        font=\booksans\small\bfseries,text=boxrule]
-        at ([xshift=\bookinsetfigureleft,yshift=\dimexpr-\bookinsetfiguretop+10pt\relax]current page.north west)
-        {\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}\enspace(continued)};
-    \end{tikzpicture}
-    \end{bookdecorative}}}
-\newcommand{\bookinsetfigurepagesend}{%
-  \clearpage
-  \RemoveFromHook{shipout/background}[book-inset-figures]%
-  \endgroup}
 \newcommand{\pandocbounded}[1]{#1}
 \newenvironment{CSLReferences}[2]{\begin{list}{}{\setlength{\leftmargin}{1.5em}\setlength{\itemindent}{-1.5em}\setlength{\itemsep}{0.5em}}\item[]}{\end{list}}
 \newcommand{\CSLBlock}[1]{#1\par}

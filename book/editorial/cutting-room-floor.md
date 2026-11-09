@@ -12655,3 +12655,152 @@ DocAble also links a property to the checker required to examine it. A document 
 
 Engineers and their agents write and maintain the checker code. For this property, a separately authored Python model represents three deliveries and their claim, dispatch, and acknowledgement steps. A reusable search routine explores their possible orderings and checks that dispatch occurs at most once. Disabling the modeled atomic claim produces duplicate dispatch, confirming that the check can detect the fault it targets. The invariant record cites this checker. A repository check follows the citation and requires an existing file and the declared checker kind specified by the tier. Running the checker and judging whether its bounded model adequately represents the implementation remain separate tasks. \magevalue{chapter:alignment} examines how to assess the evidence and decide whether a failed check should block a commit.
 ```
+
+
+## Chapter 2 decision-model and caption follow-up — 2026-11-09
+
+Source revision: `3e182707f43f610f8a5f12dab4b1ad7a5d681dcd`. Requested revisions broaden decision models and improve captions; the figure is removed from Chapter 2 only. Removal commit: pending root integration.
+
+### 1. Use the exact first-person taxonomy qualification; retain the worker example and roadmap.
+
+Source: `book/latex/sources/part2/00-part-intro.tex`, original lines 34–34. Kind: prose.
+
+```tex
+Engineering questions recur in several broad forms. Structural questions ask what exists and what is connected; behavioral questions ask what may happen; ownership questions ask who controls work; decision questions ask what is allowed; measurement questions ask how much and against what bound; provenance questions ask what happened and what evidence records it. These are useful views into the modeling repertoire, not a partition of engineering models. The same worker may appear as a component in one model, an actor in a lifecycle in another, and the owner of work in a third. This chapter develops three of these views in detail, then connects several models to answer questions that cross individual views.
+```
+
+### 3. Update the transition into the broadened decision-model section.
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, original lines 258–258. Kind: prose.
+
+```tex
+Ownership introduced permission implicitly: a stale claimant \emph{may not} clear a current lease. The next family makes permission the whole question.
+```
+
+### 4. Apply the requested section title in native heading and navigation metadata.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 8–10. Kind: heading.
+
+```tex
+% <!-- chapter-title: Decision Models: What Is Allowed? -->
+
+\chapter{Decision Models: What Is Allowed?}
+```
+
+### 5. Broaden the introduction to acceptance, evidence, recovery, and strategy without attributing new behavior to DocAble.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 12–12. Kind: prose.
+
+```tex
+The preceding models already expressed obligations: a user interface must reach its database through the service layer, and a job must pass through \texttt{RUNNING} before \texttt{DONE}. A decision model focuses directly on the alternatives an engineer permits, requires, or forbids. It can answer which service may call another, or whether a user is entitled to upload a document.
+```
+
+### 6. Broaden the subsection heading while preserving its stable reference label.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 14–14. Kind: heading.
+
+```tex
+\section{The Canonical Move: Permitted Alternatives}\label{heading:the-canonical-move-permitted-alternatives}
+```
+
+### 8. Present policy as a particular use of decision modeling; preserve all six familiar forms and the citation.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 18–18. Kind: prose.
+
+```tex
+Engineering represents permitted alternatives in several familiar forms: decision tables that map conditions to allowed actions, rule systems, access-control matrices that record which subject may act on which object,\citep{lampson1974} policy graphs, feature models that constrain which combinations of options are valid, and constraint systems that declare which assignments are admissible. These representations differ in shape, but each can make the rules for a decision explicit.
+```
+
+### 9. Carry the broader meaning through the section conclusion.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 214–214. Kind: prose.
+
+```tex
+Decision models delimit the permitted alternatives while making the facts required for the decision explicit. The final section steps back from one representation to ask how a family of models can answer questions together.
+```
+
+### 10. Replace the caption's repeated graph description with the meaning of absence; retain public-boundary and enforcement qualifications.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 127–127. Kind: caption.
+
+```tex
+\caption{\emph{Service-flow model.} A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate.}
+```
+
+### 11. State the lost-distinction problem instead of enumerating the diagram's user/group boxes; surrounding prose retains all domain detail.
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 152–152. Kind: caption.
+
+```tex
+\caption{\emph{The upload-entitlement domain.} A user belongs to one or more groups; a group carries either a finite credit balance or unlimited use. The admission decision needs both facts, so a representation that can express only the finite balance cannot answer the question the decision asks.}
+```
+
+### 12. Explain the use of retained provenance instead of listing every field shown in the diagram.
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, original lines 171–171. Kind: caption.
+
+```tex
+\caption{\emph{Attribution provenance model.} A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.}
+```
+
+### 13. Keep the shared-identity join and static/history distinction without repeating the preceding two model descriptions.
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, original lines 184–184. Kind: caption.
+
+```tex
+\caption{\emph{Computation structure versus recorded history.} The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.}
+```
+
+### 14. Remove the reference to the deleted figure while preserving the entire substantive explanatory paragraph.
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, original lines 240–240. Kind: figure-reference.
+
+```tex
+ \autoref{coherence-triangle} draws that relationship.
+```
+
+### 15. Remove the requested Chapter 2 figure; retain and archive its source assets and metadata.
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, original lines 242–249. Kind: figure-removal.
+
+```tex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/coherence-triangle-f756dafee5.pdf}
+\caption{\emph{Checked predicates over a structured model.} A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.}
+\label{coherence-triangle}
+\end{figure}
+
+
+```
+
+### 16. Reconcile the chapter synthesis with the broader decision-model explanation.
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, original lines 286–286. Kind: prose.
+
+```tex
+Each example in this chapter began with an engineering question: where a dependency belongs, which state changes are allowed, who owns a job, what a decision permits, and which facts must be joined.
+```
+
+### Removed figure metadata
+
+```json
+{
+  "label": "coherence-triangle",
+  "original_figure_number": "2.43 (user review baseline)",
+  "source_revision": "3e182707f43f610f8a5f12dab4b1ad7a5d681dcd",
+  "native_source": "book/latex/sources/part2/2.5-system-knowledge.tex",
+  "source_line_start": 242,
+  "source_line_end": 249,
+  "original_block": "\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{book/latex/assets/coherence-triangle-f756dafee5.pdf}\n\\caption{\\emph{Checked predicates over a structured model.} A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.}\n\\label{coherence-triangle}\n\\end{figure}\n\n",
+  "original_binding": {
+    "source": "book/assets/coherence-triangle.svg",
+    "pdf": "book/latex/assets/coherence-triangle-f756dafee5.pdf"
+  },
+  "svg_sha256": "86eceadc3be1edf4ccc53983143e576a0d3f3cd34d9fdc7a98aeb5ec37595a79",
+  "svg_title": "Checked predicates over a structured model: model, invariants, checker",
+  "svg_description": "A linear pipeline. A structured model of records, edges, and states supports predicates\n    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for\n    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift\n    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or\n    refined invariant. This is one executable-model pattern, not the definition of executability.",
+  "asset_policy": "Retain SVG, generated PDF, global print-layout and variant entries; omit only Chapter 2 use and its sidecar binding.",
+  "pdf_sha256": null
+}
+```

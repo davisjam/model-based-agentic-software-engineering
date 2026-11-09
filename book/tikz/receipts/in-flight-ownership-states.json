@@ -14,7 +14,7 @@
   "required_terms": [
     "claim",
     "CLAIMED",
-    "owner · epoch · expires_at",
+    "owner \u00b7 epoch \u00b7 expires_at",
     "RELEASED",
     "Claim ends cleanly",
     "RECLAIMABLE",
@@ -24,7 +24,7 @@
     "may claim",
     "Completion releases the claim; expiry makes it reclaimable.",
     "A live claim is distinguishable from a stale",
-    "one — expiry is a state, not an accident."
+    "one \u2014 expiry is a state, not an accident."
   ],
   "bw_encoding": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone.",
   "redesign": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone. Orthogonal completion/expiry split with distinct line conventions; short outer reclaim loop preserves feedback.",
@@ -42,10 +42,10 @@
       "native font legibility"
     ],
     "outcome": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      12.7361,
-      7.2935
+      9.226,
+      6.8733
     ]
   },
   "fidelity_review": {
@@ -71,23 +71,27 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
-    "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+    "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
+    "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
     "fill": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone.",
     "bold": "Source-derived emphasis includes CLAIMED; RELEASED; RECLAIMABLE; completion; expiry. Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
     "routing": "Orthogonal completion/expiry split with distinct line conventions; short outer reclaim loop preserves feedback.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 23,
-      "width_bp": 361.022,
-      "height_bp": 206.879,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 24,
+      "width_bp": 261.523,
+      "height_bp": 194.834,
+      "minimum_prose_font_pt": 8.97,
       "semantic_typography_checks": 8
     },
     "book_references": []
@@ -95,8 +99,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
-    "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+    "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
+    "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
     "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
     "evidence": [
       {
@@ -165,15 +169,15 @@
         }
       },
       {
-        "source_text": "owner · epoch · expires_at",
+        "source_text": "owner \u00b7 epoch \u00b7 expires_at",
         "source_style": "weight normal; italic; source size 14.5",
         "semantic_role": "named category versus explanatory text",
-        "candidate_text": "owner · epoch · expires_at",
+        "candidate_text": "owner \u00b7 epoch \u00b7 expires_at",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/in-flight-ownership-states.svg",
           "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "owner · epoch · expires_at",
+          "text_element_context": "owner \u00b7 epoch \u00b7 expires_at",
           "matching_fragment_count": 1
         }
       },
@@ -231,7 +235,7 @@
         "italic": false
       },
       {
-        "text": "owner · epoch · expires_at",
+        "text": "owner \u00b7 epoch \u00b7 expires_at",
         "bold": false,
         "italic": true
       },
@@ -247,35 +251,27 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 23,
-      "width_bp": 361.022,
-      "height_bp": 206.879,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 24,
+      "width_bp": 261.523,
+      "height_bp": 194.834,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "retained",
     "reason": "Released/reclaimable peers already align within the one-point tolerance and retain completion/expiry styling. The claimed state is a different rank.",
-    "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+    "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing in flight ownership states layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -300,23 +296,291 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 23,
-      "width_bp": 361.022,
-      "height_bp": 206.879
+      "page": 24,
+      "width_bp": 261.523,
+      "height_bp": 194.834,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
+    },
+    "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2"
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
+    "prior_source_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 3,
+    "width_bp": 257.5379943847656,
+    "height_bp": 190.84800720214844,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+          "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+          "fill": "All ownership-state peers white; completion and expiry differ by named solid/dashed relations, not tone.",
+          "bold": "Source-derived emphasis includes CLAIMED; RELEASED; RECLAIMABLE; completion; expiry. Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
+          "routing": "Orthogonal completion/expiry split with distinct line conventions; short outer reclaim loop preserves feedback.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 23,
+            "width_bp": 361.022,
+            "height_bp": 206.879,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+          "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+          "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
+          "evidence": [
+            {
+              "source_text": "CLAIMED",
+              "source_style": "weight 700; normal; source size 19",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "CLAIMED",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[3]/text()",
+                "text_element_context": "CLAIMED",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "RELEASED",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "RELEASED",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[7]/text()",
+                "text_element_context": "RELEASED",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "RECLAIMABLE",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "RECLAIMABLE",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[9]/text()",
+                "text_element_context": "RECLAIMABLE",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "completion",
+              "source_style": "weight 700; normal; source size 14.4",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "completion",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[5]/text()",
+                "text_element_context": "completion",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "expiry",
+              "source_style": "weight 700; normal; source size 14.4",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "expiry",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[6]/text()",
+                "text_element_context": "expiry",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "owner \u00b7 epoch \u00b7 expires_at",
+              "source_style": "weight normal; italic; source size 14.5",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "owner \u00b7 epoch \u00b7 expires_at",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[4]/text()",
+                "text_element_context": "owner \u00b7 epoch \u00b7 expires_at",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "claim ends cleanly",
+              "source_style": "weight normal; italic; source size 14.4",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Claim ends cleanly",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[8]/text()",
+                "text_element_context": "claim ends cleanly",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "lease lapsed / stale",
+              "source_style": "weight normal; italic; source size 14.4",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Lease lapsed / stale",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/in-flight-ownership-states.svg",
+                "element_text_path": "/svg/text[10]/text()",
+                "text_element_context": "lease lapsed / stale",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "CLAIMED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "RELEASED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "RECLAIMABLE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "completion",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "expiry",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "owner \u00b7 epoch \u00b7 expires_at",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Claim ends cleanly",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Lease lapsed / stale",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 23,
+            "width_bp": 361.022,
+            "height_bp": 206.879,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "retained",
+          "reason": "Released/reclaimable peers already align within the one-point tolerance and retain completion/expiry styling. The claimed state is a different rank.",
+          "candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing in flight ownership states layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+            "after_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+            "before_dimensions_bp": [
+              361.0220031738281,
+              206.87899780273438
+            ],
+            "after_dimensions_bp": [
+              361.0220031738281,
+              206.87899780273438
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 23,
+            "width_bp": 361.022,
+            "height_bp": 206.879
+          }
+        }
+      }
     }
-  }
+  ]
 }

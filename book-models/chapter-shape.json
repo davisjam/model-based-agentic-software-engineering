@@ -328,9 +328,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now the BEHAVIORAL example (label carried forward; filename -> 2.3-behavioral.md). Question (may recovery publish durable state naming a not-yet-published artifact?) + answer (three states and one forbidden ordering). The star is the recovery model; the broad job lifecycle is demoted to a secondary example. 'Executable models are still models' carries the executability point. Now also carries the ownership-under-contention example (the in-flight lease, absorbed in the ch2 consolidation) and the One Representation, Several Questions overlap reading. Closes transitioning to decision: permission the whole question.",
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the BEHAVIORAL example (label carried forward; filename -> 2.3-behavioral.md). Question (may recovery publish durable state naming a not-yet-published artifact?) + answer (three states and one forbidden ordering). The star is the recovery model; the broad job lifecycle is demoted to a secondary example. 'Executable models are still models' carries the executability point. Now also carries the ownership-under-contention example (the in-flight lease, absorbed in the ch2 consolidation) and the One Representation, Several Questions overlap reading. Closes transitioning to decision models: permissions and choosing what should happen next.",
       "opening_anchor": "Behavioral models add time.",
-      "closing_anchor": "permission the whole question.",
+      "closing_anchor": "including permissions and how to choose what should happen next.",
       "delivers": {
         "concepts": [
           "invariant"
@@ -365,9 +365,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "New DECISION chapter (one-model-class-per-chapter reconstruction). Question (which service may call which, and reach which resource?) + answer (a declared service-flow graph; an absent edge declares no relationship). Separates the descriptive question (does A call B?) from the intent question (may A call B?) — correspondence, not correctness, handed to Part III. Closes transitioning to the system-knowledge synthesis.",
-      "opening_anchor": "A decision model represents permitted choices and relationships.",
-      "closing_anchor": "works together as a system.",
+      "note": "Decision models make criteria for choosing among alternatives explicit: acceptance, evidence sufficiency, recovery, and strategy. Policy is one kind. The general explanation distinguishes possible transitions from criteria for choosing among them; DocAble supplies the unchanged service-flow and entitlement permission cases. Observation versus policy remains correspondence, not correctness. Closes transitioning to the system-knowledge synthesis.",
+      "opening_anchor": "A decision model makes explicit how to choose among alternatives:",
+      "closing_anchor": "how a family of models can answer questions together.",
       "delivers": {
         "concepts": [],
         "artifacts": [
@@ -411,7 +411,7 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the modeling-substrate, two-layer-net, coherence-triangle, joined-by-identity and modeling-creates-surfaces figures",
+            "name": "the modeling-substrate, two-layer-net, joined-by-identity and modeling-creates-surfaces figures",
             "anchor": "modeling-substrate"
           }
         ],

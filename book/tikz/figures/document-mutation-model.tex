@@ -1,22 +1,28 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=6cm,fill=white] (n0) at (0,0.0) {\textbf{Remediation logic}};
-\node[strong,text width=6cm,fill=black!8] (n1) at (0,-1.8) {\textbf{Structured document model}\\\textit{The sanctioned seam}};
-\draw[edge] (n0) -- node[lab,right] {\textit{operates through}} (n1);
-\node[n,text width=6cm] (n2) at (0,-3.6) {Format-specific implementation};
-\draw[edge] (n1) -- node[lab,right] {\textit{implemented by}} (n2);
-\node[n,text width=2.3cm] (f0) at (-4.5,-5.5) {DOCX};
-\draw[edge] (n2.south) -- (0,-4.5) -| (f0.north);
-\node[n,text width=2.3cm] (f1) at (-1.5,-5.5) {PPTX};
-\draw[edge] (n2.south) -- (0,-4.5) -| (f1.north);
-\node[n,text width=2.3cm] (f2) at (1.5,-5.5) {XLSX};
-\draw[edge] (n2.south) -- (0,-4.5) -| (f2.north);
-\node[n,text width=2.3cm] (f3) at (4.5,-5.5) {PDF};
-\draw[edge] (n2.south) -- (0,-4.5) -| (f3.north);
-\node[note,text width=11cm] (lim) at (0,-7) {Marks where mutation belongs; does not itself prevent bypass.};
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (53.75,24) rectangle (193.75,51);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (123.75,41.0) {remediation logic};
+\draw[-Stealth,line width=.55pt] (123.75,51) -- (123.75,76);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (129,66.0) {operates through};
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (30,77) rectangle (217.5,115);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (123.75,92.0) {structured document model};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,106.0) {the sanctioned seam};
+\draw[-Stealth,line width=.55pt] (123.75,115) -- (123.75,141);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (129,131.0) {implemented by};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (36,142) rectangle (211.5,171);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (123.75,160.0) {format-specific implementation};
+\draw[-Stealth,line width=.55pt] (123.75,171) -- (123.75,182) -- (33.75,182) -- (33.75,194);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (7,194) rectangle (60.5,218);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (33.75,210.0) {DOCX};
+\draw[-Stealth,line width=.55pt] (123.75,171) -- (123.75,182) -- (93.75,182) -- (93.75,194);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (67,194) rectangle (120.5,218);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (93.75,210.0) {PPTX};
+\draw[-Stealth,line width=.55pt] (123.75,171) -- (123.75,182) -- (153.75,182) -- (153.75,194);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (127,194) rectangle (180.5,218);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (153.75,210.0) {XLSX};
+\draw[-Stealth,line width=.55pt] (123.75,171) -- (123.75,182) -- (213.75,182) -- (213.75,194);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (187,194) rectangle (240.5,218);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (213.75,210.0) {PDF};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,232.0) {Marks where mutation belongs;};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,242.8) {does not itself prevent bypass.};
 \end{tikzpicture}

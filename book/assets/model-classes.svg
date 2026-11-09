@@ -13,7 +13,7 @@
   <title id="onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
   <desc id="onDesc">Six model classes, each a box carrying the two engineering questions it answers.
     Structural: what exists, how related. Behavioral: what may happen, in what order. Ownership: who
-    controls, for how long. Decision: what is allowed, what choice. Measurement: how much, what envelope.
+    controls, for how long. Decision: what should happen next, what choice. Measurement: how much, what envelope.
     Provenance: what happened, what evidence. The classes may overlap. Below them, a separate axis: the
     representation form used to encode a model — graph, registry, state machine, contract, table, or
     quantitative relation — distinct from the class. Connected through shared identity and traceability,
@@ -47,8 +47,8 @@
   <!-- ===== row 2 ===== -->
   <rect x="40" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="178" y="184" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">DECISION</text>
-  <text x="178" y="207" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what is allowed?</text>
-  <text x="178" y="226" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">which choice?</text>
+  <text x="178" y="207" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what should</text>
+  <text x="178" y="226" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">happen next?</text>
 
   <rect x="342" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="480" y="184" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">MEASUREMENT</text>

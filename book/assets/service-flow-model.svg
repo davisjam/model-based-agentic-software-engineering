@@ -1,78 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.5 Decision primary model (part2-content-revision-260814; folds to book/assets/).
-     DocAble's service-flow model: a declared graph of which services MAY communicate. The Internet reaches
-     web; web reaches worker, document editor, and other; worker reaches generation, render, and OCR. An
-     edge means the relationship is part of the declared architecture; an absent edge means the model does
-     not declare such a relationship (not that it is physically impossible — that is Chapter 3's question).
-     Grammar: blue #2f5169 = declared edges and the services they connect (the decision model); the Internet
-     node is gray #57534e as an external entity, not part of the declared internal flow. Hand-authored (a
-     declared directed graph, not an auto-laid flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400"
-     role="img" aria-labelledby="sfTitle sfDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="sfTitle">DocAble's service-flow model: which services may communicate</title>
-  <desc id="sfDesc">A declared directed graph. The Internet reaches the web service. Web reaches worker,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 212" width="270" height="212" role="img" aria-labelledby="sfTitle sfDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><ns0:title xmlns:ns0="http://www.w3.org/2000/svg" id="sfTitle">DocAble's service-flow model: which services may communicate</ns0:title>
+  <ns0:desc xmlns:ns0="http://www.w3.org/2000/svg" id="sfDesc">A declared directed graph. The Internet reaches the web service. Web reaches worker,
     document editor, and other. Worker reaches generation, render, and OCR. Each edge is a declared,
-    permitted relationship; an absent edge means the model does not declare that relationship.</desc>
+    permitted relationship; an absent edge means the model does not declare that relationship.</ns0:desc>
 
-  <defs>
-    <marker id="sf-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="sf-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <text x="360" y="28" text-anchor="middle" font-size="14.4" font-weight="700" letter-spacing="1.2" fill="#2f5169">SERVICE-FLOW MODEL</text>
-
-  <!-- Internet (gray, external) -->
-  <rect id="internet" x="290" y="42" width="140" height="42" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="360" y="69" text-anchor="middle" font-size="16" fill="#1c1917">Internet</text>
-  <!-- edge: internet -> web -->
-  <line x1="360" y1="84" x2="360" y2="112" stroke="#57534e" stroke-width="2" marker-end="url(#sf-k)"/>
-
-  <!-- web (blue) -->
-  <rect id="web" x="295" y="114" width="130" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="360" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">web</text>
-
-  <!-- web -> {worker, document editor, other} — one path per branch, each seats on its own node -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
-    <!-- edge: web -> worker -->
-    <path d="M311,160 L311,187 L239,187 L239,214"/>
-    <!-- edge: web -> doc-editor -->
-    <path d="M360,160 L360,214"/>
-    <!-- edge: web -> other -->
-    <path d="M409,160 L409,187 L481,187 L481,214"/>
-  </g>
-
-  <rect id="worker" x="105" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="180" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">worker</text>
-
-  <rect id="doc-editor" x="285" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="360" y="239" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">document</text>
-  <text x="360" y="256" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">editor</text>
-
-  <rect id="other" x="465" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="540" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">other</text>
-
-  <!-- worker -> {generation, render, OCR} — one path per branch -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
-    <!-- edge: worker -> generation -->
-    <path d="M120,264 L120,330"/>
-    <!-- edge: worker -> render -->
-    <path d="M190,264 L190,330"/>
-    <!-- edge: worker -> ocr -->
-    <path d="M239,264 L239,297 L261,297 L261,330"/>
-  </g>
-
-  <rect id="generation" x="25" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="80" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">generation</text>
-
-  <rect id="render" x="135" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="190" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">render</text>
-
-  <rect id="ocr" x="245" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
-
+  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
+<text x="135" y="12.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">SERVICE-FLOW MODEL</text>
+<rect x="103" y="23" width="64" height="24" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
+<text x="135" y="39.0" text-anchor="middle" font-size="10" fill="#1c1917">Internet</text>
+<path d="M135,47 L135,63" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)"/>
+<rect x="104" y="64" width="62" height="27" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="1.25"/>
+<text x="135" y="81.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">web</text>
+<path d="M135,91 L135,105 L46.0,105 L46.0,119" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="8" y="120" width="76" height="31" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="46.0" y="140.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">worker</text>
+<path d="M135,91 L135,105 L135.0,105 L135.0,119" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="96" y="120" width="78" height="31" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="135.0" y="134.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">document</text>
+<text x="135.0" y="146.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">editor</text>
+<path d="M135,91 L135,105 L224.0,105 L224.0,119" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="186" y="120" width="76" height="31" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="224.0" y="140.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">other</text>
+<path d="M46,151 L46,166 L44.0,166 L44.0,181" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="6" y="182" width="76" height="24" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="44.0" y="198.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">generation</text>
+<path d="M46,151 L46,166 L130.0,166 L130.0,181" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="97" y="182" width="66" height="24" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="130.0" y="198.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">render</text>
+<path d="M46,151 L46,166 L211.0,166 L211.0,181" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
+<rect x="178" y="182" width="66" height="24" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="211.0" y="198.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">OCR</text>
 </svg>

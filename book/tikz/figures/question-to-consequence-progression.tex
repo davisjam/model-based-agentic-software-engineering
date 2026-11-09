@@ -1,20 +1,35 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=9cm] (n0) at (0,0.0) {\textbf{Engineering question}};
-\node[n,text width=9cm,fill=white] (n1) at (0,-1.8) {\textbf{Choose representation}\\Closed state/action space · finite transition system\\Temporal behavior};
-\draw[edge] (n0) -- (n1);
-\node[n,text width=9cm] (n2) at (0,-3.9) {\textbf{Choose analysis appropriate to the property}\\Constraint solving · state exploration · model checking · simulation · static analysis};
-\draw[edge] (n1) -- (n2);
-\node[n,text width=9cm] (n3) at (0,-5.7) {\textbf{Interpret evidence}};
-\draw[edge] (n2) -- (n3);
-\node[n,text width=6cm,minimum height=2.5cm,fill=white] (design) at (-3.7,-8.4) {\textbf{Inform architecture / design}\\Compare alternatives\\· revise boundaries\\Change dependencies\\· allocate resources};
-\node[n,text width=6cm,minimum height=2.5cm,fill=white] (align) at (3.7,-8.4) {\textbf{Decide what deserves\\enforcement}\\\textit{Alignment (\magebookref{part:3}{Chapter 3})}};
-\draw[edge] (n3.south) -- (0,-6.55) -| (design.north);
-\draw[edge] (n3.south) -- (0,-6.55) -| (align.north);
-\node[note,text width=4cm] (both) at (0,-10.2) {Either or both};
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (73,3) rectangle (242,27);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (157.5,19.0) {engineering question};
+\draw[-Stealth,line width=.55pt] (157.5,27) -- (157.5,39);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (73,40) rectangle (242,65);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (157.5,56.0) {choose the representation};
+\draw[-Stealth,line width=.55pt] (157.5,65) -- (157.5,77);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (22,78) rectangle (293,123);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (157.5,93.0) {representative forms};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (157.5,106.0) {closed state / action space \,\textperiodcentered\, finite transition system \,\textperiodcentered\,};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (157.5,116.8) {temporal behavior \,\textperiodcentered\, …};
+\draw[-Stealth,line width=.55pt] (157.5,123) -- (157.5,135);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (4,136) rectangle (311,182);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (157.5,152.0) {choose an analysis appropriate to the property};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (157.5,165.0) {constraint solving \,\textperiodcentered\, state exploration \,\textperiodcentered\, model checking \,\textperiodcentered\,};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (157.5,175.8) {simulation \,\textperiodcentered\, static analysis \,\textperiodcentered\, …};
+\draw[-Stealth,line width=.55pt] (157.5,182) -- (157.5,194);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (73,195) rectangle (242,220);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (157.5,211.0) {interpret the evidence};
+\draw[-Stealth,line width=.55pt] (157.5,220) -- (157.5,233) -- (79,233) -- (79,245);
+\draw[-Stealth,line width=.55pt] (157.5,220) -- (157.5,233) -- (237,233) -- (237,245);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (3,246) rectangle (155,319);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (79,260.0) {inform architecture / design};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (79,274.0) {compare alternatives \,\textperiodcentered\,};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (79,284.8) {revise boundaries \,\textperiodcentered\,};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (79,295.6) {change dependencies \,\textperiodcentered\,};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (79,306.4) {allocate resources};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (165,246) rectangle (312,319);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (238.5,259.0) {decide what deserves};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (238.5,271.0) {enforcement};
+\draw[-Stealth,line width=.55pt] (238.5,278) -- (238.5,290);
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{10}{12}\selectfont }] at (238.5,301.0) {$\rightarrow$ Alignment (\magebookref{part:3}{Chapter 3})};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (157.5,335.0) {Either or both};
 \end{tikzpicture}

@@ -26,17 +26,29 @@ def inset_flow_labels(path: Path = LAYOUT) -> set[str]:
             if rule.get('inset_placement') == 'flow'}
 
 
+def inset_inline_labels(path: Path = LAYOUT) -> set[str]:
+    """Reviewed complete insets retain nonfloating figures within their prose."""
+    return {label for label, rule in _layout(path).items()
+            if rule.get('inset_placement') == 'inline'}
+
+
 def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
     data = _layout(path)
     widths = {}
-    flush_after = set()
+    placements = {}
     for label, rule in data.items():
-        if rule.get('inset_placement') not in (None, 'flow'):
+        if rule.get('inset_placement') not in (None, 'flow', 'inline'):
             raise ValueError('Invalid inset placement for ' + label)
+        if rule.get('float_placement') not in (None, '!htb'):
+            raise ValueError('Invalid scoped float placement for ' + label)
+        if rule.get('float_placement'):
+            if rule.get('inset_placement'):
+                raise ValueError('Scoped float placement cannot override an inset mode: ' + label)
+            placements[label] = rule['float_placement']
         if not isinstance(rule.get('flush_after', False), bool):
             raise ValueError('Invalid float boundary for ' + label)
         if rule.get('flush_after'):
-            flush_after.add(label)
+            raise ValueError('Figure layouts cannot force a page boundary: ' + label)
         width = rule.get('width_bp')
         if (rule.get('placement') != 'centered' or isinstance(width, bool) or
                 not isinstance(width, (int, float)) or not 180 <= width <= 450):
@@ -54,10 +66,12 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
             raise ValueError('Expected one original width for ' + label[1])
         content = content.replace(r'width=\linewidth',
                                   'width=' + str(widths[label[1]]) + 'bp', 1)
-        # A reviewed exhibit must precede the following discussion. The later
-        # pairing pass inserts its native companion before this flush too.
-        if label[1] in flush_after:
-            content += '\n' + r'\clearpage' + '\n'
+        if label[1] in placements:
+            # Reviewed medium figures should use pages with explanatory text.
+            # The publication pass preserves this opt-in on the native partner.
+            content = re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?',
+                             lambda _: r'\begin{figure}[' + placements[label[1]] + ']',
+                             content, count=1)
         return content
 
     return re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', figure, latex, flags=re.S)

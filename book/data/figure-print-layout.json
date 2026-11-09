@@ -20,22 +20,22 @@
     "turn-end-ordering": {
       "width_bp": 247.5,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "docable-context-selection": {
       "width_bp": 270,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "fidelity-vs-authority": {
       "width_bp": 270,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "match-mechanism-to-property": {
       "width_bp": 342,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "governance-conversion-fig": {
       "width_bp": 360,
@@ -44,7 +44,7 @@
     "judgment-without-consequence": {
       "width_bp": 324,
       "placement": "centered",
-      "inset_placement": "flow"
+      "inset_placement": "inline"
     },
     "census-trio": {
       "width_bp": 450,
@@ -67,12 +67,13 @@
       "placement": "centered"
     },
     "canonical-structural": {
-      "width_bp": 360,
+      "width_bp": 292.5,
       "placement": "centered"
     },
     "docable-execution-analysis": {
-      "width_bp": 324,
-      "placement": "centered"
+      "width_bp": 315.0,
+      "placement": "centered",
+      "inset_placement": "inline"
     },
     "docable-work-order-flow": {
       "width_bp": 315,
@@ -85,7 +86,7 @@
     "support-ratio-curve": {
       "width_bp": 450,
       "placement": "centered",
-      "flush_after": true
+      "float_placement": "!htb"
     },
     "process-design-and-tolerance": {
       "width_bp": 405,
@@ -98,6 +99,86 @@
     "mage-staircase": {
       "width_bp": 427.5,
       "placement": "centered"
+    },
+    "modeling-substrate": {
+      "width_bp": 292.5,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "entitlement-domain": {
+      "width_bp": 270.0,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "in-flight-ownership-states": {
+      "width_bp": 270.0,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "attribution-model": {
+      "width_bp": 247.5,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "service-flow-model": {
+      "width_bp": 270.0,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "document-mutation-model": {
+      "width_bp": 247.5,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "realization-space": {
+      "width_bp": 337.5,
+      "placement": "centered"
+    },
+    "question-to-consequence-progression": {
+      "width_bp": 315.0,
+      "placement": "centered"
+    },
+    "recovery-ordering-model": {
+      "width_bp": 247.5,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "canonical-behavioral": {
+      "width_bp": 292.5,
+      "placement": "centered"
+    },
+    "modeling-perp-enforcement": {
+      "width_bp": 337.5,
+      "placement": "centered"
+    },
+    "from-nodes-to-composition": {
+      "width_bp": 405.0,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "two-reductions-static-realized": {
+      "width_bp": 337.5,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
+    "model-sync-two-layer-net": {
+      "width_bp": 315.0,
+      "placement": "centered"
+    },
+    "entitlement-model-evolution": {
+      "inset_placement": "inline",
+      "width_bp": 450,
+      "placement": "centered"
+    },
+    "alignment-kernel": {
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
+    },
+    "why-software-modeled": {
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
     }
   }
 }

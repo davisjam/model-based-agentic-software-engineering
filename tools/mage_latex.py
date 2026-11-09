@@ -551,7 +551,7 @@ def _prepare_record(task):
             raw = raw[:principle.start()] + raw[principle.end():]
         for label, field in [('Carrying forward','carrying_forward'),('New here','new_here_vocab')]:
             if vocab.get(field): orientation += '\n\\par\\medskip\n' + r'\textbf{' + label.upper() + '}\\par\n' + inline(' · '.join(vocab[field])) + '\n'
-        orientation += '\n\\clearpage\n'
+        orientation += '\n% mage-orientation-end\n'
     raw = bb.apply_token_passes(raw)
     raw = re.sub(r'\[\[([^]|]+)(?:\|([^]]+))?\]\]', lambda m: '[' + (m[2] or m[1]) + '](../ABSTRACTIONS.html#' + m[1] + ')', raw)
     raw = re.sub(r'\[\+([^]]+)\+\]', r'*\1*', raw)
@@ -592,12 +592,13 @@ def _prepare_record(task):
     latex = apply_print_keep_with_next(latex)
 
     # Original artwork can be compact without shrinking native review labels.
-    from mage_figure_layout import apply_figure_print_layout, inset_flow_labels
+    from mage_figure_layout import apply_figure_print_layout, inset_flow_labels, inset_inline_labels
     latex = apply_figure_print_layout(latex)
 
     # Print-only segmentation preserves native artwork size inside worked insets.
     from mage_inset_print import isolate_inset_figures
-    latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels())
+    latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels(),
+                                  inline_labels=inset_inline_labels())
 
     from latex_build import bold_table_headers, single_page_tables, namespace_heading_links
     latex = bold_table_headers(latex)
@@ -626,10 +627,10 @@ def _prepare_record(task):
     latex = re.sub(r'^% <!-- latex-index-anchor: ([^ >]+) -->$', lambda m: r'\phantomsection\label{' + m[1] + '}', latex, flags=re.M)
     latex = re.sub(r'^\\chapter[^\n]+', lambda m: m[0].replace(',', r'\magecomma{}'), latex, flags=re.M)
     if slug == '0.3-the-mage-method-at-a-glance':
-        # Keep this reference sheet on one page with compact introductory text,
-        # caption spacing and a scoped figure height.
-        latex = (r'\clearpage\newgeometry{top=.5in,bottom=.5in,left=1.125in,right=1.125in}\begingroup\small\captionsetup{font=footnotesize}' + '\n'
-                 + latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight') + '\n' + r'\clearpage\endgroup\restoregeometry' + '\n')
+        # Compact reference-sheet typography may flow naturally across pages.
+        # Geometry changes would implicitly force breaks before and after it.
+        latex = (r'\begingroup\small\captionsetup{font=footnotesize}' + '\n'
+                 + latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight') + '\n' + r'\endgroup' + '\n')
     if slug == 'appendix-a-composing-a-stack':
         latex = latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight')
     if slug == 'about-the-author':
@@ -648,7 +649,8 @@ def native_float_lists(chapters):
         def collect(match):
             content, kind = match[0], match[1]
             if kind == 'table': kind = 'longtable'
-            cap = re.search(r'\\caption(?:\[([^]]*)\])?', content)
+            if kind == 'bookinlinefigure': kind = 'figure'
+            cap = re.search(r'\\caption(?!\*)(?:\[([^]]*)\])?', content)
             if not cap: return content
             body = argument(content[cap.start():], cap[0])
             # The optional short title is group 1 of the caption match.
@@ -660,7 +662,7 @@ def native_float_lists(chapters):
                 content = content.replace(full, full + r'\label{' + label + '}', 1)
             entries[kind].append(r'\noindent\ref*{' + label + r'}\quad ' + title + r'\dotfill\pageref*{' + label + r'}\par\smallskip')
             return content
-        value = re.sub(r'\\begin\{(figure|longtable|table)\}.*?\\end\{\1\}', collect, path.read_text(), flags=re.S)
+        value = re.sub(r'\\begin\{(figure|bookinlinefigure|longtable|table)\}.*?\\end\{\1\}', collect, path.read_text(), flags=re.S)
         path.write_text(value)
     return '\n'.join(r'\chapter*{List of ' + title + '}' + '\n{\\small\n' + '\n'.join(entries[kind]) + '\n}' for kind, title in [('figure','Figures'),('longtable','Tables')])
 
@@ -756,7 +758,8 @@ def prepare_pdf(slugs=None, name="mage-book"):
             if not full_chapter.exists():
                 raise RuntimeError('Build the full native PDF before excerpts: ' + str(full_chapter))
             full_text = full_chapter.read_text()
-            figures += full_text.count(r'\begin{figure}')
+            from mage_inset_print import count_print_figures
+            figures += count_print_figures(full_text, numbered_only=True)
             tables += sum(r'\caption' in block for block in re.findall(
                 r'\\begin\{(?:longtable|table)\}.*?\\end\{(?:longtable|table)\}', full_text, flags=re.S))
             previous = record['part']

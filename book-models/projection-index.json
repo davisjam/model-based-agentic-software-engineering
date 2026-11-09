@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 832,
+    "total_sites": 831,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 494,
+      "book-web": 493,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -269,7 +269,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1091,11 +1091,11 @@
           },
           {
             "file": "book/web/docs/2.4-decision.md",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 29
+            "occ": 28
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -1499,7 +1499,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 291
+            "occ": 290
           },
           {
             "file": "book/web/docs/index.md",
@@ -1515,7 +1515,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1967,19 +1967,19 @@
           },
           {
             "file": "book/web/docs/2.2-structural.md",
-            "occ": 45
+            "occ": 41
           },
           {
             "file": "book/web/docs/2.3-behavioral.md",
-            "occ": 65
+            "occ": 64
           },
           {
             "file": "book/web/docs/2.4-decision.md",
-            "occ": 32
+            "occ": 36
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 95
+            "occ": 82
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -2311,7 +2311,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 336
+            "occ": 318
           },
           {
             "file": "book/web/docs/index.md",
@@ -2319,7 +2319,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -3201,7 +3201,7 @@
           },
           {
             "file": "book/web/docs/2.2-structural.md",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/web/docs/2.4-decision.md",
@@ -3209,7 +3209,7 @@
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 11
+            "occ": 4
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -3321,11 +3321,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 25
-          },
-          {
-            "file": "book/web/docs/list-of-figures.md",
-            "occ": 1
+            "occ": 17
           },
           {
             "file": "book/web/docs/part-2-intro.md",
@@ -3335,7 +3331,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 34
           }
         ]
       },

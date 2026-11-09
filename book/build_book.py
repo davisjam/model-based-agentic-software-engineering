@@ -6768,10 +6768,11 @@ def build_pdf() -> int:
         driver = ROOT / "book/latex/build/mage-book.tex"
         driver_text, chapters, _ = mage_latex.pdf_sources(driver)
         source = driver_text + "\n" + "\n".join(chapters)
+        from mage_inset_print import count_print_figures
         check_pdf(pdf_out, headings=_expected_chapter_headings(source),
                   sections=len(re.findall(r"\\section\*?\{", source)),
                   tables=source.count(r"\begin{longtable}") + source.count(r"\begin{table}"),
-                  figures=source.count(r"\begin{figure}"))
+                  figures=count_print_figures(source))
         import mage_tikz_links
         figure_manifest = json.loads((driver.parent / 'grayscale-figures.json').read_text())
         mage_tikz_links.verify_book(pdf_out, driver.with_suffix('.aux'), figure_manifest,

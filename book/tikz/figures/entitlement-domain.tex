@@ -1,22 +1,32 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=3cm] (u) at (0,0) {User};
-\node[n,text width=4cm] (g) at (0,-1.6) {Groups};
-\draw[edge] (u) -- node[lab,right] {\textit{belongs to one or more}} (g);
-\node[n,text width=5cm,fill=white,minimum height=1.2cm] (f) at (-3.5,-3.6) {\textbf{Finite-credit group}\\\textit{Remaining credit balance}};
-\node[n,text width=5cm,fill=white,minimum height=1.2cm] (inf) at (3.5,-3.6) {\textbf{Unlimited group}\\\textit{No credit limit}};
-\draw[edge] (g.south) -- (0,-2.5) -| (f.north);
-\draw[edge] (g.south) -- (0,-2.5) -| (inf.north);
-\node[strong,text width=5cm,fill=white] (dec) at (0,-5.5) {Upload decision};
-\draw[edge] (f.south) -- (-3.5,-4.6) -- node[lab,above] {\textit{credits remaining?}} (-1,-4.6) -- ([xshift=-1cm]dec.north);
-\draw[edge] (inf.south) -- (3.5,-4.6) -- node[lab,above] {\textit{any unlimited?}} (1,-4.6) -- ([xshift=1cm]dec.north);
-\node[n,text width=3cm] (yes) at (-2,-7.2) {\textbf{ADMIT}};
-\node[n,text width=3cm] (no) at (2,-7.2) {\textbf{REJECT}};
-\draw[edge] (dec.south) -- (0,-6.4) -| (yes.north);
-\draw[edge] (dec.south) -- (0,-6.4) -| (no.north);
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (107,37) rectangle (163,60);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (135,53.0) {User};
+\draw[-Stealth,line width=.55pt] (135,60) -- (135,88);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (141,74.0) {belongs to};
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (141,84.8) {one or more};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (103,89) rectangle (167,112);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (135,105.0) {Groups};
+\draw[-Stealth,line width=.55pt] (135,112) -- (135,124) -- (69,124) -- (69,138);
+\draw[-Stealth,line width=.55pt] (135,112) -- (135,124) -- (202,124) -- (202,138);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (6,139) rectangle (132,175);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (69,154.0) {Finite-credit group};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (69,167.0) {a remaining credit balance};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (139,139) rectangle (265,175);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (202,154.0) {Unlimited group};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (202,167.0) {no credit limit};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (69,190.0) {how many credits};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (69,200.8) {remain?};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (202,190.0) {is any entitlement};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (202,200.8) {unlimited?};
+\draw[-Stealth,line width=.55pt] (20,175) -- (20,211) -- (112,211) -- (112,224);
+\draw[-Stealth,line width=.55pt] (250,175) -- (250,211) -- (158,211) -- (158,224);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (81,225) rectangle (189,249);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (135,241.0) {Upload decision};
+\draw[-Stealth,line width=.55pt] (135,249) -- (135,261) -- (79,261) -- (79,273);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (51,273) rectangle (107,294);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (79,287.0) {ADMIT};
+\draw[-Stealth,line width=.55pt] (135,249) -- (135,261) -- (191,261) -- (191,273);
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (163,273) rectangle (219,294);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (191,287.0) {REJECT};
 \end{tikzpicture}

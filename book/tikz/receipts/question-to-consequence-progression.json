@@ -60,33 +60,37 @@
       "native-size visual layout"
     ],
     "outcome": "Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      13.9764,
-      10.4597
+      11.1309,
+      11.9368
     ]
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
-    "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+    "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
     "fill": "All stages and both consequence alternatives white; no darker alternative implies priority.",
     "bold": "Source-derived emphasis includes Engineering question; Choose representation; Choose analysis appropriate to the property; Interpret evidence; Inform architecture / design; Decide what deserves enforcement. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Vertical stages and orthogonal shared-rail consequence fork.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 15,
-      "width_bp": 396.181,
-      "height_bp": 310.754,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 16,
+      "width_bp": 315.522,
+      "height_bp": 338.367,
+      "minimum_prose_font_pt": 9.96,
       "semantic_typography_checks": 8
     },
     "book_references": [
@@ -96,8 +100,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
-    "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+    "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
       {
@@ -248,35 +252,27 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 15,
-      "width_bp": 396.181,
-      "height_bp": 310.754,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 16,
+      "width_bp": 315.522,
+      "height_bp": 338.367,
+      "minimum_prose_font_pt": 9.96,
+      "semantic_typography_checks": 8
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Preserved equal-height parallel outcomes, separated upstream stages, and used whole-phrase lines instead of a split dependencies word.",
-    "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+    "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing question to consequence progression layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -301,24 +297,22 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 15,
-      "width_bp": 396.181,
-      "height_bp": 310.754
-    }
+      "page": 16,
+      "width_bp": 315.522,
+      "height_bp": 338.367,
+      "minimum_prose_font_pt": 9.96,
+      "semantic_typography_checks": 8
+    },
+    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e"
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -326,5 +320,277 @@
     "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
     "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
-  }
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "252b365ae07fc2fe5de7515f4a576aa833ba26f3af0ece88c864ab9f9101e74c",
+    "prior_source_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 6,
+    "width_bp": 311.5369873046875,
+    "height_bp": 334.3819885253906,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+          "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+          "fill": "All stages and both consequence alternatives white; no darker alternative implies priority.",
+          "bold": "Source-derived emphasis includes Engineering question; Choose representation; Choose analysis appropriate to the property; Interpret evidence; Inform architecture / design; Decide what deserves enforcement. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+          "routing": "Vertical stages and orthogonal shared-rail consequence fork.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 15,
+            "width_bp": 396.181,
+            "height_bp": 310.754,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8
+          },
+          "book_references": [
+            "part:3"
+          ]
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+          "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+          "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+          "evidence": [
+            {
+              "source_text": "engineering question",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Reasoning stage heading versus examples or consequences",
+              "candidate_text": "Engineering question",
+              "candidate_style": "bold ",
+              "source_fragments": [
+                {
+                  "text": "engineering question",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "500",
+                  "y": "58"
+                }
+              ]
+            },
+            {
+              "source_text": "choose the representation",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Reasoning stage heading versus examples or consequences",
+              "candidate_text": "Choose representation",
+              "candidate_style": "bold ",
+              "source_fragments": [
+                {
+                  "text": "choose the representation",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "500",
+                  "y": "142"
+                }
+              ]
+            },
+            {
+              "source_text": "choose an analysis appropriate to the property",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Reasoning stage heading versus examples or consequences",
+              "candidate_text": "Choose analysis appropriate to the property",
+              "candidate_style": "bold ",
+              "source_fragments": [
+                {
+                  "text": "choose an analysis appropriate to the property",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "500",
+                  "y": "338"
+                }
+              ]
+            },
+            {
+              "source_text": "interpret the evidence",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Reasoning stage heading versus examples or consequences",
+              "candidate_text": "Interpret evidence",
+              "candidate_style": "bold ",
+              "source_fragments": [
+                {
+                  "text": "interpret the evidence",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "500",
+                  "y": "450"
+                }
+              ]
+            },
+            {
+              "source_text": "inform architecture / design",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Reasoning stage heading versus examples or consequences",
+              "candidate_text": "Inform architecture / design",
+              "candidate_style": "bold ",
+              "source_fragments": [
+                {
+                  "text": "inform architecture / design",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "260",
+                  "y": "566"
+                }
+              ]
+            },
+            {
+              "source_text": "decide what deserves enforcement",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Reasoning stage heading versus examples or consequences",
+              "candidate_text": "Decide what deserves enforcement",
+              "candidate_style": "bold ",
+              "source_fragments": [
+                {
+                  "text": "decide what deserves enforcement",
+                  "weight": "700",
+                  "style": "normal",
+                  "x": "750",
+                  "y": "571"
+                }
+              ]
+            },
+            {
+              "source_text": "Alignment (Chapter 3)",
+              "source_style": "weight normal, italic",
+              "semantic_role": "Cross-book destination note",
+              "candidate_text": "Alignment (Chapter 3)",
+              "candidate_style": "italic ",
+              "source_fragments": [
+                {
+                  "text": "Alignment (Chapter 3)",
+                  "weight": "normal",
+                  "style": "italic",
+                  "x": "750",
+                  "y": "648"
+                }
+              ]
+            }
+          ],
+          "checks": [
+            {
+              "text": "Engineering question",
+              "bold": true
+            },
+            {
+              "text": "Choose representation",
+              "bold": true
+            },
+            {
+              "text": "Choose analysis appropriate to the property",
+              "bold": true
+            },
+            {
+              "text": "Interpret evidence",
+              "bold": true
+            },
+            {
+              "text": "Inform architecture / design",
+              "bold": true
+            },
+            {
+              "text": "Decide what deserves enforcement",
+              "bold": true
+            },
+            {
+              "text": "Alignment (Chapter 3)",
+              "italic": true
+            },
+            {
+              "text": "Closed state/action space",
+              "bold": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 15,
+            "width_bp": 396.181,
+            "height_bp": 310.754,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "refined",
+          "reason": "Preserved equal-height parallel outcomes, separated upstream stages, and used whole-phrase lines instead of a split dependencies word.",
+          "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing question to consequence progression layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+            "after_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+            "before_dimensions_bp": [
+              396.1809997558594,
+              310.7539978027344
+            ],
+            "after_dimensions_bp": [
+              396.1809997558594,
+              310.7539978027344
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 15,
+            "width_bp": 396.181,
+            "height_bp": 310.754
+          }
+        }
+      }
+    }
+  ]
 }

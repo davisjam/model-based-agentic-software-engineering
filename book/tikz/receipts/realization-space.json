@@ -29,18 +29,18 @@
       "native-size visual layout"
     ],
     "outcome": "Color SVG and grayscale TikZ proof inspected. Region labels fit, the overlap holds several distinct implementations, and timing tolerance and remaining choices are explicitly named.",
-    "strict_compile": "Zero unapproved diagnostics; geometry and typography checks passed.",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      12.3515,
-      9.3702
+      11.7783,
+      8.6642
     ]
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
-    "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+    "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
+    "candidate_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
     "fill": "Light gray marks the ordering region; hatching marks the intersection. Dots denote possible implementations.",
     "bold": "Universe heading and requirement-region names are bold. Scope and explanations are regular.",
     "routing": "Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
@@ -60,26 +60,27 @@
       "semantic_typography_checks": 5
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
-      "page": 13,
-      "width_bp": 350.12,
-      "height_bp": 265.611,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
       "status": "passed",
-      "reviewed_date": "2026-11-04"
+      "page": 14,
+      "width_bp": 333.872,
+      "height_bp": 245.599,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
     }
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
-    "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+    "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
+    "candidate_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
     "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
     "evidence": [
       {
@@ -198,26 +199,27 @@
       }
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
-      "page": 13,
-      "width_bp": 350.12,
-      "height_bp": 265.611,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
       "status": "passed",
-      "reviewed_date": "2026-11-04"
+      "page": 14,
+      "width_bp": 333.872,
+      "height_bp": 245.599,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
-    "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+    "candidate_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
     "page_layout": {
       "decision": "refined",
       "after_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
@@ -246,21 +248,268 @@
       "width_bp": 350.12,
       "height_bp": 246.943
     },
-    "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+    "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
-      "page": 13,
-      "width_bp": 350.12,
-      "height_bp": 265.611,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
       "status": "passed",
-      "reviewed_date": "2026-11-04"
+      "page": 14,
+      "width_bp": 333.872,
+      "height_bp": 245.599,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
     }
-  }
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
+    "prior_source_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 1,
+    "width_bp": 329.8869934082031,
+    "height_bp": 241.61399841308594,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+          "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+          "fill": "Light gray marks the ordering region; hatching marks the intersection. Dots denote possible implementations.",
+          "bold": "Universe heading and requirement-region names are bold. Scope and explanations are regular.",
+          "routing": "Exception: intersecting ellipses and hatched set geometry carry the semantic meaning; no process routes.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Inspected color SVG and native-size grayscale proof on 2026-11-04; text and containment are legible.",
+          "book_references": [],
+          "previous_validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 13,
+            "width_bp": 350.12,
+            "height_bp": 246.943,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+            "page": 13,
+            "width_bp": 350.12,
+            "height_bp": 265.611,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8,
+            "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+            "status": "passed",
+            "reviewed_date": "2026-11-04"
+          }
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+          "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+          "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
+          "evidence": [
+            {
+              "source_text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Named region or heading",
+              "candidate_text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Lists of up to 1,000 names",
+              "source_style": "weight 400, normal",
+              "semantic_role": "Scope or explanation",
+              "candidate_text": "Lists of up to 1,000 names",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Alphabetical ordering",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Named region or heading",
+              "candidate_text": "Alphabetical ordering",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Response time",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Named region or heading",
+              "candidate_text": "Response time",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Tolerance",
+              "source_style": "weight 400, normal",
+              "semantic_role": "Scope or explanation",
+              "candidate_text": "Tolerance",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "ACCEPTABLE IMPLEMENTATIONS",
+              "source_style": "weight 700, normal",
+              "semantic_role": "Named region or heading",
+              "candidate_text": "ACCEPTABLE IMPLEMENTATIONS",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Satisfy both",
+              "source_style": "weight 400, normal",
+              "semantic_role": "Scope or explanation",
+              "candidate_text": "Satisfy both",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Degrees of freedom: choices among acceptable implementations",
+              "source_style": "weight 400, normal",
+              "semantic_role": "Scope or explanation",
+              "candidate_text": "Degrees of freedom: choices among acceptable implementations",
+              "candidate_style": "regular"
+            }
+          ],
+          "checks": [
+            {
+              "text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
+              "bold": true
+            },
+            {
+              "text": "Lists of up to 1,000 names",
+              "bold": false
+            },
+            {
+              "text": "Alphabetical ordering",
+              "bold": true
+            },
+            {
+              "text": "Response time",
+              "bold": true
+            },
+            {
+              "text": "Tolerance",
+              "bold": false
+            },
+            {
+              "text": "ACCEPTABLE IMPLEMENTATIONS",
+              "bold": true
+            },
+            {
+              "text": "Satisfy both",
+              "bold": false
+            },
+            {
+              "text": "Degrees of freedom: choices among acceptable implementations",
+              "bold": false
+            }
+          ],
+          "previous_validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 13,
+            "width_bp": 350.12,
+            "height_bp": 246.943,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+            "page": 13,
+            "width_bp": 350.12,
+            "height_bp": 265.611,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8,
+            "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+            "status": "passed",
+            "reviewed_date": "2026-11-04"
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "refined",
+          "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
+          "candidate_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+          "page_layout": {
+            "decision": "refined",
+            "after_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+            "reviewed_visually": true,
+            "after_dimensions_bp": [
+              350.12,
+              265.611
+            ]
+          },
+          "previous_validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 13,
+            "width_bp": 350.12,
+            "height_bp": 246.943
+          },
+          "source_sha256": "79db484d643672bb1d21fb0ecdaed19234d9c6dd7ea12c43539df1669de6a51e",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "27ad423dc2ea2d6a8d14ec5da09d40971e1a718e40431fc9b63c202ea4ce409a",
+            "page": 13,
+            "width_bp": 350.12,
+            "height_bp": 265.611,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8,
+            "audit_sha256": "74ac8c793eb56bb582e416be3a13db36084cf1dcc12657ed07c65b9f0cf9ceed",
+            "status": "passed",
+            "reviewed_date": "2026-11-04"
+          }
+        }
+      }
+    }
+  ]
 }

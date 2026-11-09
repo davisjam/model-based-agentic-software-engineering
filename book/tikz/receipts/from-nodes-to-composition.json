@@ -54,10 +54,10 @@
       "native font legibility"
     ],
     "outcome": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
       13.7879,
-      9.7173
+      9.7248
     ]
   },
   "fidelity_review": {
@@ -83,7 +83,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+    "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
     "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
     "fill": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
     "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW \u00d732; CROSS_SERVICE \u00d71; CONTROL_GATE \u00d724. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
@@ -91,15 +91,19 @@
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 19,
-      "width_bp": 390.839,
-      "height_bp": 275.664,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 20,
+      "width_bp": 390.839,
+      "height_bp": 275.664,
+      "minimum_prose_font_pt": 8.97,
       "semantic_typography_checks": 8
     },
     "book_references": []
@@ -107,7 +111,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+    "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
     "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
     "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
     "evidence": [
@@ -259,28 +263,20 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 19,
-      "width_bp": 390.839,
-      "height_bp": 275.664,
-      "minimum_prose_font_pt": 9.0,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 20,
+      "width_bp": 390.839,
+      "height_bp": 275.664,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
     }
   },
   "layout_review": {
@@ -312,24 +308,22 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 19,
+      "page": 20,
       "width_bp": 390.839,
-      "height_bp": 275.664
-    }
+      "height_bp": 275.664,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 8
+    },
+    "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145"
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -337,5 +331,265 @@
     "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
     "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
-  }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+          "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+          "fill": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
+          "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW \u00d732; CROSS_SERVICE \u00d71; CONTROL_GATE \u00d724. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
+          "routing": "Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 19,
+            "width_bp": 390.839,
+            "height_bp": 275.664,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+          "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+          "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
+          "evidence": [
+            {
+              "source_text": "PAYLOAD-BEARING  \u00d733",
+              "source_style": "weight 700; normal; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "PAYLOAD-BEARING: 33",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[6]/text()",
+                "text_element_context": "PAYLOAD-BEARING \u00d733",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "CONTROL  \u00d724",
+              "source_style": "weight 700; normal; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "CONTROL: 24",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[15]/text()",
+                "text_element_context": "CONTROL \u00d724",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "DATA_FLOW  \u00d732",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "DATA_FLOW \u00d732",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[7]/text()",
+                "text_element_context": "DATA_FLOW \u00d732",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "CROSS_SERVICE  \u00d71",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "CROSS_SERVICE \u00d71",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[11]/text()",
+                "text_element_context": "CROSS_SERVICE \u00d71",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "CONTROL_GATE  \u00d724",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "CONTROL_GATE \u00d724",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[16]/text()",
+                "text_element_context": "CONTROL_GATE \u00d724",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "Produces \u2192 Consumes",
+              "source_style": "weight normal; italic; source size 13",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Produces \u2192 Consumes",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[10]/text()",
+                "text_element_context": "Produces \u2192 Consumes",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "cross-boundary payload",
+              "source_style": "weight normal; italic; source size 13",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Cross-boundary payload",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[14]/text()",
+                "text_element_context": "cross-boundary payload",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "ConsumesForControl",
+              "source_style": "weight normal; italic; source size 13",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "ConsumesForControl",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/from-nodes-to-composition.svg",
+                "element_text_path": "/svg/text[19]/text()",
+                "text_element_context": "ConsumesForControl",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "PAYLOAD-BEARING: 33",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CONTROL: 24",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "DATA_FLOW \u00d732",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CROSS_SERVICE \u00d71",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CONTROL_GATE \u00d724",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Cross-boundary payload",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "ConsumesForControl",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Pass A",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 19,
+            "width_bp": 390.839,
+            "height_bp": 275.664,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "retained",
+          "reason": "Each typed composition example has matched peers with legible relation edges. The larger computation/composition panels deliberately contain different information density.",
+          "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing from nodes to composition layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+            "after_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+            "before_dimensions_bp": [
+              390.8389892578125,
+              275.66400146484375
+            ],
+            "after_dimensions_bp": [
+              390.8389892578125,
+              275.66400146484375
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 19,
+            "width_bp": 390.839,
+            "height_bp": 275.664
+          }
+        }
+      }
+    }
+  ]
 }

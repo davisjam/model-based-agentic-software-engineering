@@ -1,21 +1,24 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-
-\node[n,fill=white,text width=4cm] (run) at (0,0) {\textbf{RUN}};
-\node[note,font=\fontsize{10}{12}\selectfont,text width=8cm] (op) at (0,-1.9) {\textbf{OPERATION*}\\One run, many operations; each records:};
-\node[n,text width=2.5cm,minimum height=1.2cm] (f0) at (-4.5,-3.3) {\textbf{Target}};
-\node[n,text width=2.5cm,minimum height=1.2cm] (f1) at (-1.5,-3.3) {\textbf{Mutation}};
-\node[n,text width=2.5cm,font=\fontsize{9}{11}\selectfont,minimum height=1.2cm] (f2) at (1.5,-3.3) {\textbf{Responsible}\\\textbf{pass}};
-\node[n,text width=2.5cm,minimum height=1.2cm] (f3) at (4.5,-3.3) {\textbf{Retained evidence}};
-\begin{scope}[on background layer]
-\node[draw,line width=.9pt,rounded corners=3pt,fill=white,fit=(op)(f0)(f1)(f2)(f3),inner sep=10pt] (record) {};
-\end{scope}
-\draw[edge] (run) -- node[lab,right] {contains} (record.north);
-\node[n,fill=white,text width=8cm] (views) at (0,-5.5) {\textit{Derived views}\\Audit · debugging · changelog};
-\draw[edge] (record.south) -- node[lab,right] {derive} (views);
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (89,24) rectangle (158.5,51);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (123.75,41.0) {RUN};
+\draw[-Stealth,line width=.55pt] (123.75,51) -- (123.75,76);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (130,66.0) {contains};
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,77) rectangle (239.5,150);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (123.75,92.0) {OPERATION*};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (123.75,105.0) {One run, many operations; each records:};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (16,116) rectangle (57,141);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (36.5,132.0) {Target};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (63,116) rectangle (114,141);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (88.5,132.0) {Mutation};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (120,116) rectangle (176,141);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (148.0,126.0) {Responsible};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (148.0,136.8) {pass};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (182,116) rectangle (231,141);
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (206.5,126.0) {Retained};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (206.5,138.0) {evidence};
+\draw[-Stealth,line width=.55pt] (123.75,150) -- (123.75,174);
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (130,165.0) {derived views};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (43,175) rectangle (204.5,200);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (123.75,191.0) {audit \,\textperiodcentered\, debugging \,\textperiodcentered\, changelog};
 \end{tikzpicture}

@@ -24,9 +24,9 @@
     "DATA_FLOW",
     "CONTROL_GATE",
     "Session run",
-    "PdfEdit · SetAltText",
-    "PdfEdit · TagFigure",
-    "PdfEdit · SetReadingOrder",
+    "PdfEdit \u00b7 SetAltText",
+    "PdfEdit \u00b7 TagFigure",
+    "PdfEdit \u00b7 SetReadingOrder",
     "not joined today",
     "Static structure and recorded history; join by com-",
     "putation identity when a question needs it."
@@ -47,10 +47,10 @@
       "native font legibility"
     ],
     "outcome": "Restored separate static and realized-history panel frames; source payload/control line conventions remain distinct.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      14.4909,
-      8.7227
+      11.9247,
+      9.3484
     ]
   },
   "fidelity_review": {
@@ -76,28 +76,28 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859",
-    "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+    "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650",
+    "candidate_sha256": "8bc30187d6f015ff158d1af5d6056a8a148353684f6f60fba2b5137194390568",
     "fill": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history.",
     "bold": "Source-derived emphasis includes DATA_FLOW; CONTROL_GATE; not joined today. Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
     "routing": "Separate orthogonal data/control input ports avoid merging unlike relationships; dashed unjoined-history relation remains distinct.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
-      "date": "2026-11-05",
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-      "page": 32,
-      "width_bp": 403.595,
-      "height_bp": 247.517,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 6,
-      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
       "status": "passed",
-      "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+      "page": 33,
+      "width_bp": 338.022,
+      "height_bp": 264.994,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 6
     },
     "book_references": [],
     "revision_history": [
@@ -134,8 +134,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859",
-    "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+    "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650",
+    "candidate_sha256": "8bc30187d6f015ff158d1af5d6056a8a148353684f6f60fba2b5137194390568",
     "reason": "Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
     "evidence": [
       {
@@ -237,20 +237,20 @@
       }
     ],
     "validation": {
-      "date": "2026-11-05",
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-      "page": 32,
-      "width_bp": 403.595,
-      "height_bp": 247.517,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 6,
-      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
       "status": "passed",
-      "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+      "page": 33,
+      "width_bp": 338.022,
+      "height_bp": 264.994,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 6
     },
     "revision_history": [
       {
@@ -392,7 +392,7 @@
     "review": "book/tikz/layout-review.json",
     "decision": "retained",
     "reason": "Static computation and realized edit record have different node counts and roles. Their separate sequences and not-joined-today annotation have adequate separation.",
-    "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+    "candidate_sha256": "8bc30187d6f015ff158d1af5d6056a8a148353684f6f60fba2b5137194390568",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing two reductions static realized layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -417,20 +417,20 @@
       "reviewed_visually": true
     },
     "validation": {
-      "date": "2026-11-05",
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-      "page": 32,
-      "width_bp": 403.595,
-      "height_bp": 247.517,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 6,
-      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
       "status": "passed",
-      "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+      "page": 33,
+      "width_bp": 338.022,
+      "height_bp": 264.994,
+      "minimum_prose_font_pt": 8.97,
+      "semantic_typography_checks": 6
     },
     "revision_history": [
       {
@@ -485,7 +485,7 @@
         }
       }
     ],
-    "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859"
+    "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650"
   },
   "terminology_revision": {
     "date": "2026-11-05",
@@ -509,5 +509,438 @@
       "status": "passed",
       "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
     }
-  }
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "837c5016af1642c6f6787a45d342a28679214b372f848e939ab28df88aea56b8",
+    "prior_source_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 8,
+    "width_bp": 334.0369873046875,
+    "height_bp": 261.0090026855469,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859",
+          "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+          "fill": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history.",
+          "bold": "Source-derived emphasis includes DATA_FLOW; CONTROL_GATE; not joined today. Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
+          "routing": "Separate orthogonal data/control input ports avoid merging unlike relationships; dashed unjoined-history relation remains distinct.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "date": "2026-11-05",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+            "page": 32,
+            "width_bp": 403.595,
+            "height_bp": 247.517,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 6,
+            "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+            "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+            "status": "passed",
+            "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+          },
+          "book_references": [],
+          "revision_history": [
+            {
+              "superseded_date": "2026-11-05",
+              "review": {
+                "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+                "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+                "status": "reviewed",
+                "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+                "candidate_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+                "fill": "Both framed panels and their nodes white; headings, separate frames and line conventions distinguish structure/history.",
+                "bold": "Source-derived emphasis includes DATA_FLOW; CONTROL_GATE; not joined today. Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
+                "routing": "Separate orthogonal data/control input ports avoid merging unlike relationships; dashed unjoined-history relation remains distinct.",
+                "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+                "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+                "validation": {
+                  "proof": "latex/build/tikz/candidates.pdf",
+                  "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+                  "page": 32,
+                  "width_bp": 403.595,
+                  "height_bp": 247.517,
+                  "minimum_prose_font_pt": 9.0,
+                  "unapproved_compile_diagnostics": 0,
+                  "geometry_findings": 0,
+                  "monochrome_pixels": true,
+                  "semantic_typography_checks": 6
+                },
+                "book_references": []
+              }
+            }
+          ]
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859",
+          "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+          "reason": "Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
+          "evidence": [
+            {
+              "source_text": "what computations may compose",
+              "source_style": "weight 400; italic; source size 20",
+              "semantic_role": "view interpretation",
+              "candidate_text": "What may compose",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/two-reductions-static-realized.svg",
+                "element_text_path": "/svg/text[2]/text()",
+                "text_element_context": "what computations may compose",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "what mutations one run did emit",
+              "source_style": "weight 400; italic; source size 20",
+              "semantic_role": "view interpretation",
+              "candidate_text": "What one run did emit",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/two-reductions-static-realized.svg",
+                "element_text_path": "/svg/text[4]/text()",
+                "text_element_context": "what mutations one run did emit",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "DATA_FLOW",
+              "source_style": "weight 700; normal; source size 20",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "DATA_FLOW",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/two-reductions-static-realized.svg",
+                "element_text_path": "/svg/text[8]/text()",
+                "text_element_context": "DATA_FLOW",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "CONTROL_GATE",
+              "source_style": "weight 700; normal; source size 20",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "CONTROL_GATE",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/two-reductions-static-realized.svg",
+                "element_text_path": "/svg/text[9]/text()",
+                "text_element_context": "CONTROL_GATE",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "not joined today",
+              "source_style": "weight 700; normal; source size 20",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "not joined today",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/two-reductions-static-realized.svg",
+                "element_text_path": "/svg/text[14]/text()",
+                "text_element_context": "not joined today",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "What may compose",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "What one run did emit",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "DATA_FLOW",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CONTROL_GATE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "not joined today",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Session run",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "date": "2026-11-05",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+            "page": 32,
+            "width_bp": 403.595,
+            "height_bp": 247.517,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 6,
+            "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+            "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+            "status": "passed",
+            "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+          },
+          "revision_history": [
+            {
+              "superseded_date": "2026-11-05",
+              "review": {
+                "review": "book/tikz/typography-review.json",
+                "decision": "refined",
+                "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+                "candidate_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+                "reason": "Italic subtitles distinguish possible composition from recorded history; bold edge types and missing join retain their formal significance.",
+                "evidence": [
+                  {
+                    "source_text": "what computations may compose",
+                    "source_style": "weight 400; italic; source size 20",
+                    "semantic_role": "view interpretation",
+                    "candidate_text": "What may compose",
+                    "candidate_style": "italic",
+                    "source_locator": {
+                      "svg": "book/assets/two-reductions-static-realized.svg",
+                      "element_text_path": "/svg/text[2]/text()",
+                      "text_element_context": "what computations may compose",
+                      "matching_fragment_count": 1
+                    }
+                  },
+                  {
+                    "source_text": "what mutations one run did emit",
+                    "source_style": "weight 400; italic; source size 20",
+                    "semantic_role": "view interpretation",
+                    "candidate_text": "What one run did emit",
+                    "candidate_style": "italic",
+                    "source_locator": {
+                      "svg": "book/assets/two-reductions-static-realized.svg",
+                      "element_text_path": "/svg/text[4]/text()",
+                      "text_element_context": "what mutations one run did emit",
+                      "matching_fragment_count": 1
+                    }
+                  },
+                  {
+                    "source_text": "DATA_FLOW",
+                    "source_style": "weight 700; normal; source size 20",
+                    "semantic_role": "named category versus explanatory text",
+                    "candidate_text": "DATA_FLOW",
+                    "candidate_style": "bold",
+                    "source_locator": {
+                      "svg": "book/assets/two-reductions-static-realized.svg",
+                      "element_text_path": "/svg/text[8]/text()",
+                      "text_element_context": "DATA_FLOW",
+                      "matching_fragment_count": 1
+                    }
+                  },
+                  {
+                    "source_text": "CONTROL_GATE",
+                    "source_style": "weight 700; normal; source size 20",
+                    "semantic_role": "named category versus explanatory text",
+                    "candidate_text": "CONTROL_GATE",
+                    "candidate_style": "bold",
+                    "source_locator": {
+                      "svg": "book/assets/two-reductions-static-realized.svg",
+                      "element_text_path": "/svg/text[9]/text()",
+                      "text_element_context": "CONTROL_GATE",
+                      "matching_fragment_count": 1
+                    }
+                  },
+                  {
+                    "source_text": "not joined today",
+                    "source_style": "weight 700; normal; source size 20",
+                    "semantic_role": "named category versus explanatory text",
+                    "candidate_text": "not joined today",
+                    "candidate_style": "bold",
+                    "source_locator": {
+                      "svg": "book/assets/two-reductions-static-realized.svg",
+                      "element_text_path": "/svg/text[14]/text()",
+                      "text_element_context": "not joined today",
+                      "matching_fragment_count": 1
+                    }
+                  }
+                ],
+                "checks": [
+                  {
+                    "text": "What may compose",
+                    "bold": false,
+                    "italic": true
+                  },
+                  {
+                    "text": "What one run did emit",
+                    "bold": false,
+                    "italic": true
+                  },
+                  {
+                    "text": "DATA_FLOW",
+                    "bold": true,
+                    "italic": false
+                  },
+                  {
+                    "text": "CONTROL_GATE",
+                    "bold": true,
+                    "italic": false
+                  },
+                  {
+                    "text": "not joined today",
+                    "bold": true,
+                    "italic": false
+                  },
+                  {
+                    "text": "Session run",
+                    "bold": false,
+                    "italic": false
+                  }
+                ],
+                "validation": {
+                  "proof": "latex/build/tikz/candidates.pdf",
+                  "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+                  "page": 32,
+                  "width_bp": 403.595,
+                  "height_bp": 247.517,
+                  "minimum_prose_font_pt": 9.0,
+                  "unapproved_compile_diagnostics": 0,
+                  "geometry_findings": 0,
+                  "monochrome_pixels": true,
+                  "semantic_typography_checks": 6,
+                  "book_font_inheritance": {
+                    "configuration": "latex/book-fonts.tex",
+                    "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+                    "reference": "latex/build/tikz/body-font-reference.pdf",
+                    "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+                    "body_faces": [
+                      "SourceSans3-Bold",
+                      "SourceSans3-BoldIt",
+                      "SourceSans3-It",
+                      "SourceSans3-Regular"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "retained",
+          "reason": "Static computation and realized edit record have different node counts and roles. Their separate sequences and not-joined-today annotation have adequate separation.",
+          "candidate_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing two reductions static realized layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+            "after_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+            "before_dimensions_bp": [
+              403.5950012207031,
+              247.51699829101562
+            ],
+            "after_dimensions_bp": [
+              403.595,
+              247.517
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "date": "2026-11-05",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+            "page": 32,
+            "width_bp": 403.595,
+            "height_bp": 247.517,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 6,
+            "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+            "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+            "status": "passed",
+            "visual_review": "Inspected native proof and color SVG at legible size. Recorded history fits both drawings, with graph topology and other labels preserved."
+          },
+          "revision_history": [
+            {
+              "superseded_date": "2026-11-05",
+              "review": {
+                "review": "book/tikz/layout-review.json",
+                "decision": "retained",
+                "reason": "Static computation and realized edit record have different node counts and roles. Their separate sequences and not-joined-today annotation have adequate separation.",
+                "candidate_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+                "page_layout": {
+                  "decision": "retained",
+                  "reason": "Retain existing two reductions static realized layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+                  "before_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+                  "after_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+                  "before_dimensions_bp": [
+                    403.5950012207031,
+                    247.51699829101562
+                  ],
+                  "after_dimensions_bp": [
+                    403.5950012207031,
+                    247.51699829101562
+                  ],
+                  "before_font_sizes_pt": [
+                    9.0,
+                    10.0
+                  ],
+                  "after_font_sizes_pt": [
+                    9.0,
+                    10.0
+                  ],
+                  "reviewed_visually": true
+                },
+                "validation": {
+                  "proof": "latex/build/tikz/candidates.pdf",
+                  "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+                  "geometry_findings": 0,
+                  "checked_terminal_approaches": 633,
+                  "reviewed_peer_groups": 81,
+                  "semantic_typography_checks": 875,
+                  "unapproved_compile_diagnostics": 0,
+                  "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+                  "maximum_dimensions_bp": [
+                    450,
+                    560
+                  ],
+                  "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+                  "status": "passed",
+                  "page": 32,
+                  "width_bp": 403.595,
+                  "height_bp": 247.517
+                }
+              }
+            }
+          ],
+          "source_sha256": "e08461e3bde32c535cc5c004b08bc9d3e129a9ee4685ab5113a9d3a689d72859"
+        }
+      }
+    }
+  ]
 }

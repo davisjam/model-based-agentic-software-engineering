@@ -1,24 +1,33 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[strong,ellipse,rounded corners=0pt,text width=3.2cm,fill=black!8] (hub) at (0,0) {\textbf{SHARED SYSTEM}\\\textbf{IDENTITIES}};
-\node[n,text width=2.8cm,fill=white] (r0) at (0.0,4.0) {Service registry};
-\draw[edge,-] (hub) -- (r0);
-\node[n,text width=2.8cm,fill=white] (r1) at (-3.91,2.49) {Deployment topology};
-\draw[edge,-] (hub) -- (r1);
-\node[n,text width=2.8cm,fill=white] (r2) at (-4.87,-0.89) {State machines};
-\draw[edge,-] (hub) -- (r2);
-\node[n,text width=2.8cm,fill=white] (r3) at (-2.17,-3.6) {Entitlement\\policy};
-\draw[edge,-] (hub) -- (r3);
-\node[n,text width=2.8cm,fill=white] (r4) at (2.17,-3.6) {Computation\\graph};
-\draw[edge,-] (hub) -- (r4);
-\node[n,text width=2.8cm,fill=white] (r5) at (4.87,-0.89) {Provenance records};
-\draw[edge,-] (hub) -- (r5);
-\node[n,text width=2.8cm,fill=white] (r6) at (3.91,2.49) {Measurements};
-\draw[edge,-] (hub) -- (r6);
-\node[note,text width=12cm] (surfaces) at (0,-5.5) {Traceability · derivation · query surfaces\\Join representations where an engineering question crosses them.};
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[line width=.55pt] (146.25,121) -- (146.25,43);
+\draw[line width=.55pt] (146.25,121) -- (60,88);
+\draw[line width=.55pt] (146.25,121) -- (232.5,88);
+\draw[line width=.55pt] (146.25,121) -- (57,152);
+\draw[line width=.55pt] (146.25,121) -- (235.5,152);
+\draw[line width=.55pt] (146.25,121) -- (80,195);
+\draw[line width=.55pt] (146.25,121) -- (212.5,195);
+\draw[draw,fill=black!8,line width=.65pt] (146.25,120.5) ellipse [x radius=52.25bp,y radius=24.5bp];
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12}\selectfont }] at (146.25,117.0) {SHARED SYSTEM};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12}\selectfont }] at (146.25,127.8) {IDENTITIES};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (102.25,29) rectangle (190.25,58);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (146.25,48.0) {service registry};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (5,74) rectangle (115,103);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (60.0,93.0) {measurements};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (177.5,74) rectangle (287.5,103);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (232.5,86.0) {deployment};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (232.5,96.8) {topology};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (3,140) rectangle (111,169);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (57.0,152.0) {provenance};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (57.0,162.8) {records};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (183,140) rectangle (289,169);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (236.0,159.0) {state machines};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (26,183) rectangle (134,212);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (80.0,195.0) {computation};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (80.0,205.8) {graph};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (160,183) rectangle (265,212);
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (212.5,202.0) {entitlement policy};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12}\selectfont }] at (146.25,226.0) {traceability \,\textperiodcentered\, derivation \,\textperiodcentered\, query surfaces};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (146.25,240.0) {Join representations where an engineering};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (146.25,250.8) {question crosses them.};
 \end{tikzpicture}

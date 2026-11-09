@@ -337,11 +337,12 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
         sidecar = chapter.with_suffix('.assets.json')
         mapping = {a['pdf']: a['source'] for a in json.loads(sidecar.read_text())} if sidecar.exists() else {}
         # Process original graphic positions only; a candidate must never pair with itself.
-        floats = list(re.finditer(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}', text, re.S))
+        floats = list(re.finditer(r'\\begin\{(figure|bookinlinefigure)\}(?:\[[^]]*\])?.*?\\end\{\1\}', text, re.S))
         edits = []
         has_navigation_pair = False
         for block in floats:
             original = block[0]
+            inline = block[1] == 'bookinlinefigure'
             graphics = list(mage_assets.graphics(original))
             if len(graphics) != 1:
                 raise ValueError('Expected one graphic per original figure')
@@ -367,7 +368,7 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
                 panel_open = original[panel.start():pos] + '\n'
                 panel_close = '\n' + r'\end{bookinsetfigure}'
             artwork = image(source, label[1])
-            if panel:
+            if panel or inline:
                 # Native candidates can use the inset's full outer width. Center
                 # them without scaling or giving the caption zero padding.
                 artwork = r'\makebox[\linewidth][c]{' + artwork + '}'
@@ -380,9 +381,18 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
             # Consecutive floats retain figure order while allowing surrounding
             # prose to fill the page. Forcing a clearpage here strands the prose
             # preceding every pair, even when both drawings can float together.
-            extra = ('\n\\begin{figure}[tbp]\n' + panel_open + '\\centering\n' + artwork +
-                     '\n' + r'\caption*{Black-and-white version of Figure~\ref*{' + label[1] +
-                     '}.}' + panel_close + '\n\\end{figure}\n')
+            environment = 'bookinlinefigure' if inline else 'figure'
+            if inline:
+                receipt = json.loads((BASE / 'receipts' / f'{Path(source).stem}.json').read_text())
+                placement = '{' + _text(str(receipt['alt'])) + '}'
+            else:
+                # Preserve the reviewed text-page policy only for explicitly
+                # marked medium originals; all other partners keep [tbp].
+                placement = '[!htb]' if original.startswith(r'\begin{figure}[!htb]') else '[tbp]'
+            extra = ('\n\\begin{' + environment + '}' + placement + '\n' + panel_open +
+                     '\\centering\n' + artwork + '\n\\par\n' +
+                     r'\caption*{Black-and-white version of Figure~\ref*{' + label[1] +
+                     '}.}' + panel_close + '\n\\end{' + environment + '}\n')
             edits.append((block.end(), block.end(), extra))
         for start, end, options, path in mage_assets.graphics(text):
             if any(block.start() <= start < block.end() for block in floats):
@@ -402,11 +412,11 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
                           r'\par{\small Black-and-white navigation map.}\par' + '\n'))
         for start, end, replacement in sorted(edits, reverse=True):
             text = text[:start] + replacement + text[end:]
-        if has_navigation_pair and r'\clearpage' in text:
-            # Two navigation maps must share the orientation page with its
+        if has_navigation_pair and '% mage-orientation-end' in text:
+            # Two navigation maps stay with the orientation material and its
             # question, principle and vocabulary. Tighten paragraph spacing
             # locally, preserving the authored size of both maps and all type.
-            opening, separator, rest = text.partition(r'\clearpage')
+            opening, separator, rest = text.partition('% mage-orientation-end')
             heading_end = opening.index('\n') + 1
             opening = (opening[:heading_end] + '\\begingroup\\setlength{\\parskip}{3pt}\n' +
                        opening[heading_end:] + '\\par\\endgroup\n')
@@ -438,11 +448,12 @@ def review_book(pool,manifest):
     driver_text, chapters, _ = mage_latex.pdf_sources(driver)
     pdf=latex_build.compile_tex(driver)
     from pdf_structure import check_pdf
+    from mage_inset_print import count_print_figures
     source = driver_text + '\n' + '\n'.join(chapters)
     check_pdf(pdf, headings=mage_latex.bb._expected_chapter_headings(source),
               sections=len(re.findall(r'\\section\*?\{', source)),
               tables=source.count(r'\begin{longtable}') + source.count(r'\begin{table}'),
-              figures=source.count(r'\begin{figure}'))
+              figures=count_print_figures(source))
     mage_tikz_links.verify_book(pdf,driver.with_suffix('.aux'),active)
     output=ROOT/'latex/build/mage-figure-review.pdf';shutil.copy2(pdf,output)
     (BUILD/'pairings.json').write_text(json.dumps(pairings,indent=2)+'\n')

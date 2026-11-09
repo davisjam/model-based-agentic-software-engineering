@@ -12,7 +12,7 @@
     ]
   },
   "required_terms": [
-    "Chapter 2 · Model Chapter 3 · Enforcement decision",
+    "Chapter 2 \u00b7 Model Chapter 3 \u00b7 Enforcement decision",
     "Quantity",
     "Bound",
     "Comparison",
@@ -38,10 +38,10 @@
       "native font legibility"
     ],
     "outcome": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      14.6683,
-      6.6724
+      11.8365,
+      6.4136
     ]
   },
   "fidelity_review": {
@@ -67,23 +67,27 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
-    "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+    "source_sha256": "77419ed8d64c1be3922bc8bbc44fe004eaad7adc71f97aebcdeb6981e8e76167",
+    "candidate_sha256": "4d9293386493be518bcecbec793756ec953bc56c46541c5ebbc04a0878ddda17",
     "fill": "All model nodes and four enforcement options white; different choices are named, not ranked by tone.",
     "bold": "Source-derived emphasis includes Same model. Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 37,
-      "width_bp": 417.69,
-      "height_bp": 189.33,
-      "minimum_prose_font_pt": 9.5,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
+      "status": "passed",
+      "page": 38,
+      "width_bp": 335.522,
+      "height_bp": 181.804,
+      "minimum_prose_font_pt": 9.46,
       "semantic_typography_checks": 5
     },
     "book_references": [
@@ -94,8 +98,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
-    "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+    "source_sha256": "77419ed8d64c1be3922bc8bbc44fe004eaad7adc71f97aebcdeb6981e8e76167",
+    "candidate_sha256": "4d9293386493be518bcecbec793756ec953bc56c46541c5ebbc04a0878ddda17",
     "reason": "Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
     "evidence": [
       {
@@ -112,7 +116,7 @@
         }
       },
       {
-        "source_text": "“What quantity and bound matter?”",
+        "source_text": "\u201cWhat quantity and bound matter?\u201d",
         "source_style": "weight normal; italic; source size 19.2",
         "semantic_role": "named category versus explanatory text",
         "candidate_text": "What quantity and bound matter?",
@@ -120,12 +124,12 @@
         "source_locator": {
           "svg": "book/assets/modeling-perp-enforcement.svg",
           "element_text_path": "/svg/text[3]/text()",
-          "text_element_context": "“What quantity and bound matter?”",
+          "text_element_context": "\u201cWhat quantity and bound matter?\u201d",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "“What enforcement is justified?”",
+        "source_text": "\u201cWhat enforcement is justified?\u201d",
         "source_style": "weight normal; italic; source size 19.2",
         "semantic_role": "named category versus explanatory text",
         "candidate_text": "What enforcement is justified?",
@@ -133,7 +137,7 @@
         "source_locator": {
           "svg": "book/assets/modeling-perp-enforcement.svg",
           "element_text_path": "/svg/text[6]/text()",
-          "text_element_context": "“What enforcement is justified?”",
+          "text_element_context": "\u201cWhat enforcement is justified?\u201d",
           "matching_fragment_count": 1
         }
       }
@@ -166,35 +170,27 @@
       }
     ],
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 37,
-      "width_bp": 417.69,
-      "height_bp": 189.33,
-      "minimum_prose_font_pt": 9.5,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "status": "passed",
+      "page": 38,
+      "width_bp": 335.522,
+      "height_bp": 181.804,
+      "minimum_prose_font_pt": 9.46,
+      "semantic_typography_checks": 5
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Moved the quantity/bound inputs and their convergence rail left, yielding a visible horizontal terminal into Comparison.",
-    "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+    "candidate_sha256": "4d9293386493be518bcecbec793756ec953bc56c46541c5ebbc04a0878ddda17",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing modeling perp enforcement layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -221,23 +217,216 @@
       "reviewed_visually": true
     },
     "validation": {
+      "date": "2026-11-09",
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 37,
-      "width_bp": 417.69,
-      "height_bp": 189.33
+      "page": 38,
+      "width_bp": 335.522,
+      "height_bp": 181.804,
+      "minimum_prose_font_pt": 9.46,
+      "semantic_typography_checks": 5
+    },
+    "source_sha256": "77419ed8d64c1be3922bc8bbc44fe004eaad7adc71f97aebcdeb6981e8e76167"
+  },
+  "chapter2_layout_revision": {
+    "date": "2026-11-09",
+    "source_sha256": "f8150ec299b1d4d8851c012ec6bee2b68de5026d35dcd3d58f58719890d7e950",
+    "prior_source_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+    "standalone_proof": "native-after.pdf",
+    "standalone_proof_page": 4,
+    "width_bp": 331.5369873046875,
+    "height_bp": 177.81900024414062,
+    "status": "geometry proof inspected; pending publication-pair review"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-09",
+      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
+      "previous_reviews": {
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+          "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+          "fill": "All model nodes and four enforcement options white; different choices are named, not ranked by tone.",
+          "bold": "Source-derived emphasis includes Same model. Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
+          "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 37,
+            "width_bp": 417.69,
+            "height_bp": 189.33,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5
+          },
+          "book_references": [
+            "part:2",
+            "part:3"
+          ]
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+          "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+          "reason": "Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
+          "evidence": [
+            {
+              "source_text": "same model",
+              "source_style": "weight 700; normal; source size 19.2",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Same model",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/modeling-perp-enforcement.svg",
+                "element_text_path": "/svg/text[5]/text()",
+                "text_element_context": "same model",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "\u201cWhat quantity and bound matter?\u201d",
+              "source_style": "weight normal; italic; source size 19.2",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "What quantity and bound matter?",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/modeling-perp-enforcement.svg",
+                "element_text_path": "/svg/text[3]/text()",
+                "text_element_context": "\u201cWhat quantity and bound matter?\u201d",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "\u201cWhat enforcement is justified?\u201d",
+              "source_style": "weight normal; italic; source size 19.2",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "What enforcement is justified?",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/modeling-perp-enforcement.svg",
+                "element_text_path": "/svg/text[6]/text()",
+                "text_element_context": "\u201cWhat enforcement is justified?\u201d",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "Same model",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "What quantity and bound matter?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "What enforcement is justified?",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Quantity",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Observe",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 37,
+            "width_bp": 417.69,
+            "height_bp": 189.33,
+            "minimum_prose_font_pt": 9.5,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "refined",
+          "reason": "Moved the quantity/bound inputs and their convergence rail left, yielding a visible horizontal terminal into Comparison.",
+          "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing modeling perp enforcement layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+            "after_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+            "before_dimensions_bp": [
+              417.69000244140625,
+              189.3300018310547
+            ],
+            "after_dimensions_bp": [
+              417.69000244140625,
+              189.3300018310547
+            ],
+            "before_font_sizes_pt": [
+              9.5,
+              10.0,
+              10.5
+            ],
+            "after_font_sizes_pt": [
+              9.5,
+              10.0,
+              10.5
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 37,
+            "width_bp": 417.69,
+            "height_bp": 189.33
+          }
+        }
+      }
     }
-  }
+  ]
 }
