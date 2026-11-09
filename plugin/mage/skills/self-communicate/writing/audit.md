@@ -28,15 +28,18 @@ apply) and the FIX. Collect findings as you go; rank and format them at the end.
 
 ---
 
-## Pass 1 — LLM-tells / density scan
+## Pass 1 — Rhythm across the passage
 
-The mechanical pass. Count things — but a count over threshold is a **candidate to read, not a
-verdict**. These thresholds are detectors; they are not definitions of good prose, and a passage does
-not become defective by crossing one. Every count below has survived a case where the prose was right
-and the number was high: a corrective figure that genuinely corrects a likely misreading, a repeated
-n-gram that establishes a correspondence the reader needs, a dense dash passage carrying a real
-aside. **Open the hit, read the passage, and let the reading decide.** Treating these as rules is how
-a mechanical pass removes the repetition that was doing work — the author's standing caution.
+Read the section linearly before using searches to locate possible patterns. Inspect its cumulative
+rhythm across neighboring paragraphs and adjacent sections, following
+[`voice.md`](voice.md#straight-line-engineering-prose). Counts can locate a passage to read; they cannot
+establish a defect or a target reduction. The primary problem is repeated rhetorical choreography,
+including constructions with different words. Preserve repetition that establishes correspondence,
+teaches a distinction, or gives the author a memorable line.
+
+For each candidate, read the surrounding two paragraphs with the replacement in place. Verify that
+the affirmative claim is prominent, discarded contrasts are redundant, and no essential condition,
+evidence boundary, citation, or technical term has changed. Prefer fewer demonstrable improvements.
 
 - **Em-dash density.** Count em-dashes (`—`) per 100 words, and flag any single sentence with two or more.
   **Detect:** more than ~1 dash per 40–50 words, or a passage that uses the dash for *every* aside,
@@ -45,14 +48,14 @@ a mechanical pass removes the repetition that was doing work — the author's st
   numbered list** where you are really enumerating; a colon only for a genuine setup→payoff. Do **not**
   reflexively swap every dash for a colon — that just trades one tell for another. Plain declarative
   sentences and lists are first-class in this register; a doc need not be all flowing prose. Keep the dash
-  only for a genuine interruption. Aim to cut dash count by at least half.
+  only where it improves the passage. Do not set a target reduction.
 - **A single figure on a fixed beat.** **Detect:** the same rhetorical figure recurring paragraph after
   paragraph — most often the **mechanical tricolon** (three-item parallel lists on repeat) or the
-  **reflexive "not X, but Y"** (count these two phrasings specifically; two in a short passage is a smell,
-  three is a finding). Also watch for anaphora or antithesis on every beat. **Fix:** keep the strongest
-  one instance; rewrite the rest. Swap in a *different* figure from `rhetoric.md` (list two items
-  instead of three, or four; turn one "not X, but Y" into a plain assertion; replace a tricolon with a
-  single sharp claim). Variety is the fix, not deletion.
+  **reflexive correction** (“not merely,” “rather than,” “the point is not,” or a rejection followed by
+  “instead” can repeat the same move). Also watch for colon-led reveals and semicolon chains on every
+  beat. **Fix:** state the engineering claim directly where the rejected alternative adds no useful
+  boundary. Retain contrasts and parallel structures that earn their place. Change the reasoning's
+  presentation rather than merely exchanging punctuation or substituting another rhetorical figure.
 - **Uniform sentence length / cadence.** **Detect:** a run of sentences all roughly the same length
   (say, 5+ sentences all 15–25 words with the same subject-verb-object shape). Machine prose drones at one
   tempo. **Fix:** break the beat. Put a short 3–6-word sentence next to a long one. Front-load a
@@ -405,6 +408,11 @@ actor and its operation (*the gate rejects*, *the validator checks*), and keep t
 the abstraction itself is the subject.
 
 ## Output format — the audit report
+
+For a proposal-only review, leave the manuscript unchanged. Group small independent hunks by chapter
+or section, with an exact source anchor, original, replacement, reason, and priority. Record the
+reviewed scope, chapter-level concentration, and a final terminology, evidence, and scope check.
+Mark effective passages **keep** separately. A review artifact is not permission to apply its edits.
 
 Emit a report in this shape. Model it on a good editorial review: specific, actionable, quote the before
 and give the after.

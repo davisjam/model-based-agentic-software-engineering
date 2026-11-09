@@ -71,6 +71,25 @@ before"). The em-dash is a *tool he varies with*, not a reflex — note in the e
 period, a colon, or a plain comma does the work instead. He avoids flowery flourish, passive-voice
 drift, performative hedging, and abstraction untethered from an example.
 
+## Straight-line engineering prose
+
+Prefer direct affirmative statements that advance the engineering argument. State the positive claim
+first; include a rejected alternative when it prevents a likely misunderstanding, establishes a
+technically consequential boundary, or supplies a memorable rhetorical turn. Assertion → explanation
+→ evidence → qualification is a useful default, not a mandatory paragraph template. Keep conditions
+needed to make a claim true beside it; collect secondary qualifications later when accuracy permits.
+
+Use colons for genuine lists, definitions, formal statements, or deliberately emphasized explanations.
+Use a semicolon when it clarifies a close logical relationship better than two sentences. Watch for
+habitual colon-led reveals, chains of semicolon-separated assertions, and repeated corrective framing:
+“not X but Y,” “not merely X,” “not X; X would…,” “rather than X,” “the point is not X,” and
+“X does not…; instead….” Different wording can repeat the same rhetorical choreography.
+
+Judge cadence across adjacent paragraphs and sections. Preserve humor, aphorisms, purposeful
+comparisons, and pedagogical contrasts. Do not impose punctuation quotas or replace sustained
+explanation with monotonous short sentences. A revision must improve the passage read aloud without
+weakening its argument. Use the sequence-level review in [`audit.md`](audit.md) to test that judgment.
+
 ## State the abstraction once. Vary the evidence.
 
 The theory is canonical. Examples are supporting evidence. As the book progresses, readers should
@@ -140,12 +159,10 @@ that don't.
   strips the word that carries no idea, economy of examples strips the redundant instance and rotates in a
   fresh domain in its place. It is Tufte's data-ink principle for pedagogy.
 
-- **≤50 words per sentence — prose and captions alike.** No sentence exceeds roughly fifty words. A
-  caption or accessible-description sentence is not exempt: a 100-word caption is as much a wall as a
-  100-word paragraph. Split the run-on into two or more sentences, each carrying one idea. The split
-  is the fix the voice already wants — short declaratives land harder than a long one. A colon-led
-  enumeration or a labeled taxonomy that genuinely reads as a *list* is the one exception; break it
-  anyway if it reads as a comma-run rather than a list.
+- **Make long sentences easy to follow — in prose and captions alike.** Split a sentence when its
+  nested qualifications or accumulating assertions obscure the relationship among ideas. Retain a
+  longer sentence when its structure guides the reader through a connected explanation. Length alone
+  is not a defect, and a series of short assertions can be equally laborious.
 - **No more than ~6 paragraphs without a heading of some kind.** A long headless run of prose loses the
   reader. Break it with a sub-heading (`####`) that names the turn, so the reader always has a nearby
   signpost telling them where the argument has arrived.
