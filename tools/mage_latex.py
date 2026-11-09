@@ -448,21 +448,36 @@ MANIFEST = ROOT / 'book/latex/native-sources.json'
 
 
 def author_sources():
+    """Discover active authored projections, excluding retired appendix sources.
+
+    The old native registry rows are still synchronized for catalogue/research use;
+    their existence does not select them for publication or a fresh migration.
+    """
     directories = ['frontmatter', 'part1', 'part2', 'part3', 'part4', 'part5', 'part6', 'part7', 'conclusion', 'backmatter']
-    directories += ['appendix-stacks', 'appendix-skill-recipe', 'appendix-field-guide', 'appendix-models', 'appendix-evidence-ledger', 'appendix-engineering-moves', 'appendix-product-lifecycle', 'appendix-adopting-genai', 'appendix-crazy-ideas', 'appendix-operators-reference']
     sources = [p for directory in directories for p in sorted((ROOT / 'book' / directory).glob('*.md'))]
-    sources += [ROOT / 'book/appendix-part-1-practice.md', ROOT / 'book/appendix-part-2-evidence.md']
+    for spec in bb._PUBLISHED_APPENDICES:
+        for stem in ('_opening', *(stem for stem, _title in spec['pages'])):
+            source = ROOT / 'book' / spec['directory'] / f'{stem}.md'
+            if source.is_file():
+                sources.append(source)
     return sources
 
 
 def migrate_all():
     records = []
+    previous = json.loads(MANIFEST.read_text()) if MANIFEST.is_file() else {'version': 1, 'sources': []}
     for source in author_sources():
         relative = source.relative_to(ROOT / 'book')
         destination = ROOT / 'book/latex/sources' / relative.with_suffix('.tex')
         migrate(source, destination, driver_enabled=False)
-        records.append({'source': str(destination.relative_to(ROOT)), 'projection': str(source.relative_to(ROOT))})
+        records.append({'source': str(destination.relative_to(ROOT)), 'projection': str(source.relative_to(ROOT)),
+                        'publication_status': 'published'})
         print('Migrated', relative, flush=True)
+    active = {record['source'] for record in records}
+    for record in previous['sources']:
+        if record['source'] not in active:
+            records.append(dict(record, publication_status='retired',
+                                retirement_reason='Retained research/catalogue source; outside the current publication selection.'))
     MANIFEST.write_text(json.dumps({'version': 1, 'sources': records}, indent=2) + '\n')
 
 
@@ -637,8 +652,6 @@ def _prepare_record(task):
         # Geometry changes would implicitly force breaks before and after it.
         latex = (r'\begingroup\small\captionsetup{font=footnotesize}' + '\n'
                  + latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight') + '\n' + r'\endgroup' + '\n')
-    if slug == 'appendix-a-composing-a-stack':
-        latex = latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight')
     if slug == 'about-the-author':
         # The portrait accompanies the biography, rather than occupying a diagram
         # page. Preserve its established size and avoid stranding the short bio.

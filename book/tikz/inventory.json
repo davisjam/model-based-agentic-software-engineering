@@ -1896,5 +1896,44 @@
     "svg_title": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions.",
     "svg_description": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.",
     "native_source": "book/tikz/figures/docable-human-evaluation-261109.tex"
+  },
+  {
+    "chapter": "model-coherence",
+    "source": "assets/handbook-derived-iam.svg",
+    "caption": "Two independently useful models combine to determine deployment authorization. The service-flow model supplies the communication obligation; the deployment model supplies runtime identity and resource names. Their join derives IAM grants. Deployment applies the grants; a separate correspondence check compares declared and observed service names. [short: Two models, one authorization plan]",
+    "native_context": "book/latex/sources/appendix-handbook/model-coherence.tex",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+    "svg_title": "Two models derive an authorization plan",
+    "svg_description": "The service-flow model supplies caller-to-callee communication and its authentication obligation. The deployment model supplies the environment, runtime identity, and deployed resource names. Joining these models derives IAM grants from caller identities to callee resources. Deployment applies the grants. A separate correspondence check reconciles declared and observed service names; it does not establish that every IAM binding is present."
+  },
+  {
+    "chapter": "governance-conversion",
+    "source": "assets/handbook-governance-conversion.svg",
+    "caption": "A recurring failure becomes durable engineering structure. Judgment identifies the failure class and chooses an intervention; the engineered environment records the decision, checks the resulting mechanism, and makes subsequent work inherit it. [short: A failure becomes inherited structure]",
+    "native_context": "book/latex/sources/appendix-handbook/governance-conversion.tex",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+    "svg_title": "Turn a recurring failure into inherited structure",
+    "svg_description": "A compact sequence shows governance conversion: observe a recurring failure, classify it and choose an intervention, record the intended control in a durable work order, implement the mechanism, check its behavior and correspondence, and let later work inherit the constraint, sensor, or gate. The sequence describes an engineering method, not a count of recorded conversions."
+  },
+  {
+    "chapter": "governed-delegation",
+    "source": "assets/handbook-model-guided-delegation.svg",
+    "caption": "A structured work order selects applicable engineering knowledge from maintained models. The agent implements and commits; completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion. [short: Model-guided delegation and completion evidence]",
+    "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+    "svg_title": "Model-guided delegation preserves the assignment and its evidence",
+    "svg_description": "A structured work order and maintained engineering models feed a selection step that assembles a brief containing selected knowledge and obligations. The agent implements and commits. Completion evidence combines durable landed changes and independent checks. Review uses this evidence to update the work order status; an agent report alone does not establish completion."
   }
 ]

@@ -48,7 +48,7 @@ The generated compatibility tree **encodes the hierarchy**: a chapter lives at `
 part number and chapter number are explicit in the path. `build_book.py` walks the tree,
 derives PART.CHAPTER from the path, and reads the `<!-- part-title --> <!-- chapter-title -->`
 metadata from each file. It emits one flat `<slug>.html` per chapter plus `index.html`, and appends
-a Gang-of-Four appendix projected from the sibling catalogue entries.
+two authored appendices: MAGE Engineering Handbook and Practicing MAGE.
 
 ```
 book/
@@ -72,17 +72,22 @@ book/
   part7/  (Part 7 — The Profession)
     7.1-reorganization-of-se.md … 7.5-what-cannot-be-delegated.md
   conclusion/9.1-the-part-that-stays-yours.md
-  appendix-front-door.md, appendix-stacks/, appendix-notes/, appendix-operators-reference/,
-             appendix-skill-recipe/, appendix-c/    # hand-authored + catalogue-projected appendices
+  appendix-handbook/       # Appendix A compatibility projections
+  appendix-practicing-mage/ # Appendix B compatibility projections
   data/metrics.json      # headline numbers, referenced from prose via {{token}}
   assets/                # figure assets (inline SVGs)
 ```
 
 Each part's number and each chapter's `<N>.<M>` are explicit in the path; `00-part-intro.md` in a
 part directory carries that part's divider/epigraph page. Front matter (Preface) renders before
-Part 1. The appendix pages are generated from a mix of hand-authored `.md` (the stacks, the
-operator's reference, the skill recipe) and the catalogue entries (Appendix C's mechanism
-catalogue), and render after Part 6 / Part 7.
+Part 1. The two appendices follow the Conclusion. Their authoritative sources are in
+`latex/sources/appendix-handbook/` and `latex/sources/appendix-practicing-mage/`; Markdown is
+a compatibility projection. `_PUBLISHED_APPENDICES` in `build_book.py` selects their sections
+for HTML, EPUB, full PDF, and standalone PDFs.
+
+The former A–J sources and native-manifest rows remain as retired research/catalogue
+inputs, with complete originals preserved in `editorial/cutting-room-floor.md`. Their
+presence on disk does not select them for publication.
 
 ## Authoring notes
 

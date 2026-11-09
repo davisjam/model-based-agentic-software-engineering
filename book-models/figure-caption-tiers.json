@@ -1320,6 +1320,24 @@
       "kind": "architecture",
       "location": "part5",
       "rationale": "Shared PDF changeset path, interchangeable reasoning strategies, evidence and implementation scope."
+    },
+    "assets/handbook-derived-iam.svg": {
+      "tier": "B",
+      "kind": "process-diagram",
+      "location": "appendix-handbook",
+      "rationale": "Compact supporting diagram of the worked handbook composition; caption names inputs, transformation, and evidence boundary."
+    },
+    "assets/handbook-governance-conversion.svg": {
+      "tier": "B",
+      "kind": "process-diagram",
+      "location": "appendix-handbook",
+      "rationale": "Compact supporting diagram of the worked handbook composition; caption names inputs, transformation, and evidence boundary."
+    },
+    "assets/handbook-model-guided-delegation.svg": {
+      "tier": "B",
+      "kind": "process-diagram",
+      "location": "appendix-handbook",
+      "rationale": "Compact supporting diagram of the worked handbook composition; caption names inputs, transformation, and evidence boundary."
     }
   },
   "historical_tiers": {

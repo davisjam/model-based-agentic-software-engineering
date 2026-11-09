@@ -3,9 +3,9 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 149,
+  "candidate_count": 152,
   "refined_count": 67,
-  "reviewed_peer_groups": 86,
+  "reviewed_peer_groups": 88,
   "figures": [
     {
       "source": "book/assets/book-map.svg",
@@ -10767,24 +10767,142 @@
         "status": "passed",
         "validation_scope": "Integrated production pool; source and native proof visually inspected."
       }
+    },
+    {
+      "source": "book/assets/handbook-derived-iam.svg",
+      "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+      "source_sha256": "5f487100552f1d94f0e8862a9fb66b9246af6bdd80a1860d8d358ef1f46d8729",
+      "candidate_sha256": "a6508fa341ce19a9dc1cd0be1334716a7b653249a242dc44ab5884ee2170b760",
+      "decision": "new",
+      "reason": "The join is the point of the figure. Two small peer inputs and two shallow stages preserve the relation without a tall stack.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": null,
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "independently useful input models",
+            "labels": [
+              "SERVICE-FLOW MODEL",
+              "DEPLOYMENT MODEL"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_width": true,
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ]
+      },
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+        "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+        "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+        "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+        "page": 1,
+        "width_bp": 388.62298583984375,
+        "height_bp": 222.625,
+        "minimum_prose_font_pt": 9.962639808654785,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 11,
+        "status": "passed",
+        "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+      }
+    },
+    {
+      "source": "book/assets/handbook-governance-conversion.svg",
+      "candidate": "book/tikz/figures/handbook-governance-conversion.tex",
+      "source_sha256": "054492317bbecccc5aa6bd89758ab9c866996dca29809efa5c7d7f4421eb4656",
+      "candidate_sha256": "10557949db14de8d3346e0d909ce96351c48c6cd7ef8edb0744abd02741c6843",
+      "decision": "new",
+      "reason": "No stack of large empty boxes: a narrow spine keeps the method readable at 11 pt and reserves the caption for its claim.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": null,
+      "contracts": {},
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+        "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+        "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+        "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+        "page": 2,
+        "width_bp": 213.406005859375,
+        "height_bp": 231.64300537109375,
+        "minimum_prose_font_pt": 10.460769653320312,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 18,
+        "status": "passed",
+        "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+      }
+    },
+    {
+      "source": "book/assets/handbook-model-guided-delegation.svg",
+      "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "source_sha256": "9fafeae07999ea9fb445df9251a66895e0f2e673e288718974a0f6af3bff331e",
+      "candidate_sha256": "97434aa62ab82d28d574324759a2636b03ac8c9bf66118d86180b3fa5fe2c9b5",
+      "decision": "new",
+      "reason": "The drawing distinguishes the structured assignment from the brief assembled through model selection. The return path shows that completion rests on durable evidence, not conversation.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": null,
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "brief selection inputs",
+            "labels": [
+              "WORK ORDER",
+              "ENGINEERING MODELS"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_width": true,
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ]
+      },
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+        "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+        "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+        "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+        "page": 3,
+        "width_bp": 387.62298583984375,
+        "height_bp": 261.625,
+        "minimum_prose_font_pt": 9.962639808654785,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 15,
+        "status": "passed",
+        "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+      }
     }
   ],
   "validation": {
     "date": "2026-11-09",
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
-    "audit_sha256": "ebd0f856e64898158986cf36b50a0ba5063a87939d01055a4dac29778a0c85be",
-    "typography_audit_sha256": "9c9e372f7d83be7056be9e7dede7fbb020cf6463c96d7adbc4f34b5d62e0ecc8",
+    "proof_sha256": "fc4d15466dfe16dbdd94ae17f20fd916c5000105ae24eead8d708a87f30816dd",
+    "audit_sha256": "72d5bbdc01e96e8f89b8e89966f1f3c11b0e8ce3dafb86e320facd20c9eddf40",
+    "typography_audit_sha256": "3835928ad42004c13d8fbdb3ddf5c931cee864216aa15742c31feb2a86f25752",
     "minimum_prose_font_pt": 9.5,
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
     "monochrome_pixels": true,
     "status": "passed",
-    "validation_scope": "Whole-pool automated geometry and typography checks rerun. Changed nav-subway-p5 color/native title visually inspected; unchanged figures retain their existing visual reviews.",
-    "candidate_count": 149,
-    "semantic_typography_checks": 927,
-    "checked_terminal_approaches": 649,
-    "reviewed_peer_groups": 86,
+    "validation_scope": "Whole-pool automated geometry and typography checks rerun. Three new appendix color/native pairs visually inspected at print size; unchanged figures retain their existing visual reviews.",
+    "candidate_count": 152,
+    "semantic_typography_checks": 971,
+    "checked_terminal_approaches": 655,
+    "reviewed_peer_groups": 88,
     "maximum_dimensions_bp": [
       450,
       560

@@ -2,8 +2,9 @@
 
 Each operator card is one page. A card fits iff its rendered title and the NEXT card's title land on
 adjacent pdftotext pages (gap of one). A gap greater than one means the earlier card overflowed onto a
-continuation page. Iterates the DECLARED card set (operator-cards.json), NOT a hardcoded list — the
-stable-lint-reads-the-SSOT posture the caption lint uses.
+continuation page. Joins the declared card set (operator-cards.json) to explicit card membership in the
+assembled publication. Retired research cards keep their schema/evidence checks but have no PDF-presence
+obligation. A newly published card still must appear and fit; a same-named prose section is not a card.
 
 Coverage note: this sensor is the backstop for LANDSCAPE cards, which render breakable and can overflow
 silently. PORTRAIT cards get the compile-time keep-together assert (operator_cards_model.HARD_PAGE_ASSERT)
@@ -76,19 +77,41 @@ def _card_page(pages: "list[str]", title: str, question: str) -> "int | None":
     return None
 
 
-def _physical_entries() -> "list[tuple[str, str, str]]":
-    """(slug, display-title, operator_question) for EVERY physical Appendix-D page in print order — the
-    card deck PLUS the non-card pages (the Operator's Dashboard, the Brownfield Migration Drill) — read
-    from the builder's page list, the single source of truth for physical order. A card's question comes
-    from operator-cards.json; a non-card page has none (empty string, so it is located by its heading title
-    alone). The heavy builder module is imported lazily, only when a span computation actually needs it."""
-    import sys  # noqa: local — the physical page list is the builder's SSOT; keep the import off module load
+def _published_chapters() -> list[dict]:
+    """Read current publication membership, not the archived operator-page roster."""
+    import sys
     book_dir = os.path.join(ROOT, "book")
     if book_dir not in sys.path:
         sys.path.insert(0, book_dir)
-    import build_book  # noqa: E402 — imported here so the sensor module itself stays cheap to import
-    q_by_slug = {cid: q for cid, _t, q in _declared_cards()}
-    return [(slug, title, q_by_slug.get(slug, "")) for slug, title in build_book._OPERATORS_REFERENCE_PAGES]
+    import build_book
+    return build_book.build_appendix_chapters(next_part=10, for_print=True)
+
+
+def _physical_entries() -> "list[tuple[str, str, str]]":
+    """Published section order, with declared card identity where explicitly tagged.
+
+    Non-card sections bound the preceding card's physical span. The card tag is
+    supplied by the card builder, so a prose section reusing a card's title or stem
+    does not acquire its one-page contract accidentally.
+    """
+    cards = {cid: (title, question) for cid, title, question in _declared_cards()}
+    entries = []
+    for chapter in _published_chapters():
+        cid = chapter.get("operator_card_id")
+        if cid:
+            if cid not in cards:
+                raise ValueError(f"published operator card {cid!r} has no declared card")
+            title, question = cards[cid]
+            entries.append((cid, title, question))
+        else:
+            title = re.sub(r"^(?:Appendix [A-Z] - |[A-Z]\.)[0-9]+[. ]*", "", chapter["chapter_title"])
+            entries.append((chapter["slug"], title, ""))
+    return entries
+
+
+def _published_cards() -> "list[tuple[str, str, str]]":
+    declared = {cid for cid, _title, _question in _declared_cards()}
+    return [entry for entry in _physical_entries() if entry[0] in declared]
 
 
 def findings(pdf_path: "str | None" = None) -> "list[tuple[str, int, int]]":
@@ -103,9 +126,11 @@ def findings(pdf_path: "str | None" = None) -> "list[tuple[str, int, int]]":
     pdf = pdf_path or _DEFAULT_PDF
     if not os.path.isfile(pdf):
         return []
-    pages = _per_page_text(pdf)
     entries = _physical_entries()
     card_ids = {cid for cid, _t, _q in _declared_cards()}
+    if not any(slug in card_ids for slug, _title, _question in entries):
+        return []
+    pages = _per_page_text(pdf)
     located = [(slug, _card_page(pages, title, q)) for slug, title, q in entries]
     out: "list[tuple[str, int, int]]" = []
     for idx, (slug, start) in enumerate(located):
@@ -121,19 +146,27 @@ def findings(pdf_path: "str | None" = None) -> "list[tuple[str, int, int]]":
     return out
 
 
-def orphan_rows() -> "list[str]":
-    """Reverse join: a declared card whose title never appears in the rendered PDF (a projection drift).
-    Empty when the PDF is absent."""
-    if not os.path.isfile(_DEFAULT_PDF):
+def presence_findings(pdf_path: "str | None" = None) -> "list[str]":
+    """Published declared cards missing from the rendered PDF; retired cards exempt."""
+    pdf = pdf_path or _DEFAULT_PDF
+    if not os.path.isfile(pdf):
         return []
-    pages = _per_page_text(_DEFAULT_PDF)
-    return [f"card {cid!r} page not found in the rendered PDF"
-            for cid, title, q in _declared_cards() if _card_page(pages, title, q) is None]
+    cards = _published_cards()
+    if not cards:
+        return []
+    pages = _per_page_text(pdf)
+    return [f"published card {cid!r} page not found in the rendered PDF"
+            for cid, title, question in cards if _card_page(pages, title, question) is None]
+
+
+def orphan_rows() -> "list[str]":
+    """Compatibility name for the publication-scoped reverse join."""
+    return presence_findings()
 
 
 def summary_line(fs: "list[tuple[str, int, int]]") -> str:
     if not fs:
-        return "every operator card fits one page"
+        return "every published operator card fits one page (retired cards excluded)"
     return (f"{len(fs)} operator card(s) span >1 page: "
             + ", ".join(f"{c}(p{s}->p{e})" for c, s, e in fs))
 
@@ -154,7 +187,7 @@ def main(argv: "list[str] | None" = None) -> int:
         print(f"    {cid}: title on p{s}, content continues to p{e}")
     for o in orphans:
         print(f"    {o}")
-    return 1 if (fs and args.strict) else 0
+    return 1 if ((fs or orphans) and args.strict) else 0
 
 
 if __name__ == "__main__":

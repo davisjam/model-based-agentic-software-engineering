@@ -1,0 +1,79 @@
+<!-- GENERATED from book/latex/sources/appendix-handbook/governance-conversion.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
+Governance Conversion changes what later work inherits after an engineer understands a failure. Its product may be a representation, a test, a constraint, a gate, or a better operating procedure. The difficult step is deciding which part of the failure should become durable. A prompt to reflect can start that work, but it cannot establish that the resulting control is adequate or that it has been installed.
+
+## Refusing Duplicate Work {#handbook-conversion-episode}
+
+In October 2026, DocAble repeatedly dispatched, or nearly dispatched, agents against engineering phases whose work had already landed. The recorded phase status lagged behind the artifacts. Four encounters in one session required an operator to inspect the repository and discover that the proposed task was redundant. Repeating that inspection was a poor use of another agent.
+
+The investigation found that the system already had ways to record completed phases. The missing protection was more specific: phase identity did not travel through every landing path, and the automated warning arrived only during dispatch, after the brief had been composed. The engineering obligation became: refuse a new assignment when the reconciled phase record positively establishes that the cited phase is complete, while retaining a deliberate route for genuine rework.
+
+The repair reused the phase model. Briefs and commits carry a phase identity, allowing the landing machinery to update the corresponding record. A gate in work-order composition resolves the brief’s cited project and phase, reads that record, and refuses to emit the brief on a positive completed-phase match. Dispatch repeats the relevant check. The gate prints the evidence and offers two ways forward: reopen the phase when more work is required, or supply an explicit override reason through the audit channel. Audit writing is best-effort; failure is reported rather than silently represented as a persisted record.
+
+The positive-match boundary matters. An absent record or an unresolvable phase is not evidence that the work is complete, so it does not trigger this refusal. An earlier version also treated the existence of a phase document as completion evidence. That blocked legitimate multi-wave work and defeated reopening. The repair narrowed the gate to the reconciled phase state, leaving weaker Git evidence advisory. Tests exercise both the refusal and the reopened-phase case.
+
+This is a complete conversion: a recurring failure prompted diagnosis, the diagnosis selected an obligation and representation, implementation placed a gate where the decision could be made, and subsequent briefs inherited that restriction. The engineer still decides whether a new task is worthwhile and whether an override is justified. The environment remembers the part that can be decided from the phase record.
+
+A conversion ledger supplies supporting traceability. A failure-class identifier links the proposed intervention to the engineering phase that installs it; recorded phase transitions let the ledger derive that link’s status. This gives an engineer a route from the original incident to the responsible change. The mechanism’s behavior is established separately by its code, tests, and use.
+
+[ref:handbook-governance-conversion] traces this conversion from a recurring failure to a control that later work inherits.
+
+<!-- label: handbook-governance-conversion -->
+<!-- figure: assets/handbook-governance-conversion.svg | A recurring failure becomes durable engineering structure. Judgment identifies the failure class and chooses an intervention; the engineered environment records the decision, checks the resulting mechanism, and makes subsequent work inherit it. [short: A failure becomes inherited structure] -->
+
+## Governance Graph {#handbook-model-governance-graph}
+
+**Question and representation.** Once several mechanisms participate in the same operation, the engineer needs to know how they interact. DocAble’s governance graph records selected process mechanisms, their firing events, resource requirements, enforcement characteristics, and implementation anchors. The core record includes these fields:
+
+``` text
+id: str
+kind: MechanismKind
+lifecycles: frozenset[Lifecycle]
+firing_event: FiringEvent
+requirements: frozenset[Requirement]
+output_power: frozenset[OutputPower]
+enforcement: Enforcement
+anchor: MechanismAnchor
+```
+
+A requirement records whether a mechanism reads, writes, requires a property of, or constrains a named resource. An anchor identifies its configured command, lifecycle event, implementing script, and entry symbol. Conflict edges connect mechanism identities and record the shared resource, interaction type, and chosen resolution. These are implementation records; their categories of hook, mediator, or lint do not replace the book’s functional distinction among constraints, sensors, and gates.
+
+**Authority and consumers.** The node census records existing mechanisms; interaction edges and their resolutions specify engineering choices. Queries compare firing events and resource paths to identify potential interference. A topological sort computes the declared order and rejects cycles. The proposed driver that would execute this computed order is a separate implementation step: a query returning an order does not itself schedule hooks. The graph also names soft mechanisms honestly. A reflection hook can inject a suggestion without blocking work.
+
+**Correspondence.** The anchor check compares modeled hooks with the configured lifecycle events and implementing scripts. It can report a modeled command that no longer resolves, a hook missing from the model within the inspected event set, or a mismatched firing event. Its coverage is scoped; it is not a census of every possible control in the repository. Nor does finding the expected function name establish that the function still has the intended semantics.
+
+Chapter {{chapter:alignment|num}}’s hook-ordering example is one application. A declared order can prevent an inspection from consuming the opportunity needed for reflection, but the resource-consumption reason is richer than a conventional read/write conflict. The model need only record enough to support the required ordering; it need not simulate every token of context consumption. Enlarging the model becomes worthwhile when the additional detail changes an engineering decision.
+
+## Accessibility Decision Policy {#handbook-model-accessibility-policy}
+
+**Question and representation.** The same conversion process applies inside the product. When should a possibly decorative image be omitted from the accessible reading experience? A visual appearance alone is insufficient: an abstract shape can be furniture in one document and the subject of instruction in another. A vision-language model (VLM) can supply contextual evidence, but the product still needs a policy for acting on uncertainty.
+
+DocAble represents that policy with a closed three-value vocabulary. These constants and the decision function come from `DecorativeConfidenceBand`; only the explicitly decorative result permits the internal decorative flag:
+
+``` text
+public const string ClearlyDecorative = "clearlyDecorative";
+public const string Uncertain = "uncertain";
+public const string Informational = "informational";
+
+public static bool IsClearlyDecorative(string? decorativeConfidence) =>
+    string.Equals(
+        decorativeConfidence?.Trim(),
+        ClearlyDecorative,
+        StringComparison.OrdinalIgnoreCase);
+```
+
+**Authority and consumers.** The VLM’s answer is an observation about the document, with the limitations of that inference. The mapping from answer to permitted action is an authored product decision. An uncertain, absent, or unrecognized answer does not become permission to suppress content. The shared vocabulary is consumed by description contracts and downstream code, so the conservative default need not be recreated independently by every caller.
+
+This policy developed through a failure investigation. Evaluation found content-bearing images being treated as decorative, including instructional material. The response strengthened the presumption that content should receive a description unless the evidence clearly supported treating it as ornament, and added checks around consumers that could otherwise broaden the exception. The important change was not a new adjective in a prompt. It was an explicit decision rule and its propagation through the relevant interfaces.
+
+**Alignment and its limit.** The typed PDF applier supplies a further boundary. An artifact-demotion request must name the source of its decorative verdict. The applier refuses certain structurally informative targets, including headings, formulas, and elements carrying authored alternative or replacement text. These refusals can prevent specific damaging actions even when the upstream judgment is wrong. They cannot determine every image’s instructional importance. Content with no such structural protection may still require semantic review.
+
+The resulting composition therefore preserves several different responsibilities. The VLM interprets context; the decision policy determines how uncertain evidence should affect action; the operation contract carries the proposal; the applier enforces selected restrictions; subsequent evaluation looks for remaining harm. A failure can motivate a change at any of those points. Treating them separately makes it possible to repair the faulty part without claiming that one more check settles the entire accessibility problem.
+
+## Composing Only What Is Needed {#handbook-composition-procedure}
+
+Start from the capability, not the mechanisms. “Every supported edit can be attributed to its producer” identifies a result; “add a logging service” has already selected an implementation. Enumerate the failures that would defeat the result, then identify the evidence or restriction needed for each. Missing identity, a bypassing mutation path, and a log that cannot be joined to an artifact are different failures.
+
+Next establish the dependencies among those protections. A provenance reader cannot recover a record the writer never emitted; a completeness check needs a defined population of operations. Separate these necessary dependencies from useful enhancements. A dashboard can improve diagnosis without being part of the guarantee itself.
+
+Finally, ask what the composition costs to build and carry, where it can still fail, and how its own correspondence will be checked. Once the required capability has adequate support, further mechanisms need a further purpose. Stop.

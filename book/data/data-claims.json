@@ -37,22 +37,6 @@
     "limitation": "Commit count is a coarse activity proxy, not delivered value; the count mixes agent, human, and generated commits; single project, single fleet. Loop-mode caveat: commit counts include bookkeeping noise (squash / commit-slave / sentinel / tombstone commits), so the FLAT finding is robust but the absolute per-day number is not 'human-meaningful changes/day'; the window is ~2 weeks (one data point, not a trend). `holds` stays empty by design: the reporting section is a bare figure ([ref:velocity-curve]) with no digit-bearing prose sentence or caption in the chapter source, so there is no literal text for the digit+unit pin to match; the figure asset's own embedded description (\"seven-week build\") additionally reads as stale against the 20-week / commits_total=23,215 figures the token registry (metrics.json _commit_provenance) now carries, an asset-freshness gap outside this ledger's fix. Pinning would require either a chapter-text edit stating the axis-anchor values or a figure regeneration reconciling the two — an editorial call, not made here.",
     "gloss": "The velocity curve: commits per week across the project's history, rising as the fleet acquired capability then dipping during hardening."
   },
-  "mbse-nav-token": {
-    "source": "the-executable-zoo",
-    "anchor": "mbse-nav-token",
-    "holds": [
-      "20%",
-      "12%",
-      "82%",
-      "50%"
-    ],
-    "status": "preliminary",
-    "spine_claim": "modeling-principle",
-    "observable": "Tokens-to-answer with MBSE navigation guidance ON versus OFF, across four modeled tasks.",
-    "data_source": "A controlled A/B pilot (N=4 modeled tasks); tokens-to-answer measured per task with guidance toggled, accuracy graded per answer.",
-    "limitation": "N=4 pilot — not powered; single fleet; measures tokens, not accuracy (zero accuracy loss noted, but at small N); the system-level Garden-null reframe of the MBSE ablation is coming in W5.",
-    "gloss": "A controlled A/B pilot of MBSE navigation guidance (N=4 modeled tasks): tokens-to-answer with guidance ON vs. OFF, 20% / 12% / 82% / 50% fewer tokens, median ~35% fewer, zero accuracy loss."
-  },
   "support-ratio-curve": {
     "source": "inside-docables-software-factory",
     "anchor": "support-ratio-curve",

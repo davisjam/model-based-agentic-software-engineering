@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 833,
+    "total_sites": 654,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 495,
+      "book-web": 316,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -152,116 +152,48 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/appendix-adopting-genai.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-b-carry-cause-with-consequence.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-b-check-correspondence.md",
+            "file": "book/web/docs/appendix-a-engineering-moves.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-b-deliver-knowledge-at-decision.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-b-derive-dont-copy.md",
+            "file": "book/web/docs/appendix-a-governance-conversion.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-b-put-authority-where-legible.md",
+            "file": "book/web/docs/appendix-a-governed-delegation.md",
+            "occ": 21
+          },
+          {
+            "file": "book/web/docs/appendix-a-model-coherence.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-d-a-worked-factory-workflow.md",
+            "file": "book/web/docs/appendix-b-getting-started.md",
             "occ": 5
           },
           {
-            "file": "book/web/docs/appendix-d-from-drifted-wiki-to-trusted-model.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-e-applying-the-recipe.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-e-theory.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/appendix-evidence-ledger.md",
-            "occ": 14
-          },
-          {
-            "file": "book/web/docs/appendix-f-product-management-and-maintenance.md",
+            "file": "book/web/docs/appendix-b-operating-a-gee.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 13
-          },
-          {
-            "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-g-engineering-the-environment.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/appendix-g-expanding-delegation.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-g-from-assistance-to-delegation.md",
-            "occ": 10
-          },
-          {
-            "file": "book/web/docs/appendix-g-learning-from-delegated-work.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-g-organizational-adoption.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-development-completeness.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-j-experimental-substrate.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-model-induction.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-skill-recipe.md",
-            "occ": 11
-          },
-          {
-            "file": "book/web/docs/appendix-stacks.md",
+            "file": "book/web/docs/appendix-handbook.md",
             "occ": 1
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 22
+            "occ": 18
           },
           {
             "file": "book/web/docs/book-index.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 86
+            "occ": 73
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -283,7 +215,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 65
+            "occ": 48
           }
         ]
       },
@@ -704,24 +636,8 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-d-daily-review.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-operators-dashboard.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-d-system-health.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/appendix-evidence-ledger.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-g-engineering-the-environment.md",
-            "occ": 3
+            "file": "book/web/docs/appendix-b-measuring-mage.md",
+            "occ": 2
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -729,13 +645,13 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 29
+            "occ": 25
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 9
           }
         ]
       },
@@ -942,27 +858,7 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-a-context-delivery-stack.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-adopting-genai.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-g-learning-from-delegated-work.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-experimental-substrate.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-skill-recipe.md",
+            "file": "book/web/docs/appendix-a-governance-conversion.md",
             "occ": 1
           },
           {
@@ -981,7 +877,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 22
+            "occ": 17
           }
         ]
       },
@@ -1147,7 +1043,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 49
+            "occ": 50
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -1179,7 +1075,7 @@
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 85
+            "occ": 86
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -1199,295 +1095,55 @@
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
-            "occ": 24
+            "occ": 26
           },
           {
             "file": "book/web/docs/about-the-author.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-a-assurance-stack.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-a-auditable-transformation-stack.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-a-composing-a-stack.md",
-            "occ": 13
-          },
-          {
-            "file": "book/web/docs/appendix-a-context-delivery-stack.md",
-            "occ": 12
-          },
-          {
-            "file": "book/web/docs/appendix-a-governance-conversion-stack.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/appendix-a-model-coherence-stack.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/appendix-a-observe-react-stack.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-a-resource-mediation-stack.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-adopting-genai.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/appendix-b-carry-cause-with-consequence.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-b-check-correspondence.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-b-close-the-action-surface.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-b-deliver-knowledge-at-decision.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-b-derive-dont-copy.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-b-derive-the-obligation-set.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-b-engineering-moves.md",
-            "occ": 18
-          },
-          {
-            "file": "book/web/docs/appendix-b-externalize-judgment.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-b-make-dependencies-queryable.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-b-make-fact-authoritative.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-b-put-authority-where-legible.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-c-behavior-and-ownership.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-c-documentation-and-provenance.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-c-execution-and-placement.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-c-joining-views.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-c-measurement.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-c-representation-to-authority.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-c-structure-and-boundaries.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-crazy-ideas.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-a-worked-factory-workflow.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-d-brownfield-progress.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-daily-review.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-engineering-capital.md",
-            "occ": 10
-          },
-          {
-            "file": "book/web/docs/appendix-d-evidence-quality.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-from-drifted-wiki-to-trusted-model.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-d-governance-conversion.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-d-human-judgment.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-model-health.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-operating-doctrine.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-d-operators-dashboard.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-release-readiness.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-system-health.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-e-applying-the-recipe.md",
-            "occ": 21
-          },
-          {
-            "file": "book/web/docs/appendix-e-theory.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-evidence-ledger.md",
-            "occ": 11
-          },
-          {
-            "file": "book/web/docs/appendix-f-assurance-and-compliance.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-f-differential-adoption.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-f-engineering-and-realization.md",
-            "occ": 12
-          },
-          {
-            "file": "book/web/docs/appendix-f-engineering-capital-across-time-and-space.md",
-            "occ": 38
-          },
-          {
-            "file": "book/web/docs/appendix-f-from-local-mage-to-the-product-gee.md",
-            "occ": 12
-          },
-          {
-            "file": "book/web/docs/appendix-f-one-product-several-surfaces.md",
-            "occ": 16
-          },
-          {
-            "file": "book/web/docs/appendix-f-operations-and-incidents.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/appendix-f-product-discovery.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-f-product-management-and-maintenance.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 78
-          },
-          {
-            "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-g-engineering-the-environment.md",
-            "occ": 36
-          },
-          {
-            "file": "book/web/docs/appendix-g-expanding-delegation.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-g-from-assistance-to-delegation.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-g-learning-from-delegated-work.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/appendix-g-organizational-adoption.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/appendix-j-development-completeness.md",
-            "occ": 18
-          },
-          {
-            "file": "book/web/docs/appendix-j-experimental-substrate.md",
+            "file": "book/web/docs/appendix-a-engineering-moves.md",
             "occ": 15
           },
           {
-            "file": "book/web/docs/appendix-j-model-induction.md",
-            "occ": 16
+            "file": "book/web/docs/appendix-a-governance-conversion.md",
+            "occ": 12
           },
           {
-            "file": "book/web/docs/appendix-models.md",
-            "occ": 9
+            "file": "book/web/docs/appendix-a-governed-delegation.md",
+            "occ": 13
           },
           {
-            "file": "book/web/docs/appendix-operators-reference.md",
+            "file": "book/web/docs/appendix-a-model-coherence.md",
+            "occ": 6
+          },
+          {
+            "file": "book/web/docs/appendix-b-brownfield-migration.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/appendix-part-1-practice.md",
-            "occ": 10
+            "file": "book/web/docs/appendix-b-getting-started.md",
+            "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-part-2-evidence.md",
-            "occ": 1
+            "file": "book/web/docs/appendix-b-measuring-mage.md",
+            "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-product-lifecycle.md",
-            "occ": 7
+            "file": "book/web/docs/appendix-b-operating-a-gee.md",
+            "occ": 6
           },
           {
-            "file": "book/web/docs/appendix-skill-recipe.md",
-            "occ": 10
+            "file": "book/web/docs/appendix-handbook.md",
+            "occ": 13
           },
           {
-            "file": "book/web/docs/appendix-stacks.md",
-            "occ": 21
+            "file": "book/web/docs/appendix-practicing-mage.md",
+            "occ": 4
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 149
+            "occ": 139
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1499,15 +1155,15 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 287
+            "occ": 193
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 26
+            "occ": 19
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 22
+            "occ": 17
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1541,7 +1197,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 126
+            "occ": 66
           }
         ]
       },
@@ -1724,92 +1380,12 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-a-governance-conversion-stack.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-adopting-genai.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-daily-review.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-engineering-capital.md",
-            "occ": 7
-          },
-          {
-            "file": "book/web/docs/appendix-d-governance-conversion.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-human-judgment.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-operating-doctrine.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-f-engineering-capital-across-time-and-space.md",
-            "occ": 15
-          },
-          {
-            "file": "book/web/docs/appendix-f-from-local-mage-to-the-product-gee.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-f-operations-and-incidents.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-g-engineering-the-environment.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-g-expanding-delegation.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-g-learning-from-delegated-work.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-development-completeness.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-experimental-substrate.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-stacks.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 31
-          },
-          {
-            "file": "book/web/docs/index.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/list-of-figures.md",
-            "occ": 2
+            "occ": 21
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1827,7 +1403,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 43
+            "occ": 23
           }
         ]
       },
@@ -1991,7 +1567,7 @@
           },
           {
             "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/3.2-models-and-the-semantic-gap.md",
@@ -2051,7 +1627,7 @@
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 15
+            "occ": 13
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -2070,236 +1646,40 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-a-assurance-stack.md",
+            "file": "book/web/docs/appendix-a-engineering-moves.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-a-context-delivery-stack.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-a-governance-conversion-stack.md",
+            "file": "book/web/docs/appendix-a-governance-conversion.md",
             "occ": 7
           },
           {
-            "file": "book/web/docs/appendix-a-model-coherence-stack.md",
-            "occ": 33
-          },
-          {
-            "file": "book/web/docs/appendix-a-observe-react-stack.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-adopting-genai.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-carry-cause-with-consequence.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-check-correspondence.md",
-            "occ": 20
-          },
-          {
-            "file": "book/web/docs/appendix-b-close-the-action-surface.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-deliver-knowledge-at-decision.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-derive-dont-copy.md",
-            "occ": 19
-          },
-          {
-            "file": "book/web/docs/appendix-b-derive-the-obligation-set.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-b-engineering-moves.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-b-externalize-judgment.md",
-            "occ": 19
-          },
-          {
-            "file": "book/web/docs/appendix-b-make-dependencies-queryable.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-b-make-fact-authoritative.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-b-put-authority-where-legible.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-c-behavior-and-ownership.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-c-documentation-and-provenance.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-c-execution-and-placement.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-c-joining-views.md",
+            "file": "book/web/docs/appendix-a-governed-delegation.md",
             "occ": 7
           },
           {
-            "file": "book/web/docs/appendix-c-measurement.md",
-            "occ": 5
+            "file": "book/web/docs/appendix-a-model-coherence.md",
+            "occ": 25
           },
           {
-            "file": "book/web/docs/appendix-c-representation-to-authority.md",
+            "file": "book/web/docs/appendix-b-brownfield-migration.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/appendix-c-structure-and-boundaries.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/appendix-d-brownfield-progress.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-engineering-capital.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-evidence-quality.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-from-drifted-wiki-to-trusted-model.md",
+            "file": "book/web/docs/appendix-b-getting-started.md",
             "occ": 4
           },
           {
-            "file": "book/web/docs/appendix-d-governance-conversion.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-human-judgment.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-model-health.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-d-operating-doctrine.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-d-operators-dashboard.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-release-readiness.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-e-applying-the-recipe.md",
-            "occ": 16
-          },
-          {
-            "file": "book/web/docs/appendix-e-theory.md",
-            "occ": 11
-          },
-          {
-            "file": "book/web/docs/appendix-evidence-ledger.md",
-            "occ": 35
-          },
-          {
-            "file": "book/web/docs/appendix-f-assurance-and-compliance.md",
+            "file": "book/web/docs/appendix-b-measuring-mage.md",
             "occ": 6
           },
           {
-            "file": "book/web/docs/appendix-f-differential-adoption.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-f-engineering-and-realization.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-f-engineering-capital-across-time-and-space.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-f-from-local-mage-to-the-product-gee.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-f-one-product-several-surfaces.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-f-operations-and-incidents.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-f-product-management-and-maintenance.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 12
-          },
-          {
-            "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
+            "file": "book/web/docs/appendix-b-operating-a-gee.md",
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-g-engineering-the-environment.md",
-            "occ": 9
-          },
-          {
-            "file": "book/web/docs/appendix-g-expanding-delegation.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-g-learning-from-delegated-work.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-g-organizational-adoption.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-j-development-completeness.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/appendix-j-experimental-substrate.md",
+            "file": "book/web/docs/appendix-handbook.md",
             "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-j-model-induction.md",
-            "occ": 18
-          },
-          {
-            "file": "book/web/docs/appendix-models.md",
-            "occ": 23
-          },
-          {
-            "file": "book/web/docs/appendix-part-1-practice.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-skill-recipe.md",
-            "occ": 5
-          },
-          {
-            "file": "book/web/docs/appendix-stacks.md",
-            "occ": 5
           },
           {
             "file": "book/web/docs/bibliography.md",
@@ -2307,7 +1687,7 @@
           },
           {
             "file": "book/web/docs/book-index.md",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/web/docs/colophon.md",
@@ -2315,15 +1695,15 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 324
+            "occ": 213
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 4
+            "occ": 1
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -2357,7 +1737,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 56
           }
         ]
       },
@@ -2904,10 +2284,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           },
@@ -2923,7 +2299,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 10
           }
         ]
       },
@@ -3078,36 +2454,8 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-crazy-ideas.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-f-assurance-and-compliance.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-f-engineering-capital-across-time-and-space.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-development-completeness.md",
-            "occ": 6
-          },
-          {
-            "file": "book/web/docs/appendix-j-experimental-substrate.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/appendix-j-model-induction.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/bibliography.md",
-            "occ": 40
+            "occ": 36
           },
           {
             "file": "book/web/docs/figures.md",
@@ -3115,7 +2463,7 @@
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -3149,7 +2497,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 41
+            "occ": 34
           }
         ]
       },
@@ -3260,59 +2608,11 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/appendix-a-auditable-transformation-stack.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-adopting-genai.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-derive-the-obligation-set.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-make-dependencies-queryable.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-b-make-fact-authoritative.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-c-documentation-and-provenance.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-c-representation-to-authority.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-d-from-drifted-wiki-to-trusted-model.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-f-product-management-and-maintenance.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/appendix-field-guide.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-g-a-practical-adoption-procedure.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-g-engineering-the-environment.md",
+            "file": "book/web/docs/appendix-a-governed-delegation.md",
             "occ": 3
           },
           {
-            "file": "book/web/docs/appendix-g-expanding-delegation.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-product-lifecycle.md",
+            "file": "book/web/docs/appendix-b-getting-started.md",
             "occ": 1
           },
           {
@@ -3325,7 +2625,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 21
+            "occ": 18
           },
           {
             "file": "book/web/docs/part-2-intro.md",
@@ -3335,7 +2635,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 34
+            "occ": 22
           }
         ]
       },
@@ -3584,30 +2884,14 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-e-applying-the-recipe.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/appendix-f-from-local-mage-to-the-product-gee.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-g-from-assistance-to-delegation.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/appendix-j-development-completeness.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/figures.md",
-            "occ": 7
+            "occ": 5
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 6
           }
         ]
       },

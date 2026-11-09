@@ -1,0 +1,74 @@
+<!-- GENERATED from book/latex/sources/appendix-handbook/model-coherence.tex; edit the LaTeX source, then run tools/mage_latex.py sync. -->
+
+Model Coherence keeps a useful representation connected to the system as both change. DocAble’s engineering environment expresses architectural models in typed Python modules: records declare entities, closed vocabularies distinguish their kinds, and collections declare relationships. Component records identify repository zones; service-flow records describe communication; deployment representations supply resource names and runtime identities. They remain separate because they answer different questions.
+
+Agents can query these representations through a repository command interface; tools can import them directly. The component query locates the owner of a path, while the service-flow query exposes a caller’s dependencies. Tests and correspondence checks compare selected declarations with independently obtained facts. This supplies a modest modeling workbench using ordinary code and test tools, without requiring a second implementation of the product.
+
+## Component and Zone Catalogue {#handbook-model-component-zones}
+
+**Question and representation.** The component model answers which parts of the system exist, which repository paths belong to each part, and which documentation and boundaries apply there. Its records distinguish leaf components, groups used for cross-component audits, and accounting categories. This distinction matters: a group can overlap several leaves without becoming another unit of source code to count.
+
+The following declaration is an excerpt from `system-models/components.py`. It identifies the PDF model library and its repository location.
+
+``` text
+Component(
+    name="pdf-model",
+    focus_dirs=(RepoRelPath("backend/src/AdaTool.PdfModel"),),
+    tags=frozenset({"model", "stamps"}),
+    kind="leaf",
+    boundary_kind="internal",
+    display_name="Remediation: PdfModel",
+    # Additional fields omitted.
+),
+```
+
+Other fields support shared-directory partitions, exclusions, read-first documentation, deployment artifacts, and declared imports. These are consequential distinctions. Two components may share a directory while owning different files; a file exclusion and a directory exclusion are not interchangeable; documentation for a neighboring component may be useful background without being mandatory reading for this one.
+
+**Authority and consumers.** The catalogue is an authored classification of the codebase. Repository accounting uses its component boundaries, while agent audits use its leaf and group zones. Documentation pointers give consumers an entry into the knowledge associated with a zone. The model does not extract the correct architecture from the implementation; engineers decide which boundaries and groupings are useful.
+
+**Correspondence and Alignment.** Checks can establish narrower facts about those decisions. Declared paths should exist; service deployment files should be represented; an import should respect a declared boundary where that boundary is enforced. A component’s existence in the catalogue does not itself constrain imports. The import analysis and its configured admission consequence do that work.
+
+Consider adding a new service. Its source directory, deployment files, and service catalogue entry are different artifacts. Naming the component gives them a common identity. A service-integration check compares the component’s declared deployment paths with the repository and looks for service Dockerfiles that no service component claims. It can therefore expose a missing connection while the change is still being prepared. It cannot establish that the service’s decomposition is a good design. That question remains with the engineer.
+
+## Inter-Service Calls and Deployment Identity {#handbook-model-service-flow}
+
+**Question and representation.** A caller knowing a service’s address does not imply that it may invoke that service. DocAble encountered this distinction when service URLs were wired but the corresponding invocation grants were absent. The resulting calls failed at the cloud authorization boundary before reaching application code.
+
+The inter-service model represents a synchronous dependency as a typed edge. This actual edge connects the accessibility-quality service to the GenAI service:
+
+``` text
+SyncEdge(
+    caller=ComponentName("accessibility-quality-service"),
+    callee=ComponentName("genai-service"),
+    callee_api=ApiEntityName("genai-service-complete"),
+    callee_url_env=EnvVarName("ADA_TOOL_GENAI_SERVICE_URL"),
+    auth=_SOA_IAM_AUTH,
+    url_seam=UrlSeam.DOWNSTREAM_URL_DEPS,
+    expected_status=_SOA_STATUS_BASELINE,
+),
+```
+
+The referenced authentication contract records the transport, whether the token’s audience must be the callee URL, and whether an invocation grant is required. The service catalogue separately describes the API. Deployment configuration supplies the runtime identity and environment-specific service name. These representations have different purposes; a common service identity lets tools join them.
+
+**A worked join.** Start with the declared caller–callee edge. Resolve the environment variable that supplies the callee’s URL. Resolve the caller’s runtime service account and the deployed callee’s name. The joined facts determine an invocation-grant plan: which principal needs which permission on which deployed service. The deployment tool then applies that plan. Several logical edges can require the same concrete binding, so the application step deduplicates by service account and callee.
+
+This is a useful example of derived information. Neither the architectural edge alone nor the runtime identity alone contains the resulting grant. The join answers a deployment question without requiring one enormous model containing every architectural and operational fact. It also exposes a limit: DocAble’s inspected deployment configuration uses a shared runtime service account. Different logical callers can therefore collapse to the same cloud principal. The model must describe that actual authority arrangement rather than imply isolation that deployment does not provide.
+
+[ref:handbook-derived-iam] shows how the separate models contribute to this authorization plan.
+
+<!-- label: handbook-derived-iam -->
+<!-- figure: assets/handbook-derived-iam.svg | Two independently useful models combine to determine deployment authorization. The service-flow model supplies the communication obligation; the deployment model supplies runtime identity and resource names. Their join derives IAM grants. Deployment applies the grants; a separate correspondence check compares declared and observed service names. [short: Two models, one authorization plan] -->
+
+**Correspondence and enforcement.** The edge model currently acts as a verified mirror of the deployment dependency map. A test requires its projection to equal the live configuration; retirement of the independently maintained literal is a later step. A test that removes an edge from the model confirms that the comparison detects the disagreement. This is a useful brownfield sequence: establish correspondence first, move consumers to the representation, then retire the duplicate owner. Calling the new representation authoritative on its first day would skip the work that makes that transfer credible.
+
+A separate parity check connects service edges to the API catalogue. The grant planner consumes the deployment map and runtime identity; cloud IAM enforces the resulting permissions once applied. A declared edge, a generated grant plan, an applied binding, and a successful authorized call are different evidence. The deployment tool retains individual grant failures rather than treating the existence of a plan as proof that every grant was installed.
+
+The deployed fleet also needs correspondence. An August 2026 investigation found 49 deployed services while the declared topology accounted for 28. Nothing had been reconciling the two populations. The resulting check compares the declared service-name set with a stored snapshot of the live fleet; deployment-time observation refreshes that snapshot. It was introduced in advisory mode while existing discrepancies were resolved, so the new control could expose drift without making every unrelated change inherit an immediate blockage.
+
+These checks answer related but different questions. Name-set correspondence detects an undeclared or missing deployment; it does not inspect every IAM binding. The grant plan and its application results concern authorization. Keeping those responsibilities explicit gives the engineer a useful account of the deployment without pretending that one equality check establishes everything about it.
+
+## Maintaining the Composition {#handbook-maintaining-coherence}
+
+The essential path is short: assign a fact an authoritative representation, give it a consumer, and connect it to the relevant implementation. Derive secondary artifacts when the transformation is dependable. Where two independently authored representations must coexist, compare the facts they claim in common and name who resolves disagreement.
+
+This composition is worth maintaining when several tasks need the same knowledge or when disagreement would have a substantial consequence. It becomes less useful if the representation is too detailed to keep current, if no consumer uses it, or if its checks merely compare two copies derived from the same mistaken source. Local implementation details can remain outside the model. The component model leaves service calls to the service model; the service model leaves deployment identity to deployment configuration. Useful omission is part of the design.

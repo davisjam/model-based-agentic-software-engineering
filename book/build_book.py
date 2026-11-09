@@ -22,8 +22,8 @@ The build WALKS this hierarchy, derives the chapter number and section number fr
 file's `part<N>/` dir and `<N>.<M>-slug.md` name, and reads the human-readable
 `<!-- part-title: … --> <!-- chapter-title: … -->` metadata from the file. It emits one
 flat `<slug>.html` per section (Chapter/§section TOC nav on top, prev/next at the bottom),
-an `index.html` landing page, and — appended after the back matter — a Gang-of-Four
-appendix projected from the sibling catalogue entries.
+an `index.html` landing page, and the two hand-authored handbook/practice appendices.
+Retired appendix and catalogue helpers remain available to research consumers.
 
 Front matter (part 0) and back matter render without a numbered kicker. The
 book's one epigraph is the Conclusion's authored Tennyson opener (the `<!-- epigraph -->`
@@ -283,12 +283,12 @@ _GLOSSARY: dict[str, str] = {}  # term -> short def; populated by _collect_gloss
 GLOSSARY_CHAPTER_LABEL = "the-books-language"
 # Apparatus one-pagers — pages that are a self-contained *reference apparatus* (not running prose), meant
 # to read as ONE bordered, offset item rather than bleeding visually from the preceding chapter. "How to
-# read this book" (its short prose + the whole-book map figure) is the founding member; the Operator's
-# Dashboard (its metric table, now Appendix D.1 — `appendix-d-operators-dashboard`) is the second. The
-# renderer frames these in a `.apparatus-page` box (HTML) / a `#block` frame (Typst) — see the CSS
+# read this book" (its short prose + the whole-book map figure) is the founding member.
+# The retired operator dashboard is no longer a published one-pager. The renderer
+# frames these in a `.apparatus-page` box (HTML) / a `#block` frame (Typst) — see the CSS
 # `.apparatus-page` swap-point block and `_APPARATUS_ONEPAGER_TITLES` in book_typst.py.
 _APPARATUS_ONEPAGER_LABELS = {"how-to-read-this-book", "the-mage-method-at-a-glance"}  # chapter members — matched by identity label
-_APPARATUS_ONEPAGER_APPENDIX_SLUGS = {"appendix-d-operators-dashboard"}  # appendix — off the renumber axis
+_APPARATUS_ONEPAGER_APPENDIX_SLUGS: set[str] = set()  # the two current appendices use ordinary prose layout
 # "What This Book Argues" — the six central claims. The renderer wraps its content in an `.argues-page`
 # class so the claims list reads as a deliberate front-matter feature (larger body, more air between
 # claims, accent numerals) rather than a manuscript page — see the CSS `.argues-page` block.
@@ -3658,12 +3658,22 @@ def build_operators_reference_chapters(part: int, for_print: bool = False,
     `[appendix: appendix-operators-reference]` cross-references) regardless of letter; the content-card slug
     follows the letter (`appendix-<letter>-<stem>`). `locator_figs` (v2) stamps `fig_prefix` for D80 monotonic
     figure numbering (`D`, then `D.1`)."""
-    return build_hand_authored_appendix(
+    chapters = build_hand_authored_appendix(
         part, letter=letter, part_name="Operator's Reference",
         opening_slug=_APPENDIX_OPERATORS_REFERENCE_OPENING_SLUG,
         opening_prose=_load_opening(_OPERATORS_REFERENCE_DIR / "_opening.md"),
         content_dir=_OPERATORS_REFERENCE_DIR, pages_source=_OPERATORS_REFERENCE_PAGES,
         locator_figs=locator_figs, locator_heading=True)
+
+    # Explicit card membership prevents a new prose section with the same stem
+    # (for example governance-conversion) from being mistaken for a printed card.
+    with (ROOT / "book-models/operator-cards.json").open(encoding="utf-8") as handle:
+        card_ids = {card["card-id"] for card in json.load(handle)["cards"]}
+    for chapter in chapters:
+        stem = chapter["slug"].removeprefix(f"appendix-{letter.lower()}-")
+        if stem in card_ids:
+            chapter["operator_card_id"] = stem
+    return chapters
 
 
 def _family_order_from_index() -> dict[str, int]:
@@ -3826,14 +3836,13 @@ def _appendices_divider_record(part: int, slug: str, title: str, subtitle: str, 
 
 
 def build_appendix_chapters(next_part: int, for_print: bool = False) -> list[dict]:
-    """Assemble the value-ordered appendix projection. Every caller — the web build, the print/PDF build, and
-    `expected_page_slugs` — routes through here, so the whole appendix is assembled in one place. The
-    appendices open with the Part I (Practice) divider (`_appendices_divider_record`), which takes `next_part`;
-    the Part II (Evidence) divider is inserted before Appendix G inside `_build_appendix_chapters_v2`. Each
-    appendix family keeps its own part number → its own TOC group / PDF bookmark parent."""
-    part1 = _appendices_divider_record(next_part, _APPENDICES_PART1_SLUG, _APPENDICES_PART1_TITLE,
-                                       _APPENDICES_PART1_SUBTITLE, "appendix-part-1-practice.md")
-    recs = [part1] + _build_appendix_chapters_v2(next_part + 1, for_print)
+    """Assemble the two published appendices for every output surface.
+
+    The retired appendix helpers remain available to catalogue/research consumers.
+    Publication membership comes only from _PUBLISHED_APPENDICES; neither legacy
+    Practice/Evidence divider is inserted into the reading order.
+    """
+    recs = _build_appendix_chapters_v2(next_part, for_print)
     # Resolve the authored-token vocabulary in every appendix body. The appendix builders assemble
     # body_md from authored .md WITHOUT the chapter parse chain (parse_chapter is the numbered-chapter
     # path), so appendix prose is resolved here — this is the single entry every caller (web, print,
@@ -4668,158 +4677,53 @@ def _brick_grid_html(group: str) -> str:
             + "".join(rendered) + "</div>")
 
 
+# The publication selection is distinct from the retained catalogue/research
+# appendices above. All formats and native-source discovery use this one roster.
+_PUBLISHED_APPENDICES = (
+    {
+        "letter": "A", "title": "MAGE Engineering Handbook",
+        "slug": "appendix-handbook", "directory": "appendix-handbook",
+        "pages": (
+            ("engineering-moves", "Engineering Moves: A Field Reference"),
+            ("model-coherence", "Model Coherence"),
+            ("governance-conversion", "Governance Conversion"),
+            ("governed-delegation", "Governed Delegation"),
+        ),
+    },
+    {
+        "letter": "B", "title": "Practicing MAGE",
+        "slug": "appendix-practicing-mage", "directory": "appendix-practicing-mage",
+        "pages": (
+            ("getting-started", "Getting Started"),
+            ("brownfield-migration", "Brownfield Migration"),
+            ("operating-a-gee", "Operating a GEE"),
+            ("measuring-mage", "Measuring MAGE"),
+        ),
+    },
+)
+
+
 def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list[dict]:
-    """The value-ordered appendix (build flag ON), in reading order: **A** MAGE Engineering Stacks ·
-    **B** Engineering Moves (hand-authored worked examples — problem → move → two realizations) ·
-    **C** Model Reference · **D** Operator's Reference · **E** How to Write a Skill ·
-    **F** Configuring MAGE Across the Product Lifecycle · **G** Adopting GenAI in an Organization ·
-    **H** Field Guide · **I** Evidence Ledger.
-    A–G use and extend MAGE; H–I inspect the evidence behind it. Each Part is routed through the shared hand-authored appendix scaffold, so its
-    TOC/pager/index render with no special-casing; figure numbers derive monotonically off each page's
-    `<letter>.<i>` locator (`fig_prefix`, D80). The `[appendix: <slug>]` markers resolve to the letters
-    automatically — the letter map reads each page's `part_title`. `_appendix_entries` is still read so the
-    stacks' `role:<slug>` member tokens resolve (a former-flagship member now links to its live WEB entry —
-    the print appendix emits no per-mechanism page; the complete catalogue lives online)."""
-    entries = _appendix_entries()
-    if not entries:
-        return []
+    """Build the two selected hand-authored appendices, identically for web/PDF.
 
-    # Every appendix mechanism record — the stacks' `role:<slug>` member tokens resolve against this. No
-    # record carries `appendix_num` now (the print projection emits no per-mechanism page), so
-    # `_resolve_stack_members` routes every member to its live web entry (uniform web-redirect posture; the
-    # former Flagship-Mechanisms pages were retired in the apparatus restructure).
-    page_by_slug = {rec["slug"]: rec for rec in entries}
-
+    Missing selected content is an error: silently filtering a section would change
+    numbering and could falsely make a broken publication selection look complete.
+    The catalogue census is deliberately not a prerequisite for this authored book.
+    """
     chapters: list[dict] = []
-
-    # ── APPENDIX A — MAGE Engineering Stacks. Leads the appendix: adopt a capability as a whole stack. The
-    #    opening front-door + one page per stack (A.1–A.7), figures numbered A.<i>-N. The R56 restructure
-    #    replaced the per-constituent deep-dive with a compact two-page synthesis (capability · composition
-    #    figure · MOVES table · why-together · web footer), so the legend/stub injection (`inline_legend`) is
-    #    OFF and the opening carries only the vendor-agnostic note — the capability map is authored directly in
-    #    `_opening.md`; the nine-capability taxonomy and the stack-dependency figure were removed (source §2.2,
-    #    §2.6). Clean "A.<i>" page headings via `locator_heading`.
-    stack_chapters = build_stack_chapters(
-        part=next_part, page_by_slug=page_by_slug,
-        letter="A", part_name="MAGE Engineering Stacks", locator_figs=True, inline_legend=False,
-        locator_heading=True,
-        opening_extras_md=_load_opening(_STACKS_DIR / "_vendor-note.md"))
-    chapters += stack_chapters
-
-    # ── A.8 Composing a Stack — hand-authored TAIL page appended AFTER the seven stack pages, NOT a `_STACKS`
-    #    entry (F4): the reusable skill is composition, not a stack, so keeping it out of `_STACKS` keeps
-    #    `stack_count`/`expected_stacks:7` honest and off the flagship model. Numbered as the next chapter in
-    #    the A Part (A.8), with `fig_prefix` "A.8" so its method diagram numbers "Figure A.8-N". Reuses the
-    #    same record shape the stack pages carry; the pager chains it after A.7 (so it is reachable).
-    _a8_i = max(c["chapter"] for c in stack_chapters) + 1
-    _a8_raw = (_STACKS_DIR / "composing-a-stack.md").read_text(encoding="utf-8")
-    chapters.append({
-        "slug": "appendix-a-composing-a-stack",
-        "part": next_part,
-        "part_title": stack_chapters[0]["part_title"],
-        "chapter": _a8_i,
-        "chapter_title": f"A.{_a8_i} Composing a Stack",
-        "body_md": _fold_wrapped_bullets(_a8_raw.strip()),
-        "is_appendix": True,
-        "mermaid": False,
-        "fig_prefix": f"A.{_a8_i}",
-    })
-
-    # ── APPENDIX B — Engineering Moves. Hand-authored worked examples: one page per recurring engineering
-    #    problem and the transferable MOVE that addresses it, each shown through two materially different
-    #    realizations. The front-door opening carries the C.0 prose + the problem→move overview map
-    #    (Figure B.0-1); content-page slugs are `appendix-b-<move>`. This REPLACES the retired print
-    #    Flagship-Mechanisms + Mechanism-Catalog blocks — the complete per-mechanism catalogue is web-only.
-    chapters += build_hand_authored_appendix(
-        next_part + 1, letter="B", part_name="Engineering Moves",
-        opening_slug=_APPENDIX_ENGINEERING_MOVES_OPENING_SLUG,
-        opening_prose=_load_opening(_ENGINEERING_MOVES_DIR / "_opening.md"),
-        content_dir=_ENGINEERING_MOVES_DIR, pages_source=_ENGINEERING_MOVES_PAGES,
-        locator_figs=True, locator_heading=True)
-
-    # ── APPENDIX C — Model Reference. A compact teaching pattern-book: seven sections showing the
-    #    representative forms a model takes (collapsed from the earlier 17 per-model cards, round-54).
-    #    Routed through the shared hand-authored appendix builder — no near-clone builder. Content-page
-    #    slugs are `appendix-c-<section>` stems; the front-door slug stays `appendix-models`.
-    chapters += build_hand_authored_appendix(
-        next_part + 2, letter="C", part_name="Model Reference",
-        opening_slug=_APPENDIX_MODELS_OPENING_SLUG,
-        opening_prose=_load_opening(_MODELS_DIR / "_opening.md"),
-        content_dir=_MODELS_DIR, pages_source=_MODEL_PAGES,
-        locator_figs=True, locator_heading=True)
-
-    # ── APPENDIX D — Operator's Reference. Hand-authored operational reference cards (the Operator's Dashboard
-    #    is D.1, the relocated back-matter dashboard).
-    chapters += build_operators_reference_chapters(
-        part=next_part + 3, for_print=for_print, letter="D", locator_figs=True)
-
-    # ── APPENDIX E — How to Write a Skill. Full content retained (design §13.7).
-    chapters += build_skill_recipe_chapters(
-        part=next_part + 4, for_print=for_print, letter="E", locator_figs=True)
-
-    # ── APPENDIX F — Configuring MAGE Across the Product Lifecycle (re-lettered from H). A conceptual
-    #    appendix: MAGE's DIFFERENTIAL adoption across five recurring engineering activities (Discovery,
-    #    Engineering & Realization, Product Management & Maintenance, Operations & Incidents, Assurance &
-    #    Compliance), each a distinct parameterization of Modeling/Alignment/reasoning/determinization
-    #    (Table F.1-1), then how independent local adoptions compose into the connected product GEE (F.8).
-    #    Closes the A–F "use and extend MAGE" band — the lifecycle extension naturally follows the working
-    #    apparatus in A–E. Front-door _opening.md carries the appendix intro; F.1 "One Product…" is the first
-    #    content page so the overview figure numbers F.1-1.
-    chapters += build_hand_authored_appendix(
-        next_part + 5, letter="F", part_name="Configuring MAGE Across the Product Lifecycle",
-        opening_slug=_APPENDIX_PRODUCT_LIFECYCLE_OPENING_SLUG,
-        opening_prose=_load_opening(_PRODUCT_LIFECYCLE_DIR / "_opening.md"),
-        content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
-        locator_figs=True, locator_heading=True)
-
-    # ── APPENDIX G — Adopting GenAI in an Organization. Closes the A–G "use and extend MAGE" band: how an
-    #    organization moves from individual assistance to bounded delegation by engineering the environment
-    #    around the reasoner, ending with a practical adoption procedure. G.1 "From Assistance to Delegation"
-    #    is the first content page so the new boundary figure numbers G.1-1.
-    chapters += build_hand_authored_appendix(
-        next_part + 6, letter="G", part_name="Adopting GenAI in an Organization",
-        opening_slug=_APPENDIX_ADOPTING_GENAI_OPENING_SLUG,
-        opening_prose=_load_opening(_ADOPTING_GENAI_DIR / "_opening.md"),
-        content_dir=_ADOPTING_GENAI_DIR, pages_source=_ADOPTING_GENAI_PAGES,
-        locator_figs=True, locator_heading=True)
-
-    # ── APPENDIX PART II divider — Evidence. Sits immediately BEFORE Appendix H; a level-1 PDF-bookmark
-    #    parent so H–I nest under it (as A–G nest under the Part I divider). Takes part next_part+7, one below
-    #    Appendix H, so H–I shift up one part number.
-    chapters.append(_appendices_divider_record(
-        next_part + 7, _APPENDICES_PART2_SLUG, _APPENDICES_PART2_TITLE,
-        _APPENDICES_PART2_SUBTITLE, "appendix-part-2-evidence.md"))
-
-    # ── APPENDIX H — Field Guide (re-lettered from G). The five exemplar teams as reference cards (a
-    #    single deck page). A team-first reference ("who was that team again?"), distinct from Section 6.6's
-    #    comparative read. Opens the Evidence Part (H–I): the external industrial reconstructions.
-    chapters += build_field_guide_chapters(part=next_part + 8, letter="H", locator_figs=True)
-
-    # ── APPENDIX I — Evidence Ledger: The DocAble Case (re-lettered from H). The raw count tables
-    #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Closes the Evidence
-    #    Part. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
-    #    the lone evidence-tables page is inlined under the front-door opening so the appendix reads as
-    #    one deck, not a Part with exactly one content chapter (which the only-child heading sensor reds —
-    #    a single-page evidence ledger is a legitimate shape, so give it the genuine single-page form
-    #    rather than splitting the three tables artificially). The Part-V "The Build" chapter links the
-    #    front-door via `[appendix: appendix-evidence-ledger]`, the slug single_deck preserves.
-    chapters += build_hand_authored_appendix(
-        next_part + 9, letter="I", part_name="Evidence Ledger: The DocAble Case",
-        opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
-        opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
-        content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
-        locator_figs=True, single_deck=True)
-
-    # ── APPENDIX J — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 (the removed
-    #    §6.3.5 and §6.5.5) as research-paper seeds outside the book's core argument; expected to be cut
-    #    before publication. Wired as a normal hand-authored appendix so it stays reachable via the pager.
-    #    Appended LAST so it re-letters no earlier appendix. CJ.2 re-homes the relocated model-induction figure.
-    chapters += build_hand_authored_appendix(
-        next_part + 10, letter="J", part_name="Crazy Ideas",
-        opening_slug=_APPENDIX_CRAZY_IDEAS_OPENING_SLUG,
-        opening_prose=_load_opening(_CRAZY_IDEAS_DIR / "_opening.md"),
-        content_dir=_CRAZY_IDEAS_DIR, pages_source=_CRAZY_IDEAS_PAGES,
-        locator_figs=True, locator_heading=True)
+    for offset, spec in enumerate(_PUBLISHED_APPENDICES):
+        directory = HERE / spec["directory"]
+        stems = ("_opening", *(stem for stem, _title in spec["pages"]))
+        missing = [directory / f"{stem}.md" for stem in stems
+                   if not (directory / f"{stem}.md").is_file()]
+        if missing:
+            raise SystemExit("published appendix source missing: " + ", ".join(map(str, missing)))
+        chapters += build_hand_authored_appendix(
+            next_part + offset, letter=spec["letter"], part_name=spec["title"],
+            opening_slug=spec["slug"],
+            opening_prose=_load_opening(directory / "_opening.md"),
+            content_dir=directory, pages_source=spec["pages"],
+            locator_figs=True, locator_heading=True)
     return chapters
 
 

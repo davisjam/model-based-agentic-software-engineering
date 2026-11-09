@@ -92,17 +92,17 @@
       "rationale": "Formative: the saturation oracle you steer generative validation by — an unexercised claim tells you which input to generate next."
     },
     {
-      "name": "MBSE navigation token-savings",
+      "name": "Representation reconstruction cost",
       "slug": "mbse-nav-token-savings",
-      "counts": "Tokens spent to reach an answer, model on versus off.",
-      "informs": "Certify the model earned its context budget.",
-      "healthy_direction": "Lower with the model on.",
+      "counts": "Tokens, elapsed time, and human effort required to answer a defined engineering question, compared under matched conditions.",
+      "informs": "Assess whether a representation reduces reconstruction effort while preserving answer quality.",
+      "healthy_direction": "Lower effort at comparable answer quality and task coverage.",
       "defined_in": {
         "label": "scenarios-and-the-joined-model",
         "anchor": ""
       },
       "mode": "summative",
-      "rationale": "Summative: a payoff verdict measured with the model mature. You certify the model earned its context budget; you do not steer the daily loop by it."
+      "rationale": "Summative: compare the costs and answer quality for a defined task set; a local result does not establish a general payoff."
     },
     {
       "name": "Support ratio",

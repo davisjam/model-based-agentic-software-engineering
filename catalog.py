@@ -1784,6 +1784,13 @@ def cmd_validate(_args) -> int:
               f"run `python3 book-models/lint_operator_card_page_span.py`")
         if span_gates:
             n_issues += len(span_over)
+    card_missing = ocps.presence_findings()
+    if card_missing:
+        card_gates = bool(getattr(ocps, "BLOCKING", False))
+        for finding in card_missing:
+            print(f"  [opspan] {'BLOCKING' if card_gates else 'AUDIT-ONLY'}: {finding}")
+        if card_gates:
+            n_issues += len(card_missing)
     # NAV-STATION LABEL PARITY — BLOCKING (green at landing). The subway map's station strip is projected
     # from nav-model.json, but each station NAME is a hand-authored abbreviation: no rule turns "MAGE in
     # Motion: Engineering Through Models" into "MAGE in Motion" and "The New Engineering Problem" into "The

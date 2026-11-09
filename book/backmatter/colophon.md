@@ -14,7 +14,7 @@ During editing, important properties of the manuscript were represented explicit
 
 The point was not to mechanize editorial judgment. It was to make consequential editorial knowledge explicit so changes could propagate coherently and decidable inconsistencies could be caught before publication.
 
-## The models and checks behind the manuscript
+**The models and checks behind the manuscript**
 
 <!-- label: manuscript-models -->
 <!-- table: *The manuscript's models.* Each structured model alongside the manuscript, the facet of the argument it carried, and the failure a consistency check on it prevented. [short: The manuscript's governing models and the failures they prevent] -->

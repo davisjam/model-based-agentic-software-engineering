@@ -1,0 +1,115 @@
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Governed Delegation connects the knowledge needed to do work with the boundaries and evidence needed to accept it. DocAble provides two settings in which to inspect that connection: a reasoner repairing a document, and an agent changing the engineering environment. Their mechanisms differ, but both need a representation of the subject, a bounded assignment or action interface, and a way to distinguish a proposed result from an accepted one.
+
+\section{Document Model and Typed Changeset}\label{heading:handbook-model-document-changeset}
+
+\textbf{Question and representation.} A repairer needs to inspect the document's structure and propose a change without manipulating arbitrary format-library objects. The PDF model provides typed access to document elements. An editing operation records a supported change in that vocabulary: its kind, target, and payload. An ordered changeset collects those operations.
+
+This excerpt shows the essential fields of a replacement-description operation. It is taken from \texttt{EditOp.cs}; optional fields are omitted.
+
+\begin{verbatim}
+public sealed class SetAltOp : EditOp
+{
+    public override string WireKind => "set-alt-text";
+    public string StructId { get; init; } = "";
+    public string BeforeAlt { get; init; } = "";
+    public string AfterAlt { get; init; } = "";
+    // Optional fields omitted.
+}
+\end{verbatim}
+
+The target is expressed in the document model's terms, rather than as a byte offset. A request can be inspected before it is applied, compared with another proposal, or associated with the judgment that produced it. The before-value is useful evidence for comparison and reversal; its presence alone does not establish that every editing path rejects stale requests. That requires a separately configured comparison and refusal policy.
+
+\textbf{Authority and consumers.} The document view describes the current artifact. The operation schema specifies which requests the interface can express. The proposed changeset records a producer's intended intervention. The applied-result record reports what the applier accepted or refused. These are four related representations with different meanings. Keeping them distinct prevents a proposed edit from silently becoming a claim about the resulting document.
+
+The wire vocabulary is shared with the browser editor, and schema-derived types help its clients agree about operation names and shapes. The PDF applier dispatches each supported operation to its handler, resolves targets against the document, and returns per-operation results. A failed operation can therefore be reported with its reason rather than silently counted as a completed repair.
+
+\textbf{Worked example: refusing a destructive proposal.} Suppose a producer classifies an element as decorative and proposes \texttt{mark-artifact}. First the applier requires an attributable verdict source. It then resolves the target and checks structural evidence. A heading, a formula, or authored replacement text can cause the request to be refused before mutation. The producer receives the failure and can reconsider its proposal. A plausible explanation from the producer does not bypass these conditions.
+
+The applier is not proving that the image is decorative. It is enforcing a smaller set of obligations over information it can inspect. The contextual classification remains a semantic judgment, and subsequent checks provide evidence about the result. This division allows a useful hard restriction even when the broader problem cannot be reduced to a predicate.
+
+\textbf{Correspondence and provenance.} The external editing route and migrated internal passes can use the same operation vocabulary and controlled application machinery. Applied edits have attribution records, while per-operation results identify refusals and failures. The two records must not be conflated: the producer's complete proposal may include changes that never occurred. A consumer reconstructing history must read evidence of application, not merely the proposed operation list.
+
+DocAble also models the boundary of this architecture. Remediation-graph nodes distinguish read-only work, direct editing, and production of typed patches. A code-parity analysis compares declared posture with implementation behavior. Some internal operations still mutate directly, so a picture of the common editing interface must not imply that every document change passes through it. The graph's migration account is useful precisely because it can name both the controlled path and its present limits.
+
+The representation permits different producers to be compared without giving each one an independent writer. A structured pipeline, an agent, and a human editor may reason differently about the same document. Whether one strategy is sufficiently good or economical is an empirical question; Chapter \magevalue{chapter:software-factories|num} reports the measured comparisons. The architecture supplies a common place to inspect proposals and apply supported changes. It does not establish that the producers have equal competence.
+
+\section{Work Orders and Context Delivery}\label{heading:handbook-work-models}
+
+\textbf{Question and representation.} An agent working in a large repository needs the knowledge relevant to its assignment. DocAble's work order makes that assignment computable. Alongside the engineering objective, it declares target files, new files, the work's genre and role, verification, acceptance criteria, and non-goals. The generator emits a Markdown document with fields that dispatch and checking tools can read.
+
+These fields come from an actual November 2026 brief to add a standards-evidence check. Only line wrapping has changed; unrelated fields are omitted.
+
+\begin{verbatim}
+<!-- target-files:
+  tools/lint/lint_all/registrations/batch_d.py,
+  system-models/standards_universe.py -->
+<!-- new-files-to-create:
+  tools/lint/lint-standards-evidence-escape-admission.py -->
+<!-- compute-class: lint-all-on-commit -->
+<!-- brief-genre: lint -->
+\end{verbatim}
+
+The two existing paths identify where the check must be registered and which model it consumes. The new-file declaration distinguishes a file that ought to exist from one the agent must create. The genre selects applicable authoring obligations. None of those fields specifies how to implement the check; the brief preserves freedom inside a consequential boundary.
+
+\textbf{Authority and consumers.} The work order specifies the assigned scope and acceptance conditions. Its file list also keys a join to the environment's knowledge. The component catalogue relates paths to architectural zones; constraint registries relate paths and genres to applicable obligations; the assembled brief presents the selected information to the agent. Dispatch validation checks such facts as a registered project, resolvable paths, and required instruction markers. These checks establish a usable assignment structure, while review judges whether its objective and proposed evidence are adequate.
+
+Context reaches the agent in three ways:
+
+\begin{enumerate}
+\item
+\textbf{Standing knowledge selected during composition.} An include-when table associates instruction snippets with conditions on the assignment. A brief that creates a lint receives the policy for introducing new checks in advisory mode. A brief that invokes a particular build tool receives its serialization instructions. Checks look for the required markers in the composed brief.
+\item
+\textbf{File-specific constraints selected at dispatch.} The extractor matches declared paths against engineering registries. For the November brief above, the assembled record contains 47 entries: 25 from the lint registry and the rest from banned-API rules, architectural invariants, code style, test requirements, and project context. Each entry identifies its scope and a source or corrective action. This was one selection for one declared scope, rather than a recommendation to give every agent a fixed quantity of context.
+\item
+\textbf{Retrieval as the task develops.} The agent can query components, service flows, designs, and operating runbooks when it needs another representation. When the actual file list differs from the plan, a later constraint-selection step can repeat the join for the expanded scope. The selected prose guides the agent; the applicable checks and permissions supply any enforcement.
+\end{enumerate}
+
+The November brief had a concrete origin. A comparison of the standards project's acceptance criteria with the implementation found that the exception data existed but the rule admitting those exceptions lacked its checker. The work order named that obligation, the files involved, and the verification commands. Model-based context selection then supplied the rules relevant to building the missing check. The fresh investigation captured this task during execution; earlier waves supplied the observed completion path. The example demonstrates how a represented obligation becomes an assignment without treating an in-progress task as an observed success.
+
+The extractor's usefulness depends on the representations it queries. It cannot recover an omitted design intention merely by matching paths. A no-match result should remain visible as a limit of the available knowledge, and an agent that changes scope needs to revisit the selection. This is also why local implementation details can remain in code: the work model needs to preserve scope and obligations, while repository inspection supplies details as they become relevant.
+
+\autoref{handbook-model-guided-delegation} connects the selected brief to the durable evidence used at completion.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
+\caption[Model-guided delegation and completion evidence]{A structured work order selects applicable engineering knowledge from maintained models. The agent implements and commits; completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion.}
+\label{handbook-model-guided-delegation}
+\end{figure}
+
+\section{Completion and Recovery}\label{heading:handbook-model-lifecycle}
+
+A work order needs a corresponding account of completion. DocAble's agent commits carry progress information, and a final validation marker distinguishes work prepared for integration from an interrupted sequence. Landing checks compare the committed changes with the shared repository. A completion message can prompt that inspection; it does not establish that the requested work arrived. Tests and review must still evaluate the acceptance conditions.
+
+The distinction mattered after an orchestrator restart on 9 November 2026. Background agents' completion notifications were lost, while their committed changes remained in Git worktrees. The operator inspected the branches, recovered and landed completed work, then released the affected slots. The session record and registry trace document that recovery. They support the practical claim that committed work can survive loss of the conversational channel, without requiring the agent to repeat its implementation.
+
+The product has a related ownership problem on a different substrate. In the current whole-document worker path, a database compare-and-set changes a job from queued to remediating before the engine runs. A concurrent delivery that loses that claim returns without rerunning the engine. Finalization uploads the result before conditionally marking the job complete; if another terminal decision has already won, the completion path does not overwrite it. In the GEE, a pool-slot model records assignment and reset states, while the worktree and landing evidence establish what can safely be retained or released.
+
+\autoref{handbook-two-lifecycles} keeps the common engineering questions visible without imposing one recovery algorithm on both systems.
+
+{\footnotesize
+\begin{longtable}{@{}p{0.21\linewidth}p{0.345\linewidth}p{0.345\linewidth}@{}}
+\caption[Two delegated-work lifecycles]{Document processing and agent dispatch preserve ownership and completion through different durable records and operating mechanisms.}\label{handbook-two-lifecycles}\tabularnewline
+\toprule
+Concern & Whole-document processing & Agent dispatch \\
+\midrule
+\endfirsthead
+\toprule
+Concern & Whole-document processing & Agent dispatch \\
+\midrule
+\endhead
+Work unit & A document job with a database identity. & An engineering brief assigned to a worktree. \\
+Ownership & A conditional database claim admits one consumer. & A recorded slot assignment reserves the worktree before reset and handoff. \\
+Durable result & Uploaded document and persisted terminal job state. & Committed changes, then verified integration into the shared branch. \\
+Liveness & Job progress and process telemetry, considered separately from terminal status. & Registry, process, and repository observations; a stale signal prompts inspection. \\
+Failure response & The engine records a failed terminal outcome; redelivery cannot reclaim a nonqueued job. & Inspect existing commits, resume or recover work, and release the slot after safe integration or disposition. \\
+Completion evidence & Upload precedes the conditional completed-state update. & Landing evidence plus the assignment's verification and acceptance checks. \\
+\bottomrule
+\end{longtable}
+}
+
+The state representations have distinct consumers. The runtime's conditional database operations enforce ownership and terminal changes. The pool's transition table constrains slot management, while its registry records which executor is assigned. Neither a reported idle process nor a stale heartbeat establishes that an agent's work can be destroyed. DocAble's operating procedure asks for further inspection and recovery rather than making that inference automatically.
+
+The appropriate boundary is the durable result. Model the ownership and transitions that protect it, retain enough evidence to decide what happened, and leave the executor's internal reasoning outside the lifecycle unless an engineering question requires it. A job's output and an agent's commits need different mechanisms; both need to outlive the conversation with the actor that produced them.

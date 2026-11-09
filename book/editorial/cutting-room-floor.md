@@ -13074,3 +13074,4564 @@ Building DocAble made this breadth concrete for me. The work crossed regulatory 
 ### A83 — Make the capstone’s closing requirement an explanation of evidence
 
 A capstone should therefore demonstrate more than a working artifact. Ask students to bring the **engineering case**.[^abet-capstone] The artifact should be one component of that case, alongside requirements, models, tradeoffs, measurements, validation evidence, and an explicit argument for acceptance. Students should also demonstrate that they can organize substantial work: decompose an objective, manage dependencies and integration, coordinate parallel realization, and adapt the plan as engineering evidence arrives. This extends rather than replaces the integrative purpose of the capstone. Students should demonstrate that they can produce a system while exercising informed control over it: organizing the work, evaluating the evidence for consequential properties, recognizing relevant assumptions and tradeoffs, and justifying acceptance of the result.
+
+## 2026-11-09 — Retire the A–J appendix assembly
+
+The author requested two appendices: MAGE Engineering Handbook and Practicing MAGE. These complete native-source snapshots preserve the former appendices, divider pages, citations, and references. The source directories and associated assets remain as retired research/catalogue inputs. They are not part of the new publication assembly. No navigation-pilot result is relocated into a chapter.
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`.
+
+### Original `book/latex/sources/appendix-stacks/_opening.tex`
+
+Lines 1–42; SHA-256 `28bffaafe9457e4b19fada363d9d327d4007f357104b23a3dae25d104fdfd783`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: what-a-stack-is
+% mage-auto-heading: the-seven-and-how-they-relate
+% mage-auto-heading: where-to-look
+% mage-auto-heading: why-stacks-exist
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+A single mechanism can eliminate one failure class. A useful engineering capability often requires several mechanisms.
+
+A provenance record tells us who changed an artifact, but not whether every mutation was recorded. A model can make an engineering fact explicit, but nothing guarantees that consumers read the current version or that the implementation still matches it. A sensor detects a failure; detection alone does not restore service. So mechanisms compose.
+
+\section{What a Stack Is}\label{heading:what-a-stack-is}
+
+An \textbf{engineering stack is a recurring set of mechanisms that together provide a useful engineering capability.} The stacks here are reference architectures, not prescriptions: a different substrate may provide the same capability with fewer, different, or stronger mechanisms.
+
+Start with the capability:
+
+% <!-- inline-quote -->
+
+\begin{quote}
+What must the environment be able to do, and which guarantees are required to make that claim true?
+\end{quote}
+
+The seven stacks that follow answer that question for recurring engineering concerns.
+
+\section{The Seven, and How They Relate}\label{heading:the-seven-and-how-they-relate}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-a-capability-map-1a4bbe8ef7.pdf}
+\caption{Seven reference engineering stacks and their common relationships. Arrows show relationships among capabilities that recurred in one system, not a required architecture or adoption order. Resource Mediation and Context Delivery are shown separately because they provide useful capabilities independently.}
+\label{appendix-a-capability-map}
+\end{figure}
+
+\section{Where to Look}\label{heading:where-to-look}
+
+A mechanism addresses a specific obligation or failure. A move names the transferable engineering judgment behind related mechanisms. A stack combines mechanisms into a reusable capability. Together, the stacks contribute to a governed engineering environment.
+
+This appendix starts from a capability and asks which mechanisms must work together to provide it. Appendix B starts from recurring problems and shows how the same engineering move can produce different mechanisms in different settings. Each stack gives its capability, constituent moves, dependencies, and required composition. Concrete implementations of these moves appear in the companion MAGE Mechanism Catalog.
+
+\section{Why Stacks Exist}\label{heading:why-stacks-exist}
+
+A stack is one form engineering capital can take when several mechanisms are needed to provide a capability. One failure may motivate a sensor. Another may expose a bypass that warrants a gate. A third may reveal missing provenance that warrants attribution. Mechanisms introduced separately can eventually depend on one another strongly enough to form a coherent stack.
+````
+
+### Original `book/latex/sources/appendix-stacks/_vendor-note.tex`
+
+Lines 1–6; SHA-256 `01f417a4f3afe0b4919c996890dfe7387b3537046095b6606ba89998a75cee96`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: a-note-on-implementations
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{A Note on Implementations}\label{heading:a-note-on-implementations}
+
+The book describes mechanisms on a concrete coding-agent substrate because a real system makes them easier to see. The mechanism may be portable even when its implementation is not. For example, a harness lifecycle hook, middleware layer, git hook, CI stage, or wrapper process can each provide an enforcement point at which a deterministic step executes independently of agent cooperation.
+````
+
+### Original `book/latex/sources/appendix-stacks/assurance-stack.tex`
+
+Lines 1–72; SHA-256 `d942b661e75c5f04ab96369de78c851bf989e9b20f4576e7b0eebf17ca7496ec`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{State the engineering obligations, identify the population they apply to, and produce evidence strong enough for each property.}
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when the important question shifts from
+
+% <!-- inline-quote -->
+
+\begin{quote}
+Did the tests pass?
+\end{quote}
+
+to
+
+% <!-- inline-quote -->
+
+\begin{quote}
+Have we named the relevant obligations, discharged each one appropriately, and shown the population is covered?
+\end{quote}
+
+That shift arrives whenever a property has to hold across a whole class of things --- every mutator, every config field, every seam --- and a green suite on a handful of examples no longer settles it.
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/assurance-stack-0fad62ad9e.pdf}
+\caption{The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves --- TEST for examples, LINT for structure, PROVE for semantics --- and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the required spine.}
+\label{assurance-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{SPEC} & State the obligation. \\
+\textbf{CENSUS} & Establish the population to which it applies. \\
+\textbf{DISCHARGE} & Apply tests, lints, proofs, or other evidence appropriate to the property. \\
+\textbf{COVER} & Join obligations back to evidence so omissions become visible. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+A checker establishes a property only for what it checks. A proof says nothing about obligations left out of its population; a census with no evidence attached merely enumerates debt. Assurance therefore requires both evidence for each obligation and confidence that the relevant population is covered. Use evidence suited to the property---an example test where an example suffices, a structural lint where structure is decisive, a bounded proof where semantics demand it---and map that evidence back to the full population so omissions remain visible.
+
+One rule runs throughout: check an obligation at the semantic level where the property becomes legible. A property about a document\textquotesingle s structure belongs in a check that reads structure, not one that scans bytes for it. This determines where the check belongs; it is not another mechanism in the stack.
+
+\textbf{Mechanisms:} census-derived obligations · semantic validator · bounded proof · coverage gate
+````
+
+### Original `book/latex/sources/appendix-stacks/auditable-transformation-stack.tex`
+
+Lines 1–69; SHA-256 `f7267015072ca6b4814ab8a7849003519dc29dcfcaead4a7c6bcc28d5a1b921f`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Make consequential transformations reconstructable and detect silent loss.} Record who changed what, then verify that the transformed artifact retained the required semantics.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it where:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Multiple actors or agents mutate important artifacts}, making attribution and transformation history consequential.
+\item
+  \textbf{Partial or bypassed instrumentation is plausible}, so "we log our writes" is not proof every write was logged.
+\item
+  \textbf{Transformation can silently lose product semantics} --- the output looks fine and is not.
+\item
+  \textbf{Incident reconstruction requires both facts at once}: who changed what, and whether the result remained faithful.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/auditable-transformation-stack-240085c450.pdf}
+\caption{The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the core path, every step required.}
+\label{auditable-transformation-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MARK} & Attach identity and context to the mutation. \\
+\textbf{EMIT} & Persist a structured record. \\
+\textbf{COVER} & Detect mutations that escaped attribution. \\
+\textbf{READ} & Reconstruct the transformation history. \\
+\textbf{FIDELITY} & Check that the transformed artifact retained its required semantics. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+Attribution without completeness produces a persuasive but partial history---convincing exactly where it is silent. Completeness without readable provenance proves only that records exist. And provenance alone cannot establish that a transformation preserved the product.
+
+The stack must therefore establish both causal history and product fidelity: How did this artifact reach its current state, and did the transformation preserve its required semantics?
+
+\textbf{Mechanisms:} provenance stamping · attribution coverage · fidelity gate
+````
+
+### Original `book/latex/sources/appendix-stacks/composing-a-stack.tex`
+
+Lines 1–114; SHA-256 `808809e0c936e7d00fe88e8860856f52cc10eeb6d3eee693c894a16470d90f0f`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: name-the-capability
+% mage-auto-heading: enumerate-the-failure-classes
+% mage-auto-heading: assign-one-guarantee-to-each-failure
+% mage-auto-heading: find-the-dependency-among-guarantees
+% mage-auto-heading: separate-the-load-bearing-path-from-the-enhancements
+% mage-auto-heading: match-the-substrate
+% mage-auto-heading: stop
+% mage-auto-heading: the-method-in-one-picture
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The seven preceding stacks are examples. The reusable method is how to compose one. Start from the capability, not the mechanisms.
+
+\section{1. Name the Capability}\label{heading:name-the-capability}
+
+Prefer
+
+% <!-- inline-quote -->
+
+\begin{quote}
+Every consequential mutation is reconstructable.
+\end{quote}
+
+over
+
+% <!-- inline-quote -->
+
+\begin{quote}
+We need provenance logging.
+\end{quote}
+
+The first states the engineering result. The second has already chosen a mechanism, before you know whether it is the right one or the only one.
+
+\section{2. Enumerate the Failure Classes}\label{heading:enumerate-the-failure-classes}
+
+Ask what would make the capability claim false. For reconstructable mutation:
+
+\begin{itemize}
+\tightlist
+\item
+  the actor is unknown;
+\item
+  a record is missing;
+\item
+  a bypass path exists;
+\item
+  history cannot be joined;
+\item
+  the transformation silently loses semantics.
+\end{itemize}
+
+Those failures determine what the composition must cover.
+
+\section{3. Assign One Guarantee to Each Failure}\label{heading:assign-one-guarantee-to-each-failure}
+
+Map each way the claim can break to the guarantee that closes it.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Failure & Guarantee \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+actor unknown & attribution \\
+record missing & emission \\
+bypass exists & coverage \\
+history fragmented & stable identity / join \\
+semantic loss & fidelity check \\
+\end{longtable}
+}
+}
+
+Do not add a mechanism because the case you are copying from used it. Add it because a failure class needs its guarantee.
+
+\section{4. Find the Dependency Among Guarantees}\label{heading:find-the-dependency-among-guarantees}
+
+Some guarantees only become meaningful once another exists.
+
+\begin{verbatim}
+MARK  →  EMIT  →  COVER  →  READ
+\end{verbatim}
+
+A completeness check is meaningful only after the population to be accounted for has been defined. A list of mechanisms becomes a stack when their guarantees depend on one another.
+
+\section{5. Separate the Load-Bearing Path from the Enhancements}\label{heading:separate-the-load-bearing-path-from-the-enhancements}
+
+For each mechanism, ask:
+
+% <!-- inline-quote -->
+
+\begin{quote}
+If I remove this, is the capability claim still valid?
+\end{quote}
+
+If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.
+
+\section{6. Match the Substrate}\label{heading:match-the-substrate}
+
+Do not reproduce a reference stack mechanically. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.
+
+\section{7. Stop}\label{heading:stop}
+
+The objective is not maximum governance. Stop when the smallest required stack makes the capability claim true for the failure classes that matter.
+
+\section{The Method in One Picture}\label{heading:the-method-in-one-picture}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-a-composing-a-stack-b82cb0c3c4.pdf}
+\caption{Composing an engineering stack. Begin with a capability and its failure classes. Identify the guarantees required to close those failures, select mechanisms that provide them, determine their dependencies, and retain the smallest required composition that makes the capability claim valid.}
+\label{appendix-a-composing-a-stack}
+\end{figure}
+````
+
+### Original `book/latex/sources/appendix-stacks/context-delivery-stack.tex`
+
+Lines 1–67; SHA-256 `be146f9a9e39a687a70f8fbb15090e65002e6bb91282526495de36a17f2e8370`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Put relevant engineering knowledge and obligations into the actor\textquotesingle s context before the decision they must inform.}
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{An actor must reason from engineering knowledge it does not carry} --- models, rules, prior decisions.
+\item
+  \textbf{The whole environment will not fit} in the actor\textquotesingle s working state, and dumping all of it into context merely relocates the navigation problem.
+\item
+  \textbf{Some obligations are critical and decidable}, and leaning on the actor to remember them is not good enough.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/context-delivery-stack-1b15a7023a.pdf}
+\caption{The context-delivery composition. Engineering knowledge --- models, rules, decisions --- splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor\textquotesingle s context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{context-delivery-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{STANDING} & Supply compact policy that applies broadly. \\
+\textbf{SLICE} & Retrieve the task-relevant model and engineering context. \\
+\textbf{DELIVER} & Make that context available to the actor for the next decision. \\
+\textbf{REINFORCE} & \emph{(strengthens)} Reassert important obligations at the point of action where useful. \\
+\textbf{GATE} & For critical decidable obligations, do not rely on delivery at all --- enforce them. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+An actor cannot reason through knowledge it never sees. But loading the entire engineered environment into every context only moves the navigation problem downstream: now the actor must find the relevant fact in a wall of them. Context delivery therefore combines compact standing policy with task-specific retrieval.
+
+Point-of-action reminders can reinforce obligations that still require judgment. Critical decidable obligations should instead become deterministic controls: context is a reasoning aid, not enforcement. Boot files, dynamic snippets, hooks, and nudges are current implementations; the portable pattern is standing policy, task-specific retrieval, and deterministic enforcement where warranted.
+
+\textbf{Mechanisms:} standing context · dynamic context injection · point-of-action guidance
+````
+
+### Original `book/latex/sources/appendix-stacks/governance-conversion-stack.tex`
+
+Lines 1–66; SHA-256 `a1c54fd3bf467655c7fdc18b4e6d73d949c2243b3c5d4fbdbc0caba5b2a106b4`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Turn recurring failures and judgments into durable engineering structure while keeping the control machinery legible.} Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The controls have grown their own complexity} --- they overlap, depend on one another, go stale, and carry blast radius nobody has mapped.
+\item
+  \textbf{The same failure keeps recurring}, and each fix is a one-off patch rather than a durable control.
+\item
+  \textbf{Lessons live in institutional memory} instead of in the environment, so they leave when the person who learned them does.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/governance-conversion-stack-2759b05e9a.pdf}
+\caption{The governance-conversion composition, a loop. The CONTROL MACHINERY --- rules, gates, models, sensors --- is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the core loop.}
+\label{governance-conversion-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MODEL} & Make the control machinery explicit --- rules, gates, models, sensors. \\
+\textbf{EXPOSE} & Query the machinery for gaps, staleness, and coupling. \\
+\textbf{CONVERT} & Interpret a recurring failure class into a new or strengthened control. \\
+\textbf{UPDATE} & Fold the control back into the machinery; the model changes with it. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control machinery itself becomes difficult to reason about. When that happens, model it explicitly.
+
+Once the machinery is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the machinery model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.
+
+\textbf{Mechanisms:} control census · control-dependency graph · governance conversion
+````
+
+### Original `book/latex/sources/appendix-stacks/model-coherence-stack.tex`
+
+Lines 1–70; SHA-256 `24b497efe04dbf9e1c5b6b586767ce3b03713f9549e569b64f9e258eba75b6ef`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Keep explicit engineering models connected to both their consumers and the implementation they describe.} A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engineers or agents rely on explicit system models} to reason about the substrate.
+\item
+  \textbf{Several consumers need the same engineering fact}, making copied facts sources of drift.
+\item
+  \textbf{Implementation can diverge from authored intent} with nothing to catch the split.
+\item
+  \textbf{Downstream artifacts can be generated} rather than hand-maintained in parallel.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-coherence-stack-a10f44da75.pdf}
+\caption{The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check --- model against world --- which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE enforces the modeled property. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{model-coherence-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{MODEL} & Put the engineering fact in an explicit representation. \\
+\textbf{CONSUME} & Read the authoritative representation instead of copying its facts. \\
+\textbf{CORRESPOND} & Compare model and implementation wherever an independent join exists. \\
+\textbf{DERIVE} & Compute correspondence from stable identities where possible. \\
+\textbf{EMIT} & Generate downstream artifacts when the model can own the fact. \\
+\textbf{GATE} & Reject disagreement where the modeled property warrants enforcement. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+A model nobody consumes is documentation. A model whose consumers copy its facts becomes another source of drift. A model consumed but never checked against reality can go confidently wrong---trusted precisely while it lies.
+
+Direct consumption avoids copied sources of truth; correspondence checks expose divergence between model and implementation; generation eliminates duplicate sources of truth where the model can own a fact outright; and gates make consequential disagreements blocking. Not every model needs every mechanism: a descriptive model may remain advisory. Add stronger mechanisms only when the representation warrants stronger enforcement.
+
+\textbf{Mechanisms:} executable source-of-truth model · meta-model consumption · drift/parity gate · derived traceability · model-derived generation
+````
+
+### Original `book/latex/sources/appendix-stacks/observe-react-stack.tex`
+
+Lines 1–66; SHA-256 `935ea765304d150414790788f24ff9850dff359b3dadbb33ba60cb24be305a69`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Detect when the running system diverges from its operating model and trigger a bounded response.}
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The system runs live}, and a divergence between expected and observed state has real cost.
+\item
+  \textbf{Detection and response have drifted apart} --- a dashboard nobody acts on, or a runbook nobody triggers.
+\item
+  \textbf{Continuing can be more dangerous than stopping}, so an unsafe state needs a mechanism empowered to halt progress, not just a note in a log.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/observe-react-stack-6f07191f66.pdf}
+\caption{The observe → react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is required. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the power to prevent unsafe progress. Solid path: the core path; dashed: enhancement. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{observe-react-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{WATCH} & Read runtime state against the operating model, so divergence surfaces as a signal. \\
+\textbf{RESPOND} & Connect each signal to a bounded recovery action. \\
+\textbf{BEAT} & \emph{(strengthens)} Emit periodic liveness so a wedged process reads differently from a slow one. \\
+\textbf{BLOCK} & \emph{(strengthens)} Refuse unsafe progress where continuing is worse than stopping. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+Observation without response is a dashboard. Response without observation is a runbook waiting for someone to notice the fault.
+
+WATCH and RESPOND form the core loop: observe divergence from the expected state, then trigger a bounded response. Add a heartbeat when silence must be distinguished from slow progress; add a blocking mechanism when continuing is more dangerous than stopping.
+
+\textbf{Mechanisms:} watchdog · heartbeat · bounded recovery · fail-closed gate
+````
+
+### Original `book/latex/sources/appendix-stacks/resource-mediation-stack.tex`
+
+Lines 1–65; SHA-256 `2049a73812835e9a354e9fd49723a6a618094ead507b74e8fff1cb47be38d170`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-capability
+% mage-auto-heading: when-this-stack-earns-its-keep
+% mage-auto-heading: the-composition
+% mage-auto-heading: constituent-moves
+% mage-auto-heading: why-these-travel-together
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\section{The Capability}\label{heading:the-capability}
+
+\textbf{Prevent actor timing from becoming accidental concurrency policy for a shared resource.} When actors contend for a scarce resource, move admission policy out of their timing and into an explicit control.
+
+\section{When This Stack Earns Its Keep}\label{heading:when-this-stack-earns-its-keep}
+
+Reach for it when:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Actors contend for a scarce resource} --- a test runner, a build host, a rate-limited API --- and their arrival order decides who wins.
+\item
+  \textbf{Availability has become an emergent property} of when jobs happen to start, rather than a stated policy.
+\item
+  \textbf{Capacity should flex under live pressure}, but only once a fixed policy and a single admission point already exist.
+\end{itemize}
+
+\section{The Composition}\label{heading:the-composition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/resource-mediation-stack-7443deee0a.pdf}
+\caption{The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N\textgreater1 are settings of the same mediator, not separate stacks. Solid path: the required path. Dashed attachment: a useful enhancement, not required for the capability.}
+\label{resource-mediation-stack}
+\end{figure}
+
+\section{Constituent Moves}\label{heading:constituent-moves}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Move
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{DECLARE} & State which resource is scarce and what capacity is acceptable. \\
+\textbf{MEDIATE} & Route access through one admission point. \\
+\textbf{ADAPT} & \emph{(strengthens)} Modify effective capacity from live pressure where justified. \\
+\end{longtable}
+}
+}
+
+\section{Why These Travel Together}\label{heading:why-these-travel-together}
+
+Unmediated contention makes resource availability an emergent property of actor timing---whoever starts first wins, and the policy is an accident. A mediator replaces that accident with explicit policy: one admission point and a declared capacity. The engineering move is not the semaphore; it is moving contention policy out of individual actors and into one shared control. Whether that control admits one actor or many is a setting, not a different mechanism.
+
+Adaptive control can improve utilization, but only after a fixed policy and common admission point exist. Capacity cannot be tuned coherently when no single control owns it.
+
+\textbf{Mechanisms:} exclusive mediator · bounded mediator · pressure-responsive admission
+````
+
+### Original `book/latex/sources/appendix-skill-recipe/_opening.tex`
+
+Lines 1–24; SHA-256 `0cace4ef9057dc56404a6fdc43906bb8d063e199a2f2e4a9b5235994f867a98e`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Modeling a domain for an agent}
+
+Skills can play three broad roles. A \emph{tool-skill} teaches an agent how to use a particular capability or interface. A \emph{process-skill} packages a recurring procedure so that the agent can carry it out consistently rather than reconstructing the workflow each time. A \emph{mastery-skill} packages reusable expertise for work that continues to require substantial judgment.
+
+These categories describe a skill\textquotesingle s primary role, not its format. A process-skill may contain steps that require judgment, and a mastery-skill may prescribe procedures. The distinction is where the reusable value principally lies: using a capability, carrying out a process, or exercising domain judgment.
+
+This appendix focuses on process- and mastery-skills. Tool-skills matter too, but their details are more closely tied to the capabilities and interfaces exposed by a particular harness. The mechanisms by which agents discover and invoke tools continue to evolve --- from command-line wrappers and vendor-specific interfaces to MCP and whatever follows them. Current platform documentation is therefore the right source for those mechanics.
+
+Process and mastery raise a more durable engineering problem. Much engineering knowledge begins in an inconvenient form: an experienced engineer knows how work is done or how to judge what should be done. That knowledge may be scattered across conventions, examples, repeated instructions, documentation, and experience. Giving an agent more instructions does not necessarily give it a coherent process or way of reasoning.
+
+Nor must such knowledge ultimately live in a skill. Learning can develop all three capabilities. Reinforcement learning, for example, can improve how an agent uses tools, carries out recurring processes, and exercises judgment when the training environment supplies useful feedback about those behaviors. A model trained extensively against a particular engineering environment could therefore internalize knowledge that otherwise might have been supplied through a tool-, process-, or mastery-skill.
+
+The practical problem is that a general foundation model was not trained specifically for your engineering environment or your standards for good engineering. It does not automatically contain your current architecture, models, tools, procedures, obligations, failure history, tradeoffs, or standards for acceptable work. Those facts may also change much faster than the foundation model. Fine-tuning or reinforcement learning can move some of this knowledge into model behavior, but doing so requires examples, evaluators, rewards, or other feedback that expresses what successful behavior means in that environment.
+
+Skills provide another engineering option: make the relevant knowledge explicit outside the model weights. A process-skill can make a recurring way of working explicit; a mastery-skill can make reusable distinctions and judgment explicit. Both can be inspected, revised, versioned, and supplied to different models without retraining them. This is Modeling in miniature: make engineering knowledge explicit so the agent does not have to reconstruct it.
+
+Skills remain soft mechanisms. They can improve how an agent works and guide the choices it makes; they cannot guarantee that the agent follows that guidance. Learned behavior has the same basic limitation: increasing the probability of acceptable behavior is different from independently enforcing an engineering obligation. Where a property must hold, encode it in Alignment through constraints or gates that control actions independently of the producing agent. A gate may rely on separate checkers.
+
+The three skills introduced earlier in the book provide worked examples of the distinction. self-communicate and self-governance are mastery-skills: they package reusable expertise for domains in which the agent must continue to exercise substantial judgment. self-operate is a process-skill: it packages the recurring operational lifecycles through which the engineered environment is run. Together they also show why the boundary is not absolute: a process can contain judgment, and mastery can prescribe procedures.
+
+\href{appendix-e-theory.html}{Theory} gives the construction methods and quality bar; \href{appendix-e-applying-the-recipe.html}{Applying the Recipe} applies them to the three skills. By the end, you should be able to distinguish tool-, process-, and mastery-skills; recognize when each is appropriate; and package recurring engineering procedure or judgment so that an agent can inherit it rather than reconstruct it.
+````
+
+### Original `book/latex/sources/appendix-skill-recipe/applying-the-recipe.tex`
+
+Lines 1–243; SHA-256 `6f17cff6c260f348a29a528e58b747da6e2de86626f6fcae2ebd8eb07c7ce29f`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: self-communicate
+% mage-auto-heading: problem
+% mage-auto-heading: fundamental-model
+% mage-auto-heading: orthogonal-models
+% mage-auto-heading: governing-principle
+% mage-auto-heading: layout
+% mage-auto-heading: lesson
+% mage-auto-heading: self-governance
+% mage-auto-heading: problem-1
+% mage-auto-heading: fundamental-model-1
+% mage-auto-heading: orthogonal-models-1
+% mage-auto-heading: governing-principle-1
+% mage-auto-heading: layout-1
+% mage-auto-heading: lesson-1
+% mage-auto-heading: self-operate
+% mage-auto-heading: problem-2
+% mage-auto-heading: fundamental-model-2
+% mage-auto-heading: process-structure
+% mage-auto-heading: governing-principle-2
+% mage-auto-heading: layout-2
+% mage-auto-heading: lesson-2
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- point: two-recipes-applied-to-three-skills-with-different-roles | Two recipes applied to three skills with different roles. | terms: self-communicate, self-governance, self-operate, process-skill -->
+
+This section applies the two recipes to three skills with different roles. self-communicate and self-governance are mastery-skills: their primary value is reusable expertise for work that continues to require substantial judgment. self-operate is a process-skill: its primary value is the recurring operational lifecycle it preserves. Together they show both why the distinction matters and why it is not absolute: mastery can prescribe procedures, and a process can contain judgment.
+
+\section{self-communicate}\label{heading:self-communicate}
+
+\subsection{Problem}\label{heading:problem}
+
+The fleet and its operator produce prose and diagrams constantly --- control descriptions, design docs, mechanism entries, runbooks, handoffs, and the orchestrator\textquotesingle s own status reports and tradeoff explanations to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate document structure, LLM tells, and poor figures. The problem is not generating prose but producing it consistently against an engineering standard. The skill packages the craft needed to do that.
+
+\subsection{Fundamental Model}\label{heading:fundamental-model}
+
+\textbf{Rhetoric as craft.} Treat technical writing as a set of named techniques rather than taste alone. Document form, lexicon, voice, audit, and visualization then become independent facets of that model.
+
+\subsection{Orthogonal Models}\label{heading:orthogonal-models}
+
+One file per facet.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Rhetoric} (\texttt{writing/rhetoric.md}) --- the device toolkit; sentence shape.
+\item
+  \textbf{Document form} (\texttt{writing/engineering.md}) --- the document\textquotesingle s Diátaxis mode: tutorial, how-to, reference, or explanation.
+\item
+  \textbf{Lexicon} (\texttt{writing/lexicon.md}) --- one concept, one word.
+\item
+  \textbf{Voice} (\texttt{writing/voice.md}) --- the register and sound.
+\item
+  \textbf{Audit} (\texttt{writing/audit.md}) --- the grading procedure.
+\item
+  \textbf{Visualization} (\texttt{drawing/diagrams.md}, Mermaid-first, with \texttt{charts.md} and \texttt{tables.md} for data figures) --- the shapes prose carries poorly.
+\end{itemize}
+
+Each answers a different question about the document: form chooses its structure, lexicon its terms, voice its register, rhetoric its sentence-level technique, visualization what should be drawn, and audit how the result is checked.
+
+\subsection{Governing Principle}\label{heading:governing-principle}
+
+The governing principle is that representation should serve rather than distract from the idea. Apply the facets in order: choose the document form, draft in the house voice using varied rhetorical devices, use canonical terms from the lexicon, draw relationships that prose carries poorly, and audit before shipping. One additional rule applies throughout: name the concept once, then use the name.
+
+\subsection{Layout}\label{heading:layout}
+
+% mage-code-language: text
+\begin{verbatim}
+self-communicate/
+  SKILL.md
+  writing/   rhetoric.md  engineering.md  lexicon.md  voice.md  audit.md
+  drawing/   diagrams.md  charts.md  tables.md  svg-audit.py
+\end{verbatim}
+
+One directory per concern, one file per facet --- the tree \emph{is} the orthogonal-model set.
+
+\subsection{Lesson}\label{heading:lesson}
+
+self-communicate is a mastery-skill. Rhetoric-as-craft turns a collection of style rules into a model through which the agent can exercise communication judgment. Separate facets can then load independently and be reused by other skills. The skill remains soft; where an audit result must block delivery, the audit belongs in a gate.
+
+\section{self-governance}\label{heading:self-governance}
+
+\subsection{Problem}\label{heading:problem-1}
+
+An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter, queries the repository --- and still models the wrong thing, makes binding a fact that should stay advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool. It is the engineering method itself: knowing \emph{what to model, what must hold, and which judgment is worth making durable.}
+
+Self-governance packages that method as a mastery-skill. It teaches the agent to recognize the situation, choose a Modeling or Alignment move, act through the governed environment, and decide what should persist. The skill carries the method, not the codebase\textquotesingle s facts. Concrete system knowledge---what the codebase intends, contains, and guarantees---must come from model providers rather than the skill\textquotesingle s memory. Mastery of the method and knowledge of the engineered object are separate things.
+
+\subsection{Fundamental Model}\label{heading:fundamental-model-1}
+
+\textbf{The MAGE engineering loop.} Everything in the skill supports one cycle, run whenever the agent engineers:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Recognize.} What situation am I facing?
+\item
+  \textbf{Model or align.} What must be understood? What must hold?
+\item
+  \textbf{Choose the move and capability.} What engineering move fits, and which capability performs it?
+\item
+  \textbf{Act through the GEE.} The skill proposes; the environment supplies consequence.
+\item
+  \textbf{Learn.} What did the evidence show, and should any lesson become durable?
+\end{itemize}
+
+Self-governance is not a third MAGE activity; it applies Modeling and Alignment to the agent\textquotesingle s own engineering work.
+
+\subsection{Orthogonal Models}\label{heading:orthogonal-models-1}
+
+The loop\textquotesingle s questions are independent, so each becomes its own facet. Each of six directories answers one question; the router identifies the question and directs the agent to the corresponding facet.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{modeling/}} --- Which representation would help, and how should it be improved? Carries the six model families, modeling moves, and a repertoire of established modeling techniques and their tradeoffs.
+\item
+  \textbf{\texttt{practice/}} --- What situation is this, and how much intervention is warranted?
+\item
+  \textbf{\texttt{system/}} --- What is true of this system? Retrieves concrete models through a provider contract and records their epistemic status.
+\item
+  \textbf{\texttt{skills/}} --- Which available capability performs the chosen move?
+\item
+  \textbf{\texttt{alignment/}} --- What should remain true without repeated human checking? Carries the mechanism repertoire and census.
+\item
+  \textbf{\texttt{learning/}} --- What should persist from this episode? Carries governance conversion and recurring failure analysis.
+\end{itemize}
+
+% <!-- index-def: governance-target-agent -->
+
+% <!-- index-def: governance-target-models-bridge -->
+
+% <!-- index-def: governance-target-product -->
+
+The facets answer independent questions: recognizing the situation does not select the model, choosing a move does not determine its enforcement, and knowing the method does not supply system facts. Load only the facet the current question requires.
+
+\subsection{Governing Principle}\label{heading:governing-principle-1}
+
+\emph{Apply MAGE to the work itself: model what must be understood, enforce what must hold, and convert recurring judgment into durable engineering structure.} Five operating rules follow:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Model before guessing.} Reach concrete system truth through a provider; do not reconstruct it from memory or raise confidence by rhetoric.
+\item
+  \textbf{Ask what should become machinery.} At every failure, ask whether the lesson deserves durable structure---and default to no. Most failures should not become new governance.
+\item
+  \textbf{Method before tool.} Choose the move the situation calls for, then the capability that performs it, not a capability because it is at hand.
+\item
+  \textbf{Right-size the fix.} Prefer the smallest sound change that closes the class; propose a larger intervention rather than implementing it reflexively. Prevention by construction beats detection where the action space can honestly close.
+\item
+  \textbf{Escalate judgment, not difficulty.} Escalate when authority or consequence requires a human decision, not merely because the problem is hard.
+\end{itemize}
+
+\textbf{Self-governance is not self-certification.} The agent may select, model, propose, and check, but its belief that the work is correct is not evidence that it is. A mastery-skill guides a probabilistic agent; it cannot by itself prevent unacceptable work. The skill may propose, scaffold, or invoke constraints, sensors, gates, and their supporting checks, but enforcement must come from the environment. Deciding evidence must not consist merely of the producing reasoner endorsing its own result.
+
+\subsection{Layout}\label{heading:layout-1}
+
+% mage-code-language: text
+\begin{verbatim}
+self-governance/
+  SKILL.md            the router — the loop, the routing table, the ambient stance
+  principles.md       the portable engineering method (the ambient reflexes)
+  modeling/    repertoire.md  moves.md
+  practice/    situations.md  judgment.md
+  system/      model-access.md
+  skills/      repertoire.md
+  alignment/   repertoire.md  mechanisms/INDEX.md  mechanisms/<target>/<family>/<mechanism>.md
+  learning/    governance-conversion.md
+  templates/   system-models-starter-kit.md  state-machine-model-starter.py  …
+               — scaffolds for creating system models, never system-specific truth
+\end{verbatim}
+
+One directory per question, one file per facet. The mechanism census lives under \texttt{alignment/}, where prevent-versus-detect now sits one level below the loop.
+
+\subsection{Lesson}\label{heading:lesson-1}
+
+self-governance is a mastery-skill whose subject is the MAGE method itself. Its fundamental model is therefore the engineering loop, not a taxonomy of mechanisms.
+
+The Modeling--Alignment boundary matters especially here: self-governance can propose and scaffold a constraint or gate, including any checks it needs, but the resulting mechanism --- not the skill\textquotesingle s judgment --- must supply the enforcement.
+
+It also composes with the other skills: self-governance designs models and mechanisms, self-operate runs them, and self-communicate governs how they are represented.
+
+\section{self-operate}\label{heading:self-operate}
+
+% <!-- point: self-operate-packages-recurring-operations-as-a-process-skill | self-operate packages recurring operational work as a process-skill. | terms: self-operate, process-skill, lifecycle -->
+
+\subsection{Problem}\label{heading:problem-2}
+
+Operating an agent-fleet repository involves recurring but heterogeneous tasks --- dispatch and recover agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron health, RCA an ambiguous signal. Without a model, each failure must be diagnosed almost from scratch. self-operate packages this recurring work as a process-skill: a lifecycle map routes symptoms to classes, and typed runbooks make the corresponding responses repeatable.
+
+\subsection{Fundamental Model}\label{heading:fundamental-model-2}
+
+\textbf{The engineering lifecycles.} A fleet repo runs the same few: manage-agents, manage-context, manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Each operational symptom is routed to a lifecycle, so every break meets a \emph{class} instead of being met cold. The lifecycle map gives the process its state and routing structure: it turns operational sprawl into a small set of recurring classes.
+
+\subsection{Process Structure}\label{heading:process-structure}
+
+Three structures organize the process:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Lifecycle map / symptom catalog} --- identifies which operational lifecycle owns the problem.
+\item
+  \textbf{Typed runbooks} (\texttt{examples/runbook-*.md}) --- specify what to do, distinguishing runnable, judgment-automatable, and judgment-irreducible steps.
+\item
+  \textbf{Hooks} (\texttt{hooks/}) --- determine when a known reaction should fire automatically.
+\end{itemize}
+
+These answer three different process questions: where am I, what should happen next, and when should that response trigger?
+
+Supporting resources include build and handoff templates (\texttt{templates/}) for cases where operational work crosses into implementation.
+
+\subsection{Governing Principle}\label{heading:governing-principle-2}
+
+Establish the healthy state first, then classify deviations from it. Route each symptom to a lifecycle and run the corresponding procedure. When diagnosis reveals that a model, mechanism, or obligation should change, return that engineering decision to self-governance. Automate deterministic steps; prepare irreducible judgments for escalation.
+
+\subsection{Layout}\label{heading:layout-2}
+
+% mage-code-language: text
+\begin{verbatim}
+self-operations/
+  SKILL.md
+  principles.md
+  examples/   lifecycle-L1..L6-*.md   runbook-*.md
+  hooks/      reflection_facet*.py  hook_*.py  _hook_*.py  README.md  ...
+  templates/  pointers-starter.yaml  runbooks-starter.yaml
+              gen-and-lint-partb-starter.py  EPIC-TEMPLATE-starter.md  design-doc-template-starter.md
+\end{verbatim}
+
+\subsection{Lesson}\label{heading:lesson-2}
+
+self-operate is a process-skill. Its reusable asset is the operating lifecycle: identify the affected lifecycle, select the corresponding runbook, and determine which steps can be executed, delegated, or escalated. Typed runbooks distinguish directly runnable steps from those requiring automatable or irreducible judgment. The process therefore contains judgment without becoming a mastery-skill; its primary purpose is to preserve and run the operating procedure. Self-governance changes models and mechanisms; self-operate runs them and returns evidence; self-communicate governs their representations.
+
+\autoref{fig-skill-composition} shows two kinds of skill acting on one governed engineering environment: mastery-skills shape how the fleet reasons about communication and engineering, while a process-skill runs the operational lifecycles through which the environment is used.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/figure-composition-275438eacb.pdf}
+\caption{\emph{Three complementary skills act around one governed engineering environment.} Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment.}
+\label{fig-skill-composition}
+\end{figure}
+
+The distinction is one of primary role, not isolation. Each skill has one reason to change: self-communicate changes when the organization\textquotesingle s communication mastery changes; self-governance changes when its engineering method changes; self-operate changes when its operating process changes. Explicit interfaces connect them. Self-governance produces models and mechanisms that self-operate uses; self-operate returns evidence; self-communicate governs their representations.
+````
+
+### Original `book/latex/sources/appendix-skill-recipe/theory.tex`
+
+Lines 1–127; SHA-256 `a301d74633e47ce2c03e8cd7285edf72874df5279a0eaff50671867cbffc2135`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: anatomy
+% mage-auto-heading: process-skills-from-recurring-work-to-procedure
+% mage-auto-heading: mastery-skills-from-domain-knowledge-to-model
+% mage-auto-heading: failure-modes
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- point: different-skill-kinds-require-different-structures | Different skill kinds require different structures; two get recipes. | terms: process-skill, mastery-skill, skill-soft-control -->
+
+Skills of different kinds require different structures. Tool-skills mostly package capability-specific guidance. Process-skills preserve recurring ways of working. Mastery-skills preserve reusable models and judgment. This section gives construction methods for the latter two and a common set of failure modes to test before shipping.
+
+\section{Anatomy}\label{heading:anatomy}
+
+% <!-- point: progressive-disclosure-is-the-authoring-ladder | Progressive disclosure is the authoring ladder for a skill. | terms: context-window -->
+
+A skill is a directory with one required file and optional bundled resources. \textbf{\texttt{SKILL.md}} carries YAML frontmatter containing a name and a description, followed by the instructions the agent loads when the skill triggers. \textbf{Bundled resources} hold references, examples, scripts, and other material that the agent reads only when needed.
+
+This structure supports progressive disclosure: the name and description make the skill discoverable, \texttt{SKILL.md} carries its governing structure, and bundled resources supply detail on demand. Put triggering information in the description, the governing model in \texttt{SKILL.md}, and bulk reference material in resources.
+
+\begin{quote}
+\textbf{Implementation note (August 2026).} Anthropic\textquotesingle s current skill-authoring guidance recommends keeping loaded context concise, putting triggering information in the description, keeping \texttt{SKILL.md} under roughly 500 lines, moving invocation-specific detail into linked reference files, matching instruction specificity to task fragility, and evaluating skills on representative tasks. These mechanics will change; consult current platform documentation when implementing a skill. This appendix focuses on what knowledge the skill should contain and how to structure it. \emph{(Source: Anthropic, "Skill authoring best practices.")}
+\end{quote}
+
+% <!-- point: three-skill-types-place-different-demands-on-structure | The three skill types place different demands on structure. | terms: tool-skill, process-skill, mastery-skill -->
+
+The three skill types place different demands on this structure. A tool-skill teaches use of a capability: scope it to one capability, make its triggering conditions concrete, specify fragile operations precisely, and prefer deterministic scripts where generated procedures would drift. A process-skill needs to make the recurring workflow, its state, and its decision points clear. A mastery-skill needs to expose the models and distinctions through which the agent should reason. When a process- or mastery-skill depends on a specialized tool, factor the tool-specific guidance into its own tool-skill and refer to it.
+
+\section{Process-Skills: from Recurring Work to Procedure}\label{heading:process-skills-from-recurring-work-to-procedure}
+
+% <!-- point: a-process-skill-begins-with-a-recurring-unit-of-work | A process-skill keeps a recurring procedure from reconstruction. | terms: process-skill -->
+
+A process-skill begins with a recurring unit of work rather than a domain model. Its purpose is to keep a useful procedure from being reconstructed differently on every invocation.
+
+% <!-- point: build-a-process-skill-in-three-steps-state-decisions-transitions | Build a process-skill: identify state, type decisions, package transitions. | terms: process-skill, lifecycle -->
+
+Build a process-skill in three steps.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Step 1 --- Identify the recurring process and its state.} Define the unit of work being repeated and the states through which it can move. Establish what a healthy or completed state looks like before cataloging failures and exceptions.
+\item
+  \textbf{Step 2 --- Type the decisions within the process.} Some steps are mechanically determined and should be executed directly where practical. Others require bounded judgment that an agent can exercise given the right state and criteria. Still others require human judgment because responsibility, consequence, or missing evidence prevents delegation. Make those distinctions explicit rather than representing every step as undifferentiated prose.
+\item
+  \textbf{Step 3 --- Package the procedure and its transitions.} Give the agent enough information to determine where it is in the process, which procedure applies, what evidence each step produces, and what state follows. Use executable operations for deterministic steps where practical; reserve instructions for choices that actually require reasoning.
+\end{itemize}
+
+This construction mirrors the Execute / Delegate / Escalate distinction from \href{4.4-engineering-the-environment.html}{Engineering the Environment}. A process-skill does not turn every process into automation. It makes the process explicit enough that each part can be handled by the appropriate mechanism or reasoner.
+
+% <!-- point: the-discriminator-is-which-asset-survives-improved-judgment | The discriminator: which asset survives if individual judgments improve. | terms: process-skill, mastery-skill -->
+
+A useful test is whether the skill\textquotesingle s primary asset survives if the individual judgments within it improve. If the enduring value is the sequence, state, routing, and handoffs, it is probably a process-skill. If the enduring value is the expertise used to decide what should happen, it is probably a mastery-skill.
+
+\section{Mastery-Skills: from Domain Knowledge to Model}\label{heading:mastery-skills-from-domain-knowledge-to-model}
+
+% <!-- point: build-a-mastery-skill-in-three-layers-top-idea-first | Build a mastery-skill in three layers, top idea first. | terms: mastery-skill, orthogonal-models -->
+
+Build a mastery-skill in three steps.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Step 1 --- Find the domain\textquotesingle s fundamental model.} Name the model that makes the rest of the domain intelligible: the frame you would teach first to someone learning it. Do this before writing the resources. If you cannot state the fundamental model clearly, you are likely to produce a collection of tips rather than a coherent way of reasoning.
+\item
+  \textbf{Step 2 --- Layer orthogonal models onto it.} Decompose the domain into independent facets and represent each separately. Two facets that substantially overlap probably belong together; an important concern that fits nowhere indicates a gap in the decomposition. This separation also supports progressive disclosure --- the agent can load a facet only when the task requires it.
+\item
+  \textbf{Step 3 --- Write the governing principle in \texttt{SKILL.md}.} The top-level file should not merely enumerate the resources. It should explain how the facets fit together and when to use each one. \texttt{SKILL.md} should provide enough structure to reason with the skill; the resources supply the detail required for particular tasks.
+\end{itemize}
+
+% <!-- point: a-recipe-built-skill-composes-and-adopts-in-layers | A recipe-built skill composes and adopts in layers. | terms: self-communicate, self-governance, self-operate -->
+
+The structure supports composition and incremental adoption. Another skill can refer to the underlying model rather than duplicate it, and the fundamental model can be useful before every facet exists.
+
+Orthogonal skills can also compose. Give each skill one reason to change, then use explicit interfaces to let one consume models, mechanisms, or observations another produces.
+
+\section{Failure Modes}\label{heading:failure-modes}
+
+Skills can fail in several predictable ways.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The description is vague.} The skill exists but does not trigger when needed. Put concrete task cues, formats, tools, or other recognizable triggers in the description.
+\item
+  \textbf{\texttt{SKILL.md} becomes a manual.} Exhaustive reference material consumes context and obscures the structure that should guide the work. Keep the top-level file focused and move detail into resources.
+\item
+  \textbf{A process-skill has no explicit process.} The skill becomes a collection of procedures and exceptions without a clear lifecycle, state, or routing rule. Make the recurring unit of work and its transitions explicit.
+\item
+  \textbf{A mastery-skill has no fundamental model.} The skill becomes a collection of locally useful tips with no coherent way to reason across them. Return to the fundamental model.
+\item
+  \textbf{The decomposition overlaps.} Multiple resources partially encode the same concern, forcing the agent to reconcile them. For a process-skill, redraw the lifecycle or responsibility boundaries; for a mastery-skill, merge overlapping facets or redraw them along independent axes.
+\item
+  \textbf{Soft guidance is presented as enforcement.} A skill can guide an agent toward a behavior; it cannot guarantee that behavior. If a rule must hold independently of agent cooperation, implement a constraint or gate that enforces it. Types can constrain representable states, and lints can supply the checks used by a gate. The skill can explain or invoke that mechanism, but it does not replace it.
+\item
+  \textbf{The skill costs more to maintain than it saves.} Skills require maintenance like other engineering assets. Add one when recurrence or consequence justifies its upkeep.
+\end{itemize}
+
+% <!-- point: a-passive-skill-fires-only-when-a-hook-fires-it | A passive skill fires only when a hook fires it. | terms: skill-soft-control, reflection-hook -->
+
+A skill that never loads has no effect. Where a recurring event should reliably invoke it, pair the skill with an appropriate trigger or hook. The hook makes invocation more reliable; the skill still supplies guidance rather than enforcement.
+
+Before shipping:
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  The skill has been classified by its primary role: tool, process, or mastery.
+\item[$\square$]
+  Its description names concrete triggering conditions and follows the platform\textquotesingle s current discovery requirements.
+\item[$\square$]
+  The top-level file contains the governing structure rather than bulk reference material.
+\item[$\square$]
+  Detailed resources are loaded progressively.
+\item[$\square$]
+  Instruction specificity matches task fragility.
+\item[$\square$]
+  Deterministic repeated operations are implemented deterministically where practical.
+\item[$\square$]
+  For a process-skill, the recurring process, relevant state, transitions, and decision points are explicit.
+\item[$\square$]
+  For a mastery-skill, the fundamental model, orthogonal facets, and governing principle are explicit.
+\item[$\square$]
+  Recurring invocation is supported by a trigger or hook where appropriate.
+\item[$\square$]
+  Nothing is described as enforced when the skill can only guide.
+\item[$\square$]
+  The skill has been evaluated on representative past tasks and on the models on which it will run.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-field-guide/_opening.tex`
+
+Lines 1–38; SHA-256 `d9fa4edf24e1c1d64eaf1b27ea5bbbc534e527378eba806fdc304f476d534124`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: how-to-read-the-recto-diagrams
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Six organizations, five kinds}
+
+\magevalue{chapter:software-factories} (\{\{sec:mage-in-the-wild\}\}) asks whether engineering structures found in DocAble recur in systems developed independently under different technical and organizational pressures. This appendix presents the evidence behind that comparison.
+
+These are reconstructions, not additional case studies. Public accounts reveal selected mechanisms and design decisions, not the engineering history available for DocAble. They can show that a comparable structure exists, demonstrate another way to realize it, or mark a limit on the MAGE interpretation. They cannot establish causation, and silence in a public source does not establish that an organization lacks a capability (see \magevalue{sec:toward-a-theory-of-mage}.5 and \magevalue{sec:mage-in-the-wild}).
+
+Each kind therefore gets a two-page spread, built on its clearest exemplar. The verso stays close to the public record: what the organization says it built, the evidence available for that account, and the boundary of what those sources establish. The recto interprets the same evidence through MAGE: Modeling, Alignment, the Governed Engineering Environment, governance conversion, and engineering capital.
+
+The diagrams are mappings, not ratings. A strongly marked relation is directly supported by the cited account; a partial relation is a MAGE interpretation. An unmarked region means only that the source does not establish it. No card claims that an organization implements MAGE as a whole.
+
+The organizations enter from different directions: Cloudflare from institutional policy; Spotify from fleet-scale change; Shopify from organizational knowledge; Siemens from model-first engineering; and Uber from factory-scale economics. GitLab enters that last direction from the opposite motive---trust rather than cost---so it shares Uber\textquotesingle s spread as the sibling account of the same kind. The question is which engineering moves survive those differences.
+
+\subsection{How to read the recto diagrams}\label{heading:how-to-read-the-recto-diagrams}
+
+Every recto uses a simplified Figure 0.1-1: an observed engineering pressure enters from the left and passes through the mechanisms supported by the evidence to the part of MAGE it most directly illuminates.
+
+The overlay uses exactly three epistemic states:
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Mark & Meaning \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+████ solid & directly supported by the public account \\
+- - - dashed & MAGE interpretation / partial support \\
+░░░░ pale & part of MAGE, but not established by this source \\
+\end{longtable}
+}
+}
+
+The diagrams are neither MAGE audits nor a maturity ordering. Pale means not established, not absent.
+````
+
+### Original `book/latex/sources/appendix-field-guide/cloudflare.tex`
+
+Lines 1–31; SHA-256 `7b16054f6e4710057dd6d42bade83ef0359561349b29a31e6520163481db421f`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: cloudflare
+% mage-auto-heading: verso-evidence
+% mage-auto-heading: recto-connection-to-mage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\subsection{Cloudflare}\label{heading:cloudflare}
+
+\emph{Internet infrastructure · policy-first governance at organizational scale}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.\citep{reimann2026codex}
+
+Recording policy in a machine-readable form lets later checks apply it without asking someone to reconstruct the requirement each time.
+
+\textbf{Boundary of the evidence.} The public accounts describe structured policy and checks more fully than executable models of the software being governed. They also describe rules and tooling changed in response to incidents and operating problems, but do not measure whether those changes reduced the failures that prompted them.\citep{hartman2026failsmall, rhea2026cloudflareos}
+
+\textbf{Portable lesson.} Write a policy so that tools can apply it to later changes without requiring a person to interpret it again.
+
+\subsubsection{Recto --- Connection to MAGE}\label{heading:recto-connection-to-mage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-cloudflare-6ff2dd36d5.pdf}
+\caption{\emph{Cloudflare's connection to MAGE.} Structured requirements let tools apply policy across many changes. The accounts describe changes prompted by operating experience, but do not measure their effect on recurring failures.}
+\label{field-guide-cloudflare}
+\end{figure}
+
+\textbf{Connection to MAGE.} Cloudflare illustrates Alignment: tools check changes against engineering policy and can block violations. Modeling enters when requirements are recorded as structured statements that those tools can identify and use. Together, these mechanisms let one policy decision govern many later changes.
+
+\textbf{What the evidence establishes.} The accounts describe policy enforcement and changes made in response to operating experience. They do not establish the effectiveness of the complete MAGE cycle.
+````
+
+### Original `book/latex/sources/appendix-field-guide/shopify.tex`
+
+Lines 1–29; SHA-256 `8db064495838d60d019b19e5e649d88f4924c3ddb412f6c5c513cdd01509db14`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: shopify
+% mage-auto-heading: verso-evidence
+% mage-auto-heading: recto-connection-to-mage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\subsection{Shopify}\label{heading:shopify}
+
+\emph{Commerce · shared organizational context for agent work}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Shopify's public account describes agent work in shared, observable channels. In a thirty-day window reported in May 2026, it recorded \textbf{59,918 sessions across 5,170 channels involving more than 7,000 people}, and described the system as "multiplayer by construction."\citep{moreno2026river} People can search these sessions, identify what an agent should have known, and record the lesson in skills, conventions, or defaults for later agents. These artifacts preserve knowledge in prose and instructions; they do not provide an executable model of the software.
+
+\textbf{Boundary of the evidence.} The accounts describe lessons turned into shared instructions and, in security workflows, rules enforced in code.\citep{moreno2026river, son2026security} Those changes may become engineering capital if they continue to help later work. The public record does not establish their lasting return after the cost of keeping them accurate.
+
+\textbf{Portable lesson.} Make useful lessons from agent work available to other people and later agents.
+
+\subsubsection{Recto --- Connection to MAGE}\label{heading:recto-connection-to-mage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-shopify-0c48ebf9d5.pdf}
+\caption{\emph{Shopify's connection to MAGE.} Shared sessions let people identify lessons and preserve them for later agents. The retained knowledge becomes engineering capital only while it continues to help later work.}
+\label{field-guide-shopify}
+\end{figure}
+
+\textbf{Connection to MAGE.} Shopify shows how engineers can preserve knowledge that an agent would otherwise have to recover on each task. Shared sessions let people inspect the work, correct misunderstandings, and record useful lessons in skills or defaults. This illustrates Modeling through reusable knowledge; the artifacts need not be executable system models.
+
+\textbf{What the evidence establishes.} Shared sessions and retained lessons make reuse possible. Their value as engineering capital depends on whether they continue to improve later work and remain worth maintaining.
+````
+
+### Original `book/latex/sources/appendix-field-guide/siemens.tex`
+
+Lines 1–31; SHA-256 `5be904625d96003feee38456f091930fa1517215a5a06d7585efbc66a69fb7c2`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: siemens
+% mage-auto-heading: verso-evidence
+% mage-auto-heading: recto-connection-to-mage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\subsection{Siemens}\label{heading:siemens}
+
+\emph{Industrial and model-based engineering · persistent models as development surfaces}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Siemens describes engineering work organized around models of requirements, system structure, and behavior. These models support analysis, simulation, and traceability, and software can be generated from them. This illustrates an established practice in model-based engineering that MAGE applies to agentic software work.\citep{siemens2026a3e}
+
+The representations include SysML and CAD models, virtual ECUs, and bills of materials. Engineers use them to reason about a system before generating code and checking its behavior.\citep{siemens2026a3e}
+
+\textbf{Boundary of the evidence.} The sources examined here do not establish a general check that rejects a change when its implementation disagrees with the engineering model. That leaves the check unreported; it does not show that Siemens lacks it.\citep{siemens2026a3e}
+
+\textbf{Portable lesson.} Engineers can reason about requirements and designs through models before committing to an implementation.
+
+\subsubsection{Recto --- Connection to MAGE}\label{heading:recto-connection-to-mage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-siemens-e677963dcf.pdf}
+\caption{\emph{Siemens's connection to MAGE.} Engineering models support analysis, simulation, and code generation. The cited sources do not establish a general check that rejects disagreement between a model and its implementation.}
+\label{field-guide-siemens}
+\end{figure}
+
+\textbf{Connection to MAGE.} Siemens illustrates Modeling through engineering models that preserve requirements and design decisions across changes. Engineers use those models to analyze a system and guide its implementation. MAGE applies this established practice to agentic software engineering and connects the represented obligations to checks that can reject violations.
+
+\textbf{What the evidence establishes.} The sources describe models, analysis, and verification. They do not establish a general gate that checks whether the implementation agrees with its engineering model.
+````
+
+### Original `book/latex/sources/appendix-field-guide/spotify.tex`
+
+Lines 1–31; SHA-256 `569295004b359a1c27af3048dd33b214e1a0bf4d717ca507834329c618572368`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: spotify
+% mage-auto-heading: verso-evidence
+% mage-auto-heading: recto-connection-to-mage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\subsection{Spotify}\label{heading:spotify}
+
+\emph{Audio streaming · fleet-scale autonomous migration}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{What the public record shows.} Spotify\textquotesingle s Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work. A migration that could previously involve hundreds of teams over weeks can instead be scoped by one engineer over a few days; tooling identifies and schedules targets, agents execute changes concurrently, and the engineer supervises the fleet and handles exceptions.\citep{spotify2026honk}
+
+Spotify's Backstage catalog makes component ownership and documentation available to engineers and agents.\citep{spotify2026constraint} In one documented dataset migration, engineers used its endpoint-lineage and code-search tools to identify target repositories, then used Fleetshift to coordinate Honk's changes.\citep{edwardsjoseph2026migrations}\magefootnote{sp-estate}{Spotify describes Backstage's component catalog and access for agents in its developer-experience account.\citep{spotify2026constraint} Honk Part 4 describes engineers using endpoint lineage and Codesearch to identify migration targets before Honk changes the code.\citep{edwardsjoseph2026migrations}}
+
+\textbf{Boundary of the evidence.} Reported activity increases --- including the 76\% PR-frequency figure\magefootnote{sp-prfreq}{76\% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.} --- measure implementation activity, not durable throughput. The stronger evidence is how the work changes: agents implement while human judgment moves upstream to scoping and supervision.
+
+\textbf{Portable lesson.} Scale implementation; concentrate human judgment on what to change and where.
+
+\subsubsection{Recto --- Connection to MAGE}\label{heading:recto-connection-to-mage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-spotify-d737ac4cea.pdf}
+\caption{\emph{Spotify's connection to MAGE.} In the documented dataset migration, engineers used Backstage to identify affected repositories and Fleetshift to coordinate Honk's changes. Checks and human review determined whether the changes could proceed.}
+\label{field-guide-spotify}
+\end{figure}
+
+\textbf{Connection to MAGE.} Spotify illustrates Modeling when engineers use recorded dependencies to identify where a migration belongs. Honk's verification tools and human review illustrate Alignment by checking whether its changes may proceed. Fleet execution lets one engineer's decisions guide changes across many repositories.
+
+\textbf{What the evidence establishes.} The dataset-migration account connects Backstage, Fleetshift, and Honk in one workflow. It does not establish that every migration uses the same representations or checks. Spotify distinguishes agent-authored changes that receive human review from deterministic fleet changes that can merge automatically.\citep{edwardsjoseph2026migrations, brown2023fleet, curtis2026spotifyqcon}
+````
+
+### Original `book/latex/sources/appendix-field-guide/uber.tex`
+
+Lines 1–31; SHA-256 `74d18eb53e8d997367ec82ae584fd124f6c22a2d9f1a3b97a7b04dba8b930969`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: uber
+% mage-auto-heading: verso-evidence
+% mage-auto-heading: recto-connection-to-mage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\subsection{Uber}\label{heading:uber}
+
+\emph{Ride-hailing and logistics platform · a durable environment around a replaceable reasoner (economics motive)}
+
+\subsubsection{Verso --- Evidence}\label{heading:verso-evidence}
+
+\textbf{A shared concern, two motives.} GitLab argues that project knowledge and controls should remain useful when the foundation model or agent changes.\citep{staples2026abundant} Uber reports how it measures and improves the environment around its agents. The two accounts approach a shared engineering concern from different directions: GitLab emphasizes trust in generated work, while Uber emphasizes operating cost. Uber supplies the fuller operational account, which this card examines.
+
+\textbf{What the public record shows.} Uber describes AI tools operating throughout the software lifecycle: more than 70 percent of pull requests are attributed to local or cloud agents, engineers have created more than 3,600 agent skills, and those skills execute more than 30,000 times per day.\citep{medisetty2026factory} Managed agents perform code review, CI repair, end-to-end changes, alert triage, debugging, and maintenance. The interesting structure is not the volume of agent use but that Uber engineers the environment around the agents: real workloads become benchmarks; models are selected against cost, quality, and reliability; context and tool descriptions are supplied on demand to reduce unnecessary reasoning; recurring workflows are recorded as reusable skills; and agents are evaluated in units such as cost per merged pull request, review, or alert.
+
+\textbf{Boundary of the evidence.} Uber reports operational measurements of context, skills, model selection, and cost. These are company reports, not a controlled comparison. They do not establish that executable engineering models guide implementation. GitLab's cited account presents an architectural argument rather than measured operating results.
+
+\textbf{Portable lesson.} Invest in the project knowledge, tools, and checks that later agents can reuse, even when the underlying foundation model changes.
+
+\subsubsection{Recto --- Connection to MAGE}\label{heading:recto-connection-to-mage}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/field-guide-uber-ea237e11ec.pdf}
+\caption{\emph{Uber's connection to MAGE.} Context selection, a knowledge graph, and reusable skills supply agents with project knowledge. The cited account does not establish an executable model of software behavior.}
+\label{field-guide-uber}
+\end{figure}
+
+\textbf{Connection to MAGE.} Uber illustrates why engineers invest in the environment around an agent. Its tools supply relevant context on demand, its knowledge graph records organizational relationships, and its reusable skills preserve workflows --- engineering capital that can remain useful when the underlying foundation model changes.
+
+\textbf{What the evidence establishes.} Uber describes context selection, a queryable knowledge graph, and reusable skills. These support the connection to MAGE's Modeling practices. The cited account does not establish an executable model of software behavior or a check that rejects disagreement between such a model and the implementation. It also does not measure an increase in reasoning horizon.
+````
+
+### Original `book/latex/sources/appendix-models/_opening.tex`
+
+Lines 1–33; SHA-256 `7eeb7d92b0acb3145068b3c82b74ea45e41dc1844a31c550e793dffb6eec0a57`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} introduce only the model detail needed for the engineering argument. This appendix collects the principal schemas, invariants, derivation directions, and correspondence machinery for those models.
+
+Each model begins with an engineering question and uses the smallest representation that makes the relevant property explicit. The forms here are reference patterns, not a required inventory.
+
+The appendix serves as both a reference and a pattern book: the representations are specific enough to expose their engineering properties but general enough to adapt to other systems. Each section also separates what the model represents from the machinery that may later enforce selected declarations.
+
+\textbf{Each section answers the same four questions:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engineering question} --- what must the engineer be able to know?
+\item
+  \textbf{Representation} --- what entities and relations make that question answerable?
+\item
+  \textbf{Property} --- what can now be stated precisely?
+\item
+  \textbf{Enforcement and correspondence} --- which facts are authored, which are observed or derived, and how is disagreement detected?
+\end{itemize}
+
+Correspondence alone does not establish correctness. A descriptive model can accurately describe an undesirable system; a normative model supplies authored intent against which the implementation can be checked. \magevalue{chapter:alignment} supplies the mechanisms that can enforce selected declarations.
+
+\autoref{fig-g1-executable-model} establishes the pattern specialized by the later figures.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-1-executable-model-5059b8f2a7.pdf}
+\caption{\emph{The executable-model pattern.} An engineering question selects a representation containing authored, derived, or observed facts. Correspondence machinery compares represented facts with implementation or runtime evidence. Disagreement may remain advisory or, where the obligation is enforced, feed a deterministic gate.}
+\label{fig-g1-executable-model}
+\end{figure}
+````
+
+### Original `book/latex/sources/appendix-models/behavior-and-ownership.tex`
+
+Lines 1–77; SHA-256 `7a425050029c938d3d862c89ff94a4212b64b275c55701b61a75b094293cde6b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: lifecycle
+% mage-auto-heading: ownership-and-lease
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Behavioral models represent state, transition, and time. Ownership models represent who may act on or hold a resource. The two are distinct but often joined: behavior constrains possible transitions; ownership constrains who may perform them.
+
+\section{Lifecycle}\label{heading:lifecycle}
+
+\textbf{Engineering question.} What states may this object occupy, and which transitions are legal?
+
+\textbf{Representation.} A minimal job lifecycle moves an item from \texttt{FREE} to \texttt{LEASED} on claim, from \texttt{LEASED} to \texttt{DONE} on completion, and from \texttt{LEASED} back to \texttt{FREE} on expiry or release. \texttt{DONE} is terminal.
+
+\textbf{Property.} The invariants sort into safety and liveness:
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Lifecycle invariants]{Representative lifecycle invariants, by kind.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Invariant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Kind
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Invariant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Kind
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Only declared transitions occur & Safety \\
+Terminal states do not re-enter processing & Safety \\
+A claimed job eventually completes or returns to an available state, under stated assumptions & Liveness \\
+\end{longtable}
+}
+
+\textbf{Enforcement and correspondence.} Transition operations or checks can mediate actual state changes against the declared transition relation. Any implemented transition absent from that relation becomes a finding. Where two lifecycles interact, represent their cross-machine transitions explicitly rather than leaving those relationships implicit in code.
+
+\section{Ownership and Lease}\label{heading:ownership-and-lease}
+
+Concurrency adds ownership and lease state to the lifecycle. The resulting model must represent not only which transitions are legal, but which actor may perform them now.
+
+\textbf{Engineering question.} Who may act on this work item now, and what stays true if workers overlap, fail, or retry?
+
+\autoref{fig-g3-behavior-ownership} lays the ownership overlay over the state machine.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-3-behavior-ownership-d07671b3d7.pdf}
+\caption{\emph{Behavior plus ownership.} The lifecycle FREE → LEASED → DONE is combined with a lease that records the current owner and expiry. The ownership invariant requires exactly one valid owner while LEASED and no active owner while FREE.}
+\label{fig-g3-behavior-ownership}
+\end{figure}
+
+\textbf{Property.} Representative invariants:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{A leased item has a valid owner}, and a free item has none.
+\item
+  \textbf{Ownership changes through the declared acquisition and release mechanism}, not by ad hoc mutation.
+\item
+  \textbf{Terminal work cannot be reclaimed.}
+\item
+  \textbf{Where ordering is required, observed acquisition order respects the declared order.}
+\end{itemize}
+
+\textbf{Enforcement and correspondence.} Some ownership facts are runtime facts and must be observed. The ownership protocol itself is authored intent. Atomic operations, leases, compare-and-swap, transition primitives, and admission checks can make selected invariants enforceable.
+
+Concurrency limits and ownership answer different questions. A semaphore or mediator constrains how many actors may execute; single-writer ownership identifies which actor may mutate. They require distinct representations because they govern different properties.
+````
+
+### Original `book/latex/sources/appendix-models/documentation-and-provenance.tex`
+
+Lines 1–48; SHA-256 `6eac4b76c80646cd3df5c90c0cc2314b772357f11d7fd153a64ff7a80312c1fe`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Provenance models record what happened. Documentation models represent the human-facing claims that should remain synchronized with those facts. In review, they expose whether required records exist and whether derived documentation still reflects its source.
+
+\textbf{Engineering question.} What happened, and which human-facing account of it must remain true?
+
+\textbf{Representation.}
+
+% mage-code-language: text
+\begin{verbatim}
+Action
+    id
+    artifact
+    operation
+    actor
+    mechanism
+    timestamp
+    result
+DerivedDocumentation
+    source_fact
+    rendered_claim
+\end{verbatim}
+
+Where documentation can be derived from structured facts, generate it from those facts rather than maintaining an independent copy.
+
+\autoref{fig-g6-facts-before-prose} puts the fact before the prose.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-6-facts-before-prose-525483293a.pdf}
+\caption{\emph{Facts before prose.} A structured provenance record supports mechanical validation and re-derivable documentation; independently maintained prose lacks that correspondence.}
+\label{fig-g6-facts-before-prose}
+\end{figure}
+
+\textbf{Property.} Representative properties:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Every relevant mutation leaves a provenance record.}
+\item
+  \textbf{Generated documentation reflects the current structured facts} from which it is derived.
+\item
+  \textbf{References in generated documentation resolve to existing identities.}
+\end{itemize}
+
+\textbf{Enforcement and correspondence.} Structured provenance can be validated mechanically, and generated documentation can be re-derived from its source facts. Free prose generally cannot be checked for semantic equivalence by the same machinery and therefore remains subject to human review.
+````
+
+### Original `book/latex/sources/appendix-models/execution-and-placement.tex`
+
+Lines 1–29; SHA-256 `b039b673e391f4da7ecf712b12a01c724e880f71900c86df34b3aa91a5cad2f5`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Execution and placement require two related views: where components run and connect, and how a host schedules their work. Keeping those views separate lets review distinguish changes to topology from changes to execution policy.
+
+\textbf{Engineering question.} Where does work run, and which scheduling decisions may change with the host it runs on?
+
+\textbf{Representation.} Use separate views for topology and host policy.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Deployment topology} represents where components run and how they connect: web → queue → worker → storage.
+\item
+  \textbf{Host execution policy} maps each host profile to a scheduling policy: elastic fan-out, bounded fan-out, or serialized execution.
+\end{itemize}
+
+\autoref{fig-g4-execution-placement} shows the stable graph with the policy as a separate layer beneath it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-4-host-execution-policy-c72a07bdc9.pdf}
+\caption{\emph{Stable topology, variable execution policy.} Deployment topology remains stable while host profiles select different scheduling behavior.}
+\label{fig-g4-execution-placement}
+\end{figure}
+
+\textbf{Property.} A host\textquotesingle s concurrency ceiling belongs to scheduling policy, not to the deployment graph.
+
+\textbf{Enforcement and correspondence.} Deployment configuration reconciles against the topology; scheduler behavior reconciles against the host execution policy. Either finding may remain advisory or feed a deployment or scheduler gate.
+````
+
+### Original `book/latex/sources/appendix-models/joining-views.tex`
+
+Lines 1–33; SHA-256 `8afec070997b1869d7fe4c9e8ad76c930309b73a03de113d8ea61f4ea4e19e23`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+An engineering question may span several models without requiring one larger stored model. Keep question-specific representations separate and join them through stable identities when a cross-model property must be evaluated.
+
+\textbf{Engineering question.} Does an important user journey exercise its declared endpoints, receive the required test coverage and placement, and execute under the correct host policy?
+
+\autoref{fig-g7-joined-scenario} traces the join.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-7-composition-by-reference-44bd4fbcec.pdf}
+\caption{\emph{Composition by reference.} Stable identities join the user-journey, service, coverage, test-placement, and execution-policy views. The resulting joined view supports cross-model queries without duplicating those facts into a single stored model.}
+\label{fig-g7-joined-scenario}
+\end{figure}
+
+\textbf{Property.} The joined view states cross-model properties that no single view can:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Every declared journey step has the required test coverage.}
+\item
+  \textbf{Declared journey dependencies agree with the actual call sites.}
+\item
+  \textbf{Declared endpoints are exercised.}
+\item
+  \textbf{Test placement reflects journey criticality.}
+\item
+  \textbf{Execution respects the selected host policy.}
+\end{itemize}
+
+\textbf{The reusable pattern.} State the engineering question, select the relevant views, join them on stable identities, and evaluate the cross-view property. The scenario is a traversal across representations, not an additional stored model.
+````
+
+### Original `book/latex/sources/appendix-models/measurement.tex`
+
+Lines 1–40; SHA-256 `184a2caa2922e6a5cbd673245154fdedabb336776dc9704df10cbc6a2c35d97e`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Measurement models represent quantitative properties of the running system and the bounds against which they are evaluated. In review, they expose what is measured, what bound applies, and what evidence supports that bound.
+
+\textbf{Engineering question.} What quantity matters, how is it measured, what bound has been declared, and what should happen when the bound is exceeded?
+
+\textbf{Representation.}
+
+% mage-code-language: text
+\begin{verbatim}
+Measure
+    id
+    quantity
+    unit
+    scope
+    observation_source
+Bound
+    measure_id
+    threshold
+    aggregation
+Disposition
+    bound_id
+    mode        # report | warn | gate
+\end{verbatim}
+
+The disposition stays separate from the measured bound; its mode records whether a bound is report-only, warning-producing, or admission-blocking. Measurability alone does not justify enforcement.
+
+\autoref{fig-g5-measurement-authority} separates the measurement from the enforcement that may or may not attach to it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-5-measurement-authority-e000fb850b.pdf}
+\caption{\emph{Measurement does not imply enforcement.} A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or a gate.}
+\label{fig-g5-measurement-authority}
+\end{figure}
+
+\textbf{Property.} A measurement model can state that request latency remains below a declared bound for a defined request class, queue depth below a declared ceiling, or processing cost within a specified envelope. Scope, statistic, and aggregation window are part of the property; a threshold without them is underspecified.
+
+\textbf{Enforcement and correspondence.} Sensors supply observations; the model supplies their scope, interpretation, and declared bounds. Measurements remain observations unless the evidence warrants a warning or a gate.
+````
+
+### Original `book/latex/sources/appendix-models/representation-to-authority.tex`
+
+Lines 1–63; SHA-256 `733ebc90c0115d4f13a9133b673ff7286e29a044a853eb602a2996de110c1df9`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Modeling and Alignment are distinct activities. A model may reduce reconstruction, expose dependencies, preserve intent, or support prediction while remaining advisory. Alignment begins when a represented obligation is enforced by a deterministic mechanism.
+
+Table C.7-1 maps each representation to the obligation it exposes, a correspondence mechanism that can evaluate it, and the enforcement that may attach.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Representation to enforcement receipt]{From representation to possible enforcement. Each row identifies a represented obligation, a correspondence mechanism that can evaluate it, and the enforcement that may attach.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Obligation exposed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Correspondence mechanism
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Possible enforcing mechanism
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Obligation exposed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Correspondence mechanism
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Possible enforcing mechanism
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Component / zone & Each surface has one owner; boundaries use sanctioned seams & Reverse-map the tree and dependency edges & Boundary lint or gate \\
+Service flow & Only declared service and resource edges are legal & Call and configuration parity & Policy or build gate \\
+Lifecycle & Only legal transitions occur & Transition-site reconciliation & Transition primitive or invariant check \\
+Ownership & Active work has a valid owner & Runtime ownership checks & Lease, compare-and-swap, or transition mechanism \\
+Execution & Placement and scheduling follow declared policy & Deployment and profile reconciliation & Deployment or scheduler gate \\
+Measurement & Observed quantity stays within a declared bound & Sensor plus bound evaluation & Warning or gate \\
+Provenance & Actions leave the required structured record & Record and artifact validation & Completion gate \\
+Joined scenario & Cross-view obligations agree & Identity joins across views & Composed check or gate where decidable \\
+\end{longtable}
+}
+
+The correspondence mechanisms in the third column compare represented intent with implementation or runtime evidence. Where the property warrants enforcement, the resulting finding can feed a deterministic gate. The handoff from Modeling to Alignment is:
+
+% mage-code-language: text
+\begin{verbatim}
+        MODELING                         ALIGNMENT
+  make knowledge explicit   →   make selected obligations enforceable
+
+   represented obligation      →   enforcing mechanism
+    "what is / ought?"            "must this hold?"
+\end{verbatim}
+
+Models create surfaces on which Alignment can act. Alignment determines which represented obligations deserve enforcement, where the relevant evidence can be observed, and which deterministic mechanism should enforce them.
+````
+
+### Original `book/latex/sources/appendix-models/structure-and-boundaries.tex`
+
+Lines 1–118; SHA-256 `8ca62930616a2955ce4317203321b3f7910ab432802e43dd609329a99730433b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: component-and-zone
+% mage-auto-heading: service-flow
+% mage-auto-heading: two-simpler-structural-forms
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Structural models represent what exists and how elements relate. In review, they expose which architectural boundaries a change affects. Ownership and boundary policy often share the same representation but answer distinct questions: who owns a surface, and which relationships are permitted.
+
+\section{Component and Zone}\label{heading:component-and-zone}
+
+\textbf{Engineering question.} Where am I, who owns this surface, and what may cross its boundary?
+
+The model maps implementation surfaces to components and declares the seams through which those components may interact.
+
+\textbf{Representation.} A minimal form:
+
+% mage-code-language: text
+\begin{verbatim}
+Component
+    id
+    name
+    focus_directories[]
+    tags[]
+    boundary_kind
+Zone
+    component_id
+    directory
+Seam
+    source_component
+    target_surface
+    relation_kind
+    permitted
+\end{verbatim}
+
+\autoref{fig-g2-structure-boundaries} joins the authored catalog to the observed tree.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/appendix-g-2-structure-boundaries-5eea5569e4.pdf}
+\caption{\emph{Structure and boundaries.} Authored ownership and permitted seams are reconciled with the observed repository tree. Sanctioned crossings pass through declared doors; forbidden direct access raises a finding.}
+\label{fig-g2-structure-boundaries}
+\end{figure}
+
+\textbf{Property.} Representative properties, each with the source that decides it:
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Component-zone properties]{Representative properties of the component-and-zone model, and the fact source each draws on.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Property
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Fact source
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Property
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Fact source
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Every in-scope source directory belongs to exactly one component & Authored ownership joined to the observed tree \\
+Every component\textquotesingle s declared directory exists & Repository \\
+Boundary crossings use sanctioned seams & Authored model \\
+Powerful mutation surfaces are reachable only through declared doors & Authored model plus observed dependency \\
+\end{longtable}
+}
+
+Directory existence can be derived from the repository; ownership and permitted boundaries are authored architectural decisions.
+
+\textbf{Enforcement and correspondence.} The repository tree is mapped back to the component catalog. A directory with no owner, multiple owners, or an observed dependency crossing an undeclared boundary becomes a correspondence finding. Where reconciliation depends on source locations, anchor references to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits. The finding may remain advisory or feed a lint, build failure, or admission gate.
+
+\section{Service Flow}\label{heading:service-flow}
+
+\textbf{Engineering question.} Which service may call or reach which service or resource, and under what policy?
+
+\textbf{Representation.}
+
+% mage-code-language: text
+\begin{verbatim}
+Service
+    id
+    role
+Resource
+    id
+    kind
+Flow
+    source
+    target
+    relation
+    auth_posture
+\end{verbatim}
+
+The central object is the declared edge. Each permitted service-to-service or service-to-resource relation records both reachability and its authentication posture; an observed edge with no declaration is a mismatch.
+
+\textbf{Property.} Only declared service-to-service and service-to-resource relationships are permitted, each with its declared authentication posture. The same graph carries both connectivity and access policy.
+
+\textbf{Enforcement and correspondence.} The declared graph supplies the \emph{ought}. Static call sites, generated configuration, deployment wiring, and runtime observation each supply part of the \emph{is}. A correspondence check asks whether each observed edge is declared and, where it matters, whether each declared edge still exists.
+
+The same representation pattern applies to firewall policy, service-mesh authorization, network policy, and cloud access control: the representation declares permitted relations while the enforcement mechanism varies by substrate.
+
+\section{Two Simpler Structural Forms}\label{heading:two-simpler-structural-forms}
+
+Two simpler forms use the same pattern: reconcile observed facts or edges against a declared set.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Domain registry.} A registry stores a slowly changing fact under one stable key. Consumers query or join through that key rather than maintaining independent copies.
+\item
+  \textbf{Bill of materials.} A bill of materials records the third-party dependencies present in a build. Where an authored dependency set exists, completeness can be checked by reconciling the observed dependency edges against it.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-evidence-ledger/_opening.tex`
+
+Lines 1–14; SHA-256 `22109e9c364a741e8d9da25120f5ac3a56aa41b0458bcb7d33bb02496736b54b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: g.1-how-to-read-this-ledger
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+
+
+\section{G.1 How to Read This Ledger}\label{heading:g.1-how-to-read-this-ledger}
+
+\magevalue{chapter:software-factories} presents the DocAble case over time. This appendix carries the quantitative and repository-level receipts behind its numerical claims.
+
+Each section gives the measurement, its source or counting procedure, the observation window where one applies, the resulting values, and the main limit on interpretation. Unless stated otherwise, these are within-case descriptive measurements. They do not establish causal effects, comparative productivity, or portable target values.
+
+The measurements cover build scale and repository motion, model correspondence and coverage, representation and navigation cost, development and processing costs, and the relationship between measurement and enforcement. The final section records the current longitudinal study and human-reference evaluation. Earlier observation windows remain separately labeled so that changes in period, population, or counting procedure do not masquerade as changes in the system.
+
+The ledger exists for traceability. A number summarized in \magevalue{chapter:software-factories} should be recoverable here, together with the assumptions that bound it.
+````
+
+### Original `book/latex/sources/appendix-evidence-ledger/evidence-tables.tex`
+
+Lines 1–649; SHA-256 `36186bf7ebfbf05102ac9fba6afb09587d711efdfd6aeaca5e410b3716cd9fa0`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: g.2-build-scale-and-repository-motion
+% mage-auto-heading: g.3-model-correspondence-and-drift
+% mage-auto-heading: g.7.1-provisional-cost-and-time-model
+% mage-auto-heading: g.7.2-warm-endpoint-latency-and-a-resident-runtime-prototype
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+
+
+\section{G.2 Build Scale and Repository Motion}\label{heading:g.2-build-scale-and-repository-motion}
+
+The following measurements preserve earlier repository windows and counting rules. They are historical receipts, not the data behind the revised 31-week figures in \magevalue{sec:inside-docables-software-factory}. The consistently categorized March--October reconstruction appears in G.9 below. Keeping the windows separate prevents a change in counting procedure from appearing to be a change in the factory.
+
+\subsection{G.2.1 Weekly Commit Volume}\label{heading:velocity}
+
+Weekly commit volume rose sharply as the agent fleet expanded, exceeded \magevalue{commits_per_week} commits per week during sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval \magevalue{chapter:software-factories} identifies as hardening, then rose again.
+
+During hardening, a larger share of classified commits concerned models, validation, tests, and control machinery. Commit counts do not establish why volume changed or whether productivity rose or fell.\magefootnote{g-vacation}{On some of these weeks, the author purportedly went on vacation.} \autoref{velocity-curve} plots the weekly series.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/velocity-commits-per-week-fb298a5a8a.pdf}
+\caption{\emph{Weekly Commit Volume.} Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits.}
+\label{velocity-curve}
+\end{figure}
+
+% <!-- FUTURE: When available, add Epics-closed/week and reopens/week — either onto Figure H-1 or immediately after it. Commits measure activity; completed engineering units are a complementary measure closer to durable throughput. Insert the planned reviewer-capacity bound here once measured, and keep it a sensitivity analysis rather than an assertion about actual review speed. -->
+
+\subsection{G.2.2 Support-Apparatus Ratio}\label{heading:support-ratio}
+
+Production and support-apparatus source were counted at five dated repository states across the seven primary source roots. The counting procedure fails if an expected root is absent. These counts supported an earlier support-ratio series. They are not the source of the current 31-week composition figure.
+
+The first four rows are historical states and are recorded as measured. The last row uses the earlier series' declared endpoint and token registry. Its endpoint and categories differ from the frozen 31-week reconstruction in G.9; it must be read within this historical series.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3636}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2078}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2078}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2208}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Production LoC
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Support LoC
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Support ratio
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Prototype --- Apr. 9 & 26,956 & 22,908 & 0.85× \\
+Mechanization --- May 31 & 302,844 & 751,050 & 2.48× \\
+Hardening --- Jun. 30 & 337,905 & 1,244,194 & 3.68× \\
+Study close --- Aug. 3 & 491,090 & 1,501,907 & 3.06× \\
+Window end --- \magevalue{window_end_display} & \magevalue{prod_loc} & \magevalue{support_loc} & \magevalue{support_ratio}× \\
+\end{longtable}
+}
+}
+
+Support-apparatus source began below parity with production source, crossed it by the mechanization snapshot, peaked at 3.68× during hardening, and fell to 3.06× by the Aug. 3 study close. It stood at \magevalue{support_ratio}× at the window end, still below the hardening peak.
+
+These counts describe how source was distributed in this repository. The ratio is not a measure of engineering value, engineering-capital return, or a recommended target for another project.
+
+\subsection{G.2.3 Product-Path Line Motion}\label{heading:churn}
+
+Lines added and deleted were counted over four windows for the two principal product paths:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{web/}} --- the Python service and worker.
+\item
+  \textbf{\texttt{backend/}} --- the C\# tool and rule engine.
+\end{itemize}
+
+Source: \texttt{git~numstat} over the dated commit windows.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Window
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+web/ added
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+web/ deleted
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+backend/ added
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+backend/ deleted
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Prototype & 22,539 & 7,717 & 48,636 & 10,166 \\
+Mechanization & 371,855 & 161,044 & 941,120 & 286,378 \\
+Hardening & 179,649 & 33,983 & 109,188 & 3,767 \\
+Loop management & 96,825 & 14,332 & 116,313 & 9,708 \\
+\end{longtable}
+}
+}
+
+The mechanization window contains the largest add-and-delete volume, particularly in \texttt{backend/}. Deletions fall sharply in the later windows, and both paths become strongly net-additive. \autoref{churn-per-path} plots these counts.
+
+These counts are a repository-motion proxy, not the theoretical concept of churn used elsewhere in the book. Generated bundles and vendored trees are included where they occur; \magevalue{chapter:software-factories}\textquotesingle s accounting note describes that bounded inflation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/churn-per-path-261de74348.pdf}
+\caption{\emph{Product-Path Line Motion.} Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest observed line motion. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause.}
+\label{churn-per-path}
+\end{figure}
+
+\subsection{G.2.4 Growth of Countable Controls}\label{heading:control-growth}
+
+Project-specific lint files and gate scripts were counted at four repository states, using \texttt{git~ls-tree} at the corresponding window SHA.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+Window & Lint files & Gate scripts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Prototype & 0 & 0 \\
+Mechanization & 336 & 20 \\
+Hardening & 595 & 76 \\
+Study close & 747 & 102 \\
+\end{longtable}
+}
+}
+
+This series stops at the study close. Its windows are repository SHAs rather than calendar dates, and the counting rule for gate scripts is not recorded, so it cannot be extended to the window endpoint the way the support-ratio series above was.
+
+Both counted surfaces begin at zero in the prototype snapshot. At the study close, the 747 lint files contain 993 registered lint specifications.
+
+Two further repository counts show that at least some controls were created in response to observed failures:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Paired fix-and-lint tags} --- 208 commits carry one.
+\item
+  \textbf{Incident-named lints} --- 27 lints name a specific dated incident in their text; spot checks confirmed that the sampled cases linked an observed failure to the resulting control.
+\end{itemize}
+
+These counts show both the growth of project-specific control machinery and a subset of cases where failures led to new controls. They do not show what fraction of all controls originated in failures rather than being designed prospectively, and raw control counts do not measure their value.
+
+% <!-- FUTURE: If practical, add the exact counting rule for fix-and-lint tags and incident-linked lints. A useful later complement would be the number of controls exercised after introduction — inventory and realized use are different quantities. -->
+
+\section{G.3 Model Correspondence and Drift}\label{heading:g.3-model-correspondence-and-drift}
+
+The measurements in this section concern model↔code correspondence only. Documentation drift is counted separately in G.3.5 and is excluded from the model-sync claim.
+
+The underlying question is narrow. After explicit models became reasoning surfaces, did model↔implementation drift occur, could derived checks detect it, and did the observed class recur after close?
+
+\subsection{G.3.1--G.3.4 Correspondence Results}\label{heading:model-sync-evidence}
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Claim
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Measurement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Limitation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Model↔code drift existed before the derived floor & Re-run each closed Epic\textquotesingle s own lints against its closed state; classify findings by hand & Approximately 27 genuine model↔code drifts, including a production-blocking pointer drift and a fully typed function with zero consumers & Manual classification; no independently specified oracle \\
+Derived checks catch fresh drift & Re-run the derived floor at HEAD & 6 genuine catches: three traceability failures and three stale-anchor or stale-test failures & Small N; measures only governed surfaces \\
+Post-close recurrence of modeled, mechanically decidable drift & Census over 56 cumulative Epic closes & 0 observed across 56 cumulative Epic closes & Finite observation window; does not cover semantic or unmodeled drift \\
+Checks were exercised during continuing model-bridge change & \texttt{git~numstat} over one week for the query/reactor, governance-graph, and frontend-build models & +8,970 / −173 lines across 63 commits & Line motion is a change-load proxy, not a measure of semantic difficulty \\
+\end{longtable}
+}
+}
+
+Manual review classified all approximately 27 pre-floor findings as genuine model↔code drift. Because that classification relied on human judgment rather than an independent criterion, the result establishes that drift existed before the floor, not the detector\textquotesingle s precision.
+
+The six HEAD catches were an unregistered model consumer, a missing component entry, a service-call-graph mismatch, and three stale-anchor or stale-test cases. A symbol-anchored drift lint, a consumer-registry-freshness check, and a service-call-graph drift lint detected them.
+
+Taken together, these observations establish a bounded within-case sequence: model↔code drift existed before the derived checks; the checks caught six fresh instances; and the modeled, mechanically decidable class did not recur across 56 closes during the measured window. They do not establish that the class was eliminated or that the mechanism prevents model drift.
+
+\subsection{G.3.5 Documentation Drift --- Excluded from the Model-Sync Claim}\label{heading:doc-hygiene-aside}
+
+Stale headers and stale prose numbers are documentation drift, not model↔code drift. They are counted separately because folding them into the correspondence measurements would inflate the model-sync evidence.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Documentation drift
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Refresh-window count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Detected by
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Resolution
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Status header frozen at a pre-close phase & 11 & Reading by a person or capable model & Close tooling rewrites the status atomically \\
+Stale prose number after the implementation moved past it & 9 & Model re-deriving the number from code & Routed one-line fix or audit finding \\
+\end{longtable}
+}
+}
+
+These observations concern prose that no derived correspondence check parses. They therefore say nothing about whether a model remains synchronized with implementation.
+
+\subsection{G.3.6 Scope of the Model-Sync Claim}\label{heading:model-sync-honest-reading}
+
+The correspondence mechanisms cover only modeled, mechanically decidable relationships, and the observed N is small. A semantic mismatch whose anchors still resolve may remain judgment-dependent, and an unmodeled region has no model-correspondence check at all.
+
+The results are therefore field observations about one governed surface, not a general catch rate or a proof of model correctness. Three cases stay distinct:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Derived correspondence} --- machinery can re-establish it from current artifacts.
+\item
+  \textbf{Semantic correspondence} --- it may still require judgment.
+\item
+  \textbf{Unmodeled regions} --- no model claim exists for them yet.
+\end{itemize}
+
+\section{G.4 Model Coverage}\label{heading:missing-model-drain}
+
+The traceability tracer measures the fraction of exercised code with no corresponding model claim. Repeated runs identified portions of the exercised surface that stayed outside the explicit model structure. Across the recorded sequence, the unmodeled fraction fell from \magevalue{missing_model_pilot_percent} on the first run to 7.89\% on the ninth.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Run
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Unmodeled exercised surface
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Note
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+First & \magevalue{missing_model_pilot_percent} & Majority of exercised code traced to no model claim \\
+Intermediate runs & declining & Successive model-loop Epics targeted large remaining orphan clusters \\
+Ninth & 7.89\% & Remaining orphan surface was small and explicitly identified \\
+\end{longtable}
+}
+}
+
+Three qualifications matter.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Coverage, not quality.} The metric measures coverage, not model quality. Code may trace to a model claim that is itself incomplete or poorly chosen.
+\item
+  \textbf{Operator-directed decline.} Each model-loop Epic targeted a large remaining orphan cluster. The decline reflects deliberate modeling work, not autonomous convergence.
+\item
+  \textbf{Not all orphans are debt.} An unmodeled exercised symbol may be a genuinely missing model, a missing anchor on an existing model, or implementation detail below the grain the model should represent. Backward tracing from exercised symbols to expected model edges distinguished these cases; only the first two necessarily call for more modeling. The unmodeled fraction measures absence of explicit representation, not engineering deficiency: the remainder may include unknown obligations, tacit obligations, and deliberately preserved degrees of freedom. MAGE does not prescribe zero as the target.
+\end{itemize}
+
+% <!-- FUTURE: Recover and publish all nine measurements, including denominator or relevant traceability counts if available. The present endpoint-only series supports the endpoint claim but is not yet the raw series the ledger ideally promises. -->
+
+\section{G.5 Representation and Navigation Cost}\label{heading:nav-pilot}
+
+A small exploratory pilot tested whether a model-derived navigation surface reduced the context an agent consumed while determining where to look in the repository.
+
+Across four tasks, model-guided navigation reduced reconstruction-token cost by a median of roughly 35\% relative to the from-scratch condition, with no observed loss of task-level correctness.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Measure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Baseline
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Model-guided
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Interpretation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Tasks & 4 & 4 & N too small for generalization \\
+Reconstruction-token cost & Full baseline & \textasciitilde35\% lower median & Directional evidence of reduced reconstruction effort \\
+Recorded correctness & Reference condition & No observed loss & The existing pilot does not support a general equivalence claim \\
+\end{longtable}
+}
+}
+
+The tasks were not independently sampled, and N=4 is too small to estimate a general effect. Within this small pilot, the result is consistent with the proposed mechanism: an explicit representation may reduce how much lower-level structure an agent must reconstruct before acting.
+
+% <!-- FUTURE: Supersede this subsection with the larger paired experiment already specified for the orchestrator — do not supplement it with another subsection. When those results exist, report task-level paired observations, tokens, tool/navigation calls, files opened, wall-clock time, and independently judged task success. -->
+
+\section{G.6 Cost and Scale Receipts}\label{heading:cost-receipt}
+
+These are earlier, differently scoped estimates. In particular, the approximately \$60,000 development figure concerns a roughly 20-week account. The later six-month estimate used in \magevalue{sec:inside-docables-software-factory} is approximately \$110,000, consisting of \$90,000 engineering labor and \$20,000 cloud expenditure. Both are author-supplied estimates, not independently audited accounting; G.9 records the later evaluation separately.
+
+These quantities establish orders of magnitude relevant to the \magevalue{chapter:software-factories} discussion. Their units, scopes, and cost categories differ; they are not entries in a comparative cost model.
+
+{\footnotesize
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Quantity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observed or estimated value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Basis
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Accessibility-checker findings in a representative deck & 42 & One graduate instructional deck evaluated with the built-in accessibility checker \\
+Manual remediation, one teaching load & ≈ \magevalue{diy_cost_per_course} estimated faculty labor & Findings/deck × minutes/finding × decks/course × loaded hourly rate \\
+Vendor remediation & \$3--\$40 / page & Market range collected during the study; not staffed for graduate-level subject annotation \\
+Automated processing, one representative deck & ≈ 1 minute; ≈ \$1 direct processing cost & Warm-start service near the end of the study period \\
+Direct development cost & ≈ \$60,000 & Roughly 20-week study; majority salary \\
+\end{longtable}
+}
+}
+
+The manual-remediation estimate and automated-processing figure use different units and cost categories. One estimates faculty labor across a teaching load; the other records direct processing cost for one representative deck. They indicate scale but are not a controlled cost comparison.
+
+The vendor range is a market observation, not a quality-adjusted comparison with DocAble. The development-cost figure is an order-of-magnitude direct-cost estimate, not audited project accounting.
+
+% <!-- FUTURE: Expand the ≈$20,000 estimate into its actual arithmetic once the underlying values are recovered. Attach provenance to the $3–$40/page vendor range. Break the ≈$60,000 direct-development estimate into salary, model/API, cloud, and other direct costs if those records are available. Add paired institutional-checker outcomes if available, and keep the resulting claim narrow — checker improvement is evidence about checker-detectable accessibility properties, not the complete experience of a disabled user. -->
+
+\section{G.7 Measurement Without Enforcement}\label{heading:measurement-seed}
+
+A measurement can be useful before it deserves enforcement.
+
+\subsection{G.7.1 Provisional Cost-and-Time Model}\label{heading:g.7.1-provisional-cost-and-time-model}
+
+A per-chunk worst-case cost-and-time estimate was recorded as a timestamped provisional model rather than embedded as a permanent code constant.
+
+Current instrumentation can report when an operation would exceed the provisional budget. Production admission does not depend on that estimate, because the observation base is not yet strong enough to justify a blocking threshold.
+
+The provisional bound need not be correct to be useful. The system keeps the stages separate: \textbf{observation → representation → reporting}. Because the evidence is insufficient, the estimate does not become a gate.
+
+% <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
+
+\subsection{G.7.2 Warm Endpoint Latency and a Resident-Runtime Prototype}\label{heading:g.7.2-warm-endpoint-latency-and-a-resident-runtime-prototype}
+
+A July 23, 2026 engineering record distinguishes two measurements that an earlier account conflated. The production conformance endpoint measured 4,057 ms with a warm container and 6,628 ms cold. Even the warm path launched a Java virtual machine for each request. Changing the number of warm container instances would not remove that recurring subprocess-launch cost.
+
+A toy Cloud Run service kept the Java runtime resident and measured 108.9 ms for a warm response. This comparison supported a resident-runtime redesign, but did not establish the production improvement under matched conditions. The primary record identifies the endpoint measurements under commit \texttt{436ef74899} and the prototype comparison under \texttt{d8c0ab3fa1}.
+
+The contrast with G.7.1 concerns the engineering decision justified by the evidence: a recurring implementation cost motivated an architectural change, while a weakly calibrated rejection bound remained advisory. Neither case establishes that every useful measurement should become a gate.
+
+\section{G.8 What This Ledger Does Not Measure}\label{heading:does-not-measure}
+
+Most quantities in this appendix are activity, structural, or within-case mechanism measures:
+
+\begin{itemize}
+\tightlist
+\item
+  commits and line motion;
+\item
+  source distribution;
+\item
+  control counts;
+\item
+  model coverage;
+\item
+  correspondence catches and reopens;
+\item
+  exploratory navigation cost;
+\item
+  selected financial and runtime observations.
+\end{itemize}
+
+These are not direct estimates of the broader outcomes needed to compare MAGE with another engineering process: durable throughput, defect escape, human-attention burden, or total cost of ownership. The case follows one production system, one primary engineer directing an agent fleet, and one contemporary model ecosystem; it did not collect those outcomes under a controlled counterfactual. The measurements therefore establish what happened within the case and which mechanisms were exercised, not the effects another organization should expect from adopting MAGE.
+
+The ledger\textquotesingle s narrower purpose is traceability: the quantitative claims in \magevalue{chapter:software-factories} can be inspected independently of the surrounding argument.
+
+\section{G.9 Current-Window DocAble Measurements}\label{heading:docable-seip-current-window}
+
+This receipt records the data used in the revised \magevalue{sec:inside-docables-software-factory}, drawn from the DocAble study's manuscript sources and generated summaries.\citep{davis2026docable} It does not merge them with the historical windows above. The engineering reconstruction covers 31 complete seven-day weeks, March 12--October 14, 2026; the evaluation uses a separate held-out document partition. The factory workflow described as of November 3 is later than the engineering measurement window.
+
+\subsection{G.9.1 Longitudinal Definitions and Coverage}\label{heading:seip-longitudinal-protocol}
+
+Work commits are dated by landing, not by inferred implementation time. The reconstruction expands squash landings into source commits, deduplicates hashes, and excludes merges, empty commits, and integration bookkeeping. Preserved worktree references recover truncated source lists. Thirty-three source objects remain unavailable and one squash has no source list, so the 36,578-commit series is incomplete.
+
+Epic completion counts require a dated affirmative whole-Epic completion claim. Directory moves, administrative retirement, and phase dates alone do not establish completion. The mining pass examined 638 distinct roots in the closed directory: 448 had dated completion claims, of which 428 fell in the complete window; 74 were administrative retirements and 116 lacked unambiguous completion evidence. These are documented claims, including accepted scoped research, rather than independent outcome audits. No completion records were recovered for weeks 1--10.
+
+Dispatch IDs are deduplicated across startup sentinels, archived dispatch markers, and preserved registry registrations, using the earliest explicit start or dispatch date. Archive filenames and termination dates are not launch dates. No records were recovered for weeks 1--11, and later retention varies. Missing or sparse records cannot establish an absence of work or a change in the underlying launch rate.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}@{}}
+\caption[Activity and coverage in the current window]{Activity recovered in the 31 complete weeks. Totals describe retained records under the stated counting rules, not productivity or independently verified engineering outcomes.}\label{work-over-time}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Series
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Main coverage limit
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Series
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Main coverage limit
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Landed work commits & \magevalue{seip_commits} & 33 unavailable source objects; one unresolved squash \\
+Agent dispatch IDs & \magevalue{seip_dispatches} & No recovered records in weeks 1--11; uneven later retention \\
+Epic completion claims & \magevalue{seip_completions} & No recovered records in weeks 1--10; incomplete completion evidence \\
+\end{longtable}
+}
+
+Model identities are top-level Python modules that declared \texttt{MODEL\_KIND} at a sampled snapshot. Earlier existence is reconstructed by path, so the later declaration convention does not create a false growth discontinuity. Models never given that declaration are outside the inventory. Multi-model consumers are distinct registered consumers of at least two models, not counts of relational operations.
+
+The static and dynamic verifier counts resolve declared references to existing files and deduplicate paths within each class. They exclude computed references and unregistered consumers, and do not count every test, test case, or execution. A registered file establishes available checking machinery, not a successful check run.
+
+{\footnotesize
+\begin{longtable}[]{@{}lr@{}}
+\caption[Model-linked artifacts at week 31]{Model-linked artifacts at the last complete week. These counts establish represented structure and registered checking files, not correctness or execution.}\label{control-growth-curve}\tabularnewline
+\toprule\noalign{}
+Artifact & Count \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Artifact & Count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Model modules & \magevalue{seip_models} \\
+Multi-model consumers & \magevalue{seip_consumers} \\
+Static verifier files & \magevalue{seip_static} \\
+Dynamic verifier files & \magevalue{seip_dynamic} \\
+\end{longtable}
+}
+
+The week-11 interpretation combines field notes from May 22 and 24 with a transparent query over commit subjects mentioning linting, typing, and associated analysis tools. It supports an account of a hardening campaign. It does not isolate a causal effect on productivity, nor date the first use of agents, planning, or checks from the first surviving records.
+
+\subsection{G.9.2 Production, Apparatus, and Support Ratio}\label{heading:seip-support-composition}
+
+The current size series uses ten week-end snapshots and one fixed category mapping. \texttt{cloc} separates code from comments and blank lines. Early source roots are mapped to their later equivalents; overlapping report paths are assigned to the longest matching path, and per-file output checks that categories are disjoint. Dependencies, generated frontend copies, historical worktrees, and snapshot documentation are excluded. Indexed documentation must belong to a snapshot's living-document indexes; changes in that convention can affect its series.
+
+Production comprises remediation, web processing, frontend, and shared services. Apparatus comprises tests, lints, tools, agent infrastructure, infrastructure-as-code, model metadata, and indexed documentation. The ratio is apparatus divided by production. Lines drawn between sampled revisions interpolate observations rather than adding measurements.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2667}}@{}}
+\caption[Current-window support ratio]{Consistently categorized production and apparatus counts from the current reconstruction. The support ratio describes source investment rather than its value or a recommended target.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Snapshot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Production lines
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Apparatus lines
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Apparatus / production
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Snapshot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Production lines
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Apparatus lines
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Apparatus / production
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Week 1 & 1,577 & 0 & 0.00 \\
+Week 5 & 42,344 & 55,072 & 1.30 \\
+Week 9 & 233,586 & 361,866 & 1.55 \\
+Week 11 & 277,417 & 711,039 & 2.56 \\
+Week 13 & 285,265 & 917,527 & 3.22 \\
+Week 17 & 293,799 & 1,325,221 & 4.51 \\
+Week 21 & 440,973 & 1,577,492 & 3.58 \\
+Week 25 & 516,024 & 1,807,695 & 3.50 \\
+Week 29 & 579,841 & 2,104,013 & 3.63 \\
+Week 31 & \magevalue{seip_prod_loc} & \magevalue{seip_apparatus_loc} & \magevalue{seip_support_ratio} \\
+\end{longtable}
+}
+
+\subsection{G.9.3 Human-Reference Evaluation}\label{heading:docable-human-reference-protocol}
+
+The institutional collection contains \magevalue{seip_uta_pairs} identifiable original/remediated pairs from \magevalue{seip_uta_courses} courses. The \magevalue{seip_uta_workers} trained undergraduates billed \magevalue{seip_uta_hours} hours across approximately six months. Dividing hours by recovered pairs gives \magevalue{seip_uta_hours_per_pair} hours per pair. At the assumed typical wage of \$\magevalue{seip_uta_hourly_wage} per hour, the estimate is \$\magevalue{seip_uta_cost_per_pair} in direct labor per pair. Identifiable pairs need not represent all work performed; the arithmetic is not a record of per-document labor or payroll.
+
+Format and matching eligibility yielded \magevalue{seip_eval_eligible} pairs. A randomized document-level split stratified by format assigned \magevalue{seip_eval_development} to development and \magevalue{seip_eval_attempts} to validation: 29 DOCX, 22 PPTX, 11 PDF, and one XLSX. The spreadsheet had prior development exposure. DocAble completed \magevalue{seip_eval_completed} attempts and failed on one PDF; the failed partial artifact is excluded from completed-output comparisons.
+
+Syntactic percentages use 100 × (original findings − output findings) / original findings, calculated separately per document and summarized by the median. Originals with no findings are excluded from percentages but retained when counting documents whose findings increased. Negative reductions remain negative. These are net count changes, not identity-matched newly introduced or resolved defects. Office counts include manual-review advisories and may flag the same object under several rules.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}@{}}
+\caption[Human-reference checker reductions]{Median per-document reduction in checker findings; the human and DocAble conditions use the same completed triples within each format.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Format
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Positive-baseline triples
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Human reduction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+DocAble reduction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Triples with increased findings, human / DocAble
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Format
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Positive-baseline triples
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Human reduction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+DocAble reduction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Triples with increased findings, human / DocAble
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+PDF & 10 & 60.7\% & 94.1\% & 0/10 / 0/10 \\
+DOCX & 25 & 66.7\% & 75.0\% & 0/29 / 0/29 \\
+PPTX & 21 & 84.8\% & 34.3\% & 1/22 / 1/22 \\
+XLSX & 0 & Undefined & Undefined & 0/1 / 0/1 \\
+\end{longtable}
+}
+
+Giving the failed PDF zero improvement yields a 90.4\% median across all eleven assigned PDFs. That sensitivity gives failure no benefit; it is not a measured score for the partial artifact. Microsoft's checker changed between the students' summer remediation and the October evaluation. All document versions were assessed with the current instruments. Other supported formats, including ODF, LaTeX, and Typst, were not part of this comparison.
+
+The semantic procedure used GPT-5.2 judgments over text transcripts, randomized A/B labels for the two outputs, and the original as a third anchor. Criteria were drawn from standards and checker rules, but the weighting and one-point parity band were project methods. The model assigned criterion outcomes and transcript evidence; a deterministic scorer compared improvements and regressions against the original. Unconfirmed heuristic evidence was capped at minor severity. Unchanged and inconclusive judgments contributed no points.
+
+The rubric was developed on the development partition. Two validation passes used the resulting method without intervening revisions. The second pass had complete criterion records and yielded \magevalue{seip_eval_semantic_better} better, \magevalue{seip_eval_semantic_parity} parity, and \magevalue{seip_eval_semantic_worse} worse scores for DocAble among \magevalue{seip_eval_completed} outputs. The passes agreed on \magevalue{seip_eval_repeat_agreement} document classifications; four crossed parity-band boundaries, with a maximum two-point change in the DocAble-minus-human difference. This assesses procedural consistency, not expert validity.
+
+Of \magevalue{seip_eval_rubric_rows} criterion rows, \magevalue{seip_eval_inconclusive} were inconclusive for DocAble, including \magevalue{seip_eval_adapters_pending} with automatic adapters pending. The run did not include vision-tier or screen-reader assessments. It did not systematically measure complete preservation or visual fidelity. Gains and regressions in the figure count document--criterion judgments; they are not unique defects, and a net gain can coexist with regressions.
+
+The median runtime was \magevalue{seip_eval_runtime_median_minutes} minutes across all \magevalue{seip_eval_attempts} primary attempts, including failure; the range was approximately 0.10--14.09 minutes. Inference expenditure was measured for \magevalue{seip_eval_completed} completed outputs: median \$\magevalue{seip_eval_inference_median_usd}, range approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. Full cloud and total-cost measurements were unavailable for this cohort. The paper also reports coarse operational estimates of typical inference expenditure; these are distinct from the measured held-out distribution. Subsequent human review and correction were not measured, so these values do not establish labor saved or total institutional savings.
+
+\subsection{G.9.4 General-Purpose Agent Comparison}\label{heading:docable-agent-comparison-receipt}
+
+This separate comparison used ten validation documents and community document tools: five PDFs, two DOCX, two PPTX, and one XLSX. Each agent used one configuration. The spreadsheet had prior development exposure. Original and human-artifact hashes matched the validation corpus, and agent results were joined with DocAble measurements for the same files.
+
+{\footnotesize
+\begin{longtable}[]{@{}lrrr@{}}
+\caption[Agent and service remediation comparison]{Medians cover completed attempts in the ten-document cohort. Fable timed out on one PDF. Agent inference costs are cache-aware API-equivalent estimates excluding cloud execution and evaluation.}\label{agent-remediation-comparison}\tabularnewline
+\toprule\noalign{}
+Method & Completed & Minutes & Inference cost \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Method & Completed & Minutes & Inference cost \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Opus & 10/10 & 8.22 & \$2.466 \\
+Fable & 9/10 & 7.77 & \$3.977 \\
+DocAble & 10/10 & 1.31 & \$0.084 \\
+\end{longtable}
+}
+
+The DocAble cost median here is for these ten outputs, not the \$\magevalue{seip_eval_inference_median_usd} median over the 62 completed outputs in the main comparison. The paper presents this smaller cohort's DocAble median more coarsely as less than \$0.50.
+
+On the four PDFs completed by all configurations, median checker reductions were 89.7\% for Opus, 91.8\% for Fable, 100\% for DocAble, and 75.3\% for human remediation. Both agents exceeded DocAble on the two Word documents; the human workflow led on the two presentations. The spreadsheet had no original findings. These results concern automatic findings, runtime, and inference expenditure. They do not establish comparable semantic quality, and this small comparison cannot isolate a benefit from MAGE or a lasting capability boundary.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/_opening.tex`
+
+Lines 1–19; SHA-256 `913b113188dd5d85d9ba7558bddcec87a656cb6248313acba6f73da1d2fa944e`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+This appendix shows how the same engineering judgment can produce different mechanisms in different systems.
+
+Each page runs in one direction: \textbf{Problem → Move → two realizations.}
+
+A move is portable engineering judgment: close an action surface, derive obligations from a model, deliver policy where a decision occurs. A mechanism is one concrete realization of that move: a typed mutation API, a coverage census, a context-injection hook. Mechanisms vary by system; the move travels.
+
+Appendix A shows how mechanisms compose into engineering capabilities. This appendix shows how one move can take different forms. The online MAGE Mechanism Catalog contains the broader implementation repertoire.
+
+\autoref{fig-moves-overview} maps each recurring problem to its corresponding engineering move.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/moves-overview-cheatsheet-9b7f976acc.pdf}
+\caption{\emph{Ten recurring engineering problems and the moves that address them.} The moves apply the method developed in Chapters 2--4: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.}
+\label{fig-moves-overview}
+\end{figure}
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/carry-cause-with-consequence.tex`
+
+Lines 1–21; SHA-256 `30e5c560d6555948c644e61574ce0cc7b6222dc8953faacf0b53632edeb8d921`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} After work propagates through commits, generated artifacts, and transformations, the final state may preserve what changed while losing why it changed. Reconstructing causation afterward is expensive and often ambiguous.
+
+\textbf{Move.} Capture provenance at the causal event and carry it forward with the resulting change. Where possible, check it for completeness so missing links are detected.
+
+\autoref{fig-move08} follows the identity from cause to consequence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c8-cause-travels-with-consequence-0fa8bb4a20.pdf}
+\caption{\emph{Cause travels with consequence.} A cause mints an identity; the identity rides action to change to artifact; from the final artifact the identity lets a reader reconstruct why, not just what.}
+\label{fig-move08}
+\end{figure}
+
+\textbf{Example --- Agent changes.} When an agent makes a change, the environment records a typed caused-by relation to the originating task or reason and requires that relation at commit. The reason is recorded at the causal event rather than inferred later from the diff.
+
+\textbf{Example --- Artifact remediation.} Document mutation uses a different carrier. Individual mutators stamp their changes, and tooling reconstructs a changelog from those stamps. A wiring lint fails when a sanctioned mutation verb lacks attribution. Provenance completeness becomes a build-enforced invariant rather than a convention.
+
+\textbf{Related mechanisms:} Caused-by provenance · Per-mutator attribution stamps · Derive-changelog · The \texttt{a11y\_} inserted-artifact convention · F10 mutator-stamp-wiring lint.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/check-correspondence.tex`
+
+Lines 1–21; SHA-256 `19c202362f2c97de5a5f53c390ef2456574e6ac2fab821a76399eb720e189fec`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} A model becomes dangerous when engineers and agents continue to trust it after it no longer corresponds to the system it represents.
+
+\textbf{Move.} Treat correspondence as an invariant. Check both that reality still satisfies modeled claims and that consequential implementation elements have not appeared outside the model\textquotesingle s declared scope.
+
+\autoref{fig-move03} shows the two directions.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c3-bidirectional-correspondence-82672ca26c.pdf}
+\caption{\emph{Correspondence runs both ways.} A two-way loop joins MODEL and REALITY. One arrow asks whether reality still satisfies the model, catching a wrong modeled fact; the other asks whether something important appeared outside the model, catching unmodeled reality.}
+\label{fig-move03}
+\end{figure}
+
+\textbf{Example --- Architecture drift.} A component-and-zone model declares where code belongs and which dependencies it may take. A gate compares the declared architecture against the imports the implementation actually makes. A change that violates the modeled structure fails the check at commit time.
+
+\textbf{Example --- Governance coverage.} The same correspondence idea runs the other way. An orphan-coverage walk starts from code and asks what model or control governs it. Uncovered code is not automatically wrong; it shows where implementation currently sits outside the modeled governance estate and requires an explicit decision.
+
+\textbf{Related mechanisms:} Component \& zone model · Drift \& parity gates · Cross-source coherence lints · Orphan-coverage metric · Symbol-anchored traceability.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/close-the-action-surface.tex`
+
+Lines 1–21; SHA-256 `3b27eebfdef40a1aace61cad21acd5f74726fdb82ab302cbde9dee0af640c90a`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} When a consequential operation can occur through arbitrary routes, governance must account for an open-ended set of ways to change the system. Validators, provenance, and policy cannot cover paths they cannot enumerate.
+
+\textbf{Move.} Route consequential actions through a bounded, named interface. A closed action surface exposes a finite set of operations, each of which can carry policy, provenance, and validation.
+
+\autoref{fig-move06} sets the open surface against the closed one.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c6-close-action-surface-c35609de50.pdf}
+\caption{\emph{Open surface versus closed seam.} OPEN --- an actor reaches a raw surface by many routes, including unknown ones. CLOSED --- the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. The distinction is encoded by shape, line style, and weight rather than color.}
+\label{fig-move06}
+\end{figure}
+
+\textbf{Example --- Document mutation.} DocAble routes remediation through a closed set of named mutator verbs. Because the verb set is finite, every verb can stamp provenance, register inserted content, and run the required checks. New capabilities must extend the verb set rather than introduce another ungoverned path.
+
+\textbf{Example --- Infrastructure access.} Raw queue operations are confined to one dispatch seam. Queue semantics and atomicity are encoded and reviewed at that seam rather than reconstructed at each call site.
+
+\textbf{Related mechanisms:} Closed remediation-verb sets · PdfModel · Sole raw-Redis seam · ServiceClient · Canonical walkers · One Door Enforced.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/deliver-knowledge-at-decision.tex`
+
+Lines 1–21; SHA-256 `505f933ba089d3ab0e9b05061af6b102174322d9249924c249b1dc61fcdca209`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} A rule cannot influence a decision if the actor does not encounter it in time. As the knowledge base grows, relying on the actor to search the full corpus becomes increasingly unreliable.
+
+\textbf{Move.} Deliver the knowledge needed for the current work where the decision occurs; do not rely on the actor to find it in the full corpus.
+
+\autoref{fig-move07} shows the selection at the decision point.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c7-knowledge-at-decision-8ab7d819cc.pdf}
+\caption{\emph{Knowledge delivery at the decision point.} Context selection joins the current work with the rules relevant to its scope and supplies that subset to the decision. The distinction is encoded by shape and line style rather than color.}
+\label{fig-move07}
+\end{figure}
+
+\textbf{Example --- File-scoped context.} Dynamic context injection selects the rules governing the files in a task and injects those rules into the agent\textquotesingle s brief. The relevant rules arrive with the assignment rather than leaving the agent to find them in the full governance corpus.
+
+\textbf{Example --- Dispatch admission.} Brief linting applies the same principle one step earlier. A task cannot launch until its brief contains the required markers and context.
+
+\textbf{Related mechanisms:} Dynamic context injection · Governed Knowledge Base · Brief linting · Mandatory snippet-table enforcement · Point-of-action policy delivery.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/derive-dont-copy.tex`
+
+Lines 1–21; SHA-256 `68745789183c9e0594e00347bb353cf142cbd7c9b3e8570b271c83b98af3be29`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} An authoritative source loses authority when consumers copy its values into independently maintained snapshots. The model may remain nominally authoritative while engineering decisions operate on stale copies.
+
+\textbf{Move.} Consume authoritative representations by query or derivation rather than creating a second editable copy.
+
+\autoref{fig-move02} sets the snapshot against the query.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c2-derive-dont-copy-fed1fa818d.pdf}
+\caption{\emph{Query, don\textquotesingle t snapshot.} BAD --- the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD --- the check queries the model directly, so the next check sees the change.}
+\label{fig-move02}
+\end{figure}
+
+\textbf{Example --- Live model consumption.} Model-aware lints, tests, and agent briefs query the current representation instead of embedding copied values. When the modeled architecture changes, consumers see the new state through the model interface; there are no stale copies to find and update.
+
+\textbf{Example --- Generated artifacts.} Consumers that should not query at run time can instead be generated from the authoritative model at build time. The downstream artifact is still derived from the model rather than maintained as a second source of truth.
+
+\textbf{Related mechanisms:} Meta-model consumption discipline · Model query surface · Model-driven codegen · Doc-hygiene provenance.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/derive-the-obligation-set.tex`
+
+Lines 1–21; SHA-256 `4029b9532935afd2ae691942c27f4323b90926158b5a9cde1e23f9c991740e1e`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} Measures of existing evidence---tests written, lines covered, checks passing---cannot reveal obligations that were never encoded. Before measuring coverage, establish what evidence should exist.
+
+\textbf{Move.} Derive what must be assured from the engineering model, then compare that required set with the evidence that exists.
+
+\autoref{fig-move04} traces the required set against the evidence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c4-derive-obligation-set-b3f6c02e28.pdf}
+\caption{\emph{Required set minus present evidence.} The model derives what must be assured; that required set is compared against existing evidence; the intersection is covered, and the remainder is a gap that raises a finding.}
+\label{fig-move04}
+\end{figure}
+
+\textbf{Example --- Test obligations.} Structured models expose seams, failure edges, and invariants. Those elements generate a census of what should be tested. Compare that census with the existing suite, and every missing test becomes mechanically visible and can block the gate.
+
+\textbf{Example --- Governance obligations.} The same move applies to controls. When governance targets are explicit, the environment classifies controls by what they protect and surfaces every target with no control --- or only advisory guidance. Here the evidence is governance mechanisms rather than tests, but the move is the same: derive the required set, compare it with what exists, and report what is missing.
+
+\textbf{Related mechanisms:} Model-derived test-obligation census · Coverage → model-node mapping · Control-coverage census · Governance Graph · Journey-criticality → test-tier placement.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/externalize-judgment.tex`
+
+Lines 1–21; SHA-256 `18a7a08891da10a50587564644198a9cdf74fb789771a8a92bfee38203339186`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} Operational work remains expensive when each incident requires an operator to reconstruct the same judgment: what healthy state looks like, what a symptom means, which procedure applies, and what evidence confirms recovery.
+
+\textbf{Move.} Make recurring operational judgment explicit. Generate or execute what can be mechanized; provide guidance where judgment remains necessary; and keep both tied to the system they describe.
+
+\autoref{fig-move09} traces the system model into the operational model.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c9-externalize-judgment-b6f7ed5dfa.pdf}
+\caption{\emph{From system model to operational guidance.} Healthy-state predicates, states, and relations feed an operational model that produces generated procedure where possible and reasoning guidance where judgment remains necessary.}
+\label{fig-move09}
+\end{figure}
+
+\textbf{Example --- Generated runbook.} DocAble\textquotesingle s lifecycle model names operational subsystems and their healthy-state predicates. The operator runbook is generated from that representation, keeping procedure aligned with the system model. When a subsystem\textquotesingle s healthy-state predicate changes, the generated runbook changes with it.
+
+\textbf{Example --- Event-bound playbook.} The orchestrator reacts to typed fleet events through per-topic playbooks. The playbook records the trigger and response once, so the orchestrator can execute them when the event recurs rather than reconstructing the procedure each time.
+
+\textbf{Related mechanisms:} Lifecycle model → generated runbook · Operational playbooks · Operator runbook skill · Encoded Operational Judgment · Orchestrator-as-reactor.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/make-dependencies-queryable.tex`
+
+Lines 1–21; SHA-256 `8b31fcfbf78bbd3cf48055723586b8453bb63dd188912e438dc53049a4bf2519`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} Cross-cutting mechanisms depend on assumptions about the substrate they inspect. When those dependencies remain implicit, a substrate change can either break many controls at once or silently invalidate part of their coverage.
+
+\textbf{Move.} Represent consequential dependencies explicitly so the impact of a proposed change can be queried before it lands.
+
+\autoref{fig-move10} fans a change out to its dependents.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c10-dependencies-queryable-c5b968db74.pdf}
+\caption{\emph{Impact as a graph query.} A proposed change reaches a substrate node; typed dependency edges identify the controls and models that depend on it, and their union defines the affected set.}
+\label{fig-move10}
+\end{figure}
+
+\textbf{Example --- Control blast radius.} Each control declares its substrate dependencies as structured metadata. A query identifies which controls depend on a proposed substrate change and how each relation should be interpreted.
+
+\textbf{Example --- Traceability.} Symbol-anchored traceability applies the same move across engineering artifacts. Model elements, lints, code, proofs, and registries join through derived, re-checked edges. The resulting graph lets engineers query what a change affects and inspect why.
+
+\textbf{Related mechanisms:} Control ↔ substrate dependency · Computed Control Blast Radius · Governance Graph · Symbol-anchored traceability · Derived Traceability.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/make-fact-authoritative.tex`
+
+Lines 1–21; SHA-256 `71557e8c7a6dd09d0a8e1cb53b1bf0df5dad61e4bf2f6a016a12db47ff49e406`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} Consequential facts are duplicated across consumers. A service relationship may appear in deployment configuration, policy, documentation, and tests; a timeout may appear in callers, workers, and orchestration. Once those copies can change independently, disagreement becomes an ordinary state.
+
+\textbf{Move.} Choose one machine-readable representation as the authoritative source of the fact. Downstream consumers should query it or derive from it rather than maintain independently editable copies.
+
+\autoref{fig-move01} contrasts the two states.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c1-make-fact-authoritative-3825ec1187.pdf}
+\caption{\emph{One authoritative representation.} BEFORE --- copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER --- one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible.}
+\label{fig-move01}
+\end{figure}
+
+\textbf{Example --- Service policy.} DocAble represents permitted service flows in a structured service model. Network policy and wiring derive from that model rather than maintaining independent accounts of permitted communication. A service relationship is authored once and propagated to its consumers.
+
+\textbf{Example --- Timeout ordering.} Scattered wall-clock budgets are represented in one timeout-budget model whose nesting relation is checked mechanically. The model makes the required ordering explicit: inner budgets must fit inside outer ones. Without it, that rule remains scattered across implementations.
+
+\textbf{Related mechanisms:} Service-flow / API model · Executable Source of Truth · Model-driven codegen · Timeout-budget ordering model · Required-configuration-per-role manifest · Synchronization model.
+````
+
+### Original `book/latex/sources/appendix-engineering-moves/put-authority-where-legible.tex`
+
+Lines 1–21; SHA-256 `9d9e65cc3c1a8b383c4f1f8faa4103395e31e9ca483a8a9ff137d79f7f2ca1e9`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Problem.} An obligation can be checked too early, before the relevant property is observable, or too late, after avoidable cost or consequence has occurred. Later changes can also make earlier evidence stale.
+
+\textbf{Move.} Enforce at the earliest boundary where the property is decidable. If later work can invalidate that evidence, re-establish it at the last safe boundary before consequence.\magefootnote{toctou}{The analogy to time-of-check/time-of-use (TOCTOU) is useful: a valid check does not justify a later action if the relevant state can change between check and use. Here the intervening change may be another commit, an integration step, a generated artifact, or a deployment transition. See \magevalue{chapter:one-problem-many-models} for the fuller treatment.}
+
+\autoref{fig-move05} places both boundaries on one timeline.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/c5-earliest-legible-last-safe-2845d6e556.pdf}
+\caption{\emph{Earliest legible, last safe.} A timeline runs from where work begins to consequence. Too-early sits where the property is still invisible; the earliest-legible boundary carries the first check; the last-safe boundary carries a re-check just before the point of no return.}
+\label{fig-move05}
+\end{figure}
+
+\textbf{Example --- Abort early.} The sentinel first-commit mechanism inspects a newly dispatched agent at its first meaningful commit. That point is early enough to stop bad work before it travels far, but late enough that an artifact exists to check.
+
+\textbf{Example --- Re-prove at completion.} Epic completion sits at the other end. Earlier tests may have passed before later integration made their evidence stale. The final Definition-of-Done re-runs the required checks against HEAD before closure, re-establishing evidence at the consequential boundary.
+
+\textbf{Related mechanisms:} Sentinel first-commit early-abort · Pre-commit hook · Staged deploy gates · Epic Definition-of-Done (Final-Opus rerun) · Enforce at the right semantic level.
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/_opening.tex`
+
+Lines 1–8; SHA-256 `29345f74c66f88da2a4f28536620a80912539fc6f2ea27ae94335150c704e3a0`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Much of this book explains MAGE through software realization and evolution. A software product, however, is shaped across a broader lifecycle. Product staff discover what should be built; engineers realize and evolve it; operators run the resulting system and investigate its failures; assurance and compliance work establishes claims about its quality and obligations. These activities ask different engineering questions and therefore call for different configurations of MAGE.
+
+The same modeling principle applies across that lifecycle. A product hypothesis, structured ticket, state machine, operational topology, runbook, incident timeline, or assurance case can each preserve information needed to answer an engineering question. Their purposes, lifetimes, correspondence claims, enforcement, and uses differ. The surfaces differ in what they need from MAGE. Discovery may preserve uncertainty; Engineering may need explicit system models and strong Alignment; Operations may turn recurring judgment into procedure; Assurance may require evidence connecting models to realization. There is no canonical portfolio of MAGE models or fixed boundary between reasoning and deterministic machinery.
+
+Nor does MAGE require product-wide adoption. Models and mechanisms have construction and carrying costs, and their returns vary by engineering surface and obligation. An organization might begin with ticket-driven change, architecture, operations, or one consequential compliance obligation while leaving the rest of its practice largely unchanged. This appendix examines five recurring surfaces---Product Discovery, Engineering \& Realization, Product Management \& Maintenance, Operations \& Incidents, and Assurance \& Compliance---and then considers how useful local investments can connect across the lifecycle. Organizations divide this work differently, and information flows repeatedly among the surfaces. The relevant question is not whether an organization has ``adopted MAGE,'' but where durable representation and enforcement repay their cost.
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/assurance-and-compliance.tex`
+
+Lines 1–47; SHA-256 `a8f5fbdb3ed04e28c20fe3d4cc608bca8e938c425bbf90871d0972e5d547f014`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Engineering question.} What must we be able to demonstrate about the product?
+
+Assurance and compliance organize work around claims that must be established, not merely implementations that must be produced. Some claims are naturally evaluated over models; others concern the realized system; many require evidence connecting the two.
+
+A security claim may be evaluated over a data-flow or access-control model; a memory-safety claim concerns the code that executes. Where implementation is not wholly generated from authoritative models, assurance must span both. Proving a property of an access-control model does not establish that the implementation realizes it, while inspecting implementation alone may obscure the intended policy. Traceability and Alignment connect the modeled claim to evidence from its realization and, where necessary, outward to requirements, operational measurements, and other lifecycle evidence.
+
+\autoref{fig-h-assurance} separates model evidence, realization evidence, and the traceability needed when a claim depends on both.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/h6-assurance-models-realization-519d1c45d4.pdf}
+\caption{\emph{Assurance across models and realization.} Claims may depend on modeled properties, realized properties, or correspondence between the two. Traceability and Alignment connect the required evidence.}
+\label{fig-h-assurance}
+\end{figure}
+
+Assurance creates pressure to reduce degrees of freedom only where the return justifies it. Authoritative models and trustworthy transformations can move assurance toward the governing model and away from independently authored realization, but eliminating freedom costs modeling effort and may make later changes harder. Other properties are cheaper to establish over the realized system. The same tradeoff governs determinization: mechanize claims that can be decided responsibly; leave statistical, semantic, or normative judgment where it belongs.
+
+Agentic realization may also shift verification away from lightweight code review toward more formal inspection.\magefootnote{fagan}{Formal software inspection has a substantial history. Michael Fagan\textquotesingle s work at IBM distinguished inspection from informal review by treating it as a systematic verification activity with defined roles, procedures, and recorded results. The analogy here is structural rather than procedural: MAGE does not propose restoring the original inspection process, but predicts renewed pressure to formalize inspection as realization becomes cheaper and more abundant. See Fagan 1976\citep{fagan1976inspections} and Fagan 1986.\citep{fagan1986advances}} Contemporary review assumes changes arrive slowly enough that peers can reconstruct intent, context, and obligations from diffs, comments, tests, and local judgment. Agent-generated changes stress that assumption. Inspection may therefore become a distinct activity organized around explicit obligations, models, traceability, procedures, and evidence rather than an informal second look at code.
+
+Such inspection could begin from a ticket or assurance claim, traverse to the governing models, inspect their realization where necessary, and judge whether the evidence establishes both correspondence and satisfaction. The analogy to classical software inspection is structural rather than procedural: production and verification separate more clearly as realization becomes cheaper.
+
+Assurance is therefore cross-cutting rather than a final lifecycle stage: its obligations constrain work elsewhere, and its evidence can originate anywhere in the lifecycle.
+
+\textbf{MAGE profile.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Characteristic models.} Requirements, policies, threats and hazards, invariants, traceability, assurance cases, claims, and evidence models.
+\item
+  \emph{Lifetime.} Usually system- or organizational-lived, although individual evidence can be change- or execution-scoped.
+\item
+  \emph{Alignment posture.} Strong. Assurance may require evidence over models, over their realization, and over the correspondence between them.
+\item
+  \emph{Role of autonomous reasoning.} Interpreting semantic obligations, reasoning across modeled and realized properties, maintaining traceability, assembling evidence, identifying gaps, and evaluating claims that machinery cannot settle.
+\item
+  \emph{Determinization opportunity.} High for decidable claims over either models or implementation; limited where interpretation or normative judgment remains necessary.
+\item
+  \emph{Degrees of freedom.} Realization choices left unconstrained because they are irrelevant to the assurance obligation or cheaper to inspect than to specify in advance.
+\item
+  \emph{Smallest useful adoption.} Select one consequential obligation, identify what must be established over models and realization, connect those artifacts through traceability, and automate evidence or admission where the claim is decidable.
+\item
+  \emph{Lifecycle connections.} Assurance carries obligations across the lifecycle and draws evidence from product decisions, engineering models, implementation, change history, and operational behavior.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/differential-adoption.tex`
+
+Lines 1–8; SHA-256 `e96f0bb90bb9e263a25980de429f93754bf82f28d7aa7b7feb81e6f9da18be9a`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The five surfaces need not mature together. A startup may use stronger MAGE machinery only around payments or customer data; a service organization may have sophisticated operational models while leaving discovery informal; a regulated product may begin with assurance and traceability. These are not incomplete implementations awaiting product-wide rollout. They are rational local configurations when the investment pays.
+
+The relevant question is what knowledge or obligations are consequential or expensive enough to deserve durable representation or enforcement. That answer changes over a product\textquotesingle s life: repeated reconstruction may eventually justify an architectural model, a frequently used runbook may become deterministic automation, or an incident may expose an obligation previously left tacit. Different surfaces legitimately preserve different mixtures of explicit representation, autonomous judgment, and machinery.
+
+Broader value appears when independently useful investments begin to connect. A requirement represented for product reasons may later govern engineering; an architectural model may aid incident diagnosis; an operational failure may expose an invariant for future changes; assurance may reuse relationships created elsewhere. H.8 asks what emerges when these local investments begin to compose.
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/engineering-and-realization.tex`
+
+Lines 1–36; SHA-256 `bbe6630768bed1a1e4acbf98ee243222e8e8338e4d1fb6906ebe651493ecbf86`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Engineering question.} How should the product or requested change be realized while satisfying its obligations?
+
+Engineering \& Realization is the surface treated throughout Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num}. Its characteristic models include structural, behavioral, ownership, decision, measurement, and provenance views of the realized system. The lifecycle question here is not what those models are, but where their knowledge and obligations come from and where they go.
+
+Engineering does not manufacture all of its own obligations. Product discovery supplies needs, accepted requirements, and consequential product decisions. Product management supplies the intent and rationale for particular changes. Assurance contributes obligations that realization must satisfy. Operations supplies evidence from the behavior of the realized product.
+
+Engineering connects those inputs to the system being changed and exposes structure that neighboring surfaces can reuse: component identity, architecture, behavior, interfaces, dependencies, resource relationships, and evidence about the realized change. Shared identity lets the same entity connect lifecycle surfaces. A requirement from discovery can trace to a component and behavioral obligation in engineering; operational evidence can resolve to the same component; an assurance claim can refer to the requirement, the governing model, and evidence from the realized system.
+
+Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} supply the corresponding Modeling and Alignment practices.
+
+Engineering need not eliminate realization freedom. Governing models determine some choices while deliberately leaving others open; new functionality may create choices, a newly discovered obligation may remove apparent freedom, and stronger Alignment may constrain a choice previously left open. The relevant question for any realization is which choices the governing obligations determine and which remain free.
+
+\textbf{MAGE profile.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Characteristic models.} Structural, behavioral, ownership, decision, measurement, and provenance models of the realized system; commonly including architecture, state machines, contracts, dependencies, knowledge graphs, resource relations, and invariants.
+\item
+  \emph{Lifetime.} Change-scoped through system-lived, depending on the model and the correspondence it claims.
+\item
+  \emph{Alignment posture.} Strong where consequential properties are decidable: permissions and other constraints restrict actions, while gates can enforce the results of tests, analyses, model checking, or validators.
+\item
+  \emph{Role of autonomous reasoning.} Reasoning across interacting semantic constraints and realizing changes where governing obligations are explicit but implementation remains underdetermined.
+\item
+  \emph{Determinization opportunity.} High where modeling exposes stable properties that deterministic machinery can evaluate or realize.
+\item
+  \emph{Degrees of freedom.} Implementation choices left open after the governing obligations for the realization are accounted for.
+\item
+  \emph{Smallest useful adoption.} Externalize one repeatedly reconstructed or consequential system property, connect it to the surrounding lifecycle knowledge it depends on, and give stable obligations over it proportionate evidence and enforcement.
+\item
+  \emph{Lifecycle connections.} Product decisions and requirements from Discovery; change intent from Product Management; operational topology and evidence from Operations; assurance obligations and evidence requirements across the surface.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/engineering-capital-across-time-and-space.tex`
+
+Lines 1–41; SHA-256 `be40765abde2cc7df3d9107b745612a42680eb838221a082f5533d2682ca0d0b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: across-time-capital-across-the-product-lifecycle
+% mage-auto-heading: across-space-reusing-engineering-capital
+% mage-auto-heading: engineering-teams
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Engineering capital matters when an investment made in one place changes the economics of work elsewhere. Within a product, that effect is already visible: product decisions constrain later realization, engineering models support maintenance, incidents produce durable controls, and assurance evidence can accumulate rather than be rebuilt. A more conjectural question is whether such capital can also travel across products, teams, and organizations.
+
+\autoref{fig-h-capital} depicts the two dimensions. Within each product, engineering structure accumulates selectively across episodes. Across products, some concerns and mechanisms may travel while others remain local. The figure is conceptual, not a quantitative measure of capital.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/h9-capital-time-space-c0aa953d7a.pdf}
+\caption{\emph{Engineering capital across time and space.} A conceptual snapshot of three products shaped by successive engineering episodes. Within each product, useful engineering structure has accumulated selectively; the incomplete constellations represent neither a prescribed product model nor a maturity level. Across products, an assurance obligation connects all three, code-quality mechanisms are shared by two, and connections to a common security posture remain possible. Solid relationships are established; dotted relationships are emerging or possible.}
+\label{fig-h-capital}
+\end{figure}
+
+\section{Across Time: Capital Across the Product Lifecycle}\label{heading:across-time-capital-across-the-product-lifecycle}
+
+Engineering capital does not appreciate by eliminating every future choice. A useful model fixes what later work should not have to rediscover while leaving irrelevant choices open. Over-specification creates carrying cost and can make later change more expensive. The valuable asset is therefore not maximal explicitness, but durable knowledge and durable controls over matters consequential enough to justify their cost.
+
+Engineering capital can also gain new uses. An architectural model built to reduce reconstruction may later support incident diagnosis; maintenance traceability may support Assurance; an operational failure may produce an invariant useful to both Engineering and compliance. The value of the capital is therefore not the amount of structure accumulated, but the future work it changes.
+
+\section{Across Space: Reusing Engineering Capital}\label{heading:across-space-reusing-engineering-capital}
+
+Some engineering capital is product-local: the rationale for one change, the state of one system, or one deployment topology. Other assets may apply across products: security policies, regulatory obligations, protocols, accessibility requirements, architectural conventions, assurance arguments, validators, or evidence procedures. The question is whether capital that pays repeatedly across time can also travel across products, teams, or organizations.
+
+Software engineering has pursued versions of this promise before. Object-oriented and component-based development sought reusable implementations; design patterns sought reusable engineering judgment. In practice, the legacy was at least as much a change in engineering principles---encapsulation, interfaces, composition, separation of concerns, recurring patterns---as direct reuse. Application-specific context and judgment remained difficult to package.
+
+Commodity intelligence changes one premise. General reasoning capacity can be supplied separately from task-specific context and judgment. Code can carry implementation; models can carry represented context; judgment as code can carry decisions about obligations, evidence, and acceptable action. The consumer of reusable engineering judgment need no longer be exclusively human.
+
+This permits reuse without prescribing a common realization. A security obligation, protocol model, accessibility rule, or assurance procedure can govern different implementations while leaving other choices open. A library gives later engineering something already built; reusable judgment gives it something already learned.
+
+Whether commodity intelligence makes engineering judgment substantially more portable remains an empirical question. Context still travels badly. A judgment separated from the assumptions that made it valid can be worse than no reuse at all. Cross-product reuse therefore needs enough scope, provenance, applicability, and dependency information to determine when an asset still applies. The spatial reach of engineering capital must be tested, not assumed.
+
+\section{Engineering Teams}\label{heading:engineering-teams}
+
+Commodity intelligence and reusable engineering capital may also change how engineering responsibility is divided. An engineer supported by autonomous realization may own more components or a larger subsystem. More speculatively, engineers may own cross-cutting concerns---an architectural relation, authorization model, lifecycle protocol, resource invariant, accessibility obligation, deployment policy, or assurance claim---whose realizations span many components. Component ownership need not disappear, but implementation boundaries may cease to be the only natural unit of responsibility.
+
+Smaller teams create a second risk. Large projects pay coordination costs, but they also aggregate diverse judgment: different engineers notice different assumptions, challenge different decisions, and recognize different failure modes. If autonomous realization lets fewer people govern the same scope, coordination cost may fall along with that diversity. A GEE does not automatically replace it: models preserve what was represented, and Alignment governs obligations already identified.
+
+The organizational problem may therefore shift from coordinating enough people to realize the system toward ensuring enough independent judgment over it. Teams may need deliberate substitutes for perspectives once supplied incidentally by scale: independent inspection, heterogeneous agents, adversarial reasoning, or independent evidence. If fewer people can govern more engineering, preserving diversity of judgment may itself become an engineering obligation.
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/from-local-mage-to-the-product-gee.tex`
+
+Lines 1–29; SHA-256 `ed26e2f0f3a3b0a834c56960fe56d70ef2705abbb3a0589b9fd4c5a1fdab5e54`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+When useful local representations connect across lifecycle surfaces, they can form a product-wide Governed Engineering Environment: product intent, system knowledge, operational experience, and assurance obligations become available across the life of the product. The product GEE emerges from connections among representations that remain suited to their own engineering purposes.
+
+Each surface should retain representations suited to its own questions. What they can share is identity, relationships, provenance, temporal scope, and obligations. A requirement can concern a feature; a ticket can authorize a change to a component; a deployed service can realize that component; an incident can expose a violated assumption; the resulting invariant can constrain later engineering and support an assurance claim. \autoref{fig-h-product-gee} shows those connections.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/h8-product-gee-ca9bc9a812.pdf}
+\caption{\emph{From local MAGE adoption to the product GEE.} Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries the obligations that can responsibly be enforced. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits.}
+\label{fig-h-product-gee}
+\end{figure}
+
+This need not be a lifecycle pipeline or a single knowledge system. Tickets, architecture registries, source repositories, telemetry platforms, requirements systems, and evidence stores can remain distinct as long as consequential relationships can be recovered reliably. Shared identifiers, typed relationships, provenance, indexes, APIs, or a knowledge layer can supply the joins.
+
+The result changes what a short instruction or question can mean because the environment supplies context that would otherwise have to be reconstructed inside each reasoning episode:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Implement ticket X.} The environment can supply the product decision that motivated the change, the architecture it touches, the obligations governing those components, the incidents that made particular constraints important, and the evidence required before the change can be admitted.
+\item
+  \emph{Why does the system behave this way? Can we change it?} The environment can traverse from implementation through architecture and change history to product intent, then across dependencies, operational constraints, assurance obligations, tests, and migration history. The same connected knowledge can turn \emph{What did this incident teach us?} into a question about which models and mechanisms future work should inherit.
+\end{itemize}
+
+Product-wide MAGE is a possibility, not a prerequisite. Each representation, relation, and mechanism must repay its carrying cost through better reasoning, less reconstruction, stronger evidence, safer autonomy, cheaper recovery, or another benefit to later work. If product-wide MAGE emerges, it should do so by connecting useful local investments---not by specifying the whole product in advance.
+
+The same approach applies at larger scales. A team can connect local models to shared architecture; a product can connect models across lifecycle surfaces; and an organization can connect products through common policies, assurance obligations, infrastructure, or reusable engineering judgment. The representations need not collapse into one system. They need enough shared identity and correspondence for the relevant knowledge and obligations to travel between them.
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/one-product-several-surfaces.tex`
+
+Lines 1–54; SHA-256 `bd74c6ebbf0bff8e05691874e4b19b8c6712e130c92e31da32340fadcec6a35b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\autoref{fig-h-lifecycle} places the product amid the engineering activities that shape it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/h1-product-lifecycle-1475b91c06.pdf}
+\caption{\emph{MAGE across the product lifecycle.} Different lifecycle surfaces ask different engineering questions and therefore benefit from different representations. The horizontal flow is not a waterfall: experience and evidence feed earlier activities, while Assurance \& Compliance spans the lifecycle. Each surface can adopt MAGE independently.}
+\label{fig-h-lifecycle}
+\end{figure}
+
+The representations differ along five dimensions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Purpose.} Each representation preserves what a particular engineering question needs. A product hypothesis helps decide what to build; an architectural model exposes system structure; an incident timeline reconstructs what happened. They need not share a form merely because they concern the same product.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Lifetime.} A model may be episode-scoped, change-scoped, system-lived, or organizational. An experiment may last for one investigation; a ticket may govern one change; an architectural boundary may survive hundreds of changes; a regulatory policy may govern several products.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Claimed correspondence.} Age alone does not establish model drift. A 2022 ticket can remain a faithful representation of the intent governing a 2022 change without describing the product in 2026. MAGE rejects ``keep the model equal to the code'' as a universal synchronization rule because different models claim different relations to the realized system.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Enforcement.} Representation does not imply enforcement. A discovery hypothesis may deserve preservation without enforcement; an accepted security invariant may deserve both.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{Reasoning posture.} Some representations support semantic or situational judgment; others expose stable properties that can become deterministic procedures or predicates. The appropriate mix depends on cost and consequence.
+\end{enumerate}
+
+The five surfaces configure these dimensions differently. The sections that follow examine each in turn.
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/operations-and-incidents.tex`
+
+Lines 1–47; SHA-256 `e11f8489314db69ba1484416bef4b8dbe69fe71e5401dbf0ad44537482cfe096`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Engineering question.} What is the system doing, why is it doing it, and what should we learn from failure?
+
+Operations works against the realized system. Its characteristic representations include deployment topology, service dependencies, runtime configuration, telemetry, resource relationships, runbooks, incident timelines, and operational policies. These models answer questions that source code alone often answers poorly: what is running where, which services depend on which others, what resources are shared, what happened before a failure, and what operators should do next. Because these models describe the running system, many require strong correspondence. A topology presented as current must describe the deployed system closely enough to support operational reasoning; telemetry must refer to identifiable entities and states; and a runbook intended to govern response must remain applicable to the system operators actually face.
+
+Incidents expose where the governed environment was incomplete or wrong. Restoring service fixes the instance; root-cause analysis asks what condition made the failure possible. Bidirectional traceability can connect an operational observation to the responsible implementation and from there to the architectural, behavioral, ownership, resource, or other models that describe the affected concepts.
+
+Explicit models can also reveal where else the same condition exists. Two failures need not share similar source code to share an engineering structure: components may occupy the same modeled role, implement analogous transitions, cross equivalent trust boundaries, share ownership relations, or depend on resources with the same lifecycle. Models therefore let engineers search for the class rather than only for syntactically similar code. The ambition is longstanding: repair the class rather than the instance.
+
+Finding the class is only half the job. Governance conversion determines whether the lesson survives the incident: correct a wrong model, represent missing knowledge, or encode a stable obligation in a validator, constraint, policy, test, or gate. The strongest outcome is not merely a successful patch, but an environment in which future work inherits what the incident taught.
+
+\autoref{fig-h-incident} shows the progression from one observed failure to a durable repair of the class.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/h5-incident-to-governance-164c9b5b8a.pdf}
+\caption{\emph{From incident repair to governance conversion.} An incident provides evidence about the realized system. Traceability connects the failure to the models and obligations it realizes; relationships within those models can expose other instances of the same engineering condition even when their implementations differ. Repair can then address the class rather than only the observed instance, while governance conversion preserves the lesson in models or mechanisms that future work inherits.}
+\label{fig-h-incident}
+\end{figure}
+
+Not every incident generalizes, and repairing defect classes is not new. Root-cause analysis, defect prevention, static analysis, and related practices have long sought broader corrective action. MAGE adds an explicit representational substrate for finding analogous conditions and places to encode the resulting lesson when it can responsibly be enforced.
+
+Operations grows engineering capital when what one incident teaches changes what later engineering inherits.
+
+\textbf{MAGE profile.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Characteristic models.} Deployment topology, service and resource dependencies, runtime configuration, telemetry, operational state, runbooks, incident timelines, and operational policies.
+\item
+  \emph{Lifetime.} Mixed. Telemetry and incident evidence may be episode-scoped; topology, dependencies, policies, and runbooks are generally system-lived and require stronger synchronization with the realized system.
+\item
+  \emph{Alignment posture.} Strong where operational state or policy can be checked mechanically: deployment validation, health checks, policy enforcement, admission controls, automated response, and operational gates.
+\item
+  \emph{Role of autonomous reasoning.} Diagnosing incidents across runtime evidence, implementation, and system models; identifying root causes and structurally related instances; proposing corrective action; and recognizing lessons that should be converted into durable governance.
+\item
+  \emph{Determinization opportunity.} High for stable operational predicates and recurring failure classes once their governing conditions have been identified.
+\item
+  \emph{Degrees of freedom.} Operational and corrective choices left open by existing obligations. Incidents may reveal that an apparent freedom was actually constrained by an unmodeled or tacit obligation.
+\item
+  \emph{Smallest useful adoption.} Connect one recurring class of operational failure to the system models needed to diagnose it, then convert the resulting lesson into a durable representation or mechanism rather than repeatedly repairing individual instances.
+\item
+  \emph{Lifecycle connections.} Realized structure from Engineering; corrective work flowing into Maintenance; operational evidence supporting Assurance; recurring lessons converted into engineering capital for future work.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/product-discovery.tex`
+
+Lines 1–36; SHA-256 `d46d09882ae8de1eb7584f4188f39b24a6e709402152449436ede0044482c940`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Engineering question.} What should we build, and why?
+
+Product discovery operates where uncertainty is often legitimate. Customer needs clash, features begin as hypotheses, requirements are negotiated, and experiments exist because important questions remain unsettled.
+
+Product discovery therefore needs to preserve what the team knows and why it made particular choices. Useful models can include stakeholder needs, product hypotheses, experiment definitions and results, prototypes, decision records, provisional requirements, and relationships among them. These representations preserve what the organization knows about the product problem rather than primarily describing its implementation.
+
+Product discovery therefore usually needs light Alignment. Hypotheses, evidence, and provisional decisions can be worth preserving without becoming obligations that realization must satisfy. Provenance matters: where did a claim come from? Relationships matter: which evidence bears on which hypothesis? Promotion matters: which provisional decision has become accepted product intent? Much of the judgment remains human because discovery is partly the work of deciding what the obligations should be. Rationales should be recorded, but extensive formalization is often unnecessary.
+
+Agents can still provide substantial leverage. A reasoner can retrieve experiments relevant to a proposed capability, identify earlier product decisions it appears to contradict, trace stakeholder needs, compare competing evidence, or reconstruct why a previous direction was abandoned. Externalizing that knowledge reduces reconstruction without pretending the resulting judgment is mechanical.
+
+Discovery also exposes the distinction among unknown, tacit, and free. An apparently unconstrained choice may be genuinely open, may conceal an obligation not yet discovered, or may depend on one stakeholders have not articulated. Discovery helps determine which.
+
+\textbf{MAGE profile.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Characteristic models.} Needs, hypotheses, experiment results, product decisions, provisional and accepted requirements.
+\item
+  \emph{Lifetime.} Mostly episode- and product-lived; decisions and requirements may outlive the investigations that produced them.
+\item
+  \emph{Alignment posture.} Light. Preserve provenance and decision status; avoid prematurely making hypotheses binding.
+\item
+  \emph{Role of autonomous reasoning.} Synthesis, retrieval, comparison, ambiguity, and reasoning across competing evidence.
+\item
+  \emph{Determinization opportunity.} Limited while the underlying product question remains genuinely unsettled. Stable process obligations may still be mechanized.
+\item
+  \emph{Degrees of freedom.} Product choices that stakeholders have genuinely left open.
+\item
+  \emph{Smallest useful adoption.} Persist consequential product decisions, their rationale, and their relationships to needs and evidence; make that structure available to later reasoning.
+\item
+  \emph{Lifecycle connections.} Requirements entering Engineering and Assurance; change intent entering Product Management; operational evidence that tests product assumptions.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-product-lifecycle/product-management-and-maintenance.tex`
+
+Lines 1–47; SHA-256 `b25af86cf96af5d6124fb61a97c2eb89edb4ccec61d7cc846bbd4a16da5872af`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Engineering question.} What change are we asking for, and why?
+
+Many software organizations already possess a lightweight modeling substrate without calling it one: the ticketing system. A structured ticket can preserve desired behavior, rationale, acceptance criteria, affected concepts, constraints, related changes, and prior decisions. When it carries enough information to reason about one requested change, it functions as a purposeful change-scoped model. It need not duplicate longer-lived models; it should connect the episode to the product and system knowledge that governs it.
+
+The change-scoped nature of the ticket matters. A ticket written in 2022 need not describe the product in 2026, but it can remain an accurate representation of the intent governing the 2022 change. Its persistence is then useful history rather than a synchronization burden. Maintenance uses the same pattern: an issue can preserve the discrepancy, intended correction, rationale, and acceptance evidence.
+
+For many tickets, however, specifying the requested outcome is not the difficult part. The difficult part is diagnosis: determining why the observed behavior occurs, locating the responsible concepts and components, and identifying the system models and obligations that govern a correct change. This is especially apparent in defect repair, where root-cause analysis may dominate the work. MAGE\textquotesingle s bidirectional traceability between models and implementation reduces that search problem. An observation in the realized system can be traced from code to the relevant architectural, behavioral, ownership, or other system models; reasoning over those models can in turn identify the implementation that realizes them. The ticket can therefore become a point of entry into the governed engineering environment rather than a standalone description from which an agent must reconstruct the system.
+
+A ticket also reopens a particular region of the product to choice. Existing intent, architecture, contracts, and acceptance machinery may already settle most consequential questions, leaving an agent only implementation choices. Other changes expand the realization surface, expose a tacit obligation, or require new design judgment. Maintenance therefore does not simply consume a fixed stock of degrees of freedom; each change encounters and may alter the choice space defined by current obligations.
+
+\autoref{fig-h-change} brings these relationships together.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/h4-change-diagnosis-inheritance-c2bdedc5b3.pdf}
+\caption{\emph{Change-scoped models, degrees of freedom, and inheritance.} A ticket or issue provides an entry point into a change episode. Bidirectional traceability helps locate the responsible implementation and the models and obligations that govern it. Those inherited obligations bound the realization space while leaving some choices open. Acceptance evidence establishes whether the realized change satisfies its obligations; recurring or consequential lessons can then be converted into durable structure that future work inherits.}
+\label{fig-h-change}
+\end{figure}
+
+Maintenance is not inherently more automatable than new engineering; its advantage is inheritance. A mature product may already provide the models, obligations, evidence machinery, traceability, and prior decisions that settle questions a greenfield change must answer. When they cover the requested change, realization becomes cheaper. When the ticket exposes a missing capability, tacit obligation, architectural conflict, or new design question, judgment returns.
+
+Ticketing is an accessible MAGE surface because many organizations already preserve change-scoped intent. The useful move is not to enrich every ticket, but to connect consequential change intent to the longer-lived knowledge and evidence needed to govern the change.
+
+\textbf{MAGE profile.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Characteristic models.} Tickets and issues containing change intent, rationale, constraints, acceptance criteria, and links to longer-lived product and system models.
+\item
+  \emph{Lifetime.} Primarily change-scoped, with historical value after the change is complete.
+\item
+  \emph{Alignment posture.} Workflow state, acceptance evidence, regression tests, and admission gates, backed by the longer-lived obligations relevant to the change.
+\item
+  \emph{Role of autonomous reasoning.} Diagnosing reported problems, locating the relevant system context, interpreting change intent against it, and realizing choices that governing obligations leave open.
+\item
+  \emph{Determinization opportunity.} Recurring classes of changes, acceptance conditions, and repair obligations can migrate into deterministic machinery.
+\item
+  \emph{Degrees of freedom.} Choices left open by the obligations governing the particular change. A change can preserve, narrow, expose, or expand that choice space.
+\item
+  \emph{Smallest useful adoption.} Treat sufficiently structured tickets as change-scoped models, connect them through traceability to relevant persistent knowledge and acceptance evidence, and allow later work to inherit rather than reconstruct that context.
+\item
+  \emph{Lifecycle connections.} Product rationale and accepted intent from Discovery; persistent system models and their implementation from Engineering; corrective work originating in Operations; assurance obligations and evidence affected by the change.
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/_opening.tex`
+
+Lines 1–16; SHA-256 `9ed811035b8ed6b5e640de036dca129fab2b7870e70a78fe1f49eb6c434406b3`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+This appendix is an organizational adoption guide, not a restatement of the MAGE method. It assumes the problem developed in \magevalue{chapter:problem} and draws most directly on the industrial evidence in \magevalue{sec:mage-in-the-wild} and the economics of explicit engineering in \magevalue{sec:scope-conditions}. Readers approaching MAGE primarily as an organizational problem can follow \magevalue{chapter:problem} → \magevalue{sec:mage-in-the-wild} → this appendix. The key MAGE concepts are briefly glossed here where needed; Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} develop the underlying engineering practices, and \magevalue{chapter:theory} develops the full theory.
+
+Organizations are already adopting GenAI through relatively weak forms of delegation: they give people access to capable models and let them use them inside existing work. An engineer asks an agent to draft a test, an analyst uses one to summarize a body of material, or a manager asks one to prepare a first version of a document. The existing worker still supplies much of the context, notices when the result is wrong, and decides what happens next. This can be highly cost-effective. The organization already employs people who possess the relevant knowledge and judgment, so useful machine intelligence can be added without first reproducing those capabilities in an engineered environment.
+
+There is no single next step from this arrangement. An organization can invest independently in how strongly the work is modeled and how strongly its obligations govern the result. At the weak end, instructions, retrieved context, examples, and skills can make consequential knowledge available while leaving substantial interpretation to the reasoner. Stronger modeling can move recurring knowledge into structured representations that support more direct analysis. Similarly, guidance can improve the probability that an agent respects an obligation, while stronger Alignment can make selected obligations enforceable through independent evidence, evaluation, constraints, gates, or expert judgment. Different engineering surfaces warrant different combinations.
+
+Human expertise is the general-purpose strong fallback. A capable expert can reconstruct context that was never adequately modeled, interpret obligations that remain informal or qualitative, inspect evidence, resolve exceptions, and reject work for reasons the surrounding machinery cannot express. Weak modeling and alignment can therefore work extremely well while knowledgeable people remain around the agent: those people supply much of what the engineered environment does not.
+
+The risk appears when organizations mistake machine productivity for independence from that human environment. The measured productivity of the agent-plus-engineer system can be incorrectly attributed to the agent alone. If the people who supplied implicit knowledge, review, exception handling, and accountability are removed, those functions do not disappear with them. Productivity gains may make a smaller engineering organization economically attractive, but reducing human capacity before replacing the functions it supplied can remove part of the environment on which the apparent productivity gain depended. An organization that intends to reduce its dependence on direct human involvement must first determine which of those functions the delegated work still requires and where they will reside. Some can move into models, evidence, validators, constraints, and procedures; others may continue to require expert judgment. As machine realization becomes cheaper and more abundant, the economic opportunity is to move recurring reconstruction and adjudication into reusable engineering structures---not to assume that productive agents have made those functions unnecessary.
+
+A more consequential transition occurs when the organization delegates a unit of work. An agent may implement an issue, investigate an incident, reconcile records, remediate a document, or operate a service with substantial freedom over how to achieve the requested outcome. The person no longer supplies every intermediate judgment, so information and controls that previously lived in the worker\textquotesingle s head or immediate workflow must move elsewhere. The organization needs to determine what the agent may inspect and change, what properties its work must preserve, what evidence will establish those properties, and where authority over consequential outcomes remains. Better models make larger units of work technically possible to delegate; they do not answer these organizational questions.
+
+MAGE provides one way to reason about the environment that grows around such delegation. Modeling makes consequential knowledge and intent available without requiring each reasoner to reconstruct them from code, documents, conversations, and organizational memory. Alignment makes selected obligations enforceable through the mechanisms appropriate to them: a permission boundary may prevent an action, instrumentation may produce evidence, a gate may check an artifact and reject it when an obligation fails, and an expert may decide a property for which no adequate evaluator exists. As experience reveals missing knowledge or weak controls, governance conversion changes that environment so that later work inherits what earlier work learned. GenAI adoption then becomes more than repeated use of a capable model: the organization gradually becomes able to delegate larger or more consequential work because it has engineered the conditions under which that work occurs.
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/a-practical-adoption-procedure.tex`
+
+Lines 1–35; SHA-256 `505104b00c9d0308898a3ff2675108a9721fe242459a8fe26985a1efde22a9d8`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The preceding argument can be turned into a procedure. It is deliberately organized around one engineering surface at a time.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Choose a recurring unit of work.} Start where GenAI can already perform useful work and where the organization can observe the result. Identify the artifact or system being changed, the outcome expected, and the boundary of the work unit.
+\item
+  \textbf{Write down the consequential obligations.} Ask what must remain true if this work is delegated. Include functional requirements, architectural boundaries, security and privacy rules, operational limits, provenance requirements, and qualitative obligations that matter to acceptance. Do not require every obligation to be mechanically decidable.
+\item
+  \textbf{Identify what the reasoner currently has to reconstruct.} Record the system facts, organizational knowledge, prior decisions, and relationships repeatedly rediscovered from source, documents, or people. Externalize the consequential recurring parts into representations appropriate to the questions being asked.
+\item
+  \textbf{Separate evidence from production.} Determine how the organization can establish important properties without relying solely on the producing agent\textquotesingle s account of its own work. Reuse existing tests, analyses, measurements, simulations, and review procedures where they are adequate; add evidence where important claims remain unsupported.
+\item
+  \textbf{Assign enforcement to selected obligations.} Decide which properties should prevent an action, reject an artifact, require additional evidence, or escalate the work. Use the weakest mechanism that provides adequate assurance for the consequence at stake. Preserve expert judgment where no adequate evaluator exists rather than disguising a heuristic as a proof.
+\item
+  \textbf{Delegate within the resulting boundary.} Give the agent the work unit, relevant models, permitted actions, and acceptance path. Record enough provenance to reconstruct what happened and why. Keep escalation available for situations the environment does not adequately cover.
+\item
+  \textbf{Study interventions and failures.} When a person corrects the work, ask whether the correction is local or reveals missing organizational structure. Repeated reconstruction suggests a missing model; repeated violation suggests missing enforcement; repeated disagreement with a checker suggests an inadequate evaluator; repeated escalation may indicate either an appropriate judgment boundary or an opportunity for better support.
+\item
+  \textbf{Convert recurring lessons into engineering capital.} Update the representation, evidence, mechanism, procedure, or skill that would let later work inherit the lesson. Check that the new asset has a consumer and that its expected value justifies its carrying cost.
+\item
+  \textbf{Expand delegation where the evidence supports it.} Increase the scope or consequence of delegated work only where the surrounding environment provides an adequate basis for doing so. Evaluate individual engineering surfaces rather than declaring the product or organization autonomous.
+\item
+  \textbf{Revisit responsibility and resilience as the boundary moves.} Determine who remains answerable for consequential decisions, what competence they need to exercise that responsibility, and which capabilities the organization must retain if its preferred machine intelligence is unavailable or inappropriate.
+\end{enumerate}
+
+This procedure can begin with one team and one workflow. The first useful result may be modest: a dependency rule that stops being rediscovered, a test that becomes an admission gate, a provenance record that makes an automated change inspectable, or a recurring review criterion that becomes a structured rubric. The relevant measure of progress is not how many tasks have been handed to an agent. It is whether the organization can delegate useful work while retaining a sound account of what the work must satisfy, how those obligations are evaluated, and where authority over the result resides.
+
+As capability improves, that account becomes more rather than less important. Some work that currently requires direct expert judgment will acquire better evaluators; artificial experts may become trustworthy for judgments that organizations currently reserve for people; and cheap realization will make still larger spaces of alternatives practical to explore. Other obligations will remain contextual, contested, or expensive to evaluate. Adoption therefore has no fixed endpoint at which the organization has "automated engineering." It is an ongoing allocation of reasoning and authority among people, artificial reasoners, and engineered mechanisms, revised as their relative capabilities and costs change.
+
+The practical objective is correspondingly narrower than maximum autonomy. An organization should delegate work when doing so creates value and when the surrounding engineering provides adequate knowledge, evidence, enforcement, and accountability for the consequences involved. MAGE supplies structures for making those conditions explicit and for improving them through use. The result is an organization that can take advantage of increasingly cheap intelligence without requiring either that people inspect everything it produces or that the organization simply trust what the intelligence decides.
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/engineering-the-environment.tex`
+
+Lines 1–54; SHA-256 `b7bf3866964268db82cc05764fba7bc45f224e7242601eef6b76f43041ba4758`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+As delegation expands, organizational knowledge becomes part of the engineering problem. A person embedded in a system may know which service owns a capability, which dependency direction is intentional, which migration is underway, which test is authoritative, and which apparent inconsistency is deliberate. An agent arriving at a work unit does not share that history. It can often reconstruct some of it from source and documents, but repeated reconstruction consumes reasoning capacity and can produce different interpretations from one task to the next. The same problem appears between people, although persistent teams and organizational memory have traditionally hidden some of its cost.
+
+A natural early response is context engineering: improve what the reasoner can see when it makes a decision. Organizations can collect instructions, conventions, architecture documents, service catalogs, prior decisions, examples, skills, and other durable knowledge, then retrieve the relevant subset for each task. Graph engineering strengthens this approach by connecting entities and relationships so that retrieval can follow the structure of the system rather than depend only on textual similarity. These are important engineering improvements. They move knowledge out of individual memory and transient conversations into organizational assets that later reasoners can reuse.
+
+In MAGE terms, however, much of this remains a relatively weak form of representation. A natural-language description of a dependency rule makes the rule explicit, but the producing agent must still interpret the description, determine how it applies to the current change, and realize an acceptable result. A graph can improve this substantially by identifying the relevant services, owners, dependencies, policies, or prior decisions. But if the meaning of its nodes and edges ultimately arrives as prose for an agent to interpret, the final engineering judgment still rests largely with the reasoner.
+
+That is not a defect. Weak representations can produce large gains at low cost. Better context can reduce search, prevent repeated reconstruction, improve consistency, and raise the probability that an agent makes a satisfactory decision. For many engineering concerns, that may be enough. The mistake is to confuse making knowledge available to a reasoner with making the represented property independently analyzable.
+
+Modeling strengthens the representation when the recurring engineering question warrants the investment. A service catalog can become a typed dependency model; prose about ownership can become explicit ownership and transfer relations; operational experience can become a measurement model with a declared bound; a workflow description can become a state machine. The relevant progression is not from "bad context" to "good model." It is from representations that require more interpretation to representations whose semantics let additional questions be answered directly by people, agents, or tools.
+
+The same distinction applies to control. Natural-language instructions, examples, policies, and skills can strongly influence autonomous work. They can make an obligation explicit and improve the probability that the producing agent respects it. But the producing agent is still being trusted to interpret the obligation, apply it correctly, and often assess its own realization. \magevalue{chapter:alignment} called this guidance. The environment can supply three complementary functions: a constraint can make an action unavailable; a sensor can produce independent evidence; and a gate can evaluate that evidence and prevent unacceptable work from advancing. Checking may also produce advisory findings. Enforcement requires a constraint or a gate that acts on the decision.
+
+Context engineering and graph engineering therefore occupy an important region of the MAGE design space. They can reduce reconstruction without eliminating interpretation, and improve realization without independently deciding whether an obligation was satisfied. This often makes them economical early investments in organizational adoption. They are also natural substrates from which stronger models and controls can later grow.
+
+Figure 0.3-1 named the two recurring costs as reconstruction and repeated adjudication. Organizational adoption makes them operational: context and graph engineering can reduce the first cheaply, while stronger models and enforcement become attractive where the residual cost justifies further investment.
+
+The reason to strengthen them is churn. If agents repeatedly retrieve the same prose and reach different architectural conclusions, the organization is still paying for interpretation. If reviewers repeatedly reject work for the same policy violation, the organization is still paying for adjudication. If an agent repeatedly reconstructs a relationship already implicit in a graph, the representation may not yet expose the semantics needed by the recurring engineering question. Governance conversion asks what the organization has learned from that recurrence and what future work should inherit.
+
+The response should be proportionate. A recurring ambiguity may earn clearer guidance. Repeated reconstruction may earn a structured representation. A stable relationship may earn a typed model. A recurring judgment may earn an evaluator. A sufficiently stable and evaluable obligation may earn a constraint or gate. Each move requires construction and carrying cost. The reason to make it is that later work may inherit what earlier work established. Where the avoided reconstruction, adjudication, rework, or risk exceeds that cost, the asset becomes engineering capital and its return compounds across subsequent work.
+
+This is how engineering capital compounds. The organization need not begin with rich executable models or comprehensive governance. It can begin cheaply, observe where probabilistic reasoning performs well enough, and invest more deeply where recurring cost or consequence justifies it. Stronger models are warranted not because structured representations are inherently more mature, but because they can retire work that weaker representations leave to repeated interpretation. Stronger enforcement is warranted not because every rule should become mechanical, but because some obligations are too stable, recurrent, or consequential to leave to repeated voluntary compliance.
+
+The resulting pattern is to start with the cheapest adequate environment, observe the residual churn, and strengthen representation or enforcement independently where the expected return justifies it. Different obligations can stop at different points. A natural-language skill may remain the right engineering asset for a contextual procedure. A service graph may need only to support navigation. Another graph may warrant typed relationships because architecture analysis depends on them. A security boundary may justify structural prevention from the beginning. Organizational adoption consists of making these investments selectively, surface by surface.
+
+An explicit representation can also serve several consumers at once. A service graph can help a reasoner locate relevant code, let an architect inspect a proposed dependency, and, where its semantics are sufficiently strong, let a gate check for and reject an edge the organization has declared forbidden. A provenance record can explain an automated change to a reviewer and also support a mechanical check that every change was accounted for. The representation becomes organizational engineering capital when later work can begin from what earlier work established rather than reconstructing it.
+
+Representation alone, however, does not make a rule binding. If a dependency policy matters, the organization must decide what happens when proposed work violates it. Some obligations can be made impossible to violate through interfaces, permissions, schemas, or other constraints. Some can be evaluated before work is admitted. Others become observable only during execution or after an artifact has been assembled. Alignment chooses mechanisms appropriate to those boundaries and makes selected obligations binding on the work. A rule that exists only in guidance remains advice; a rule connected to a mechanism can constrain what the organization accepts or permits.
+
+This does not imply that every important obligation should become a deterministic check. \magevalue{chapter:theory} used historic preservation and accessibility regulation to make the contrary point: an obligation can be consequential, explicit, and legally binding without admitting a complete formal evaluator. An organization may be able to enforce file-format validity mechanically while requiring an expert to judge whether a transformed document remains useful; it may verify structural properties of a design while retaining expert review of contextual fit. The appropriate response is to mechanize the parts for which adequate evaluators exist and improve the representations, evidence, procedures, and review available for the rest.
+
+This matters for adoption because consequence and mechanizability are different dimensions. A highly consequential judgment may deserve substantial investment precisely because it cannot be handed to a cheap checker. The organization can make the governing obligation explicit, gather better evidence, provide precedent and structured criteria, preserve the rationale for earlier decisions, and require an appropriately capable expert to decide the remaining question. As models, measurements, and artificial reasoners improve, that boundary can move. Expert here names the reasoner capable of making the judgment to the standard required by its consequences; it does not require that the reasoner remain human. What matters is that the authority delegated to the reasoner does not exceed the organization\textquotesingle s basis for trusting the judgment. The value-versus-governability tradeoff developed in \magevalue{sec:scope-conditions} applies directly. Choose where to invest surface by surface. Movement toward stronger representation or enforcement is justified by the engineering return.
+
+\autoref{adopting-investment-paths} maps where that investment can go.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/adopting-investment-paths-4e2b2b362b.pdf}
+\caption{\emph{From recurring cost to engineering capital.} Context and guidance can cheaply reduce reconstruction and improve probabilistic judgment. Where residual churn or consequence warrants further investment, organizations can strengthen representation, evidence, evaluation, or enforcement so that later work inherits more of what earlier work established. The paths are investment choices, not maturity levels.}
+\label{adopting-investment-paths}
+\end{figure}
+
+This appendix also operationalizes four figures the book has already developed; \autoref{adopting-figures-recap} collects them.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/adopting-figures-recap-55c42533b4.pdf}
+\caption{\emph{Four figures this appendix puts to work.} Each was developed earlier in the book and is reused here at organizational scale, not reintroduced: the value of explicit engineering against feasible governability (\{\{sec:mage-in-the-wild\}\}), the governance-conversion loop (§3.4), the support-apparatus ratio, and the redistribution of engineering effort (both in \magevalue{chapter:software-factories}). The appendix refers back to these rather than re-deriving them.}
+\label{adopting-figures-recap}
+\end{figure}
+
+The result is a Governed Engineering Environment rather than merely an inventory of AI tools. The GEE contains the representations through which work is understood, the constraints within which it may proceed, the evidence by which results are evaluated, and the mechanisms that determine what happens next. Agents operate inside that environment alongside people and conventional software. The organization\textquotesingle s adoption problem is then less dependent on the behavior of any particular model: a more capable model may enlarge what can be attempted, while the environment determines what may be accepted.
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/expanding-delegation.tex`
+
+Lines 1–14; SHA-256 `6219d9fe7d8ebb727d42900762fb7a602061753101c17fb090583428c25972b7`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Direct human review can compensate for weak modeling and alignment while knowledgeable reviewers remain available and the volume of delegated work remains manageable. A person can inspect an agent\textquotesingle s output, reconstruct the relevant intent, notice an unexpected choice, and request a correction. That approach scales poorly when review demand grows with cheap machine realization: the cost of review continues to grow with the amount of realized work. Oversight therefore moves toward the models, evidence, validators, constraints, and gates that govern many realizations at once. Experts still review consequential work, but more of their attention can go to whether the right obligations were chosen, whether the representations remain faithful, whether the evidence is sufficient, and whether an exception is acceptable. The object of review moves; accountability does not. \magevalue{chapter:profession} develops this change in sign-off as a professional consequence of agentic engineering.
+
+This shift changes what limits scale. If every generated change requires line-by-line inspection by the person who requested it, autonomous implementation can increase output without proportionally increasing accepted engineering work. The relevant quantity is not simply how much agents produce, but how much expert attention is required to understand and govern that production. Better representations can reduce repeated reconstruction; independent evidence can settle routine questions; constraints can remove invalid choices before review; validators and gates can reject covered failures without consuming reviewer attention. The remaining review can then concentrate on obligations for which judgment still adds value. The support-apparatus ratio recorded in \magevalue{chapter:software-factories} (and recapped in \autoref{adopting-figures-recap}) is the visible trace of this: as delegated realization grows, support apparatus can become a substantial engineering product in its own right --- which is an observation about where effort accumulates, not a claim that a larger ratio is better.
+
+This also changes where engineering effort is likely to move. When realization is expensive, substantial effort naturally accumulates in implementation. When realization becomes cheaper, the economics favor greater investment upstream in deciding what should be true and downstream in establishing whether it became true. Requirements, architecture, models, constraints, evaluation, evidence, operations, and the mechanisms that connect them become relatively more important. Implementation does not disappear, and people may still write code where doing so is useful. The organizational change is that implementation effort no longer provides a good proxy for engineering effort. \magevalue{chapter:software-factories} traces this as a redistribution of engineering effort, not the disappearance of implementation.
+
+The boundary of safe delegation can then expand as the environment improves. A work unit that initially required an engineer to reconstruct several facts manually may become delegable once those facts are represented. A migration that once required exhaustive inspection may become easier to govern once architectural dependencies and differential evidence are available. A recurring qualitative review may acquire a structured rubric and better evidence even if it remains judgmental. Engineering capital can therefore move the delegation boundary by reducing the uncertainty or review cost attached to later work.
+
+That boundary should not be confused with model capability. An agent may be technically capable of taking an action that the organization has no adequate basis for permitting autonomously. Conversely, a modest model can sometimes receive substantial delegated authority inside a tightly constrained environment because its possible actions are bounded and independently checked. The useful unit of adoption is consequently capability within an engineered boundary, not the advertised capability of the underlying model.
+
+This is also why organizations should expect adoption to remain uneven. Security boundaries may justify strong enforcement early because their consequences are high and many relevant properties are mechanically evaluable. Product discovery may remain much more judgmental. A mature service may accumulate enough architecture and operational evidence for substantial autonomous maintenance while a rapidly changing prototype does not justify comparable machinery. Scientific software may govern provenance and reproducibility strongly while leaving scientific validity to domain experts. The book\textquotesingle s theory predicts these mixed profiles rather than convergence toward one universal autonomy level, as \magevalue{chapter:theory} argued.
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/from-assistance-to-delegation.tex`
+
+Lines 1–17; SHA-256 `c5bdf7e3774e7ad1c77772513209e6c0d26c2649d43becc2c952da07123409e8`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Individual assistance is a useful place to begin because it exposes where GenAI actually helps. People discover which tasks are easy to describe, which require extensive context, which outputs are easy to check, and which mistakes recur. Little organizational machinery is required because the user remains inside the loop. If an assistant misunderstands a requirement, the engineer corrects it; if it proposes an implausible design, the engineer rejects it; if it needs a fact about the system, the engineer supplies the fact. Much of the engineering environment remains implicit in the person operating the tool.
+
+Delegation changes that arrangement. The relevant unit is no longer a prompt but a work unit with an intended outcome, available context, permitted actions, acceptance conditions, and a boundary beyond which the agent may not proceed on its own. A useful first organizational step is therefore to identify work that already has a reasonably clear boundary. A maintenance issue with an executable regression test is easier to delegate than an open-ended product decision. A document transformation with explicit preservation requirements is easier to delegate than deciding whether the resulting document communicates effectively to its intended audience. The distinction is not whether the task is difficult. It is whether the organization can state enough about the work and its acceptance to govern the delegation.
+
+This suggests expanding delegation along engineering surfaces rather than assigning an autonomy level to an entire organization or product. One service may have strong interface contracts, architecture rules, deployment checks, and operational evidence while another remains poorly understood. Within the same task, dependency policy may be mechanically governable while an architectural tradeoff remains judgmental. The appropriate boundary therefore depends on the particular obligations at issue: their consequence, recurrence, representability, available evidence, and the reliability with which the environment can evaluate them. \magevalue{chapter:theory} developed this as an economic and governability question. \autoref{adopting-boundary} shows the transition as a moving boundary.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/adopting-assistance-to-delegation-a6e239072d.pdf}
+\caption{\emph{From assistance to bounded delegation.} Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment --- models carry context, evidence establishes properties, and mechanisms constrain and admit the result --- and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.}
+\label{adopting-boundary}
+\end{figure}
+
+Early delegation should consequently favor work with short feedback loops and independent evidence. Tests, static analysis, schema validation, differential comparison, build results, simulations, and operational measurements can establish useful properties without asking the producing agent whether its own work is correct. The point is not to eliminate human review. It is to learn which parts of review repeatedly establish the same facts and which parts require judgment that the environment does not yet adequately support. That distinction supplies the raw material for the next stage of adoption.
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/learning-from-delegated-work.tex`
+
+Lines 1–14; SHA-256 `46047af2e4c4c79c0475812687465b8d6deadc2eede104f61cb84d4c34120331`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+No initial environment will capture everything that matters. Early agents will misunderstand local conventions, cross boundaries that were obvious to experienced engineers, satisfy tests while violating an unstated requirement, or produce results that expose weaknesses in the tests themselves. Human reviewers will continue to catch important problems. These interventions are useful not only because they repair the immediate work, but because they reveal where the environment failed to carry knowledge or enforcement that the work required.
+
+The first response to a failure is often local: correct the artifact and continue. Sometimes that is enough. A one-off misunderstanding does not justify a new model, validator, or organizational rule. Repeated failures deserve a different diagnosis. If several work units reconstruct the same architectural fact incorrectly, the problem may be missing representation. If an obligation is repeatedly stated but violated, the environment may lack enforcement. If a validator reports success while reviewers consistently reject the result, the evaluator may not measure the property the organization actually cares about. If an agent cannot determine which rule applies, the relevant knowledge may exist but be unavailable at the point of reasoning.
+
+Governance conversion is the process of turning such recurring discoveries into changes to the engineered environment. A correction may become a model entry, invariant, schema constraint, test, validator, permission rule, measurement, operating procedure, or reusable skill. The choice depends on the failure. The objective is not to mechanize every review comment, but to stop paying repeatedly for engineering knowledge that the organization has already acquired. When the same judgment is likely to recur and can be represented usefully, later work should inherit it. This is the governance-conversion loop developed in \magevalue{sec:governance-conversion} (\autoref{adopting-figures-recap}), read here at organizational scale: delegated work produces evidence and failures, diagnosis identifies what the environment was missing, a representation or enforcement change encodes it, and later delegated work inherits the result.
+
+This is where adoption begins to compound. A conventional productivity rollout asks whether the next model, prompt, or tool lets a worker complete today\textquotesingle s task faster. Governance conversion asks whether today\textquotesingle s work leaves the environment better prepared for tomorrow\textquotesingle s. The distinction is important because model capability is externally supplied and will continue to change. An organization that depends mainly on prompting skill must repeatedly reconstruct its local practices around each new tool. An organization that has encoded consequential knowledge, evidence, and enforcement into durable engineering structures can expose those structures to new reasoners as they arrive.
+
+The resulting assets also have different lifetimes. A test tied closely to one implementation may depreciate during a rewrite. An architectural boundary, ownership rule, accessibility obligation, provenance requirement, or deployment invariant may survive several implementations. Some assets can be shared across a product; others remain local to one component or workflow. Adoption therefore creates an ordinary maintenance problem: engineering capital has carrying cost, can become stale, and must remain connected to the reality it claims to describe. More machinery is not automatically better. Models that no longer answer useful questions and controls whose expected benefit no longer exceeds their cost should be revised or retired.
+
+The DocAble case illustrates the scale this supporting environment can reach without establishing a general target. At the study window's endpoint, approximately \magevalue{prod_loc_rounded} lines of production source were accompanied by about \magevalue{support_loc_rounded} lines classified as support apparatus, a ratio of \magevalue{support_ratio} to 1; the ratio had been higher during the preceding hardening period. Those counts include models, tests, validation, control machinery, and related support code, and are tabulated in the evidence ledger ({[}appendix: appendix-evidence-ledger{]}). They describe one repository under unusually intensive agentic development, not an optimal ratio for other organizations. The useful observation is structural: as autonomous realization expanded beyond what one engineer could inspect conventionally, substantial engineering effort accumulated in the environment used to understand, constrain, and evaluate that realization. \magevalue{chapter:software-factories} records the same shift in where engineering judgment went.
+````
+
+### Original `book/latex/sources/appendix-adopting-genai/organizational-adoption.tex`
+
+Lines 1–16; SHA-256 `43c4a8a5c8ad09334138f8400247e89ba11d30722de12869ac95a94166c0246b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+An organization does not need to adopt MAGE across an entire product before receiving value from it. The natural unit is a recurring engineering surface where delegated work is already useful or likely to become useful: dependency changes, test construction, accessibility remediation, deployment, incident investigation, API evolution, data migration, security policy, or another bounded concern. Starting from a real surface keeps the engineering proportional to an observed problem and provides evidence about which representations and controls are worth carrying.
+
+Local environments can later compose. A dependency model built for one service may become part of a product-wide architecture model. A validator created after one incident may protect every service that shares the same obligation. A provenance convention developed for one autonomous workflow may become the organization\textquotesingle s normal record for machine-generated changes. The product GEE emerges from these useful local structures when their scope genuinely crosses organizational boundaries; it should not be designed in advance as a comprehensive central model of everything.
+
+This incremental route also reduces the risk of confusing standardization with governance. A central AI platform can provide model access, authentication, logging, cost controls, approved tools, and common execution infrastructure. Those are useful platform capabilities, but they do not by themselves encode what a particular engineering system means or what properties its work must preserve. The teams closest to a system still have to identify its consequential obligations and representations. Central infrastructure can make those artifacts easier to build, discover, evaluate, and enforce without pretending that one platform team can specify every domain.
+
+Organizational roles may change accordingly. Domain engineers remain important because they know which distinctions matter and which tradeoffs are acceptable. Platform engineers can provide common machinery for context retrieval, agent execution, evidence collection, validation, permissions, provenance, and policy enforcement. Security, safety, compliance, accessibility, and other cross-cutting groups can express obligations in forms that product environments can consume rather than relying exclusively on prose guidance and episodic review. Engineering leadership decides which work may be delegated, what evidence is required for consequential decisions, and where responsibility remains. The division of labor is less about who writes a particular piece of implementation and more about who establishes the knowledge, authority, and evidence under which implementation is accepted.
+
+That change does not remove accountability. \magevalue{chapter:profession} argues that professional authority rests on competence and responsibility, not on personally performing every underlying action. An organization may therefore delegate substantial realization while retaining identifiable people and institutions responsible for the systems produced. Where consequential authority is delegated to an artificial reasoner, the organization still needs a defensible account of why that delegation was appropriate, what bounded the decision, what evidence supported it, and who had authority to establish those terms. A machine can participate in expert judgment as its capabilities improve; it does not thereby become the terminus of organizational responsibility.
+
+Resilience introduces a separate consideration. An organization that moves substantial engineering capability into external machine intelligence acquires a dependency on that intelligence. For ordinary work, the productivity gain may easily justify the dependency. For critical engineering functions, the organization should also ask what happens if the relevant service becomes unavailable, materially degrades, changes terms, becomes untrustworthy for the task, or cannot legally or operationally be used. The appropriate response need not be to preserve the old workflow unchanged. It may be to retain enough human competence, alternative tooling, models, documentation, and operating procedures to recover essential engineering capability when the preferred intelligence is unavailable.
+
+The same issue applies to the diversity of judgment inside engineering organizations. Smaller teams supported by autonomous realization may incur less coordination cost, but large teams have historically supplied multiple perspectives as a side effect of having many people involved. Different engineers notice different assumptions and recognize different failure modes. A GEE preserves what has been represented and governs obligations that have been identified; it does not automatically supply perspectives that nobody brought to the problem. If fewer people can govern a larger system, organizations may need deliberate substitutes such as independent inspection, heterogeneous agents, adversarial analysis, or independently produced evidence. The product-lifecycle appendix ({[}appendix: appendix-product-lifecycle{]}) identifies this as a possible shift from coordinating enough people to build the system toward ensuring enough independent judgment over it.
+````
+
+### Original `book/latex/sources/appendix-crazy-ideas/_opening.tex`
+
+Lines 1–6; SHA-256 `cb0a8f36d7bfb95d48ee2814101867c6b9255f0c3915faf9b0cead9451e85060`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{A temporary holding area --- not part of the argument}
+
+\textbf{Editorial status.} This appendix is a temporary holding area for research directions generated while developing the manuscript but extending beyond the claims the book needs to make. Nothing here is essential to MAGE. The notes preserve conjectures, study designs, and possible paper agendas so they can be developed separately rather than enlarging the book\textquotesingle s argument. Remove this appendix before publication.
+````
+
+### Original `book/latex/sources/appendix-crazy-ideas/development-completeness.tex`
+
+Lines 1–40; SHA-256 `05e0fceb3f3bdc4ca8cff4fe5ae5596816b323add958e38b48f3313b865540b9`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The book has made the governed engineering environment the primary engineering asset. One consequence lands on open source, and it wants stating carefully, because the reflex is to overclaim. Software firms have long shipped source while withholding what makes source easy to change --- an absent design manual, internal build tooling, the operational know-how that never left the building. Agentic engineering does not invent that gap between having the code and being able to evolve it. It enlarges it. As more of an organization\textquotesingle s effective development capability moves into models, skills, validators, policies, and context machinery, a larger fraction of what lets the originating team change the system quickly and safely comes to sit outside the production source tree.
+
+The open-weights debate is the near analogy. Model weights without the training data, recipe, and evaluation regime are inspectable and modifiable, and still do not hand you the originating lab\textquotesingle s capacity to produce the next version. Source without the governed environment is the software echo: forkable code that does not by itself reproduce the loop through which the upstream fleet reliably modifies it.
+
+The literature already knows this shape, one layer at a time. The Open Source Definition ties openness to the "preferred form in which a programmer would modify the program" and rejects deliberately obfuscated source\citep{osiOpenSourceDefinition} --- openness has never meant "whatever artifact happens to be human-readable." Reproducible-build research makes the next move downstream: source availability does not by itself establish that a distributed binary corresponds to that source, so trustworthy reconstruction depends on the build environment and instructions too,\citep{lamb2021reproducible}\citep{fourne2023reproducible} tooling exists to hunt the discrepancy between published sources and the packages actually shipped,\citep{vu2021lastpymile} and rebuild studies at scale confirm that reproducibility hinges on controlling environmental detail, not on the source alone.\citep{courtes2023guix}\citep{malka2025nix}\citep{sharma2025canonicalization} A separate strand shows that legally open code can still be hard to extend when the surrounding knowledge is missing --- documentation and newcomer barriers impede contribution,\citep{steinmacher2015barriers} and feature knowledge is often scattered through prose with rare explicit links back to the code.\citep{puhlfurss2022documentation} The Open Source AI Definition then met the same question one field over, extending "preferred form for modification" past weights to the data and process information a skilled person needs to rebuild a substantially equivalent system.\citep{osiOpenSourceAIDefinition} MAGE suggests the analogous next step for agentic software: as environment artifacts become part of the effective means by which a project is modified, practical modifiability may increasingly depend on whether those artifacts are shared too.
+
+\begin{quote}
+\textbf{Inset --- the right-to-repair analogy.} A machine can be owned outright and still be hard to repair without the maker\textquotesingle s diagnostic tools and manuals. In July 2026 the FTC and five states settled with Deere \& Company, requiring it to give farmers and independent shops the repair resources authorized dealers already held: diagnostic and fault-code tools, component reprogramming, restart capability, and technical documentation.\citep{ftc2026deere} The owner already had the tractor; what was withheld was the capability to diagnose and restore it. Read as an engineering principle, not legal precedent, it names the distinction this note draws --- possessing the artifact is not possessing the means to evolve it. The progression runs continuously: OSI ties openness to the form used for modification; reproducible builds show source alone may not rebuild the artifact; right-to-repair shows owning the artifact may not supply the tools to maintain it; MAGE suggests source alone may increasingly fail to reproduce the capacity to evolve a system safely at scale. So the open-software question becomes not only whether the source is available, but how much of the effective development environment is shared with it.
+\end{quote}
+
+This does not redefine open source, and it should not. OSI openness concerns licenses and rights, and OSI itself treats reproducibility as a requirement layered on top of openness rather than identical to it. The cleaner move is a second axis. Source openness asks whether outsiders hold the legal and technical artifact they may modify. \textbf{Development completeness} asks how much of the originating team\textquotesingle s capacity to modify it has been shared as well. That axis admits degrees:
+
+\begin{itemize}
+\tightlist
+\item
+  source available → build reproducible → tests reproducible → engineering-knowledge available → governance reproducible → agentic-development-environment reproducible.
+\end{itemize}
+
+A project can be fully open at the first rung and progressively less complete at the later ones. The progression measures; it does not indict. Where a project stops describes it, and no rung is owed.
+
+The supply-chain reading is the sharper half. Conventional supply-chain thinking already counts build tools, compilers, and CI systems: components that shape an artifact without shipping inside it. The extension is that judgment-bearing artifacts now join that chain. Third-party skills, MCP and tool servers, agent profiles, policy bundles, context providers, and validators can causally change what code an agent produces even though none of them ship in the product. This connects straight to the governance graph the book drew. An imported skill can collide with a local one; a vendor validator can carry assumptions the project\textquotesingle s model rejects. Those are supply-chain composition problems inside the environment, not the artifact. Industry is beginning to treat them that way. A major vendor now runs third-party skills through a multi-stage supply chain of review, scanning, evaluation, signing, and provenance,\citep{nvidia2026verifiedskills} and a study of policy-as-code adoption finds governance and configuration concerns already externalized into machine-readable project artifacts across hundreds of repositories.\citep{foalem2026policyascode} Portions of the environment are becoming source-like artifacts in ordinary open source.
+
+The commercial angle follows without sensation. Firms have long opened code while keeping operational expertise, internal infrastructure, and tooling; a proprietary governed environment is the agentic-era extension of that old asymmetry, with the moat sitting in accumulated engineering capital rather than in hidden source. A security-of-sharing corollary rides along: an organization may be able to publish larger, more consequential systems if the safety-critical engineering capability stays encoded in an environment it does not distribute. The flip side is equally real. If downstream users must then maintain the release without that environment, withholding it can make the release less sustainable rather than more secure --- a recent treatment of the open-weights problem points the same direction, arguing that reconstructing an AI system may need code, data, weights, toolchain, and hardware configuration, not source alone.\citep{hatta2026reproducibility}
+
+Where the analogy stops is where the novelty sits, and it is narrow. Environment artifacts may constitute a new layer of a project\textquotesingle s effective development form and its supply chain precisely because they encode the judgment through which autonomous agents modify the source. The source tree tells you what the system is; the governed engineering environment increasingly decides how fast and how safely it can become something else. \textbf{Candidate research questions.}
+
+\begin{itemize}
+\tightlist
+\item
+  What constitutes development completeness in an agentic open-source project?
+\item
+  Which environment artifacts should be counted part of the software supply chain?
+\item
+  Can commercial open source hold a durable advantage by opening the artifact while retaining parts of the engineering environment?
+\item
+  Behind all three: what does it mean to share \emph{enough} of a governed engineering environment for an outsider to reproduce not merely the artifact, but the originating project\textquotesingle s capacity to evolve it?
+\end{itemize}
+````
+
+### Original `book/latex/sources/appendix-crazy-ideas/experimental-substrate.tex`
+
+Lines 1–40; SHA-256 `f2259489dc1d378f2110b4de095b991ea5a3278726a0cb8b3eab3b2717e72219`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Commodity intelligence may create an unusual empirical opportunity for software-engineering research. Studies of human engineering practice contend with substantial variation in experience, familiarity, reasoning style, and local practice. Agentic systems remain stochastic and evolve across releases, but more of the reasoning substrate can be held approximately fixed: model version, repository state, tool surface, prompt, sampling procedure, task family, and engineered environment.
+
+Repeated trials can therefore estimate stochastic variation while one representation, mechanism, or admission policy changes. Some system-scale questions become more directly interventional: not only \emph{do teams using practice X report better outcomes?}, but \emph{what changes when representation A is replaced by representation B, or admission policy A by policy B, under otherwise matched conditions?}\magefootnote{ci-productivity}{The existing productivity record already runs both ways: a field experiment across thousands of developers measured a real rise in completed tasks,\citep{cui2025genai} while experienced developers in familiar repositories ran measurably slower with early tooling even as they believed themselves faster.\citep{metr2025productivity} The spread motivates the design: agent effects are context-dependent, so "AI use" is too coarse a variable to test on its own.}
+
+This suggests an experimental science in which the engineered environment itself becomes an independent variable. Cross reasoning engines with environments. Hold the task family fixed while changing the available models. Add or remove a validator. Vary correspondence strength. Compare thin and richly represented repositories. Measure durable throughput, reconstruction effort, defect escape, human intervention, and the distribution of engineering work.
+
+The opportunity is broader than MAGE. MAGE supplies one theory about which environmental variables should matter; other architectures should supply competing theories. The methodological conjecture is that commodity reasoners make some previously organizationally confounded software-engineering questions experimentally tractable enough for stronger causal study.
+
+The methodological opportunity is not merely repeatability. It is factorization. Human-subject studies of software engineering often struggle because practitioner skill, local familiarity, tool use, organizational practice, and problem-solving strategy move together. A commodity reasoner does not eliminate those confounds, but it can make more of them explicit experimental factors. Reasoning engine, environment, task, representation, tool surface, enforcement policy, and sampling procedure can be crossed rather than allowed to vary silently together.
+
+That creates a research program around the environment--reasoner interaction. Does a richer environment substitute for raw model capability, allowing weaker reasoners to close the gap? Does it complement capability, so stronger reasoners benefit disproportionately from better representations and mechanisms? Are there environments that help one model family and hinder another? At what point does environmental structure cease to reduce reasoning cost and instead become another context and maintenance burden?
+
+The dependent variables should also move beyond task completion. A useful experiment would distinguish raw implementation activity from durable throughput, defect escape, reconstruction cost, human intervention, and the amount of work that can be delegated at matched quality. It could also measure where human effort moves. An environment that accelerates source production but increases review and recovery is different from one that removes repeated reasoning across several stages of the engineering loop.
+
+Several study designs follow naturally. A crossed design can vary reasoning engine and engineered environment over a shared task family. A stepped intervention can add a representation, validator, or policy to one subsystem and use its earlier behavior as a baseline. Ablation can remove one environmental capability from a mature system. Longitudinal experiments can ask whether an intervention continues paying after the immediate task, which matters if the claim concerns durable engineering capital rather than one-shot performance.
+
+The hard measurement problem is environment quality. Mechanism count, repository size, or model volume are poor proxies. Candidate dimensions include representation fidelity, obligation coverage, synchronization strength, retrieval/reconstruction cost, governance friction, and the fraction of repeated judgment displaced by durable structure. A research program should treat those as separable constructs rather than collapse them into a maturity score.
+
+The design also creates threats that should be made explicit. Foundation models change rapidly; repeated trials are not independent if service-side behavior shifts; task suites can become contaminated; environments may be tuned to the particular reasoner used to evaluate them; and controlling the repository too tightly can make the study unlike real engineering. The methodological claim is therefore not that commodity agents create laboratory-perfect software engineering. It is that they may make stronger interventions over engineering structure possible than studies in which the reasoning substrate is an uncontrolled population of human practitioners.
+
+\textbf{Candidate research questions.}
+
+\begin{itemize}
+\tightlist
+\item
+  How much productive capability is attributable to the engineered environment rather than the reasoning engine?
+\item
+  When do environment quality and model capability substitute for one another, and when are they complementary?
+\item
+  Which environmental interventions persist as durable gains rather than moving effort downstream?
+\item
+  How do representation fidelity, enforcement, and evidence independently affect agentic performance?
+\item
+  What experimental controls are sufficient for causal claims when the reasoner itself remains stochastic and versioned?
+\end{itemize}
+
+\textbf{Possible paper seed:} \emph{Software Engineering With a Standardized Reasoner: Commodity Intelligence as an Experimental Instrument.}
+````
+
+### Original `book/latex/sources/appendix-crazy-ideas/model-induction.tex`
+
+Lines 1–49; SHA-256 `f6f12d6a42981da87ded2a86e5017f04f4b84f28e1bbe3e9477d49313ff60d1b`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Explicit models need not always precede realization. Repeated structure in realized work may supply evidence from which useful engineering concepts can be induced. The central move is not clustering for its own sake. Weak detectors or retrieval surface candidate regularities; comparison establishes whether instances share more than superficial form; engineering judgment decides whether the recurring shape denotes a concept worth naming; and the resulting vocabulary becomes available to future reasoning.
+
+DocAble supplies a grounded software instance. Primitive-density analysis exposed repeated low-level structures. Most were legitimate implementation detail. Some recurring patterns across related components expressed concepts the system was using without naming, and those concepts became explicit types and relations.
+
+The broader conjecture is that the same move may recur outside software. Repeated entities and relations in documents or organizational records may expose latent domain vocabularies. Repeated geometric arrangements, interfaces, and parameter bundles in CAD artifacts may expose candidate components or design concepts. In each case, realized artifacts supply candidate structure, but they do not decide which distinctions matter.
+
+This suggests a research problem distinct from ordinary retrieval: when can an agent move from retrieving repeated instances to proposing a durable abstraction that makes future work cheaper to reason about? Useful evaluation would have to measure not merely whether an induced concept matches a latent cluster, but whether adopting the abstraction improves later reasoning, consistency, search, assurance, or reuse.
+
+The research problem therefore has at least three separable stages. Detection asks whether realized artifacts contain recurring structure worth comparing. Abstraction asks whether several instances can be explained by a common concept rather than merely grouped by surface similarity. Adoption asks whether naming and institutionalizing that concept improves later engineering work. A system can succeed at one stage and fail at the next: a perfect cluster can still correspond to an accidental implementation convention, and a semantically valid abstraction can still cost more to maintain than it saves.
+
+This makes model induction different from ordinary concept mining. The output is not merely a label or cluster. The induced concept may acquire fields, relations, invariants, ownership, correspondence rules, or enforcement. Once future work begins depending on it, the abstraction becomes part of the engineering environment and incurs the same obligations as any other model: it can drift, overfit its originating examples, suppress useful variation, or survive after the concept has ceased to matter.
+
+The central evaluation question is downstream utility. Given the same future tasks, does an induced representation reduce reconstruction, inconsistency, or repeated judgment? Does it improve retrieval because related instances join through a shared concept? Does it permit checks or transformations that were impractical over raw artifacts? Can engineers predict which changes will be affected by modifying the model? And does the benefit persist long enough to repay the cost of establishing and maintaining the abstraction?
+
+Brownfield evolution provides a particularly useful experimental setting. Mine candidate concepts from an initial history, introduce selected representations, and then evaluate later work prospectively rather than scoring the induced abstraction against the same artifacts from which it was inferred. That design distinguishes an abstraction that merely compresses yesterday\textquotesingle s implementation from one that actually improves tomorrow\textquotesingle s engineering.
+
+Human judgment is not merely a fallback stage in this process; it supplies the intent test that repetition cannot. Two structures may recur because of copy-and-paste history, framework convention, or coincidence rather than because the domain contains a stable concept. Conversely, a consequential concept may have several superficially different realizations. The useful agentic system therefore needs to propose and compare candidate abstractions while exposing the evidence from which each was inferred, leaving adoption to accountable engineering judgment until stronger criteria are available.
+
+\textbf{Candidate research questions.}
+
+\begin{itemize}
+\tightlist
+\item
+  Which forms of repetition predict a reusable engineering abstraction rather than accidental implementation similarity?
+\item
+  How should agents propose relations, invariants, and boundaries once a candidate concept has been identified?
+\item
+  What evidence should accompany an induced abstraction so an engineer can judge whether it deserves adoption?
+\item
+  How can induced models be evaluated prospectively on later work rather than retrospectively against their training artifacts?
+\item
+  When does introducing a model reduce degrees of freedom productively, and when does it prematurely freeze an ontology?
+\item
+  How should an induced model evolve, split, merge, or retire as realized work changes?
+\end{itemize}
+
+\autoref{model-induction-general} traces that general move, from realized work to a named model, and instantiates it three ways. Its software, knowledge-work, and mechanical-CAD columns are what make this a research direction rather than a claim the book establishes.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-induction-general-85075bbba0.pdf}
+\caption{\emph{Model induction.} The same move runs in three settings: realized work yields repeated low-level forms, weak detection surfaces candidate regularities, and engineering judgment names the concept that survives comparison. The left rail states the move; the three columns instantiate it in software, knowledge work, and CAD. Software is the grounded case; the extension to knowledge work and CAD is a generalization, not evidence DocAble supplied.}
+\label{model-induction-general}
+\end{figure}
+
+\textbf{Possible paper seed:} \emph{From Repetition to Representation: Inducing Engineering Models From Realized Work.}
+````
+
+### Original `book/latex/sources/appendix-operators-reference/_opening.tex`
+
+Lines 1–10; SHA-256 `9154c556481cbe07b8508ee9fdc61a9c7c715ac038f7619aebcff6f40028a53e`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\textbf{Operational reference for running a Governed Engineering Environment}
+
+This appendix is an operational reference for a Governed Engineering Environment. A worked factory workflow first connects work orders, dispatch, validation, and recovery. The following cards answer specific operating questions; use the relevant card, then return to the work.
+
+The deck supports four jobs: orient, diagnose, act, and certify. The cards within each group answer a specific operating question. Operating Doctrine summarizes the rules that govern the rest.
+
+These cards are operating aids, not universal benchmarks. Use a metric only when it helps evaluate or steer a specific engineering claim. DocAble values are reference observations, not targets. The governing question is whether the environment makes future work more capable, trustworthy, or economical than it costs to maintain.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/brownfield-progress.tex`
+
+Lines 1–18; SHA-256 `1163204328c81987d122a5f80a513cbf95338d21a53304086e818c98ba5ee03c`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Where is the next high-value gap?}
+
+Brownfield progress has two independent dimensions. \textbf{Representation reach} asks how much of the important system can be understood through trustworthy explicit models. \textbf{Enforcement reach} asks which important obligations are enforced by constraints or gates and which are supported only by observation or advisory checks. Neither is a maturity score that must reach 100 percent.
+
+Strong local enforcement can exist with thin explicit modeling when permissions or sandboxes restrict actions, or gates enforce test results and other checks. Rich models can also coexist with weak enforcement when violations are reported but do not affect what may proceed. Address whichever uncovered gap matters most.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/brownfield-progress-2x2-2f6eb99086.pdf}
+\caption{\emph{Brownfield progress.} Representation reach and enforcement reach are independent axes. A system may be strong on either dimension without being strong on the other; the next investment should address the highest-value gap rather than maximize both indiscriminately.}
+\end{figure}
+
+Apply Audit → Synchronize → Govern → Extend to a selected surface rather than to the organization as a whole. Appendix H records the observed DocAble measurements.
+
+See \href{4.3-brownfield-engineering.html}{\magevalue{sec:brownfield-engineering}} for the full treatment.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/daily-review.tex`
+
+Lines 1–33; SHA-256 `d3bdca13617744b8c2fdbc119c85ab6d27f72d47cc1dbb9900250e9aeeba4020`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Use these five questions at a regular cadence and after consequential changes. The card introduces no new measures; each question points to the card that helps answer it.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Did durable work move forward?} → Dashboard and System Health. Check accepted capability, reopenings, rollbacks, and unexpected churn.
+\item
+  \textbf{Did any trusted representation become doubtful?} → Representation Health. Check the correspondence claims that current work actually depends on.
+\item
+  \textbf{Did an obligation escape the mechanism intended to enforce it?} → System Health and Release Readiness. Identify the boundary, evidence, validator, or gate that failed, or confirm that the obligation was intentionally left to judgment.
+\item
+  \textbf{What did a human have to reconstruct or decide again?} → Human Judgment. Repeated semantic work may be worth making explicit or durable, but recurrence alone does not justify automation.
+\item
+  \textbf{What should the environment learn from the recurrence?} → Governance Conversion and Engineering Capital. Decide whether the lesson justifies a representation, control, procedure, architectural change, retirement of stale machinery, or no durable change.
+\end{enumerate}
+
+% mage-code-language: text
+\begin{verbatim}
+  DAILY OPERATOR REVIEW                            "The morning five questions"
+  ──────────────────────────────────────────────────────────────────────────
+  1  Did durable work move forward?               → Dashboard / System Health
+  2  Did a trusted representation become doubtful? → Representation Health
+  3  Did an obligation escape enforcement?         → System Health / Release Readiness
+  4  What did a human have to decide again?        → Human Judgment
+  5  What should the environment learn?            → Governance Conversion / Capital
+  ──────────────────────────────────────────────────────────────────────────
+\end{verbatim}
+
+These reviews may run automatically at lifecycle boundaries, but classifying and interpreting the results may still require human judgment.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/engineering-capital.tex`
+
+Lines 1–39; SHA-256 `c0469c5730118ac6df1b4ab0bf7a75416f82fa70d6bb7f7c5b21a7529b440e09`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Is accumulated engineering structure producing value for later work?}
+
+Engineering structure becomes capital when later work inherits productive capacity from it. Models, validators, procedures, generators, and gates become capital when the value they provide to later work exceeds the cost to build, run, understand, reconcile, and maintain them.
+
+Read capital through five questions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Return.} What future work became cheaper, safer, faster, or possible because this structure exists?
+\item
+  \textbf{Inheritance.} Do later engineers and agents reuse the capability, or reconstruct an equivalent solution?
+\item
+  \textbf{Carrying cost.} What does the structure cost to run, understand, reconcile, and maintain?
+\item
+  \textbf{Depreciation.} Has the system, obligation, model substrate, or surrounding workflow moved far enough that the structure\textquotesingle s return is falling?
+\item
+  \textbf{Retirement.} Which structure now costs more to carry than the future value it preserves?
+\end{itemize}
+
+% mage-code-language: text
+\begin{verbatim}
+  ENGINEERING CAPITAL          "Is accumulated structure still earning its keep?"
+  ────────────────────────────────────────────────────────────────────────────
+  RETURN        later work gains capability
+  INHERITANCE   value is reused, not reconstructed
+  CARRYING      upkeep remains proportionate
+  DEPRECIATION  fit and return are watched
+  RETIREMENT    stale capital is removed
+  ────────────────────────────────────────────────────────────────────────────
+  Capital = productive structure, not apparatus quantity.
+\end{verbatim}
+
+Support ratio and control count measure accumulated apparatus, not capital return. Evaluate that apparatus by the future capability it enables net of carrying cost. Appendix H records DocAble\textquotesingle s observed support and control growth.
+
+One way to test for engineering capital is to hold the task and reasoner approximately fixed while changing the environment. If the same intelligence can answer larger questions, reconstruct less context, require less intervention, or produce more durable work in one environment than another, the difference is evidence that the environment stores productive capacity.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/evidence-quality.tex`
+
+Lines 1–40; SHA-256 `8289bff56f18263a847394c551ebf151893978579928e5ed72a779da9286cd47`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{What justifies this claim?}
+
+Start with the claim and identify the evidence capable of supporting it. Different properties require different evidence: a structural invariant may be checked exhaustively, a performance claim may require measurement, a semantic-fidelity claim may require generative evaluation and human judgment, and a formal proof establishes only the property encoded under its stated model and assumptions.
+
+For each claim, ask four questions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Claim.} What exactly is being asserted, and over what scope?
+\item
+  \textbf{Evidence.} What observation, measurement, proof, test, or other artifact bears on that claim?
+\item
+  \textbf{Evaluation.} What procedure interprets the evidence, and what can that procedure miss?
+\item
+  \textbf{Consequence.} What consequence should the result have? Evidence may inform a human, produce a warning, or justify a blocking gate; evidentiary strength and enforcement remain separate decisions.
+\end{itemize}
+
+% mage-code-language: text
+\begin{verbatim}
+  EVIDENCE QUALITY                            "What justifies this claim?"
+  ──────────────────────────────────────────────────────────────────────
+  CLAIM
+    ↓  what would settle it?
+  EVIDENCE
+    ↓  how is it interpreted?
+  EVALUATION
+    ↓  what does the result deserve?
+  CONSEQUENCE
+    advisory · warning · validator result · gate · human decision
+  ──────────────────────────────────────────────────────────────────────
+  No backing      →  unsupported claim
+  Weak backing    →  state the limit
+  Strong backing  →  still choose the consequence deliberately
+\end{verbatim}
+
+The critical failure is claiming more confidence than the evidence supports when the claim matters. Preserve evidence provenance, state limitations explicitly, and distinguish what the evidence establishes from the consequence the organization chooses to attach.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/from-drifted-wiki-to-trusted-model.tex`
+
+Lines 1–107; SHA-256 `9fc0a7099f8c9ff734e588742996acff1dee8f4a4fc80de3a28bbfe05fd6bd96`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: joining-the-wiki-to-the-code
+% mage-auto-heading: the-migration-path
+% mage-auto-heading: the-promotion-rule
+% mage-auto-heading: orphan-triage
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Most organizations already possess fragments of a Governed Engineering Environment: documentation, tests, review rules, CI checks, ownership files, runbooks, deployment policy, and expert knowledge. Brownfield migration asks three questions: Which engineering knowledge needs stronger representation? Which obligations are already effectively enforced? Where do gaps still force people to reconstruct what the environment should know?
+
+When a wiki carries important system knowledge, link its claims to the implementation and evidence they concern. Check mechanically decidable claims automatically. Give stronger structure only to knowledge whose future use justifies the cost. \href{4.3-brownfield-engineering.html}{\magevalue{sec:brownfield-engineering}} gives the full treatment.
+
+\subsection{Joining the wiki to the code}\label{heading:joining-the-wiki-to-the-code}
+
+Four additions can make a wiki a more trustworthy engineering entry point. Add them only where future use justifies the added maintenance burden.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Joining the wiki to the code]{Joining wiki knowledge to implementation. Four additions and the behavior each must provide.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Element
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Required behavior
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Element
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Required behavior
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Bidirectional links} & Wiki pages name the code and tests that back their claims; code and tests name the pages that explain their purpose. This bidirectional relation provides traceability between claims and the implementation or tests that support them. \\
+\textbf{Agent briefs} & Tell agents how to locate, traverse, cite, and maintain the relevant wiki material. \\
+\textbf{Design templates} & Name the wiki pages the work touches, and record when a missing page has to be created, before implementation begins. \\
+\textbf{Definition-of-Done checks} & Before work is accepted, compare affected pages with the current repository rather than relying on the agent\textquotesingle s report that they were updated. \\
+\end{longtable}
+}
+
+Add metadata only when a defined consumer uses it. Tags, backlinks, ownership fields, and machine-readable mirrors should feed an audit, brief, retrieval step, analysis, or gate; otherwise they add another surface that can drift.
+
+\subsection{The migration path}\label{heading:the-migration-path}
+
+The migration has four stages---Audit, Synchronize, Govern, and Extend---and each has an exit criterion. Advance when the criterion is met, not when enough time has passed.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[Audit, synchronize, govern, extend]{The brownfield migration path. Each stage names its work and exit criterion.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Work
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Exit criterion
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Work
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Exit criterion
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Audit} & Inventory important engineering knowledge, implementation surfaces, and existing controls. Classify which claims have evidence or enforcement, which rely on convention, which disagree with the system, and which implementation regions legitimately fall below the grain of any useful explicit model. Keep this stage advisory. & Important gaps are classified rather than merely counted. \\
+\textbf{Synchronize} & Repair high-value correspondence during ordinary work. When an agent or engineer touches a linked surface, re-check nearby claims, repair stale anchors, and surface semantic disagreements explicitly. & The representations you intend to trust have explicit, credible correspondence to their subjects. \\
+\textbf{Govern} & Enforce selected obligations at the earliest boundary where the required property is decidable. Some obligations can be checked directly over artifacts or actions; others depend on the representations strengthened in earlier stages. & The high-value obligations selected for governance no longer depend primarily on someone remembering to inspect them. \\
+\textbf{Extend} & Add richer representations, broader evidence, stronger mechanization, or additional enforcement only where expected return exceeds carrying cost. & Every addition has a named consumer or engineering question and a stated reason to exist. \\
+\end{longtable}
+}
+
+\subsection{The promotion rule}\label{heading:the-promotion-rule}
+
+Audit → reconcile → trust → govern → extend selectively.
+
+Do not enforce from an inaccurate representation. Do not require an explicit model where a local control already settles the obligation economically. Do not add structured metadata without a defined consumer. Add structure only when it is worth the cost: it should reduce repeated reconstruction or bring an important obligation under control.
+
+\subsection{Orphan triage}\label{heading:orphan-triage}
+
+Classify each unlinked region into one of three states so coverage reflects the intended model grain rather than raw implementation count.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Missing representation} --- a real subsystem with no explaining page or model; write or propose one.
+\item
+  \textbf{Missing anchor} --- the representation exists, but the link back from the code is absent; add the join.
+\item
+  \textbf{Below the grain} --- implementation too fine-grained or generic to warrant its own representation, such as typed-ID aliases, configuration loaders, or enums.
+\end{enumerate}
+
+See \href{4.3-brownfield-engineering.html}{\magevalue{sec:brownfield-engineering}} for recovering latent models, reconciling a recovered representation against the territory, and Audit → Drain → Promote.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/governance-conversion.tex`
+
+Lines 1–42; SHA-256 `f8586c8668c6a7998292b2dd582d3e4d78d3170861fade6bd6b0124a135ecbfe`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{What should the environment learn from this recurrence?}
+
+When the same kind of failure recurs, ask whether the environment should change. First classify what keeps going wrong: missing knowledge, a weak representation, an implicit obligation, late evidence, misplaced enforcement, a failed mechanism, an architectural weakness, or an obsolete control. Then decide whether the lesson is worth making durable.
+
+Engineering Capital asks whether existing structure still earns its keep; Governance Conversion asks whether a recurring lesson should change that structure.
+
+The conversion decision has three stages:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Classify the gap.} Identify the recurring problem rather than its latest symptom: missing knowledge, representation, obligation, evidence, enforcement, mechanism, architecture, or an obsolete control.
+\item
+  \textbf{Choose the durable response.} Possible responses include a representation, constraint, sensor, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention of human judgment. Improving the checks may support an advisory check or a gate.
+\item
+  \textbf{Price the investment.} Build the response only when expected recurrence cost and consequence justify both construction and carrying cost.
+\end{itemize}
+
+% mage-code-language: text
+\begin{verbatim}
+GOVERNANCE CONVERSION
+"What should the environment learn?"
+Recurring event
+      ↓
+CLASSIFY THE GAP
+knowledge · representation · obligation · evidence
+enforcement · mechanism · architecture · obsolete control
+      ↓
+CHOOSE THE RESPONSE
+model · constraint · sensor · gate
+checking · procedure · redesign · retire · keep human
+      ↓
+PRICE THE INVESTMENT
+future value > construction + carrying cost ?
+\end{verbatim}
+
+The goal is fewer costly recurrences and durable responses that repay their carrying cost. Cheap, rare failures may remain unconverted.
+
+See \href{3.4-governance-conversion.html}{\magevalue{sec:governance-conversion}} for the full treatment.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/human-judgment.tex`
+
+Lines 1–32; SHA-256 `f982e5c8612dc025b281c9c622da76fde3705faf40abc9371a793f55a85184f5`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Where is human attention going, and what do we keep deciding again?}
+
+Human attention is scarce, but some work should remain human. Novel architecture, ambiguous evidence, and consequential review may require human judgment. Look instead for knowledge people repeatedly reconstruct or decisions they repeatedly make that could economically become durable.
+
+Ask two questions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Where is attention being spent?} Distinguish creation of new intent, evidence interpretation, reconstruction of known context, routine review, and exception handling.
+\item
+  \textbf{Which judgments recur in substantially the same form?} Ask whether a model, alignment mechanism, procedure, or other durable structure could keep people from making the same decision again.
+\end{itemize}
+
+% mage-code-language: text
+\begin{verbatim}
+  HUMAN JUDGMENT                          "Where is scarce attention going?"
+  ───────────────────────────────────────────────────────────────────────────
+  Novel intent / architecture     expected human work
+  Semantic validation             often intentional
+  Repeated reconstruction         investigate externalization
+  Routine adjudication            investigate enforcement
+  Recurring emergency             diagnose the class
+  ───────────────────────────────────────────────────────────────────────────
+  Repeated ≠ automate automatically.
+  Ask whether making it durable will repay its carrying cost.
+\end{verbatim}
+
+The goal is less avoidable repeated reasoning per unit of durable output, while people remain responsible for work whose novelty, ambiguity, consequence, or poor governability still requires judgment.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/model-health.tex`
+
+Lines 1–36; SHA-256 `9f79961140f6524fee762d876792c4feb425310d3e4d705ada959a2a5967f65c`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Can I trust this representation for the question I am asking?}
+
+Trust begins by stating the correspondence a representation claims. A derived service map may describe the implementation at HEAD; an ownership model may encode intent the implementation must satisfy; a generated policy may be the authoritative source from which implementation artifacts derive. These are distinct correspondence relations.
+
+Read four things together:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Correspondence.} Does the claimed relation still hold? Descriptive models should still match observed reality; intent-bearing models should still be satisfied where enforcement applies; generated artifacts should still derive from their declared source.
+\item
+  \textbf{Coverage and relevance.} Does the representation cover the engineering surface for which it is being relied upon? Missing coverage may be legitimate when implementation lies below the model\textquotesingle s intended grain.
+\item
+  \textbf{Traceability.} Can the reader move from the model claim to the territory it concerns, and back where that reverse relation is meaningful?
+\item
+  \textbf{Freshness.} Has the claimed correspondence been re-established since the territory or the authored intent last changed?
+\end{itemize}
+
+% mage-code-language: text
+\begin{verbatim}
+  REPRESENTATION HEALTH     "Can I trust this representation for this question?"
+  ────────────────────────────────────────────────────────────────────────────
+  Correspondence   claimed relation still holds
+  Coverage         intended surface is represented
+  Traceability     claims resolve to their subjects
+  Freshness        relation re-established after change
+  ────────────────────────────────────────────────────────────────────────────
+  Ask first: what correspondence does this model claim?
+\end{verbatim}
+
+If the claimed correspondence fails, do not rely on the representation for that reasoning. The finding does not determine whether the representation or the represented system should change.
+
+In DocAble, the Missing-Model surface fell from \magevalue{missing_model_pilot_percent} to 7.89\% over nine passes. Appendix H records the measurement and its limitations.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/operating-doctrine.tex`
+
+Lines 1–40; SHA-256 `db5c7dace5911ccfc62aee24e3dd9fd6405bc737e7a95d662244d7b7637582e0`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+Four rules govern operation of a MAGE environment.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Model to answer a question.} Externalize the knowledge and intent needed for humans and agents to reason at the required scale. Stop when additional representation costs more to maintain than the reasoning it saves.
+\item
+  \textbf{Enforce where the obligation becomes decidable.} Use the earliest boundary with sufficient semantics and evidence to decide the obligation. Local enforcement may act directly on actions or artifacts; richer representations can make broader properties decidable.
+\item
+  \textbf{Make useful judgment durable.} When a costly lesson recurs, decide whether future work should inherit a representation, control, procedure, architectural change, or other durable structure. Convert selectively.
+\item
+  \textbf{Maintain the portfolio.} Keep required truths aligned with reality, watch carrying cost, repair depreciated structure, and retire machinery that no longer earns its keep.
+\end{itemize}
+
+The objective is a Governed Engineering Environment in which commodity intelligence can perform more useful work without requiring engineering judgment to be reconstructed repeatedly.
+
+% mage-code-language: text
+\begin{verbatim}
+  OPERATING DOCTRINE                                   "How do I run MAGE?"
+  ─────────────────────────────────────────────────────────────────────────
+  MODEL
+  Answer the engineering question at the right abstraction.
+  ALIGN
+  Enforce selected obligations where they become decidable.
+  CONVERT
+  Make recurring, valuable judgment durable.
+  MAINTAIN
+  Measure return, reconcile drift, retire depreciation.
+  ─────────────────────────────────────────────────────────────────────────
+        Governed Engineering Environment
+                ↓
+        trustworthy autonomy
+                ↓
+        durable engineering throughput
+\end{verbatim}
+
+Modeling and Alignment are complementary, not sequential. Modeling makes more properties available to reasoning; Alignment enforces selected obligations, either through those models or directly over actions and artifacts. Governance Conversion makes recurring lessons durable. When later work benefits from that structure, it has become Engineering Capital. Operating the environment means keeping both its engineering claims and its economics sound.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/operators-dashboard.tex`
+
+Lines 1–51; SHA-256 `7066ca0a30efb09c1f9eac10474a9b577adfd45c29ddd4001dc5f9fce55be6e0`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+The dashboard asks whether autonomous work is producing durable, trustworthy progress. Read the outcomes first; use diagnostics to explain why they changed.
+
+Track five primary readings: durable throughput, defect escape, human-attention burden, representation health, and engineering-capital return. The first three measure outcomes; the last two ask whether the environment can sustain them. Churn, model coverage, support ratio, control count, grammar coverage, and navigation cost are diagnostics, not objectives.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[The Operator\textquotesingle s Dashboard --- five primary readings]{The Operator\textquotesingle s Dashboard. Five primary readings, the question each answers, the desired direction of change, and useful diagnostics.}\label{operators-dashboard}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reading
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What to ask
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Healthy direction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Useful diagnostics
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reading
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What to ask
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Healthy direction
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Useful diagnostics
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Durable throughput} & How much accepted work survives without reopening, rollback, or repeated repair? & More accepted capability without proportional growth in intervention & closure rate; reopen rate; change cadence; churn \\
+\textbf{Defect escape} & What incorrect or policy-violating work crosses the boundary that was supposed to catch it? & Falls for governed obligations & validator findings; escaped defects; rollback/incident rate \\
+\textbf{Human-attention burden} & How much repeated reconstruction, review, or adjudication does each unit of durable work require? & Falls where knowledge or judgment can be made durable; remains where human judgment is deliberate & interventions per landed change; review time; recurring decisions \\
+\textbf{Representation health} & Can the representations being relied upon still answer the questions they claim to answer? & Claimed correspondence holds; stale or uncovered surfaces remain explicit & drift checks; traceability; freshness; coverage/relevance \\
+\textbf{Engineering-capital return} & Does accumulated structure make later work more capable or cheaper than the structure costs to carry? & Reuse and inherited capability rise while carrying cost remains justified & mechanism reuse; recurring-class disappearance; maintenance burden; retirement candidates \\
+\end{longtable}
+}
+
+DocAble\textquotesingle s support ratio, control count, Missing-Model drain, navigation pilot, and churn curves are observations from one build, not operating targets. Appendix H records the underlying measurements and their limitations.
+
+Treat uncalibrated visual indicators as status, not quantitative measurements.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/release-readiness.tex`
+
+Lines 1–33; SHA-256 `f1cb23190f5de578001a4672d1e4e0c481e25d106c6a2c63d7f88dff931a6f10`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-preflight
+% mage-auto-heading: the-override-note
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Can I trust this release?}
+
+A release is ready when every obligation assigned a blocking gate has current supporting evidence and every blocking gate passes. The checklist gathers those obligations at release time; it does not create new ones.
+
+The specific checks depend on the system. A model-based obligation requires current correspondence only when the release relies on that model; a locally enforced property may require no system model. The general rule is obligation → evidence → enforcement.
+
+\subsection{The preflight}\label{heading:the-preflight}
+
+Instantiate the checklist for each release. List the obligations carrying blocking enforcement, confirm that each has current evidence, and confirm that every blocking gate passes.
+
+% mage-code-language: text
+\begin{verbatim}
+  RELEASE READINESS  ·  PREFLIGHT              "Can I trust this release?"
+  ═══════════════════════════════════════════════════════════════════════
+  [ ]  Blocking obligations identified and current
+  [ ]  Required evidence present and fresh
+  [ ]  Trusted representations satisfy their correspondence contracts
+       — where this release relies on them
+  [ ]  Validators / assurance checks exercised and green
+  [ ]  Admission / deployment gates green
+  [ ]  Overrides and accepted residual risks reviewed
+  ═══════════════════════════════════════════════════════════════════════
+  All blocking obligations discharged  →  ship.
+  Otherwise  →  wait, record an explicit override, or revise the governing policy.
+\end{verbatim}
+
+\subsection{The override note}\label{heading:the-override-note}
+
+Treat an override as an engineering event. Record who accepted it, the available evidence, the bypassed obligation, and whether the exception reveals a recurring class that warrants later review. Do not carry the exception into future releases implicitly.
+````
+
+### Original `book/latex/sources/appendix-operators-reference/system-health.tex`
+
+Lines 1–37; SHA-256 `e3ef16b73429d8d616bab61746de4882750cf1b5c0df6f2e0fc3297cc589b0e3`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: three-readings
+% mage-auto-heading: read-churn-as-motion-not-health
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+\emph{Is the environment operating correctly right now?}
+
+Begin with outcomes. Check whether accepted work is landing, governed obligations are holding, validators and gates are checking what they are supposed to check, and human intervention or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only to diagnose changes in those outcomes.
+
+\subsection{Three readings}\label{heading:three-readings}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Durable throughput.} Accepted work remains accepted without reopening, rollback, or repeated repair.
+\item
+  \textbf{Defect and policy escape.} Incorrect or policy-violating work passes the boundary intended to prevent it.
+\item
+  \textbf{Intervention burden.} Humans get pulled back into repeated reconstruction, review, or emergency repair.
+\end{itemize}
+
+Use churn, validator coverage, correspondence failures, and queue pressure only when they explain movement in the primary readings.
+
+% mage-code-language: text
+\begin{verbatim}
+  SYSTEM HEALTH               "Is the environment healthy right now?"
+  ───────────────────────────────────────────────────────────────────
+  Durable throughput       accepted work survives
+  Defect / policy escape   governed obligations hold
+  Human intervention       repeated attention is bounded
+  ───────────────────────────────────────────────────────────────────
+  Diagnose with:
+  churn · correspondence · validator reach · resource pressure
+\end{verbatim}
+
+\subsection{Read churn as motion, not health}\label{heading:read-churn-as-motion-not-health}
+
+Churn measures code motion, not system health. A migration or architectural rewrite can produce high churn in a healthy environment, while a quiet repository can still contain stale representations or repeated human adjudication. Appendix H records the churn observed in DocAble.
+````
+
+### Original `book/latex/sources/appendix-part-1-practice.tex`
+
+Lines 1–39; SHA-256 `52bc521b6d9f7127006eed45c2092c88641010c5fddf6305bcacb89188fa77ae`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+This part turns from the argument to its use. The appendices that follow provide working references, methods, and extensions for applying MAGE in different engineering settings. They are meant to be consulted as needed, not read in sequence.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[The practice appendices and the questions they answer]{The practice appendices --- each beside the question that sends you to it.}\label{where-to-look-practice}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+If you are asking\ldots{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Go to
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+If you are asking\ldots{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Go to
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+How do several mechanisms compose into a useful engineering capability? & {[}appendix: appendix-stacks{]} --- Engineering Stacks \\
+I\textquotesingle ve seen this problem before. What engineering move might travel? & {[}appendix: appendix-b-engineering-moves{]} --- Engineering Moves \\
+What exactly does one of the book\textquotesingle s teaching models contain or guarantee? & {[}appendix: appendix-models{]} --- Model Reference \\
+What should I inspect or do while operating a governed engineering environment? & {[}appendix: appendix-operators-reference{]} --- Operator\textquotesingle s Reference \\
+How do I package reusable engineering procedure or judgment as a skill? & {[}appendix: appendix-skill-recipe{]} --- How to Write a Skill \\
+How does MAGE\textquotesingle s adoption change across a product\textquotesingle s lifecycle surfaces? & {[}appendix: appendix-product-lifecycle{]} --- Configuring MAGE Across the Product Lifecycle \\
+How does an organization actually adopt GenAI --- from assistance to bounded delegation? & {[}appendix: appendix-adopting-genai{]} --- Adopting GenAI in an Organization \\
+\end{longtable}
+}
+
+The online MAGE Mechanism Catalog carries what print leaves out: the complete living repertoire of mechanisms, implementation variants, and deeper case realizations.
+````
+
+### Original `book/latex/sources/appendix-part-2-evidence.tex`
+
+Lines 1–32; SHA-256 `05ff17ab2d2f9625e228d0d5723884a7db314ba40277b5bf45c30a973a350220`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+This part collects the evidence behind the book\textquotesingle s empirical claims. The appendices that follow separate observation from interpretation and make the evidentiary basis for the argument available for inspection.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[The evidence appendices and the questions they answer]{The evidence appendices --- each beside the question that sends you to it.}\label{where-to-look-evidence}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+If you are asking\ldots{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Go to
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+If you are asking\ldots{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Go to
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+What was that external organization doing, and how does MAGE read it? & {[}appendix: appendix-field-guide{]} --- Field Guide \\
+What measurements support that DocAble claim? & {[}appendix: appendix-evidence-ledger{]} --- Evidence Ledger \\
+\end{longtable}
+}
+````
+
+### Original `book/latex/sources/appendix-operators-reference/a-worked-factory-workflow.tex`
+
+Lines 1–57; SHA-256 `1aeffe69f5f96f4709830c8e54eaa787a9aa73ee221821b9743ca41bf2747631`. Removal date: 2026-11-09. Retired from assembly; retained for reuse and provenance.
+
+````latex
+% mage-auto-heading: the-artifacts-and-their-consumers
+% mage-auto-heading: preparing-one-dispatch
+% mage-auto-heading: a-worked-change-to-the-factory
+% mage-auto-heading: checking-the-checking-process
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+% Editorial evidence, 3 November 2026: course/lectures/act-2-delegation-and-control/05-building-with-agents/2-7-Inside-an-Agentic-Software-Factory.pptx (including speaker notes), index.md, and the parent project's docs/field-notes/fast-land-async-ci-design-261103.md.
+% The PDF-heading example below is illustrative, as in the lecture; it is not an additional measured project episode.
+
+This worked reference follows DocAble's factory as described in November 2026. It expands the operating account in \href{5.2-inside-docables-software-factory.html}{\magevalue{sec:inside-docables-software-factory}}. Use it to distinguish the information needed to organize a change, the checks that can enforce parts of the process, and the judgments that remain. The particular templates are examples of those roles; an organization can combine them or use different tools while preserving the relationships that matter.
+
+\subsection{The Artifacts and Their Consumers}\label{heading:the-artifacts-and-their-consumers}
+
+A strategy document identifies work worth doing. In DocAble, I record requirements for the next deployment alongside near- and longer-term priorities; the orchestrator maintains the document from my instructions. Selecting an item authorizes planning within that priority. It does not resolve its design, establish that the work is feasible, or supply evidence that it is complete.
+
+An epic records the proposed effort. It states the rationale, scope, cost considerations, risks, relevant models, and Definition of Done. Its phase plan identifies dependencies and assigns reasoning capability according to the work. The orchestrator reads a machine-parseable phase table to determine which work is ready. This creates a correspondence obligation: if review changes the intended dependencies, the schedulable plan must change with them. A template can require fields and a parser can check their structure; neither establishes that the proposed decomposition is sound.
+
+The design document develops the engineering argument behind the plan. It describes the failure or requirement motivating the change, considers existing approaches, and explains the proposed components and interactions. Named invariants have stable identifiers that link them to tests or analyses, with uncovered obligations recorded explicitly. The document also asks what happens after repeated operation, which signals expose failure, and where the implementation differs from the design. These questions prepare later agents to investigate a consequence without reconstructing every earlier decision from code.
+
+A dispatch brief turns one ready phase into an assignment. It identifies the effort and trigger, the agent's role, time budget, scope, relevant source, execution and verification work, acceptance criteria, and expected hand-back. In DocAble, a linter checks required brief structure and selected dispatch facts before launching the agent. A structurally valid brief may still contain a mistaken engineering premise. Independent plan review and subsequent evidence address different questions from the brief linter.
+
+Completion evidence connects the work order back to the repository. An agent declares its refined plan in its first commit and records progress in later commit metadata. The final review examines whether the changes were integrated, whether the promised work exists, and whether the evidence supports closure. A complete sequence of commit markers helps locate unfinished work; it cannot establish semantic correctness. Deficiencies produce repair work and another examination of the affected obligations.
+
+\subsection{Preparing One Dispatch}\label{heading:preparing-one-dispatch}
+
+Consider a task of improving PDF heading detection. A useful brief would carry the following information, populated from the repository as it exists when the assignment is prepared:
+
+\begin{enumerate}
+\tightlist
+\item
+  \textbf{Intended change and scope.} State which heading behavior should improve and which existing behavior must remain. Identify the relevant component and explicit exclusions, such as unrelated document mutations. The brief makes the authorized scope explicit while leaving implementation choices open.
+\item
+  \textbf{Engineering context.} Supply current source locations and excerpts, the representation through which the component operates, and relevant invariants. Ask the agent to query the models and checks associated with its refined target files before changing them. This makes existing obligations available before a failing test forces their rediscovery.
+\item
+  \textbf{Verification and closure.} Specify evidence for the intended behavior and its preservation obligations, including affected integration paths. The validation plan should test those properties independently of the agent's chosen implementation. Record what evidence is unavailable rather than treating its absence as success.
+\item
+  \textbf{Budget and hand-back.} State when to stop, what partial work to preserve, and what the orchestrator needs to continue. Require the resulting commits, evidence, unresolved questions, and any unmet obligations. An honest partial result supports a decision about further work; an unsupported completion claim hides that decision.
+\end{enumerate}
+
+The first commit serves two purposes in this workflow. It records the refined plan, and a sentinel check verifies selected prerequisites for a viable run: the expected worktree, branch, working directory, and registration marker. Checking these early can expose a broken working environment before substantial implementation effort is spent. It establishes those prerequisites at that boundary, not that every later integration will succeed. The existing engineering-moves reference develops this placement rule in {[}appendix: appendix-b-put-authority-where-legible{]}.
+
+The companion \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/EPIC-TEMPLATE-starter.md}{epic}, \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/design-doc-template-starter.md}{design-document}, and \href{https://davisjam.github.io/model-based-agentic-software-engineering/downloads/agent-brief-starter.md}{dispatch-brief} starters provide reusable field structures. Adopt a field when someone or something will consume it. An invariant identifier earns its place through the evidence it connects; a phase dependency earns its place through the scheduling decision it supports. Fields without a consumer become additional material to keep current.
+
+\subsection{A Worked Change to the Factory}\label{heading:a-worked-change-to-the-factory}
+
+The November validation redesign shows the same engineering questions applied to the factory itself. The earlier merge train regenerated broad evidence before accepting each candidate. As validation became a shared bottleneck, I retained cheap synchronous checks at merge and moved expensive checks into a periodic sweep. The intermediate design launched a sweep after every merge. A burst of completed work therefore generated a burst of expensive validation, overloading the host. Background execution had changed who waited without removing the coupling that caused the overload.
+
+The replacement assigned the sweep its own schedule and lock. It inspected the main branch in a disposable worktree, avoiding interference with active working directories, and allowed only one sweep at a time. The deployed schedule requested deployment-scope lint checks every thirty minutes, with a separate nightly tier; a debounce could further suppress launches. These are scheduling policies, not a thirty-minute detection guarantee. Check execution, load, and the health of the scheduler also determine when a defect is discovered. The deployment sequence retained its broader validation before release.
+
+A blocking failure on the main branch matters to more than the change that introduced it: later agents may inherit it when they start their worktrees. The sweep therefore emitted an alert that a pre-dispatch gate could use to refuse further ordinary work. The orchestrator had to acknowledge the failure or enter a resolution path. Acknowledgment deliberately allowed continued work with a known problem; it did not establish repair. The policy made continued exposure a decision to examine, while leaving the engineer responsible for the acceptable delay and recovery strategy.
+
+\subsection{Checking the Checking Process}\label{heading:checking-the-checking-process}
+
+The November 3 investigation found that the timer existed in the configuration manifest but had not been installed. Checks had been running through a debounced post-merge hook, so the environment could appear active while failing to implement the intended schedule. Installation and inspection of the live schedule corrected that gap. A second failure concerned closure: a blocking alert was marked resolved even though its lint still failed. Rechecking before closure, or reopening an alert when the next sweep finds the same condition, was identified as necessary follow-up work.
+
+The observations support separate claims about detection and interruption. A sweep detected a real blocking failure and emitted its alert. In the same session, a different alert about accumulated worktree branches caused a hook to refuse an orchestrator operation until acknowledgment. Those observations did not establish that the particular sweep failure blocked dispatch and then cleared after a verified repair. That requires observing detection, interruption, and verified recovery together on the same failure.
+
+To judge whether this arrangement pays, measure time to integration alongside time to detect and repair defects, the changes or worktrees affected before detection, validation resource use, and the judgment required to recover. Also observe whether scheduled checks actually run, record the revision each sweep examines, and compare it with the revision being admitted or deployed. Evidence for an earlier snapshot does not validate subsequent changes. The November account establishes the design change and the failures that refined it; it does not supply a comparative throughput result. These measurements would let an engineer decide whether the saved waiting time justifies the additional exposure and diagnostic work.
+````
+
+### Mainline directions and retired registry claims
+
+### book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex:44
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 44–44. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+{[}appendix: appendix-adopting-genai{]}
+```
+
+### book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:508
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 508–508. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+{[}appendix: appendix-skill-recipe{]} shows how DocAble does this: its self-governance skill describes the MAGE method, a modeling repertoire, and operations agents can perform through the environment.
+```
+
+### book/latex/sources/part4/4.3-brownfield-engineering.tex:92
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 92–92. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+The companion \href{appendix-d-from-drifted-wiki-to-trusted-model.html}{From-Drifted-Wiki-to-Trusted-Model} operator card gives a procedure for this recovery.
+```
+
+### book/latex/sources/part4/4.4-engineering-the-environment.tex:246
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 246–246. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+{[}appendix: appendix-operators-reference{]} collects these moves as bench procedures. The method itself can also become the kind of asset this section described: {[}appendix: appendix-skill-recipe{]} shows MAGE\textquotesingle s recurring distinctions and procedures packaged as a self-governance skill an agent can inherit rather than reconstruct.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:182
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 182–182. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+The counting rules and coverage limits are recorded in {[}appendix: appendix-evidence-ledger{]}.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:373
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 373–373. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+{[}appendix: appendix-d-a-worked-factory-workflow{]} develops a worked example with the underlying artifacts.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:403
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 403–403. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+ The \href{appendix-evidence-ledger.html}{evidence ledger} preserves the separate latency investigation in which measurement supported a resident-runtime redesign.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:504
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 504–504. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+ The \href{appendix-evidence-ledger.html}{evidence ledger} records the denominators, scoring procedure, and cost categories.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:512
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 512–512. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+ The \href{appendix-evidence-ledger.html}{evidence ledger} retains the full comparison.
+```
+
+### book/latex/sources/part5/5.2-inside-docables-software-factory.tex:471
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 471–471. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+For each document, the study calculated the signed reduction in findings relative to the original, then summarized those reductions by format. A reduction does not establish that every accessibility obligation holds.
+```
+
+### book/latex/sources/part7/7.1-reorganization-of-se.tex:205
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 205–205. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+{[}appendix: appendix-models{]} collects representative forms of these models and shows how their authored and derived facts can be reconciled with the implementation; it develops the review surfaces as reusable model patterns rather than a prescribed catalog. {[}appendix: appendix-evidence-ledger{]} carries the within-case evidence on model coverage and correspondence. Those measurements speak to how much of the exercised system could be related to explicit models; they do not measure review time or review quality.
+```
+
+### book/latex/sources/part7/7.4-the-engineer.tex:36
+
+Source revision: `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Original lines 36–36. Replaced 2026-11-09 to retire obsolete appendix directions while preserving the main argument.
+
+```latex
+ {[}appendix: appendix-skill-recipe{]} packages that repertoire in the Self-Governance mastery skill.
+```
+
+### Retired navigation-pilot publication claim
+
+Source: `book/data/data-claims.json`, key `mbse-nav-token`, revision `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Removed from the active publication registry at the author's request; research records remain.
+
+```json
+{
+  "source": "the-executable-zoo",
+  "anchor": "mbse-nav-token",
+  "holds": [
+    "20%",
+    "12%",
+    "82%",
+    "50%"
+  ],
+  "status": "preliminary",
+  "spine_claim": "modeling-principle",
+  "observable": "Tokens-to-answer with MBSE navigation guidance ON versus OFF, across four modeled tasks.",
+  "data_source": "A controlled A/B pilot (N=4 modeled tasks); tokens-to-answer measured per task with guidance toggled, accuracy graded per answer.",
+  "limitation": "N=4 pilot \u2014 not powered; single fleet; measures tokens, not accuracy (zero accuracy loss noted, but at small N); the system-level Garden-null reframe of the MBSE ablation is coming in W5.",
+  "gloss": "A controlled A/B pilot of MBSE navigation guidance (N=4 modeled tasks): tokens-to-answer with guidance ON vs. OFF, 20% / 12% / 82% / 50% fewer tokens, median ~35% fewer, zero accuracy loss."
+}
+```
+
+### Reconstruction-cost diagnostic before revision
+
+Source: `book-models/metrics-dashboard.json`, revision `7cd9fa3385b56912e437aff57add25b4ce4111b4`. General diagnostic retained; the removed pilot supplies no publication evidence.
+
+```json
+{
+  "name": "MBSE navigation token-savings",
+  "slug": "mbse-nav-token-savings",
+  "counts": "Tokens spent to reach an answer, model on versus off.",
+  "informs": "Certify the model earned its context budget.",
+  "healthy_direction": "Lower with the model on.",
+  "defined_in": {
+    "label": "scenarios-and-the-joined-model",
+    "anchor": ""
+  },
+  "mode": "summative",
+  "rationale": "Summative: a payoff verdict measured with the model mature. You certify the model earned its context budget; you do not steer the daily loop by it."
+}
+```
+
+### Reading routes before appendix-navigation cleanup
+
+Source: `book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex:33`, original route descriptions at revision `7cd9fa3385b56912e437aff57add25b4ce4111b4`. Updated 2026-11-09: the retired Practice/Evidence divisions no longer describe the book.
+
+````latex
+Four shorter routes serve different purposes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Do it Monday.} \magevalue{chapter:problem} → \magevalue{chapter:one-problem-many-models} → Appendix Part I: Practice. Start with the premise, move directly to the working method, then use the practice appendices as a reference while applying it.
+\item
+  \textbf{Show me the evidence.} \magevalue{chapter:problem} → \magevalue{chapter:software-factories} → Appendix Part II: Evidence. Read the framing, examine the empirical argument, then inspect its evidentiary basis.
+\item
+  \textbf{Give me the engineering argument.} Preface → \magevalue{chapter:problem} → \magevalue{chapter:theory} → \magevalue{chapter:profession} → the Conclusion. Read the problem, the theory, where it transfers beyond software engineering, and the responsibility that closes the argument. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:software-factories|num} remain the evidentiary foundation; return to them to see where a theoretical claim came from.
+\item
+  \textbf{Adopt it in an organization.} \magevalue{chapter:problem} → \magevalue{sec:mage-in-the-wild} → {[}appendix: appendix-adopting-genai{]}. Start with the changed engineering problem, see how several organizations are already restructuring agentic work, then use the adoption guide to decide where context, models, evidence, and enforcement are worth organizational investment. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} provide the engineering practices; \magevalue{chapter:theory} provides the underlying theory.
+\end{itemize}
+````
