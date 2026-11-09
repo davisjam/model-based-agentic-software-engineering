@@ -17786,3 +17786,46 @@ Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, 
 ```latex
 These conditions also bound the claim. Where representation, correspondence, or control is inadequate, better agents or human supervision may be preferable to additional governance machinery. The later discussion of where the generalization fails examines those limits.
 ```
+
+
+## Section 7.4: authority and technical acceptance — 9 November 2026
+
+Source revision: `c3d28f1943102e467d864932ae4ed8f4aa52c67b`. Removal revision: the commit introducing this entry. The author approved Edits 1, 2, 4A, and 4C with the final wording in the second attachment. Edit 3 was withdrawn: the complete frontier-of-authority inset remains unchanged. The zero-diff observation is the author’s explicit correction, scoped to the highest-throughput week.
+
+### S74-1 — End the taxonomy with the concrete distinction
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, lines 30–30. Reason: Delete the final two sentences, retaining the distinction between delegated authority and responsibility for the system.
+
+```latex
+That wider scope for delegation requires engineers to distinguish the functions explicitly. Work performed refers to the activities carried out by people or agents. Authority exercised refers to the decisions a person or mechanism is permitted to make, while responsibility retained refers to accountability for the consequences of the whole engineering arrangement. Delegating an activity does not by itself confer authority to accept its result. An agent or other mechanism can also exercise explicitly delegated authority without thereby discharging the engineer\textquotesingle s responsibility for the system. Engineering responsibility does not depend on which particular activities remain beyond automation. The engineer is defined by responsibility for an engineering system whose work can increasingly be delegated.
+```
+
+### S74-2 — Develop professional authority in one paragraph
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, lines 50–50, 54–54. Reason: Merge the application and its converse without removing words. Retain both point identifiers before the combined paragraph.
+
+```latex
+The ability to understand and challenge agentic decisions is therefore part of the basis on which consequential engineering authority can legitimately be exercised.
+
+The converse matters too. If engineers cannot retain sufficient control over a system making consequential decisions to exercise that authority responsibly, withholding the authority is itself a legitimate---and sometimes necessary---engineering outcome.
+```
+
+### S74-4A — Report the author’s review practice precisely
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, lines 176–176, 180–180. Reason: Use first person and zero diffs during the highest-throughput week; replace the repeated scaling argument with one sentence bounding the generalization.
+
+```latex
+In the factory \magevalue{chapter:software-factories} examined, the fleet constructed most of the implementation, maintained selected engineering representations, ran validators, and assembled evidence for the claims the design was supposed to satisfy. In its highest-throughput week the admission gate landed nearly six hundred changes on regenerated evidence, while the engineer read almost none of the diffs. Human review there looked less like authorship of the implementation and more like technical acceptance: inspect the representations, challenge their assumptions, examine the evidence attached to important claims, request deeper analysis where the case is weak, and decide whether the result is fit to accept.
+
+One case shows that the arrangement can operate; generalizing it to the profession is a prediction rather than a finding of this book. At scale, implementation-level inspection cannot remain the primary human assurance mechanism. That was true before coding agents; no engineer establishes confidence in Linux by holding its source code in working memory. Agentic implementation makes the mismatch more immediate by producing large, unfamiliar changes faster than a person can conventionally inspect them.
+```
+
+### S74-4C — Bridge from correspondence to familiar implementations
+
+Source: `book/latex/sources/part7/7.4-the-engineer.tex`, lines 212–212, 216–216. Reason: Replace the repeated probability analysis with the approved two-sentence bridge and simplify the next paragraph’s opening; retain its explanation and all later production-versus-assurance discussion.
+
+```latex
+The probability analysis in \magevalue{chapter:theory} separates these responsibilities. Engineers encode consequential intent (\(P(E\mid R)\)); agents fulfill the encoded obligations (\(P(F\mid E,R)\)). Better agents can improve realization, including interpretation and correction, and can help engineers revise the encoding. With the encoding held fixed, however, greater realization reliability does not establish that it captures the right obligations. The remaining uncertainty increasingly concerns those upstream decisions.
+
+The interpretation burden within realization also varies across the work. If the engineer wants an ordinary database interaction, a familiar algorithm, or a conventional architectural pattern, a capable agent may need very little explicit specification. Its prior experience supplies much of what was left unsaid. This is enormously useful for exploration and prototyping.
+```
