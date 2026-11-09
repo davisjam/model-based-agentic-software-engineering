@@ -17990,3 +17990,69 @@ There is still useful judgment to delegate. The foundation model can interpret t
 ```latex
 The second problem is not that agents make mistakes while human programmers do not. Software engineering has always separated authorship from assurance. We compile code instead of trusting the programmer\textquotesingle s prediction that it compiles; we run tests instead of accepting an explanation that the program should work; consequential systems add review, static analysis, formal methods, operational evidence, or independent approval because the producer\textquotesingle s confidence is not enough.
 ```
+
+
+## Front-matter incremental prose edits — 9 November 2026
+
+Author-supplied copy and route removal. Remaining rhythm-review proposals are not approved by this batch.
+
+### Why MAGE? Why Models?
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex:52`
+- Source revision: `bc3761c92729f1654d338c43cfbb6686860cdde5`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative explanation or consolidation; original wording retained for possible reuse.
+
+```latex
+The purpose of this indirection is not to specify every implementation decision. An engineer should constrain what matters while deliberately leaving other choices open. Within those degrees of freedom, agents can exploit abundant implementation capacity to search, implement, revise, and improve solutions. The governed environment articulates consequential decisions and enforces selected obligations, so subsequent agents and reviewers need not reconstruct them from implementation. If the models and controls merely reproduce the entire implementation, the indirection has accomplished little. Meaningful degrees of freedom let agents explore alternative solutions while engineering retains control over the properties that matter.
+```
+
+### How to Read This Book: duplicate route
+
+- Source: `book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex:41`
+- Source revision: `bc3761c92729f1654d338c43cfbb6686860cdde5`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative explanation or consolidation; original wording retained for possible reuse.
+
+```latex
+\item
+  \textbf{Give me the engineering argument.} Preface → \magevalue{chapter:problem} → \magevalue{chapter:theory} → \magevalue{chapter:profession} → the Conclusion. Read the problem, the theory, where it transfers beyond software engineering, and the responsibility that closes the argument. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:software-factories|num} remain the evidentiary foundation; return to them to see where a theoretical claim came from.
+
+```
+
+### Engineering: functional definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex:18`
+- Source revision: `bc3761c92729f1654d338c43cfbb6686860cdde5`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative explanation or consolidation; original wording retained for possible reuse.
+
+```latex
+Also, note that the term "engineering" is used here \emph{functionally rather than institutionally}: engineering is defined by the kind of control, evidence, expertise, and responsibility being exercised, not by whether the work belongs to a conventionally named engineering discipline.
+```
+
+### Model drift
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex:116`
+- Source revision: `bc3761c92729f1654d338c43cfbb6686860cdde5`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative explanation or consolidation; original wording retained for possible reuse.
+
+```latex
+\textbf{Model drift.} A model and the system, evidence, or other representation to which it is meant to correspond cease to agree. The disagreement establishes that something needs attention, not which side deserves correction. Updating the model to describe a forbidden dependency would restore agreement while preserving the violation. Reconciliation therefore requires returning to the engineering intent that the model was meant to preserve.
+```
+
+### The New Bottleneck
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex:83`
+- Source revision: `bc3761c92729f1654d338c43cfbb6686860cdde5`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative explanation or consolidation; original wording retained for possible reuse.
+
+```latex
+Agents can produce changes much faster than the surrounding environment can understand or govern them. Increasing implementation capacity does not automatically increase the capacity to evaluate its output. When supervision requires human inspection of each change, the required attention grows with production volume. But does the quality team truly need to examine every widget? MAGE seeks to weaken that dependence by making consequential properties accessible through models and evidence, so engineers can evaluate what matters without understanding every implementation decision.
+
+\magevalue{chapter:software-factories} returns to this problem at the scale of the production system.
+
+A fleet of coding agents can generate, inspect, and modify implementation much faster than a human team. But more implementation capacity does not automatically produce more system-level understanding or better engineering judgment. When the necessary knowledge remains implicit, the fleet repeatedly reconstructs it. When evaluating a change requires knowledge of architecture, ownership, or end-to-end behavior that the environment cannot supply, somebody must reconstruct that knowledge. In many organizations that somebody is still a human reviewer. The result can work, but the human sits in the gap between what the environment can check and what the system actually needs guaranteed.
+```
