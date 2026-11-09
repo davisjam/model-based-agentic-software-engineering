@@ -10,6 +10,7 @@ import sys
 import tempfile
 import hashlib
 import inspect
+from mage_assets import render_svg_cached
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'book'))
 import book_ir
@@ -121,8 +122,7 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
                 pdf = ROOT / 'book/latex/assets' / (path.stem + '-' + hashlib.sha256(str(path.relative_to(ROOT)).encode()).hexdigest()[:10] + '.pdf')
                 pdf.parent.mkdir(parents=True, exist_ok=True)
                 if path.suffix == '.svg':
-                    if not pdf.exists() or path.stat().st_mtime > pdf.stat().st_mtime:
-                        subprocess.run(['rsvg-convert', '--format=pdf', '--output', str(pdf), str(path)], check=True)
+                    render_svg_cached(path, pdf)
                 else: pdf = path
                 assets.append({'source': str(path.relative_to(ROOT)), 'pdf': str(pdf.relative_to(ROOT))})
                 label = block.label or pending_label
@@ -497,6 +497,24 @@ def sync(check=False):
 
 
 
+def apply_print_keep_with_next(text):
+    """Honor authored local space requests; ordinary prose remains untouched.
+
+    The HTML-comment directive survives native/Markdown projection, is inert on
+    the web, and reserves enough line-height space for a lead-in and next block.
+    It does not force whole lists onto a page or change global float policy.
+    """
+    def replace(match):
+        value = match[1].strip()
+        if not value.isdecimal() or not 2 <= int(value) <= 20:
+            raise ValueError('print-keep-with-next needs 2–20 baseline lines')
+        return r'\Needspace{' + str(int(value)) + r'\baselineskip}'
+    directive = r'(?m)^% <!-- print-keep-with-next: ([^\n]*?) -->[ \t]*$'
+    literal = r'(\\begin\{(?:verbatim|Verbatim|lstlisting|minted)\}.*?\\end\{(?:verbatim|Verbatim|lstlisting|minted)\})'
+    return ''.join(part if i % 2 else re.sub(directive, replace, part)
+                   for i, part in enumerate(re.split(literal, text, flags=re.S)))
+
+
 def _prepare_record(task):
     index, record = task
     directory = ROOT / record['_build_directory']
@@ -518,7 +536,7 @@ def _prepare_record(task):
         part = record['part']
         asset = ROOT / f'book/assets/nav-subway-p{part}.svg'
         asset_pdf = ROOT / f'book/latex/assets/nav-subway-p{part}.pdf'
-        subprocess.run(['rsvg-convert', '--format=pdf', '--output', str(asset_pdf), str(asset)], check=True)
+        render_svg_cached(asset, asset_pdf)
         vocab = json.loads((ROOT / 'book-models/nav-model.json').read_text())['parts'][str(part)]
         orientation = r'\chapter*{' + inline(f'Chapter {part}: ' + record['part_title']) + '}\\label{part:' + str(part) + '}\n'
         orientation += r'\includegraphics[width=\linewidth,alt={Book chapter navigation}]{' + str(asset_pdf.relative_to(ROOT)) + '}\n\\par\\medskip\n'
@@ -570,6 +588,8 @@ def _prepare_record(task):
         height = FIGURE_HEIGHT_OVERRIDES_BP.get(label[1] if label else '', FIGURE_HEIGHT_BP)
         return content.replace(r'\includegraphics[', r'\includegraphics[height=' + str(height) + r'bp,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
+
+    latex = apply_print_keep_with_next(latex)
 
     # Original artwork can be compact without shrinking native review labels.
     from mage_figure_layout import apply_figure_print_layout, inset_flow_labels

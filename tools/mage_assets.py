@@ -1,6 +1,10 @@
 """Pool SVG figures on separate PDF pages so Cairo shares their embedded fonts."""
 from __future__ import annotations
 import hashlib
+import os
+import tempfile
+from functools import lru_cache
+from xml.sax.saxutils import escape
 import json
 from pathlib import Path
 import re
@@ -8,6 +12,85 @@ import subprocess
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def svg_render_context():
+    """Pin this renderer to bundled static Sans faces, without changing host fonts.
+
+    Some Cairo/Pango combinations select a named variable-font instance but
+    embed its default ExtraLight outlines. Fontconfig must therefore choose the
+    actual bundled 400/700 upright/italic files, not a same-named system face.
+    Other families retain the caller's normal configuration and fallbacks.
+    """
+    fonts = sorted((ROOT / 'book/fonts/SourceSans3').glob('*.ttf'))
+    if len(fonts) != 4:
+        raise RuntimeError('SVG rendering requires the four bundled Source Sans 3 faces')
+    directory = ROOT / 'book/latex/assets/fontconfig'
+    directory.mkdir(parents=True, exist_ok=True)
+    inherited = os.environ.get('FONTCONFIG_FILE', 'fonts.conf')
+    accept = ''.join('<pattern><patelt name="file"><string>' +
+                     escape(str(font)) + '</string></patelt></pattern>' for font in fonts)
+    config = ('<?xml version="1.0"?>\n'
+              '<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">\n'
+              '<fontconfig><include>' + escape(inherited) + '</include>'
+              '<dir>' + escape(str(fonts[0].parent)) + '</dir>'
+              '<cachedir>' + escape(str(directory / 'cache')) + '</cachedir>'
+              '<selectfont><rejectfont><pattern><patelt name="family">'
+              '<string>Source Sans 3</string></patelt></pattern></rejectfont>'
+              '<acceptfont>' + accept + '</acceptfont></selectfont></fontconfig>\n')
+    digest = hashlib.sha256(b'mage-svg-static-sans-fc-v1')
+    digest.update(config.encode())
+    for font in fonts:
+        digest.update(font.name.encode())
+        digest.update(font.read_bytes())
+    identity = digest.hexdigest()
+    target = directory / (identity[:16] + '.conf')
+    if not target.exists():
+        # Separate section builds can initialize the same configuration together.
+        # Publish only a complete file; readers must never see a partial XML file.
+        with tempfile.NamedTemporaryFile(mode='w', dir=directory,
+                                         prefix='fonts-', suffix='.tmp', delete=False) as stream:
+            stream.write(config)
+            pending = Path(stream.name)
+        try:
+            pending.replace(target)
+        finally:
+            pending.unlink(missing_ok=True)
+    env = os.environ.copy()
+    env['FONTCONFIG_FILE'] = str(target)
+    # macOS otherwise uses CoreText and ignores this Fontconfig selection.
+    env['PANGOCAIRO_BACKEND'] = 'fc'
+    return env, identity
+
+
+@lru_cache(maxsize=1)
+def _rsvg_version():
+    return subprocess.check_output(['rsvg-convert', '--version'])
+
+
+def svg_render_identity():
+    """Font policy, font bytes, and converter version invalidate generated assets."""
+    _, fonts = svg_render_context()
+    return hashlib.sha256(fonts.encode() + _rsvg_version()).digest()
+
+
+def convert_svgs(sources, destination):
+    env, _ = svg_render_context()
+    subprocess.run(['rsvg-convert', '--format=pdf', '--output', str(destination),
+                    *map(str, sources)], check=True, env=env)
+
+
+def render_svg_cached(source, destination):
+    """Render standalone/navigation assets with the same font policy as the pool."""
+    digest = hashlib.sha256(svg_render_identity())
+    digest.update(source.read_bytes())
+    identity = digest.hexdigest()
+    stamp = destination.with_suffix(destination.suffix + '.render-key')
+    if destination.exists() and stamp.exists() and stamp.read_text() == identity:
+        return
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    convert_svgs([source], destination)
+    stamp.write_text(identity)
 
 
 def graphics(text):
@@ -41,7 +124,7 @@ def uncropped_svg(source, directory):
     if not view:
         raise ValueError(f'SVG needs an explicit viewBox: {source}')
     x, y, width, height = map(float, re.split(r'[,\s]+', view[1].strip()))
-    key = hashlib.sha256((raw + 'viewport-v1').encode()).hexdigest()[:16]
+    key = hashlib.sha256((raw + 'viewport-v2').encode() + svg_render_identity()).hexdigest()[:16]
     target = directory / (source.stem + '-' + key + '.svg')
     if target.exists():
         return target
@@ -60,7 +143,7 @@ def uncropped_svg(source, directory):
     probe_pdf = target.with_suffix('.probe.pdf')
     px, py, pw, ph = x - width / 2, y - height / 2, width * 2, height * 2
     probe.write_text(viewport((px, py, pw, ph)))
-    subprocess.run(['rsvg-convert', '-f', 'pdf', '-o', str(probe_pdf), str(probe)], check=True)
+    convert_svgs([probe], probe_pdf)
     result = subprocess.run(['pdftotext', '-bbox', str(probe_pdf), '-'],
                             check=True, capture_output=True, text=True)
     xml = ET.fromstring(result.stdout)
@@ -111,8 +194,8 @@ def pool_figures(chapters, directory):
     normalized_dir = ROOT / 'book/latex/assets/normalized'
     normalized_dir.mkdir(parents=True, exist_ok=True)
     normalized = [uncropped_svg(source, normalized_dir) for source in sources]
-    digest = hashlib.sha256(b'pooled-svg-v2')
-    digest.update(subprocess.check_output(['rsvg-convert', '--version']))
+    digest = hashlib.sha256(b'pooled-svg-v3')
+    digest.update(svg_render_identity())
     for source in sources:
         digest.update(str(source.relative_to(ROOT)).encode())
         digest.update(source.read_bytes())
@@ -123,8 +206,7 @@ def pool_figures(chapters, directory):
     pool = directory / ('figures-' + digest.hexdigest()[:16] + '.pdf')
     if not pool.exists():
         temporary = pool.with_suffix('.tmp.pdf')
-        subprocess.run(['rsvg-convert', '--format=pdf', '--output', str(temporary),
-                        *map(str, normalized)], check=True)
+        convert_svgs(normalized, temporary)
         # Multiple input SVGs must remain distinct pages at their own dimensions.
         from pypdf import PdfReader
         combined = PdfReader(temporary)
