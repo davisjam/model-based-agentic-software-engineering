@@ -4101,13 +4101,13 @@
           "section_id": "where-engineering-effort-moves",
           "level": 2,
           "heading_text": "Where Engineering Effort Moves",
-          "topic_sentence": "**Delegation expands; responsibility remains.** We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it.",
+          "topic_sentence": "We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it.",
           "id_source": "derived",
           "block_index": 25,
           "points": [
             {
               "slug": "allocation-changes-even-where-the-eventual-organization-is-uncertain",
-              "text": "As implementation becomes cheaper the allocation of engineering work changes, even though the eventual organization of that work stays uncertain: delegation expands, responsibility does not move with it, and scarce human effort concentrates where responsibility sits.",
+              "text": "As implementation becomes cheaper the allocation of engineering work changes, while the profession’s eventual organization remains uncertain. Human effort may move toward intent, abstraction, evidence, tradeoffs, and acceptance.",
               "block_index": 26
             },
             {
@@ -4143,32 +4143,32 @@
             {
               "slug": "cheap-reliable-realization-moves-effort-upstream",
               "text": "If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented.",
-              "block_index": 47
+              "block_index": 45
             },
             {
               "slug": "cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority",
               "text": "If strong controls become cheap, engineering can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk.",
-              "block_index": 49
+              "block_index": 47
             },
             {
               "slug": "combinations-land-differently-for-different-properties-of-one-system",
               "text": "Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology.",
-              "block_index": 51
+              "block_index": 49
             },
             {
               "slug": "cabot-is-one-plausible-equilibrium-not-the-prediction",
               "text": "Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive.",
-              "block_index": 54
+              "block_index": 52
             },
             {
               "slug": "more-modeling-need-not-mean-more-permanently-maintained-models",
               "text": "More modeling need not mean more permanently maintained models: construction cost can be repaid through repeated reuse or one consequential answer; cheap machine reasoning expands the one-off questions for which a purposeful reduction pays.",
-              "block_index": 57
+              "block_index": 55
             },
             {
               "slug": "recurring-judgment-becomes-engineering-capital-under-any-trajectory",
               "text": "Recurring judgment remains an opportunity for governance conversion; conversion and ratcheteering let later work inherit it while keeping the resulting structure open to correction.",
-              "block_index": 59
+              "block_index": 57
             }
           ]
         },
@@ -4178,7 +4178,7 @@
           "heading_text": "Review When Implementation Is Abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 60,
           "points": []
         },
         {
@@ -4187,22 +4187,22 @@
           "heading_text": "Engineering the Production System",
           "topic_sentence": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant.",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 72,
           "points": [
             {
               "slug": "two-places-engineering-attention-can-go",
               "text": "Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization.",
-              "block_index": 75
+              "block_index": 73
             },
             {
               "slug": "both-futures-contain-capable-agents-and-differ-in-where-judgment-goes",
               "text": "The distinction matters professionally because both futures can contain capable agents and very little human implementation; they differ in where scarce engineering judgment goes, and MAGE predicts increasing value in the second kind of work.",
-              "block_index": 77
+              "block_index": 75
             },
             {
               "slug": "not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it",
               "text": "This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work.",
-              "block_index": 80
+              "block_index": 78
             }
           ]
         }
@@ -4262,7 +4262,7 @@
           "section_id": "model-first-engineering-as-one-point-in-the-design-space",
           "level": 2,
           "heading_text": "Model-First Engineering as One Point in the Design Space",
-          "topic_sentence": "Model-first engineering occupies one end of the representational design space: consequential knowledge is made explicit before autonomous realization begins.",
+          "topic_sentence": "Model-first engineering occupies one end of the representational design space: sufficiently complete models determine much of the realization that follows.",
           "id_source": "derived",
           "block_index": 26,
           "points": [

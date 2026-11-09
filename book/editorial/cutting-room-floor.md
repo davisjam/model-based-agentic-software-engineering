@@ -17737,3 +17737,43 @@ An \textbf{oracle} is whatever supplies the judgment against which the observed 
 ```latex
 The oracles just described illustrate a longstanding difficulty in testing: executing a program can be much easier than deciding whether its result is correct.
 ```
+
+
+## Section 7.1: redistribution of software work — 9 November 2026
+
+Source revision: `db838c74bb5eab1fdea2a03e40d668cfba245cd4`. Removal revision: the commit introducing this entry. The author requested three bounded edits, preserving the four trajectories, the review argument, and the distinction between operating agents and engineering their environment. Original passages, including citations, are retained below.
+
+### S71-1 — Begin with the redistribution of work
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, lines 69–69. Reason: Remove the premature responsibility conclusion; retain the figure reference and uncertainty about the profession’s eventual organization.
+
+```latex
+\textbf{Delegation expands; responsibility remains.} We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it. \autoref{where-effort-moves} shows a broad redistribution toward intent, abstraction, evidence, tradeoffs, and acceptance; it does not prescribe the profession\textquotesingle s eventual organization.
+```
+
+### S71-2 — Leave the intellectual ancestry to §7.2
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, lines 139–141. Reason: Remove the two ancestry paragraphs already developed in §7.2. Keep the four trajectories, program-comprehension account, and transient-model discussion.
+
+```latex
+None of this is a new representational or governance tradition. Requirements engineering, architecture, programming languages, formal methods, model-driven and model-based engineering, knowledge representation, safety and assurance engineering, and research on distributed cognition have long moved knowledge, reasoning, evidence, or control into explicit structures outside an individual engineer. AI research has pursued similar ideas by moving parts of reasoning into external structures. Planning systems can translate natural-language problems into representations that specialized algorithms solve.\citep{liu2023llmp} Other approaches manage information in external memory,\citep{packer2023memgpt} organize intermediate reasoning as graphs,\citep{besta2024got} or maintain an explicit representation of the environment in which an agent operates.\citep{tang2024worldcoder} These approaches show how the choice of representation changes what a reasoning system can accomplish.
+
+A type can exclude an invalid local state;\citep{pierce2002} an intermediate representation can expose the structure a transformation needs;\citep{appel-compilers} a systems model can connect requirements, behavior, architecture, and evidence.\citep{friedenthal-sysml}\citep{brambilla2017} What changes with agentic software engineering is the economic importance of these representations: they can become active surfaces through which autonomous work is informed, scoped, checked, and reviewed.
+```
+
+### S71-3 — Lead directly into the engineering traditions
+
+Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex`, lines 223–223. Reason: Use the author’s closing paragraph, directing the reader to §7.2 without anticipating §7.4.
+
+```latex
+This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. The change is that engineers increasingly exercise those responsibilities through the production system in which agents work. \magevalue{sec:software-rejoins-engineering} and \magevalue{sec:education-research-open-problems} ask what engineering traditions and capabilities prepare the profession for that role.
+```
+
+
+## Section 7.2: model-first engineering — 9 November 2026
+
+Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex`, line 71. Source revision: `db838c74bb5eab1fdea2a03e40d668cfba245cd4`. Removal revision: the commit introducing this entry. Distinguish model-first engineering by how much of realization the model determines, rather than simply when knowledge becomes explicit. Retain item 5’s paragraph and the optional figure/prose repetition.
+
+```latex
+Model-first engineering occupies one end of the representational design space: consequential knowledge is made explicit before autonomous realization begins.
+```

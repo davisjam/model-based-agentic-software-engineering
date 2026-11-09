@@ -62,11 +62,11 @@ Earlier systems could demonstrate pieces of that vision; today\textquotesingle s
 
 \section{Where Engineering Effort Moves}\label{heading:where-engineering-effort-moves}
 
-% <!-- point: allocation-changes-even-where-the-eventual-organization-is-uncertain | As implementation becomes cheaper the allocation of engineering work changes, even though the eventual organization of that work stays uncertain: delegation expands, responsibility does not move with it, and scarce human effort concentrates where responsibility sits. -->
+% <!-- point: allocation-changes-even-where-the-eventual-organization-is-uncertain | As implementation becomes cheaper the allocation of engineering work changes, while the profession’s eventual organization remains uncertain. Human effort may move toward intent, abstraction, evidence, tradeoffs, and acceptance. -->
 
 % <!-- index-def: engineers-seat -->
 
-\textbf{Delegation expands; responsibility remains.} We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it. \autoref{where-effort-moves} shows a broad redistribution toward intent, abstraction, evidence, tradeoffs, and acceptance; it does not prescribe the profession\textquotesingle s eventual organization.
+We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it. \autoref{where-effort-moves} shows a broad redistribution toward intent, abstraction, evidence, tradeoffs, and acceptance; it does not prescribe the profession\textquotesingle s eventual organization.
 
 \begin{figure}[htbp]
 \centering
@@ -135,10 +135,6 @@ If explicit representations become cheap to construct, maintain, and reconcile, 
 Retrieval and representation engineering address different questions. Retrieval selects information to place before a reasoner; representation engineering asks whether a different form would make the engineering question easier to answer. An agent might retrieve enough source to reconstruct an architectural dependency, or work over a dependency model in which that relation is already explicit. The first improves access to the implementation; the second changes the representation over which reasoning proceeds. The two can be combined: a context pipeline may retrieve the dependency model itself.
 
 Program comprehension and architecture recovery make this economic choice concrete. Their established methods recover higher-level views from source, execution, and other evidence.\citep{chikofsky1990taxonomy, ducasse2009architecture, cornelissen2009dynamic} If agents make accurate recovery cheaper, they can lower the cost of realization and improve \(P(F \mid E,R)\) by reducing reconstruction cost and exposing the dependencies relevant to a change. Recovery does not automatically improve \(P(E \mid R)\): existing structure and observed behavior do not establish what the system ought to do. Engineers must compare recovering a view on demand with retaining it as engineering capital, whose future reuse must justify its construction and carrying costs.
-
-None of this is a new representational or governance tradition. Requirements engineering, architecture, programming languages, formal methods, model-driven and model-based engineering, knowledge representation, safety and assurance engineering, and research on distributed cognition have long moved knowledge, reasoning, evidence, or control into explicit structures outside an individual engineer. AI research has pursued similar ideas by moving parts of reasoning into external structures. Planning systems can translate natural-language problems into representations that specialized algorithms solve.\citep{liu2023llmp} Other approaches manage information in external memory,\citep{packer2023memgpt} organize intermediate reasoning as graphs,\citep{besta2024got} or maintain an explicit representation of the environment in which an agent operates.\citep{tang2024worldcoder} These approaches show how the choice of representation changes what a reasoning system can accomplish.
-
-A type can exclude an invalid local state;\citep{pierce2002} an intermediate representation can expose the structure a transformation needs;\citep{appel-compilers} a systems model can connect requirements, behavior, architecture, and evidence.\citep{friedenthal-sysml}\citep{brambilla2017} What changes with agentic software engineering is the economic importance of these representations: they can become active surfaces through which autonomous work is informed, scoped, checked, and reviewed.
 
 This trajectory changes the price of representation work, not its nature. It makes a larger investment in representations economical without establishing that such an investment will dominate software engineering.
 
@@ -220,4 +216,4 @@ Both futures can contain capable agents and very little human implementation. Th
 
 % <!-- point: not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it | This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work. -->
 
-This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. The change is that engineers increasingly exercise those responsibilities through the production system in which agents work. \magevalue{sec:software-rejoins-engineering} and \magevalue{sec:education-research-open-problems} ask what engineering traditions and capabilities prepare the profession for that role.
+This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. What changes is that engineers increasingly exercise those responsibilities through the production system in which agents work. The next section places that arrangement within the longer history of engineering through explicit representations and controls.

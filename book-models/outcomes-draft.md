@@ -101,9 +101,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. — _anchor: 4.4 'Operate the Environment' — Ousterhout's rule: measure one level deeper (whole-project cloud bill vs cost by service); re-homed in the Ch4/Ch5 merger._
   - **[DERIVED]** (analyze) After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus the failure states that matter and the sanctioned recovery from each — pairing every prohibition with the recovery path an agent cannot supply on its own. — _anchor: 4.4 'Operate the Environment' — lifecycle model paragraph + pair-prohibitions-with-recovery-paths; re-homed in the Ch4/Ch5 merger._
 
-## Module 5 — Agentic Software Factories
+## Module 5 — DocAble Among Other Software Factories
 
-- **[DECLARED]** (analyze) After this Part, the reader can analyze a software production system as a software factory — distinguish realization capacity from supervisory capacity, trace how one deeply observed factory made supervision possible through models, joins, enforcement, and governance conversion, and read independent factories through the same lens. — _anchor: Agentic Software Factories: the historical software-factory derivation -> inside DocAble's factory (census, joins, conversions, staircase) -> other factories under one lens -> what the factories show._
+- **[DECLARED]** (analyze) After this Part, the reader can analyze a software production system as a software factory — distinguish realization capacity from supervisory capacity, trace how one deeply observed factory made supervision possible through models, joins, enforcement, and governance conversion, and read independent factories through the same lens. — _anchor: DocAble Among Other Software Factories: the historical software-factory derivation -> inside DocAble's factory (census, joins, conversions, staircase) -> other factories under one lens -> what the factories show._
 
 ### Lesson 5.1-software-factory
 
