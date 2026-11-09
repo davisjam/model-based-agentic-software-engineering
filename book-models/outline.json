@@ -1833,17 +1833,17 @@
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 113
+              "block_index": 112
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 120
+              "block_index": 118
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 122
+              "block_index": 120
             }
           ]
         },
@@ -1853,27 +1853,27 @@
           "heading_text": "The Freedom a Control Preserves",
           "topic_sentence": "An engineer need not fix every choice that a control could restrict.",
           "id_source": "derived",
-          "block_index": 125,
+          "block_index": 123,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Preserving degrees of freedom has positive value: some choices are immaterial, some are not yet ripe, and agent exploration can find strategies engineers did not anticipate.",
-              "block_index": 127
+              "block_index": 125
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 130
+              "block_index": 128
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 132
+              "block_index": 130
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 138
+              "block_index": 136
             }
           ]
         },
@@ -1883,27 +1883,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "**Policy**, **guidance**, and **governance mechanisms** contribute different things to engineering work.",
           "id_source": "derived",
-          "block_index": 140,
+          "block_index": 138,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 142
+              "block_index": 140
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions.",
-              "block_index": 144
+              "block_index": 142
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 146
+              "block_index": 144
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 151
+              "block_index": 149
             }
           ]
         }
@@ -2139,17 +2139,17 @@
             {
               "slug": "diagnose-the-conflict-kind-before-weakening-an-obligation",
               "text": "Not every conflict between controls reflects a conflict between the obligations they enforce; incompatible obligations require revisiting requirements, while interfering mechanisms may be changed without weakening either obligation.",
-              "block_index": 24
+              "block_index": 23
             },
             {
               "slug": "governance-interaction-graph-candidate-conflict-condition",
               "text": "DocAble adapts a classical read/write conflict test to identify potential access conflicts at a shared event; the governance model records resolutions and must also account for incompatible obligations.",
-              "block_index": 26
+              "block_index": 25
             },
             {
               "slug": "three-turn-end-hooks-one-shared-slot",
               "text": "DocAble's worked control-system case contrasts an unenforced merge warning with a recorded order between two hooks; their context-consumption dependency lies beyond the simple read/write model.",
-              "block_index": 28
+              "block_index": 27
             }
           ]
         },
@@ -2159,22 +2159,22 @@
           "heading_text": "Trace Obligations to Mechanisms",
           "topic_sentence": "Interactions are only half of governing the control machinery.",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 32,
           "points": [
             {
               "slug": "a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not",
               "text": "A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not.",
-              "block_index": 35
+              "block_index": 34
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
               "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is a coverage gap; a mechanism with no obligation is an orphan.",
-              "block_index": 37
+              "block_index": 36
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
               "text": "A coverage gap is an uncovered obligation; an orphan is a mechanism with no current purpose. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
-              "block_index": 40
+              "block_index": 39
             }
           ]
         },
@@ -2184,27 +2184,27 @@
           "heading_text": "Add, Reconcile, and Retire Controls",
           "topic_sentence": "Governance conversion and coverage auditing provide complementary pressures.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 42,
           "points": [
             {
               "slug": "conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both",
               "text": "Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both.",
-              "block_index": 45
+              "block_index": 44
             },
             {
               "slug": "the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls",
               "text": "The same audit pushes against permanent accumulation: engineering capital is not the number of controls.",
-              "block_index": 47
+              "block_index": 46
             },
             {
               "slug": "the-meta-model-stays-connected-where-controls-are-modeled-explicitly",
               "text": "Entries in a control model identify the implementing mechanism, and correspondence checks expose missing or unrecognized targets instead of silently treating them as covered.",
-              "block_index": 49
+              "block_index": 48
             },
             {
               "slug": "stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists",
               "text": "Stop the recursion unless experience earns more: a governance model can itself become bureaucracy.",
-              "block_index": 51
+              "block_index": 50
             }
           ]
         },
@@ -2214,22 +2214,22 @@
           "heading_text": "Preserve Engineering Freedom",
           "topic_sentence": "Alignment must preserve two kinds of freedom.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 53,
           "points": [
             {
               "slug": "alignment-distinguishes-what-must-be-governed-from-what-may-remain-open",
               "text": "Alignment must preserve two complementary freedoms — freedom of implementation (which acceptable realizations remain available) and freedom to extend the environment (whether additional controls can coexist); the realization-space model answers the first, the governance graph the second.",
-              "block_index": 55
+              "block_index": 54
             },
             {
               "slug": "governing-the-governors-is-second-order-not-a-license-for-unrestricted-agents",
               "text": "Agents may explore without being authorized to commit, and engineers still decide which freedoms to delegate.",
-              "block_index": 57
+              "block_index": 56
             },
             {
               "slug": "modeling-and-alignment-are-both-on-the-table-but-that-is-not-yet-a-method",
               "text": "Chapter 4 shows how engineers use and revise models and controls together as an engineering problem develops.",
-              "block_index": 59
+              "block_index": 58
             }
           ]
         }

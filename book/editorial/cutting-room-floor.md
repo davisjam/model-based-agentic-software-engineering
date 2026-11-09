@@ -18105,3 +18105,62 @@ Choosing those distinctions is a judgment process, not an algorithm.
 ```latex
 The columns do not form a single progression from weak to strong engineering. Greater semantic commitment usually makes more mechanical interpretation possible, but it does not simply lower the interpretation burden --- it relocates it. An informal sketch asks almost nothing of a reader who already shares its context and a great deal of one who does not; a semantically defined language asks for language and tool knowledge up front, and in exchange leaves less meaning to be reconstructed each time the model is read. What changes across the rows is where the interpretive work is done, and by whom.
 ```
+
+
+## Chapter 3 incremental prose edits — 9 November 2026
+
+Author-approved Edits 1, 5, 6, and 9, incorporating the attached contextual follow-up. Edit 8 was withdrawn: the engineering-capital passage and its concluding aphorism remain unchanged.
+
+### Where Obligations Can Be Enforced (Edit 1)
+
+- Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex:31`
+- Source revision: `2e97aceb72b56d16e1a9d1c958b43d976b53cfb4`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the surrounding pedagogical progression.
+
+```latex
+The useful question is not which one is "hardest," but \textbf{where the relevant obligation is visible and a mechanism can enforce it.}
+```
+
+### Agreement Is Not Correctness (Edit 5)
+
+- Source: `book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex:57`
+- Source revision: `2e97aceb72b56d16e1a9d1c958b43d976b53cfb4`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the surrounding pedagogical progression.
+
+```latex
+The distinction is not \textbf{whether the model was derived or authored.} Derived models are useful throughout MAGE. The distinction is \textbf{description versus independent obligation.} A model extracted from code can supply the current \emph{is}; an independently authored invariant can supply the governing \emph{ought}. A hand-authored model can be just as wrong when it merely repeats the implementation\textquotesingle s assumptions. Enforcement requires something against which the work can actually be wrong.
+```
+
+### Provenance-Carried Admission (Edit 6)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex:327`
+- Source revision: `2e97aceb72b56d16e1a9d1c958b43d976b53cfb4`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the surrounding pedagogical progression.
+
+```latex
+An agent may find an implementation path its designers did not anticipate. If the path bypasses approval, a rule written to catch an earlier bypass may miss it. Trying to enumerate every forbidden route can therefore leave gaps as the implementation changes.
+
+% <!-- point: provenance-reverses-the-enforcement-problem | Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction. | terms: constraint, governance-mechanism -->
+
+Provenance can reverse the enforcement problem. Instead of trying to recognize every way an operation might have bypassed the sanctioned abstraction, require the protected operation to carry evidence that it passed through that abstraction.
+
+In the payment example, the approval service can issue a digitally signed token that cryptographically binds its approval to the proposed transfer: its source account, destination, and amount. Callers without the signing key cannot forge an approval or change those fields while retaining a valid signature. The transfer boundary verifies the signature and checks that the approved details match the requested operation before admitting it. The boundary must also atomically consume a single-use approval so concurrent requests cannot reuse it for a duplicate transfer.\citep{owasp-transaction-authorization} The general admission condition is:
+```
+
+### Control Interactions (Edit 9)
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex:63`
+- Source revision: `2e97aceb72b56d16e1a9d1c958b43d976b53cfb4`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the surrounding pedagogical progression.
+
+```latex
+Some candidate conflicts can be evaluated mechanically, such as a cycle in declared ordering requirements. Others need judgment. A static check can show that two controls touch the same commit set; a validator or human reviewer must determine whether their requirements conflict. Producing evidence of an interaction is different from judging it unacceptable. The graph makes the pair available for evaluation before the controls interfere during work.
+
+% <!-- point: diagnose-the-conflict-kind-before-weakening-an-obligation | Not every conflict between controls reflects a conflict between the obligations they enforce; incompatible obligations require revisiting requirements, while interfering mechanisms may be changed without weakening either obligation. | terms: governance-graph, shared-resource -->
+
+Not every conflict between controls reflects a conflict between the obligations they enforce. Two obligations may genuinely be incompatible, requiring engineers to revisit the requirements or specification. But compatible obligations can also be enforced by mechanisms that interfere with one another. In that case, changing the mechanisms or how they interact may resolve the conflict without weakening either obligation.
+```
