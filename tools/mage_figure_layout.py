@@ -78,7 +78,7 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
 
 
 def reading_guide_columns(latex: str) -> str:
-    """Keep the compact map beside the chapter overview and five reading routes.
+    """Keep the compact map beside the chapter overview and the reading routes.
 
     The tagged book class conflicts with wrapfig's paragraph hooks. Two aligned
     columns provide the same narrow right-hand placement without wrapping a list

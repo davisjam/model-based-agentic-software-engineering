@@ -18759,3 +18759,16 @@ Three shorter routes serve different purposes:
 \end{itemize}
 
 ```
+
+## Reading-guide follow-up from 9 November 2026
+
+- Source: `book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex`, “How to Read This Book,” lines 10 and 32.
+- Source revision: `ad861fd5b188f8ab652c94cb67badbb8909853f2`.
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: The author requested an opening beginning “This book” and removal of the evidence route, retaining the approved one-page layout.
+
+```latex
+Before the Preface, you'll find a summary of the book's argument, a one-page overview of MAGE, and a glossary. These are reference materials for use throughout the book.
+
+\item \textbf{Show me the evidence:} \magevalue{chapter:problem} → \magevalue{chapter:software-factories}.
+```
