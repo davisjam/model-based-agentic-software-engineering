@@ -18337,3 +18337,17 @@ The second cost is maintaining what later work inherits. Shopify repairs diverge
 ```latex
 Nor does the bound argue for complete specification. Some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. Elsewhere, specifying nearly every realization decision in advance recreates much of the specification cost discussed in \magevalue{chapter:software-factories}. More importantly, it sacrifices a major advantage of commodity intelligence: agents can explore implementation choices that engineers need not make themselves. The engineer can specify the consequential obligations, leave other choices open, and let the agent find a satisfactory realization. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the environment can preserve while maintaining adequate control.
 ```
+
+
+## Chapter 6 recovery qualification — 9 November 2026
+
+### Representation Recovery (Edit 6C)
+
+- Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex:50`
+- Source revision: `c852317bff298e28ac8e4f38509f5583f06edd0f`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved local shortening and explicit statement of the engineer's responsibility to assess recovered behavior.
+
+```latex
+The proposition does not require engineers to design every representation in advance. \magevalue{chapter:one-problem-many-models} showed how implementation signals and commodity intelligence can help recover latent models from an existing system. Repeated structures may reveal a domain concept that the implementation already embodies but has never named. Recovery makes that structure explicit; it does not establish that the observed behavior is the behavior the system ought to have.
+```
