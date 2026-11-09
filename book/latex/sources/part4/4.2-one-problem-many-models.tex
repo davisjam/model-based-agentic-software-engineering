@@ -80,7 +80,7 @@ The existing representation coupled the two, and \autoref{interlude-storage-vs-r
 \label{interlude-storage-vs-reasoning}
 \end{figure}
 
-So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Finer chunking could continue reducing how much of the document met this relation at one time, but it could not remove the relation itself---and increasingly fine partitions would introduce coordination costs and erode the semantic context available to remediation. On the observed workload that made no difference; the new file made it decisive.
+The architecture therefore carried an implicit scaling relation: total media size drove resident worker state. Finer chunking could reduce that state, at the cost of more coordination and less semantic context, but could not eliminate the relationship. The new file made that limitation consequential.
 
 A residency model made the alternative visible (panel b): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
 
@@ -108,7 +108,7 @@ C =
   + remediation working set
 \end{verbatim}
 
-and C does not grow with total media size.
+and C is independent of aggregate media payload size within that envelope.
 
 Chunking had shown that the observed documents worked. Skeletonization supports a structural claim over a declared class of inputs: peak worker memory is bounded independently of total media size, provided the modeled path never retains the complete payload.
 
@@ -296,9 +296,7 @@ Some answers follow from structure; others depend on calibrated measurements. Th
 
 This sequence took about three days inside the existing governed engineering environment. It included skeletonization and streaming, typed-patch work, reconsidering ChunkWorker, remediation and fact graphs, quantitative analysis, the chunkless execution design, and corrections when assumptions proved wrong. The timescale matters because modeling could participate in the implementation loop rather than follow it as a separate documentation phase.
 
-Nobody began with a plan to construct seven models. Larger inputs exposed a memory relationship; changing residency made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each representation answered a question the work had made consequential. The earlier examples of successful documents could not by themselves establish a memory bound. That required an account of the scaling relationship, an architectural change, and checks on the assumptions behind it.
-
-Keeping those models inside the loop preserved control while I delegated much of the realization. A black-box optimization process might have reached a faster or smaller implementation sooner, but could have left less evidence about why it worked and what later changes had to preserve. Here, proposed changes could be evaluated against an explicit account and that account could be revised when measurement disagreed. \autoref{interlude-modeling-cycle} shows the continuing interaction among the engineering question, model, analysis, realization, and evidence.
+Nobody began with a plan to construct seven models. Larger inputs exposed a memory relationship; changing residency made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each representation answered a question the work had made consequential. Keeping those models inside the implementation loop let me evaluate proposed changes against explicit engineering accounts and revise those accounts when measurement disagreed. \autoref{interlude-modeling-cycle} summarizes the interaction among the engineering question, model, analysis, realization, and evidence. This episode followed one problem forward as its necessary representations emerged. Brownfield engineering often presents the inverse problem: consequential structure already exists somewhere in the system, but has not been made explicit enough to reason about or govern.
 
 \begin{figure}[htbp]
 \centering
@@ -306,5 +304,3 @@ Keeping those models inside the loop preserved control while I delegated much of
 \caption{\emph{Modeling as a loop.} (a) Models produced after implementation: the linear design → implement → document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.}
 \label{interlude-modeling-cycle}
 \end{figure}
-
-A model need not describe the whole system or survive forever. Keep it while its questions justify its cost. In this episode, the memory obligation survived corrections to the model, and later performance work proceeded within that obligation. This case followed one problem forward as its necessary representations emerged. Brownfield engineering often presents the inverse problem: consequential structure already exists somewhere in the system, but has not been made explicit enough to reason about or govern.

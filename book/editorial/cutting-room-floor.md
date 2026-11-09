@@ -17635,3 +17635,105 @@ Four shorter routes serve different purposes:
   \textbf{Adopt it in an organization.} \magevalue{chapter:problem} → \magevalue{sec:mage-in-the-wild} → {[}appendix: appendix-adopting-genai{]}. Start with the changed engineering problem, see how several organizations are already restructuring agentic work, then use the adoption guide to decide where context, models, evidence, and enforcement are worth organizational investment. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} provide the engineering practices; \magevalue{chapter:theory} provides the underlying theory.
 \end{itemize}
 ````
+
+## Chapter 4 targeted follow-ups — 9 November 2026
+
+Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`. Removal revision: the commit introducing this archive entry (see Git history). The author requested a concise scaling account, an explicit operating-envelope qualification, one synthesis paragraph, and a retained but shorter oracle definition. The latest inline instructions supersede the attachment’s proposed deletion of the definition. The three-day observation, figures, failed predictions, Audit–Drain–Promote, oracle examples, and generative-validation discussion remain.
+
+### CH4-1
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 83–83
+- Source SHA-256: `06c313bc4f6b946a227c51fd0bd6e4d0cc07ff8380fac1f3bc8052a4cc5b63cf`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: Use the author’s three-sentence scaling account, with the agreed minimal repair separating chunking costs from the persistent relation.
+
+```latex
+So the architecture carried an implicit scaling relation: total media size drove resident worker state, and resident state drove the risk of running out of memory. Finer chunking could continue reducing how much of the document met this relation at one time, but it could not remove the relation itself---and increasingly fine partitions would introduce coordination costs and erode the semantic context available to remediation. On the observed workload that made no difference; the new file made it decisive.
+```
+
+### CH4-2
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 111–111
+- Source SHA-256: `06c313bc4f6b946a227c51fd0bd6e4d0cc07ff8380fac1f3bc8052a4cc5b63cf`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: State the memory bound within its declared operating envelope.
+
+```latex
+and C does not grow with total media size.
+```
+
+### CH4-3 passage 1
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 299–299
+- Source SHA-256: `06c313bc4f6b946a227c51fd0bd6e4d0cc07ff8380fac1f3bc8052a4cc5b63cf`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: Keep the three-day paragraph exactly; replace the following three prose paragraphs with the author’s one substantial paragraph. Keep the modeling-cycle figure unchanged and reference its stable label.
+
+```latex
+Nobody began with a plan to construct seven models. Larger inputs exposed a memory relationship; changing residency made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each representation answered a question the work had made consequential. The earlier examples of successful documents could not by themselves establish a memory bound. That required an account of the scaling relationship, an architectural change, and checks on the assumptions behind it.
+```
+
+### CH4-3 passage 2
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 301–301
+- Source SHA-256: `06c313bc4f6b946a227c51fd0bd6e4d0cc07ff8380fac1f3bc8052a4cc5b63cf`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: Keep the three-day paragraph exactly; replace the following three prose paragraphs with the author’s one substantial paragraph. Keep the modeling-cycle figure unchanged and reference its stable label.
+
+```latex
+Keeping those models inside the loop preserved control while I delegated much of the realization. A black-box optimization process might have reached a faster or smaller implementation sooner, but could have left less evidence about why it worked and what later changes had to preserve. Here, proposed changes could be evaluated against an explicit account and that account could be revised when measurement disagreed. \autoref{interlude-modeling-cycle} shows the continuing interaction among the engineering question, model, analysis, realization, and evidence.
+```
+
+### CH4-3 passage 3
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 310–310
+- Source SHA-256: `06c313bc4f6b946a227c51fd0bd6e4d0cc07ff8380fac1f3bc8052a4cc5b63cf`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: Keep the three-day paragraph exactly; replace the following three prose paragraphs with the author’s one substantial paragraph. Keep the modeling-cycle figure unchanged and reference its stable label.
+
+```latex
+A model need not describe the whole system or survive forever. Keep it while its questions justify its cost. In this episode, the memory obligation survived corrections to the model, and later performance work proceeded within that obligation. This case followed one problem forward as its necessary representations emerged. Brownfield engineering often presents the inverse problem: consequential structure already exists somewhere in the system, but has not been made explicit enough to reason about or govern.
+```
+
+### CH4-4
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 73–73
+- Source SHA-256: `79ca07d8456e1332e59f772e3bd1c96c70e9944471c0eed4ad46bb1f581532b4`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: Retain the deliberate oracle definition, using the author’s latest copy and italic term emphasis; earlier attachment deletion is superseded.
+
+```latex
+An \textbf{oracle} is whatever supplies the judgment against which the observed result is evaluated. An oracle is stronger when its judgment is sufficiently independent of the implementation being judged and explicit enough that its verdict has a stable meaning. Sometimes that oracle is a simple property: the output is an ordered permutation of the input. Sometimes it is a type or schema. Sometimes it is a reference implementation, and sometimes a human rubric.
+```
+
+### CH4-5
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`
+- Source revision: `6ee8e4055aaa6aa44e61ef9699530e6e691b49d3`
+- Original lines: 83–83
+- Source SHA-256: `79ca07d8456e1332e59f772e3bd1c96c70e9944471c0eed4ad46bb1f581532b4`
+- Removal date: 9 November 2026
+- Removal revision: the commit introducing this archive entry (see Git history)
+- Reason: Use a direct inset opening; retain the oracle-problem naming sentence, citation, sorting example, and all later material.
+
+```latex
+The oracles just described illustrate a longstanding difficulty in testing: executing a program can be much easier than deciding whether its result is correct.
+```
