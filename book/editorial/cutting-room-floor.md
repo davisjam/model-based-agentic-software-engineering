@@ -17979,3 +17979,14 @@ The governing obligation is not merely to produce a plausible-looking artifact, 
 ```latex
 There is still useful judgment to delegate. The foundation model can interpret the diagram and choose how to describe it without an engineer writing every description in advance. The preservation check does not establish that the description is meaningful, nor does content inclusion alone establish that the layout is unchanged. Those are separate properties requiring suitable evidence. What the check does establish is narrower and useful: the content represented by its extractor has survived.
 ```
+
+### Probabilistic Work Needs External Enforcement
+
+- Source: `book/latex/sources/part1/1.3-the-agentic-substrate.tex:138`
+- Source revision: `cc21c81f1fd11a3c406bdc0778c989ce19f4cdeb`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved assurance paragraph, with the principle stated directly and the independent-assurance mechanisms preserved.
+
+```latex
+The second problem is not that agents make mistakes while human programmers do not. Software engineering has always separated authorship from assurance. We compile code instead of trusting the programmer\textquotesingle s prediction that it compiles; we run tests instead of accepting an explanation that the program should work; consequential systems add review, static analysis, formal methods, operational evidence, or independent approval because the producer\textquotesingle s confidence is not enough.
+```
