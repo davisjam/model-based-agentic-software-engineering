@@ -11,14 +11,12 @@
 
   "model": {
     "term": "Model",
-    "box": "A deliberately reduced, machine-readable representation of system intent, structure, behavior, policy, or evidence that supports reasoning, derivation, or checking, and whose relationship to the implemented or observed system is mechanically maintained.",
+    "box": "A purposeful simplification of a system that preserves what matters for a particular engineering question.",
     "aspects": [
-      {"lead": "The intuition the formal statement rests on", "text": "Two senses build toward it. A model is a useful approximation — simplified, but good enough to predict; all models are wrong, some are useful, and fidelity trades against cost. And, as this book uses it, a blueprint: a prescriptive description of a system to be built, which the built system is bound to realize. Prose is too vague to enforce, code too verbose to reason over; a model occupies the useful middle."},
-      {"lead": "The five load-bearing terms", "text": "Each does gatekeeping work. Deliberately reduced — not the whole codebase. Machine-readable — not ordinary prose. A representation of something named — intent, structure, behavior, policy, or evidence — so not everything structured is a model. Supports an operation — reasoning, derivation, prediction, or checking. Mechanically maintained — a drift gate holds it to the system, which is what separates a MAGE model from a stale diagram."},
-      {"lead": "Constraint, blueprint, and knowledge base at once", "text": "A model handed to an agent is at once a constraint (bounding what may be built), a blueprint (saying what to build), and — because the agent reasons over it — the knowledge base for the artifact under construction."}
+      {"lead": "Purposeful simplification", "text": "By leaving other details out, a model makes the relevant properties easier to understand and reason about than the system itself."}
     ],
     "site_home": "N/A",
-    "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Model",
+    "derived_from": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
     "book_home": "the-agent-stack#idx-def-model",
     "book_home_owed": {"section": "Chapter 2 — §2.1 The Agent Stack", "status": "landed", "note": "Landed: the definition is tagged with an index-def in §2.1 (The Agent Stack) and renders as the blue def-box in the web book + PDF."},
     "lexicon_link": "the-books-language",

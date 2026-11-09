@@ -21,11 +21,11 @@ Agentic software engineering is moving quickly, and its vocabulary has not settl
 
 \textbf{Software engineering.} The engineering discipline of controlled change in software systems: it creates and evolves software while preserving sufficient control over the properties and consequences that matter. The definition is shared with the companion \emph{Software Engineering Handbook}, which develops it fully.\citep{davis2026sehandbook}
 
-\textbf{Agentic engineering.} The deliberate engineering of the environments through which autonomous agents perform consequential engineering work---the broader engineering problem of which this book\textquotesingle s subject is one instance. It does not mean engineering performed by agents. Model-Based Agentic Engineering (MAGE) is the account developed here for addressing it; software engineering is this book\textquotesingle s worked domain.
+\textbf{Agentic engineering.} The engineering of systems and environments in which autonomous agents perform consequential work. MAGE develops one approach, using software engineering as its principal example.
 
-\textbf{Engineering obligation.} A requirement or engineering decision that the responsible engineering authority has determined an implementation or other engineering result must satisfy. Obligations may arise externally---from users, regulations, standards, contracts, or operating environments---or internally from engineering decisions about architecture, behavior, quality, or process. An obligation is enforceable when the engineered environment can check it, and enforced when a mechanism holds work to it. Durable mechanisms enforce selected obligations by constraining actions or determining whether work is accepted. For example, if a service must respond within 200 milliseconds, a performance gate enforces that obligation by rejecting implementations that exceed the limit.
+\textbf{Engineering obligation.} A requirement or engineering decision that the responsible engineering authority has determined a system or its development must satisfy. Obligations may arise externally---from users, regulations, standards, contracts, or operating environments---or internally, from decisions about architecture, behavior, quality, or process. An obligation is enforceable when the environment can evaluate whether it holds; enforcement additionally requires a mechanism that prevents or refuses work that violates it.
 
-\textbf{Model.} A purposeful reduction of a system that preserves the information needed to answer an engineering question while suppressing detail the question does not need. Models make engineering knowledge and intent explicit so engineers and agents can reason about selected system properties without rebuilding that knowledge from lower-level artifacts each time.
+\textbf{Model.} A purposeful simplification of a system that preserves what matters for a particular engineering question. By leaving other details out, a model makes the relevant properties easier to understand and reason about than the system itself.
 
 % <!-- index-def: model-classes -->
 
@@ -52,7 +52,7 @@ Agentic software engineering is moving quickly, and its vocabulary has not settl
 
 \textbf{Alignment Principle.} Make engineering obligations enforceable through mechanisms that constrain actions or states, produce evidence, or evaluate evidence to control whether work may proceed. Some obligations can be enforced directly on actions or artifacts; explicit models let the environment state and check richer properties, including acceptable bounds on variation.
 
-\textbf{Governance conversion.} When a recurring failure, repeated judgment, or observed gap reveals something future work should inherit, encode the lesson in durable structure: a model, packaged procedure, or mechanism that enforces an obligation.
+\textbf{Governance conversion.} Turning a lesson from a recurring failure, repeated judgment, or observed gap into durable engineering structure that future work inherits. The structure may be a model, packaged procedure, or mechanism that enforces an obligation. Fixing one forbidden dependency repairs the immediate defect; recording the dependency rule and installing a check can help later work avoid repeating it. The lesson has been converted when future work can use it without waiting for someone to remember the incident.
 
 % <!-- index-def: compounding -->
 
@@ -113,6 +113,6 @@ A single mechanism may perform several functions.
 
 \textbf{Semantic gap.} The distance between where an engineering obligation arises and where the environment has enough meaning and evidence to decide whether the obligation is satisfied. The gap explains why some checks must wait until a later boundary, when enough of the system has been assembled to make the obligation decidable.
 
-\textbf{Model drift.} A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.
+\textbf{Model drift.} A model and the system, evidence, or other representation to which it is meant to correspond cease to agree. The disagreement establishes that something needs attention, not which side deserves correction. Updating the model to describe a forbidden dependency would restore agreement while preserving the violation. Reconciliation therefore requires returning to the engineering intent that the model was meant to preserve.
 
-\textbf{Traceability.} Explicit, machine-readable links from model elements to the artifacts, evidence, obligations, or other model elements they represent, constrain, or correspond to.
+\textbf{Traceability.} Explicit, machine-readable links from model elements to the artifacts, evidence, obligations, or other model elements they represent, constrain, or correspond to. A link can remain intact while its meaning has gone stale: a test may still carry a requirement's identifier after it has stopped testing that requirement.

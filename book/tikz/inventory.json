@@ -695,15 +695,15 @@
   {
     "chapter": "3.5-when-guardrails-collide",
     "source": "assets/turn-end-ordering.svg",
-    "caption": "*Three turn-end hooks, one shared resource.* All three hooks write to the turn's closing message, producing three conflict edges. The governance model computes an execution order, but the generic runtime driver that would enforce it has not yet been implemented.",
+    "caption": "*Ordering interacting hooks.* Recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed to identify failures. The governance model records the ordering constraint and detects cycles.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Three turn-end hooks write one shared slot; the model resolves the conflicts with a declared order",
-    "svg_description": "Three governance mechanisms, all firing when an agent ends a turn: one discourages\n    premature stops, one prompts reflection on failures, one checks for stranded work. Rust arrows between\n    them show the modeled order, left to right. All three write the same shared resource below — the\n    turn's closing message. An annotation notes that the typed governance graph holds twenty-five\n    mechanisms, that these three edges are its only conflicts, and that the order is computed by\n    topological sort, with a cycle reported as an error."
+    "svg_title": "Ordering interacting hooks",
+    "svg_description": "At turn end, recurring-failure reflection precedes stranded-work inspection. Reflection identifies recent failures for governance conversion; work inspection compares delivered work with its brief and may exhaust the context needed for reflection. The arrow denotes the required order."
   },
   {
     "chapter": "3.5-when-guardrails-collide",

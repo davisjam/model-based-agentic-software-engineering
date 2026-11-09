@@ -79,7 +79,7 @@
     "core_constructs": {
       "_note": "The six foundational constructs (say 'core construct' / 'core concept', never 'primitive' — 'primitive' is RESERVED for implementation-level code operations, the dense-primitive-region sense). The construct is the governance-conversion loop; its registered concept slug is `governance-conversion` (renamed 260804 from the earlier `failure-to-mechanism` so the slug matches the display name the prose uses).",
       "engineered-agent-loop": "The engineered agent loop — a feedback process whose four levers (state exposed, action surface, success criterion, admission rule) the engineer shapes. Defined in 3.1.",
-      "model": "A deliberately reduced, machine-readable representation of system intent, structure, behavior, policy, or evidence — the formal definition in definitions.json. Defined in 2.1.",
+      "model": "A purposeful simplification of a system that preserves what matters for a particular engineering question. The glossary supplies the definition; §2.1 develops it.",
       "governance-mechanism": "A repeatable environmental structure that encodes an engineering policy — prevention, detection, evidence, or admission. Defined in 2.3.",
       "churn": "The failure mode: an increasing share of agent effort spent rediscovering, undoing, repairing, reconciling. Defined in the preface.",
       "governance-conversion": "The governance-conversion loop: the method by which the environment evolves — each recurring failure converted into a durable mechanism. Defined in 2.3.",
@@ -399,7 +399,7 @@
     "kind": "core-construct",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Core construct 2 of 6 (_hierarchy). Definitional text is homed in definitions.json (the model record — formal definition + the approximation/blueprint intuition); this record places the construct in the hierarchy. Book index-def tagged at the 2.1 definition. No landing card by design: the definitions model owns the site realization (def-model)."
+    "note": "Core construct 2 of 6 (_hierarchy). Definitional text is homed in definitions.json and follows the author-approved glossary definition. Chapter 2 develops purposeful simplification as purposeful reduction. This record places the construct in the hierarchy; the existing model slug and definition anchor remain unchanged."
   },
   "governance-mechanism": {
     "kind": "core-construct",

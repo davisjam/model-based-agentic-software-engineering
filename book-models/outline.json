@@ -2103,13 +2103,13 @@
             },
             {
               "slug": "governance-interaction-graph-candidate-conflict-condition",
-              "text": "A read/write relation identifies potential interactions at a shared event; classifying the conflict and resolving it are separate judgments.",
+              "text": "DocAble adapts a classical read/write conflict test to identify potential access conflicts at a shared event; the governance model records resolutions and must also account for incompatible obligations.",
               "block_index": 26
             },
             {
               "slug": "three-turn-end-hooks-one-shared-slot",
-              "text": "DocAble's worked control-system case connects a missing enforcement consequence to later modeling of interactions among three turn-end hooks.",
-              "block_index": 30
+              "text": "DocAble's worked control-system case contrasts an unenforced merge warning with a recorded order between two hooks; their context-consumption dependency lies beyond the simple read/write model.",
+              "block_index": 28
             }
           ]
         },
@@ -2119,22 +2119,22 @@
           "heading_text": "Trace Obligations to Mechanisms",
           "topic_sentence": "Interactions are only half of governing the control machinery.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 33,
           "points": [
             {
               "slug": "a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not",
               "text": "A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not.",
-              "block_index": 36
+              "block_index": 35
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
               "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is a coverage gap; a mechanism with no obligation is an orphan.",
-              "block_index": 38
+              "block_index": 37
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
               "text": "A coverage gap is an uncovered obligation; an orphan is a mechanism with no current purpose. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
-              "block_index": 41
+              "block_index": 40
             }
           ]
         },
@@ -2144,27 +2144,27 @@
           "heading_text": "Add, Reconcile, and Retire Controls",
           "topic_sentence": "Governance conversion and coverage auditing provide complementary pressures.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 43,
           "points": [
             {
               "slug": "conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both",
               "text": "Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both.",
-              "block_index": 46
+              "block_index": 45
             },
             {
               "slug": "the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls",
               "text": "The same audit pushes against permanent accumulation: engineering capital is not the number of controls.",
-              "block_index": 48
+              "block_index": 47
             },
             {
               "slug": "the-meta-model-stays-connected-where-controls-are-modeled-explicitly",
               "text": "Entries in a control model identify the implementing mechanism, and correspondence checks expose missing or unrecognized targets instead of silently treating them as covered.",
-              "block_index": 50
+              "block_index": 49
             },
             {
               "slug": "stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists",
               "text": "Stop the recursion unless experience earns more: a governance model can itself become bureaucracy.",
-              "block_index": 52
+              "block_index": 51
             }
           ]
         },
@@ -2174,22 +2174,22 @@
           "heading_text": "Preserve Engineering Freedom",
           "topic_sentence": "Alignment must preserve two kinds of freedom.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 55,
           "points": [
             {
               "slug": "alignment-distinguishes-what-must-be-governed-from-what-may-remain-open",
               "text": "Alignment must preserve two complementary freedoms — freedom of implementation (which acceptable realizations remain available) and freedom to extend the environment (whether additional controls can coexist); the realization-space model answers the first, the governance graph the second.",
-              "block_index": 57
+              "block_index": 56
             },
             {
               "slug": "governing-the-governors-is-second-order-not-a-license-for-unrestricted-agents",
               "text": "Modeling and Alignment extend to the machinery that performs engineering work; the result is not unrestricted agent autonomy — agents may explore without being authorized to commit, and engineers still decide which freedoms to delegate.",
-              "block_index": 59
+              "block_index": 58
             },
             {
               "slug": "modeling-and-alignment-are-both-on-the-table-but-that-is-not-yet-a-method",
               "text": "Chapter 4 shows how engineers use and revise models and controls together as an engineering problem develops.",
-              "block_index": 61
+              "block_index": 60
             }
           ]
         }

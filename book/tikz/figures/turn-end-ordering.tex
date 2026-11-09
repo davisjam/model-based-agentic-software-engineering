@@ -1,18 +1,20 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=3.7cm,fill=white] (h0) at (0.0,0) {\textit{Turn-end hook}\\\textbf{Discourages}\\\textbf{premature stops}};
-\node[box,text width=3.7cm,fill=white] (h1) at (4.5,0) {\textit{Turn-end hook}\\\textbf{Prompts reflection}\\\textbf{on failures}};
-\node[box,text width=3.7cm,fill=white] (h2) at (9.0,0) {\textit{Turn-end hook}\\\textbf{Checks for}\\\textbf{stranded work}};
-\draw[edge,line width=1.2pt] (h0) -- node[midway,above,yshift=1.15cm,note,fill=white] {\textit{modeled order}} (h1);
-\draw[edge,line width=1.2pt] (h1) -- node[midway,above,yshift=1.15cm,note,fill=white] {\textit{modeled order}} (h2);
-\node[head,text width=11cm,fill=white] (r) at (4.5,-2.5) {One shared slot: \textbf{the turn's closing message}};
-\draw[edge,] (h0.south) -- node[midway,note,fill=white] {\textit{writes}} (r.north -| h0.south);
-\draw[edge,] (h1) -- node[midway,note,fill=white] {\textit{writes}} (r);
-\draw[edge,] (h2.south) -- node[midway,note,fill=white] {\textit{writes}} (r.north -| h2.south);
-\node[note,text width=12cm] (nt) at (4.5,-4.1) {25 mechanisms; 3 conflict edges. Topological sort computes the order; a cycle is an error. Generic runtime enforcement is not yet implemented.};
+% Two-hook teaching view. Native manuscript figure; defaults to grayscale.
+% The web proof supplies the book's color palette through the same three names.
+\providecolor{teoStroke}{gray}{0}
+\providecolor{teoFill}{gray}{1}
+\providecolor{teoOrder}{gray}{0}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,
+ font=\magefigurefont\fontsize{11}{14}\selectfont,
+ box/.style={draw=teoStroke,fill=teoFill,rounded corners=3pt,line width=.7pt,
+ align=center,text width=4.5cm,minimum height=1.9cm,inner sep=7pt},
+ note/.style={align=center,inner sep=3pt},
+ edge/.style={->,draw=teoOrder,line width=1.1pt}]
+\hyphenpenalty=10000
+\node[note] at (3.5,1.5) {\textit{Required order at turn end}};
+\node[box] (reflection) at (0,0) {\textbf{Recurring failure}\\[5pt]
+ Reflect on recent failures\\for governance conversion.};
+\node[box] (stranded) at (7,0) {\textbf{Stranded work}\\[5pt]
+ Compare delivered work\\with the original brief.};
+\draw[edge] (reflection.east) -- node[midway,above,yshift=2pt,note] {\textit{before}} (stranded.west);
+\node[note,text width=11.8cm] at (3.5,-1.9) {Work inspection may exhaust the context needed for failure reflection.};
 \end{tikzpicture}

@@ -6349,3 +6349,313 @@ Reason: Author-approved §6.4 review.
 
 Follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset. This is the strongest way to separate "the engineer got better" from "the environment learned," and it tests H6 directly. Applied across organizations, it also tests H7: whether authority pathways determine whether a local diagnosis becomes shared engineering capital.
 ```
+
+## Final glossary and interaction-model review — 8 November 2026
+
+The author approved W8, X4, X5, and the final glossary revisions. C24 remains unchanged.
+
+### C22 — Author-approved Engineering obligation definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, Glossary, lines 26–26.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Engineering obligation.} A requirement or engineering decision that the responsible engineering authority has determined an implementation or other engineering result must satisfy. Obligations may arise externally---from users, regulations, standards, contracts, or operating environments---or internally from engineering decisions about architecture, behavior, quality, or process. An obligation is enforceable when the engineered environment can check it, and enforced when a mechanism holds work to it. Durable mechanisms enforce selected obligations by constraining actions or determining whether work is accepted. For example, if a service must respond within 200 milliseconds, a performance gate enforces that obligation by rejecting implementations that exceed the limit.
+```
+
+### C23 — Author-approved Governance conversion definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, Glossary, lines 55–55.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Governance conversion.} When a recurring failure, repeated judgment, or observed gap reveals something future work should inherit, encode the lesson in durable structure: a model, packaged procedure, or mechanism that enforces an obligation.
+```
+
+### C25 — Author-approved Model drift definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, Glossary, lines 116–116.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Model drift.} A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.
+```
+
+### C26 — Author-approved Traceability definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, Glossary, lines 118–118.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Traceability.} Explicit, machine-readable links from model elements to the artifacts, evidence, obligations, or other model elements they represent, constrain, or correspond to.
+```
+
+### C27 — Author-approved Agentic engineering definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, Glossary, lines 24–24.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Agentic engineering.} The deliberate engineering of the environments through which autonomous agents perform consequential engineering work---the broader engineering problem of which this book\textquotesingle s subject is one instance. It does not mean engineering performed by agents. Model-Based Agentic Engineering (MAGE) is the account developed here for addressing it; software engineering is this book\textquotesingle s worked domain.
+```
+
+### C28 — Author-approved Model definition
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, Glossary, lines 28–28.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Model.} A purposeful reduction of a system that preserves the information needed to answer an engineering question while suppressing detail the question does not need. Models make engineering knowledge and intent explicit so engineers and agents can reason about selected system properties without rebuilding that knowledge from lower-level artifacts each time.
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 69–69.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+% <!-- point: governance-interaction-graph-candidate-conflict-condition | A read/write relation identifies potential interactions at a shared event; classifying the conflict and resolving it are separate judgments. | terms: governance-graph, shared-resource, semantic-gap -->
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 71–77.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+A simple interaction model records each mechanism's execution event, or \emph{slot}, and the sets of resources it reads (\(R\)) and writes (\(W\)). Two mechanisms have a \textbf{potential conflict} when they execute at the same event and at least one writes a resource the other accesses. Two readers do not conflict under this relation. In a graph \(G = (V, E)\), an undirected edge joins distinct mechanisms \(u\) and \(v\) when
+
+\[
+\operatorname{slot}(u) = \operatorname{slot}(v) \land ((W_u \cap R_v) \cup (R_u \cap W_v) \cup (W_u \cap W_v)) \neq \varnothing
+\]
+
+An edge identifies an interaction requiring attention; it does not establish that the underlying obligations are incompatible. The model must record the evaluation and any chosen resolution separately.
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 79–79.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+% <!-- point: three-turn-end-hooks-one-shared-slot | DocAble's worked control-system case connects a missing enforcement consequence to later modeling of interactions among three turn-end hooks. | terms: governance-graph, shared-resource -->
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 91–91.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+In the first, merge automation processed a backlog of worktrees. A convenience option resolved conflicts by automatically taking one side, which silently dropped content when edits overlapped. An audit already detected conflicts affecting files that described or controlled the engineering environment and correctly judged automatic resolution unsafe. It only logged a warning, so the merge continued. The repair removed the unsafe fallback and sent ambiguous merges to a human. \autoref{judgment-without-consequence} shows the missing connection between the correct judgment and the permitted operation.
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 100–100.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+A different problem arose among hooks that run when an agent finishes a turn. One discourages premature termination, another prompts reflection on failures, and a third checks for stranded work. All three write to the turn's closing message. Each can be useful alone, but their order affects whether the others can complete their work. The partial governance graph examined here records twenty-five mechanisms and three conflict edges, all among these hooks. It models selected interactions whose cost justified explicit representation, rather than claiming to cover every possible conflict. \autoref{turn-end-ordering} shows the order declared for these three hooks.
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 105–105.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\caption{\emph{Three hooks share the closing message.} The model orders the premature-termination guard, reflection, and the stranded-work check. It computes the order and reports cycles; the generic runtime driver needed to execute that computed order has not yet been implemented.}
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 109–109.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+The graph classifies conflicts and records a resolution such as merging mechanisms, ordering them, separating their execution points, accepting the interaction, or leaving it open. For these three hooks, pairwise ordering constraints put the premature-termination guard first, reflection second, and the stranded-work check last. Topological sorting computes the sequence and reports a cycle as an error. A separate check reports discrepancies between the governance model and the configured mechanisms. The generic driver that would execute hooks in the computed order had not yet been built, so this ordering remained an explicit, checkable design decision rather than an automatically enforced sequence.
+```
+
+### W8 — Explain interactions in prose, then distinguish resource dependencies and incompatible obligations
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, 3.5, lines 111–112.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+These episodes lead to different repairs. The merge failure required removing a dangerous capability; the hook interactions required an explicit account of shared resources and ordering. A catalogue of individual controls would not have supplied either conclusion by itself. Modeling the relevant behavior and interactions lets engineers decide what to remove, what to coordinate, and which accepted decisions still need an enforcing mechanism.
+\end{bookbox}
+```
+
+### X4 — Keep evidence and enforcement in the account of Alignment
+
+- Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, 4.1, lines 25–25.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+The distinction is therefore directional rather than procedural. Modeling externalizes knowledge that can guide delegated work; Alignment brings evidence from that work back into engineering judgment. Neither side prescribes a fixed sequence of activities. An engineer may move among these interactions repeatedly during a single change.
+```
+
+### X5 — Explain comprehension amplification without promotional intensifiers
+
+- Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex`, 4.1, lines 101–101.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final review wording.
+
+```latex
+\textbf{Comprehension amplification: compressed understanding.} Rapid realization also changes how quickly engineers can discover what they mean. Agile methods have long treated working software as a source of information: realization exposes misunderstandings that requirements and discussion leave hidden. Capable agents compress this feedback loop dramatically. An engineer can express an intent, inspect a realization, recognize that it is not quite what was intended, and revise the representation repeatedly in the time that one realization might previously have required. For properties that engineers can directly and reliably observe, realization therefore becomes a powerful instrument for refining intent itself.
+```
+
+### Agentic engineering — defining sentence parity
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`, Preface, lines 38–38.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: This first-sentence definition currently restricts the term to environments and consequential engineering work. Matching the author-approved systems/environments and consequential-work scope avoids a contradictory defining copy. Only this sentence changes; the rest of the Preface is outside this package.
+
+```latex
+Call the broader problem \textbf{agentic engineering}: the deliberate engineering of the environments through which autonomous agents perform consequential engineering work.
+```
+
+### Glossary definition metadata — /model/box
+
+- Source: `book/data/definitions.json` at `/model/box`.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Replace the stale narrower formal definition with the accepted general definition.
+
+```json
+"A deliberately reduced, machine-readable representation of system intent, structure, behavior, policy, or evidence that supports reasoning, derivation, or checking, and whose relationship to the implemented or observed system is mechanically maintained."
+```
+
+### Glossary definition metadata — /model/aspects
+
+- Source: `book/data/definitions.json` at `/model/aspects`.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: The old aspects require every model to be machine-readable, mechanically maintained, and prescriptive. Reusing the accepted second sentence is the smallest coherent replacement; those narrower claims cannot remain as universal definition conditions.
+
+```json
+[
+  {
+    "lead": "The intuition the formal statement rests on",
+    "text": "Two senses build toward it. A model is a useful approximation — simplified, but good enough to predict; all models are wrong, some are useful, and fidelity trades against cost. And, as this book uses it, a blueprint: a prescriptive description of a system to be built, which the built system is bound to realize. Prose is too vague to enforce, code too verbose to reason over; a model occupies the useful middle."
+  },
+  {
+    "lead": "The five load-bearing terms",
+    "text": "Each does gatekeeping work. Deliberately reduced — not the whole codebase. Machine-readable — not ordinary prose. A representation of something named — intent, structure, behavior, policy, or evidence — so not everything structured is a model. Supports an operation — reasoning, derivation, prediction, or checking. Mechanically maintained — a drift gate holds it to the system, which is what separates a MAGE model from a stale diagram."
+  },
+  {
+    "lead": "Constraint, blueprint, and knowledge base at once",
+    "text": "A model handed to an agent is at once a constraint (bounding what may be built), a blueprint (saying what to build), and — because the agent reasons over it — the knowledge base for the artifact under construction."
+  }
+]
+```
+
+### Glossary definition metadata — /model/derived_from
+
+- Source: `book/data/definitions.json` at `/model/derived_from`.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Record the authoritative accepted source instead of the historical draft; preserve the historical draft itself.
+
+```json
+"book/transcripts/DEFINITIONS-DRAFT.md#Model"
+```
+
+### Glossary definition metadata — /_hierarchy/core_constructs/model
+
+- Source: `book/data/concepts.json` at `/_hierarchy/core_constructs/model`.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Direct concept-registry description must no longer impose machine readability as part of the general definition.
+
+```json
+"A deliberately reduced, machine-readable representation of system intent, structure, behavior, policy, or evidence — the formal definition in definitions.json. Defined in 2.1."
+```
+
+### Glossary definition metadata — /model/note
+
+- Source: `book/data/concepts.json` at `/model/note`.
+- Source revision: `bcd7f72a739ebbaeb29fb383fa7f28a3492a5509`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Remove the stale approximation/blueprint description of the definition record while preserving the concept identity.
+
+```json
+"Core construct 2 of 6 (_hierarchy). Definitional text is homed in definitions.json (the model record — formal definition + the approximation/blueprint intuition); this record places the construct in the hierarchy. Book index-def tagged at the 2.1 definition. No landing card by design: the definitions model owns the site realization (def-model)."
+```

@@ -1241,7 +1241,7 @@
       "tier": "B",
       "kind": "conceptual-illustration",
       "location": "part3",
-      "rationale": "three turn-end hooks writing one shared slot — the governance graph's only three conflict edges among twenty-five mechanisms, ordering conflicts resolved by a modeled (not yet runtime-enforced) total order"
+      "rationale": "Two turn-end hooks require an explicit order: recurring-failure reflection precedes stranded-work inspection because the latter may exhaust the context needed by reflection."
     },
     "assets/docable-seip-work-261028.svg": {
       "tier": "B",

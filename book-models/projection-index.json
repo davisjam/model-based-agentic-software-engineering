@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 857,
+    "total_sites": 858,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 517,
+      "book-web": 518,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -257,7 +257,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 100
+            "occ": 99
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -911,7 +911,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -1099,11 +1099,11 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 94
+            "occ": 89
           },
           {
             "file": "book/web/docs/0.5-preface.md",
-            "occ": 71
+            "occ": 70
           },
           {
             "file": "book/web/docs/1.1-the-printer.md",
@@ -1167,7 +1167,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 15
+            "occ": 16
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
@@ -1175,7 +1175,7 @@
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
-            "occ": 40
+            "occ": 39
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
@@ -1954,6 +1954,10 @@
             "occ": 1
           },
           {
+            "file": "book/web/docs/3.5-when-guardrails-collide.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/7.4-the-engineer.md",
             "occ": 1
           },
@@ -1969,7 +1973,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 6
+            "occ": 7
           }
         ]
       },
@@ -2015,7 +2019,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 29
+            "occ": 32
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -2079,7 +2083,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 13
+            "occ": 16
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -2395,7 +2399,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 368
+            "occ": 366
           },
           {
             "file": "book/web/docs/index.md",
