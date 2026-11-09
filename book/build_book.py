@@ -5309,9 +5309,34 @@ def build_index_page(chapters: list[dict], concept_registry: dict[str, dict] | N
 # DOTALL so a multi-line block is removed whole.
 _PRE_BLOCK_RE = re.compile(r"<pre\b.*?</pre>", re.S | re.I)
 _CAPTION_RE = re.compile(r"<(figcaption|caption)\b.*?</\1>", re.S | re.I)
-_SVG_BLOCK_RE = re.compile(r"<svg\b.*?</svg>", re.S | re.I)
+_SVG_TAG_RE = re.compile(r"<(/?)svg\b[^>]*>", re.S | re.I)
 _HTML_TAG_RE = re.compile(r"<[^>]+>")
 _HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
+
+
+def _strip_svg_blocks(rendered: str) -> str:
+    """Exclude complete diagrams, including SVGs containing nested SVG viewports."""
+    kept = []
+    depth = 0
+    cursor = 0
+    for tag in _SVG_TAG_RE.finditer(rendered):
+        if tag[1]:
+            if depth:
+                depth -= 1
+                if depth == 0:
+                    cursor = tag.end()
+        else:
+            if depth == 0:
+                kept.append(rendered[cursor:tag.start()])
+                kept.append(" ")
+            if tag[0].rstrip().endswith('/>'):
+                if depth == 0:
+                    cursor = tag.end()
+            else:
+                depth += 1
+    if depth == 0:
+        kept.append(rendered[cursor:])
+    return ''.join(kept)
 
 
 def _prose_word_count(body_md: str) -> int:
@@ -5323,7 +5348,7 @@ def _prose_word_count(body_md: str) -> int:
     rendered = _HTML_COMMENT_RE.sub(" ", rendered)
     rendered = _PRE_BLOCK_RE.sub(" ", rendered)
     rendered = _CAPTION_RE.sub(" ", rendered)
-    rendered = _SVG_BLOCK_RE.sub(" ", rendered)
+    rendered = _strip_svg_blocks(rendered)
     text = _HTML_TAG_RE.sub(" ", rendered)
     text = html.unescape(text)
     return len(text.split())

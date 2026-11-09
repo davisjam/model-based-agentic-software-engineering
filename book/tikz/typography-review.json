@@ -60,14 +60,14 @@
           ]
         },
         {
-          "source_text": "Chapter 1 · The New Engineering Problem",
+          "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "1 The New Engineering Problem",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 1 · The New Engineering Problem",
+              "text": "Chapter 1 \u00b7 The New Engineering Problem",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -76,14 +76,14 @@
           ]
         },
         {
-          "source_text": "Chapter 2 · Modeling",
+          "source_text": "Chapter 2 \u00b7 Modeling",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "2 Modeling",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 2 · Modeling",
+              "text": "Chapter 2 \u00b7 Modeling",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -92,14 +92,14 @@
           ]
         },
         {
-          "source_text": "Chapter 3 · Alignment",
+          "source_text": "Chapter 3 \u00b7 Alignment",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "3 Alignment",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 3 · Alignment",
+              "text": "Chapter 3 \u00b7 Alignment",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -108,14 +108,14 @@
           ]
         },
         {
-          "source_text": "Chapter 4 · MAGE in Motion",
+          "source_text": "Chapter 4 \u00b7 MAGE in Motion",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "4 MAGE in Motion",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 4 · MAGE in Motion",
+              "text": "Chapter 4 \u00b7 MAGE in Motion",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -124,14 +124,14 @@
           ]
         },
         {
-          "source_text": "Chapter 5 · Agentic Software Factories",
+          "source_text": "Chapter 5 \u00b7 Agentic Software Factories",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "5 Agentic Software Factories",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 5 · Agentic Software Factories",
+              "text": "Chapter 5 \u00b7 Agentic Software Factories",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -140,14 +140,14 @@
           ]
         },
         {
-          "source_text": "Chapter 6 · The Theory",
+          "source_text": "Chapter 6 \u00b7 The Theory",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "6 The Theory",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 6 · The Theory",
+              "text": "Chapter 6 \u00b7 The Theory",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -156,14 +156,14 @@
           ]
         },
         {
-          "source_text": "Chapter 7 · The Profession",
+          "source_text": "Chapter 7 \u00b7 The Profession",
           "source_style": "weight 700, normal",
           "semantic_role": "Book destination heading",
           "candidate_text": "7 The Profession",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Chapter 7 · The Profession",
+              "text": "Chapter 7 \u00b7 The Profession",
               "weight": "700",
               "style": "normal",
               "x": "268",
@@ -243,14 +243,14 @@
           ]
         },
         {
-          "source_text": "dynamics · economics · predictions · scope",
+          "source_text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanatory subtitle or question",
-          "candidate_text": "Dynamics · economics · predictions · scope",
+          "candidate_text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "dynamics · economics · predictions · scope",
+              "text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
               "weight": "normal",
               "style": "italic",
               "x": "268",
@@ -259,14 +259,14 @@
           ]
         },
         {
-          "source_text": "software work · broader engineering · responsibility",
+          "source_text": "software work \u00b7 broader engineering \u00b7 responsibility",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanatory subtitle or question",
-          "candidate_text": "Software work · broader engineering responsibility",
+          "candidate_text": "Software work \u00b7 broader engineering responsibility",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "software work · broader engineering · responsibility",
+              "text": "software work \u00b7 broader engineering \u00b7 responsibility",
               "weight": "normal",
               "style": "italic",
               "x": "268",
@@ -378,11 +378,11 @@
           "italic": true
         },
         {
-          "text": "Dynamics · economics · predictions · scope",
+          "text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
           "italic": true
         },
         {
-          "text": "Software work · broader engineering responsibility",
+          "text": "Software work \u00b7 broader engineering responsibility",
           "italic": true
         },
         {
@@ -398,7 +398,7 @@
           "bold": true
         },
         {
-          "text": "Model · align · work · convert",
+          "text": "Model \u00b7 align \u00b7 work \u00b7 convert",
           "bold": false
         }
       ],
@@ -416,7 +416,7 @@
         "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
         "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
         "status": "passed",
-        "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
+        "visual_review": "Shaded Chapters 2\u20135 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
       },
       "revision_history": [
         {
@@ -461,14 +461,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 1 · The New Engineering Problem",
+                "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "1 The New Engineering Problem",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 1 · The New Engineering Problem",
+                    "text": "Chapter 1 \u00b7 The New Engineering Problem",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -477,14 +477,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 2 · Modeling",
+                "source_text": "Chapter 2 \u00b7 Modeling",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "2 Modeling",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 2 · Modeling",
+                    "text": "Chapter 2 \u00b7 Modeling",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -493,14 +493,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 3 · Alignment",
+                "source_text": "Chapter 3 \u00b7 Alignment",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "3 Alignment",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 3 · Alignment",
+                    "text": "Chapter 3 \u00b7 Alignment",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -509,14 +509,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 4 · MAGE in Motion",
+                "source_text": "Chapter 4 \u00b7 MAGE in Motion",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "4 MAGE in Motion",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 4 · MAGE in Motion",
+                    "text": "Chapter 4 \u00b7 MAGE in Motion",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -525,14 +525,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 5 · Agentic Software Factories",
+                "source_text": "Chapter 5 \u00b7 Agentic Software Factories",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "5 Agentic Software Factories",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 5 · Agentic Software Factories",
+                    "text": "Chapter 5 \u00b7 Agentic Software Factories",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -541,14 +541,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 6 · The Theory",
+                "source_text": "Chapter 6 \u00b7 The Theory",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "6 The Theory",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 6 · The Theory",
+                    "text": "Chapter 6 \u00b7 The Theory",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -557,14 +557,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 7 · The Profession",
+                "source_text": "Chapter 7 \u00b7 The Profession",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "7 The Profession",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 7 · The Profession",
+                    "text": "Chapter 7 \u00b7 The Profession",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -676,14 +676,14 @@
                 ]
               },
               {
-                "source_text": "dynamics · economics · predictions · scope",
+                "source_text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Dynamics · economics · predictions · scope",
+                "candidate_text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "dynamics · economics · predictions · scope",
+                    "text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -692,14 +692,14 @@
                 ]
               },
               {
-                "source_text": "software work · broader engineering · responsibility",
+                "source_text": "software work \u00b7 broader engineering \u00b7 responsibility",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Software work · broader engineering responsibility",
+                "candidate_text": "Software work \u00b7 broader engineering responsibility",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "software work · broader engineering · responsibility",
+                    "text": "software work \u00b7 broader engineering \u00b7 responsibility",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -851,11 +851,11 @@
                 "italic": true
               },
               {
-                "text": "Dynamics · economics · predictions · scope",
+                "text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "italic": true
               },
               {
-                "text": "Software work · broader engineering responsibility",
+                "text": "Software work \u00b7 broader engineering responsibility",
                 "italic": true
               },
               {
@@ -879,7 +879,7 @@
                 "bold": true
               },
               {
-                "text": "Model · align · work · convert",
+                "text": "Model \u00b7 align \u00b7 work \u00b7 convert",
                 "bold": false
               }
             ],
@@ -940,14 +940,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 1 · The New Engineering Problem",
+                "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "1 The New Engineering Problem",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 1 · The New Engineering Problem",
+                    "text": "Chapter 1 \u00b7 The New Engineering Problem",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -956,14 +956,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 2 · Modeling",
+                "source_text": "Chapter 2 \u00b7 Modeling",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "2 Modeling",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 2 · Modeling",
+                    "text": "Chapter 2 \u00b7 Modeling",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -972,14 +972,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 3 · Alignment",
+                "source_text": "Chapter 3 \u00b7 Alignment",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "3 Alignment",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 3 · Alignment",
+                    "text": "Chapter 3 \u00b7 Alignment",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -988,14 +988,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 4 · MAGE in Motion",
+                "source_text": "Chapter 4 \u00b7 MAGE in Motion",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "4 MAGE in Motion",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 4 · MAGE in Motion",
+                    "text": "Chapter 4 \u00b7 MAGE in Motion",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -1004,14 +1004,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 5 · Agentic Software Factories",
+                "source_text": "Chapter 5 \u00b7 Agentic Software Factories",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "5 Agentic Software Factories",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 5 · Agentic Software Factories",
+                    "text": "Chapter 5 \u00b7 Agentic Software Factories",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -1020,14 +1020,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 6 · The Theory",
+                "source_text": "Chapter 6 \u00b7 The Theory",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "6 The Theory",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 6 · The Theory",
+                    "text": "Chapter 6 \u00b7 The Theory",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -1036,14 +1036,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 7 · The Profession",
+                "source_text": "Chapter 7 \u00b7 The Profession",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "7 The Profession",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 7 · The Profession",
+                    "text": "Chapter 7 \u00b7 The Profession",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -1155,14 +1155,14 @@
                 ]
               },
               {
-                "source_text": "dynamics · economics · predictions · scope",
+                "source_text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Dynamics · economics · predictions · scope",
+                "candidate_text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "dynamics · economics · predictions · scope",
+                    "text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -1171,14 +1171,14 @@
                 ]
               },
               {
-                "source_text": "software work · broader engineering · responsibility",
+                "source_text": "software work \u00b7 broader engineering \u00b7 responsibility",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Software work · broader engineering responsibility",
+                "candidate_text": "Software work \u00b7 broader engineering responsibility",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "software work · broader engineering · responsibility",
+                    "text": "software work \u00b7 broader engineering \u00b7 responsibility",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -1330,11 +1330,11 @@
                 "italic": true
               },
               {
-                "text": "Dynamics · economics · predictions · scope",
+                "text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "italic": true
               },
               {
-                "text": "Software work · broader engineering responsibility",
+                "text": "Software work \u00b7 broader engineering responsibility",
                 "italic": true
               },
               {
@@ -1358,7 +1358,7 @@
                 "bold": true
               },
               {
-                "text": "Model · align · work · convert",
+                "text": "Model \u00b7 align \u00b7 work \u00b7 convert",
                 "bold": false
               }
             ],
@@ -1376,7 +1376,7 @@
               "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
               "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
               "status": "passed",
-              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
+              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
             }
           }
         }
@@ -1391,14 +1391,14 @@
       "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
       "evidence": [
         {
-          "source_text": "Scale × finite reasoning",
+          "source_text": "Scale \u00d7 finite reasoning",
           "source_style": "weight 700, normal",
           "semantic_role": "Named premise, principle, environment or outcome",
-          "candidate_text": "Scale × finite reasoning",
+          "candidate_text": "Scale \u00d7 finite reasoning",
           "candidate_style": "bold ",
           "source_fragments": [
             {
-              "text": "Scale × finite reasoning",
+              "text": "Scale \u00d7 finite reasoning",
               "weight": "700",
               "style": "normal",
               "x": "500",
@@ -1574,14 +1574,14 @@
           ]
         },
         {
-          "source_text": "can depreciate · maintain or retire",
+          "source_text": "can depreciate \u00b7 maintain or retire",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of outcome or feedback",
           "candidate_text": "Can depreciate; maintain or retire",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "can depreciate · maintain or retire",
+              "text": "can depreciate \u00b7 maintain or retire",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -1703,7 +1703,7 @@
           "bold": true
         },
         {
-          "text": "Constraints · sensors · gates",
+          "text": "Constraints \u00b7 sensors \u00b7 gates",
           "bold": false,
           "italic": false
         }
@@ -1748,7 +1748,7 @@
       "source": "book/assets/model-classes.svg",
       "candidate": "book/tikz/figures/model-classes.tex",
       "decision": "refined",
-      "source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+      "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
       "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
       "evidence": [
         {
@@ -2018,14 +2018,14 @@
           ]
         },
         {
-          "source_text": "Connected through shared identity and traceability, these models form the system’s explicit engineering knowledge.",
+          "source_text": "Connected through shared identity and traceability, these models form the system\u2019s explicit engineering knowledge.",
           "source_style": "weight normal, italic",
           "semantic_role": "Question answered by the class, or qualification",
           "candidate_text": "Shared identity and traceability connect explicit engineering knowledge.",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "Connected through shared identity and traceability, these models form the system’s explicit engineering knowledge.",
+              "text": "Connected through shared identity and traceability, these models form the system\u2019s explicit engineering knowledge.",
               "weight": "normal",
               "style": "italic",
               "x": "480",
@@ -2034,14 +2034,14 @@
           ]
         },
         {
-          "source_text": "MODEL CLASS — What engineering question does it answer?",
+          "source_text": "MODEL CLASS \u2014 What engineering question does it answer?",
           "source_style": "weight 700, normal",
           "semantic_role": "Model-class axis contrasted with representation-form axis",
-          "candidate_text": "MODEL CLASS — What engineering question does it answer?",
+          "candidate_text": "MODEL CLASS \u2014 What engineering question does it answer?",
           "candidate_style": "bold with capitalized axis name",
           "source_fragments": [
             {
-              "text": "MODEL CLASS — What engineering question does it answer?",
+              "text": "MODEL CLASS \u2014 What engineering question does it answer?",
               "weight": "700",
               "style": "normal",
               "x": "480",
@@ -2128,6 +2128,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 16
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+        "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -2428,14 +2435,14 @@
           ]
         },
         {
-          "source_text": "Constraint · Sensor · Gate",
+          "source_text": "Constraint \u00b7 Sensor \u00b7 Gate",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Constraint · Sensor · Gate",
+          "candidate_text": "Constraint \u00b7 Sensor \u00b7 Gate",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "Constraint · Sensor · Gate",
+              "text": "Constraint \u00b7 Sensor \u00b7 Gate",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2444,14 +2451,14 @@
           ]
         },
         {
-          "source_text": "action · artifact · execution result",
+          "source_text": "action \u00b7 artifact \u00b7 execution result",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Action · artifact · execution result",
+          "candidate_text": "Action \u00b7 artifact \u00b7 execution result",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "action · artifact · execution result",
+              "text": "action \u00b7 artifact \u00b7 execution result",
               "weight": "normal",
               "style": "italic",
               "x": "270",
@@ -2476,14 +2483,14 @@
           ]
         },
         {
-          "source_text": "architecture · behavior · policy · bounds",
+          "source_text": "architecture \u00b7 behavior \u00b7 policy \u00b7 bounds",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Architecture · behavior Policy · bounds",
+          "candidate_text": "Architecture \u00b7 behavior Policy \u00b7 bounds",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "architecture · behavior · policy · bounds",
+              "text": "architecture \u00b7 behavior \u00b7 policy \u00b7 bounds",
               "weight": "normal",
               "style": "italic",
               "x": "730",
@@ -2508,14 +2515,14 @@
           ]
         },
         {
-          "source_text": "models · mechanisms · procedures · canonical documentation",
+          "source_text": "models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Models · mechanisms · procedures · canonical documentation",
+          "candidate_text": "Models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "models · mechanisms · procedures · canonical documentation",
+              "text": "models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2615,11 +2622,11 @@
           "bold": true
         },
         {
-          "text": "Constraint · Sensor · Gate",
+          "text": "Constraint \u00b7 Sensor \u00b7 Gate",
           "italic": true
         },
         {
-          "text": "Action · artifact · execution result",
+          "text": "Action \u00b7 artifact \u00b7 execution result",
           "italic": true
         },
         {
@@ -2627,7 +2634,7 @@
           "italic": true
         },
         {
-          "text": "Architecture · behavior Policy · bounds",
+          "text": "Architecture \u00b7 behavior Policy \u00b7 bounds",
           "italic": true
         },
         {
@@ -2635,7 +2642,7 @@
           "italic": true
         },
         {
-          "text": "Models · mechanisms · procedures · canonical documentation",
+          "text": "Models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
           "italic": true
         },
         {
@@ -2843,14 +2850,14 @@
           ]
         },
         {
-          "source_text": "Modeling · Alignment · conversion · capital",
+          "source_text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
-          "candidate_text": "Modeling · Alignment · conversion · capital",
+          "candidate_text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "Modeling · Alignment · conversion · capital",
+              "text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2875,14 +2882,14 @@
           ]
         },
         {
-          "source_text": "recurring moves · variation · limits",
+          "source_text": "recurring moves \u00b7 variation \u00b7 limits",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
-          "candidate_text": "Recurring moves · variation · limits",
+          "candidate_text": "Recurring moves \u00b7 variation \u00b7 limits",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "recurring moves · variation · limits",
+              "text": "recurring moves \u00b7 variation \u00b7 limits",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2907,14 +2914,14 @@
           ]
         },
         {
-          "source_text": "mechanism · sequence",
+          "source_text": "mechanism \u00b7 sequence",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
           "candidate_text": "Mechanism and sequence",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "mechanism · sequence",
+              "text": "mechanism \u00b7 sequence",
               "weight": "normal",
               "style": "italic",
               "x": "310",
@@ -2923,14 +2930,14 @@
           ]
         },
         {
-          "source_text": "variation · alternatives",
+          "source_text": "variation \u00b7 alternatives",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
           "candidate_text": "Variation and alternatives",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "variation · alternatives",
+              "text": "variation \u00b7 alternatives",
               "weight": "normal",
               "style": "italic",
               "x": "690",
@@ -2978,7 +2985,7 @@
           "italic": true
         },
         {
-          "text": "Modeling · Alignment · conversion · capital",
+          "text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
           "italic": true
         },
         {
@@ -2986,7 +2993,7 @@
           "italic": true
         },
         {
-          "text": "Recurring moves · variation · limits",
+          "text": "Recurring moves \u00b7 variation \u00b7 limits",
           "italic": true
         },
         {
@@ -3126,14 +3133,14 @@
           ]
         },
         {
-          "source_text": "Knowledge · selected obligations",
+          "source_text": "Knowledge \u00b7 selected obligations",
           "source_style": "weight normal, normal",
           "semantic_role": "Explanatory gloss on what the model holds",
-          "candidate_text": "Knowledge · selected obligations",
+          "candidate_text": "Knowledge \u00b7 selected obligations",
           "candidate_style": "regular",
           "source_fragments": [
             {
-              "text": "Knowledge · selected obligations",
+              "text": "Knowledge \u00b7 selected obligations",
               "weight": "normal",
               "style": "normal",
               "x": "500",
@@ -3142,14 +3149,14 @@
           ]
         },
         {
-          "source_text": "Three routes in, three uses out — alternatives, not stages.",
+          "source_text": "Three routes in, three uses out \u2014 alternatives, not stages.",
           "source_style": "weight normal, italic",
           "semantic_role": "The figure's closing anti-waterfall note",
           "candidate_text": "Three routes in, three uses out --- alternatives, not stages.",
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Three routes in, three uses out — alternatives, not stages.",
+              "text": "Three routes in, three uses out \u2014 alternatives, not stages.",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -4963,7 +4970,7 @@
       "source": "book/assets/canonical-structural.svg",
       "candidate": "book/tikz/figures/canonical-structural.tex",
       "decision": "refined",
-      "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+      "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
       "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
       "evidence": [
         {
@@ -5215,6 +5222,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 13
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+        "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -5482,7 +5496,7 @@
       "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
       "evidence": [
         {
-          "source_text": "PAYLOAD-BEARING  ×33",
+          "source_text": "PAYLOAD-BEARING  \u00d733",
           "source_style": "weight 700; normal; source size 14",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "PAYLOAD-BEARING: 33",
@@ -5490,12 +5504,12 @@
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "PAYLOAD-BEARING ×33",
+            "text_element_context": "PAYLOAD-BEARING \u00d733",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "CONTROL  ×24",
+          "source_text": "CONTROL  \u00d724",
           "source_style": "weight 700; normal; source size 14",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "CONTROL: 24",
@@ -5503,59 +5517,59 @@
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[15]/text()",
-            "text_element_context": "CONTROL ×24",
+            "text_element_context": "CONTROL \u00d724",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "DATA_FLOW  ×32",
+          "source_text": "DATA_FLOW  \u00d732",
           "source_style": "weight 700; normal; source size 18",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "DATA_FLOW ×32",
+          "candidate_text": "DATA_FLOW \u00d732",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "DATA_FLOW ×32",
+            "text_element_context": "DATA_FLOW \u00d732",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "CROSS_SERVICE  ×1",
+          "source_text": "CROSS_SERVICE  \u00d71",
           "source_style": "weight 700; normal; source size 18",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "CROSS_SERVICE ×1",
+          "candidate_text": "CROSS_SERVICE \u00d71",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "CROSS_SERVICE ×1",
+            "text_element_context": "CROSS_SERVICE \u00d71",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "CONTROL_GATE  ×24",
+          "source_text": "CONTROL_GATE  \u00d724",
           "source_style": "weight 700; normal; source size 18",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "CONTROL_GATE ×24",
+          "candidate_text": "CONTROL_GATE \u00d724",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[16]/text()",
-            "text_element_context": "CONTROL_GATE ×24",
+            "text_element_context": "CONTROL_GATE \u00d724",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "Produces → Consumes",
+          "source_text": "Produces \u2192 Consumes",
           "source_style": "weight normal; italic; source size 13",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Produces → Consumes",
+          "candidate_text": "Produces \u2192 Consumes",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "Produces → Consumes",
+            "text_element_context": "Produces \u2192 Consumes",
             "matching_fragment_count": 1
           }
         },
@@ -5599,17 +5613,17 @@
           "italic": false
         },
         {
-          "text": "DATA_FLOW ×32",
+          "text": "DATA_FLOW \u00d732",
           "bold": true,
           "italic": false
         },
         {
-          "text": "CROSS_SERVICE ×1",
+          "text": "CROSS_SERVICE \u00d71",
           "bold": true,
           "italic": false
         },
         {
-          "text": "CONTROL_GATE ×24",
+          "text": "CONTROL_GATE \u00d724",
           "bold": true,
           "italic": false
         },
@@ -5815,7 +5829,7 @@
           "italic": true
         },
         {
-          "text": "Handlers · retries · writes · logging",
+          "text": "Handlers \u00b7 retries \u00b7 writes \u00b7 logging",
           "bold": false,
           "italic": false
         }
@@ -6175,15 +6189,15 @@
           }
         },
         {
-          "source_text": "owner · epoch · expires_at",
+          "source_text": "owner \u00b7 epoch \u00b7 expires_at",
           "source_style": "weight normal; italic; source size 14.5",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "owner · epoch · expires_at",
+          "candidate_text": "owner \u00b7 epoch \u00b7 expires_at",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/in-flight-ownership-states.svg",
             "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "owner · epoch · expires_at",
+            "text_element_context": "owner \u00b7 epoch \u00b7 expires_at",
             "matching_fragment_count": 1
           }
         },
@@ -6242,7 +6256,7 @@
           "italic": false
         },
         {
-          "text": "owner · epoch · expires_at",
+          "text": "owner \u00b7 epoch \u00b7 expires_at",
           "bold": false,
           "italic": true
         },
@@ -6330,15 +6344,15 @@
           }
         },
         {
-          "source_text": "owner · epoch · lifetime",
+          "source_text": "owner \u00b7 epoch \u00b7 lifetime",
           "source_style": "weight normal; italic; source size 14.4",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "owner · epoch · lifetime",
+          "candidate_text": "owner \u00b7 epoch \u00b7 lifetime",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/in-flight-lease-overlap.svg",
             "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "owner · epoch · lifetime",
+            "text_element_context": "owner \u00b7 epoch \u00b7 lifetime",
             "matching_fragment_count": 1
           }
         },
@@ -6379,7 +6393,7 @@
           "italic": false
         },
         {
-          "text": "owner · epoch · lifetime",
+          "text": "owner \u00b7 epoch \u00b7 lifetime",
           "bold": false,
           "italic": true
         },
@@ -6558,7 +6572,7 @@
       "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
       "evidence": [
         {
-          "source_text": "“Does A call C?”",
+          "source_text": "\u201cDoes A call C?\u201d",
           "source_style": "weight 700; normal; source size 18",
           "semantic_role": "observed modality",
           "candidate_text": "Does",
@@ -6566,12 +6580,12 @@
           "source_locator": {
             "svg": "book/assets/observed-vs-declared.svg",
             "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "“Does A call C?”",
+            "text_element_context": "\u201cDoes A call C?\u201d",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "“May A call C?”",
+          "source_text": "\u201cMay A call C?\u201d",
           "source_style": "weight 700; normal; source size 18",
           "semantic_role": "normative modality",
           "candidate_text": "May",
@@ -6579,7 +6593,7 @@
           "source_locator": {
             "svg": "book/assets/observed-vs-declared.svg",
             "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "“May A call C?”",
+            "text_element_context": "\u201cMay A call C?\u201d",
             "matching_fragment_count": 1
           }
         },
@@ -7208,7 +7222,7 @@
           "italic": true
         },
         {
-          "text": "Audit · debugging · changelog",
+          "text": "Audit \u00b7 debugging \u00b7 changelog",
           "bold": false,
           "italic": false
         }
@@ -7560,7 +7574,7 @@
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
       "decision": "refined",
-      "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+      "source_sha256": "d97e33c2055ac2305997f1c8811588d6b1ce431a58d8d18a67d1b8828e02af11",
       "candidate_sha256": "1f82ec31c5811b59fa3f182b9eb487a82770e60203ca5d2d42084165f2d8253c",
       "evidence": [
         {
@@ -7745,6 +7759,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 10
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+        "source_sha256": "d97e33c2055ac2305997f1c8811588d6b1ce431a58d8d18a67d1b8828e02af11",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -7985,7 +8006,7 @@
           "italic": true
         },
         {
-          "text": "Records · edges · states",
+          "text": "Records \u00b7 edges \u00b7 states",
           "bold": false,
           "italic": false
         }
@@ -8024,7 +8045,7 @@
           }
         },
         {
-          "source_text": "“What quantity and bound matter?”",
+          "source_text": "\u201cWhat quantity and bound matter?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "What quantity and bound matter?",
@@ -8032,12 +8053,12 @@
           "source_locator": {
             "svg": "book/assets/modeling-perp-enforcement.svg",
             "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "“What quantity and bound matter?”",
+            "text_element_context": "\u201cWhat quantity and bound matter?\u201d",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "“What enforcement is justified?”",
+          "source_text": "\u201cWhat enforcement is justified?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "What enforcement is justified?",
@@ -8045,7 +8066,7 @@
           "source_locator": {
             "svg": "book/assets/modeling-perp-enforcement.svg",
             "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "“What enforcement is justified?”",
+            "text_element_context": "\u201cWhat enforcement is justified?\u201d",
             "matching_fragment_count": 1
           }
         }
@@ -8270,7 +8291,7 @@
           }
         },
         {
-          "source_text": "“Do they agree?”",
+          "source_text": "\u201cDo they agree?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "class question",
           "candidate_text": "Do they agree?",
@@ -8278,7 +8299,7 @@
           "source_locator": {
             "svg": "book/assets/three-relations.svg",
             "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "“Do they agree?”",
+            "text_element_context": "\u201cDo they agree?\u201d",
             "matching_fragment_count": 1
           }
         },
@@ -8296,7 +8317,7 @@
           }
         },
         {
-          "source_text": "“Does it satisfy?”",
+          "source_text": "\u201cDoes it satisfy?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "class question",
           "candidate_text": "Does it satisfy?",
@@ -8304,7 +8325,7 @@
           "source_locator": {
             "svg": "book/assets/three-relations.svg",
             "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "“Does it satisfy?”",
+            "text_element_context": "\u201cDoes it satisfy?\u201d",
             "matching_fragment_count": 1
           }
         },
@@ -8322,7 +8343,7 @@
           }
         },
         {
-          "source_text": "“Will it accept?”",
+          "source_text": "\u201cWill it accept?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "class question",
           "candidate_text": "Will it accept?",
@@ -8330,7 +8351,7 @@
           "source_locator": {
             "svg": "book/assets/three-relations.svg",
             "element_text_path": "/svg/text[17]/text()",
-            "text_element_context": "“Will it accept?”",
+            "text_element_context": "\u201cWill it accept?\u201d",
             "matching_fragment_count": 1
           }
         }
@@ -8487,7 +8508,7 @@
           "italic": true
         },
         {
-          "text": "Analysis · governance",
+          "text": "Analysis \u00b7 governance",
           "bold": false,
           "italic": false
         }
@@ -9785,7 +9806,7 @@
           }
         },
         {
-          "source_text": "logged — not enforced",
+          "source_text": "logged \u2014 not enforced",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "logged, not enforced",
@@ -9793,7 +9814,7 @@
           "source_locator": {
             "svg": "book/assets/judgment-without-consequence.svg",
             "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "logged — not enforced",
+            "text_element_context": "logged \u2014 not enforced",
             "matching_fragment_count": 1
           }
         },
@@ -9811,7 +9832,7 @@
           }
         },
         {
-          "source_text": "Durable repair — remove the unsafe capability; escalate an ambiguous merge to a human.",
+          "source_text": "Durable repair \u2014 remove the unsafe capability; escalate an ambiguous merge to a human.",
           "source_style": "weight 700; normal; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "Durable repair:",
@@ -9819,7 +9840,7 @@
           "source_locator": {
             "svg": "book/assets/judgment-without-consequence.svg",
             "element_text_path": "/svg/text[15]/text()",
-            "text_element_context": "Durable repair — remove the unsafe capability; escalate an ambiguous merge to a human.",
+            "text_element_context": "Durable repair \u2014 remove the unsafe capability; escalate an ambiguous merge to a human.",
             "matching_fragment_count": 1
           }
         }
@@ -10408,7 +10429,7 @@
                 }
               },
               {
-                "source_text": "modeled order — first to last",
+                "source_text": "modeled order \u2014 first to last",
                 "source_style": "weight normal; italic; source size 19.2",
                 "semantic_role": "named category versus explanatory text",
                 "candidate_text": "modeled order",
@@ -10416,7 +10437,7 @@
                 "source_locator": {
                   "svg": "book/assets/turn-end-ordering.svg",
                   "element_text_path": "/svg/text[1]/text()",
-                  "text_element_context": "modeled order — first to last",
+                  "text_element_context": "modeled order \u2014 first to last",
                   "matching_fragment_count": 1
                 }
               },
@@ -10480,7 +10501,7 @@
                 "italic": true
               },
               {
-                "text": "the turn’s closing message",
+                "text": "the turn\u2019s closing message",
                 "bold": true,
                 "italic": false
               },
@@ -12034,7 +12055,7 @@
       "source": "book/assets/squash-zero-promote.svg",
       "candidate": "book/tikz/figures/squash-zero-promote.tex",
       "decision": "refined",
-      "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+      "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
       "candidate_sha256": "d099e2d62c9a4ebf07809d68879b3d278212dc9a0e84cb989538054b1073a230",
       "evidence": [
         {
@@ -12064,18 +12085,18 @@
           ]
         },
         {
-          "source_text": "Findings → 0",
+          "source_text": "Findings \u2192 0",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "24"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Findings → 0",
+          "candidate_text": "Findings \u2192 0",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Findings → 0",
+              "text": "Findings \u2192 0",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -12207,6 +12228,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 6
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+        "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -12276,7 +12304,7 @@
       "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
       "evidence": [
         {
-          "source_text": "context · tools · routing · authority · sequencing",
+          "source_text": "context \u00b7 tools \u00b7 routing \u00b7 authority \u00b7 sequencing",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -12287,7 +12315,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "context · tools · routing · authority · sequencing",
+              "text": "context \u00b7 tools \u00b7 routing \u00b7 authority \u00b7 sequencing",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -13015,7 +13043,7 @@
       "source": "book/assets/measurement-no-gate.svg",
       "candidate": "book/tikz/figures/measurement-no-gate.tex",
       "decision": "refined",
-      "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+      "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
       "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
       "evidence": [
         {
@@ -13368,17 +13396,24 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 12
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+        "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/mage-staircase.svg",
       "candidate": "book/tikz/figures/mage-staircase.tex",
       "decision": "refined",
-      "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+      "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
       "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
       "evidence": [
         {
-          "source_text": "delegated — code generation",
+          "source_text": "delegated \u2014 code generation",
           "source_style": {
             "font-weight": "600",
             "font-style": "normal",
@@ -13389,7 +13424,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "delegated — code generation",
+              "text": "delegated \u2014 code generation",
               "style": {
                 "font-weight": "600",
                 "font-style": "normal",
@@ -13436,6 +13471,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 4
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+        "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -13478,7 +13520,7 @@
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
       "decision": "refined",
-      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
       "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
       "evidence": [
         {
@@ -13790,7 +13832,7 @@
           ]
         },
         {
-          "source_text": "standards · requirements\nbrownfield assets · prior lessons",
+          "source_text": "standards \u00b7 requirements\nbrownfield assets \u00b7 prior lessons",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -13801,7 +13843,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "standards · requirements",
+              "text": "standards \u00b7 requirements",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -13814,7 +13856,7 @@
               }
             },
             {
-              "text": "brownfield assets · prior lessons",
+              "text": "brownfield assets \u00b7 prior lessons",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -13829,7 +13871,7 @@
           ]
         },
         {
-          "source_text": "model capability\nconcurrency · raw velocity",
+          "source_text": "model capability\nconcurrency \u00b7 raw velocity",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -13853,7 +13895,7 @@
               }
             },
             {
-              "text": "concurrency · raw velocity",
+              "text": "concurrency \u00b7 raw velocity",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -13868,7 +13910,7 @@
           ]
         },
         {
-          "source_text": "representation quality\nobligation coverage\ncoherence · economy",
+          "source_text": "representation quality\nobligation coverage\ncoherence \u00b7 economy",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -13905,7 +13947,7 @@
               }
             },
             {
-              "text": "coherence · economy",
+              "text": "coherence \u00b7 economy",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14011,7 +14053,7 @@
           ]
         },
         {
-          "source_text": "churn · recurring failure · escaped defect\nrepeated intervention · control friction",
+          "source_text": "churn \u00b7 recurring failure \u00b7 escaped defect\nrepeated intervention \u00b7 control friction",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14022,7 +14064,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "churn · recurring failure · escaped defect",
+              "text": "churn \u00b7 recurring failure \u00b7 escaped defect",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14035,7 +14077,7 @@
               }
             },
             {
-              "text": "repeated intervention · control friction",
+              "text": "repeated intervention \u00b7 control friction",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14050,7 +14092,7 @@
           ]
         },
         {
-          "source_text": "local defect · missing representation · weak enforcement · stale mechanism?",
+          "source_text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14061,7 +14103,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "local defect · missing representation · weak enforcement · stale mechanism?",
+              "text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14076,7 +14118,7 @@
           ]
         },
         {
-          "source_text": "represent · constrain · validate · strengthen · reconcile · retire",
+          "source_text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14087,7 +14129,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "represent · constrain · validate · strengthen · reconcile · retire",
+              "text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14254,13 +14296,20 @@
             "semantic_typography_checks": 21
           }
         }
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+        "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
       "decision": "refined",
-      "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+      "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
       "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
       "evidence": [
         {
@@ -14489,13 +14538,20 @@
             "semantic_typography_checks": 7
           }
         }
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+        "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/determinization-frontier.svg",
       "candidate": "book/tikz/figures/determinization-frontier.tex",
       "decision": "refined",
-      "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+      "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
       "candidate_sha256": "e67fdee4705294497b03baa8f40eaec3a248e78a1c4aebadd952941203bb15ee",
       "evidence": [
         {
@@ -14840,13 +14896,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 10
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+        "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/return-governability.svg",
       "candidate": "book/tikz/figures/return-governability.tex",
       "decision": "refined",
-      "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+      "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
       "candidate_sha256": "cb851790484135f97c9b16c6e2a440b2e5ad25465ec4a7fbd5564752f3eee751",
       "evidence": [
         {
@@ -14902,7 +14965,7 @@
           ]
         },
         {
-          "source_text": "High value · Low feasible governability",
+          "source_text": "High value \u00b7 Low feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14913,7 +14976,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "High value · Low feasible governability",
+              "text": "High value \u00b7 Low feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14928,7 +14991,7 @@
           ]
         },
         {
-          "source_text": "High value · High feasible governability",
+          "source_text": "High value \u00b7 High feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14939,7 +15002,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "High value · High feasible governability",
+              "text": "High value \u00b7 High feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14954,7 +15017,7 @@
           ]
         },
         {
-          "source_text": "Low value · Low feasible governability",
+          "source_text": "Low value \u00b7 Low feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14965,7 +15028,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Low value · Low feasible governability",
+              "text": "Low value \u00b7 Low feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -14980,7 +15043,7 @@
           ]
         },
         {
-          "source_text": "Low value · High feasible governability",
+          "source_text": "Low value \u00b7 High feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -14991,7 +15054,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Low value · High feasible governability",
+              "text": "Low value \u00b7 High feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -15049,6 +15112,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 7
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+        "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -15525,7 +15595,7 @@
           ]
         },
         {
-          "source_text": "Memory ·\nplanning state",
+          "source_text": "Memory \u00b7\nplanning state",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -15536,7 +15606,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Memory ·",
+              "text": "Memory \u00b7",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -15590,7 +15660,7 @@
           ]
         },
         {
-          "source_text": "Tools · interfaces",
+          "source_text": "Tools \u00b7 interfaces",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -15601,7 +15671,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Tools · interfaces",
+              "text": "Tools \u00b7 interfaces",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -16176,7 +16246,7 @@
           ]
         },
         {
-          "source_text": "OBSERVE → REACT",
+          "source_text": "OBSERVE \u2192 REACT",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -16187,7 +16257,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "OBSERVE → REACT",
+              "text": "OBSERVE \u2192 REACT",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -16251,7 +16321,7 @@
           "bold": true
         },
         {
-          "text": "OBSERVE–REACT",
+          "text": "OBSERVE\u2013REACT",
           "bold": true
         },
         {
@@ -17394,7 +17464,7 @@
           "bold": true
         },
         {
-          "text": "capacity · scope",
+          "text": "capacity \u00b7 scope",
           "bold": false,
           "italic": false
         }
@@ -17864,7 +17934,7 @@
           ]
         },
         {
-          "source_text": "“What makes this false?”",
+          "source_text": "\u201cWhat makes this false?\u201d",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -17875,7 +17945,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "“What makes this false?”",
+              "text": "\u201cWhat makes this false?\u201d",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -18288,7 +18358,7 @@
             "font-size": "20"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "DERIVE; DON’T COPY",
+          "candidate_text": "DERIVE; DON\u2019T COPY",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -18398,7 +18468,7 @@
           "bold": true
         },
         {
-          "text": "DERIVE; DON’T COPY",
+          "text": "DERIVE; DON\u2019T COPY",
           "bold": true
         },
         {
@@ -18748,18 +18818,18 @@
       "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
       "evidence": [
         {
-          "source_text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+          "source_text": "\u2026 the next check sees it \u2014 coupled to the interface, not yesterday's answer",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "20"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+          "candidate_text": "The next check sees the change: coupled to the interface, not yesterday\u2019s answer.",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+              "text": "\u2026 the next check sees it \u2014 coupled to the interface, not yesterday's answer",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -18774,7 +18844,7 @@
           ]
         },
         {
-          "source_text": "… the snapshot does not — the check trusts a stale answer",
+          "source_text": "\u2026 the snapshot does not \u2014 the check trusts a stale answer",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -18785,7 +18855,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "… the snapshot does not — the check trusts a stale answer",
+              "text": "\u2026 the snapshot does not \u2014 the check trusts a stale answer",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -18800,18 +18870,18 @@
           ]
         },
         {
-          "source_text": "GOOD · query at the point of use",
+          "source_text": "GOOD \u00b7 query at the point of use",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "20"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "GOOD · query at the point of use",
+          "candidate_text": "GOOD \u00b7 query at the point of use",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "GOOD · query at the point of use",
+              "text": "GOOD \u00b7 query at the point of use",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -18826,18 +18896,18 @@
           ]
         },
         {
-          "source_text": "GOOD · query at the point of use",
+          "source_text": "GOOD \u00b7 query at the point of use",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "20"
           },
           "semantic_role": "Parallel contrast heading: candidate BAD heading mirrors the original bold GOOD heading; BAD is not itself printed in the source SVG.",
-          "candidate_text": "BAD · copied snapshot",
+          "candidate_text": "BAD \u00b7 copied snapshot",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "GOOD · query at the point of use",
+              "text": "GOOD \u00b7 query at the point of use",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -18852,18 +18922,18 @@
           ]
         },
         {
-          "source_text": "query — no second editable truth",
+          "source_text": "query \u2014 no second editable truth",
           "source_style": {
             "font-weight": "700",
             "font-style": "italic",
             "font-size": "20"
           },
           "semantic_role": "live-query relation contrasted with copied snapshot",
-          "candidate_text": "query — no second editable truth",
+          "candidate_text": "query \u2014 no second editable truth",
           "candidate_style": "bold italic",
           "source_fragments": [
             {
-              "text": "query — no second editable truth",
+              "text": "query \u2014 no second editable truth",
               "style": {
                 "font-weight": "700",
                 "font-style": "italic",
@@ -18881,7 +18951,7 @@
       "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "checks": [
         {
-          "text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+          "text": "The next check sees the change: coupled to the interface, not yesterday\u2019s answer.",
           "bold": true
         },
         {
@@ -18889,15 +18959,15 @@
           "bold": true
         },
         {
-          "text": "GOOD · query at the point of use",
+          "text": "GOOD \u00b7 query at the point of use",
           "bold": true
         },
         {
-          "text": "BAD · copied snapshot",
+          "text": "BAD \u00b7 copied snapshot",
           "bold": true
         },
         {
-          "text": "query — no second editable truth",
+          "text": "query \u2014 no second editable truth",
           "bold": true,
           "italic": true
         },
@@ -19042,21 +19112,21 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "seams · failure edges · invariants",
+          "source_text": "seams \u00b7 failure edges \u00b7 invariants",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-          "candidate_text": "seams · failure edges · invariants",
+          "candidate_text": "seams \u00b7 failure edges \u00b7 invariants",
           "candidate_style": "italic"
         },
         {
-          "source_text": "tests · checks that actually exist",
+          "source_text": "tests \u00b7 checks that actually exist",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-          "candidate_text": "tests · checks that actually exist",
+          "candidate_text": "tests \u00b7 checks that actually exist",
           "candidate_style": "italic"
         },
         {
-          "source_text": "Measure the required set minus the present evidence — not the evidence you happen to have written.",
+          "source_text": "Measure the required set minus the present evidence \u2014 not the evidence you happen to have written.",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
           "candidate_text": "Required set minus present evidence.",
@@ -19071,7 +19141,7 @@
           "italic": false
         },
         {
-          "text": "tests · checks that actually exist",
+          "text": "tests \u00b7 checks that actually exist",
           "bold": false,
           "italic": true
         },
@@ -19176,14 +19246,14 @@
       "candidate_sha256": "c02d5fc8760d4eb87503a2d4096b89ab5dd6e953de53725ec14c15b62bf79d00",
       "evidence": [
         {
-          "source_text": "OPEN · any route",
+          "source_text": "OPEN \u00b7 any route",
           "source_style": "font-weight=700",
           "semantic_role": "Open unknown routes versus bounded named seam and finite verbs",
           "candidate_text": "OPEN",
           "candidate_style": "bold"
         },
         {
-          "source_text": "CLOSED · one named seam",
+          "source_text": "CLOSED \u00b7 one named seam",
           "source_style": "font-weight=700",
           "semantic_role": "Open unknown routes versus bounded named seam and finite verbs",
           "candidate_text": "CLOSED",
@@ -19373,7 +19443,7 @@
           "candidate_style": "italic"
         },
         {
-          "source_text": "the identity travels with the work — and can be checked for completeness",
+          "source_text": "the identity travels with the work \u2014 and can be checked for completeness",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
           "candidate_text": "identity travels with the work",
@@ -19595,10 +19665,10 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "advisory · report-only",
+          "source_text": "advisory \u00b7 report-only",
           "source_style": "font-weight=700",
           "semantic_role": "Category heading distinguished from explanatory description",
-          "candidate_text": "advisory · report-only",
+          "candidate_text": "advisory \u00b7 report-only",
           "candidate_style": "bold"
         },
         {
@@ -19688,7 +19758,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "CHECKED · door",
+          "source_text": "CHECKED \u00b7 door",
           "source_style": "font-weight=700",
           "semantic_role": "Category heading distinguished from explanatory description",
           "candidate_text": "CHECKED",
@@ -19736,7 +19806,7 @@
           "italic": true
         },
         {
-          "text": "ownership · seams",
+          "text": "ownership \u00b7 seams",
           "bold": false,
           "italic": false
         }
@@ -19984,7 +20054,7 @@
           "italic": true
         },
         {
-          "text": "latency · cost · queue",
+          "text": "latency \u00b7 cost \u00b7 queue",
           "bold": false,
           "italic": false
         }
@@ -20024,7 +20094,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "CHECKED · completion gate",
+          "source_text": "CHECKED \u00b7 completion gate",
           "source_style": "font-weight=700",
           "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
           "candidate_text": "CHECKED",
@@ -20196,7 +20266,7 @@
           "source_text": "humans enforce",
           "source_style": "font-weight=700",
           "semantic_role": "Category heading distinguished from explanatory description",
-          "candidate_text": "Understands — humans enforce",
+          "candidate_text": "Understands \u2014 humans enforce",
           "candidate_style": "bold"
         },
         {
@@ -20474,7 +20544,7 @@
           "italic": true
         },
         {
-          "text": "hypotheses · needs",
+          "text": "hypotheses \u00b7 needs",
           "bold": false,
           "italic": false
         }
@@ -20703,7 +20773,7 @@
           "italic": false
         },
         {
-          "text": "architecture · behavior",
+          "text": "architecture \u00b7 behavior",
           "bold": false,
           "italic": false
         }
@@ -20799,10 +20869,10 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "experience · failures · evidence · governance conversion",
+          "source_text": "experience \u00b7 failures \u00b7 evidence \u00b7 governance conversion",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-          "candidate_text": "experience · failures · evidence · governance conversion",
+          "candidate_text": "experience \u00b7 failures \u00b7 evidence \u00b7 governance conversion",
           "candidate_style": "italic"
         }
       ],
@@ -20819,7 +20889,7 @@
           "italic": false
         },
         {
-          "text": "identity · provenance",
+          "text": "identity \u00b7 provenance",
           "bold": false,
           "italic": false
         }
@@ -21135,7 +21205,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Value × feasible governability",
+          "source_text": "Value \u00d7 feasible governability",
           "source_style": "font-weight=700",
           "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
           "candidate_text": "Value $\\times$ feasible governability",
@@ -21512,10 +21582,10 @@
       "candidate_sha256": "d1f4fe31bbc543b5846be7f88e15f327caa573b68bc9945fef8853fa87b72107",
       "evidence": [
         {
-          "source_text": "backend/ +941,120 / −286,378",
+          "source_text": "backend/ +941,120 / \u2212286,378",
           "source_style": "font-weight=700",
           "semantic_role": "Extreme mechanization/backend contribution called out separately from series definitions",
-          "candidate_text": "Mechanization backend: +941,120 / −286,378 lines.",
+          "candidate_text": "Mechanization backend: +941,120 / \u2212286,378 lines.",
           "candidate_style": "bold"
         }
       ],
@@ -21567,7 +21637,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "grounded — DocAble (software) evidence",
+          "source_text": "grounded \u2014 DocAble (software) evidence",
           "source_style": "font-style=italic",
           "semantic_role": "Grounded versus inferred evidence status",
           "candidate_text": "grounded: DocAble",
@@ -21581,14 +21651,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "repos · diffs · PRs",
+          "source_text": "repos \u00b7 diffs \u00b7 PRs",
           "source_style": "font-style=italic",
           "semantic_role": "Concrete examples beneath stage label",
-          "candidate_text": "repos · diffs · PRs",
+          "candidate_text": "repos \u00b7 diffs \u00b7 PRs",
           "candidate_style": "italic"
         },
         {
-          "source_text": "documents · records",
+          "source_text": "documents \u00b7 records",
           "source_style": "font-weight=700",
           "semantic_role": "Knowledge-work source objects",
           "candidate_text": "documents / records",
@@ -21602,10 +21672,10 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "PdfModel · JobId ·",
+          "source_text": "PdfModel \u00b7 JobId \u00b7",
           "source_style": "font-style=italic",
           "semantic_role": "Illustrative vocabulary entries",
-          "candidate_text": "PdfModel · JobId",
+          "candidate_text": "PdfModel \u00b7 JobId",
           "candidate_style": "italic"
         },
         {
@@ -21636,7 +21706,7 @@
           "italic": true
         },
         {
-          "text": "repos · diffs · PRs",
+          "text": "repos \u00b7 diffs \u00b7 PRs",
           "bold": false,
           "italic": true
         },
@@ -21668,7 +21738,7 @@
       "source": "book/assets/nav-subway-p1.svg",
       "candidate": "book/tikz/figures/nav-subway-p1.tex",
       "decision": "retained",
-      "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+      "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
       "candidate_sha256": "b3f3121dc99bc947e6c9e4958a256dd2c19b2c0d70430ab533e006e33a078c7e",
       "evidence": [
         {
@@ -21679,7 +21749,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 1 · The New Engineering Problem",
+          "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:1",
@@ -21710,13 +21780,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+        "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/nav-subway-p2.svg",
       "candidate": "book/tikz/figures/nav-subway-p2.tex",
       "decision": "retained",
-      "source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
+      "source_sha256": "1df2dc0f710ac562d7d4f644e9d316a5d6cc0c5834c2903954d8fb8b48332bbd",
       "candidate_sha256": "380d72a33dd9e24d56eebb148fc1d2894c84a00b8f2500bba8a382987cbcd58d",
       "evidence": [
         {
@@ -21727,7 +21804,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 2 · Modeling",
+          "source_text": "Chapter 2 \u00b7 Modeling",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:2",
@@ -21758,13 +21835,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
+        "source_sha256": "1df2dc0f710ac562d7d4f644e9d316a5d6cc0c5834c2903954d8fb8b48332bbd",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/nav-subway-p3.svg",
       "candidate": "book/tikz/figures/nav-subway-p3.tex",
       "decision": "retained",
-      "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+      "source_sha256": "c31440464eebcf55af512f6a1f7eeff8be07323b0c48b1936bb2a9164a0e711b",
       "candidate_sha256": "49e38dd8e4751b865e02e562f17a03c3e752a880676817247aba22a91b08c366",
       "evidence": [
         {
@@ -21775,7 +21859,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 3 · Alignment",
+          "source_text": "Chapter 3 \u00b7 Alignment",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:3",
@@ -21806,13 +21890,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+        "source_sha256": "c31440464eebcf55af512f6a1f7eeff8be07323b0c48b1936bb2a9164a0e711b",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/nav-subway-p4.svg",
       "candidate": "book/tikz/figures/nav-subway-p4.tex",
       "decision": "retained",
-      "source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
+      "source_sha256": "9438dcfaca2a5d1e181b99b0fd3277438f45b0b67fe3f8d0054c0f32b4eea03d",
       "candidate_sha256": "727462504be01fc5cb225123101f0472f4a006b186b4b5a5df4d74263886d8f2",
       "evidence": [
         {
@@ -21823,7 +21914,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 4 · MAGE in Motion: Engineering Through Models",
+          "source_text": "Chapter 4 \u00b7 MAGE in Motion: Engineering Through Models",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:4",
@@ -21854,13 +21945,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
+        "source_sha256": "9438dcfaca2a5d1e181b99b0fd3277438f45b0b67fe3f8d0054c0f32b4eea03d",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/nav-subway-p5.svg",
       "candidate": "book/tikz/figures/nav-subway-p5.tex",
       "decision": "retained",
-      "source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
+      "source_sha256": "73397de3f9c3cdae9caad33d7824f238834b947701a805329eb2d7fc5dc849f2",
       "candidate_sha256": "b2fe97352a85b55ea8b2c9f3f2d3a2dd3aeaca97432d3deb557dfa8765a0f90d",
       "evidence": [
         {
@@ -21871,7 +21969,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 5 · Agentic Software Factories",
+          "source_text": "Chapter 5 \u00b7 Agentic Software Factories",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:5",
@@ -21902,13 +22000,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
+        "source_sha256": "73397de3f9c3cdae9caad33d7824f238834b947701a805329eb2d7fc5dc849f2",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/nav-subway-p6.svg",
       "candidate": "book/tikz/figures/nav-subway-p6.tex",
       "decision": "retained",
-      "source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+      "source_sha256": "4a975864da8098f6f0f34792276f1f392a3dd51dd17adbf3c9753ecb9b63df24",
       "candidate_sha256": "b8a0f71163e50705caf6efa73d42665bbb3388cd13b667cc9789de9c9619220f",
       "evidence": [
         {
@@ -21919,7 +22024,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 6 · The Theory",
+          "source_text": "Chapter 6 \u00b7 The Theory",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:6",
@@ -21950,13 +22055,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+        "source_sha256": "4a975864da8098f6f0f34792276f1f392a3dd51dd17adbf3c9753ecb9b63df24",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/nav-subway-p7.svg",
       "candidate": "book/tikz/figures/nav-subway-p7.tex",
       "decision": "retained",
-      "source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
+      "source_sha256": "a8d26f50d6774ea972c2ab15cc3bb1c58c33f34a7e0ce35e796269e271c3e8a0",
       "candidate_sha256": "741d396c31605537d6fa3292d065423eaed412b0184785137a020359a905c721",
       "evidence": [
         {
@@ -21967,7 +22079,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 7 · The Profession",
+          "source_text": "Chapter 7 \u00b7 The Profession",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:7",
@@ -21998,12 +22110,19 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 2
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
+        "source_sha256": "a8d26f50d6774ea972c2ab15cc3bb1c58c33f34a7e0ce35e796269e271c3e8a0",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/docable-work-order-flow.svg",
       "candidate": "book/tikz/figures/docable-work-order-flow.tex",
-      "source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
+      "source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
       "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
       "decision": "new",
       "reason": "Named stages and actors use bold titles; annotations remain regular at native print size.",
@@ -22182,6 +22301,13 @@
         "monochrome_pixels": true,
         "semantic_typography_checks": 10,
         "status": "passed"
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
+        "source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -22346,7 +22472,7 @@
     {
       "source": "book/assets/docable-execution-analysis.svg",
       "candidate": "book/tikz/figures/docable-execution-analysis.tex",
-      "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+      "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
       "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
       "decision": "retained",
       "evidence": [
@@ -22526,7 +22652,14 @@
         "status": "passed",
         "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
       },
-      "reviewed_visually": true
+      "reviewed_visually": true,
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+        "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/deliver-context-two-layer.svg",
@@ -22547,13 +22680,13 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "models · rules · procedures",
+          "source_text": "models \u00b7 rules \u00b7 procedures",
           "source_style": {
             "font-weight": "normal",
             "font-style": "italic",
             "font-size": "20"
           },
-          "candidate_text": "models · rules · procedures",
+          "candidate_text": "models \u00b7 rules \u00b7 procedures",
           "candidate_style": "italic",
           "semantic_role": "description or feedback annotation"
         },
@@ -22569,13 +22702,13 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "mission · compact method",
+          "source_text": "mission \u00b7 compact method",
           "source_style": {
             "font-weight": "normal",
             "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "mission · compact method",
+          "candidate_text": "mission \u00b7 compact method",
           "candidate_style": "regular",
           "semantic_role": "description or feedback annotation"
         },
@@ -22613,13 +22746,13 @@
           "semantic_role": "description or feedback annotation"
         },
         {
-          "source_text": "examples — retrieved when needed",
+          "source_text": "examples \u2014 retrieved when needed",
           "source_style": {
             "font-weight": "normal",
             "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "examples — retrieved when needed",
+          "candidate_text": "examples \u2014 retrieved when needed",
           "candidate_style": "regular",
           "semantic_role": "description or feedback annotation"
         },
@@ -22657,13 +22790,13 @@
           "semantic_role": "description or feedback annotation"
         },
         {
-          "source_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+          "source_text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
           "source_style": {
             "font-weight": "normal",
             "font-style": "italic",
             "font-size": "20"
           },
-          "candidate_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+          "candidate_text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
           "candidate_style": "italic",
           "semantic_role": "description or feedback annotation"
         }
@@ -22675,7 +22808,7 @@
           "italic": false
         },
         {
-          "text": "models · rules · procedures",
+          "text": "models \u00b7 rules \u00b7 procedures",
           "bold": false,
           "italic": true
         },
@@ -22685,7 +22818,7 @@
           "italic": false
         },
         {
-          "text": "mission · compact method",
+          "text": "mission \u00b7 compact method",
           "bold": false,
           "italic": false
         },
@@ -22705,7 +22838,7 @@
           "italic": false
         },
         {
-          "text": "examples — retrieved when needed",
+          "text": "examples \u2014 retrieved when needed",
           "bold": false,
           "italic": false
         },
@@ -22725,7 +22858,7 @@
           "italic": true
         },
         {
-          "text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+          "text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
           "bold": false,
           "italic": true
         }
@@ -22983,7 +23116,7 @@
             }
           },
           {
-            "source_text": "typed enum · permission · narrow API",
+            "source_text": "typed enum \u00b7 permission \u00b7 narrow API",
             "source_style": "weight normal; italic; source size 19.2",
             "semantic_role": "named category versus explanatory text",
             "candidate_text": "typed enum; permission; narrow API",
@@ -22991,12 +23124,12 @@
             "source_locator": {
               "svg": "book/assets/constraint-vs-sensor.svg",
               "element_text_path": "/svg/text[8]/text()",
-              "text_element_context": "typed enum · permission · narrow API",
+              "text_element_context": "typed enum \u00b7 permission \u00b7 narrow API",
               "matching_fragment_count": 1
             }
           },
           {
-            "source_text": "metric · trace · call scan · log",
+            "source_text": "metric \u00b7 trace \u00b7 call scan \u00b7 log",
             "source_style": "weight normal; italic; source size 19.2",
             "semantic_role": "named category versus explanatory text",
             "candidate_text": "metric; trace; call scan; log",
@@ -23004,7 +23137,7 @@
             "source_locator": {
               "svg": "book/assets/constraint-vs-sensor.svg",
               "element_text_path": "/svg/text[11]/text()",
-              "text_element_context": "metric · trace · call scan · log",
+              "text_element_context": "metric \u00b7 trace \u00b7 call scan \u00b7 log",
               "matching_fragment_count": 1
             }
           },
@@ -23690,7 +23823,7 @@
           ]
         },
         {
-          "source_text": "pass decomposition — the nodes already project",
+          "source_text": "pass decomposition \u2014 the nodes already project",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -23701,7 +23834,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "pass decomposition — the nodes already project",
+              "text": "pass decomposition \u2014 the nodes already project",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -23716,7 +23849,7 @@
           ]
         },
         {
-          "source_text": "repeated traversal · shared-state reads · direct mutation · special cases",
+          "source_text": "repeated traversal \u00b7 shared-state reads \u00b7 direct mutation \u00b7 special cases",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -23727,7 +23860,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "repeated traversal · shared-state reads · direct mutation · special cases",
+              "text": "repeated traversal \u00b7 shared-state reads \u00b7 direct mutation \u00b7 special cases",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -23794,7 +23927,7 @@
           ]
         },
         {
-          "source_text": "critical paths · boundedness · latency · coverage",
+          "source_text": "critical paths \u00b7 boundedness \u00b7 latency \u00b7 coverage",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -23805,7 +23938,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "critical paths · boundedness · latency · coverage",
+              "text": "critical paths \u00b7 boundedness \u00b7 latency \u00b7 coverage",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",

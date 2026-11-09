@@ -30,6 +30,12 @@ class ProseWordCounts(unittest.TestCase):
         <p>Keep &amp; count.</p>'''
         self.assertEqual(self.count(rendered), 6)
 
+    def test_nested_svg_and_outer_footer_are_both_excluded(self):
+        rendered = '''<p>Before diagram.</p><svg><svg><text>Inner labels</text></svg>
+        <text>Outer footer after the nested viewport.</text></svg>
+        <svg/><p>After diagram.</p>'''
+        self.assertEqual(self.count(rendered), 4)
+
 
 if __name__ == '__main__':
     unittest.main()

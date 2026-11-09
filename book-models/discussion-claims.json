@@ -1,8 +1,6 @@
 {
   "_provenance": "HAND-AUTHORED discussion-claims ledger — the reality-asserting claims that live in the book's Discussion / Implications / Future prose and belong to NO other model (not an ordered spine claim, not a theory hypothesis / corollary / research-agenda node). substantiation.py reads this at query time as a THIRD source of the claim universe, symmetric with the spine and the theory. Each claim registers with a `frame` and is backed via the SAME id-join machinery every other claim uses: a data-claims entry's spine_claim(s), a lit-positioning citation's backs_claims, or a field-note's backs_claims may list a discussion-claim id. The default frame is `reality` — a Discussion reality-claim owes backing (unlike the theory nodes, which default to offered-for-replication under the chapter's global hedge). Adding a claim here makes it VISIBLE to the SOAPBOX report; the prose-audit pass (writing/audit.md Pass 7) is what FINDS the claims to add.",
-
   "_note": "SEEDED with all four soapbox candidates the hand-audit (theory-traceability design Part C) found: S2 (empirical-SE-decades) and S4 (build-reports verb) — both already prose-fixed, registered here with literature backing bound in lit_positioning_declared.json; S3 (CMM box-ticking) — registered per the author's CITE ruling, backed by the Bollinger & McGowan critique bound in lit_positioning_declared.json; and S1 (Agile-origin) — registered per the author's HYBRID ruling: the OBSERVABLE half (Agile deprioritized comprehensive documentation and up-front modeling) is cited to the Agile Manifesto (agile-manifesto2001, bound in lit_positioning_declared.json §15), while the CAUSAL reading (that it arose BECAUSE holding quality and a current model honest by hand was too expensive at pace) is the author's owned interpretation, kept loud and registered with frame=conjecture. frame=conjecture + the lit binding takes S1 off the SOAPBOX report while preserving the loud prose.",
-
   "discussion_claims": [
     {
       "id": "empirical-se-signal-to-noise",
@@ -29,6 +27,13 @@
       "id": "agile-accidental-complexity-origin",
       "statement": "Agile's velocity-over-ceremony stance was an accidental-complexity concession — teams shipped fast and kept models thin because holding quality and a current model honest by hand was too expensive at pace.",
       "chapter_slug": "reorganization-of-se",
+      "reality_claim": true,
+      "frame": "conjecture"
+    },
+    {
+      "id": "environment-investment-marginal-return-conjecture",
+      "statement": "For some software-engineering tasks, improving the engineering environment may have greater marginal value than purchasing a stronger reasoner; the author suspects this crossover already occurs.",
+      "chapter_slug": "research-agenda",
       "reality_claim": true,
       "frame": "conjecture"
     }

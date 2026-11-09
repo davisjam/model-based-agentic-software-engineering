@@ -20,4 +20,7 @@ intentional_changes: >
   The native monochrome version retains the approved topology and wording. A thin boundary and labels
   carry the role that color supplies in the web version. The registry heading is bold; no hierarchy
   is implied between execution and analysis.
-d2_limitations: none
+d2_limitations: >
+  The print original uses a compact hand-authored SVG to keep 9pt labels at 324bp.
+  The D2 file preserves the same registry/producer/consumer topology; automatic
+  layout was substantially taller. Native monochrome geometry remains unchanged.

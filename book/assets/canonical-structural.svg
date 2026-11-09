@@ -1,41 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 470" width="450" height="470" role="img" aria-labelledby="canonical-structuralT canonical-structuralD" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="canonical-structuralT">Canonical structural model: a read-through cache architecture</title>
+<!-- Custom SVG: compact print composition with explicit node/edge geometry and 9pt minimum labels at its reviewed width. Native monochrome partner remains independent. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 206" width="360" height="206" role="img" aria-labelledby="canonical-structuralT canonical-structuralD" font-family="'Source Sans 3', Arial, sans-serif">
+<title id="canonical-structuralT">Canonical structural model: a read-through cache architecture</title>
   <desc id="canonical-structuralD">A linear dependency example: WEB depends on API; API reads through CACHE; CACHE loads from DATABASE. These arrows declare structural relations, not a timeline of requests. A crossed dashed route from WEB directly to DATABASE is a forbidden bypass. Question: what exists, and what is connected to what? Semantics: entities and declared structural relations. Analysis: reachability, paths/cuts and cycles.</desc>
-  <defs>
-    <marker id="structural-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
-    <marker id="bypass-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-  </defs>
-  <rect width="450" height="470" fill="#fdfcf9"/>
-  <g fill="#1c1917" text-anchor="middle">
-    <text x="225" y="27" font-size="14" font-weight="700">Structural model</text>
-    <text x="225" y="47" font-size="11" font-style="italic">Read-through cache example</text>
-  </g>
-  <g fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8">
-    <rect x="147.5" y="64" width="155" height="42" rx="3"/>
-    <rect x="147.5" y="149" width="155" height="42" rx="3"/>
-    <rect x="147.5" y="234" width="155" height="42" rx="3"/>
-    <rect x="147.5" y="319" width="155" height="42" rx="3"/>
-  </g>
-  <g fill="#9a3f12" font-size="12" font-weight="700" text-anchor="middle">
-    <text x="225" y="89">WEB</text><text x="225" y="174">API</text>
-    <text x="225" y="259">CACHE</text><text x="225" y="344">DATABASE</text>
-  </g>
-  <g fill="none" stroke="#9a3f12" stroke-width="0.8" marker-end="url(#structural-arrow)">
-    <path d="M225 106 V147"/><path d="M225 191 V232"/><path d="M225 276 V317"/>
-  </g>
-  <g fill="#57534e" font-size="11" font-style="italic">
-    <text x="236" y="131">depends on</text><text x="236" y="216">reads through</text><text x="236" y="301">loads from</text>
-  </g>
-  <path d="M147.5 85 H80 V340 H145.5" fill="none" stroke="#57534e" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#bypass-arrow)"/>
-  <g fill="#57534e" font-size="11" font-style="italic" text-anchor="end">
-    <text x="65" y="209">forbidden</text><text x="65" y="223">bypass</text>
-  </g>
-  <rect x="73" y="205.5" width="14" height="14" fill="#fdfcf9"/>
-  <path d="M76 208.5 L84 216.5 M76 216.5 L84 208.5" stroke="#1c1917" stroke-width="1.2"/>
-  <g fill="#1c1917" font-size="11">
-    <text x="30" y="408"><tspan font-weight="700">Question:</tspan> What exists, and what is connected to what?</text>
-    <text x="30" y="430"><tspan font-weight="700">Semantics:</tspan> Entities and declared structural relations</text>
-    <text x="30" y="452"><tspan font-weight="700">Analysis:</tspan> Reachability, paths/cuts and cycles.</text>
-  </g>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#57534e"/></marker></defs>
+<text x="180" y="15" font-size="12" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="180" dy="0">Structural model</tspan></text>
+<text x="180" y="30" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="180" dy="0">Read-through cache example</tspan></text>
+<rect x="12" y="58" width="69" height="28" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8" />
+<text x="46.5" y="76" font-size="10" fill="#9a3f12" text-anchor="middle" font-weight="700"><tspan x="46.5" dy="0">WEB</tspan></text>
+<rect x="101" y="58" width="69" height="28" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8" />
+<text x="135.5" y="76" font-size="10" fill="#9a3f12" text-anchor="middle" font-weight="700"><tspan x="135.5" dy="0">API</tspan></text>
+<rect x="190" y="58" width="69" height="28" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8" />
+<text x="224.5" y="76" font-size="10" fill="#9a3f12" text-anchor="middle" font-weight="700"><tspan x="224.5" dy="0">CACHE</tspan></text>
+<rect x="279" y="58" width="69" height="28" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8" />
+<text x="313.5" y="76" font-size="10" fill="#9a3f12" text-anchor="middle" font-weight="700"><tspan x="313.5" dy="0">DATABASE</tspan></text>
+<polyline points="81,72 101,72" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="91.0" y="48" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="91.0" dy="0">depends on</tspan></text>
+<polyline points="170,72 190,72" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="180.0" y="48" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="180.0" dy="0">reads through</tspan></text>
+<polyline points="259,72 279,72" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="269.0" y="48" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="269.0" dy="0">loads from</tspan></text>
+<polyline points="46.5,86 46.5,120 313.5,120 313.5,86" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)" stroke-dasharray="3 2"/>
+<text x="180" y="138" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="180" dy="0">forbidden bypass</tspan></text>
+<path d="M174 114 L186 126 M186 114 L174 126" stroke="#b23b3b" stroke-width="1.5"/>
+<text x="12" y="164" font-size="9" fill="#1c1917" text-anchor="start"><tspan x="12" dy="0">Question: What exists, and what is connected to what?</tspan></text>
+<text x="12" y="180" font-size="9" fill="#1c1917" text-anchor="start"><tspan x="12" dy="0">Semantics: Entities and declared structural relations</tspan></text>
+<text x="12" y="196" font-size="9" fill="#1c1917" text-anchor="start"><tspan x="12" dy="0">Analysis: Reachability, paths/cuts and cycles.</tspan></text>
+
 </svg>

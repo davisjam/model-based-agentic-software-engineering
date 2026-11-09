@@ -62,7 +62,7 @@
   "style_review": {
     "source": "book/assets/docable-execution-analysis.svg",
     "candidate": "book/tikz/figures/docable-execution-analysis.tex",
-    "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+    "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
     "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
     "receipt": "book/tikz/receipts/docable-execution-analysis.json",
     "decision": "retained",
@@ -182,7 +182,7 @@
   "typography_review": {
     "source": "book/assets/docable-execution-analysis.svg",
     "candidate": "book/tikz/figures/docable-execution-analysis.tex",
-    "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+    "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
     "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
     "decision": "retained",
     "evidence": [
@@ -379,5 +379,12 @@
     "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
     "status": "passed",
     "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+    "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -1,7 +1,7 @@
 {
   "source": "book/assets/canonical-structural.svg",
   "chapter": "2.2-structural",
-  "claim": "*The structural move: entities and typed relations.* Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations — reachability, path, and cycle checks.",
+  "claim": "*The structural move: entities and typed relations.* Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations \u2014 reachability, path, and cycle checks.",
   "topology": {
     "description": "Declared read-through dependencies, not a request timeline; the crossed dashed shortcut is forbidden.",
     "relations": [
@@ -70,7 +70,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+    "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
     "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
     "fill": "White component peers, dark text, and a crossed dashed prohibited bypass.",
     "bold": "Source-derived emphasis includes WEB; API; CACHE; DATABASE; Question:; Semantics:; Analysis:. Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
@@ -94,7 +94,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+    "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
     "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
     "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
     "evidence": [
@@ -363,11 +363,11 @@
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "A single vertical WEB–API–CACHE–DATABASE dependency chain replaces the fork. Equal component boxes, clear labeled terminals and a separately routed crossed bypass use the available page height.",
+    "reason": "A single vertical WEB\u2013API\u2013CACHE\u2013DATABASE dependency chain replaces the fork. Equal component boxes, clear labeled terminals and a separately routed crossed bypass use the available page height.",
     "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
     "page_layout": {
       "decision": "refined",
-      "reason": "Replace both component forks with the explicit read-through WEB–API–CACHE–DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
+      "reason": "Replace both component forks with the explicit read-through WEB\u2013API\u2013CACHE\u2013DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
       "reviewed_visually": true
     },
     "validation": {
@@ -389,5 +389,12 @@
       "width_bp": 449.972,
       "height_bp": 469.972
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+    "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

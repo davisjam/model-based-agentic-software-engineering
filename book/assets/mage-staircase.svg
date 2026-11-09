@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (CE5 redraw of label: mage-staircase). Fold-target: book/assets/mage-staircase.svg.
-     REDESIGN of the delegation staircase. The prior figure asked the reader to solve three competing
-     encodings at once (five full-width cards x three text columns x variable red mini-bars x two arrows).
-     This redraw carries ONE primary claim with a true ascending staircase and three colour channels only:
-       BLUE (#2f5169)  = delegated work        — the climbing step cards
-       GREEN (#1f7a4d) = accumulated environment — the growing left-edge gauge + the "environment" line
-       RED  (#b23b3b)  = residual human burden  — a single narrowing right-edge trajectory (no per-row bars)
-     The staircase geometry itself carries "delegation climbs" (no separate blue arrow). The green left-edge
-     bars thicken as the climb proceeds (representation + enforcement accumulate); the red right-edge wedge
-     narrows to a sliver (human tactical burden shrinks but never vanishes). A miss in representation or
-     enforcement can push work back down.
-     Palette: Umber Monograph tokens, all on design_tokens.svg_palette() allow-list — fleet/agent #2f5169
-     (delegated), governed/modeling #1f7a4d (environment), churn/failure #b23b3b + fill #fbeaea (human
-     remainder), governed-fill #e3f0e7 (environment wash), ink #1c1917, muted #57534e, rule #e4e0d8.
-     Font Source Sans 3. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 830" width="1340" height="830"
-     role="group" aria-labelledby="dsTitle dsDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes</title>
+<!-- Custom SVG: compact print composition with explicit node/edge geometry and 9pt minimum labels at its reviewed width. Native monochrome partner remains independent. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 1142" width="1340" height="1142" role="group" aria-labelledby="dsTitle dsDesc" font-family="'Source Sans 3', Arial, sans-serif">
+<title id="dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes</title>
   <desc id="dsDesc">A true staircase of five steps ascending from bottom-left to top-right. Step one at the
     bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in
     blue, what is now delegated, and in green, what the engineered environment now carries. Along the
@@ -35,85 +19,51 @@
     five Architect: delegated is model-guided work across the whole system; the environment carries explicit
     models, traceability, and controls; the human is left with residual semantics and strategy. A failure in
     representation or enforcement can push work back down the staircase.</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#57534e"/></marker></defs>
+<text x="1038" y="32" font-size="27" fill="#57534e" text-anchor="start" font-weight="700"><tspan x="1038" dy="0">HUMAN FOCUS</tspan></text>
+<text x="1038" y="64" font-size="27" fill="#57534e" text-anchor="start"><tspan x="1038" dy="0">strategy · residual</tspan><tspan x="1038" dy="33.75">semantics</tspan></text>
+<text x="24" y="28" font-size="27" fill="#1f7a4d" text-anchor="start" font-weight="700"><tspan x="24" dy="0">environment accumulates</tspan></text>
+<text x="24" y="62" font-size="27" fill="#1f7a4d" text-anchor="start"><tspan x="24" dy="0">representation + enforcement</tspan></text>
+<polygon points="20,104 280,104 280,304 220,304 220,486 160,486 160,668 100,668 100,850 40,850 40,1032 20,1032" fill="#e3f0e7"/>
+<polygon points="1000,1032 1020,1032 1012,104 1009,104" fill="#fbeaea" stroke="#b23b3b"/>
+<rect x="280" y="104" width="700" height="200" rx="3" fill="#fff" stroke="#2f5169" stroke-width="0.8" />
+<rect x="280" y="104" width="22" height="200" rx="3" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="0.8" />
+<text x="314" y="136" font-size="27" fill="#1c1917" text-anchor="start" font-weight="700"><tspan x="314" dy="0">5 · ARCHITECT</tspan></text>
+<text x="314" y="167" font-size="27" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="314" dy="0">explicit models carry system-level knowledge</tspan></text>
+<text x="314" y="198" font-size="27" fill="#2f5169" text-anchor="start" font-weight="600"><tspan x="314" dy="0">delegated — model-guided work across the</tspan><tspan x="314" dy="33.75">system</tspan></text>
+<text x="314" y="265.5" font-size="27" fill="#1f7a4d" text-anchor="start" font-weight="600"><tspan x="314" dy="0">environment — explicit models · traceability ·</tspan><tspan x="314" dy="33.75">controls</tspan></text>
+<text x="1038" y="171" font-size="27" fill="#b23b3b" text-anchor="start" font-weight="600"><tspan x="1038" dy="0">residual semantics +</tspan><tspan x="1038" dy="33.75">strategy</tspan></text>
+<rect x="220" y="320" width="760" height="166" rx="3" fill="#fff" stroke="#2f5169" stroke-width="0.8" />
+<rect x="220" y="320" width="18" height="166" rx="3" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="0.8" />
+<text x="254" y="352" font-size="27" fill="#1c1917" text-anchor="start" font-weight="700"><tspan x="254" dy="0">4 · TECH LEAD</tspan></text>
+<text x="254" y="383" font-size="27" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="254" dy="0">representation makes reasoning local</tspan></text>
+<text x="254" y="414" font-size="27" fill="#2f5169" text-anchor="start" font-weight="600"><tspan x="254" dy="0">delegated — bounded work inside one modeled zone</tspan></text>
+<text x="254" y="447.75" font-size="27" fill="#1f7a4d" text-anchor="start" font-weight="600"><tspan x="254" dy="0">environment — named zones · boundary rules</tspan></text>
+<text x="1038" y="387" font-size="27" fill="#b23b3b" text-anchor="start" font-weight="600"><tspan x="1038" dy="0">system map +</tspan><tspan x="1038" dy="33.75">strategy</tspan></text>
+<rect x="160" y="502" width="820" height="166" rx="3" fill="#fff" stroke="#2f5169" stroke-width="0.8" />
+<rect x="160" y="502" width="14" height="166" rx="3" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="0.8" />
+<text x="194" y="534" font-size="27" fill="#1c1917" text-anchor="start" font-weight="700"><tspan x="194" dy="0">3 · REVIEW LEAD</tspan></text>
+<text x="194" y="565" font-size="27" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="194" dy="0">semantic residue after deterministic checks</tspan></text>
+<text x="194" y="596" font-size="27" fill="#2f5169" text-anchor="start" font-weight="600"><tspan x="194" dy="0">delegated — specialized review, per region</tspan></text>
+<text x="194" y="629.75" font-size="27" fill="#1f7a4d" text-anchor="start" font-weight="600"><tspan x="194" dy="0">environment — deterministic checks for the decidable</tspan><tspan x="194" dy="33.75">findings</tspan></text>
+<text x="1038" y="569" font-size="27" fill="#b23b3b" text-anchor="start" font-weight="600"><tspan x="1038" dy="0">semantic review</tspan></text>
+<rect x="100" y="684" width="880" height="166" rx="3" fill="#fff" stroke="#2f5169" stroke-width="0.8" />
+<rect x="100" y="684" width="10" height="166" rx="3" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="0.8" />
+<text x="134" y="716" font-size="27" fill="#1c1917" text-anchor="start" font-weight="700"><tspan x="134" dy="0">2 · QA</tspan></text>
+<text x="134" y="747" font-size="27" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="134" dy="0">evaluation delegated before enforcement</tspan></text>
+<text x="134" y="778" font-size="27" fill="#2f5169" text-anchor="start" font-weight="600"><tspan x="134" dy="0">delegated — generation + a second agent’s audit</tspan></text>
+<text x="134" y="811.75" font-size="27" fill="#1f7a4d" text-anchor="start" font-weight="600"><tspan x="134" dy="0">environment — a probabilistic reviewer (episodic, advisory)</tspan></text>
+<text x="1038" y="751" font-size="27" fill="#b23b3b" text-anchor="start" font-weight="600"><tspan x="1038" dy="0">adjudicate findings</tspan></text>
+<rect x="40" y="866" width="940" height="166" rx="3" fill="#fff" stroke="#2f5169" stroke-width="0.8" />
+<rect x="40" y="866" width="6" height="166" rx="3" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="0.8" />
+<text x="74" y="898" font-size="27" fill="#1c1917" text-anchor="start" font-weight="700"><tspan x="74" dy="0">1 · CO-CODER</tspan></text>
+<text x="74" y="929" font-size="27" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="74" dy="0">direct human inspection carries everything</tspan></text>
+<text x="74" y="960" font-size="27" fill="#2f5169" text-anchor="start" font-weight="600"><tspan x="74" dy="0">delegated — code generation</tspan></text>
+<text x="74" y="993.75" font-size="27" fill="#1f7a4d" text-anchor="start" font-weight="600"><tspan x="74" dy="0">environment — nothing durable beyond an ordinary repository</tspan></text>
+<text x="1038" y="933" font-size="27" fill="#b23b3b" text-anchor="start" font-weight="600"><tspan x="1038" dy="0">read every diff · hold</tspan><tspan x="1038" dy="33.75">the map · admit the</tspan><tspan x="1038" dy="33.75">change</tspan></text>
+<text x="1320" y="1059" font-size="27" fill="#b23b3b" text-anchor="end" font-style="italic"><tspan x="1320" dy="0">residual human judgment narrows — never zero</tspan></text>
+<polyline points="40,1087 980,1087" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="40" y="1122" font-size="27" fill="#57534e" text-anchor="start" font-weight="600"><tspan x="40" dy="0">more work carried by the engineered environment</tspan></text>
+<text x="1320" y="1122" font-size="27" fill="#2f5169" text-anchor="end" font-weight="700"><tspan x="1320" dy="0">delegation climbs</tspan></text>
 
-  <defs>
-    <marker id="ds-up" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,10 L5,0 L10,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="ds-down" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L5,10 L10,0 z" fill="#b23b3b"/>
-    </marker>
-  </defs>
-
-  <!-- ===================== HUMAN FOCUS — the summit the climb points toward ===================== -->
-  <text x="1052" y="28" text-anchor="middle" font-size="27" font-weight="700" fill="#57534e" letter-spacing="0.5">HUMAN FOCUS</text>
-  <text x="1052" y="54" text-anchor="middle" font-size="27" fill="#57534e">strategy · residual semantics</text>
-  <line x1="1052" y1="60" x2="1052" y2="96" stroke="#57534e" stroke-width="1.6" marker-end="url(#ds-up)"/>
-
-  <!-- ===================== GREEN environment-accumulation wash (upper-left staircase region) ===================== -->
-  <!-- The area the steps recede from as they indent rightward: the environment mass the climb is built on.
-       Wide at the summit (most accumulated), thin at the base. Light backdrop, low visual weight. -->
-  <polygon points="40,58 360,58 360,178 280,178 280,316 200,316 200,454 120,454 120,592 40,592"
-           fill="#e3f0e7" opacity="0.55"/>
-  <text x="52" y="88" font-size="20" font-weight="700" fill="#1f7a4d">environment accumulates</text>
-  <text x="52" y="107" font-size="20" fill="#1f7a4d">representation + enforcement</text>
-
-  <!-- ===================== RED residual-human wedge (right edge) — one narrowing trajectory ===================== -->
-  <!-- A single wedge: wide at the base (human carries everything), a sliver at the summit. NOT a per-row bar. -->
-  <polygon points="930,730 956,730 947,58 945,58" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.1" opacity="0.95"/>
-  <text x="1190" y="762" text-anchor="end" font-size="27" font-style="italic" fill="#b23b3b">residual human judgment narrows — never zero</text>
-
-  <!-- ===================== STEP 5 · ARCHITECT (summit) ===================== -->
-  <rect x="299.71" y="58" width="690.58" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
-  <rect x="356" y="58" width="22" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="384" y="89" font-size="27" font-weight="700" fill="#1c1917">5 · ARCHITECT</text>
-  <text x="384" y="116" font-size="27" font-style="italic" fill="#57534e">explicit models carry system-level knowledge</text>
-  <text x="384" y="143" font-size="27" fill="#2f5169" font-weight="600">delegated — model-guided work across the system</text>
-  <text x="384" y="170" font-size="27" fill="#1f7a4d" font-weight="600">environment — explicit models · traceability · controls</text>
-  <text x="1000" y="118" font-size="27" fill="#b23b3b" font-weight="600">residual semantics + strategy</text>
-
-  <!-- ===================== STEP 4 · TECH LEAD ===================== -->
-  <rect x="280" y="196" width="650" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
-  <rect x="278" y="196" width="18" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="304" y="227" font-size="27" font-weight="700" fill="#1c1917">4 · TECH LEAD</text>
-  <text x="304" y="254" font-size="27" font-style="italic" fill="#57534e">representation makes reasoning local</text>
-  <text x="304" y="281" font-size="27" fill="#2f5169" font-weight="600">delegated — bounded work inside one modeled zone</text>
-  <text x="304" y="308" font-size="27" fill="#1f7a4d" font-weight="600">environment — named zones · boundary rules</text>
-  <text x="1000" y="256" font-size="27" fill="#b23b3b" font-weight="600">system map + strategy</text>
-
-  <!-- ===================== STEP 3 · REVIEW LEAD ===================== -->
-  <rect x="167.49" y="334" width="795.02" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
-  <rect x="198" y="334" width="14" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="224" y="365" font-size="27" font-weight="700" fill="#1c1917">3 · REVIEW LEAD</text>
-  <text x="224" y="392" font-size="27" font-style="italic" fill="#57534e">semantic residue after deterministic checks</text>
-  <text x="224" y="419" font-size="27" fill="#2f5169" font-weight="600">delegated — specialized review, per region</text>
-  <text x="224" y="446" font-size="27" fill="#1f7a4d" font-weight="600">environment — deterministic checks for the decidable findings</text>
-  <text x="1000" y="394" font-size="27" fill="#b23b3b" font-weight="600">semantic review</text>
-
-  <!-- ===================== STEP 2 · QA ===================== -->
-  <rect x="120" y="472" width="810" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
-  <rect x="118" y="472" width="10" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="144" y="503" font-size="27" font-weight="700" fill="#1c1917">2 · QA</text>
-  <text x="144" y="530" font-size="27" font-style="italic" fill="#57534e">evaluation delegated before enforcement</text>
-  <text x="144" y="557" font-size="27" fill="#2f5169" font-weight="600">delegated — generation + a second agent's audit</text>
-  <text x="144" y="584" font-size="27" fill="#1f7a4d" font-weight="600">environment — a probabilistic reviewer (episodic, advisory)</text>
-  <text x="1000" y="532" font-size="27" fill="#b23b3b" font-weight="600">adjudicate findings</text>
-
-  <!-- ===================== STEP 1 · CO-CODER (base) ===================== -->
-  <rect x="40" y="610" width="890" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
-  <rect x="38" y="610" width="6" height="120" rx="3" fill="#1f7a4d"/>
-  <text x="64" y="641" font-size="27" font-weight="700" fill="#1c1917">1 · CO-CODER</text>
-  <text x="64" y="668" font-size="27" font-style="italic" fill="#57534e">direct human inspection carries everything</text>
-  <text x="64" y="695" font-size="27" fill="#2f5169" font-weight="600">delegated — code generation</text>
-  <text x="64" y="722" font-size="27" fill="#1f7a4d" font-weight="600">environment — nothing durable beyond an ordinary repository</text>
-  <text x="1000" y="658" font-size="27" fill="#b23b3b" font-weight="600">read every diff · hold the</text>
-  <text x="1000" y="685" font-size="27" fill="#b23b3b" font-weight="600">map · admit the change</text>
-
-  <!-- ===================== BASE AXIS — more work carried by the engineered environment ===================== -->
-  <marker id="ds-right" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-    <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
-  </marker>
-  <line x1="40" y1="770" x2="928" y2="770" stroke="#2f5169" stroke-width="1.8" marker-end="url(#ds-right)"/>
-  <text x="40" y="794" font-size="27" font-weight="600" fill="#57534e">more work carried by the engineered environment</text>
-  <text x="928" y="794" text-anchor="end" font-size="27" font-weight="700" fill="#2f5169">delegation climbs</text>
 </svg>

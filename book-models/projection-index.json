@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 830,
+    "total_sites": 832,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 492,
+      "book-web": 494,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -113,15 +113,23 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 7
+            "occ": 9
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
             "occ": 9
           },
           {
+            "file": "book/web/docs/6.3-scope-conditions.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/6.4-research-agenda.md",
             "occ": 4
+          },
+          {
+            "file": "book/web/docs/6.5-what-the-theory-claims.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -275,7 +283,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 63
+            "occ": 65
           }
         ]
       },
@@ -689,7 +697,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 9
+            "occ": 6
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -721,7 +729,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 32
+            "occ": 29
           }
         ],
         "book-pdf": [
@@ -927,7 +935,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -963,7 +971,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1151,11 +1159,11 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 41
+            "occ": 44
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
@@ -1163,7 +1171,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 10
+            "occ": 14
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1491,7 +1499,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 293
+            "occ": 292
           },
           {
             "file": "book/web/docs/index.md",
@@ -2015,7 +2023,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 59
+            "occ": 56
           },
           {
             "file": "book/web/docs/5.3-other-agentic-software-factories.md",
@@ -2023,11 +2031,11 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 32
+            "occ": 30
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
@@ -2035,7 +2043,7 @@
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
@@ -2303,7 +2311,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 346
+            "occ": 341
           },
           {
             "file": "book/web/docs/index.md",
@@ -3221,7 +3229,7 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
@@ -3313,7 +3321,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/web/docs/list-of-figures.md",

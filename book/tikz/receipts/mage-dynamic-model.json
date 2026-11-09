@@ -42,7 +42,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
     "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
     "fill": "Only governed environment state G is 5%; feedback labels identify other roles.",
     "bold": "Source-derived emphasis includes 2 Pressure / discovery: structural diagnosis; Prior engineering knowledge; 3 Governance adaptation; Governed environment; Realized performance; Governance pressure; Agentic capacity; Agentic work. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -73,7 +73,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
     "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -386,7 +386,7 @@
         ]
       },
       {
-        "source_text": "standards · requirements\nbrownfield assets · prior lessons",
+        "source_text": "standards \u00b7 requirements\nbrownfield assets \u00b7 prior lessons",
         "source_style": {
           "font-weight": "400",
           "font-style": "italic",
@@ -397,7 +397,7 @@
         "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "standards · requirements",
+            "text": "standards \u00b7 requirements",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -410,7 +410,7 @@
             }
           },
           {
-            "text": "brownfield assets · prior lessons",
+            "text": "brownfield assets \u00b7 prior lessons",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -425,7 +425,7 @@
         ]
       },
       {
-        "source_text": "model capability\nconcurrency · raw velocity",
+        "source_text": "model capability\nconcurrency \u00b7 raw velocity",
         "source_style": {
           "font-weight": "400",
           "font-style": "italic",
@@ -449,7 +449,7 @@
             }
           },
           {
-            "text": "concurrency · raw velocity",
+            "text": "concurrency \u00b7 raw velocity",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -464,7 +464,7 @@
         ]
       },
       {
-        "source_text": "representation quality\nobligation coverage\ncoherence · economy",
+        "source_text": "representation quality\nobligation coverage\ncoherence \u00b7 economy",
         "source_style": {
           "font-weight": "400",
           "font-style": "italic",
@@ -501,7 +501,7 @@
             }
           },
           {
-            "text": "coherence · economy",
+            "text": "coherence \u00b7 economy",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -607,7 +607,7 @@
         ]
       },
       {
-        "source_text": "churn · recurring failure · escaped defect\nrepeated intervention · control friction",
+        "source_text": "churn \u00b7 recurring failure \u00b7 escaped defect\nrepeated intervention \u00b7 control friction",
         "source_style": {
           "font-weight": "400",
           "font-style": "italic",
@@ -618,7 +618,7 @@
         "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "churn · recurring failure · escaped defect",
+            "text": "churn \u00b7 recurring failure \u00b7 escaped defect",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -631,7 +631,7 @@
             }
           },
           {
-            "text": "repeated intervention · control friction",
+            "text": "repeated intervention \u00b7 control friction",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -646,7 +646,7 @@
         ]
       },
       {
-        "source_text": "local defect · missing representation · weak enforcement · stale mechanism?",
+        "source_text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
         "source_style": {
           "font-weight": "400",
           "font-style": "italic",
@@ -657,7 +657,7 @@
         "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "local defect · missing representation · weak enforcement · stale mechanism?",
+            "text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -672,7 +672,7 @@
         ]
       },
       {
-        "source_text": "represent · constrain · validate · strengthen · reconcile · retire",
+        "source_text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
         "source_style": {
           "font-weight": "400",
           "font-style": "italic",
@@ -683,7 +683,7 @@
         "candidate_style": "italic",
         "source_fragments": [
           {
-            "text": "represent · constrain · validate · strengthen · reconcile · retire",
+            "text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
             "style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1241,7 +1241,7 @@
             ]
           },
           {
-            "source_text": "standards · requirements\nbrownfield assets · prior lessons",
+            "source_text": "standards \u00b7 requirements\nbrownfield assets \u00b7 prior lessons",
             "source_style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1252,7 +1252,7 @@
             "candidate_style": "italic",
             "source_fragments": [
               {
-                "text": "standards · requirements",
+                "text": "standards \u00b7 requirements",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1265,7 +1265,7 @@
                 }
               },
               {
-                "text": "brownfield assets · prior lessons",
+                "text": "brownfield assets \u00b7 prior lessons",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1280,7 +1280,7 @@
             ]
           },
           {
-            "source_text": "model capability\nconcurrency · raw velocity",
+            "source_text": "model capability\nconcurrency \u00b7 raw velocity",
             "source_style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1304,7 +1304,7 @@
                 }
               },
               {
-                "text": "concurrency · raw velocity",
+                "text": "concurrency \u00b7 raw velocity",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1319,7 +1319,7 @@
             ]
           },
           {
-            "source_text": "representation quality\nobligation coverage\ncoherence · economy",
+            "source_text": "representation quality\nobligation coverage\ncoherence \u00b7 economy",
             "source_style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1356,7 +1356,7 @@
                 }
               },
               {
-                "text": "coherence · economy",
+                "text": "coherence \u00b7 economy",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1462,7 +1462,7 @@
             ]
           },
           {
-            "source_text": "churn · recurring failure · escaped defect\nrepeated intervention · control friction",
+            "source_text": "churn \u00b7 recurring failure \u00b7 escaped defect\nrepeated intervention \u00b7 control friction",
             "source_style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1473,7 +1473,7 @@
             "candidate_style": "italic",
             "source_fragments": [
               {
-                "text": "churn · recurring failure · escaped defect",
+                "text": "churn \u00b7 recurring failure \u00b7 escaped defect",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1486,7 +1486,7 @@
                 }
               },
               {
-                "text": "repeated intervention · control friction",
+                "text": "repeated intervention \u00b7 control friction",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1501,7 +1501,7 @@
             ]
           },
           {
-            "source_text": "local defect · missing representation · weak enforcement · stale mechanism?",
+            "source_text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
             "source_style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1512,7 +1512,7 @@
             "candidate_style": "italic",
             "source_fragments": [
               {
-                "text": "local defect · missing representation · weak enforcement · stale mechanism?",
+                "text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1527,7 +1527,7 @@
             ]
           },
           {
-            "source_text": "represent · constrain · validate · strengthen · reconcile · retire",
+            "source_text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
             "source_style": {
               "font-weight": "400",
               "font-style": "italic",
@@ -1538,7 +1538,7 @@
             "candidate_style": "italic",
             "source_fragments": [
               {
-                "text": "represent · constrain · validate · strengthen · reconcile · retire",
+                "text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
                 "style": {
                   "font-weight": "400",
                   "font-style": "italic",
@@ -1741,5 +1741,12 @@
         }
       }
     }
-  ]
+  ],
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
 }

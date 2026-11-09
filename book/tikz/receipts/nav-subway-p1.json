@@ -12,7 +12,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+    "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
     "candidate_sha256": "b3f3121dc99bc947e6c9e4958a256dd2c19b2c0d70430ab533e006e33a078c7e",
     "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
     "bold": "Source-derived emphasis includes The Problem. Current-station and title emphasis already match the original; generated projection retained.",
@@ -38,7 +38,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "retained",
-    "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+    "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
     "candidate_sha256": "b3f3121dc99bc947e6c9e4958a256dd2c19b2c0d70430ab533e006e33a078c7e",
     "reason": "Current-station and title emphasis already match the original; generated projection retained.",
     "evidence": [
@@ -141,5 +141,12 @@
       "width_bp": 426.477,
       "height_bp": 75.748
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+    "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

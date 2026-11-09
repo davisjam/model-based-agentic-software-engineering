@@ -136,7 +136,7 @@ for path,text in generated.items():
     if path.suffix == '.json' and path.exists():
         previous=json.loads(path.read_text())
         receipt=json.loads(text)
-        for field in ('style_review','typography_review','layout_review'):
+        for field in ('style_review','typography_review','layout_review','color_source_revision'):
             if field in previous:
                 receipt[field]=previous[field]
         text=json.dumps(receipt,indent=2)+'\n'

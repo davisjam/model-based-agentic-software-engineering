@@ -16,11 +16,11 @@
       "status": "reviewed",
       "source_sha256": "7348e5c194fb29c170695a0bc70838855894781cdd356d0428344ad9fe602fc8",
       "candidate_sha256": "9e49edc86f2aea62d5a3292e7f21422d8c2bcb1e80d8c6aafecc2874e8f55e42",
-      "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter boxes remain white.",
+      "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter boxes remain white.",
       "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-      "routing": "A single vertical chapter sequence; the optional appendix branches were removed at the author’s request.",
+      "routing": "A single vertical chapter sequence; the optional appendix branches were removed at the author\u2019s request.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs.",
+      "visual_review": "Shaded Chapters 2\u20135 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs.",
       "validation": {
         "date": "2026-11-05",
         "proof": "latex/build/tikz/candidates.pdf",
@@ -35,7 +35,7 @@
         "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
         "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
         "status": "passed",
-        "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
+        "visual_review": "Shaded Chapters 2\u20135 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
       },
       "book_references": [
         "part:1",
@@ -59,7 +59,7 @@
             "status": "reviewed",
             "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
             "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
-            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
             "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -102,7 +102,7 @@
             "status": "reviewed",
             "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
             "candidate_sha256": "e0e488a816536137faae76449690a4cd69bf67b5c2c87571e299139de706c522",
-            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
             "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -121,7 +121,7 @@
               "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
               "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
               "status": "passed",
-              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
+              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
             },
             "book_references": [
               "part:1",
@@ -176,7 +176,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+      "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
       "candidate_sha256": "58221bbf8cba09d17de0c6a37a5a9e4bf6f4e1ea0863bd9c77f2f16ecfc7aa99",
       "fill": "All six purpose classes white and equal; the separate form axis supplies the other distinction.",
       "bold": "Source-derived emphasis includes STRUCTURAL; BEHAVIORAL; OWNERSHIP; DECISION; MEASUREMENT; PROVENANCE; REPRESENTATION FORM; MODEL CLASS. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
@@ -195,7 +195,14 @@
         "monochrome_pixels": true,
         "semantic_typography_checks": 16
       },
-      "book_references": []
+      "book_references": [],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "eb30db2e131e52ab6fa600503c7317028f10a39e7b31333b0c81b811b98e1a4d",
+        "source_sha256": "05284a31336bcaec2ace9a4458c9155be7bddf2af805146437782f9fb4db0ed4",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/gloss-agent-vocab.svg",
@@ -671,7 +678,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+      "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
       "candidate_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
       "fill": "White component peers, dark text, and a crossed dashed prohibited bypass.",
       "bold": "Source-derived emphasis includes WEB; API; CACHE; DATABASE; Question:; Semantics:; Analysis:. Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
@@ -690,7 +697,14 @@
         "monochrome_pixels": true,
         "semantic_typography_checks": 13
       },
-      "book_references": []
+      "book_references": [],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+        "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/document-mutation-model.svg",
@@ -770,7 +784,7 @@
       "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
       "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
       "fill": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
-      "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW ×32; CROSS_SERVICE ×1; CONTROL_GATE ×24. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
+      "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW \u00d732; CROSS_SERVICE \u00d71; CONTROL_GATE \u00d724. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
       "routing": "Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
@@ -1255,7 +1269,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+      "source_sha256": "d97e33c2055ac2305997f1c8811588d6b1ce431a58d8d18a67d1b8828e02af11",
       "candidate_sha256": "1f82ec31c5811b59fa3f182b9eb487a82770e60203ca5d2d42084165f2d8253c",
       "fill": "One consistent 8% model role across all three comparisons; implementation/system peers white.",
       "bold": "Source-derived emphasis includes DERIVE; GENERATE; TRACE + CHECK; check (decidable). Restore uppercase alternative-mode headings; italic truth-source annotations and bold decidable check identify different authority relationships.",
@@ -1274,7 +1288,14 @@
         "monochrome_pixels": true,
         "semantic_typography_checks": 10
       },
-      "book_references": []
+      "book_references": [],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+        "source_sha256": "d97e33c2055ac2305997f1c8811588d6b1ce431a58d8d18a67d1b8828e02af11",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/model-sync-two-layer-net.svg",
@@ -1881,7 +1902,7 @@
             "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
             "candidate_sha256": "3143a0eb28e48aa912fab7278621a6a35e7e1f5660345997c7c96e8d4b625390",
             "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-            "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn’s closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
+            "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn\u2019s closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
             "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
             "visual_review": "Modeled ordering uses heavy horizontal arrows; writes use lighter aligned vertical ports.",
@@ -2007,7 +2028,7 @@
       "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
       "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
-      "visual_review": "Nested M1–M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+      "visual_review": "Nested M1\u2013M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
         "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
@@ -2271,7 +2292,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+      "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
       "candidate_sha256": "d099e2d62c9a4ebf07809d68879b3d278212dc9a0e84cb989538054b1073a230",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes Detected violations block re-entry.; Findings; Audit-only; Blocking. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -2291,7 +2312,14 @@
         "semantic_typography_checks": 6
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+        "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/two-evidence-boundaries.svg",
@@ -2594,7 +2622,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+      "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
       "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes ? Enforcement; Measurement; Evidence; Timeout; Report; Model. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -2614,7 +2642,14 @@
         "semantic_typography_checks": 12
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+        "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/mage-staircase.svg",
@@ -2624,7 +2659,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+      "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
       "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes Delegated:; Environment:; 1. CO-CODER. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -2644,7 +2679,14 @@
         "semantic_typography_checks": 4
       },
       "book_references": [],
-      "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+      "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes.",
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+        "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/f19_delegation_over_time.svg",
@@ -2683,7 +2725,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
       "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
       "fill": "Only governed environment state G is 5%; feedback labels identify other roles.",
       "bold": "Source-derived emphasis includes 2 Pressure / discovery: structural diagnosis; Prior engineering knowledge; 3 Governance adaptation; Governed environment; Realized performance; Governance pressure; Agentic capacity; Agentic work. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -2731,7 +2773,14 @@
           },
           "visual_review": "Bootstrap, pressure, adaptation and amplification stay numbered; B/R loops retain outside routes."
         }
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+        "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
@@ -2741,7 +2790,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+      "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
       "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
       "fill": "Encoded property and acceptable region share 5%, tying specification to tolerance.",
       "bold": "Engineer authority and category labels remain bold; interpretation is a regular-weight mechanism within realization.",
@@ -2789,7 +2838,14 @@
           },
           "visual_review": "Probability bracket, two separate aligned inputs and four realizations retained; tolerance input no longer detours through outputs."
         }
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+        "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/determinization-frontier.svg",
@@ -2799,7 +2855,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+      "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
       "candidate_sha256": "e67fdee4705294497b03baa8f40eaec3a248e78a1c4aebadd952941203bb15ee",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes Test / validator / constraint / gate; Structured relation; REPEATABLE DECISION; REPEATED JUDGMENT. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -2819,7 +2875,14 @@
         "semantic_typography_checks": 10
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+        "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/return-governability.svg",
@@ -2829,7 +2892,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+      "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
       "candidate_sha256": "cb851790484135f97c9b16c6e2a440b2e5ad25465ec4a7fbd5564752f3eee751",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes Value of explicit engineering; Feasible governability. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -2849,7 +2912,14 @@
         "semantic_typography_checks": 7
       },
       "book_references": [],
-      "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+      "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes.",
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
+        "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/where-effort-moves.svg",
@@ -2982,7 +3052,7 @@
       "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
       "candidate_sha256": "e82cb37d2574da224bb9372db136bf6354a5beac2999980e356c0c5860a98b1e",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE–REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE\u2013REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Common relations orthogonal; resource mediation and context delivery still detached.",
@@ -3314,7 +3384,7 @@
       "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
       "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
       "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-      "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday’s answer.; the snapshot does not. The check trusts a stale answer.; GOOD · query at the point of use; BAD · copied snapshot; query — no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday\u2019s answer.; the snapshot does not. The check trusts a stale answer.; GOOD \u00b7 query at the point of use; BAD \u00b7 copied snapshot; query \u2014 no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
@@ -4331,7 +4401,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+      "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
       "candidate_sha256": "b3f3121dc99bc947e6c9e4958a256dd2c19b2c0d70430ab533e006e33a078c7e",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes The Problem. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4352,7 +4422,14 @@
       },
       "book_references": [
         "part:1"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "a7e24548016d9cc53ea3d70f1110c18e2c2a77481ec0421c1923c811c08e13e7",
+        "source_sha256": "7e007d8eef482db0ec125e327abb9e077bfa066bff9f6e8aba5bb9c7d6d0d866",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/nav-subway-p2.svg",
@@ -4362,7 +4439,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
+      "source_sha256": "1df2dc0f710ac562d7d4f644e9d316a5d6cc0c5834c2903954d8fb8b48332bbd",
       "candidate_sha256": "380d72a33dd9e24d56eebb148fc1d2894c84a00b8f2500bba8a382987cbcd58d",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes Modeling. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4383,7 +4460,14 @@
       },
       "book_references": [
         "part:2"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "6a843bf32208b3f4ca63ae176fbee42013c98af5ceb69dcdff5b42b512509478",
+        "source_sha256": "1df2dc0f710ac562d7d4f644e9d316a5d6cc0c5834c2903954d8fb8b48332bbd",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/nav-subway-p3.svg",
@@ -4393,7 +4477,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+      "source_sha256": "c31440464eebcf55af512f6a1f7eeff8be07323b0c48b1936bb2a9164a0e711b",
       "candidate_sha256": "49e38dd8e4751b865e02e562f17a03c3e752a880676817247aba22a91b08c366",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes Alignment. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4414,7 +4498,14 @@
       },
       "book_references": [
         "part:3"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "66717040712824332fa86565cea74025c070fc379e7d55ba4819dcda73d35c6f",
+        "source_sha256": "c31440464eebcf55af512f6a1f7eeff8be07323b0c48b1936bb2a9164a0e711b",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/nav-subway-p4.svg",
@@ -4424,7 +4515,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
+      "source_sha256": "9438dcfaca2a5d1e181b99b0fd3277438f45b0b67fe3f8d0054c0f32b4eea03d",
       "candidate_sha256": "727462504be01fc5cb225123101f0472f4a006b186b4b5a5df4d74263886d8f2",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes MAGE in Motion. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4445,7 +4536,14 @@
       },
       "book_references": [
         "part:4"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "2c6cd97020332e96e053601a3d9b5239941dc5613d1f9f87bf511d8dbd299f41",
+        "source_sha256": "9438dcfaca2a5d1e181b99b0fd3277438f45b0b67fe3f8d0054c0f32b4eea03d",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/nav-subway-p5.svg",
@@ -4455,7 +4553,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
+      "source_sha256": "73397de3f9c3cdae9caad33d7824f238834b947701a805329eb2d7fc5dc849f2",
       "candidate_sha256": "b2fe97352a85b55ea8b2c9f3f2d3a2dd3aeaca97432d3deb557dfa8765a0f90d",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes Factories. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4476,7 +4574,14 @@
       },
       "book_references": [
         "part:5"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "7cf345cb43bd581c5bb423c444860b601b6bc1b40cd459c71454164f0ec9ecf6",
+        "source_sha256": "73397de3f9c3cdae9caad33d7824f238834b947701a805329eb2d7fc5dc849f2",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/nav-subway-p6.svg",
@@ -4486,7 +4591,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+      "source_sha256": "4a975864da8098f6f0f34792276f1f392a3dd51dd17adbf3c9753ecb9b63df24",
       "candidate_sha256": "b8a0f71163e50705caf6efa73d42665bbb3388cd13b667cc9789de9c9619220f",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes Theory. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4507,7 +4612,14 @@
       },
       "book_references": [
         "part:6"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "3b2f2037c9ce41b7b41baae87c09e052f44c6912fa49c7b4a5c9edb0f735ffae",
+        "source_sha256": "4a975864da8098f6f0f34792276f1f392a3dd51dd17adbf3c9753ecb9b63df24",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/nav-subway-p7.svg",
@@ -4517,7 +4629,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
+      "source_sha256": "a8d26f50d6774ea972c2ab15cc3bb1c58c33f34a7e0ce35e796269e271c3e8a0",
       "candidate_sha256": "741d396c31605537d6fa3292d065423eaed412b0184785137a020359a905c721",
       "fill": "Solid black station marks current chapter; all other station circles remain white. No shaded panels.",
       "bold": "Source-derived emphasis includes Profession. Current-station and title emphasis already match the original; generated projection retained.",
@@ -4538,12 +4650,19 @@
       },
       "book_references": [
         "part:7"
-      ]
+      ],
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
+        "source_sha256": "a8d26f50d6774ea972c2ab15cc3bb1c58c33f34a7e0ce35e796269e271c3e8a0",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/docable-execution-analysis.svg",
       "candidate": "book/tikz/figures/docable-execution-analysis.tex",
-      "source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+      "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
       "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
       "receipt": "book/tikz/receipts/docable-execution-analysis.json",
       "decision": "retained",
@@ -4572,7 +4691,14 @@
         "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
       },
       "book_references": [],
-      "reviewed_visually": true
+      "reviewed_visually": true,
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
+        "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
+        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
+      }
     },
     {
       "source": "book/assets/deliver-context-two-layer.svg",

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/measurement-no-gate.svg",
-  "claim": "*Modeled and Observed, Not Yet Binding.* A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose — representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.",
+  "claim": "*Modeled and Observed, Not Yet Binding.* A timeout incident produced a measurement, a provisional per-chunk model, and reportable evidence. Production admission still does not depend on the model: its bound is not calibrated strongly enough to justify blocking. The terminal enforcement node is left open on purpose \u2014 representation and observation can mature before enforcement is earned. The open node is part of the evidence, not an omission.",
   "topology": "Historical chain ends in dashed deferred enforcement; report must not appear to block admission.",
   "required_terms": [
     "Timeout",
@@ -20,7 +20,7 @@
   "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
   "questions": [],
-  "alt": "An engineering history, not a system model. A vertical chain. A silent hang and a bare\n    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,\n    whose evidence lets the environment report a would-be breach. The chain ends at report — and then an\n    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,\n    deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,\n    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on\n    purpose — modeled and observed, reported, not yet enforced.",
+  "alt": "An engineering history, not a system model. A vertical chain. A silent hang and a bare\n    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,\n    whose evidence lets the environment report a would-be breach. The chain ends at report \u2014 and then an\n    enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,\n    deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,\n    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on\n    purpose \u2014 modeled and observed, reported, not yet enforced.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -33,7 +33,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+    "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
     "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes ? Enforcement; Measurement; Evidence; Timeout; Report; Model. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -58,7 +58,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+    "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
     "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -472,5 +472,12 @@
       "width_bp": 323.766,
       "height_bp": 272.123
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
+    "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

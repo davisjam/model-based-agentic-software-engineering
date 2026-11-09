@@ -48,7 +48,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+    "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
     "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
     "fill": "Encoded property and acceptable region share 5%, tying specification to tolerance.",
     "bold": "Engineer authority and category labels remain bold; interpretation is a regular-weight mechanism within realization.",
@@ -79,7 +79,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+    "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
     "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
     "reason": "Two probability spans express encoding and realization. Engineer authority remains bold; interpretation is included in the agent realization annotation. The annotation wraps to keep the measurement arrow clear.",
     "evidence": [
@@ -601,5 +601,12 @@
         }
       }
     }
-  ]
+  ],
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+    "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
 }

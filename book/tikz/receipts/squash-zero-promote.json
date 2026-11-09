@@ -1,6 +1,6 @@
 {
   "source": "book/assets/squash-zero-promote.svg",
-  "claim": "*Audit, Drain, Promote.* A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism's declared detection surface are refused at that boundary.",
+  "claim": "*Audit, Drain, Promote.* A new lint lands audit-only \u2014 every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism's declared detection surface are refused at that boundary.",
   "topology": "Audit-only adoption, iterative fix loop to zero, conditional promotion, one-way regression barrier.",
   "required_terms": [
     "Audit-only\\, blocks nothing",
@@ -11,7 +11,7 @@
   "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
   "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Audit-only, cleanup and consequential blocking states distinguished by tone; barrier and remediation loop preserved.",
   "questions": [],
-  "alt": "A new smell-detecting lint moves through three states, left to right. First it lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight agent. Then a fix wave — an agent making behavior-preserving edits under test coverage — drains the finding count to zero; this is drawn as a loop beneath the Findings to zero box and runs while the lint remains audit-only until nothing is left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the class of smell can never return. Squash the findings, drive them to zero, then promote — and the smells that leave stay gone.",
+  "alt": "A new smell-detecting lint moves through three states, left to right. First it lands audit-only: it reports every finding but blocks no commit, so it never breaks an in-flight agent. Then a fix wave \u2014 an agent making behavior-preserving edits under test coverage \u2014 drains the finding count to zero; this is drawn as a loop beneath the Findings to zero box and runs while the lint remains audit-only until nothing is left. Only when the count reaches zero is the lint promoted to blocking: it now fails any commit that reintroduces the smell. A one-way barrier sits after the blocking state, marking that the class of smell can never return. Squash the findings, drive them to zero, then promote \u2014 and the smells that leave stay gone.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -24,7 +24,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+    "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
     "candidate_sha256": "d099e2d62c9a4ebf07809d68879b3d278212dc9a0e84cb989538054b1073a230",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes Detected violations block re-entry.; Findings; Audit-only; Blocking. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -49,7 +49,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+    "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
     "candidate_sha256": "d099e2d62c9a4ebf07809d68879b3d278212dc9a0e84cb989538054b1073a230",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -80,18 +80,18 @@
         ]
       },
       {
-        "source_text": "Findings → 0",
+        "source_text": "Findings \u2192 0",
         "source_style": {
           "font-weight": "700",
           "font-style": "normal",
           "font-size": "24"
         },
         "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Findings → 0",
+        "candidate_text": "Findings \u2192 0",
         "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "Findings → 0",
+            "text": "Findings \u2192 0",
             "style": {
               "font-weight": "700",
               "font-style": "normal",
@@ -283,5 +283,12 @@
       "width_bp": 394.089,
       "height_bp": 157.84
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "f04bba8f22a38f4e04a47163ffa1f238b680ed9af2b87298a6e08e45f36e0853",
+    "source_sha256": "8cdbb6c69ea7e94351a44de0593bbbe824acf253003d71649d3ad4d1c349e032",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -61,7 +61,7 @@
   <!-- two-way link with rust decidable check -->
   <!-- edge: model-trace -> system -->
   <line x1="800" y1="138" x2="800" y2="178" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#dg-r)" marker-end="url(#dg-r)"/>
-  <text x="812" y="163" font-size="19.2" font-weight="700" fill="#9a3f12">check (decidable)</text>
+  <text x="812" y="153" font-size="19.2" font-weight="700" fill="#9a3f12"><tspan x="812">check</tspan><tspan x="812" dy="24">(decidable)</tspan></text>
   <rect id="system" x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="800" y="211" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">system</text>
 

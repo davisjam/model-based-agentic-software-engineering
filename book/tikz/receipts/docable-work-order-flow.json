@@ -247,7 +247,7 @@
     "checked_terminal_approaches": 8,
     "reviewed_peer_groups": 1,
     "svg_audit_findings": 0,
-    "inspection": "SVG and native TikZ proofs visually inspected. All text fits; no strokes through labels; source and grayscale topology agree. Equal parallel agent boxes; repair return clears the right branch. Native 400 × 450 bp authored canvas (standalone output 401.99 × 449.99 bp).",
+    "inspection": "SVG and native TikZ proofs visually inspected. All text fits; no strokes through labels; source and grayscale topology agree. Equal parallel agent boxes; repair return clears the right branch. Native 400 \u00d7 450 bp authored canvas (standalone output 401.99 \u00d7 449.99 bp).",
     "proof_pdf": "/private/tmp/factory-figure-draft/proof.pdf",
     "proof_sha256": "92323f9e68dcf87b5874d2417d518a9e8f7ba388fd6d9cb45e43b6c681e9fb41"
   },
@@ -263,5 +263,12 @@
     "monochrome_pixels": true,
     "semantic_typography_checks": 10,
     "status": "passed"
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
+    "source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

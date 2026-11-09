@@ -1,29 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: determinization-frontier). NEW simplified figure for Chapter 6 §6.1.5,
-     replacing the visually busy old-6.3 figure per the D2->D3 handoff (SS-G Q2: NEW slug
-     `determinization-frontier`; retires `determinization-two-paths`, whose two-row layout this figure
-     redraws as a single converging tree). Geometry follows the brief's simplified ASCII spec verbatim in
-     STRUCTURE: REPEATED JUDGMENT splits on "is the property already decidable over the current artifact?";
-     the LEFT route (already decidable) is ALIGNMENT, encoding the predicate directly into a test, validator,
-     constraint, or gate; the RIGHT route (requires reconstruction) is MODELING, changing the representation
-     into a structured relation first; both routes converge on a shared "predicate over model" step (even
-     Alignment's direct encoding IS a predicate evaluated over the artifact taken as its own trivial model)
-     before landing on REPEATABLE DECISION. The convergence is drawn SYMMETRICALLY (both branches elbow
-     inward to a centered merge point) rather than the ASCII's left-elbow/right-straight offset, which was a
-     monospace-grid artifact, not a deliberate asymmetry — a symmetric merge reads cleaner in a real diagram
-     and preserves the same structure. Connector color tracks family from the branch split onward (rust =
-     governance/Alignment, green = modeling/Modeling) so the reader's eye follows one thesis at a time down
-     to the point where both threads visibly merge into one deterministic outcome.
-     Palette: Umber Monograph tokens (muted gray #57534e neutral judgment + connectors, governance rust
-     #9a3f12 Alignment branch + final crossing, modeling green #1f7a4d Modeling branch, ink #1c1917 box
-     names, tints #faf1e6 rust-box fill / #e3f0e7 green-box fill / #f3efe7 neutral-box fill, page #fdfcf9).
-     Fonts in the 14-26px band at the 1000px reference width. -->
-<!-- semantic-families: governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640"
-     role="group" aria-labelledby="dfTitle dfDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="dfTitle">The determinization frontier: two routes by which repeated judgment becomes machinery</title>
-  <desc id="dfDesc">A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:
+<!-- Chapter 6 print composition: authored geometry and readable type. Original title/description and native monochrome partner retained. Width declared by stable figure label. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 438" width="600" height="438" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">The determinization frontier: two routes by which repeated judgment becomes machinery</title>
+<desc id="figure-description">A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:
     when a property is already decidable over the current artifact, Alignment encodes the predicate directly
     into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,
     Modeling changes the representation first, producing a structured relation. Both routes converge on a
@@ -31,89 +10,35 @@
     as its own trivial model, Modeling's check is a predicate over the externalized structured relation — and
     both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the
     two sides the determinization frontier.</desc>
-
-  <defs>
-    <marker id="df-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="df-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="df-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
-  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The determinization frontier</text>
-  <text x="500" y="62" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Two routes by which repeated judgment becomes machinery</text>
-
-  <!-- root: REPEATED JUDGMENT -->
-  <rect id="repeated-judgment" x="360" y="84" width="280" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="500" y="117" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATED JUDGMENT</text>
-
-  <!-- transparent anchors: the two decidability questions are nodes (the split criterion) -->
-  <rect id="left-question" x="178" y="196" width="144" height="34" fill="none" stroke="none"/>
-  <rect id="right-question" x="678" y="196" width="144" height="34" fill="none" stroke="none"/>
-
-  <!-- T-split: neutral (still undecided) trunk forks to each decidability question; one path per branch -->
-  <!-- edge: repeated-judgment -> left-question -->
-  <path d="M376,138 L376,166 L306,166 L306,194" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#df-mut)"/>
-  <!-- edge: repeated-judgment -> right-question -->
-  <path d="M624,138 L624,166 L694,166 L694,194" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#df-mut)"/>
-
-  <!-- decidability judgment labels -->
-  <text x="250" y="207" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">property already</text>
-  <text x="250" y="223" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">decidable</text>
-  <text x="750" y="207" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">property requires</text>
-  <text x="750" y="223" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reconstruction</text>
-
-  <!-- the route family colors the connector from the answered question onward -->
-  <!-- edge: left-question -> alignment -->
-  <path d="M250,230 L250,252" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
-  <!-- edge: right-question -> modeling -->
-  <path d="M750,230 L750,252" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
-
-  <!-- ALIGNMENT / MODELING -->
-  <rect id="alignment" x="145" y="254" width="210" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="250" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ALIGNMENT</text>
-  <text x="250" y="302" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">encode predicate</text>
-
-  <rect id="modeling" x="633.82" y="254" width="232.35" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="750" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MODELING</text>
-  <text x="750" y="302" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">change representation</text>
-
-  <!-- edge: alignment -> align-terminal -->
-  <path d="M250,318 L250,340" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
-  <!-- edge: modeling -> model-terminal -->
-  <path d="M750,318 L750,340" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
-
-  <!-- terminal boxes: encoded outcome / structured relation -->
-  <rect id="align-terminal" x="135" y="342" width="230" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="250" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">test / validator</text>
-  <text x="250" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">constraint / gate</text>
-
-  <rect id="model-terminal" x="635" y="342" width="230" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="750" y="380" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">structured relation</text>
-
-  <!-- transparent anchor: the shared "predicate over model" step is a node both routes converge on -->
-  <rect id="predicate-over-model" x="470" y="428" width="60" height="52" fill="none" stroke="none"/>
-
-  <!-- convergence: symmetric elbows into the shared merge point; one path per branch -->
-  <!-- edge: align-terminal -> predicate-over-model -->
-  <path d="M349,406 L349,416 L486,416 L486,426" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
-  <!-- edge: model-terminal -> predicate-over-model -->
-  <path d="M651,406 L651,416 L514,416 L514,426" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
-
-  <text x="500" y="454" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicate</text>
-  <text x="500" y="470" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">over model</text>
-
-  <!-- edge: predicate-over-model -> repeatable-decision -->
-  <path d="M500,480 L500,500" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#df-rust)"/>
-
-  <!-- outcome: REPEATABLE DECISION -->
-  <rect id="repeatable-decision" x="340" y="502" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
-  <text x="500" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATABLE DECISION</text>
-
-  <text x="500" y="606" text-anchor="middle" font-size="20" font-weight="700" font-style="italic" fill="#9a3f12">←— determinization frontier —→</text>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker><marker id="purple-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#7c6bb0"/></marker></defs>
+<rect id="repeated-judgment" x="166" y="8" width="268" height="44" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="300" y="37" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">REPEATED JUDGMENT</text>
+<path d="M233 52 V68 H150 V79" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#muted-arrow)"/>
+<path d="M367 52 V68 H450 V79" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#muted-arrow)"/>
+<text x="150" y="98" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">property already</text>
+<text x="150" y="121" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">decidable</text>
+<text x="450" y="98" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">property requires</text>
+<text x="450" y="121" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">reconstruction</text>
+<path d="M150 127 L150 142" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<path d="M450 127 L450 142" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#green-arrow)"/>
+<rect id="alignment" x="27" y="144" width="246" height="58" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="150" y="168" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">ALIGNMENT</text>
+<text x="150" y="192" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">encode predicate</text>
+<rect id="modeling" x="327" y="144" width="246" height="58" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="450" y="168" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">MODELING</text>
+<text x="450" y="192" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">change representation</text>
+<path d="M150 202 L150 219" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<path d="M450 202 L450 219" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#green-arrow)"/>
+<rect id="align-terminal" x="27" y="221" width="246" height="54" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="150" y="244" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">test / validator</text>
+<text x="150" y="267" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">constraint / gate</text>
+<rect id="model-terminal" x="327" y="221" width="246" height="54" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="450" y="254" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">structured relation</text>
+<path d="M150 275 V291 H285 V305" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<path d="M450 275 V291 H315 V305" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#green-arrow)"/>
+<text x="300" y="327" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">predicate over model</text>
+<path d="M300 335 L300 351" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<rect id="repeatable-decision" x="140" y="353" width="320" height="44" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="300" y="382" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">REPEATABLE DECISION</text>
+<text x="300" y="425" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700" font-style="italic">← determinization frontier →</text>
 </svg>

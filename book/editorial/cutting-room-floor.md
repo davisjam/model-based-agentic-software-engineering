@@ -12482,3 +12482,141 @@ Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 174–
 Engineers must decide when a question deserves a model, when an obligation deserves enforcement, how work should move through the environment, and what to do when the available representation or control is insufficient. Building on these accounts of Modeling and Alignment, \magevalue{chapter:one-problem-many-models} shows how engineers use and revise models and controls together as an engineering problem develops.
 
 ```
+
+
+## Chapter 6 final targeted prose pass — 2026-11-09
+
+Original revision: `ba4ea43ab6df5d9ba001b0679ee54e641fa5bbbf`. The following passages preserve the originals before the requested P1 condensation, research-agenda correction, probability clarification, and selective vocabulary changes. Source line ranges refer to that working baseline; complete source snapshots and SHA-256 digests accompany the replacement map. No material is silently discarded.
+
+### C6-FINAL-01 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:14–14
+
+Reason: Use the exact requested broader theory opening.
+
+```tex
+A software factory must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. Within the software factory (\magevalue{chapter:software-factories}), engineers state consequential obligations and agents attempt to produce realizations that fulfill them.
+```
+
+### C6-FINAL-02 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:41–41
+
+Reason: Discuss the producing agent without requiring the factory metaphor.
+
+```tex
+The two terms distinguish failures in what the factory was asked to produce from failures in producing it. Holding the task population and production setup fixed, \(R\) names the representation choice; probabilities range over the encodings and realizations produced through it. The first question is whether the representation captures the consequential intent the engineer authorizes. The second is whether the resulting artifact fulfills those obligations.
+```
+
+### C6-FINAL-03 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:88–88
+
+Reason: The accounting warning concerns any engineering process.
+
+```tex
+This accounting does not assume that tasks cost the same, that retries are independent, or that the environment stands still. It does require comparable work. A factory that accepts only easy changes may have an attractive \(c_N\) while leaving important requests unfinished. Comparisons should therefore hold the requested work and evaluation horizon fixed, report what was delivered and left unresolved, and measure escaped failures and false rejection alongside cost. Repeated attempts often change the specification, tools, or next plan; observed delivery costs can count that learning without pretending that every retry starts over under identical conditions.
+```
+
+### C6-FINAL-04 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:102–102
+
+Reason: Use the general capability/environment vocabulary for the same packaged-system comparison.
+
+```tex
+This gives the vendor factory a place in the theory. A capable fabricator and generic supervisory machinery may economically replace some structure that a weaker reasoner would need. How much can they replace, and for which obligations? We can compare what those arrangements deliver, what escapes their assurance, and what they cost, while also asking what engineering knowledge survives for the next task.
+```
+
+### C6-FINAL-05 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:127–127
+
+Reason: Preserve the three distinct valuation examples without making a factory the required unit.
+
+```tex
+A low cost per correct change still does not establish that the changes were worth making. A product factory may value capabilities delivered to customers; a security factory may value risk retired; an accessibility factory may value documents made accessible and remediation effort avoided. The accounting names the expenditure, while the engineering decision must also consider the value of the result and the consequences of failure. A repair cost already charged to running the factory should not be counted again as a separate loss.
+```
+
+### C6-FINAL-06 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:129–129
+
+Reason: The carrying-cost argument concerns the inherited environment even when work stops.
+
+```tex
+Nor does an idle factory necessarily become free. It may retain operating costs, and its engineering assets may need maintenance as dependencies, requirements, and tools change. Some structures remain useful for years with little attention; others lose fit quickly. This is why the return on an environment depends on its useful life and carrying cost, rather than on a one-time demonstration that it can produce correct software.
+```
+
+### C6-FINAL-07 · book/latex/sources/part6/6.3-scope-conditions.tex:43–43
+
+Reason: Keep the concrete authority limitation while using the same general term as §6.1.
+
+```tex
+The organization also needs diagnostic capacity and authority to adapt. Repeated failures become useful evidence only when someone can recognize the missing abstraction, boundary, invariant, or control. That diagnosis must then have a path into the shared environment. A contractor may identify a recurring failure without permission to modify the client's development pipeline. A packaged software factory may allow task instructions while preventing changes to its underlying controls. The engineer can see the problem in either case, yet be unable to convert the diagnosis into a durable intervention.
+```
+
+### C6-FINAL-08 · book/latex/sources/part6/6.5-what-the-theory-claims.tex:29–30
+
+Reason: Use the general actor in the concluding synthesis, leaving all five claims intact.
+
+```tex
+Together, these claims explain the dynamic at the center of MAGE. Commodity intelligence increases what a fabricator can attempt. Engineering determines how much of that capacity becomes reliable, governable, and cumulative.
+```
+
+### C6-FINAL-09 · book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:146–146
+
+Reason: Replace the existing first-expression explanation with the user’s exact clarification immediately after the equation; avoid repeating the same point.
+
+```tex
+The first expression says that faithful production depends on the inherited environment as well as the immediate task and reasoning arrangement. The second says that the episode can change that environment. A failed attempt may leave a useful diagnosis or a new control even when it produces no admitted change. The notation holds the model and harness fixed to expose inheritance; they too can change across a longer sequence. These are schematic relationships, not calibrated laws or a claim that every episode improves the environment.
+```
+
+### C6-FINAL-10 · book/latex/sources/part6/6.2-what-the-theory-predicts.tex:27–27
+
+Reason: Remove the duplicated generic dependency setup; DocAble becomes the principal example.
+
+```tex
+Consider what happens when an engineer enters an unfamiliar system to answer a seemingly simple question: \emph{Can this service depend on that one?} The answer may be distributed across source files, configuration, dependency injection, deployment descriptors, documentation, and conventions that exist only in the history of the system. Before reasoning about the dependency, the engineer must first reconstruct enough of the system to know what the dependency means.
+```
+
+### C6-FINAL-11 · book/latex/sources/part6/6.2-what-the-theory-predicts.tex:31–31
+
+Reason: Use the author’s exact quantitative DocAble replacement.
+
+```tex
+An agent faces the same problem. A larger context window can accommodate more material, and better retrieval can bring useful evidence closer. Alternatively, a different representation can reduce what must be loaded or reconstructed in the first place. DocAble encountered a concrete limit: one document produced roughly 590,000 tokens of reasoning representation against a 272,000-token context. Using a more costly foundation model with a larger context window was one possible response. Windowing and whole-document compression offered another, changing the amount and form of information presented for each judgment.
+```
+
+### C6-FINAL-12 · book/latex/sources/part6/6.2-what-the-theory-predicts.tex:35–35
+
+Reason: Use the author’s exact external-representation paragraph with the existing citation keys.
+
+```tex
+In building DocAble, I encountered this choice when deciding how to represent large documents for remediation. Research on external representations has long shown that how information is organized changes the work required to reason with it.\citep{larkin1987diagram, zhang1994representations} A useful model applies that principle to an engineering question: it presents the consequential structure directly. A dependency graph, for example, can let the engineer inspect the relationships relevant to a boundary without first reconstructing them from scattered implementation details.
+```
+
+### C6-FINAL-13 · book/latex/sources/part6/6.4-research-agenda.tex:14–14
+
+Reason: Use the exact three-sentence override; omit the four-isolated-studies meta sentence.
+
+```tex
+The next step is to find out when these mechanisms matter, by how much, and at what cost. Three directions organize that work: representation engineering, governance and engineering capital, and the interaction between capacity and environment. The four propositions help distinguish their questions; they do not require four isolated studies or a separate research program for every possible variable.
+```
+
+### C6-FINAL-14 · book/latex/sources/part6/6.4-research-agenda.tex:18–39
+
+Reason: Make the comparison represent P4 as a whole; retain the human-review experiment in the following subsection.
+
+```tex
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.19}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.40}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.41}}@{}}
+\caption[Comparisons that distinguish MAGE's proposed effects]{Four comparisons connecting the theoretical propositions to observable outcomes.}\label{theory-experimental-comparisons}\tabularnewline
+\toprule\noalign{}
+Question & Comparison & What to measure \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Question & Comparison & What to measure \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Representation (P1) & Structured representation versus prose containing the same obligations & Correctness and reasoning cost across task families and agent capabilities \\
+Assurance (P2) & Independent model-derived checks versus existing checks & Escape and false rejection, alongside correct delivery \\
+Conversion (P3) & Corrections retained as instructions versus conversion into durable controls & Later capability, recurrence and cost per correct delivery, including construction and upkeep \\
+Human review (P4) & Code review versus model-and-evidence review, at fixed review capacity & Decision accuracy and correct throughput as agent output increases \\
+\end{longtable}
+}
+```

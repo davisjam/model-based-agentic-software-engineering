@@ -7,7 +7,7 @@
      the orthogonal axis: purpose (blue) is distinct from encoding shape (gray). System Knowledge is NOT
      a 7th box; the below-figure line names it as the connected substrate. Grammar: blue #2f5169 = model;
      gray #57534e = representation form/encoding. Hand-authored (a class grid + rep-form row, not a flow). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415" width="960" height="415"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440"
      role="img" aria-labelledby="onTitle onDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
@@ -73,5 +73,5 @@
   <text x="480" y="314" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
   <text x="480" y="342" text-anchor="middle" font-size="19.2" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
-  <text x="480" y="394" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
+  <text x="480" y="394" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917"><tspan x="480">Connected through shared identity and traceability,</tspan><tspan x="480" dy="24">these models form the system&#8217;s explicit engineering knowledge.</tspan></text>
 </svg>

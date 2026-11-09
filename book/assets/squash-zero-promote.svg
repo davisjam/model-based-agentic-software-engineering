@@ -5,7 +5,7 @@
      Mermaid's stateDiagram draws the three states but not the drain-loop-under-a-state plus
      the one-way barrier that is the point; the barrier + loop want bespoke placement.
      Accent #2f5169, source-red #b23b3b, cream #faf1e6, panel #e7edf3. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="1000" height="420"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 76 1000 248" width="1000" height="248"
      role="group" aria-labelledby="szpTitle szpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="szpTitle">Squash, zero, promote: how a lint is worn into a legacy tree one step at a time</title>
@@ -72,5 +72,5 @@
   <g fill="none" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#szpArrowRed)">
     <path d="M845,206 C845,240 940,240 966,206"/>
   </g>
-  <text x="812" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">a detected violation now blocks re-entry</text>
+  <text x="750" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">a detected violation now blocks re-entry</text>
 </svg>

@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Chapter 6 Figure 6.3-1 — return-governability.svg. A 2x2 that separates two independent questions.
-     Y = VALUE OF EXPLICIT ENGINEERING (low->high): how worthwhile it is to invest in making the
-     obligation explicit. X = FEASIBLE GOVERNABILITY (low->high; representation, evidence, evaluation):
-     how feasible it is to enforce the obligation. Each quadrant carries the same grammar — an
-     italic coordinate in its OUTER corner (so direction never needs reconstructing), a bold coloured
-     prescription, then two sentences. Both left quadrants stay judgmental; the difference is whether it
-     is worth investing to make that judgment explicit and well-supported. Lower-right is the load-bearing
-     one: governable does not imply worth mechanizing. Palette: green #1f7a4d (explicit judgment), rust
-     #9a3f12 (enforcement), muted #57534e (informal), blue #2f5169 (selective), coords #78716c, ink #1c1917. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 880" width="1080" height="880"
-     role="img" aria-labelledby="rgTitle rgDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rgTitle">Value of explicit engineering versus feasible governability: a 2x2 of engineering investment</title>
-  <desc id="rgDesc">A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the
+<!-- Chapter 6 print composition: authored geometry and readable type. Original title/description and native monochrome partner retained. Width declared by stable figure label. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 623" width="800" height="623" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Value of explicit engineering versus feasible governability: a 2x2 of engineering investment</title>
+<desc id="figure-description">A two-by-two chart. The vertical axis is the value of making an obligation explicit, from low at the
     bottom to high at the top. The horizontal axis is feasible governability — representation, evidence, evaluation —
     from low on the left to high on the right. Upper left, high value and low feasible governability: invest in explicit
     judgment; the obligation matters but the environment cannot yet decide it reliably, so make the judgment more
@@ -21,61 +11,42 @@
     low value and low feasible governability: leave judgment informal; it neither warrants explicit engineering nor
     admits economical governance. Lower right, low value and high feasible governability: mechanize selectively;
     governability alone does not justify machinery.</desc>
-
-  <!-- axis labels -->
-  <text x="540" y="34" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="0.4" fill="#57534e">VALUE OF EXPLICIT ENGINEERING</text>
-  <text x="540" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#78716c">HIGH</text>
-  <text x="540" y="862" text-anchor="middle" font-size="13.5" font-weight="700" fill="#78716c">LOW</text>
-
-  <text x="540" y="450" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="0.4" fill="#57534e">FEASIBLE GOVERNABILITY</text>
-  <text x="540" y="471" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">representation · evidence · evaluation</text>
-  <text x="26" y="461" text-anchor="start" font-size="13.5" font-weight="700" fill="#78716c">LOW</text>
-  <text x="1054" y="461" text-anchor="end" font-size="13.5" font-weight="700" fill="#78716c">HIGH</text>
-
-  <!-- ===================== UPPER-LEFT — high value, low feasible governability ===================== -->
-  <rect x="60" y="74" width="460" height="350" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="86" y="106" text-anchor="start" font-size="13.5" font-style="italic" fill="#78716c">High value · Low feasible governability</text>
-  <text x="86" y="150" text-anchor="start" font-size="21" font-weight="700" fill="#1f7a4d">Invest in explicit judgment</text>
-  <g font-size="15" fill="#1c1917">
-    <text x="86" y="186">The obligation matters, but the environment</text>
-    <text x="86" y="208">cannot yet decide it reliably. Make the judgment</text>
-    <text x="86" y="230">more explicit and repeatable through models,</text>
-    <text x="86" y="252">knowledge, examples, procedures, evidence, and</text>
-    <text x="86" y="274">structured evaluation.</text>
-  </g>
-
-  <!-- ===================== UPPER-RIGHT — high value, high feasible governability ===================== -->
-  <rect x="560" y="74" width="460" height="350" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
-  <text x="994" y="106" text-anchor="end" font-size="13.5" font-style="italic" fill="#78716c">High value · High feasible governability</text>
-  <text x="586" y="150" text-anchor="start" font-size="21" font-weight="700" fill="#9a3f12">Invest in enforcement</text>
-  <g font-size="15" fill="#1c1917">
-    <text x="586" y="186">The obligation matters and can be evaluated</text>
-    <text x="586" y="208">reliably enough to carry consequences. Build the</text>
-    <text x="586" y="230">representations, constraints, validators, gates,</text>
-    <text x="586" y="252">proofs, or other machinery needed to enforce</text>
-    <text x="586" y="274">it.</text>
-  </g>
-
-  <!-- ===================== LOWER-LEFT — low value, low feasible governability ===================== -->
-  <rect x="60" y="486" width="460" height="350" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
-  <text x="86" y="528" text-anchor="start" font-size="21" font-weight="700" fill="#57534e">Leave judgment informal</text>
-  <g font-size="15" fill="#1c1917">
-    <text x="86" y="564">The obligation neither warrants substantial</text>
-    <text x="86" y="586">explicit engineering nor admits economical</text>
-    <text x="86" y="608">governance. Handle it through ordinary situated</text>
-    <text x="86" y="630">judgment rather than building durable structure</text>
-    <text x="86" y="652">around it.</text>
-  </g>
-  <text x="86" y="812" text-anchor="start" font-size="13.5" font-style="italic" fill="#78716c">Low value · Low feasible governability</text>
-
-  <!-- ===================== LOWER-RIGHT — low value, high feasible governability ===================== -->
-  <rect x="560" y="486" width="460" height="350" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
-  <text x="586" y="528" text-anchor="start" font-size="21" font-weight="700" fill="#2f5169">Mechanize selectively</text>
-  <g font-size="15" fill="#1c1917">
-    <text x="586" y="564">The obligation is governable, but governability</text>
-    <text x="586" y="586">alone does not justify machinery. Use lightweight</text>
-    <text x="586" y="608">Modeling or Alignment only where the benefit</text>
-    <text x="586" y="630">exceeds its construction and carrying cost.</text>
-  </g>
-  <text x="994" y="812" text-anchor="end" font-size="13.5" font-style="italic" fill="#78716c">Low value · High feasible governability</text>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker><marker id="purple-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#7c6bb0"/></marker></defs>
+<text x="400" y="24" text-anchor="middle" font-size="21" fill="#57534e" font-weight="700">VALUE OF EXPLICIT ENGINEERING</text>
+<text x="400" y="49" text-anchor="middle" font-size="20" fill="#57534e" font-weight="700">HIGH</text>
+<rect x="32" y="65" width="354" height="218" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="209" y="95" text-anchor="middle" font-size="21" fill="#1f7a4d" font-weight="700">Invest in explicit judgment</text>
+<text x="48" y="128" text-anchor="start" font-size="20" fill="#1c1917">The obligation matters, but cannot</text>
+<text x="48" y="152" text-anchor="start" font-size="20" fill="#1c1917">yet be decided reliably. Make</text>
+<text x="48" y="176" text-anchor="start" font-size="20" fill="#1c1917">judgment explicit and repeatable</text>
+<text x="48" y="200" text-anchor="start" font-size="20" fill="#1c1917">through models, knowledge,</text>
+<text x="48" y="224" text-anchor="start" font-size="20" fill="#1c1917">examples, procedures, evidence,</text>
+<text x="48" y="248" text-anchor="start" font-size="20" fill="#1c1917">and structured evaluation.</text>
+<rect x="414" y="65" width="354" height="218" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="591" y="95" text-anchor="middle" font-size="21" fill="#9a3f12" font-weight="700">Invest in enforcement</text>
+<text x="430" y="128" text-anchor="start" font-size="20" fill="#1c1917">The obligation matters and can be</text>
+<text x="430" y="152" text-anchor="start" font-size="20" fill="#1c1917">evaluated reliably enough to carry</text>
+<text x="430" y="176" text-anchor="start" font-size="20" fill="#1c1917">consequences. Build the needed</text>
+<text x="430" y="200" text-anchor="start" font-size="20" fill="#1c1917">representations, constraints,</text>
+<text x="430" y="224" text-anchor="start" font-size="20" fill="#1c1917">validators, gates, proofs, or other</text>
+<text x="430" y="248" text-anchor="start" font-size="20" fill="#1c1917">enforcement machinery.</text>
+<rect x="32" y="363" width="354" height="218" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="209" y="393" text-anchor="middle" font-size="21" fill="#57534e" font-weight="700">Leave judgment informal</text>
+<text x="48" y="426" text-anchor="start" font-size="20" fill="#1c1917">The obligation neither warrants</text>
+<text x="48" y="450" text-anchor="start" font-size="20" fill="#1c1917">substantial explicit engineering nor</text>
+<text x="48" y="474" text-anchor="start" font-size="20" fill="#1c1917">admits economical governance.</text>
+<text x="48" y="498" text-anchor="start" font-size="20" fill="#1c1917">Use ordinary situated judgment</text>
+<text x="48" y="522" text-anchor="start" font-size="20" fill="#1c1917">rather than durable structure.</text>
+<rect x="414" y="363" width="354" height="218" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="591" y="393" text-anchor="middle" font-size="21" fill="#2f5169" font-weight="700">Mechanize selectively</text>
+<text x="430" y="426" text-anchor="start" font-size="20" fill="#1c1917">Governability alone does not</text>
+<text x="430" y="450" text-anchor="start" font-size="20" fill="#1c1917">justify machinery. Use lightweight</text>
+<text x="430" y="474" text-anchor="start" font-size="20" fill="#1c1917">Modeling or Alignment where the</text>
+<text x="430" y="498" text-anchor="start" font-size="20" fill="#1c1917">benefit exceeds construction</text>
+<text x="430" y="522" text-anchor="start" font-size="20" fill="#1c1917">and carrying cost.</text>
+<text x="400" y="314" text-anchor="middle" font-size="21" fill="#57534e" font-weight="700">FEASIBLE GOVERNABILITY</text>
+<text x="400" y="341" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">representation · evidence · evaluation</text>
+<text x="32" y="327" text-anchor="start" font-size="20" fill="#57534e" font-weight="700">LOW</text>
+<text x="768" y="327" text-anchor="end" font-size="20" fill="#57534e" font-weight="700">HIGH</text>
+<text x="400" y="608" text-anchor="middle" font-size="20" fill="#57534e" font-weight="700">LOW</text>
 </svg>
