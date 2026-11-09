@@ -18323,3 +18323,17 @@ People use that record to change what later agents receive. They watch River wor
 The second cost is maintaining what later work inherits. Shopify repairs divergent instructions; Cloudflare revises policy representations and moves suitable checks earlier; Kiro\textquotesingle s improvement experiments acquire new regression assertions. Each preserved lesson can reduce future reconstruction or repeated judgment, but the resulting artifact must remain connected to the work it governs. This is the carrying-cost question from \magevalue{sec:the-software-factory} in operational form.
 
 ```
+
+
+## Chapter 6 specification paragraph — 9 November 2026
+
+### Complete Specification (Edit 2)
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:69`
+- Source revision: `bf3cc197cb3f43d95bda7869589dd8f18069a23a`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive opening and local simplification; retain the relationship between specification cost, useful freedom, and engineering control.
+
+```latex
+Nor does the bound argue for complete specification. Some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. Elsewhere, specifying nearly every realization decision in advance recreates much of the specification cost discussed in \magevalue{chapter:software-factories}. More importantly, it sacrifices a major advantage of commodity intelligence: agents can explore implementation choices that engineers need not make themselves. The engineer can specify the consequential obligations, leave other choices open, and let the agent find a satisfactory realization. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the environment can preserve while maintaining adequate control.
+```
