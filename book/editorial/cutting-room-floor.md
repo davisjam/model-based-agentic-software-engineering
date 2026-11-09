@@ -12108,3 +12108,32 @@ These mechanisms make the engineering environment progressively capable of carry
 
 
 Acceptance source revision: `896d2cc1dab8fb8fb97463a92443644696e62f4d`. The integrating commit records the landing revision.
+
+
+## Chapter 7 — A67 and A70 accepted (2026-11-09)
+
+Accepted by the author in chat. Original passages preserved below. Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+
+### A67 — Define the productivity boundary by the work, not the interface
+
+This makes the disagreement empirically testable. **If agents remain trapped in the IDE, the 15-percent argument largely wins. If governed agents can assume meaningful portions of debugging, testing, refactoring, integration, migration, and operation without proportionate growth in human review, a fixed coding-time slice is no longer the right model of attainable leverage.** MAGE is about crossing that boundary without losing engineering control.
+
+### A70 — Explain how a model can repay its cost in a single use
+
+More modeling need not mean more permanently maintained models. Agents can make it economical to construct a dependency graph, a state abstraction, a quantitative model, or another purposeful reduction for one consequential question and discard it afterward. Historically the construction cost demanded repeated reuse to justify itself, and cheap machine reasoning moves that threshold. A model can matter because reasoning passes through it today; an organization need not preserve it forever.
+
+
+## Chapter 7 — A71 and A73 accepted (2026-11-09)
+
+Accepted by the author in chat. Original passages preserved below.
+
+### A71 — Turn the price-ratio qualification into an engineering choice
+
+<!-- point: the-economics-change-without-fixing-the-destination | The price ratio between a model and the implementation it describes has moved; which representations become primary is a separate question the preceding section already declined to settle, so this one makes the historical claim and stops. -->
+
+The claim is about price, and it stops there. Moving an economic boundary does not determine which representations will become primary. {{sec:reorganization-of-se}} walked through several places the displaced effort can settle and declined to name one, and nothing in this history overrides that restraint. What can be said here is historical: the price ratio between a model and the implementation it describes has moved, and surfaces that could never justify a maintained representation now sometimes can.
+
+### A73 — Close on the economic design problem without implying prior impossibility
+
+The claim is bounded in two directions. MAGE does not depend on inventing new modeling or verification techniques, and it does not hold that model-first organization is where software engineering must arrive. What it claims is narrower. MAGE makes selected engineering representations authoritative within an increasingly automated production system, and applies the same approach to the production process itself. Commodity intelligence changes the economics of maintaining that arrangement: it is now buildable, and building it is an engineering problem in its own right.
+
