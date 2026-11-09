@@ -1,70 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Chapter 3 3.3.4 figure — positive-negative-obligation.svg (v7 draft; folds to book/assets/).
-     v7 edit (3.3-3): terminology obligation -> CONSTRAINT (heading P27; caption NEW says "negative and
-     positive constraints"); simplify the two-column geometry; REMOVE the example microcopy
-     ("e.g. a raw format library behind a typed seam — the ban holds it") and the matching right-hand
-     explanatory lines so the columns read clean. NEGATIVE: ordinary code (gray, implementation) MUST NOT
-     reach a raw library — a barred, crossed, dashed relation (rust #9a3f12 = the declared constraint /
-     forbidden relation). POSITIVE: a mutation verb (gray) MUST reach an evidence-producing action, the
-     target itself being the constraint (rust box), "must call". Both are source-time rules; they restrict
-     the admissible implementation space from opposite directions. Grammar: gray = ordinary/implementation
-     code; rust = the declared constraint (a forbidden relation on the left, a required one on the right). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440"
-     role="img" aria-labelledby="poTitle poDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior</title>
-  <desc id="poDesc">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
+<!-- Compact teaching geometry; print width is declared by stable figure label in book/data/figure-print-layout.json. Text remains at 9–10 pt in the PDF. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" width="600" height="240" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior</title>
+<desc id="figure-description">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
     between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that
     produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,
     from opposite directions.</desc>
-
-  <defs>
-    <marker id="po-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <!-- divider between the two columns -->
-  <line x1="480" y1="44" x2="480" y2="360" stroke="#e7e2da" stroke-width="1.6"/>
-
-  <!-- ============ NEGATIVE ============ -->
-  <text x="250" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE CONSTRAINT</text>
-  <text x="250" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">removes a forbidden action</text>
-
-  <rect id="po-ordinary" x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="250" y="166" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">ordinary code</text>
-
-  <!-- forbidden edge: barred, crossed (absent relation — endpoints still plug into both boxes) -->
-  <!-- edge: po-ordinary .. po-rawlib -->
-  <line x1="250" y1="190" x2="250" y2="274" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
-  <!-- the bar / prohibition mark -->
-  <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
-    <line x1="228" y1="220" x2="272" y2="242"/>
-    <line x1="272" y1="220" x2="228" y2="242"/>
-  </g>
-  <text x="298" y="236" font-size="19.2" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
-
-  <rect id="po-rawlib" x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
-  <text x="250" y="312" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">raw library</text>
-
-  <!-- ============ POSITIVE ============ -->
-  <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
-  <text x="710" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
-
-  <rect id="po-verb" x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="710" y="166" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">mutation verb</text>
-
-  <text x="758" y="236" font-size="19.2" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
-
-  <rect id="po-stamp" x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="710" y="305" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">MUST stamp</text>
-  <text x="710" y="325" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
-
-  <!-- required edge: solid rust arrow, drawn ON TOP of its target box so the arrowhead is not capped -->
-  <!-- edge: po-verb -> po-stamp -->
-  <line x1="710" y1="190" x2="710" y2="272" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#po-r)"/>
-
-  <!-- footer: protect the point -->
-  <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="408" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker></defs>
+<text x="150" y="27" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">NEGATIVE CONSTRAINT</text>
+<rect x="45" y="47" width="210" height="43" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="150" y="75" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">ordinary code</text>
+<line x1="150" y1="90" x2="150" y2="164" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="6 4"/>
+<text x="178" y="132" text-anchor="start" font-size="20" fill="#9a3f12">must not call</text>
+<line x1="138" y1="116" x2="162" y2="138" stroke="#9a3f12" stroke-width="2.2"/>
+<line x1="162" y1="116" x2="138" y2="138" stroke="#9a3f12" stroke-width="2.2"/>
+<rect x="45" y="166" width="210" height="60" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="150" y="202" text-anchor="middle" font-size="20" fill="#57534e" font-weight="700">raw library</text>
+<text x="450" y="27" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">POSITIVE CONSTRAINT</text>
+<rect x="345" y="47" width="210" height="43" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="450" y="75" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">mutation verb</text>
+<line x1="450" y1="90" x2="450" y2="164" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
+<text x="478" y="132" text-anchor="start" font-size="20" fill="#9a3f12">must call</text>
+<rect x="345" y="166" width="210" height="60" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="450" y="191" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">MUST stamp</text>
+<text x="450" y="216" text-anchor="middle" font-size="20" fill="#9a3f12">attribution evidence</text>
 </svg>

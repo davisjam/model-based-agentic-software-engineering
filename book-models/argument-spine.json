@@ -3,9 +3,9 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 31,
+    "chapters_labeled": 30,
     "chapters_exempt": 11,
-    "advancement_edges": 89,
+    "advancement_edges": 87,
     "feeds_edges": 1,
     "reconciled_claims": 21,
     "reconciled_big_ideas": 6,
@@ -18,7 +18,7 @@
     "claims_stale": 0,
     "quantifiable_claims": 9,
     "reality_claims": 10,
-    "max_statement_words": 32
+    "max_statement_words": 45
   },
   "taxonomy": {
     "word_cap": 32,
@@ -235,10 +235,9 @@
         "4.4-engineering-the-environment",
         "5.1-software-factory",
         "5.2-inside-docables-software-factory",
-        "5.4-two-problems-of-factory-engineering",
         "7.1-reorganization-of-se"
       ],
-      "body_depth": 11,
+      "body_depth": 10,
       "front_loaded": false,
       "overmapped": true,
       "fresh": true
@@ -294,7 +293,7 @@
     {
       "id": "alignment-principle",
       "order": 8,
-      "statement": "Make engineering obligations enforceable through mechanisms embedded in the environment: constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the properties those mechanisms state and check.",
+      "statement": "Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. Alignment can act directly on actions and artifacts; explicit models enlarge the properties those mechanisms state and check.",
       "seeds": [
         5
       ],
@@ -309,12 +308,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": null,
-      "reviewed_hash": "30be3be33d58",
+      "reviewed_hash": "1419b1077656",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation",
-      "word_count": 32,
-      "statement_hash": "30be3be33d58",
+      "word_count": 45,
+      "statement_hash": "1419b1077656",
       "advanced_by": [
         "0.5-preface",
         "1.3-the-agentic-substrate",
@@ -485,11 +484,10 @@
       "statement_hash": "6e678662a007",
       "advanced_by": [
         "5.2-inside-docables-software-factory",
-        "5.4-two-problems-of-factory-engineering",
         "7.1-reorganization-of-se",
         "9.1-the-part-that-stays-yours"
       ],
-      "body_depth": 4,
+      "body_depth": 3,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -774,14 +772,6 @@
       "exempt": "discussion"
     },
     {
-      "slug": "5.4-two-problems-of-factory-engineering",
-      "advances": [
-        "govern-the-environment",
-        "seat-moves"
-      ],
-      "exempt": null
-    },
-    {
       "slug": "6.1-toward-a-theory-of-mage",
       "advances": [
         "conversions-compound"
@@ -895,7 +885,7 @@
     "overmapped_claims": [
       {
         "claim": "govern-the-environment",
-        "advanced_by": 13,
+        "advanced_by": 12,
         "chapters": [
           "0.5-preface",
           "1.2-mage-by-example",
@@ -908,7 +898,6 @@
           "4.4-engineering-the-environment",
           "5.1-software-factory",
           "5.2-inside-docables-software-factory",
-          "5.4-two-problems-of-factory-engineering",
           "7.1-reorganization-of-se"
         ]
       },

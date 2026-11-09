@@ -120,7 +120,7 @@
 
   "governance-mechanism": {
     "term": "Governance mechanism",
-    "box": "A repeatable structure in the engineered environment for aligning an agent’s actions with the obligations represented in models.",
+    "box": "A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed.",
     "aspects": [
       {"lead": "Three questions", "text": "Constraints ask what actions or states are possible; sensors ask what evidence is available about the work; gates ask whether an action or result may proceed. These are functional categories: one mechanism may perform more than one function. Checking compares evidence with an obligation and may inform an advisory report or a gate’s decision."},
       {"lead": "Models and mechanisms", "text": "A model states an obligation or represents relevant system knowledge. A sensor observes the work or system and supplies evidence; a checker can evaluate that evidence using the model; a constraint or gate determines what is possible or accepted. Producing a verdict does not by itself enforce it."},

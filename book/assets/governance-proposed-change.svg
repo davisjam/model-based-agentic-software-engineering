@@ -17,8 +17,8 @@
 <text x="240" y="375" font-size="23" fill="#1c1917" text-anchor="middle">billing API client; excludes</text>
 <text x="240" y="405" font-size="23" fill="#1c1917" text-anchor="middle">private DB connector.</text>
 <text x="240" y="475" font-size="22" fill="#57534e" text-anchor="middle">Scope: checked imports.</text>
-<text x="240" y="510" font-size="21" fill="#57534e" text-anchor="middle">Generic networking</text>
-<text x="240" y="540" font-size="21" fill="#57534e" text-anchor="middle">remains possible.</text>
+<text x="240" y="510" font-size="22" fill="#57534e" text-anchor="middle">Generic networking</text>
+<text x="240" y="540" font-size="22" fill="#57534e" text-anchor="middle">remains possible.</text>
 <rect id="sensor" x="660" y="220" width="400" height="350" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
 <text x="860" y="260" font-size="26" fill="#2f5169" text-anchor="middle" font-weight="700">SENSOR</text>
 <text x="860" y="297" font-size="24" fill="#1c1917" text-anchor="middle" font-style="italic">What evidence do we have?</text>
@@ -26,7 +26,8 @@
 <text x="860" y="375" font-size="23" fill="#1c1917" text-anchor="middle">caller · destination · outcome</text>
 <text x="860" y="420" font-size="23" fill="#1c1917" text-anchor="middle">May reveal a direct DB attempt</text>
 <text x="860" y="450" font-size="23" fill="#1c1917" text-anchor="middle">through generic networking.</text>
-<text x="860" y="520" font-size="20.5" fill="#57534e" text-anchor="middle">Recording does not block connections.</text>
+<text x="860" y="507" font-size="22" fill="#57534e" text-anchor="middle">Recording does not block</text>
+<text x="860" y="538" font-size="22" fill="#57534e" text-anchor="middle">connections.</text>
 <rect id="architectural-model" x="40" y="685" width="340" height="185" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
 <text x="210" y="727" font-size="23" fill="#9a3f12" text-anchor="middle" font-weight="700">ARCHITECTURAL MODEL</text>
 <text x="210" y="772" font-size="22" fill="#1c1917" text-anchor="middle">Reporting uses billing API.</text>

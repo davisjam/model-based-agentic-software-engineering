@@ -12157,3 +12157,328 @@ Accepted by the author on 2026-11-09.
 Accounting illustrates the easier end of knowledge work because both its intermediate representations and many of its consequential actions are already highly structured. Much of accounting's environment was engineered long before software existed. Double-entry bookkeeping is an old enforcement mechanism: every transaction must satisfy an invariant, and a violation surfaces arithmetically rather than through anyone's vigilance. Around that core the profession has built ledgers and charts of accounts, classification rules, reconciliations, separation of duties, approval thresholds, closing controls, and audit trails. These are purposeful representations of economic activity with maintained correspondence to it, and controls that give important obligations a path to consequence independent of the person doing the work. The profession learned early not to let consequential outcomes depend on the producing worker getting everything right.
 
 The MAGE question in accounting is therefore not whether to build a governed environment. It is what happens when agents perform more of the work inside one that exists. An agent can reason over the accounting representations rather than reconstructing the rules from prose for each transaction. Reconciliations and variance checks can supply evidence independent of its reasoning. Approval limits and segregation-of-duties rules can determine which of its actions acquire consequence and which require escalation. Some judgments stay where they are. Materiality is a judgment about what matters to a reader of the statements; the environment can apply a chosen threshold but cannot choose it. Ambiguous classification and the reasonableness of an estimate likewise remain with the accountant. The environment can route those judgments, record them, and bound their consequences. It does not make them.
+
+
+
+## Chapter 3 — construction from models and selective prose compression (2026-11-09)
+
+Applied to the working manuscript for Chapter 3 review; these removals and condensations are not yet committed. The chapter retains its three-category taxonomy, the regression-to-temporal-analysis progression, and the complete engineering-capital closing. No material here is relocated to another chapter.
+
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Removal date: 2026-11-09.
+- Removal revision: uncommitted working manuscript.
+- Requested scope: selective edits to §§3.3–3.5; preserve strong formulations and authorial voice.
+
+
+### 3.3 — Governance Mechanisms opening (passage 1)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 25–25.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Use the author’s definition without requiring an obligation to originate in a separate model.
+- Treatment: condensed or replaced; 18 → 21 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+A repeatable structure in the engineered environment for aligning an agent's actions with the obligations represented in models.
+```
+
+
+### 3.3 — What Counts as a Mechanism (passage 2)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 404–404.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Keep the gloss-only definition identical to the chapter definition.
+- Treatment: condensed or replaced; 18 → 21 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+A repeatable structure in the engineered environment for aligning an agent’s actions with the obligations represented in models.
+```
+
+
+### 3.3 — Tests and Models Work Together (passage 4)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 183–183.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Trim the generator-coverage advice to one sentence while preserving the generalized property and QuickCheck reference.
+- Treatment: condensed or replaced; 88 → 71 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+We can also state a property covering many such cases: a release carrying an old generation must not clear the current claim. \emph{Property-based testing} supplies generated inputs to a check of that property, varying worker identities, claim generations, and relevant operations. The engineer still has to choose a meaningful property and arrange for the generator to exercise the cases that matter. A large number of passing examples says little if the generator never produces a stale release. QuickCheck provides a framework for expressing and testing such executable properties.\citep{claessen2000quickcheck}
+```
+
+
+### 3.3 — Tests and Models Work Together (passage 5)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 187–187.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Retain model/implementation comparison, translation, reuse, and concurrency limits; remove repeated descriptions of what the model omits.
+- Treatment: condensed or replaced; 132 → 76 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+For example, the test could issue each operation to both the simple ownership model and the real lease implementation, then compare their resulting ownership state. An attempted stale release must leave the current claim unchanged in both. The model makes that expectation available across many sequences, instead of requiring each test to restate the whole history. The test driver must also translate model operations into real calls and observe the corresponding results. A model that ignores storage details can help test ownership while leaving persistence and deployment behavior to other tests. A sequential test driver will not expose every race inside those calls; concurrent schedules and database atomicity need their own tests or analysis. The model preserves the distinctions needed for the ownership question while other tests address the details it omits.\citep{prenninger2005abstractions}
+```
+
+
+### 3.3 — Tests and Models Work Together (passage 6)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 189–189.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Use two sentences to show the overlap and the useful regression-test result.
+- Treatment: condensed or replaced; 75 → 33 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+These techniques overlap. Hypothesis's stateful testing, for example, generates sequences of actions and can compare a real system with a simpler model. That is both property-based and model-based testing. A useful failing sequence can then become a fixed regression test. The same obligation may therefore be checked through a carefully chosen example, generated variations, and comparisons with a model. The techniques contribute different ways to find and preserve evidence; they do not displace one another.\citep{hypothesis-stateful}
+```
+
+
+### 3.3 — Tests and Models Work Together (passage 7)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 191–191.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Keep the three coverage questions and the finite-execution limit without repeating the full explanation.
+- Treatment: condensed or replaced; 81 → 41 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+Coverage helps us judge that evidence only when we say what was covered. A suite might exercise every modeled transition yet miss a problematic ordering of those transitions. It might execute every relevant line of implementation without asserting that ownership remained correct. Model coverage, code coverage, and the properties actually checked answer different questions. Passing the selected tests supports the claim that the implementation behaved as required in those executions. It does not establish that every possible execution satisfies the obligation.\citep{winters2020}
+```
+
+
+### 3.3 — One Obligation, Several Ways to Hold It (passage 8)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 240–240.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Remove the hypothetical driver after the actual DocAble case; the earlier mainline driver already performs that teaching work.
+- Treatment: deleted; 68 → 0 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+A model-based test driver could add implementation evidence by issuing lease operations to both the running code and the model, then comparing the results. It would connect the modeled ownership rule to observed executions, complementing the runtime claim and the model analyses. Each contributes a different basis for an acceptance decision: a restricted operation, a result about the protocol, or an observed execution that satisfies the expected behavior.
+```
+
+
+### 3.3 — One Obligation, Several Ways to Hold It (passage 9)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 201–201.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Give construction from models a place alongside tests, runtime constraints, and model analysis.
+- Treatment: condensed or replaced; 54 → 62 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+A modeled obligation does not imply one particular enforcement technology. Tests exercise an implementation through selected inputs and sequences of actions. Constraints restrict what the running system permits, and model checking can examine the behavior admitted by an explicit model. Ask what evidence the obligation needs and how the environment should act on it.
+```
+
+
+### 3.3 — One Obligation, Several Ways to Hold It (passage 10)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 245–245.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Remove the now-stale announcement of the moved checker-construction discussion.
+- Treatment: condensed or replaced; 37 → 16 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+Choose each mechanism for the evidence or restriction it contributes and the cost of obtaining it. Once that choice is clear, the next engineering question is how to construct the checker and validate the claim it makes.
+```
+
+
+### 3.3 — One Obligation, Several Ways to Hold It (passage 11)
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 247–260.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Replace the stand-alone three-paragraph Bodden inset with the short paragraph beside generation.
+- Treatment: deleted; 219 → 0 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: PROGRAMMING LANGUAGES -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Synthesizing the Guardrail}
+\label{inset-synthesizing-the-guardrail}
+A growing set of obligations can require many checkers. Agents can help build them. Once an invariant is explicit, an agent can help translate it into a lint rule, schema constraint, architectural test, static analysis, or mapping from model concepts to implementation artifacts. The engineer remains responsible for the invariant and for checking that the resulting mechanism enforces it. This can reduce the work of constructing a checker without delegating the decision about what it must establish.
+
+There is a stronger version of this idea. A static analysis can itself be represented with degrees of freedom: specify what property the analysis should establish while leaving choices about how to perform the analysis open. Recent work has proposed self-adaptive static analysis, in which the analysis representation admits automatic optimization for the particular program and analysis. The aim of such methods is to generate precise and efficient analyses through self-aware, self-optimizing, sound analysis machinery---automating the realization of the control without making its enforcement probabilistic.\citep{bodden2018}\citep{bodden2023sosa}
+
+Here the engineer specifies the obligation that the checker must establish while leaving some choices about the checker's implementation open. Automation can help construct and optimize that implementation. The resulting check still needs validation: cheaper construction does not establish that it checks the intended property or preserves the analysis assumptions.
+\end{bookbox}
+```
+
+
+### 3.4 — As You Learn: Convert What the Work Teaches (passage 13)
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`, lines 102–102.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Remove the Chapter 1 recap; the five diagnoses and following feedback-loop paragraph already develop the mechanism.
+- Treatment: deleted; 87 → 0 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+These repairs address the problem introduced in \magevalue{chapter:problem}: how much consequential work must depend on an agent reconstructing the right knowledge and making the right judgment each time? A model can preserve distinctions the agent would otherwise have to infer; an independent validator can evaluate a recurring obligation without relying on the agent\textquotesingle s own assessment. Governance conversion makes such settled engineering decisions part of the environment that subsequent work inherits. Engineers can then concentrate judgment on new questions and on decisions whose assumptions have changed.
+```
+
+
+### 3.4 — Where Enforcement Stops (passage 14)
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`, lines 202–203.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Retain the narrative turn to §3.5 while removing the stopping-point recap.
+- Treatment: condensed or replaced; 44 → 26 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+Different obligations should stop in different places. Governance conversion closes recurring gaps when doing so is worth the cost. It also creates the next problem: the environment now contains an expanding portfolio of controls, and those controls can themselves become inconsistent, redundant, or orphaned.
+
+```
+
+
+### 3.5 — Add, Reconcile, and Retire Controls (passage 16)
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 151–151.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Compress repeated accumulation advice while preserving the full final two sentences, including depreciation into overhead.
+- Treatment: condensed or replaced; 75 → 41 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+The same audit also pushes against permanent accumulation. A control whose purpose has disappeared should be reconciled or retired; two controls that now overlap may be consolidated; a mechanism whose maintenance cost exceeds the failure it prevents may no longer be worth carrying. This echoes \magevalue{sec:governance-conversion}: \textbf{engineering capital is not the number of controls.} A control that no longer produces value has depreciated into overhead; the task now is to reconcile or retire it.
+```
+
+
+### 3.5 — Add, Reconcile, and Retire Controls (passage 17)
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 163–163.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Remove the conventional summary after the developed control-governance argument.
+- Treatment: deleted; 36 → 0 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+Governance conversion adds durable engineering structure; governing the control machinery keeps that structure coherent. Catalogue the controls, expose their interactions, trace them to the obligations they serve, and retire machinery that no longer earns its cost.
+```
+
+
+### 3.5 — Preserve Engineering Freedom (passage 18)
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 173–173.
+- Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`.
+- Reason: Keep the concrete exploration/authorization distinction and engineering decision; remove the preceding repeated summary.
+- Treatment: condensed or replaced; 65 → 31 prose words.
+
+Original authoritative LaTeX, including citations:
+
+```latex
+This extends Modeling and Alignment to the machinery that performs engineering work. Product obligations motivate controls; controls interact; and those interactions must themselves be modeled and governed. The result is not unrestricted agent autonomy. Agents may be permitted to explore alternatives without being authorized to merge, deploy, or otherwise commit them. Engineers must still decide which freedoms can be delegated and which require stronger controls.
+```
+
+
+### Chapter 3 consistency edits — original wording
+
+Original chapter-opening, summary, and glossary passages replaced during the same revision. Source revision: `c8d5690c92cfdf978c8c547130cd4915f7f9a0e8`. These accompany the detailed §§3.3–3.5 archive above.
+
+Source: `book/latex/sources/part3/00-part-intro.tex`.
+
+```latex
+MAGE calls this move Alignment and treats it as the companion to Modeling. Modeling makes engineering knowledge and intent explicit. Alignment makes selected obligations enforceable by connecting them to mechanisms in the engineered environment that can constrain work, evaluate its results, or determine whether those results are accepted. An obligation with no such mechanism may still matter greatly, but satisfying it continues to depend on human or agent judgment at the point of use.
+```
+
+Source: `book/latex/sources/part3/00-part-intro.tex`.
+
+```latex
+Make engineering obligations enforceable through mechanisms that constrain actions or states, produce evidence, or evaluate evidence to control whether work may proceed.
+\end{quote}
+```
+
+Source: `book/latex/sources/part3/00-part-intro.tex`.
+
+```latex
+Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. \magevalue{chapter:modeling}\textquotesingle s tolerances and degrees of freedom also distinguish obligations from variation that engineering deliberately leaves open. The sections ahead develop how to choose among these possibilities.
+```
+
+Source: `book/latex/sources/part3/3.6-alignment-summary.tex`.
+
+```latex
+Make engineering obligations enforceable through mechanisms that constrain actions or states, produce evidence, or evaluate evidence to control whether work may proceed.
+\end{quote}
+```
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`.
+
+```latex
+\textbf{Alignment Principle.} Make engineering obligations enforceable through mechanisms that constrain actions or states, produce evidence, or evaluate evidence to control whether work may proceed. Some obligations can be enforced directly on actions or artifacts; explicit models let the environment state and check richer properties, including acceptable bounds on variation.
+```
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`.
+
+```latex
+\textbf{Governance mechanisms.} Repeatable structures in the engineered environment for aligning agents' actions with the obligations represented in models.
+```
+
+
+## Chapter 3 final editorial pass — 2026-11-09
+
+User-approved replacement copy clarifies construction, removes the duplicate gate definition, generalizes mechanism interference, and makes the Chapter 4 transition explicit. These originals are from the working manuscript based on `e34238a0f`, before the finishing pass. No additional substantive compression was undertaken.
+
+### C3-final-1: §3.3 Prevention and Observation
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 116–116; working-source SHA-256 `826d627deb388756873864393e18695b25a98c8a94f4ebcfa6418a98263f5405`. Set aside on 2026-11-09 for the author-supplied replacement. Citations and source notation preserved.
+
+```latex
+A constraint can also be embodied in how an implementation is constructed. Classical model-driven engineering offers a familiar example: a generator translates a model into code, configuration, or other artifacts. If an architectural model determines which services may communicate, generated interfaces or access-control rules can embody those relationships directly. For the properties preserved by the transformation, Alignment is achieved by construction rather than by checking an independently produced implementation afterward.\citep{schmidt2006model,sendall2003model,czarnecki2006feature}
+```
+
+### C3-final-2: §3.3 Gates: Evaluation and Enforcement
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, lines 150–150; working-source SHA-256 `8b46e9b0c1fbe5b0b941bf75579eac84aa002c6e0f78efc9bde28346ef8a038b`. Set aside on 2026-11-09 for the author-supplied replacement. Citations and source notation preserved.
+
+```latex
+\textbf{A gate controls whether an action or result may proceed.} It evaluates whether an action or result may proceed and enforces the decision at a boundary. The evaluation may be performed locally or delegated to another checker.
+```
+
+### C3-final-3: §3.5 Model Interactions Between Controls
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 105–106; working-source SHA-256 `5a72977c5e15db42d85a68d4691673bbaba99eb86681252494ea2513b5aec881`. Set aside on 2026-11-09 for the author-supplied replacement. Citations and source notation preserved.
+
+```latex
+The hook interaction also illustrates a limit of the simple read/write model I adopted for DocAble. The stranded-work inspection can exhaust the context needed by recurring-failure reflection. This is a resource-consumption dependency rather than an ordinary read/write conflict. DocAble does not model that distinction separately; the required order is recorded directly. Larger engineering environments may benefit from modeling resource dependencies explicitly, particularly when several mechanisms compete for limited context, time, or execution capacity.
+\end{bookbox}
+```
+
+### C3-final-4: §3.5 Preserve Engineering Freedom
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 170–170; working-source SHA-256 `30473cd716b97fb13f3a30ac2c21074bd45870301c9406af822f94656464f873`. Set aside on 2026-11-09 for the author-supplied replacement. Citations and source notation preserved.
+
+```latex
+Agents may be permitted to explore alternatives without being authorized to merge, deploy, or otherwise commit them. Engineers must still decide which freedoms can be delegated and which require stronger controls.
+```
+
+### C3-final-5: §3.5 Preserve Engineering Freedom
+
+Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`, lines 174–175; working-source SHA-256 `143aa7d6b2c1bdb44244994296c2fe391a4746a1509f55a9f502a47537c27265`. Set aside on 2026-11-09 for the author-supplied replacement. Citations and source notation preserved.
+
+```latex
+Engineers must decide when a question deserves a model, when an obligation deserves enforcement, how work should move through the environment, and what to do when the available representation or control is insufficient. Building on these accounts of Modeling and Alignment, \magevalue{chapter:one-problem-many-models} shows how engineers use and revise models and controls together as an engineering problem develops.
+
+```

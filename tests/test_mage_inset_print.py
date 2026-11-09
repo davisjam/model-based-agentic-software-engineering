@@ -87,5 +87,43 @@ class InsetPrintTests(unittest.TestCase):
         self.assertNotEqual(keys[0], keys[2])
 
 
+
+
+class CompactInsetPrintTests(unittest.TestCase):
+    def test_reviewed_compact_figure_flows_with_fitted_inset_identity(self):
+        source = inset(r'\label{inset-case} Introduction.\n' + FIGURE + '\nThe following analysis.')
+        actual = isolate_inset_figures(source, flow_labels={'drawing'})
+        self.assertNotIn(r'\bookinsetfigurepagesdefer', actual)
+        self.assertNotIn(r'\begin{figure}[p]', actual)
+        self.assertIn(r'\begin{figure}[htbp]', actual)
+        self.assertIn(r'\begin{bookinsetfigure}{inset}{A title with \emph{formatting}}', actual)
+        self.assertEqual(actual.count(r'\label{inset-case}'), 1)
+        self.assertEqual(actual.count(r'\caption[Short]'), 1)
+        self.assertIn(r'alt={diagram}', actual)
+        self.assertEqual(actual.count('The following analysis.'), 1)
+        self.assertEqual(actual, isolate_inset_figures(actual, flow_labels={'drawing'}))
+        for environment in _environments(actual):
+            if environment.name == 'figure':
+                self.assertIsNone(environment.parent)
+
+    def test_adjacent_compact_figures_each_keep_panel_without_empty_prose_box(self):
+        actual = isolate_inset_figures(inset('Introduction.\n' + FIGURE + '\n' + FIGURE),
+                                       flow_labels={'drawing'})
+        self.assertEqual(actual.count(r'\begin{bookinsetfigure}'), 2)
+        self.assertEqual(actual.count(r'\begin{bookbox}'), 1)
+        self.assertEqual(actual.count(r'\caption[Short]'), 2)
+
+    def test_unreviewed_inset_keeps_existing_placement(self):
+        source = inset('Introduction.\n' + FIGURE)
+        self.assertEqual(isolate_inset_figures(source),
+                         isolate_inset_figures(source, flow_labels={'unrelated'}))
+
+    def test_partial_inset_declaration_cannot_reorder_numbered_figures(self):
+        other = FIGURE.replace(r'\label{drawing}', r'\label{other}')
+        with self.assertRaisesRegex(ValueError, 'every figure'):
+            isolate_inset_figures(inset(FIGURE + '\nA bridge.\n' + other),
+                                  flow_labels={'drawing'})
+
+
 if __name__ == '__main__':
     unittest.main()

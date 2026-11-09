@@ -229,6 +229,29 @@ Build normally with `python3 book/build_book.py --pdf`. The generated
 black-and-white figures. Do not edit generated chapters or remove color source assets;
 the web build continues to use them.
 
+### Figure scale and placement
+
+Size a teaching figure for its informational complexity and readable labels, not simply the
+available page width. A compact conceptual diagram may occupy 40–65% of the text width;
+use full width when its relationships or labels need it. Those percentages are starting
+points, not scaling targets: recompose an oversized drawing before reducing its type below
+the book's figure typography floor. Preserve consistent typography across chapters.
+
+Prefer a narrow centered figure when it needs its own reading sequence. Consider a wrapped
+figure beside ordinary explanatory prose when the diagram and a short caption fit naturally.
+Do not wrap within an inset, beside a list, or across a heading. Inspect the compiled PDF for
+narrow text columns, collisions, stranded captions, and unstable page breaks; fall back to
+centered placement when wrapping degrades the reading sequence. Preserve accessible tagging,
+figure numbering, links, and the color/monochrome review policy in either layout.
+
+`book/data/figure-print-layout.json` records reviewed widths by stable figure label.
+The print projector applies them to original artwork while preserving captions and
+alternate text. Native monochrome review drawings keep their authored point sizes.
+The current tagged-PDF wrapfig probe produces placement warnings, so this edition
+uses narrow centered figures until a wrapped placement passes those checks.
+
+Reviewed compact figures inside worked insets can declare `inset_placement: "flow"` alongside their centered print width in `book/data/figure-print-layout.json`. The print projector keeps the native manuscript bookbox intact and renders each reviewed figure as an ordinary nearby float with a fitted inset-colored panel. Full-book monochrome partners inherit the panel at their unchanged native size. Every figure in a given inset must opt in together so deferred and immediate caption construction cannot reorder the figure counters. Unlisted inset figures retain the existing decorated-page behavior.
+
 ### Data from the case study — show the evidence, not just the number
 
 This book's differentiator is that the real system produces **actual measurements**, and it shows them. A

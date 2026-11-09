@@ -127,6 +127,18 @@
   \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
 }{\end{tcolorbox}\endgroup\bookboxtagend}
 
+% Fitted inset identity for compact figures that share a page with prose.
+% This environment is inside an ordinary figure, never a floating child of a
+% breakable bookbox. Native partners retain their full artwork size in a centered
+% makebox, while the title and caption keep the normal inset text padding.
+\newenvironment{bookinsetfigure}[2]{%
+  \bookboxtagbegin
+  \begingroup
+  \bookboxcolors{#1}%
+  \begin{tcolorbox}[enhanced,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=0pt,after skip=0pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext}]
+  \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}\enspace(continued)}\par\smallskip
+}{\end{tcolorbox}\endgroup\bookboxtagend}
+
 % afterpage backs out of a just-starting paragraph before its already queued
 % paragraph hooks run. Use the kernel's raw paragraph operations when saving
 % and restoring it, so modern tagging hooks run exactly once. Ordinary figure

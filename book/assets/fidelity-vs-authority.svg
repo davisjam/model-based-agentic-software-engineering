@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- graph-example figure — fidelity-vs-authority.svg. Fold to book/assets/. Redrawn 260905:
-     authority and correspondence as two different relations around ONE source of truth. An authoritative
-     computation model is consumed by execution (authority: model -> execution) AND projected/checked into
-     an analytical graph view (correspondence: model / parity-bound declarations -> view). Strong
-     correspondence does not transfer execution authority to the view. -->
-<!-- semantic-families: modeling, governance, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
-     role="img" aria-labelledby="faTitle faDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="faTitle">Governing role and correspondence are different relations</title>
-  <desc id="faDesc">One authoritative computation model — computations, dependencies, and composition — sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it.</desc>
-  <defs>
-    <marker id="fa-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
-    <marker id="fa-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
-    <marker id="fa-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-  </defs>
-  <text x="500" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Governing role and correspondence are different relations</text>
-  <!-- authority arrow: model -> execution -->
-  <line x1="340" y1="146" x2="340" y2="246" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fa-ah-green)"/>
-  <!-- correspondence arrow: model -> analytical view -->
-  <line x1="680" y1="146" x2="680" y2="246" stroke="#2f5169" stroke-width="3" marker-end="url(#fa-ah-blue)"/>
-  <!-- view -> analysis/governance -->
-  <line x1="680" y1="312" x2="680" y2="356" stroke="#57534e" stroke-width="2" marker-end="url(#fa-ah-gray)"/>
-  <rect x="260" y="80" width="480" height="66" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect x="200" y="250" width="280" height="62" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <rect x="520" y="250" width="320" height="62" rx="12" fill="#eef1f4" stroke="#2f5169" stroke-width="2"/>
-  <text x="500" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">GOVERNING COMPUTATION MODEL</text>
-  <text x="500" y="133" text-anchor="middle" font-size="15" font-weight="400" font-style="italic" fill="#57534e">computations · dependencies · composition</text>
-  <text x="325" y="200" text-anchor="end" font-size="15" font-weight="600" font-style="italic" fill="#1f7a4d">consumed by scheduler</text>
-  <text x="695" y="200" text-anchor="start" font-size="15" font-weight="600" font-style="italic" fill="#2f5169">projected / checked</text>
-  <text x="340" y="288" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">EXECUTION</text>
-  <text x="680" y="287" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ANALYTICAL GRAPH VIEW</text>
-  <text x="680" y="382" text-anchor="middle" font-size="16" font-weight="400" font-style="italic" fill="#57534e">analysis · governance</text>
-  <line x1="60" y1="432" x2="940" y2="432" stroke="#e4e0d8" stroke-width="1.5"/>
-  <text x="60" y="474" text-anchor="start" font-size="17" font-weight="700" fill="#1f7a4d">GOVERNING ROLE</text>
-  <text x="230" y="474" text-anchor="start" font-size="17" font-weight="400" fill="#1c1917">computation model → execution</text>
-  <text x="60" y="510" text-anchor="start" font-size="17" font-weight="700" fill="#2f5169">CORRESPONDENCE</text>
-  <text x="230" y="510" text-anchor="start" font-size="17" font-weight="400" fill="#1c1917">computation model / parity-bound declarations → analytical view</text>
-  <text x="500" y="562" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Strong correspondence does not make the analytical view govern execution.</text>
+<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 310" width="600" height="310" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Governing role and correspondence are different relations</title>
+<desc id="figure-description">One authoritative computation model — computations, dependencies, and composition — sits at the top. Two relations run from it. On the left, an authority relation: the model is consumed by the scheduler, so execution follows it. On the right, a correspondence relation: the model, and the parity-bound declarations around it, are projected and checked into an analytical graph view used for analysis and governance. The authority arrow reaches execution; the correspondence arrow reaches the view. Making the view a more faithful correspondence does not transfer execution authority to it.</desc>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
+<rect id="model" x="55" y="10" width="490" height="66" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="300" y="36" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">GOVERNING COMPUTATION MODEL</text>
+<text x="300" y="61" text-anchor="middle" font-size="20" fill="#1c1917">computations · dependencies · composition</text>
+<path d="M150 76 L150 186" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#green-arrow)"/>
+<path d="M450 76 L450 186" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect x="28" y="102" width="244" height="61" rx="7" fill="#ffffff" stroke="none" stroke-width="2"/>
+<text x="150" y="126" text-anchor="middle" font-size="20" fill="#1f7a4d" font-style="italic">consumed by scheduler</text>
+<text x="150" y="151" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">governing role</text>
+<rect x="315" y="91" width="270" height="84" rx="7" fill="#ffffff" stroke="none" stroke-width="2"/>
+<text x="450" y="114" text-anchor="middle" font-size="20" fill="#2f5169" font-style="italic">projected / checked</text>
+<text x="450" y="139" text-anchor="middle" font-size="20" fill="#2f5169">model and parity-bound</text>
+<text x="450" y="163" text-anchor="middle" font-size="20" fill="#1c1917">declarations</text>
+<rect id="execution" x="25" y="188" width="250" height="46" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="150" y="218" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">EXECUTION</text>
+<rect id="view" x="315" y="188" width="270" height="46" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="450" y="218" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">ANALYTICAL GRAPH VIEW</text>
+<text x="450" y="260" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">analysis · governance</text>
+<text x="300" y="293" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">Correspondence does not transfer execution authority.</text>
 </svg>

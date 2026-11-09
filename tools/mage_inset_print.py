@@ -1,9 +1,9 @@
 """Keep inset figures at normal page width in the generated print edition.
 
-Native manuscript boxes remain intact. In print, prose uses breakable bookboxes;
-ordinary figure floats occupy decorated pages between those prose segments. The
-publication pass can still insert a native-size monochrome partner immediately
-after each original figure, inside the same decorated page segment.
+Native manuscript boxes remain intact. In print, prose uses breakable bookboxes.
+Reviewed compact figures use ordinary floats with a fitted inset panel; other
+figures keep their decorated page segments. The publication pass preserves the
+same inset identity for each native-size monochrome partner.
 """
 from __future__ import annotations
 
@@ -95,7 +95,7 @@ def _only_space_or_comments(text: str) -> bool:
     return not re.sub(r'%[^\n]*', '', text).strip()
 
 
-def isolate_inset_figures(text: str) -> str:
+def isolate_inset_figures(text: str, *, flow_labels: set[str] | frozenset[str] = frozenset()) -> str:
     """Lift direct inset figures out of tcolorbox without altering artwork.
 
     Refuse a figure nested in a list, quote or another box: silently lifting it
@@ -133,6 +133,14 @@ def isolate_inset_figures(text: str) -> str:
                 groups[-1].append(figure)
             else:
                 groups.append([figure])
+        labels = [re.search(r'\\label\{([^}]+)\}', text[figure.start:figure.end])
+                  for figure in figures]
+        flowing = [label is not None and label[1] in flow_labels for label in labels]
+        # A box has one placement mode. Mixing deferred construction with live
+        # floats can invert figure counters, so partial declarations fail closed.
+        if any(flowing) and not all(flowing):
+            raise ValueError('Declare flow placement for every figure in an inset: ' + title)
+        flow = bool(flowing) and all(flowing)
         queue_key = hashlib.sha256(text[box.start:box.end].encode()).hexdigest()[:16]
         parts = []
         cursor = body_start
@@ -147,10 +155,21 @@ def isolate_inset_figures(text: str) -> str:
             else:
                 parts.append(prose)
             floats = text[group[0].start:group[-1].end]
-            floats = re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?',
-                            lambda _: r'\begin{figure}[p]', floats)
-            parts.append('\n' + r'\bookinsetfigurepagesdefer{' + queue_key + '}{' + family + '}{' + title + '}{\n'
-                         + floats + '\n}\n')
+            if flow:
+                # A normal float can share a page with prose. Its fitted panel
+                # carries inset identity without coloring an otherwise empty page.
+                # Retain figure environments for caption/tagging and publication
+                # pairing; only the decoration lives inside each float.
+                floats = re.sub(r'(\\begin\{figure\}(?:\[[^]]*\])?)',
+                    lambda m: m[0] + '\n' + r'\begin{bookinsetfigure}{' + family + '}{' + title + '}', floats)
+                floats = floats.replace(r'\end{figure}',
+                    r'\end{bookinsetfigure}' + '\n' + r'\end{figure}')
+                parts.append('\n' + floats + '\n')
+            else:
+                floats = re.sub(r'\\begin\{figure\}(?:\[[^]]*\])?',
+                                lambda _: r'\begin{figure}[p]', floats)
+                parts.append('\n' + r'\bookinsetfigurepagesdefer{' + queue_key + '}{' + family + '}{' + title + '}{\n'
+                             + floats + '\n}\n')
             cursor = group[-1].end
         tail = text[cursor:box.closing_start]
         if not _only_space_or_comments(tail):

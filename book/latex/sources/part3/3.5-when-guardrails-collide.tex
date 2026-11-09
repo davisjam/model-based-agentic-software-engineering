@@ -102,7 +102,7 @@ A different problem arose between two hooks that run when an agent finishes a tu
 
 The governance graph records conflicts and their resolutions, including ordering, merging mechanisms, separating execution points, or accepting an interaction. Topological sorting computes a sequence from the declared ordering constraints and reports cycles; a separate check compares the governance model with the configured mechanisms.
 
-The hook interaction also illustrates a limit of the simple read/write model I adopted for DocAble. The stranded-work inspection can exhaust the context needed by recurring-failure reflection. This is a resource-consumption dependency rather than an ordinary read/write conflict. DocAble does not model that distinction separately; the required order is recorded directly. Larger engineering environments may benefit from modeling resource dependencies explicitly, particularly when several mechanisms compete for limited context, time, or execution capacity.
+The hook interaction also illustrates a limit of the simple read/write model I adopted for DocAble. The stranded-work inspection can exhaust the context needed by recurring-failure reflection. This is a resource-consumption dependency rather than an ordinary read/write conflict. DocAble does not model that distinction separately; the required order is recorded directly. Read/write conflicts are one way to discover interactions, not a complete account of them. The broader engineering question is whether one mechanism can interfere with another's ability to fulfill its obligation. Larger engineering environments may benefit from modeling resource dependencies explicitly, particularly when several mechanisms compete for limited context, time, or execution capacity.
 \end{bookbox}
 
 Not every conflict can be resolved by changing how mechanisms interact. Consider the squash requirement and the diff-size limit for a change that must be delivered atomically in one squashed commit. Both checks may only read the commit set, so the read/write test finds no access conflict. Yet a change that exceeds the diff-size limit when squashed cannot satisfy both requirements. Changing the order of the checks will not help; the engineer must reconsider the obligations themselves. The governance model must therefore account for incompatible obligations as well as interactions among their enforcing mechanisms.
@@ -148,7 +148,7 @@ Governance conversion and coverage auditing provide complementary pressures. Con
 
 % <!-- point: the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls | The same audit pushes against permanent accumulation: engineering capital is not the number of controls. | terms: engineering-capital, teetering-tower -->
 
-The same audit also pushes against permanent accumulation. A control whose purpose has disappeared should be reconciled or retired; two controls that now overlap may be consolidated; a mechanism whose maintenance cost exceeds the failure it prevents may no longer be worth carrying. This echoes \magevalue{sec:governance-conversion}: \textbf{engineering capital is not the number of controls.} A control that no longer produces value has depreciated into overhead; the task now is to reconcile or retire it.
+Coverage audits can therefore lead to consolidation or retirement. This echoes \magevalue{sec:governance-conversion}: \textbf{engineering capital is not the number of controls.} A control that no longer produces value has depreciated into overhead; the task now is to reconcile or retire it.
 
 % <!-- point: the-meta-model-stays-connected-where-controls-are-modeled-explicitly | Entries in a control model identify the implementing mechanism, and correspondence checks expose missing or unrecognized targets instead of silently treating them as covered. | terms: traceability, teetering-tower -->
 
@@ -160,20 +160,18 @@ Do not recursively govern every relation merely because it can be modeled. Exten
 
 The worked control-machinery model is grounded primarily in the originating case. Its broader value is a hypothesis for other engineering environments: the catalogue, interaction, and coverage views provide concrete questions to test when a growing set of controls becomes difficult to manage.
 
-Governance conversion adds durable engineering structure; governing the control machinery keeps that structure coherent. Catalogue the controls, expose their interactions, trace them to the obligations they serve, and retire machinery that no longer earns its cost.
-
 \subsection{Preserve Engineering Freedom}\label{heading:preserve-engineering-freedom}
 
 % <!-- point: alignment-distinguishes-what-must-be-governed-from-what-may-remain-open | Alignment must preserve two complementary freedoms — freedom of implementation (which acceptable realizations remain available) and freedom to extend the environment (whether additional controls can coexist); the realization-space model answers the first, the governance graph the second. | terms: governance-graph, alignment-principle -->
 
 Alignment must preserve two kinds of freedom. The first is freedom of \emph{implementation}: which acceptable realizations remain available after obligations are enforced. The second is freedom to \emph{extend the engineering environment}: whether additional controls can coexist with those already installed. The realization-space model in \magevalue{sec:constraints-sensors-validators-gates} addresses the first question; the governance graph addresses the second.
 
-% <!-- point: governing-the-governors-is-second-order-not-a-license-for-unrestricted-agents | Modeling and Alignment extend to the machinery that performs engineering work; the result is not unrestricted agent autonomy — agents may explore without being authorized to commit, and engineers still decide which freedoms to delegate. | terms: governance-graph -->
+% <!-- point: governing-the-governors-is-second-order-not-a-license-for-unrestricted-agents | Agents may explore without being authorized to commit, and engineers still decide which freedoms to delegate. | terms: governance-graph -->
 
-This extends Modeling and Alignment to the machinery that performs engineering work. Product obligations motivate controls; controls interact; and those interactions must themselves be modeled and governed. The result is not unrestricted agent autonomy. Agents may be permitted to explore alternatives without being authorized to merge, deploy, or otherwise commit them. Engineers must still decide which freedoms can be delegated and which require stronger controls.
-
-
+Agents may explore implementation alternatives without being authorized to merge, deploy, or otherwise commit them. The engineer decides which choices remain open and which require stronger control. The same judgment applies to the engineering environment itself: adding a control may prevent one failure while interfering with mechanisms already in place.
 
 % <!-- point: modeling-and-alignment-are-both-on-the-table-but-that-is-not-yet-a-method | Chapter 4 shows how engineers use and revise models and controls together as an engineering problem develops. | -->
 
-Engineers must decide when a question deserves a model, when an obligation deserves enforcement, how work should move through the environment, and what to do when the available representation or control is insufficient. Building on these accounts of Modeling and Alignment, \magevalue{chapter:one-problem-many-models} shows how engineers use and revise models and controls together as an engineering problem develops.
+Modeling and Alignment are therefore not one-time design activities. As engineering work proceeds, new evidence can change what engineers understand about the system, which obligations matter, and how those obligations should be enforced. The models and controls must change accordingly.
+
+\magevalue{chapter:one-problem-many-models} follows that process in practice. Rather than examining models and mechanisms individually, we will see how they are introduced, revised, and combined as an engineering problem unfolds.

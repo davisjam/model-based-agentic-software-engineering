@@ -571,9 +571,13 @@ def _prepare_record(task):
         return content.replace(r'\includegraphics[', r'\includegraphics[height=' + str(height) + r'bp,keepaspectratio,alt={' + _text(caption) + '},', 1)
     latex = re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', accessible_figure, latex, flags=re.S)
 
+    # Original artwork can be compact without shrinking native review labels.
+    from mage_figure_layout import apply_figure_print_layout, inset_flow_labels
+    latex = apply_figure_print_layout(latex)
+
     # Print-only segmentation preserves native artwork size inside worked insets.
     from mage_inset_print import isolate_inset_figures
-    latex = isolate_inset_figures(latex)
+    latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels())
 
     from latex_build import bold_table_headers, single_page_tables, namespace_heading_links
     latex = bold_table_headers(latex)

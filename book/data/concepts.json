@@ -303,7 +303,7 @@
     "kind": "thesis",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Alignment Principle: make engineering obligations enforceable through mechanisms that constrain actions or states, produce evidence, or evaluate evidence to control whether work may proceed. The three functional categories are constraint, sensor, and gate; checking is an operation that may produce advisory findings or inform gate decisions. Modeling makes consequential intent explicit; Alignment supplies the restrictions and gate decisions that enforce selected obligations. The book is authoritative for this principle."
+    "note": "Alignment Principle: make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed. The three functional categories are constraint, sensor, and gate; checking is an operation that may produce advisory findings or inform gate decisions. Modeling makes consequential intent explicit; Alignment supplies the restrictions and gate decisions that enforce selected obligations. The book is authoritative for this principle."
   },
   "universal-language": {
     "kind": "thesis",
@@ -405,7 +405,7 @@
     "kind": "core-construct",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "A repeatable structure in the engineered environment for aligning an agent’s actions with the obligations represented in models. Three functional categories distinguish restrictions, evidence production, and decisions about whether work may proceed: constraint, sensor, and gate. Implementations can combine these functions. Evaluation is an operation used by advisory checks and gates. Canonical definition in book/data/definitions.json; book index-def in §3.3 Governance Mechanisms."
+    "note": "A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed. Three functional categories distinguish restrictions, evidence production, and decisions about whether work may proceed: constraint, sensor, and gate. Implementations can combine these functions. Evaluation is an operation used by advisory checks and gates. Canonical definition in book/data/definitions.json; book index-def in §3.3 Governance Mechanisms."
   },
   "churn": {
     "kind": "core-construct",

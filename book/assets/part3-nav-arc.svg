@@ -1,81 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: part3-nav-arc). Chapter 3 Part-opener figure — Figure 3.0-1. The engineering
-     move at each stage carries the progression (LOCATE -> JUSTIFY -> MECHANIZE -> LEARN -> GOVERN), each
-     with the question it answers and the chapter that develops it. Three semantic layers per station:
-     engineering move -> question -> chapter location. LOCATE where enforcement can act (3.1) -> JUSTIFY what it
-     may legitimately enforce (3.2) -> MECHANIZE how a mechanism enforces an obligation (3.3) -> LEARN how the
-     environment acquires new obligations and controls (3.4) -> GOVERN how accumulated controls are governed
-     (3.5). Title names the transformation the figure depicts (intent -> enforced), not the chapter count.
-     Palette: governance #9a3f12 + tint #faf1e6 for the station nodes and spine, ink #1c1917 questions, muted
-     #57534e chapter titles + spine.
-     v8 (part3-v8-260903): title -> "ALIGNMENT: HOW INTENT BECOMES ENFORCED"; keywords -> engineering
-     moves (WHERE/WHAT/HOW -> LOCATE/JUSTIFY/MECHANIZE); subtitle -> "From engineering intent to governed
-     environment"; dropped the "five questions / each answers the previous" self-commentary. -->
-<!-- semantic-families: governance, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" width="1000" height="840"
-     role="group" aria-labelledby="naTitle naDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="naTitle">Alignment: how engineering intent becomes enforced, across the five chapters of Chapter 3</title>
-  <desc id="naDesc">Five engineering moves descend a vertical spine, each a chapter of Chapter 3. Locate, 3.1, asks
-    where enforcement can act. Justify, 3.2, asks what it may legitimately enforce. Mechanize, 3.3, asks how a
-    mechanism enforces an obligation. Learn, 3.4, asks how the environment acquires new obligations and controls.
-    Govern, 3.5, asks how accumulated controls are governed as a system. The arc runs from locating where
-    enforcement can act down to governing the controls that result.</desc>
-
-  <defs>
-    <marker id="na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="840" fill="#fdfcf9"/>
-  <text x="500" y="46" text-anchor="middle" font-size="24" font-weight="700" letter-spacing="0.5" fill="#1c1917">ALIGNMENT: HOW INTENT BECOMES ENFORCED</text>
-  <text x="500" y="76" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">From engineering intent to governed environment</text>
-
-  <!-- spine arrows between the five stations -->
-  <g stroke="#9a3f12" stroke-width="2">
-    <!-- edge: s31 -> s32 -->
-    <line x1="150" y1="195" x2="150" y2="283" marker-end="url(#na-arrow)"/>
-    <!-- edge: s32 -> s33 -->
-    <line x1="150" y1="345" x2="150" y2="433" marker-end="url(#na-arrow)"/>
-    <!-- edge: s33 -> s34 -->
-    <line x1="150" y1="495" x2="150" y2="583" marker-end="url(#na-arrow)"/>
-    <!-- edge: s34 -> s35 -->
-    <line x1="150" y1="645" x2="150" y2="733" marker-end="url(#na-arrow)"/>
-  </g>
-
-  <!-- 3.1 LOCATE -->
-  <circle id="s31" cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
-  <text x="205" y="143" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">LOCATE</text>
-  <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can enforcement occur?</text>
-  <text x="205" y="195" font-size="20" fill="#57534e">3.1 · Where Obligations Can Be Enforced</text>
-
-  <!-- 3.2 JUSTIFY -->
-  <circle id="s32" cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="150" y="323" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.2</text>
-  <text x="205" y="293" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">JUSTIFY</text>
-  <text x="205" y="319" font-size="21" font-weight="700" fill="#1c1917">What may it legitimately enforce?</text>
-  <text x="205" y="345" font-size="20" fill="#57534e">3.2 · From Intent to Obligation</text>
-
-  <!-- 3.3 MECHANIZE -->
-  <circle id="s33" cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="150" y="473" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.3</text>
-  <text x="205" y="443" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">MECHANIZE</text>
-  <text x="205" y="469" font-size="21" font-weight="700" fill="#1c1917">How does a mechanism enforce an obligation?</text>
-  <text x="205" y="495" font-size="20" fill="#57534e">3.3 · Governance Mechanisms</text>
-
-  <!-- 3.4 LEARN -->
-  <circle id="s34" cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
-  <text x="205" y="593" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">LEARN</text>
-  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the environment acquire new obligations and controls?</text>
-  <text x="205" y="645" font-size="20" fill="#57534e">3.4 · Growing the Governed Environment</text>
-
-  <!-- 3.5 GOVERN -->
-  <circle id="s35" cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="150" y="773" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.5</text>
-  <text x="205" y="743" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
-  <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How are accumulated controls governed as a system?</text>
-  <text x="205" y="795" font-size="20" fill="#57534e">3.5 · When Controls Become a System</text>
+<!-- Compact teaching geometry; print width is declared by stable figure label in book/data/figure-print-layout.json. Text remains at 9–10 pt in the PDF. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 335" width="600" height="335" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Alignment: how engineering intent becomes enforced, across the five chapters of Chapter 3</title>
+<desc id="figure-description">Five engineering moves form a vertical sequence: locate the boundary, justify the obligation, mechanize enforcement, learn from experience, and govern the resulting controls. The section numbers identify where each move is developed.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker></defs>
+<line x1="31" y1="52" x2="31" y2="83" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
+<circle cx="31" cy="35" r="19" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="31" y="42" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">3.1</text>
+<text x="65" y="30" text-anchor="start" font-size="22" fill="#9a3f12" font-weight="700">LOCATE</text>
+<text x="65" y="57" text-anchor="start" font-size="20" fill="#1c1917">Where can enforcement occur?</text>
+<line x1="31" y1="117" x2="31" y2="148" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
+<circle cx="31" cy="100" r="19" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="31" y="107" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">3.2</text>
+<text x="65" y="95" text-anchor="start" font-size="22" fill="#9a3f12" font-weight="700">JUSTIFY</text>
+<text x="65" y="122" text-anchor="start" font-size="20" fill="#1c1917">What may it legitimately enforce?</text>
+<line x1="31" y1="182" x2="31" y2="213" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
+<circle cx="31" cy="165" r="19" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="31" y="172" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">3.3</text>
+<text x="65" y="160" text-anchor="start" font-size="22" fill="#9a3f12" font-weight="700">MECHANIZE</text>
+<text x="65" y="187" text-anchor="start" font-size="20" fill="#1c1917">How can a mechanism enforce the obligation?</text>
+<line x1="31" y1="247" x2="31" y2="278" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#arrow)"/>
+<circle cx="31" cy="230" r="19" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="31" y="237" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">3.4</text>
+<text x="65" y="225" text-anchor="start" font-size="22" fill="#9a3f12" font-weight="700">LEARN</text>
+<text x="65" y="252" text-anchor="start" font-size="20" fill="#1c1917">What does experience teach the environment?</text>
+<circle cx="31" cy="295" r="19" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="31" y="302" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">3.5</text>
+<text x="65" y="290" text-anchor="start" font-size="22" fill="#9a3f12" font-weight="700">GOVERN</text>
+<text x="65" y="317" text-anchor="start" font-size="20" fill="#1c1917">How do accumulated controls work together?</text>
 </svg>

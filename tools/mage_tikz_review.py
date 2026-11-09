@@ -356,18 +356,33 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
             label = re.search(r'\\label\{([^}]+)\}', original)
             if not label:
                 raise ValueError('Original figure has no stable label: ' + source)
+            # Compact inset originals have a fitted panel instead of a whole
+            # tinted page. Preserve that identity on the native-size partner.
+            panel = re.search(r'\\begin\{bookinsetfigure\}', original)
+            panel_open, panel_close = '', ''
+            if panel:
+                from mage_inset_print import _argument
+                family, pos = _argument(original, panel.end())
+                title, pos = _argument(original, pos)
+                panel_open = original[panel.start():pos] + '\n'
+                panel_close = '\n' + r'\end{bookinsetfigure}'
+            artwork = image(source, label[1])
+            if panel:
+                # Native candidates can use the inset's full outer width. Center
+                # them without scaling or giving the caption zero padding.
+                artwork = r'\makebox[\linewidth][c]{' + artwork + '}'
             if source in approved:
                 # Replace only the artwork. Keep its numbered caption, label,
                 # placement and all figure references in the manuscript.
                 edits.append((block.start() + graphic_start, block.start() + graphic_end,
-                              image(source, label[1])))
+                              artwork))
                 continue
             # Consecutive floats retain figure order while allowing surrounding
             # prose to fill the page. Forcing a clearpage here strands the prose
             # preceding every pair, even when both drawings can float together.
-            extra = ('\n\\begin{figure}[tbp]\n\\centering\n' + image(source, label[1]) +
+            extra = ('\n\\begin{figure}[tbp]\n' + panel_open + '\\centering\n' + artwork +
                      '\n' + r'\caption*{Black-and-white version of Figure~\ref*{' + label[1] +
-                     '}.}\n\\end{figure}\n')
+                     '}.}' + panel_close + '\n\\end{figure}\n')
             edits.append((block.end(), block.end(), extra))
         for start, end, options, path in mage_assets.graphics(text):
             if any(block.start() <= start < block.end() for block in floats):

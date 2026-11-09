@@ -79,6 +79,7 @@
   <text x="765" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">dormant unless configured</text>
 
   <!-- footer: protect the point -->
-  <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="434" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
+  <line x1="40" y1="404" x2="920" y2="404" stroke="#57534e" stroke-width="1.4"/>
+  <text x="480" y="434" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement —</text>
+  <text x="480" y="458" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">not from a maturity sequence.</text>
 </svg>

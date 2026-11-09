@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "figures": {
+    "part3-nav-arc": {
+      "width_bp": 270,
+      "placement": "centered"
+    },
+    "semantic-gap": {
+      "width_bp": 300,
+      "placement": "centered"
+    },
+    "positive-negative-obligation": {
+      "width_bp": 300,
+      "placement": "centered"
+    },
+    "permitted-vs-acceptable": {
+      "width_bp": 300,
+      "placement": "centered"
+    },
+    "turn-end-ordering": {
+      "width_bp": 247.5,
+      "placement": "centered",
+      "inset_placement": "flow"
+    },
+    "docable-context-selection": {
+      "width_bp": 270,
+      "placement": "centered",
+      "inset_placement": "flow"
+    },
+    "fidelity-vs-authority": {
+      "width_bp": 270,
+      "placement": "centered",
+      "inset_placement": "flow"
+    },
+    "match-mechanism-to-property": {
+      "width_bp": 342,
+      "placement": "centered",
+      "inset_placement": "flow"
+    },
+    "governance-conversion-fig": {
+      "width_bp": 360,
+      "placement": "centered"
+    },
+    "judgment-without-consequence": {
+      "width_bp": 324,
+      "placement": "centered",
+      "inset_placement": "flow"
+    },
+    "census-trio": {
+      "width_bp": 450,
+      "placement": "centered"
+    }
+  }
+}

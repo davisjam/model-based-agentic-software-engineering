@@ -22,7 +22,7 @@ Suppose you are adding a reporting service to a billing system. The service may 
 % <!-- index-def: governance-mechanism -->
 
 \begin{quote}
-\textbf{Governance mechanism.} A repeatable structure in the engineered environment for aligning an agent's actions with the obligations represented in models.
+\textbf{Governance mechanism.} A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed.
 \end{quote}
 
 We can distinguish three categories by the engineering questions they answer, as shown in \autoref{governance-mechanism-questions}.
@@ -111,6 +111,16 @@ An instruction to use the billing API can guide an agent, but it does not exclud
 
 For the reporting change, a module boundary exposes the billing API client while keeping the database connector private. The language\textquotesingle s visibility rules prevent checked reporting code from importing that connector. The agent can choose how to assemble the report, but cannot use the private connector to obtain its data. This restriction covers that particular route: code using a generic network library might still attempt a direct database connection.
 
+% <!-- point: selected-structure-can-be-generated-from-a-model | A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass. | terms: constraint, governance-mechanism -->
+
+Constraints can restrict an implementation after it is produced, or shape its construction so that selected violations cannot arise. Classical model-driven engineering offers a familiar example: a generator translates a model into code, configuration, or other artifacts. If an architectural model determines which services may communicate, generated interfaces or access-control rules can embody those relationships directly. For the properties preserved by the transformation, Alignment is achieved by construction rather than by checking an independently produced implementation afterward.\citep{schmidt2006model,sendall2003model,czarnecki2006feature}
+
+A generator can produce selected parts of an implementation, leaving other decisions to agents. An agent can also customize or extend generated code, provided those changes preserve the obligations embodied in it. The model must express the intended obligation, the generator must preserve it, and subsequent changes must not bypass the generated structure.
+
+% <!-- point: agents-can-construct-checking-and-enforcement-machinery | Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness. | terms: constraint, validator, governance-mechanism -->
+
+Agents can also help construct the checking and enforcement machinery. Once an invariant is explicit, an agent can help translate it into a lint rule, schema constraint, architectural test, or static analysis. Here the generated artifact checks or constrains another implementation. Bodden's work on self-adaptive static analysis proposes automatic optimization of an analysis from an explicit representation of it.\citep{bodden2018,bodden2023sosa} The engineer remains responsible for the obligation and for validating what the resulting mechanism actually establishes.
+
 % <!-- point: a-sensor-observes-and-produces-evidence-and-costs-iterations | A sensor produces evidence about artifacts, attempted actions, or observed executions; observability exposes the state or behavior that the environment must inspect. | terms: sensor, observability -->
 
 % <!-- index-def: sensor -->
@@ -137,7 +147,7 @@ Each connection record must identify the reporting service and distinguish an AP
 
 % <!-- index-def: gate -->
 
-\textbf{A gate controls whether an action or result may proceed.} It evaluates whether an action or result may proceed and enforces the decision at a boundary. The evaluation may be performed locally or delegated to another checker.
+A gate evaluates whether an action or result may proceed and enforces that decision at a boundary. The evaluation may be performed locally or delegated to another checker.
 
 % <!-- point: a-ci-suite-bundles-three-roles-without-collapsing-the-distinction | Instrumented tests produce observations, a checker compares them with the architectural model, and the merge gate requires the build and interaction checks to pass. | terms: sensor, gate, validator, governance-package -->
 
@@ -180,15 +190,15 @@ A release check can regenerate evidence from the candidate being shipped, rather
 
 The reporting-service boundary concerns a relationship between components. Other obligations depend on how state changes over a sequence of operations. Tests already preserve engineering intent about those sequences. An example test records a case and the result it should produce; a regression test keeps checking behavior that a later change might break. Suppose the reporting service queues jobs that workers claim under expiring leases. Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one. A regression test can reproduce that sequence against the implementation and assert that B remains the owner. It preserves a concrete failure scenario and makes a recurrence easier to diagnose. Such tests remain useful as the system acquires more explicit models.\citep{winters2020}
 
-We can also state a property covering many such cases: a release carrying an old generation must not clear the current claim. \emph{Property-based testing} supplies generated inputs to a check of that property, varying worker identities, claim generations, and relevant operations. The engineer still has to choose a meaningful property and arrange for the generator to exercise the cases that matter. A large number of passing examples says little if the generator never produces a stale release. QuickCheck provides a framework for expressing and testing such executable properties.\citep{claessen2000quickcheck}
+We can also state a property covering many such cases: a release carrying an old generation must not clear the current claim. \emph{Property-based testing} supplies generated inputs to a check of that property, varying worker identities, claim generations, and relevant operations. The engineer must choose the property and ensure that the generator exercises the cases that matter, including stale releases. QuickCheck provides a framework for expressing and testing such executable properties.\citep{claessen2000quickcheck}
 
 An explicit model adds a reusable account of the behavior those tests should expect. For this ownership question, the model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A model-based test can use that account to construct sequences of operations and compare the implementation's responses with the permitted outcomes. The model can help choose what to exercise, provide the test oracle---the rule for evaluating the result---or do both. This does not require a second implementation of the database. It requires enough behavior to answer the ownership question.\citep{utting2012taxonomy}
 
-For example, the test could issue each operation to both the simple ownership model and the real lease implementation, then compare their resulting ownership state. An attempted stale release must leave the current claim unchanged in both. The model makes that expectation available across many sequences, instead of requiring each test to restate the whole history. The test driver must also translate model operations into real calls and observe the corresponding results. A model that ignores storage details can help test ownership while leaving persistence and deployment behavior to other tests. A sequential test driver will not expose every race inside those calls; concurrent schedules and database atomicity need their own tests or analysis. The model preserves the distinctions needed for the ownership question while other tests address the details it omits.\citep{prenninger2005abstractions}
+A test driver can issue each operation to both the ownership model and the real lease implementation, then compare their ownership states. An attempted stale release must leave the current claim unchanged in both. The driver translates model operations into real calls and observes their results; the same model supplies expectations across many sequences. A sequential driver will not expose every race inside those calls: concurrent schedules and database atomicity need their own tests or analysis.\citep{prenninger2005abstractions}
 
-These techniques overlap. Hypothesis's stateful testing, for example, generates sequences of actions and can compare a real system with a simpler model. That is both property-based and model-based testing. A useful failing sequence can then become a fixed regression test. The same obligation may therefore be checked through a carefully chosen example, generated variations, and comparisons with a model. The techniques contribute different ways to find and preserve evidence; they do not displace one another.\citep{hypothesis-stateful}
+Hypothesis's stateful testing can generate sequences of actions and compare a real system with a simpler model, combining property-based and model-based testing. A useful failing sequence can then become a fixed regression test.\citep{hypothesis-stateful}
 
-Coverage helps us judge that evidence only when we say what was covered. A suite might exercise every modeled transition yet miss a problematic ordering of those transitions. It might execute every relevant line of implementation without asserting that ownership remained correct. Model coverage, code coverage, and the properties actually checked answer different questions. Passing the selected tests supports the claim that the implementation behaved as required in those executions. It does not establish that every possible execution satisfies the obligation.\citep{winters2020}
+Model coverage, code coverage, and the properties checked answer different questions. Exercising every modeled transition may miss a problematic ordering; executing every relevant line may still leave ownership unasserted. Passing tests supports a claim only about the executions and properties checked.\citep{winters2020}
 
 The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
 
@@ -196,9 +206,9 @@ The extra model also has a cost. Engineers must validate its rules against the r
 
 % <!-- section-terms: constraint, validator, gate -->
 
-% <!-- point: a-modeled-obligation-does-not-imply-one-enforcement | Tests, runtime constraints, and model checking supply different kinds of evidence or restriction and can be combined for the obligation at hand. -->
+% <!-- point: a-modeled-obligation-does-not-imply-one-enforcement | Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand. -->
 
-A modeled obligation does not imply one particular enforcement technology. Tests exercise an implementation through selected inputs and sequences of actions. Constraints restrict what the running system permits, and model checking can examine the behavior admitted by an explicit model. Ask what evidence the obligation needs and how the environment should act on it.
+A modeled obligation does not imply one particular enforcement technology. Some obligations can be embodied in generated implementation structure; others can be enforced through constraints on agent actions or evaluated through tests and analysis. Tests exercise selected implementation behaviors; model checking examines behavior admitted by an explicit model. Ask what evidence the obligation needs and how the environment should act on it.
 
 % <!-- point: prefer-the-constraint-when-you-can-exclude-the-state | An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol. -->
 
@@ -237,27 +247,11 @@ A different analysis addresses eventual completion. The system's state and recov
 \label{match-mechanism-to-property}
 \end{figure}
 
-A model-based test driver could add implementation evidence by issuing lease operations to both the running code and the model, then comparing the results. It would connect the modeled ownership rule to observed executions, complementing the runtime claim and the model analyses. Each contributes a different basis for an acceptance decision: a restricted operation, a result about the protocol, or an observed execution that satisfies the expected behavior.
 \end{bookbox}
 
 % <!-- point: mechanisms-match-properties-not-an-adoption-sequence | Select and combine mechanisms according to the evidence or restriction they contribute and the cost of obtaining it. -->
 
-Choose each mechanism for the evidence or restriction it contributes and the cost of obtaining it. Once that choice is clear, the next engineering question is how to construct the checker and validate the claim it makes.
-
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: PROGRAMMING LANGUAGES -->
-
-% mage-box-prefix: Inset —
-
-\begin{bookbox}{inset}{Synthesizing the Guardrail}
-\label{inset-synthesizing-the-guardrail}
-A growing set of obligations can require many checkers. Agents can help build them. Once an invariant is explicit, an agent can help translate it into a lint rule, schema constraint, architectural test, static analysis, or mapping from model concepts to implementation artifacts. The engineer remains responsible for the invariant and for checking that the resulting mechanism enforces it. This can reduce the work of constructing a checker without delegating the decision about what it must establish.
-
-There is a stronger version of this idea. A static analysis can itself be represented with degrees of freedom: specify what property the analysis should establish while leaving choices about how to perform the analysis open. Recent work has proposed self-adaptive static analysis, in which the analysis representation admits automatic optimization for the particular program and analysis. The aim of such methods is to generate precise and efficient analyses through self-aware, self-optimizing, sound analysis machinery---automating the realization of the control without making its enforcement probabilistic.\citep{bodden2018}\citep{bodden2023sosa}
-
-Here the engineer specifies the obligation that the checker must establish while leaving some choices about the checker's implementation open. Automation can help construct and optimize that implementation. The resulting check still needs validation: cheaper construction does not establish that it checks the intended property or preserves the analysis assumptions.
-\end{bookbox}
+Choose each mechanism for the evidence or restriction it contributes and the cost of obtaining it.
 
 % <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed. -->
 
@@ -401,7 +395,7 @@ For the reporting service, an agent can consult the architectural model when cho
 
 % <!-- point: implementations-bundle-roles-name-them-do-not-stretch-the-terms | A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence. | terms: governance-package, constraints-and-sensors -->
 
-% <!-- gloss-only: Governance mechanism | A repeatable structure in the engineered environment for aligning an agent’s actions with the obligations represented in models. Constraints restrict available actions or states; sensors produce evidence; gates evaluate whether actions or results may proceed and enforce the resulting decisions. A control is a governance mechanism considered in relation to the obligation or risk it addresses. -->
+% <!-- gloss-only: Governance mechanism | A repeatable structure in the engineered environment that constrains agentic work, produces evidence about it, or controls whether it may proceed. Constraints restrict available actions or states; sensors produce evidence; gates evaluate whether actions or results may proceed and enforce the resulting decisions. A control is a governance mechanism considered in relation to the obligation or risk it addresses. -->
 
 % <!-- index-def: governance-package -->
 

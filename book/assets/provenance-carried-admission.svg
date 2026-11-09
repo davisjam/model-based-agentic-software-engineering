@@ -22,28 +22,28 @@
   </defs>
 
   <!-- column kickers -->
-  <g font-size="16" font-weight="700" letter-spacing="0.5" fill="#9a3f12" text-anchor="middle">
+  <g font-size="22" font-weight="700" letter-spacing="0.5" fill="#9a3f12" text-anchor="middle">
     <text x="120" y="66">IMPLEMENTATION</text>
     <text x="410" y="66">SANCTIONED ABSTRACTION</text>
     <text x="850" y="66">ADMISSION BOUNDARY</text>
   </g>
 
   <!-- implementation logic (gray, ordinary) -->
-  <rect x="30" y="112" width="180" height="76" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="120" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">implementation</text>
-  <text x="120" y="170" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">logic</text>
+  <rect x="21" y="112" width="198" height="76" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="120" y="146" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">implementation</text>
+  <text x="120" y="170" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">logic</text>
 
   <!-- edge: implementation -> sanctioned abstraction -->
-  <line x1="210" y1="150" x2="272" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#pca-ah)"/>
+  <line x1="219" y1="150" x2="272" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#pca-ah)"/>
 
   <!-- sanctioned abstraction (rust = sanctioned derivation) -->
   <rect x="280" y="112" width="260" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="410" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">sanctioned source</text>
-  <text x="410" y="170" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">of operation</text>
-  <text x="410" y="214" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">issues provenance</text>
+  <text x="410" y="146" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">sanctioned source</text>
+  <text x="410" y="170" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">of operation</text>
+  <text x="410" y="214" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">issues provenance</text>
 
   <!-- edge: sanctioned abstraction -> boundary, carrying operation + provenance -->
-  <text x="664" y="132" text-anchor="middle" font-size="18" font-style="italic" fill="#1c1917">operation + provenance</text>
+  <text x="664" y="132" text-anchor="middle" font-size="22" font-style="italic" fill="#1c1917">operation + provenance</text>
   <line x1="540" y1="150" x2="790" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#pca-ah)"/>
 
   <!-- consequence boundary (double bar) -->
@@ -51,14 +51,14 @@
     <line x1="800" y1="106" x2="800" y2="190"/>
     <line x1="808" y1="106" x2="808" y2="190"/>
   </g>
-  <text x="804" y="214" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">requires provenance</text>
+  <text x="804" y="214" text-anchor="middle" font-size="22" font-style="italic" fill="#9a3f12">requires provenance</text>
 
   <!-- edge: boundary -> consequence -->
   <line x1="816" y1="150" x2="922" y2="150" stroke="#57534e" stroke-width="2.4" marker-end="url(#pca-ah)"/>
-  <text x="1002" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ADMITTED</text>
-  <text x="1002" y="170" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OPERATION</text>
+  <text x="1002" y="146" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">ADMITTED</text>
+  <text x="1002" y="170" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">OPERATION</text>
 
   <!-- footer thesis -->
-  <line x1="40" y1="266" x2="1060" y2="266" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="550" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#1c1917">constrain the sanctioned path, rather than enumerate every possible bypass</text>
+  <line x1="40" y1="266" x2="1060" y2="266" stroke="#57534e" stroke-width="1.4"/>
+  <text x="550" y="300" text-anchor="middle" font-size="22" font-style="italic" fill="#1c1917">constrain the sanctioned path, rather than enumerate every possible bypass</text>
 </svg>
