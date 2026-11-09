@@ -31,8 +31,8 @@ readings:
     - heading: The factory, as the textbook develops it
       items:
         - cite: davis2026mage
-          locator: '§5.1, §5.3, and §5.4'
-          annotation: '{mage:5.1}, {mage:5.3}, and {mage:5.4} Davis, 2026. Read §5.1 for what a software factory is, and §5.4 for the two problems this unit is organized around — process design and tolerance. Skim the industrial cases in §5.3: attend to the comparison between organizations rather than to every implementation detail. §5.2 provides a detailed account of the DocAble factory discussed in Lecture 3; it is recommended for students interested in the implementation, but is not required.'
+          locator: '§5.1, §5.3, and §5.5'
+          annotation: '{mage:5.1}, {mage:5.3}, and {mage:5.5} Davis, 2026. Read §5.1 for what a software factory is, and §5.5 for the two problems this unit is organized around — process design and tolerance. Skim the industrial cases in §5.3: attend to the comparison between organizations rather than to every implementation detail. §5.2 provides a detailed account of the DocAble factory discussed in Lecture 3; it is recommended for students interested in the implementation, but is not required.'
 instructor_materials: []
 student_materials: []
 assignments: []
