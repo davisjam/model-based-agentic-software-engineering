@@ -3952,7 +3952,7 @@
             },
             {
               "slug": "the-bound-does-not-argue-for-complete-specification",
-              "text": "The bound does not argue for complete specification — sometimes the appropriate choice, but where multiple realizations satisfy the obligations it sacrifices commodity intelligence's ability to explore choices engineers need not make; the economic value of Modeling and Alignment depends partly on how much useful freedom the environment preserves under adequate control.",
+              "text": "The bound permits complete specification where it is appropriate, but where several realizations satisfy the obligations, delegated choice can avoid unnecessary specification work. Modeling and Alignment must preserve useful freedom under adequate control.",
               "block_index": 52
             }
           ]
@@ -3961,13 +3961,13 @@
           "section_id": "modeling-and-alignment-are-distinctand-compound",
           "level": 2,
           "heading_text": "Production and Assurance",
-          "topic_sentence": "Modeling and Alignment improve engineering reliability through different mechanisms.",
+          "topic_sentence": "Modeling and Alignment contribute to engineering reliability through different mechanisms.",
           "id_source": "explicit",
           "block_index": 54,
           "points": [
             {
               "slug": "modeling-and-alignment-are-two-separable-effects",
-              "text": "Modeling and Alignment improve engineering reliability through different mechanisms: Modeling changes the representation used to produce a realization; Alignment determines whether selected obligations are satisfied before that realization acquires consequence.",
+              "text": "Modeling changes the representation used in production; Alignment supplies evidence and mechanisms that prevent or reject violations of selected obligations.",
               "block_index": 55
             },
             {
@@ -3982,7 +3982,7 @@
             },
             {
               "slug": "fabricator-and-tolerance-act-differently-on-the-same-system",
-              "text": "The distinction matters because improving the fabricator and improving the tolerance act differently on this system.",
+              "text": "Improving the fabricator can reduce incorrect candidates; improving evidence and admission can reduce how many of them enter the system.",
               "block_index": 62
             }
           ]
@@ -4022,12 +4022,12 @@
             },
             {
               "slug": "hiding-the-model-does-not-weaken-the-gate-only-raises-cost",
-              "text": "Hiding the model does not weaken a perfect gate; it only raises the cost of reaching an acceptable candidate.",
+              "text": "Hiding the model does not weaken a perfect gate; exposing a useful model can reduce the cost of reaching an acceptable candidate.",
               "block_index": 78
             },
             {
               "slug": "alignment-protects-the-boundary-modeling-reduces-collisions",
-              "text": "Alignment protects the boundary; Modeling reduces how often work collides with it.",
+              "text": "Alignment protects the boundary independently of the producer; Modeling can reduce collisions with it.",
               "block_index": 80
             },
             {
@@ -4391,7 +4391,7 @@
             },
             {
               "slug": "not-a-maturity-model-improve-the-limiting-part",
-              "text": "These are not maturity stages; improve whichever part of the environment is limiting the work.",
+              "text": "The properties are dimensions for diagnosing what limits the work, not maturity stages; the appropriate response may improve representations or assurance, or reconcile and retire controls.",
               "block_index": 221
             }
           ]
@@ -4620,13 +4620,13 @@
           "section_id": "two-margins-not-one",
           "level": 3,
           "heading_text": "Two margins, not one",
-          "topic_sentence": "Software adds a distinction manufacturing does not have, and it should be stated explicitly: there are two margins here, not one.",
+          "topic_sentence": "We can distinguish two margins in a software factory.",
           "id_source": "derived",
           "block_index": 311,
           "points": [
             {
               "slug": "software-has-two-margins",
-              "text": "Software has two distinct margins, a major difference from manufacturing: the production margin (the next acceptable change) and the replication margin (serving that change's benefit to the next user).",
+              "text": "Software-factory economics distinguishes the production margin, the next acceptable change, from the replication margin, providing that change's benefit to the next user or use.",
               "block_index": 312
             }
           ]
@@ -4635,13 +4635,13 @@
           "section_id": "the-idle-factory-still-depreciates",
           "level": 3,
           "heading_text": "The idle factory still depreciates",
-          "topic_sentence": "Carrying cost also divides, and the division is where the physical analogy breaks most instructively.",
+          "topic_sentence": "Carrying cost has two parts: the cost of keeping the factory available and the cost of maintaining its engineering capital.",
           "id_source": "derived",
           "block_index": 314,
           "points": [
             {
               "slug": "carrying-cost-splits-into-operational-and-capital",
-              "text": "Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to leave physically idle while its engineering capital continues to depreciate.",
+              "text": "Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to keep idle when its operating costs can be reduced, while its engineering capital continues to depreciate.",
               "block_index": 315
             }
           ]

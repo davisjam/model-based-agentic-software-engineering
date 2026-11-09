@@ -5983,7 +5983,7 @@ The author approved A84–A86 after restoring a smoother chapter recap and reduc
 
 ### A84 — Preserve the chapter recap in the author’s wording
 
-- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`, Conclusion, lines 34–34.
 - Source revision: `10a320caa21c43a5c6ca5fb1fb79d5cf281d502d`.
 - Removal date: 2026-11-08.
 - Removal revision: the commit introducing this entry.
@@ -5996,7 +5996,7 @@ The seven chapters developed an answer at different levels. \textbf{\magevalue{c
 
 ### A85 — Merge the encoding limit with its two engineering problems
 
-- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`, Conclusion, lines 71–77.
 - Source revision: `10a320caa21c43a5c6ca5fb1fb79d5cf281d502d`.
 - Removal date: 2026-11-08.
 - Removal revision: the commit introducing this entry.
@@ -6015,7 +6015,7 @@ This limitation has two implications. First, the engineer must find representati
 
 ### A86 — Distinguish realization from assurance and show how agents improve the engineering machinery
 
-- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`, Conclusion, lines 87–95.
 - Source revision: `10a320caa21c43a5c6ca5fb1fb79d5cf281d502d`.
 - Removal date: 2026-11-08.
 - Removal revision: the commit introducing this entry.
@@ -6032,4 +6032,164 @@ As commodity intelligence improves, that frontier moves. For familiar work, capa
 % <!-- point: richer-machinery-is-the-opportunity | Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone. -->
 
 Increasingly capable agents can help maintain richer representations, analyze them continuously, gather evidence, and enforce obligations at scales that human engineers could not economically sustain. The opportunity is not merely to realize systems more cheaply, but to build better engineering machinery because agents can use it.
+```
+
+## Approved §6.1 theory review — 8 November 2026
+
+The author approved A48–A57, including final wording on preserving useful freedom under adequate control.
+
+### A48 — Explain why reliable realization need not require complete specification
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 151–153.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: the-bound-does-not-argue-for-complete-specification | The bound does not argue for complete specification — sometimes the appropriate choice, but where multiple realizations satisfy the obligations it sacrifices commodity intelligence's ability to explore choices engineers need not make; the economic value of Modeling and Alignment depends partly on how much useful freedom the environment preserves under adequate control. -->
+
+Nor does the bound argue for complete specification. Complete specification is sometimes the appropriate engineering choice: some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. But determining nearly every consequential and inconsequential realization decision in advance would recreate much of the economic problem that defeated the earlier software factories (\magevalue{chapter:software-factories}), and where multiple realizations satisfy the consequential obligations, it sacrifices an important advantage of commodity intelligence: its ability to explore choices that engineers need not make themselves. The new economic possibility is different: a capable fabricator can be given enormous freedom over realization while the engineering environment explicitly preserves the smaller set of decisions whose resolution matters. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the engineered environment can preserve while maintaining adequate control.
+```
+
+### A49 — Name what Alignment does
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 157–159.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: modeling-and-alignment-are-two-separable-effects | Modeling and Alignment improve engineering reliability through different mechanisms: Modeling changes the representation used to produce a realization; Alignment determines whether selected obligations are satisfied before that realization acquires consequence. -->
+
+Modeling and Alignment improve engineering reliability through different mechanisms. \textbf{Modeling} changes the representation used to produce a realization; \textbf{Alignment} determines whether selected obligations are satisfied before that realization acquires consequence. Either can produce value without the other.
+```
+
+### A50 — Prepare the distinction between production and admission errors
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 171–173.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: fabricator-and-tolerance-act-differently-on-the-same-system | The distinction matters because improving the fabricator and improving the tolerance act differently on this system. | terms: tolerance -->
+
+The distinction matters because improving the fabricator and improving the tolerance act differently on this system.
+```
+
+### A51 — Keep the perfect-gate guarantee separate from a model's possible savings
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 210–216.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: hiding-the-model-does-not-weaken-the-gate-only-raises-cost | Hiding the model does not weaken a perfect gate; it only raises the cost of reaching an acceptable candidate. -->
+
+Suppose the architectural rule is checked perfectly at merge time. Hiding the structural model from the agent does not weaken the gate: forbidden changes still cannot merge. But the agent may repeatedly reconstruct the architecture incorrectly and collide with that gate. Exposing the structural model leaves the guarantee unchanged while reducing the cost of reaching an admissible candidate.
+
+% <!-- point: alignment-protects-the-boundary-modeling-reduces-collisions | Alignment protects the boundary; Modeling reduces how often work collides with it. -->
+
+\textbf{Alignment protects the boundary; Modeling reduces how often work collides with it.}
+```
+
+### A52 — State the quadrant table's sound-gate assumption before the table
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 222–222.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+The four combinations therefore have different engineering meanings (\autoref{modeling-alignment-quadrants}).
+```
+
+### A53 — Turn the environment diagnosis into connected explanation
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 618–620.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: not-a-maturity-model-improve-the-limiting-part | These are not maturity stages; improve whichever part of the environment is limiting the work. -->
+
+These are not stages of a maturity model.\citep{bollinger1991critical} Improve the part of the environment that is limiting the work. If engineers repeatedly reconstruct important state, improve the representation. If failures escape, strengthen evidence or enforcement. If controls have become a tax, reconcile or remove them.
+```
+
+### A54 — Explain the two software margins without claiming manufacturing lacks them
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 849–851.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: software-has-two-margins | Software has two distinct margins, a major difference from manufacturing: the production margin (the next acceptable change) and the replication margin (serving that change's benefit to the next user). -->
+
+Software adds a distinction manufacturing does not have, and it should be stated explicitly: there are two margins here, not one. The \emph{production margin} asks what it costs the factory to make the next acceptable change to the software. The \emph{replication margin} asks what it costs, once that change exists, to provide its benefit to the next user, document, transaction, installation, or copy. For packaged software the second can approach zero. For a hosted service it is not literally zero --- compute, storage, and support scale with use --- but it can remain small relative to the engineering cost of changing the product.
+```
+
+### A55 — Separate low operating expense from depreciation under explicit conditions
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 855–863.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+% <!-- point: carrying-cost-splits-into-operational-and-capital | Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to leave physically idle while its engineering capital continues to depreciate. -->
+
+Carrying cost also divides, and the division is where the physical analogy breaks most instructively. A semiconductor fabrication plant sitting idle is still enormously expensive: buildings, equipment, utilities, and staffing continue whether or not anything is produced. An agentic software factory can idle at almost no physical cost. Repositories, models, configuration, tests, and governance mechanisms sit on disk; cloud services scale toward zero; agent subscriptions stop.
+
+\[
+C_{\text{carry}} = C_{\text{operational carry}} + C_{\text{capital maintenance}}
+\]
+
+The first term can be extraordinarily low for software. The second need not be: dependencies move, models cease to correspond to the system, tests go stale, and organizational knowledge disappears. Software factories can be cheap to leave physically idle while their engineering capital continues to depreciate.
+```
+
+### A56 — Distinguish the TSA example from evidence about attention limits
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 676–678.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+Operational practice provides the corresponding field example. The Transportation Security Administration uses covert tests of real airport screening operations to identify vulnerabilities in passenger and checked-baggage screening. Government Accountability Office reviews document both the use of these tests and failures that prompted changes to testing and remediation.\citep{gao2019covert} The setting differs from software review, but the engineering lesson is general: consequential inspection performed by trained professionals remains a capacity-limited control. More automation upstream does not create more human attention downstream.
+
+This matters directly for agentic engineering. If implementation output grows while assurance continues to require proportional human inspection, human attention becomes a throughput and assurance bottleneck. MAGE therefore does not seek to remove humans from consequential judgment. It seeks to concentrate human judgment where judgment is actually required. Recurring obligations that can be represented, evidenced, or enforced adequately should increasingly be carried by the engineered environment; scarce human attention can then be spent on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences genuinely require expert judgment.
+```
+
+### A57 — Give the industry measurement its window and define yield
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 687–687.
+- Source revision: `41987a8f30955373d5a93bc2dc37bb9fd5c9bf63`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.1 review and final delegated-choice wording.
+
+```latex
+\magefootnote{activity-data}{The activity-versus-outcome gap already shows up in industry data. A 2026 benchmark of 83,000 developers across 253 organizations\citep{linearb2026} reports large merge-rate gains among heavy AI users, yet finds yield falling among the heaviest even as merge rates roughly doubled. An industry analyst reads the same period as rising AI spend without proportionate shipping velocity, the difficulty having moved from comprehension to confidence.\citep{riggins2026} Activity is not the same as durable progress.}
 ```
