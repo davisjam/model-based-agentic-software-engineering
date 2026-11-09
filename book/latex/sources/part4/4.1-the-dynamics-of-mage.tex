@@ -24,7 +24,7 @@ The return path is similarly varied. On the Alignment side, review, testing, and
 
 These interactions do not prescribe a fixed sequence of activities. Models make selected knowledge available to guide delegated work; review, testing, and analysis provide evidence for evaluating the result. Alignment uses that evidence to establish or preserve correspondence: an engineer may require a correction, or a gate may reject a change that violates an obligation. An engineer may move among these interactions repeatedly during a single change.
 
-Complementary does not mean equal in governing force. Natural language and specification remain useful throughout engineering, but neither maintains anything on its own: a specification states an obligation, and something must still establish and preserve it as the system changes. A consequential property should not depend on an engineer restating it in a prompt, an agent retaining it across a conversation, or a reviewer remembering to check it. Once such a property is sufficiently understood, Modeling makes it explicit and automated Alignment keeps the realization in correspondence with it. There is no need to model every thought exchanged with an agent; the objective is that consequential properties stop depending on those exchanges.
+These channels differ in their governing force. Natural language and specifications remain useful throughout engineering, but preserving an obligation as the system changes requires additional machinery. A consequential property should survive beyond the prompt, conversation, or review in which it was first articulated. Once the property is sufficiently understood, Modeling makes it explicit and automated Alignment keeps the realization in correspondence with it. Engineers can therefore leave ordinary exchanges informal while making consequential properties durable.
 
 Three ideas describe the resulting dynamics: alignment can operate actively or passively; models can be brought into governance incrementally around an alignment kernel; and the models themselves can emerge from engineering work rather than being specified completely in advance.
 
@@ -64,7 +64,7 @@ The order is system-dependent. For a conventional information system, behavioral
 
 A newly aligned model can join the protected environment for the next episode. Adoption therefore proceeds incrementally; it does not require a complete model of the system before governance begins.
 
-Nor should the kernel necessarily grow without bound. A model earns its place by making a consequential property cheaper to understand, predict, constrain, or evaluate than leaving that knowledge implicit. The kernel is large enough when the consequential degrees of freedom are under control; maximum representation is not the goal.
+The kernel should grow only while additional models justify their cost. A model earns its place by making a consequential property cheaper to understand, predict, constrain, or evaluate than leaving that knowledge implicit. The kernel is large enough when the consequential degrees of freedom are under control.
 
 \section{Greenfield and Brownfield MAGE}\label{heading:greenfield-and-brownfield-mage}
 

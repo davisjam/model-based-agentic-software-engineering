@@ -57,7 +57,7 @@ Several techniques can help recover models from an existing system:
   \textbf{Interview engineers.} Ask experienced maintainers about architectural rules, behavioral assumptions, and recurring decisions that are not adequately documented.\citep{bjornson2008knowledge} Walking through a recent change or failure can expose knowledge that engineers routinely use but the implementation does not explicitly represent.\citep{anandayuvaraj2026failures} Compare this account with the recovered models and investigate disagreements about what the system does or ought to do.
 \end{itemize}
 
-These techniques produce candidate representations, not authoritative specifications. Engineering judgment determines which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
+These techniques produce candidate representations for engineering review. Engineers must determine which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
 
 Repeated implementation structures offer another source of candidates. A detector can narrow the search, but repetition may reflect a missing domain concept, an external protocol, test scaffolding, or ordinary cleanup. Its findings need interpretation in their architectural context.
 

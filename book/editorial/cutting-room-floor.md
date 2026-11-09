@@ -18164,3 +18164,63 @@ Some candidate conflicts can be evaluated mechanically, such as a cycle in decla
 
 Not every conflict between controls reflects a conflict between the obligations they enforce. Two obligations may genuinely be incompatible, requiring engineers to revisit the requirements or specification. But compatible obligations can also be enforced by mechanisms that interfere with one another. In that case, changing the mechanisms or how they interact may resolve the conflict without weakening either obligation.
 ```
+
+
+## Chapter 4 incremental prose edits — 9 November 2026
+
+Apply the author's direct replacements for Edits 1, 2, 5, 6, and 8. Retain the original opening of “Why One Level Deeper Matters” after contextual review under the author's conditional instruction: its contrast between observed outcome and causal explanation performs useful teaching work.
+
+### Complementary Interaction Channels (Edit 1)
+
+- Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex:27`
+- Source revision: `223163f42e765dcbb27d0fd114602eb92345c797`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the governing distinction and its scope.
+
+```latex
+Complementary does not mean equal in governing force. Natural language and specification remain useful throughout engineering, but neither maintains anything on its own: a specification states an obligation, and something must still establish and preserve it as the system changes. A consequential property should not depend on an engineer restating it in a prompt, an agent retaining it across a conversation, or a reviewer remembering to check it. Once such a property is sufficiently understood, Modeling makes it explicit and automated Alignment keeps the realization in correspondence with it. There is no need to model every thought exchanged with an agent; the objective is that consequential properties stop depending on those exchanges.
+```
+
+### Kernel Size (Edit 2)
+
+- Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex:67`
+- Source revision: `223163f42e765dcbb27d0fd114602eb92345c797`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the governing distinction and its scope.
+
+```latex
+Nor should the kernel necessarily grow without bound. A model earns its place by making a consequential property cheaper to understand, predict, constrain, or evaluate than leaving that knowledge implicit. The kernel is large enough when the consequential degrees of freedom are under control; maximum representation is not the goal.
+```
+
+### The Resulting Model Family (Edit 5)
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex:256`
+- Source revision: `223163f42e765dcbb27d0fd114602eb92345c797`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the governing distinction and its scope.
+
+```latex
+The large-file requirement did not produce one model. It produced a connected family, each member answering a different question. \autoref{interlude-model-family} collects them.
+```
+
+### Recovered Models and Authority (Edit 6)
+
+- Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex:60`
+- Source revision: `223163f42e765dcbb27d0fd114602eb92345c797`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the governing distinction and its scope.
+
+```latex
+These techniques produce candidate representations, not authoritative specifications. Engineering judgment determines which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
+```
+
+### Packaging Recurring Judgment (Edit 8)
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex:51`
+- Source revision: `223163f42e765dcbb27d0fd114602eb92345c797`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the governing distinction and its scope.
+
+```latex
+Packaging does not itself enforce anything. Prose, examples, models, and decision procedures can make a satisfactory decision substantially more likely while leaving the decision probabilistic. The same skill can also invoke enforcing mechanisms or carry the models and correctness conditions those mechanisms consume. Where an obligation should not depend on the agent\textquotesingle s reasoning, the environment still needs a constraint or gate that controls the relevant action independently. A checker may supply the evaluation such a gate uses. A skill can support a reasoner\textquotesingle s judgment and carry or invoke mechanisms that enforce selected obligations.
+```
