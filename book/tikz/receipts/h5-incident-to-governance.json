@@ -12,7 +12,7 @@
     "REPAIR THE CLASS",
     "GOVERNANCE CONVERSION",
     "UPDATED MODEL",
-    "DURABLE MECHANISM invariant · validator · test constraint · policy · gate",
+    "DURABLE MECHANISM invariant \u00b7 validator \u00b7 test constraint \u00b7 policy \u00b7 gate",
     "FUTURE WORK inherits the lesson"
   ],
   "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
@@ -23,7 +23,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
+    "source_sha256": "022e2030d74171d58d421facb10c09d352b78fd39221c17811582d3a5928d999",
     "candidate_sha256": "6b6d36396a0366066e7089186166b3263496629dbc19254eab86851ee16995f2",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes REPAIR THE CLASS; DURABLE MECHANISM. Restored modeling and durable conversion stages versus regular affected-instance evidence, modeling and durable conversion stages versus regular affected-instance evidence. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -47,7 +47,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
+    "source_sha256": "022e2030d74171d58d421facb10c09d352b78fd39221c17811582d3a5928d999",
     "candidate_sha256": "6b6d36396a0366066e7089186166b3263496629dbc19254eab86851ee16995f2",
     "reason": "Restored modeling and durable conversion stages versus regular affected-instance evidence, modeling and durable conversion stages versus regular affected-instance evidence. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -181,5 +181,12 @@
       "width_bp": 297.811,
       "height_bp": 507.193
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "44cbaafc5f350e90f0c1f0617f6d2507be6d2382e2cd14d4d4b2c458758d1061",
+    "source_sha256": "022e2030d74171d58d421facb10c09d352b78fd39221c17811582d3a5928d999",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

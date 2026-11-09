@@ -1,6 +1,6 @@
 {
   "source": "book/assets/model-coherence-stack.svg",
-  "claim": "The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check — model against world — which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE enforces the modeled property. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability.",
+  "claim": "The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check \u2014 model against world \u2014 which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE enforces the modeled property. Solid path: the required composition. Dashed attachment: a useful enhancement, not required for the capability.",
   "topology": "Required model-consume-correspondence-decision path; optional emit and derive attachments remain dashed; gate on disagreement.",
   "required_terms": [
     "MODEL\\ fact",
@@ -29,7 +29,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+    "source_sha256": "0467b6b3bad79a3447700466ea2ca69c06c55adf79e0a7d251edea0bc2d7b7fb",
     "candidate_sha256": "72fd2b06915e4a02389462f427b225d9f666807d7d5593e5906b433f3d530e8a",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes CORRESPONDENCE; Disagreement?; CONSUME; DERIVE; MODEL; Valid; EMIT; GATE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -54,7 +54,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+    "source_sha256": "0467b6b3bad79a3447700466ea2ca69c06c55adf79e0a7d251edea0bc2d7b7fb",
     "candidate_sha256": "72fd2b06915e4a02389462f427b225d9f666807d7d5593e5906b433f3d530e8a",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -378,5 +378,12 @@
       "width_bp": 361.491,
       "height_bp": 308.214
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "8391e7c5184f51707f5dc6d52566ba21f280e4e571f514f6012b1c4237a505da",
+    "source_sha256": "0467b6b3bad79a3447700466ea2ca69c06c55adf79e0a7d251edea0bc2d7b7fb",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

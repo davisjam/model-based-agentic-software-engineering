@@ -45,7 +45,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
+    "source_sha256": "27a247e202f7f7892d7ba15350d75bf8dd97b8992852714303160f278c397f5c",
     "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
     "fill": "Only dominant B and its B1/B2/B3 split are 5%; critical edges retain heavy weight.",
     "bold": "Retained existing heading hierarchy and regular operation labels; no additional semantic emphasis lost. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -70,7 +70,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
+    "source_sha256": "27a247e202f7f7892d7ba15350d75bf8dd97b8992852714303160f278c397f5c",
     "candidate_sha256": "a98a2d0717d3bfdcb7de659b310b502342bca4e989f6f71f0119704137722198",
     "reason": "Retained existing heading hierarchy and regular operation labels; no additional semantic emphasis lost. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -184,5 +184,12 @@
       "width_bp": 403.147,
       "height_bp": 348.784
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "e70de426131e21f48d6d43b3a7523b2a35221e1d8d39492802f8e2e4d207338e",
+    "source_sha256": "27a247e202f7f7892d7ba15350d75bf8dd97b8992852714303160f278c397f5c",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/interlude-modeling-cycle.svg",
-  "claim": "*Modeling as a loop.* (a) Models produced after implementation: the linear design → implement → document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
+  "claim": "*Modeling as a loop.* (a) Models produced after implementation: the linear design \u2192 implement \u2192 document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
   "topology": "Linear after-the-fact documentation contrasted with model-analysis-prediction-implementation-measurement feedback.",
   "required_terms": [
     "(a) Models after implementation",
@@ -33,7 +33,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+    "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
     "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -58,7 +58,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+    "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
     "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -172,5 +172,12 @@
       "width_bp": 396.38,
       "height_bp": 227.296
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+    "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

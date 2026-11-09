@@ -1,7 +1,7 @@
 {
   "source": "book/assets/c5-earliest-legible-last-safe.svg",
   "claim": "*Earliest legible, last safe.* A timeline runs from where work begins to consequence. Too-early sits where the property is still invisible; the earliest-legible boundary carries the first check; the last-safe boundary carries a re-check just before the point of no return.",
-  "topology": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary — the last point before the point of no return. The consequence sits at the end of the line.",
+  "topology": "A timeline running from where work begins to where consequence occurs. Too early, the property is\n    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the\n    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe\n    boundary \u2014 the last point before the point of no return. The consequence sits at the end of the line.",
   "required_terms": [
     "too early property not yet legible",
     "earliest legible CHECK",
@@ -18,7 +18,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
+    "source_sha256": "a87f8927878cf36b7686febee3b8a85941d148575997fd0fc7b180820c4e3db8",
     "candidate_sha256": "013397b04ac112e7b7b87d1ebe51da252467638a762e8b4016fb94743121d6f4",
     "fill": "White/light/dark small timeline markers retain CHECK versus RE-CHECK; no text-bearing gray boxes. Dark marker exception is permitted by README rule 3.",
     "bold": "Source-derived emphasis includes RE-CHECK. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -42,7 +42,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
+    "source_sha256": "a87f8927878cf36b7686febee3b8a85941d148575997fd0fc7b180820c4e3db8",
     "candidate_sha256": "013397b04ac112e7b7b87d1ebe51da252467638a762e8b4016fb94743121d6f4",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -169,5 +169,12 @@
       "width_bp": 379.309,
       "height_bp": 109.875
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "8a1c954b074d7adfd0a366957a2eadc96f2f1a02139ce5f9aca7947a49613bfc",
+    "source_sha256": "a87f8927878cf36b7686febee3b8a85941d148575997fd0fc7b180820c4e3db8",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -1,43 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off (Field Guide card — Spotify) — NOT projector output; edit by hand and keep this header. -->
-<!-- Field-guide team card: Spotify's entry door (fleet-first autonomy) plugs into MAGE landing (Governed Engineering Environment). label: field-guide-spotify. Reference/nav card art, not a role-coloured figure. -->
-<!-- Connect grammar: edges drawn UNDER the nodes; undirected ends run to node CENTRES, the one directed edge (fleet -> judgment) seats its arrowhead on the target rim via a <marker>. The fleet collective carries a transparent-rect anchor so the upward edge terminates on a named node. -->
-<!-- semantic-families: neutral -->
+<?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Spotify — fleet-first autonomy to the Governed Engineering Environment">
   <defs>
     <marker id="arrow-up" markerWidth="18" markerHeight="16" refX="18" refY="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L18,8 L0,16 Z" fill="#57534e"/>
+      <path d="M0,0 L18,8 L0,16 Z" fill="#57534e" />
     </marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9" />
 
   <!-- header -->
   <text x="48" y="44" font-size="20" fill="#57534e">Field Guide · card</text>
   <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Spotify</text>
   <text x="952" y="68" text-anchor="end" font-size="20" font-style="italic" fill="#57534e">Audio-streaming platform · fleet-scale autonomous-migration program</text>
-  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
+  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5" />
 
   <!-- ===== edges (under nodes) ===== -->
   <!-- edge: door -> f1 -->
-  <line x1="140" y1="205" x2="300" y2="250" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="140" y1="205" x2="300" y2="250" stroke="#cfcabf" stroke-width="3" />
   <!-- edge: fleet -> judgment -->
   <!-- directed: judgment moves upstream; head seats on the judgment rim -->
-  <line x1="430" y1="234" x2="430" y2="159" stroke="#57534e" stroke-width="2.5" marker-end="url(#arrow-up)"/>
+  <line x1="430" y1="234" x2="430" y2="159" stroke="#57534e" stroke-width="2.5" marker-end="url(#arrow-up)" />
   <!-- edge: judgment -> landing -->
-  <path fill="none" stroke="#cfcabf" stroke-width="3" d="M442,145 L860,145 L860,181"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="3" d="M442,145 L720,145 L720,170 L860,170 L860,181" />
 
   <!-- ===== nodes (fills cap the undirected ends) ===== -->
-  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <circle id="f1" cx="300" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle id="f2" cx="352" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle id="f3" cx="404" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle id="f4" cx="456" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle id="f5" cx="508" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle id="f6" cx="560" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3" />
+  <circle id="f1" cx="300" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5" />
+  <circle id="f2" cx="352" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5" />
+  <circle id="f3" cx="404" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5" />
+  <circle id="f4" cx="456" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5" />
+  <circle id="f5" cx="508" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5" />
+  <circle id="f6" cx="560" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5" />
   <!-- transparent anchor over the fleet row: the upstream edge's named source node (zero visual change) -->
-  <rect id="fleet" x="290" y="234" width="280" height="28" fill="none" stroke="none"/>
-  <circle id="judgment" cx="430" cy="145" r="12" fill="#1c1917"/>
-  <rect id="landing" x="737.55" y="181" width="244.89" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <rect id="fleet" x="290" y="234" width="280" height="28" fill="none" stroke="none" />
+  <circle id="judgment" cx="430" cy="145" r="12" fill="#1c1917" />
+  <rect id="landing" x="737.55" y="181" width="244.89" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4" />
 
   <!-- ===== node labels ===== -->
   <text x="140" y="150" text-anchor="middle" font-size="20" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
@@ -55,7 +51,7 @@
   <text x="860" y="223" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Environment</text>
 
   <!-- takeaway -->
-  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
+  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5" />
   <text x="500" y="396" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Automate implementation and the scarce resource becomes the human decision —</text>
   <text x="500" y="418" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">what, where, when, and whether — placed where the environment amplifies it.</text>
 </svg>

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/interlude-graph-two-partitions.svg",
-  "claim": "*Two execution policies over the same remediation graph.* The graph contains actions—page analysis, construction of document context, and GenAI queries—and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes — so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.",
+  "claim": "*Two execution policies over the same remediation graph.* The graph contains actions\u2014page analysis, construction of document context, and GenAI queries\u2014and information dependencies among them. (a) A page partition groups actions by the page their artifacts occur on, so it can span several dependency levels. (b) A frontier groups actions by readiness: page analyses execute first, their results enable construction of document context, and that context enables independent GenAI queries for alt text. The work and its dependencies are unchanged; only the execution boundary changes \u2014 so the choice between (a) and (b) is a scheduling decision, not a remediation redesign.",
   "topology": "Same seven-node dependency graph repeated; vertical page containers versus horizontal ready-frontier containers.",
   "required_terms": [
     "(a) Page-oriented execution",
@@ -24,22 +24,22 @@
     "Same actions and dependencies; different execution boundary."
   ],
   "bw_encoding": "Equal 5% grounds identify execution partitions in both panels; shared context stays white.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Page columns versus readiness frontiers regain visible background grouping; shared context remains a separate mechanism. Fidelity pass: Restored PAGE 1–3 and READY FRONTIER 1–3 group identifiers; readiness labels sit outside groups to avoid crowding their work nodes.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Final QA: explicit panel-caption line breaks, clear promotion label placement, or increased history-step gaps as applicable. Grayscale refinement: Page columns versus readiness frontiers regain visible background grouping; shared context remains a separate mechanism. Fidelity pass: Restored PAGE 1\u20133 and READY FRONTIER 1\u20133 group identifiers; readiness labels sit outside groups to avoid crowding their work nodes.",
   "questions": [],
-  "alt": "One graph of actions — analyze page 1, 2, and 3; build document context; and GenAI query\n    for image 1, 2, and 3 — with information dependencies among them: each page analysis feeds the document\n    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page\n    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,\n    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by\n    when they are ready: the three page analyses run together, their results build the document context, and\n    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary.",
+  "alt": "One graph of actions \u2014 analyze page 1, 2, and 3; build document context; and GenAI query\n    for image 1, 2, and 3 \u2014 with information dependencies among them: each page analysis feeds the document\n    context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page\n    columns by where their artifacts occur, so a page owns both an upstream analysis and a downstream query,\n    and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by\n    when they are ready: the three page analyses run together, their results build the document context, and\n    that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
     "width_pt": 440.5050048828125,
     "height_pt": 250.26300048828125,
     "monochrome": true,
-    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9\u201312pt prose; geometry sensor has zero findings."
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
+    "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
     "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
     "fill": "Equal 5% grounds identify execution partitions in both panels; shared context stays white.",
     "bold": "Source-derived emphasis includes Build document context; PAGE 1; PAGE 2; PAGE 3; READY FRONTIER 1; READY FRONTIER 2; READY FRONTIER 3. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -64,7 +64,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
+    "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
     "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -418,5 +418,12 @@
       "width_bp": 449.009,
       "height_bp": 264.086
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "141f71269680854e87ba7e25b6e042bf6dfec3af0bcdba66c6a6c25240b6b389",
+    "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

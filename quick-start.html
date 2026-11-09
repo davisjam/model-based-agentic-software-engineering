@@ -220,11 +220,9 @@
 <p>MAGE is an engineering methodology, not a framework or toolchain. You apply its principles to the system you already have: make important engineering knowledge explicit, check work against important requirements, and improve the engineering environment as experience reveals what was missing.</p>
 <p>The MAGE skills help an agent participate in that work. They divide the work into three complementary responsibilities:</p>
 <ul><li><strong>Self-Governance</strong> engineers and improves the environment. It helps identify recurring failures, repeated engineering judgment, missing knowledge, and weak controls, then turn what is learned into durable improvements.</li><li><strong>Self-Operate</strong> runs operational lifecycles within that environment. It helps operate recurring processes, respond to failures, and return evidence about deficiencies that may warrant improvement.</li><li><strong>Self-Communicate</strong> helps articulate the system to others. It supports clear technical explanation through terminology, prose, rhetoric, diagrams, and other forms of communication. Some of the resulting artifacts may themselves become canonical parts of the engineering environment.</li></ul>
-<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
-     role="img" aria-labelledby="qs-skills-scTitle qs-skills-scDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="qs-skills-scTitle">Three complementary skills acting around one governed engineering environment</title>
-  <desc id="qs-skills-scDesc">A central box, the governed engineering environment (GEE), sits at the centre. The
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" role="img" aria-labelledby="qs-skills-scTitle qs-skills-scDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="qs-skills-scTitle">Three complementary skills acting around one governed engineering environment</title>
+<desc id="qs-skills-scDesc">A central box, the governed engineering environment (GEE), sits at the centre. The
     principal loop reads first: above it, self-governance improves the environment, an arrow points down into
     the GEE labelled "improves"; the GEE then hosts self-operate below it, an arrow points down into
     self-operate labelled "operates within"; and a thin dashed return arrow runs up the right side from
@@ -234,82 +232,39 @@
     artifacts become durable parts of the environment, and an outward arrow down to a people node labelled
     "articulates the system," its broader function of making the system intelligible to others. The three
     skills are complementary and their relationships to the environment differ by design.</desc>
-
-  <defs>
-    <marker id="qs-skills-scArrowRust" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
-            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="qs-skills-scArrowBlue" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
-            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="qs-skills-scArrowGray" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
-            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="660" fill="#fdfcf9"/>
-
-  <!-- ============ self-governance (governance rust) — engineers/improves the environment ============ -->
-  <rect id="qs-skills-self-governance" x="430" y="48" width="340" height="84" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="600" y="86" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Self-Governance</text>
-  <text x="600" y="113" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">engineers &amp; improves the environment</text>
-
-  <!-- ============ GEE (modeling green) — the one central environment ============ -->
-  <rect id="qs-skills-gee" x="430" y="270" width="340" height="120" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3.2"/>
-  <text x="600" y="316" text-anchor="middle" font-size="22" font-weight="700" fill="#1f7a4d">Governed Engineering</text>
-  <text x="600" y="344" text-anchor="middle" font-size="22" font-weight="700" fill="#1f7a4d">Environment</text>
-  <text x="600" y="370" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the GEE</text>
-
-  <!-- ============ self-operate (agent blue) — runs operational lifecycles within the GEE ============ -->
-  <rect id="qs-skills-self-operate" x="430" y="532" width="340" height="84" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="600" y="570" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">Self-Operate</text>
-  <text x="600" y="597" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">runs operational lifecycles</text>
-
-  <!-- ============ self-communicate (neutral) — articulates the system; two edges ============ -->
-  <rect id="qs-skills-self-communicate" x="40" y="300" width="224" height="100" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="152" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">Self-Communicate</text>
-  <text x="152" y="360" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">articulates the system</text>
-  <text x="152" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">to others</text>
-
-  <!-- ============ people / audience (neutral, external — dashed border) ============ -->
-  <rect id="qs-skills-people" x="40" y="470" width="224" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="4 5"/>
-  <text x="152" y="504" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">People</text>
-  <text x="152" y="526" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">engineers &amp; readers</text>
-
-  <!-- ================= PRIMARY LOOP edges (read first) ================= -->
-
-  <!-- SG -> GEE : improves (down, rust, bold) -->
-  <!-- edge: self-governance -> gee -->
-  <line x1="600" y1="132" x2="600" y2="268" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#qs-skills-scArrowRust)"/>
-  <text x="616" y="206" text-anchor="start" font-size="20" font-weight="700" fill="#9a3f12">improves</text>
-
-  <!-- GEE -> SO : operates within (down, blue, bold) -->
-  <!-- edge: gee -> self-operate -->
-  <line x1="600" y1="390" x2="600" y2="530" stroke="#2f5169" stroke-width="2.6" marker-end="url(#qs-skills-scArrowBlue)"/>
-  <text x="616" y="466" text-anchor="start" font-size="18" font-weight="700" fill="#2f5169">operates within</text>
-
-  <!-- SO -> SG : evidence return (thin dashed gray, secondary; closes the loop up the right side) -->
-  <!-- edge: self-operate .. self-governance -->
-  <path d="M770 574 H826 V90 H772" fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#qs-skills-scArrowGray)"/>
-  <text x="834" y="320" text-anchor="start" font-size="16" font-weight="700" fill="#57534e">evidence</text>
-  <text x="834" y="340" text-anchor="start" font-size="16" fill="#57534e">reveals deficiencies</text>
-
-  <!-- ================= SECONDARY: self-communicate's two edges ================= -->
-
-  <!-- SC -> GEE : contributes canonical documentation (inward) -->
-  <!-- edge: self-communicate -> gee -->
-  <line x1="264" y1="362" x2="428" y2="362" stroke="#57534e" stroke-width="2.4" marker-end="url(#qs-skills-scArrowGray)"/>
-  <text x="347" y="308" text-anchor="middle" font-size="16" fill="#57534e">contributes</text>
-  <text x="347" y="326" text-anchor="middle" font-size="16" fill="#57534e">canonical</text>
-  <text x="347" y="344" text-anchor="middle" font-size="16" fill="#57534e">documentation</text>
-
-  <!-- SC -> People : articulates the system (outward) -->
-  <!-- edge: self-communicate -> people -->
-  <line x1="152" y1="400" x2="152" y2="470" stroke="#57534e" stroke-width="2.2" marker-end="url(#qs-skills-scArrowGray)"/>
-  <text x="172" y="440" text-anchor="start" font-size="16" fill="#57534e">articulates the system</text>
+<defs><marker id="qs-skills-ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="qs-skills-muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="qs-skills-rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="qs-skills-blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="qs-skills-green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker></defs>
+<rect id="qs-skills-self-governance" x="448" y="18" width="360" height="84" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="628" y="50" text-anchor="middle" font-size="24" fill="#9a3f12" font-weight="700">Self-Governance</text>
+<text x="628" y="78" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">engineers &amp; improves the environment</text>
+<rect id="qs-skills-gee" x="448" y="218" width="360" height="116" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="628" y="254" text-anchor="middle" font-size="24" fill="#1f7a4d" font-weight="700">Governed Engineering</text>
+<text x="628" y="282" text-anchor="middle" font-size="24" fill="#1f7a4d" font-weight="700">Environment</text>
+<text x="628" y="311" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">the GEE</text>
+<rect id="qs-skills-self-operate" x="448" y="447" width="360" height="84" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="628" y="480" text-anchor="middle" font-size="24" fill="#2f5169" font-weight="700">Self-Operate</text>
+<text x="628" y="510" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">runs operational lifecycles</text>
+<rect id="qs-skills-self-communicate" x="18" y="244" width="252" height="106" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="144" y="276" text-anchor="middle" font-size="23" fill="#57534e" font-weight="700">Self-Communicate</text>
+<text x="144" y="305" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">articulates the system</text>
+<text x="144" y="330" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">to others</text>
+<rect id="qs-skills-people" x="18" y="433" width="252" height="73" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="144" y="463" text-anchor="middle" font-size="23" fill="#57534e" font-weight="700">People</text>
+<text x="144" y="491" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">engineers &amp; readers</text>
+<path d="M628 102 L628 216" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#qs-skills-rust-arrow)"/>
+<text x="646" y="163" text-anchor="start" font-size="22" fill="#9a3f12" font-weight="700">improves</text>
+<path d="M628 334 L628 445" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#qs-skills-blue-arrow)"/>
+<text x="646" y="396" text-anchor="start" font-size="20" fill="#2f5169" font-weight="700">operates within</text>
+<path d="M808 489 H847 V60 H810" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#qs-skills-muted-arrow)" stroke-dasharray="6 4"/>
+<text x="862" y="255" text-anchor="start" font-size="20" fill="#57534e" font-weight="700">evidence</text>
+<text x="862" y="280" text-anchor="start" font-size="20" fill="#57534e">reveals</text>
+<text x="862" y="305" text-anchor="start" font-size="20" fill="#57534e">deficiencies</text>
+<path d="M270 311 L446 311" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#qs-skills-muted-arrow)"/>
+<text x="358" y="235" text-anchor="middle" font-size="20" fill="#57534e">contributes</text>
+<text x="358" y="260" text-anchor="middle" font-size="20" fill="#57534e">canonical</text>
+<text x="358" y="285" text-anchor="middle" font-size="20" fill="#57534e">documentation</text>
+<path d="M144 350 L144 431" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#qs-skills-muted-arrow)"/>
+<text x="163" y="384" text-anchor="start" font-size="20" fill="#57534e">articulates</text>
+<text x="163" y="409" text-anchor="start" font-size="20" fill="#57534e">the system</text>
 </svg><figcaption>Three complementary skills act around one governed engineering environment. Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment.</figcaption></figure>
 <p>The skills are complementary rather than sequential. Self-Governance may improve structures that Self-Operate later relies on; Self-Operate may reveal deficiencies that call for further governance conversion. Self-Communicate helps people understand the system and its engineering structures, and may contribute durable artifacts where that communication itself belongs in the environment.</p>
 <h2>Install the MAGE skills</h2>

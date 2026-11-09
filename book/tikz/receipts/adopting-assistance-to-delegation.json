@@ -1,7 +1,7 @@
 {
   "source": "book/assets/adopting-assistance-to-delegation.svg",
-  "claim": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment — models carry context, evidence establishes properties, and mechanisms constrain and admit the result — and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
-  "topology": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent — models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results — while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
+  "claim": "*From assistance to bounded delegation.* Under assistance, the worker supplies context, judgment, and acceptance directly around the agent. As work is delegated, selected responsibilities move into the environment \u2014 models carry context, evidence establishes properties, and mechanisms constrain and admit the result \u2014 and the boundary of what the agent may do on its own expands. The change is a shifting boundary, not a sequence of maturity levels.",
+  "topology": "Two panels. On the left, under assistance, a worker supplies context, judgment, and\n    acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its\n    own. A wide arrow points right: selected responsibilities move into the environment. On the right, under\n    bounded delegation, a governed environment surrounds the agent \u2014 models carry context, evidence\n    establishes properties, and mechanisms constrain and admit results \u2014 while the worker governs that\n    environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may\n    exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.",
   "required_terms": [
     "ASSISTANCE",
     "BOUNDED DELEGATION",
@@ -22,7 +22,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+    "source_sha256": "70bc1bb2635abb71dd0ee387c2c89ee51ae233d85f425671bbeddaab41d3d23b",
     "candidate_sha256": "4f86a55c6bc2f4258e71baaf9148f787278dbf95379b6c372036b7c5d7b7d217",
     "fill": "Only the governed environment is lightly shaded; workers and agents are equal white peers across alternatives.",
     "bold": "Source-derived emphasis includes GOVERNED ENVIRONMENT; models:. Restored alternative mode headings and the three responsibility labels inside the environment, alternative mode headings and the three responsibility labels inside the environment. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -46,7 +46,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+    "source_sha256": "70bc1bb2635abb71dd0ee387c2c89ee51ae233d85f425671bbeddaab41d3d23b",
     "candidate_sha256": "4f86a55c6bc2f4258e71baaf9148f787278dbf95379b6c372036b7c5d7b7d217",
     "reason": "Restored alternative mode headings and the three responsibility labels inside the environment, alternative mode headings and the three responsibility labels inside the environment. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -194,5 +194,12 @@
       "width_bp": 372.842,
       "height_bp": 253.117
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "afaf91610f93c512fa853c9217f694cdb6627874ccc5aca9739aaf1d266a2654",
+    "source_sha256": "70bc1bb2635abb71dd0ee387c2c89ee51ae233d85f425671bbeddaab41d3d23b",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

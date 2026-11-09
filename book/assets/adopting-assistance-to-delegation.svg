@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored appendix figure: print-readable geometry. Original title/desc, semantic content and native monochrome partner preserved. -->
 <!-- Hand-authored SVG (label: adopting-boundary). Appendix figure: the shift from individual ASSISTANCE
      to BOUNDED DELEGATION. Left: the worker sits in the loop and supplies context, judgment, and acceptance
      directly to the agent; the boundary of what the agent may do on its own is narrow. Right: selected
@@ -8,88 +9,54 @@
      sequence of maturity levels. Palette: neutral #57534e / #f6f4ef (worker + assistance), green #1f7a4d /
      #e3f0e7 (environment capability), blue #2f5169 / #e7edf3 (governed environment), rust #9a3f12 (the
      expanding delegation boundary), ink #1c1917. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 580" width="1060" height="580"
-     role="img" aria-labelledby="a2dTitle a2dDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="a2dTitle">From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands</title>
-  <desc id="a2dDesc">Two panels. On the left, under assistance, a worker supplies context, judgment, and
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 494" width="1000" height="494" role="img" aria-labelledby="a2dTitle a2dDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="a2dTitle">From assistance to bounded delegation: responsibilities move into the environment and the delegation boundary expands</title>
+<desc id="a2dDesc">Two panels. On the left, under assistance, a worker supplies context, judgment, and
     acceptance directly to an agent, and a narrow dashed boundary marks the little the agent may do on its
     own. A wide arrow points right: selected responsibilities move into the environment. On the right, under
     bounded delegation, a governed environment surrounds the agent — models carry context, evidence
     establishes properties, and mechanisms constrain and admit results — while the worker governs that
     environment rather than each act, and a wider dashed boundary marks the expanded authority the agent may
     exercise on its own. The change is a shifting boundary, not a sequence of maturity levels.</desc>
-
-  <defs>
-    <marker id="a2d-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="a2d-big" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <text x="530" y="36" text-anchor="middle" font-size="23" font-weight="700" letter-spacing="0.4" fill="#1c1917">FROM ASSISTANCE TO BOUNDED DELEGATION</text>
-
-  <!-- ===================== LEFT — ASSISTANCE ===================== -->
-  <text x="250" y="86" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#57534e">ASSISTANCE</text>
-
-  <!-- narrow delegation boundary (dashed rust) around the agent -->
-  <rect x="150" y="286" width="200" height="94" rx="12" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-
-  <rect x="160" y="112" width="180" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="250" y="141" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WORKER</text>
-
-  <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#a2d-ah)">
-    <line x1="250" y1="158" x2="250" y2="302"/>
-  </g>
-  <g font-size="14.5" fill="#57534e" text-anchor="start">
-    <text x="266" y="196">context</text>
-    <text x="266" y="228">judgment</text>
-    <text x="266" y="260">acceptance</text>
-  </g>
-
-  <rect x="180" y="304" width="140" height="52" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="250" y="336" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AGENT</text>
-
-  <text x="250" y="418" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">the worker supplies each judgment directly</text>
-
-  <!-- ===================== MIDDLE — the shift ===================== -->
-  <line x1="430" y1="330" x2="600" y2="330" stroke="#9a3f12" stroke-width="3.5" marker-end="url(#a2d-big)"/>
-  <text x="515" y="300" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">selected responsibilities</text>
-  <text x="515" y="318" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">move into the environment</text>
-
-  <!-- ===================== RIGHT — BOUNDED DELEGATION ===================== -->
-  <text x="820" y="86" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#1f7a4d">BOUNDED DELEGATION</text>
-
-  <rect x="620" y="112" width="180" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="710" y="141" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WORKER</text>
-  <line x1="710" y1="158" x2="710" y2="184" stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#a2d-ah)"/>
-  <text x="726" y="178" text-anchor="start" font-size="14.5" font-style="italic" fill="#57534e">governs</text>
-
-  <!-- governed environment -->
-  <rect x="616" y="188" width="410" height="212" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="821" y="212" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.5" fill="#2f5169">GOVERNED ENVIRONMENT</text>
-
-  <g font-size="13.5" fill="#1c1917" text-anchor="middle">
-    <rect x="632" y="226" width="122" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="693" y="245" font-weight="700">models</text>
-    <text x="693" y="262">context</text>
-    <rect x="762" y="226" width="118" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="821" y="245" font-weight="700">evidence</text>
-    <text x="821" y="262">properties</text>
-    <rect x="888" y="226" width="122" height="44" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="949" y="245" font-weight="700">mechanisms</text>
-    <text x="949" y="262">constrain · admit</text>
-  </g>
-
-  <!-- wide delegation boundary (dashed rust) around the agent inside the environment -->
-  <rect x="700" y="298" width="242" height="82" rx="12" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-  <rect x="751" y="312" width="140" height="52" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="821" y="344" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AGENT</text>
-
-  <text x="821" y="418" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">selected responsibilities move into the environment</text>
-
-  <!-- bottom note -->
-  <text x="530" y="474" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">The dashed boundary of delegated authority expands — a shifting boundary, not a sequence of maturity levels.</text>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker></defs>
+<text x="500" y="29" text-anchor="middle" font-size="23" fill="#1c1917" font-weight="700">FROM ASSISTANCE TO BOUNDED DELEGATION</text>
+<text x="170" y="70" text-anchor="middle" font-size="21" fill="#57534e" font-weight="700">ASSISTANCE</text>
+<text x="750" y="70" text-anchor="middle" font-size="21" fill="#1f7a4d" font-weight="700">BOUNDED DELEGATION</text>
+<rect x="80" y="92" width="180" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="170" y="122" text-anchor="middle" font-size="22" fill="#1c1917" font-weight="700">WORKER</text>
+<path d="M170 138 L170 273" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#muted-arrow)"/>
+<text x="190" y="174" text-anchor="start" font-size="20" fill="#57534e">context</text>
+<text x="190" y="209" text-anchor="start" font-size="20" fill="#57534e">judgment</text>
+<text x="190" y="244" text-anchor="start" font-size="20" fill="#57534e">acceptance</text>
+<rect x="70" y="260" width="200" height="90" rx="8" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="100" y="276" width="140" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="170" y="312" text-anchor="middle" font-size="22" fill="#2f5169" font-weight="700">AGENT</text>
+<text x="170" y="382" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">the worker supplies each</text>
+<text x="170" y="407" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">judgment directly</text>
+<path d="M315 304 L508 304" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<text x="410" y="223" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">selected</text>
+<text x="410" y="248" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">responsibilities move</text>
+<text x="410" y="273" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">into the environment</text>
+<rect x="660" y="92" width="180" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="750" y="122" text-anchor="middle" font-size="22" fill="#1c1917" font-weight="700">WORKER</text>
+<path d="M750 138 L750 171" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#muted-arrow)"/>
+<text x="768" y="163" text-anchor="start" font-size="20" fill="#57534e" font-style="italic">governs</text>
+<rect x="525" y="173" width="450" height="192" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="750" y="202" text-anchor="middle" font-size="21" fill="#2f5169" font-weight="700">GOVERNED ENVIRONMENT</text>
+<rect x="539" y="214" width="116" height="56" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="597.0" y="236" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">models</text>
+<text x="597.0" y="260" text-anchor="middle" font-size="20" fill="#1c1917">context</text>
+<rect x="663" y="214" width="116" height="56" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="721.0" y="236" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">evidence</text>
+<text x="721.0" y="260" text-anchor="middle" font-size="20" fill="#1c1917">properties</text>
+<rect x="787" y="214" width="174" height="56" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="874.0" y="236" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">mechanisms</text>
+<text x="874.0" y="260" text-anchor="middle" font-size="20" fill="#1c1917">constrain · admit</text>
+<rect x="600" y="281" width="300" height="69" rx="8" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="680" y="288" width="140" height="54" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="750" y="323" text-anchor="middle" font-size="22" fill="#2f5169" font-weight="700">AGENT</text>
+<text x="750" y="392" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">selected responsibilities move</text>
+<text x="750" y="417" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">into the environment</text>
+<text x="500" y="455" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">The dashed boundary of delegated authority expands —</text>
+<text x="500" y="480" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">a shifting boundary, not a sequence of maturity levels.</text>
 </svg>

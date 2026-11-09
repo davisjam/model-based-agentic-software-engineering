@@ -1,9 +1,9 @@
 {
   "source": "book/assets/appendix-g-7-composition-by-reference.svg",
   "claim": "*Composition by reference.* Stable identities join the user-journey, service, coverage, test-placement, and execution-policy views. The resulting joined view supports cross-model queries without duplicating those facts into a single stored model.",
-  "topology": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears — composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.",
+  "topology": "A cross-model question is answered by joining small, question-specific views on stable\n    identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed\n    endpoint-identity arrow. From that service, three dashed arrows fan out to sibling views: a coverage view\n    asking whether it is exercised, a test-placement view asking where it runs, and an execution-policy view\n    that plans for the host. The three sibling views then converge, along dashed arrows, on a joined view\n    labelled not a mega-model. Every join edge is dashed: these are derived correspondences across views, and no\n    fact is copied into a single stored model. No heavy boundary appears \u2014 composition is correspondence, not\n    enforcement. Legend as in Figure C-1; dash and weight carry the meaning without colour.",
   "required_terms": [
-    "USER JOURNEY goal · criticality",
+    "USER JOURNEY goal \u00b7 criticality",
     "SERVICE / NODE stable identity",
     "COVERAGE exercised?",
     "TEST PLACEMENT where run?",
@@ -14,12 +14,12 @@
   "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
   "questions": [],
-  "alt": "Composition by reference — join small views on stable identities, not one mega-model",
+  "alt": "Composition by reference \u2014 join small views on stable identities, not one mega-model",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
+    "source_sha256": "4c8f88a36c63f9d0d30645f933145e55230203f09befae41b158db6cc427fc67",
     "candidate_sha256": "6489e9b65d1eeb7c71af16360c35356c768e2dc78e029ee5be0422d2e184936c",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes SERVICE / NODE. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -43,7 +43,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
+    "source_sha256": "4c8f88a36c63f9d0d30645f933145e55230203f09befae41b158db6cc427fc67",
     "candidate_sha256": "6489e9b65d1eeb7c71af16360c35356c768e2dc78e029ee5be0422d2e184936c",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -186,5 +186,12 @@
       "width_bp": 323.322,
       "height_bp": 238.322
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "1406439b83fc23ab1af9db39d047d5435d8e47f73d1d50c13b6df01cebb18989",
+    "source_sha256": "4c8f88a36c63f9d0d30645f933145e55230203f09befae41b158db6cc427fc67",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

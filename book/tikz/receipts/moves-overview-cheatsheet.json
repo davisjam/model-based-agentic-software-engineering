@@ -1,14 +1,14 @@
 {
   "source": "book/assets/moves-overview-cheatsheet.svg",
-  "claim": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2–4: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
-  "topology": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree — make one authoritative.\n    Copies drift from authority — derive, don't copy. Model and reality diverge — check correspondence.\n    Assurance has invisible holes — derive the obligation set. Checks are too early or too late — put enforcement\n    where the property is legible. Actions evade governance — close the action surface. Rules exist but aren't\n    present at the decision — deliver knowledge where the decision occurs. Why gets lost after the change — carry\n    cause with consequence. Operators reconstruct the same procedure — externalize the judgment. Changes have\n    hidden dependents — make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea — improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
+  "claim": "*Ten recurring engineering problems and the moves that address them.* The moves apply the method developed in Chapters 2\u20134: model knowledge people repeatedly reconstruct, enforce decidable obligations, and make recurring judgment durable when doing so is worth the cost.",
+  "topology": "A two-column cheat sheet. The left column names a recurring engineering cost; the right\n    column names the transferable move that addresses it. Many truths disagree \u2014 make one authoritative.\n    Copies drift from authority \u2014 derive, don't copy. Model and reality diverge \u2014 check correspondence.\n    Assurance has invisible holes \u2014 derive the obligation set. Checks are too early or too late \u2014 put enforcement\n    where the property is legible. Actions evade governance \u2014 close the action surface. Rules exist but aren't\n    present at the decision \u2014 deliver knowledge where the decision occurs. Why gets lost after the change \u2014 carry\n    cause with consequence. Operators reconstruct the same procedure \u2014 externalize the judgment. Changes have\n    hidden dependents \u2014 make dependencies queryable. These are not ten additions to the method; they are recurring\n    realizations of one idea \u2014 improve the representation, enforce obligations where they are decidable, and make\n    useful judgment durable.",
   "required_terms": [
     "RECURRING PROBLEM",
     "ENGINEERING MOVE",
     "B.1  many truths disagree",
     "MAKE ONE AUTHORITATIVE",
     "B.2  copies drift from authority",
-    "DERIVE; DON’T COPY",
+    "DERIVE; DON\u2019T COPY",
     "B.3  model and reality diverge",
     "CHECK CORRESPONDENCE",
     "B.4  assurance has invisible holes",
@@ -17,7 +17,7 @@
     "PUT ENFORCEMENT WHERE LEGIBLE",
     "B.6  actions evade governance",
     "CLOSE THE ACTION SURFACE",
-    "B.7  rules exist but aren’t present",
+    "B.7  rules exist but aren\u2019t present",
     "DELIVER KNOWLEDGE AT DECISION",
     "B.8  rationale is lost after change",
     "CARRY CAUSE WITH CONSEQUENCE",
@@ -34,7 +34,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+    "source_sha256": "d68debc75497bd10500e076a52ae25c838f825d77eb664130ee67e766acddae7",
     "candidate_sha256": "5cbe09c3b8742a222c9aee2936605015ef1a4abb550b9e6a6ecccbcc7f7aed63",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes PUT ENFORCEMENT WHERE LEGIBLE; DELIVER KNOWLEDGE AT DECISION; CARRY CAUSE WITH CONSEQUENCE; MAKE DEPENDENCIES QUERYABLE; DERIVE THE OBLIGATION SET; CLOSE THE ACTION SURFACE; MAKE ONE AUTHORITATIVE; CHECK CORRESPONDENCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -69,7 +69,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+    "source_sha256": "d68debc75497bd10500e076a52ae25c838f825d77eb664130ee67e766acddae7",
     "candidate_sha256": "5cbe09c3b8742a222c9aee2936605015ef1a4abb550b9e6a6ecccbcc7f7aed63",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -315,7 +315,7 @@
           "font-size": "20"
         },
         "semantic_role": "concept/category versus explanation",
-        "candidate_text": "DERIVE; DON’T COPY",
+        "candidate_text": "DERIVE; DON\u2019T COPY",
         "candidate_style": "bold",
         "source_fragments": [
           {
@@ -424,7 +424,7 @@
         "bold": true
       },
       {
-        "text": "DERIVE; DON’T COPY",
+        "text": "DERIVE; DON\u2019T COPY",
         "bold": true
       },
       {
@@ -513,5 +513,12 @@
       "width_bp": 370.669,
       "height_bp": 480.482
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "f577816aaa5096155a1b4b9b6ef94ac57c9230207333760ae64515806f426fe1",
+    "source_sha256": "d68debc75497bd10500e076a52ae25c838f825d77eb664130ee67e766acddae7",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -1,10 +1,10 @@
 {
   "source": "book/assets/appendix-g-6-facts-before-prose.svg",
   "claim": "*Facts before prose.* A structured provenance record supports mechanical validation and re-derivable documentation; independently maintained prose lacks that correspondence.",
-  "topology": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box — free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
+  "topology": "An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.\n    From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it\n    reaches a heavy bordered node crossed by a gate glyph, a completion gate with real enforcement. The right branch,\n    generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose\n    maintained independently carries a dashed drift-risk arrow to a dashed hazard box \u2014 free prose can diverge from\n    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry\n    the meaning without colour.",
   "required_terms": [
     "ENGINEERING ACTION",
-    "PROVENANCE FACT what · who · how",
+    "PROVENANCE FACT what \u00b7 who \u00b7 how",
     "VALIDATION / AUDIT CHECKED completion gate",
     "GENERATED DOCUMENTATION re-derivable",
     "prose maintained independently",
@@ -13,12 +13,12 @@
   "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight. Fidelity pass: Restored guarded completion-audit branch glyph, distinct from ordinary generated documentation branch.",
   "questions": [],
-  "alt": "Facts before prose — the strongest documentation is generated from facts the system already knows",
+  "alt": "Facts before prose \u2014 the strongest documentation is generated from facts the system already knows",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+    "source_sha256": "9f165733dbd31bc9b9633ef91491543e9dfc2d60cddfd07ff50e21d89304df0d",
     "candidate_sha256": "377149c14a4149f3122bb029420da3465b33ad36011007732c0c0f56adb85bb9",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes re-derivable; no mechanical correspondence. Restored factual representation, checked gate, and re-derivability contrast with independent prose, factual representation, checked gate, and re-derivability contrast with independent prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -42,7 +42,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+    "source_sha256": "9f165733dbd31bc9b9633ef91491543e9dfc2d60cddfd07ff50e21d89304df0d",
     "candidate_sha256": "377149c14a4149f3122bb029420da3465b33ad36011007732c0c0f56adb85bb9",
     "reason": "Restored factual representation, checked gate, and re-derivability contrast with independent prose, factual representation, checked gate, and re-derivability contrast with independent prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -61,7 +61,7 @@
         "candidate_style": "bold"
       },
       {
-        "source_text": "CHECKED · completion gate",
+        "source_text": "CHECKED \u00b7 completion gate",
         "source_style": "font-weight=700",
         "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
         "candidate_text": "CHECKED",
@@ -180,5 +180,12 @@
       "width_bp": 315.118,
       "height_bp": 223.304
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "684ab585ecaca38c9cd315327b0bfecd775076fa5e3fd2f71501a3d22a10b984",
+    "source_sha256": "9f165733dbd31bc9b9633ef91491543e9dfc2d60cddfd07ff50e21d89304df0d",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

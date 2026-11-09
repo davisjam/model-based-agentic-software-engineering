@@ -1,17 +1,17 @@
 {
   "source": "book/assets/h8-product-gee.svg",
   "claim": "*From local MAGE adoption to the product GEE.* Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries the obligations that can responsibly be enforced. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits.",
-  "topology": "Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance — are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
+  "topology": "Five lifecycle surfaces \u2014 Product Discovery, Engineering and Realization, Product Management\n    and Maintenance, Operations and Incident Response, and Assurance and Compliance \u2014 are related through a band of\n    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective\n    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one\n    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and\n    Alignment carries the obligations that can responsibly be enforced; together they constitute the governed\n    engineering environment that produces the product. Experience from the product feeds back through governance\n    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark\n    relationships among representations; arrows mark flow.",
   "required_terms": [
     "Product discovery",
     "Engineering & realization",
     "Product management & maintenance",
-    "SHARED RELATIONS identity · provenance temporal scope · obligations",
+    "SHARED RELATIONS identity \u00b7 provenance temporal scope \u00b7 obligations",
     "Operations & incident response",
     "Assurance & compliance",
     "CONNECTED ENGINEERING KNOWLEDGE",
-    "AUTONOMOUS REASONING reconstruction · synthesis novel judgment · open choices",
-    "ALIGNMENT constraints · validators permissions · gates",
+    "AUTONOMOUS REASONING reconstruction \u00b7 synthesis novel judgment \u00b7 open choices",
+    "ALIGNMENT constraints \u00b7 validators permissions \u00b7 gates",
     "GOVERNED ENGINEERING ENVIRONMENT",
     "PRODUCT"
   ],
@@ -23,7 +23,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+    "source_sha256": "b8fbd408cde256c4795f35c1b90320b89eff81b48e4aa6f97d7126c162bbdcaf",
     "candidate_sha256": "0fba99f7e857daacedfd5d25e23323012da943a4c1f3a35faf5be75ab0a9ed49",
     "fill": "Only the assembled governed environment has light fill; inputs, evidence, reasoning and alignment peers stay white.",
     "bold": "Source-derived emphasis includes PRODUCT DISCOVERY; AUTONOMOUS REASONING. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved. Vertical spacing accommodates longer source-capitalized bold headings.",
@@ -47,7 +47,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+    "source_sha256": "b8fbd408cde256c4795f35c1b90320b89eff81b48e4aa6f97d7126c162bbdcaf",
     "candidate_sha256": "0fba99f7e857daacedfd5d25e23323012da943a4c1f3a35faf5be75ab0a9ed49",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved. Vertical spacing accommodates longer source-capitalized bold headings.",
     "evidence": [
@@ -122,10 +122,10 @@
         "candidate_style": "bold"
       },
       {
-        "source_text": "experience · failures · evidence · governance conversion",
+        "source_text": "experience \u00b7 failures \u00b7 evidence \u00b7 governance conversion",
         "source_style": "font-style=italic",
         "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-        "candidate_text": "experience · failures · evidence · governance conversion",
+        "candidate_text": "experience \u00b7 failures \u00b7 evidence \u00b7 governance conversion",
         "candidate_style": "italic"
       }
     ],
@@ -141,7 +141,7 @@
         "italic": false
       },
       {
-        "text": "identity · provenance",
+        "text": "identity \u00b7 provenance",
         "bold": false,
         "italic": false
       }
@@ -218,5 +218,12 @@
       "width_bp": 390.034,
       "height_bp": 514.486
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "39a88d2609f6a503aa546b0bdeafe58e4455c15e9081274fa734d3aa521c781f",
+    "source_sha256": "b8fbd408cde256c4795f35c1b90320b89eff81b48e4aa6f97d7126c162bbdcaf",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -1,79 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map. R41c BOTTOM-UP REBUILD (gloss-gee-redraw): the figure now
-     reads as an accumulation ontology — the most-compounded structure sits at the BOTTOM (engineering
-     capital), the obligation it ultimately serves at the TOP. Governance mechanism sits ABOVE the two
-     surfaces and branches DOWN to them: it acts on / observes the directly observable work (left) and
-     reasons through the explicit model / invariant (right). Those two surfaces are what a mechanism can
-     act on — not intermediate stages an obligation travels through. The mechanism supports enforcement of the
-     engineering obligation (top); an obligation the environment enforces actually constrains the work. Below, the governed environment presents both surfaces, and engineering
-     capital accumulates in that environment. Palette: rust #9a3f12 = obligation/doctrine; blue #2f5169 =
-     model/structure; the rest neutral (#57534e / #f6f4ef) as house chrome. Orientation reference. -->
-<!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="img"
-     aria-label="A bottom-up accumulation ontology. At the bottom, engineering capital accumulates in the governed engineering environment. That environment presents two surfaces: directly observable work on the left and an explicit model or invariant on the right. Above them the governance mechanism (constraint, sensor, gate) branches down to both surfaces — acting on or observing the observable work, and reasoning through the explicit model. At the top, the mechanism supports enforcement of the engineering obligation, what must hold. Constraints restrict work, sensors produce evidence, and gates use evaluated evidence to control whether work may proceed.">
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 764" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="img" aria-label="A bottom-up accumulation ontology. At the bottom, engineering capital accumulates in the governed engineering environment. That environment presents two surfaces: directly observable work on the left and an explicit model or invariant on the right. Above them the governance mechanism (constraint, sensor, gate) branches down to both surfaces — acting on or observing the observable work, and reasoning through the explicit model. At the top, the mechanism supports enforcement of the engineering obligation, what must hold. Constraints restrict work, sensors produce evidence, and gates use evaluated evidence to control whether work may proceed." width="1000" height="764">
   <defs>
-    <marker id="gee-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="gee-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57534e" /></marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="740" fill="#fdfcf9"/>
-  <text x="95" y="40" font-size="20" fill="#57534e">Glossary &#183; concept map</text>
+  <rect x="0" y="0" width="1000" height="764" fill="#fdfcf9" />
+  <text x="95" y="40" font-size="20" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="20" font-weight="bold" fill="#1c1917">The Governed Engineering Environment</text>
 
   <!-- ===== TOP: the engineering obligation (rust = obligation / doctrine) ===== -->
-  <rect id="obligation" x="350" y="72" width="300" height="64" rx="10" fill="#f6ece5" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect id="obligation" x="350" y="72" width="300" height="64" rx="10" fill="#f6ece5" stroke="#9a3f12" stroke-width="2.2" />
   <text x="500" y="102" text-anchor="middle" font-size="20" font-weight="bold" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-  <text x="500" y="124" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what must hold</text>
+  <text x="500" y="124" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">what must hold</text>
 
   <!-- edge: gov-mechanism -> obligation, labelled 'supports enforcement' (not a bare flow arrow); the caption states
        that an obligation the environment enforces actually constrains the work -->
-  <path d="M500,212 L500,140" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
-  <text x="514" y="182" font-size="16" font-style="italic" fill="#78716c">supports enforcement</text>
+  <path d="M500,212 L500,140" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)" />
+  <text x="514" y="182" font-size="20" font-style="italic" fill="#78716c">supports enforcement</text>
 
   <!-- ===== the governance mechanism: three mechanism categories, above the two surfaces ===== -->
-  <rect id="gov-mechanism" x="270" y="214" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="gov-mechanism" x="270" y="214" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" />
   <text x="500" y="243" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">GOVERNANCE MECHANISM</text>
-  <text x="500" y="267" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Constraint &#183; Sensor &#183; Gate</text>
+  <text x="500" y="267" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Constraint · Sensor · Gate</text>
 
   <!-- branch DOWN from the mechanism to both surfaces (it acts on / reasons through them) -->
-  <path d="M500,280 L500,306 M270,306 L730,306" fill="none" stroke="#57534e" stroke-width="2.4"/>
-  <path d="M270,306 L270,368" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
-  <path d="M730,306 L730,368" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
-  <text x="256" y="340" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">acts on / observes</text>
-  <text x="744" y="340" text-anchor="start" font-size="16" font-style="italic" fill="#78716c">reasons through</text>
+  <path d="M500,280 L500,306 M270,306 L730,306" fill="none" stroke="#57534e" stroke-width="2.4" />
+  <path d="M270,306 L270,368" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)" />
+  <path d="M730,306 L730,368" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)" />
+  <text x="256" y="340" text-anchor="end" font-size="20" font-style="italic" fill="#78716c">acts on / observes</text>
+  <text x="744" y="340" text-anchor="start" font-size="20" font-style="italic" fill="#78716c">reasons through</text>
 
   <!-- ===== LEFT surface: directly observable work (neutral) ===== -->
-  <rect id="observable" x="80" y="368" width="380" height="104" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="270" y="400" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">DIRECTLY OBSERVABLE WORK</text>
-  <text x="270" y="424" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">action &#183; artifact &#183; execution result</text>
-  <text x="270" y="446" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">local rules can act directly</text>
+  <rect id="observable" x="80" y="368" width="380" height="104" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4" />
+  <text x="270" y="400" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">DIRECTLY OBSERVABLE WORK</text>
+  <text x="270" y="424" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">action · artifact · execution result</text>
+  <text x="270" y="446" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">local rules can act directly</text>
 
   <!-- ===== RIGHT surface: explicit model / invariant (blue = model / structure) ===== -->
-  <rect id="explicit-model" x="540" y="368" width="380" height="104" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="730" y="400" text-anchor="middle" font-size="18" font-weight="bold" fill="#2f5169">EXPLICIT MODEL / INVARIANT</text>
-  <text x="730" y="424" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">architecture &#183; behavior &#183; policy &#183; bounds</text>
-  <text x="730" y="446" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">exposes richer semantics</text>
+  <rect id="explicit-model" x="540" y="368" width="380" height="104" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" />
+  <text x="730" y="400" text-anchor="middle" font-size="20" font-weight="bold" fill="#2f5169">EXPLICIT MODEL / INVARIANT</text>
+  <text x="730" y="424" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">architecture · behavior · policy · bounds</text>
+  <text x="730" y="446" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">exposes richer semantics</text>
 
   <!-- the governed environment presents both surfaces: branch UP from the environment into each surface -->
-  <path d="M500,560 L500,520 M270,520 L730,520" fill="none" stroke="#57534e" stroke-width="2.4"/>
-  <path d="M270,520 L270,472" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
-  <path d="M730,520 L730,472" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
+  <path d="M500,560 L500,520 M270,520 L730,520" fill="none" stroke="#57534e" stroke-width="2.4" />
+  <path d="M270,520 L270,472" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)" />
+  <path d="M730,520 L730,472" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)" />
 
   <!-- ===== the governed engineering environment (neutral container) ===== -->
-  <rect id="gee" x="262" y="560" width="476" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="500" y="595" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">GOVERNED ENGINEERING ENVIRONMENT</text>
+  <rect id="gee" x="262" y="560" width="476" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" />
+  <text x="500" y="595" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">GOVERNED ENGINEERING ENVIRONMENT</text>
 
   <!-- edge: engineering capital -> governed environment, labelled 'accumulates in' -->
-  <path d="M500,656 L500,620 " fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)"/>
-  <text x="514" y="642" font-size="16" font-style="italic" fill="#78716c">accumulates in</text>
+  <path d="M500,656 L500,620 " fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#gee-ah)" />
+  <text x="514" y="642" font-size="20" font-style="italic" fill="#78716c">accumulates in</text>
 
   <!-- ===== BOTTOM: engineering capital (terminal, dark) ===== -->
-  <rect id="eng-capital" x="230" y="656" width="540" height="64" rx="10" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <rect id="eng-capital" x="230" y="656" width="540" height="88" rx="10" fill="#1c1917" stroke="#1c1917" stroke-width="2" />
   <text x="500" y="684" text-anchor="middle" font-size="20" font-weight="bold" fill="#fdfcf9">ENGINEERING CAPITAL</text>
-  <text x="500" y="706" text-anchor="middle" font-size="15" font-style="italic" fill="#e7edf3">models &#183; mechanisms &#183; procedures &#183; canonical documentation</text>
+  <text x="500" y="706" text-anchor="middle" font-size="20" font-style="italic" fill="#e7edf3"><tspan x="500" dy="0">models · mechanisms · procedures ·</tspan><tspan x="500" dy="24">canonical documentation</tspan></text>
 
   <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of the Governance-Mechanism node. -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
-    <path d="M26,12 L12,12 L12,26"/>
-    <path d="M974,728 L988,728 L988,714"/>
+    <path d="M26,12 L12,12 L12,26" />
+    <path d="M974,752 L988,752 L988,738" />
   </g>
 </svg>

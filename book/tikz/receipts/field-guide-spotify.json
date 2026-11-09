@@ -5,7 +5,7 @@
   "required_terms": [
     "Spotify",
     "Fleet-first autonomy",
-    "human judgment what · where · when · whether",
+    "human judgment what \u00b7 where \u00b7 when \u00b7 whether",
     "Governed Engineering Environment",
     "agent 1",
     "agent 2",
@@ -22,7 +22,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "3eca358ae1fe8b9c41910c41a1e91fa01737ed5000a9afa714f9f39cfc5ec5b1",
+    "source_sha256": "7c837b40265a22a368d62488542723078f3c962df06e24a22193993650c58bf8",
     "candidate_sha256": "940726802808f534d0349768732e2daa7d5d08e33dc45b5985ec27431f2dd55c",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes Spotify; Governed Engineering Environment. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -46,7 +46,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "3eca358ae1fe8b9c41910c41a1e91fa01737ed5000a9afa714f9f39cfc5ec5b1",
+    "source_sha256": "7c837b40265a22a368d62488542723078f3c962df06e24a22193993650c58bf8",
     "candidate_sha256": "940726802808f534d0349768732e2daa7d5d08e33dc45b5985ec27431f2dd55c",
     "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -154,5 +154,12 @@
       "width_bp": 363.007,
       "height_bp": 172.183
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "3eca358ae1fe8b9c41910c41a1e91fa01737ed5000a9afa714f9f39cfc5ec5b1",
+    "source_sha256": "7c837b40265a22a368d62488542723078f3c962df06e24a22193993650c58bf8",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

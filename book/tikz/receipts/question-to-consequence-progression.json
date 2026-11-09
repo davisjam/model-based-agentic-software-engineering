@@ -3,7 +3,7 @@
   "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "*From engineering question to engineering consequence.* Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.",
   "topology": {
-    "description": "Question→representation→analysis→evidence; evidence informs design, enforcement, or both.",
+    "description": "Question\u2192representation\u2192analysis\u2192evidence; evidence informs design, enforcement, or both.",
     "relations": [
       [
         "n0",
@@ -39,10 +39,10 @@
   },
   "required_terms": [
     "Engineering question",
-    "Choose representation Closed state/action space · finite transition system · temporal behavior",
-    "Choose analysis appropriate to the property Constraint solving · state exploration · model checking · simulation · static analysis",
+    "Choose representation Closed state/action space \u00b7 finite transition system \u00b7 temporal behavior",
+    "Choose analysis appropriate to the property Constraint solving \u00b7 state exploration \u00b7 model checking \u00b7 simulation \u00b7 static analysis",
     "Interpret evidence",
-    "Inform architecture / design Compare alternatives · revise boundaries Change dependencies · allocate resources",
+    "Inform architecture / design Compare alternatives \u00b7 revise boundaries Change dependencies \u00b7 allocate resources",
     "Decide what deserves enforcement Alignment (Chapter 3)",
     "Either or both"
   ],
@@ -70,7 +70,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+    "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
     "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
     "fill": "All stages and both consequence alternatives white; no darker alternative implies priority.",
     "bold": "Source-derived emphasis includes Engineering question; Choose representation; Choose analysis appropriate to the property; Interpret evidence; Inform architecture / design; Decide what deserves enforcement. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
@@ -96,7 +96,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+    "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
     "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
     "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "evidence": [
@@ -319,5 +319,12 @@
       "width_bp": 396.181,
       "height_bp": 310.754
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+    "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

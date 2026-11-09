@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- R56-A figure round — model-coherence-stack.svg, shared vocabulary per R56-FIGURE-MANIFEST. Fold to book/assets/. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 640" width="820" height="640"
-     role="img" aria-labelledby="mcTitle mcDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 650" width="820" height="650" role="img" aria-labelledby="mcTitle mcDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mcTitle">The Model-Coherence stack: an authored model, consumed live, checked against reality,
     and gated on disagreement</title>
   <desc id="mcDesc">A model of an authored fact sits at the top. The load-bearing solid path runs MODEL to
@@ -14,74 +11,74 @@
 
   <defs>
     <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169" />
     </marker>
     <marker id="aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
-      <path d="M0.5,0.5 L9.5,5 L0.5,9.5" fill="none" stroke="#57534e" stroke-width="1.6"/>
+      <path d="M0.5,0.5 L9.5,5 L0.5,9.5" fill="none" stroke="#57534e" stroke-width="1.6" />
     </marker>
   </defs>
 
   <!-- MODEL -->
-  <rect x="310" y="30" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect x="310" y="30" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" />
   <text x="410" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
   <text x="410" y="82" text-anchor="middle" font-size="16.4" fill="#57534e">authored fact</text>
 
   <!-- MODEL -> CONSUME (solid, load-bearing) -->
-  <path d="M410,96 C360,124 300,117 300,147" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M410,96 C360,124 300,117 300,147" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)" />
   <!-- MODEL -> EMIT (dashed, enhancement) -->
-  <path d="M410,96 C470,124 560,117 560,147" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M410,96 C470,124 560,117 560,147" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)" />
 
   <!-- CONSUME (solid) -->
-  <rect x="210" y="148" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect x="210" y="148" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2" />
   <text x="300" y="178" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CONSUME</text>
   <text x="300" y="200" text-anchor="middle" font-size="16.4" fill="#57534e">read the model live</text>
 
   <!-- EMIT (dashed enhancement) -->
-  <rect x="470" y="148" width="180" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect x="470" y="148" width="180" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4" />
   <text x="560" y="178" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">EMIT</text>
   <text x="560" y="200" text-anchor="middle" font-size="16.4" fill="#57534e">generate artifacts</text>
 
   <!-- CONSUME -> CORRESPONDENCE (solid) -->
-  <line x1="300" y1="214" x2="300" y2="257" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="300" y1="214" x2="300" y2="257" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)" />
 
   <!-- CORRESPONDENCE (solid, green) -->
-  <rect x="200" y="258" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect x="200" y="258" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" />
   <text x="300" y="288" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CORRESPONDENCE</text>
-  <text x="300" y="310" text-anchor="middle" font-size="16.4" fill="#57534e">model &#8596; world</text>
+  <text x="300" y="310" text-anchor="middle" font-size="16.4" fill="#57534e">model ↔ world</text>
 
   <!-- DERIVE (dashed enhancement) -> CORRESPONDENCE -->
-  <rect x="470" y="258" width="200" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect x="470" y="258" width="200" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4" />
   <text x="570" y="284" text-anchor="middle" font-size="16.4" font-weight="700" fill="#1c1917">DERIVE</text>
   <text x="570" y="306" text-anchor="middle" font-size="16.4" fill="#57534e">join where possible</text>
-  <path d="M470,291 L401,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M470,291 L401,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)" />
 
   <!-- CORRESPONDENCE -> decision (solid) -->
-  <line x1="300" y1="324" x2="300" y2="367" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="300" y1="324" x2="300" y2="367" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)" />
 
   <!-- decision diamond -->
-  <polygon points="300,368 372,424 300,480 228,424" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <polygon points="300,368 372,424 300,480 228,424" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" />
   <text x="300" y="429" text-anchor="middle" font-size="16.4" font-weight="700" fill="#9a3f12">disagreement?</text>
 
   <!-- decision -> GATE (solid) -->
-  <path d="M258,452 C224,478 204.9,471.4 200,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M258,452 C224,478 204.9,471.4 200,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)" />
   <!-- decision -> valid (solid) -->
-  <path d="M342,452 C376,478 400,471 400,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M342,452 C376,478 400,471 400,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)" />
 
   <!-- GATE (rust) -->
-  <rect x="108.64" y="502" width="172.72" height="58" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect x="108.64" y="502" width="172.72" height="58" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" />
   <text x="195" y="530" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">GATE</text>
   <text x="195" y="550" text-anchor="middle" font-size="16.4" fill="#57534e">reject disagreement</text>
 
   <!-- valid (green) -->
-  <rect x="335" y="502" width="130" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect x="335" y="502" width="130" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" />
   <text x="400" y="536" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">valid</text>
 
   <!-- legend -->
-  <line x1="480" y1="524" x2="524" y2="524" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="480" y1="524" x2="524" y2="524" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)" />
   <text x="532" y="529" font-size="16.4" fill="#57534e">load-bearing (required)</text>
-  <line x1="480" y1="550" x2="524" y2="550" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
+  <line x1="480" y1="550" x2="524" y2="550" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)" />
   <text x="532" y="555" font-size="16.4" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->
-  <text x="410" y="608" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability.</text>
+  <text x="410" y="608" text-anchor="middle" font-size="16.4" font-style="italic" fill="#57534e"><tspan x="410" dy="0">Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for</tspan><tspan x="410" dy="22">the capability.</tspan></text>
 </svg>

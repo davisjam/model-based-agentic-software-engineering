@@ -43,11 +43,11 @@
     </marker>
   </defs>
   <!-- ===== header ribbons: grounded vs generalization ===== -->
-  <text x="332" y="44" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">grounded — DocAble (software) evidence</text>
+  <text x="332" y="23" text-anchor="middle" font-size="19.2" fill="#57534e" font-style="italic">grounded — DocAble</text><text x="332" y="46" text-anchor="middle" font-size="19.2" fill="#57534e" font-style="italic">(software) evidence</text>
   <line x1="218" y1="52" x2="446" y2="52" stroke="#57534e" stroke-width="1.4"/>
-  <text x="698" y="44" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">generalization — the same move, inferred (not DocAble evidence)</text>
+  <text x="698" y="23" text-anchor="middle" font-size="19.2" fill="#57534e" font-style="italic">generalization — the same move,</text><text x="698" y="46" text-anchor="middle" font-size="19.2" fill="#57534e" font-style="italic">inferred (not DocAble evidence)</text>
   <line x1="462" y1="52" x2="934" y2="52" stroke="#57534e" stroke-width="1.4" stroke-dasharray="5 3"/>
-  <text x="114" y="44" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the abstraction move</text>
+  <text x="114" y="44" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">the abstraction move</text>
   <line x1="26" y1="52" x2="202" y2="52" stroke="#57534e" stroke-width="1.4"/>
   <!-- ===== column headers ===== -->
   <text x="114" y="94" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">THE GENERAL MOVE</text>

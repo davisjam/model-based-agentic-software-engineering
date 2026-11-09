@@ -1,7 +1,7 @@
 {
   "source": "book/assets/c3-bidirectional-correspondence.svg",
   "claim": "*Correspondence runs both ways.* A two-way loop joins MODEL and REALITY. One arrow asks whether reality still satisfies the model, catching a wrong modeled fact; the other asks whether something important appeared outside the model, catching unmodeled reality.",
-  "topology": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it — this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model — this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
+  "topology": "A model and the running system it describes, joined by two checks that run in opposite directions.\n    One check reads a modeled claim and asks whether reality still satisfies it \u2014 this catches wrong modeled facts.\n    The other check starts from reality and asks whether anything important has appeared outside the model \u2014 this\n    catches unmodeled reality. Both must run: correspondence is a two-way invariant, not a one-time claim.",
   "required_terms": [
     "MODEL what we claim is true",
     "REALITY the running system",
@@ -16,7 +16,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
+    "source_sha256": "d98934e4a0e4beb10d40e734b5bf36e98b5577dddd445f6ac16619a64c1e518a",
     "candidate_sha256": "0c64fbbd75a67379142c7f6d2734f51b8fc201543a03eaa9d4f6c501072619e9",
     "fill": "One light model fill distinguishes claimed representation from realized system across reciprocal checks.",
     "bold": "Source-derived emphasis includes MODEL. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -40,7 +40,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
+    "source_sha256": "d98934e4a0e4beb10d40e734b5bf36e98b5577dddd445f6ac16619a64c1e518a",
     "candidate_sha256": "0c64fbbd75a67379142c7f6d2734f51b8fc201543a03eaa9d4f6c501072619e9",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -190,5 +190,12 @@
       "width_bp": 348.128,
       "height_bp": 186.03
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "ad0a454d05f8be291796e5a288e3631c26da00185170cc3e8c13b459c228bd77",
+    "source_sha256": "d98934e4a0e4beb10d40e734b5bf36e98b5577dddd445f6ac16619a64c1e518a",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

@@ -45,11 +45,11 @@
   },
   "required_terms": [
     "Engineering obligation What must hold",
-    "Governance mechanism Constraint · Sensor · Gate",
-    "Directly observable work Action · artifact · execution result Local rules can act directly",
-    "Explicit model / invariant Architecture · behavior · policy · bounds Exposes richer semantics",
+    "Governance mechanism Constraint \u00b7 Sensor \u00b7 Gate",
+    "Directly observable work Action \u00b7 artifact \u00b7 execution result Local rules can act directly",
+    "Explicit model / invariant Architecture \u00b7 behavior \u00b7 policy \u00b7 bounds Exposes richer semantics",
     "GOVERNED ENGINEERING ENVIRONMENT",
-    "Engineering Capital Durable models · mechanisms · procedures · canonical documentation",
+    "Engineering Capital Durable models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
     "accumulates in"
   ],
   "bw_encoding": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white.",
@@ -76,7 +76,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+    "source_sha256": "55e51647f1dab0d9c3b7698b017c922c11a79210227cdde063acdf6216bc42c5",
     "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
     "fill": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white.",
     "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; GOVERNANCE MECHANISM; DIRECTLY OBSERVABLE WORK; EXPLICIT MODEL / INVARIANT; GOVERNED ENGINEERING ENVIRONMENT; ENGINEERING CAPITAL. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
@@ -104,7 +104,7 @@
     "source": "book/assets/gloss-gee.svg",
     "candidate": "book/tikz/figures/gloss-gee.tex",
     "decision": "refined",
-    "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+    "source_sha256": "55e51647f1dab0d9c3b7698b017c922c11a79210227cdde063acdf6216bc42c5",
     "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
     "evidence": [
       {
@@ -204,14 +204,14 @@
         ]
       },
       {
-        "source_text": "Constraint · Sensor · Gate",
+        "source_text": "Constraint \u00b7 Sensor \u00b7 Gate",
         "source_style": "weight normal, italic",
         "semantic_role": "Role explanation or named relation",
-        "candidate_text": "Constraint · Sensor · Gate",
+        "candidate_text": "Constraint \u00b7 Sensor \u00b7 Gate",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "Constraint · Sensor · Gate",
+            "text": "Constraint \u00b7 Sensor \u00b7 Gate",
             "weight": "normal",
             "style": "italic",
             "x": "500",
@@ -220,14 +220,14 @@
         ]
       },
       {
-        "source_text": "action · artifact · execution result",
+        "source_text": "action \u00b7 artifact \u00b7 execution result",
         "source_style": "weight normal, italic",
         "semantic_role": "Role explanation or named relation",
-        "candidate_text": "Action · artifact · execution result",
+        "candidate_text": "Action \u00b7 artifact \u00b7 execution result",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "action · artifact · execution result",
+            "text": "action \u00b7 artifact \u00b7 execution result",
             "weight": "normal",
             "style": "italic",
             "x": "270",
@@ -252,14 +252,14 @@
         ]
       },
       {
-        "source_text": "architecture · behavior · policy · bounds",
+        "source_text": "architecture \u00b7 behavior \u00b7 policy \u00b7 bounds",
         "source_style": "weight normal, italic",
         "semantic_role": "Role explanation or named relation",
-        "candidate_text": "Architecture · behavior Policy · bounds",
+        "candidate_text": "Architecture \u00b7 behavior Policy \u00b7 bounds",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "architecture · behavior · policy · bounds",
+            "text": "architecture \u00b7 behavior \u00b7 policy \u00b7 bounds",
             "weight": "normal",
             "style": "italic",
             "x": "730",
@@ -284,14 +284,14 @@
         ]
       },
       {
-        "source_text": "models · mechanisms · procedures · canonical documentation",
+        "source_text": "models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
         "source_style": "weight normal, italic",
         "semantic_role": "Role explanation or named relation",
-        "candidate_text": "Models · mechanisms · procedures · canonical documentation",
+        "candidate_text": "Models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "models · mechanisms · procedures · canonical documentation",
+            "text": "models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
             "weight": "normal",
             "style": "italic",
             "x": "500",
@@ -391,11 +391,11 @@
         "bold": true
       },
       {
-        "text": "Constraint · Sensor · Gate",
+        "text": "Constraint \u00b7 Sensor \u00b7 Gate",
         "italic": true
       },
       {
-        "text": "Action · artifact · execution result",
+        "text": "Action \u00b7 artifact \u00b7 execution result",
         "italic": true
       },
       {
@@ -403,7 +403,7 @@
         "italic": true
       },
       {
-        "text": "Architecture · behavior Policy · bounds",
+        "text": "Architecture \u00b7 behavior Policy \u00b7 bounds",
         "italic": true
       },
       {
@@ -411,7 +411,7 @@
         "italic": true
       },
       {
-        "text": "Models · mechanisms · procedures · canonical documentation",
+        "text": "Models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
         "italic": true
       },
       {
@@ -512,5 +512,12 @@
     "monochrome_pixels": true,
     "semantic_typography_checks": 16,
     "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+    "source_sha256": "55e51647f1dab0d9c3b7698b017c922c11a79210227cdde063acdf6216bc42c5",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

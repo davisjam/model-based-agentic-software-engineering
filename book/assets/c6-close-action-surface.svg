@@ -1,10 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- RB Engineering-Moves figure — c6-close-action-surface.svg. Fold to book/assets/.
-     Colorblind-safe + grayscale-survivable: OPEN vs CLOSED read by SHAPE, DASH, and WEIGHT
-     (scattered thin dashed routes vs one heavy solid funnel through a bold seam), never by hue. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="1000" height="540"
-     role="img" aria-labelledby="c6Title c6Desc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="1000" height="540" role="img" aria-labelledby="c6Title c6Desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="c6Title">C.6 Close the action surface: replace open-ended routes with one bounded, named interface</title>
   <desc id="c6Desc">On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —
     a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so
@@ -15,85 +10,85 @@
 
   <defs>
     <marker id="c6-ah-open" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e" />
     </marker>
     <marker id="c6-ah-closed" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
+      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917" />
     </marker>
   </defs>
 
   <!-- ================= OPEN ================= -->
-  <text x="60" y="52" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#1c1917">OPEN &#183; any route</text>
+  <text x="60" y="52" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#1c1917">OPEN · any route</text>
 
   <!-- actor -->
-  <rect id="actor-open" x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="actor-open" x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" />
   <text x="115" y="262" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">actor</text>
 
   <!-- scattered thin DASHED routes (chaos read by dash + fan); heads seated on each target's left border -->
   <g fill="none" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#c6-ah-open)">
     <!-- edge: actor-open -> raw-surface-1 -->
-    <path d="M170,246 L266,246 L266,126.7 L362,126.7"/>
+    <path d="M170,246 L266,246 L266,126.7 L362,126.7" />
     <!-- edge: actor-open -> raw-surface-2 -->
-    <path d="M170,246 L266,246 L266,206.7 L362,206.7"/>
+    <path d="M170,246 L266,246 L266,206.7 L362,206.7" />
     <!-- edge: actor-open -> helper -->
-    <path d="M170,266 L266,266 L266,289.3 L362,289.3"/>
+    <path d="M170,266 L266,266 L266,289.3 L362,289.3" />
     <!-- edge: actor-open -> unknown-routes -->
-    <path d="M170,266 L266,266 L266,381.3 L362,381.3"/>
+    <path d="M170,266 L266,266 L266,381.3 L362,381.3" />
   </g>
 
   <g font-size="20" fill="#1c1917">
-    <rect id="raw-surface-1" x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="raw-surface-1" x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" />
     <text x="439" y="125" text-anchor="middle">raw surface</text>
-    <rect id="raw-surface-2" x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="raw-surface-2" x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" />
     <text x="439" y="205" text-anchor="middle">raw surface</text>
-    <rect id="helper" x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="helper" x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" />
     <text x="439" y="301" text-anchor="middle">helper</text>
-    <rect id="unknown-routes" x="346.96" y="368" width="184.07" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="unknown-routes" x="346.96" y="368" width="184.07" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" />
     <text x="439" y="393" text-anchor="middle" font-weight="700">unknown routes</text>
   </g>
 
-  <text x="290" y="452" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">open-ended &#8212; governance faces arbitrary paths</text>
+  <text x="290" y="452" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e"><tspan x="290" dy="0">open-ended — governance faces arbitrary paths</tspan></text>
 
   <!-- divider -->
-  <line x1="530" y1="70" x2="530" y2="470" stroke="#e4e0d8" stroke-width="1.5"/>
+  <line x1="530" y1="70" x2="530" y2="470" stroke="#e4e0d8" stroke-width="1.5" />
 
   <!-- ================= CLOSED ================= -->
-  <text x="560" y="52" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#1c1917">CLOSED &#183; one named seam</text>
+  <text x="560" y="52" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#1c1917">CLOSED · one named seam</text>
 
   <!-- actor -->
-  <rect id="actor-closed" x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="actor-closed" x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" />
   <text x="615" y="262" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">actor</text>
 
   <!-- solid HEAVY funnel to a bold SEAM -->
   <!-- edge: actor-closed -> seam -->
-  <line x1="670" y1="256" x2="716" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#c6-ah-closed)"/>
-  <rect id="seam" x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
+  <line x1="670" y1="256" x2="716" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#c6-ah-closed)" />
+  <rect id="seam" x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4" />
   <text x="774" y="262" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">SEAM</text>
 
   <!-- fan to three verbs, solid heavy; heads seated on each verb's left border (approach horizontal) -->
   <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#c6-ah-closed)">
     <!-- edge: seam -> verb-a -->
-    <path d="M830,238 L847,238 L847,174.7 L864,174.7"/>
+    <path d="M830,238 L847,238 L847,174.7 L864,174.7" />
     <!-- edge: seam -> verb-b -->
-    <line x1="830" y1="256" x2="864" y2="256"/>
+    <line x1="830" y1="256" x2="864" y2="256" />
     <!-- edge: seam -> verb-c -->
-    <path d="M830,274 L847,274 L847,337.3 L864,337.3"/>
+    <path d="M830,274 L847,274 L847,337.3 L864,337.3" />
   </g>
 
   <g font-size="20" font-weight="700" fill="#1c1917">
-    <rect id="verb-a" x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="verb-a" x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2" />
     <text x="913" y="173" text-anchor="middle">VERB A</text>
-    <rect id="verb-b" x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="verb-b" x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2" />
     <text x="913" y="261" text-anchor="middle">VERB B</text>
-    <rect id="verb-c" x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="verb-c" x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2" />
     <text x="913" y="349" text-anchor="middle">VERB C</text>
   </g>
 
-  <text x="774" y="322" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">stamp &#183; validate</text>
-  <text x="774" y="342" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">constrain &#183; observe</text>
+  <text x="720" y="322" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">stamp · validate</text>
+  <text x="720" y="342" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">constrain · observe</text>
 
-  <text x="760" y="452" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">finite verbs &#8212; each carries policy, evidence, validation</text>
+  <text x="760" y="452" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e"><tspan x="760" dy="0">finite verbs — each carries policy, evidence,</tspan><tspan x="760" dy="24.4">validation</tspan></text>
 
   <!-- footer note: the distinction is not colour -->
-  <text x="500" y="508" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">The distinction is encoded by shape, line style, and weight rather than color.</text>
+  <text x="500" y="520" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">The distinction is encoded by shape, line style, and weight rather than color.</text>
 </svg>

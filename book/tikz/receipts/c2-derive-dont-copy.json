@@ -1,17 +1,17 @@
 {
   "source": "book/assets/c2-derive-dont-copy.svg",
-  "claim": "*Query, don't snapshot.* BAD — the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD — the check queries the model directly, so the next check sees the change.",
+  "claim": "*Query, don't snapshot.* BAD \u2014 the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD \u2014 the check queries the model directly, so the next check sees the change.",
   "topology": "Two ways a consumer reads an authoritative model. In the bad path, the consumer copies values\n    into a snapshot and checks against the snapshot; when the model changes, the snapshot does not, so the check\n    runs against a stale answer. In the good path, the consumer queries the model directly; when the model changes,\n    the next check sees the change because the consumer is coupled to the model's interface, not to yesterday's\n    answer.",
   "required_terms": [
-    "BAD · copied snapshot",
+    "BAD \u00b7 copied snapshot",
     "MODEL",
     "SNAPSHOT",
     "CHECK",
     "The model changes; the snapshot does not. The check trusts a stale answer.",
-    "GOOD · query at the point of use",
+    "GOOD \u00b7 query at the point of use",
     "MODEL",
     "CHECK",
-    "The next check sees the change: coupled to the interface, not yesterday’s answer."
+    "The next check sees the change: coupled to the interface, not yesterday\u2019s answer."
   ],
   "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Layout reflowed for a 15 cm monochrome print column; color categories replaced by labels and boundary weight.",
@@ -21,10 +21,10 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+    "source_sha256": "9d8d024b6350246acda49614796c7447105781f58ffd76170ae5366e78011b2f",
     "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-    "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday’s answer.; the snapshot does not. The check trusts a stale answer.; GOOD · query at the point of use; BAD · copied snapshot; query — no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday\u2019s answer.; the snapshot does not. The check trusts a stale answer.; GOOD \u00b7 query at the point of use; BAD \u00b7 copied snapshot; query \u2014 no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
@@ -45,23 +45,23 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+    "source_sha256": "9d8d024b6350246acda49614796c7447105781f58ffd76170ae5366e78011b2f",
     "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
-        "source_text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+        "source_text": "\u2026 the next check sees it \u2014 coupled to the interface, not yesterday's answer",
         "source_style": {
           "font-weight": "700",
           "font-style": "normal",
           "font-size": "20"
         },
         "semantic_role": "concept/category versus explanation",
-        "candidate_text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+        "candidate_text": "The next check sees the change: coupled to the interface, not yesterday\u2019s answer.",
         "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+            "text": "\u2026 the next check sees it \u2014 coupled to the interface, not yesterday's answer",
             "style": {
               "font-weight": "700",
               "font-style": "normal",
@@ -76,7 +76,7 @@
         ]
       },
       {
-        "source_text": "… the snapshot does not — the check trusts a stale answer",
+        "source_text": "\u2026 the snapshot does not \u2014 the check trusts a stale answer",
         "source_style": {
           "font-weight": "700",
           "font-style": "normal",
@@ -87,7 +87,7 @@
         "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "… the snapshot does not — the check trusts a stale answer",
+            "text": "\u2026 the snapshot does not \u2014 the check trusts a stale answer",
             "style": {
               "font-weight": "700",
               "font-style": "normal",
@@ -102,18 +102,18 @@
         ]
       },
       {
-        "source_text": "GOOD · query at the point of use",
+        "source_text": "GOOD \u00b7 query at the point of use",
         "source_style": {
           "font-weight": "700",
           "font-style": "normal",
           "font-size": "20"
         },
         "semantic_role": "concept/category versus explanation",
-        "candidate_text": "GOOD · query at the point of use",
+        "candidate_text": "GOOD \u00b7 query at the point of use",
         "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "GOOD · query at the point of use",
+            "text": "GOOD \u00b7 query at the point of use",
             "style": {
               "font-weight": "700",
               "font-style": "normal",
@@ -128,18 +128,18 @@
         ]
       },
       {
-        "source_text": "GOOD · query at the point of use",
+        "source_text": "GOOD \u00b7 query at the point of use",
         "source_style": {
           "font-weight": "700",
           "font-style": "normal",
           "font-size": "20"
         },
         "semantic_role": "Parallel contrast heading: candidate BAD heading mirrors the original bold GOOD heading; BAD is not itself printed in the source SVG.",
-        "candidate_text": "BAD · copied snapshot",
+        "candidate_text": "BAD \u00b7 copied snapshot",
         "candidate_style": "bold",
         "source_fragments": [
           {
-            "text": "GOOD · query at the point of use",
+            "text": "GOOD \u00b7 query at the point of use",
             "style": {
               "font-weight": "700",
               "font-style": "normal",
@@ -154,18 +154,18 @@
         ]
       },
       {
-        "source_text": "query — no second editable truth",
+        "source_text": "query \u2014 no second editable truth",
         "source_style": {
           "font-weight": "700",
           "font-style": "italic",
           "font-size": "20"
         },
         "semantic_role": "live-query relation contrasted with copied snapshot",
-        "candidate_text": "query — no second editable truth",
+        "candidate_text": "query \u2014 no second editable truth",
         "candidate_style": "bold italic",
         "source_fragments": [
           {
-            "text": "query — no second editable truth",
+            "text": "query \u2014 no second editable truth",
             "style": {
               "font-weight": "700",
               "font-style": "italic",
@@ -182,7 +182,7 @@
     ],
     "checks": [
       {
-        "text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+        "text": "The next check sees the change: coupled to the interface, not yesterday\u2019s answer.",
         "bold": true
       },
       {
@@ -190,15 +190,15 @@
         "bold": true
       },
       {
-        "text": "GOOD · query at the point of use",
+        "text": "GOOD \u00b7 query at the point of use",
         "bold": true
       },
       {
-        "text": "BAD · copied snapshot",
+        "text": "BAD \u00b7 copied snapshot",
         "bold": true
       },
       {
-        "text": "query — no second editable truth",
+        "text": "query \u2014 no second editable truth",
         "bold": true,
         "italic": true
       },
@@ -285,5 +285,12 @@
       "width_bp": 343.165,
       "height_bp": 180.269
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "adf18830ebe06dd88e3551208194147d7abe51ab0cbbc68fa96a32e8554422c1",
+    "source_sha256": "9d8d024b6350246acda49614796c7447105781f58ffd76170ae5366e78011b2f",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

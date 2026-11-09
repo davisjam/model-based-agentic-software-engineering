@@ -32,7 +32,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
     "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
     "fill": "Only media is 5%, inside chunks and external store; structure stays white.",
     "bold": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
@@ -73,7 +73,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
     "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
     "reason": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
     "evidence": [
@@ -211,5 +211,12 @@
       "width_bp": 413.388,
       "height_bp": 269.617
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+    "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

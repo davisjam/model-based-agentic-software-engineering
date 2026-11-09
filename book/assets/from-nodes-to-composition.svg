@@ -1,94 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- graph-example figure — from-nodes-to-composition.svg. Fold to book/assets/. Regenerated
-     260905: before/after of the DocAble computation model — computations WITHOUT composition (125
-     registered, only 2 authored seed relations) -> derive + type -> COMPOSITION made explicit (57 typed
-     relations: 2 authored seeds + 55 projected; a payload-bearing partition of 33 = 32 DATA_FLOW + 1
-     CROSS_SERVICE, vs 24 CONTROL_GATE). The representation exposed a distinction the implementation
-     already contained; the mutation-kind dimension is deliberately NOT drawn (the prose discovers it next). -->
-<!-- semantic-families: modeling, governance, agent, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 606" width="1000" height="606"
-     role="img" aria-labelledby="fncTitle fncDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fncTitle">From computations to composition</title>
+<!-- Custom SVG: compact print composition with explicit node/edge geometry and 9pt minimum labels at its reviewed width. Native monochrome partner remains independent. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 350" width="450" height="350" role="img" aria-labelledby="fncTitle fncDesc" font-family="'Source Sans 3', Arial, sans-serif">
+<title id="fncTitle">From computations to composition</title>
   <desc id="fncDesc">Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations — 125 computations are registered but only two relations were authored as seeds. Center: derive and type the relations. Right, composition made explicit: the projected relations split into two semantics — a payload-bearing group of thirty-three (thirty-two DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-four CONTROL_GATE relations. The transformation is two authored seeds to fifty-five projected, typed relations to thirty-three payload plus twenty-four control.</desc>
-  <defs>
-    <marker id="fnc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
-    <marker id="fnc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
-    <marker id="fnc-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
-  </defs>
-  <rect x="0" y="0" width="1000" height="606" fill="#fdfcf9"/>
-  <rect x="40" y="96" width="405" height="456" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="545" y="96" width="415" height="456" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <circle cx="59.4" cy="277.3" r="4.5" fill="#e4e0d8"/>
-  <circle cx="60.3" cy="198.9" r="4.5" fill="#e4e0d8"/>
-  <circle cx="68.3" cy="387.0" r="4.5" fill="#e4e0d8"/>
-  <circle cx="79.2" cy="421.2" r="4.5" fill="#e4e0d8"/>
-  <circle cx="104.9" cy="226.0" r="4.5" fill="#e4e0d8"/>
-  <circle cx="110.2" cy="345.7" r="4.5" fill="#e4e0d8"/>
-  <circle cx="116.9" cy="270.8" r="4.5" fill="#e4e0d8"/>
-  <circle cx="124.2" cy="388.3" r="4.5" fill="#e4e0d8"/>
-  <circle cx="163.4" cy="193.3" r="4.5" fill="#e4e0d8"/>
-  <circle cx="164.6" cy="431.8" r="4.5" fill="#e4e0d8"/>
-  <circle cx="194.3" cy="437.6" r="4.5" fill="#e4e0d8"/>
-  <circle cx="195.6" cy="147.6" r="4.5" fill="#e4e0d8"/>
-  <circle cx="196.6" cy="465.3" r="4.5" fill="#e4e0d8"/>
-  <circle cx="242.1" cy="463.3" r="4.5" fill="#e4e0d8"/>
-  <circle cx="243.8" cy="427.8" r="4.5" fill="#e4e0d8"/>
-  <circle cx="253.6" cy="196.0" r="4.5" fill="#e4e0d8"/>
-  <circle cx="258.0" cy="222.6" r="4.5" fill="#e4e0d8"/>
-  <circle cx="258.8" cy="380.9" r="4.5" fill="#e4e0d8"/>
-  <circle cx="294.1" cy="192.9" r="4.5" fill="#e4e0d8"/>
-  <circle cx="295.8" cy="144.5" r="4.5" fill="#e4e0d8"/>
-  <circle cx="297.4" cy="465.7" r="4.5" fill="#e4e0d8"/>
-  <circle cx="304.3" cy="383.7" r="4.5" fill="#e4e0d8"/>
-  <circle cx="334.7" cy="383.1" r="4.5" fill="#e4e0d8"/>
-  <circle cx="341.1" cy="192.9" r="4.5" fill="#e4e0d8"/>
-  <circle cx="345.4" cy="436.4" r="4.5" fill="#e4e0d8"/>
-  <circle cx="374.9" cy="387.8" r="4.5" fill="#e4e0d8"/>
-  <circle cx="392.0" cy="152.4" r="4.5" fill="#e4e0d8"/>
-  <circle cx="392.5" cy="196.8" r="4.5" fill="#e4e0d8"/>
-  <circle cx="422.7" cy="436.9" r="4.5" fill="#e4e0d8"/>
-  <circle cx="423.3" cy="340.2" r="4.5" fill="#e4e0d8"/>
-  <circle cx="427.9" cy="388.6" r="4.5" fill="#e4e0d8"/>
-  <circle cx="434.7" cy="304.9" r="4.5" fill="#e4e0d8"/>
-  <circle cx="437.3" cy="271.3" r="4.5" fill="#e4e0d8"/>
-  <circle cx="437.6" cy="468.4" r="4.5" fill="#e4e0d8"/>
-  <path fill="none" stroke="#155c38" stroke-width="4" marker-end="url(#fnc-ah-green)" d="M162,250 L258,318"/>
-  <path fill="none" stroke="#155c38" stroke-width="4" marker-end="url(#fnc-ah-green)" d="M282,332 L380,258"/>
-  <circle cx="150" cy="250" r="11" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
-  <circle cx="270" cy="335" r="11" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
-  <circle cx="392" cy="250" r="11" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
-  <text x="495" y="278" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">derive +</text>
-  <text x="495" y="296" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">type relations</text>
-  <line x1="455" y1="318" x2="537" y2="318" stroke="#57534e" stroke-width="3" marker-end="url(#fnc-ah-green)"/>
-  <text x="242" y="128" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#1c1917">COMPUTATIONS WITHOUT COMPOSITION</text>
-  <text x="752" y="128" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#1c1917">COMPOSITION MADE EXPLICIT</text>
-  <text x="752" y="154" text-anchor="middle" font-size="12.5" font-weight="700" letter-spacing="0.1em" fill="#57534e">RELATION TYPES</text>
-  <text x="562" y="182" text-anchor="start" font-size="14" font-weight="700" fill="#155c38">PAYLOAD-BEARING  ×33</text>
-  <path fill="none" stroke="#155c38" stroke-width="2" d="M556,202 L550,202 L550,382 L556,382"/>
-  <text x="748" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×32</text>
-  <rect x="560" y="226" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <rect x="852" y="226" width="96" height="40" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="601.0" y="251" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass A</text>
-  <text x="900.0" y="251" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass B</text>
-  <line x1="642" y1="246" x2="852" y2="246" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#fnc-ah-green)"/>
-  <text x="748" y="282" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Produces → Consumes</text>
-  <text x="748" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CROSS_SERVICE  ×1</text>
-  <rect x="560" y="320" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <rect x="852" y="320" width="96" height="40" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="601.0" y="345" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass B</text>
-  <text x="900.0" y="345" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Service</text>
-  <line x1="642" y1="340" x2="852" y2="340" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fnc-ah-blue)"/>
-  <text x="748" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">cross-boundary payload</text>
-  <text x="562" y="410" text-anchor="start" font-size="14" font-weight="700" fill="#9a3f12">CONTROL  ×24</text>
-  <path fill="none" stroke="#9a3f12" stroke-width="2" d="M556,428 L550,428 L550,512 L556,512"/>
-  <text x="748" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×24</text>
-  <rect x="560" y="452" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <rect x="852" y="452" width="96" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="601.0" y="477" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass A</text>
-  <text x="900.0" y="477" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass C</text>
-  <line x1="642" y1="472" x2="852" y2="472" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="9 5" marker-end="url(#fnc-ah-rust)"/>
-  <text x="748" y="508" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">ConsumesForControl</text>
-  <text x="242" y="524" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">125 computations</text>
-  <text x="242" y="546" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">2 authored relations</text>
-  <text x="500" y="580" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">2 authored + 55 projected, typed relations  →  33 payload + 24 control</text>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#57534e"/></marker></defs>
+<rect x="8" y="8" width="164" height="306" rx="3" fill="none" stroke="#e4e0d8" stroke-width="0.8" />
+<rect x="240" y="8" width="202" height="306" rx="3" fill="none" stroke="#e4e0d8" stroke-width="0.8" />
+<text x="90" y="25" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="90" dy="0">COMPUTATIONS WITHOUT</tspan></text>
+<text x="90" y="38" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="90" dy="0">COMPOSITION</tspan></text>
+<text x="341" y="25" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="341" dy="0">COMPOSITION MADE EXPLICIT</tspan></text>
+<text x="341" y="43" font-size="9" fill="#57534e" text-anchor="middle" font-weight="700"><tspan x="341" dy="0">RELATION TYPES</tspan></text>
+<circle cx="19.177999999999997" cy="141.211" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="19.511" cy="104.363" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="22.470999999999997" cy="192.76999999999998" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="26.504" cy="208.844" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="36.013000000000005" cy="117.1" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="37.974000000000004" cy="173.35899999999998" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="40.453" cy="138.156" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="43.153999999999996" cy="193.381" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="57.658" cy="101.731" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="58.102" cy="213.826" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="69.09100000000001" cy="216.552" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="69.572" cy="80.252" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="69.94200000000001" cy="229.571" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="86.777" cy="228.631" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="87.406" cy="211.946" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="91.032" cy="103.0" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="92.66" cy="115.502" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="92.956" cy="189.903" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="106.01700000000001" cy="101.543" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="106.646" cy="78.795" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="107.23799999999999" cy="229.759" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="109.791" cy="191.219" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="121.039" cy="190.937" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="123.40700000000001" cy="101.543" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="124.99799999999999" cy="215.98799999999997" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="135.913" cy="193.146" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="142.24" cy="82.50800000000001" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="142.425" cy="103.376" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="153.599" cy="216.22299999999998" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="153.821" cy="170.774" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="155.523" cy="193.522" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="158.039" cy="154.183" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="159.001" cy="138.39100000000002" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="159.112" cy="231.028" r="1.665" fill="#e4e0d8" stroke-width="0.0" /><circle cx="52.7" cy="128.38" r="4.07" fill="#e3f0e7" stroke="#155c38" stroke-width="1.036" /><circle cx="97.1" cy="168.32999999999998" r="4.07" fill="#e3f0e7" stroke="#155c38" stroke-width="1.036" /><circle cx="142.24" cy="128.38" r="4.07" fill="#e3f0e7" stroke="#155c38" stroke-width="1.036" /><line x1="57.14" y1="128.38" x2="92.66" y2="160.33999999999997" stroke="#1f7a4d" stroke-width="1.3" marker-end="url(#arrow)"/><line x1="101.53999999999999" y1="166.92" x2="137.8" y2="132.14" stroke="#1f7a4d" stroke-width="1.3" marker-end="url(#arrow)"/><text x="90" y="272" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="90" dy="0">125 computations</tspan></text>
+<text x="90" y="289" font-size="10" fill="#1f7a4d" text-anchor="middle" font-weight="700"><tspan x="90" dy="0">2 authored relations</tspan></text>
+<text x="206" y="145" font-size="9" fill="#57534e" text-anchor="middle" font-weight="700"><tspan x="206" dy="0">derive +</tspan></text>
+<text x="206" y="158" font-size="9" fill="#57534e" text-anchor="middle" font-weight="700"><tspan x="206" dy="0">type relations</tspan></text>
+<polyline points="178,177 236,177" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="250" y="66" font-size="9" fill="#1f7a4d" text-anchor="start" font-weight="700"><tspan x="250" dy="0">PAYLOAD-BEARING ×33</tspan></text>
+<text x="341" y="87" font-size="10" fill="#1f7a4d" text-anchor="middle" font-weight="700"><tspan x="341" dy="0">DATA_FLOW ×32</tspan></text>
+<rect x="250" y="98" width="48" height="24" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<rect x="386" y="98" width="48" height="24" rx="3" fill="#f6f4ef" stroke="#1f7a4d" stroke-width="0.8" />
+<text x="274" y="114" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="274" dy="0">Pass A</tspan></text>
+<text x="410" y="114" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="410" dy="0">Pass B</tspan></text>
+<line x1="298" y1="110" x2="386" y2="110" stroke="#1f7a4d" stroke-width=".9" marker-end="url(#arrow)"/><text x="341" y="137" font-size="9" fill="#57534e" text-anchor="middle" font-style="italic"><tspan x="341" dy="0">Produces → Consumes</tspan></text>
+<text x="341" y="157" font-size="10" fill="#2f5169" text-anchor="middle" font-weight="700"><tspan x="341" dy="0">CROSS_SERVICE ×1</tspan></text>
+<rect x="250" y="168" width="48" height="24" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<rect x="386" y="168" width="48" height="24" rx="3" fill="#f6f4ef" stroke="#2f5169" stroke-width="0.8" />
+<text x="274" y="184" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="274" dy="0">Pass B</tspan></text>
+<text x="410" y="184" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="410" dy="0">Service</tspan></text>
+<line x1="298" y1="180" x2="386" y2="180" stroke="#2f5169" stroke-width=".9" marker-end="url(#arrow)"/><text x="341" y="207" font-size="9" fill="#57534e" text-anchor="middle" font-style="italic"><tspan x="341" dy="0">cross-boundary payload</tspan></text>
+<text x="341" y="250" font-size="10" fill="#9a3f12" text-anchor="middle" font-weight="700"><tspan x="341" dy="0">CONTROL_GATE ×24</tspan></text>
+<rect x="250" y="261" width="48" height="24" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<rect x="386" y="261" width="48" height="24" rx="3" fill="#f6f4ef" stroke="#9a3f12" stroke-width="0.8" />
+<text x="274" y="277" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="274" dy="0">Pass A</tspan></text>
+<text x="410" y="277" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="410" dy="0">Pass C</tspan></text>
+<line x1="298" y1="273" x2="386" y2="273" stroke="#9a3f12" stroke-width=".9" marker-end="url(#arrow)" stroke-dasharray="4 2"/><text x="341" y="300" font-size="9" fill="#57534e" text-anchor="middle" font-style="italic"><tspan x="341" dy="0">ConsumesForControl</tspan></text>
+<path d="M247 98 H243 V205 H247" fill="none" stroke="#1f7a4d" stroke-width=".8"/><text x="250" y="230" font-size="9" fill="#9a3f12" text-anchor="start" font-weight="700"><tspan x="250" dy="0">CONTROL ×24</tspan></text>
+<path d="M247 261 H243 V300 H247" fill="none" stroke="#9a3f12" stroke-width=".8"/><text x="225" y="337" font-size="9" fill="#1c1917" text-anchor="middle" font-weight="600"><tspan x="225" dy="0">2 authored + 55 projected, typed relations → 33 payload + 24 control</tspan></text>
+
 </svg>

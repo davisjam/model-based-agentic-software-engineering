@@ -6,93 +6,93 @@
      Graph edges are deliberately angled (keep-angles). -->
 <!-- semantic-families: modeling, neutral -->
 <!-- edge-grammar: keep-angles -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" width="920" height="540"
-     role="group" aria-labelledby="abTitle abDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 605" width="920" height="605" role="group" aria-labelledby="abTitle abDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="abTitle">An explicit dependency model exposes optimization opportunities before implementation</title>
   <desc id="abDesc">Three panels. (a) Critical path: in a weighted dependency graph, the heaviest chain from
     top to bottom is the critical path and sets the latency floor. (b) Node split: decomposing the dominant
     node into parallel children shortens the critical path, discoverable from the model before the split is
     built. (c) Dependency redesign: before, each alt-text operation depends on the description generated for
     the preceding image, a serial chain of image then alt text then image then alt text; after, every image
     instead consumes one shared precomputed page context, so the alt-text operations run independently.</desc>
-
-  <defs>
-    <marker id="ab-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="ab-ah-crit" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="920" height="540" fill="#fdfcf9"/>
-  <line x1="460" y1="44" x2="460" y2="272" stroke="#e7e2d6" stroke-width="1.5"/>
-  <line x1="30" y1="292" x2="890" y2="292" stroke="#e7e2d6" stroke-width="1.5"/>
-
-  <!-- ===== (a) critical path ===== -->
-  <text x="20" y="30" font-size="17.5" font-weight="700" fill="#57534e">(a) Critical path</text>
-  <line x1="180" y1="88" x2="120" y2="122" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ab-ah-crit)"/>
-  <line x1="120" y1="170" x2="120" y2="200" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ab-ah-crit)"/>
-  <line x1="120" y1="240" x2="180" y2="256" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#ab-ah-crit)"/>
-  <line x1="200" y1="88" x2="250" y2="122" stroke="#57534e" stroke-width="1.6" marker-end="url(#ab-ah)"/>
-  <line x1="250" y1="162" x2="250" y2="200" stroke="#57534e" stroke-width="1.6" marker-end="url(#ab-ah)"/>
-  <line x1="250" y1="240" x2="200" y2="256" stroke="#57534e" stroke-width="1.6" marker-end="url(#ab-ah)"/>
-  <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="166" y="60" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="190" y="79">A</text>
-    <rect x="84" y="122" width="76" height="48" rx="6" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/><text x="122" y="151">B (heavy)</text>
-    <rect x="226" y="124" width="48" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="250" y="148">C</text>
-    <rect x="96" y="200" width="48" height="40" rx="6" fill="#fff" stroke="#9a3f12" stroke-width="1.8"/><text x="120" y="225">D</text>
-    <rect x="226" y="200" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="250" y="225">E</text>
-    <rect x="166" y="256" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="190" y="275">F</text>
-  </g>
-
-  <!-- ===== (b) node split ===== -->
-  <text x="480" y="30" font-size="17.5" font-weight="700" fill="#57534e">(b) Node split</text>
-  <line x1="650" y1="88" x2="590" y2="122" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="670" y1="88" x2="670" y2="122" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="690" y1="88" x2="750" y2="122" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="590" y1="154" x2="660" y2="200" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="670" y1="154" x2="670" y2="200" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="750" y1="154" x2="680" y2="200" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="670" y1="240" x2="670" y2="256" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <g font-size="14" fill="#1c1917" text-anchor="middle">
-    <rect x="646" y="60" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="79">A</text>
-    <rect x="562" y="122" width="56" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="590" y="143">B1</text>
-    <rect x="642" y="122" width="56" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="670" y="143">B2</text>
-    <rect x="722" y="122" width="56" height="32" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="750" y="143">B3</text>
-    <rect x="646" y="200" width="48" height="40" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="670" y="225">D</text>
-    <rect x="646" y="256" width="48" height="28" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.8"/><text x="670" y="275">F</text>
-  </g>
-
-  <!-- ===== (c) information-dependency redesign (full width, enlarged) ===== -->
-  <text x="30" y="322" font-size="18" font-weight="700" fill="#57534e">(c) Information-dependency redesign</text>
-
-  <!-- before: serial context propagation (left) -->
-  <text x="40" y="356" font-size="15" fill="#9a3f12">Before: serial context propagation</text>
-  <g font-size="14.5" fill="#1c1917" text-anchor="middle">
-    <rect x="30" y="372" width="80" height="40" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="70" y="397">image 1</text>
-    <rect x="146" y="372" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="186" y="397">alt 1</text>
-    <rect x="262" y="372" width="80" height="40" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/><text x="302" y="397">image 2</text>
-    <rect x="378" y="372" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="418" y="397">alt 2</text>
-  </g>
-  <line x1="110" y1="392" x2="146" y2="392" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#ab-ah-crit)"/>
-  <line x1="226" y1="392" x2="262" y2="392" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#ab-ah-crit)"/>
-  <line x1="342" y1="392" x2="378" y2="392" stroke="#9a3f12" stroke-width="1.8" marker-end="url(#ab-ah-crit)"/>
-  <text x="474" y="399" font-size="20" fill="#9a3f12">…</text>
-  <text x="40" y="446" font-size="14" font-style="italic" fill="#78716c">each operation depends on a previous generated result</text>
-
-  <!-- after: shared contextual representation (right) -->
-  <text x="560" y="356" font-size="15" fill="#1f7a4d">After: shared contextual representation</text>
-  <rect x="600" y="372" width="220" height="38" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="710" y="396" text-anchor="middle" font-size="14.5" fill="#1c1917">rendered page context</text>
-  <line x1="660" y1="410" x2="620" y2="450" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="710" y1="410" x2="710" y2="450" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <line x1="760" y1="410" x2="800" y2="450" stroke="#57534e" stroke-width="1.8" marker-end="url(#ab-ah)"/>
-  <g font-size="14.5" fill="#1c1917" text-anchor="middle">
-    <rect x="580" y="450" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="620" y="475">alt 1</text>
-    <rect x="670" y="450" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="710" y="475">alt 2</text>
-    <rect x="760" y="450" width="80" height="40" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/><text x="800" y="475">alt 3</text>
-  </g>
-  <text x="560" y="514" font-size="14" font-style="italic" fill="#78716c">all operations consume the same precomputed context</text>
+<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
+<defs>
+<marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
+<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
+<marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
+</defs>
+<rect x="0" y="0" width="920" height="605" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
+<line x1="460" y1="44" x2="460" y2="289" stroke="#e7e2d6" stroke-width="1.5"/>
+<line x1="24" y1="306" x2="896" y2="306" stroke="#e7e2d6" stroke-width="1.5"/>
+<text x="24" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(a) Critical path</text>
+<text x="485" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(b) Node split</text>
+<line x1="181" y1="92" x2="125" y2="128" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#arrow-rust)"/>
+<line x1="125" y1="180" x2="125" y2="210" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#arrow-rust)"/>
+<line x1="125" y1="252" x2="181" y2="268" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#arrow-rust)"/>
+<line x1="209" y1="92" x2="263" y2="128" stroke="#57534e" stroke-width="1.8" marker-end="url(#arrow-muted)"/>
+<line x1="263" y1="170" x2="263" y2="210" stroke="#57534e" stroke-width="1.8" marker-end="url(#arrow-muted)"/>
+<line x1="263" y1="252" x2="209" y2="268" stroke="#57534e" stroke-width="1.8" marker-end="url(#arrow-muted)"/>
+<rect x="167" y="54" width="56" height="38" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="195.0" y="79.6" font-size="20" text-anchor="middle" fill="#1c1917">A</text>
+<rect x="68" y="128" width="114" height="52" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="125.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B (heavy)</text>
+<rect x="235" y="128" width="56" height="42" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="263.0" y="155.6" font-size="20" text-anchor="middle" fill="#1c1917">C</text>
+<rect x="97" y="210" width="56" height="42" rx="7" fill="#fff" stroke="#9a3f12" stroke-width="2"/>
+<text x="125.0" y="237.6" font-size="20" text-anchor="middle" fill="#1c1917">D</text>
+<rect x="235" y="210" width="56" height="42" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="263.0" y="237.6" font-size="20" text-anchor="middle" fill="#1c1917">E</text>
+<rect x="167" y="268" width="56" height="34" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="195.0" y="291.6" font-size="20" text-anchor="middle" fill="#1c1917">F</text>
+<line x1="662" y1="92" x2="580" y2="133" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="680" y1="92" x2="680" y2="133" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="698" y1="92" x2="780" y2="133" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="580" y1="175" x2="665" y2="216" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="680" y1="175" x2="680" y2="216" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="780" y1="175" x2="695" y2="216" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="680" y1="258" x2="680" y2="270" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<rect x="652" y="54" width="56" height="38" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="680.0" y="79.6" font-size="20" text-anchor="middle" fill="#1c1917">A</text>
+<rect x="548" y="133" width="64" height="42" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="580.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B1</text>
+<rect x="648" y="133" width="64" height="42" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="680.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B2</text>
+<rect x="748" y="133" width="64" height="42" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="780.0" y="160.6" font-size="20" text-anchor="middle" fill="#1c1917">B3</text>
+<rect x="652" y="216" width="56" height="42" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="680.0" y="243.6" font-size="20" text-anchor="middle" fill="#1c1917">D</text>
+<rect x="652" y="270" width="56" height="32" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="680.0" y="292.6" font-size="20" text-anchor="middle" fill="#1c1917">F</text>
+<text x="24" y="337" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(c) Information-dependency redesign</text>
+<text x="24" y="374" font-size="20" text-anchor="start" fill="#9a3f12">Before: serial context propagation</text>
+<text x="505" y="367" font-size="20" text-anchor="start" fill="#1f7a4d">After: shared contextual</text>
+<text x="505" y="391" font-size="20" text-anchor="start" fill="#1f7a4d">representation</text>
+<rect x="24" y="398" width="82" height="46" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="65.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">image 1</text>
+<rect x="139" y="398" width="82" height="46" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="180.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 1</text>
+<rect x="254" y="398" width="82" height="46" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="295.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">image 2</text>
+<rect x="369" y="398" width="82" height="46" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="410.0" y="427.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 2</text>
+<line x1="106" y1="421" x2="139" y2="421" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<line x1="221" y1="421" x2="254" y2="421" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<line x1="336" y1="421" x2="369" y2="421" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<text x="463" y="428" font-size="22" text-anchor="start" fill="#9a3f12">…</text>
+<text x="25" y="484" font-size="20" text-anchor="start" fill="#57534e" font-style="italic">each operation depends on a</text>
+<text x="25" y="508" font-size="20" text-anchor="start" fill="#57534e" font-style="italic">previous generated result</text>
+<rect x="580" y="407" width="280" height="45" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="720.0" y="436.43" font-size="21" text-anchor="middle" fill="#1c1917">rendered page context</text>
+<line x1="625" y1="452" x2="610" y2="493" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="720" y1="452" x2="720" y2="493" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="815" y1="452" x2="830" y2="493" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<rect x="568" y="493" width="84" height="44" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="610.0" y="521.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 1</text>
+<rect x="678" y="493" width="84" height="44" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="720.0" y="521.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 2</text>
+<rect x="788" y="493" width="84" height="44" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="830.0" y="521.6" font-size="20" text-anchor="middle" fill="#1c1917">alt 3</text>
+<text x="705" y="565" font-size="20" text-anchor="middle" fill="#57534e" font-style="italic">all operations consume the same</text>
+<text x="705" y="589" font-size="20" text-anchor="middle" fill="#57534e" font-style="italic">precomputed context</text>
 </svg>

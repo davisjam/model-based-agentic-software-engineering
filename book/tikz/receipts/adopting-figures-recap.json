@@ -1,24 +1,24 @@
 {
   "source": "book/assets/adopting-figures-recap.svg",
-  "claim": "*Four figures this appendix puts to work.* Each was developed earlier in the book and is reused here at organizational scale, not reintroduced: the value of explicit engineering against feasible governability (§5.3), the governance-conversion loop (§3.4), the support-apparatus ratio, and the redistribution of engineering effort (both in Chapter 5). The appendix refers back to these rather than re-deriving them.",
+  "claim": "*Four figures this appendix puts to work.* Each was developed earlier in the book and is reused here at organizational scale, not reintroduced: the value of explicit engineering against feasible governability (\u00a75.3), the governance-conversion loop (\u00a73.4), the support-apparatus ratio, and the redistribution of engineering effort (both in Chapter 5). The appendix refers back to these rather than re-deriving them.",
   "topology": "A two-by-two panel of reference cards. Value versus feasible governability, from Section 6.3:\n    choose where to invest, surface by surface. The governance-conversion loop, from Section 3.4: a failure is\n    diagnosed, the missing structure is encoded, and later work inherits it. The support-apparatus ratio, from\n    Chapter 5: the environment used to understand and govern realization becomes a substantial engineering product\n    in its own right. Where engineering effort moves, from Chapter 5: a redistribution toward deciding what must be\n    true and establishing whether it became true, not the disappearance of implementation.",
   "required_terms": [
-    "SECTION 6.3 Value × feasible governability  Worth the investment? How much can be enforced? Choose surface by surface, not by maturity level.",
+    "SECTION 6.3 Value \u00d7 feasible governability  Worth the investment? How much can be enforced? Choose surface by surface, not by maturity level.",
     "SECTION 3.4 Governance conversion  Diagnose what the environment lacked. Encode a model, obligation, evidence or control. Later work inherits it.",
     "CHAPTER 5 Support-apparatus ratio  Understanding, constraining and evaluating autonomous work becomes a substantial engineering product. An observation, not a target.",
     "CHAPTER 5 Where engineering effort moves  Cheap realization shifts effort upstream to what must be true and downstream to whether it became true. Implementation remains."
   ],
   "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-  "redesign": "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption’s legacy section5.3 to source-art section6.3 in card only.",
+  "redesign": "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption\u2019s legacy section5.3 to source-art section6.3 in card only.",
   "questions": [
-    "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption’s legacy section 5.3 to source-art section 6.3 in card only."
+    "Four independent reference cards retained; shortened explanatory text preserves the cited argument. Corrected caption\u2019s legacy section 5.3 to source-art section 6.3 in card only."
   ],
   "alt": "Four text cards in a two-by-two grid summarize figures reused in this appendix, each identifying its home section or chapter and the idea to recall.",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+    "source_sha256": "09ca33de48b3f0649bedb145664e544dc917530471af167657a0610bd4725dc3",
     "candidate_sha256": "85d8ea7daa17e7d8690265c3ac45d1b0e0d120e37443a6f065ba4baf0c2c153e",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes SECTION 6.3; Governance conversion. Restored linked source locator and concept title distinguish card heading from summary prose, linked source locator and concept title distinguish card heading from summary prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -47,7 +47,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+    "source_sha256": "09ca33de48b3f0649bedb145664e544dc917530471af167657a0610bd4725dc3",
     "candidate_sha256": "85d8ea7daa17e7d8690265c3ac45d1b0e0d120e37443a6f065ba4baf0c2c153e",
     "reason": "Restored linked source locator and concept title distinguish card heading from summary prose, linked source locator and concept title distinguish card heading from summary prose. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -73,7 +73,7 @@
         "candidate_style": "bold"
       },
       {
-        "source_text": "Value × feasible governability",
+        "source_text": "Value \u00d7 feasible governability",
         "source_style": "font-weight=700",
         "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
         "candidate_text": "Value $\\times$ feasible governability",
@@ -188,5 +188,12 @@
       "width_bp": 360.173,
       "height_bp": 230.313
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "2b9a998d6f350843aef946af45b9628e6a8d6bd09e9f2c7ab5bd3b6ec563a967",
+    "source_sha256": "09ca33de48b3f0649bedb145664e544dc917530471af167657a0610bd4725dc3",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

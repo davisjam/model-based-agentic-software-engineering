@@ -9,10 +9,8 @@
      three independent GenAI queries. Same work, same dependencies, different execution boundary. -->
 <!-- semantic-families: modeling, governance, neutral -->
 <!-- edge-grammar: keep-angles -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 424" width="940" height="424"
-     role="group" aria-labelledby="tpTitle tpDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="tpTitle">Two execution policies over one remediation graph of actions</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 552" width="940" height="552" role="group" aria-labelledby="tpTitle tpDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="tpTitle">Two execution policies over one remediation graph of actions</title>
   <desc id="tpDesc">One graph of actions — analyze page 1, 2, and 3; build document context; and GenAI query
     for image 1, 2, and 3 — with information dependencies among them: each page analysis feeds the document
     context, which feeds each GenAI query. (a) Page-oriented execution groups the actions into three page
@@ -20,98 +18,84 @@
     and the shared document-context action spans all pages. (b) Frontier execution groups the same actions by
     when they are ready: the three page analyses run together, their results build the document context, and
     that context makes the three GenAI queries ready at once. Same work and dependencies; different boundary.</desc>
-
-  <defs>
-    <marker id="tp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="tp-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="940" height="424" fill="#fdfcf9"/>
-  <line x1="470" y1="44" x2="470" y2="410" stroke="#e7e2d6" stroke-width="1.5"/>
-
-  <!-- ===== Panel (a): page-oriented execution ===== -->
-  <text x="26" y="28" font-size="17" font-weight="700" fill="#57534e">(a) Page-oriented execution</text>
-
-  <!-- page columns (group by where it occurs) -->
-  <rect x="32"  y="48" width="118" height="344" rx="10" fill="#faf1e6" opacity="0.7"/>
-  <rect x="160" y="48" width="118" height="344" rx="10" fill="#f0e7d8" opacity="0.7"/>
-  <rect x="288" y="48" width="118" height="344" rx="10" fill="#faf1e6" opacity="0.7"/>
-  <g font-size="13" font-weight="700" fill="#9a3f12" text-anchor="middle">
-    <text x="91"  y="68">PAGE 1</text>
-    <text x="219" y="68">PAGE 2</text>
-    <text x="347" y="68">PAGE 3</text>
-  </g>
-
-  <!-- edges: analyze -> build context -> query -->
-  <g stroke="#57534e" stroke-width="1.7">
-    <line x1="91"  y1="126" x2="150" y2="192" marker-end="url(#tp-ah)"/>
-    <line x1="219" y1="126" x2="219" y2="192" marker-end="url(#tp-ah)"/>
-    <line x1="347" y1="126" x2="290" y2="192" marker-end="url(#tp-ah)"/>
-    <line x1="150" y1="236" x2="91"  y2="302" marker-end="url(#tp-ah)"/>
-    <line x1="219" y1="236" x2="219" y2="302" marker-end="url(#tp-ah)"/>
-    <line x1="290" y1="236" x2="347" y2="302" marker-end="url(#tp-ah)"/>
-  </g>
-
-  <!-- action nodes: analyze page N -->
-  <g font-size="12.5" fill="#1c1917" text-anchor="middle">
-    <rect x="44"  y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="91"  y="101">analyze</text><text x="91"  y="118">page 1</text>
-    <rect x="172" y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="219" y="101">analyze</text><text x="219" y="118">page 2</text>
-    <rect x="300" y="82" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="347" y="101">analyze</text><text x="347" y="118">page 3</text>
-  </g>
-
-  <!-- shared action: build document context (spans all pages) -->
-  <rect x="44" y="192" width="362" height="44" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="225" y="219" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">build document context</text>
-
-  <!-- action nodes: GenAI query image N -->
-  <g font-size="12" fill="#1c1917" text-anchor="middle">
-    <rect x="44"  y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="91"  y="320">GenAI query</text><text x="91"  y="337">image 1</text>
-    <rect x="172" y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="219" y="320">GenAI query</text><text x="219" y="337">image 2</text>
-    <rect x="300" y="302" width="94" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/><text x="347" y="320">GenAI query</text><text x="347" y="337">image 3</text>
-  </g>
-
-  <text x="225" y="412" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">group work by where it occurs</text>
-
-  <!-- ===== Panel (b): frontier execution ===== -->
-  <text x="490" y="28" font-size="17" font-weight="700" fill="#57534e">(b) Frontier execution</text>
-
-  <!-- ready frontier 1: the three page analyses -->
-  <rect x="498" y="52" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="508" y="70" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 1</text>
-  <g font-size="12" fill="#1c1917" text-anchor="middle">
-    <rect x="510" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="572" y="95">analyze</text><text x="572" y="110">page 1</text>
-    <rect x="648" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="710" y="95">analyze</text><text x="710" y="110">page 2</text>
-    <rect x="786" y="78" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="848" y="95">analyze</text><text x="848" y="110">page 3</text>
-  </g>
-
-  <line x1="705" y1="122" x2="705" y2="150" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
-  <text x="718" y="140" font-size="11.5" font-style="italic" fill="#57534e">page-analysis results</text>
-
-  <!-- ready frontier 2: build document context -->
-  <rect x="498" y="154" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="508" y="172" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 2</text>
-  <rect x="608" y="180" width="194" height="38" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="705" y="204" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">build document context</text>
-
-  <line x1="705" y1="224" x2="705" y2="252" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
-  <text x="718" y="242" font-size="11.5" font-style="italic" fill="#57534e">document context</text>
-
-  <!-- ready frontier 3: the three GenAI queries -->
-  <rect x="498" y="256" width="414" height="70" rx="10" fill="#e3f0e7" opacity="0.5" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="508" y="274" font-size="12" font-weight="700" fill="#1f7a4d">READY FRONTIER 3</text>
-  <g font-size="11.5" fill="#1c1917" text-anchor="middle">
-    <rect x="510" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="572" y="299">GenAI query</text><text x="572" y="314">image 1</text>
-    <rect x="648" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="710" y="299">GenAI query</text><text x="710" y="314">image 2</text>
-    <rect x="786" y="282" width="124" height="38" rx="6" fill="#fff" stroke="#1c1917" stroke-width="1.6"/><text x="848" y="299">GenAI query</text><text x="848" y="314">image 3</text>
-  </g>
-
-  <line x1="705" y1="326" x2="705" y2="352" stroke="#9a3f12" stroke-width="2" marker-end="url(#tp-rust)"/>
-  <text x="718" y="342" font-size="11.5" font-style="italic" fill="#57534e">alt-text results</text>
-
-  <text x="705" y="374" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1f7a4d">group work by when it is ready</text>
-  <text x="705" y="398" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="0.5" fill="#57534e">SAME WORK · SAME DEPENDENCIES · DIFFERENT EXECUTION BOUNDARY</text>
+<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
+<defs>
+<marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
+<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
+<marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
+</defs>
+<rect x="0" y="0" width="940" height="552" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
+<line x1="470" y1="44" x2="470" y2="530" stroke="#e7e2d6" stroke-width="1.5"/>
+<text x="24" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(a) Page-oriented execution</text>
+<text x="492" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(b) Frontier execution</text>
+<rect x="28" y="51" width="124" height="390" rx="10" fill="#faf1e6" stroke="#faf1e6" stroke-width="0"/>
+<text x="90" y="76" font-size="19" text-anchor="middle" fill="#9a3f12" font-weight="700">PAGE 1</text>
+<rect x="31" y="91" width="118" height="58" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="90.0" y="114.27" font-size="19" text-anchor="middle" fill="#1c1917">analyze</text>
+<text x="90.0" y="138.26999999999998" font-size="19" text-anchor="middle" fill="#1c1917">page 1</text>
+<rect x="31" y="353" width="118" height="58" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="90.0" y="376.27" font-size="19" text-anchor="middle" fill="#1c1917">GenAI query</text>
+<text x="90.0" y="400.27" font-size="19" text-anchor="middle" fill="#1c1917">image 1</text>
+<rect x="173" y="51" width="124" height="390" rx="10" fill="#faf1e6" stroke="#faf1e6" stroke-width="0"/>
+<text x="235" y="76" font-size="19" text-anchor="middle" fill="#9a3f12" font-weight="700">PAGE 2</text>
+<rect x="176" y="91" width="118" height="58" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="235.0" y="114.27" font-size="19" text-anchor="middle" fill="#1c1917">analyze</text>
+<text x="235.0" y="138.26999999999998" font-size="19" text-anchor="middle" fill="#1c1917">page 2</text>
+<rect x="176" y="353" width="118" height="58" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="235.0" y="376.27" font-size="19" text-anchor="middle" fill="#1c1917">GenAI query</text>
+<text x="235.0" y="400.27" font-size="19" text-anchor="middle" fill="#1c1917">image 2</text>
+<rect x="318" y="51" width="124" height="390" rx="10" fill="#faf1e6" stroke="#faf1e6" stroke-width="0"/>
+<text x="380" y="76" font-size="19" text-anchor="middle" fill="#9a3f12" font-weight="700">PAGE 3</text>
+<rect x="321" y="91" width="118" height="58" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="380.0" y="114.27" font-size="19" text-anchor="middle" fill="#1c1917">analyze</text>
+<text x="380.0" y="138.26999999999998" font-size="19" text-anchor="middle" fill="#1c1917">page 3</text>
+<rect x="321" y="353" width="118" height="58" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="380.0" y="376.27" font-size="19" text-anchor="middle" fill="#1c1917">GenAI query</text>
+<text x="380.0" y="400.27" font-size="19" text-anchor="middle" fill="#1c1917">image 3</text>
+<line x1="90" y1="149" x2="155" y2="217" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="155" y1="269" x2="90" y2="353" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="235" y1="149" x2="235" y2="217" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="235" y1="269" x2="235" y2="353" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="380" y1="149" x2="315" y2="217" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="315" y1="269" x2="380" y2="353" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<rect x="31" y="217" width="408" height="52" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="235.0" y="249.93" font-size="21" text-anchor="middle" fill="#1c1917" font-weight="700">build document context</text>
+<text x="235" y="476" font-size="20" text-anchor="middle" fill="#9a3f12" font-style="italic">group work by where it occurs</text>
+<rect x="492" y="51" width="430" height="94" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
+<text x="504" y="74" font-size="19" text-anchor="start" fill="#1f7a4d" font-weight="700">READY FRONTIER 1</text>
+<rect x="503" y="86" width="130" height="51" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="568.0" y="105.77" font-size="19" text-anchor="middle" fill="#1c1917">analyze</text>
+<text x="568.0" y="129.76999999999998" font-size="19" text-anchor="middle" fill="#1c1917">page 1</text>
+<rect x="641" y="86" width="130" height="51" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="706.0" y="105.77" font-size="19" text-anchor="middle" fill="#1c1917">analyze</text>
+<text x="706.0" y="129.76999999999998" font-size="19" text-anchor="middle" fill="#1c1917">page 2</text>
+<rect x="779" y="86" width="130" height="51" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="844.0" y="105.77" font-size="19" text-anchor="middle" fill="#1c1917">analyze</text>
+<text x="844.0" y="129.76999999999998" font-size="19" text-anchor="middle" fill="#1c1917">page 3</text>
+<rect x="492" y="190" width="430" height="94" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
+<text x="504" y="213" font-size="19" text-anchor="start" fill="#1f7a4d" font-weight="700">READY FRONTIER 2</text>
+<rect x="572" y="225" width="270" height="51" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="707.0" y="257.1" font-size="20" text-anchor="middle" fill="#1c1917" font-weight="700">build document context</text>
+<rect x="492" y="329" width="430" height="94" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
+<text x="504" y="352" font-size="19" text-anchor="start" fill="#1f7a4d" font-weight="700">READY FRONTIER 3</text>
+<rect x="503" y="364" width="130" height="51" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="568.0" y="383.77" font-size="19" text-anchor="middle" fill="#1c1917">GenAI query</text>
+<text x="568.0" y="407.77" font-size="19" text-anchor="middle" fill="#1c1917">image 1</text>
+<rect x="641" y="364" width="130" height="51" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="706.0" y="383.77" font-size="19" text-anchor="middle" fill="#1c1917">GenAI query</text>
+<text x="706.0" y="407.77" font-size="19" text-anchor="middle" fill="#1c1917">image 2</text>
+<rect x="779" y="364" width="130" height="51" rx="7" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+<text x="844.0" y="383.77" font-size="19" text-anchor="middle" fill="#1c1917">GenAI query</text>
+<text x="844.0" y="407.77" font-size="19" text-anchor="middle" fill="#1c1917">image 3</text>
+<line x1="707" y1="145" x2="707" y2="190" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<text x="724" y="174" font-size="19" text-anchor="start" fill="#57534e" font-style="italic">page-analysis results</text>
+<line x1="707" y1="284" x2="707" y2="329" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<text x="724" y="314" font-size="19" text-anchor="start" fill="#57534e" font-style="italic">document context</text>
+<line x1="707" y1="423" x2="707" y2="452" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<text x="724" y="447" font-size="19" text-anchor="start" fill="#57534e" font-style="italic">alt-text results</text>
+<text x="707" y="477" font-size="20" text-anchor="middle" fill="#1f7a4d" font-style="italic">group work by when it is ready</text>
+<text x="707" y="509" font-size="19" text-anchor="middle" fill="#57534e" font-weight="700">SAME WORK · SAME DEPENDENCIES ·</text>
+<text x="707" y="533" font-size="19" text-anchor="middle" fill="#57534e" font-weight="700">DIFFERENT EXECUTION BOUNDARY</text>
 </svg>

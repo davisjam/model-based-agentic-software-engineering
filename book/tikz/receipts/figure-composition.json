@@ -1,7 +1,7 @@
 {
   "source": "book/assets/figure-composition.svg",
   "claim": "*Three complementary skills act around one governed engineering environment.* Self-Governance improves the environment; Self-Operate runs operational lifecycles within it and returns evidence about deficiencies; Self-Communicate articulates the system to others and contributes canonical documentation to the environment.",
-  "topology": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence — reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design.",
+  "topology": "A central box, the governed engineering environment (GEE), sits at the centre. The\n    principal loop reads first: above it, self-governance improves the environment, an arrow points down into\n    the GEE labelled \"improves\"; the GEE then hosts self-operate below it, an arrow points down into\n    self-operate labelled \"operates within\"; and a thin dashed return arrow runs up the right side from\n    self-operate back to self-governance, labelled \"evidence \u2014 reveals deficiencies,\" closing the loop so\n    that operation exposing a weakness re-enters governance. On the left, self-communicate has two edges: an\n    inward arrow into the GEE labelled \"contributes canonical documentation,\" because some explanatory\n    artifacts become durable parts of the environment, and an outward arrow down to a people node labelled\n    \"articulates the system,\" its broader function of making the system intelligible to others. The three\n    skills are complementary and their relationships to the environment differ by design.",
   "required_terms": [
     "Self-Governance engineers and improves the environment",
     "Governed Engineering Environment the GEE",
@@ -18,7 +18,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
+    "source_sha256": "bcc02914b50fc612fb553d28792cc88db3516203529a30563db9d9c8fcc6badd",
     "candidate_sha256": "9e3c1fbff50170f7d9f73052e9a10b0f8211790c2e52dcf99e1b7f3613b7923f",
     "fill": "Only the governed environment has light fill, identifying the shared object of the three surrounding skills.",
     "bold": "Source-derived emphasis includes Self-Governance. Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -42,7 +42,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
+    "source_sha256": "bcc02914b50fc612fb553d28792cc88db3516203529a30563db9d9c8fcc6badd",
     "candidate_sha256": "9e3c1fbff50170f7d9f73052e9a10b0f8211790c2e52dcf99e1b7f3613b7923f",
     "reason": "Restored category heading distinguished from explanatory description, category heading distinguished from explanatory description. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -207,5 +207,12 @@
       "width_bp": 361.236,
       "height_bp": 196.389
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "9874c78948d37ce98fbce1462dd45f3393723163902df78c9dab41ccc749b38a",
+    "source_sha256": "bcc02914b50fc612fb553d28792cc88db3516203529a30563db9d9c8fcc6badd",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

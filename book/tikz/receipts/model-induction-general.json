@@ -11,37 +11,37 @@
     "explicit model / vocabulary",
     "future work reasons through the concept",
     "SOFTWARE grounded: DocAble",
-    "realized code repos · diffs · PRs",
-    "primitive forms dict.Put · raw argv · loops",
-    "regularities primitive density · clusters",
+    "realized code repos \u00b7 diffs \u00b7 PRs",
+    "primitive forms dict.Put \u00b7 raw argv \u00b7 loops",
+    "regularities primitive density \u00b7 clusters",
     "abstraction repeated semantic shape",
-    "typed vocabulary + relations PdfModel · JobId · MutationSpec",
+    "typed vocabulary + relations PdfModel \u00b7 JobId \u00b7 MutationSpec",
     "tools search and check; agents reuse representation",
     "KNOWLEDGE WORK inferred generalization",
-    "documents · records conversations · notes",
-    "repeated terms + relations phrases · entity patterns",
-    "candidate clusters synonyms · concept groups",
+    "documents \u00b7 records conversations \u00b7 notes",
+    "repeated terms + relations phrases \u00b7 entity patterns",
+    "candidate clusters synonyms \u00b7 concept groups",
     "abstraction a domain distinction",
     "canonical term + relations the agreed name",
-    "lexicon · ontology · schema",
+    "lexicon \u00b7 ontology \u00b7 schema",
     "MECHANICAL / CAD inferred generalization",
-    "drawings · assemblies geometry",
-    "geometry + constraints interfaces · parameter bundles",
+    "drawings \u00b7 assemblies geometry",
+    "geometry + constraints interfaces \u00b7 parameter bundles",
     "pattern / component a reusable form",
     "abstraction a design regularity",
-    "named feature / component constraint model · interface",
+    "named feature / component constraint model \u00b7 interface",
     "reusable engineering vocabulary",
-    "Weak detectors / retrieval / clustering → contextual comparison → engineering judgment. The agent finds repetition and proposes structure; the engineer adopts and names the concept."
+    "Weak detectors / retrieval / clustering \u2192 contextual comparison \u2192 engineering judgment. The agent finds repetition and proposes structure; the engineer adopts and names the concept."
   ],
   "bw_encoding": "Only the explicit-model/vocabulary row is lightly shaded across all four lanes; future outputs and discovery stages remain white.",
   "redesign": "Four parallel lanes retained, with explicit short labels and 1.95 cm row centers. Grounded software versus inferred extensions remains encoded by solid/dashed boundaries. Long examples abbreviated (PdfModel and JobId retained; MutationSpec omitted); CAD interfaces retained in named-feature row. Footer condenses method into detection, contextual comparison, and engineering adoption. No change to six-stage topology. Fidelity pass: Restored engineering-judgment/adopt-and-name annotation between candidate abstraction and explicit model on the general rail; footer retains weak detectors/contextual comparison.",
   "questions": [],
-  "alt": "Models can be induced from the work: the same abstraction move — repeated form to named model — runs in software, knowledge work, and CAD",
+  "alt": "Models can be induced from the work: the same abstraction move \u2014 repeated form to named model \u2014 runs in software, knowledge work, and CAD",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
+    "source_sha256": "e3bb803c152e3a0aacf1cad854597a3e19e18e4e1896afd51c881f580f30fdb4",
     "candidate_sha256": "b716358e4db46bf68a9fa0f9b4c508ab0248d8d78a4c1dc83c0b07e59e717314",
     "fill": "Only the explicit-model/vocabulary row is lightly shaded across all four lanes; future outputs and discovery stages remain white.",
     "bold": "Source-derived emphasis includes realized code; records; constraints. Restored abstract schema column heading, abstract induction stage. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -65,7 +65,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
+    "source_sha256": "e3bb803c152e3a0aacf1cad854597a3e19e18e4e1896afd51c881f580f30fdb4",
     "candidate_sha256": "b716358e4db46bf68a9fa0f9b4c508ab0248d8d78a4c1dc83c0b07e59e717314",
     "reason": "Restored abstract schema column heading, abstract induction stage. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -84,7 +84,7 @@
         "candidate_style": "bold"
       },
       {
-        "source_text": "grounded — DocAble (software) evidence",
+        "source_text": "grounded \u2014 DocAble (software) evidence",
         "source_style": "font-style=italic",
         "semantic_role": "Grounded versus inferred evidence status",
         "candidate_text": "grounded: DocAble",
@@ -98,14 +98,14 @@
         "candidate_style": "bold"
       },
       {
-        "source_text": "repos · diffs · PRs",
+        "source_text": "repos \u00b7 diffs \u00b7 PRs",
         "source_style": "font-style=italic",
         "semantic_role": "Concrete examples beneath stage label",
-        "candidate_text": "repos · diffs · PRs",
+        "candidate_text": "repos \u00b7 diffs \u00b7 PRs",
         "candidate_style": "italic"
       },
       {
-        "source_text": "documents · records",
+        "source_text": "documents \u00b7 records",
         "source_style": "font-weight=700",
         "semantic_role": "Knowledge-work source objects",
         "candidate_text": "documents / records",
@@ -119,10 +119,10 @@
         "candidate_style": "bold"
       },
       {
-        "source_text": "PdfModel · JobId ·",
+        "source_text": "PdfModel \u00b7 JobId \u00b7",
         "source_style": "font-style=italic",
         "semantic_role": "Illustrative vocabulary entries",
-        "candidate_text": "PdfModel · JobId",
+        "candidate_text": "PdfModel \u00b7 JobId",
         "candidate_style": "italic"
       },
       {
@@ -152,7 +152,7 @@
         "italic": true
       },
       {
-        "text": "repos · diffs · PRs",
+        "text": "repos \u00b7 diffs \u00b7 PRs",
         "bold": false,
         "italic": true
       },
@@ -239,5 +239,12 @@
       "width_bp": 409.204,
       "height_bp": 521.468
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "63b508a591eba76e33115a9a53e7b3a398b9844f7ed5bcad3745f3ba8954bd47",
+    "source_sha256": "e3bb803c152e3a0aacf1cad854597a3e19e18e4e1896afd51c881f580f30fdb4",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

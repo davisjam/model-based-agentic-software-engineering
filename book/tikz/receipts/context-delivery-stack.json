@@ -1,9 +1,9 @@
 {
   "source": "book/assets/context-delivery-stack.svg",
-  "claim": "The context-delivery composition. Engineering knowledge — models, rules, decisions — splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.",
-  "topology": "Engineering knowledge — models, rules, decisions — feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
+  "claim": "The context-delivery composition. Engineering knowledge \u2014 models, rules, decisions \u2014 splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the essential composition. Dashed attachment: a useful enhancement, not required for the capability.",
+  "topology": "Engineering knowledge \u2014 models, rules, decisions \u2014 feeds two solid load-bearing lanes.\n    STANDING POLICY supplies compact policy that is always seen. TASK SLICE retrieves task-relevant context as\n    needed. Both converge into ACTOR CONTEXT, which the actor carries into the ACTION. One enhancement attaches\n    as a dashed, open-arrowed reinforcement: POINT-OF-ACTION reminders reassert obligations where useful.\n    Context is a reasoning aid, not enforcement: critical decidable properties graduate out of briefing entirely\n    and into deterministic controls.",
   "required_terms": [
-    "ENGINEERING KNOWLEDGE models · rules · decisions",
+    "ENGINEERING KNOWLEDGE models \u00b7 rules \u00b7 decisions",
     "STANDING POLICY always seen",
     "TASK SLICE retrieved as needed",
     "ACTOR CONTEXT",
@@ -19,7 +19,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+    "source_sha256": "f79e12af1cdc73a5f02fda2324d080e4b20bbc62eb123a7225b7503ae5bfda81",
     "candidate_sha256": "8b7d706cfaccdc8f92e7c92a7c77f19a2caaeeba8736ccbe3aa37ee9027b1993",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes ENGINEERING KNOWLEDGE; STANDING POLICY; POINT-OF-ACTION; ACTOR CONTEXT; TASK SLICE; ACTION. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -43,7 +43,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+    "source_sha256": "f79e12af1cdc73a5f02fda2324d080e4b20bbc62eb123a7225b7503ae5bfda81",
     "candidate_sha256": "8b7d706cfaccdc8f92e7c92a7c77f19a2caaeeba8736ccbe3aa37ee9027b1993",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -307,5 +307,12 @@
       "width_bp": 321.552,
       "height_bp": 228.604
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "e3bfb307748e17f20c4000121436e85b174461af2456869e86c2c11e38362b36",
+    "source_sha256": "f79e12af1cdc73a5f02fda2324d080e4b20bbc62eb123a7225b7503ae5bfda81",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

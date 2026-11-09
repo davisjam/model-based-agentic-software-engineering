@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Fig 2.1-2 (book/assets/question-to-consequence-progression.svg). "From engineering question to engineering
-     consequence." A vertical spine — engineering question -> choose the representation (blue) -> representative
-     forms -> choose an analysis appropriate to the property -> interpret the evidence — that then BRANCHES:
-     left, the evidence can inform architecture/design (rust); right, it can expose a property whose obligation
-     deserves enforcement (green), handing off to Alignment (Chapter 3). Grayscale-survivable: every node labelled,
-     the spine carries the meaning, hue only reinforces representation (blue) vs design-consequence (rust) vs
-     enforcement (green). Boxes first, labels last. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680"
-     role="img" aria-labelledby="qapTitle qapDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="qapTitle">From engineering question to engineering consequence</title>
+<!-- Custom SVG: compact print composition with explicit node/edge geometry and 9pt minimum labels at its reviewed width. Native monochrome partner remains independent. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 362" width="450" height="362" role="img" aria-labelledby="qapTitle qapDesc" font-family="'Source Sans 3', Arial, sans-serif">
+<title id="qapTitle">From engineering question to engineering consequence</title>
   <desc id="qapDesc">A vertical progression. An engineering question leads to choosing a representation, whose
     representative forms include a closed state or action space, a finite transition system, or temporal
     behavior. The representation determines which analysis is appropriate — constraint solving, state
@@ -18,57 +10,36 @@
     architecture and design — comparing alternatives, revising boundaries, changing dependencies, allocating
     resources — or it can expose a property whose obligation deserves enforcement, which hands off to Alignment
     in Chapter 3, or both.</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#57534e"/></marker></defs>
+<rect x="125" y="8" width="200" height="26" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<rect x="125" y="46" width="200" height="26" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<rect x="60" y="84" width="330" height="54" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<rect x="25" y="150" width="400" height="54" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<rect x="125" y="216" width="200" height="26" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<rect x="8" y="274" width="213" height="66" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="0.8" />
+<rect x="237" y="274" width="205" height="40" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="0.8" />
+<polyline points="225,34 225,46" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<polyline points="225,72 225,84" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<polyline points="225,138 225,150" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<polyline points="225,204 225,216" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M225 242 V258" fill="none" stroke="#57534e" stroke-width=".8"/>
+<polyline points="225,258 114.5,258 114.5,274" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<polyline points="225,258 339.5,258 339.5,274" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<polyline points="339.5,314 339.5,334" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="225" y="25" font-size="10.5" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="225" dy="0">engineering question</tspan></text>
+<text x="225" y="63" font-size="10.5" fill="#2f5169" text-anchor="middle" font-weight="700"><tspan x="225" dy="0">choose the representation</tspan></text>
+<text x="225" y="101" font-size="10.5" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="225" dy="0">representative forms</tspan></text>
+<text x="225" y="117" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="225" dy="0">closed state / action space · finite transition system ·</tspan></text>
+<text x="225" y="130" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="225" dy="0">temporal behavior · …</tspan></text>
+<text x="225" y="167" font-size="10.5" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="225" dy="0">choose an analysis appropriate to the property</tspan></text>
+<text x="225" y="183" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="225" dy="0">constraint solving · state exploration · model checking ·</tspan></text>
+<text x="225" y="196" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="225" dy="0">simulation · static analysis · …</tspan></text>
+<text x="225" y="233" font-size="10.5" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="225" dy="0">interpret the evidence</tspan></text>
+<text x="114.5" y="292" font-size="10.5" fill="#9a3f12" text-anchor="middle" font-weight="700"><tspan x="114.5" dy="0">inform architecture / design</tspan></text>
+<text x="114.5" y="310" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="114.5" dy="0">compare alternatives · revise boundaries ·</tspan></text>
+<text x="114.5" y="325" font-size="9" fill="#57534e" text-anchor="middle"><tspan x="114.5" dy="0">change dependencies · allocate resources</tspan></text>
+<text x="339.5" y="290" font-size="10.5" fill="#1f7a4d" text-anchor="middle" font-weight="700"><tspan x="339.5" dy="0">decide what deserves</tspan></text>
+<text x="339.5" y="304" font-size="10.5" fill="#1f7a4d" text-anchor="middle" font-weight="700"><tspan x="339.5" dy="0">enforcement</tspan></text>
+<text x="339.5" y="350" font-size="9" fill="#1f7a4d" text-anchor="middle" font-style="italic"><tspan x="339.5" dy="0">→ Alignment (Chapter 3)</tspan></text>
 
-  <defs>
-    <marker id="qap-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="680" fill="#fdfcf9"/>
-
-  <!-- spine boxes -->
-  <rect id="question" x="340" y="26" width="320" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <rect id="choose-representation" x="330" y="110" width="340" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
-  <rect id="representative-forms" x="250" y="194" width="500" height="76" rx="10" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
-  <rect id="analysis" x="170" y="302" width="660" height="84" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <rect id="interpret" x="330" y="418" width="340" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-
-  <!-- branch boxes -->
-  <rect id="inform-design" x="70" y="536" width="380" height="88" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <rect id="authority" x="560" y="536" width="380" height="58" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-
-  <!-- spine arrows -->
-  <line x1="500" y1="78" x2="500" y2="108" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-  <line x1="500" y1="162" x2="500" y2="192" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-  <line x1="500" y1="270" x2="500" y2="300" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-  <line x1="500" y1="386" x2="500" y2="416" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-
-  <!-- branch: interpret -> {inform-design, authority} -->
-  <line x1="500" y1="470" x2="500" y2="506" stroke="#1c1917" stroke-width="2"/>
-  <line x1="260" y1="506" x2="750" y2="506" stroke="#1c1917" stroke-width="2"/>
-  <line x1="260" y1="506" x2="260" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-  <line x1="750" y1="506" x2="750" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-  <!-- authority -> Alignment -->
-  <line x1="750" y1="594" x2="750" y2="626" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
-
-  <!-- labels -->
-  <text x="500" y="58" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">engineering question</text>
-  <text x="500" y="142" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">choose the representation</text>
-
-  <text x="500" y="226" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">representative forms</text>
-  <text x="500" y="252" text-anchor="middle" font-size="15" fill="#57534e">closed state / action space · finite transition system · temporal behavior · …</text>
-
-  <text x="500" y="338" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">choose an analysis appropriate to the property</text>
-  <text x="500" y="367" text-anchor="middle" font-size="14" fill="#57534e">constraint solving · state exploration · model checking · simulation · static analysis · …</text>
-
-  <text x="500" y="450" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">interpret the evidence</text>
-
-  <text x="260" y="566" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">inform architecture / design</text>
-  <text x="260" y="591" text-anchor="middle" font-size="14" fill="#57534e">compare alternatives · revise boundaries ·</text>
-  <text x="260" y="609" text-anchor="middle" font-size="14" fill="#57534e">change dependencies · allocate resources</text>
-
-  <text x="750" y="571" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">decide what deserves enforcement</text>
-  <text x="750" y="648" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">→ Alignment (Chapter 3)</text>
 </svg>

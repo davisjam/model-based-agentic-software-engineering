@@ -1,6 +1,6 @@
 {
   "source": "book/assets/field-guide-siemens.svg",
-  "claim": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission.",
+  "claim": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model\u2194code admission.",
   "topology": "See source-specific field-guide graph and receipt redesign.",
   "required_terms": [
     "Siemens",
@@ -11,17 +11,17 @@
     "invariant",
     "bidirectional traceability",
     "drift gate: not established",
-    "LANDS ON: Modeling. Five evidenced rungs; public sources do not establish a generalized model ↔ code admission gate."
+    "LANDS ON: Modeling. Five evidenced rungs; public sources do not establish a generalized model \u2194 code admission gate."
   ],
   "bw_encoding": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
   "redesign": "Field-guide visual argument preserved; decorative header/footer dropped. Evidence caveats retained explicitly rather than color/half-disc glyph alone. Fidelity pass: Restored entry-to-modeling-ladder and ladder-to-Modeling destination connections; evidence caveat remains external, dashed missing drift-gate rung preserved.",
   "questions": [],
-  "alt": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission.",
+  "alt": "*Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model\u2194code admission.",
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "b09ce5d8b69a0bc40669f3844dd64e31022eb16858f4508517e4f8d7e5e4016d",
+    "source_sha256": "11abdb11ec6a3f0c233b5aad6252034db727aa61f15dc984766b10f16495e458",
     "candidate_sha256": "0b7a66e95338d1777d16f7d661140c913ea82237d3248c08d908c71a2dee158c",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes Siemens; Modeling. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -45,7 +45,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "b09ce5d8b69a0bc40669f3844dd64e31022eb16858f4508517e4f8d7e5e4016d",
+    "source_sha256": "11abdb11ec6a3f0c233b5aad6252034db727aa61f15dc984766b10f16495e458",
     "candidate_sha256": "0b7a66e95338d1777d16f7d661140c913ea82237d3248c08d908c71a2dee158c",
     "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -153,5 +153,12 @@
       "width_bp": 356.985,
       "height_bp": 281.728
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "b09ce5d8b69a0bc40669f3844dd64e31022eb16858f4508517e4f8d7e5e4016d",
+    "source_sha256": "11abdb11ec6a3f0c233b5aad6252034db727aa61f15dc984766b10f16495e458",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

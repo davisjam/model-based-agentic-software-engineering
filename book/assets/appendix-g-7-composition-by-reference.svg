@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- R54-G figure round — appendix-g-7-composition-by-reference.svg, common vocabulary per R54-FIGURE-MANIFEST. Fold to book/assets/. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" width="720" height="580"
-     role="img" aria-labelledby="g7Title g7Desc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 610" width="720" height="610" role="img" aria-labelledby="g7Title g7Desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="g7Title">Composition by reference — join small views on stable identities, not one mega-model</title>
   <desc id="g7Desc">A cross-model question is answered by joining small, question-specific views on stable
     identities. A user journey, carrying goal and criticality, joins to a service or node along a dashed
@@ -15,54 +12,54 @@
 
   <defs>
     <marker id="g7-dash" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169" /></marker>
   </defs>
 
-  <rect x="0" y="0" width="720" height="580" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="720" height="610" fill="#fdfcf9" />
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: does an important journey have coverage, placement, and policy — all at once?</text>
 
   <!-- USER JOURNEY (representation) -->
-  <rect id="journey" x="250" y="48" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="journey" x="250" y="48" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2" />
   <text x="360" y="76" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">USER JOURNEY</text>
   <text x="360" y="97" text-anchor="middle" font-size="14.4" fill="#57534e">goal · criticality</text>
 
   <!-- join: endpoint identity (DASHED) -->
   <!-- edge: journey .. service -->
-  <line x1="360" y1="108" x2="360" y2="156" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <line x1="360" y1="108" x2="360" y2="156" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
   <text x="374" y="138" font-size="14.4" font-style="italic" fill="#57534e">endpoint identity</text>
 
   <!-- SERVICE / NODE (representation) -->
-  <rect id="service" x="280" y="158" width="160" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="service" x="280" y="158" width="160" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2" />
   <text x="360" y="185" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">SERVICE / NODE</text>
   <text x="360" y="205" text-anchor="middle" font-size="14.4" fill="#57534e">stable identity</text>
 
   <!-- fork: service .. three sibling views (DASHED joins on stable identities) -->
-  <line x1="320" y1="214" x2="132" y2="276" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
-  <line x1="360" y1="214" x2="360" y2="276" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
-  <line x1="400" y1="214" x2="588" y2="276" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <line x1="320" y1="214" x2="132" y2="276" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
+  <line x1="360" y1="214" x2="360" y2="276" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
+  <line x1="400" y1="214" x2="588" y2="276" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
 
   <!-- COVERAGE (representation) -->
-  <rect id="coverage" x="45" y="278" width="170" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="coverage" x="45" y="278" width="170" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2" />
   <text x="130" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">COVERAGE</text>
   <text x="130" y="326" text-anchor="middle" font-size="14.4" fill="#57534e">exercised?</text>
   <!-- TEST PLACEMENT (representation) -->
-  <rect id="placement" x="275" y="278" width="170" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="placement" x="275" y="278" width="170" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2" />
   <text x="360" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">TEST PLACEMENT</text>
   <text x="360" y="326" text-anchor="middle" font-size="14.4" fill="#57534e">where run?</text>
   <!-- EXECUTION POLICY (representation) -->
-  <rect id="policy" x="505" y="278" width="170" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="policy" x="505" y="278" width="170" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2" />
   <text x="590" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">EXECUTION POLICY</text>
   <text x="590" y="326" text-anchor="middle" font-size="14.4" fill="#57534e">plan_for(host)</text>
 
   <!-- converge: three sibling views .. joined view (DASHED) -->
-  <line x1="130" y1="338" x2="298" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
-  <line x1="360" y1="338" x2="360" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
-  <line x1="590" y1="338" x2="422" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <line x1="130" y1="338" x2="298" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
+  <line x1="360" y1="338" x2="360" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
+  <line x1="590" y1="338" x2="422" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)" />
 
   <!-- JOINED VIEW (composite representation — heavier umber border, NO enforcement) -->
-  <rect id="joined" x="248" y="486" width="224" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2.8"/>
+  <rect id="joined" x="248" y="486" width="224" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2.8" />
   <text x="360" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">JOINED VIEW</text>
   <text x="360" y="536" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">not a mega-model</text>
 
-  <text x="40" y="572" font-size="14.4" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Every join edge is dashed — derived correspondence on stable identities, no copied facts.</text>
+  <text x="40" y="572" font-size="14.4" font-style="italic" fill="#57534e"><tspan x="40" dy="0">Legend: see Figure C-1. Every join edge is dashed — derived correspondence on stable identities,</tspan><tspan x="40" dy="18">no copied facts.</tspan></text>
 </svg>

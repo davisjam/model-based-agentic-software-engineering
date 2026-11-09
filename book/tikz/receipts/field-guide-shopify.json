@@ -7,7 +7,7 @@
     "Shared agent-ready environment",
     "shared, observable session corpus",
     "reusable skill",
-    "59,918 sessions · 5,170 channels · 7,000+ people",
+    "59,918 sessions \u00b7 5,170 channels \u00b7 7,000+ people",
     "LANDS ON: Engineering Environment",
     "Shared knowledge can become reusable capital; conversion is not automatic."
   ],
@@ -19,7 +19,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
+    "source_sha256": "4397af2358353eb3f891ca4cde80b8670ba8573bd906d93c905d5a00958825ea",
     "candidate_sha256": "8cb2447aae64530cb3e44391f62c5e6de2a00d3e7a1bd12d4c7be617f19b5e1d",
     "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
     "bold": "Source-derived emphasis includes Shopify; Engineering Environment. Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
@@ -43,7 +43,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
+    "source_sha256": "4397af2358353eb3f891ca4cde80b8670ba8573bd906d93c905d5a00958825ea",
     "candidate_sha256": "8cb2447aae64530cb3e44391f62c5e6de2a00d3e7a1bd12d4c7be617f19b5e1d",
     "reason": "Restored case heading and mage landing concept; mechanism and repeated instance labels remain regular, case heading and mage landing concept; mechanism and repeated instance labels remain regular. Regular counterexamples in checks remain unaccented. Existing connections, light fills and link targets preserved.",
     "evidence": [
@@ -155,5 +155,12 @@
       "width_bp": 351.316,
       "height_bp": 192.025
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "32007c65a454c747325c1618cba299baee309efc4280b06638f8f88860e98fd7",
+    "source_sha256": "4397af2358353eb3f891ca4cde80b8670ba8573bd906d93c905d5a00958825ea",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }
