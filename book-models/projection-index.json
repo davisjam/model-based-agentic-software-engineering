@@ -3,14 +3,14 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 859,
+    "total_sites": 857,
     "by_projection": {
       "book-pdf": 16,
       "book-web": 517,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
-      "website-misc": 32,
+      "website-misc": 30,
       "website-resources": 6,
       "website-theory": 9
     }
@@ -149,7 +149,7 @@
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/web/docs/appendix-adopting-genai.md",
@@ -1251,7 +1251,7 @@
           },
           {
             "file": "book/web/docs/9.1-the-part-that-stays-yours.md",
-            "occ": 28
+            "occ": 24
           },
           {
             "file": "book/web/docs/about-the-author.md",
@@ -1977,12 +1977,6 @@
         "website-catalogue": [
           {
             "file": "models-bridge/system-models/governance-graph.html",
-            "occ": 1
-          }
-        ],
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
             "occ": 1
           }
         ]
@@ -3737,10 +3731,6 @@
           }
         ],
         "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          },
           {
             "file": "development-workflow.html",
             "occ": 1

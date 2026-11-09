@@ -5976,3 +5976,60 @@ Reason: Author-approved governance review; preserve displaced prose and its anch
 ```latex
 Warning or admission gate
 ```
+
+## Final Conclusion wording — 8 November 2026
+
+The author approved A84–A86 after restoring a smoother chapter recap and reducing repetition in the encoding, assurance, and specification-frontier passages.
+
+### A84 — Preserve the chapter recap in the author’s wording
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source revision: `10a320caa21c43a5c6ca5fb1fb79d5cf281d502d`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final Conclusion wording.
+
+```latex
+The seven chapters developed an answer at different levels. \textbf{\magevalue{chapter:modeling|link:Modeling}} provides representations for reasoning. \textbf{\magevalue{chapter:alignment|link:Alignment}} turns selected intent into obligations on what the engineering process may admit. \textbf{\magevalue{chapter:one-problem-many-models|link:MAGE in Motion}} shows how experience can become reusable engineering structure through governance conversion and ratcheteering. In \textbf{\magevalue{chapter:software-factories|link:Agentic Software Factories}}, we ask what engineering becomes when commodity intelligence can perform realization at industrial scale. \textbf{\magevalue{chapter:theory|link:The Theory}} formalizes these mechanisms and predicts how they should shape engineering outcomes. \textbf{\magevalue{chapter:profession|link:The Profession}} locates these changes within the engineer\textquotesingle s continuing responsibility for the resulting system. I developed this answer through software engineering because that is where my engineering expertise lies, but the answer is broader than software and perhaps broader than the conventional engineering disciplines.
+```
+
+### A85 — Merge the encoding limit with its two engineering problems
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source revision: `10a320caa21c43a5c6ca5fb1fb79d5cf281d502d`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final Conclusion wording.
+
+```latex
+Commodity intelligence changes the economics of engineering by making realization dramatically cheaper. If a software factory can produce changes faster than engineers can specify consequential intent, evaluate evidence, or maintain control over the resulting system, then improving realization further does not remove those constraints. Engineering attention moves to them.
+
+The probability analysis in \magevalue{chapter:theory} makes one part of this shift precise. Engineers encode consequential intent; agents fulfill the encoded obligations. Better agents can improve realization and help engineers revise the encoding, but reliable fulfillment does not establish that the encoded obligations were right. Authority over those decisions remains an engineering responsibility.
+
+% <!-- point: the-encoding-limit-has-two-implications | The encoding limit implies two things: the engineer must find representations that carry consequential intent economically, and producing acceptable work remains a different problem from establishing its acceptability. -->
+
+This limitation has two implications. First, the engineer must find representations that communicate consequential intent adequately without making the cost of representation greater than its benefit. Second, producing acceptable work and establishing its acceptability remain different engineering problems. Better agents can improve production reliability, but independent assurance requires suitable evidence and mechanisms for evaluating it. Modeling and Alignment address these related problems from different directions.
+```
+
+### A86 — Distinguish realization from assurance and show how agents improve the engineering machinery
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source revision: `10a320caa21c43a5c6ca5fb1fb79d5cf281d502d`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final Conclusion wording.
+
+```latex
+This leaves two related questions open: how much consequential intent must engineers make explicit, and in what form? There may be different answers for realization and assurance. As agents become better at recovering familiar intent, engineers may need to say less to obtain a useful realization. But consequential properties still need suitable representation wherever the engineering environment must determine whether they hold rather than trust that the agent probably inferred them correctly. The specification frontier therefore depends not only on what an agent can infer, but on what the engineer must be able to establish---and on which representations make that establishment economical.
+
+% <!-- point: commodity-intelligence-moves-the-frontier | Capable agents already carry familiar work on sparse instruction; novelty pushes more intent back into explicit form, and future agents may infer far more. | terms: specification-frontier -->
+
+As commodity intelligence improves, that frontier moves. For familiar work, capable agents already bring substantial prior knowledge: sparse instructions may be enough to compute Fibonacci numbers, connect an application to a database, or implement a familiar protocol. As the intended system departs from familiar patterns, more consequential intent must be supplied explicitly. Future agents may infer intent from conversation, artifacts, organizational history, observation, and interaction so well that engineers explicitly specify very little.
+
+% <!-- point: richer-machinery-is-the-opportunity | Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone. -->
+
+Increasingly capable agents can help maintain richer representations, analyze them continuously, gather evidence, and enforce obligations at scales that human engineers could not economically sustain. The opportunity is not merely to realize systems more cheaply, but to build better engineering machinery because agents can use it.
+```

@@ -6240,16 +6240,16 @@
           "heading_text": "The core of MAGE",
           "topic_sentence": "MAGE makes three engineering moves.",
           "id_source": "derived",
-          "block_index": 9,
+          "block_index": 10,
           "points": []
         },
         {
           "section_id": "what-changes-next",
           "level": 2,
           "heading_text": "What changes next",
-          "topic_sentence": "Commodity intelligence changes the economics of engineering by making realization dramatically cheaper.",
+          "topic_sentence": "When commodity intelligence makes realization cheaper, the cost of the surrounding engineering work becomes more important.",
           "id_source": "derived",
-          "block_index": 19,
+          "block_index": 20,
           "points": [
             {
               "slug": "the-encoding-limit-has-two-implications",
@@ -6278,13 +6278,13 @@
             },
             {
               "slug": "commodity-intelligence-moves-the-frontier",
-              "text": "Capable agents already carry familiar work on sparse instruction; novelty pushes more intent back into explicit form, and future agents may infer far more.",
-              "block_index": 29
+              "text": "As agents recover more familiar intent, engineers may need less explicit instruction for realization; assurance still depends on what the engineer can establish through representations and evidence.",
+              "block_index": 28
             },
             {
               "slug": "richer-machinery-is-the-opportunity",
               "text": "Cheap intelligence is an opportunity to build and operate engineering machinery richer than humans could economically sustain alone.",
-              "block_index": 31
+              "block_index": 30
             }
           ]
         },
@@ -6294,22 +6294,22 @@
           "heading_text": "The Authority and Responsibility of the Engineer",
           "topic_sentence": "I would not define the engineer by a permanent collection of tasks that only humans can perform.",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 32,
           "points": [
             {
               "slug": "no-stable-set-of-human-only-tasks",
               "text": "The engineer's role need not rest on a fixed collection of human-only tasks; what persists as capabilities change is informed control over consequential work.",
-              "block_index": 34
+              "block_index": 33
             },
             {
               "slug": "responsibility-extends-to-the-structures-that-decide",
               "text": "Responsibility need not mean making every decision personally; MAGE moves suitable decisions and decision-making processes into engineered structures, and the engineer's responsibility extends to designing, governing, and revising them.",
-              "block_index": 36
+              "block_index": 35
             },
             {
               "slug": "not-to-abolish-engineering-but-to-demand-it",
               "text": "The book's last word: commodity intelligence has not come to abolish engineering, but to demand it.",
-              "block_index": 39
+              "block_index": 38
             }
           ]
         }
