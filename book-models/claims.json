@@ -48,7 +48,7 @@
       "kind": "distinction",
       "statement": "The apparatus is the review: the environment holds every change to standard, not per-change human inspection.",
       "distinguishes": [
-        "the governing apparatus — constraints, sensors, validators, gates hold every change to standard",
+        "the governing apparatus — constraints, sensors, and gates preserve selected obligations across changes",
         "per-change human inspection — re-reading each change by hand"
       ],
       "home": "sign-off-moves-toward-models-and-evidence",
@@ -96,7 +96,7 @@
         "the-mage-method",
         "prevention-and-observation"
       ],
-      "contradicted_by": "Conflating the roles — calling a sensor a validator, or treating a preventer as a detector.",
+      "contradicted_by": "Conflating evidence production, evaluation, and enforcement — assuming that recording evidence evaluates it or that a verdict controls whether work may proceed.",
       "watch_phrases": [],
       "relates_to": [
         "concept:constraint",

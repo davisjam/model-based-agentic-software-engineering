@@ -6659,3 +6659,16 @@ Reason: Remove the stale approximation/blueprint description of the definition r
 ```json
 "Core construct 2 of 6 (_hierarchy). Definitional text is homed in definitions.json (the model record — formal definition + the approximation/blueprint intuition); this record places the construct in the hierarchy. Book index-def tagged at the 2.1 definition. No landing card by design: the definitions model owns the site realization (def-model)."
 ```
+
+### Z5 — Develop the maintenance claim in connected prose
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, §4.4 Operate the Environment, line 117.
+- Source revision: `3e73a11fedea1e97e4f70afba07d0373ebde0b21`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved maintenance paragraph, developed in connected prose.
+
+```latex
+The governed engineering environment is itself a consequential system. Models drift. Controls become noisy. Assumptions expire. Evidence pipelines break. Gates preserve obsolete policy. Skills encode procedures that are no longer appropriate. The machinery this chapter has accumulated therefore requires the same observation, maintenance, reconciliation, and retirement it provides to the system it governs.
+```
