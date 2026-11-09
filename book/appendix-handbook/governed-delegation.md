@@ -16,6 +16,7 @@ public sealed class SetAltOp : EditOp
     public string BeforeAlt { get; init; } = "";
     public string AfterAlt { get; init; } = "";
     // Optional fields omitted.
+}
 ```
 
 The target is expressed in the document model’s terms, rather than as a byte offset. A request can be inspected before it is applied, compared with another proposal, or associated with the judgment that produced it. The before-value is useful evidence for comparison and reversal; its presence alone does not establish that every editing path rejects stale requests. That requires a separately configured comparison and refusal policy.

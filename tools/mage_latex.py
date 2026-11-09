@@ -397,7 +397,13 @@ def compatibility(source: Path, output: Path):
         quote = restore_tokens(quote)
         return '\n\n' + token('\n'.join('> ' + line if line else '>' for line in quote.splitlines())) + '\n\n'
     text = re.sub(r'\\begin\{bookbox\}.*?\\end\{bookbox\}', box, text, flags=re.S)
-    text = text.replace('{\\footnotesize\n', '').replace('\n}\n', '\n')
+    # Remove presentation-only table groups without editing literal examples.
+    # A class's closing brace inside verbatim is content, not a TeX group.
+    text = re.sub(
+        r'(\\begin\{verbatim\}.*?\\end\{verbatim\})|(\{\\footnotesize\n)|(\n\}\n)',
+        lambda m: m[1] if m[1] is not None else ('' if m[2] else '\n'),
+        text, flags=re.S,
+    )
     # Pandoc's LaTeX reader treats leading numeric text in ragged p columns as
     # a dimension argument. Protect cell contents before its table parser.
     text = re.sub(r'(?<=& )([0-9][0-9,.]*)', lambda m: token(m[1]), text)
