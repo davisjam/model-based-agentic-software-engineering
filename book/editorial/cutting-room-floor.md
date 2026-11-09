@@ -18056,3 +18056,41 @@ Agents can produce changes much faster than the surrounding environment can unde
 
 A fleet of coding agents can generate, inspect, and modify implementation much faster than a human team. But more implementation capacity does not automatically produce more system-level understanding or better engineering judgment. When the necessary knowledge remains implicit, the fleet repeatedly reconstructs it. When evaluating a change requires knowledge of architecture, ownership, or end-to-end behavior that the environment cannot supply, somebody must reconstruct that knowledge. In many organizations that somebody is still a human reviewer. The result can work, but the human sits in the gap between what the environment can check and what the system actually needs guaranteed.
 ```
+
+
+## Chapter 2 incremental prose edits — 9 November 2026
+
+Three author-approved local replacements in §2.1. Remaining rhythm proposals are not approved by this batch.
+
+### Semantic commitment: positive distinction
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:340`
+- Source revision: `0a97276934d2b022a3bd77b839e5f0218a9c202a`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive distinction or consolidated qualification; original wording retained for possible reuse.
+
+```latex
+They differ not necessarily in what they choose to represent, but in how much of the meaning of those components and dependencies the representation itself carries.
+```
+
+### Semantic commitment: table qualifications
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:348`
+- Source revision: `0a97276934d2b022a3bd77b839e5f0218a9c202a`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive distinction or consolidated qualification; original wording retained for possible reuse.
+
+```latex
+The rows are not maturity levels: stronger semantic commitment is useful only when the resulting precision and machine operability justify its cost. Nor does stronger semantics necessarily close more degrees of freedom. A SysML model may say less about an implementation than an elaborate natural-language specification while saying what it does say much more precisely. Amount specified and precision of meaning are separate axes.
+```
+
+### Constructing and Revising a Model
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:278`
+- Source revision: `0a97276934d2b022a3bd77b839e5f0218a9c202a`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive distinction or consolidated qualification; original wording retained for possible reuse.
+
+```latex
+Choosing those distinctions is a judgment process, not an algorithm.
+```

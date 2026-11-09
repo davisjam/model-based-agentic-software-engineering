@@ -275,7 +275,7 @@ These representations may be written as diagrams, tables, type declarations, or 
 
 % <!-- point: purposeful-reduction-is-judgment-not-algorithm | Purposeful reduction is a judgment process, not an algorithm: no procedure takes an engineering question and returns the right model, so the engineer reasons toward the boundary from more than one direction and revises it as evidence arrives. | terms: modeling-principle, degrees-of-freedom -->
 
-Choosing those distinctions is a judgment process, not an algorithm. No procedure takes an engineering question and returns the right model. The engineer reasons toward the boundary --- what the model must preserve, what it may leave free --- from more than one direction, and revises it as evidence arrives.
+Choosing those distinctions requires engineering judgment. No procedure takes an engineering question and returns the right model. The engineer reasons toward the boundary --- what the model must preserve, what it may leave free --- from more than one direction, and revises it as evidence arrives.
 
 % <!-- point: reason-top-down-from-the-question | Reasoning top-down from the question asks what must remain true and which distinctions expressing or evaluating that obligation requires; the model preserves those, and the remaining implementation choices stay free. | terms: degrees-of-freedom, tolerance -->
 
@@ -337,7 +337,7 @@ That is often enough. But representations can make progressively stronger semant
 
 % <!-- point: semantic-commitment-is-distinct-from-purposeful-reduction | Purposeful reduction governs what the model says; semantic commitment governs how much the model itself says about what it means. | terms: semantic-commitment, model-as-map -->
 
-This axis is distinct from purposeful reduction. Two models may preserve exactly the same engineering distinctions while making different semantic commitments. An informal component sketch and a typed system model might contain the same four components and three dependencies. They differ not necessarily in what they choose to represent, but in how much of the meaning of those components and dependencies the representation itself carries. \textbf{Purposeful reduction governs what the model says. Semantic commitment governs how much the model itself says about what it means.}
+This axis is distinct from purposeful reduction. Two models may preserve exactly the same engineering distinctions while making different semantic commitments. An informal component sketch and a typed system model might contain the same four components and three dependencies. They can preserve the same engineering facts while carrying different amounts of their meaning explicitly. \textbf{Purposeful reduction governs what the model says. Semantic commitment governs how much the model itself says about what it means.}
 
 % <!-- point: stronger-semantics-buy-capabilities-and-create-obligations | Stronger semantics buy capabilities and create obligations; they are not inherently better. | terms: semantic-commitment, degrees-of-freedom -->
 
@@ -345,7 +345,7 @@ Greater semantic commitment buys capabilities, but it also creates obligations. 
 
 % <!-- point: the-spectrum-in-concrete-artifacts | Concrete artifacts illustrate the range; the rows are examples, not maturity levels. | terms: semantic-commitment, degrees-of-freedom -->
 
-\autoref{semantic-commitment-spectrum} illustrates the range with concrete modeling artifacts, from an informal sketch through UML 2.5.1\citep{omg2017uml} and OpenAPI/JSON Schema to SysML v2 and its semantic foundation, KerML.\citep{omg2025sysml}\citep{omg2025kerml} The rows are not maturity levels: stronger semantic commitment is useful only when the resulting precision and machine operability justify its cost. Nor does stronger semantics necessarily close more degrees of freedom. A SysML model may say less about an implementation than an elaborate natural-language specification while saying what it does say much more precisely. Amount specified and precision of meaning are separate axes.
+\autoref{semantic-commitment-spectrum} illustrates the range with concrete modeling artifacts, from an informal sketch through UML 2.5.1\citep{omg2017uml} and OpenAPI/JSON Schema to SysML v2 and its semantic foundation, KerML.\citep{omg2025sysml}\citep{omg2025kerml} The rows illustrate increasing semantic commitment, whose value depends on whether the resulting precision and machine operability justify their cost. Semantic commitment and implementation freedom are separate axes. A SysML model may specify fewer implementation details than an elaborate natural-language specification while defining its chosen distinctions more precisely.
 
 {\footnotesize
 \begin{longtable}[]{@{}
