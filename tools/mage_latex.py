@@ -208,7 +208,7 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
     driver = destination.parent / 'main.tex'
     chapter_commands = '\n'.join(r'\expandafter\def\csname magechapter' + key + r'\endcsname{Chapter ' + str(number) + '}' for key, number in bb._CHAPTER_LABELS.items())
     driver.write_text(r'''\DocumentMetadata{lang=en-US,pdfversion=2.0,testphase={phase-III,table,math}}
-\documentclass[12pt,openany]{book}
+\documentclass[11pt,openany]{book}
 \usepackage[mage]{house}
 \usepackage{longtable,booktabs,array,calc}
 \usepackage[numbers]{natbib}
@@ -833,7 +833,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
     if not re.fullmatch(r'[A-Za-z0-9_-]+', name): raise ValueError('Invalid PDF basename')
     driver = directory / (name + '.tex')
     driver.write_text(r'''\DocumentMetadata{lang=en-US,pdfversion=2.0,testphase={phase-III,table,math}}
-\documentclass[12pt,openany]{book}
+\documentclass[11pt,openany]{book}
 \usepackage[mage]{house}
 \usepackage[numbers]{natbib}
 \setlength{\emergencystretch}{2em}

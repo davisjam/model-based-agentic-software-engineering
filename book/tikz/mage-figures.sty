@@ -14,12 +14,14 @@
 \usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds,patterns,shapes.geometric,decorations.pathreplacing}
 \usepgfplotslibrary{groupplots}
 \pgfplotsset{compat=1.18}
-% A figure included in a book inherits that edition's body family. The cropped
-% standalone pool uses the same MAGE profile as house.sty.
-\ifdefined\bookbodyfont\else
+% Both included figures and the standalone pool use the reviewed figure profile.
+% Body typography can change without changing figure geometry or semantic faces.
+\ifdefined\bookfigurefont\else
   \input{latex/book-fonts.tex}
-  \bookmagefontprofile
 \fi
-\let\magefigurefont\bookbodyfont
+\let\magefigurefont\bookfigurefont
+% Local font-size overrides in authored nodes must still inherit sans-serif.
+% Keep the default local to the picture so including TikZ never changes body type.
+\AddToHook{env/tikzpicture/begin}{\renewcommand{\familydefault}{\sfdefault}\bookfigurefont}
 \tikzset{every picture/.style={font=\magefigurefont\fontsize{10}{12}\selectfont,color=black},>=Latex}
 \pgfplotsset{mage plot/.style={cycle list name=black white,every node near coord/.append style={black},every axis plot post/.append style={mark options={draw=black,fill=black}},width=14cm,height=6cm,scale only axis,axis lines*=left,axis line style={black!50},tick label style={font=\magefigurefont\fontsize{10}{12}\selectfont},scaled ticks=false,ymajorgrids,grid style={black!20,dotted},legend style={draw=none,font=\magefigurefont\fontsize{9}{11}\selectfont},legend cell align=left}}

@@ -18714,3 +18714,48 @@ The resulting composition therefore preserves several different responsibilities
 ```latex
 Inventory the knowledge and enforcement you already have. A schema may reject invalid data; a permission may prevent a dangerous action; a test may expose a regression; a review may settle an ambiguous case. Determine which of these actually affects whether work proceeds. An adequate existing mechanism needs a place in the workflow, not a replacement bearing a new name. Where the obligation is already enforced economically, additional system modeling may contribute little. Where people repeatedly recover the same architectural relation, a small representation may help before any new gate is needed.
 ```
+
+## Reading-guide navigation rewrite from 9 November 2026
+
+- Source: `book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex`
+- Source revision: `75010563d131ccec276118fac464f39c1eb078e7`, lines 10–46.
+- Reason: The author approved a compact front-matter inventory, two signposts, and five concise routes, removing the repeated architectural explanation and route commentary.
+- Status: complete prior copy preserved for possible reuse; outside the published manuscript.
+
+```latex
+This front matter is reference material. You do not need to understand it before beginning the book.
+
+\textbf{First time here?} Read the Preface and continue into \magevalue{chapter:problem}. You may skip the rest of this front matter for now; it is designed to become more useful as the terminology and argument become familiar.
+
+\textbf{Returning to the book?} Use \emph{What This Book Argues} for the six central claims, \emph{MAGE on One Page} for the relationship among the major concepts, and the \emph{Glossary} for definitions.
+
+The Preface asks one question: \emph{How do we safely grant autonomy to commodity intelligence?} \magevalue{chapter:problem} frames the resulting engineering problem. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:software-factories|num} then develop MAGE through software engineering: they show the mechanisms in a worked domain and provide the evidence from which the broader account is drawn.
+
+The software-engineering case proceeds at two levels of abstraction. \magevalue{chapter:problem} begins with the new fabricator: a capable agent that can realize software from engineering intent. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} develop the representations, Alignment mechanisms, and engineering practices needed to operate that fabricator while retaining control over consequential properties. \magevalue{chapter:software-factories} then considers the production system around it. At this second level of abstraction, the fabricator becomes one component of an agentic software factory: a system that organizes production, determines which variation is acceptable, evaluates what has been produced, and changes when its controls prove inadequate. \magevalue{chapter:theory} develops a theory of the resulting allocation of engineering work, and \magevalue{chapter:profession} considers what follows for the profession and for engineering more broadly.
+
+The Conclusion returns to the opening question and asks its converse: \emph{What cannot be delegated?} \autoref{book-map} traces that argument.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/book-map-12f9a44290.pdf}
+\caption{\emph{The book\textquotesingle s argument.} The Preface and Chapter 1 establish the engineering problem. Chapters 2--5 develop and substantiate MAGE through its software-engineering case study. Chapters 6 and 7 abstract from that case to theory and broader engineering implications, and the Conclusion returns to the opening question through responsibility.}
+\label{book-map}
+\end{figure}
+
+The argument and the case can also be read at different depths. Readers primarily interested in MAGE as an engineering argument can follow the Preface → \magevalue{chapter:problem} → \magevalue{chapter:theory} → \magevalue{chapter:profession} → Conclusion. That route gives the problem, theory, broader implications, and closing claim. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:software-factories|num} are what substantiate that argument: they develop MAGE through software engineering, show its mechanisms at engineering resolution, and provide the evidence from which the theory is drawn. Read them straight through for the full case, or return to them when you want to see where a theoretical claim came from.
+
+Coming from another engineering discipline---or from work that may be engineering in the functional sense used here? Start with the Preface, \magevalue{chapter:problem}, and \magevalue{sec:agentic-engineering-beyond-software}. From there, \magevalue{chapter:theory} gives the theory, while Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:software-factories|num} provide the software-engineering case from which it was developed. Circle back as the mechanisms become relevant to your own work.
+
+Three shorter routes serve different purposes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Do it Monday.} \magevalue{chapter:problem} → \magevalue{chapter:one-problem-many-models} → {[}appendix: appendix-practicing-mage{]}. Start with the premise, move directly to the working method, then use the practical guide while applying it.
+\item
+  \textbf{Show me the evidence.} \magevalue{chapter:problem} → \magevalue{chapter:software-factories}. Read the framing, then examine the case evidence and its limitations.
+\item
+  \textbf{Adopt it in an organization.} \magevalue{chapter:problem} → \magevalue{sec:mage-in-the-wild} → {[}appendix: appendix-practicing-mage{]}. Start with the changed engineering problem, see how several organizations are already restructuring agentic work, then use the adoption guide to decide where context, models, evidence, and enforcement are worth organizational investment. Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} provide the engineering practices; \magevalue{chapter:theory} provides the underlying theory.
+\end{itemize}
+
+```

@@ -8,4 +8,6 @@
 
 % Select the body family without discarding semantic boldface or italics.
 \newcommand{\bookbodyfont}{\fontfamily{\familydefault}\selectfont}
-\newcommand{\bookmagefontprofile}{\renewcommand{\familydefault}{\sfdefault}}
+\newcommand{\bookmagefontprofile}{\renewcommand{\familydefault}{\rmdefault}}
+% Figure labels retain their reviewed sans-serif family independently of body type.
+\newcommand{\bookfigurefont}{\fontfamily{\sfdefault}\selectfont}

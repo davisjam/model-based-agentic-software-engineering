@@ -17,33 +17,22 @@
   },
   "required_terms": [
     "Preface",
-    "How do we safely grant auton-",
-    "omy to commodity intelligence?",
     "1 The New Engineering Problem",
-    "Changed economics",
     "2 Modeling",
-    "Make knowledge and intent explicit",
     "3 Alignment",
-    "Enforce selected obligations",
     "4 MAGE in Motion",
-    "Model · align · work · convert",
-    "5 Agentic Software Factories",
-    "Deep case · industrial vari-",
-    "ation · production systems",
+    "5 DocAble Among Other Software Factories",
     "6 The Theory",
-    "Dynamics · economics · predictions · scope",
-    "abstract from the factories",
     "7 The Profession",
-    "Software work · broader en-",
-    "gineering · responsibility",
     "Conclusion",
-    "What cannot be delegated? Responsibility.",
-    "SOFTW ARE-ENGINEERING CASE"
+    "SOFTWARE-ENGINEERING CASE",
+    "How do we safely grant autonomy to commodity intelligence?",
+    "What cannot be delegated?"
   ],
   "bw_encoding": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter boxes remain white.",
-  "redesign": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter boxes remain white. A single vertical chapter sequence; the optional appendix branches were removed at the author’s request.",
+  "redesign": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
   "questions": [],
-  "alt": "A vertical map connects the Preface, seven chapters and Conclusion. A lightly shaded enclosure groups Chapters 2–5 as the software-engineering case. An external annotation marks abstraction from the factories toward theory.",
+  "alt": "A vertical map connects the Preface, seven chapters and Conclusion. A lightly shaded enclosure groups Chapters 2–5 as the software-engineering case. The opening and closing questions bookend the progression.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -1812,5 +1801,28 @@
     "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
     "status": "passed",
     "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
+  },
+  "compact_navigation_review": {
+    "date": "2026-11-09",
+    "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
+    "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
+    "minimum_text_pt": 10,
+    "proof": "Full book reading-guide page",
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "84509075d333f94b97d16c26881301407c0fa1682f3427c03849d53c53a7eeb7",
+      "page": 1,
+      "width_bp": 192.22,
+      "height_bp": 317.967,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
+      "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
+      "status": "passed",
+      "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2–5 enclosure; full one-page guide proof inspected."
+    }
   }
 }

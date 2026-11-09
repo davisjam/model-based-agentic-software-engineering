@@ -416,10 +416,10 @@
       "rationale": "book-level method synthesis; reader learns the whole method from the caption"
     },
     "assets/book-map.svg": {
-      "tier": "A",
+      "tier": "C",
       "kind": "roadmap",
       "location": "frontmatter",
-      "rationale": "explicit-architecture caption (frontma 260917): the figure now encodes the book's epistemic architecture — a nested software-engineering case between the question and the theory — and the caption teaches how to read that architecture standalone in print, earning an anchor-length caption"
+      "rationale": "Compact reading-guide reference map: chapter roles are explained beside it; the author requested navigation rather than another introduction."
     },
     "assets/docable-glimpse.svg": {
       "tier": "B",

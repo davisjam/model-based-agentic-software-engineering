@@ -57,7 +57,7 @@ def check_page(page, checks):
 
 
 def reference_fonts(pdf):
-    """Read the actual body faces from a proof typeset by the book's house style."""
+    """Read the actual figure faces from a proof typeset by the book's house style."""
     import pymupdf
     with pymupdf.open(pdf) as document:
         return sorted({span["font"] for page in document
@@ -66,20 +66,20 @@ def reference_fonts(pdf):
                        if re.search(r"[A-Za-z]{2}", span["text"])})
 
 
-def check_body_fonts(page, body_fonts):
+def check_figure_fonts(page, figure_fonts):
     findings = []
     for block in page.get_text("dict")["blocks"]:
         for line in block.get("lines", []):
             for span in line["spans"]:
                 # Isolated mathematical letters, operators and numbers retain
-                # math fonts. Prose words must use the actual book body faces.
-                if re.search(r"[A-Za-z]{2}", span["text"]) and span["font"] not in body_fonts:
-                    findings.append({"text": span["text"], "problem": "prose font differs from book body",
-                                     "actual_font": span["font"], "expected_fonts": sorted(body_fonts)})
+                # math fonts. Prose words must use the declared figure faces.
+                if re.search(r"[A-Za-z]{2}", span["text"]) and span["font"] not in figure_fonts:
+                    findings.append({"text": span["text"], "problem": "prose font differs from figure profile",
+                                     "actual_font": span["font"], "expected_fonts": sorted(figure_fonts)})
     return findings
 
 
-def audit_pdf(pdf, manifest, review, output=None, body_fonts=None):
+def audit_pdf(pdf, manifest, review, output=None, figure_fonts=None):
     import pymupdf
     figures = review["figures"]
     sources = [figure["source"] for figure in figures]
@@ -93,12 +93,12 @@ def audit_pdf(pdf, manifest, review, output=None, body_fonts=None):
             page = manifest[figure["source"]]["page"]
             for finding in check_page(document[page - 1], checks):
                 findings.append({"source": figure["source"], "page": page, **finding})
-            if body_fonts is not None:
-                for finding in check_body_fonts(document[page - 1], body_fonts):
+            if figure_fonts is not None:
+                for finding in check_figure_fonts(document[page - 1], figure_fonts):
                     findings.append({"source": figure["source"], "page": page, **finding})
     report = {"pdf": str(pdf), "figures": len(figures), "checks": count, "findings": findings}
-    if body_fonts is not None:
-        report["body_fonts"] = sorted(body_fonts)
+    if figure_fonts is not None:
+        report["figure_fonts"] = sorted(figure_fonts)
     if output:
         Path(output).write_text(json.dumps(report, indent=2) + "\n")
     print(f"TikZ semantic typography: {len(figures)} figures; {count} checks; {len(findings)} findings.", flush=True)

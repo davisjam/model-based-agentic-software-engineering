@@ -80,14 +80,14 @@ _POOL_CACHE_VERSION='pool-v1'
 #: Set by `compile_candidates()` so a caller — and the timing harness — can tell reuse from compile.
 _pool_reused=None
 
-#: The font-metrics proof the typography audit measures the book's real body faces from. Hoisted to
+#: The proof the typography audit measures the book's figure font profile from. Hoisted to
 #: module scope so the reuse key can digest it: a change here changes the audit's reference and must
 #: invalidate the pool, which a string buried in the function body could not express.
-_FONT_DRIVER_TEX=r'''\documentclass[12pt]{book}
+_FONT_DRIVER_TEX=r'''\documentclass[11pt]{book}
 \usepackage[mage]{house}
 \begin{document}
 \pagestyle{empty}
-Body text. \textbf{Bold text.} \textit{Italic text.} \textbf{\textit{Bold italic text.}}
+\bookfigurefont Figure text. \textbf{Bold text.} \textit{Italic text.} \textbf{\textit{Bold italic text.}}
 \end{document}
 '''
 
@@ -234,15 +234,15 @@ def compile_candidates(partial=False):
     if layout_failures:
         raise ValueError('Figure spacing differs from review: '+json.dumps(layout_failures[:8]))
     from mage_tikz_typography import audit_pdf as audit_typography, reference_fonts
-    # Use the real book style as the reference, so this gate follows future
-    # edition font changes and catches local TikZ overrides/fallbacks too.
-    font_driver=BUILD/'body-font-reference.tex'
+    # Measure the explicit figure profile from the real book style. This retains
+    # semantic-face and fallback checks without coupling figures to body type.
+    font_driver=BUILD/'figure-font-reference.tex'
     font_driver.write_text(_FONT_DRIVER_TEX)
-    body_fonts=reference_fonts(latex_build.compile_tex(font_driver))
+    figure_fonts=reference_fonts(latex_build.compile_tex(font_driver))
     typography=json.loads((BASE/'typography-review.json').read_text())
     if partial:
         typography['figures']=[r for r in typography['figures'] if r['source'] in manifest]
-    audit_typography(pdf,manifest,typography,BUILD/'typography-audit.json',body_fonts)
+    audit_typography(pdf,manifest,typography,BUILD/'typography-audit.json',figure_fonts)
     print(f'Native TikZ pool: {len(pages)} candidates, all fit at their authored text sizes.',flush=True)
     _pool_reused=False
     if key is not None:_pool_stamp_write(key)   # only now: every gate above has passed
@@ -421,6 +421,9 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
             opening = (opening[:heading_end] + '\\begingroup\\setlength{\\parskip}{3pt}\n' +
                        opening[heading_end:] + '\\par\\endgroup\n')
             text = opening + separator + rest
+        if chapter.stem == '0.1-how-to-read-this-book':
+            from mage_figure_layout import reading_guide_columns
+            text = reading_guide_columns(text)
         replacements[chapter] = text
     all_sources = used + retained
     if len(all_sources) != len(set(all_sources)):

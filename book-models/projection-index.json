@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 653,
+    "total_sites": 652,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 315,
+      "book-web": 314,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -19,10 +19,6 @@
     "agent": {
       "book": {
         "book-web": [
-          {
-            "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 1
-          },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
             "occ": 2
@@ -215,7 +211,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 47
           }
         ]
       },
@@ -931,7 +927,7 @@
           },
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 25
+            "occ": 13
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
@@ -1151,7 +1147,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 190
+            "occ": 188
           },
           {
             "file": "book/web/docs/index.md",
@@ -1233,7 +1229,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 66
+            "occ": 67
           },
           {
             "file": "catalogue-figure.html",
@@ -2113,7 +2109,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 30
+            "occ": 31
           },
           {
             "file": "catalogue-figure.html",
@@ -2355,7 +2351,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.1-how-to-read-this-book.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",

@@ -39,13 +39,18 @@
   \geometry{left=1.125in,right=1.125in,top=1in,bottom=1in}
   \bookmagefontprofile
   \renewcommand{\bookheadingfont}{\bookserif}
-  \setlength{\parindent}{0pt}
-  \setlength{\parskip}{0.65em plus 0.15em minus 0.1em}
+  % Textbook rhythm: 11pt book class, its normal 13.6pt baseline, and modest
+  % paragraph separation. Keep the letter page and existing figure envelope.
+  \linespread{1.0}
+  \setlength{\parindent}{1.2em}
+  \setlength{\parskip}{0.25\baselineskip plus 0.5pt minus 0.5pt}
+  \setlength{\textfloatsep}{16pt plus 2pt minus 4pt}
+  \setlength{\floatsep}{10pt plus 2pt minus 2pt}
 \else
+  \linespread{1.17}
   \setlength{\parindent}{1.2em}
   \setlength{\parskip}{0.45em plus 0.1em minus 0.1em}
 \fi
-\linespread{1.17}
 \raggedbottom
 \pagestyle{plain}
 % Pandoc marks uncaptioned longtables with this counter to avoid numbering them.
@@ -129,7 +134,7 @@
   \begingroup
   \def\bookboxtitle{#2}%
   \bookboxcolors{#1}%
-  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext\setlength{\parskip}{0.45em}\setlength{\parindent}{1.2em}}]
+  \begin{tcolorbox}[enhanced,breakable,sharp corners,boxrule=0pt,leftrule=2pt,colframe=boxrule,colback=boxfill,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=10pt,after skip=10pt,after upper={\bookboxtagpause},before upper={\bookboxtagtext\ifmageedition\setlength{\parskip}{0.25\baselineskip}\else\setlength{\parskip}{0.45em}\fi\setlength{\parindent}{1.2em}}]
   \noindent{\booksans\bfseries\small\color{boxrule}\MakeUppercase{#1}\ifstrempty{#2}{}{\enspace #2}}\par\smallskip
 }{\end{tcolorbox}\endgroup\bookboxtagend}
 

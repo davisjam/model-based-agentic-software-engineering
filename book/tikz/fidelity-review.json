@@ -9,7 +9,7 @@
       "source": "book/assets/book-map.svg",
       "candidate": "book/tikz/figures/book-map.tex",
       "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
-      "candidate_sha256": "20726a62abb9c0ec6455539f3ad9502778e9fe7bb4e4ea878c2efd10ce72ddd3",
+      "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
       "decision": "refined",
       "review": "Restored production-systems descriptions under the two factories and the external abstract-from-the-factories arrow annotation. Retained chapter order, case-study grouping, rotated group label, and appendix boxes.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
@@ -17,7 +17,8 @@
         12.7806,
         13.9292
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling."
     },
     {
       "source": "book/assets/mage-method.svg",

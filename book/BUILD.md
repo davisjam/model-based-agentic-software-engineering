@@ -232,6 +232,18 @@ the web build continues to use them.
 
 ### Figure scale and placement
 
+The letter-sized MAGE edition uses 11-point Source Serif 4 with 13.6-point line
+spacing, indented paragraphs, and a modest paragraph gap. These settings follow
+the textbook typography trial informed by the authors' [Deep Learning template](https://github.com/goodfeli/dlbook_notation/blob/master/notation_example.tex).
+Figure labels retain Source Sans 3 and their reviewed sizes; body-layout changes
+do not approve or alter the color/monochrome pairings.
+
+The reading guide places its compact, approved monochrome map in a 45%-width
+right column beside the chapter overview and reading routes. Its opening and two
+signposts span the page. Fixed columns avoid `wrapfig` conflicts with tagged
+paragraphs and lists. Verify that the complete guide occupies one page at normal
+body size when changing its content or the shared typography.
+
 Size a teaching figure for its informational complexity and readable labels, not simply the
 available page width. A compact conceptual diagram may occupy 40–65% of the text width;
 use full width when its relationships or labels need it. Those percentages are starting

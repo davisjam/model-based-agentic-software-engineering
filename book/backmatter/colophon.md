@@ -6,7 +6,7 @@
 
 # Colophon — Dogfooding MAGE
 
-In a traditional colophon, I am supposed to tell you about the font. This book uses LuaLaTeX and the `book` class, with Source Sans 3 for body text, Source Serif 4 for headings, and IBM Plex Mono for code. A custom `house` package handles the page layout, captions, and breakable insets. There, tradition satisfied.
+In a traditional colophon, I am supposed to tell you about the font. This book uses LuaLaTeX and the `book` class, with Source Serif 4 for body text and headings, Source Sans 3 for figure labels, and IBM Plex Mono for code. A custom `house` package handles the page layout, captions, and breakable insets. There, tradition satisfied.
 
 Perhaps of greater interest, this book was also developed using MAGE. Commodity intelligences developed by OpenAI and Anthropic were used in editing the manuscript and developing its figures. What Modeling and Alignment did I apply? Important properties of the manuscript—its argument, claims, terminology, evidence relationships, and structure—were represented explicitly rather than left entirely in prose or editorial memory. Generated projections and consistency checks helped maintain correspondence as the manuscript changed. [ref:manuscript-models] shows the models and the failures they were intended to prevent.
 

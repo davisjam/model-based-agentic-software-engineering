@@ -75,3 +75,39 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
         return content
 
     return re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', figure, latex, flags=re.S)
+
+
+def reading_guide_columns(latex: str) -> str:
+    """Keep the compact map beside the chapter overview and five reading routes.
+
+    The tagged book class conflicts with wrapfig's paragraph hooks. Two aligned
+    columns provide the same narrow right-hand placement without wrapping a list
+    or changing body size. Run after monochrome substitution so no image scales.
+    """
+    marker = r'\addcontentsline{toc}{chapter}{How to Read This Book}'
+    if latex.count(marker) != 1:
+        raise ValueError('Reading guide must retain its chapter heading')
+    prefix, body = latex.split(marker, 1)
+    figures = list(re.finditer(r'\\begin\{figure\}.*?\\end\{figure\}', body, re.S))
+    if len(figures) != 1 or r'\label{book-map}' not in figures[0][0]:
+        raise ValueError('Reading guide requires exactly its approved book map')
+    figure = figures[0]
+    prose, routes = body[:figure.start()].strip(), body[figure.end():].strip()
+    if r'\begin{itemize}' in prose or r'\begin{itemize}' not in routes:
+        raise ValueError('Reading routes must follow the introductory paragraphs')
+    paragraphs = prose.split('\n\n')
+    if len(paragraphs) != 4:
+        raise ValueError('Reading guide requires its inventory, two signposts, and overview')
+    introduction = '\n\n'.join(paragraphs[:3])
+    navigation = paragraphs[3] + '\n\n' + routes
+    navigation = re.sub(r'\bChapter (\d+)', r'Chapter~\1', navigation)
+    artwork = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure[0])
+    artwork = artwork.removesuffix(r'\end{figure}')
+    alt = ('The Preface and seven chapters lead to the Conclusion. '
+           'Chapters 2--5 form the software-engineering case.')
+    return (prefix + marker + '\n\n' + introduction + '\n\n' +
+            r'\noindent\begin{minipage}[t]{.53\linewidth}\vspace{0pt}' +
+            r'\raggedright\setlength{\parskip}{0.25\baselineskip}' + '\n' + navigation + '\n' +
+            r'\end{minipage}\hfill\begin{minipage}[t]{.45\linewidth}\vspace{0pt}' + '\n' +
+            r'\begin{bookinlinefigure}{' + alt + '}' + artwork +
+            r'\end{bookinlinefigure}\end{minipage}\par' + '\n')
