@@ -17941,3 +17941,41 @@ Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`; baseline
 \label{handbook-model-guided-delegation}
 \end{figure}
 ```
+
+
+## Chapter 1 incremental prose-rhythm edits — 9 November 2026
+
+Author-supplied replacements, applied individually. These edits do not approve the remaining book-wide rhythm proposals.
+
+### The Engineering Object
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex:84`
+- Source revision: `6cb75ceaaad887fc98913351e6aee8429f6ac7b1`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative formulation, preserving the intended scope. Original copy retained for possible reuse.
+
+```latex
+MAGE is not a general software-engineering method. It does not attempt to teach engineers which programming language to choose, which architectural or design pattern fits a system, or which verification technique is appropriate. Those questions draw on decades of accumulated software-engineering theory and practice. MAGE asks a different question: when such engineering knowledge matters to autonomous implementation, how should it be represented so that the machinery can use it, and which resulting obligations should constrain what the machinery may produce?
+```
+
+### What the User Sees
+
+- Source: `book/latex/sources/part1/1.2-mage-by-example.tex:49`
+- Source revision: `6cb75ceaaad887fc98913351e6aee8429f6ac7b1`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative formulation, preserving the intended scope. Original copy retained for possible reuse.
+
+```latex
+The governing obligation is not merely to produce a plausible-looking artifact, but to provide students with a substantially equivalent experience.
+```
+
+### Useful judgment and preservation evidence
+
+- Source: `book/latex/sources/part1/1.2-mage-by-example.tex:128`
+- Source revision: `6cb75ceaaad887fc98913351e6aee8429f6ac7b1`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved affirmative formulation, preserving the intended scope. Original copy retained for possible reuse.
+
+```latex
+There is still useful judgment to delegate. The foundation model can interpret the diagram and choose how to describe it without an engineer writing every description in advance. The preservation check does not establish that the description is meaningful, nor does content inclusion alone establish that the layout is unchanged. Those are separate properties requiring suitable evidence. What the check does establish is narrower and useful: the content represented by its extractor has survived.
+```
