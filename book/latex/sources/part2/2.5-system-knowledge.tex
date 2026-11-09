@@ -232,7 +232,7 @@ Where neither side can be fully derived from the other, \textbf{traceability} re
 
 \subsection{Some correspondence remains semantic}\label{heading:some-correspondence-remains-semantic}
 
-Mechanical checks establish only the correspondences they evaluate. They can determine whether an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Those results do not settle every question about the model\textquotesingle s meaning: semantic claims may still require judgment, and properties left out of the model receive no model-based coverage. When a failure recurs, engineers can ask whether to refine the representation or add a control (\autoref{model-sync-two-layer-net}).
+Mechanical checks can determine whether an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Semantic claims may still require judgment, and properties left out of the model receive no model-based coverage. When a failure recurs, engineers can ask whether to refine the representation or add a control (\autoref{model-sync-two-layer-net}).
 
 \begin{figure}[htbp]
 \centering
@@ -247,7 +247,7 @@ For invariant-bearing models, one useful executable pattern is a structured sche
 
 % <!-- point: no-synchronization-mechanism-proves-semantic-correctness | Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture. | terms: map-and-territory, drift-gate, modeling-principle -->
 
-None of this proves the model \emph{right}. Synchronization does not establish that the model is correct, that the architecture it expresses is good, or that the modeled surface captures every relationship that matters. A pointer can resolve while its meaning has changed; a schema and its generated client can agree while a live producer emits something else. The guarantee the machinery offers is narrower:
+A synchronized model may still be incorrect, express a poor architecture, or omit a relationship that matters. A pointer can resolve while its meaning has changed; a schema and its generated client can agree while a live producer emits something else. The guarantee the machinery offers is narrower:
 
 \begin{quote}
 \textbf{For the surface the model claims, check the correspondence that can actually be decided.}

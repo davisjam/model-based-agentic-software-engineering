@@ -18412,3 +18412,305 @@ A low cost per correct change still does not establish that the changes were wor
 
 Nor does an idle engineering environment necessarily become free. It may retain operating costs, and its engineering assets may need maintenance as dependencies, requirements, and tools change. Some structures remain useful for years with little attention; others lose fit quickly. This is why the return on an environment depends on its useful life and carrying cost, rather than on a one-time demonstration that it can produce correct software.
 ```
+
+
+## Remaining approved prose-rhythm edits — 9 November 2026
+
+The author confirmed approval of all remaining review proposals. Later author-supplied replacements and explicit keeps take precedence. Original passages are preserved here before applying the remaining proposals.
+
+### R1-01 — 1.1 · The Printer — Multiple routes caption
+
+- Source: `book/latex/sources/part1/1.1-the-printer.tex:62-62`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+\caption{\emph{Multiple routes to engineering models.} A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration---the routes are alternatives, not stages. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; it does not establish that the observed design is desirable, and the engineer decides which discovered properties become obligations. Modeling is not a prescribed phase before implementation: engineering continues, and further discoveries may motivate new or revised models.}
+```
+
+### R2-01 — 2.1 · Modeling Is a Classical Engineering Move
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:72-72`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+These representations differ in purpose and rigor, but they share the same engineering move: choose a form in which the property of interest becomes easier to express, inspect, or analyze than it is in the implementation. UML standardized notations for many structural and behavioral views,\citep{booch-uml} while requirements engineering developed representations for goals, assumptions, and specifications.\citep{vanlamsweerde2009re} MAGE does not propose a new modeling language. It does, however, use these established representations, and this chapter illustrates the technique through selected models.
+```
+
+### R2-02 — 2.1 · A Model Is a Purposeful Reduction
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:111-111`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Purposeful reduction is therefore not only compression. It can change the difficulty and character of reasoning. A property that requires semantic reconstruction over thousands of implementation details may become a relation over a small graph, a transition over a finite state space, or a bound over a measured quantity. The representation does not make the answer true. It can make the question tractable. Nor does it make the design decision: it makes selected consequences of that decision easier to reason about.
+```
+
+### R2-03 — 2.1 · Judging what an agent discovers
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:318-318`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+The same distinction explains why, in the MAGE methodology, we do not simply say: give a sufficiently capable agent the code and let it infer the system's design and requirements. An agent may well reconstruct a plausible account of how the system works and what it is intended to do. That reconstruction alone does not establish which choices the engineer accepted as requirements. Tests, however, can record that intent. Test-driven development puts desired behavior into a test before implementing it, then retains the test as the implementation evolves.\citep{beck1999xp} Google\textquotesingle s Beyoncé rule expresses a related principle: write tests for the behaviors and properties you want to preserve.\citep{winters2020} Such tests make the accepted decision available to later people and agents in an executable representation.
+```
+
+### R2-06 — 2.1 · Structure and Semantics Make Representations Machine-Operable
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:401-401`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+This distinction matters particularly for generative implementation. Semantic precision and generative completeness are different properties. A model can have precisely defined meaning while remaining radically incomplete as a program. Conversely, a detailed prompt can say a great deal about an intended implementation while leaving much of its meaning informal. The question is not whether a model can generate the code. The question is which decisions the engineer has made explicit and which decisions the implementer remains authorized to make.
+```
+
+### R2-07 — 2.5 · Some correspondence remains semantic
+
+- Source: `book/latex/sources/part2/2.5-system-knowledge.tex:235-235`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Mechanical checks establish only the correspondences they evaluate. They can determine whether an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Those results do not settle every question about the model\textquotesingle s meaning: semantic claims may still require judgment, and properties left out of the model receive no model-based coverage. When a failure recurs, engineers can ask whether to refine the representation or add a control (\autoref{model-sync-two-layer-net}).
+```
+
+### R2-08 — 2.5 · Some correspondence remains semantic
+
+- Source: `book/latex/sources/part2/2.5-system-knowledge.tex:250-250`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+None of this proves the model \emph{right}. Synchronization does not establish that the model is correct, that the architecture it expresses is good, or that the modeled surface captures every relationship that matters. A pointer can resolve while its meaning has changed; a schema and its generated client can agree while a live producer emits something else. The guarantee the machinery offers is narrower:
+```
+
+### R3-05 — Trace Obligations to Mechanisms
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex:118-118`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is a coverage gap. A mechanism with no current obligation, failure class, or documented purpose is an orphan. The useful question is not "how many controls do we have?" It is whether consequential obligations have appropriate coverage and whether every surviving control can still explain why it exists. \autoref{census-trio} sets the three views side by side over the same control machinery.
+```
+
+### R4-02 — Greenfield and Brownfield MAGE
+
+- Source: `book/latex/sources/part4/4.1-the-dynamics-of-mage.tex:100-100`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+In DocAble, related failures sometimes arrived quickly enough that what first appeared to be separate defects became recognizable as symptoms of a missing architectural concept. The response was not another sequence of local repairs. The shared relationship became a system model, which in turn enabled static analyses that prevented several classes of failure. Speed had changed what the engineer could see.
+```
+
+### R4-03 — Use prediction error as evidence
+
+- Source: `book/latex/sources/part4/4.2-one-problem-many-models.tex:212-212`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast. A residual --- the gap between prediction and observation --- turns into an engineering question, and it drives a loop that runs both before and after implementation (\autoref{interlude-prediction-residual}).
+```
+
+### R4-05 — Recover Latent Models
+
+- Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex:66-66`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+A smaller subset behaved differently. Across related document mutators, the same parameter shapes recurred: language mutations repeatedly carried the same language and provenance concepts; alt-text mutations repeatedly carried description and attribution state. Looking across those instances revealed something that no individual finding established on its own. The repeated primitives were not merely similar code. They were recurring expressions of domain concepts that the implementation had never named.
+```
+
+### R4-06 — Equip the Reasoner
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex:16-16`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Not every important judgment should become deterministic. There are two complementary ways to improve recurring engineering work. One is to improve the conditions under which a reasoner makes a judgment: give it better representations, domain knowledge, examples, procedures, tools, and context so that a satisfactory realization becomes more likely. The other is to enforce selected obligations in the environment so that satisfying them does not depend entirely on the reasoner choosing correctly.
+```
+
+### R4-07 — Evaluate the Work
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex:69-69`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+That evidence can come from several sources, and no single kind of representation monopolizes validation. Where a model exposes a consequential property --- a transition rule, a permitted edge, a declared bound --- an appropriate analysis can produce evidence about whether that property holds; other models support navigation or reconstruction and need not carry an invariant at all. A model need not be an oracle to be useful. Evidence can equally come from outside a model: a test exercises a behavior, a compiler or type system rejects an illegal state, a reference implementation supplies a differential oracle, a metric reveals degradation, a human reviewer decides a property that remains judgment-laden. MAGE requires only that the obligation and the evidence be adequate to the claim.
+```
+
+### R5-02 — 5.1 · The Software Factory / What Does a Software Factory Produce?
+
+- Source: `book/latex/sources/part5/5.1-software-factory.tex:94-94`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+The economic question was therefore never simply whether software should use models. It was where engineering judgment could be carried most economically without losing control. Craft production remains economical when transferring enough judgment out of fabrication would cost as much as leaving that judgment with the skilled human fabricator. Factory production becomes economical when reusable production structures can carry consequential judgment more cheaply than repeatedly exercising it during fabrication.
+```
+
+### R5-03 — 5.2 · Inside DocAble’s Software Factory / The Two Rules of Agentic Software Engineering
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:128-128`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+\textbf{Reading the code is the last resort.} Not reading the code was deliberate. If building DocAble required me to inspect the implementation produced by coding agents, then implementation throughput would remain bounded by my capacity to read code. The point was not to become faster at code review. It was to build an engineering environment in which I could direct work, understand the system, evaluate evidence, and decide whether changes were acceptable without routinely reconstructing those answers from implementation.
+```
+
+### R6-01 — 6.1 · A Theory of MAGE / Encoding and Realization
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex:47-47`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+The first term is easy to overlook in an agentic setting. Representation is not valuable only because a machine may interpret a structured model more reliably than prose. It can also help the engineer express the intended property correctly in the first place. Different representations make different distinctions visible, force different decisions to be made explicitly, and make omissions easier or harder to notice. A representation can therefore improve \(P(E \mid R)\) even if it leaves \(P(F \mid E,R)\) unchanged. This is one reason Modeling is an engineering activity rather than merely a technique for supplying context to an agent.
+```
+
+### R7-01 — 7.1 · The Reorganization of Software Work / Review When Implementation Is Abundant
+
+- Source: `book/latex/sources/part7/7.1-reorganization-of-se.tex:195-195`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+None of this removes code from review. It changes when the reviewer must descend to it. Implementation becomes one evidentiary surface among several, rather than the origin from which every system property must be reconstructed. The reviewer still examines implementation details when they are necessary to evaluate the risk. The models supply an index into the engineering significance of a change.
+```
+
+### R7-02 — 7.2 · MAGE in the Engineering Tradition / Opening
+
+- Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex:14-14`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+MAGE does not depart from software engineering\textquotesingle s modeling tradition. It recomposes ideas that software engineering, the older engineering disciplines, and artificial intelligence each developed over decades, under one changed economic condition: realization by commodity intelligence.
+```
+
+### R7-03 — 7.2 · MAGE in the Engineering Tradition / Engineering Through Representations
+
+- Source: `book/latex/sources/part7/7.2-software-rejoins-engineering.tex:26-26`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Physical engineering makes the separation vivid. Fabrication can be expensive or irreversible, full-scale trials can be destructive, and physical iteration can take weeks or months. A structural model answers a loading question before concrete is poured. Circuit simulation exposes a design error before a mask set is fabricated. These examples earn their place because realization cost makes the gap between representation and artifact obvious, not because physical engineering discovered modeling while software did not.
+```
+
+### R7-04 — 7.3 · Agentic Engineering Beyond Software / Professional Knowledge Work
+
+- Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex:115-115`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+MAGE does not require pretending that this process is software development. It asks which parts of the process admit durable engineering structure. A representation can make alternatives, objectives, assumptions, dependencies, evidence, and uncertainty explicit. Evidence requirements can prevent a recommendation from proceeding without specified observations. Authority rules can determine which commitments an agent may make and which require human approval. Subsequent events provide evidence about the consequences of the decision. A recurring lesson can then alter the representations, rules, or review obligations inherited by the next iteration.
+```
+
+### R7-05 — 7.3 · Agentic Engineering Beyond Software / Where the Generalization Fails
+
+- Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex:159-159`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+These settings are not exceptions to the theory; they are its boundary behaving as stated. In such settings, better representations may still improve the agent\textquotesingle s reasoning without making the consequential judgment mechanically decidable. Modeling can help even where strong Alignment cannot. Such domains may repay investment in representation while resisting independent enforcement, and should therefore expect to retain more human judgment per unit of consequence.
+```
+
+### R7-06 — 7.4 · The Engineer / Opening
+
+- Source: `book/latex/sources/part7/7.4-the-engineer.tex:20-20`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+The broader theory does not erase the profession from which it came. Instead, it sharpens the question this chapter began with. If agents can increasingly implement changes, maintain models, run analyses, and propose engineering moves, what remains the engineer\textquotesingle s work?
+```
+
+### R7-07 — 7.4 · The Engineer / What Should We Teach? / Shift the emphasis
+
+- Source: `book/latex/sources/part7/7.4-the-engineer.tex:330-330`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work. Modeling, specification, architecture, measurement, programming languages, and formal methods deserve more room---not because every engineer should become a language theorist, systems modeler, or verification specialist, but because these fields teach durable ways to choose abstractions, state properties precisely, make invalid states harder to express, and separate a claim from the evidence that establishes it. Students should also learn to distinguish improving a reasoner\textquotesingle s context from improving the representation of the engineering problem itself.
+```
+
+### RC-01 — The core of MAGE
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex:67-67`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Together, these moves produce the \textbf{governed engineering environment}. Models represent consequential knowledge; controls constrain actions or evaluate results; evidence supports engineering judgments; and people remain responsible for the resulting system. In software, the representations include requirements, architectures, behavioral models, dependencies, provenance, and measurements; the governance mechanisms are constraints, sensors, and gates. Other domains will supply different representations and different means of evidence and control.
+```
+
+### RA-01 — A.2 — Component and Zone Catalogue
+
+- Source: `book/latex/sources/appendix-handbook/model-coherence.tex:27-27`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+\textbf{Authority and consumers.} The catalogue is an authored classification of the codebase. Repository accounting uses its component boundaries, while agent audits use its leaf and group zones. Documentation pointers give consumers an entry into the knowledge associated with a zone. The model does not extract the correct architecture from the implementation; engineers decide which boundaries and groupings are useful.
+```
+
+### RA-02 — A.3 — Accessibility Decision Policy
+
+- Source: `book/latex/sources/appendix-handbook/governance-conversion.tex:75-75`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+The resulting composition therefore preserves several different responsibilities. The VLM interprets context; the decision policy determines how uncertain evidence should affect action; the operation contract carries the proposal; the applier enforces selected restrictions; subsequent evaluation looks for remaining harm. A failure can motivate a change at any of those points. Treating them separately makes it possible to repair the faulty part without claiming that one more check settles the entire accessibility problem.
+```
+
+### RB-01 — B.1 — Getting Started
+
+- Source: `book/latex/sources/appendix-practicing-mage/getting-started.tex:7-7`
+- Source revision: `98b108497160f035c6b57da1dbaa2232f39dcc77`
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved prose-rhythm proposal; preserve substantive scope, citations, references, and declared claims.
+
+```latex
+Inventory the knowledge and enforcement you already have. A schema may reject invalid data; a permission may prevent a dangerous action; a test may expose a regression; a review may settle an ambiguous case. Determine which of these actually affects whether work proceeds. An adequate existing mechanism needs a place in the workflow, not a replacement bearing a new name. Where the obligation is already enforced economically, additional system modeling may contribute little. Where people repeatedly recover the same architectural relation, a small representation may help before any new gate is needed.
+```

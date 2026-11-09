@@ -24,7 +24,7 @@ Component(
 
 Other fields support shared-directory partitions, exclusions, read-first documentation, deployment artifacts, and declared imports. These are consequential distinctions. Two components may share a directory while owning different files; a file exclusion and a directory exclusion are not interchangeable; documentation for a neighboring component may be useful background without being mandatory reading for this one.
 
-**Authority and consumers.** The catalogue is an authored classification of the codebase. Repository accounting uses its component boundaries, while agent audits use its leaf and group zones. Documentation pointers give consumers an entry into the knowledge associated with a zone. The model does not extract the correct architecture from the implementation; engineers decide which boundaries and groupings are useful.
+**Authority and consumers.** Engineers choose the catalogue’s component boundaries and groupings as an authored classification of the codebase. Repository accounting uses its component boundaries, while agent audits use its leaf and group zones. Documentation pointers give consumers an entry into the knowledge associated with a zone.
 
 **Correspondence and Alignment.** Checks can establish narrower facts about those decisions. Declared paths should exist; service deployment files should be represented; an import should respect a declared boundary where that boundary is enforced. A component’s existence in the catalogue does not itself constrain imports. The import analysis and its configured admission consequence do that work.
 

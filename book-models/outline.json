@@ -1298,7 +1298,7 @@
           "section_id": "some-correspondence-remains-semantic",
           "level": 3,
           "heading_text": "Some correspondence remains semantic",
-          "topic_sentence": "Mechanical checks establish only the correspondences they evaluate.",
+          "topic_sentence": "Mechanical checks can determine whether an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current.",
           "id_source": "derived",
           "block_index": 55,
           "points": [
@@ -2408,7 +2408,7 @@
           "section_id": "use-prediction-error-as-evidence",
           "level": 3,
           "heading_text": "Use prediction error as evidence",
-          "topic_sentence": "Implementation eventually supplies measurements, and the useful comparison is not simply whether the result was fast.",
+          "topic_sentence": "Implementation eventually supplies measurements to compare with the model’s predictions.",
           "id_source": "derived",
           "block_index": 75,
           "points": []
@@ -2503,7 +2503,7 @@
           "section_id": "the-gee-as-a-distributed-cognitive-system",
           "level": 2,
           "heading_text": "Equip the Reasoner",
-          "topic_sentence": "Not every important judgment should become deterministic.",
+          "topic_sentence": "There are two complementary ways to improve recurring engineering work.",
           "id_source": "explicit",
           "block_index": 2,
           "points": []
