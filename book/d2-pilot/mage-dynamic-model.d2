@@ -1,0 +1,94 @@
+...@_house-style
+
+# Genre: causal-loop / system-dynamics model — one system, four dynamics. Forward causation plus
+# two genuine FEEDBACK loops (curved). Nodes: Agentic capacity EXERCISES the Governed environment G;
+# capacity also drives Agentic work; E SHAPES Realized performance; work + performance MISMATCH ->
+# Governance pressure -> Structural diagnosis -> Governance adaptation.
+# Numbered dynamics: (1) Bootstrap input (Prior knowledge seeds E); (2) Pressure/discovery;
+# (3) Governance-adaptation. Two loops close the system: [B] balancing — adaptation -> a better fit
+# (curved, up the right); [R] reinforcing — (4) Capability amplification, E -> Agentic capacity
+# (curved, across the top, purple). Bootstrap [1] is an INPUT, not a feedback loop.
+# FORBIDDEN: [B] and [R] are FEEDBACK, not forward stages; the numbered edges are dynamics, not a
+# strict sequence; Prior knowledge is a one-time seed, not a loop.
+
+style.fill: "#fdfcf9"
+grid-columns: 1
+grid-gap: 20
+
+title: "The MAGE Dynamic Model — one system, four dynamics" {
+  shape: text
+  style: { font-size: 19; bold: true; font-color: "#1c1917" }
+}
+
+g: "" {
+  style: { fill: transparent; stroke: transparent }
+  direction: down
+
+  prior: "" {
+    class: panel; grid-rows: 2; grid-gap: 0; width: 260; style.stroke: "#2f5169"
+    h: "Prior engineering knowledge" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 16; font-color: "#22384a" }; height: 24 }
+    d: "standards · requirements ·\nbrownfield assets · prior lessons" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+  cap: "" {
+    class: fleet; grid-rows: 2; grid-gap: 0; width: 220
+    h: "Agentic capacity" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 16; font-color: "#22384a" }; height: 24 }
+    d: "model capability ·\nconcurrency · raw velocity" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+  gee: "" {
+    class: modeling-head; grid-rows: 2; grid-gap: 0; width: 250
+    h: "Governed environment  G" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 17; font-color: "#17402a" }; height: 26 }
+    d: "representation quality · obligation\ncoverage · coherence · economy" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+  work: "" {
+    class: fleet; grid-rows: 2; grid-gap: 0; width: 220
+    h: "Agentic work" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 16; font-color: "#22384a" }; height: 24 }
+    d: "attempted change · task frontier" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 22 }
+  }
+  perf: "" {
+    class: panel; grid-rows: 2; grid-gap: 0; width: 250
+    h: "Realized performance" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 16; font-color: "#1c1917" }; height: 24 }
+    d: "durable throughput ·\ndefect escape · human attention" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+  pressure: "" {
+    class: churn; grid-rows: 2; grid-gap: 0; width: 420
+    h: "Governance pressure" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 17; font-color: "#b23b3b" }; height: 26 }
+    d: "churn · recurring failure · escaped defect ·\nrepeated intervention · control friction" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+  diag: "" {
+    class: panel; grid-rows: 2; grid-gap: 0; width: 420
+    h: "Structural diagnosis" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 17; font-color: "#1c1917" }; height: 26 }
+    d: "local defect · missing representation ·\nweak authority · stale mechanism?" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+  adapt: "" {
+    class: modeling; grid-rows: 2; grid-gap: 0; width: 420
+    h: "Governance adaptation" { style: { fill: transparent; stroke: transparent; bold: true; font-size: 17; font-color: "#17402a" }; height: 26 }
+    d: "represent · constrain · validate · strengthen · reconcile · retire\nchanges the shape of future work" { style: { fill: transparent; stroke: transparent; italic: true; font-size: 13; font-color: "#57534e" }; height: 38 }
+  }
+
+  prior -> gee: "1  bootstrap (input)" { style: { stroke: "#2f5169"; stroke-width: 2; font-color: "#22384a"; font-size: 14; italic: true } }
+  cap -> gee: "exercises" { class: flow }
+  cap -> work: "" { class: flow }
+  gee -> perf: "shapes" { class: flow }
+  work -> perf: "" { class: flow }
+  work -> pressure: "mismatch" { class: flow }
+  perf -> pressure: "" { class: flow }
+  pressure -> diag: "2  pressure / discovery" { style: { stroke: "#b23b3b"; stroke-width: 2; font-color: "#b23b3b"; font-size: 14; italic: true } }
+  diag -> adapt: "3  governance adaptation" { style: { stroke: "#1f7a4d"; stroke-width: 2; font-color: "#17402a"; font-size: 14; italic: true } }
+  adapt -> gee: "[B]  seeks better fit" { style: { stroke: "#155c38"; stroke-width: 2; font-color: "#155c38"; font-size: 14; italic: true } }
+  gee -> cap: "4  [R]  capability amplification\nbigger tasks · more concurrency" { style: { stroke: "#6d4ba8"; stroke-width: 2; font-color: "#6d4ba8"; font-size: 14; italic: true } }
+}
+
+legend: "" {
+  grid-columns: 1; grid-gap: 6
+  style: { fill: "#f6f4ef"; stroke: "#cfc9bf"; stroke-width: 1; border-radius: 8 }
+  row1: "" {
+    grid-columns: 4; grid-gap: 10; style: { fill: transparent; stroke: transparent }
+    l1: "1  Bootstrap (input) — prior knowledge seeds the environment" { style: { fill: transparent; stroke: transparent; font-size: 13; font-color: "#22384a" } }
+    l2: "2  Pressure / discovery — pressure reveals missing structure" { style: { fill: transparent; stroke: transparent; font-size: 13; font-color: "#b23b3b" } }
+    l3: "3  Governance-adaptation — diagnosis reshapes the environment" { style: { fill: transparent; stroke: transparent; font-size: 13; font-color: "#17402a" } }
+    l4: "4  Capability-amplification — a stronger environment enlarges ambition" { style: { fill: transparent; stroke: transparent; font-size: 13; font-color: "#6d4ba8" } }
+  }
+  row2: "[B] balancing — loops [2]+[3] seek fit, damping churn (goal-seeking).   ·   [R] reinforcing — loop [4] reopens the frontier.   ·   Loop [1] bootstrap is an input, not a feedback loop." {
+    style: { fill: transparent; stroke: transparent; font-size: 13; italic: true; font-color: "#57534e" }
+  }
+}

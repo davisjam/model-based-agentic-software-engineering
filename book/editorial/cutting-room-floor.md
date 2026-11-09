@@ -8441,3 +8441,2532 @@ The evidence has clear limits. This is one longitudinal production case led by o
 DocAble shows one deliberately engineered response to abundant realization. The factory therefore has to be evaluated as a production system, including the structures that direct and supervise realization, rather than by agent capability alone. The next question is whether independently developed agentic software factories exhibit the same pressures --- and that question does not depend on anyone else having heard of MAGE.
 
 ````
+
+
+## Chapter 6 compression — four propositions and three mathematical anchors (2026-11-09)
+
+Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. Removal revision: pending the integrating commit.
+
+The author requested a shorter theory chapter with four rich propositions. The revision consolidates repeated exposition and mathematical layers; it does not mark the archived material as rejected or authorize moving it elsewhere. The preserved originals below include the gate-error derivation, retry model, factory and marginal-cost equations, domain profile table, research optimization equations, former nine-hypothesis account, and the previously approved software-margin discussion. Corresponding content that remains in the chapter retains its most recent approved wording. The entire native files are archived so every cut remains recoverable with its citations, point IDs, labels, and surrounding argument.
+
+
+### Original `book/latex/sources/part6/00-part-intro.tex`
+
+Section: complete source file; lines 1–31. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `99c38c266a203faeb6d2b6cef5305e031336ba9831fe8b23bc4dc3d2c8e0fa64`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````latex
+% mage-auto-heading: the-synthesis
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: conversions-compound -->
+
+\magevalue{chapter:software-factories} provided two kinds of evidence. The DocAble case followed one system over time, showing how engineering problems prompted changes to its models and controls. The company accounts described related mechanisms built independently under different constraints. Neither establishes a universal law. Together, they help us identify the engineering choices and tradeoffs that MAGE must address.
+
+We begin with a general theory of how agentic capacity interacts with the governed engineering environment. The theory treats implementation capacity as an input, not an outcome: the same capacity can produce durable progress or merely accelerate churn depending on the representations, evidence, constraints, and controls through which it acts. Engineering pressure exposes mismatches. Engineers can diagnose them and turn what they learn into structure that later work inherits.
+
+We first state the theory and its predictions, then bound them with explicit scope conditions. MAGE costs something to build, maintain, coordinate, and govern, and not every engineering judgment can or should become durable machinery.
+
+The final section turns the theory, predictions, and scope conditions into a research agenda.
+
+The objective is to develop a theory of MAGE with testable predictions and explicit scope conditions, rather than claim that it is a universal law of software engineering---or of agentic work more generally. The evidence behind the theory comes from software engineering. The mechanisms are stated more generally because representation, enforcement, inherited structure, and the interaction between agentic capacity and its environment do not themselves require software. \magevalue{sec:scope-conditions} therefore asks not only when MAGE should work within software engineering, but what properties a domain must have for the account to transfer at all.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{The synthesis}\label{heading:the-synthesis}
+
+The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+
+This chapter widens the unit of analysis. It begins with production, independent assurance, and lifecycle cost, and then makes the engineered environment itself dynamic. The result is a theory of how Modeling, Alignment, process, and accumulated engineering structure convert agentic capacity into durable progress.
+\end{quote}
+
+\textbf{Carrying forward:} Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Probabilistic surface
+
+\textbf{New here:} Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Scope conditions · Testable predictions · Research agenda
+````
+
+
+### Original `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`
+
+Section: complete source file; lines 1–945. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `c717bbdaf2d163c1840685cbf85f044e97dd4dbaa51612ac94153192e09296e8`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````latex
+% mage-auto-heading: encoding-and-realization
+% mage-auto-heading: what-stronger-reasoners-can-supply
+% mage-auto-heading: the-limit-of-reliable-realization
+% mage-auto-heading: what-gets-through-the-gate
+% mage-auto-heading: the-sound-gate-case
+% mage-auto-heading: modeling-can-enable-alignment
+% mage-auto-heading: what-the-retry-model-explains
+% mage-auto-heading: the-cost-of-admission
+% mage-auto-heading: carrying-representation-and-buying-inference
+% mage-auto-heading: amortizing-judgment-across-tasks
+% mage-auto-heading: the-joint-engineering-problem
+% mage-auto-heading: capacity-fit-and-feedback
+% mage-auto-heading: theory-of-mage-informal
+% mage-auto-heading: where-engineering-can-apply-leverage
+% mage-auto-heading: what-makes-an-environment-effective
+% mage-auto-heading: outcomes-and-observables
+% mage-auto-heading: three-consequences-of-the-dynamic-model
+% mage-auto-heading: the-reasoning-horizon-proposition
+% mage-auto-heading: the-engineering-capital-proposition
+% mage-auto-heading: the-factorys-value-proposition
+% mage-auto-heading: two-margins-not-one
+% mage-auto-heading: the-idle-factory-still-depreciates
+% mage-auto-heading: what-the-changes-are-worth
+% mage-auto-heading: correctness-is-not-the-factorys-objective
+% mage-auto-heading: from-one-delegation-to-an-evolving-factory
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: A Theory of MAGE -->
+
+\chapter{A Theory of MAGE}
+
+% <!-- point: the-pieces-this-chapter-assembles | The software factory brings Modeling and Alignment together around two responsibilities: engineers encode consequential intent, and agents produce realizations that must fulfill it. -->
+
+A software factory must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. Within the software factory (\magevalue{chapter:software-factories}), engineers state consequential obligations and agents produce realizations that fulfill them.
+
+% <!-- point: the-starting-point-is-the-master-equation | The encoding–realization decomposition formalizes two responsibilities: engineers encode consequential intent, and agents fulfill it. The chain rule separates the factors; their response to engineering interventions requires empirical evidence. -->
+
+We can begin by separating those two responsibilities. Let \(E\) mean that the encoding captures the consequential intent and \(F\) that the resulting artifact fulfills the encoded obligations. For a representation \(R\), the probability of both is
+
+\[
+p_R = P(E \cap F \mid R) = \underbrace{P(E \mid R)}_{\substack{\text{Encoding: engineers state}\\\text{what must hold}}} \;\underbrace{P(F \mid E,R)}_{\substack{\text{Realization: agents fulfill}\\\text{those obligations}}}
+\]
+
+This \textbf{encoding–realization decomposition} is the chain rule; it requires no independence assumption. It tells us where to look for failure, but does not establish that a particular representation improves either factor. That requires evidence. Agents can help construct and revise the encoding, while engineers retain authority over the intent and agents retain freedom among acceptable realizations.
+
+% <!-- point: the-probabilities-belong-to-a-production-system | The probabilities belong to a production system: the factory of Chapter 5, redrawn with each step of the realization path carrying the probability that it succeeds and the encoded property also supplying the tolerance the result is evaluated against. | terms: tolerance -->
+
+\autoref{probability-in-the-software-factory} places the two terms on the software factory. The encoded property also supplies a tolerance against which the result can be checked independently of the agent that produced it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/probability-in-the-software-factory-13c48ad51e.pdf}
+\caption[Probability in the software factory --- encoding and realization, with the encoded property also supplying the tolerance]{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two factors condition on representation R, omitted here for legibility. Interpretation is a mechanism within realization. The encoded property also supplies an independently evaluable tolerance, so evidence and admission can govern it even when production fails.}
+\label{probability-in-the-software-factory}
+\end{figure}
+
+% <!-- point: the-chapter-progressively-widens-the-view | The argument follows one delegation through production, assurance, cost, and inheritance to the value of an evolving engineering system. -->
+
+Starting from one delegation, we can ask what makes it succeed, how failures are contained, what success costs, and what each change leaves for the next. These questions connect the equation to the cost and value of an evolving engineering system.
+
+\section{Encoding and Realization}\label{heading:encoding-and-realization}
+
+% <!-- point: p-r-factors-into-encode-interpret-realize | The chain rule separates encoding E from realization F without assuming independence. Interpretation, planning, implementation, and correction are mechanisms within realization; observed task correctness may include recovery of omitted intent. -->
+
+The two terms distinguish failures in what the factory was asked to produce from failures in producing it. Holding the task population and production setup fixed, \(R\) names the representation choice; probabilities range over the encodings and realizations produced through it. The two questions locate different engineering interventions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Encoding} --- does the representation capture the consequential intent the engineer authorizes?
+\item
+  \textbf{Realization} --- does the artifact fulfill the encoded obligations?
+\end{itemize}
+
+Realization includes interpretation, planning, implementation, and correction. An agent must recover enough meaning to act on the obligations, but an initially mistaken interpretation need not defeat the episode: a check, counterexample, or review can expose the error before delivery. The second term therefore includes the agent\textquotesingle s use of feedback and the tools around it, without requiring every intermediate reasoning step to be correct.
+
+The event \(E \cap F\) describes \emph{faithful production} through the representation. An agent may also recover an omitted obligation and produce correct code, so observed task correctness must be assessed separately from this production path.
+
+% <!-- point: the-encoding-term-is-also-a-human-channel | A representation can improve P(E | R) by helping the engineer express intent correctly even if conditional realization is unchanged; Modeling improves the human channel as well as the agent channel. -->
+
+The first term is easy to overlook in an agentic setting. Representation is not valuable only because a machine may interpret a structured model more reliably than prose. It can also help the engineer express the intended property correctly in the first place. Different representations make different distinctions visible, force different decisions to be made explicitly, and make omissions easier or harder to notice. A representation can therefore improve \(P(E \mid R)\) even if it leaves \(P(F \mid E,R)\) unchanged. This is one reason Modeling is an engineering activity rather than merely a technique for supplying context to an agent.
+
+% <!-- point: capable-agents-can-raise-the-encoding-term-through-feedback | Representation is not the only route to the encoding term: comprehension amplification returns evidence that a realization missed what the engineer meant, so capable agents can raise P(E | R) indirectly by making the encoding correctable. -->
+
+Representation is not the only route to that term. Because a realization that misses the engineer\textquotesingle s meaning is evidence about the encoding, the comprehension amplification of \magevalue{sec:the-dynamics-of-mage} can raise \(P(E \mid R)\) indirectly: capable agents return that evidence quickly enough for the engineer to encode the intent again.
+
+% <!-- point: the-two-factory-techniques-act-on-different-factors | Process design changes the conditions and cost of realization. Explicit tolerances help encode intent and make selected properties available for independent evaluation. | terms: tolerance -->
+
+Process design changes the conditions under which agents realize intent: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(F\mid E,R)\), its cost, or both. A better agent can improve the same term. Explicit tolerances help engineers state the intended property and make it available for independent evaluation. A check can then compare the realization with the represented tolerance, and a gate can reject work that violates it. This is the distinction between helping production succeed and governing what happens when it fails.
+
+\subsection{What stronger reasoners can supply}\label{heading:what-stronger-reasoners-can-supply}
+
+% <!-- point: interpretation-depends-on-how-much-inference-is-asked | Interpretation is one mechanism within realization, and its difficulty depends on how much inference the representation asks the agent to supply; familiar patterns can make sparse specifications useful. -->
+
+Within realization, interpretation depends on how much inference the representation asks the agent to supply. That burden varies across engineering tasks. A capable model has encountered many ordinary database interactions, standard algorithms, common framework idioms, and familiar architectural patterns. When the intended solution follows such patterns, the agent can supply much of the missing detail from what it already knows.
+
+% <!-- point: novelty-reduces-the-usefulness-of-the-agents-prior | Other things equal, novelty is one factor that reduces the usefulness of the agent's prior as a substitute for explicit representation: specification supplies explicit engineering intent where inference from prior patterns is least dependable. -->
+
+The situation changes as the intended approach becomes less conventional. Novel algorithms, unusual architectural constraints, domain-specific invariants, and decisions that deliberately depart from common practice provide less familiar structure for the agent to recover. Other things equal, the more novel the intended engineering decision, the less confidence we should place in correct interpretation of what has been left implicit. Specification substitutes explicit engineering intent for inference from prior patterns.
+
+% <!-- point: familiarity-solves-production-not-assurance | Familiarity solves the production problem but does not establish the property: unless the consequential property is represented, the environment cannot distinguish following the intended pattern from producing something that looks right. -->
+
+But familiarity solves only the production problem. It does not establish the property. If an agent usually interprets "connect this service to the database" in the conventional way, that prior may be entirely adequate for a prototype. If the production system depends on a particular transaction boundary, consistency property, authorization rule, or failure behavior, relying on the same prior provides no independent basis for determining that the obligation was preserved. The agent may probably do the familiar thing; unless the consequential property is represented, the engineering environment cannot reliably distinguish following the intended pattern from merely producing something that looks right.
+
+% <!-- point: learned-priors-do-not-supply-an-assurance-surface | Improved interpretation can raise realization probability without supplying independent assurance: learned priors do not retire explicit models or Alignment for consequential properties. -->
+
+\textbf{Familiarity is not assurance.} Better interpretation can raise \(P(F\mid E,R)\) without eliminating the role of explicit models or Alignment. Learned priors can reduce how much must be specified for realization. They do not by themselves provide an assurance surface for consequential properties.
+
+% <!-- point: process-design-cannot-discharge-a-natural-language-obligation | The same limit applies to process design: it improves how an agent interprets natural-language intent, but an obligation left in natural language may require another act of probabilistic interpretation to establish that the result satisfies it, so tolerance supplies an independently evaluable boundary instead. | terms: tolerance -->
+
+The same limit applies to the production conditions that improve interpretation. Better context, decomposition, tools, examples, and review can help an agent recover natural-language intent. Establishing that the result satisfies a natural-language obligation may still require another act of probabilistic interpretation. Where that evaluation relies on the same reasoning process, it can repeat the producer\textquotesingle s mistake. An independently evaluable tolerance gives the factory another basis for accepting or rejecting the realization.
+
+% <!-- point: interpretation-factor-is-conditional-on-familiarity | Familiarity changes the interpretation burden within realization, while independent assurance still requires evidence about the consequential property. -->
+
+Familiarity therefore affects the cost and reliability of realization; it does not determine which obligations the engineer should authorize or what evidence suffices to accept the result.
+
+% <!-- point: the-first-factor-sits-at-the-human-interface | Encoding failure belongs at the human/factory interface; failure to recover an encoded distinction belongs within realization. The entitlement example shows a representation unable to carry the required distinction. -->
+
+Encoding concerns what the engineering environment makes available; interpretation concerns what the agent recovers from it. The entitlement failure from \magevalue{chapter:modeling} illustrates the first problem. The scalar representation read each group\textquotesingle s unlimited flag and still returned a single finite sum: its output type had no place for the distinction. A reasoner using only that output could not distinguish unlimited entitlement from the finite sum it received. Repair required revisiting the representation or consulting information outside it.
+
+% <!-- point: capability-cannot-recover-unencoded-intent | Capability can help interpret difficult encodings and infer some omissions, but cannot establish private engineering intent without evidence. Modeling supports both expression and realization and can sometimes remove a recurring judgment. -->
+
+Capability can compensate for difficult interpretation and infer some omissions from surrounding evidence. It cannot establish which of several plausible obligations an engineer intended when the environment supplies no distinguishing information. Modeling improves realization economics both by helping humans state what they mean and by giving agents a better surface from which to recover it. A change of representation can also make a property mechanically decidable; the determinization frontier below develops that connection to Alignment.
+
+\subsection{The limit of reliable realization}\label{heading:the-limit-of-reliable-realization}
+
+% <!-- point: perfect-reasoner-bound | For fixed encoding quality, faithful-production probability approaches the encoding factor when conditional realization approaches one. This is not a bound on correct outputs obtained by recovering omitted intent. -->
+
+The limit case holds encoding quality fixed. As the conditional realization probability approaches one, faithful production approaches the encoding probability:
+
+\[
+\lim_{P(F\mid E,R)\to 1} p_R = P(E\mid R)
+\]
+
+This is a limit of the defined production path, not a bound on every correct output an agent might produce by recovering omitted intent. Nor does greater reasoning capability alone ensure perfect realization: tools, resources, and the surrounding process also matter. The engineering implication remains: reliable fulfillment of an encoded obligation does not establish that it was the right obligation. Engineers remain responsible for determining and externalizing what the work must satisfy.
+
+% <!-- point: perfect-fabrication-exposes-the-upstream-problem | Perfect fabrication does not eliminate the engineering problem upstream of fabrication — it exposes it: a stronger reasoner can reconstruct much, but does not supply private consequential knowledge that never entered the factory. -->
+
+Perfect fabrication still exposes the engineering problem upstream of fabrication. A stronger reasoner can recover conventions, inspect surrounding artifacts, search for analogous cases, and test hypotheses about what the engineer probably intended. Those capabilities can improve realization and help the engineer revise the encoding. They do not supply private consequential knowledge that never entered the factory.
+
+% <!-- point: fast-exposure-is-not-necessarily-a-defect | Fast exposure is not necessarily a defect: Agile exploits rapid fabrication for earlier feedback, and the danger depends on whether incorrect upstream assumptions are exposed by that feedback or survive it as latent failures — the coupling the dynamic model later makes explicit. -->
+
+This is not necessarily a defect. Agile practice exploits rapid fabrication precisely because working realizations can produce feedback sooner. The danger depends on whether incorrect upstream assumptions are exposed by that feedback or survive it as latent failures that surface only in production. Feedback of that kind does not contradict the bound. It exploits the coupling the dynamic model below makes explicit: each realization changes the engineering environment the next one inherits.
+
+% <!-- point: the-bound-limits-process-design-and-exposes-a-tolerance-limit | Improved realization cannot by itself validate an encoded obligation. A tolerance independently checks fulfillment, while the engineering decision expressed by that tolerance remains open to correction. | terms: tolerance -->
+
+In factory terms, process design can improve realization without validating the obligation being realized. A tolerance allows the factory to check fulfillment independently of the producer. The engineering decision expressed by that tolerance still needs scrutiny: a perfectly enforced but incorrect obligation remains incorrect.
+
+% <!-- point: the-bound-does-not-argue-for-complete-specification | The bound permits complete specification where it is appropriate, but where several realizations satisfy the obligations, delegated choice can avoid unnecessary specification work. Modeling and Alignment must preserve useful freedom under adequate control. -->
+
+Nor does the bound argue for complete specification. Some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. Elsewhere, specifying nearly every realization decision in advance recreates much of the specification cost discussed in \magevalue{chapter:software-factories}. More importantly, it sacrifices a major advantage of commodity intelligence: agents can explore implementation choices that engineers need not make themselves. The engineer can specify the consequential obligations, leave other choices open, and let the agent find a satisfactory realization. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the environment can preserve while maintaining adequate control.
+
+\section{Production and Assurance}\label{heading:modeling-and-alignment-are-distinctand-compound}
+
+% <!-- point: modeling-and-alignment-are-two-separable-effects | Modeling changes the representation used in production; Alignment supplies evidence and mechanisms that prevent or reject violations of selected obligations. -->
+
+Modeling and Alignment contribute to engineering reliability through different mechanisms. \textbf{Modeling} changes the representation used to produce a realization. \textbf{Alignment} supplies evidence about selected obligations and mechanisms that prevent or reject violations. Either can produce value without the other.
+
+% <!-- point: either-lever-works-without-the-other | A model can help without enforcing; a mechanism can govern even when the producer never sees the rule. -->
+
+A model can reduce reconstruction and make satisfactory realization easier without enforcing anything. Conversely, an Alignment mechanism can govern an obligation even when the producing agent never sees the representation or rule from which the mechanism decides. A type can exclude an invalid state, a sandbox can deny a capability, and a gate can reject a forbidden dependency after checking it against the obligation, even if the agent repeatedly proposes it.
+
+Consider a simple architectural obligation: service A may not depend directly on service B.
+
+% <!-- point: two-problems-help-the-agent-vs-block-the-forbidden | Two distinct problems: help the agent produce acceptable work, and ensure the forbidden result cannot enter regardless. -->
+
+One engineering problem is helping an agent understand the relevant architectural structure well enough not to propose the forbidden dependency. A useful structural model may make acceptable realizations easier to produce. A different engineering problem is ensuring that the forbidden dependency cannot enter the system even when the producer gets that relationship wrong. An independent admission check can provide that guarantee.
+
+% <!-- point: fabricator-and-tolerance-act-differently-on-the-same-system | Improving the fabricator can reduce incorrect candidates; improving evidence and admission can reduce how many of them enter the system. | terms: tolerance -->
+
+To compare these interventions, we need to distinguish errors in production from errors in admission. Improving the fabricator may reduce the number of incorrect candidates presented to the gate. Improving the evidence and admission mechanism may reduce how many of those candidates enter the system.
+
+\subsection{What gets through the gate}\label{heading:what-gets-through-the-gate}
+
+% <!-- point: p-and-q-are-different-quantities | Independently assessed correctness s differs from faithful production p_R. Assurance has both escape q and false rejection r; together with s they determine the fraction rho of admitted work that is incorrect. -->
+
+To assess the result, we need a standard of correctness independent of the gate. Let \(S\) mean that a candidate satisfies independently established acceptance criteria, and write \(s=P(S)\). This differs from \(p_R\), the probability of faithful production through the encoding: an agent might recover an omitted obligation, or a gate might faithfully check an obligation that was wrong. Passing the gate alone cannot settle whether the work is correct.
+
+A gate has two ways to get its decision wrong. It can admit an incorrect candidate, or it can reject a correct one. Let \(B\) denote admission, keeping \(A\) for the Alignment strategy. Over the candidate population presented to the gate, define
+
+\[
+q=P(B\mid\lnot S), \qquad r=P(\lnot B\mid S).
+\]
+
+The \textbf{escape rate} \(q\) asks how much incorrect work gets through; the \textbf{false-rejection rate} \(r\) asks how much correct work gets turned away. Neither alone answers the question a downstream user cares about: how much of the admitted work is incorrect? That fraction is
+
+\[
+\rho=P(\lnot S\mid B)
+=\frac{(1-s)q}{s(1-r)+(1-s)q}.
+\]
+
+The numerator counts the probability of admitting incorrect work; the denominator includes all admitted work. Better production raises \(s\), while better assurance can lower \(q\). False rejection matters too: a gate that turns away useful work can increase repair and review costs, and changes the mix of what remains admitted. Rejecting everything delivers nothing and leaves \(\rho\) undefined. These quantities describe a fixed task population and production setup; comparing them across unrelated kinds of work would hide the engineering differences we want to understand.
+
+\subsection{The sound-gate case}\label{heading:the-sound-gate-case}
+
+% <!-- point: a-sound-gate-blocks-covered-failure-regardless-of-producer | An Alignment strategy A implemented by a sound independent gate blocks covered failures regardless of how the producer reasoned. | terms: tolerance -->
+
+Let \(A\) denote the Alignment strategy, here implemented by an independent admission mechanism. In the factory vocabulary of \magevalue{chapter:software-factories}, \(A\) is part of the machinery by which a selected tolerance becomes consequential: evidence establishes whether the realization remains within the represented acceptable region, and admission determines what happens when it does not. In the strongest region of Alignment, suppose \(A\) is a sound deterministic predicate for the covered obligation: an unacceptable candidate cannot pass. Then
+
+\[
+P(\text{covered failure admitted}\mid A)=0
+\]
+
+% <!-- point: the-guarantee-is-independent-of-the-producers-reasoning | Alignment makes consequence independent of whether the producing reasoner got the covered judgment right. -->
+
+That guarantee does not require the producer to reason well about the obligation. The agent can be shown no structural model at all, repeatedly propose forbidden dependencies, and still be prevented from merging them. Alignment can make consequence independent of whether the producing reasoner got the covered judgment right.
+
+% <!-- point: hiding-the-model-does-not-weaken-the-gate-only-raises-cost | Hiding the model does not weaken a perfect gate; exposing a useful model can reduce the cost of reaching an acceptable candidate. -->
+
+Suppose the architectural rule is checked perfectly at merge time. Hiding the structural model from the agent does not weaken the gate: forbidden changes still cannot merge. But the agent may repeatedly reconstruct the architecture incorrectly and collide with that gate. If the model helps the agent recover the rule, exposing it can reduce the cost of reaching an admissible candidate while leaving the guarantee unchanged.
+
+% <!-- point: alignment-protects-the-boundary-modeling-reduces-collisions | Alignment protects the boundary independently of the producer; Modeling can reduce collisions with it. -->
+
+\textbf{Alignment protects the boundary; Modeling can reduce how often work collides with it.}
+
+% <!-- point: modeling-acts-before-admission-alignment-at-it | Modeling can act at several stages before admission — stating intent, recovering it, easing realization — while Alignment acts afterward or alongside realization by determining whether covered failures can acquire consequence. -->
+
+The division can be stated by stage. Modeling can act at several points before admission: helping engineers state consequential intent, helping reasoners recover it, and making satisfactory realization easier. Alignment acts afterward or alongside realization, by determining whether a covered failure can acquire consequence.
+
+We can distinguish four combinations of Modeling and Alignment in this sound-gate case (\autoref{modeling-alignment-quadrants}). The Alignment column assumes that the admission mechanism excludes the covered failure; the contribution of Modeling is to help the producer reach an acceptable realization.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[The four Modeling × Alignment combinations]{\emph{Modeling and Alignment are separable levers.} Modeling changes the economics and tractability of reasoning; Alignment changes whether the result can acquire consequence. The cells describe their primary contributions, not an exhaustive account.}\label{modeling-alignment-quadrants}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modeling ↓ / Alignment →
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No Alignment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modeling ↓ / Alignment →
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No Alignment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Alignment
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{No Modeling} & Repeated reasoning from a poor surface; residual failure can escape & Covered failure cannot escape, but rejection and regeneration may be expensive \\
+\textbf{Modeling} & Satisfactory realization becomes cheaper or more likely, but residual failure can still escape & Satisfactory realization becomes cheaper while covered failure remains independently blocked \\
+\end{longtable}
+}
+
+% <!-- point: modeling-changes-economics-alignment-changes-enforcement | The table is schematic rather than exhaustive: Modeling may itself improve reliability, and Alignment mechanisms may be statistical rather than deterministic. -->
+
+The table is schematic rather than exhaustive. Modeling may itself improve reliability, and Alignment mechanisms may be statistical rather than deterministic.
+
+\subsection{Modeling can enable Alignment}\label{heading:modeling-can-enable-alignment}
+
+% <!-- point: modeling-can-turn-a-semantic-obligation-into-a-checkable-one | Modeling can turn a semantic obligation into a checkable one by changing the object over which it is decided. -->
+
+Modeling can also expand what Alignment can check. Some obligations can already be checked mechanically, and Alignment can govern them directly. Others are semantic only because the relevant state must be reconstructed from lower-level implementation. Suppose the architecture requires every route to a remediation service to cross quota authorization: reasoning from implementation means reconstructing routes from handlers, middleware, configuration, and dependency injection, but representing the permitted routes explicitly turns the obligation into a graph question---does every allowed path cross the quota boundary? The property did not become less consequential; Modeling changed the object over which it is decided, turning a repeated semantic judgment into a checkable property.
+
+% <!-- point: two-kinds-of-hard-judgmental-vs-wrong-representation | Two kinds of hard question look alike in code: intrinsically judgmental, or buried in the wrong representation. -->
+
+Some engineering questions are hard because the answer requires judgment. Others are hard because the information needed to answer them is buried in the wrong representation. Both look like reasoning problems when viewed from source code, but their engineering possibilities differ.
+
+Better representation can support a genuinely judgmental decision without eliminating the judgment. But when an obligation becomes mechanically decidable once the relevant structure is explicit, Modeling moves that decision from repeated inference into repeatable machinery.
+
+% <!-- point: determinization-frontier-defined | The determinization frontier separates judgment supplied per instance from judgment the environment can carry repeatably — in factory terms, an economic boundary between judgments still bought probabilistically through the production process and properties made durable as tolerances. | terms: tolerance -->
+
+The \textbf{determinization frontier} separates judgments that must be supplied per instance from judgments the environment can carry repeatably. Alignment can mechanize an obligation that is already decidable. Modeling can move the frontier by changing the representation until a previously reconstructed property becomes decidable (\autoref{determinization-frontier}). Read in factory terms, that separation is partly economic. On one side sit the judgments a factory continues to buy probabilistically through its production process; on the other, the properties it has chosen to represent explicitly and carry as durable tolerances.
+
+% <!-- point: docable-default-everything-deterministic-was | DocAble's default: everything that could be deterministic was; commodity intelligence only where the problem requires semantic judgment. -->
+
+My default in DocAble was simple: everything that could be deterministic was. I would rather have a deterministic result I can rely on than a probabilistic result where the problem does not require judgment. Heading structure, file metadata, schema validity, and similar properties can be checked directly. Writing useful alternative text cannot. The determinization frontier separates those cases: use commodity intelligence where semantic judgment is required; use deterministic machinery where it is not.
+
+% <!-- point: moving-the-frontier-reduces-the-probabilistic-surface | Moving the frontier reduces the probabilistic surface without making the agent deterministic or removing realization freedom. -->
+
+Moving the frontier reduces the probabilistic surface: fewer consequential judgments depend on the agent getting them right. It does not make the agent deterministic, and it does not require eliminating implementation freedom. The environment can tightly govern what must be true while leaving the agent free to choose among many acceptable realizations.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/determinization-frontier-39a0624cba.pdf}
+\caption{\emph{The Determinization Frontier.} Alignment can bind a property that is already decidable. Modeling can change the representation so that a property previously requiring semantic reconstruction becomes decidable and can then be bound by Alignment. Both routes move repeated judgment into machinery.}
+\label{determinization-frontier}
+\end{figure}
+
+% <!-- point: the-frontier-moves-incrementally | The frontier moves incrementally: from prose to invariant to bounded-model checking to temporal specification. -->
+
+The frontier can move incrementally: from prose judgment to an explicit invariant; from an invariant to exhaustive checking over a bounded state model; or, for temporal claims, to a specification over executions.
+
+% <!-- point: at-the-limit-realization-becomes-transformation | At the limit a complete realization model makes realization a transformation, connecting MAGE to model-based engineering. -->
+
+At the limit, a sufficiently complete realization model leaves little consequential freedom: realization becomes a transformation problem, and deterministic generation may be preferable to an agent. This limiting case connects MAGE to conventional model-based engineering; \magevalue{sec:software-rejoins-engineering} returns to the relationship. Most software systems occupy a different point in the design space. Engineering specifies what must be true; many implementation choices remain acceptable. Commodity intelligence makes it economical to let autonomous realization choose among them.
+
+\section{The Cost of Successful Production}\label{heading:cost-and-failure-separately}
+
+% <!-- point: lifecycle-cost-counts-correct-delivery | Cost per correct admitted change divides construction, execution, and upkeep costs by independently verified correct deliveries within a declared horizon, charging unsuccessful work as well. -->
+
+The engineering question is what useful delivery costs. A cheap attempt may leave an engineer with hours of repair; an expensive model may support hundreds of later changes. To compare those arrangements, we need to count the work that went into delivery, including the work that never produced an acceptable result.
+
+For \(N\) requested changes, let \(D_N\) count the changes independently verified as correct and admitted within a declared evaluation horizon. Each requested change can include several attempts. The total cost and the cost per correct admitted change are
+
+\[
+C_N=C_{\text{build}}+\sum_{i=1}^{N}\bigl(C_{\text{run},i}+C_{\text{carry},i}\bigr),
+\qquad c_N=\frac{C_N}{D_N},\quad D_N>0.
+\]
+
+Construction covers the initial investment in the engineering environment. Running costs include production, checking, human review, and repair across all attempts; carrying costs cover the upkeep needed to keep the environment useful. A failed or abandoned task still contributes its costs to the numerator. If nothing correct is delivered, report that result and the expenditure rather than assigning a cost per delivery. Shared costs need an explicit allocation over the work being compared, and human effort and machine expenditure need declared valuations before they can be added. Elapsed time remains a separate outcome.
+
+This accounting does not assume that tasks cost the same, that retries are independent, or that the environment stands still. It does require comparable work. A factory that accepts only easy changes may have an attractive \(c_N\) while leaving the important requests unfinished. Comparisons should therefore hold the requested work and evaluation horizon fixed, report what was delivered and left unresolved, and retain \(s\), \(q\), \(r\), and \(\rho\) alongside cost. Later, the factory's value proposition asks what those deliveries were worth.
+
+\subsection{What the retry model explains}\label{heading:what-the-retry-model-explains}
+
+% <!-- point: modeling-lowers-expected-cost-of-acceptable-realization | The retry model is a special case: independent resets of the whole delegation episode with fixed success probability p_R and expected attempt cost c_R give expected faithful-production cost c_R/p_R. -->
+
+A simpler retry model helps explain why the cheapest attempt need not give the cheapest result. Let \(c_R\) be the expected cost of one delegation attempt and \(p_R>0\) its probability of faithful production. If independent attempts repeat the whole episode with the same probability and expected cost, then
+
+\[
+\bar C_{\text{realize}}(R)=\frac{c_R}{p_R}.
+\]
+
+% <!-- point: the-ratio-matters-more-than-either-term | A more expensive attempt can cost less per successful result when its probability of success rises sufficiently; this retry illustration excludes separately counted construction and upkeep. -->
+
+Halving attempt cost and doubling success probability have the same effect on this quantity, where doubling remains possible. A representation can therefore make each attempt more expensive yet reduce the expected cost of success. This illustration leaves construction and upkeep outside the attempt cost; the lifecycle accounting above brings them back into the comparison.
+
+The retry boundary matters. Repeatedly generating code from the same incorrect specification does not give the encoding another chance to be correct. With a validated encoding held fixed, the implementation retry denominator is instead \(P(F\mid E,R)\), and the attempt cost covers only that repeated work. In practice, feedback often changes the specification, the tools, or the next attempt. Those changes belong in the observed delivery costs rather than being forced into a fixed-probability retry model.
+
+\subsection{The cost of admission}\label{heading:the-cost-of-admission}
+
+% <!-- point: assurance-without-modeling-can-be-expensive | Validation, false rejection, and repair belong in running cost. Only a sound and complete gate for the assessed obligation makes admission coincide with correctness for that obligation. -->
+
+Admission adds the cost of gathering evidence and acting on it. A gate can provide the same protection while one representation causes agents to collide with it much more often than another. Each rejected candidate may require further inference, diagnosis, or human attention. These costs belong in \(C_{\text{run},i}\), whether the rejection catches a real defect or mistakenly turns away correct work.
+
+% <!-- point: same-guarantee-different-cost-over-different-surfaces | Lower escape need not imply economical delivery; false rejection and repeated collisions can raise cost while the covered guarantee remains unchanged. -->
+
+Only a sound and complete gate for the assessed obligation makes admission coincide with correctness for that obligation. Ordinary engineering controls may miss failures or reject useful work. Measuring both kinds of error keeps a reduction in escape from concealing a costly loss of delivery. It also exposes the value of supplying a model to the producer: fewer collisions can make the same assurance economical.
+
+\subsection{Carrying representation and buying inference}\label{heading:carrying-representation-and-buying-inference}
+
+% <!-- point: carrying-cost-completes-the-comparison | Construction and carrying costs apply to every structure kept useful, and a representation earns them only through sufficient benefit over its useful life. -->
+
+Carrying cost completes the comparison. \magevalue{chapter:software-factories} showed factories preserving engineering knowledge in models, instructions, policies, skills, tests, generated configuration, and context systems. All require some effort to remain useful as the software changes. A structured model earns its construction and upkeep when it reduces later reconstruction, realization, failure, or assurance costs enough over its useful life. For a simple or infrequent task, a natural-language description may already do that job at very little cost.
+
+% <!-- point: representation-trades-against-reasoning-capability | A representation can change the problem a reasoner must solve; a stronger reasoner can instead reconstruct the needed relationships on each task. The economic comparison includes both recurring inference and durable structure. -->
+
+Representation also trades against reasoning capability. Suppose an agent repeatedly reconstructs service dependencies from code and configuration. A stronger reasoner may perform that reconstruction adequately on each task. A trustworthy dependency model may instead make the relationships available directly, allowing a cheaper reasoner to do the work. One arrangement pays repeatedly for inference; the other pays to preserve and maintain the relationship. Neither is preferable without knowing how often the question recurs and how much the representation helps.
+
+% <!-- point: representation-precedes-model-selection | Before buying more inference, ask whether a better representation would make the problem available to a cheaper reasoner. -->
+
+In DocAble this became a practical cost rule: improve the representation before buying more inference. Before asking which reasoner should solve a problem, ask what representation would make the problem available for reasoning. The rule invites an engineering comparison; it does not require a new model for every task.
+
+% <!-- point: capacity-moves-both-sides-of-the-investment | Greater implementation capacity can justify richer engineering structure while reducing its construction and carrying costs. -->
+
+Commodity intelligence changes both sides of this investment. Greater implementation capacity can justify richer engineering structure, while the same capacity can help construct and maintain it. The cost of carrying the environment is therefore not fixed independently of the capacity acting through it.
+
+% <!-- point: expensive-reasoners-are-a-prediction-of-the-theory | Repeatedly purchasing capable reasoning can substitute for some explicit representation; the vendor-factory question is how much structure this can economically replace. -->
+
+This gives the vendor factory of \magevalue{chapter:software-factories} a place in the theory. A capable fabricator and generic supervisory machinery may economically replace some structure that a weaker reasoner would need. How much can they replace, and for which obligations? That question connects the choice of representation to the research agenda without assuming that either richer models or stronger agents must always win.
+
+% <!-- point: not-every-recurring-judgment-should-become-a-model | Recurrence alone does not warrant a model; its benefits must justify construction, maintenance, and the loss of useful freedom. -->
+
+Recurrence alone does not warrant a model. The comparison also depends on consequence, construction and maintenance costs, and any useful freedom the representation or its enforcement removes.
+
+\subsection{Amortizing judgment across tasks}\label{heading:amortizing-judgment-across-tasks}
+
+% <!-- point: repeated-use-amortizes-judgment | Repeated use spreads construction cost across deliveries while reusing the judgment embodied in the environment; upkeep and depreciation determine whether that investment continues to pay. -->
+
+Repeated work changes the economics because later tasks can reuse earlier judgment. One policy can shape thousands of changes; one learned constraint can protect every later task to which it applies. In the lifecycle account, \(C_{\text{build}}\) is spread across more deliveries while running and carrying costs continue to accumulate. The savings depend on whether later work actually benefits and whether the structure remains worth maintaining. This is what it means to \textbf{amortize judgment}.
+
+% <!-- point: the-decomposition-explains-factory-variation | Factories can spend on representation, capability, or supervision; compare delivered work, assurance, lifecycle cost, and the knowledge preserved for later tasks. -->
+
+The factories in \magevalue{sec:mage-in-the-wild} make different choices about where engineering knowledge lives and what their agents must reconstruct. A factory may spend on explicit representation, reasoner capability, human supervision, or some combination. We can compare what those arrangements deliver, what escapes their assurance, and what they cost, while asking what engineering knowledge survives for the next task.
+
+\subsection{The joint engineering problem}\label{heading:the-joint-engineering-problem}
+
+% <!-- point: objective-is-an-economical-division-of-labor | Engineers seek an economical division of labor among reasoner, environment, and remaining human judgment, with useful delivery and failure consequence included. -->
+
+The objective is an economical division of labor among the reasoner, the environment, and the human judgment that remains. Cost per correct delivery gives us one way to compare arrangements, but it does not price the consequences of admitted failures or establish that the delivered change was worth making. A cheap billing change that occasionally corrupts invoices may be a poor bargain.
+
+% <!-- point: engineer-jointly-chooses-representation-and-alignment | Choosing representation and Alignment jointly requires comparing lifecycle cost and expected failure loss at matched delivered work and quality. -->
+
+For comparable delivered work, the engineer chooses representation \(R\) and Alignment strategy \(A\) together, considering lifecycle expenditure and expected failure loss. Modeling changes the difficulty and cost of production; Alignment changes which failures can enter the system. Both require construction and upkeep. The factory-value model below develops this comparison across a stream of changes.
+
+% <!-- point: schematic-both-levers-carry-construction-and-carrying-cost | High-assurance settings may impose a bound on admitted risk rather than price every failure; sound deterministic gates can exclude covered failures without guaranteeing all obligations. | terms: tolerance -->
+
+In a high-assurance setting, some risks are better expressed as requirements than traded against price. An engineer might require \(\rho\le\varepsilon\) while demanding a specified amount of delivery, then seek the least costly arrangement meeting both requirements. A sound deterministic gate can exclude a covered failure class even while production remains probabilistic. It does not establish that every consequential obligation has been covered.
+
+\section{The Evolving Engineering Environment}\label{heading:the-dynamic-model}
+
+\subsection{What one change leaves for the next}\label{heading:software-engineering-changes-the-problem}
+
+% <!-- point: se-needs-a-model-where-each-realization-changes-the-next | Software engineering extends the episode model: each realization becomes structure inherited by the next. -->
+
+Software engineering extends the model beyond one episode: each realization changes the conditions inherited by the next. Winters et al. characterize software engineering as "programming integrated over time": software is developed, modified, and maintained as both the system and its environment change.\citep{winters2020} One realization therefore becomes part of the architecture, conventions, representations, tests, and other structure inherited by subsequent work. A good change can make later work easier to reason about; a locally acceptable but structurally poor change can make it harder.
+
+% <!-- point: simple-models-isolated-repeated-exposure-under-fixed-conditions | Lifecycle accounting totals work and costs; the dynamic model explains how earlier work changes later production conditions. -->
+
+The lifecycle account totals the work and its costs. It does not yet explain how earlier work changes the conditions for later production. Software engineering requires that further step: each change can alter both the system being built and the environment used to build it.
+
+% <!-- point: creation-and-change-share-one-factorization | The factorization describes one realization whether it creates a system or changes one; change differs because it inherits architecture, representations, conventions, obligations, tests, and capital from earlier work. -->
+
+\textbf{Creation and change.} A change inherits architecture, representations, conventions, obligations, tests, and engineering capital produced by earlier work.
+
+% <!-- point: independence-omits-the-inherited-environment | Independence omits the inherited environment; success at each step depends on the environment carried into it. -->
+
+Let \(T_i\) be the task at step \(i\), \(M\) the reasoning model, \(R_i\) the representation supplied for that task, and \(H\) the harness and process. The probability of faithful production at that step is
+
+\[
+p_i = p(T_i, M, R_i, H, \mathcal{G}_i)
+\]
+
+where \(\mathcal{G}_i\) is the governed engineering environment inherited at that step. The resulting realization \(a_i\) then helps determine the environment available to subsequent work:
+
+\[
+\mathcal{G}_{i+1} = f(\mathcal{G}_i, a_i)
+\]
+
+% <!-- point: creation-is-the-boundary-case-of-change | Creation is realization from an initial environment, change is realization given an inherited one, and each realization determines the environment later work inherits — so the factory produces a sequence of changes, not independent realizations. -->
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Creation} --- satisfactory realization from an initial engineering environment \(\mathcal{G}_0\).
+\item
+  \textbf{Change} --- satisfactory realization \(a_i\) given the inherited environment \(\mathcal{G}_i\).
+\item
+  \textbf{Inheritance} --- realization \(a_i\) changes the environment available to later work, \(\mathcal{G}_{i+1} = f(\mathcal{G}_i, a_i)\).
+\end{itemize}
+
+The factory therefore produces a sequence of changes, not independent realizations.
+
+% <!-- point: coupling-creates-path-dependence-decay-self-reinforcing | The coupling creates path dependence: poor structure makes good realization harder, and decay can become self-reinforcing. -->
+
+This coupling creates path dependence. A locally acceptable change can increase architectural irregularity, obscure structure, or introduce inconsistent conventions, leaving later agents a worse reasoning surface. A change that improves representations, architecture, constraints, or other engineering capital can instead make later work easier to reason about and govern.
+
+% <!-- point: independent-vs-dynamic-model-answer-different-questions | The independent model isolates repeated exposure; the dynamic model preserves the coupling between realizations and environments. -->
+
+The fixed-condition retry model isolates repeated probabilistic exposure; the dynamic model preserves the relationship between successive realizations and the environments they create. The feedback loops in \autoref{mage-dynamic-model} explain how that environment can improve or deteriorate.
+
+\subsection{Capacity, fit, and feedback}\label{heading:capacity-fit-and-feedback}
+
+% <!-- point: central-claim-capacity-acts-through-the-environment | The central claim: agentic capacity does not determine engineering progress by itself — it acts through the engineered environment, which turns the same capacity into durable progress or into rework, escaped defects, and repeated intervention. -->
+
+Agentic capacity acts through the environment inherited at each step. The same implementation capacity can produce durable progress in one environment and accelerate rework, escaped defects, and repeated human intervention in another. Engineers can diagnose recurring problems and improve the inherited structure; as the environment improves, larger tasks and greater autonomy become feasible, exposing the next frontier.
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsubsection{Theory of MAGE --- informal}\label{heading:theory-of-mage-informal}
+
+Agentic capacity does not by itself produce engineering progress. It magnifies the fit---or misfit---between the work attempted and the engineered environment that surrounds it.
+\end{quote}
+
+% <!-- point: dynamic-model-capacity-environment-produce-performance | Engineering outcomes depend on the interaction between agentic capacity and the governed environment through which it acts; together they shape durable throughput, defect escape, and attention consumed. -->
+
+Engineering outcomes depend on the interaction between agentic capacity and the environment in which that capacity operates. \textbf{Agentic capacity} supplies model capability, concurrency, and raw implementation rate. The \textbf{governed engineering environment} supplies the representations, constraints, evidence, and enforcement through which that capacity acts. Together they shape three outcomes: durable throughput, defect escape, and human attention consumed per unit of useful output. \autoref{mage-dynamic-model} draws the interaction and its feedback dynamics.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-dynamic-model-62588a5597.pdf}
+\caption{\emph{The MAGE Dynamic Model.} Agentic capacity acts through a governed engineering environment. Mismatch creates governance pressure; diagnosis and adaptation can improve the environment inherited by later work. The balancing loop seeks fit, while capability amplification reopens the frontier as stronger environments support more ambitious work. Prior engineering knowledge seeds the system before failure occurs.}
+\label{mage-dynamic-model}
+\end{figure}
+
+% <!-- point: mismatch-shows-as-symptoms-that-need-diagnosis | Mismatch shows as churn, escaped defects, and friction; symptoms signal a problem but not which one. -->
+
+When the environment does not fit the work, the mismatch becomes visible as churn, recurring failures, escaped defects, repeated intervention, or friction from the controls themselves. These symptoms reveal a mismatch, but not its cause. Engineers must still diagnose whether the problem is local or structural. That diagnosis drives the change to the environment, which shapes the next round of work.
+
+% <!-- point: feedback-structure-knowledge-work-gaps-diagnose-improve | The feedback loop: prior knowledge seeds the environment; work exposes gaps; diagnosis improves it; ambition repeats. -->
+
+Prior engineering knowledge seeds the environment. Work exposes gaps between what the task requires and what the environment supports; diagnosis can turn those gaps into changes to the shared environment. As that environment supports more ambitious work, new gaps appear.
+
+% <!-- point: cybernetic-heritage-good-regulator | The feedback structure has a cybernetic heritage; Conant and Ashby's good regulator theorem connects regulation to representation — the regulated object changed, but the model-regulation link remains. -->
+
+This feedback structure has a precedent in cybernetics, which studied how regulators use information about a system to keep its behavior within acceptable bounds. Conant and Ashby\textquotesingle s good regulator theorem makes representation central: under its assumptions, the simplest optimal regulator must embody a model of the system it regulates.\citep{conant-ashby}
+
+% <!-- point: environment-represents-observes-adapts | The environment represents consequential properties, observes work, and changes when its representations or controls prove inadequate. -->
+
+MAGE applies this regulatory view to software engineering. The environment represents consequential properties of the system and its engineering process, observes what happens during the work, and changes when its representations or controls prove inadequate. The recurring question is simple: what must the environment know in order to govern the work?
+
+% <!-- point: two-routes-to-durable-structure | Durable structure has two routes: before failure from known obligations, after experience from use (governance conversion). -->
+
+Not all useful structure is discovered through failure. Existing architecture, standards, requirements, operating history, and lessons imported from earlier systems can seed the environment before an agent acts. Other needs become visible only in use. Durable structure can enter the environment \textbf{before failure}, when engineers encode known obligations or representations, or \textbf{after experience} exposes recurring costs or risks. Governance conversion names the latter route.
+
+% <!-- point: adaptation-needs-diagnosis-and-a-path-to-the-shared-environment | Adaptation reaches the shared environment only with structural diagnosis and a path with authority to change it. -->
+
+Two conditions determine whether adaptation reaches the shared environment:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Diagnosis.} Someone must recognize that the pressure is structural rather than local.
+\item
+  \textbf{Authority.} That diagnosis must have a path into the shared architecture, models, mechanisms, or infrastructure.
+\end{enumerate}
+
+Without diagnosis, engineers may respond to symptoms without addressing their structural causes. Without authority to change the shared environment, even a correct diagnosis may result only in a local repair. \magevalue{sec:scope-conditions} treats both as scope conditions.
+
+\subsection{Where Engineering Can Apply Leverage}\label{heading:where-engineering-can-apply-leverage}
+
+% <!-- point: leverage-has-several-intervention-points | The dynamic model exposes five intervention points: reasoning model, harness, process, representation, and evidence; the latter four can improve outcomes without increasing model capability. -->
+
+The dynamic model identifies five intervention points. Changing the reasoning model is one; the other four can improve outcomes without increasing its capability:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the reasoning model;
+\item
+  the context, tools, memory, or harness through which it works;
+\item
+  the process that decomposes, coordinates, reviews, and approves work;
+\item
+  the representations over which consequential reasoning occurs; and
+\item
+  the evidence and controls that determine which results acquire consequence.
+\end{enumerate}
+
+These interventions can substitute for or complement one another. A stronger reasoner may need less support from its environment; a better representation may make the same task tractable for a weaker reasoner; a stronger admission mechanism may tolerate a less reliable producer.
+
+% <!-- point: factory-constructs-map-into-the-theory | The factory of Chapter 5 and the constructs of the theory name the same production system: each modeled quantity has a factory reading, and the categories overlap because one mechanism can serve more than one engineering role. -->
+
+The theory models these intervention points. \autoref{factory-theory-mapping} reads each of them back onto the factory \magevalue{chapter:software-factories} described.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Mapping the software factory into the theory]{\emph{Mapping the software factory into the theory.} \magevalue{chapter:software-factories} described the production system; the theory models selected quantities within it. Process design acts primarily through H and the conditions affecting production. Tolerance is represented through consequential properties in R, the evidence and enforcement supplied by A, and the residual escape probability q. The categories overlap because factory mechanisms can serve more than one engineering role.}\label{factory-theory-mapping}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modeled construct
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meaning in the theory
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Factory role
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Principal effect
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modeled construct
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meaning in the theory
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Factory role
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Principal effect
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(T\) --- task & Engineering work to be realized & The controlled change entering the factory & Determines what must be produced and which obligations apply \\
+\(M\) --- reasoning model & Capability of the reasoner performing delegated work & The capability of the fabricator & Changes how reliably and cheaply intent can be interpreted and realized \\
+\(R\) --- representation & Engineering information made available for reasoning & A way of carrying engineering knowledge and selected product tolerances & Changes what must be reconstructed through inference and what can be reasoned about explicitly \\
+\(H\) --- harness and process & Context, tools, decomposition, routing, coordination, and other organization of work & Process design around the fabricator & Changes the conditions under which interpretation and realization occur \\
+\(A\) --- Alignment strategy & Independent evidence and enforcement for selected obligations & Measurement and admission machinery associated with selected tolerances & Changes whether unacceptable realizations acquire consequence \\
+\(p\) & Probability of faithful production in a delegation episode & Reliability of production under the chosen fabricator, representation, and process & Determines retries and expected realization cost \\
+\(q\) & Probability that an unacceptable candidate escapes independent assurance & Residual failure of evidence and admission & Determines residual assurance after production \\
+\(c\) & Cost of an attempt & Cost of operating the factory for one realization attempt & Captures inference, tools, realization, validation, and human intervention as appropriate \\
+\(C_{\text{carry}}\) & Cost of retaining useful engineering structure & Cost of keeping models, policies, skills, tests, generated configuration, controls, and correspondence machinery useful as the software changes & Determines whether durable structure is cheaper than repeated reconstruction \\
+\(\mathcal{G}_i\) & Governed engineering environment inherited at step \(i\) & The factory as changed by prior work and experience & Captures path dependence and governance conversion \\
+\end{longtable}
+}
+
+% <!-- point: one-school-locates-leverage-in-the-process | One school locates leverage in process design around agents. -->
+
+One emerging school of thought puts substantial leverage in process design around the agents. Hassan\textquotesingle s Agentic Software Engineering treats trustworthy agentic development as an end-to-end system spanning people, process, tools, and artifacts. Yegge\textquotesingle s Gas Town approaches the problem from orchestration: persistent work state, specialized agent roles, handoffs, coordination, supervision, and merge machinery organize many fallible agents into a functioning software factory. Both make the organization of production an important control surface.\citep{hassan2026, yegge2026}
+
+% <!-- point: mage-weights-the-environment-and-representations | MAGE weights the representations and enforceable obligations that work inherits from the engineered environment; those mechanisms complement process design, so the theory treats capability, representation, harness, and enforcement as distinct variables. -->
+
+MAGE places additional weight on the representations and enforceable obligations that work inherits from the engineered environment --- the Modeling and Alignment levers, plus governance conversion, which lets later work inherit lessons learned by earlier work. These mechanisms complement process design. The theory therefore treats model capability, representation, harness and process, and enforcement as distinct variables whose effects may substitute for or compound one another; \magevalue{sec:research-agenda} returns to that design space.
+
+\subsection{What Makes an Environment Effective}\label{heading:what-makes-an-environment-effective}
+
+% <!-- point: more-machinery-is-not-a-better-environment | More machinery is not a better environment; what counts is fit to the work, not how much machinery exists. -->
+
+More machinery does not mean a better environment. Ten thousand lines of stale checks are worse than one hundred lines that govern the obligations that matter. What counts is how well the environment fits the work.
+
+% <!-- point: four-properties-of-an-effective-environment | An effective environment needs useful representations, adequate coverage, coherence, and economy. -->
+
+An effective environment needs four things:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Useful representations.} The information needed for the work is explicit at an appropriate level of abstraction.
+\item
+  \textbf{Adequate coverage.} Important obligations have appropriate evidence and enforcement.
+\item
+  \textbf{Coherence.} Models and mechanisms reinforce one another rather than contradicting or needlessly duplicating.
+\item
+  \textbf{Economy.} Their future value justifies their maintenance, friction, and context cost.
+\end{enumerate}
+
+% <!-- point: four-properties-govern-the-probabilistic-surface | The four properties jointly constitute environment quality and determine how much consequential work still rests on fallible per-instance inference. -->
+
+Together these four properties constitute \textbf{environment quality}: they determine how much consequential work still depends on fallible per-instance inference --- the probabilistic surface of \magevalue{chapter:problem}.
+
+% <!-- point: coverage-need-not-mechanize-every-obligation | Coverage need not mechanize every obligation; a strong environment names where judgment belongs and where paying repeatedly is wasteful. -->
+
+Coverage does not require mechanizing every obligation. Some belong in a compiler rule or gate; others remain statistical, semantic, or consequential enough to require human judgment. A strong environment makes clear \textbf{where judgment belongs and where paying for the same judgment repeatedly would be wasteful}.
+
+% <!-- point: not-a-maturity-model-improve-the-limiting-part | The properties are dimensions for diagnosing what limits the work, not maturity stages; the appropriate response may improve representations or assurance, or reconcile and retire controls. -->
+
+These properties describe different ways an environment can support the work, rather than stages of a maturity model.\citep{bollinger1991critical} The appropriate investment depends on what is limiting progress. Repeated reconstruction of important state suggests a representation problem; escaped failures call for examining evidence and enforcement. When existing controls impose more friction than protection, reconciliation or retirement may improve the environment more than adding another mechanism.
+
+\subsection{Outcomes and Observables}\label{heading:outcomes-and-observables}
+
+% <!-- point: distinguish-activity-from-progress-three-outcomes | The theory distinguishes activity from progress via three outcomes: durable throughput, defect escape, human-attention burden. -->
+
+A theory of agentic engineering should distinguish activity from progress. MAGE therefore treats raw implementation velocity as an input and tracks three outcomes: \textbf{durable throughput}, \textbf{defect escape}, and \textbf{human-attention burden}.
+
+% <!-- point: definitions-of-the-three-outcomes | Durable throughput survives rework; defect escape reaches later stages; attention burden is judgment consumed per unit; the observables are candidates, with operationalization left to the research agenda. -->
+
+Durable throughput is useful system progress that survives rework, integration, and operation rather than merely landing in the repository. Defect escape records consequential failures that reach later lifecycle stages or production. Human-attention burden measures the scarce engineering judgment consumed per unit of durable progress. \autoref{mage-outcomes} identifies candidate observables for each; detailed operationalization waits for \magevalue{sec:research-agenda}.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[The three MAGE outcomes and their observables]{\emph{Outcomes of the theory.} Raw implementation activity is an input. The theory is interested in how much survives as durable progress, what failures escape, and how much scarce human judgment that progress consumes.}\label{mage-outcomes}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Outcome
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it measures
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Candidate observables
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Outcome
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it measures
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Candidate observables
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Durable throughput} & Raw implementation converted into lasting system progress & landed changes net of rework; churn share; the slope of sustained throughput \\
+\textbf{Defect escape} & Relevant failures reaching later lifecycle stages or production & escaped-defect rate; reopen rate; silent-corruption escape \\
+\textbf{Human-attention burden} & Human judgment required per unit of durable output & interventions per landed change; review time; conversion effort \\
+\end{longtable}
+}
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: HUMAN FACTORS -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Human Attention Is Not a Free Control}
+\label{inset-human-attention-not-a-free-control}
+Moving work from human execution to machine execution does not eliminate the cost of human attention if people must inspect the resulting stream. Software engineering has long relied on one engineer reviewing another\textquotesingle s work, but code review is imperfect. Studies document the improvements reviewers prompt and associate review coverage and participation with post-release quality.\citep{beller2014modern, mcintosh2014impact} At Microsoft, reviews spanning more files had a lower proportion of useful feedback, and developers reported that such reviews required more time and effort.\citep{bosu2015useful} As agents assume more implementation work, software engineering faces a problem familiar to industries that automated earlier. Bainbridge\textquotesingle s \emph{Ironies of Automation} described how automation can leave human operators responsible for monitoring rare failures and intervening when something goes wrong.\citep{bainbridge1983}
+
+As agentic output grows, proportional human inspection becomes a bottleneck. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment.
+\end{bookbox}
+
+% <!-- point: human-attention-is-a-conserved-resource | Human attention is an engineering resource. -->
+
+Human attention is an engineering resource.
+
+% <!-- point: activity-counts-are-not-outcome | Easy-to-count quantities (commits, lines, control files, support ratio) measure activity or investment, not outcome. -->
+
+Several easy-to-count quantities measure activity or investment rather than outcome: commits, lines changed, control files, model-sync events, and support ratio. They can help explain what an environment is doing; they do not establish that it is producing a return.\magefootnote{activity-data}{The activity-versus-outcome gap also appears in industry data. LinearB\textquotesingle s 2026 benchmark covers 83,000 developers across 253 organizations and compares merge rates from June 2025 to May 2026.\citep{linearb2026} Among the heaviest AI users, merge rates roughly doubled while pull-request yield---the share of opened requests merged within 30 days---fell. The association does not establish that AI caused either change, and neither measure establishes durable progress. An industry analyst reads the same period as rising AI spend without proportionate shipping velocity, the difficulty having moved from comprehension to confidence.\citep{riggins2026}}
+
+\subsection{Three Consequences of the Dynamic Model}\label{heading:three-consequences-of-the-dynamic-model}
+
+% <!-- point: three-predictions-three-ways-environment-helps | The dynamic model has three consequences, each naming a different way an engineered environment can help: absorbing capacity productively, supplying a better reasoning surface, preserving judgment for later work. -->
+
+The dynamic model has three consequences, each naming a different way the engineered environment can help. First, the environment can make additional agentic capacity more productive rather than merely faster. Second, it can give a reasoner a better surface over which to work, reducing how much of the system must be reconstructed for each task. Third, it can preserve useful engineering judgment so that later work inherits it rather than purchasing the same reasoning again.
+
+% <!-- point: the-three-effects-are-distinct | Environment fit, representation leverage, and engineering capital are related but distinct effects. -->
+
+These effects are related, but they are not the same. Environment fit concerns whether capacity can be productively absorbed. Representation leverage concerns what the reasoner must reconstruct. Engineering capital concerns what later work gets to inherit.
+
+% <!-- point: environment-fit-moderates-velocity | Environment fit moderates the effect of velocity: added capacity yields throughput when the environment fits and churn when it does not; raw velocity may rise either way. -->
+
+\textbf{Environment fit moderates the effect of velocity.} Increasing agentic capacity should produce more durable throughput when the engineered environment fits the work, and more churn, escaped failures, or repeated intervention when it does not. In either case, raw implementation velocity may increase; what changes is how much of that activity becomes durable progress. The effect of added velocity therefore depends on whether the environment supplies the representations, evidence, enforcement, and coherence the work requires.
+
+% <!-- point: representation-creates-leverage | A trustworthy task-relevant model lowers the cost of acceptable realization by reducing reconstruction; it fails if upkeep outweighs reach. -->
+
+\textbf{Representation creates leverage.} A task-relevant, trustworthy model should reduce the expected cost of reaching an acceptable realization, or increase the scale of work completed at matched quality, by reducing reconstruction and exposing consequential distinctions at a more tractable abstraction. The advantage should matter most as the required reasoning state grows. The claim fails if models impose maintenance and interpretation costs without extending reasoning reach or preserving quality.
+
+% <!-- point: engineering-capital-amortizes-judgment | Durable structure lets later work inherit judgment, but the return lasts only while the asset stays fit. -->
+
+\textbf{Engineering capital amortizes judgment.} Where useful engineering knowledge or recurring judgment becomes durable structure, later work over that surface should require less reconstruction, repeated judgment, or rework, and should carry less risk. The relationship carries its own boundary: the return lasts only while the asset remains fit. Stale models, obsolete validators, conflicting controls, and procedures that outlive their problem should lose value and can eventually impose net cost.
+
+% <!-- point: each-core-claim-can-fail | Each consequence can fail — they are conceptual relationships the theory asserts, not guarantees; the predictions chapter formulates the testable hypotheses about them. -->
+
+Each relationship can fail. The environment may have little moderating effect; explicit models may add cost without extending reasoning reach; accumulated structure may cost as much as the judgment it was meant to retire. These are conceptual consequences of the dynamic model, not yet tests; \magevalue{sec:what-the-theory-predicts} formulates the testable hypotheses about them.
+
+\subsubsection{The reasoning-horizon proposition}\label{heading:the-reasoning-horizon-proposition}
+
+Why should representation create leverage in the first place?
+
+% <!-- point: reconstruction-precedes-reasoning-about-the-question | Answering an engineering question first requires reconstructing enough of the system to know what it means. -->
+
+Consider what happens when an engineer enters an unfamiliar system to answer a seemingly simple question: \emph{Can this service depend on that one?} The answer may be distributed across source files, configuration, dependency injection, deployment descriptors, documentation, and conventions that exist only in the history of the system. Before reasoning about the dependency, the engineer must first reconstruct enough of the system to know what the dependency means.
+
+% <!-- point: context-postpones-but-a-model-changes-the-problem | Larger context can accommodate more material and retrieval can bring evidence closer; changing the representation can reduce what must be loaded or reconstructed. DocAble’s roughly 590,000-token document exceeded a 272,000-token context, motivating a choice between a more costly model and windowing or compression. -->
+
+An agent faces the same problem. A larger context window can accommodate more material, and better retrieval can bring useful evidence closer. Alternatively, a different representation can reduce what must be loaded or reconstructed in the first place. DocAble encountered a concrete limit: one document produced roughly 590,000 tokens of reasoning representation against a 272,000-token context. Using a more costly model with a larger context window was one possible response. Windowing and whole-document compression offered another, changing the amount and form of information presented for each judgment.
+
+% <!-- point: the-general-move-presents-consequential-structure | The general move: a useful model changes the problem by presenting the consequential structure directly — the basis for the reasoning-horizon proposition. -->
+
+In building DocAble, I encountered this problem when deciding how to represent large documents for remediation. As discussed in \magevalue{chapter:problem}, research on external representations has long shown that how information is organized changes the work required to reason with it.\citep{larkin1987diagram, zhang1994representations} The following proposition applies that established result to the use and maintenance of models in software engineering.
+
+\begin{quote}
+\textbf{The Reasoning-Horizon Proposition for Engineering.} When reconstructing relevant system knowledge limits an engineering task, an explicit model of that knowledge can make more demanding work tractable at a given quality and resource budget. It does so by exposing the relationships needed for the task while suppressing irrelevant implementation detail. The model must remain faithful as the software changes, and its construction and maintenance costs must be justified by the work it enables or saves.
+\end{quote}
+
+\textbf{General form.} A task\textquotesingle s reasoning demands may exceed the capacity of the reasoner and its supporting machinery. Task-relevant representations can bring such work within the system\textquotesingle s reasoning horizon by preserving the distinctions needed for the task while reducing reconstruction and irrelevant detail. Even when a task is already within that horizon, better representations may lower the cost of completing it. Whether other domains admit representations with the same leverage is an empirical question.
+
+% <!-- point: a-model-shortens-the-reasoning-path | A model shortens the reasoning path, not merely each step: reasoning already performed is preserved in the environment. -->
+
+A useful representation can shorten the reasoning path, not merely make each reasoning step easier. Without an explicit model, an agent may first have to reconstruct the relevant architecture, state, dependencies, obligations, or other relationships from lower-level artifacts before it can reason about the engineering question itself. When the environment already supplies a trustworthy, task-relevant model, the agent can skip much of that reconstruction and reason directly over the consequential structure. In this sense, the environment preserves some prior reasoning instead of forcing each attempt to reconstruct it.
+
+% <!-- point: map-analogy-preserve-relationships-suppress-detail | Like a map, a model's value is preserving the relationships a class of questions needs while suppressing detail. -->
+
+The effect is analogous to using a map rather than repeatedly reconstructing a city from street-level observations. The map does not contain everything in the city, nor should it. Its value comes from preserving the relationships needed for a particular class of questions while suppressing detail that would otherwise have to be rediscovered.
+
+% <!-- point: agents-change-the-economics-of-an-old-scale-problem | Agents do not create the scale problem; they change its economics and frequency, raising the return on representations. -->
+
+Agentic systems do not create this scale problem. Human engineers have always used abstractions because no engineer can keep the implementation of a Linux-scale system in active view. Commodity intelligence changes the economics and frequency of the problem: larger delegated tasks and greater implementation volume increase the return on representations that preserve useful reasoning across episodes.
+
+% <!-- point: representations-put-consequential-structure-into-usable-form | Representations put consequential structure into a form the reasoner can use directly, not merely store facts. -->
+
+These representations do more than store facts. State machines expose transitions, dependency graphs expose relationships, contracts expose obligations, and assurance arguments relate claims to evidence. They put consequential structure into a form the reasoner can use directly. \magevalue{chapter:modeling} offered six useful classes of such model, not a proof that they are necessary, sufficient, or minimal. Because representation creates leverage and can expand what Alignment can govern, choosing, reducing, and even learning representations is itself an engineering problem. The principle is simple: \textbf{a representation is worthwhile when the reasoning it saves is worth more than the cost of building and carrying it.}
+
+% <!-- point: leverage-can-originate-bottom-up-from-recovered-models | Leverage can originate bottom-up: implementation signals can recover a latent model the system already embodies. -->
+
+Representations need not be designed in advance. They can also be recovered from existing implementations. \magevalue{chapter:one-problem-many-models} showed the practical version of this move: use implementation signals and commodity intelligence to help recover latent models from an existing system. Repeated structures can reveal a domain concept the implementation already embodies but has never named; bottom-up analysis can recover an abstraction that later humans, agents, and mechanisms use directly. The representation is new as an explicit engineering artifact, even when the structure it captures was already latent in the system.
+
+% <!-- point: representation-innovation-machines-may-propose-new-representations | Representation innovation: a reasoner may propose a decomposition or state space under which a question becomes tractable. -->
+
+The stronger possibility is representation innovation. A reasoner need not be limited to recovering an abstraction that engineers already know how to name. By working across implementations, histories, measurements, failures, and existing models, commodity intelligence may propose a different decomposition, relation, state space, or other representation that makes an engineering question tractable. The innovation is not that the machine draws a novel diagram. It is that the representation exposes consequential structure that existing representations did not make practically available for reasoning or analysis.
+
+% <!-- point: representations-human-designed-induced-and-innovated | Representations can be human-designed, machine-induced, or machine-innovated, each extending the effective reasoning horizon. -->
+
+This extends the reasoning-horizon proposition in both directions. Human-designed representations can compress engineering knowledge into forms that let machines reason beyond implementation detail. Machine-induced representations can make latent structure explicit. Machine-innovated representations may go further, exposing relationships that extend what humans and later machines can practically reason about.
+
+% <!-- point: discovery-does-not-confer-trust-a-representation-must-earn-it | Discovery does not confer trust: a machine-proposed representation still must earn trust in the relationship it claims. -->
+
+Discovery does not confer trust. Neither induction nor innovation makes a representation trustworthy. Like any model in \magevalue{chapter:modeling}, a machine-proposed representation claims a relationship to the system and must earn the trust placed in that claim. A recovered model can be checked against the implementation it purports to summarize; a genuinely novel abstraction poses the harder question of what evidence establishes that it preserves the distinctions required by its intended engineering use. The stronger the reasoning, assurance, or enforcement built on the representation, the stronger that evidence must be.
+
+% <!-- point: representation-engineering-is-bidirectional | Representation engineering is bidirectional: humans extend machine reasoning and machines may recover or invent abstractions. -->
+
+Representation engineering can therefore work in both directions. Humans can construct abstractions that extend machine reasoning; machines can recover abstractions implicit in human-built systems; and machines may eventually help invent abstractions that extend the effective reasoning horizon of both. The research agenda returns to how representations can be selected, induced, invented, validated, learned, and reduced.
+
+\subsubsection{The engineering-capital proposition}\label{heading:the-engineering-capital-proposition}
+
+Representation leverage explains how structure can make one episode of reasoning easier. The next question is what happens across episodes.
+
+% <!-- point: repeated-reconstruction-pays-for-the-same-reasoning | Repeatedly reconstructing the same fact or judgment pays for the same reasoning; some judgments can instead be preserved. -->
+
+If engineers repeatedly reconstruct the same architectural fact, rediscover the same failure mode, or make the same review judgment, the organization repeatedly pays for essentially the same reasoning. But some judgments can be preserved. A dependency rule can become a validator. An architectural distinction can become a model. An operational lesson can become a procedure. Once that happens, later work begins from a different starting point.
+
+% <!-- point: engineering-capital-defined-inherited-productive-capacity | Engineering capital: prior engineering work leaves behind productive capacity that future work can inherit. -->
+
+This is the sense in which MAGE uses the term engineering capital: prior engineering work leaves behind productive capacity that future work can inherit.
+
+\begin{quote}
+\textbf{Engineering-Capital Proposition.} Durable engineering structures become capital when future work inherits useful capacity from them: less reconstruction, less repeated judgment, earlier or stronger evidence, safer action, or cheaper recovery. Models, mechanisms, architectures, procedures, and other engineering assets can all qualify. Their returns are local to the surfaces where later work inherits that capacity, and last only while the assets remain fit.
+\end{quote}
+
+% <!-- point: capital-not-memory-must-return-and-can-depreciate | Capital, not memory: an asset becomes capital when it changes future cost or risk, and it can depreciate — while the investment threshold itself moves as agentic capacity lowers construction and maintenance costs. -->
+
+The metaphor is capital rather than memory. A document that merely records an old decision may preserve information; an engineering asset becomes capital when it changes the cost, capability, or risk of future work. Like other capital, it must produce a return to justify carrying it, and it can depreciate when the environment changes. What counts as a justifying return is not fixed either: as agentic capacity lowers the cost of constructing and maintaining such assets, investments that were once uneconomical can clear the threshold.
+
+% <!-- point: capital-transfers-judgment-beyond-its-originator | Capital transfers judgment beyond its originator: a later reasoner benefits without reconstructing the reasoning. -->
+
+That inheritance need not depend on the continued presence of the engineer who supplied the original judgment. When an architectural distinction becomes a trustworthy model, a review judgment becomes a validator, or an operational lesson becomes a reliable procedure, some of the originating engineer\textquotesingle s productive capacity now lives in the environment. A later engineer or agent can benefit from the result without reconstructing the reasoning that produced it.
+
+% <!-- point: capital-transfer-is-partial-judgment-needed-again-on-change | The transfer is partial: capital carries only what it represents, so change requires expert judgment again. -->
+
+The transfer is necessarily partial. Durable structure carries only the judgment it successfully represents or mechanizes. When requirements change, a new failure appears, or the representation itself becomes inadequate, engineering judgment is needed again. Engineering capital therefore does not eliminate expertise; it changes how often the organization must pay again for expert judgment on the same question.
+
+% <!-- point: debt-vs-capital-governance-includes-retirement | Debt makes change costly, capital makes it productive; neither is permanent, so governance includes retirement. -->
+
+The analogy to technical debt is intentional. Debt makes future change more expensive; capital makes future change more productive. Neither status is permanent. Capital depreciates as systems, obligations, and tools change. A validator can become noise, a model can drift, and a once-useful constraint can begin blocking legitimate work. Governance therefore includes maintenance, reconciliation, and retirement. \textbf{Accumulation is not the objective; productive capacity is.}
+
+% <!-- point: three-interacting-debts-technical-cognitive-intent | Debt has three interacting forms — technical, cognitive, intent — which GenAI can accelerate together. -->
+
+The analogy also connects MAGE to an emerging account of debt in AI-assisted software. Storey argues that technical debt in the implementation is only one of three interacting forms of debt. Cognitive debt accumulates when a team\textquotesingle s shared understanding of the system erodes; intent debt accumulates when goals, constraints, and rationale are poorly externalized or maintained. Generative AI can accelerate all three by increasing implementation faster than teams can understand it or preserve why it exists.\citep{storey2026}
+
+% <!-- point: gee-acts-on-technical-intent-and-cognitive-debt-differently | A GEE counters technical and intent debt with durable structure and preserves the understanding needed for cognitive debt. -->
+
+A Governed Engineering Environment acts on each layer, although not in the same way. Architectural constraints, validators, models, and other durable structures can reduce technical debt by keeping later realizations inside selected structural boundaries. Explicit requirements, decisions, models, and obligations counter intent debt by preserving consequential knowledge outside any one person or reasoning episode. Cognitive debt is different: MAGE does not require every engineer to reconstruct every generated implementation in detail. It instead seeks to preserve the understanding needed for consequential engineering decisions in representations and evidence that humans and agents can inspect, challenge, and reuse.
+
+% <!-- point: capital-gives-knowledge-a-home-governance-keeps-it-trustworthy | Capital gives knowledge, intent, and judgment a durable home; governance decides which assets stay trustworthy. -->
+
+This does not make the three debts disappear. A stale model can preserve obsolete intent; an incoherent collection of mechanisms can itself become technical burden; and no representation can substitute for understanding that was never captured in the first place. The point is narrower. Engineering capital gives selected knowledge, intent, and judgment a durable place to live, while governance determines which of those assets remain trustworthy enough for later work to inherit.
+
+\section{The Factory\textquotesingle s Value Proposition}\label{heading:the-factorys-value-proposition}
+
+% <!-- section-terms: engineering-capital -->
+
+% <!-- point: a-factory-is-an-investment-in-productive-capacity | A factory is an investment in productive capacity, so its economics depend on the value and marginal cost of the changes it produces over time, and for software those recurring products are transformations of a maintained system rather than copies. -->
+
+A factory is an investment in productive capacity. Its economics therefore depend not only on startup cost, but on the value and marginal cost of the changes it produces over time. For software, those recurring products are not copies but transformations of a maintained system: features, repairs, adaptations, and migrations.
+
+% <!-- point: separate-construction-from-continued-production | The cost model separates factory construction from continued production: startup cost, a stream of change costs, carrying cost, and expected failure loss. -->
+
+We can therefore separate factory construction from continued production. For a factory that has produced \(n\) changes,
+
+\[
+C_{\text{factory}}(n) = C_{\text{startup}} + \sum_{i=1}^{n} C_{\text{change},i} + C_{\text{carry}}(n) + E[L_{\text{failure}}(n)]
+\]
+
+The cost of a change includes the human attention required to direct, coordinate, review, diagnose, and intervene; the machine intelligence used for realization and reasoning; computational infrastructure; validation and rework; and any additional engineering structure created in producing the change. \(C_{\text{startup}}\) captures the initial investment required to establish the factory, and \(C_{\text{carry}}\) the cost of keeping its productive capacity usable. The pair \((R,A)\) enters this expression on both sides: representations, controls, and evidence raise \(C_{\text{startup}}\) and \(C_{\text{carry}}\) while potentially lowering each \(C_{\text{change}}\) and the expected failure loss.
+
+% <!-- point: the-marginal-question-matters-most | The marginal question matters most: a successful factory may be expensive to construct and economical to use, because the productive capacity makes the stream of subsequent changes cheaper, faster, safer, or possible at all. -->
+
+The corresponding marginal question is especially important:
+
+\[
+MC_{\text{change},n+1} = C_{\text{factory}}(n+1) - C_{\text{factory}}(n)
+\]
+
+This incremental cost includes any additional maintenance burden and expected failure loss attributable to the change, not merely the cost of producing its implementation.
+
+A successful factory may be expensive to construct and economical to use. The investment is justified not because its first product was inexpensive, but because the resulting productive capacity makes a sufficiently valuable stream of subsequent changes cheaper, faster, safer, or possible at all.
+
+\subsection{Two margins, not one}\label{heading:two-margins-not-one}
+
+% <!-- point: software-has-two-margins | Software-factory economics distinguishes the production margin, the next acceptable change, from the replication margin, providing that change's benefit to the next user or use. -->
+
+We can distinguish two margins in a software factory. The \emph{production margin} asks what it costs the factory to make the next acceptable change to the software. The \emph{replication margin} asks what it costs, once that change exists, to provide its benefit to the next user, document, transaction, installation, or copy. For packaged software the second can approach zero. For a hosted service, compute, storage, and support continue to cost something, but that incremental cost can remain small relative to the engineering cost of changing the product.
+
+\subsection{The idle factory still depreciates}\label{heading:the-idle-factory-still-depreciates}
+
+% <!-- point: carrying-cost-splits-into-operational-and-capital | Carrying cost splits into operational carry and capital maintenance: a software factory can be cheap to keep idle when its operating costs can be reduced, while its engineering capital continues to depreciate. -->
+
+Carrying cost has two parts: the cost of keeping the factory available and the cost of maintaining its engineering capital. An idle semiconductor fabrication plant may still incur costs for buildings, equipment, utilities, and staffing. An agentic software factory can have a different cost structure. If agent runs can be suspended and unused development infrastructure shut down, repositories, models, configuration, tests, and governance mechanisms can remain stored while much of the operating expense stops. How much is saved depends on which services, subscriptions, and support obligations must continue.
+
+\[
+C_{\text{carry}} = C_{\text{operational carry}} + C_{\text{capital maintenance}}
+\]
+
+Low operational carry does not eliminate capital maintenance. Dependencies and requirements change; tests and models may need revision before work resumes. Organizational knowledge can also disappear. The factory\textquotesingle s engineering capital can therefore depreciate even when its operating expense is low.
+
+\subsection{What the changes are worth}\label{heading:what-the-changes-are-worth}
+
+% <!-- point: what-a-change-is-worth-is-a-model-of-value | What the stream of changes is worth cannot be specified universally: each factory's outcome quantities are themselves models of value chosen for a particular engineering or organizational decision. -->
+
+Against these costs stands what the stream of changes is worth, and that side of the comparison cannot be specified universally. A product factory may value capabilities delivered to customers; a security factory may value risk retired; an accessibility factory may value documents made accessible and remediation effort avoided. These quantities are themselves models of value chosen for a particular engineering or organizational decision --- the same claim \magevalue{chapter:modeling} made about metrics generally. The theory does not define what an outcome is worth. It asks whether the outcomes produced justify the full cost of the production arrangement.
+
+% <!-- point: mage-concerns-the-first-arrow | The economic chain runs factory → software capability → use → value, and MAGE primarily concerns the first arrow; the organization's business model determines how capability becomes value. -->
+
+The factory produces changes to the software; the software produces outcomes for its users. A company may spend substantially to produce one change and then distribute its benefit across millions of transactions at comparatively small incremental cost, so factory productivity and product value meet at a boundary rather than being the same quantity:
+
+\[
+\text{factory} \rightarrow \text{software capability} \rightarrow \text{use} \rightarrow \text{value}
+\]
+
+MAGE primarily concerns the economics of the first arrow. The organization\textquotesingle s business model determines how the resulting capability becomes value.
+
+\subsection{Correctness is not the factory\textquotesingle s objective}\label{heading:correctness-is-not-the-factorys-objective}
+
+% <!-- point: the-probability-model-explains-the-factory-economics | Better faithful production can reduce failed attempts, but delivery cost and durability also depend on attempt cost, admission errors, and later rework; Alignment and preserved reasoning affect lifecycle expenditure and failure loss. -->
+
+The lifecycle expression above prices a factory as a startup investment plus a stream of change costs, a carrying cost, and an expected failure loss. Improving faithful production can reduce failed attempts and repeated reconstruction. Whether that produces cheaper, durable delivery also depends on attempt cost, admission errors, and later rework. Alignment exchanges validation cost for reduced escape risk --- spending inside the change term to shrink the expected failure loss. Models and mechanisms preserve successful reasoning as engineering capital, reducing the need to reconstruct it for each subsequent realization.
+
+% <!-- point: correctness-alone-does-not-establish-value | Correctness alone does not establish value: a factory can reliably and efficiently produce software that nobody needs. -->
+
+But correctness alone does not establish value. \textbf{A factory can reliably and efficiently produce software that nobody needs.} The probability model explains how engineering intent survives fabrication; whether successfully realizing that intent produces outcomes worth their full cost is the value question the factory economics ask, and no correctness result answers it.
+
+% <!-- point: the-economic-interpretation-of-modeling-and-alignment | The economic interpretation of Modeling and Alignment: valuable where the cost of externalizing, preserving, and enforcing consequential knowledge is lower than the expected cost of repeatedly reconstructing it, incorrectly realizing it, or allowing its violation to escape. -->
+
+This provides the larger economic interpretation of Modeling and Alignment. They are not valuable because explicitness is intrinsically desirable, nor because every decision should be mechanized. They are valuable where the cost of externalizing, preserving, and enforcing consequential knowledge is lower than the expected cost of repeatedly reconstructing it, incorrectly realizing it, or allowing its violation to escape.
+
+% <!-- point: the-problem-moves-as-fabrication-approaches-perfection | Commodity intelligence changes the terms of the comparison — several quantities move at once: the engineering problem does not disappear as fabrication approaches perfection, it moves toward deciding what must be preserved, inferred, established before admission, and what the capability is worth. -->
+
+Commodity intelligence changes the terms of that comparison. As reasoning becomes cheaper and more capable, more decisions can economically remain with the fabricator; at the same time, greater realization capacity increases the amount of work that can cross a weakly enforced boundary before a human can inspect it. The engineering problem therefore does not disappear as fabrication approaches perfection. It moves toward deciding what must be preserved, what may safely be inferred, what must be established before admission, and what the resulting production capability is worth.
+
+\section{From One Delegation to an Evolving Factory}\label{heading:from-one-delegation-to-an-evolving-factory}
+
+% <!-- point: theory-is-directional-not-numerical | The models connect delegation to an evolving engineering system and propose relationships whose numerical values and transfer to other domains require evidence. -->
+
+Together, these models connect one delegation to the engineering system that produces a stream of changes. They name the quantities and propose relationships among them; they do not yet supply calibrated numerical predictions. Software engineering gives the quantities concrete forms---landed changes, defects, review, and rework. Whether the same causal relationships hold in other domains is a question for \magevalue{sec:scope-conditions}.
+
+% <!-- point: part-v-evidence-is-depth-and-variation-not-effect-sizes | Chapter 5 supplied depth and variation, not population effect sizes; the theory is the proposed explanation of it. -->
+
+The theory offers an explanation for the evidence in \magevalue{chapter:software-factories}: changes observed over time in DocAble, and differences among systems described by other companies. These accounts do not establish how large the effects would be across organizations or which mechanisms caused them. \magevalue{sec:what-the-theory-predicts} states predictions that require stronger tests; \magevalue{sec:scope-conditions} asks where they should be expected to hold.
+
+% <!-- point: the-equations-are-enlargements-not-rivals | The closing hierarchy collects complementary models of faithful production, assurance, cost, inheritance, and factory value. -->
+
+\autoref{equation-hierarchy} collects the progression. Each model answers a further engineering question: faithful production, independent assurance, cost, inheritance, and finally the value of the factory across a stream of changes.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[The equation hierarchy --- from one delegation to an evolving factory]{\emph{From one delegation to an evolving factory.} Production and assurance describe candidates and admission; lifecycle cost counts delivery, and the dynamic model explains how work changes the environment that later tasks inherit.}\label{equation-hierarchy}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question it answers
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it adds
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question it answers
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it adds
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Encoding and realization & Can one delegation faithfully fulfill intent? & encoding → realization \\
+Assurance & What gets through the gate? & escape \(q\), false rejection \(r\), admitted risk \(\rho\) \\
+Lifecycle cost & What does correct delivery cost? & \(c_N=\frac{C_N}{D_N}\), including unsuccessful work and upkeep \\
+Dynamic environment & What does this episode leave behind? & \(p_i = p(T_i, M, R_i, H, \mathcal{G}_i)\), \(\mathcal{G}_{i+1} = f(\mathcal{G}_i, a_i)\) \\
+Factory economics & Was the accumulated structure worth building and carrying? & startup, carrying, and failure cost across a stream of changes \\
+\end{longtable}
+}
+````
+
+
+### Original `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`
+
+Section: complete source file; lines 1–164. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `aea0af16a40d06ea98e899057bacd89ae3f299b4ff8e427e34f8575bbaf80fb3`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````latex
+% mage-auto-heading: trustworthy-representations
+% mage-auto-heading: adaptive-governance
+% mage-auto-heading: engineering-economics
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: What the Theory Predicts -->
+
+\chapter{What the Theory Predicts}
+
+% <!-- point: predictions-fall-into-three-families | The theory yields nine testable hypotheses in three families: trustworthy representations, adaptive governance, and engineering economics. -->
+
+The theory yields nine testable hypotheses concerning trustworthy representations, adaptive governance, and engineering economics. Each formulates one of the theory\textquotesingle s claimed relationships --- environment fit, representation leverage, and engineering capital among them --- as a statement evidence could refute; \magevalue{sec:research-agenda} turns the hypotheses into experimental designs.
+
+% <!-- point: predictions-are-general-consequences-not-findings | The hypotheses are derived from the theory, not findings of this book; if the theory is right, they should hold wherever MAGE applies. -->
+
+The hypotheses are derived from the theory, not findings of this book. If the theory is right, they should hold wherever MAGE applies.
+
+\section{Trustworthy Representations}\label{heading:trustworthy-representations}
+
+% <!-- point: first-problem-a-recovered-model-must-state-should-not-does | Brownfield's first problem: a recovered model must state what the system should do, not canonize what it does. -->
+
+Brownfield software raises the first problem immediately: can a useful engineering model be recovered from a system that was never built around one? An agent can extract structure from implementation, but description is not obligation. A model that perfectly mirrors defective behavior can simply canonize the defect. Useful induction must therefore distinguish what the system \textbf{does} from what an independently justified engineering claim says it \textbf{should} do.
+
+% <!-- point: second-problem-maintain-each-models-claimed-correspondence | The second problem is maintaining the specific correspondence each model claims, cheaply enough to expose divergence early. -->
+
+Once a model exists, maintenance becomes a second problem. "Keep the model equal to the code" is too crude. A model of permitted dependencies should disagree with code that violates them. A requirements model may intentionally describe an intended state the current implementation has not reached. The engineering problem is to state and maintain the \textbf{correspondence each model claims}---for architecture, behavior, process, invariants, lineage, or other views---cheaply enough to expose meaningful divergence near the change that created it.
+
+% <!-- point: third-problem-model-quality-beyond-fidelity | The third problem is quality: a synchronized model can still fail to capture the obligations decisions run through. -->
+
+The third problem is quality. A model can be synchronized and still be useless. Test suites provide the familiar warning: an oracle can faithfully encode the implementation rather than the requirement, or cover one narrow realization while missing the property that matters.\magefootnote{oracle-overfit}{Oracle overfitting is well established. A steward of a widely watched coding benchmark audited the problems a strong model kept failing and found many carried flawed tests --- too narrow, or checking behavior the task never described --- alongside contamination that let exposure substitute for reasoning.\citep{openai2026swebench} The lesson predates the current era: automation that optimizes against a visible oracle satisfies the oracle while silently breaking what it does not check .\citep{smith2015overfitting}} Models need analogous evaluation. The field must measure not only fidelity to artifacts, but whether the representation captures the obligations and relations needed for the engineering decisions that use it.
+
+% <!-- point: h1-representation-leverage | H1: a trustworthy task-relevant model reduces reasoning cost per acceptable realization, more so as required state grows. -->
+
+\textbf{H1 --- Representation leverage.} For tasks whose required reasoning state exceeds comfortable implementation-level inspection, a task-relevant and trustworthy model will reduce reasoning and reconstruction cost per acceptable realization, or increase task scale at matched quality, compared with reasoning from lower-level artifacts alone. The advantage should increase as the required reasoning state grows.
+
+% <!-- point: h2-representation-integrity | H2: stale or mismatched models lose the H1 benefit, so correspondence and coverage should predict later churn or escape. -->
+
+\textbf{H2 --- Representation integrity.} The benefits predicted by H1 will decline or reverse when models are stale, irrelevant, or poorly matched to the task. Measures of model correspondence and obligation coverage should therefore predict later churn or defect escape beyond what conventional implementation-level metrics predict.
+
+% <!-- point: h3-representation-induced-determinization | H3: for some obligations, an explicit representation makes a repeatable predicate feasible where implementation needs semantic reconstruction. -->
+
+\textbf{H3 --- Representation-induced determinization.} For some system-level obligations, replacing raw implementation as the reasoning surface with an explicit representation of the relevant state or relation will make a repeatable predicate feasible where per-change evaluation over the implementation otherwise requires semantic reconstruction.
+
+% <!-- point: h4-representation-induction-and-innovation | H4: more capable agents may suggest ways to model systems that engineers had not considered, extending reasoning capacity when the models are validated and economical to maintain. -->
+
+\textbf{H4 --- Discovering new ways to model systems.} More capable agents may help engineers model systems in ways they had not previously considered. They might make unnoticed structure explicit or propose a new representation that makes a difficult engineering question easier to answer. If these models can be independently validated and are economical to maintain, they should help later agents and human engineers complete work that was previously beyond their reasoning horizon, with the same resources and quality requirements.
+
+\section{Adaptive Governance}\label{heading:adaptive-governance}
+
+% <!-- point: governance-conversion-remains-an-act-of-judgment | Governance conversion is primarily judgment; the frontier is deciding which investment is warranted and its cheapest adequate form. -->
+
+Governance conversion remains primarily an act of judgment. A failure occurs; someone decides whether it is local or structural; someone decides whether future work should inherit a model, constraint, validator, architectural change, procedure---or nothing at all. Agents can already implement many of those responses. The research problem is deciding \textbf{which investment is warranted, what its cheapest adequate form is, and when judgment should remain where it is}.
+
+% <!-- point: repository-access-example-conversion-vs-noisy-check | A repository-access example: representing permitted paths and checking them is capital only if it retires the failure class cheaply. -->
+
+A small example makes the distinction concrete. Suppose agents repeatedly introduce direct database access from services that are expected to use a repository layer. Repairing each occurrence fixes the local change but leaves the next agent to make the same mistake. The team can instead represent the permitted access paths and add an architectural check that rejects violations. If later work stops reproducing the failure class and requires less review to enforce the boundary, the environment has learned something useful. If legitimate exceptions are common and engineers spend more time negotiating the check than repairing the original failures, the conversion has not produced useful engineering capital.
+
+% <!-- point: adaptive-governance-must-also-subtract | Adaptive governance must also subtract: reduce consequential gaps without merely multiplying mechanisms. -->
+
+An adaptive environment also has to subtract. A system that automatically responds to every anomaly with another lint or gate will manufacture bureaucracy faster than capital. Useful adaptation must add, strengthen, reconcile, and retire. The obligation/mechanism census from \magevalue{chapter:alignment} provides one way to observe this: important obligations with inadequate coverage are gaps; mechanisms that no longer trace to a purpose are candidate orphans. A useful adaptive system would reduce consequential gaps without simply increasing the number of mechanisms.
+
+% <!-- point: the-variable-is-a-path-from-diagnosis-to-shared-change | What matters is whether a working path connects diagnosis to change in the shared environment. -->
+
+Organizations make the problem harder. The person who recognizes a failure may not own the shared infrastructure capable of retiring the class. A good diagnosis can therefore die as a local patch. What matters is not whether authority resides in one architect, but whether a working path connects \textbf{diagnosis to change in the shared environment}.
+
+% <!-- point: managers-can-distinguish-two-sources-of-governance-investment | A governed environment requires continuing investment from two sources: up-front governance for obligations already understood, and ongoing governance changes responding to what engineering experience reveals. | terms: up-front-governance, engineering-capital -->
+
+A governed engineering environment requires continuing investment. Managers can distinguish two sources of that investment. Up-front governance establishes models, controls, and procedures for obligations already understood. Ongoing governance changes respond to what engineering experience reveals: missing abstractions, previously unrecognized failure modes, and controls that no longer fit the system. The distinction concerns how the need for engineering became known, rather than when a control executes.
+
+% <!-- point: planning-must-account-for-construction-and-adaptation | Initial investment improves the environment inherited by subsequent work, including other projects, but cannot remove the need to revise it as product, dependencies, and agent capabilities change. | terms: engineering-capital, governance-conversion -->
+
+This makes governance a continuing engineering activity. Initial investment can improve the environment inherited by subsequent work, including work on other projects. It cannot eliminate the need to revise that environment as the product, dependencies, and agent capabilities change. Planning must therefore account for both initial construction and subsequent adaptation.
+
+% <!-- point: h5-mechanized-assurance | H5: repeatable independent mechanisms reduce defect escape at matched correct throughput, accounting for false rejection and the cost of sustaining that throughput, excluding covered failure regardless of producer reliability. -->
+
+\textbf{H5 --- Mechanized assurance.} For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape at matched correct throughput compared with assurance that depends on producer compliance or proportional per-change human attention. The comparison must include false rejection and the cost of sustaining that throughput. For sound admission mechanisms over mechanically decidable obligations, the covered failure class should be excluded from admitted work even when producer reliability varies.
+
+% <!-- point: h6-governance-conversion | H6: structural interventions reduce recurrence of a failure class net of carrying cost, non-monotonically once controls over-accumulate. -->
+
+\textbf{H6 --- Governance conversion.} For recurring failure classes, structural interventions targeted at the class will reduce subsequent recurrence or repeated human attention relative to local repair alone, after accounting for the intervention\textquotesingle s carrying cost. The relationship will become non-monotonic when controls accumulate beyond their useful fit.
+
+% <!-- point: h7-learning-propagation | H7: lessons reach later work faster and survive personnel turnover better when diagnosis connects to shared machine-actionable structure. -->
+
+\textbf{H7 --- Learning propagation.} Engineering lessons will reach later relevant work faster and more consistently, and will be less dependent on continued access to the people who first supplied them, when diagnosis is connected to authority to change shared, machine-actionable engineering structure than when the lesson remains local or must propagate primarily through interpersonal communication. Personnel turnover provides one natural test: where consequential judgment has become trustworthy shared structure, later work should lose less effective engineering capability when the originating engineer is absent.
+
+\section{Engineering Economics}\label{heading:engineering-economics}
+
+% <!-- point: economic-predictions-least-settled-need-a-counterfactual | Economic evaluation requires credible comparisons as well as valuations of human effort, compute, and depreciating assets; the hypotheses identify quantities, not known coefficients. -->
+
+The economic predictions add a valuation problem to the tests of representation leverage and governance conversion. All three require credible comparisons. To estimate a financial return, we must also ask what the same work would have cost without the asset, under comparable capability, quality, and task conditions. Changes in the capability and price of foundation models affect that comparison; organizations also value human attention differently, and engineering assets depreciate. The hypotheses below therefore identify quantities to measure without claiming known coefficients.
+
+% <!-- point: strongest-economic-claim-hard-to-price-may-not-decompose | Durable structure can make later work cheaper or safer, but its return may not divide cleanly among individual artifacts. -->
+
+The strongest economic claim in MAGE is easy to state and difficult to price: durable engineering structure can make later work cheaper or safer. The DocAble support ratio shows where source accumulated, not whether that stock was valuable. Removing one artifact will not necessarily reveal its contribution when the same knowledge survives across models, tests, code, and documentation. The environment\textquotesingle s return may not divide cleanly among individual artifacts.
+
+% <!-- point: the-quantities-that-matter-are-returns-and-carrying-costs | The quantities that matter are returns and carrying costs, and how they change as the asset depreciates. -->
+
+The quantities that matter are therefore returns and carrying costs. How much reconstruction, review, rework, defect risk, or recovery cost does an asset retire? How much compute, latency, maintenance, context, false-positive burden, and coordination does it impose? How does that balance change as the system moves and the asset depreciates?
+
+% <!-- point: capability-may-belong-to-the-environment-not-only-the-model | Effective capability may belong partly to the environment: a weaker model over a rich environment can outperform a stronger one. -->
+
+One implication is that effective engineering capability may partly belong to the \textbf{environment}, not only to the foundation model or the people currently operating it. A weaker model operating over a richly represented, well-instrumented environment may outperform a stronger model over an opaque repository because the environment has performed some of the reasoning before the interaction begins. Whether environment quality substitutes for model capability, complements it, or does neither is an empirical question.
+
+% <!-- point: operationalize-capital-fix-the-agent-vary-the-environment | Measure capital by fixing the agent and task, varying the environment, and measuring the capability it contributes. -->
+
+This suggests another way to measure engineering capital. Instead of trying to price each model, validator, or procedure separately, treat a commodity agent as a standardized consumer of the environment. Hold the reasoning engine and task family fixed, vary the engineered environment, and measure how much productive capability the environment contributes: task scale reached at matched quality, reconstruction cost, intervention burden, defect escape, and durable throughput. The measured difference is not a complete valuation of engineering capital, but it shows how much otherwise intangible engineering structure contributes.
+
+% <!-- point: h8-environment-fit | H8: added capacity yields throughput and lower attention per correct admitted change where the environment fits, and churn where it fits poorly. -->
+
+\textbf{H8 --- Environment fit.} Increasing agentic capacity will produce more durable throughput and lower human attention per correct admitted change in environments that adequately represent and govern the work. Where the environment fits poorly, the same additional capacity will produce more churn, intervention, or defect escape. The research agenda takes up how Modeling and Alignment separate, combine, and route across task families.
+
+% <!-- point: outer-loop-corollary-governance-extends-the-realization-loop | Outer-loop corollary: stronger environments let intelligence assume more of the realization loop without proportionate attention growth. -->
+
+\textbf{Outer-loop corollary.} If commodity intelligence primarily accelerates source-code production, its benefits should remain concentrated in the coding slice of software work and increasingly encounter downstream limits in review, testing, integration, and coordination. If MAGE\textquotesingle s account is right, stronger governed engineering environments should allow the same intelligence to assume increasing portions of the surrounding realization loop---debugging, test construction, refactoring, integration, migration, and other bounded engineering activities---while preserving durable throughput without proportionate growth in human-attention burden.
+
+% <!-- point: h9-capital-return-and-reciprocal-capacity | H9: durable structures return when cost reductions exceed construction and carrying costs; returns decline as fit is lost and reconciling beats accumulating; rising agentic capacity lowers construction and maintenance costs, moving the investment threshold. -->
+
+\textbf{H9 --- Engineering-capital return and reciprocal capacity.} Durable engineering structures will produce measurable returns when reductions in reconstruction, intervention, rework, and failure costs exceed their construction and carrying costs. Those returns will decline as the assets lose fit, and environments that reconcile or retire depreciated assets will outperform otherwise comparable environments that merely accumulate machinery. As agentic capacity increases, the construction and maintenance costs of some engineering structures will fall, moving the threshold at which such investment becomes economical.
+
+\autoref{mage-hypotheses} collects the nine hypotheses.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[MAGE\textquotesingle s nine hypotheses in three families]{\emph{The nine hypotheses.} MAGE\textquotesingle s research program comprises nine named hypotheses in three families --- trustworthy representations, adaptive governance, and engineering economics --- each with the core quantity a study would measure.}\label{mage-hypotheses}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Family
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Hypothesis
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Core quantity
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Family
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Hypothesis
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Core quantity
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Representation & H1 Representation leverage & reasoning/context cost at matched quality \\
+Representation & H2 Representation integrity & drift/coverage → churn or escape \\
+Representation & H3 Representation-induced determinization & semantic judgment → repeatable predicate \\
+Representation & H4 Discovering new ways to model systems & reasoning reach / newly tractable questions \\
+Governance & H5 Mechanized assurance & escape and false rejection vs correct throughput \\
+Governance & H6 Governance conversion & class recurrence + carrying cost \\
+Governance & H7 Learning propagation & propagation latency/consistency \\
+Economics & H8 Environment fit & capacity × environment interaction \\
+Economics & H9 Capital return/reciprocal capacity & return, carrying cost, and construction cost over time \\
+\end{longtable}
+}
+
+The next section bounds where those predictions should hold.
+````
+
+
+### Original `book/latex/sources/part6/6.3-scope-conditions.tex`
+
+Section: complete source file; lines 1–239. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `061bead142bd2149836c0d8984dc4295a787eb113528332345562f30a19f0d4f`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````latex
+% mage-auto-heading: return-governability-and-authority
+% mage-auto-heading: the-expanding-frontier-of-explicit-engineering
+% mage-auto-heading: the-frontier-is-not-a-destination
+% mage-auto-heading: typical-profiles
+% mage-auto-heading: scope-beyond-software
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: Scope Conditions -->
+
+\chapter{Scope Conditions}
+
+% <!-- point: mage-has-scope-conditions-because-it-imposes-costs | MAGE has scope conditions because it imposes costs, justified only where the structure buys something back. -->
+
+MAGE has scope conditions because it costs something: models have to be built and maintained; controls consume compute and attention; synchronization can fail; every new mechanism adds to what the environment must carry. Those costs are justified only where the resulting structure buys something back.
+
+% <!-- point: unit-of-analysis-is-the-obligation-not-the-industry | The right unit of analysis is an obligation or engineering surface, not an industry label; MAGE applies unevenly within one repository. -->
+
+The right unit of analysis is usually \textbf{an obligation or engineering surface, not an industry label}. The same scientific system may have highly governable build and reproducibility machinery around a kernel whose scientific validity remains a matter of expert judgment. A startup may have little reason to model its architecture comprehensively while still needing a hard security boundary around payments. MAGE therefore applies unevenly even within one repository.
+
+\section{Return, Governability, and Authority}\label{heading:return-governability-and-authority}
+
+% <!-- point: mage-applicability-three-questions | Whether MAGE applies comes down to three questions: return, adequate governability, and the capacity to diagnose structural pressure plus the authority to act on it. -->
+
+Whether MAGE applies to a given engineering surface comes down to three questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Will it earn a return?} Is there enough recurrence or consequence to repay the investment?
+\item
+  \textbf{Can the obligation be governed adequately?} Can the property be represented, evidenced, and evaluated well enough?
+\item
+  \textbf{Can the organization act on what it learns?} Can it tell structural pressure from local defects, and does it have authority to change the shared environment?
+\end{enumerate}
+
+% <!-- point: return-from-recurrence-or-consequence | Return comes usually from recurrence but also from consequence: does avoided future cost justify construction and carrying cost? -->
+
+\textbf{Does the investment earn a return?} Recurrence is the usual source of return. If the same architectural knowledge, review judgment, or failure class will be encountered hundreds of times, making it explicit once can avoid paying for the same reasoning repeatedly. But recurrence is not the only justification. A rare obligation with catastrophic consequences may warrant extensive modeling and assurance because preventing a single failure can repay the investment. The economic question is therefore broader: \textbf{does the expected reduction in future reasoning, risk, or recovery cost justify the construction and carrying cost of the asset?}
+
+% <!-- point: governability-is-explicit-evidenced-evaluable | Governability is how well an obligation can be made explicit, evidenced, and evaluated; deterministic checking is its strongest region, not its definition. -->
+
+\textbf{Can the obligation be governed adequately?} Some properties can be represented precisely and settled mechanically: a schema conforms, a dependency is permitted, an invariant holds. Others admit statistical evidence but not a definitive predicate. Still others depend substantially on aesthetic, scientific, organizational, or social judgment. Governability is the degree to which an important obligation can be made explicit, supplied with relevant evidence, and evaluated with adequate reliability and acceptable cost. Deterministic checking is its strongest region, not its definition.
+
+% <!-- point: residual-probabilistic-surface-is-not-necessarily-debt | The residual probabilistic surface is not necessarily debt; some judgment belongs there, so do not minimize it blindly. -->
+
+The residual probabilistic surface is therefore not necessarily technical debt. Some judgment belongs there. The objective is not to minimize it blindly, but to avoid repeatedly purchasing expensive probabilistic reasoning or residual risk where a cheaper, adequate, and trustworthy representation or mechanism can do better.
+
+% <!-- point: authority-connects-diagnosis-to-the-shared-environment | Two organizational conditions: diagnostic capacity to tell structural pressure from local defects, and authority connecting that diagnosis to the shared environment — without either, fixes stay local. -->
+
+\textbf{Can the organization act on what it learns?} Two organizational conditions determine whether lessons become shared assets:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Diagnostic capacity.} The organization must be able to distinguish structural pressure from local defects. Without that capacity, repeated failures produce patches rather than changes to the shared environment.
+\item
+  \textbf{Authority to adapt.} Diagnosed structural problems must have a path into shared models, architecture, mechanisms, or infrastructure. Otherwise the lesson remains local.
+\end{enumerate}
+
+Authority need not reside in one person; it has to connect diagnosis to the environment.
+
+% <!-- point: two-ways-an-investment-fails | Stated as failure modes, the criteria give three ways a MAGE investment fails: the asset never earns a return, the important property cannot be governed adequately, or the engineer lacks authority to change the shared environment. -->
+
+Stated as failure modes, the three criteria describe the ways the investment goes bad. \textbf{First, the asset never earns a return:} the knowledge is not reused, the risk is too small, or the machinery costs more to maintain than the judgment it replaces. \textbf{Second, the important property cannot be governed adequately:} it cannot be represented, evidenced, or evaluated strongly enough to justify moving the decision out of expert judgment. \textbf{Third, the failure is organizational:} the investment is technically justified, but the engineer lacks authority to change the shared environment. A contractor on a large project may identify a recurring failure without permission to modify the client\textquotesingle s development pipeline. A packaged agentic software factory may expose task instructions while preventing users from changing its underlying models, controls, or workflows. In either case the engineer can diagnose the problem but cannot convert the diagnosis into a durable control.
+
+MAGE therefore requires sufficient control over the engineering environment rather than ownership of the software being developed. An engineer working on a proprietary platform may hold extensive governance authority, while a contractor with full source-code access may hold almost none.
+
+% <!-- point: most-systems-mix-surfaces-which-deserve-enforcement | Most systems mix surfaces; the question is which properties deserve durable representation or enforcement, not whether a project uses MAGE. -->
+
+A single system can contain obligations suited to durable enforcement alongside obligations that still require expert judgment. The practical question is therefore not whether a project "uses MAGE," but which properties deserve durable representation or enforcement, how strong the evidence should be, and which decisions should remain with experts.
+
+% <!-- point: scope-conditions-are-theoretical-not-population-estimates | These scope conditions are theoretical, informed by the evidence chapter, not population estimates. -->
+
+These are theoretical scope conditions informed by \magevalue{chapter:software-factories}, not population estimates.
+
+\section{The Expanding Frontier of Explicit Engineering}\label{heading:the-expanding-frontier-of-explicit-engineering}
+
+% <!-- point: scope-not-fixed-two-interacting-questions | MAGE's scope is not fixed: explicit engineering is becoming cheaper and sometimes more feasible, and the return and governability questions interact without determining each other. -->
+
+MAGE\textquotesingle s scope is not fixed. Explicit engineering is becoming cheaper and, in some cases, more feasible. Economic return and feasible governability can change independently: they interact, but neither determines the other.
+
+% <!-- point: consequence-does-not-imply-governability | Consequence does not imply governability: some consequential obligations remain substantially qualitative however carefully evaluated. -->
+
+The distinction matters because consequence does not imply governability. Some consequential obligations admit precise models and strong evaluation: structural loads, resource bounds, protocol states, or dependency relations may eventually support calculation, exhaustive analysis, or proof. Other obligations remain substantially qualitative even when an organization has strong reason --- or a legal duty --- to evaluate them carefully. Aesthetic quality, scientific validity, organizational fitness, and social acceptability can justify substantial engineering investment without ever becoming completely reducible to predicates.
+
+% <!-- point: part-iv-shows-the-boundary-moving-both-ways | Chapter 4 showed the boundary both ways: a broad judgment can stay probabilistic while narrower obligations within it become enforceable, and the residency model became a quantitative invariant. -->
+
+\magevalue{chapter:one-problem-many-models} gave the practical version of this distinction. A judgment can remain qualitative while narrower obligations within it become clear and evaluable enough to enforce --- the relevant unit is the obligation, not the task. The DocAble residency model (\{\{sec:interlude-one-problem-many-models\}\}) showed the boundary moving in the other direction: repeated empirical judgment about memory behavior became a quantitative invariant once a better representation exposed the relevant relation. Modeling can therefore improve judgment without eliminating it, and it can sometimes make stronger enforcement feasible.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING PRACTICE -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Hard Obligations, Judgment Calls}
+\label{inset-hard-obligations-judgment-calls}
+An obligation does not have to be mechanically checkable to be a real engineering obligation. Consider a historic building. The Secretary of the Interior\textquotesingle s Standards for Rehabilitation require certified projects to preserve historic character, and new work must be compatible with the historic building in its massing, size, scale, and architectural features. Replacement features may need to match the original design, color, texture, and other visual qualities.\citep{nps-rehab-standards} These are real requirements that can determine whether a project is approved, but there is no complete test for "compatible with the historic character." Engineers and architects can measure dimensions, identify materials, record features that must be preserved, compare photographs and drawings, and use precedent and design rules. These make the judgment better informed and more consistent. They do not remove the judgment.
+
+Software has the same problem. The Department of Justice\textquotesingle s 2024 accessibility rule generally requires state and local governments to make their web and mobile content conform to \magevalue{doj_technical_standard}, including conventional electronic documents where the criteria apply.\citep{doj-web-accessibility-2024} Many resulting requirements can be checked mechanically, but the rule also permits an alternative technique when it provides "substantially equivalent or greater accessibility and usability." Whether it does so can depend on the information and functionality preserved, the users and tasks involved, and the barriers the alternative introduces. DocAble sits on this boundary. It can mechanically check many properties that its document models make observable and use probabilistic models for semantic work such as interpreting figures and generating descriptions. But neither proves that every blind student will receive a substantially equivalent experience from every remediated document. Some judgment remains.
+
+The historic-building and accessibility examples make the same point. An obligation can be important, explicit, and legally binding without having a complete formal test. Engineering can still make the judgment better: make the obligation explicit, mechanize the parts that can be checked, and gather good evidence for the rest. The boundary can also move. Better models and measurements can turn judgments that once required an expert into properties the environment can check; better GenAI may make us willing to entrust increasingly difficult judgments to an artificial expert. Here, expert does not necessarily mean human: it means a reasoner capable of making the judgment well enough for the consequence at stake. The goal is therefore not to eliminate judgment, but to give each obligation the strongest form of evaluation and enforcement the available evidence can support.
+\end{bookbox}
+
+% <!-- point: full-formalization-is-a-region-not-a-ladder-endpoint | Full formalization is an important region of the design space, not the endpoint of a ladder. -->
+
+Full formalization is one region of explicit engineering, applicable where obligations can be represented with semantics precise enough for machines to derive, search, transform, or verify solutions. Program synthesis, compiler optimization, model-driven engineering, configuration tuning, and formal methods exploit such representations. Their use requires investment in specifications, models, proofs, generators, correspondence machinery, and verification infrastructure. Commodity intelligence can help with specification, invariant discovery, model and proof construction, and translation between engineering intent and formal artifacts; whether that assistance makes an approach economical depends on the work it saves.
+
+% <!-- point: consequence-can-justify-investment-without-governability | Where governability is limited, added consequence can justify more investment without making complete formalization feasible. -->
+
+Where governability remains limited, greater consequence can justify more investment without making complete formalization feasible. A design organization may invest heavily in models, precedent, examples, structured critique, evaluation procedures, and expert review. An accessibility system may mechanize dozens of standards-derived obligations while retaining semantic and user-experience judgments that no checker can settle. Greater consequence can justify more engineering in either case; it does not make the underlying obligation more governable. A scientific organization may enforce provenance, units, workflow, and reproducibility while leaving scientific interpretation to expert judgment. A bridge project may formally analyze structural obligations while using substantially different evidence and review for its aesthetic relationship to a historic or scenic setting. The right unit remains the obligation or engineering surface, not the industry or artifact.
+
+% <!-- point: value-and-governability-are-two-dimensions-of-investment | Value of explicit engineering and feasible governability are two dimensions; high value need not imply high governability. -->
+
+The \textbf{value of explicit engineering} asks how much explicit structure the obligation warrants: repeated reasoning cost, consequence, recurrence, and recovery cost can all raise it. \textbf{Feasible governability} asks how much enforcement is achievable. High value does not imply high governability. Where both are high, strong formalization and enforcement mechanisms may pay. Where value is high but governability remains limited, substantial investment can instead improve the representations, knowledge, procedures, evidence, and evaluation through which judgment occurs. \autoref{return-governability} shows the two dimensions together.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/return-governability-5cf809fe48.pdf}
+\caption{\emph{The economics of explicit engineering.} The value of making an obligation explicit determines how much investment it warrants; feasible governability determines how much of that investment can become enforcement. High-value obligations can justify substantial engineering even when they remain judgmental, while highly governable obligations need not be mechanized when little value would result.}
+\label{return-governability}
+\end{figure}
+
+% <!-- point: ci-lowers-the-cost-of-explicit-structure | Where commodity intelligence lowers construction and maintenance cost without sacrificing quality or useful life, explicit engineering can repay its cost at lower recurrence or consequence. -->
+
+Commodity intelligence can change where work falls in this design space in two ways. First, it may lower the cost of constructing and maintaining explicit structure. Where it does, models, skills, specifications, validators, proofs, and other engineering assets can repay their cost at lower levels of recurrence or consequence, provided their quality and useful life are preserved. More obligations may then justify explicit engineering even though the obligations themselves have not changed.
+
+% <!-- point: ci-can-increase-governability | Commodity intelligence can also increase governability, turning expert judgment into narrower evaluable or decidable properties. -->
+
+Second, better representation, instrumentation, and evaluation can increase governability. An obligation initially expressed only as expert judgment may yield narrower properties that can be evaluated reliably; a property reconstructed semantically from implementation may become a predicate once an appropriate model exposes it directly. \magevalue{chapter:one-problem-many-models} described the practical version: make obligations enforceable where feasible. The determinization frontier describes its strongest case: Modeling changes the representation until a previously reconstructed judgment becomes mechanically decidable, after which Alignment can carry the decision repeatably.
+
+% <!-- point: movements-need-not-end-in-formalization | These movements need not end in formalization; explicit engineering still pays when it makes judgment better informed and repeatable. -->
+
+These two changes need not end in the same place. Some questions resist enforcement because the necessary representation or evidence remains unavailable. Others admit probabilistic evaluation adequate for one consequence but not another. Still others are intrinsically plural or contextual: no amount of cheaper implementation turns good writing, scientific importance, or "compatible with the historic character" into a single definitive predicate. Explicit engineering still pays when it makes those judgments better represented, better informed, more repeatable, or easier to review.
+
+% <!-- point: mage-concerns-the-whole-design-space | MAGE concerns the whole design space, not progress toward ever greater formalization; the objective is an economical division of work. -->
+
+MAGE therefore concerns the whole design space, not progress toward ever greater formalization. It asks which consequential knowledge should be made explicit, which obligations should be enforced where feasible, and which remaining degrees of freedom should stay with probabilistic or expert judgment. At one limit, sufficiently complete and governable realization models may make synthesis, proof-directed realization, or deterministic generation preferable to an agent. Elsewhere, the appropriate governed engineering environment may combine explicit models, reusable skills, probabilistic evaluation, deterministic controls, and expert review. The objective is the economical division of work among the reasoner, the engineered environment, and expert judgment, not maximum formalization.
+
+% <!-- point: mage-applies-across-engineering-scales | MAGE applies across scales — engineer, team, product, organization — with explicit correspondence keeping the scales distinct yet connected. -->
+
+MAGE also applies at different engineering scales. An individual engineer can model the part of a system under active change and govern its realization. A team can connect those local models to shared architecture, ownership, and operational knowledge. A product can connect models and obligations across engineering surfaces, and an organization can carry selected policies, assurance obligations, and engineering knowledge across products.\magefootnote{conway-scale}{This interacts with Conway\textquotesingle s law, which relates system structure to organizational communication structure.\citep{conway1968} MAGE does not remove that coupling, but explicit models provide additional surfaces---such as architectural relations, security obligations, or assurance claims---around which responsibility can be organized across implementation boundaries.} Purposeful models and explicit correspondence let these scales remain distinct while still informing and constraining one another, so the consequential judgment can stay at the level where it belongs rather than requiring either complete local autonomy or one organization-wide model.
+
+% <!-- point: scale-and-assurance-strength-are-separate-choices | Scale and assurance strength are separate choices; organization-wide adoption does not imply maximal formalization. -->
+
+Scale and assurance strength are separate choices. One engineer may use formal verification for a consequential protocol while a large organization relies mostly on design documents, tests, runtime evidence, and human judgment. Organization-wide adoption does not imply maximal formalization, nor does strong assurance require organization-wide adoption.
+
+\subsection{The frontier is not a destination}\label{heading:the-frontier-is-not-a-destination}
+
+% <!-- point: the-frontier-is-not-a-destination-evolution-is-an-outer-loop | The frontier is not a destination: many questions stay open because the system's shape is still being discovered, so evolution remains an outer loop. -->
+
+Neither change should be mistaken for a destination for software engineering as a whole. Search works when we know enough about what counts as success. Many consequential engineering questions remain open because the correct shape of the system is itself being discovered: which abstraction matters, which tradeoff users will accept, which failure will dominate in operation, or which requirement the organization actually intends. In those cases implementation is not merely realization; it is an experiment that produces information about the specification. And even a question that is closed today may reopen as users, dependencies, organizations, regulations, workloads, or adversaries change. Software evolution therefore remains an outer loop around increasingly powerful episodes of automated realization.\citep{lehman2003evolution} MAGE can turn sufficiently closed engineering questions into search problems when their consequential shape is knowable; it should not get there by pretending that unresolved uncertainty has disappeared.
+
+% <!-- point: premature-closure-explicit-does-not-mean-correct | The failure mode is premature closure: a small probabilistic surface can mean the environment determinized the wrong problem. -->
+
+The main failure mode is \textbf{premature closure}. Explicit does not mean correct. A small probabilistic surface is therefore not itself evidence of good engineering: the environment can determinize the wrong problem. If the organization does not yet know what users need or which tradeoff is acceptable, formalizing one conjecture merely makes the wrong target easier to optimize, and commodity intelligence can make the failure more consequential because it can elaborate the mistaken premise cheaply and at scale.
+
+% <!-- point: capital-can-enlarge-what-is-delegable-to-search | Engineering capital can move the frontier within a system, enlarging the region of work later delegable to search. -->
+
+Engineering capital can also enlarge what can safely be delegated within one system. A model built for today\textquotesingle s migration can make tomorrow\textquotesingle s change searchable; a differential harness can turn a future rewrite into cheap comparison; a validator can convert repeated judgment into repeatable evaluation. Engineering capital can therefore enlarge the region of work that can later be delegated safely to search.
+
+% <!-- point: mage-predicts-a-moving-boundary-not-convergence | MAGE predicts a moving economic boundary, not convergence toward complete specification; where it moves is empirical. -->
+
+MAGE therefore predicts a moving economic boundary, not convergence toward complete specification. Requirements emerge through use, organizations change, adversaries adapt, and systems alter the environments that generate their next requirements. Commodity intelligence can move work through this design space; it does not eliminate the world beyond it. Which engineering surfaces become worth representing and enforcing more strongly---and how that choice changes with consequence, organizational context, model capability, and carrying cost---is an empirical question for the research agenda.
+
+% <!-- point: scope-judged-surface-by-surface | Scope should be judged surface by surface — recurrence, consequence, representability, carrying cost — not assigned to a whole project. -->
+
+The implication is that scope should be judged surface by surface, according to recurrence, consequence, representability, and carrying cost---not assigned once to an entire project or domain.
+
+\section{Typical Profiles}\label{heading:typical-profiles}
+
+% <!-- point: two-dimensions-produce-profiles-not-maturity-levels | The two dimensions produce different profiles within one system; these are not maturity levels toward the upper right. -->
+
+The two dimensions produce different profiles even within one organization or artifact. \autoref{mage-typical-profiles} gives representative cases. These are not maturity levels: movement toward the upper right is neither inevitable nor always desirable. The appropriate profile depends on the return available from explicit engineering and the governability of the particular obligations at issue.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Typical MAGE profiles by setting]{\emph{Typical profiles, not domain verdicts.} The return on MAGE varies by surface within a system. These rows identify where the investment commonly pays and where important judgment usually remains.}\label{mage-typical-profiles}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Setting
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Why investment may pay
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Strongly governable surfaces
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Likely residual judgment
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Setting
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Why investment may pay
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Strongly governable surfaces
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Likely residual judgment
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Large brownfield / services & repeated change and reconstruction & architectural boundaries, API contracts, security boundaries, tests, deployment & requirements and tradeoffs \\
+Long-lived embedded & recurrence + assurance & timing, memory, protocols, interfaces & hardware/system integration \\
+Safety-critical & consequence + recurrence & traceability, invariants, coverage, evidence & certification and acceptance \\
+Greenfield & selective; increases with longevity & high-risk boundaries, build/test infrastructure & product discovery \\
+HPC / scientific & long-lived estate & builds, reproducibility, numerical tolerances, provenance & scientific validity \\
+ML systems & long-lived surrounding software & pipelines, evaluation infrastructure, serving, access & data/model fitness \\
+Design / aesthetic work & repeated practice + consequential stakeholder or regulatory outcomes & dimensions, required elements, materials, provenance, process obligations, selected visual properties & aesthetic quality, composition, contextual fit \\
+Small startup & usually selective & consequential security/data obligations & product search and architecture in flux \\
+One-off / throwaway & usually low reuse & only obligations whose consequence independently justifies it & most of the work \\
+\end{longtable}
+}
+
+% <!-- point: the-pattern-is-economic-not-categorical | The pattern is economic, not categorical: longevity and consequence justify investment, and mixed domains divide by surface. -->
+
+The pattern is economic rather than categorical. Long-lived systems offer repeated opportunities to amortize representation and assurance. High-consequence systems can justify the same investment even at lower recurrence. Mixed domains divide by engineering surface: scientific software may support strong governance around reproducibility and deployment while leaving scientific validity with domain experts; ML systems can govern pipelines and serving infrastructure much more strongly than they can govern the question, "Is this learned model good?"
+
+% <!-- point: do-not-govern-non-recurring-low-consequence-work | Do not govern work whose reasoning will not recur and whose consequence does not justify it; use the cheapest adequate mechanism. -->
+
+At the opposite extreme, do not build elaborate governance around work whose relevant reasoning will not recur and whose consequences do not justify the investment. Use the cheapest adequate mechanism. A prototype may need only tests around one dangerous boundary. If it becomes a long-lived system, the economics change before the label does.
+
+\section{Scope Beyond Software}\label{heading:scope-beyond-software}
+
+What must be true of a domain for the theory to transfer beyond software engineering? The central mechanisms require neither source code nor software systems. They require three things: work whose consequential knowledge can be represented usefully; some credible means of establishing correspondence between those representations and what they describe; and consequential actions or outputs that can in some measure be evaluated and enforced independently of the agent producing them.
+
+The strength of the resulting governance will vary by domain. MAGE should transfer most readily where useful representations can preserve the distinctions needed for judgment, correspondence can be established and maintained, and important consequences can be checked, constrained, routed, admitted, or escalated outside the producing agent.
+
+The converse matters. Where consequential state resists useful representation, correspondence cannot be established, or the important judgments remain irreducibly situated, there may be little useful structure to move outside the agent. Modeling may still improve the reasoning surface without permitting much stronger enforcement. In some work, better agents or human judgment may remain the appropriate mechanism. \magevalue{chapter:profession} returns to this question after examining what MAGE implies for the profession in which it was developed.
+````
+
+
+### Original `book/latex/sources/part6/6.4-research-agenda.tex`
+
+Section: complete source file; lines 1–274. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `8ac53e761f6b14b7d4f2207edcb7dafc5dbff8fcadf38c84a891c8d8673a9e8d`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````latex
+% mage-auto-heading: parameterizing-the-model
+% mage-auto-heading: what-experiments-would-estimate
+% mage-auto-heading: engineering-routing
+% mage-auto-heading: representation-selection-induction-and-innovation
+% mage-auto-heading: experimental-designs
+% mage-auto-heading: separating-modeling-from-alignment
+% mage-auto-heading: multi-project-longitudinal-design
+% mage-auto-heading: subsystem-level-design
+% mage-auto-heading: event-centered-longitudinal-design
+% mage-auto-heading: what-the-designs-still-need
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: Research Agenda -->
+
+\chapter{Research Agenda}
+
+% <!-- point: chapter-turns-remaining-uncertainty-into-a-program-of-work | Testing MAGE requires measuring how representations, model capability, and engineering controls interact across tasks and over time; this section turns that requirement into a research program. -->
+
+Testing MAGE requires measuring how representations, model capability, and engineering controls interact across tasks and over time. This section turns that requirement into a research program: what to measure, which comparisons could distinguish the proposed mechanisms, and what evidence would strengthen---or weaken---the account.
+
+% <!-- point: equations-are-objects-of-empirical-identification | Decomposition and accounting define quantities; experiments test how engineering interventions change them. -->
+
+The decomposition and accounting in \magevalue{chapter:theory} tell us what to distinguish and count. The empirical questions concern how engineering interventions change those quantities. The nine hypotheses collected in \magevalue{sec:what-the-theory-predicts} identify quantities and relationships that empirical studies can test.
+
+% <!-- point: three-designs-cover-much-of-the-program | The nine hypotheses do not require nine studies; a small set of experimental designs covers much of the program. -->
+
+The hypotheses do not require nine unrelated studies. A small set of experimental designs covers much of the program.
+
+% <!-- point: the-open-questions-the-agenda-carries-forward | Six questions carry the program forward, recurring to the vendor-factory question and the determinization frontier of 6.1 in compressed form. -->
+
+Six questions carry the program, and two of them recur from \magevalue{sec:toward-a-theory-of-mage}: the vendor-factory question and the determinization frontier.
+
+\begin{itemize}
+\tightlist
+\item
+  How much representation can stronger reasoners economically replace?
+\item
+  When does explicit representation beat repeated inference?
+\item
+  Which properties can representation innovation move across the determinization frontier?
+\item
+  How quickly does engineering capital depreciate?
+\item
+  When does governance pressure produce adaptation rather than bureaucracy and control friction?
+\item
+  Does increased capability improve outcomes more strongly in high-quality environments than in weak ones?
+\end{itemize}
+
+\section{Parameterizing the Model}\label{heading:parameterizing-the-model}
+
+% <!-- point: a-program-can-ask-what-determines-the-parameters | The theory's equations leave their parameters abstract; a research program can ask what determines them. -->
+
+The theory\textquotesingle s equations leave their parameters unspecified. A research program can ask what determines them.
+
+% <!-- point: parameterize-success-and-cost-over-task-model-representation-harness | Parameterize per-attempt success and cost over task, model, representation, and harness for a fixed environment. -->
+
+Let \(T\) denote an engineering task or task family, \(M\) the reasoning model, \(R\) the representation available to it, and \(H\) the harness and process through which production is organized. In the vocabulary of \magevalue{chapter:software-factories}, \(H\) captures much of process design: context assembly, tools, decomposition, routing, permissions, coordination, and other machinery surrounding the fabricator. For a fixed engineering environment, write
+
+\[
+p(T,M,R,H)
+\]
+
+for the probability of faithful production in one delegation episode, and
+
+\[
+c(T,M,R,H)
+\]
+
+% <!-- point: cost-is-broader-than-inference-cost | Attempt cost includes production, assessment, and intervention; tokens and elapsed time are separate measurements, and monetary aggregation requires declared valuations. -->
+
+for the expected cost of that attempt. Cost includes the work required to produce and assess the candidate, including tools and human intervention. Tokens and elapsed time are useful separate measurements; converting effort and compute into a common monetary cost requires an explicit valuation.
+
+% <!-- point: sustained-work-makes-the-environment-a-state-variable | For sustained work the environment becomes a state variable; the research problem is identifying how much path dependence matters. -->
+
+For sustained work, we reuse the dynamic formulation from \magevalue{sec:toward-a-theory-of-mage}. The environment itself becomes a state variable: writing \(\mathcal{G}_i\) for the environment inherited at step \(i\),
+
+\[
+p_i = p(T_i, M, R_i, H, \mathcal{G}_i), \qquad \mathcal{G}_{i+1} = f(\mathcal{G}_i, a_i)
+\]
+
+Here the equations serve a different purpose. \magevalue{sec:toward-a-theory-of-mage} used them to express path dependence; the research problem is to measure how much that dependence matters in practice and which features of the environment drive it.
+
+% <!-- point: alignment-adds-q-the-escape-probability | Alignment adds an escape probability q — zero for a sound gate over a decidable obligation, weaker otherwise. -->
+
+Alignment introduces a related quantity. For an Alignment strategy \(A\), let
+
+\[
+q(T,M,R,H,A)
+\]
+
+denote the probability that an unacceptable candidate escapes the mechanisms enforcing the relevant obligation. A sound deterministic gate makes it zero for the covered failure class. In other cases, the kinds of mistakes a producer makes can affect which failures escape, so the reasoning model and harness belong in the comparison too. Record false rejection \(r\) alongside escape, and independently assess candidate correctness \(s\) and the fraction \(\rho\) of admitted work that is incorrect.
+
+\subsection{What experiments would estimate}\label{heading:what-experiments-would-estimate}
+
+% <!-- point: empirical-question-how-the-quantities-vary-and-interact | The empirical question is how success, cost, and escape vary across task, capability, representation, harness, and enforcement, and interact. -->
+
+Agents do not have one fixed reliability or cost. The question is how these quantities vary across engineering tasks, model capability, representation, harness and process, and Alignment strategy, and how those factors interact.
+
+% <!-- point: modeling-and-alignment-improve-quality-through-different-mechanisms | Modeling and Alignment can produce similar observed quality gains through different mechanisms, so experiments must separate them. -->
+
+Modeling and Alignment can produce similar observed improvements in final system quality through different mechanisms, so experiments must separate them. A stronger model may increase \(p\). A better representation may increase \(p\), decrease \(c\), or both. A longer reasoning loop may increase the probability of eventually finding an acceptable candidate while increasing total cost. An independent gate may leave the producer\textquotesingle s \(p\) unchanged while decreasing \(q\).
+
+% <!-- point: the-decomposition-refines-the-measurand | The encoding/realization decomposition motivates separate assessments of intent and fulfillment; factorial interventions test effects, while interpretation probes diagnose mechanisms rather than identify hidden reasoning stages. -->
+
+Separating encoding from realization helps us identify what improved. A study can assess whether a representation captures independently established obligations, then whether the artifact fulfills that encoding. These assessments estimate \(P(E\mid R)\) and \(P(F\mid E,R)\), subject to the reliability and coverage of the assessments themselves. Independent task acceptance should also be recorded: a correct artifact may compensate for omitted intent. Across repeated work, the lifecycle measure \(c_N\) includes failed attempts and upkeep; reporting only the cost of successful attempts would miss part of the effect.
+
+A factorial design can cross representation quality, reasoner capability, harness and process, task, and Alignment mechanism. Interpretation questions, plans, and counterexamples can diagnose mechanisms within realization; they do not by themselves reveal a hidden reasoning stage, and prompting for them may change the result. Comparisons should retain runs without those probes. The decomposition supports the same falsifiable prediction: some representations should outperform natural language with the same reasoner because engineers encode consequential intent into them more reliably. The human is one of the channels whose reliability MAGE is trying to improve.
+
+% <!-- point: objective-is-a-map-of-conditions-not-one-coefficient | The objective is a map of when capability, representation, iteration, and enforcement substitute for or complement one another. -->
+
+The goal is to determine when capability, representation, iteration, and enforcement substitute for or complement one another. \autoref{theory-experimental-comparisons} collects four comparisons that would distinguish these effects. Each asks what the proposed engineering move contributes beyond an alternative that could plausibly work.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.19}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.40}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.41}}@{}}
+\caption[Comparisons that distinguish MAGE's proposed effects]{Four comparisons connecting the existing hypotheses to observable outcomes.}\label{theory-experimental-comparisons}\tabularnewline
+\toprule\noalign{}
+Question & Comparison & What to measure \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Question & Comparison & What to measure \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Representation (H1) & Structured representation versus prose containing the same obligations & Correctness and reasoning cost across task families and agent capabilities \\
+Assurance (H5) & Independent model-derived checks versus existing checks & Escape and false rejection, alongside correct delivery \\
+Conversion (H6, H9) & Corrections retained as instructions versus conversion into durable controls & Later recurrence and cost per correct delivery, including construction and upkeep \\
+Human review (H8) & Code review versus model-and-evidence review, at fixed review capacity & Decision accuracy and correct throughput as agent output increases \\
+\end{longtable}
+}
+
+% <!-- point: crossed-experiments-separate-capability-leverage-retry-and-assurance | Crossed experiments varying model and environment can separate capability effects, representation leverage, retry economics, and assurance. -->
+
+Crossed experiments can answer these questions: vary reasoning model and engineered environment over matched task families, then isolate representation and Alignment while holding the other fixed. Measurements of attempts, inference and tool cost, latency, intervention, admission, defect escape, and durable throughput can distinguish capability effects, representation leverage, retry economics, and independent assurance rather than collapsing them into one measure of agent performance.
+
+% <!-- point: natural-language-descriptions-are-models-so-compare-against-strong-baselines | A detailed natural-language task description is itself a model of intended behavior, so experiments must compare representations against strong natural-language baselines rather than against no model at all. | terms: specification-frontier -->
+
+Note that a detailed natural-language task description is itself a model of intended behavior. Adding a more formal architectural or behavioral model may provide little benefit when the agent can already reconstruct the relevant relationships from that description and the repository. To isolate the effect of structure on realization, the structured model and prose should contain the same obligations. A separate elicitation study can test whether a representation helps engineers discover or express obligations they would otherwise miss. If equivalent prose performs as well, that limits the case for additional structure for those tasks, although the structure may still support independent checks or later work. Explicit engineering models are most likely to be valuable when consequential relationships are expensive to reconstruct, recur across tasks, or support independent checks.
+
+% <!-- point: representation-has-oversight-value-beyond-realization | These experiments measure representation's value to realization; it may still matter for engineering control even when capability grows. -->
+
+These experiments measure how representation helps realization, not its full engineering value. As model capability improves, a representation may contribute less to the cost or probability of producing an acceptable change: the reasoner may reconstruct the relevant relationship cheaply and reliably without it. The same representation may still matter for retaining engineering control by giving engineers and independent mechanisms an inspectable account of consequential system knowledge. \magevalue{chapter:profession} takes up that second value directly.
+
+\section{Engineering Routing}\label{heading:engineering-routing}
+
+% <!-- point: model-routing-treats-the-task-as-given | A router can select a reasoner for a fixed task representation; engineering routing also considers changing the representation and the work the reasoner must reconstruct. -->
+
+Task difficulty depends partly on how the problem is presented. A router that takes the task representation as given can estimate its difficulty and select a foundation model with suitable capability and cost. Engineering routing considers another choice as well: changing the representation before selecting the reasoner. The comparison is between choosing a reasoner that can solve the presented problem and changing what must be reconstructed to solve it.
+
+% <!-- point: migration-vs-authentication-engineering-changes-difficulty-and-assurance | Engineering changes both the difficulty presented to the reasoner and the assurance required, as migration and authentication differ. -->
+
+Suppose a migration appears to require a frontier model to inspect hundreds of service configurations and reconstruct their dependencies. A trustworthy dependency model may turn the same work into a much smaller graph problem that a cheaper reasoner can handle reliably. Changing an authentication boundary may warrant a different strategy: the representation can still simplify the reasoning, but the consequence may justify the stronger model, additional evidence, and an independent admission mechanism as well. Engineering changes both the difficulty of the task presented to the reasoner and the assurance required around its result.
+
+% <!-- point: model-is-only-one-component-of-the-realization-strategy | Representation, context, iteration, and Alignment are all realization-strategy components; the model is only one. -->
+
+A difficult code-level reasoning task may become a simpler graph, state-machine, provenance, or constraint problem when an appropriate representation exposes the consequential relation directly. Better context or tooling may change the cost of reaching the answer. Iteration may purchase additional chances. Alignment may allow a less reliable producer to operate safely because an independent mechanism prevents covered failures from acquiring consequence. The model is therefore only one part of the realization strategy.
+
+% <!-- point: an-engineering-router-selects-the-whole-strategy-jointly | An automated system could jointly select model, representation, harness, enforcement, and retry budget under a task assurance bound. -->
+
+For an engineering task \(T\), an automated system could in principle select the model \(M\), representation \(R\), harness \(H\), Alignment strategy \(A\), and retry budget \(k\) jointly:
+
+\[
+(M^*,R^*,H^*,A^*,k^*) = \arg\min_{M,R,H,A,k} E[C_{\text{total}}\mid T,M,R,H,A,k]
+\]
+
+subject to an engineering assurance requirement
+
+\[
+P(\text{unacceptable outcome escapes}\mid T,M,R,H,A,k) \le \varepsilon_T
+\]
+
+The optimization also needs a declared minimum probability of correct task completion within a fixed evaluation horizon. Otherwise, doing no work or rejecting every candidate can satisfy the escape bound at little cost. Correct completion must be assessed independently of the selected admission mechanism, and the cost comparison must include unsuccessful attempts and the construction and upkeep allocated to the task.
+
+% <!-- point: the-assurance-bound-is-task-specific | The assurance bound is task-specific: routing should reflect the obligations and consequences, not just apparent difficulty. -->
+
+The task-specific bound \(\varepsilon_T\) matters. Renaming a local variable, changing a user-visible layout, modifying a billing calculation, and altering an authentication boundary need not warrant the same assurance strategy. Routing should reflect the obligations and consequences of the work, not only its apparent implementation difficulty.
+
+% <!-- point: engineering-routing-selects-the-realization-strategy | Engineering routing asks which engineered realization strategy should receive a task, not merely which reasoner. -->
+
+Call this \textbf{engineering routing}. A model router asks which reasoner should receive the task. An engineering router asks how the task should be engineered for realization: what the reasoner should reason over, which tools and context it should receive, how much iteration is economical, what evidence should be produced, and which independent mechanisms should govern admission. Using the distinctions of \magevalue{sec:toward-a-theory-of-mage}, it chooses where to spend: on representation, process design, capability, or evidence and enforcement.
+
+% <!-- point: task-difficulty-is-not-fixed-engineering-can-change-it | Because engineering can change the difficulty routing takes as fixed, the optimum depends on task, capability, environment, assurance, and recurrence. -->
+
+A suitable representation can lower the capability a task requires; conversely, a strong model may make additional Modeling uneconomical for a simple or infrequent task. The best choice depends on the task, available capability, environment, assurance requirement, and recurrence.
+
+% <!-- point: research-question-how-cheaply-to-engineer-a-task-safe-to-delegate | The research question becomes how cheaply a task can be engineered to be safe to delegate, not merely how difficult it is. -->
+
+The research implication is concrete. Measuring production, admission errors, and lifecycle cost across task families and engineered environments could show when each strategy is preferable. The question becomes not merely \emph{how difficult is this task for a model?} but \emph{how cheaply can we engineer this task to be safe to delegate?}
+
+\section{Representation Selection, Induction, and Innovation}\label{heading:representation-selection-induction-and-innovation}
+
+% <!-- point: representation-selection-is-a-research-problem | Choosing the right representation is itself an engineering problem: different representations expose different properties, support different analyses, and impose different costs. -->
+
+Choosing the right representation is itself an engineering problem. Different representations expose different properties, support different analyses, and impose different costs. The six model classes of \magevalue{chapter:modeling} were offered as useful, not proven necessary, sufficient, or minimal.
+
+% <!-- point: sufficient-vs-minimal-useful-representation-families | A sufficient family answers the declared questions; a minimal-useful family drops representations whose benefit fails to justify carrying cost. -->
+
+A representation is useful only relative to the questions and consumers it serves. A \textbf{sufficient representation family} preserves enough information to answer the declared engineering questions and govern the declared obligations to the required standard; a \textbf{minimal useful family} removes representations whose added reasoning, assurance, or independence benefit does not justify their carrying cost. Mathematical minimality is not the target, since a strictly minimal set may be difficult for engineers to reason about. We can test redundancy in principle: two representations that encode overlapping information can both be valuable when one serves a different question, reasoner, or independent assurance path, while a representation that changes none of the relevant answers, governable obligations, independent evidence, or reconstruction cost may be carrying cost without leverage.
+
+% <!-- point: dependency-graph-example-of-leverage-vs-redundant-cost | A dependency graph earns its cost by answering the question and enabling a validator; a second redundant representation adds cost without leverage. -->
+
+A dependency graph makes the test concrete. Suppose engineers repeatedly reconstruct permitted service dependencies from handlers, configuration, and code. Adding an architectural graph costs something to create, reconcile, and maintain---but if later engineers and agents can answer the dependency question directly, and a gate can use the same representation to identify and reject forbidden edges, the reconstruction and residual-assurance cost falls. A second representation that answers no additional question and adds no independent evidence adds cost without leverage.
+
+% <!-- point: induction-recovers-latent-structure-the-system-embodies | Induction recovers latent structure the system already embodies; it is not yet innovation in the strongest sense. -->
+
+\magevalue{chapter:one-problem-many-models} already treated representation induction as a practical engineering move. An existing implementation can contain stable structure that no explicit model names. Static analysis, clustering, repeated failures, architectural context, and GenAI-assisted interpretation can help recover that latent structure and turn it into an explicit representation. This is not representation innovation in the stronger sense: the induced model makes explicit consequential structure that the existing system already contains.
+
+% <!-- point: innovation-proposing-representations-neither-supplied-nor-latent | The stronger question is whether a reasoner can innovate representations that make relationships tractable when neither supplied nor latent. -->
+
+A stronger research question is whether commodity intelligence can innovate representations. Given an engineering system and a set of recurring questions, failures, and decisions, can a reasoner propose a representation that makes important relationships tractable even when that representation was neither supplied in advance nor plainly latent in the implementation? Such a system might propose a new decomposition, intermediate state, relation, abstraction boundary, or combination of existing model forms because that representation better supports the engineering questions being asked. Together, induction and innovation form the ordered claim of H4: recover what is latent, then propose representations the existing set does not supply.
+
+% <!-- point: learning-formulation-which-representation-preserves-needed-distinctions | A learning formulation asks which representation preserves the distinctions engineering questions need while suppressing irrelevant state. -->
+
+The problem can also be framed as learning. Given a distribution of engineering questions, failures, and decisions, one could ask which representation preserves the distinctions needed to answer them while suppressing irrelevant state---the question representation learning asks in machine learning. MAGE brings a strong engineering prior: software and systems engineering have spent decades developing abstractions for architecture, state, ownership, interfaces, requirements, quantities, provenance, and assurance, and the experience in this book suggests many are also unusually usable by foundation models. A complementary direction is to train models specifically for engineering abstractions,\citep{hakim2026neurosymbolic}\citep{allamanis2018graphs}\citep{luo2026greasoner} which might let smaller models perform reasoning that currently requires expensive general-purpose intelligence. Where only machine reasoners and trustworthy mechanisms use a representation, it might trade human readability for compactness or stronger mechanical analysis, provided the results can be shown to humans where human judgment resumes. The open question is not whether learned representations should replace engineering models, but which representations best divide the reasoning among humans, agents, and mechanisms for the question at hand.
+
+% <!-- point: experiment-compares-authored-induced-and-innovated-representations | An experiment compares authored, induced, and innovated representations on reasoning success, correspondence, carrying cost, and later benefit — the test of H4. -->
+
+An experiment can distinguish induction from innovation --- the test of H4. Compare expert-authored, machine-induced, and machine-innovated representations against both the raw implementation and one another. For induction, measure whether the proposed model faithfully recovers consequential structure already present in the system. For innovation, use held-out engineering questions and failures to test whether the proposed representation exposes useful structure that the existing representations did not. In both cases, measure reasoning success, reconstruction cost, correspondence failures, carrying cost, human comprehensibility, and benefit to later humans and agents.
+
+\section{Experimental Designs}\label{heading:experimental-designs}
+
+\subsection{Separating Modeling from Alignment}\label{heading:separating-modeling-from-alignment}
+
+% <!-- point: design-separate-modeling-from-alignment-by-hiding-the-representation | Varying representation under a fixed gate tests Modeling's contribution; also varying the admission mechanism creates a factorial comparison of Modeling, Alignment, and their interaction. -->
+
+A controlled comparison can isolate the contribution of a representation while retaining independent assurance. Hold the task, reasoning engine, and admission mechanism fixed while varying whether the producer receives the structured representation used by the environment. With a sound gate, covered defect escape should remain zero whether or not the producer sees the model. For imperfect gates, record both escape and false rejection: changing the representation can also change the kinds of mistakes presented to the gate. Modeling earns its cost if it improves correct delivery or reduces the effort needed to reach it. This comparison tests H1 under the chosen Alignment strategy.
+
+A factorial extension would also vary the admission mechanism, comparing the proposed gate with the existing assurance process under each representation condition. Independent assessment of correct delivery and escape would then test H5 and whether the effects of Modeling and Alignment interact.
+
+\subsection{Multi-project longitudinal design}\label{heading:multi-project-longitudinal-design}
+
+% <!-- point: crossed-longitudinal-design-substitute-vs-complement | A crossed longitudinal design tests whether environment quality substitutes for, complements, or barely affects model capability. -->
+
+This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months. The strongest version is a crossed experiment: several reasoning engines from weaker to frontier, several otherwise comparable environments from thinly to richly engineered, and the same task families across every cell. The results would distinguish three possibilities. If richer environments primarily substitute for raw model capability, weaker models should close part of the gap in stronger environments. If the two are complementary, the strongest models should gain most from strong environments. If environment quality contributes little, the cells should move mainly with model capability. This design directly tests H1, H8, and H9.
+
+% <!-- point: measure-where-human-work-goes-narrow-vs-broad-account | Measuring where human work goes distinguishes the narrow coding-productivity account from MAGE's broader shift of realization work. -->
+
+The crossed experiment should also measure where human work occurs and how much productive capacity resides outside the agent. Hold the task family and reasoning engine fixed, vary environment quality, and record how much human attention remains across coding, debugging, test construction, review, environment setup, integration, recovery, and other activity classes, alongside task scale, reconstruction cost, intervention burden, defect escape, and durable throughput. A richer environment that reduces only code-production time would support the narrower productivity account; one that moves several classes of realization work out of repeated human execution while maintaining quality would support MAGE\textquotesingle s broader account. Kumar et al.'s sixteen activity classes provide an existing measurement vocabulary, avoiding the need for another MAGE-specific taxonomy.\citep{kumar2025timewarp}
+
+% <!-- point: human-review-tests-informed-control | At fixed review capacity, compare code review with model-and-evidence review, including incorrect obligations and stale evidence behind passing checks, and independently assess decisions and delivery. -->
+
+Human review deserves a direct comparison within this design. Give engineers the same review-time budget, but vary whether they begin with code or with changed models and verification evidence, retaining access to code when needed. Include cases where a passing check rests on an incorrect obligation or stale evidence; a reassuring display can make the wrong decision easier. As agent output increases, measure whether engineers still distinguish acceptable changes from faulty ones and how much correct work is admitted. Faster approval alone would not support H8 if more violations enter the system.
+
+\subsection{Subsystem-level design}\label{heading:subsystem-level-design}
+
+% <!-- point: subsystem-design-tests-leverage-where-theory-predicts | A subsystem design with stepped introduction tests whether leverage, determinization, and assurance appear where the theory predicts. -->
+
+Compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible. Track model correspondence, reconstruction effort, intervention, churn, and defect escape. Stepped introduction of a model or mechanism is particularly useful because the same subsystem supplies its own pre-intervention baseline. This tests whether representation leverage (H1), determinization (H3), and mechanized assurance (H5) appear where the theory predicts, rather than merely accompanying well-run projects; the correspondence tracking bears directly on H2.
+
+\subsection{Event-centered longitudinal design}\label{heading:event-centered-longitudinal-design}
+
+% <!-- point: event-centered-design-separates-engineer-improved-from-environment-learned | An event-centered design traces a failure class and its conversion; comparisons with local repair or later work without the originating engineer help separate inherited structure from individual learning. -->
+
+An event-centered design follows one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset. This history can show when later work began to inherit a structural intervention. A decline in recurrence alone cannot establish whether the intervention, the engineer\textquotesingle s growing experience, or a change in the work produced the improvement. Comparing similar work that received only local repair, or observing later work performed without the originating engineer, would help distinguish those explanations and test H6. Across organizations, the same design can examine H7 by comparing how different authority pathways connect local diagnosis to changes in the shared environment.
+
+\subsection{What the designs still need}\label{heading:what-the-designs-still-need}
+
+% <!-- point: designs-need-outcome-measures-until-then-counts-stay-descriptive | The designs need credible outcome measures; until then support ratio and counts stay descriptive, not proxies for value. -->
+
+All of these designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return. Until those are available, support ratio, mechanism count, and repository size should remain descriptive rather than proxies for maturity or value.\magefootnote{deferred-variables}{Candidate measures such as redundant-encoding density and agent-legibility remain exploratory and are not part of MAGE\textquotesingle s canonical vocabulary.}
+
+% <!-- point: ci-makes-these-experiments-tractable | Commodity intelligence may make these experiments tractable by holding engine, repository, and task fixed while one factor varies. -->
+
+Commodity intelligence may make some of these experiments unusually tractable: the reasoning engine, repository state, task family, and engineered environment can be held approximately fixed while one representation or mechanism varies.
+
+% <!-- point: theory-may-generalize-beyond-software-engineering | Whether the theory transfers beyond software engineering is an open empirical question the scope conditions already frame; this book does not test it. -->
+
+Finally, whether the theory transfers beyond software engineering is an open empirical question. \magevalue{sec:scope-conditions} named what a domain must supply; this book does not test that generalization. \magevalue{chapter:profession} gives several concrete examples, and testing MAGE beyond software engineering remains part of the research agenda.
+````
+
+
+### Original `book/latex/sources/part7/7.1-reorganization-of-se.tex`
+
+Section: complete source file; lines 1–229. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `2e30f945d741f4374cf31ee69575d3e536213ddf035f318869989c738517eeb5`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````latex
+% mage-auto-heading: was-implementation-ever-the-bottleneck
+% mage-auto-heading: agents-entered-an-implementation-centered-discipline
+% mage-auto-heading: the-old-dream-with-a-new-substrate
+% mage-auto-heading: where-engineering-effort-moves
+% mage-auto-heading: review-when-implementation-is-abundant
+% mage-auto-heading: engineering-the-production-system
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Profession -->
+
+% <!-- chapter-title: The Reorganization of Software Work -->
+
+\chapter{The Reorganization of Software Work}
+
+Commodity intelligence does not invalidate software engineering. It changes its cost structure. When implementation consumes less of the engineering budget, the relative value of specification, architecture, modeling, validation, measurement, and governance rises.
+
+\textbf{In software, MAGE is software engineering under changed economics.} Many of its underlying moves are old: externalize intent, hide volatile decisions behind boundaries, test claims against evidence, automate repeatable operations, learn from failure. What changes is how far those moves can be carried when implementation and routine analysis become cheaper while autonomous work makes it increasingly expensive for humans to reconstruct the same knowledge repeatedly.
+
+\section{Was Implementation Ever the Bottleneck?}\label{heading:was-implementation-ever-the-bottleneck}
+
+A reasonable objection begins with a fact: \textbf{software engineers do not spend most of their workweek typing code.} This result predates generative AI. Meyer et al., drawing on 5,971 responses from professional developers, found that software work spans a much broader mixture of development and non-development activities. More recently, Kumar et al. separated the developer workweek into sixteen activities; in their Microsoft sample, coding new features occupied roughly 11 percent of the actual week, alongside debugging, architecture and design, code review, testing, refactoring, environment work, security, communication, and other activities.\mageaside{André N. Meyer et al.;\citep{meyer2021goodday} Sukrit Kumar et al.\citep{kumar2025timewarp} Kumar et al. distinguish sixteen activities and report approximately 12 percent of the actual week in communication and meetings, 11 percent in coding, 9 percent in debugging, 6 percent in architecture and design, and 5 percent in pull-request and code review.}
+
+Butler et al. turn that observation into a critique of contemporary GenAI.\mageaside{These developer-time studies describe how work was allocated before today\textquotesingle s stronger autonomous coding agents; I use them as evidence about work allocation, not as an empirical ceiling on what later bounded agents can perform.} If the technology merely makes the coding slice faster, its whole-job effect has a low ceiling. Even if coding occupies only roughly 10--15 percent of the workweek, doubling performance on it cannot double developer productivity; faster source production can simply move pressure downstream into review, testing, integration, and other work. Their criticism applies well to \textbf{GenAI used as individual code-generation assistance}. It also supports a broader point MAGE shares: lines of generated code are not an engineering outcome, and handing developers a tool does not by itself redesign the system of work around them.\mageaside{Jenna Butler et al.\citep{butler2026eightmyths} The article\textquotesingle s "Writing Code Is the Bottleneck" discussion explicitly frames the problem as GenAI used primarily to accelerate code creation while the surrounding development loop remains unchanged.}
+
+The disagreement begins when that fixed slice is treated as a bound on \textbf{agentic engineering}. Time categories are not independent production stages. Software engineers learn about a design by realizing it: implementation exposes missing abstractions; debugging changes what we believe about behavior; tests expose underspecified obligations; refactoring discovers structure; deployment reveals couplings that static design did not anticipate. This interleaving is not a new observation. Ralph\textquotesingle s Sensemaking--Coevolution--Implementation theory models software development as repeated movement among understanding the context, revising the problem and design together, and constructing, debugging, and deploying the artifact; a later multi-method study using more than 1,300 developers and four longitudinal cases strongly supported that process account.\mageaside{Paul Ralph, the Sensemaking--Coevolution--Implementation theory,\citep{ralph2015sci} and its multi-method follow-through,\citep{ralph2016processtheory} which combined a survey of more than 1,300 developers with four longitudinal case studies and reported strong support for the SCI account. For an older and deliberately stronger version of the "implementation is design" argument, see Jack W. Reeves.\citep{reeves1992whatissoftwaredesign}}
+
+MAGE therefore uses \textbf{implementation capacity} in an economic rather than time-sheet sense. Every design hypothesis that has to be realized before the team can learn from it imposes a cost, even if the eventual keystrokes occupy only a small fraction of the calendar. Reduce that cost sufficiently and more alternatives become affordable, feedback arrives sooner, and intelligence can participate in more of the surrounding loop. Modern coding agents already reach beyond source generation into repository inspection, debugging, test construction, refactoring, tool execution, and multi-step changes. Whether they can safely take on still more of that loop is exactly the engineering question MAGE addresses.
+
+This makes the disagreement empirically testable. \textbf{If agents remain trapped in the IDE, the 15-percent argument largely wins. If governed agents can assume meaningful portions of debugging, testing, refactoring, integration, migration, and operation without proportionate growth in human review, a fixed coding-time slice is no longer the right model of attainable leverage.} MAGE is about crossing that boundary without losing engineering control.
+
+DevOps offers a particularly close precedent. Infrastructure as Code and Policy as Code moved knowledge that once lived in operating practice into executable artifacts. MAGE generalizes the move without insisting on code as the form: an engineering decision might become a type, model, schema, validator, permission, workflow, or documented review obligation. \textbf{Useful engineering knowledge increasingly becomes structure later work can inherit; residual semantic judgment remains with people.}
+
+MAGE inherits the older disciplines rather than replacing them: explicit intent, short feedback, automated delivery, and governed autonomy solve different parts of the engineering problem.
+
+\section{Agents Entered an Implementation-Centered Discipline}\label{heading:agents-entered-an-implementation-centered-discipline}
+
+% <!-- point: agents-inherited-the-implementation-centered-object | The first agentic-SE research inherited the engineering object in front of it — a repository and a task — and asked how to make a stronger reasoner perform it. -->
+
+The first generation of agentic software-engineering research inherited the engineering object already in front of it: a repository and a software-development task. The central question was how to make an increasingly capable reasoner perform that task more effectively.
+
+% <!-- point: repocoder-sweagent-autocoderover-share-an-orientation | Retrieval, purpose-built interfaces, program analysis, and specification inference differ, but they share an orientation: improve the machinery an agent uses to act on the software artifact. -->
+
+The progression is instructive. Early agentic software-engineering research improved agents\textquotesingle{} ability to work with existing software artifacts. Repository retrieval made relevant code and documentation available during implementation.\citep{zhang2023repocoder} Purpose-built interfaces improved an agent\textquotesingle s ability to navigate repositories, edit files, and execute tests.\citep{yang2024sweagent} Program analysis helped agents locate and reason about changes by exploiting program structure rather than treating a project as a collection of files.\citep{zhang2024autocoderover} More recent work has also attempted to infer specifications from existing artifacts.\citep{ruan2025specrover} These developments improve how agents understand and modify software, and establish important foundations for autonomous implementation. They share an orientation: improving the machinery an agent uses to act on the software artifact.
+
+% <!-- point: agent-governance-research-is-another-antecedent | Agent-governance research translates obligations into controls across design-time, runtime, and assurance layers, evaluates actions against path-dependent policies, and integrates enforcement into an agent's operating environment; MAGE's governance-conversion process adds how implementation reveals missing obligations. | terms: governance-conversion, alignment-principle -->
+
+Research on agent governance provides another important antecedent. Existing methods translate organizational and regulatory obligations into technical controls and assign those controls across design-time, runtime, and assurance layers.\citep{koch2026governance} Other frameworks evaluate a proposed action against policies that depend on the agent\textquotesingle s execution history.\citep{kaptein2026runtime} Governance-by-construction systems demonstrate how policy enforcement can be integrated into an agent\textquotesingle s operating environment.\citep{shlomov2026construction} These approaches develop architectures and methods for governing agentic systems. MAGE\textquotesingle s governance-conversion process additionally accounts for how failures encountered during implementation reveal missing obligations or controls, and how engineers preserve those lessons for subsequent work.
+
+% <!-- point: mage-accepts-machinery-and-changes-the-object | MAGE accepts that machinery and enlarges the engineering object: what durable environment should be engineered around autonomous implementation. -->
+
+MAGE accepts that machinery and enlarges the engineering object. The question is no longer only how an agent should navigate a repository, retrieve context, use tools, or construct a patch. It is what durable environment should be engineered around autonomous implementation: which system properties deserve explicit representation; which obligations deserve enforcement; what evidence work must produce; how representations remain in correspondence with the implementation; and how recurring judgment becomes machinery inherited by later work.
+
+% <!-- point: the-difference-is-level-not-opposition | Retrieval, code search, interfaces, tests, and tools belong inside a governed engineering environment — pieces of a larger engineered substrate, not accessories to a coding agent. -->
+
+The difference is one of level, not opposition. Repository retrieval, structured code search, agent-computer interfaces, tests, and tool use all belong inside a governed engineering environment. MAGE\textquotesingle s claim is that they are pieces of a larger engineered substrate rather than accessories to a coding agent.
+
+\section{The Old Dream, with a New Substrate}\label{heading:the-old-dream-with-a-new-substrate}
+
+% <!-- point: the-old-dream-with-a-new-substrate | The intelligent-programming-partner dream is decades old; commodity intelligence finally lets us run much of it at production scale, where its next-order problems become visible. -->
+
+The ambition predates today\textquotesingle s coding agents. In the 1980s, Charles Rich and Richard Waters\textquotesingle s Programmer\textquotesingle s Apprentice envisioned an AI system not merely as a programming tool but as an agent in the software process. The engineer would share programming knowledge with the Apprentice and delegate work across implementation, design, requirements, verification, explanation, and documentation.\citep{rich-waters} Its internal representations made programming concepts explicit so that routine questions could be answered from represented knowledge rather than reconstructed from first principles.
+
+The project realized important pieces of that vision, but under different constraints. Its intelligence depended heavily on programming knowledge deliberately encoded into specialized representations; Rich and Waters themselves observed that the economics failed when too much knowledge had to be supplied for each problem. Commodity intelligence changes that premise. A general-purpose reasoner can now arrive with substantial prior competence, enter an unfamiliar repository, use tools, interpret natural-language intent, and construct substantial implementations without the engineering organization first encoding everything it might need to know.
+
+Old ideas therefore return throughout MAGE. The ambition of an intelligent programming partner is old. Explicit machine-usable engineering knowledge is old. Models, constraints, verification, feedback, and delegated realization are old. What changes is the economics. Earlier systems could demonstrate pieces of the vision; today\textquotesingle s systems realize enough of it to expose the next-order engineering problems: keeping representations trustworthy, deciding which obligations deserve enforcement, producing evidence at agentic velocity, and converting recurring judgment into machinery that later work inherits.
+
+MAGE does not depend on a historically novel ambition. It is an engineering account of what happens when much of that ambition becomes operational at production scale.
+
+This history also shows a broader progression. AI has long engineered external machinery around finite reasoners through memory, structured representations, planners, tools, and world models. Agentic software engineering applies related machinery to work over repositories through retrieval, program-aware search, purpose-built interfaces, tests, and inferred specifications. MAGE moves the engineering boundary outward again: the repository and agent remain part of the system, while purposeful system models, enforced obligations, evidence, controls, and the machinery that maintains them become first-class objects of software engineering.
+
+\section{Where Engineering Effort Moves}\label{heading:where-engineering-effort-moves}
+
+% <!-- point: allocation-changes-even-where-the-eventual-organization-is-uncertain | As implementation becomes cheaper the allocation of engineering work changes, even though the eventual organization of that work stays uncertain: delegation expands, responsibility does not move with it, and scarce human effort concentrates where responsibility sits. -->
+
+% <!-- index-def: engineers-seat -->
+
+As implementation becomes cheaper, the allocation of engineering work changes even if the eventual organization of that work remains uncertain. \textbf{Delegation expands; responsibility remains.} The fleet can assume more of the analysis, transformation, implementation, and routine remediation across the lifecycle; engineers must retain sufficient control to remain responsible for intent, abstraction, evidence, tradeoffs, and acceptance. Scarce human effort concentrates where that responsibility sits. We can say with more confidence that implementation becomes less dominant as a claim on human effort than we can say what replaces it. \autoref{where-effort-moves} shows that movement.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/where-effort-moves-ff35e2dbed.pdf}
+\caption{\emph{Where Engineering Effort Moves.} As the fleet assumes work across the lifecycle, the engineer increasingly works through the surrounding engineering environment: specifying intent, choosing consequential abstractions, evaluating evidence, resolving tradeoffs, and adapting the environment itself.}
+\label{where-effort-moves}
+\end{figure}
+
+% <!-- point: the-figure-shows-redistribution-not-the-eventual-form | The figure identifies a redistribution of work, not the eventual form of software engineering: its governed environment holds several kinds of machinery, so nothing in it says that displaced engineering effort becomes modeling. -->
+
+The figure identifies a broad redistribution of work, not the eventual form of software engineering. Its governed environment holds several kinds of machinery: models and context, permissions and constraints, evidence and validators, admission mechanisms, and operational controls. Nothing in the figure says that displaced engineering effort becomes modeling.
+
+% <!-- point: where-displaced-effort-settles-depends-on-what-becomes-cheaper | Where displaced effort settles depends on which parts of the production system become cheaper and more reliable, and the theory of Chapter 6 names the quantities those improvements act on. -->
+
+Where that displaced effort settles depends on which parts of the production system become cheaper and more reliable. \magevalue{chapter:theory} supplies the quantities. Faithful production through a representation \(R\) depends on whether consequential intent is encoded in it (\(P(E \mid R)\)) and whether the agent fulfills those obligations (\(P(F \mid E,R)\)). Interpretation contributes to the second term. Governance carries a separate term, \(q(T,R,A)\), the probability that an unacceptable candidate escapes the mechanisms governing an obligation. Cost enters through \(c_R\), the cost of a realization attempt, and \(C_{\text{carry}}\), the cost of keeping a representation and its enforcement machinery useful as the software changes. The engineer chooses the representation and the Alignment strategy together against those quantities.
+
+% <!-- point: four-trajectories-are-the-independent-variables-behind-the-uncertainty | Technological progress can move those terms independently: reasoners, representation machinery, realization machinery, and governance machinery can each improve at their own rate, and they are the independent variables that prevent a single confident forecast. -->
+
+Technological progress can move these terms independently. Reasoners can improve. So can the machinery for constructing and maintaining representations, the machinery for realizing them, and the machinery for detecting and refusing unacceptable results. These four are not a taxonomy of tools. They are the independent variables that prevent a single confident forecast. \autoref{effort-trajectories} sketches how each would redirect engineering effort. The correspondence is deliberately not one term per row: an improvement can change several terms at once, and representation machinery changes probabilities and costs alike.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption[How technological progress can redirect engineering effort]{\emph{Possible movements of engineering effort.} Improvements in different parts of the production system act on different terms of the \magevalue{chapter:theory} engineering problem. The trajectories can proceed independently and in combination, so the rows describe the pressures each would create rather than a forecast of a single future process.}\label{effort-trajectories}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Technological trajectory and terms affected
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What becomes economical
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering effort moves toward
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Technological trajectory and terms affected
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What becomes economical
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Engineering effort moves toward
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Reasoners improve: \(P(F \mid E,R)\uparrow\) & Reasoning successfully from less complete representations, and leaving more legitimate choices unresolved until realization & Choosing consequential distinctions, bounding degrees of freedom, and judging results rather than specifying every realization choice \\
+Representation machinery improves: \(P(E \mid R)\uparrow\), \(P(F \mid E,R)\uparrow\), \(C_{\text{carry}}(R)\downarrow\) & Constructing, maintaining, reconciling, and querying explicit representations & Choosing abstractions, validating representations, and maintaining correspondence among them and with the system \\
+Realization machinery improves: \(P(F \mid E,R)\uparrow\), \(c_R\downarrow\) & Reliably transforming sufficiently complete representations into implementations, potentially deterministically & Specifying and validating what should be realized rather than supervising how it is implemented \\
+Governance machinery improves: \(q(T,R,A)\downarrow\), \(C_{\text{carry}}(A)\downarrow\) & Detecting, rejecting, or preventing unacceptable realizations independently of the producing reasoner & Choosing which obligations require enforcement, placing controls, and judging residual risk \\
+\end{longtable}
+}
+
+% <!-- point: better-reasoners-move-effort-toward-choosing-distinctions-not-away-from-encoding-them | Better reasoners leave more legitimate freedom unresolved; even perfect realization does not establish that the encoding captures the right obligations, so capability does not retire engineering responsibility. -->
+
+Because these trajectories need not proceed together, commodity intelligence does not fix a single destination for software engineering. Better reasoners let engineering leave more legitimate freedom unresolved. The engineer states the consequential distinctions and lets realization choose among the acceptable possibilities. As \magevalue{chapter:theory} shows, faithful production approaches \(P(E\mid R)\) when conditional realization approaches one and encoding quality is held fixed. Agents may infer omitted intent, but reliable fulfillment alone does not establish that the encoded obligations were right. Capability therefore moves effort toward deciding which distinctions are consequential; it does not retire the obligation to encode them.
+
+% <!-- point: cheap-representation-machinery-makes-externalizing-consequential-knowledge-economical | If explicit representations become cheap to construct, maintain, and reconcile, engineering can profitably externalize more consequential knowledge — choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system. -->
+
+If explicit representations become cheap to construct, maintain, and reconcile, engineering can profitably externalize more consequential knowledge. That work is choosing, creating, maintaining, and connecting the representations through which humans and machines reason about the system. Requirements, architectural views, state machines, dependency graphs, policies, and measurement models answer different engineering questions. The skill is to choose a representation that makes the consequential property easier to reason about than reconstructing it from implementation, then maintain whatever correspondence that representation claims as the system changes.
+
+% <!-- point: representation-engineering-broader-than-context-engineering | Retrieval asks which existing information to place before a reasoner; representation engineering asks whether the question should be expressed in a different form — only the latter changes the object of subsequent reasoning. -->
+
+This is different from context engineering. Retrieval can place more existing information before a reasoner; representation engineering can change the form in which the engineering question is expressed. An agent might retrieve enough source to reconstruct an architectural dependency, or work over a dependency model in which that relation is already explicit. The first improves access to the implementation; the second changes the representation over which reasoning proceeds.
+
+None of this is a new representational or governance tradition. Requirements engineering, architecture, programming languages, formal methods, model-driven and model-based engineering, knowledge representation, safety and assurance engineering, and research on distributed cognition have long moved knowledge, reasoning, evidence, or control into explicit structures outside an individual engineer.
+
+AI research has pursued similar ideas by moving parts of reasoning into external structures. Planning systems can translate natural-language problems into representations that specialized algorithms solve.\citep{liu2023llmp} Other approaches manage information in external memory,\citep{packer2023memgpt} organize intermediate reasoning as graphs,\citep{besta2024got} or maintain an explicit representation of the environment in which an agent operates.\citep{tang2024worldcoder} These approaches show how the choice of representation changes what a reasoning system can accomplish.
+
+A type can exclude an invalid local state;\citep{pierce2002} an intermediate representation can expose the structure a transformation needs;\citep{appel-compilers} a systems model can connect requirements, behavior, architecture, and evidence.\citep{friedenthal-sysml}\citep{brambilla2017} What changes with agentic software engineering is the economic importance of these representations: they can become active surfaces through which autonomous work is informed, scoped, checked, and reviewed.
+
+\magevalue{chapter:modeling} developed the modeling problem in detail: a representation is useful only for the questions its abstractions preserve, and it remains useful only while its claimed relationship to the system stays trustworthy. This trajectory changes the price of that work, not its nature. It does not establish that choosing and maintaining representations must become a larger part of software engineering. It makes that outcome economical.
+
+% <!-- point: cheap-reliable-realization-moves-effort-upstream | If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream, toward specifying and validating what should be realized rather than supervising how it is implemented. -->
+
+If realization from a sufficiently complete representation becomes cheap and reliable, engineering effort moves further upstream. Little consequential freedom then remains downstream of the representation, and transformation or generation can replace autonomous realization wherever the representation determines the implementation. \magevalue{sec:software-rejoins-engineering} examines the engineering tradition that already works this way.
+
+% <!-- point: cheap-controls-let-engineering-tolerate-freedom-without-granting-it-authority | If strong controls become cheap, engineering can tolerate more freedom in realization without granting that freedom equal authority over consequences; effort then moves toward choosing which obligations deserve enforcement, placing the controls, and judging the residual risk. -->
+
+If strong controls become cheap, engineering can tolerate more freedom in realization without granting that freedom equal authority over consequences. Cheap validators, monitors, and admission checks lower \(q(T,R,A)\) without requiring the producing reasoner to be trusted. Effort then moves toward deciding which obligations deserve enforcement, placing the controls that enforce them, and judging the risk that remains. Under this trajectory an organization can become far more governed without becoming more model-driven.
+
+% <!-- point: combinations-land-differently-for-different-properties-of-one-system | Real environments combine the trajectories, often differently for different properties of the same system, so the unit of analysis is usually the engineering question or obligation rather than the development methodology. -->
+
+Real engineering environments will combine these trajectories, often differently for different properties of the same system. A system might maintain an authoritative state model where invalid transitions are consequential, allow an agent wide implementation freedom locally, derive architectural views when a question needs them rather than maintain them, and enforce security and dependency obligations at admission.
+
+\textbf{The appropriate unit of analysis is therefore usually the engineering question or obligation, not the development methodology.}
+
+% <!-- point: cabot-is-one-plausible-equilibrium-not-the-prediction | Model-driven engineering is one plausible destination, reached when representation and realization machinery improve together; MAGE includes that equilibrium without predicting it, and the opposite combination would make separately maintained models less attractive. -->
+
+Model-driven engineering is one plausible destination, reached when improvements in representation and realization machinery reinforce one another. Cabot\textquotesingle s proposal for vibe-driven model-based engineering keeps models as the pillar of development while letting AI assist their construction and, where a model determines the implementation, their realization through deterministic generators.\citep{cabot2026vibe} That is one combination of the trajectories in \autoref{effort-trajectories}: AI lowers the cost of constructing and manipulating explicit models while model-based realization stays attractive. MAGE includes that future. It does not predict it. The opposite combination is equally available. If reasoners become good at reconstructing trustworthy task-specific representations from implementation, carrying separately maintained models may become less attractive for many questions.
+
+\textbf{Commodity intelligence changes the economics of representation and control without determining their eventual form.}
+
+% <!-- point: more-modeling-need-not-mean-more-permanently-maintained-models | More modeling need not mean more permanently maintained models: cheap machine reasoning lowers the recurrence threshold at which building a purposeful reduction pays, so a model can matter because reasoning passes through it rather than because an organization preserves it. -->
+
+More modeling need not mean more permanently maintained models. Agents can make it economical to construct a dependency graph, a state abstraction, a quantitative model, or another purposeful reduction for one consequential question and discard it afterward. Historically the construction cost demanded repeated reuse to justify itself, and cheap machine reasoning moves that threshold. A model can matter because reasoning passes through it today; an organization need not preserve it forever.
+
+% <!-- point: recurring-judgment-becomes-engineering-capital-under-any-trajectory | Whichever trajectory dominates, recurring engineering judgment creates an opportunity for durable improvement: governance conversion turns an instance-solving review into a model, control, or procedure that later work inherits. -->
+
+Whatever technological trajectory dominates, operational experience becomes more valuable under the changed cost structure, because recurring engineering judgment creates an opportunity for durable improvement. A conventional review can solve an instance. Sometimes the same judgment keeps returning: a failure recurs, a relationship becomes apparent, or engineers repeatedly have to make the same decision. \magevalue{chapter:one-problem-many-models} calls the move from that experience to durable engineering structure governance conversion. The resulting model, control, or procedure becomes engineering capital when it allows later work to inherit what earlier work learned. \magevalue{chapter:one-problem-many-models} calls the practice by which such structures accumulate while remaining open to correction ratcheteering: the particular structure can be revised or replaced, but the consequential concern does not silently disappear. The engineering question is whether the judgment belongs in the next reviewer\textquotesingle s head or whether future work should inherit it from the environment.
+
+The answer is not always "mechanize." Guidance remains useful where interpretation is genuinely semantic; human review remains appropriate where consequence or ambiguity warrants it; and every new mechanism adds carrying cost. The goal is to \textbf{mechanize where doing so pays}, not to automate everything. Cheaper implementation settles the direction in which engineering work travels, but not its destination: that is decided by engineering choices made one obligation at a time, under economics that have not finished moving.
+
+\section{Review When Implementation Is Abundant}\label{heading:review-when-implementation-is-abundant}
+
+Code review does not disappear when agents produce the code. Its center of gravity moves.
+
+At low change volume, an experienced engineer can treat the diff itself as the principal reasoning surface. Read the implementation, reconstruct the surrounding architecture, infer the affected behavior, inspect the tests, decide whether the change belongs. That strategy stops scaling as implementation becomes abundant. The scarce resource is no longer the ability to produce another diff. It is the engineer\textquotesingle s ability to determine what the change means.
+
+This pressure predates agents. Long before agentic programming, empirical work at Microsoft found that larger changes were harder to review well: as more files were touched, the proportion of useful reviewer feedback declined, and large changes imposed greater reviewer effort.\citep{bosu2015useful} Agentic generation makes that problem larger; it does not change its basic cognitive shape. The older result establishes that large changes tax human review and reduce useful feedback. It does not establish that explicit models would relieve the strain; models as the remedy are MAGE\textquotesingle s proposal.
+
+Greiler\textquotesingle s more recent SCOPE proposal responds by changing the review operating model: detailed implementation review moves increasingly into the developer--agent loop, and team review becomes risk-proportional assurance over code together with higher-level artifacts and evidence.\citep{greiler2026scope} That proposal already includes agent review, developer attestation, risk-based team assurance, and accountability. SCOPE changes the operating model for review; MAGE additionally changes the surfaces available to the reviewer. When the environment holds explicit models of structure, behavior, ownership, execution, measurement, and provenance, those models become review surfaces in their own right. The engineer need not reconstruct every relevant property from the diff.
+
+Explicit models provide intermediate review surfaces. A change can be projected onto component ownership, permitted dependencies, service edges, lifecycle states, deployment placement, user journeys, measurement obligations, and provenance. Deterministic mechanisms discharge the obligations that are mechanically decidable before scarce human attention is spent. The reviewer then spends attention on the remainder:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Is the intended change desirable} --- the question a diff could never answer on its own.
+\item
+  \textbf{Do the models capture the relevant concern} --- or has the change moved a property no current representation exposes.
+\item
+  \textbf{Is the evidence sufficient} --- do the checks that ran actually bound the risk this change carries.
+\item
+  \textbf{Should the tradeoff be accepted} --- the residual judgment that stays with a person.
+\end{itemize}
+
+None of this removes code from review. It changes when the reviewer must descend to it. Implementation becomes one evidentiary surface among several, rather than the origin from which every system property must be reconstructed. The reviewer still examines implementation details when they are necessary to evaluate the risk. The models supply an index into the engineering significance of a change.
+
+Review moves upstream, from inspecting realization toward evaluating intent, consequence, evidence, and the judgment that remains. Some argue that capable coding agents will eliminate human code review altogether.\citep{monperrus2026end} Even if code review disappears, engineers must still evaluate the models, evidence, and tradeoffs that govern the resulting software.
+
+{[}appendix: appendix-models{]} collects representative forms of these models and shows how their authored and derived facts can be reconciled with the implementation; it develops the review surfaces as reusable model patterns rather than a prescribed catalog. {[}appendix: appendix-evidence-ledger{]} carries the within-case evidence on model coverage and correspondence. Those measurements speak to how much of the exercised system could be related to explicit models; they do not measure review time or review quality.
+
+This shift in review surfaces has a broader implication: effective engineering capability may increasingly be a property of the environment as well as the foundation model. A weaker reasoner operating over accurate representations, well-routed context, strong tools, and independent evidence may outperform a stronger reasoner over an opaque repository. MAGE does not establish that substitution quantitatively; \magevalue{sec:research-agenda} makes its parameterization and eventual use in engineering routing an empirical research question.
+
+\section{Engineering the Production System}\label{heading:engineering-the-production-system}
+
+% <!-- point: two-places-engineering-attention-can-go | Chapter 5 distinguished two places engineering attention can go as realization becomes abundant: operating agentic machinery, and engineering the production system around it so selected knowledge, evidence, and controls persist across acts of realization. -->
+
+\magevalue{chapter:software-factories} distinguished two places engineering attention can go as realization becomes abundant. Engineers can spend increasing effort operating agentic machinery: supplying work and context, coordinating agents, inspecting output, and resolving exceptions. They can also engineer the production system around that machinery so that selected knowledge, evidence, and controls persist across acts of realization.
+
+% <!-- point: both-futures-contain-capable-agents-and-differ-in-where-judgment-goes | The distinction matters professionally because both futures can contain capable agents and very little human implementation; they differ in where scarce engineering judgment goes, and MAGE predicts increasing value in the second kind of work. | terms: degrees-of-freedom -->
+
+The distinction matters professionally because both futures can contain capable agents and very little human implementation. They differ in where scarce engineering judgment goes. MAGE predicts increasing value in the second kind of work: deciding which properties must remain under engineering control, choosing representations adequate to expose them, establishing the evidence required for acceptance, deciding which degrees of freedom can safely be delegated, and changing the engineering environment when experience shows those structures to be inadequate.
+
+\textbf{Making agents easier to operate is not the same as making software easier to engineer.}
+
+% <!-- point: not-a-new-lifecycle-phase-but-a-new-means-of-exercising-it | This is not a new lifecycle phase: requirements, design, validation, operation, and maintenance remain, but engineers increasingly exercise those responsibilities through the production system in which agents work. -->
+
+This is not a new lifecycle phase. Requirements, design, validation, operation, and maintenance remain. The change is that engineers increasingly exercise those responsibilities through the production system in which agents work. \magevalue{sec:software-rejoins-engineering} and \magevalue{sec:education-research-open-problems} ask what engineering traditions and capabilities prepare the profession for that role.
+````
+
+
+### Original `book-models/theory_of_mage_declared.json`
+
+Section: complete source file; lines 1–452. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `6abbad1d7263c038038b7c757202a160afcaa69b444e4b258add26397e413eb5`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````json
+{
+  "_provenance": "HAND-AUTHORED declared source for the 'Toward a Theory of MAGE' back-matter chapter (book/part6/6.1-toward-a-theory-of-mage.md). This file IS edited by hand; it is the single source of truth for the chapter's dynamic model — the latent CONSTRUCTS, the four FEEDBACK LOOPS (with system-dynamics R/B typing), the path-specific MODERATORS, the three OUTCOMES, the eight falsifiable HYPOTHESES (H1-H8, replacing the legacy P1-P15), the corollaries, and the two directional relations. The chapter was relocated out of the appendices (legacy Appendix E) to a numbered main-text chapter this wave; the model was rewritten from the fifteen-prediction inventory to the eight-hypothesis dynamic model to match. Sibling in the book-models declared->generated idiom (see argument_spine_declared.json / claims_declared.json). WIRED: theory_of_mage_model.py projects the eight-hypotheses table into the chapter and drift-checks it against the authored prose (parity + structural TM1-TM7 + the ratified count guard), exactly as metrics_dashboard_model.py does for the Operator's Dashboard; the check lands AUDIT-ONLY in catalog.py validate. Regen discipline: edit HERE, then regenerate the projected table with `python3 book-models/theory_of_mage_model.py hypotheses-table`; never hand-edit the projection.",
+  "_intent": "Encode the book's argument as a middle-range DYNAMIC model in the causal-loop convention of system dynamics: latent CONSTRUCTS connected by four numbered feedback loops over one shared spine, path-specific MODERATORS attached to single transitions, three OUTCOMES, and seven falsifiable HYPOTHESES that follow from the loops. Single-case (DocAble); directional, not proven; no path coefficients are claimed.",
+  "hedge": "N=1: one repository, one fleet, one operator, ~20 weeks focused. These are ANALYTIC-generalization claims (about a mechanism and its scope conditions), not statistical generalization to a population. They are stated so future multi-case / longitudinal / controlled work can test them. Directional and middle-range, not fitted.",
+  "spine": {
+    "_note": "The shared left-to-right system the four loops run over, read clockwise. Each construct id is reused by the loops, moderators, and hypotheses below.",
+    "order": [
+      "agentic-capacity",
+      "governed-environment-quality",
+      "agentic-work",
+      "realized-performance",
+      "governance-pressure",
+      "structural-diagnosis",
+      "governance-adaptation"
+    ]
+  },
+  "constructs": [
+    {
+      "id": "agentic-capacity",
+      "role": "exogenous-driver",
+      "name": "Agentic capacity",
+      "gloss": "Model capability, concurrency, and raw implementation rate. The amplifier: velocity clusters latent weakness in time, so failure classes that would arrive months apart under human-paced work land in a single afternoon, close enough to see the structure they share. Distinguish the INTRINSIC driver — the foundation model's inherent ability, exogenous to the loops — from DEPLOYED agentic capacity (feasible task size, concurrency, ambition), which the environment raises: the purple capability-amplification loop feeds back into deployed capacity — the frontier the operator dares attempt — not the model's intrinsic capability."
+    },
+    {
+      "id": "governed-environment-quality",
+      "role": "latent-intermediate",
+      "name": "Effective governed-environment quality (E)",
+      "gloss": "The degree to which the environment gives agents a current, task-relevant representation of the system together with coherent, proportionate, machine-actionable coverage of its important obligations. A QUALITY, not a quantity — apparatus count is an indicator, not a substitute. Read E as a conceptual STATE VECTOR E = (R, C, H, Q) over its four dimensions — representation quality, enforcement coverage, coherence, and economy — not a measured scalar index the case could report; a large apparatus raises a dimension of E only when it is coherent, economical, and actually covers the obligations that matter, and can instead be duplicated machinery, stale enforcement, or a tower of governance that lowers E while the control count climbs.",
+      "dimensions": [
+        {
+          "id": "representation-quality",
+          "question": "Are the relevant properties legible in the environment's current models?"
+        },
+        {
+          "id": "enforcement-coverage",
+          "question": "Are important obligations covered by controls proportionate to their decidability and risk — hard mechanisms where they fit, judgment-based review where they do not?"
+        },
+        {
+          "id": "coherence",
+          "question": "Do the mechanisms compose without harmful collision or duplication?"
+        },
+        {
+          "id": "economy",
+          "question": "Is the governance burden proportionate to the risk and value it controls?"
+        }
+      ]
+    },
+    {
+      "id": "agentic-work",
+      "role": "process",
+      "name": "Agentic work",
+      "gloss": "Attempted change against the current task frontier. Capacity drives it; the environment shapes it into realized performance."
+    },
+    {
+      "id": "realized-performance",
+      "role": "process",
+      "name": "Realized performance",
+      "gloss": "What the work actually delivers: durable throughput, defect escape, and the human attention each unit of durable output costs."
+    },
+    {
+      "id": "governance-pressure",
+      "role": "signal",
+      "name": "Governance pressure",
+      "gloss": "The experienced gap between the performance the fleet looks capable of and the durable performance it delivers: churn, recurring failure, escaped defect, repeated intervention, control friction. The central experienced driver — the pressure an operator actually feels."
+    },
+    {
+      "id": "structural-diagnosis",
+      "role": "judgment",
+      "name": "Structural diagnosis",
+      "gloss": "The scarce act of judgment that reads a signal as a local defect (repair and move on) or as evidence of a missing model, abstraction, boundary, invariant, oracle, mechanism, or governance seam. Pressure is not yet knowledge; diagnosis is."
+    },
+    {
+      "id": "governance-adaptation",
+      "role": "capability",
+      "name": "Governance adaptation",
+      "gloss": "The repertoire that changes E: represent (make structure legible), convert (a recurring failure into a durable mechanism), strengthen (weak guidance into harder enforcement), reconcile (duplicated/conflicting controls), retire (stale or net-harmful governance). Subtractive as well as additive."
+    }
+  ],
+  "loops": [
+    {
+      "id": "L1-bootstrap",
+      "number": 1,
+      "name": "Bootstrap loop",
+      "color": "blue",
+      "type": "input",
+      "type_note": "An input/initialization, NOT a feedback loop — it seeds the initial environment before any agent runs.",
+      "reading": "Prior engineering knowledge — inherited architecture, tests, controls, standards, prior incidents, lessons transferred from earlier systems — converts into the initial governed environment E(0). Governance conversion in one project becomes bootstrap knowledge in the next. Lowers the initial failure rate; does not close the red loop."
+    },
+    {
+      "id": "L2-churn-discovery",
+      "number": 2,
+      "name": "Churn / discovery loop",
+      "color": "red",
+      "type": "balancing-with-L3",
+      "type_note": "Together with L3 forms a BALANCING loop (see B-loop below): the goal-seeking arm that surfaces pressure.",
+      "reading": "Work outruns a weak environment; the gap surfaces as governance pressure. Velocity amplifies and temporally clusters latent weakness. The red loop ends at structural diagnosis — the scarce work."
+    },
+    {
+      "id": "L3-governance-adaptation",
+      "number": 3,
+      "name": "Governance-adaptation loop",
+      "color": "green",
+      "type": "balancing-with-L2",
+      "type_note": "Together with L2 forms a BALANCING loop: adaptation reshapes E to reduce the churn that drove it.",
+      "reading": "A structural diagnosis triggers an adaptation (model / convert / strengthen / reconcile / retire); the return arm reshapes E. Later agents inherit a more compact representation, clearer constraints, fewer invalid moves, earlier evidence, narrower seams, more reliable admission conditions."
+    },
+    {
+      "id": "L4-capability-amplification",
+      "number": 4,
+      "name": "Capability-amplification loop",
+      "color": "purple",
+      "type": "reinforcing",
+      "type_note": "A REINFORCING loop (see R-loop below): self-amplifying, keeps moving the target.",
+      "reading": "A stronger environment raises DEPLOYED agentic capacity — feasible task size, more concurrency, more ambitious requirements, cheaper refactoring, denser use of capacity — the frontier the operator dares attempt, NOT the foundation model's intrinsic capability. The expanded frontier exposes new failure classes and reopens the loop. This is why MAGE does not terminate."
+    }
+  ],
+  "loop_typing": {
+    "_note": "System-dynamics causal-loop typing (Meadows convention). Naming the types sharpens the non-terminating claim: the balancing loop drives the environment toward fit; the reinforcing loop moves the target the moment it is reached.",
+    "B": {
+      "loops": [
+        "L2-churn-discovery",
+        "L3-governance-adaptation"
+      ],
+      "kind": "balancing",
+      "reading": "churn -> diagnosis -> adaptation -> less churn: goal-seeking, self-damping, toward fit."
+    },
+    "R": {
+      "loops": [
+        "L4-capability-amplification"
+      ],
+      "kind": "reinforcing",
+      "reading": "better E -> more ambition -> new frontier: self-amplifying, reopens the loop."
+    },
+    "input": {
+      "loops": [
+        "L1-bootstrap"
+      ],
+      "kind": "input",
+      "reading": "seeds E before any failure; not a feedback loop."
+    }
+  },
+  "moderators": [
+    {
+      "id": "diagnostic-capability-fit",
+      "operates_on": "governance-pressure -> structural-diagnosis",
+      "reading": "Fit between the work and the DIAGNOSTIC capability a structural reading needs — largely a human/organizational capacity to read a signal as structural, not the fleet's implementation capability (do not read it as the model/task fit of Part 4). Below fit, pressure arrives but no diagnosis converts it — motion without direction."
+    },
+    {
+      "id": "authority",
+      "operates_on": "structural-diagnosis -> governance-adaptation",
+      "reading": "Ability or organizational path to modify shared architecture and controls. Need not live in one architect; the failure is a path that terminates in a local patch, leaving the class to recur."
+    },
+    {
+      "id": "domain-governability",
+      "operates_on": "governed-environment-quality -> outcomes",
+      "reading": "Degree to which important properties can be represented and mechanically checked."
+    },
+    {
+      "id": "control-machinery-coherence",
+      "operates_on": "apparatus -> governed-environment-quality",
+      "reading": "Degree to which mechanisms compose without harmful interaction; the guard against a tower of governance."
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "durable-throughput",
+      "name": "Durable throughput",
+      "measures": "Raw implementation converted into lasting system progress.",
+      "observables": [
+        "landed changes net of rework",
+        "churn share",
+        "slope of sustained throughput"
+      ]
+    },
+    {
+      "id": "defect-escape",
+      "name": "Defect escape",
+      "measures": "Relevant failures reaching later lifecycle stages or production.",
+      "observables": [
+        "escaped-defect rate",
+        "reopen rate",
+        "silent-corruption escape"
+      ]
+    },
+    {
+      "id": "human-attention-burden",
+      "name": "Human-attention burden",
+      "measures": "Human judgment required per unit of durable output. State as a RATE, not a ceiling — per-change attention amortizes even while total governance work grows.",
+      "observables": [
+        "interventions per landed change",
+        "review time",
+        "conversion effort"
+      ]
+    }
+  ],
+  "apparatus_measures_caveat": "Support ratio, model-coverage fraction, control count, gate count, model-sync rate, control-interaction findings, stale-control rate measure INVESTMENT or ACCUMULATION, not quality. A large apparatus can be effective governance OR duplicated machinery / accidental complexity / stale enforcement / a tower of governance. Each is an input or indicator; effective quality is what the OUTCOMES reveal.",
+  "hypotheses": [
+    {
+      "id": "H4-representation-leverage",
+      "name": "Representation leverage",
+      "family": "Representation",
+      "core_quantity": "reasoning/context cost at matched quality",
+      "statement": "For tasks whose required reasoning state exceeds comfortable implementation-level inspection, a task-relevant and trustworthy model will reduce reconstruction/context cost or increase the scale of work completed at matched quality relative to reasoning from lower-level artifacts alone. The advantage should increase as the required reasoning state grows.",
+      "falsifier": "Model use at matched recall yields no efficiency gain, lowers quality, adds no predictive power over coverage, or shows no advantage that widens as the required reasoning state grows.",
+      "sub_hypotheses": [
+        {
+          "id": "H4a-representation-efficiency",
+          "name": "Representation efficiency",
+          "statement": "Task-relevant structured models extend the effective reasoning horizon: they replace implementation-level state with semantically richer abstractions that survive repeated compaction with less loss, reducing context cost and churn without lowering task quality.",
+          "falsifier": "Model use at matched recall yields no efficiency gain, lowers task quality, or shows no advantage that widens as the required reasoning state grows."
+        },
+        {
+          "id": "H4b-synchronization-signal",
+          "name": "Synchronization signal",
+          "statement": "Model-synchronization measures provide predictive information about later churn or defect escape beyond conventional code-coverage measures.",
+          "falsifier": "Synchronization measures add no predictive power over conventional code-coverage measures."
+        }
+      ],
+      "loops": [
+        "L3-governance-adaptation"
+      ]
+    },
+    {
+      "id": "H5-local-model-deficiency",
+      "name": "Representation integrity",
+      "family": "Representation",
+      "core_quantity": "drift/coverage → churn or escape",
+      "statement": "Stale, irrelevant, or poorly chosen models will reduce or reverse the benefit in H1; measures of model correspondence and obligation coverage should therefore predict later churn or defect escape beyond conventional implementation-level metrics.",
+      "falsifier": "Orphaned or drifted surfaces are no more likely than modelled ones to see later churn or escape.",
+      "loops": [
+        "L2-churn-discovery"
+      ]
+    },
+    {
+      "id": "H1-failure-class-exposure",
+      "name": "Representation-induced determinization",
+      "family": "Representation",
+      "core_quantity": "semantic judgment → repeatable predicate",
+      "statement": "For some system-level obligations, changing from raw implementation to an explicit representation of the relevant state or relation will make a repeatable predicate feasible where per-change evaluation over the implementation otherwise requires semantic reconstruction.",
+      "falsifier": "Recognition latency does not improve with velocity once exposure opportunities are controlled.",
+      "loops": [
+        "L2-churn-discovery"
+      ]
+    },
+    {
+      "id": "H9-representation-innovation",
+      "name": "Discovering new ways to model systems",
+      "family": "Representation",
+      "core_quantity": "reasoning reach / newly tractable questions",
+      "statement": "More capable agents may help engineers model systems in ways they had not previously considered. They might make unnoticed structure explicit or propose a new representation that makes a difficult engineering question easier to answer. If these models can be independently validated and are economical to maintain, they should help later agents and human engineers complete work that was previously beyond their reasoning horizon, with the same resources and quality requirements.",
+      "falsifier": "Machine-proposed representations recover no consequential structure a simpler baseline misses and propose none the existing repertoire lacks, or the representations they add cannot be independently validated or economically maintained, so later agents and engineers gain no reasoning reach from them.",
+      "loops": [
+        "L3-governance-adaptation"
+      ]
+    },
+    {
+      "id": "H3-mechanized-assurance",
+      "name": "Mechanized assurance",
+      "family": "Governance",
+      "core_quantity": "escape and false rejection vs correct throughput",
+      "statement": "For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape at matched correct throughput compared with assurance that depends on producer compliance or proportional per-change human attention. The comparison must include false rejection and the cost of sustaining that throughput. For sound admission mechanisms over mechanically decidable obligations, the covered failure class should be excluded from admitted work even when producer reliability varies.",
+      "falsifier": "Mechanized assurance provides no reduction in defect escape at matched correct throughput.",
+      "loops": [
+        "L3-governance-adaptation"
+      ]
+    },
+    {
+      "id": "H6-oversight-amortization",
+      "name": "Governance conversion",
+      "family": "Governance",
+      "core_quantity": "class recurrence + carrying cost",
+      "statement": "For recurring failure classes, structural interventions targeted at the class will reduce subsequent recurrence or repeated human attention relative to local repair alone, net of the intervention's carrying cost. The relationship will become non-monotonic when controls accumulate beyond their useful fit.",
+      "falsifier": "Interventions per durable change stay flat or rise as effective conversion coverage grows.",
+      "loops": [
+        "L3-governance-adaptation"
+      ]
+    },
+    {
+      "id": "H8-learning-propagation",
+      "name": "Learning propagation",
+      "family": "Governance",
+      "core_quantity": "propagation latency/consistency",
+      "statement": "Engineering lessons will reach later relevant work faster and more consistently when diagnosis is connected to authority over shared, machine-actionable environmental structure than when the lesson remains local or must propagate primarily through interpersonal communication.",
+      "falsifier": "Increasing environment explicitness or machine-actionability does not reduce propagation latency or increase adoption consistency once communication opportunity is controlled.",
+      "loops": [
+        "L3-governance-adaptation",
+        "L1-bootstrap"
+      ]
+    },
+    {
+      "id": "H2-governance-moderation",
+      "name": "Environment fit",
+      "family": "Economics",
+      "core_quantity": "capacity × environment interaction",
+      "statement": "The effect of increasing agentic capacity on durable throughput, defect escape, and human attention per correct admitted change will depend on effective environment quality: capacity gains should translate into more durable progress in stronger environments and into more churn or intervention in weaker ones.",
+      "falsifier": "Velocity relates to durable throughput the same way regardless of environment quality.",
+      "loops": [
+        "L2-churn-discovery",
+        "L3-governance-adaptation"
+      ]
+    },
+    {
+      "id": "H7-conversion-conditions",
+      "name": "Capital return/reciprocal capacity",
+      "family": "Economics",
+      "core_quantity": "return, carrying cost, and construction cost over time",
+      "statement": "Durable engineering structures will produce measurable returns when reductions in reconstruction, intervention, rework, and failure costs exceed their construction and carrying costs. Those returns will decline as the assets lose fit, and environments that reconcile or retire depreciated assets will outperform otherwise comparable environments that merely accumulate machinery. As agentic capacity increases, the construction and maintenance costs of some engineering structures will fall, moving the threshold at which such investment becomes economical.",
+      "falsifier": "Split-authority or low-fit settings convert at the same rate and durability as high-fit, effective-authority ones.",
+      "moderated_by": [
+        "diagnostic-capability-fit",
+        "authority"
+      ],
+      "loops": [
+        "L3-governance-adaptation"
+      ]
+    }
+  ],
+  "propositions": [
+    {
+      "id": "reasoning-horizon-proposition",
+      "name": "Reasoning-Horizon Proposition",
+      "statement": "Software engineering is a long-horizon reasoning task. Productivity degrades once the working reasoning state a task requires exceeds the effective reasoning horizon of the human-agent system. Executable models extend that horizon by replacing implementation-level state with semantically richer abstractions whose properties preserve a larger fraction of task-relevant information under repeated compaction.",
+      "falsifier": "Holding task and recall fixed, reasoning over a task-relevant model yields no reduction in reconstruction cost or churn versus reasoning over the implementation, and no gain that widens as the required reasoning state grows.",
+      "frame": "offered-for-replication",
+      "bounded_claim": "MAGE moves the scalability wall; it does not remove it. Models raise the level at which reasoning occurs, delaying the point at which working memory becomes the bottleneck; beyond it, further decomposition and modularity become unavoidable. The horizon extends ONLY when the model is task-relevant, adequately complete, synchronized, usable by the agent, and cheaper to interpret than reconstructing the same facts from code; a model that fails those conditions SHORTENS the effective horizon — it confidently routes reasoning toward a stale or wrong picture the agent then pays to detect and undo.",
+      "formalized_by": "H4-representation-leverage",
+      "reading": "The named theory STATEMENT that H4 encodes as a falsifiable HYPOTHESIS. The proposition names the mechanism — a finite reasoning horizon that models extend by acting as better compression domains — and states the limit MAGE draws from it. H4 supplies the testable prediction; the proposition supplies the mechanism and its bound. Registered offered-for-replication (the chapter's global hedge), so it is honestly situated, not asserted."
+    },
+    {
+      "id": "compounding-governance-proposition",
+      "name": "Compounding-Governance Proposition",
+      "statement": "Governed engineering environments compound: as recurring engineering judgment converts into durable mechanisms, an increasing fraction of future effort over the failure classes those mechanisms cover can extend capability rather than re-solve settled problems, so the environment grows more capable of supporting safe change — for as long as the accumulated engineering capital stays fit. These are returns to accumulated engineering capital over covered classes, not global returns to total governance expenditure.",
+      "falsifier": "As effective conversion coverage grows, the fraction of future effort available to extend capability does not rise and per-change cost does not fall.",
+      "frame": "offered-for-replication",
+      "bounded_claim": "The returns compound but are not unbounded, and they attach to engineering capital (quality), not apparatus quantity. Two ways accumulation stops compounding: apparatus pushed past the point of fit (the tower-of-governance band of the churn curve) and capital that outlived its fit. That is why mature adaptation is subtractive — reconcile and retire manage capital depreciation, not merely bad apparatus. A third failure hides inside the first two: accumulated capital that has drifted from the system it models does not merely stop paying — it CONFIDENTLY MISDIRECTS, steering later work against a picture no longer true, which is worse than no capital at all.",
+      "formalized_by": "H6-oversight-amortization",
+      "reading": "The named theory STATEMENT that H6 encodes as a falsifiable HYPOTHESIS. The proposition names the compounding-governance mechanism — conversions bank engineering capital that lowers the recurring reasoning a future change demands; H6 supplies one testable signature of it (per-change human attention falls as classes convert). H6 is anchored on L3, the green governance-adaptation loop (failure to judgment to conversion to a more capable environment); the full compounding dynamic is the L3-to-L4 (green-to-purple) COMPOSITION, where the more-capable environment raises ambition onto a new frontier. So it is wider than H6's single observable and does not mean the fleet does less — it means higher-leverage, more-ambitious work at a falling per-change cost. Registered offered-for-replication (the chapter's global hedge), honestly situated, not asserted; parallel in form to the Reasoning-Horizon Proposition (different mechanism — H6 amortization vs H4 representation leverage — different falsifier)."
+    }
+  ],
+  "corollaries": [
+    {
+      "claim": "Speed and stability do not trade",
+      "status": "Corollary of H2 and H3"
+    },
+    {
+      "claim": "Conversion gets faster as tooling matures",
+      "status": "Learning-curve specialization of H7"
+    },
+    {
+      "claim": "The substrate heals faster as it accretes controls",
+      "status": "Consequence of H3 and H6"
+    },
+    {
+      "claim": "Grammar coverage better predicts format-space escapes",
+      "status": "Domain-specific instance of H4"
+    },
+    {
+      "claim": "A fidelity gate reduces silent corruption",
+      "status": "Product-specific instance of H3"
+    },
+    {
+      "claim": "Deployment pain stays bounded",
+      "status": "Subjective consequence of H6; future work"
+    }
+  ],
+  "relations": [
+    {
+      "id": "R1-churn",
+      "name": "The churn relation",
+      "form": "V_durable = V_raw * (1 - c)",
+      "substantive_claim": "dc/dE < 0, read as a directional sign over one dimension-bundle of the E-vector (not a fitted slope): churn share falls monotonically as effective environment quality E climbs, and keeps falling even in an overgrown estate — because overgrowth is precisely what LOWERS E. The non-monotonic churn curve is drawn against a DIFFERENT x-axis — governance-apparatus QUANTITY, not E: push apparatus past fit and churn rises again from collisions, false positives, latency, context burden, and constraints that block legitimate work, because quantity does not monotonically raise E. Churn is monotone in E, non-monotone in apparatus quantity; the two axes must not be conflated.",
+      "shape": "in E (monotone): churn falls as E rises, through the fit point and beyond. in apparatus QUANTITY (a different, non-monotone axis): under-governed -> churn high ; well-fit -> churn lowest ; overgrown -> churn rises from friction, because quantity past fit lowers E",
+      "ties_to": [
+        "H2-governance-moderation",
+        "H5-local-model-deficiency"
+      ]
+    },
+    {
+      "id": "R2-two-regime-escape",
+      "name": "Attention-based versus mechanized control",
+      "form": "eps_review ~= p*(1 - r(V)) ;  eps_control ~= p*(1 - kappa)",
+      "substantive_claim": "p = risk-weighted defect-opportunity rate; r(V) = finite-review coverage, which falls as velocity rises so eps_review climbs toward p; kappa = mechanized-coverage fraction, which a mechanism applies every change regardless of throughput. For adequately scoped mechanisms kappa is LESS sensitive to throughput than r(V), so the escape gap widens with velocity. kappa counts effective REPEATABLE mechanisms, of which determinism is one strong class — anomaly detection, metamorphic and differential testing, and model-based semantic review are statistical yet repeatable and count toward kappa when adequately scoped.",
+      "ties_to": [
+        "H3-mechanized-assurance"
+      ]
+    }
+  ],
+  "research_agenda": [
+    {
+      "study_design": "Multi-project longitudinal panel with environment-quality variation",
+      "hypotheses": [
+        "H2",
+        "H3",
+        "H4",
+        "H6"
+      ]
+    },
+    {
+      "study_design": "Subsystem-level panel tracking model gaps, churn, and escapes",
+      "hypotheses": [
+        "H1",
+        "H5"
+      ]
+    },
+    {
+      "study_design": "Organizational comparison of diagnosis and authority pathways",
+      "hypotheses": [
+        "H7",
+        "H8"
+      ]
+    },
+    {
+      "study_design": "Instrument one failure class from first occurrence through recurrence -> structural recognition -> governance intervention -> later recurrence or escape (tests the discovery and adaptation loops directly)",
+      "hypotheses": [
+        "H1",
+        "H2",
+        "H3",
+        "H6"
+      ]
+    }
+  ],
+  "evolution": {
+    "_note": "The empirical kernel and the later extensions are epistemically different and must not be blurred.",
+    "kernel": {
+      "source": "davis2026cheapcode (Cheap Code, Costly Judgment) — first twelve weeks of the DocAble build",
+      "five_step_loop": [
+        "velocity exposes failure",
+        "the engineer classifies the failure as local or structural",
+        "structural failures are converted into governance",
+        "later agents inherit a narrower, more explicit action space",
+        "repeated conversions raise the environment's capacity to absorb future work"
+      ]
+    },
+    "extensions": [
+      "Up-front (bootstrap) governance became a first-class path, complementary to conversion from experience.",
+      "Modeling became a coequal route to governability (the Modeling Principle).",
+      "Governance accumulation proved non-monotonic — mature adaptation includes reconciliation and retirement.",
+      "The process became visibly multi-loop (bootstrap / churn / adaptation / amplification)."
+    ]
+  },
+  "figures": {
+    "master": "assets/mage-dynamic-model.svg",
+    "loop_crops": [
+      "assets/mage-loop-1-bootstrap.svg",
+      "assets/mage-loop-2-churn.svg",
+      "assets/mage-loop-3-adaptation.svg",
+      "assets/mage-loop-4-amplification.svg"
+    ],
+    "churn_curve": "assets/mage-churn-curve.svg"
+  },
+  "_note_r47_hypothesis_crosswalk": "R47 restated the eight hypotheses to the named three-family research program (§6.6 / R47-FALSIFIABILITY-EVIDENCE-SPEC PART B). The eight JOIN-KEY ids are FROZEN (research_agenda related_hypotheses[] + reverse_index reference them); only name/family/core_quantity/statement were restated, and the table now numbers H1..H8 by three-family POSITION, not by the id's own number. Crosswalk (spec row -> frozen id): H1 Representation leverage=H4-representation-leverage; H2 Representation integrity=H5-local-model-deficiency; H3 Determinization frontier=H1-failure-class-exposure; H4 Mechanized assurance=H3-mechanized-assurance; H5 Governance conversion=H6-oversight-amortization; H6 Learning propagation=H8-learning-propagation; H7 Environment moderation=H2-governance-moderation; H8 Capital return/depreciation=H7-conversion-conditions. TWO rows are relabels the deferred pass should reconcile at the id level (NOT forced here, per the round brief, to avoid breaking related_hypotheses / reverse_index joins): (a) spec-H3 determinization sits on H1-failure-class-exposure (the proper move is a distinct determinization id split from H3-mechanized-assurance); (b) spec-H8 capital-return-and-depreciation sits on H7-conversion-conditions (the proper move is a newly minted depreciation id). The §6.6 prose + summary table are the reader-facing canonical set; this model reconciles cleanly in a later dedicated pass."
+}
+````
+
+
+### Original `book-models/research_agenda_declared.json`
+
+Section: complete source file; lines 1–124. Source revision: `7e2cfe068b8c2a09baa183334ce305a29af8493b`. SHA-256: `059208716eb1439df513cc70b2316d2f864b29112da7bf87d286e724a5b4517f`. Restore by copying the fenced source to that path and regenerating its projections.
+
+````json
+{
+  "_provenance": "HAND-AUTHORED declared source for the Part-6 research-agenda index — the book's forward program as a mechanically-checkable model rather than prose scattered across finished chapters with no index over it. This file IS edited by hand; it is the single source of truth for the open work MAGE hands to a later program: the two closed taxonomies (kinds / statuses) and the seven agenda items, each naming its home section and the falsifiable hypotheses that make it testable. Sibling in the book-models declared->generated idiom (see theory_of_mage_declared.json / industry_cases_declared.json). WIRED: research_agenda_model.py derives a typed model, projects the 'Where the frontier goes next' coda index (render_frontier_prose_md) AND the figure node manifest (render_agenda_nodes), and checks the joins RA1-RA5. related_hypotheses[] JOINS into theory_of_mage_declared.json (referenced by id, IC4-style — the hypotheses are single-sourced in the theory model, never copied here). Lands AUDIT-ONLY-first in catalog.py validate (rule-#55 blocking-lint landing discipline); a later follow-up flips RA1-RA4 to BLOCKING after a clean session confirms the drain. Regen discipline: edit HERE; the coda index + node manifest compute at CLI time (no materialized json).",
+  "_intent": "Encode the open work of MAGE as a queryable INDEX so the coda cannot drift as items accrue. One record per agenda item; the coda is append-a-row per item, and every item welds to the hypothesis (H1-H8) a study would test. The map/index frames; the home sections (6.5 / 6.1 / 6.2) expand — coverage of the index over the homes, never a second exposition.",
+  "kinds": [
+    {
+      "id": "frontier",
+      "label": "Frontier",
+      "gloss": "A moving line the book names and hands to a later program."
+    },
+    {
+      "id": "measurement",
+      "label": "Measurement",
+      "gloss": "An operationalization of governance into measurable quantities."
+    },
+    {
+      "id": "dynamics",
+      "label": "Dynamics",
+      "gloss": "A learning / organizational feedback the book models but does not test at population scale."
+    },
+    {
+      "id": "generalization",
+      "label": "Generalization",
+      "gloss": "Whether the theory holds beyond the software case it was built on."
+    }
+  ],
+  "statuses": [
+    {
+      "id": "established",
+      "gloss": "Named and operationalized in the book; the open part is extension, not existence."
+    },
+    {
+      "id": "open",
+      "gloss": "Argued as a direction with a stated question; not yet answered."
+    },
+    {
+      "id": "conjectured",
+      "gloss": "Stated explicitly as a conjecture the book does not prove (dashed in the figure)."
+    }
+  ],
+  "agenda": [
+    {
+      "id": "determinization-frontier",
+      "title": "Determinization frontier",
+      "kind": "frontier",
+      "status": "open",
+      "one_line": "How far judgment compiles into deterministic machinery — and how far it can be pushed by conjecturing the rungs not yet discovered.",
+      "source_section": "6.1-toward-a-theory-of-mage",
+      "related_hypotheses": [
+        "H3-mechanized-assurance",
+        "H4-representation-leverage"
+      ]
+    },
+    {
+      "id": "modeling-moves-frontier",
+      "title": "Modeling moves the frontier",
+      "kind": "frontier",
+      "status": "open",
+      "one_line": "Richer representation expands what Alignment can determinize — Modeling and Alignment are causally interdependent, not parallel.",
+      "source_section": "6.1-toward-a-theory-of-mage",
+      "related_hypotheses": [
+        "H4-representation-leverage"
+      ]
+    },
+    {
+      "id": "assurance-frontier",
+      "title": "Assurance frontier",
+      "kind": "frontier",
+      "status": "conjectured",
+      "one_line": "How much assurance emerges as a by-product of a model-rich governed environment (the MAGE-II conjecture); proximity to NIST AI RMF and UL 4600.",
+      "source_section": "6.2-what-the-theory-predicts",
+      "related_hypotheses": [
+        "H3-mechanized-assurance"
+      ]
+    },
+    {
+      "id": "development-completeness",
+      "title": "Development completeness & supply chain",
+      "kind": "frontier",
+      "status": "open",
+      "one_line": "What must be shared for an outsider to reproduce not the artifact but the capacity to evolve it; which environment artifacts join the supply chain.",
+      "source_section": "6.4-research-agenda",
+      "related_hypotheses": [
+        "H7-conversion-conditions"
+      ]
+    },
+    {
+      "id": "governance-census",
+      "title": "Governance census",
+      "kind": "measurement",
+      "status": "established",
+      "one_line": "Inventory obligations against mechanisms; measure Coverage, Under-governance, and Governance-debt — with propagation-latency proposed as a future fourth metric.",
+      "source_section": "5.3-other-agentic-software-factories",
+      "related_hypotheses": [
+        "H3-mechanized-assurance",
+        "H6-oversight-amortization",
+        "H8-learning-propagation"
+      ]
+    },
+    {
+      "id": "learning-propagation",
+      "title": "Learning propagation + organizational scaling",
+      "kind": "dynamics",
+      "status": "open",
+      "one_line": "How a lesson, once encoded into shared machine-actionable structure, propagates to later work; how the organization changes shape as agent throughput rises.",
+      "source_section": "6.1-toward-a-theory-of-mage",
+      "related_hypotheses": [
+        "H1-failure-class-exposure",
+        "H7-conversion-conditions",
+        "H8-learning-propagation"
+      ]
+    },
+    {
+      "id": "generalization-beyond-software",
+      "title": "Generalization beyond software",
+      "kind": "generalization",
+      "status": "conjectured",
+      "one_line": "Whether the answer generalizes to model-based engineering at large (Siemens) — the widened core question of MBAE.",
+      "source_section": "5.3-other-agentic-software-factories",
+      "related_hypotheses": [
+        "H4-representation-leverage"
+      ]
+    }
+  ]
+}
+````

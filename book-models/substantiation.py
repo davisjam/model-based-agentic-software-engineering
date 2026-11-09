@@ -4,8 +4,7 @@ for: "where we cite in the text, back those cites in the model (ref, claims-from
 claims, so we can query for under-substantiated-or-situated — and outright SOAPBOX — claims about reality."
 
 THE CLAIM UNIVERSE — spine + theory + discussion. The argument spine is the book's backbone claims; the
-'Toward a Theory of MAGE' chapter adds reality-asserting THEORY nodes (the nine hypotheses H1-H9 + their
-sub-hypotheses, the corollaries, and the research-agenda proposals) that are NOT spine claims; and the
+'Toward a Theory of MAGE' chapter adds reality-asserting THEORY nodes (the four propositions P1–P4) that are NOT spine claims; and the
 DISCUSSION-claims ledger adds the reality-asserting sentences that live in the book's Discussion /
 Implications / Future prose and belong to no ordered spine step and no theory node. All three are appended to
 one universe so the report reaches every registered claim, and a datum or citation may bind to ANY by id (the
@@ -75,7 +74,7 @@ _DATA_CLAIMS = os.path.join(_ROOT, "book", "data", "data-claims.json")
 _FRAMES = ("reality", "offered-for-replication", "single-case", "possibility", "conjecture")
 
 #: The theory chapter globally frames ALL its predictions as offered-for-replication (the theory JSON `hedge`
-#: + the Seven-Hypotheses table caption). So theory nodes register with this frame by default — honestly
+#: + the four-proposition table caption). So theory nodes register with this frame by default — honestly
 #: SITUATED, never SOAPBOX — unless a node carries its own explicit `frame`.
 _THEORY_DEFAULT_FRAME = "offered-for-replication"
 
@@ -114,7 +113,7 @@ class ClaimSubstantiation:
     quantifiable: bool
     reality_claim: bool
     frame: str = "reality"
-    kind: str = "spine"  # provenance: `spine` claim or a `theory` node (hypothesis / corollary / agenda)
+    kind: str = "spine"  # provenance: `spine` claim or a `theory` proposition
     data_backing: list[DataBacking] = field(default_factory=list)
     literature_backing: list[LiteratureBacking] = field(default_factory=list)
     field_note_backing: list[FieldNoteBacking] = field(default_factory=list)
@@ -159,9 +158,7 @@ def _spine_claims() -> "list[dict]":
 
 
 def _theory_claims() -> "list[dict]":
-    """The theory chapter's reality-asserting nodes as claim dicts, in a stable order: the nine hypotheses
-    (each followed by its sub-hypotheses), the named propositions, the corollaries, then the research-agenda
-    proposals. Each is a reality-claim; each defaults to frame=offered-for-replication (the chapter's global
+    """The theory chapter's reality-asserting nodes as claim dicts, in a stable order: the four active propositions. Historical crosswalk IDs are not claims. Each is a reality-claim; each defaults to frame=offered-for-replication (the chapter's global
     hedge) unless the node carries its own `frame`. Hypotheses + propositions use their JSON id; corollaries +
     agenda points carry no id, so a stable slug is synthesized. Robust to the theory file's absence
     (returns [])."""
@@ -174,24 +171,9 @@ def _theory_claims() -> "list[dict]":
         return {"id": cid, "statement": statement, "reality_claim": True, "quantifiable": False,
                 "frame": frame if frame in _FRAMES else _THEORY_DEFAULT_FRAME, "kind": "theory"}
 
-    for h in m.get("hypotheses", []):
-        if not isinstance(h, dict) or "id" not in h:
-            continue
-        out.append(_node(h["id"], h.get("statement", ""), h.get("frame", _THEORY_DEFAULT_FRAME)))
-        for sh in h.get("sub_hypotheses", []) or []:
-            if isinstance(sh, dict) and sh.get("id"):
-                out.append(_node(sh["id"], sh.get("statement", ""), sh.get("frame", _THEORY_DEFAULT_FRAME)))
     for p in m.get("propositions", []):
         if isinstance(p, dict) and p.get("id"):
             out.append(_node(p["id"], p.get("statement", ""), p.get("frame", _THEORY_DEFAULT_FRAME)))
-    for c in m.get("corollaries", []):
-        if isinstance(c, dict) and c.get("claim"):
-            out.append(_node(f"corollary-{_slug(c['claim'])}", c["claim"],
-                             c.get("frame", _THEORY_DEFAULT_FRAME)))
-    for r in m.get("research_agenda", []):
-        if isinstance(r, dict) and r.get("study_design"):
-            out.append(_node(f"research-agenda-{_slug(r['study_design'])}", r["study_design"],
-                             r.get("frame", _THEORY_DEFAULT_FRAME)))
     return out
 
 

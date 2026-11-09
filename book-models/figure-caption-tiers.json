@@ -817,53 +817,11 @@
       "location": "part5",
       "rationale": "Revised caption identifies the retained teaching figure and scopes its inference without duplicating the mainline explanation."
     },
-    "toward-a-theory-of-mage::Mapping the software factory into the theory": {
-      "tier": "A",
-      "kind": "framework",
-      "location": "part6",
-      "rationale": "the correspondence table between the Chapter 5 factory vocabulary and the theory's constructs — every modeled quantity read back onto the production system; anchor caption because it also has to say that the categories overlap"
-    },
-    "toward-a-theory-of-mage::The four dimensions of E": {
-      "tier": "B",
-      "kind": "framework",
-      "location": "part5",
-      "rationale": "dimensioning table"
-    },
-    "toward-a-theory-of-mage::Constructs and moderators": {
-      "tier": "C",
-      "kind": "reference-lookup",
-      "location": "part5",
-      "rationale": "per-construct lookup of the model"
-    },
     "toward-a-theory-of-mage::The three MAGE outcomes and their observables": {
       "tier": "B",
       "kind": "summary-of-points",
       "location": "part5",
       "rationale": "the three predicted outcomes"
-    },
-    "toward-a-theory-of-mage::The four Modeling × Alignment combinations": {
-      "tier": "B",
-      "kind": "summary-of-points",
-      "location": "part5",
-      "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
-    },
-    "toward-a-theory-of-mage::Evidence sources and their strongest inferences": {
-      "tier": "B",
-      "kind": "framework",
-      "location": "part5",
-      "rationale": "two evidence sources + future work against strongest inference / does-not-establish — the R47 evidence-status table"
-    },
-    "what-the-theory-predicts::MAGE's nine hypotheses in three families": {
-      "tier": "B",
-      "kind": "framework",
-      "location": "part5",
-      "rationale": "the nine named hypotheses in three families with their core quantities — the R47 research-program summary"
-    },
-    "scope-conditions::Typical MAGE profiles by setting": {
-      "tier": "B",
-      "kind": "framework",
-      "location": "part5",
-      "rationale": "typical profiles by setting against the recurs/governable gates — where investment pays and residual judgment stays"
     },
     "mage-in-the-wild::The Modeling Ceiling": {
       "tier": "B",
@@ -1344,6 +1302,24 @@
       "kind": "evidence-table",
       "location": "appendix-evidence-ledger",
       "rationale": "Reference receipt with its denominator and interpretation limit."
+    },
+    "what-the-theory-predicts::Four theoretical propositions of MAGE": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "Four conditional propositions with mechanisms and comparison targets; claims to investigate rather than measured effects."
+    },
+    "what-the-theory-predicts::The four Modeling × Alignment combinations": {
+      "tier": "B",
+      "kind": "summary-of-points",
+      "location": "part6",
+      "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
+    },
+    "research-agenda::Comparisons that distinguish MAGE's proposed effects": {
+      "tier": "C",
+      "kind": "comparison-summary",
+      "location": "part6",
+      "rationale": "Compact index connecting the four comparison designs to the proposition mechanisms; the body supplies interpretation."
     }
   },
   "historical_tiers": {
@@ -1376,6 +1352,48 @@
       "kind": "data-chart",
       "location": "part5",
       "rationale": "SEIP observations with measurement scope and limits explained in the caption; supporting evidence for the case."
+    },
+    "toward-a-theory-of-mage::Mapping the software factory into the theory": {
+      "tier": "A",
+      "kind": "framework",
+      "location": "part6",
+      "rationale": "the correspondence table between the Chapter 5 factory vocabulary and the theory's constructs — every modeled quantity read back onto the production system; anchor caption because it also has to say that the categories overlap"
+    },
+    "toward-a-theory-of-mage::The four dimensions of E": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part5",
+      "rationale": "dimensioning table"
+    },
+    "toward-a-theory-of-mage::Constructs and moderators": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part5",
+      "rationale": "per-construct lookup of the model"
+    },
+    "toward-a-theory-of-mage::Evidence sources and their strongest inferences": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part5",
+      "rationale": "two evidence sources + future work against strongest inference / does-not-establish — the R47 evidence-status table"
+    },
+    "scope-conditions::Typical MAGE profiles by setting": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part5",
+      "rationale": "typical profiles by setting against the recurs/governable gates — where investment pays and residual judgment stays"
+    },
+    "what-the-theory-predicts::MAGE's nine hypotheses in three families": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part5",
+      "rationale": "the nine named hypotheses in three families with their core quantities — the R47 research-program summary"
+    },
+    "toward-a-theory-of-mage::The four Modeling × Alignment combinations": {
+      "tier": "B",
+      "kind": "summary-of-points",
+      "location": "part5",
+      "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
     }
   }
 }

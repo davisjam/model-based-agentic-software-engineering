@@ -1534,53 +1534,31 @@ def cmd_validate(_args) -> int:
         for f in md_findings:
             print(f"              {f}")
         n_issues += len(md_findings)
-    # THEORY-OF-MAGE DRIFT GATE — BLOCKING. The 'Toward a Theory of MAGE' chapter's Eight-Hypotheses
-    # table is a projection of a declared model (book-models/theory_of_mage_declared.json): the model
-    # projects the 3-column table (H4 folds its H4a/H4b sub-hypotheses), theory_of_mage_model.py holds the
-    # chapter's table byte-equal to that projection, delegates internal well-formedness to
-    # theory_model_check.check() (TM1-TM7), and guards the ratified hypothesis + sub-hypothesis counts. Landed
-    # AUDIT-ONLY-first (repo blocking-lint discipline), promoted to BLOCKING once a clean session confirmed
-    # parity holds (the dashboard model's own landing path): a chapter<->JSON drift now increments n_issues
-    # and reddens validate. See book-models/theory_of_mage_model.py.
-    import theory_of_mage_model as tmm  # noqa: E402 — theory-projection/parity model (BLOCKING)
+    # Four active theoretical propositions: strict structure, ID set and table parity.
+    import theory_of_mage_model as tmm
     tm_findings = tmm.all_findings()
     if tm_findings:
-        print(f"  [theory] {len(tm_findings)} theory-drift finding(s) — "
-              f"run `python3 book-models/theory_of_mage_model.py verify`:")
-        for f in tm_findings:
-            print(f"           {f}")
+        print(f"  [theory] {len(tm_findings)} theory-drift finding(s):")
+        for finding in tm_findings:
+            print(f"           {finding}")
         n_issues += len(tm_findings)
     else:
-        print("  [theory] chapter Eight-Hypotheses table matches the declared model "
-              "(8 hypotheses, 2 sub-hypotheses; structural clean)")
-    # NAMED-PROPOSITION check — AUDIT-ONLY. The theory model also declares named PROPOSITIONS (the quotable
-    # theory statement a hypothesis encodes; the Reasoning-Horizon Proposition is H4's). Kept OUT of the
-    # gating tmm.all_findings() and surfaced here non-gating (repo blocking-lint discipline: a new node type
-    # lands audit-only-first). Structural well-formedness only — non-empty id/name/statement/falsifier, an
-    # honest frame, and formalized_by resolving to a real hypothesis.
-    tm_props = tmm.proposition_findings()
-    if tm_props:
-        print(f"  [theory] AUDIT-ONLY: {len(tm_props)} named-proposition finding(s) (does not gate):")
-        for f in tm_props:
-            print(f"           {f}")
-    else:
-        print(f"  [theory] AUDIT-ONLY: {len(tmm.derive_propositions())} named proposition(s) well-formed")
+        print("  [theory] four-proposition table matches the declared model")
     # INDUSTRY-CASES MODEL — AUDIT-ONLY (rule #55 first landing). The book's external-evidence base
-    # (book-models/industry_cases_declared.json) is a queryable, drift-gated model: a six-site roster
-    # (Cloudflare authored + five pending-writeup stubs) whose authored records project a DocAble+authored
-    # correspondence matrix against a declared, ordered construct-universe column set. This band reports the
-    # STATUS-AWARE joins (IC1 schema / IC2 citation / IC3 construct / IC4 hypothesis / IC6 roster + audit-only
-    # IC7; IC5 matrix parity vacuous until the prose wave places the matrix on a page) plus the coverage /
-    # only-docable burndown note — but does NOT increment n_issues on first landing. A follow-up flips
-    # IC1-IC6 to BLOCKING once a clean session confirms the drain. See book-models/industry_cases_model.py.
+    # Current Chapter 5 cases are joined to their source, construct, and proposition identifiers.
+    # IC8 holds their heading/point/citation footprints; historical ceiling/convergence records
+    # retain schema and join checks without requiring the retired matrices in the current chapter.
     import industry_cases_model as icm  # noqa: E402 — audit-only external-evidence model
     ic_findings = icm.all_findings()
     print(f"  [industry] AUDIT-ONLY: {icm.coverage_note()}")
     if ic_findings:
         print(f"  [industry] AUDIT-ONLY: {len(ic_findings)} industry-cases finding(s) — "
-              f"run `python3 book-models/industry_cases_model.py verify` (does not gate):")
+              f"run `python3 book-models/industry_cases_model.py verify` (IC4 joins gate):")
         for f in ic_findings:
             print(f"             {f}")
+    # Theory-ID joins are blocking; other industry coverage findings retain
+    # their existing audit-only status.
+    n_issues += sum(f.startswith("IC4 ") for f in ic_findings)
     # CAPABILITY-LADDER MODEL — AUDIT-ONLY (rule #55 first landing). The book's ONE canonical 8-rung
     # Representation Capability Ladder (book-models/capability_ladder_declared.json) is a queryable,
     # drift-gated model: the TEACHING abstraction the opening figure / new Chapter 2 / Chapter 4 adoption path /
@@ -1649,24 +1627,16 @@ def cmd_validate(_args) -> int:
               f"run `python3 book-models/supporting_sources_model.py verify` (does not gate):")
         for f in ss_findings:
             print(f"               {f}")
-    # RESEARCH-AGENDA MODEL — AUDIT-ONLY (rule #55 first landing). The book's forward program
-    # (book-models/research_agenda_declared.json) is a queryable, drift-gated INDEX over finished prose: seven
-    # agenda items across four closed kinds (frontier / measurement / dynamics / generalization), each welded
-    # to the falsifiable hypotheses (H1-H8) it tests and pointing at the home chapter that expands it. This
-    # band reports the joins RA1 (schema — kind/status in taxonomy) / RA2 (hypothesis join — every
-    # related_hypotheses[] id resolves in theory_of_mage_declared.json, IC4-style) / RA3 (section join — every
-    # source_section resolves to a real chapter page) / RA4 (count guard) + RA5 parity (prose-parity ACTIVE
-    # once the 'Where the frontier goes next' coda is placed, figure-parity vacuous until the SVG lands) plus
-    # the coverage note — but does NOT increment n_issues on first landing. A follow-up flips RA1-RA4 to
-    # BLOCKING once a clean session confirms the drain. See book-models/research_agenda_model.py.
-    import research_agenda_model as ram  # noqa: E402 — audit-only research-agenda index model
+    # Three research directions: schema, active proposition/source joins, count,
+    # and parity with the actual Chapter 6 headings are clean and blocking.
+    import research_agenda_model as ram
     ra_findings = ram.all_findings()
-    print(f"  [agenda] AUDIT-ONLY: {ram.coverage_note()}")
+    print(f"  [agenda] {ram.coverage_note()}")
     if ra_findings:
-        print(f"  [agenda] AUDIT-ONLY: {len(ra_findings)} research-agenda finding(s) — "
-              f"run `python3 book-models/research_agenda_model.py verify` (does not gate):")
+        print(f"  [agenda] {len(ra_findings)} research-agenda finding(s):")
         for f in ra_findings:
             print(f"           {f}")
+        n_issues += len(ra_findings)
     # SOAPBOX GATE — BLOCKING. The substantiation aggregator (book-models/substantiation.py) nests the three
     # evidence legs (data / literature / field-note) under the claim universe (spine + theory + discussion).
     # SOAPBOX is its sharp report: a reality-claim asserted with NO backing of any kind AND no honest
@@ -3401,6 +3371,7 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
     setting = rec.get("setting", {}) or {}
     source = rec.get("source", {}) or {}
     constructs = rec.get("mage_constructs", []) or []
+    unassessed = rec.get("correspondence_assessment", {}).get("status") == "unassessed"
     p: "list[str]" = []
     p.append(f"<!-- industry-case: {cid} -->")
     p.append("<h1>Industry case studies</h1>")
@@ -3426,7 +3397,7 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
         p.append("<h3>What the agents do</h3>")
         p.append(f'<p>{_inline(rec["autonomous_work"])}</p>')
     scale = setting.get("scale", "")
-    field = "brownfield" if setting.get("brownfield") else "greenfield"
+    field = ("brownfield" if setting["brownfield"] else "greenfield") if "brownfield" in setting else "not specified"
     p.append(f'<p><strong>Setting:</strong> <code>{_esc(scale)}</code> · <code>{_esc(field)}</code></p>')
     facts = setting.get("scale_facts", []) or []
     if facts:
@@ -3455,7 +3426,11 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
         rows.append([_esc(labels.get(con, con)),
                      f"{glyph} {_esc(strength)}".strip(),
                      _inline(cell.get("note", ""))])
-    p.append(_ic_html_table(["MAGE construct", "Correspondence", "How the book reads the case"], rows))
+    if unassessed:
+        p.append("<p>Construct and proposition correspondences for this account have not been assessed. "
+                 "An unassessed entry does not mean that its sources lack the mechanism.</p>")
+    else:
+        p.append(_ic_html_table(["MAGE construct", "Correspondence", "How the book reads the case"], rows))
     # What the book reads the case as believing.
     if rec.get("implicit_theory"):
         p.append("<h2>The theory the case appears to hold</h2>")
@@ -3471,11 +3446,12 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
         p.append(f'<p>{_inline(distinctive["headline"])}</p>')
     if distinctive.get("hedge"):
         p.append(f'<p>{_inline(distinctive["hedge"])}</p>')
-    # Honest bounds + the hypotheses the case bears on (tokens).
+    # Honest bounds + propositions whose components the case concerns (tokens).
     p.append("<h2>Honest bounds</h2>")
-    p.append("<p>The limitations the analysis records, and the falsifiable hypotheses the case bears on:</p>")
-    p.append(_ic_tags(rec.get("limitations", []) or []))
-    p.append(_ic_tags(rec.get("hypotheses", []) or []))
+    p.append("<p>The limitations the analysis records, and the theoretical propositions whose components the case bears on:</p>")
+    bounds = rec.get("limitations", []) or []
+    p.append(f"<p>{_inline(bounds)}</p>" if isinstance(bounds, str) else _ic_tags(bounds))
+    p.append(_ic_tags(rec.get("propositions", []) or []))
     # Sources — the provenance data block.
     p.append("<h2>Source</h2>")
     src_rows = [
@@ -3487,6 +3463,10 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
         ["Author role", _inline(source.get("author_role", ""))],
     ]
     p.append(_ic_html_table(["Field", "Value"], src_rows))
+    footprint = _ic_declared().get("chapter_footprints", {}).get("cases", {}).get(cid, {})
+    if footprint:
+        p.append("<p>Sources used in the current chapter account:</p>")
+        p.append(_ic_tags(footprint.get("citation_keys", [])))
     # Theory coverage at a glance — the projection of mage_constructs[].strength over the construct universe.
     p.append("<h2>Theory coverage at a glance</h2>")
     p.append("<p>Where the source’s described behavior maps onto each MAGE construct: "
@@ -3494,7 +3474,7 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
     by_con = {c.get("construct", ""): c.get("strength", "") for c in constructs}
     cov_rows = []
     for con, label in labels.items():
-        strength = by_con.get(con, "not-described")
+        strength = "unassessed" if unassessed else by_con.get(con, "not-described")
         glyph = _IC_CORR_GLYPH.get(strength, "")
         cov_rows.append([_esc(label), f"{glyph} {_esc(strength)}".strip()])
     p.append(_ic_html_table(["MAGE construct", "Correspondence"], cov_rows))
@@ -3535,51 +3515,42 @@ def _ic_index_body(cases: "list[dict]", hedge: str) -> str:
             f'<span class="ic-blurb">{blurb}</span>'
             f'<span class="ic-more">Read the reconstruction →</span></a>')
     p.append('<div class="ic-cards">\n  ' + "\n  ".join(cards) + "\n</div>")
-    # The comparative page reads all eight at once — the pillar-index inbound edge the orphan gate needs.
-    p.append("<h2>Across all eight</h2>")
-    p.append("<p>One page reads the eight side by side. The "
-             f'<a href="{_attr(_COMPARATIVE_PAGE)}">comparative analysis</a> projects the book’s '
-             "Chapter 5 matrices to the web — the correspondence matrix, the modeling-ceiling ladder, "
-             "and the convergence tables — from the same model the print edition builds, so the two "
-             "surfaces cannot fall out of step.</p>")
+    # Preserve the superseded comparison as an explicitly historical destination.
+    p.append("<h2>Historical comparison</h2>")
+    p.append("<p>The "
+             f'<a href="{_attr(_COMPARATIVE_PAGE)}">archived comparative analysis</a> preserves the '
+             "six-site matrices from before the November 9, 2026 chapter revision, including the former "
+             "Siemens account. It is not a comparison of the chapter’s current six accounts.</p>")
     return "\n".join(p)
 
 
 def _comparative_body() -> str:
-    """The Comparative-analysis page body — a PROJECTION of the book's Chapter 5 matrices to the web. The
-    correspondence matrix, the modeling-ceiling ladder, and the two convergence tables are rendered by the
-    SAME model functions the book's Ch5 build calls (render_matrix_md / render_modeling_ceiling_md /
-    render_convergence_md / render_convergence_key_md), so the page cannot diverge from the book (the
-    ratified F-comparative exact-reuse decision). Every reader-facing SENTENCE is a hand-authored literal
-    or a verbatim authored string read from the model (the distinctive headline + hedge + statements); no
-    sentence is machine-composed from slug lists. The seven-kind placement map is the hero. Exactly one
-    `<h1>`; a `<!-- comparative-analysis: -->` trace marker leads the body (the pillar-page analogue)."""
+    """Project the archived comparison, clearly separated from the current chapter roster."""
     import industry_cases_model as icm  # noqa: E402 — the Ch5 render functions, on sys.path since module load
-    model = icm.derive_model()
+    model = icm.derive_historical_model()
     p: "list[str]" = []
-    p.append("<!-- comparative-analysis: ch6-projection -->")
-    p.append("<h1>Comparative analysis</h1>")
-    p.append('<div class="concept-band"><span class="concept-chip">Chapter 5, in miniature</span>'
-             '<span class="concept-kicker">the six reconstructions, read at once</span></div>')
+    p.append("<!-- comparative-analysis: historical-before-2026-11-09 -->")
+    p.append("<h1>Historical comparative analysis</h1>")
+    p.append('<div class="concept-band"><span class="concept-chip">Before November 9, 2026</span>'
+             '<span class="concept-kicker">the six historical reconstructions</span></div>')
     hero = namespace_svg_ids(_inline_svg("assets/six-company-map.svg"), "cmp-hero")
     if hero:
         p.append(f'<figure class="cc-body-fig">{hero}</figure>')
     # The distinctive material is data the model owns; the sentences below it are the model's authored
     # strings, read verbatim (the design bans rendering the distinctive bucket as a support table).
     dist_statements = [pat.statement for pat in model.patterns_in("distinctive")]
-    raw = _ic_declared()
+    raw = icm.historical_declared()
     ccp = raw.get("cross_case_patterns", {}) or {}
     dist_headline = ccp.get("distinctive_headline", "")
     dist_hedge = ccp.get("distinctive_hedge", "")
     # Hand-authored framing + the verbatim model tables, assembled as one markdown document.
     md: "list[str]" = []
-    md.append("This page reads the six reconstructions next to one another. It projects the book’s "
-              "Chapter 5 material straight to the web, drawn from the same model, so the two surfaces cannot "
-              "drift. The two convergence tables are the exact tables the print edition lays out; the "
-              "correspondence matrix and the modeling-ceiling ladder carry the same data the book renders, "
-              "shaped here as tables where print presents it as cards and prose. MAGE ran at none of these "
-              "companies. Every mark records how the book reads an independent report against the theory, "
-              "never a claim a company makes about MAGE.")
+    md.append("This page preserves the comparison that preceded the November 9, 2026 Chapter 5 "
+              "revision. Its roster includes Siemens and its GitLab account reads the earlier product "
+              "vision. The current chapter instead develops six unequal accounts, including Amazon and "
+              "revised GitLab documentation. These archived ratings have not been reassigned to the new "
+              "accounts. Every mark records an interpretation of a public report, not a claim that the "
+              "company adopted MAGE or an independent validation of the method.")
     md.append("## Reading the tables")
     md.append("The convergence and ceiling tables use a small set of marks. A check means the source "
               "establishes the pattern in full. A half-circle means it establishes the pattern in part. "
@@ -3599,7 +3570,7 @@ def _comparative_body() -> str:
               "book reads the rung a source reaches, not a grade.")
     md.append(icm.render_modeling_ceiling_md(model))
     md.append("## What every system establishes")
-    md.append("These patterns recur across all eight. Each was engineered independently, for one company’s "
+    md.append("In this historical assessment, these patterns recur across all six. Each was engineered independently, for one company’s "
               "own reasons, yet every source lands on it. Convergence this broad is the evidence that a "
               "pattern is structural rather than a house style.")
     md.append(icm.render_convergence_md("universal", model))
@@ -4119,7 +4090,7 @@ LANDING_INTRO = """  <!-- ===================== HERO + BIG IDEA 1 ==============
       and methodology</span> for engineering the governed environments in which autonomous intelligence can
       safely create software. Its six big ideas, below, trace the argument from problem to research frontier.</p>
       <p class="m-lead">Developed through one deeply studied production system and interpreted against
-      independent industrial practice from Cloudflare, Spotify, Shopify, Siemens, Uber, and GitLab.</p>
+      public industrial accounts from Cloudflare, Spotify, Shopify, Uber, Amazon, and GitLab.</p>
       <p class="m-lead"><a class="hero-cta" href="book/mage-book/index.html"><strong>The book provides the full
       treatment.</strong></a> &nbsp;·&nbsp; <a class="hero-cta" href="quick-start.html"><strong>QuickStart:
       install the Skills for Claude in your own repo.</strong></a></p>
@@ -5825,11 +5796,11 @@ def cmd_substantiation(args) -> int:
 
 
 def cmd_theory(args) -> int:
-    """The THEORY-OF-MAGE drift gate — the 'Toward a Theory of MAGE' chapter's Eight-Hypotheses table is a
+    """The THEORY-OF-MAGE drift gate — the 'Toward a Theory of MAGE' chapter's four-proposition table is a
     projection of the declared model (book-models/theory_of_mage_declared.json). No arg (or `verify`) drift-
     checks the chapter table against the projection (structural TM1-TM7 via theory_model_check + parity +
-    the ratified count guard); `hypotheses-table` prints the markdown table for the page; `show` lists every
-    hypothesis. Reads the meta-file at query time; BLOCKING (verify exits non-zero on any drift finding)."""
+    the ratified count guard); `propositions-table` prints the markdown table for the page; `show` lists every
+    proposition. Reads the meta-file at query time; BLOCKING (verify exits non-zero on any drift finding)."""
     bm = os.path.join(ROOT, "book-models")
     if bm not in sys.path:
         sys.path.insert(0, bm)
@@ -6273,8 +6244,8 @@ def main() -> int:
     lp.add_argument("--json", action="store_true", help="dump the raw matched record(s)")
     su = sub.add_parser("substantiation", help="the unified substantiation query: data-claims + lit-positioning citations nested under each argument-spine claim; flags UNDERQUANTIFIED (quantifiable, no data) + UNDER-SUBSTANTIATED-OR-SITUATED (reality-claim, no data AND no literature)")
     su.add_argument("--json", action="store_true", help="dump the machine form")
-    th = sub.add_parser("theory", help="the theory-of-mage drift gate: hold the 'Toward a Theory of MAGE' chapter's Eight-Hypotheses table equal to the declared model (book-models/theory_of_mage_declared.json). No arg drift-checks (structural + parity + count); hypotheses-table prints the table; show lists the hypotheses")
-    th.add_argument("sub", nargs="?", choices=["verify", "hypotheses-table", "show"], help="verify (default) | hypotheses-table | show")
+    th = sub.add_parser("theory", help="the theory-of-mage drift gate: hold the 'Toward a Theory of MAGE' chapter's four-proposition table equal to the declared model (book-models/theory_of_mage_declared.json). No arg drift-checks (structural + parity + count); propositions-table prints the table; show lists the propositions")
+    th.add_argument("sub", nargs="?", choices=["verify", "propositions-table", "hypotheses-table", "show"], help="verify (default) | propositions-table | show")
     dv = sub.add_parser("delivers", help="the per-chapter deliverable coverage map (concept OR artifact): one row per chapter (concepts DERIVED from index-def tags · authored artifact types · verdict), then DELIVERS-NEITHER (derived gap alarm) + ALL-PROSE-WOULD-BENEFIT (authored flag)")
     dv.add_argument("--json", action="store_true", help="dump the machine map (the chapter-shape model)")
     va = sub.add_parser("views-audit", help="book-models drift audit: structural (every view->md reference resolves) + freshness (each view artifact equals a fresh derivation). Fast pre-commit gate; AUDIT-ONLY (prints, exits 0) unless --strict")

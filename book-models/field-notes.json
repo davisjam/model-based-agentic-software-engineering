@@ -26,9 +26,15 @@
       "chapter_slug": "what-the-evidence-supports",
       "backs_claims": [
         "modeling-principle",
-        "H4-representation-leverage"
+        "P1-representation-leverage"
       ],
-      "limitation": "The per-task instrument could not discriminate (both arms at ceiling), so the system-level value is LOCATED, not measured — a null from a non-discriminating instrument is uninformative, neither for nor against the hypothesis. The note itself corrects the record, retracting a prior 'measured null' claim."
+      "limitation": "The per-task instrument could not discriminate (both arms at ceiling), so the system-level value is LOCATED, not measured — a null from a non-discriminating instrument is uninformative, neither for nor against the hypothesis. The note itself corrects the record, retracting a prior 'measured null' claim.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H4-representation-leverage",
+          "proposition": "P1-representation-leverage"
+        }
+      ]
     },
     {
       "id": "dod-drift-detection-efficacy-refresh-260803",
@@ -36,9 +42,15 @@
       "chapter_slug": "scenarios-and-the-joined-model",
       "backs_claims": [
         "alignment-principle",
-        "H3-mechanized-assurance"
+        "P2-representation-enabled-enforcement"
       ],
-      "limitation": "The catch-rate is measured over the SNAPSHOTTED drift classes in the fixed taxonomy only; the structural class the Definition-of-Done alone cannot catch is its stated limitation. Single operator, single repository, a bounded corpus of closed Epics — an efficacy reading, not a controlled comparison."
+      "limitation": "The catch-rate is measured over the SNAPSHOTTED drift classes in the fixed taxonomy only; the structural class the Definition-of-Done alone cannot catch is its stated limitation. Single operator, single repository, a bounded corpus of closed Epics — an efficacy reading, not a controlled comparison.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H3-mechanized-assurance",
+          "proposition": "P2-representation-enabled-enforcement"
+        }
+      ]
     },
     {
       "id": "mmm-real-bug-ledger-260724",
@@ -46,9 +58,15 @@
       "chapter_slug": "reorganization-of-se",
       "backs_claims": [
         "modeling-principle",
-        "H5-local-model-deficiency"
+        "P1-representation-leverage"
       ],
-      "limitation": "Four defects over six efforts, TWO of the four LOW-severity; a find-rate over one product's window, single operator, single fleet — a lived find-rate, not a controlled defect-yield comparison."
+      "limitation": "Four defects over six efforts, TWO of the four LOW-severity; a find-rate over one product's window, single operator, single fleet — a lived find-rate, not a controlled defect-yield comparison.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H5-local-model-deficiency",
+          "proposition": "P1-representation-leverage"
+        }
+      ]
     },
     {
       "id": "mmm-dry-opportunity-detector-260724",
@@ -65,19 +83,35 @@
       "chapter_slug": "constraints-sensors-validators-gates",
       "backs_claims": [
         "alignment-principle",
-        "H5-local-model-deficiency"
+        "P1-representation-leverage"
       ],
-      "limitation": "One pipeline in one product, single operator; the seven-site drift count and its concentration where iteration is hottest are one project's lived observation, not a measured rate across systems. The distinction the note leans on — corrosion (accidental inline drift a sensor must catch) versus library-forced essential divergence (correctly allowlisted) — is a judgment call, not a mechanical signal."
+      "limitation": "One pipeline in one product, single operator; the seven-site drift count and its concentration where iteration is hottest are one project's lived observation, not a measured rate across systems. The distinction the note leans on — corrosion (accidental inline drift a sensor must catch) versus library-forced essential divergence (correctly allowlisted) — is a judgment call, not a mechanical signal.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H5-local-model-deficiency",
+          "proposition": "P1-representation-leverage"
+        }
+      ]
     },
     {
       "id": "reap-unit-pins-green-live-fails-pin-the-seam-260807",
       "incident": "A worktree-reap fix landed with fifteen green unit pins and a clean self-report, and it did not work: every run still reaped nothing, and the operator kept force-cleaning landed worktrees by hand for the rest of the session. The pins exercised the reap wrapper in isolation — they built the completion marker themselves and asserted the wrapper's return value — while the real defect lived one layer down, in a second guard INSIDE the subprocess the wrapper shells out to. A green unit suite over the unit-in-isolation is silent about the seam the unit crosses. The remedy was one honest end-to-end pin that drives the real land-then-clean path, faking only the leaf subprocesses with a faithful contract; it goes red on the bug and green with the fix. The operator's own repeated manual toil was the ground-truth signal that 'passed its pins' did not mean 'works' — operator friction is a symptom worth root-causing, not just working around.",
       "chapter_slug": "reorganization-of-se",
       "backs_claims": [
-        "H3-mechanized-assurance",
-        "H5-local-model-deficiency"
+        "P2-representation-enabled-enforcement",
+        "P1-representation-leverage"
       ],
-      "limitation": "A single incident, single operator; illustrative of a seam-blindness class rather than a measured miss-rate. 'Prefer one end-to-end seam pin over N isolated-unit pins' holds for behavior whose value is an integration outcome; it is not a claim that unit pins are generally inferior."
+      "limitation": "A single incident, single operator; illustrative of a seam-blindness class rather than a measured miss-rate. 'Prefer one end-to-end seam pin over N isolated-unit pins' holds for behavior whose value is an integration outcome; it is not a claim that unit pins are generally inferior.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H3-mechanized-assurance",
+          "proposition": "P2-representation-enabled-enforcement"
+        },
+        {
+          "legacy_id": "H5-local-model-deficiency",
+          "proposition": "P1-representation-leverage"
+        }
+      ]
     },
     {
       "id": "content-free-heuristic-vs-modern-art-260808",
@@ -106,9 +140,15 @@
       "backs_claims": [
         "modeling-principle",
         "alignment-principle",
-        "H3-mechanized-assurance"
+        "P2-representation-enabled-enforcement"
       ],
-      "limitation": "Exhaustive only within bounds (Jobs 2–3, clock ~6) over fakeredis + FakeDb; the .tla⇔Python-model⇔runtime tie is a hand-maintained '1:1 mirror' guarded by invariant-ID lints and a re-check runbook, NOT a refinement proof or codegen. TLC itself SKIPs in the default dev/CI env (no Java), so the gating authority is the Python BFS pytest plus BLOCKING lints, not TLC execution. Single project, single operator."
+      "limitation": "Exhaustive only within bounds (Jobs 2–3, clock ~6) over fakeredis + FakeDb; the .tla⇔Python-model⇔runtime tie is a hand-maintained '1:1 mirror' guarded by invariant-ID lints and a re-check runbook, NOT a refinement proof or codegen. TLC itself SKIPs in the default dev/CI env (no Java), so the gating authority is the Python BFS pytest plus BLOCKING lints, not TLC execution. Single project, single operator.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H3-mechanized-assurance",
+          "proposition": "P2-representation-enabled-enforcement"
+        }
+      ]
     },
     {
       "id": "fn-inv18-liveness-gap",
@@ -117,9 +157,15 @@
       "backs_claims": [
         "modeling-principle",
         "alignment-principle",
-        "H3-mechanized-assurance"
+        "P2-representation-enabled-enforcement"
       ],
-      "limitation": "The temporal property is modeled and falsifiable but NOT wired to any CI gate — correspondence is a single-property-LINE text match (the .tla action bodies are hand-authored and unpoliced) plus existence-checked satisfy_refs, so nothing proves the code enforces eventual termination. A lived limit-case reasoned in design, one product, one operator; a caution on WHEN a model's defense holds, not evidence modeling generally fails."
+      "limitation": "The temporal property is modeled and falsifiable but NOT wired to any CI gate — correspondence is a single-property-LINE text match (the .tla action bodies are hand-authored and unpoliced) plus existence-checked satisfy_refs, so nothing proves the code enforces eventual termination. A lived limit-case reasoned in design, one product, one operator; a caution on WHEN a model's defense holds, not evidence modeling generally fails.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H3-mechanized-assurance",
+          "proposition": "P2-representation-enabled-enforcement"
+        }
+      ]
     },
     {
       "id": "fn-lease-conformance-drift-260816",
@@ -127,9 +173,15 @@
       "chapter_slug": "inside-docables-software-factory",
       "backs_claims": [
         "alignment-principle",
-        "H3-mechanized-assurance"
+        "P2-representation-enabled-enforcement"
       ],
-      "limitation": "The program changed the reproducibility, registration, and change-triggering of the formal machinery — NOT the class of assurance. TLC execution remains AUDIT-ONLY / non-gating (the gating authority is the Python explicit-state BFS plus BLOCKING lints, not TLC); there is still no implementation-level bounded or symbolic checking; and model↔implementation correspondence stays example-based/sampled, not a refinement. Single project, single operator; the two obligations remain distinct — strong evidence that a model has a property does not make correspondence to the implementation automatic."
+      "limitation": "The program changed the reproducibility, registration, and change-triggering of the formal machinery — NOT the class of assurance. TLC execution remains AUDIT-ONLY / non-gating (the gating authority is the Python explicit-state BFS plus BLOCKING lints, not TLC); there is still no implementation-level bounded or symbolic checking; and model↔implementation correspondence stays example-based/sampled, not a refinement. Single project, single operator; the two obligations remain distinct — strong evidence that a model has a property does not make correspondence to the implementation automatic.",
+      "theory_component_scope": [
+        {
+          "legacy_id": "H3-mechanized-assurance",
+          "proposition": "P2-representation-enabled-enforcement"
+        }
+      ]
     }
   ]
 }

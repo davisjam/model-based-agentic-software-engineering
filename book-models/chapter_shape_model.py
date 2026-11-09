@@ -229,7 +229,11 @@ def chapter_prose_anchors(ch: "book_ir.Chapter") -> "tuple[str, str]":
     closing anchor would be the takeaway PARA, whose raw glues the close marker onto its tail — leaking a raw
     `<!-- worked-examples-end -->` into the anchor. The chapter's real closing narrative is the prose that
     precedes the gallery."""
-    blocks = list(book_ir.blocks_outside_worked_examples(ch.blocks))
+    # Native-source projections prepend a generated-file notice. It is metadata,
+    # even when the IR classifies the unrecognized comment as a prose block.
+    # Match only that standalone notice; authored prose/comments remain visible.
+    blocks = [b for b in book_ir.blocks_outside_worked_examples(ch.blocks)
+              if not re.fullmatch(r"<!-- GENERATED from [^\n]* -->", b.raw.strip())]
     lead: "list[str]" = []
     seen_h1 = False
     for b in blocks:

@@ -7,7 +7,7 @@
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[box,text width=6cm,fill=white] (prior) at (-2,1.488) {\textbf{Prior engineering knowledge}\\\textit{standards; requirements; brownfield assets; lessons}};
 \node[box,text width=4cm,fill=white,minimum height=1.8cm] (cap) at (-4,-3.1) {\textbf{Agentic capacity}\\\textit{capability; concurrency; velocity}};
-\node[head,text width=5cm,fill=black!5,minimum height=1.8cm] (env) at (3.5,-3.1) {\textbf{Governed environment} $E$\\\textit{representation; coverage; coherence; economy}};
+\node[head,text width=5cm,fill=black!5,minimum height=1.8cm] (env) at (3.5,-3.1) {\textbf{Governed environment} $\mathcal{G}$\\\textit{representation; coverage; coherence; economy}};
 \draw[edge,line width=1.1pt] (prior.east)--(6.3,1.488)--node[note,right,fill=white] {1 Bootstrap}(6.3,-1.488)-|(env.north);
 \draw[edge,] (cap) -- node[midway,note,fill=white] {\textit{exercises}} (env);
 \node[box,text width=4cm,fill=white,minimum height=1.8cm] (work) at (-4,-5.58) {\textbf{Agentic work}\\\textit{attempted change; task frontier}};

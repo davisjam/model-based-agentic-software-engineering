@@ -1,6 +1,6 @@
 {
-  "_provenance": "HAND-AUTHORED declared source for the 'Toward a Theory of MAGE' back-matter chapter (book/part6/6.1-toward-a-theory-of-mage.md). This file IS edited by hand; it is the single source of truth for the chapter's dynamic model — the latent CONSTRUCTS, the four FEEDBACK LOOPS (with system-dynamics R/B typing), the path-specific MODERATORS, the three OUTCOMES, the eight falsifiable HYPOTHESES (H1-H8, replacing the legacy P1-P15), the corollaries, and the two directional relations. The chapter was relocated out of the appendices (legacy Appendix E) to a numbered main-text chapter this wave; the model was rewritten from the fifteen-prediction inventory to the eight-hypothesis dynamic model to match. Sibling in the book-models declared->generated idiom (see argument_spine_declared.json / claims_declared.json). WIRED: theory_of_mage_model.py projects the eight-hypotheses table into the chapter and drift-checks it against the authored prose (parity + structural TM1-TM7 + the ratified count guard), exactly as metrics_dashboard_model.py does for the Operator's Dashboard; the check lands AUDIT-ONLY in catalog.py validate. Regen discipline: edit HERE, then regenerate the projected table with `python3 book-models/theory_of_mage_model.py hypotheses-table`; never hand-edit the projection.",
-  "_intent": "Encode the book's argument as a middle-range DYNAMIC model in the causal-loop convention of system dynamics: latent CONSTRUCTS connected by four numbered feedback loops over one shared spine, path-specific MODERATORS attached to single transitions, three OUTCOMES, and seven falsifiable HYPOTHESES that follow from the loops. Single-case (DocAble); directional, not proven; no path coefficients are claimed.",
+  "_provenance": "Hand-authored active theory source. The Chapter 6 four-proposition table is projected and checked against these P1–P4 records; native prose remains authoritative. Legacy IDs are archived crosswalk data, not additional active claims.",
+  "_intent": "Describe a conditional, middle-range theory through four developed propositions, inherited environment dynamics, three outcomes and explicit scope; no calibrated coefficients are claimed.",
   "hedge": "N=1: one repository, one fleet, one operator, ~20 weeks focused. These are ANALYTIC-generalization claims (about a mechanism and its scope conditions), not statistical generalization to a population. They are stated so future multi-case / longitudinal / controlled work can test them. Directional and middle-range, not fitted.",
   "spine": {
     "_note": "The shared left-to-right system the four loops run over, read clockwise. Each construct id is reused by the loops, moderators, and hypotheses below.",
@@ -24,8 +24,8 @@
     {
       "id": "governed-environment-quality",
       "role": "latent-intermediate",
-      "name": "Effective governed-environment quality (E)",
-      "gloss": "The degree to which the environment gives agents a current, task-relevant representation of the system together with coherent, proportionate, machine-actionable coverage of its important obligations. A QUALITY, not a quantity — apparatus count is an indicator, not a substitute. Read E as a conceptual STATE VECTOR E = (R, C, H, Q) over its four dimensions — representation quality, enforcement coverage, coherence, and economy — not a measured scalar index the case could report; a large apparatus raises a dimension of E only when it is coherent, economical, and actually covers the obligations that matter, and can instead be duplicated machinery, stale enforcement, or a tower of governance that lowers E while the control count climbs.",
+      "name": "Effective governed-environment quality",
+      "gloss": "How well the inherited environment supports the work through useful representations, adequate obligation coverage, coherence and economy. Assess these properties independently of resulting performance; apparatus count alone does not measure quality.",
       "dimensions": [
         {
           "id": "representation-quality",
@@ -84,7 +84,7 @@
       "color": "blue",
       "type": "input",
       "type_note": "An input/initialization, NOT a feedback loop — it seeds the initial environment before any agent runs.",
-      "reading": "Prior engineering knowledge — inherited architecture, tests, controls, standards, prior incidents, lessons transferred from earlier systems — converts into the initial governed environment E(0). Governance conversion in one project becomes bootstrap knowledge in the next. Lowers the initial failure rate; does not close the red loop."
+      "reading": "Prior engineering knowledge — inherited architecture, tests, controls, standards, prior incidents, lessons transferred from earlier systems — converts into the initial governed environment the initial environment. Governance conversion in one project becomes bootstrap knowledge in the next. Lowers the initial failure rate; does not close the red loop."
     },
     {
       "id": "L2-churn-discovery",
@@ -102,7 +102,7 @@
       "color": "green",
       "type": "balancing-with-L2",
       "type_note": "Together with L2 forms a BALANCING loop: adaptation reshapes E to reduce the churn that drove it.",
-      "reading": "A structural diagnosis triggers an adaptation (model / convert / strengthen / reconcile / retire); the return arm reshapes E. Later agents inherit a more compact representation, clearer constraints, fewer invalid moves, earlier evidence, narrower seams, more reliable admission conditions."
+      "reading": "A structural diagnosis triggers an adaptation (model / convert / strengthen / reconcile / retire); the return arm reshapes the environment. Later agents inherit a more compact representation, clearer constraints, fewer invalid moves, earlier evidence, narrower seams, more reliable admission conditions."
     },
     {
       "id": "L4-capability-amplification",
@@ -111,7 +111,7 @@
       "color": "purple",
       "type": "reinforcing",
       "type_note": "A REINFORCING loop (see R-loop below): self-amplifying, keeps moving the target.",
-      "reading": "A stronger environment raises DEPLOYED agentic capacity — feasible task size, more concurrency, more ambitious requirements, cheaper refactoring, denser use of capacity — the frontier the operator dares attempt, NOT the foundation model's intrinsic capability. The expanded frontier exposes new failure classes and reopens the loop. This is why MAGE does not terminate."
+      "reading": "A stronger environment can raise DEPLOYED agentic capacity — feasible task size, more concurrency, more ambitious requirements, cheaper refactoring, denser use of capacity — the frontier the operator dares attempt, NOT the foundation model's intrinsic capability. The expanded frontier exposes new failure classes and reopens the loop. This is why MAGE does not terminate."
     }
   ],
   "loop_typing": {
@@ -153,7 +153,7 @@
     {
       "id": "domain-governability",
       "operates_on": "governed-environment-quality -> outcomes",
-      "reading": "Degree to which important properties can be represented and mechanically checked."
+      "reading": "Degree to which important obligations can be represented, supplied with evidence and evaluated adequately; mechanical checking is a strong region, not the definition."
     },
     {
       "id": "control-machinery-coherence",
@@ -193,229 +193,138 @@
       ]
     }
   ],
-  "apparatus_measures_caveat": "Support ratio, model-coverage fraction, control count, gate count, model-sync rate, control-interaction findings, stale-control rate measure INVESTMENT or ACCUMULATION, not quality. A large apparatus can be effective governance OR duplicated machinery / accidental complexity / stale enforcement / a tower of governance. Each is an input or indicator; effective quality is what the OUTCOMES reveal.",
-  "hypotheses": [
-    {
-      "id": "H4-representation-leverage",
-      "name": "Representation leverage",
-      "family": "Representation",
-      "core_quantity": "reasoning/context cost at matched quality",
-      "statement": "For tasks whose required reasoning state exceeds comfortable implementation-level inspection, a task-relevant and trustworthy model will reduce reconstruction/context cost or increase the scale of work completed at matched quality relative to reasoning from lower-level artifacts alone. The advantage should increase as the required reasoning state grows.",
-      "falsifier": "Model use at matched recall yields no efficiency gain, lowers quality, adds no predictive power over coverage, or shows no advantage that widens as the required reasoning state grows.",
-      "sub_hypotheses": [
-        {
-          "id": "H4a-representation-efficiency",
-          "name": "Representation efficiency",
-          "statement": "Task-relevant structured models extend the effective reasoning horizon: they replace implementation-level state with semantically richer abstractions that survive repeated compaction with less loss, reducing context cost and churn without lowering task quality.",
-          "falsifier": "Model use at matched recall yields no efficiency gain, lowers task quality, or shows no advantage that widens as the required reasoning state grows."
-        },
-        {
-          "id": "H4b-synchronization-signal",
-          "name": "Synchronization signal",
-          "statement": "Model-synchronization measures provide predictive information about later churn or defect escape beyond conventional code-coverage measures.",
-          "falsifier": "Synchronization measures add no predictive power over conventional code-coverage measures."
-        }
-      ],
-      "loops": [
-        "L3-governance-adaptation"
-      ]
-    },
-    {
-      "id": "H5-local-model-deficiency",
-      "name": "Representation integrity",
-      "family": "Representation",
-      "core_quantity": "drift/coverage → churn or escape",
-      "statement": "Stale, irrelevant, or poorly chosen models will reduce or reverse the benefit in H1; measures of model correspondence and obligation coverage should therefore predict later churn or defect escape beyond conventional implementation-level metrics.",
-      "falsifier": "Orphaned or drifted surfaces are no more likely than modelled ones to see later churn or escape.",
-      "loops": [
-        "L2-churn-discovery"
-      ]
-    },
-    {
-      "id": "H1-failure-class-exposure",
-      "name": "Representation-induced determinization",
-      "family": "Representation",
-      "core_quantity": "semantic judgment → repeatable predicate",
-      "statement": "For some system-level obligations, changing from raw implementation to an explicit representation of the relevant state or relation will make a repeatable predicate feasible where per-change evaluation over the implementation otherwise requires semantic reconstruction.",
-      "falsifier": "Recognition latency does not improve with velocity once exposure opportunities are controlled.",
-      "loops": [
-        "L2-churn-discovery"
-      ]
-    },
-    {
-      "id": "H9-representation-innovation",
-      "name": "Discovering new ways to model systems",
-      "family": "Representation",
-      "core_quantity": "reasoning reach / newly tractable questions",
-      "statement": "More capable agents may help engineers model systems in ways they had not previously considered. They might make unnoticed structure explicit or propose a new representation that makes a difficult engineering question easier to answer. If these models can be independently validated and are economical to maintain, they should help later agents and human engineers complete work that was previously beyond their reasoning horizon, with the same resources and quality requirements.",
-      "falsifier": "Machine-proposed representations recover no consequential structure a simpler baseline misses and propose none the existing repertoire lacks, or the representations they add cannot be independently validated or economically maintained, so later agents and engineers gain no reasoning reach from them.",
-      "loops": [
-        "L3-governance-adaptation"
-      ]
-    },
-    {
-      "id": "H3-mechanized-assurance",
-      "name": "Mechanized assurance",
-      "family": "Governance",
-      "core_quantity": "escape and false rejection vs correct throughput",
-      "statement": "For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape at matched correct throughput compared with assurance that depends on producer compliance or proportional per-change human attention. The comparison must include false rejection and the cost of sustaining that throughput. For sound admission mechanisms over mechanically decidable obligations, the covered failure class should be excluded from admitted work even when producer reliability varies.",
-      "falsifier": "Mechanized assurance provides no reduction in defect escape at matched correct throughput.",
-      "loops": [
-        "L3-governance-adaptation"
-      ]
-    },
-    {
-      "id": "H6-oversight-amortization",
-      "name": "Governance conversion",
-      "family": "Governance",
-      "core_quantity": "class recurrence + carrying cost",
-      "statement": "For recurring failure classes, structural interventions targeted at the class will reduce subsequent recurrence or repeated human attention relative to local repair alone, net of the intervention's carrying cost. The relationship will become non-monotonic when controls accumulate beyond their useful fit.",
-      "falsifier": "Interventions per durable change stay flat or rise as effective conversion coverage grows.",
-      "loops": [
-        "L3-governance-adaptation"
-      ]
-    },
-    {
-      "id": "H8-learning-propagation",
-      "name": "Learning propagation",
-      "family": "Governance",
-      "core_quantity": "propagation latency/consistency",
-      "statement": "Engineering lessons will reach later relevant work faster and more consistently when diagnosis is connected to authority over shared, machine-actionable environmental structure than when the lesson remains local or must propagate primarily through interpersonal communication.",
-      "falsifier": "Increasing environment explicitness or machine-actionability does not reduce propagation latency or increase adoption consistency once communication opportunity is controlled.",
-      "loops": [
-        "L3-governance-adaptation",
-        "L1-bootstrap"
-      ]
-    },
-    {
-      "id": "H2-governance-moderation",
-      "name": "Environment fit",
-      "family": "Economics",
-      "core_quantity": "capacity × environment interaction",
-      "statement": "The effect of increasing agentic capacity on durable throughput, defect escape, and human attention per correct admitted change will depend on effective environment quality: capacity gains should translate into more durable progress in stronger environments and into more churn or intervention in weaker ones.",
-      "falsifier": "Velocity relates to durable throughput the same way regardless of environment quality.",
-      "loops": [
-        "L2-churn-discovery",
-        "L3-governance-adaptation"
-      ]
-    },
-    {
-      "id": "H7-conversion-conditions",
-      "name": "Capital return/reciprocal capacity",
-      "family": "Economics",
-      "core_quantity": "return, carrying cost, and construction cost over time",
-      "statement": "Durable engineering structures will produce measurable returns when reductions in reconstruction, intervention, rework, and failure costs exceed their construction and carrying costs. Those returns will decline as the assets lose fit, and environments that reconcile or retire depreciated assets will outperform otherwise comparable environments that merely accumulate machinery. As agentic capacity increases, the construction and maintenance costs of some engineering structures will fall, moving the threshold at which such investment becomes economical.",
-      "falsifier": "Split-authority or low-fit settings convert at the same rate and durability as high-fit, effective-authority ones.",
-      "moderated_by": [
-        "diagnostic-capability-fit",
-        "authority"
-      ],
-      "loops": [
-        "L3-governance-adaptation"
-      ]
-    }
-  ],
+  "apparatus_measures_caveat": "Support ratio, control count, gate count and model-sync rate measure investment or accumulation, not outcome. Assess environment properties independently and compare durable throughput, escape and attention; do not define fit solely by favorable outcomes.",
   "propositions": [
     {
-      "id": "reasoning-horizon-proposition",
-      "name": "Reasoning-Horizon Proposition",
-      "statement": "Software engineering is a long-horizon reasoning task. Productivity degrades once the working reasoning state a task requires exceeds the effective reasoning horizon of the human-agent system. Executable models extend that horizon by replacing implementation-level state with semantically richer abstractions whose properties preserve a larger fraction of task-relevant information under repeated compaction.",
-      "falsifier": "Holding task and recall fixed, reasoning over a task-relevant model yields no reduction in reconstruction cost or churn versus reasoning over the implementation, and no gain that widens as the required reasoning state grows.",
+      "id": "P1-representation-leverage",
+      "short_id": "P1",
+      "name": "Representation leverage",
+      "statement": "Trustworthy, task-relevant representations can reduce reconstruction and extend the work that humans and agents can complete at a given quality and resource budget.",
+      "mechanism": "Task-relevant structure reduces reconstruction",
+      "scope_conditions": [
+        "Reconstruction and effective reasoning horizon, not merely context size.",
+        "Trustworthy task-relevant distinctions, descriptive/normative correspondence, usefulness and upkeep.",
+        "Representations can be designed, recovered or invented; novelty does not confer trust.",
+        "Representation innovation can expose previously impractical structure; held-out usefulness and independent validation remain necessary."
+      ],
+      "potential_disconfirmation": "No gain at matched quality/resources or benefit erased/reversed by stale, misleading or expensive representations.",
+      "core_quantity": "Reasoning reach or cost at matched quality, including fidelity and upkeep",
+      "loops": [
+        "L3-governance-adaptation"
+      ],
       "frame": "offered-for-replication",
-      "bounded_claim": "MAGE moves the scalability wall; it does not remove it. Models raise the level at which reasoning occurs, delaying the point at which working memory becomes the bottleneck; beyond it, further decomposition and modularity become unavoidable. The horizon extends ONLY when the model is task-relevant, adequately complete, synchronized, usable by the agent, and cheaper to interpret than reconstructing the same facts from code; a model that fails those conditions SHORTENS the effective horizon — it confidently routes reasoning toward a stale or wrong picture the agent then pays to detect and undo.",
-      "formalized_by": "H4-representation-leverage",
-      "reading": "The named theory STATEMENT that H4 encodes as a falsifiable HYPOTHESIS. The proposition names the mechanism — a finite reasoning horizon that models extend by acting as better compression domains — and states the limit MAGE draws from it. H4 supplies the testable prediction; the proposition supplies the mechanism and its bound. Registered offered-for-replication (the chapter's global hedge), so it is honestly situated, not asserted."
+      "legacy_components": [
+        {
+          "id": "H4-representation-leverage",
+          "reader_id": "H1",
+          "name": "Representation leverage"
+        },
+        {
+          "id": "H5-local-model-deficiency",
+          "reader_id": "H2",
+          "name": "Representation integrity"
+        },
+        {
+          "id": "H9-representation-innovation",
+          "reader_id": "H4",
+          "name": "Discovering new ways to model systems"
+        }
+      ]
     },
     {
-      "id": "compounding-governance-proposition",
-      "name": "Compounding-Governance Proposition",
-      "statement": "Governed engineering environments compound: as recurring engineering judgment converts into durable mechanisms, an increasing fraction of future effort over the failure classes those mechanisms cover can extend capability rather than re-solve settled problems, so the environment grows more capable of supporting safe change — for as long as the accumulated engineering capital stays fit. These are returns to accumulated engineering capital over covered classes, not global returns to total governance expenditure.",
-      "falsifier": "As effective conversion coverage grows, the fraction of future effort available to extend capability does not rise and per-change cost does not fall.",
+      "id": "P2-representation-enabled-enforcement",
+      "short_id": "P2",
+      "name": "Representation-enabled enforcement",
+      "statement": "An explicit representation can make a selected obligation mechanically decidable, allowing Alignment to enforce it independently of the producing agent’s compliance.",
+      "mechanism": "Representation makes an obligation checkable; Alignment enforces it",
+      "scope_conditions": [
+        "Representation can make a selected obligation mechanically decidable.",
+        "Alignment gives that obligation consequence independently of producer compliance.",
+        "A sound gate excludes its covered failure class; coverage, correspondence and validator correctness remain separate.",
+        "Imperfect controls may miss failures or reject good work; compare escape with correct delivery and cost, not escape alone."
+      ],
+      "potential_disconfirmation": "The representation does not make the relevant property reliably checkable, or assurance gains disappear once false rejection, coverage and cost are matched.",
+      "core_quantity": "Escape, false rejection and correct delivery for adequately covered obligations",
+      "loops": [
+        "L3-governance-adaptation"
+      ],
       "frame": "offered-for-replication",
-      "bounded_claim": "The returns compound but are not unbounded, and they attach to engineering capital (quality), not apparatus quantity. Two ways accumulation stops compounding: apparatus pushed past the point of fit (the tower-of-governance band of the churn curve) and capital that outlived its fit. That is why mature adaptation is subtractive — reconcile and retire manage capital depreciation, not merely bad apparatus. A third failure hides inside the first two: accumulated capital that has drifted from the system it models does not merely stop paying — it CONFIDENTLY MISDIRECTS, steering later work against a picture no longer true, which is worse than no capital at all.",
-      "formalized_by": "H6-oversight-amortization",
-      "reading": "The named theory STATEMENT that H6 encodes as a falsifiable HYPOTHESIS. The proposition names the compounding-governance mechanism — conversions bank engineering capital that lowers the recurring reasoning a future change demands; H6 supplies one testable signature of it (per-change human attention falls as classes convert). H6 is anchored on L3, the green governance-adaptation loop (failure to judgment to conversion to a more capable environment); the full compounding dynamic is the L3-to-L4 (green-to-purple) COMPOSITION, where the more-capable environment raises ambition onto a new frontier. So it is wider than H6's single observable and does not mean the fleet does less — it means higher-leverage, more-ambitious work at a falling per-change cost. Registered offered-for-replication (the chapter's global hedge), honestly situated, not asserted; parallel in form to the Reasoning-Horizon Proposition (different mechanism — H6 amortization vs H4 representation leverage — different falsifier)."
-    }
-  ],
-  "corollaries": [
-    {
-      "claim": "Speed and stability do not trade",
-      "status": "Corollary of H2 and H3"
-    },
-    {
-      "claim": "Conversion gets faster as tooling matures",
-      "status": "Learning-curve specialization of H7"
-    },
-    {
-      "claim": "The substrate heals faster as it accretes controls",
-      "status": "Consequence of H3 and H6"
-    },
-    {
-      "claim": "Grammar coverage better predicts format-space escapes",
-      "status": "Domain-specific instance of H4"
-    },
-    {
-      "claim": "A fidelity gate reduces silent corruption",
-      "status": "Product-specific instance of H3"
-    },
-    {
-      "claim": "Deployment pain stays bounded",
-      "status": "Subjective consequence of H6; future work"
-    }
-  ],
-  "relations": [
-    {
-      "id": "R1-churn",
-      "name": "The churn relation",
-      "form": "V_durable = V_raw * (1 - c)",
-      "substantive_claim": "dc/dE < 0, read as a directional sign over one dimension-bundle of the E-vector (not a fitted slope): churn share falls monotonically as effective environment quality E climbs, and keeps falling even in an overgrown estate — because overgrowth is precisely what LOWERS E. The non-monotonic churn curve is drawn against a DIFFERENT x-axis — governance-apparatus QUANTITY, not E: push apparatus past fit and churn rises again from collisions, false positives, latency, context burden, and constraints that block legitimate work, because quantity does not monotonically raise E. Churn is monotone in E, non-monotone in apparatus quantity; the two axes must not be conflated.",
-      "shape": "in E (monotone): churn falls as E rises, through the fit point and beyond. in apparatus QUANTITY (a different, non-monotone axis): under-governed -> churn high ; well-fit -> churn lowest ; overgrown -> churn rises from friction, because quantity past fit lowers E",
-      "ties_to": [
-        "H2-governance-moderation",
-        "H5-local-model-deficiency"
+      "legacy_components": [
+        {
+          "id": "H1-failure-class-exposure",
+          "reader_id": "H3",
+          "name": "Representation-induced determinization"
+        },
+        {
+          "id": "H3-mechanized-assurance",
+          "reader_id": "H5",
+          "name": "Mechanized assurance"
+        }
       ]
     },
     {
-      "id": "R2-two-regime-escape",
-      "name": "Attention-based versus mechanized control",
-      "form": "eps_review ~= p*(1 - r(V)) ;  eps_control ~= p*(1 - kappa)",
-      "substantive_claim": "p = risk-weighted defect-opportunity rate; r(V) = finite-review coverage, which falls as velocity rises so eps_review climbs toward p; kappa = mechanized-coverage fraction, which a mechanism applies every change regardless of throughput. For adequately scoped mechanisms kappa is LESS sensitive to throughput than r(V), so the escape gap widens with velocity. kappa counts effective REPEATABLE mechanisms, of which determinism is one strong class — anomaly detection, metamorphic and differential testing, and model-based semantic review are statistical yet repeatable and count toward kappa when adequately scoped.",
-      "ties_to": [
-        "H3-mechanized-assurance"
-      ]
-    }
-  ],
-  "research_agenda": [
-    {
-      "study_design": "Multi-project longitudinal panel with environment-quality variation",
-      "hypotheses": [
-        "H2",
-        "H3",
-        "H4",
-        "H6"
+      "id": "P3-governance-conversion-and-engineering-capital",
+      "short_id": "P3",
+      "name": "Governance conversion and engineering capital",
+      "statement": "When engineering judgment becomes trustworthy, reusable structure, later work can inherit productive capacity rather than purchase the same reasoning again.",
+      "mechanism": "Later work inherits useful engineering judgment",
+      "scope_conditions": [
+        "Earlier judgment becomes inherited productive capacity: reasoning reach, useful abstractions, safer action, evidence, recovery—not only fewer defects.",
+        "Lessons propagate to later work and beyond their originator through trustworthy shared structure.",
+        "Value depends on reuse or consequence, partial transfer, carrying cost, lost fit, reconciliation and retirement.",
+        "Construction/upkeep may become cheaper with agentic capability; that is conditional and does not prove every new asset pays."
+      ],
+      "potential_disconfirmation": "Later work gains no capability or cost/risk advantage over local repair or on-demand reconstruction once building and carrying the asset are counted.",
+      "core_quantity": "Reused capacity and propagation net of construction, carrying cost and lost fit",
+      "loops": [
+        "L1-bootstrap",
+        "L3-governance-adaptation"
+      ],
+      "frame": "offered-for-replication",
+      "legacy_components": [
+        {
+          "id": "H6-oversight-amortization",
+          "reader_id": "H6",
+          "name": "Governance conversion"
+        },
+        {
+          "id": "H8-learning-propagation",
+          "reader_id": "H7",
+          "name": "Learning propagation"
+        },
+        {
+          "id": "H7-conversion-conditions",
+          "reader_id": "H9",
+          "name": "Capital return/reciprocal capacity"
+        }
       ]
     },
     {
-      "study_design": "Subsystem-level panel tracking model gaps, churn, and escapes",
-      "hypotheses": [
-        "H1",
-        "H5"
-      ]
-    },
-    {
-      "study_design": "Organizational comparison of diagnosis and authority pathways",
-      "hypotheses": [
-        "H7",
-        "H8"
-      ]
-    },
-    {
-      "study_design": "Instrument one failure class from first occurrence through recurrence -> structural recognition -> governance intervention -> later recurrence or escape (tests the discovery and adaptation loops directly)",
-      "hypotheses": [
-        "H1",
-        "H2",
-        "H3",
-        "H6"
+      "id": "P4-governable-acceleration",
+      "short_id": "P4",
+      "name": "Governable acceleration",
+      "statement": "The effect of additional agentic capacity depends on the environment through which it acts: adequate fit can support durable progress, while poor fit can increase churn, intervention or escaped failure.",
+      "mechanism": "Capacity acts through the environment’s fit to the work",
+      "scope_conditions": [
+        "Capacity acts through the environment; it can amplify good fit or inadequacy.",
+        "Adequate representations and assurance can turn capacity into durable useful work; weak fit may produce churn, escape or repeated intervention.",
+        "Diagnosis and authority permit adaptation; neither follows automatically from faster failures.",
+        "Whether models/environment substitute for or complement raw reasoning capability is empirical."
+      ],
+      "potential_disconfirmation": "Added capacity has essentially the same durable outcome across independently measured environment conditions, or apparent benefits vanish at matched quality and task difficulty.",
+      "core_quantity": "Capacity-by-environment effects on durable throughput, escape and human attention",
+      "loops": [
+        "L2-churn-discovery",
+        "L3-governance-adaptation",
+        "L4-capability-amplification"
+      ],
+      "frame": "offered-for-replication",
+      "legacy_components": [
+        {
+          "id": "H2-governance-moderation",
+          "reader_id": "H8",
+          "name": "Environment fit"
+        }
       ]
     }
   ],
@@ -448,5 +357,22 @@
     ],
     "churn_curve": "assets/mage-churn-curve.svg"
   },
-  "_note_r47_hypothesis_crosswalk": "R47 restated the eight hypotheses to the named three-family research program (§6.6 / R47-FALSIFIABILITY-EVIDENCE-SPEC PART B). The eight JOIN-KEY ids are FROZEN (research_agenda related_hypotheses[] + reverse_index reference them); only name/family/core_quantity/statement were restated, and the table now numbers H1..H8 by three-family POSITION, not by the id's own number. Crosswalk (spec row -> frozen id): H1 Representation leverage=H4-representation-leverage; H2 Representation integrity=H5-local-model-deficiency; H3 Determinization frontier=H1-failure-class-exposure; H4 Mechanized assurance=H3-mechanized-assurance; H5 Governance conversion=H6-oversight-amortization; H6 Learning propagation=H8-learning-propagation; H7 Environment moderation=H2-governance-moderation; H8 Capital return/depreciation=H7-conversion-conditions. TWO rows are relabels the deferred pass should reconcile at the id level (NOT forced here, per the round brief, to avoid breaking related_hypotheses / reverse_index joins): (a) spec-H3 determinization sits on H1-failure-class-exposure (the proper move is a distinct determinization id split from H3-mechanized-assurance); (b) spec-H8 capital-return-and-depreciation sits on H7-conversion-conditions (the proper move is a newly minted depreciation id). The §6.6 prose + summary table are the reader-facing canonical set; this model reconciles cleanly in a later dedicated pass."
+  "schema_version": 2,
+  "legacy_id_crosswalk": {
+    "H4-representation-leverage": "P1-representation-leverage",
+    "H5-local-model-deficiency": "P1-representation-leverage",
+    "H1-failure-class-exposure": "P2-representation-enabled-enforcement",
+    "H9-representation-innovation": "P1-representation-leverage",
+    "H3-mechanized-assurance": "P2-representation-enabled-enforcement",
+    "H6-oversight-amortization": "P3-governance-conversion-and-engineering-capital",
+    "H8-learning-propagation": "P3-governance-conversion-and-engineering-capital",
+    "H2-governance-moderation": "P4-governable-acceleration",
+    "H7-conversion-conditions": "P3-governance-conversion-and-engineering-capital",
+    "H4a-representation-efficiency": "P1-representation-leverage",
+    "H4b-synchronization-signal": "P1-representation-leverage",
+    "reasoning-horizon-proposition": "P1-representation-leverage",
+    "compounding-governance-proposition": "P3-governance-conversion-and-engineering-capital",
+    "R1-churn": "P4-governable-acceleration",
+    "R2-two-regime-escape": "P2-representation-enabled-enforcement"
+  }
 }

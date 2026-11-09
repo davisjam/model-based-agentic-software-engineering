@@ -532,19 +532,30 @@ def check_lit_positioning():
 
 
 def check_theory_model():
-    """The theory-of-mage projection view's drift check (audit-only first landing, rule-#55 discipline). The
-    'Toward a Theory of MAGE' chapter's Seven-Hypotheses table is a projection of the declared model
-    (`theory_of_mage_declared.json`): this re-derives the model and reports the STRUCTURAL invariants
-    (TM1-TM7, delegated to `theory_model_check.check()` — internal well-formedness), the PARITY check (the
-    chapter's table equals `render_hypotheses_table_md()`), and the ratified COUNT guard (7 hypotheses, 2
-    sub-hypotheses). Keyed off `book-models/theory_of_mage_declared.json` + the theory chapter prose."""
+    """Check the four active propositions, their structural joins, and exact summary-table parity."""
     import theory_of_mage_model as tmm  # noqa: E402 — path set above; the book-model package
 
     issues = list(tmm.all_findings())
 
-    # Audit-only: same non-gating contract as the sibling first landings — surfaced as [audt], excluded from
-    # the fail tally. A follow-up promotes the parity + count guard to blocking once a clean session confirms
-    # the chapter stays byte-equal to the projection (the dashboard model's own landing path).
+    return (FAIL if issues else PASS), issues
+
+
+def check_theory_migration_regressions():
+    """Exercise missing/duplicate IDs, unknown joins, projection drift, and prose anchors."""
+    import io
+    import unittest
+    from tests.test_theory_propositions import FourPropositions
+    output = io.StringIO()
+    result = unittest.TextTestRunner(stream=output).run(
+        unittest.defaultTestLoader.loadTestsFromTestCase(FourPropositions))
+    issues = [] if result.wasSuccessful() else [output.getvalue()]
+    return (FAIL if issues else PASS), issues
+
+
+def check_industry_theory_joins():
+    """Only IC4 active-proposition joins gate; other industry findings remain audit-only."""
+    import industry_cases_model as icm
+    issues = [f for f in icm.structural_findings() if f.startswith("IC4 ")]
     return (FAIL if issues else PASS), issues
 
 
@@ -556,7 +567,7 @@ def check_industry_cases():
     (kebab-unique id; a stub needs only the roster minimum; an authored record additionally carries in-range
     enums + correspondence/descriptive vocabs), IC2 citation join (authored citation_key resolves in
     references.bib AND citations.json), IC3 construct join (every cell resolves against the declared construct
-    universe), IC4 hypothesis join (every hypotheses[] id resolves to a real theory hypothesis), IC6 roster
+    universe), IC4 proposition join (every propositions[] id resolves to an active theory proposition), IC6 roster
     guard (record id-set == roster id-set + field agreement), and audit-only IC7 scale-fact presence. IC5
     matrix parity is VACUOUS this wave — the matrix is not yet authored into a chapter page. Keyed off
     `book-models/industry_cases_declared.json` + references.bib + citations.json + theory_of_mage_declared.json."""
@@ -673,24 +684,11 @@ def check_supporting_sources():
 
 
 def check_research_agenda():
-    """The research-agenda model's schema + join check (audit-only first landing, rule-#55 discipline). The
-    book's forward program (`research_agenda_declared.json`) is a queryable INDEX over finished prose: seven
-    agenda items across four closed kinds (frontier / measurement / dynamics / generalization), each welded to
-    the falsifiable hypotheses it tests and pointing at the home chapter that expands it. Re-derives the model
-    and reports the joins — RA1 schema (kebab-unique id; non-empty title/one_line/source_section; kind + status
-    in the declared taxonomies), RA2 hypothesis join (every related_hypotheses[] id resolves in
-    theory_of_mage_declared.json — the weld to the testable substrate, IC4-style), RA3 section join (every
-    source_section resolves to a real book chapter page), RA4 count guard (7 items), and RA5 parity
-    (prose-parity ACTIVE once the 'Where the frontier goes next' coda is placed; figure-parity VACUOUS until
-    the map SVG lands). Keyed off `book-models/research_agenda_declared.json` + theory_of_mage_declared.json +
-    the book chapter pages."""
+    """Check the three research directions, strict joins, count, and source-heading parity."""
     import research_agenda_model as ram  # noqa: E402 — path set above; the book-model package
 
     issues = list(ram.all_findings())
 
-    # Audit-only: same non-gating contract as the sibling first landings — surfaced as [audt], excluded from
-    # the fail tally. A follow-up flips RA1-RA4 to blocking once a clean session confirms the drain (and the
-    # figure wave wires RA5 figure-parity against the SVG's <desc> node enumeration).
     return (FAIL if issues else PASS), issues
 
 

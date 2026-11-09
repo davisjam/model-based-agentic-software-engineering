@@ -115,9 +115,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 5.3-other-agentic-software-factories
 
 
-### Lesson 5.4-two-problems-of-factory-engineering
-
-
 ## Module 6 — The Theory
 
 

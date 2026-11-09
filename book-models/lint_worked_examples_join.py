@@ -14,6 +14,8 @@ WHAT IS MECHANICAL, WHAT IS AUDIT.  Two jobs:
   * JOIN (WE1 + WE2) — the construct-key resolves in the matrix (a construct column / a cross-case pattern /
     a ceiling rung); every `industry-case` slot's named source resolves to a case AND clears >= partial. These
     are deterministic joins over the model.
+    A key retired from the current Chapter 5 account can resolve in the archived comparison;
+    its slots are then checked against that archive, not against invented current ratings.
   * RATIO — the running book-aggregate source mix (industry / DocAble / other) against the 50/30/20 taste
     target. A ratio is a taste target, not a correctness invariant, so it PRINTS and never gates.
 
@@ -131,8 +133,6 @@ def _slot_type(slot: "Slot", org_idx: "dict[str, str]", docable_org: str) -> str
 def findings() -> "tuple[list[str], dict[str, int], list[Gallery]]":
     """The WE1/WE2 join findings + the running source-mix tally + the discovered galleries."""
     model = icm.derive_model()
-    org_idx = _org_index(model)
-    docable_org = model.docable_org
     tally = {"industry-case": 0, "docable": 0, "other": 0}
     out: "list[str]" = []
     galleries: "list[Gallery]" = []
@@ -140,7 +140,10 @@ def findings() -> "tuple[list[str], dict[str, int], list[Gallery]]":
         galleries.extend(_scan_page(path))
     for g in galleries:
         where = f"{g.page}:{g.line_no}"
-        kind = icm.worked_example_key_kind(g.key, model)
+        evidence = icm.worked_example_evidence_model(g.key, model)
+        org_idx = _org_index(evidence)
+        docable_org = evidence.docable_org
+        kind = icm.worked_example_key_kind(g.key, evidence)
         # WE2 — the construct-key resolves in the matrix (or is an unscored flagship, DocAble-led by design).
         if kind == "none":
             out.append(f"WE2 {where}: construct-key {g.key!r} resolves to no matrix construct/pattern/rung "
@@ -156,7 +159,7 @@ def findings() -> "tuple[list[str], dict[str, int], list[Gallery]]":
                 case_id = org_idx.get(slot.label.strip().lower()) or org_idx.get(slot.label.split()[0].lower())
                 if not case_id:
                     out.append(f"WE1 {g.page}:{slot.line_no}: slot {slot.label!r} names no industry record")
-                elif not icm.worked_example_clears(g.key, case_id, model):
+                elif not icm.worked_example_clears(g.key, case_id, evidence):
                     out.append(f"WE1 {g.page}:{slot.line_no}: {slot.label!r} does NOT clear >=partial on "
                                f"{g.key!r} ({kind}) — fabricated example; re-pick, move it, or tag it "
                                f"`{{other}}`/`{{counter-example}}`")

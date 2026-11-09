@@ -1,30 +1,9 @@
-"""The THEORY-MODEL completeness check — reads theory_of_mage_declared.json at check-time (rule-#33 best
-form: stable, no codegen, no snapshot) and asserts the declared theory is internally well-formed. The
-theory model (the 'Toward a Theory of MAGE' chapter's source of truth) declares constructs, four feedback
-loops, path-specific moderators, three outcomes, seven falsifiable hypotheses, corollaries, and two
-directional relations. It carries NO *_model.py projector and nothing else walks it, so this check is the
-one thing that holds the model to its own internal contract.
+"""Validate the active four-proposition theory schema and its dynamic-model joins.
 
-It verifies seven completeness invariants, each REPORTED never GATED (audit-only, matching substantiation.py):
-  - TM1 HYPOTHESIS-BODY — every hypothesis carries a non-empty `statement` AND a non-empty `falsifier`
-    (a hypothesis with no falsifier is not falsifiable, so it is not yet a hypothesis).
-  - TM7 SUB-HYPOTHESIS-BODY — every `sub_hypotheses` entry (a named hypothesis a parent decomposes into,
-    e.g. H4a/H4b under H4) carries a non-empty, unique `id` AND a non-empty `statement` AND a non-empty
-    `falsifier`. Without this, a decomposition adds structure the completeness check cannot see — the exact
-    drift this check exists to close.
-  - TM2 HYPOTHESIS-LOOPS — every `loops` ref on a hypothesis resolves to a real loop `id` or `number`.
-  - TM3 COROLLARY-STATUS — every corollary carries a non-empty `status` (which hypothesis it specializes).
-  - TM4 MODERATOR-ENDPOINTS — every `operates_on` endpoint ("X -> Y") resolves to a real node: a construct
-    id, an outcome id, a loop id, OR a declared aggregate endpoint the model itself names elsewhere
-    (`outcomes` when an outcomes array exists; `apparatus` when the apparatus caveat is declared).
-  - TM5 RELATION-TIES — every relation `ties_to` id resolves to a real declared id (constructs, loops,
-    outcomes, or hypotheses — the relations tie the churn/escape forms back to the hypotheses they formalize).
-  - TM6 LOOP-TYPING-PARTITION — the loops named across the `loop_typing` groups (B / R / input) partition
-    the declared loops exactly: every typed loop resolves, every declared loop is typed once, no overlap.
-
-Run `python3 book-models/theory_model_check.py` for the report; `... json` for the machine form. Audit-only:
-it always exits 0 and never gates — a finding is a review candidate for the author, never a build stop. It
-reports the model's shape (hypothesis / loop / construct counts) so a reader can see the model at a glance.
+TM1 checks proposition bodies/IDs; TM2 resolves loops/moderators; TM3 keeps any
+corollary status explicit; TM4 resolves moderator endpoints; TM5 resolves relations;
+TM6 preserves loop typing; TM7 checks direct archival crosswalk targets. The active
+projection model combines these findings with the exact P1–P4 set and table parity.
 """
 from __future__ import annotations
 
@@ -54,7 +33,7 @@ def _construct_ids(m: dict) -> "set[str]":
 
 
 def _loop_refs(m: dict) -> "set[str]":
-    """Every token that resolves a loop: its `id` AND its `number` (as a string), since hypotheses and the
+    """Every token that resolves a loop: its `id` AND its `number` (as a string), since propositions and the
     typing both reference loops, and some fields use the id while others use the number."""
     out: "set[str]" = set()
     for lp in m.get("loops", []):
@@ -75,8 +54,8 @@ def _outcome_ids(m: dict) -> "set[str]":
     return {o["id"] for o in m.get("outcomes", []) if isinstance(o, dict) and "id" in o}
 
 
-def _hypothesis_ids(m: dict) -> "set[str]":
-    return {h["id"] for h in m.get("hypotheses", []) if isinstance(h, dict) and "id" in h}
+def _proposition_ids(m: dict) -> "set[str]":
+    return {h["id"] for h in m.get("propositions", []) if isinstance(h, dict) and "id" in h}
 
 
 def _aggregate_endpoints(m: dict) -> "set[str]":
@@ -101,42 +80,37 @@ def check(m: "dict | None" = None) -> "list[Finding]":
     construct_ids = _construct_ids(m)
     loop_refs = _loop_refs(m)
     outcome_ids = _outcome_ids(m)
-    hypothesis_ids = _hypothesis_ids(m)
+    proposition_ids = _proposition_ids(m)
     aggregate = _aggregate_endpoints(m)
     moderator_endpoints = construct_ids | outcome_ids | loop_refs | aggregate
-    tie_universe = construct_ids | loop_refs | outcome_ids | hypothesis_ids
+    tie_universe = construct_ids | loop_refs | outcome_ids | proposition_ids
 
-    # TM1 + TM2 + TM7 — hypotheses (and the sub-hypotheses a parent decomposes into).
-    seen_ids: "set[str]" = _hypothesis_ids(m)  # sub-hypothesis ids must not collide with a top-level id
-    for h in m.get("hypotheses", []):
+    # TM1 + TM2 — active proposition bodies and joins.
+    seen_ids: set[str] = set()
+    for h in m.get("propositions", []):
         hid = h.get("id", "<no-id>")
+        if not h.get("id") or h["id"] in seen_ids:
+            findings.append(Finding("TM1", f"missing or duplicate proposition id {hid!r}"))
+        seen_ids.add(hid)
+        for field in ("name", "short_id", "mechanism", "scope_conditions", "core_quantity"):
+            if not h.get(field):
+                findings.append(Finding("TM1", f"proposition {hid!r} has empty {field!r}"))
+        if h.get("frame") != "offered-for-replication":
+            findings.append(Finding("TM1", f"proposition {hid!r} must retain its offered-for-replication frame"))
+
         if not str(h.get("statement", "")).strip():
-            findings.append(Finding("TM1", f"hypothesis {hid!r} has an empty `statement`"))
-        if not str(h.get("falsifier", "")).strip():
-            findings.append(Finding("TM1", f"hypothesis {hid!r} has an empty `falsifier` (not falsifiable)"))
-        # TM7 — every declared sub-hypothesis is itself a well-formed, resolvable hypothesis.
-        for sh in h.get("sub_hypotheses", []) or []:
-            sid = str(sh.get("id", "")).strip()
-            slabel = sid or f"<sub of {hid}>"
-            if not sid:
-                findings.append(Finding("TM7", f"sub-hypothesis of {hid!r} has an empty `id`"))
-            elif sid in seen_ids:
-                findings.append(Finding("TM7", f"sub-hypothesis id {sid!r} (under {hid!r}) collides with another hypothesis id"))
-            else:
-                seen_ids.add(sid)
-            if not str(sh.get("statement", "")).strip():
-                findings.append(Finding("TM7", f"sub-hypothesis {slabel!r} (under {hid!r}) has an empty `statement`"))
-            if not str(sh.get("falsifier", "")).strip():
-                findings.append(Finding("TM7", f"sub-hypothesis {slabel!r} (under {hid!r}) has an empty `falsifier` (not falsifiable)"))
+            findings.append(Finding("TM1", f"proposition {hid!r} has an empty `statement`"))
+        if not str(h.get("potential_disconfirmation", "")).strip():
+            findings.append(Finding("TM1", f"proposition {hid!r} has an empty `potential_disconfirmation` (not falsifiable)"))
         loops = h.get("loops", [])
         if not loops:
-            findings.append(Finding("TM2", f"hypothesis {hid!r} names no `loops`"))
+            findings.append(Finding("TM2", f"proposition {hid!r} names no `loops`"))
         for lref in loops:
             if str(lref) not in loop_refs:
-                findings.append(Finding("TM2", f"hypothesis {hid!r} loop ref {lref!r} resolves to no loop"))
+                findings.append(Finding("TM2", f"proposition {hid!r} loop ref {lref!r} resolves to no loop"))
         for mref in h.get("moderated_by", []) or []:
             if mref not in {mod.get("id") for mod in m.get("moderators", [])}:
-                findings.append(Finding("TM2", f"hypothesis {hid!r} moderated_by {mref!r} resolves to no moderator"))
+                findings.append(Finding("TM2", f"proposition {hid!r} moderated_by {mref!r} resolves to no moderator"))
 
     # TM3 — corollaries.
     for i, c in enumerate(m.get("corollaries", [])):
@@ -181,14 +155,17 @@ def check(m: "dict | None" = None) -> "list[Finding]":
         if n > 1 and lref in declared_loops:
             findings.append(Finding("TM6", f"loop {lref!r} appears in {n} loop_typing groups (overlap — a loop has one type)"))
 
+    # Historical IDs document the migration; they cannot create additional active claims.
+    for old, target in m.get("legacy_id_crosswalk", {}).items():
+        if old in proposition_ids or target not in proposition_ids:
+            findings.append(Finding("TM7", f"legacy ID {old!r} has invalid active target {target!r}"))
     return findings
 
 
 def _shape(m: dict) -> dict:
     return {
-        "hypotheses": len(m.get("hypotheses", [])),
-        "hypothesis_ids": [h.get("id") for h in m.get("hypotheses", [])],
-        "sub_hypotheses": sum(len(h.get("sub_hypotheses", []) or []) for h in m.get("hypotheses", [])),
+        "propositions": len(m.get("propositions", [])),
+        "proposition_ids": [h.get("id") for h in m.get("propositions", [])],
         "loops": len(m.get("loops", [])),
         "constructs": len(m.get("constructs", [])),
         "moderators": len(m.get("moderators", [])),
@@ -214,8 +191,7 @@ def render(as_json: bool = False) -> int:
         }, ensure_ascii=False, indent=2))
         return 0
     print("== theory-model completeness — theory_of_mage_declared.json ==")
-    print(f"  shape: {shape['hypotheses']} hypotheses ({', '.join(str(x) for x in shape['hypothesis_ids'])}), "
-          f"{shape['sub_hypotheses']} sub-hypotheses, "
+    print(f"  shape: {shape['propositions']} propositions ({', '.join(str(x) for x in shape['proposition_ids'])}), "
           f"{shape['loops']} loops, {shape['constructs']} constructs, {shape['moderators']} moderators, "
           f"{shape['outcomes']} outcomes, {shape['corollaries']} corollaries, {shape['relations']} relations")
     if findings:
@@ -223,7 +199,7 @@ def render(as_json: bool = False) -> int:
         for f in findings:
             print(f"  [{f.code}] {f.message}")
     else:
-        print("  complete — every hypothesis has a statement + falsifier, every loop/moderator/relation "
+        print("  complete — every proposition has a statement + potential_disconfirmation, every loop/moderator/relation "
               "ref resolves, corollaries carry a status, and loop_typing partitions the loops exactly.")
     return 0
 

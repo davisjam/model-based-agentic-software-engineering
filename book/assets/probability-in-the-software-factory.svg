@@ -10,14 +10,7 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="pfTitle">Probability on the production path, and the encoded property forking into the
     tolerance the realization is evaluated against</title>
-  <desc id="pfDesc">A software factory contains a production path from engineering intent to an encoded
-    property, through the fabricator to a realization. One bracket spans encoding, labelled
-    P(E); the other spans realization, labelled P(F given E). Engineers authorize intent;
-    agents interpret, implement, and correct. The encoded property separately supplies
-    the tolerance defining an acceptable region. Measurement of the realization, through
-    tests, analysis, simulation, and human judgment, determines whether it is within
-    tolerance and admitted or outside tolerance and revised or rejected. Distinct points
-    in the acceptable region show the implementation choices left to the fabricator.</desc>
+  <desc id="pfDesc">A software factory separates engineering intent, its encoded property, and a realization produced by the fabricator. Two probability factors annotate the production path: correct encoding, P(E), and fulfillment of encoded obligations, P(F given E). Conditioning on the representation is omitted in the drawing. Agents interpret, implement and correct; engineers authorize intent. The encoded property also supplies a tolerance used in independent evaluation. Measurements from tests, analyses, simulation or human judgment compare the realization with that tolerance. Results within tolerance may be admitted; results outside it are revised or rejected. Production and admission are distinct.</desc>
 
   <defs>
     <marker id="pfArrowGhost" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10"

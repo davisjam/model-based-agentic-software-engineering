@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (label: mage-dynamic-model). The MAGE Dynamic Model: one shared
      system of eight constructs, with four numbered, colour-coded dynamics overlaid.
-     Read the cycle clockwise: agentic capacity exercises the governed environment E and
+     Read the cycle clockwise: agentic capacity exercises the governed environment G and
      drives agentic work; work plus E produce realized performance; the performance gap
      surfaces as governance pressure; pressure is diagnosed as local or structural; a
      structural diagnosis triggers governance adaptation; adaptation reshapes E; a stronger
@@ -19,10 +19,10 @@
   <desc id="mageDM-dmDesc">A single system diagram of eight constructs with four numbered dynamics
     overlaid, read as a clockwise cycle. Prior engineering knowledge — standards,
     requirements, brownfield assets, and prior lessons — sits at the top and feeds the
-    governed environment E through item 1, the blue bootstrap input. Agentic capacity, on the
-    left, exercises the governed environment E, the green hub on the right whose quality is
+    governed environment G through item 1, the blue bootstrap input. Agentic capacity, on the
+    left, exercises the governed environment G, the green hub on the right whose quality is
     representation quality, obligation coverage, coherence, and economy. Agentic capacity
-    also drives agentic work; the environment E shapes realized performance; agentic work
+    also drives agentic work; the environment G shapes realized performance; agentic work
     produces realized performance — durable throughput, defect escape, and human attention.
     A mismatch between work and environment, together with the realized-performance gap,
     surfaces as governance pressure: churn, recurring failure, escaped defect, repeated
@@ -31,7 +31,7 @@
     defect, a missing representation, weak enforcement, or a stale mechanism. Loop 3, the green
     governance-adaptation loop, carries a structural diagnosis into governance adaptation —
     represent, constrain, validate, strengthen, reconcile, retire — and its return arrow reshapes the
-    environment E as a new, better E for the next round. Loop 4, the purple
+    environment G for the next round, seeking better fit. Loop 4, the purple
     capability-amplification loop, runs from the improved environment back up to agentic
     capacity: a stronger environment enables bigger tasks and more concurrency, which reopens
     the whole cycle and exposes new pressure. The neutral black arrows are the shared system
@@ -94,7 +94,7 @@
     <path d="M670,972 L846,972 L846,338 L811,338" fill="none" stroke="#1f7a4d" stroke-width="2.6"
           stroke-linejoin="round" marker-end="url(#mageDM-dm-green)"/>
     <text x="862" y="655" text-anchor="middle" font-size="17.6" font-style="italic" fill="#1f7a4d"
-          transform="rotate(-90 862 655)">adapts &#8594; a better E</text>
+          transform="rotate(-90 862 655)">seeks better fit</text>
   </g>
 
   <!-- ============ NEUTRAL SPINE (shared system plumbing) ============ -->
@@ -157,11 +157,11 @@
   <text x="180" y="318" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">model capability</text>
   <text x="180" y="337" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">concurrency &#183; raw velocity</text>
 
-  <!-- Governed environment E (the hub) -->
+  <!-- Governed environment G (the hub) -->
   <rect id="governed-environment" x="560" y="235" width="250" height="180" rx="9" fill="#f6f4ef" stroke="#1f7a4d" stroke-width="3.2"/>
   <text x="685" y="280" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Governed</text>
   <text x="685" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">environment</text>
-  <text x="685" y="330" text-anchor="middle" font-size="21" font-weight="700" fill="#1f7a4d">E</text>
+  <text x="685" y="330" text-anchor="middle" font-size="21" font-weight="700" fill="#1f7a4d">G</text>
   <text x="685" y="356" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">representation quality</text>
   <text x="685" y="374" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">obligation coverage</text>
   <text x="685" y="392" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">coherence &#183; economy</text>
@@ -197,7 +197,7 @@
   <text x="410" y="1010" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">changes the shape of future work</text>
 
   <!-- ============ R / B loop-typing badges (system-dynamics convention; full-strength in every crop) ==== -->
-  <!-- R — loop [4] is REINFORCING (better E -> more ambition -> new frontier) -->
+  <!-- R — loop [4] is REINFORCING (better fit -> more ambition -> new frontier) -->
   <rect x="421" y="167" width="19" height="19" rx="3.5" fill="#fdfcf9" stroke="#7c6bb0" stroke-width="2.2"/>
   <text x="430.5" y="181" text-anchor="middle" font-size="17.6" font-weight="700" fill="#7c6bb0">R</text>
   <!-- B — loops [2]+[3] together are a BALANCING loop (churn -> diagnosis -> adaptation -> less churn) -->

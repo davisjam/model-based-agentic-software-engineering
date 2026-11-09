@@ -3,12 +3,12 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 850,
+    "total_sites": 838,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 510,
+      "book-web": 500,
       "website-catalogue": 219,
-      "website-industry-cases": 46,
+      "website-industry-cases": 44,
       "website-landing": 14,
       "website-misc": 30,
       "website-resources": 6,
@@ -113,23 +113,19 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 35
+            "occ": 7
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 4
+            "occ": 9
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -279,7 +275,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 64
+            "occ": 63
           }
         ]
       },
@@ -606,24 +602,16 @@
             "occ": 5
           },
           {
-            "file": "industry-case-cloudflare-codex.html",
-            "occ": 1
-          },
-          {
             "file": "industry-case-gitlab-abundant.html",
-            "occ": 13
+            "occ": 3
           },
           {
             "file": "industry-case-shopify.html",
-            "occ": 8
-          },
-          {
-            "file": "industry-case-siemens.html",
-            "occ": 11
+            "occ": 7
           },
           {
             "file": "industry-case-spotify-honk.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "industry-case-studies.html",
@@ -631,7 +619,7 @@
           },
           {
             "file": "industry-case-uber-software-factory.html",
-            "occ": 4
+            "occ": 3
           }
         ]
       }
@@ -705,14 +693,10 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 11
+            "occ": 9
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 3
-          },
-          {
-            "file": "book/web/docs/6.4-research-agenda.md",
             "occ": 1
           },
           {
@@ -742,16 +726,12 @@
           {
             "file": "book/web/docs/figures.md",
             "occ": 32
-          },
-          {
-            "file": "book/web/docs/part-6-intro.md",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 16
+            "occ": 14
           }
         ]
       },
@@ -958,22 +938,6 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
             "occ": 1
           },
@@ -1012,16 +976,12 @@
           {
             "file": "book/web/docs/part-3-intro.md",
             "occ": 3
-          },
-          {
-            "file": "book/web/docs/part-6-intro.md",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 28
+            "occ": 23
           }
         ]
       },
@@ -1044,6 +1004,10 @@
             "occ": 2
           },
           {
+            "file": "industry-case-amazon-kiro.html",
+            "occ": 1
+          },
+          {
             "file": "industry-case-cloudflare-codex.html",
             "occ": 1
           },
@@ -1053,10 +1017,6 @@
           },
           {
             "file": "industry-case-shopify.html",
-            "occ": 1
-          },
-          {
-            "file": "industry-case-siemens.html",
             "occ": 1
           },
           {
@@ -1199,19 +1159,19 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 112
-          },
-          {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 30
-          },
-          {
-            "file": "book/web/docs/6.3-scope-conditions.md",
             "occ": 41
           },
           {
+            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "occ": 22
+          },
+          {
+            "file": "book/web/docs/6.3-scope-conditions.md",
+            "occ": 22
+          },
+          {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 36
+            "occ": 10
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1219,7 +1179,7 @@
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 96
+            "occ": 104
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -1571,7 +1531,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 24
+            "occ": 19
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -1658,32 +1618,32 @@
             "occ": 17
           },
           {
+            "file": "industry-case-amazon-kiro.html",
+            "occ": 2
+          },
+          {
             "file": "industry-case-cloudflare-codex.html",
-            "occ": 5
-          },
-          {
-            "file": "industry-case-gitlab-abundant.html",
-            "occ": 6
-          },
-          {
-            "file": "industry-case-shopify.html",
-            "occ": 5
-          },
-          {
-            "file": "industry-case-siemens.html",
-            "occ": 17
-          },
-          {
-            "file": "industry-case-spotify-honk.html",
-            "occ": 4
-          },
-          {
-            "file": "industry-case-studies.html",
             "occ": 3
           },
           {
+            "file": "industry-case-gitlab-abundant.html",
+            "occ": 2
+          },
+          {
+            "file": "industry-case-shopify.html",
+            "occ": 3
+          },
+          {
+            "file": "industry-case-spotify-honk.html",
+            "occ": 2
+          },
+          {
+            "file": "industry-case-studies.html",
+            "occ": 1
+          },
+          {
             "file": "industry-case-uber-software-factory.html",
-            "occ": 6
+            "occ": 4
           }
         ]
       }
@@ -1737,19 +1697,15 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 10
+            "occ": 1
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 4
-          },
-          {
-            "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 2
+            "occ": 5
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
@@ -1757,7 +1713,7 @@
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -1873,7 +1829,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -1883,7 +1839,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 47
+            "occ": 46
           }
         ]
       },
@@ -2091,23 +2047,23 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 67
+            "occ": 17
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 20
+            "occ": 32
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 10
+            "occ": 1
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 30
+            "occ": 12
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -2359,7 +2315,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -2823,35 +2779,35 @@
         "website-industry-cases": [
           {
             "file": "comparative-analysis.html",
-            "occ": 13
+            "occ": 12
+          },
+          {
+            "file": "industry-case-amazon-kiro.html",
+            "occ": 1
           },
           {
             "file": "industry-case-cloudflare-codex.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "industry-case-gitlab-abundant.html",
-            "occ": 11
+            "occ": 1
           },
           {
             "file": "industry-case-shopify.html",
-            "occ": 2
-          },
-          {
-            "file": "industry-case-siemens.html",
-            "occ": 9
+            "occ": 1
           },
           {
             "file": "industry-case-spotify-honk.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "industry-case-studies.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "industry-case-uber-software-factory.html",
-            "occ": 17
+            "occ": 18
           }
         ]
       }
@@ -2952,10 +2908,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
             "occ": 1
           },
@@ -2983,7 +2935,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -3012,19 +2964,19 @@
             "occ": 4
           },
           {
+            "file": "industry-case-amazon-kiro.html",
+            "occ": 1
+          },
+          {
             "file": "industry-case-cloudflare-codex.html",
             "occ": 2
           },
           {
             "file": "industry-case-gitlab-abundant.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "industry-case-shopify.html",
-            "occ": 2
-          },
-          {
-            "file": "industry-case-siemens.html",
             "occ": 2
           },
           {
@@ -3103,7 +3055,7 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 15
+            "occ": 7
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
@@ -3111,15 +3063,11 @@
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/6.4-research-agenda.md",
-            "occ": 6
+            "occ": 1
           },
           {
             "file": "book/web/docs/7.1-reorganization-of-se.md",
-            "occ": 28
+            "occ": 32
           },
           {
             "file": "book/web/docs/7.2-software-rejoins-engineering.md",
@@ -3175,7 +3123,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 42
+            "occ": 40
           },
           {
             "file": "book/web/docs/figures.md",
@@ -3207,7 +3155,7 @@
           },
           {
             "file": "book/web/docs/part-6-intro.md",
-            "occ": 5
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-7-intro.md",
@@ -3217,7 +3165,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 43
+            "occ": 42
           }
         ]
       },
@@ -3301,11 +3249,15 @@
           },
           {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
-            "occ": 6
+            "occ": 2
+          },
+          {
+            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
+            "occ": 4
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/6.4-research-agenda.md",
@@ -3407,7 +3359,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 36
           }
         ]
       },

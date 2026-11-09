@@ -79,6 +79,8 @@ from tests.book_models import (
     check_reverse_index,
     check_slogan_density,
     check_theory_model,
+    check_theory_migration_regressions,
+    check_industry_theory_joins,
 )
 from tests.citations import (
     check_cite_fresh,
@@ -709,21 +711,19 @@ CHECKS = [
     # check_metaphor_spans. See tests/book_models.py.
     Check("book-models: slogan-density ration worklist (metaphor-spans.json + index + tags)", 1,
           lambda strict: check_slogan_density(), audit_only=True),
-    # BLOCKING (rule #55 promotion — drain confirmed 0 at HEAD across a clean session): the THEORY-OF-MAGE
-    # projection view-model — the 'Toward a Theory of MAGE' chapter's Seven-Hypotheses table is projected from
-    # theory_of_mage_declared.json (H4 folds its H4a/H4b sub-hypotheses). Asserts the TM1-TM7 structural
-    # invariants (delegated to theory_model_check), the parity check (chapter table == projection), and the
-    # ratified count guard (7 hypotheses, 2 sub). Landed audit-only-first, promoted to blocking once a clean
-    # session confirmed the chapter stays byte-equal to the projection (the dashboard model's own landing
-    # path). A future chapter<->model drift now reddens the suite. See tests/book_models.py.
-    Check("book-models: theory-of-mage hypotheses-table drift (theory_of_mage_declared.json)", 1,
+    # Four active propositions, strict joins and exact native-projection table parity.
+    Check("book-models: four-proposition theory drift", 1,
           lambda strict: check_theory_model()),
+    Check("book-models: four-proposition migration regressions", 1,
+          lambda strict: check_theory_migration_regressions()),
+    Check("book-models: industry active-proposition joins", 1,
+          lambda strict: check_industry_theory_joins()),
     # AUDIT-ONLY (rule #55 first landing): the INDUSTRY-CASES model — the book's external-evidence base as a
     # queryable, drift-gated model. A six-site roster (Cloudflare authored + five pending-writeup stubs)
     # whose authored records project a DocAble+authored correspondence matrix against a declared, ordered
     # construct-universe column set, plus the live queries (constructs / bears-on / only-docable / coverage /
     # roster) the volume unlocks. Reports the STATUS-AWARE joins IC1 (schema/traceability — a stub needs only
-    # the roster minimum) / IC2 (citation join) / IC3 (construct join) / IC4 (hypothesis join) / IC6 (roster
+    # the roster minimum) / IC2 (citation join) / IC3 (construct join) / IC4 (proposition join) / IC6 (roster
     # guard) + audit-only IC7; IC5 matrix parity is vacuous until the prose wave authors the matrix onto a
     # page. Lands audit-only-first (green from birth — Cloudflare authored from the projection); a follow-up
     # flips IC1-IC6 to blocking once a clean session confirms the drain. See tests/book_models.py.
@@ -766,18 +766,9 @@ CHECKS = [
     # blocking once a clean session confirms the drain. See tests/book_models.py.
     Check("book-models: supporting-sources schema + joins (supporting_sources_declared.json)", 1,
           lambda strict: check_supporting_sources(), audit_only=True),
-    # AUDIT-ONLY (rule #55 first landing): the RESEARCH-AGENDA model — the book's forward program as a
-    # queryable INDEX over finished prose. Seven agenda items across four closed kinds (frontier / measurement
-    # / dynamics / generalization), each welded to the falsifiable hypotheses (H1-H8) it tests and pointing at
-    # the home chapter (6.5 / 6.1 / 6.2) that expands it. Reports the joins RA1 (schema — kind/status in the
-    # declared taxonomies) / RA2 (hypothesis join — every related_hypotheses[] id resolves in
-    # theory_of_mage_declared.json, IC4-style) / RA3 (section join — every source_section resolves to a real
-    # chapter page) / RA4 (count guard, 7 items) + RA5 parity (prose-parity ACTIVE once the 'Where the frontier
-    # goes next' coda is placed; figure-parity vacuous until the map SVG lands). Lands audit-only-first (green
-    # from birth — the coda index is authored from the projection); a follow-up flips RA1-RA4 to blocking once a
-    # clean session confirms the drain. See tests/book_models.py.
-    Check("book-models: research-agenda schema + joins (research_agenda_declared.json)", 1,
-          lambda strict: check_research_agenda(), audit_only=True),
+    # Three directions with clean schema, active proposition/source joins and actual heading parity.
+    Check("book-models: research-agenda schema + joins + source-heading parity", 1,
+          lambda strict: check_research_agenda()),
     # AUDIT-ONLY (rule #55: audit-first for a new lint while wiring is partial): governed data
     # cross-references — every [data:X] resolves, each manifest source+anchor still exists, each `holds`
     # number still appears in the source (loose match), uncited entries warned. Keyed off data-claims.json.

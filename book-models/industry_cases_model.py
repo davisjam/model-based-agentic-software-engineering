@@ -1,36 +1,14 @@
-"""The INDUSTRY-CASES model — the book's external-evidence base as a queryable, drift-gated MODEL rather than
-prose accumulated ad hoc. A sibling of the other declared -> generated book models (theory-of-mage /
-metrics-dashboard): the hand-authored source of truth is `book-models/industry_cases_declared.json`; this
-module derives a typed model over it, projects the DocAble+authored correspondence MATRIX, exposes the live
-queries the volume unlocks, and holds the joins IC1-IC6 (status-aware).
+"""Industry evidence records and current Chapter 5 source-footprint checks.
 
-ONE SOURCE, MANY CONSUMERS.
-  - `render_matrix_md()` — the projected correspondence matrix: a fixed DocAble ROW 0 (the book's own case,
-    hand-declared `strong` across the construct universe it induced) followed by `status == authored` rows
-    only (Cloudflare now). Columns are the DECLARED, ORDERED construct universe (REVISE-3), so a new CASE is
-    append-a-row and never widens the grid. A stub never renders as a blank matrix row — stubs live in the
-    roster and surface through the coverage / only-docable / roster queries.
-  - The live queries — `constructs` (invert the matrix: per construct, the external cases observing it and at
-    what strength) · `bears-on <H>` (authored cases whose hypotheses[] contains the H-id) · `only-docable`
-    (the GAP query: constructs / hypotheses with no EXTERNAL case at strength >= partial — this names the
-    empty columns and drives which pending site to write first) · `coverage` (the burndown: N authored vs N
-    roster, distinct constructs with >=1 external observation, the independence/scale/domain spread) ·
-    `roster` (the declared six-site intent + status).
-  - `all_findings()` — the joins IC1-IC6 + the audit-only IC7 scale-fact presence. STATUS-AWARE: a stub
-    (`status == pending-writeup`) is checked only for id/organization/domain/distinctive_starting_point; an
-    authored record is checked fully (citation join, enums, correspondence + descriptive vocabs). IC5 matrix
-    parity is VACUOUS this wave — the matrix is not yet authored into any chapter page (the prose wave places
-    it), so there is nothing to hold byte-equal.
+The active roster follows the authored chapter. IC1-IC4/IC6 retain strict source,
+construct, proposition, and roster joins; IC8 checks the case headings, point
+anchors, and citations in their own sections. Unassessed accounts contribute no
+invented construct or proposition values.
 
-LANDING: the whole model lands AUDIT-ONLY-first (rule-#55 blocking-lint discipline) — the `[industry]` band
-in `catalog.py validate` PRINTS its findings + the coverage note but does NOT increment the issue count; a
-follow-up flips IC1-IC6 to BLOCKING once a clean session confirms the drain, the path every book model took.
-NO materialized `industry-cases.json` (REVISE-2): the queries and the matrix compute live from the declared
-source at CLI time — page-parity + compute-at-CLI only.
-
-Run `python3 book-models/industry_cases_model.py verify` to drift-check; `... matrix` to print the matrix for
-a page; `... constructs` / `... bears-on H3-mechanized-assurance` / `... only-docable` / `... coverage` /
-`... roster` for the live queries; `... show` to list every case.
+The comparison retired on 2026-11-09 is preserved under historical_comparison.
+Its schema and joins remain checked, and its ceiling/convergence CLI projections
+are explicitly historical. The former tables are no longer chapter parity targets.
+IC4 is blocking in catalog validation; the remaining industry checks are audit-only.
 """
 from __future__ import annotations
 
@@ -41,7 +19,6 @@ import sys
 from dataclasses import dataclass, field
 
 import chapter_identity_model as chapter_identity  # sibling in book-models/; the chapter surrogate-key model
-from _projection_parity import page_block_parity  # shared authored-page table-parity check (extract-on-3rd-site)
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)  # the governance-catalog repo root (book-models/ is one level down)
@@ -51,11 +28,7 @@ _REFERENCES_BIB = os.path.join(_BOOK, "references.bib")
 _CITATIONS_JSON = os.path.join(_BOOK, "data", "citations.json")
 _THEORY_DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 
-#: The chapter the modeling-ceiling matrix + the two convergence tables are authored into — the MCL5/CCP4
-#: parity target. Resolved through the chapter-identity model, so a renumber of 6.5 updates the target
-#: automatically (the label is frozen; the filename is the one field a reorg edits).
-#: R1: the comparative TABLES (matrix + both convergence grids + their key-lists) STAY co-located on this
-#: one page — the single-page parity binding forbids scattering them across chapters.
+#: Current case-account page, resolved through its stable chapter identity.
 _PAGE_REL = chapter_identity.filename("mage-in-the-wild")
 
 #: The chapter the six "Meet the six" one-pager CARDS were authored into. Round-4 (F1=a) RETIRES the six
@@ -73,7 +46,7 @@ _STATUS_PENDING = "pending-writeup"
 _VALID_STATUS = (_STATUS_AUTHORED, _STATUS_PENDING)
 
 #: The correspondence strengths at or above `partial` — the coverage threshold the gap query (`only-docable`)
-#: reads: a construct/hypothesis is "still only DocAble" when no EXTERNAL case rates it here.
+#: reads: a construct/proposition is "still only DocAble" when no EXTERNAL case rates it here.
 _AT_LEAST_PARTIAL = ("strong", "partial")
 
 #: The roster fields a stub (and a roster entry) carries — the status-aware minimum (IC1).
@@ -156,6 +129,7 @@ class IndustryCase:
     distinctive_starting_point: str
     status: str
     source: dict = field(default_factory=dict)
+    correspondence_assessment: dict = field(default_factory=dict)
     setting: dict = field(default_factory=dict)
     representations: "list[str]" = field(default_factory=list)
     object_territory: "list[str]" = field(default_factory=list)
@@ -163,7 +137,7 @@ class IndustryCase:
     judgment: dict = field(default_factory=dict)
     mage_constructs: "list[ConstructCell]" = field(default_factory=list)
     modeling_ceiling: "list[CeilingCell]" = field(default_factory=list)
-    hypotheses: "list[str]" = field(default_factory=list)
+    propositions: "list[str]" = field(default_factory=list)
     scale_facts: "list[str]" = field(default_factory=list)
     result_sentence: str = ""
     onepager_lede: str = ""                                    # the authored "meet the case" opener (one-pager)
@@ -202,6 +176,8 @@ class IndustryCasesModel:
     distinctive_headline: str = ""
     distinctive_spine: str = ""
     distinctive_hedge: str = ""
+    comparison_scope: str = "historical"
+    chapter_footprints: dict = field(default_factory=dict)
 
     def authored(self) -> "list[IndustryCase]":
         """External authored cases in declared order (excludes DocAble, which is the fixed row 0, and stubs)."""
@@ -258,11 +234,12 @@ def derive_model(raw: "dict | None" = None) -> IndustryCasesModel:
         cases.append(IndustryCase(
             id=c.get("id", ""), organization=c.get("organization", ""), domain=c.get("domain", ""),
             distinctive_starting_point=c.get("distinctive_starting_point", ""), status=c.get("status", ""),
+            correspondence_assessment=c.get("correspondence_assessment", {}) or {},
             source=c.get("source", {}) or {}, setting=c.get("setting", {}) or {},
             representations=list(c.get("representations", []) or []),
             object_territory=list(c.get("object_territory", []) or []),
             mechanisms=list(c.get("mechanisms", []) or []), judgment=c.get("judgment", {}) or {},
-            mage_constructs=cells, modeling_ceiling=ceiling, hypotheses=list(c.get("hypotheses", []) or []),
+            mage_constructs=cells, modeling_ceiling=ceiling, propositions=list(c.get("propositions", []) or []),
             scale_facts=list((c.get("setting", {}) or {}).get("scale_facts", []) or []),
             result_sentence=c.get("result_sentence", ""),
             onepager_lede=c.get("onepager_lede", ""),
@@ -271,7 +248,8 @@ def derive_model(raw: "dict | None" = None) -> IndustryCasesModel:
         ))
     ceiling_rungs = [
         CeilingRung(id=r.get("id", ""), label=r.get("label", ""), tier=r.get("tier", ""))
-        for r in raw.get("modeling_ceiling_ladder", {}).get("rungs", [])
+        for r in (raw.get("modeling_ceiling_ladder", {}).get("rungs", [])
+                  if raw.get("comparison_scope") != "current-chapter" else [])
     ]
     mage_row = raw.get("mage_ceiling_row", {})
     ccp = raw.get("cross_case_patterns", {})
@@ -289,9 +267,23 @@ def derive_model(raw: "dict | None" = None) -> IndustryCasesModel:
         docable_org=docable.get("organization", "DocAble"), roster=roster, cases=cases,
         ceiling_rungs=ceiling_rungs, mage_ceiling_cells=dict(mage_row.get("cells", {})),
         mage_ceiling_org=mage_row.get("organization", "MAGE"), mage_ceiling_caption=mage_row.get("caption", ""),
+        comparison_scope=raw.get("comparison_scope", "historical"),
+        chapter_footprints=raw.get("chapter_footprints", {}) or {},
         patterns=patterns, distinctive_headline=ccp.get("distinctive_headline", ""),
         distinctive_spine=ccp.get("distinctive_spine", ""), distinctive_hedge=ccp.get("distinctive_hedge", ""),
     )
+
+
+def historical_declared() -> dict:
+    """The archived comparison, with the current strict identifier vocabularies."""
+    raw = _load_declared()
+    archive = raw["historical_comparison"]
+    return {"_taxonomy": raw["_taxonomy"], "construct_universe": raw["construct_universe"],
+            "hedge": raw.get("hedge", ""), "comparison_scope": "historical", **archive}
+
+
+def derive_historical_model() -> IndustryCasesModel:
+    return derive_model(historical_declared())
 
 
 # ---- external join sources --------------------------------------------------------------------------
@@ -315,19 +307,16 @@ def _citation_keys() -> "set[str]":
     return set(data.get("citations", {}).keys())
 
 
-def _hypothesis_ids() -> "set[str]":
-    """Every hypothesis id (top-level + sub) declared in the theory model — the IC4 join universe."""
+def _proposition_ids() -> "set[str]":
+    """Every proposition id (top-level + sub) declared in the theory model — the IC4 join universe."""
     if not os.path.exists(_THEORY_DECLARED):
         return set()
     with open(_THEORY_DECLARED, encoding="utf-8") as fh:
         raw = json.load(fh)
     ids: "set[str]" = set()
-    for h in raw.get("hypotheses", []):
+    for h in raw.get("propositions", []):
         if h.get("id"):
             ids.add(h["id"])
-        for sh in h.get("sub_hypotheses", []) or []:
-            if sh.get("id"):
-                ids.add(sh["id"])
     return ids
 
 
@@ -354,7 +343,10 @@ def render_matrix_rows(model: "IndustryCasesModel | None" = None) -> "list[str]"
 
     rows = [render(model.docable_org, lambda cid: model.docable_cells.get(cid))]
     for case in model.authored():
-        rows.append(render(case.organization, case.strength_of))
+        if case.correspondence_assessment.get("status") == "unassessed":
+            rows.append(render(case.organization, lambda _cid: "unassessed"))
+        else:
+            rows.append(render(case.organization, case.strength_of))
     return rows
 
 
@@ -391,7 +383,7 @@ def render_modeling_ceiling_md(model: "IndustryCasesModel | None" = None) -> str
     never renders a blank ceiling row. The prose wave places exactly these lines on a page; MCL5 then holds
     the placed block byte-equal."""
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     rung_ids = model.rung_ids()
     header = "| " + " | ".join(["Site", *[r.label for r in model.ceiling_rungs]]) + " |"
     rule = "|" + "---|" * (len(model.ceiling_rungs) + 1)
@@ -448,7 +440,7 @@ def render_convergence_md(bucket: str, model: "IndustryCasesModel | None" = None
     externally and reads as advocacy, so the model owns that data but the prose wave writes the sentences (F1).
     Returns "" for the distinctive bucket."""
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     if bucket not in _TABLE_BUCKETS:
         return ""  # distinctive (and any unknown bucket) is not projected as a table
     site_ids = [r.id for r in model.roster]
@@ -471,7 +463,7 @@ def render_convergence_key_md(bucket: str, model: "IndustryCasesModel | None" = 
     uses (F-KEYLIST-FORM: table over prose list — reuses the primitive with zero new machinery). Renders
     `universal` and `generalizes` ONLY; returns "" for the distinctive bucket."""
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     if bucket not in _TABLE_BUCKETS:
         return ""
     header = "| " + " | ".join(["#", "Pattern", "Construct", "What the source establishes"]) + " |"
@@ -617,14 +609,14 @@ def query_constructs(model: "IndustryCasesModel | None" = None) -> "dict[str, li
 
 
 def query_bears_on(h_id: str, model: "IndustryCasesModel | None" = None) -> "list[str]":
-    """Authored external cases whose hypotheses[] contains the H-id (read-only join to the theory model)."""
+    """Authored external cases whose propositions[] contains the P-id (read-only join to the theory model)."""
     if model is None:
         model = derive_model()
-    return [c.organization for c in model.authored() if h_id in c.hypotheses]
+    return [c.organization for c in model.authored() if h_id in c.propositions]
 
 
 def query_only_docable(model: "IndustryCasesModel | None" = None) -> "dict[str, list[str]]":
-    """The GAP query. Returns the construct ids and the hypothesis ids for which NO external authored case
+    """The GAP query. Returns the construct ids and the proposition ids for which NO external authored case
     reaches strength >= partial — the columns still resting on DocAble alone. This names the empty columns and
     drives which pending site to write first."""
     if model is None:
@@ -634,9 +626,9 @@ def query_only_docable(model: "IndustryCasesModel | None" = None) -> "dict[str, 
         cid for cid in model.column_ids()
         if not any(strength in _AT_LEAST_PARTIAL for _org, strength in inverted.get(cid, []))
     ]
-    covered_h = {h for c in model.authored() for h in c.hypotheses}
-    empty_hyps = sorted(_hypothesis_ids() - covered_h)
-    return {"constructs": empty_constructs, "hypotheses": empty_hyps}
+    covered_h = {h for c in model.authored() for h in c.propositions}
+    empty_hyps = sorted(_proposition_ids() - covered_h)
+    return {"constructs": empty_constructs, "propositions": empty_hyps}
 
 
 def query_coverage(model: "IndustryCasesModel | None" = None) -> dict:
@@ -671,7 +663,7 @@ def query_ceiling_gaps(model: "IndustryCasesModel | None" = None) -> dict:
         that one site alone; e.g. the model-based tier resting on Siemens). Drives the software-first-ceiling
         claim mechanically."""
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     only_mage: "list[str]" = []
     single_external: "list[tuple[str, str]]" = []
     for rid in model.rung_ids():
@@ -687,7 +679,7 @@ def query_convergence(bucket: str, model: "IndustryCasesModel | None" = None) ->
     """The pattern rows for a bucket (universal | generalizes | distinctive), in declared order, with their
     support spread — the queryable view behind render_convergence_md (and behind the distinctive prose)."""
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     return model.patterns_in(bucket)
 
 
@@ -696,7 +688,7 @@ def query_pattern_constructs(model: "IndustryCasesModel | None" = None) -> "dict
     synthesis can join a convergence row back to its correspondence column. Patterns with no construct
     (maps_to_construct null) collect under the '—' key."""
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     out: "dict[str, list[str]]" = {cid: [] for cid in model.column_ids()}
     out["—"] = []
     for p in model.patterns:
@@ -745,12 +737,30 @@ def worked_example_key_kind(key: str, model: "IndustryCasesModel | None" = None)
     return "none"
 
 
+
+def worked_example_evidence_model(key: str, model: "IndustryCasesModel | None" = None) -> IndustryCasesModel:
+    """Resolve a gallery against current evidence, or an explicitly archived comparison key.
+
+    Current construct keys keep the current case assessments. Only keys absent
+    from that model may resolve in the historical pattern/rung vocabulary; those
+    galleries use the corresponding archived case ratings. Unknown keys remain
+    unresolved, and this does not add historical cases to the current chapter.
+    """
+    if model is None:
+        model = derive_model()
+    if worked_example_key_kind(key, model) != "none":
+        return model
+    historical = derive_historical_model()
+    if worked_example_key_kind(key, historical) != "none":
+        return historical
+    return model
+
 def worked_example_clears(key: str, case_id: str, model: "IndustryCasesModel | None" = None) -> bool:
     """WE1 for the join lint: does industry case `case_id` clear the gallery key at >= partial? A construct
     cell clears at strong/partial, a pattern support at yes/partial, a ceiling rung at yes/some. An unscored
     (`none`) key clears nothing — its galleries carry no industry slot (only DocAble + `other`)."""
     if model is None:
-        model = derive_model()
+        model = worked_example_evidence_model(key)
     kind = worked_example_key_kind(key, model)
     case = _case_by_id(case_id, model)
     if kind == "construct":
@@ -768,7 +778,7 @@ def worked_example_roster(key: str, model: "IndustryCasesModel | None" = None) -
     declared order) and DocAble appended as the deepest slot. Returns (key-kind, slots). WE1-clean by
     construction — only clearing cases become industry slots."""
     if model is None:
-        model = derive_model()
+        model = worked_example_evidence_model(key)
     kind = worked_example_key_kind(key, model)
     slots: "list[WexSlot]" = []
     if kind == "construct":
@@ -804,11 +814,13 @@ def render_worked_examples_stub(key: str, model: "IndustryCasesModel | None" = N
     projected (WE1-clean); the author writes the sentences + the Takeaway. Prints a one-line kind/mix banner
     above the stub (the `#`-comment banner is authoring context, not part of the gallery)."""
     if model is None:
-        model = derive_model()
+        model = worked_example_evidence_model(key)
     kind, slots = worked_example_roster(key, model)
     n_ind = sum(1 for s in slots if s.source_type == "industry-case")
     banner = (f"# worked-examples key {key!r} — kind: {kind} · {n_ind} industry slot(s) clear >=partial "
               f"+ DocAble (deepest). Trim to 2-4; author each gloss + the Takeaway. Roster is WE1-clean.")
+    if model.comparison_scope == "historical":
+        banner += "\n# HISTORICAL evidence: comparison preceding the 2026-11-09 Chapter 5 revision."
     if kind == "none":
         banner += ("\n# NOTE: unscored flagship — the corpus cannot rate an industry example here; this is a "
                    "DocAble-led gallery. Add an `### Example — <label> {other}` thought-experiment if wanted.")
@@ -839,7 +851,7 @@ def structural_findings(model: "IndustryCasesModel | None" = None) -> "list[str]
     IC2 citation join — an authored record's source.citation_key resolves in references.bib AND
         citations.json (stubs exempt).
     IC3 construct join — every mage_constructs[].construct resolves against the declared construct universe.
-    IC4 hypothesis join — every hypotheses[] id resolves to a real theory hypothesis id.
+    IC4 proposition join — every propositions[] id resolves to a real theory proposition id.
     IC6 roster guard — the record id-set equals the roster id-set, and shared roster fields agree between the
         roster entry and the record.
     IC7 (audit-only) scale-fact presence — an authored scale-bearing case carries >=1 scale_facts.
@@ -850,7 +862,7 @@ def structural_findings(model: "IndustryCasesModel | None" = None) -> "list[str]
     taxonomy = raw.get("_taxonomy", {})
     corr_set = {v["value"] for v in taxonomy.get("correspondence", [])}
     col_ids = set(model.column_ids())
-    bib, cites, hyp_ids = _bib_keys(), _citation_keys(), _hypothesis_ids()
+    bib, cites, hyp_ids = _bib_keys(), _citation_keys(), _proposition_ids()
 
     findings: "list[str]" = []
     seen: "set[str]" = set()
@@ -872,6 +884,10 @@ def structural_findings(model: "IndustryCasesModel | None" = None) -> "list[str]
 
         if not case.authored:
             continue  # stubs are checked only for the roster minimum
+
+        if case.correspondence_assessment.get("status") == "unassessed":
+            if case.mage_constructs or case.propositions:
+                findings.append(f"IC1 case {cid!r} is unassessed but asserts construct/proposition correspondences")
 
         # IC2 — citation join (authored only).
         key = case.source.get("citation_key", "")
@@ -912,10 +928,10 @@ def structural_findings(model: "IndustryCasesModel | None" = None) -> "list[str]
             if not cell.note.strip():
                 findings.append(f"IC1 authored case {cid!r} construct {cell.construct!r} carries no note (a cell must be auditable)")
 
-        # IC4 — hypothesis join.
-        for h in case.hypotheses:
-            if hyp_ids and h not in hyp_ids:
-                findings.append(f"IC4 authored case {cid!r} hypothesis {h!r} resolves to no theory hypothesis id")
+        # IC4 — proposition join.
+        for h in case.propositions:
+            if h not in hyp_ids:
+                findings.append(f"IC4 authored case {cid!r} proposition {h!r} resolves to no theory proposition id")
 
         # IC7 (audit-only) — scale-fact presence.
         if scale and not case.scale_facts:
@@ -957,7 +973,7 @@ _SUPPORT_VALUES = ("yes", "partial", "no")
 
 
 def modeling_ceiling_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
-    """The modeling-ceiling joins MCL1-MCL4 (status-aware; MCL5 parity lives in parity_findings, vacuous).
+    """Historical modeling-ceiling joins MCL1-MCL4; retired tables have no active page-parity target.
     Sibling to IC1-IC4, AUDIT-ONLY-first — each finding is a defect the gate should catch once promoted.
 
     MCL1 schema — every authored record's modeling_ceiling[].level is in the modeling_ceiling_level vocab; every
@@ -969,7 +985,7 @@ def modeling_ceiling_findings(model: "IndustryCasesModel | None" = None) -> "lis
         silently drop a rung).
     """
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     raw = _load_declared()
     taxonomy = raw.get("_taxonomy", {})
     level_set = {v["value"] for v in taxonomy.get("modeling_ceiling_level", [])}
@@ -1008,7 +1024,7 @@ def modeling_ceiling_findings(model: "IndustryCasesModel | None" = None) -> "lis
 
 
 def cross_case_pattern_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
-    """The cross-case-pattern joins CCP1-CCP3 (CCP4 parity lives in parity_findings, vacuous). AUDIT-ONLY-first.
+    """Historical cross-case-pattern joins CCP1-CCP3. Retired grids have no active page-parity target.
 
     CCP1 schema — every pattern has a kebab-unique id, a non-empty statement, a bucket in the enum, and a
         non-empty mage_generalization_note.
@@ -1018,7 +1034,7 @@ def cross_case_pattern_findings(model: "IndustryCasesModel | None" = None) -> "l
         {yes, partial, no} (a roster add reddens patterns that forgot the new site).
     """
     if model is None:
-        model = derive_model()
+        model = derive_historical_model()
     col_ids = set(model.column_ids())
     roster_ids = model.roster_ids()
     findings: "list[str]" = []
@@ -1058,84 +1074,87 @@ def cross_case_pattern_findings(model: "IndustryCasesModel | None" = None) -> "l
 
 
 def parity_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
-    """The page-parity checks. The prose wave has placed the modeling-ceiling matrix + the two convergence
-    tables (each now a glyph GRID + a companion KEY-LIST) onto the `mage-in-the-wild` chapter, so MCL5, CCP4,
-    and CCP5 are ACTIVE — each placed block must equal the model's projection byte-for-byte, or the page
-    drifted from the evidence and must be regenerated:
-      - MCL5 — the modeling-ceiling matrix vs `render_modeling_ceiling_md()`.
-      - CCP4 — the convergence glyph grids, two wires: `render_convergence_md('universal')` +
-        `render_convergence_md('generalizes')`.
-      - CCP5 — the convergence key-lists, two wires: `render_convergence_key_md('universal')` +
-        `render_convergence_key_md('generalizes')` (reuses page_block_parity verbatim with `occurrence`,
-        exactly as CCP4 disambiguates the two grids — zero new machinery).
-      - IC7 — the "Meet the six" gallery, COVERAGE + TRACE (no longer byte-parity): each hand-authored card
-        must trace to its record via a `<!-- case-onepager: <id> -->` marker and cover the record's fields
-        (organization, environment, strength summary, source) — see `case_onepager_coverage`.
-    IC5 — the DocAble correspondence matrix — is NOT yet authored into any page, so it stays VACUOUS."""
+    """IC8: current case headings, anchors, and citations match the declared footprint.
+
+    This checks placement and source joins, not the truth of an interpretation.
+    Historical comparison tables are deliberately not current chapter surfaces.
+    """
     if model is None:
         model = derive_model()
-    page = os.path.join(_BOOK, _PAGE_REL)
     findings: "list[str]" = []
-    # MCL5 — the modeling-ceiling matrix (header line is the projection's first line).
-    ceiling = render_modeling_ceiling_md(model).splitlines()
-    findings += page_block_parity(
-        page, ceiling[0], ceiling, display=_PAGE_REL, label="modeling-ceiling matrix",
-        regen_hint="python3 book-models/industry_cases_model.py ceiling")
-    # CCP4 — the two projected convergence GRIDS (universal + generalizes). Both render an identical header
-    # line, so disambiguate by page order: universal is placed first (occurrence 0), generalizes second (1).
-    for occurrence, bucket in enumerate(("universal", "generalizes")):
-        conv = render_convergence_md(bucket, model).splitlines()
-        findings += page_block_parity(
-            page, conv[0], conv, display=_PAGE_REL, label=f"{bucket} convergence grid",
-            regen_hint=f"python3 book-models/industry_cases_model.py convergence {bucket}",
-            occurrence=occurrence)
-    # CCP5 — the two projected convergence KEY-LISTS. The two key-lists share an identical header line, the
-    # same situation CCP4 solves for the grids: universal key-list placed first (occurrence 0), generalizes
-    # second (occurrence 1).
-    for occurrence, bucket in enumerate(("universal", "generalizes")):
-        key = render_convergence_key_md(bucket, model).splitlines()
-        findings += page_block_parity(
-            page, key[0], key, display=_PAGE_REL, label=f"{bucket} convergence key-list",
-            regen_hint=f"python3 book-models/industry_cases_model.py convergence-key {bucket}",
-            occurrence=occurrence)
-    # IC7 — the "Meet the six" gallery: COVERAGE + TRACE, not byte-parity. Each hand-authored card must trace
-    # to its record (the `<!-- case-onepager: <id> -->` marker) and cover the record's fields. Round-4 (F1=a)
-    # RETIRED the narrated cards, so `_CARDS_PAGE_REL is None` — there is no gallery page and IC7 audits
-    # nothing. Audit-only either way.
-    if _CARDS_PAGE_REL is not None:
-        cards_page = os.path.join(_BOOK, _CARDS_PAGE_REL)
-        for case_id in _ONEPAGER_GALLERY_IDS:
-            findings += case_onepager_coverage(case_id, cards_page, model)
-    # IC5 — the correspondence matrix stays vacuous until it too is placed on a page.
+    declared = model.chapter_footprints
+    footprints = declared.get("cases", {})
+    if set(footprints) != model.roster_ids():
+        findings.append("IC8 chapter footprint case ids do not equal the active roster")
+    page = os.path.join(_BOOK, _PAGE_REL)
+    if not os.path.isfile(page):
+        return findings + [f"IC8 current case page missing: {_PAGE_REL}"]
+    with open(page, encoding="utf-8") as fh:
+        text = fh.read()
+    headings = list(re.finditer(r"^## (.+)$", text, re.M))
+    expected = [r.organization for r in model.roster] + [declared.get("closing_heading", "")]
+    if [h.group(1) for h in headings] != expected:
+        findings.append(f"IC8 {_PAGE_REL} section headings/order differ from the declared roster and closing section")
+    bib, cites = _bib_keys(), _citation_keys()
+    for case in model.authored():
+        footprint = footprints.get(case.id, {})
+        if footprint.get("heading") != case.organization:
+            findings.append(f"IC8 case {case.id!r} footprint heading differs from its organization")
+        matches = [(i, h) for i, h in enumerate(headings) if h.group(1) == case.organization]
+        if len(matches) != 1:
+            findings.append(f"IC8 case {case.id!r} requires exactly one organization heading")
+            continue
+        i, h = matches[0]
+        end = headings[i + 1].start() if i + 1 < len(headings) else len(text)
+        section = text[h.end():end]
+        points = re.findall(r"<!-- point: ([^ |]+) \|", section)
+        actual_cites = {key.strip() for run in re.findall(r"\[cite:\s*([^\]]+)\]", section)
+                        for key in run.split(";")}
+        expected_points = footprint.get("points", [])
+        expected_cites = footprint.get("citation_keys", [])
+        if not expected_points or len(points) != len(set(points)) or set(points) != set(expected_points):
+            findings.append(f"IC8 case {case.id!r} point footprint differs or is empty/duplicated")
+        if not expected_cites or actual_cites != set(expected_cites):
+            findings.append(f"IC8 case {case.id!r} citation footprint differs or is empty")
+        for key in expected_cites:
+            if key not in bib or key not in cites:
+                findings.append(f"IC2 case {case.id!r} chapter citation {key!r} must resolve in references.bib and citations.json")
     return findings
 
 
 def all_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
-    """Structural (IC1-IC4 + IC6 + audit-only IC7) + modeling-ceiling (MCL1-MCL4) + cross-case-pattern
-    (CCP1-CCP3) + parity (MCL5 + CCP4 + CCP5 now ACTIVE — the grids + key-lists are placed on the
-    mage-in-the-wild chapter; IC5 still vacuous). This whole band is wired AUDIT-ONLY-first (rule-#55): a
-    follow-up promotes it to BLOCKING once a clean session confirms the drain."""
+    """Current strict joins and chapter footprint, plus archived comparison integrity."""
     if model is None:
         model = derive_model()
-    return (structural_findings(model) + modeling_ceiling_findings(model)
-            + cross_case_pattern_findings(model) + parity_findings(model))
+    findings = structural_findings(model) + parity_findings(model)
+    archive = _load_declared().get("historical_comparison", {})
+    required = ("roster", "industry_cases", "modeling_ceiling_ladder", "mage_ceiling_row", "cross_case_patterns")
+    if any(not archive.get(key) for key in required):
+        return findings + ["IC8 historical comparison archive is missing or incomplete"]
+    if archive["modeling_ceiling_ladder"].get("rungs") != _load_declared().get("modeling_ceiling_ladder", {}).get("rungs"):
+        findings.append("IC8 historical ceiling vocabulary differs from the retained capability-ladder join vocabulary")
+    historical = derive_historical_model()
+    old_findings = (structural_findings(historical) + modeling_ceiling_findings(historical)
+                    + cross_case_pattern_findings(historical))
+    # Keep the finding code first: IC4 remains blocking for historical joins too.
+    for finding in old_findings:
+        code, detail = finding.split(" ", 1)
+        findings.append(f"{code} historical comparison: {detail}")
+    return findings
 
 
 def coverage_note(model: "IndustryCasesModel | None" = None) -> str:
-    """A one-line burndown for the validate band — N authored vs roster, constructs with external observation,
-    the still-only-DocAble gap count, and the modeling-ceiling burndown (how many rungs any external case
-    reaches, plus how many rest on MAGE alone)."""
+    """Current account and correspondence coverage; missing assessments stay explicit."""
     if model is None:
         model = derive_model()
     cov = query_coverage(model)
     gaps = query_only_docable(model)
-    n_rungs = len(model.ceiling_rungs)
-    cg = query_ceiling_gaps(model)
-    reached = n_rungs - len(cg["only_mage"]) if n_rungs else 0
-    return (f"{cov['authored']}/{cov['roster']} sites authored · "
-            f"{cov['constructs_observed']}/{cov['constructs_total']} constructs externally observed · "
-            f"{len(gaps['constructs'])} construct(s) + {len(gaps['hypotheses'])} hypothesis(es) still only-DocAble · "
-            f"ceiling: {reached}/{n_rungs} rungs reached externally, {len(cg['only_mage'])} rest on MAGE alone")
+    unassessed = sum(c.correspondence_assessment.get("status") == "unassessed" for c in model.authored())
+    return (f"{cov['authored']}/{cov['roster']} current chapter cases authored · "
+            f"{unassessed} correspondence assessment(s) pending · "
+            f"{cov['constructs_observed']}/{cov['constructs_total']} constructs with recorded external correspondence · "
+            f"{len(gaps['constructs'])} construct(s) + {len(gaps['propositions'])} proposition(s) without an external component reference · "
+            "ceiling/convergence comparison archived (2026-11-09)")
 
 
 # ---- CLI --------------------------------------------------------------------------------------------
@@ -1157,7 +1176,7 @@ def _cmd_constructs() -> int:
 
 def _cmd_bears_on(h_id: str) -> int:
     orgs = query_bears_on(h_id)
-    print(f"{h_id}: {', '.join(orgs) if orgs else '(no authored external case bears on this hypothesis)'}")
+    print(f"{h_id}: {', '.join(orgs) if orgs else '(no authored external case bears on this proposition)'}")
     return 0
 
 
@@ -1171,9 +1190,9 @@ def _cmd_only_docable() -> int:
             print(f"  {labels.get(cid, cid)}  ({cid})")
     else:
         print("  (none — every construct has external observation at >= partial)")
-    print("only-DocAble hypotheses (no external case bears on them):")
-    if gaps["hypotheses"]:
-        for h in gaps["hypotheses"]:
+    print("only-DocAble propositions (no external case bears on them):")
+    if gaps["propositions"]:
+        for h in gaps["propositions"]:
             print(f"  {h}")
     else:
         print("  (none)")
@@ -1209,12 +1228,14 @@ def _cmd_show() -> int:
 
 
 def _cmd_ceiling() -> int:
+    print("Historical comparison, before the 2026-11-09 Chapter 5 revision")
     print(render_modeling_ceiling_md())
     return 0
 
 
 def _cmd_convergence(bucket: str) -> int:
-    model = derive_model()
+    print("Historical comparison, before the 2026-11-09 Chapter 5 revision")
+    model = derive_historical_model()
     if bucket == "distinctive":
         # PROSE bucket — the model owns the spine + the list + the hedge; the prose wave writes the sentences.
         print(f"distinctive bucket (PROSE — not a projected table):\n")
@@ -1234,7 +1255,8 @@ def _cmd_convergence(bucket: str) -> int:
 
 
 def _cmd_convergence_key(bucket: str) -> int:
-    model = derive_model()
+    print("Historical comparison, before the 2026-11-09 Chapter 5 revision")
+    model = derive_historical_model()
     table = render_convergence_key_md(bucket, model)
     if not table:
         print(f"usage: industry_cases_model.py convergence-key <universal|generalizes>")
@@ -1270,7 +1292,8 @@ def _cmd_worked_examples(key: str) -> int:
 
 
 def _cmd_ceiling_gaps() -> int:
-    model = derive_model()
+    print("Historical comparison, before the 2026-11-09 Chapter 5 revision")
+    model = derive_historical_model()
     labels = {r.id: r.label for r in model.ceiling_rungs}
     cg = query_ceiling_gaps(model)
     print("ceiling rungs NO external authored case reaches (rest on MAGE alone):")
@@ -1289,7 +1312,8 @@ def _cmd_ceiling_gaps() -> int:
 
 
 def _cmd_pattern_constructs() -> int:
-    model = derive_model()
+    print("Historical comparison, before the 2026-11-09 Chapter 5 revision")
+    model = derive_historical_model()
     labels = {c.id: c.label for c in model.columns}
     inv = query_pattern_constructs(model)
     for cid, pids in inv.items():
@@ -1304,13 +1328,12 @@ def _cmd_verify() -> int:
     findings = all_findings(model)
     print(f"industry-cases: {coverage_note(model)}")
     if findings:
-        print(f"industry-cases: {len(findings)} finding(s) (AUDIT-ONLY this wave — does not gate validate):")
+        print(f"industry-cases: {len(findings)} finding(s) (IC4 blocks catalog validation; other industry checks are audit-only):")
         for f in findings:
             print(f"  {f}")
         return 1
-    print("industry-cases: schema + joins clean (IC1-IC4 + IC6 + MCL1-MCL4 + CCP1-CCP3; "
-          "MCL5 + CCP4 + CCP5 parity ACTIVE — placed tables byte-equal to the model; IC7 coverage/trace "
-          "ACTIVE — hand-authored one-pagers cover + trace to their records; IC5 parity still vacuous)")
+    print("industry-cases: current case joins and chapter footprints clean; historical comparison "
+          "schema and joins clean; retired grids are not current chapter parity targets")
     return 0
 
 
@@ -1324,7 +1347,7 @@ def main(argv: "list[str]") -> int:
         return _cmd_constructs()
     if cmd == "bears-on":
         if len(argv) < 3:
-            print("usage: industry_cases_model.py bears-on <hypothesis-id>")
+            print("usage: industry_cases_model.py bears-on <proposition-id>")
             return 2
         return _cmd_bears_on(argv[2])
     if cmd == "only-docable":
