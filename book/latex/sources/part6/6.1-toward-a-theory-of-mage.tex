@@ -88,7 +88,7 @@ Representation is not the only route to that term. Because a realization that mi
 
 % <!-- point: the-two-factory-techniques-act-on-different-factors | Process design changes the conditions and cost of realization. Explicit tolerances help encode intent and make selected properties available for independent evaluation. | terms: tolerance -->
 
-Process design changes the conditions under which agents realize intent: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(F\mid E,R)\), its cost, or both. A better agent can improve the same term. Explicit tolerances help engineers state the intended property and make it available for independent evaluation. A validator can then measure the realization against the represented tolerance and reject a violation. This is the distinction between helping production succeed and governing what happens when it fails.
+Process design changes the conditions under which agents realize intent: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(F\mid E,R)\), its cost, or both. A better agent can improve the same term. Explicit tolerances help engineers state the intended property and make it available for independent evaluation. A check can then compare the realization with the represented tolerance, and a gate can reject work that violates it. This is the distinction between helping production succeed and governing what happens when it fails.
 
 \subsection{What stronger reasoners can supply}\label{heading:what-stronger-reasoners-can-supply}
 
@@ -160,7 +160,7 @@ Modeling and Alignment improve engineering reliability through different mechani
 
 % <!-- point: either-lever-works-without-the-other | A model can help without enforcing; a mechanism can govern even when the producer never sees the rule. -->
 
-A model can reduce reconstruction and make satisfactory realization easier without enforcing anything. Conversely, an Alignment mechanism can govern an obligation even when the producing agent never sees the representation or rule from which the mechanism decides. A type can exclude an invalid state, a sandbox can deny a capability, and a validator can reject a forbidden dependency even if the agent repeatedly proposes one.
+A model can reduce reconstruction and make satisfactory realization easier without enforcing anything. Conversely, an Alignment mechanism can govern an obligation even when the producing agent never sees the representation or rule from which the mechanism decides. A type can exclude an invalid state, a sandbox can deny a capability, and a gate can reject a forbidden dependency after checking it against the obligation, even if the agent repeatedly proposes it.
 
 Consider a simple architectural obligation: service A may not depend directly on service B.
 
@@ -613,7 +613,7 @@ Together these four properties constitute \textbf{environment quality}: they det
 
 % <!-- point: coverage-need-not-mechanize-every-obligation | Coverage need not mechanize every obligation; a strong environment names where judgment belongs and where paying repeatedly is wasteful. -->
 
-Coverage does not require mechanizing every obligation. Some belong in a compiler rule or admission gate; others remain statistical, semantic, or consequential enough to require human judgment. A strong environment makes clear \textbf{where judgment belongs and where paying for the same judgment repeatedly would be wasteful}.
+Coverage does not require mechanizing every obligation. Some belong in a compiler rule or gate; others remain statistical, semantic, or consequential enough to require human judgment. A strong environment makes clear \textbf{where judgment belongs and where paying for the same judgment repeatedly would be wasteful}.
 
 % <!-- point: not-a-maturity-model-improve-the-limiting-part | These are not maturity stages; improve whichever part of the environment is limiting the work. -->
 

@@ -512,24 +512,24 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "The four mechanism roles: constraint, sensor (observes/produces evidence), validator (judges evidence), gate. Prevention and observation as the working pair; implementations bundle roles. Closes on the conversion problem — transition to 3.4.",
-      "opening_anchor": "MAGE uses four roles to describe how environmental authority operates. A mechanism",
+      "note": "Three functional categories: constraints restrict possibilities, sensors observe and produce evidence, and gates evaluate whether work may proceed and enforce decisions. An optional inset connects these functions to familiar machinery, including observability and static analysis as well as CI and runtime authorization. Evaluation can be advisory or used within a gate. One proposed reporting change connects the categories through module restrictions, instrumented tests, and a merge gate. Closes on governance conversion.",
+      "opening_anchor": "Suppose you are adding a reporting service to a billing system.",
       "closing_anchor": "governed. That is the conversion problem, and it is the next chapter.",
       "delivers": {
         "concepts": [
           "governance-mechanism",
           "constraints-and-sensors",
+          "constraint",
           "sensor",
           "observability",
-          "constraint",
-          "validator",
           "gate",
+          "validator",
           "governance-package"
         ],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the constraint-vs-sensor figure and the four mechanism roles",
+            "name": "the proposed-change figure (stable label constraint-vs-sensor) and the three-question mechanism table",
             "anchor": "constraint-vs-sensor"
           }
         ],

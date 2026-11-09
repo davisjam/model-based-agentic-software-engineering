@@ -1,14 +1,14 @@
 {
   "source": "book/assets/gloss-gee.svg",
   "chapter": "0.4-the-books-language",
-  "claim": "The governed environment. Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.",
+  "claim": "The governed environment. Governance mechanisms support enforcement by restricting work, supplying evidence, or controlling whether work may proceed. They can operate directly on observable work or use explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.",
   "topology": {
     "description": "Six-node accumulation ontology with two surfaces, not a pipeline or enclosing group.",
     "relations": [
       [
         "mechanism",
         "obligation",
-        "enforces",
+        "supports enforcement",
         "solid"
       ],
       [
@@ -45,7 +45,7 @@
   },
   "required_terms": [
     "Engineering obligation What must hold",
-    "Governance mechanism Constraint · Sensor · Validator · Gate",
+    "Governance mechanism Constraint · Sensor · Gate",
     "Directly observable work Action · artifact · execution result Local rules can act directly",
     "Explicit model / invariant Architecture · behavior · policy · bounds Exposes richer semantics",
     "GOVERNED ENGINEERING ENVIRONMENT",
@@ -76,33 +76,36 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
-    "candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
+    "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+    "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
     "fill": "One 8% role marks explicit obligation/model semantics; mechanisms, work, environment and capital remain white.",
     "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; GOVERNANCE MECHANISM; DIRECTLY OBSERVABLE WORK; EXPLICIT MODEL / INVARIANT; GOVERNED ENGINEERING ENVIRONMENT; ENGINEERING CAPITAL. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "book_references": [],
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
       "page": 5,
       "width_bp": 366.45,
       "height_bp": 309.54,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
+      "minimum_prose_font_bp": 8.9664,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 16
-    },
-    "book_references": []
+      "semantic_typography_checks": 16,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/gloss-gee.svg",
+    "candidate": "book/tikz/figures/gloss-gee.tex",
     "decision": "refined",
-    "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
-    "candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+    "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
     "evidence": [
       {
         "source_text": "ENGINEERING OBLIGATION",
@@ -201,14 +204,14 @@
         ]
       },
       {
-        "source_text": "Constraint · Sensor · Validator · Gate",
+        "source_text": "Constraint · Sensor · Gate",
         "source_style": "weight normal, italic",
         "semantic_role": "Role explanation or named relation",
-        "candidate_text": "Constraint · Sensor · Validator · Gate",
+        "candidate_text": "Constraint · Sensor · Gate",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "Constraint · Sensor · Validator · Gate",
+            "text": "Constraint · Sensor · Gate",
             "weight": "normal",
             "style": "italic",
             "x": "500",
@@ -297,14 +300,14 @@
         ]
       },
       {
-        "source_text": "enforces",
+        "source_text": "supports enforcement",
         "source_style": "weight normal, italic",
         "semantic_role": "Role explanation or named relation",
-        "candidate_text": "enforces",
+        "candidate_text": "supports enforcement",
         "candidate_style": "italic ",
         "source_fragments": [
           {
-            "text": "enforces",
+            "text": "supports enforcement",
             "weight": "normal",
             "style": "italic",
             "x": "514",
@@ -361,6 +364,7 @@
         ]
       }
     ],
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
     "checks": [
       {
         "text": "ENGINEERING OBLIGATION",
@@ -387,7 +391,7 @@
         "bold": true
       },
       {
-        "text": "Constraint · Sensor · Validator · Gate",
+        "text": "Constraint · Sensor · Gate",
         "italic": true
       },
       {
@@ -411,7 +415,7 @@
         "italic": true
       },
       {
-        "text": "enforces",
+        "text": "supports enforcement",
         "italic": true
       },
       {
@@ -427,77 +431,86 @@
         "italic": true
       }
     ],
+    "governance_revision_date": "2026-11-08",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
       "page": 5,
       "width_bp": 366.45,
       "height_bp": 309.54,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
+      "minimum_prose_font_bp": 8.9664,
       "monochrome_pixels": true,
       "semantic_typography_checks": 16,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The central work/model alternatives already align at their top and bottom. Forks and upward environment/conversion edges remain clear.",
-    "candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing gloss gee layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
-      "after_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
-      "before_dimensions_bp": [
-        366.45001220703125,
-        309.5400085449219
-      ],
-      "after_dimensions_bp": [
-        366.45001220703125,
-        309.5400085449219
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
+    "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+    "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "work and explicit model",
+          "labels": [
+            "DIRECTLY OBSERVABLE WORK",
+            "EXPLICIT MODEL / INVARIANT"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
     },
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "date": "2026-11-08",
+      "page": 5,
+      "width_bp": 366.45,
+      "height_bp": 309.54,
+      "minimum_prose_font_bp": 8.9664,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+      "checked_terminal_approaches": 668,
+      "reviewed_peer_groups": 87,
+      "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 5,
-      "width_bp": 366.45,
-      "height_bp": 309.54
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
+  },
+  "governance_revision": "2026-11-08",
+  "governance_revision_reason": "Use the three mechanism categories and avoid saying that a sensor independently enforces its obligation.",
+  "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
+  "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
+  "integration_review_date": "2026-11-08",
+  "native_validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+    "geometry_findings": 0,
+    "unapproved_compile_diagnostics": 0,
+    "status": "passed",
+    "date": "2026-11-08",
+    "page": 5,
+    "width_bp": 366.45,
+    "height_bp": 309.54,
+    "minimum_prose_font_bp": 8.9664,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 16,
+    "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
   }
 }

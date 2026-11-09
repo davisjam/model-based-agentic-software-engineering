@@ -303,7 +303,7 @@
     "kind": "thesis",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Alignment Principle (II of II): make engineering intent effective over autonomous work by encoding obligations into deterministic mechanisms that constrain action, observe violations, evaluate evidence, and control admission — the four verbs mapping 1:1 onto the four mechanism archetypes Constraint · Sensor · Validator · Gate. Where the Modeling Principle makes intent explicit, the Alignment Principle makes that intent binding on what the fleet can do and what the environment will accept: represented intent becomes enforceable. website-v3 (260825) retired the standalone per-concept landing card; the book is authoritative for this thesis and the six-claim landing surfaces it as Claim 4 (Alignment) with an Explore-into-book link. Registered in index-terms.md; book index-def tagged at the preface 'two principles' blockquote."
+    "note": "Alignment Principle: make engineering obligations enforceable through mechanisms that constrain actions or states, produce evidence, or evaluate evidence to control whether work may proceed. The three functional categories are constraint, sensor, and gate; checking is an operation that may produce advisory findings or inform gate decisions. Modeling makes consequential intent explicit; Alignment supplies the restrictions and gate decisions that enforce selected obligations. The book is authoritative for this principle."
   },
   "universal-language": {
     "kind": "thesis",
@@ -321,7 +321,7 @@
     "kind": "mechanism-class",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Sensor (observes drift and produces evidence). Book index-def present. Formerly previewed on the landing's vocabulary strip (card-sensor); that strip was removed so the landing ends at the three nav cards — book-only by design now."
+    "note": "Sensor: a mechanism that observes artifacts, attempted actions, or executing systems and produces evidence. Sensors depend on observability: the relevant state or behavior must be exposed for inspection. Static analyses, logs, traces, and instrumentation can supply evidence, which may support checking or other analysis without controlling whether work may proceed. Its index definition is in §3.3. Book-only by design."
   },
   "residual": {
     "kind": "mechanism-class",
@@ -333,13 +333,13 @@
     "kind": "mechanism-class",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Validator (evidence / admission class). Checks a candidate result against a standard — a type, a preservation property, a specification — before the result may advance. Book index-def tagged at the 2.3 four-classes paragraph (evidence + admission). Registered in index-terms.md; front-glossary vocabulary term. Book-only by design (no landing card); sibling of constraint/sensor."
+    "note": "Validator: a checker or reviewer that evaluates evidence against an obligation. Evaluation is an operation that may support an advisory report or supply a gate’s evaluation; a validator is not a fourth peer of constraint, sensor, and gate. The registry kind mechanism-class identifies implementations broadly, including named checkers, rather than only the three functional categories. Its index definition remains in §3.3; retain the term and stable index ID."
   },
   "gate": {
     "kind": "mechanism-class",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Gate. A check placed across a pipeline step (commit, deploy) that refuses to let the step through until its condition is met — the soft instruction determinized into a hard check. Book index-def tagged at the 2.3 'determinize them into a gate' paragraph. Registered in index-terms.md; front-glossary vocabulary term. Book-only by design (no landing card)."
+    "note": "Gate: a mechanism that evaluates whether an action or result may proceed and enforces the resulting decision at a boundary. It may evaluate the condition locally or rely on another checker. Gates can govern changes, releases, resource use, or runtime operations. The table caption in §3.3 connects this classification to protection and policy enforcement. Book-only by design."
   },
   "fidelity-validator": {
     "kind": "mechanism-class",
@@ -405,7 +405,7 @@
     "kind": "core-construct",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Core construct 3 of 6 (_hierarchy). A repeatable environmental structure that encodes an engineering policy and either constrains an action, detects a violation, requires evidence, or controls admission — four classes: prevention, detection, evidence, admission (prevention/detection = the catalogue's constraint/sensor move axis; package bundles both). A model is NOT a governance mechanism until something reads or enforces it (the model-not-mechanism-until-enforced claim). Definitional text homed in definitions.json. Book index-def tagged at the 2.3 'Four classes, one bounded term' inset."
+    "note": "A repeatable structure in the engineered environment for aligning an agent’s actions with the obligations represented in models. Three functional categories distinguish restrictions, evidence production, and decisions about whether work may proceed: constraint, sensor, and gate. Implementations can combine these functions. Evaluation is an operation used by advisory checks and gates. Canonical definition in book/data/definitions.json; book index-def in §3.3 Governance Mechanisms."
   },
   "churn": {
     "kind": "core-construct",

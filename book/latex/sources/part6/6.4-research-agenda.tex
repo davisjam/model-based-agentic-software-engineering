@@ -203,7 +203,7 @@ A representation is useful only relative to the questions and consumers it serve
 
 % <!-- point: dependency-graph-example-of-leverage-vs-redundant-cost | A dependency graph earns its cost by answering the question and enabling a validator; a second redundant representation adds cost without leverage. -->
 
-A dependency graph makes the test concrete. Suppose engineers repeatedly reconstruct permitted service dependencies from handlers, configuration, and code. Adding an architectural graph costs something to create, reconcile, and maintain---but if later engineers and agents can answer the dependency question directly, and a validator can use the same representation to reject forbidden edges, the reconstruction and residual-assurance cost falls. A second representation that answers no additional question and adds no independent evidence adds cost without leverage.
+A dependency graph makes the test concrete. Suppose engineers repeatedly reconstruct permitted service dependencies from handlers, configuration, and code. Adding an architectural graph costs something to create, reconcile, and maintain---but if later engineers and agents can answer the dependency question directly, and a gate can use the same representation to identify and reject forbidden edges, the reconstruction and residual-assurance cost falls. A second representation that answers no additional question and adds no independent evidence adds cost without leverage.
 
 % <!-- point: induction-recovers-latent-structure-the-system-embodies | Induction recovers latent structure the system already embodies; it is not yet innovation in the strongest sense. -->
 

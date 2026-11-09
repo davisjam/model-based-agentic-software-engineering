@@ -9,8 +9,8 @@
 \node[box,text width=5cm,fill=black!8,line width=.65pt] (obligation) at (0,0)
  {\textbf{ENGINEERING OBLIGATION}\\\textit{What must hold}};
 \node[box,text width=7cm] (mechanism) at (0,-1.9)
- {\textbf{GOVERNANCE MECHANISM}\\\textit{Constraint · Sensor · Validator · Gate}};
-\draw[edge] (mechanism.north) -- node[label,right] {\textit{enforces}} (obligation.south);
+ {\textbf{GOVERNANCE MECHANISM}\\\textit{Constraint · Sensor · Gate}};
+\draw[edge] (mechanism.north) -- node[label,right] {\textit{supports enforcement}} (obligation.south);
 \node[box,text width=5.6cm,minimum height=2.2cm] (work) at (-3.3,-4.8)
  {\textbf{DIRECTLY\\OBSERVABLE WORK}\\\textit{Action · artifact · execution result}\\\textit{Local rules can act directly}};
 \node[box,text width=5.6cm,minimum height=2.2cm,fill=black!8] (model) at (3.3,-4.8)

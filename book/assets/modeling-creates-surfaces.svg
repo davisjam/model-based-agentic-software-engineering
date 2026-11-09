@@ -3,7 +3,7 @@
      REVISION per v8 editor guidance (2.8-8): show BOTH paths, rhyming with the front-matter grammar
      figure. A DIRECT path — territory/action acted on directly, a local observable obligation — and a
      MODEL-MEDIATED path — territory -> abstraction -> model -> explicit property, a richer semantic
-     obligation. The two land SIDE BY SIDE on one ALIGNMENT (constraint / sensor / validator / gate), which
+     obligation. The two land SIDE BY SIDE on one ALIGNMENT (constraint / sensor / gate), which
      leads to CONSEQUENCE. Model-mediated is NOT the only path. Grammar: gray #57534e = territory/action;
      blue #2f5169 = the model chain and its explicit property; rust #9a3f12 = Alignment; green #155c38 =
      consequence. Hand-authored (a fork-and-join, two inputs onto one mechanism). -->
@@ -14,7 +14,7 @@
   <desc id="mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
     directly, a local observable obligation. The model-mediated path: territory is reduced by abstraction to
     a model, which makes an explicit property available, a richer semantic obligation. Both land side by
-    side on one Alignment — constraint, sensor, validator, gate — which leads to consequence. Governance can
+    side on one Alignment — constraint, sensor, gate — which leads to consequence. Governance can
     act directly; models add reach but are not required.</desc>
 
   <defs>
@@ -71,7 +71,7 @@
   <!-- ===== THE JOIN: ALIGNMENT ===== -->
   <rect id="alignment" x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
-  <text x="360" y="462" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
+  <text x="360" y="462" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; gate</text>
   <!-- edge: alignment -> consequence -->
   <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#mc-g)"/>
   <text x="372" y="504" font-size="14.4" font-style="italic" fill="#155c38">gives consequence</text>

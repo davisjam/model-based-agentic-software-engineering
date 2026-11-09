@@ -29,11 +29,9 @@ The second route is \textbf{governance conversion}. A failure exposes a recurrin
 
 \begin{bookbox}{inset}{Failure Modes Before and After Failure}
 \label{inset-failure-modes}
-Engineering need not wait for a failure to learn how a system can fail. Techniques such as Failure Modes and Effects Analysis (FMEA) work up front: engineers identify possible failure modes, consider their effects, and use that analysis to decide where prevention, detection, mitigation, or other controls are warranted. Known obligations can therefore produce durable engineering structure before experience forces the issue.
+Engineers need not wait for a failure to learn how a system can fail. Techniques such as Failure Modes and Effects Analysis (FMEA) can begin before operation: engineers identify possible failure modes, consider their effects, and use that analysis to decide where prevention, detection, mitigation, or other controls are warranted.\citep{landers1977fmea} Known obligations can therefore produce durable engineering structure before experience forces the issue.
 
-Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineering identifies the failure mode behind the instance and asks what durable structure should address the class: a model, obligation, sensor, validator, constraint, gate, or other mechanism.
-
-The distinction is about how the need became known, not about the resulting mechanism. Up-front analysis and learning from experience may lead to the same control. Governance conversion names the second route; it does not imply that engineers should wait for failures they can reasonably anticipate.
+Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineers identify the failure mode behind the instance and ask what durable structure should address the class: a model, obligation, constraint, sensor, gate, or other durable structure.
 \end{bookbox}
 
 \section{Up Front: Encode What You Already Know}\label{heading:up-front-encode-what-you-already-know}
@@ -88,7 +86,7 @@ The conversion can land in one of five places:
 \setcounter{enumi}{3}
 \tightlist
 \item
-  \textbf{Missing evaluation → strengthen the validator.} Turn evidence into a repeatable judgment.
+  \textbf{Missing evaluation → strengthen the check.} Turn evidence into a repeatable judgment, whether advisory or enforced by a gate.
 \end{enumerate}
 
 \begin{enumerate}
@@ -136,7 +134,7 @@ Governance conversion motivates a useful concept: \textbf{engineering capital}. 
 
 % <!-- point: capital-earns-a-return-lower-marginal-engineering-cost | Capital earns a return: lower marginal engineering cost. Conversion is capital formation. | terms: engineering-capital, governance-conversion -->
 
-The capital must be something future work can actually inherit. A model can eliminate repeated reconstruction; a constraint can prevent a recurring failure; a sensor can expose previously hidden state; a validator can make repeated evaluation mechanical; a gate can enforce that evaluation; a skill or runbook can package judgment for reuse. These assets change the starting conditions of future work. They earn a return when future work requires less reconstruction, repeated judgment, failure, or rework because the structure exists.
+The capital must be something future work can actually inherit. A model can eliminate repeated reconstruction; a constraint can prevent a recurring failure; a sensor can expose previously hidden state; a gate can evaluate evidence and control whether work proceeds; a skill or runbook can package judgment for reuse. These assets change the starting conditions of future work. They earn a return when future work requires less reconstruction, repeated judgment, failure, or rework because the structure exists.
 
 % <!-- point: engineering-capital-can-transfer-between-projects | Engineering capital can transfer through reusable mechanisms or through the design judgment behind them; its value depends on work saved after adaptation and maintenance costs. | terms: engineering-capital, modeling-principle, alignment-principle -->
 

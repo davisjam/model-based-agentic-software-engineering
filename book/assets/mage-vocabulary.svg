@@ -18,7 +18,7 @@
   <desc id="mvDesc">A fork-and-join grammar. On the right, the model path: a representation may be
     structured into a model that makes properties explicit, yielding a richer semantic surface. On the
     left, the direct path: a raw action or artifact. Both paths arrive at one governance mechanism —
-    constraint, sensor, validator, gate — the model path available to it, the direct path acted on
+    constraint, sensor, gate — the model path available to it, the direct path acted on
     directly. Models are not a prerequisite. The mechanism governs an environment whose recurring lessons,
     through governance conversion, accumulate as engineering capital.</desc>
 
@@ -69,7 +69,7 @@
 
   <rect id="gov-mechanism" x="320" y="406" width="340" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="490" y="435" text-anchor="middle" font-size="19.6" font-weight="700" fill="#9a3f12">Governance Mechanism</text>
-  <text x="490" y="457" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <text x="490" y="457" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">Constraint · Sensor · Gate</text>
   <!-- edge: gov-mechanism -> governed-env -->
   <path d="M490,470 L490,508" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mv-neutral)"/>
   <text x="502" y="494" text-anchor="start" font-size="19.6" fill="#78716c">governs</text>

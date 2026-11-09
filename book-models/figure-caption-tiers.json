@@ -1320,6 +1320,18 @@
       "kind": "reference-table",
       "location": "part4",
       "rationale": "Reference table mapping four work limits to possible remedies."
+    },
+    "assets/governance-proposed-change.svg": {
+      "tier": "B",
+      "kind": "figure",
+      "location": "book/part3/3.3-constraints-sensors-validators-gates.md",
+      "rationale": "Supporting worked reporting-change diagram; caption explains the three functions and the limits of selected checks."
+    },
+    "constraints-sensors-validators-gates::Three functions of engineering governance": {
+      "tier": "B",
+      "kind": "table",
+      "location": "book/part3/3.3-constraints-sensors-validators-gates.md",
+      "rationale": "Supporting functional taxonomy; caption distinguishes the functions, permits composition, and attributes the classification."
     }
   }
 }

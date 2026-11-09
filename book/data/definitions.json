@@ -122,16 +122,16 @@
 
   "governance-mechanism": {
     "term": "Governance mechanism",
-    "box": "A repeatable environmental structure that encodes an engineering policy and either constrains an action, produces evidence of a violation, evaluates that evidence, or controls admission.",
+    "box": "A repeatable structure in the engineered environment for aligning an agent’s actions with the obligations represented in models.",
     "aspects": [
-      {"lead": "The four roles", "text": "Prevention (a constraint — scopes the action space so the mistake is impossible), sensing (a sensor — observes the system and produces evidence of what happened), validation (a validator — evaluates that evidence against the obligation), and admission (a gate — decides whether the result may advance, the loop's last door). Constraint and sensor are the catalogue's constraint/sensor move axis; package names a bundle."},
-      {"lead": "A model is not a mechanism until enforced", "text": "A structured model on disk aims nobody. The lint that reads it, the gate that checks against it, the generator that derives from it — those are the mechanisms. The model supplies the policy; the mechanism supplies the holding."},
-      {"lead": "Why 'repeatable environmental structure'", "text": "A one-off inspection is not a mechanism; a mechanism fires on every subsequent change without anyone remembering it. That repeatability is what lets attention be spent per class of failure instead of per change."}
+      {"lead": "Three questions", "text": "Constraints ask what actions or states are possible; sensors ask what evidence is available about the work; gates ask whether an action or result may proceed. These are functional categories: one mechanism may perform more than one function. Checking compares evidence with an obligation and may inform an advisory report or a gate’s decision."},
+      {"lead": "Models and mechanisms", "text": "A model states an obligation or represents relevant system knowledge. A sensor observes the work or system and supplies evidence; a checker can evaluate that evidence using the model; a constraint or gate determines what is possible or accepted. Producing a verdict does not by itself enforce it."},
+      {"lead": "Repeatable engineering structure", "text": "A configured mechanism acts at a defined point in the workflow or system. Its operation need not depend on each later agent remembering the obligation and deciding to check it."}
     ],
     "site_home": "N/A",
     "derived_from": "book/_design/book-editorial-discipline-directive-260802.md#bound-the-governance-mechanism-definition",
-    "book_home": "the-governed-environment#idx-def-governance-mechanism",
-    "book_home_owed": {"section": "Chapter 2 — §2.3 The Governed Environment", "status": "landed", "note": "Landed: the bounded-definition inset in 2.3's 'Four classes, one bounded term' subsection carries the index-def tag. Book-only by design."},
+    "book_home": "constraints-sensors-validators-gates#idx-def-governance-mechanism",
+    "book_home_owed": {"section": "Chapter 3 — §3.3 Governance Mechanisms", "status": "landed", "note": "The canonical definition is in §3.3. The section retains its stable source filename and anchor while the title and three-category account change. Validator names an implementation of checking, not a fourth functional category."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },

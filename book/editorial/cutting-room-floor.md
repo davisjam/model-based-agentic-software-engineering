@@ -4943,3 +4943,1036 @@ There is a corresponding question about the engineer. If agents can increasingly
 
 There is no reason to expect a stable collection of tasks that only humans can perform. The boundary will move as capabilities improve. Engineering competence will change with it, as it has changed with earlier technologies. What persists is the need for informed control over consequential work: understanding what the engineering arrangement can establish, recognizing where its evidence is insufficient, and accepting responsibility for the decisions made under its authority.
 ```
+
+## Governance mechanisms book-wide review — 8 November 2026
+
+The author approved this group after requesting a three-function taxonomy, broader gate definitions, static and runtime sensor scope, shorter repeated explanations, and practical model-recovery guidance. Original substantive source spans follow.
+
+### V8 — Three governance mechanisms around one proposed change
+
+- Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+% mage-auto-heading: prevention-and-observation
+% mage-auto-heading: tests-and-models-work-together
+% mage-auto-heading: one-obligation-several-ways-to-hold-it
+% mage-auto-heading: validators-and-gates
+% mage-auto-heading: one-measurement-different-enforcement-decisions
+% mage-auto-heading: positive-and-negative-constraints
+% mage-auto-heading: provenance-carried-admission
+% mage-auto-heading: the-freedom-a-control-preserves
+% mage-auto-heading: what-counts-as-a-mechanism
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Alignment -->
+
+% <!-- chapter-title: Constraints, Sensors, Validators, and Gates -->
+
+\chapter{Constraints, Sensors, Validators, and Gates}
+
+% <!-- point: four-roles-separate-prevention-observation-judgment-admission | Four roles — constrain, sense, validate, gate — separate prevention, observation, judgment, admission. | terms: governance-mechanism, constraint, sensor, validator, gate -->
+
+Environmental enforcement follows a familiar engineering pattern: restrict admissible behavior where possible, observe what occurs, evaluate the resulting evidence against a desired condition, and enforce the verdict. \magevalue{chapter:modeling} made properties explicit and showed how models can be analyzed for the questions they represent. Alignment must additionally connect those properties to the realized system. A mechanism may observe or derive evidence from the implementation, evaluate that evidence against an obligation, and control admission based on the resulting verdict. MAGE separates these functions into four roles: \textbf{constraint}, \textbf{sensor}, \textbf{validator}, and \textbf{gate}. A mechanism may perform several roles at once; the distinction separates prevention, observation, judgment, and admission.
+
+% <!-- index-def: governance-mechanism -->
+
+\begin{quote}
+\textbf{Governance mechanism.} A repeatable structure in the engineered environment through which Alignment constrains work, produces evidence, evaluates evidence, or controls admission.
+\end{quote}
+
+The four roles are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Constraint} --- removes or narrows an action or state the system is allowed to express.
+\item
+  \textbf{Sensor} --- observes the work or system and produces evidence.
+\item
+  \textbf{Validator} --- evaluates evidence against an obligation.
+\item
+  \textbf{Gate} --- controls whether work may cross a boundary.
+\end{itemize}
+
+% <!-- point: two-roles-act-on-the-work-two-act-at-the-door | Two roles act on the work; two act at the door it must pass. | terms: constraint, sensor, validator, gate -->
+
+The four split into two pairs. Constraints and sensors concern the work or system state: one restricts what may occur, the other observes what did occur. Validators and gates concern decisions over evidence: one evaluates the evidence, the other enforces the verdict.
+
+\section{Prevention and Observation}\label{heading:prevention-and-observation}
+
+% <!-- section-terms: constraints-and-sensors, constraint, sensor -->
+
+% <!-- point: a-mechanism-is-one-of-two-moves-prevent-or-observe | On the work-facing side of the loop, the two moves are prevention and observation. | terms: constraint, sensor, constraints-and-sensors -->
+
+% <!-- index-def: constraints-and-sensors -->
+
+On the work-facing side of the loop, the two complementary moves are prevention and observation; \autoref{constraint-vs-sensor} draws the split. Prefer a constraint where the unwanted action or state can be excluded cheaply and reliably. Otherwise, expose enough evidence for the obligation to be evaluated at an appropriate boundary.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/constraint-vs-sensor-b7bb82ed67.pdf}
+\caption{\emph{Constraint or sensor.} Prefer a constraint when the unwanted state can be excluded cheaply and reliably. Otherwise instrument the relevant state and produce evidence for later evaluation.}
+\label{constraint-vs-sensor}
+\end{figure}
+
+% <!-- point: a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it | An instruction is enforced only when a mechanism in the environment acts on it. | terms: constraint -->
+
+An instruction is enforced only when a mechanism in the environment acts on it. If a brief must contain a required section, check for that section before launch and refuse the launch when it is absent.
+
+% <!-- point: a-sensor-observes-and-produces-evidence-and-costs-iterations | A sensor observes and produces evidence — actual = observe(system); it does not judge, and acting on it costs an iteration. | terms: sensor -->
+
+% <!-- index-def: sensor -->
+
+% <!-- index-example: observability -->
+
+% <!-- gloss-only: Sensor | A governance mechanism that observes the work or system and produces evidence — actual = observe(system): a log, a trace, a metric emitter, a scan that reads what the code actually did. It produces evidence; it does not judge it, and it does not by itself determine that a violation occurred — that is the validator's job. Acting on the evidence fails the loop iteration, so the agent must run again; a sensor costs iterations. -->
+
+\textbf{A sensor observes what happened and produces evidence:} \texttt{actual~=~observe(system)}. It does not judge; a validator decides whether that evidence satisfies the obligation. When observation exposes a correctable violation after the fact, repair costs an additional iteration. That makes prevention attractive where the unwanted state can be excluded cleanly; many important properties, however, can only be observed.
+
+% <!-- point: a-ci-suite-bundles-three-roles-without-collapsing-the-distinction | Tests produce observations, assertions evaluate them, and a build or release gate can use the outcomes; the gate does not broaden the scope of the test evidence. | terms: sensor, validator, gate, governance-package -->
+
+Automated tests illustrate how several roles work together. Running the code under test and examining its behavior is a form of \emph{dynamic analysis}. The test records observations, and its assertions evaluate them against expected results or properties. A build or release gate can use the reported test outcomes to permit or block progress. Passing tests provide evidence about the cases executed and the properties checked; the gate's decision does not extend that evidence to untested behavior.
+
+The use of explicit evidence to justify consequential engineering claims also has a substantial history in safety and assurance engineering. Safety cases and the broader assurance-case tradition organize claims, supporting evidence, assumptions, and argument so that acceptance does not rest on an unsupported assertion that the system is safe.\citep{kelly1998arguingsafety}\citep{adelard1998manual} MAGE inherits that concern but separates several roles that an assurance argument may connect: what evidence the system produces, what evaluates that evidence, and whether and how the resulting judgment is enforced. An argument can justify a claim without itself controlling the system; Alignment asks when the surrounding engineering environment should enforce the obligation represented by that claim.
+
+% <!-- point: a-sensor-is-only-as-good-as-its-observability | A sensor is only as good as its observability — the semantic gap from the other side. | terms: sensor, observability -->
+
+% <!-- index-def: observability -->
+
+A sensor is only as good as the signal it can read. \textbf{Observability} means that a running system exposes enough signal to explain what it did and what went wrong. Observability supplies the loop\textquotesingle s evidence path: the relevant state or event must be exposed in a form a sensor can read. A gate can act only on evidence available at its boundary, whether produced earlier or derived there. That may be the event a gate fires on, the log a checker reads, or the trace that turns "the build failed" into "the build failed \emph{here, for this reason.}" If the evidence an obligation requires does not exist, no downstream mechanism can recover it; the environment must first instrument the relevant state or event.
+
+% <!-- point: a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration | A constraint excludes particular actions or representations; a closed enum rules out undeclared state names but does not by itself constrain transitions. | terms: constraint, typed-enum -->
+
+% <!-- index-def: constraint -->
+
+% <!-- gloss-only: Constraint | A governance mechanism that restricts available actions or representable states so that particular invalid choices are unavailable through it. A closed enum excludes undeclared state names; transition rules require their own constraint. -->
+
+\textbf{A constraint removes an unwanted action or state from the admissible space.} A lifecycle represented as an arbitrary string can contain a misspelled or unknown state. A closed enum instead names the permitted variants, such as \texttt{IDLE}, \texttt{RUNNING}, and \texttt{DONE}. Where the language enforces that closed type, checked code cannot construct an undeclared variant; external input must be validated when it is converted to the type. This rules out invalid state names. It does not, by itself, forbid a transition from \texttt{IDLE} directly to \texttt{DONE}: the transition operation needs its own constraint. Choose the representation according to the invalid behavior it actually excludes.
+
+Programming-language theory formalized this approach: choose a representation or type discipline in which some invalid programs cannot be written as well-typed terms.\mageaside{Benjamin C. Pierce characterizes type systems as syntactic methods for classifying program phrases so that classes of erroneous behaviors can be ruled out automatically.\citep{pierce2002}} MAGE generalizes the engineering preference rather than the formalism: where practical, restrict the action or representation space so the bad state cannot be produced, instead of detecting it again on every later iteration.
+
+% <!-- point: constraint-and-sensor-echo-control-engineering | Constraint and sensor echo control engineering — analogy, not identity. | terms: constraint, sensor, constraints-and-sensors -->
+
+% <!-- sidenote -->
+
+\begin{quote}
+\emph{A footnote on control engineering.} The decomposition echoes the closed-loop posture of control and systems-safety engineering without treating an agent fleet as a control system. See Leveson 2011 .\citep{leveson2011}
+\end{quote}
+
+% <!-- point: human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates | Human process instantiates the same roles: logging senses, the reviewer validates, the approver gates. | terms: sensor, validator, gate, constraint -->
+
+Human processes can play the same roles: logging senses, review validates, and approval gates. Human judgment remains necessary. Repeated, mechanically decidable judgments are candidates for durable structure.
+
+\section{Tests and Models Work Together}\label{heading:tests-and-models-work-together}
+
+Tests already preserve engineering intent. An example test records a case and the result it should produce; a regression test keeps checking behavior that a later change might break. Consider a queue whose workers claim jobs under expiring leases. Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one. A regression test can reproduce that sequence against the implementation and assert that B remains the owner. It preserves a concrete failure scenario and makes a recurrence easier to diagnose. Such tests remain useful as the system acquires more explicit models.\citep{winters2020}
+
+We can also state a property covering many such cases: a release carrying an old generation must not clear the current claim. \emph{Property-based testing} supplies generated inputs to a check of that property, varying worker identities, claim generations, and relevant operations. The engineer still has to choose a meaningful property and arrange for the generator to exercise the cases that matter. A large number of passing examples says little if the generator never produces a stale release. QuickCheck provides a framework for expressing and testing such executable properties.\citep{claessen2000quickcheck}
+
+An explicit model adds a reusable account of the behavior those tests should expect. For this ownership question, the model might retain each job's current owner, claim generation, and whether the claim has expired, together with the effects of claiming, reclaiming, and releasing. A model-based test can use that account to construct sequences of operations and compare the implementation's responses with the permitted outcomes. The model can help choose what to exercise, provide the test oracle---the rule for evaluating the result---or do both. This does not require a second implementation of the database. It requires enough behavior to answer the ownership question.\citep{utting2012taxonomy}
+
+For example, the test could issue each operation to both the simple ownership model and the real lease implementation, then compare their resulting ownership state. An attempted stale release must leave the current claim unchanged in both. The model makes that expectation available across many sequences, instead of requiring each test to restate the whole history. The test driver must also translate model operations into real calls and observe the corresponding results. A model that ignores storage details can help test ownership while leaving persistence and deployment behavior to other tests. A sequential test driver will not expose every race inside those calls; concurrent schedules and database atomicity need their own tests or analysis. The model preserves the distinctions needed for the ownership question while other tests address the details it omits.\citep{prenninger2005abstractions}
+
+These techniques overlap. Hypothesis's stateful testing, for example, generates sequences of actions and can compare a real system with a simpler model. That is both property-based and model-based testing. A useful failing sequence can then become a fixed regression test. The same obligation may therefore be checked through a carefully chosen example, generated variations, and comparisons with a model. The techniques contribute different ways to find and preserve evidence; they do not displace one another.\citep{hypothesis-stateful}
+
+Coverage helps us judge that evidence only when we say what was covered. A suite might exercise every modeled transition yet miss a problematic ordering of those transitions. It might execute every relevant line of implementation without asserting that ownership remained correct. Model coverage, code coverage, and the properties actually checked answer different questions. Passing the selected tests supports the claim that the implementation behaved as required in those executions. It does not establish that every possible execution satisfies the obligation.\citep{winters2020}
+
+The extra model also has a cost. Engineers must validate its rules against the requirements, maintain the connection to the implementation, and revise it when the intended behavior changes. Copying implementation logic into the expected-result calculation can reproduce the same mistake on both sides. A separate model earns its keep when a simpler statement of the behavior makes tests easier to select, results easier to evaluate, or recurring obligations easier to maintain. For a small local rule, a direct assertion may already be sufficient.
+
+\section{One Obligation, Several Ways to Hold It}\label{heading:one-obligation-several-ways-to-hold-it}
+
+% <!-- section-terms: constraint, validator, gate -->
+
+% <!-- point: a-modeled-obligation-does-not-imply-one-enforcement | Tests, runtime constraints, and model checking supply different kinds of evidence or restriction and can be combined for the obligation at hand. -->
+
+A modeled obligation does not imply one particular enforcement technology. Tests exercise an implementation through selected inputs and sequences of actions. Constraints restrict what the running system permits, and model checking can examine the behavior admitted by an explicit model. Ask what evidence the obligation needs and how the environment should act on it.
+
+% <!-- point: prefer-the-constraint-when-you-can-exclude-the-state | An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol. -->
+
+If an invalid state can be excluded by the runtime operation itself, use that constraint where practical. An atomic conditional update can acquire a job only while its database row remains unclaimed. Two competing workers cannot both win that transition. Tests can still check how the surrounding code handles success, refusal, and failure. The runtime primitive and the tests contribute different protections.
+
+% <!-- point: interleaving-properties-need-a-validator-over-the-state-space | Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior. -->
+
+\emph{Model checking} and \emph{model-based testing} answer different questions. A model checker asks whether the represented protocol permits a violation within the explored domain. Model-based tests ask whether the implementation behaves as the model requires in the executions they perform. Exploring the model does not itself execute database calls or establish that production code follows the modeled transitions. A counterexample found in the model can guide an implementation test, while a test failure can reveal a distinction missing from the model.\citep{baier-katoen2008,utting2012taxonomy}
+
+% <!-- point: temporal-obligations-require-another-shape-of-evidence | A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it. -->
+
+The shape of the obligation determines what further evidence is needed. A test can show that a particular job completed, or that it exceeded a required deadline. The stronger claim that every accepted job eventually terminates concerns all executions the system permits. A temporal model checker can examine that claim over a model, subject to its bounds and assumptions about scheduling and recovery. A fairness assumption must be stated rather than silently treating an operation that can occur as one that eventually will. Confidence in the implementation still depends on how faithfully it follows the modeled behavior.\citep{baier-katoen2008,lamport2002}
+
+% <!-- point: recovery-is-not-permission | In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission. | terms: constraint, sensor, constraints-and-sensors -->
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: Case study -->
+
+% mage-box-prefix:
+
+\begin{bookbox}{inset}{Worked inset --- DocAble: Recovering a Job Without Repeating Its Effect}
+\label{inset-docable-ownership-controls}
+DocAble's document-remediation jobs can outlive a worker attempt. A worker may crash, become slow, or lose contact while another attempt becomes eligible to continue the work. A lease makes current ownership visible and allows apparently abandoned work to be recovered. Its expiry cannot establish that the old worker stopped: a delayed worker may still return. The design therefore distinguishes eligibility to recover the work from permission to perform its protected side effect.
+
+A separate durable compare-and-set supplies the claim for that effect. It updates the claim only while the stored state matches the required prior state, so competing claimants cannot both acquire the same transition. A repeated delivery or expired lease does not bypass this claim. This is a runtime constraint on a particular effect, rather than a general guarantee that every part of a job executes exactly once. Recovery and permission serve different obligations.
+
+Ownership also depends on the surrounding sequence. After a newer lease generation has been issued, a late release from the old holder must not clear the current claim. DocAble uses a small, purpose-built checker to enumerate reachable interleavings of its ownership model within explicit bounds and search for invariant violations.\mageaside{This is bounded explicit-state model checking. ``Bounded model checking'' conventionally refers to bounded executions encoded for SAT/SMT solving; this checker explores an explicitly bounded state space.} The result concerns the represented protocol. Tests or other analysis must separately establish that the implementation follows it.
+
+A different analysis addresses eventual completion. The system's state and recovery models already carried the requirement that every submitted job eventually reach a terminal state. A small TLA+ specification checked with TLC was then developed for that obligation.\citep{lamport2002} The order matters: engineering identified the required behavior before constructing an analysis of it. As \autoref{match-mechanism-to-property} shows, the runtime claim, the interleaving search, and temporal checking respond to different properties. None substitutes for the others.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/match-mechanism-to-property-2c4d8f0003.pdf}
+\caption{\emph{Different obligations in one job protocol.} An atomic claim excludes competing winners for one transition. Bounded explicit-state exploration checks modeled interleavings. Temporal analysis addresses eventuality under stated assumptions. Tests provide separate evidence about the implementation, and a gate must be chosen separately when an analysis verdict should control admission.}
+\label{match-mechanism-to-property}
+\end{figure}
+
+A model-based test driver could add implementation evidence by issuing lease operations to both the running code and the model, then comparing the results. It would connect the modeled ownership rule to observed executions, complementing the runtime claim and the model analyses. Each contributes a different basis for an acceptance decision: a restricted operation, a result about the protocol, or an observed execution that satisfies the expected behavior.
+\end{bookbox}
+
+% <!-- point: mechanisms-match-properties-not-an-adoption-sequence | Select and combine mechanisms according to the evidence or restriction they contribute and the cost of obtaining it. -->
+
+Choose each mechanism for the evidence or restriction it contributes and the cost of obtaining it. Once that choice is clear, the next engineering question is how to construct the checker and validate the claim it makes.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: PROGRAMMING LANGUAGES -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Synthesizing the Guardrail}
+\label{inset-synthesizing-the-guardrail}
+Hard controls raise an obvious scalability question: who builds all of the checkers? The simplest answer is the same one we have used throughout this book: work with the agent. Once an invariant is explicit, an agent can help translate it into executable checks---linters, schema constraints, architectural tests, static-analysis rules, or mappings from model concepts to implementation artifacts. The engineer remains responsible for the invariant and for validating that the resulting mechanism actually enforces it, but need not hand-code every guardrail.
+
+There is a stronger version of this idea. A static analysis can itself be represented with degrees of freedom: specify what property the analysis should establish while leaving choices about how to perform the analysis open. Recent work has proposed self-adaptive static analysis, in which the analysis representation admits automatic optimization for the particular program and analysis. The aim of such methods is to generate precise and efficient analyses through self-aware, self-optimizing, sound analysis machinery---automating the realization of the control without making its enforcement probabilistic.\citep{bodden2018}\citep{bodden2023sosa}
+
+This is the same modeling move applied recursively. The obligation enforced by the guardrail is fixed; the implementation of the guardrail need not be. Rather than asking an agent to probabilistically judge whether generated code satisfies an obligation, automation can help construct and optimize the mechanism that checks it. As implementation becomes cheaper, verification need not remain artisanal. The factory can help build its own guardrails.
+\end{bookbox}
+
+% <!-- point: whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment | Whichever validator supplies the judgment, the enforcement still depends on what the environment does with its verdict. -->
+
+Whichever validator supplies the judgment, the enforcement still depends on what the environment does with its verdict.
+
+\section{Validators and Gates}\label{heading:validators-and-gates}
+
+% <!-- section-terms: validator, gate, governance-mechanism -->
+
+% <!-- point: a-validator-turns-evidence-into-a-judgment | A validator turns evidence into a judgment. | terms: validator, gate -->
+
+% <!-- index-def: validator -->
+
+% <!-- gloss-only: Validator | A governance mechanism that evaluates the evidence a change carries against the obligation it must meet — a provenance stamp, a re-derived test result, a completion re-checked rather than self-reported. It turns evidence into a judgment; whether that judgment is enforced depends on what the environment does with the result. -->
+
+The other two roles act on evidence and admission. A \textbf{validator} turns evidence into a judgment: does the observed call graph contain only permitted edges, did this journey establish its post-condition, does the provenance record account for every mutation? It reads the evidence a sensor produced --- or derives it straight from the artifact --- and asks whether it satisfies the obligation. A validator may be deterministic, probabilistic, or human; its verdict affects admission only when the environment acts on it. For example, a validator may report that a generated client is stale. Whether that result blocks a build is a separate decision.
+
+% <!-- point: a-gate-supplies-the-consequence-and-a-gate-is-a-commitment | A gate enforces the verdict — and a gate is a commitment. | terms: gate, validator -->
+
+% <!-- index-def: gate -->
+
+A \textbf{gate} enforces the verdict. It decides whether the work may cross a boundary: commit, merge, deploy, execute, close, or draw on a scarce resource. Validation and gating are separate design decisions. A cost ceiling can be measured and evaluated without blocking production; a security invariant may deserve immediate refusal. \textbf{Wiring a validator\textquotesingle s verdict into a gate is a commitment.} Making an uncertain validator blocking converts its false positives into rejected work or outages.
+
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: CAVEAT -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Enforcement Is Conditional}
+\label{inset-enforcement-conditional}
+A mechanism can guarantee only the property it actually governs, under the assumptions on which its evidence and implementation depend. A validator can faithfully evaluate evidence against the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state. Hard control therefore does not mean "the system is correct." It means that, within a stated scope, acceptance no longer depends on the agent voluntarily satisfying that obligation.
+
+For a test gate, the mechanically enforced condition is that the selected tests pass. A passing suite does not make every untested execution correct. State the scope of the evidence as carefully as the consequence of a failure.
+\end{bookbox}
+
+% <!-- point: cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing | A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing. | terms: validator, gate -->
+
+A loop may re-derive evidence at a later admission boundary rather than rely on the producing agent\textquotesingle s self-report or on an earlier marker.\mageaside{Re-derivation trades additional computation and latency for stronger assurance that the evidence corresponds to the artifact or state being admitted. Reusing or caching an earlier result can be a sound optimization when the system can establish that the relevant inputs have not changed; the optimization should preserve that correspondence rather than merely assume it.} Re-derivation can strengthen independence and freshness: the later mechanism evaluates the artifact or state that is actually being admitted. A release check can therefore inspect the candidate being shipped rather than accept an earlier report about a different revision. The principle is simpler than the implementation choice: the thing asking to pass does not get to define what counts as having passed.
+
+\section{One Measurement, Different Enforcement Decisions}\label{heading:one-measurement-different-enforcement-decisions}
+
+% <!-- section-terms: constraint, sensor, validator, gate -->
+
+% <!-- point: one-model-several-enforcement-decisions | One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity. | terms: constraint, sensor, validator, gate -->
+
+A service's usage measurements can support several responses, depending on the policy attached to them. An engineer may first record cost for accounting. The same service may reduce optional work as a job approaches its budget, or refuse new jobs when a configured daily ceiling would be exceeded. These are different decisions about what the environment should permit, even when they draw on related measurements. \autoref{cost-enforcement-gradient} shows observation, adaptation, and admission control as alternative responses. The appropriate response follows from the obligation, rather than from the mere availability of a measurement.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/cost-enforcement-gradient-4e2626b031.pdf}
+\caption{\emph{One Measurement, Different Enforcement Decisions.} The same measured quantity may be observed without enforcement, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement.}
+\label{cost-enforcement-gradient}
+\end{figure}
+
+% <!-- point: a-quantitative-tolerance-can-expose-margin | A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep. | terms: tolerance, sensor -->
+
+A quantitative tolerance can also expose margin. If a value remains inside its acceptable bound, margin describes the room between the realized value and that boundary. A request completing in 120 ms against a 200 ms ceiling has 80 ms of margin. That information can matter before conformance fails: two realizations may both satisfy the same obligation while one operates much closer to its boundary and therefore has less room to absorb variation or future change.
+
+% <!-- point: margin-needs-a-meaningful-distance | Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none. | terms: tolerance -->
+
+That calculation is easy only when the model supplies a meaningful distance to the boundary. Quantitative obligations often do: latency, memory use, throughput, or cost can be compared directly with a declared bound. Many software obligations are qualitative instead. A dependency may cross a forbidden architectural boundary or remain within the permitted graph; a transition may be legal or illegal. Some such obligations admit useful notions of distance from failure, while others do not. MAGE therefore uses margin where the model provides a meaningful measure; it does not assume that every tolerance does.
+
+\section{Positive and Negative Constraints}\label{heading:positive-and-negative-constraints}
+
+% <!-- section-terms: constraint -->
+
+% <!-- point: a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one | A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form. | terms: constraint -->
+
+Constraints can forbid an action or require an accompanying action. A document-editing interface, for example, might prohibit callers from using the raw format library directly. It might also require each permitted mutation to emit an attribution record. A source-time rule can check that the recording call appears in each known mutation path. \autoref{positive-negative-obligation} sets these two obligations side by side: restrict the prohibited access, and require the evidence-producing behavior. Checking that the call is present still leaves the correctness of the emitted evidence to its own checks.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/positive-negative-obligation-59f450f724.pdf}
+\caption{\emph{Negative and positive constraints.} A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.}
+\label{positive-negative-obligation}
+\end{figure}
+
+\section{Provenance-Carried Admission}\label{heading:provenance-carried-admission}
+
+% <!-- section-terms: constraint, governance-mechanism -->
+
+% <!-- point: provenance-carried-admission-is-the-derivation-path-case-of-conformance | Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact. | terms: constraint -->
+
+Earlier in this chapter, architectural conformance provided one example of enforcing intended relations. Provenance is useful for a particular version of that problem: the required relation concerns not merely which components interact, but the path through which a protected operation was derived.
+
+% <!-- point: restrict-a-recognizable-primitive-surface-directly | Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature. | terms: constraint -->
+
+Some obligations are cheap to enforce by controlling access to a recognizable primitive. Filesystem and network access are examples. The environment can identify the APIs that perform those effects, designate the small portion of the system permitted to use them, and reject other callers with comparatively simple static analysis. The prohibited interaction has a recognizable surface.
+
+% <!-- point: some-obligations-have-no-single-forbidden-call | Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path. | terms: constraint -->
+
+Other architectural obligations do not have such a convenient boundary. Suppose a payment must be approved before it reaches the transfer operation. A future implementation may combine otherwise legitimate account queries, calculations, and service calls into a new route to that operation. Every individual call can be permitted while the route omits approval. A rule looking only for previously identified bypasses may therefore miss the new path.
+
+This matters in agentic engineering because agents readily invent new ways to interact with a system, including valid implementation paths its designers did not anticipate. A prohibition against yesterday\textquotesingle s bypass need not prohibit tomorrow\textquotesingle s variation. Enumerating forbidden routes can therefore become an open-ended enforcement strategy.
+
+% <!-- point: provenance-reverses-the-enforcement-problem | Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction. | terms: constraint, governance-mechanism -->
+
+Provenance can reverse the enforcement problem. Instead of trying to recognize every way an operation might have bypassed the sanctioned abstraction, require the protected operation to carry evidence that it passed through that abstraction.
+
+The sanctioned abstraction can issue an opaque provenance value that ordinary callers cannot construct. The admission boundary then admits the operation only when that provenance is present and valid:
+
+\[
+\operatorname{admit}(x) \iff \operatorname{valid}(x) \land \operatorname{sanctionedProvenance}(x)
+\]
+
+\autoref{provenance-carried-admission} traces the single sanctioned path: an operation reaches the protected boundary only by deriving through the sanctioned abstraction, which supplies the provenance the boundary demands.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/provenance-carried-admission-835241521f.pdf}
+\caption{\emph{Provenance-carried admission.} A protected operation must derive through the sanctioned abstraction, which attaches provenance to the resulting operation. The receiving boundary requires that provenance before admitting the operation. The mechanism removes the degree of freedom to obtain the operation through some other implementation path, without requiring the environment to enumerate those alternative paths.}
+\label{provenance-carried-admission}
+\end{figure}
+
+An agent remains free to invent new internal implementations, but invention does not create a new route around the obligation. A newly synthesized path that bypasses the sanctioned abstraction arrives at the boundary without valid provenance and is refused. Enforcement therefore depends on recognizing the allowed derivation, not enumerating all possible forbidden derivations.
+
+% <!-- point: choose-provenance-when-derivation-paths-are-numerous-or-compositional | Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional. | terms: constraint -->
+
+That distinction suggests when the pattern is useful. If protected interaction occurs through a small, statically recognizable primitive surface, restrict that surface directly; simpler mechanisms are preferable. Provenance becomes attractive when the obligation concerns how an otherwise ordinary operation was derived, and alternative derivation paths are numerous, compositional, or difficult to identify cheaply from source.
+
+% <!-- point: provenance-makes-a-derivation-path-sanctioned | Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes. | terms: constraint, governance-mechanism -->
+
+The pattern is therefore not principally about attribution. It is a way to make a derivation path the sanctioned route to admission. A source-time rule can require known sanctioned implementations to emit provenance; the admission boundary can additionally require every protected operation to possess provenance that only the sanctioned path could have produced. The two controls address opposite sides of the relation: one checks known producers; the other refuses unknown routes to the consumer.
+
+The control restricts a derivation path through the interaction graph: the protected operation must pass through the node that issues its provenance. Other implementation choices remain open.
+
+\section{The Freedom a Control Preserves}\label{heading:the-freedom-a-control-preserves}
+
+% <!-- section-terms: constraint, governance-mechanism -->
+
+% <!-- point: preserving-freedom-has-positive-value | Preserving degrees of freedom has positive value: some choices are immaterial, some are not yet ripe, and agent exploration can find strategies engineers did not anticipate. | terms: constraint, governance-mechanism -->
+
+Preserving degrees of freedom has positive value of its own. Some choices are immaterial to the engineering obligation: several realizations satisfy it equally, and fixing the choice would only add coupling. Others are consequential but not yet ripe; leaving them open lets implementation supply information before commitment. And exploration itself is valuable: an agent may find a strategy its engineers did not anticipate.
+
+As implementation becomes cheaper, such exploration becomes increasingly attractive. An engineer can specify what must hold, allow an agent to investigate how to achieve it, and commit to a mechanism once the evidence justifies the choice. A well-designed control excludes unacceptable realizations without unnecessarily restricting the search among acceptable ones.
+
+% <!-- point: defer-consequential-commitments-until-the-last-responsible-moment | Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer. | terms: constraint -->
+
+This is the familiar discipline of delaying irreversible decisions, with its qualifier intact: defer consequential commitments until the \emph{last responsible moment}, when additional information is worth the cost of waiting. Some decisions become more expensive to change as implementation proceeds; others become cheaper to make, because implementation reveals information. Agents change that economics: cheap implementation produces the revealing evidence sooner, so more commitments can responsibly wait. Enforcement makes such deferral safer. By ensuring that obligations remain satisfied, controls can increase the freedom an engineer can responsibly delegate.
+
+% <!-- point: realization-space-underconstraint-vs-overconstraint | Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P. | terms: constraint, governance-mechanism -->
+
+The intuition admits a compact statement. Let \(\mathcal R\) be the possible realizations of the work. Each obligation \(O_i \subseteq \mathcal R\) is the set of realizations satisfying it, so the acceptable realizations are \(\mathcal A = O_1 \cap \ldots \cap O_n\). Each control permits some set \(C_j \subseteq \mathcal R\), and the controls collectively permit \(\mathcal P = C_1 \cap \ldots \cap C_m\). Two distinct problems fall out as set differences:
+
+\[
+\text{underconstraint: } \mathcal P \setminus \mathcal A \qquad \text{overconstraint: } \mathcal A \setminus \mathcal P
+\]
+
+Underconstraint leaves unacceptable realizations permitted; it threatens correctness. Overconstraint excludes acceptable realizations; it sacrifices useful engineering freedom. \autoref{permitted-vs-acceptable} draws both regions and their mismatch.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/permitted-vs-acceptable-fc09428d74.pdf}
+\caption{\emph{Obligations and permitted realizations.} The obligations jointly admit an acceptable region; the controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through --- underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded --- overconstraint.}
+\label{permitted-vs-acceptable}
+\end{figure}
+
+% <!-- point: matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified | Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence. | terms: constraint -->
+
+Making \(\mathcal P\) coincide with \(\mathcal A\) is an idealization, not always a practical or even desirable goal. An engineer may deliberately exclude acceptable alternatives --- for operational simplicity, for consistency, or for assurance. The point of the framing is to make such a restriction a justified decision rather than an accidental consequence of the controls.
+
+\section{What Counts as a Mechanism}\label{heading:what-counts-as-a-mechanism}
+
+% <!-- section-terms: governance-mechanism, constraints-and-sensors -->
+
+% <!-- point: keep-policy-guidance-and-governance-mechanism-separate | Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts. | terms: governance-mechanism, model-as-map -->
+
+Keep \textbf{policy}, \textbf{guidance}, and \textbf{governance mechanism} separate. A model file can state policy; a playbook can guide an agent; neither becomes an enforcing mechanism merely by existing or by appearing in an agent\textquotesingle s context. Enforcement begins when something in the environment performs one of the four roles. The model states the obligation; the consuming mechanism enforces it.
+
+% <!-- point: the-same-artifact-can-play-several-roles | The same artifact can play several roles; the model is the representation, the machinery the enforcement. | terms: governance-mechanism, model-as-map -->
+
+The same artifact can play several roles. A structured model injected into context guides reasoning. A validator reading that same model uses it as the obligation against which observed code is judged. A generated permission table turns the same modeled relation into a constraint. The model is the representation; the consuming machinery supplies the enforcement.
+
+% <!-- point: implementations-bundle-roles-name-them-do-not-stretch-the-terms | Implementations bundle roles; name them, don't stretch the terms. | terms: governance-package, constraints-and-sensors -->
+
+% <!-- gloss-only: Governance mechanism | A repeatable structure in the engineered environment through which Alignment constrains work, produces evidence, evaluates evidence, or controls admission — four roles: constraint, sensor, validator, gate. A control is a governance mechanism considered in relation to the obligation or risk it addresses; a model joins governance only when something reads or enforces it. -->
+
+% <!-- index-def: governance-package -->
+
+% <!-- gloss-only: Governance package | A mechanism that bundles several roles — a structured model that aims the agent shipped with the lints and drift-parity gates that hold what the model only aims at. Name the roles inside the bundle rather than stretching one term to cover them all. -->
+
+Implementations routinely bundle roles. A test runner may sense, validate, and gate; a narrow interface may constrain while emitting provenance. Name the functions inside the bundle rather than stretching every influence into a "soft constraint" or "soft sensor."
+
+% <!-- point: represented-intent-becomes-enforceable-through-one-of-four-roles | Leave-with: intent becomes enforceable through one of four roles; next, where the mechanisms come from. | terms: governance-mechanism, alignment-principle -->
+
+Some mechanisms can be designed before the first autonomous change; others become visible only after the environment fails. The next section shows how those failures become durable structure.
+
+```
+
+### W9 — Carry Modeling and Alignment into a developing engineering problem
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+% <!-- point: part-3-treated-alignment-as-a-separate-discipline-part-2-enlarges-the-scale | Alignment does not require comprehensive Modeling; permissions, types, APIs, and local gates enforce local obligations directly, and explicit models expand the semantic reach of that enforcement. | -->
+
+Alignment does not require comprehensive Modeling: permissions, types, APIs, and local gates can enforce local obligations directly. Explicit models expand the semantic reach of that enforcement.
+
+% <!-- point: the-part-developed-the-discipline-in-five-moves | The chapter developed the discipline in five moves: boundary, obligation, roles, conversion, meta-governance. | -->
+
+\magevalue{chapter:alignment} developed Alignment in five moves: locate the boundary where the obligation can be enforced; state an independent obligation, including its tolerance where acceptable variation matters; distinguish constraints, sensors, validators, and gates; convert recurring failures and judgments into durable structure; and govern the resulting control machinery as a system in its own right.
+```
+
+### W9 — Carry Modeling and Alignment into a developing engineering problem
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+% <!-- point: modeling-and-alignment-are-both-on-the-table-but-that-is-not-yet-a-method | Modeling and Alignment are both on the table, but that is not yet a method; Chapter 4 turns those decisions into method. | -->
+```
+
+### W9 — Carry Modeling and Alignment into a developing engineering problem
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Modeling and Alignment are now both on the table. That still is not a method. The remaining problem is judgment: when a question deserves a model, when an obligation deserves enforcement, how work should move through the environment, and what to do when the available representation or control is insufficient. \magevalue{chapter:one-problem-many-models} turns those decisions into method.
+```
+
+### W9 — Carry Modeling and Alignment into a developing engineering problem
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+\magefootnote{estate}{I found no comparable control-machinery model in the external systems reconstructed for \magevalue{chapter:software-factories}.}
+```
+
+### Y8 — Recover models through four practical techniques
+
+- Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Begin with two questions, because representation and enforcement are different things. First, what does the organization already reason through? Which documents, schemas, graphs, tests, or configurations repeatedly save someone from reconstructing the system from raw implementation? Second, what is already enforced? Which permissions, types, validators, CI checks, reviews, or operational gates currently constrain or admit work, and what can each actually decide? A mature system may already contain substantial local Alignment even when its system-level representations are weak. A schema may reject invalid data, a type system may exclude states, and CI may block a merge. The brownfield problem is therefore not simply to build a better map and add controls afterward. Strengthen representation and enforcement together: connect useful representations to the territory they describe, make important obligations explicit enough to evaluate, and place enforcement where the required semantics are available.
+```
+
+### Z6 — Keep operations concrete, including the very bad days
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+A method also has to survive ordinary days, not only successful changes --- full disks, conflicted branches, vanished agents, stalled queues, flaking tests. Engineers often know how to recover, but that knowledge may live only in someone\textquotesingle s head, where an autonomous agent cannot reliably reach it. MAGE therefore brings Modeling and Alignment into operation. Lifecycle models represent healthy progress and important failure states. Events make consequential transitions observable. Runbooks preserve sanctioned reactions, including where judgment remains. Metrics expose the quantities needed to judge whether the loop is healthy. Together they support an operating loop: recognize the state, surface the right reaction, take the appropriate action, and observe what happened next.
+
+None of these structures is binding merely by existing. Constraints, validators, and gates give selected operational obligations consequence where the required state is legible and the evidence adequate. Keeping representation, evidence, procedure, and enforcement separate lets the operating environment grow without collapsing them into one mechanism.
+
+% <!-- index-def: lifecycle -->
+```
+
+### Z9 — Distinguish prevention from checking at the context-delivery boundary
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+A richer slice of the right rules makes a good action easier to find; only a constraint, validator, or gate makes a bad action unavailable.
+```
+
+### A88 — Show how checks become binding on acceptance
+
+- Source: `book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Some obligations can be enforced directly through types, permissions, tests, validators, or gates.
+```
+
+### A93 — Keep the Alignment principle consistent with the three mechanisms
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Enforce important engineering obligations on autonomous work. Encode them in mechanisms that constrain actions, produce evidence, evaluate evidence against obligations, or control admission.
+```
+
+### A94 — Group the three functions under Governance mechanisms
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+\textbf{Governance mechanism.} A repeatable structure that enforces an engineering obligation in the environment. A mechanism can play four roles: constraints restrict permissible actions; sensors produce evidence; validators check evidence against an obligation; and gates decide whether work may cross a workflow boundary. One mechanism may play more than one role.
+```
+
+### A95 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Alignment enforces selected engineering obligations through constraints, sensors, validators, and gates.
+```
+
+### A96 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Encode important obligations into constraints, sensors, validators, and gates. Some mechanisms can constrain actions or artifacts directly; others evaluate evidence and determine whether work may proceed.
+```
+
+### A97 — Keep the Alignment principle consistent with the three mechanisms
+
+- Source: `book/latex/sources/part3/00-part-intro.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.
+```
+
+### A98 — Keep the Alignment principle consistent with the three mechanisms
+
+- Source: `book/latex/sources/part3/3.6-alignment-summary.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.
+```
+
+### A99 — Keep the Alignment principle consistent with the three mechanisms
+
+- Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+make engineering obligations enforceable by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.
+```
+
+### B10 — Cite FMEA and shorten the comparison with governance conversion
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Engineering need not wait for a failure to learn how a system can fail. Techniques such as Failure Modes and Effects Analysis (FMEA) work up front: engineers identify possible failure modes, consider their effects, and use that analysis to decide where prevention, detection, mitigation, or other controls are warranted. Known obligations can therefore produce durable engineering structure before experience forces the issue.
+```
+
+### B10 — Cite FMEA and shorten the comparison with governance conversion
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Governance conversion works in the complementary direction. A failure or important surprise supplies evidence that something was missing. Engineering identifies the failure mode behind the instance and asks what durable structure should address the class: a model, obligation, sensor, validator, constraint, gate, or other mechanism.
+```
+
+### B10 — Cite FMEA and shorten the comparison with governance conversion
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+
+
+The distinction is about how the need became known, not about the resulting mechanism. Up-front analysis and learning from experience may lead to the same control. Governance conversion names the second route; it does not imply that engineers should wait for failures they can reasonably anticipate.
+```
+
+### B11 — Distinguish evaluation from enforcement
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+\textbf{Missing evaluation → strengthen the validator.} Turn evidence into a repeatable judgment.
+```
+
+### B12 — Keep the engineering-capital paragraph focused on reusable assets
+
+- Source: `book/latex/sources/part3/3.4-governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+The capital must be something future work can actually inherit. A model can eliminate repeated reconstruction; a constraint can prevent a recurring failure; a sensor can expose previously hidden state; a validator can make repeated evaluation mechanical; a gate can enforce that evaluation; a skill or runbook can package judgment for reuse. These assets change the starting conditions of future work. They earn a return when future work requires less reconstruction, repeated judgment, failure, or rework because the structure exists.
+```
+
+### B13 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/part3/3.5-when-guardrails-collide.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+As governance mechanisms accumulate, they become control machinery: the constraints, sensors, validators, gates, permissions, and other mechanisms through which the environment enforces its obligations. The machinery can fail even when every individual control is reasonable. Two controls can impose incompatible demands; their execution order can be ambiguous; an obsolete control can survive after its purpose disappears; an important obligation can remain uncovered. None of these failures is visible by reading one mechanism\textquotesingle s code.
+```
+
+### B14 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/part3/3.6-alignment-summary.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Constraints act before work proceeds; sensors produce evidence; validators evaluate evidence; gates control admission.
+```
+
+### B15 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/part3/3.6-alignment-summary.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Constraints, sensors, validators, and gates form an engineering system of their own.
+```
+
+### B16 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/appendix-operators-reference/governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Possible responses include a representation, constraint, sensor, validator, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention of human judgment.
+```
+
+### B17 — Update the governance-conversion reference card
+
+- Source: `book/latex/sources/appendix-operators-reference/governance-conversion.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+model · constraint · sensor · validator · gate
+procedure · redesign · retire · keep human
+```
+
+### B18 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/appendix-adopting-genai/engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Enforcement begins when the result no longer depends entirely on that cooperation: a constraint can make an action unavailable, a sensor can produce independent evidence, a validator can evaluate that evidence, or a gate can prevent unacceptable work from advancing.
+```
+
+### B19 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+the environment still needs a constraint, validator, gate, permission, or other mechanism that can act on that obligation independently.
+```
+
+### B19 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+A skill is therefore not confined to one side of the improve-judgment / enforce-obligations division: its direct instructions may support a reasoner\textquotesingle s judgment, but it can also carry or invoke the machinery through which selected obligations are enforced.
+```
+
+### B20 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+A validator can then measure the realization against the represented tolerance and reject a violation.
+```
+
+### B21 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+a validator can reject a forbidden dependency even if the agent repeatedly proposes one.
+```
+
+### B22 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/part6/6.4-research-agenda.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+a validator can use the same representation to reject forbidden edges,
+```
+
+### B23 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/appendix-adopting-genai/_opening.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+a validator may reject an artifact, instrumentation may produce evidence for later evaluation,
+```
+
+### B24 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/appendix-adopting-genai/engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+let a validator reject an edge the organization has declared forbidden.
+```
+
+### B25 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/appendix-skill-recipe/_opening.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+encode it in Alignment through constraints, types, validators, gates, or other mechanisms that do not depend on the producing agent choosing correctly.
+```
+
+### B26 — Use constraints, sensors, and gates consistently
+
+- Source: `book/latex/sources/appendix-skill-recipe/applying-the-recipe.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+The skill may propose, scaffold, or invoke constraints, validators, gates, and other mechanisms, but enforcement must come from the environment.
+```
+
+### B27 — Name the mechanism that enforces the check
+
+- Source: `book/latex/sources/appendix-skill-recipe/applying-the-recipe.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+self-governance can propose and scaffold a constraint, validator, or gate, but the resulting mechanism --- not the skill\textquotesingle s judgment --- must supply the enforcement.
+```
+
+### B28 — Clarify how governance mechanisms support enforcement
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics.
+```
+
+### B37 — Keep gates broader than commit and deployment checks
+
+- Source: `book/latex/sources/frontmatter/0.5-preface.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+% <!-- gloss: Gate | A check placed across a pipeline step — a commit, a deploy — that refuses to let the step through until its condition is met. -->
+```
+
+### C13 — The reference card counts sensing/checking as enforcement and then describes permissions/sandboxes as observations
+
+- Source: `book/latex/sources/appendix-operators-reference/brownfield-progress.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+\textbf{Enforcement reach} asks how much of the important obligation surface is constrained, sensed, validated, or gated at an appropriate boundary.
+```
+
+### C13 — The reference card counts sensing/checking as enforcement and then describes permissions/sandboxes as observations
+
+- Source: `book/latex/sources/appendix-operators-reference/brownfield-progress.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Strong local enforcement can exist with thin explicit modeling when tests, permissions, sandboxes, or admission controls directly observe the relevant property. Rich models can also coexist with weak enforcement when violations still depend on human detection.
+```
+
+### C14 — This is a claim about independence from agent cooperation, so a lint should not appear as a sufficient enforcement mechanism by itself
+
+- Source: `book/latex/sources/appendix-skill-recipe/theory.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+If a rule must hold independently of agent cooperation, implement a mechanism such as a lint, gate, type, or architectural constraint.
+```
+
+### C15 — The Alignment summary mixes mechanisms, analyses, and implementations in one peer list
+
+- Source: `book/latex/sources/appendix-product-lifecycle/engineering-and-realization.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+\emph{Alignment posture.} Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, permissions, and gates.
+```
+
+### C16 — This paragraph describes the generic uses of evidence, with no particular acceptance boundary
+
+- Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Evidence can inform a decision or feed an admission gate.
+```
+
+### C17 — The recurring-gap investment principle applies beyond admission of a work product
+
+- Source: `book/latex/sources/appendix-adopting-genai/engineering-the-environment.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+A sufficiently stable and evaluable obligation may earn a constraint or admission gate.
+```
+
+### C18 — This coverage paragraph ranges over all obligations, unlike the earlier acceptance-probability model
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Some belong in a compiler rule or admission gate;
+```
+
+### C19 — A measurement may govern runtime operation or resource use as well as admission
+
+- Source: `book/latex/sources/appendix-models/measurement.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+The result remains report-only unless the evidence warrants a warning or an admission gate.
+```
+
+### C20 — These generic correspondence-to-enforcement cells need not restrict the available response to admission
+
+- Source: `book/latex/sources/appendix-models/representation-to-authority.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Boundary lint or admission gate
+```
+
+### C20 — These generic correspondence-to-enforcement cells need not restrict the available response to admission
+
+- Source: `book/latex/sources/appendix-models/representation-to-authority.tex`.
+- Source revision: `9e36be90747a1a868a6b523d5258e063797125ee`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this archive entry.
+
+Reason: Author-approved governance review; preserve displaced prose and its anchors.
+
+```latex
+Warning or admission gate
+```

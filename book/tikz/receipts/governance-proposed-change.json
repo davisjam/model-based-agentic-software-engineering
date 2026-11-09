@@ -1,0 +1,438 @@
+{
+  "id": "fig-governance-proposed-change",
+  "figure": "governance-proposed-change",
+  "title": "Governance around a proposed reporting change",
+  "date": "2026-11-07",
+  "status": "accepted",
+  "approval_required": false,
+  "archive_on_acceptance": true,
+  "visual_proposition": "One proposed change is admitted only when a gate uses the relevant check results and architectural rule; the constraint narrows available implementation paths and the sensor supplies evidence about behavior that remains possible.",
+  "semantic_structure": {
+    "candidate": "proposed reporting change",
+    "constraint": "module boundary exposes billing API client and excludes private database connector in checked imports",
+    "sensor": "instrumented tests record caller, attempted destination, and outcome, including direct database attempts through generic networking",
+    "model": "reporting uses billing API; direct billing database access forbidden",
+    "gate": "checks build results and recorded interactions against architectural rule, returns change for repair on required failure or missing evidence",
+    "outcomes": [
+      "accepted change",
+      "returned for repair"
+    ]
+  },
+  "topology": "Direct candidate spine plus parallel constraint/sensor branches; separate evidence and policy inputs converge at gate; gate branches to accepted candidate or repair.",
+  "forbidden_inferences": [
+    "Constraint, sensor, and gate are not exclusive products or mandatory sequential stages.",
+    "The sensor does not prevent the database connection.",
+    "This example does not define constraints as static or sensors as dynamic.",
+    "Passing selected checks does not establish all possible executions conform.",
+    "An architectural model does not enforce its rule merely by existing."
+  ],
+  "rhetorical_hierarchy": [
+    "the proposed reporting change",
+    "the distinct constraint and sensor functions around that change",
+    "the merge gate combining inputs and controlling admission"
+  ],
+  "realization_reason": "Explicit user request for paired editable SVG and native TikZ, matching the existing book artifacts. Fixed placement preserves the distinct candidate spine and separate evidence convergence without crossed connectors.",
+  "caption": "Governance around a proposed change. Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks' coverage limits the assurance they provide.",
+  "primary_label": "constraint-vs-sensor",
+  "proposed_context": {
+    "path": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/proposed-replacements-with-three-role-sweep.json",
+    "row": "V8",
+    "field": "after"
+  },
+  "intended_destinations": {
+    "svg": "book/assets/governance-proposed-change.svg",
+    "tikz": "book/tikz/figures/governance-proposed-change.tex"
+  },
+  "files": [
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/governance-proposed-change.svg",
+      "sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/governance-proposed-change.tex",
+      "sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/governance-proposed-change.png",
+      "sha256": "c45c6d5a851bc60b8a630780fd72a4fa2bb8e8528092380d384f8d21e3dd8938"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/governance-proposed-change.pdf",
+      "sha256": "36dd260223f5fd78ff1b4b5e53789d410f5a10e5f25493b59baaecabbff9f820"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/native-proof.png",
+      "sha256": "9e3530d1562df582c9fbb76c6e5b04f84af964ce5ee9794a172cb2c1f8c00cc5"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/proof.tex",
+      "sha256": "7133caa8f1b732792d144e0bbe7e32f4d75e4b7c0e7352591c064cd02c640bb6"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/proof.log",
+      "sha256": "6b143fd8eb4db52d1327f6398ec0c27d27bae4586bc4e1d7247c6a245b673086"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/native-text.xml",
+      "sha256": "fa81aebb3428522a0a2a1cf08eabf458e734d8a33c8c31b6bec7d35d08da123a"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/svg-audit.txt",
+      "sha256": "545c38b0922de19734fbffde62792c37c2aef6a3216cfa472449173165220f7d"
+    },
+    {
+      "path": "/private/tmp/mage-proposed-change-figure/svg-edge-audit.txt",
+      "sha256": "2a5e3a0c050b5da936e23631e30fc068c7a55de5b9f7cf7e988075b025833c04"
+    }
+  ],
+  "style_sources": [
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/AGENTS.md",
+      "sha256": "690ee30ba13dab0366d407fdf75163a840bc01e7f7bd6de3008ae2f5f34d455f"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/BUILD.md",
+      "sha256": "6085a00863b3952370f0cc7f457448c2ddf5f9d2a952b397e250da07fbb7445d"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/tikz/README.md",
+      "sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/book/tikz/mage-figures.sty",
+      "sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/latex/house.sty",
+      "sha256": "c9cfa8d80eb43b2229565fe969de0c48a2865d6f9113c5dc6a658b8832d7971a"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/latex/book-fonts.tex",
+      "sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/plugin/mage/skills/self-communicate/SKILL.md",
+      "sha256": "3f13f17d818c89bd4d28470ef91522caffabd7642c0975397c1049853006a3ab"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/plugin/mage/skills/self-communicate/drawing/AGENTS.md",
+      "sha256": "d019bfc3b82fc1fef49de370ea3c67b2c29d04500d22479548dc526ce9be908d"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/plugin/mage/skills/self-communicate/drawing/figures.md",
+      "sha256": "f9cabcb45b525aac47414c798b5333b469a7046fec6b1c98b11f6c36e741b073"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog/plugin/mage/skills/self-communicate/drawing/diagrams.md",
+      "sha256": "8f765fa1bd51a17dce5fd63b073c1c417a64ee56db48406c77db64e30350513a"
+    }
+  ],
+  "audit": "/private/tmp/mage-proposed-change-figure/audit.json",
+  "render_commands": {
+    "svg": "/opt/homebrew/bin/rsvg-convert -b white -w 1100 governance-proposed-change.svg -o governance-proposed-change.png",
+    "native": "From repository root: TEXMFVAR=/private/tmp/mage-three-role-figures/tex-cache TEXMFCACHE=/private/tmp/mage-three-role-figures/tex-cache /Library/TeX/texbin/lualatex -interaction=nonstopmode -halt-on-error -output-directory=/private/tmp/mage-proposed-change-figure /private/tmp/mage-proposed-change-figure/proof.tex",
+    "native_png": "/opt/homebrew/bin/mutool draw -r 160 -o native-proof.png proof.pdf"
+  },
+  "integration_review_note": "Reviewed SVG and native proof at publication width; all labels legible, arrows clear, no overlaps. Both renderings distinguish candidate flow from decision inputs.",
+  "accepted_date": "2026-11-08",
+  "source": "book/assets/governance-proposed-change.svg",
+  "chapter": "3.3-constraints-sensors-validators-gates",
+  "claim": "Governance around a proposed change. Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks' coverage limits the assurance they provide.",
+  "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
+  "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+  "integration_review_date": "2026-11-08",
+  "alt": "A proposed reporting change follows a solid candidate path toward a merge gate. A constraint limits checked imports to the billing API client while generic networking remains possible. Instrumented tests supply caller, destination, and outcome records; recording does not block connections. Dashed arrows carry build-check results, recorded interactions, and the architectural rule to the gate. The gate accepts a change when required checks pass and returns it for repair on a required failure or missing evidence. Passing covers only the selected checks.",
+  "bw_encoding": "Pale 6-percent-gray panels identify the three governance functions; other nodes remain white. Solid arrows carry the candidate and outcomes; dashed arrows carry decision inputs. Labels repeat every distinction without relying on color.",
+  "required_terms": [
+    "CONSTRAINT",
+    "SENSOR",
+    "GATE",
+    "ARCHITECTURAL MODEL",
+    "Recording does not block connections.",
+    "Refuse merge on required failure",
+    "Passing covers only the selected checks."
+  ],
+  "integration_history": [
+    "Replace the old constraint-vs-sensor embed in the proposed V8 prose with this one combined figure.",
+    "Keep the existing constraint-vs-sensor label as the sole label. This preserves reference joins and the native/Markdown projection contract while replacing its drawing.",
+    "Do not overwrite the earlier approved pending constraint-vs-sensor.svg proposal; preserve it as history.",
+    "On acceptance, register the new TikZ candidate and update native assets/manifests, then run the normal integrated figure/build checks.",
+    "This receipt proposes files only; no manuscript or repository source was edited."
+  ],
+  "integration": [
+    "Approved SVG and native candidate installed on 2026-11-08.",
+    "The manuscript retains the stable constraint-vs-sensor label.",
+    "The old drawing and its registry records remain historical; active candidate coverage uses governance-proposed-change."
+  ],
+  "proof_manifest": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json",
+  "native_validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+    "geometry_findings": 0,
+    "unapproved_compile_diagnostics": 0,
+    "status": "passed",
+    "date": "2026-11-08",
+    "page": 44,
+    "width_bp": 415.006,
+    "height_bp": 475.276,
+    "minimum_prose_font_bp": 9.4645,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 15,
+    "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+  },
+  "typography_review": {
+    "source": "book/assets/governance-proposed-change.svg",
+    "candidate": "book/tikz/figures/governance-proposed-change.tex",
+    "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
+    "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+    "decision": "accepted",
+    "review_date": "2026-11-08",
+    "reviewed_visually": true,
+    "proof_manifest": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json",
+    "reason": "Bold capitals name the candidate, three governance functions, architectural model, and outcomes. Italics distinguish questions from explanations. Scope and enforcement caveats remain regular prose.",
+    "evidence": [
+      {
+        "source_text": "PROPOSED REPORTING CHANGE",
+        "candidate_text": "PROPOSED REPORTING CHANGE",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "CONSTRAINT",
+        "candidate_text": "CONSTRAINT",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "SENSOR",
+        "candidate_text": "SENSOR",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "ARCHITECTURAL MODEL",
+        "candidate_text": "ARCHITECTURAL MODEL",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "GATE",
+        "candidate_text": "GATE",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "ACCEPTED CHANGE",
+        "candidate_text": "ACCEPTED CHANGE",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "RETURNED FOR REPAIR",
+        "candidate_text": "RETURNED FOR REPAIR",
+        "semantic_role": "Named object or role",
+        "candidate_style": "bold",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "candidate for merge",
+        "candidate_text": "candidate for merge",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "italic",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "What can happen?",
+        "candidate_text": "What can happen?",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "italic",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "What evidence do we have?",
+        "candidate_text": "What evidence do we have?",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "italic",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "May this proceed?",
+        "candidate_text": "May this proceed?",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "italic",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "Recording does not block connections.",
+        "candidate_text": "Recording does not block connections.",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "regular",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "Refuse merge on required failure",
+        "candidate_text": "Refuse merge on required failure",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "regular",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "missing evidence.",
+        "candidate_text": "missing evidence.",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "regular",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      },
+      {
+        "source_text": "Passing covers only the selected checks.",
+        "candidate_text": "Passing covers only the selected checks.",
+        "semantic_role": "Question or explanatory scope",
+        "candidate_style": "regular",
+        "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
+      }
+    ],
+    "checks": [
+      {
+        "text": "PROPOSED REPORTING CHANGE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "CONSTRAINT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "SENSOR",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ARCHITECTURAL MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "GATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ACCEPTED CHANGE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "RETURNED FOR REPAIR",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "candidate for merge",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "What can happen?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "What evidence do we have?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "May this proceed?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Recording does not block connections.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Refuse merge on required failure",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "missing evidence.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Passing covers only the selected checks.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
+      "page": 44,
+      "width_bp": 415.006,
+      "height_bp": 475.276,
+      "minimum_prose_font_bp": 9.4645,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 15,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
+    "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "constraint and sensor functions",
+          "labels": [
+            "CONSTRAINT",
+            "SENSOR"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
+      "page": 44,
+      "width_bp": 415.006,
+      "height_bp": 475.276,
+      "minimum_prose_font_bp": 9.4645,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 15,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+      "checked_terminal_approaches": 668,
+      "reviewed_peer_groups": 87,
+      "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    }
+  }
+}

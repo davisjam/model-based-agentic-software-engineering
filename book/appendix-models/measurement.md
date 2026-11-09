@@ -27,7 +27,7 @@ The disposition stays separate from the measured bound; its mode records whether
 [ref:fig-g5-measurement-authority] separates the measurement from the enforcement that may or may not attach to it.
 
 <!-- label: fig-g5-measurement-authority -->
-<!-- figure: assets/appendix-g-5-measurement-authority.svg | *Measurement does not imply enforcement.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or an admission gate. -->
+<!-- figure: assets/appendix-g-5-measurement-authority.svg | *Measurement does not imply enforcement.* A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants a warning or a gate. -->
 
 **Property.** A measurement model can state that request latency remains below a declared bound for a defined request class, queue depth below a declared ceiling, or processing cost within a specified envelope. Scope, statistic, and aggregation window are part of the property; a threshold without them is underspecified.
 

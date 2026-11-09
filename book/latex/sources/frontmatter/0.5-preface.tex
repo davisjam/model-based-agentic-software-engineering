@@ -47,7 +47,7 @@ When engineers wrote most of the code themselves, they could make design decisio
 
 The engineer increasingly exercises that control through an intermediate structure: an engineered environment. This environment represents consequential properties, constrains permissible variation, requires evidence, and determines which changes may be accepted.
 
-MAGE makes that intermediate structure the primary object of engineering. Modeling externalizes consequential knowledge and intent into representations over which humans, agents, and tools can reason. Alignment enforces selected engineering obligations through constraints, sensors, validators, and gates. Modeling helps engineers express and preserve what matters; Alignment makes delegated work answer to what they expressed. Together they create a governed engineering environment through which autonomous implementation proceeds.
+MAGE makes that intermediate structure the primary object of engineering. Modeling externalizes consequential knowledge and intent into representations over which humans, agents, and tools can reason. Alignment enforces selected engineering obligations through constraints, sensors, and gates. Modeling helps engineers express and preserve what matters; Alignment makes delegated work answer to what they expressed. Together they create a governed engineering environment through which autonomous implementation proceeds.
 
 The purpose of this indirection is not to specify every implementation decision. An engineer should constrain what matters while deliberately leaving other choices open. Within those degrees of freedom, agents can exploit abundant implementation capacity to search, implement, revise, and improve solutions. The governed environment articulates consequential decisions and enforces selected obligations, so subsequent agents and reviewers need not reconstruct them from implementation. If the models and controls merely reproduce the entire implementation, the indirection has accomplished little. Meaningful degrees of freedom let agents explore alternative solutions while engineering retains control over the properties that matter.
 
@@ -94,7 +94,7 @@ A fleet of coding agents can generate, inspect, and modify implementation much f
 
 % <!-- gloss: Lint | An automated check that scans code for a banned pattern and fails the commit when it finds one, so a rule holds without a human remembering it. -->
 
-% <!-- gloss: Gate | A check placed across a pipeline step — a commit, a deploy — that refuses to let the step through until its condition is met. -->
+% <!-- gloss: Gate | A governance mechanism that evaluates whether an action or result may proceed and enforces the decision. Gates can govern changes, releases, resource use, or runtime operations. -->
 
 DocAble is a web-based service for making documents accessible to people with disabilities. As of \magevalue{measurement_snapshot}, coding agents had written roughly \magevalue{prod_loc_rounded} lines of production code. The environment governing that code---tests, checks, agent infrastructure, and documentation---had grown about three and a half times larger, to \magevalue{support_loc_rounded} lines.
 
@@ -127,7 +127,7 @@ Modeling and Alignment work together. Models let engineers and agents reason abo
 \item
   \textbf{Model the consequential knowledge.} Choose the engineering question first, then externalize the facts and intent needed to answer it without carrying unnecessary detail. The goal is not to model the whole system. It is to make larger properties easier to reason about without reconstructing them from implementation.
 \item
-  \textbf{Enforce important obligations.} Encode important obligations into constraints, sensors, validators, and gates. Some mechanisms can constrain actions or artifacts directly; others evaluate evidence and determine whether work may proceed. Explicit models make richer, system-level obligations available to automated analysis and, where appropriate, enforcement.
+  \textbf{Enforce important obligations.} Encode important obligations into constraints, sensors, or gates. Constraints restrict actions or artifacts; sensors supply evidence; gates evaluate whether work may proceed and enforce that decision. Explicit models make richer, system-level obligations available to automated analysis and, where appropriate, enforcement.
 \item
   \textbf{Do the governed work.} Let agents operate inside the resulting environment. Models provide representations for reasoning; governance mechanisms provide evidence and boundaries. Human attention moves toward questions for which human judgment remains necessary or desirable, instead of being spent reconstructing facts the environment can check itself.
 \item

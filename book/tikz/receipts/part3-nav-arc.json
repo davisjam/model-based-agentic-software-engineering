@@ -20,7 +20,7 @@
     "3.3",
     "MECHANIZE",
     "How does a mechanism enforce an obligation?",
-    "3.3 · The Four Mechanism Roles",
+    "3.3 · Governance Mechanisms",
     "3.4",
     "LEARN",
     "How does the environment acquire new obligations and controls?",
@@ -75,25 +75,13 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
-    "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+    "source_sha256": "eeec61269b07ea27826c3580a65b1170df70b8e7c474d70c626f5a4dee689cc6",
+    "candidate_sha256": "a9c54bed698454cc39f8896907d65b6b5205172a73762f8d40bc4515ca348315",
     "fill": "All numbered station circles white and equal; position and titles convey sequence.",
     "bold": "Source-derived emphasis includes LOCATE; Where can enforcement occur?. Navigation roles already retain uppercase bold; restore bold question prompts and station numbers, leaving linked section titles regular.",
     "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 38,
-      "width_bp": 362.056,
-      "height_bp": 288.565,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 3
-    },
     "book_references": [
       "chapter:3.1-where-obligations-can-be-enforced",
       "chapter:3.1-where-obligations-can-be-enforced",
@@ -105,14 +93,29 @@
       "chapter:3.4-governance-conversion",
       "chapter:3.5-when-guardrails-collide",
       "chapter:3.5-when-guardrails-collide"
-    ]
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
+      "page": 39,
+      "width_bp": 362.056,
+      "height_bp": 288.565,
+      "minimum_prose_font_bp": 9.4645,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/part3-nav-arc.svg",
+    "candidate": "book/tikz/figures/part3-nav-arc.tex",
     "decision": "refined",
-    "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
-    "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-    "reason": "Navigation roles already retain uppercase bold; restore bold question prompts and station numbers, leaving linked section titles regular.",
+    "source_sha256": "eeec61269b07ea27826c3580a65b1170df70b8e7c474d70c626f5a4dee689cc6",
+    "candidate_sha256": "a9c54bed698454cc39f8896907d65b6b5205172a73762f8d40bc4515ca348315",
     "evidence": [
       {
         "source_text": "LOCATE",
@@ -141,6 +144,7 @@
         }
       }
     ],
+    "reason": "Navigation roles already retain uppercase bold; restore bold question prompts and station numbers, leaving linked section titles regular. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
     "checks": [
       {
         "text": "LOCATE",
@@ -156,81 +160,77 @@
         "text": "Where Obligations Can Be Enforced",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Governance Mechanisms",
+        "bold": false,
+        "italic": false
       }
     ],
+    "governance_revision_date": "2026-11-08",
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 38,
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+      "geometry_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "status": "passed",
+      "date": "2026-11-08",
+      "page": 39,
       "width_bp": 362.056,
       "height_bp": 288.565,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
+      "minimum_prose_font_bp": 9.4645,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
+      "semantic_typography_checks": 4,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
     }
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The navigation arc uses equal circle markers and spacious vertical links; headings and explanations are external.",
-    "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing part3 nav arc layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-      "after_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-      "before_dimensions_bp": [
-        362.0559997558594,
-        288.56500244140625
-      ],
-      "after_dimensions_bp": [
-        362.0559997558594,
-        288.56500244140625
-      ],
-      "before_font_sizes_pt": [
-        9.5,
-        10.0,
-        10.5
-      ],
-      "after_font_sizes_pt": [
-        9.5,
-        10.0,
-        10.5
-      ],
-      "reviewed_visually": true
-    },
+    "source_sha256": "eeec61269b07ea27826c3580a65b1170df70b8e7c474d70c626f5a4dee689cc6",
+    "candidate_sha256": "a9c54bed698454cc39f8896907d65b6b5205172a73762f8d40bc4515ca348315",
+    "contracts": {},
     "validation": {
       "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
       "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "status": "passed",
+      "date": "2026-11-08",
+      "page": 39,
+      "width_bp": 362.056,
+      "height_bp": 288.565,
+      "minimum_prose_font_bp": 9.4645,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4,
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+      "checked_terminal_approaches": 668,
+      "reviewed_peer_groups": 87,
+      "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 38,
-      "width_bp": 362.056,
-      "height_bp": 288.565
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
     }
+  },
+  "governance_revision": "2026-11-08",
+  "governance_revision_reason": "Use the approved section title Governance Mechanisms while retaining the stable chapter target and all navigation anchors.",
+  "source_sha256": "eeec61269b07ea27826c3580a65b1170df70b8e7c474d70c626f5a4dee689cc6",
+  "candidate_sha256": "a9c54bed698454cc39f8896907d65b6b5205172a73762f8d40bc4515ca348315",
+  "integration_review_date": "2026-11-08",
+  "native_validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+    "geometry_findings": 0,
+    "unapproved_compile_diagnostics": 0,
+    "status": "passed",
+    "date": "2026-11-08",
+    "page": 39,
+    "width_bp": 362.056,
+    "height_bp": 288.565,
+    "minimum_prose_font_bp": 9.4645,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 4,
+    "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
   }
 }

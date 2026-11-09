@@ -3,7 +3,7 @@
      horizontal row of five stages from an uncertain need to an aligned, enforced
      obligation, with a dashed return arrow showing that exploration can revise the need
      itself. Deliberately minimal and monochrome: this is a conceptual continuum, not a
-     role-coloured constraint/sensor/validator/gate diagram, so every node shares one ink
+     role-coloured constraint/sensor/gate diagram, so every node shares one ink
      (near-black stroke/header text, muted-gray descriptor text) rather than per-role color.
      Mermaid draws a left-to-right chain but not the two-line node labels plus the short
      back-curve with its own caption, so a bespoke layout is used, following the same
@@ -18,7 +18,7 @@
     uncertain need — a customer signal or a hypothesis — leads to explore, where prototypes
     are built, observed, and measured. What explore learns becomes a stabilizing claim: a
     requirement or a quality target. A stabilizing claim is represented as a model — a
-    representation or a property — and a model is aligned by a validator or a gate. A dashed
+    representation or a property — and a gate validates evidence against the represented obligation before allowing work to proceed. A dashed
     return arrow curves from explore back to uncertain need, labeled "problem can change":
     exploration can reveal that the original need itself was framed wrong, not only that the
     proposed answer was wrong. Precision is earned as knowledge stabilizes, not assumed at
@@ -56,7 +56,7 @@
   <!-- node 5: align -->
   <rect id="align" x="1035" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="1140" y="108" text-anchor="middle" font-size="23.4" font-weight="700" fill="#1c1917">align</text>
-  <text x="1140" y="136" text-anchor="middle" font-size="23.4" font-style="italic" fill="#57534e">validator &#183; gate</text>
+  <text x="1140" y="136" text-anchor="middle" font-size="23.4" font-style="italic" fill="#57534e">gate</text>
 
   <!-- forward connectors, straight, along the spine -->
   <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#pfkArrow)">

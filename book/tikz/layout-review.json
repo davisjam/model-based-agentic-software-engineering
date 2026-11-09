@@ -3,9 +3,9 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 147,
+  "candidate_count": 148,
   "refined_count": 69,
-  "reviewed_peer_groups": 86,
+  "reviewed_peer_groups": 87,
   "figures": [
     {
       "source": "book/assets/book-map.svg",
@@ -184,48 +184,29 @@
     {
       "source": "book/assets/mage-method.svg",
       "candidate": "book/tikz/figures/mage-method.tex",
-      "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
+      "source_sha256": "ce4b6919249729faec8be439c57158e75ac4855a98366d05ef6b8909c72141cd",
       "baseline_candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
-      "candidate_sha256": "30262ce0852d1dc98c3728db4c988031a33d8dbf94cac1a7eae0d051a8d257e8",
+      "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
       "decision": "refined",
-      "reason": "Separated the final capital stage and moved the churn sidebar outward so both dashed arrow tips have forward terminal shafts instead of folding behind their bend. Raise conceptual labels/prose to11pt and relationship labels to10pt; spread causal ranks so annotations sit in clear shafts.",
+      "reason": "Separated the final capital stage and moved the churn sidebar outward so both dashed arrow tips have forward terminal shafts instead of folding behind their bend. Raise conceptual labels/prose to11pt and relationship labels to10pt; spread causal ranks so annotations sit in clear shafts. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         410.62799072265625,
         379.34600830078125
       ],
       "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 2,
-        "width_bp": 424.801,
-        "height_bp": 487.874
-      },
       "page_layout": {
         "decision": "refined",
         "reason": "Raise conceptual labels/prose to11pt and relationship labels to10pt; spread causal ranks so annotations sit in clear shafts.",
         "before_sha256": "fc853b9268db408175be4196ac18b8e947ceb79da5f4d6824f260c8f91817437",
-        "after_sha256": "30262ce0852d1dc98c3728db4c988031a33d8dbf94cac1a7eae0d051a8d257e8",
+        "after_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
         "before_dimensions_bp": [
           424.8009948730469,
           387.8500061035156
         ],
         "after_dimensions_bp": [
-          424.8009948730469,
-          487.8739929199219
+          424.801,
+          487.874
         ],
         "before_font_sizes_pt": [
           9.0,
@@ -236,6 +217,56 @@
           11.0
         ],
         "reviewed_visually": true
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-08",
+          "prior_source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
+          "prior_candidate_sha256": "30262ce0852d1dc98c3728db4c988031a33d8dbf94cac1a7eae0d051a8d257e8",
+          "prior_validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 2,
+            "width_bp": 424.801,
+            "height_bp": 487.874
+          }
+        }
+      ],
+      "governance_revision_date": "2026-11-08",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+        "geometry_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "status": "passed",
+        "date": "2026-11-08",
+        "page": 2,
+        "width_bp": 424.801,
+        "height_bp": 487.874,
+        "minimum_prose_font_bp": 9.9626,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 17,
+        "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+        "checked_terminal_approaches": 668,
+        "reviewed_peer_groups": 87,
+        "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       }
     },
     {
@@ -388,11 +419,11 @@
     {
       "source": "book/assets/gloss-gee.svg",
       "candidate": "book/tikz/figures/gloss-gee.tex",
-      "source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
+      "source_sha256": "8f08c599e84afa9ce7cba8a53aefd04d79a7169ef79241651aaeb3a9a6d8c976",
       "baseline_candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
-      "candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
+      "candidate_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
       "decision": "retained",
-      "reason": "The central work/model alternatives already align at their top and bottom. Forks and upward environment/conversion edges remain clear.",
+      "reason": "The central work/model alternatives already align at their top and bottom. Forks and upward environment/conversion edges remain clear. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         366.45001220703125,
@@ -415,37 +446,18 @@
           }
         ]
       },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 5,
-        "width_bp": 366.45,
-        "height_bp": 309.54
-      },
       "page_layout": {
         "decision": "retained",
         "reason": "Retain existing gloss gee layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
         "before_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
-        "after_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
+        "after_sha256": "d74dba4d3fd8520adb41f4face3348df5f5cb409c2b418be855a3f16db60c97e",
         "before_dimensions_bp": [
           366.45001220703125,
           309.5400085449219
         ],
         "after_dimensions_bp": [
-          366.45001220703125,
-          309.5400085449219
+          366.45,
+          309.54
         ],
         "before_font_sizes_pt": [
           9.0,
@@ -456,6 +468,56 @@
           10.0
         ],
         "reviewed_visually": true
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-08",
+          "prior_source_sha256": "224924176a844ab561b64508228231244196186a67d947445dec036923a954bc",
+          "prior_candidate_sha256": "178702034424cd413cb34a62b6810165f0138ef3b059c9ba3e3f961d158833ed",
+          "prior_validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 5,
+            "width_bp": 366.45,
+            "height_bp": 309.54
+          }
+        }
+      ],
+      "governance_revision_date": "2026-11-08",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+        "geometry_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "status": "passed",
+        "date": "2026-11-08",
+        "page": 5,
+        "width_bp": 366.45,
+        "height_bp": 309.54,
+        "minimum_prose_font_bp": 8.9664,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 16,
+        "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+        "checked_terminal_approaches": 668,
+        "reviewed_peer_groups": 87,
+        "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       }
     },
     {
@@ -2818,48 +2880,29 @@
     {
       "source": "book/assets/part3-nav-arc.svg",
       "candidate": "book/tikz/figures/part3-nav-arc.tex",
-      "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+      "source_sha256": "eeec61269b07ea27826c3580a65b1170df70b8e7c474d70c626f5a4dee689cc6",
       "baseline_candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-      "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+      "candidate_sha256": "a9c54bed698454cc39f8896907d65b6b5205172a73762f8d40bc4515ca348315",
       "decision": "retained",
-      "reason": "The navigation arc uses equal circle markers and spacious vertical links; headings and explanations are external.",
+      "reason": "The navigation arc uses equal circle markers and spacious vertical links; headings and explanations are external. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         362.0559997558594,
         288.56500244140625
       ],
       "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 38,
-        "width_bp": 362.056,
-        "height_bp": 288.565
-      },
       "page_layout": {
         "decision": "retained",
         "reason": "Retain existing part3 nav arc layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
         "before_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-        "after_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+        "after_sha256": "a9c54bed698454cc39f8896907d65b6b5205172a73762f8d40bc4515ca348315",
         "before_dimensions_bp": [
           362.0559997558594,
           288.56500244140625
         ],
         "after_dimensions_bp": [
-          362.0559997558594,
-          288.56500244140625
+          362.056,
+          288.565
         ],
         "before_font_sizes_pt": [
           9.5,
@@ -2872,6 +2915,56 @@
           10.5
         ],
         "reviewed_visually": true
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-08",
+          "prior_source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
+          "prior_candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
+          "prior_validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 38,
+            "width_bp": 362.056,
+            "height_bp": 288.565
+          }
+        }
+      ],
+      "governance_revision_date": "2026-11-08",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
+        "geometry_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "status": "passed",
+        "date": "2026-11-08",
+        "page": 39,
+        "width_bp": 362.056,
+        "height_bp": 288.565,
+        "minimum_prose_font_bp": 9.4645,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4,
+        "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+        "checked_terminal_approaches": 668,
+        "reviewed_peer_groups": 87,
+        "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       }
     },
     {
@@ -3121,22 +3214,24 @@
       }
     },
     {
-      "source": "book/assets/constraint-vs-sensor.svg",
-      "candidate": "book/tikz/figures/constraint-vs-sensor.tex",
-      "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
-      "baseline_candidate_sha256": "ad6b4d9b2b403af3e2078740de18740e2a0a0b5e4c9437d6bd3bf37166a81ac8",
-      "candidate_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
-      "decision": "refined",
-      "reason": "Equal-height constraint/sensor alternatives; extended incoming branch approaches.",
+      "source": "book/assets/governance-proposed-change.svg",
+      "candidate": "book/tikz/figures/governance-proposed-change.tex",
+      "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
+      "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+      "decision": "accepted",
+      "review_date": "2026-11-08",
       "reviewed_visually": true,
+      "proof_manifest": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json",
+      "baseline_candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
       "baseline_dimensions_bp": [
-        376.5379943847656,
-        145.1529998779297
+        418.991,
+        479.261
       ],
+      "reason": "Author-reviewed reporting-change example replaces the old two-role alternative figure. Candidate spine remains distinct from dashed decision inputs; constraint and sensor panels align; model input and two gate outcomes remain legible at native print size.",
       "contracts": {
         "peer_groups": [
           {
-            "name": "exclusion alternatives",
+            "name": "constraint and sensor functions",
             "labels": [
               "CONSTRAINT",
               "SENSOR"
@@ -3152,45 +3247,26 @@
       },
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
         "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "status": "passed",
+        "date": "2026-11-08",
+        "page": 44,
+        "width_bp": 415.006,
+        "height_bp": 475.276,
+        "minimum_prose_font_bp": 9.4645,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 15,
+        "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+        "checked_terminal_approaches": 668,
+        "reviewed_peer_groups": 87,
+        "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 43,
-        "width_bp": 376.538,
-        "height_bp": 164.607
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing constraint vs sensor layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
-        "after_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
-        "before_dimensions_bp": [
-          376.5379943847656,
-          164.60699462890625
-        ],
-        "after_dimensions_bp": [
-          376.5379943847656,
-          164.60699462890625
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
       }
     },
     {
@@ -10209,19 +10285,20 @@
   ],
   "validation": {
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "a6094fd53c7c7d4f69f0b71799cd81687bcb473c8aed658243c5a876ce33ba72",
+    "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
     "geometry_findings": 0,
-    "checked_terminal_approaches": 633,
-    "reviewed_peer_groups": 81,
-    "semantic_typography_checks": 872,
     "unapproved_compile_diagnostics": 0,
-    "audit_sha256": "1219ddd456cb8b5454bbdb078708f8607626be8807f218e13f1a0cdcc078e549",
+    "status": "passed",
+    "date": "2026-11-08",
+    "checked_terminal_approaches": 668,
+    "reviewed_peer_groups": 87,
+    "semantic_typography_checks": 935,
+    "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
     "maximum_dimensions_bp": [
       450,
       560
     ],
-    "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-    "status": "passed"
+    "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
   },
   "page_layout_review": {
     "candidate_count": 146,
@@ -10246,5 +10323,103 @@
       "status": "passed"
     },
     "scope_exceptions": "The two compact overview placements retain their half-page allowance; the author portrait retains its established biography layout."
-  }
+  },
+  "historical_figures": [
+    {
+      "retired_date": "2026-11-08",
+      "replaced_by": "book/assets/governance-proposed-change.svg",
+      "review": {
+        "source": "book/assets/constraint-vs-sensor.svg",
+        "candidate": "book/tikz/figures/constraint-vs-sensor.tex",
+        "source_sha256": "085d9ed9b3ed6f48e038a0be020bdb898e7df1c036d94e5adcd5ffc5c88869d0",
+        "baseline_candidate_sha256": "ad6b4d9b2b403af3e2078740de18740e2a0a0b5e4c9437d6bd3bf37166a81ac8",
+        "candidate_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
+        "decision": "refined",
+        "reason": "Equal-height constraint/sensor alternatives; extended incoming branch approaches.",
+        "reviewed_visually": true,
+        "baseline_dimensions_bp": [
+          376.5379943847656,
+          145.1529998779297
+        ],
+        "contracts": {
+          "peer_groups": [
+            {
+              "name": "exclusion alternatives",
+              "labels": [
+                "CONSTRAINT",
+                "SENSOR"
+              ],
+              "align": [
+                "top",
+                "bottom"
+              ],
+              "equal_height": true,
+              "tolerance_pt": 1
+            }
+          ]
+        },
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 43,
+          "width_bp": 376.538,
+          "height_bp": 164.607
+        },
+        "page_layout": {
+          "decision": "retained",
+          "reason": "Retain existing constraint vs sensor layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+          "before_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
+          "after_sha256": "303757ac6fd075136e049882794687cad6627187640324b68d17716224ee1b3e",
+          "before_dimensions_bp": [
+            376.5379943847656,
+            164.60699462890625
+          ],
+          "after_dimensions_bp": [
+            376.5379943847656,
+            164.60699462890625
+          ],
+          "before_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "after_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "reviewed_visually": true
+        }
+      }
+    }
+  ],
+  "governance_revision_date": "2026-11-08",
+  "validation_history": [
+    {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "a6094fd53c7c7d4f69f0b71799cd81687bcb473c8aed658243c5a876ce33ba72",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 872,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "1219ddd456cb8b5454bbdb078708f8607626be8807f218e13f1a0cdcc078e549",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed"
+    }
+  ]
 }

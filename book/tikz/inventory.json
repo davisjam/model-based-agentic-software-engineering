@@ -18,12 +18,13 @@
     "caption": "The MAGE method. Scale creates the enduring reasoning problem; commodity intelligence changes its economics. Modeling makes consequential engineering properties explicit and available to analysis; Alignment makes selected obligations enforceable. Governance conversion turns recurring failures and judgment into models and controls that future work can reuse, so engineering effort can accumulate instead of being paid for again.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/mage-method.d2",
-    "receipt": "book/d2-pilot/mage-method.receipt.yaml",
+    "receipt": "book/tikz/receipts/mage-method.json",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The MAGE method — scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.",
-    "svg_description": "A single centre spine reads top to bottom: Scale and Finite reasoning combined in one\n    node, a New engineering imbalance, the Modeling Principle, the Alignment Principle, the Governed\n    Engineering Environment, and Engineering Capital. Scale is the enduring source of a finite reasoning\n    horizon: large systems exceed any one reasoner, so relevant state must be abstracted or reconstructed,\n    which makes judgment scarce at scale. Commodity intelligence enters laterally at the New\n    Engineering Imbalance, making implementation abundant while judgment, representation, evidence, and\n    enforcement stay scarce; it changes the economics of the imbalance but does not cause the reasoning\n    horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent\n    explicit at useful scales, which exposes those properties for analysis and reaches\n    the Alignment Principle, where selected obligations are enforced through constraints, sensors, validators,\n    and gates. Passing through Alignment the spine enters the Governed Engineering Environment — the\n    synthesis of both principles — and effort compounds as Engineering Capital when future value exceeds its\n    carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment\n    back to adapt the models and controls, strengthening the environment. Two dashed failure paths lead\n    to Engineering Churn: weak representation is repaid as reconstruction, weak enforcement as repeated\n    adjudication. A light dotted long-range rail marks capital reopening the reasoning problem as scope\n    grows."
+    "svg_description": "A single centre spine reads top to bottom: Scale and Finite reasoning combined in one\n    node, a New engineering imbalance, the Modeling Principle, the Alignment Principle, the Governed\n    Engineering Environment, and Engineering Capital. Scale is the enduring source of a finite reasoning\n    horizon: large systems exceed any one reasoner, so relevant state must be abstracted or reconstructed,\n    which makes judgment scarce at scale. Commodity intelligence enters laterally at the New\n    Engineering Imbalance, making implementation abundant while judgment, representation, evidence, and\n    enforcement stay scarce; it changes the economics of the imbalance but does not cause the reasoning\n    horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent\n    explicit at useful scales, which exposes those properties for analysis and reaches\n    the Alignment Principle, where constraints restrict actions and gates use evaluated sensor evidence\n    to enforce selected obligations. Passing through Alignment the spine enters the Governed Engineering Environment — the\n    synthesis of both principles — and effort compounds as Engineering Capital when future value exceeds its\n    carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment\n    back to adapt the models and controls, strengthening the environment. Two dashed failure paths lead\n    to Engineering Churn: weak representation is repaid as reconstruction, weak enforcement as repeated\n    adjudication. A light dotted long-range rail marks capital reopening the reasoning problem as scope\n    grows.",
+    "native_source": "book/tikz/figures/mage-method.tex"
   },
   {
     "chapter": "0.4-the-books-language",
@@ -54,15 +55,16 @@
   {
     "chapter": "0.4-the-books-language",
     "source": "assets/gloss-gee.svg",
-    "caption": "The governed environment. Governance mechanisms enforce engineering obligations by acting directly on observable work or through explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.",
+    "caption": "The governed environment. Governance mechanisms support enforcement by restricting work, supplying evidence, or controlling whether work may proceed. They can operate directly on observable work or use explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/gloss-gee.d2",
-    "receipt": "book/d2-pilot/gloss-gee.receipt.yaml",
+    "receipt": "book/tikz/receipts/gloss-gee.json",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "",
-    "svg_description": ""
+    "svg_description": "",
+    "native_source": "book/tikz/figures/gloss-gee.tex"
   },
   {
     "chapter": "0.5-preface",
@@ -499,12 +501,13 @@
     "caption": "*How intent becomes enforceable.* Enforcement begins by placing a mechanism at a boundary where the obligation can be evaluated or constrained. Mechanisms enforce selected obligations; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/part3-nav-arc.d2",
-    "receipt": "book/d2-pilot/part3-nav-arc.receipt.yaml",
+    "receipt": "book/tikz/receipts/part3-nav-arc.json",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Alignment: how engineering intent becomes enforced, across the five chapters of Chapter 3",
-    "svg_description": "Five engineering moves descend a vertical spine, each a chapter of Chapter 3. Locate, 3.1, asks\n    where enforcement can act. Justify, 3.2, asks what it may legitimately enforce. Mechanize, 3.3, asks how a\n    mechanism enforces an obligation. Learn, 3.4, asks how the environment acquires new obligations and controls.\n    Govern, 3.5, asks how accumulated controls are governed as a system. The arc runs from locating where\n    enforcement can act down to governing the controls that result."
+    "svg_description": "Five engineering moves descend a vertical spine, each a chapter of Chapter 3. Locate, 3.1, asks\n    where enforcement can act. Justify, 3.2, asks what it may legitimately enforce. Mechanize, 3.3, asks how a\n    mechanism enforces an obligation. Learn, 3.4, asks how the environment acquires new obligations and controls.\n    Govern, 3.5, asks how accumulated controls are governed as a system. The arc runs from locating where\n    enforcement can act down to governing the controls that result.",
+    "native_source": "book/tikz/figures/part3-nav-arc.tex"
   },
   {
     "chapter": "3.1-where-obligations-can-be-enforced",
@@ -560,16 +563,17 @@
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
-    "source": "assets/constraint-vs-sensor.svg",
-    "caption": "*Constraint or sensor.* Prefer a constraint when the unwanted state can be excluded cheaply and reliably. Otherwise instrument the relevant state and produce evidence for later evaluation.",
+    "source": "assets/governance-proposed-change.svg",
+    "caption": "Governance around a proposed change. Module restrictions limit the implementation; instrumented tests produce evidence; the merge gate checks the required results before accepting the change. The checks' coverage limits the assurance they provide.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/constraint-vs-sensor.d2",
-    "receipt": "book/d2-pilot/constraint-vs-sensor.receipt.yaml",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/governance-proposed-change.json",
     "generator": null,
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Constraint or sensor: a selection rule for the engineering obligation",
-    "svg_description": "An engineering obligation you must hold leads to one decision: can the unwanted state be\n    excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a\n    permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a\n    trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor\n    reports it after the fact."
+    "conversion": "Native TikZ diagram paired with color SVG; author-approved governance revision",
+    "svg_title": "Governance around a proposed reporting change",
+    "svg_description": "One proposed reporting change travels toward a merge gate. A language or module boundary exposes the billing API client and excludes imports of the private database connector; generic networking remains possible. Instrumented tests record caller, attempted destination, and outcome. They may reveal a direct database attempt through generic networking, but recording does not block the connection. Build-check results and recorded interactions, together with an architectural model permitting the billing API and forbidding direct database access, feed the gate. The gate checks its admission conditions and either accepts the change or returns it for repair on a required failure or missing evidence. Passing covers the selected checks and exercised tests only. The three labels describe functions; tools may combine functions, and constraints and sensors are not inherently static or dynamic.",
+    "native_source": "book/tikz/figures/governance-proposed-change.tex"
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",

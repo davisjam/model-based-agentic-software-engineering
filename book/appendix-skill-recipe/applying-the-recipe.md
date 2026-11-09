@@ -95,7 +95,7 @@ The facets answer independent questions: recognizing the situation does not sele
 - **Right-size the fix.** Prefer the smallest sound change that closes the class; propose a larger intervention rather than implementing it reflexively. Prevention by construction beats detection where the action space can honestly close.
 - **Escalate judgment, not difficulty.** Escalate when authority or consequence requires a human decision, not merely because the problem is hard.
 
-**Self-governance is not self-certification.** The agent may select, model, propose, and check, but its belief that the work is correct is not evidence that it is. A mastery-skill guides a probabilistic agent; it cannot by itself prevent unacceptable work. The skill may propose, scaffold, or invoke constraints, validators, gates, and other mechanisms, but enforcement must come from the environment. Deciding evidence must not consist merely of the producing reasoner endorsing its own result.
+**Self-governance is not self-certification.** The agent may select, model, propose, and check, but its belief that the work is correct is not evidence that it is. A mastery-skill guides a probabilistic agent; it cannot by itself prevent unacceptable work. The skill may propose, scaffold, or invoke constraints, sensors, gates, and their supporting checks, but enforcement must come from the environment. Deciding evidence must not consist merely of the producing reasoner endorsing its own result.
 
 ### Layout
 
@@ -119,7 +119,7 @@ One directory per question, one file per facet. The mechanism census lives under
 
 self-governance is a mastery-skill whose subject is the MAGE method itself. Its fundamental model is therefore the engineering loop, not a taxonomy of mechanisms.
 
-The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a constraint, validator, or gate, but the resulting mechanism — not the skill's judgment — must supply the enforcement.
+The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a constraint or gate, including any checks it needs, but the resulting mechanism — not the skill's judgment — must supply the enforcement.
 
 It also composes with the other skills: self-governance designs models and mechanisms, self-operate runs them, and self-communicate governs how they are represented.
 

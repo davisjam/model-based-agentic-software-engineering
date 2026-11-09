@@ -321,6 +321,7 @@ _GLOSS_TERM_SLUGS = {
     "Reasoning horizon": "reasoning-horizon",
     "Governed Engineering Environment": "governed-environment",
     "Governance Mechanism": "governance-mechanism",
+    "Governance mechanisms": "governance-mechanism",
     "Constraint": "constraint",
     "Sensor": "sensor",
     "Validator": "validator",
@@ -334,7 +335,7 @@ _GLOSS_TERM_SLUGS = {
 }
 # A rendered glossary entry: `<p><strong>Term.</strong> …`. Capture the bold lead (term text + its trailing
 # period) so the whole label becomes the link, leaving `<strong>` outside the `<a>`.
-_GLOSS_ENTRY_RE = re.compile(r"(<p><strong>)([^<]+?)(\.)(</strong>)")
+_GLOSS_ENTRY_RE = re.compile(r"(<(?:p|li)><strong>)([^<]+?)(\.)(</strong>)")
 
 
 def _link_glossary_sites(body_html: str, gloss_link_map: "dict[str, tuple[str, str]]") -> str:

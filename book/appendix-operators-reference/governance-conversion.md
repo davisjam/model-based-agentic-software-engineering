@@ -9,7 +9,7 @@ Engineering Capital asks whether existing structure still earns its keep; Govern
 The conversion decision has three stages:
 
 - **Classify the gap.** Identify the recurring problem rather than its latest symptom: missing knowledge, representation, obligation, evidence, enforcement, mechanism, architecture, or an obsolete control.
-- **Choose the durable response.** Possible responses include a representation, constraint, sensor, validator, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention of human judgment.
+- **Choose the durable response.** Possible responses include a representation, constraint, sensor, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention of human judgment. Improving the checks may support an advisory check or a gate.
 - **Price the investment.** Build the response only when expected recurrence cost and consequence justify both construction and carrying cost.
 
 ``` text
@@ -22,8 +22,8 @@ knowledge · representation · obligation · evidence
 enforcement · mechanism · architecture · obsolete control
       ↓
 CHOOSE THE RESPONSE
-model · constraint · sensor · validator · gate
-procedure · redesign · retire · keep human
+model · constraint · sensor · gate
+checking · procedure · redesign · retire · keep human
       ↓
 PRICE THE INVESTMENT
 future value > construction + carrying cost ?

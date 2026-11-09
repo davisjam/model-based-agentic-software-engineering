@@ -38,8 +38,8 @@
     enforcement stay scarce; it changes the economics of the imbalance but does not cause the reasoning
     horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent
     explicit at useful scales, which exposes those properties for analysis and reaches
-    the Alignment Principle, where selected obligations are enforced through constraints, sensors, validators,
-    and gates. Passing through Alignment the spine enters the Governed Engineering Environment — the
+    the Alignment Principle, where constraints restrict actions and gates use evaluated sensor evidence
+    to enforce selected obligations. Passing through Alignment the spine enters the Governed Engineering Environment — the
     synthesis of both principles — and effort compounds as Engineering Capital when future value exceeds its
     carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment
     back to adapt the models and controls, strengthening the environment. Two dashed failure paths lead
@@ -136,8 +136,8 @@
   <rect id="alignment" x="350" y="602" width="300" height="126" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="500" y="636" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Alignment Principle</text>
   <text x="500" y="666" text-anchor="middle" font-size="20" fill="#57534e">enforce selected obligations</text>
-  <text x="500" y="690" text-anchor="middle" font-size="20" fill="#57534e">constraints &#183; sensors &#183;</text>
-  <text x="500" y="714" text-anchor="middle" font-size="20" fill="#57534e">validators &#183; gates</text>
+  <text x="500" y="690" text-anchor="middle" font-size="20" fill="#57534e">constraints &#183; sensors</text>
+  <text x="500" y="714" text-anchor="middle" font-size="20" fill="#57534e">gates</text>
   <!-- edge: alignment -> gee -->
   <path d="M500,728 L500,756" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mm-ah)"/>
 

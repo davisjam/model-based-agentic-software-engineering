@@ -16,7 +16,7 @@ Engineering need not eliminate realization freedom. Governing models determine s
 
 - *Characteristic models.* Structural, behavioral, ownership, decision, measurement, and provenance models of the realized system; commonly including architecture, state machines, contracts, dependencies, knowledge graphs, resource relations, and invariants.
 - *Lifetime.* Change-scoped through system-lived, depending on the model and the correspondence it claims.
-- *Alignment posture.* Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, permissions, and gates.
+- *Alignment posture.* Strong where consequential properties are decidable: permissions and other constraints restrict actions, while gates can enforce the results of tests, analyses, model checking, or validators.
 - *Role of autonomous reasoning.* Reasoning across interacting semantic constraints and realizing changes where governing obligations are explicit but implementation remains underdetermined.
 - *Determinization opportunity.* High where modeling exposes stable properties that deterministic machinery can evaluate or realize.
 - *Degrees of freedom.* Implementation choices left open after the governing obligations for the realization are accounted for.

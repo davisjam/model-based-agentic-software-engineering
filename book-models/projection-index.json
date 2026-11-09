@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 860,
+    "total_sites": 859,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 518,
+      "book-web": 517,
       "website-catalogue": 219,
       "website-industry-cases": 46,
       "website-landing": 14,
@@ -73,7 +73,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 11
+            "occ": 16
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
@@ -89,7 +89,7 @@
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 6
+            "occ": 8
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
@@ -911,7 +911,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -1099,7 +1099,7 @@
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 96
+            "occ": 94
           },
           {
             "file": "book/web/docs/0.5-preface.md",
@@ -1159,7 +1159,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 31
+            "occ": 30
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
@@ -1167,7 +1167,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
@@ -1183,11 +1183,11 @@
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 36
+            "occ": 49
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 62
+            "occ": 63
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -1539,7 +1539,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 144
+            "occ": 153
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1551,7 +1551,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 320
+            "occ": 315
           },
           {
             "file": "book/web/docs/index.md",
@@ -1559,7 +1559,7 @@
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1943,11 +1943,15 @@
         "book-web": [
           {
             "file": "book/web/docs/0.4-the-books-language.md",
-            "occ": 4
+            "occ": 3
+          },
+          {
+            "file": "book/web/docs/0.5-preface.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/7.4-the-engineer.md",
@@ -1965,7 +1969,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 5
+            "occ": 6
           }
         ]
       },
@@ -2073,7 +2077,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 46
+            "occ": 52
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
@@ -2081,7 +2085,7 @@
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -2093,7 +2097,7 @@
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 32
+            "occ": 33
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
@@ -2397,7 +2401,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 365
+            "occ": 368
           },
           {
             "file": "book/web/docs/index.md",
@@ -3101,7 +3105,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/web/docs/4.1-the-dynamics-of-mage.md",
@@ -3113,11 +3117,11 @@
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
-            "occ": 3
+            "occ": 14
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -3205,7 +3209,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 38
+            "occ": 44
           },
           {
             "file": "book/web/docs/figures.md",
@@ -3315,10 +3319,6 @@
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
             "occ": 1
           },
           {
@@ -3437,7 +3437,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 34
           }
         ]
       },
@@ -3666,10 +3666,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
             "occ": 7
           },
@@ -3713,7 +3709,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 10
           }
         ]
       },

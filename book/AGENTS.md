@@ -108,11 +108,9 @@ over:
 
 Use the vocabulary precisely.
 
-A **constraint** prevents or narrows an invalid action.
+Distinguish three functional categories: **constraints** restrict available actions or states; **sensors** observe artifacts, attempted actions, or executing systems and produce evidence; **gates** evaluate admission conditions and enforce the resulting decisions at a boundary. One implementation can combine these functions. Sensors require observability of the relevant state or behavior, which can include static artifacts as well as executions. Gates can govern runtime actions and resource use as well as development and deployment.
 
-A **sensor** detects drift after an action has been attempted.
-
-Examples of sensors include tests, lints, validators, and gates.
+**Evaluation** is the operation of evaluating evidence against an obligation. A validator may report findings without blocking work or supply a gate’s evaluation. Do not classify checking as a fourth peer category or treat a correct verdict alone as enforcement. Explain the policy decision/enforcement distinction with the policy-based access-control sources cited in §3.3.
 
 Keep mechanism kind separate from enforcement strength:
 

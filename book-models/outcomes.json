@@ -486,13 +486,13 @@
       "gap_note": null
     },
     {
-      "outcome_id": "constraints-sensors-validators-gates::decompose-environmental-authority-into-four-roles",
+      "outcome_id": "constraints-sensors-validators-gates::decompose-constraints-sensors-and-gates-by-the-que",
       "granularity": "chapter",
       "primary_unit": "constraints-sensors-validators-gates",
       "secondary_units": [],
       "verb": "decompose",
-      "obj": "environmental authority into four roles — a constraint, a sensor, a validator, and a gate — and name the roles bundled inside one artifact",
-      "statement": "After this chapter, the reader can decompose environmental authority into four roles — a constraint narrows what can happen, a sensor produces evidence, a validator judges that evidence against an obligation, and a gate controls admission — and name the roles bundled inside one artifact.",
+      "obj": "constraints, sensors, and gates by the questions they answer, and explain how checking supports advisory findings or gate decisions",
+      "statement": "After this section, the reader can distinguish constraints, sensors, and gates by the questions they answer: what is possible, what evidence is available, and whether work may proceed. The reader can explain how checking supports advisory findings or gate decisions and identify functions combined in one implementation.",
       "bloom": "analyze",
       "provenance": "derived",
       "anchor": "point: four-roles-separate-prevention-observation-judgment-admission / a-sensor-observes-and-produces-evidence-and-costs-iterations / a-validator-turns-evidence-into-a-judgment / a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
