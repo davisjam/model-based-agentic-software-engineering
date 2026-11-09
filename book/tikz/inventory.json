@@ -1900,40 +1900,53 @@
   {
     "chapter": "model-coherence",
     "source": "assets/handbook-derived-iam.svg",
-    "caption": "Two independently useful models combine to determine deployment authorization. The service-flow model supplies the communication obligation; the deployment model supplies runtime identity and resource names. Their join derives IAM grants. Deployment applies the grants; a separate correspondence check compares declared and observed service names. [short: Two models, one authorization plan]",
+    "caption": "The deployment dependency map and runtime identity determine the IAM grant plan; deployment reports each grant's application result. The service-flow model is checked for parity with the map. Declared/live service-name correspondence is a separate check, not verification of IAM bindings. [short: Grant derivation and separate correspondence checks]",
     "native_context": "book/latex/sources/appendix-handbook/model-coherence.tex",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Two models derive an authorization plan",
-    "svg_description": "The service-flow model supplies caller-to-callee communication and its authentication obligation. The deployment model supplies the environment, runtime identity, and deployed resource names. Joining these models derives IAM grants from caller identities to callee resources. Deployment applies the grants. A separate correspondence check reconciles declared and observed service names; it does not establish that every IAM binding is present."
+    "svg_title": "The implemented grant derivation and its separate correspondence checks",
+    "svg_description": "The service-flow model is a verified mirror compared with the deployment dependency map by a parity check. The deployment dependency map and runtime identity feed the IAM grant plan; deployment applies those grants for Cloud IAM enforcement. In a separate lane, a name-set check compares declared deployment names with the observed fleet. That comparison is not verification of IAM bindings."
   },
   {
     "chapter": "governance-conversion",
     "source": "assets/handbook-governance-conversion.svg",
-    "caption": "A recurring failure becomes durable engineering structure. Judgment identifies the failure class and chooses an intervention; the engineered environment records the decision, checks the resulting mechanism, and makes subsequent work inherit it. [short: A failure becomes inherited structure]",
+    "caption": "A work order is refused when its resolved phase is recorded as DONE, unless a valid explicit override is supplied. Missing or unresolved state does not establish completion. Reopening sets the phase to queued; an override permits one dispatch and attempts a best-effort audit write. Dispatch repeats the check. [short: Refusing duplicate assignments from reconciled phase state]",
     "native_context": "book/latex/sources/appendix-handbook/governance-conversion.tex",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Turn a recurring failure into inherited structure",
-    "svg_description": "A compact sequence shows governance conversion: observe a recurring failure, classify it and choose an intervention, record the intended control in a durable work order, implement the mechanism, check its behavior and correspondence, and let later work inherit the constraint, sensor, or gate. The sequence describes an engineering method, not a count of recorded conversions."
+    "svg_title": "Refuse a duplicate assignment on positive completed-phase evidence",
+    "svg_description": "A work order names its project and phase. Composition resolves that identity against reconciled phase state. A positive DONE match without a valid explicit override refuses the brief; otherwise composition continues subject to its other checks. Missing or unresolved state does not establish completion. Reopening changes the phase to queued; an explicit override permits one dispatch and attempts a best-effort audit write. Dispatch repeats the completed-phase check."
   },
   {
     "chapter": "governed-delegation",
     "source": "assets/handbook-model-guided-delegation.svg",
-    "caption": "A structured work order selects applicable engineering knowledge from maintained models. The agent implements and commits; completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion. [short: Model-guided delegation and completion evidence]",
+    "caption": "A structured work order selects applicable engineering knowledge from maintained models. Brief validation precedes dispatch; the agent implements and commits. Completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion. [short: Model-guided delegation and completion evidence]",
     "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Model-guided delegation preserves the assignment and its evidence",
-    "svg_description": "A structured work order and maintained engineering models feed a selection step that assembles a brief containing selected knowledge and obligations. The agent implements and commits. Completion evidence combines durable landed changes and independent checks. Review uses this evidence to update the work order status; an agent report alone does not establish completion."
+    "svg_title": "Model-guided delegation and two different checks",
+    "svg_description": "A structured work order and maintained engineering models select a brief containing relevant knowledge and obligations. Brief validation precedes agent dispatch. The agent implements and commits. Completion review uses landed changes and independent checks to update work-order status; a completion message alone does not establish acceptance."
+  },
+  {
+    "chapter": "governed-delegation",
+    "source": "assets/handbook-typed-changeset.svg",
+    "caption": "Supported typed edits share a controlled application path. A pipeline, agent, or human editor can propose changes against the document model. The PDF applier checks selected restrictions and applies or refuses operations individually; results and applied-edit attribution describe what occurred. Some internal remediation still edits directly. [short: The controlled typed-editing path]",
+    "native_context": "book/latex/sources/appendix-handbook/governed-delegation.tex",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+    "svg_title": "Supported typed edits cross a common controlled application boundary",
+    "svg_description": "A document model supplies structure and semantics to edit producers: a structured pipeline, an agent, or a human editor. Supported proposals are encoded as typed changesets with kind, target, and payload. The controlled PDF applier resolves targets, checks selected restrictions, and applies or refuses each operation. Its outputs are an updated document and application evidence: per-operation results plus attribution for edits actually applied. This is the controlled editing path; some internal remediation paths still mutate documents directly."
   }
 ]

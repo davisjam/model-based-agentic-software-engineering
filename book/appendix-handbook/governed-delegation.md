@@ -29,6 +29,11 @@ The wire vocabulary is shared with the browser editor, and schema-derived types 
 
 The applier is not proving that the image is decorative. It is enforcing a smaller set of obligations over information it can inspect. The contextual classification remains a semantic judgment, and subsequent checks provide evidence about the result. This division allows a useful hard restriction even when the broader problem cannot be reduced to a predicate.
 
+[ref:handbook-typed-changeset] shows the controlled editing path and the evidence its applier produces.
+
+<!-- label: handbook-typed-changeset -->
+<!-- figure: assets/handbook-typed-changeset.svg | Supported typed edits share a controlled application path. A pipeline, agent, or human editor can propose changes against the document model. The PDF applier checks selected restrictions and applies or refuses operations individually; results and applied-edit attribution describe what occurred. Some internal remediation still edits directly. [short: The controlled typed-editing path] -->
+
 **Correspondence and provenance.** The external editing route and migrated internal passes can use the same operation vocabulary and controlled application machinery. Applied edits have attribution records, while per-operation results identify refusals and failures. The two records must not be conflated: the producer’s complete proposal may include changes that never occurred. A consumer reconstructing history must read evidence of application, not merely the proposed operation list.
 
 DocAble also models the boundary of this architecture. Remediation-graph nodes distinguish read-only work, direct editing, and production of typed patches. A code-parity analysis compares declared posture with implementation behavior. Some internal operations still mutate directly, so a picture of the common editing interface must not imply that every document change passes through it. The graph’s migration account is useful precisely because it can name both the controlled path and its present limits.
@@ -67,10 +72,10 @@ The November brief had a concrete origin. A comparison of the standards project�
 
 The extractor’s usefulness depends on the representations it queries. It cannot recover an omitted design intention merely by matching paths. A no-match result should remain visible as a limit of the available knowledge, and an agent that changes scope needs to revisit the selection. This is also why local implementation details can remain in code: the work model needs to preserve scope and obligations, while repository inspection supplies details as they become relevant.
 
-[ref:handbook-model-guided-delegation] connects the selected brief to the durable evidence used at completion.
+[ref:handbook-model-guided-delegation] connects brief validation and agent implementation to the evidence used at completion.
 
 <!-- label: handbook-model-guided-delegation -->
-<!-- figure: assets/handbook-model-guided-delegation.svg | A structured work order selects applicable engineering knowledge from maintained models. The agent implements and commits; completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion. [short: Model-guided delegation and completion evidence] -->
+<!-- figure: assets/handbook-model-guided-delegation.svg | A structured work order selects applicable engineering knowledge from maintained models. Brief validation precedes dispatch; the agent implements and commits. Completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion. [short: Model-guided delegation and completion evidence] -->
 
 ## Completion and Recovery {#handbook-model-lifecycle}
 

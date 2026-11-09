@@ -12,6 +12,8 @@ Read outcomes before diagnostics. The operating question is whether delegated wo
 | **Representation health** | Can relied-upon models still answer their claimed questions? | Correspondence, relevant coverage, and unresolved drift. |
 | **Engineering-capital return** | Does inherited structure repay its construction and carrying cost? | Later uses, avoided work, maintenance, and retirement candidates. |
 
+Before changing the environment, record several comparable work units under the existing process. Preserve their acceptance criteria, completion evidence, human interventions, and subsequent repairs. Use the same unit and observation window after introducing a model or control. Where work differs materially in complexity or consequence, report those differences rather than attributing every change in throughput or attention to MAGE. A before-and-after comparison can suggest whether the investment helped; it does not by itself establish causation.
+
 Agree on the unit, boundary, and observation window before interpreting a trend. A landed change, completed work order, and released capability are different units. Keep their denominators visible and distinguish changes in the workload from changes in the machinery. Retain the revisions and evidence behind consequential observations. A dashboard can help locate a change in behavior; it cannot supply a comparison that the underlying records do not support.
 
 ### Define the Five Readings {#define-the-five-readings}

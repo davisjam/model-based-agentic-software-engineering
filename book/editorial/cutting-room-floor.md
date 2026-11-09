@@ -17829,3 +17829,115 @@ The probability analysis in \magevalue{chapter:theory} separates these responsib
 
 The interpretation burden within realization also varies across the work. If the engineer wants an ordinary database interaction, a familiar algorithm, or a conventional architectural pattern, a capable agent may need very little explicit specification. Its prior experience supplies much of what was left unsaid. This is enormously useful for exploration and prototyping.
 ```
+
+## Appendix B and colophon follow-ups — 9 November 2026
+
+Source revision: `35748886dab700019ab3d1967dc80c4053521b1d`. Removal revision: pending integration. The author requested a shorter duplicate-dispatch recap, a practical measurement-baseline paragraph, and a colophon comprising two paragraphs followed by its existing table. Table rows and the other practical examples are retained.
+
+### APP-B3
+
+- Source: `book/latex/sources/appendix-practicing-mage/operating-a-gee.tex`
+- Revision: `35748886dab700019ab3d1967dc80c4053521b1d`
+- Original lines: 39–39
+- Source SHA-256: `812d39513f1200ecda9390401eb24b8c539b0558d19f2f0f1cec2462226c0a74`
+- Removal date: 9 November 2026
+- Removal revision: pending integration
+- Reason: Use the exact bounded operating lesson and a stable reference to the detailed Appendix A conversion account.
+
+```latex
+Repeated duplicate dispatches in DocAble produced one such conversion. Completed work could be dispatched again when an engineering phase's recorded frontier lagged behind the landed changes. The repair added a gate to work-order composition: a brief referring to a phase already marked complete is refused, unless an explicit override reason is supplied for audit. Tests pin the refusal behavior, and later invocations encounter the gate automatically. The gate acts on recorded completion; it does not independently infer completion from arbitrary repository changes. That boundary matters when deciding which recurrence the repair actually prevents.
+```
+
+### COLOPHON-1
+
+- Source: `book/latex/sources/backmatter/colophon.tex`
+- Revision: `35748886dab700019ab3d1967dc80c4053521b1d`
+- Original lines: 10–18
+- Source SHA-256: `49a56ef12d35cb6d5296ae426a6b4e66604cfde69c7705617b7601282d6bf3a0`
+- Removal date: 9 November 2026
+- Removal revision: pending integration
+- Reason: Replace four pretable paragraphs and the intervening header with exactly the author’s two paragraphs; move the assistant credit into the MAGE account and use a stable table autoref.
+
+```latex
+In a typical colophon, I would tell you about the font. This book uses LuaLaTeX and the \texttt{book} class, with Source Sans 3 for body text, Source Serif 4 for headings, and IBM Plex Mono for code. A custom \texttt{house} package handles the page layout, captions, and breakable insets. Commodity intelligences developed by OpenAI and Anthropic were used in editing the manuscript and developing its figures. Tradition satisfied.
+
+This book was built and revised using some of the same engineering ideas it describes.
+
+During editing, important properties of the manuscript were represented explicitly rather than left entirely in prose or editorial memory. Models tracked properties and obligations such as section identity, the argument spine, claims, terminology, evidence relationships, and book structure. Generated projections and consistency checks helped keep those representations synchronized as the manuscript changed.
+
+The point was not to mechanize editorial judgment. It was to make consequential editorial knowledge explicit so changes could propagate coherently and decidable inconsistencies could be caught before publication.
+
+\textbf{The models and checks behind the manuscript}
+```
+
+### COLOPHON-2
+
+- Source: `book/latex/sources/backmatter/colophon.tex`
+- Revision: `35748886dab700019ab3d1967dc80c4053521b1d`
+- Original lines: 25–25
+- Source SHA-256: `49a56ef12d35cb6d5296ae426a6b4e66604cfde69c7705617b7601282d6bf3a0`
+- Removal date: 9 November 2026
+- Removal revision: pending integration
+- Reason: Use the author’s short caption for both displayed caption and list-of-tables entry.
+
+```latex
+\caption[The manuscript\textquotesingle s governing models and the failures they prevent]{\emph{The manuscript\textquotesingle s models.} Each structured model alongside the manuscript, the facet of the argument it carried, and the failure a consistency check on it prevented.}
+```
+
+
+## Appendix A: deployment-comparison scope — 9 November 2026
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`, line 70. Source revision: `35748886dab700019ab3d1967dc80c4053521b1d`. Removal revision: the commit introducing this entry. Clarify the same-region production/staging population and distinguish the declared deployment-name set from the topology. Evidence: `docs/epics/active/env-isolation-cleanup/phase-1-rca-260802.md`, lines 89–116 and 204–215.
+
+```latex
+An August 2026 investigation found 49 deployed services while the declared topology accounted for 28.
+```
+
+## Appendix figure follow-ups — 2026-11-09
+
+Baseline: `35748886dab700019ab3d1967dc80c4053521b1d`. Original figure artwork, native drawings, receipts, and source sections are preserved in `archive/appendix-followups-20261109/` with hashes. Revisions correct derivation, show the actual refusal, add the typed editing path, and compact delegation.
+
+### handbook-derived-iam
+
+Source: `book/latex/sources/appendix-handbook/model-coherence.tex`; baseline line 57.
+
+```latex
+\autoref{handbook-derived-iam} shows how the separate models contribute to this authorization plan.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-derived-iam-6f6672746f.pdf}
+\caption[Two models, one authorization plan]{Two independently useful models combine to determine deployment authorization. The service-flow model supplies the communication obligation; the deployment model supplies runtime identity and resource names. Their join derives IAM grants. Deployment applies the grants; a separate correspondence check compares declared and observed service names.}
+\label{handbook-derived-iam}
+\end{figure}
+```
+
+### handbook-governance-conversion
+
+Source: `book/latex/sources/appendix-handbook/governance-conversion.tex`; baseline line 19.
+
+```latex
+\autoref{handbook-governance-conversion} traces this conversion from a recurring failure to a control that later work inherits.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-governance-conversion-e7b84d88d7.pdf}
+\caption[A failure becomes inherited structure]{A recurring failure becomes durable engineering structure. Judgment identifies the failure class and chooses an intervention; the engineered environment records the decision, checks the resulting mechanism, and makes subsequent work inherit it.}
+\label{handbook-governance-conversion}
+\end{figure}
+```
+
+### handbook-model-guided-delegation
+
+Source: `book/latex/sources/appendix-handbook/governed-delegation.tex`; baseline line 82.
+
+```latex
+\autoref{handbook-model-guided-delegation} connects the selected brief to the durable evidence used at completion.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/handbook-model-guided-delegation-583ae52872.pdf}
+\caption[Model-guided delegation and completion evidence]{A structured work order selects applicable engineering knowledge from maintained models. The agent implements and commits; completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion.}
+\label{handbook-model-guided-delegation}
+\end{figure}
+```

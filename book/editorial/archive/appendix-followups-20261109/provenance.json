@@ -1,0 +1,53 @@
+{
+  "base_head": "35748886dab700019ab3d1967dc80c4053521b1d",
+  "files": [
+    {
+      "path": "book/assets/handbook-derived-iam.svg",
+      "sha256": "5f487100552f1d94f0e8862a9fb66b9246af6bdd80a1860d8d358ef1f46d8729"
+    },
+    {
+      "path": "book/tikz/figures/handbook-derived-iam.tex",
+      "sha256": "a6508fa341ce19a9dc1cd0be1334716a7b653249a242dc44ab5884ee2170b760"
+    },
+    {
+      "path": "book/tikz/receipts/handbook-derived-iam.json",
+      "sha256": "ab36e200d54c524b6924f8735cf5d9d00bd6c382fc6310bad172850e672c09af"
+    },
+    {
+      "path": "book/assets/handbook-governance-conversion.svg",
+      "sha256": "054492317bbecccc5aa6bd89758ab9c866996dca29809efa5c7d7f4421eb4656"
+    },
+    {
+      "path": "book/tikz/figures/handbook-governance-conversion.tex",
+      "sha256": "10557949db14de8d3346e0d909ce96351c48c6cd7ef8edb0744abd02741c6843"
+    },
+    {
+      "path": "book/tikz/receipts/handbook-governance-conversion.json",
+      "sha256": "08259facb3d633872b0ef37774a58aa7d18d76616f25897b449dd36ab607ab06"
+    },
+    {
+      "path": "book/assets/handbook-model-guided-delegation.svg",
+      "sha256": "9fafeae07999ea9fb445df9251a66895e0f2e673e288718974a0f6af3bff331e"
+    },
+    {
+      "path": "book/tikz/figures/handbook-model-guided-delegation.tex",
+      "sha256": "97434aa62ab82d28d574324759a2636b03ac8c9bf66118d86180b3fa5fe2c9b5"
+    },
+    {
+      "path": "book/tikz/receipts/handbook-model-guided-delegation.json",
+      "sha256": "3c1a331bfc5dc745c3d9562f1d9ebbb640199dd6d4b2c780042c031ba05915eb"
+    },
+    {
+      "path": "book/latex/sources/appendix-handbook/model-coherence.tex",
+      "sha256": "032642eabe10ec3d4a10bc8f7baf4f88715ed72b43f18a3b798dc900a4426514"
+    },
+    {
+      "path": "book/latex/sources/appendix-handbook/governance-conversion.tex",
+      "sha256": "2cd29309e8adb89ba899ecbc8a08f648a708b475ba639c0cb0e99daf493f6323"
+    },
+    {
+      "path": "book/latex/sources/appendix-handbook/governed-delegation.tex",
+      "sha256": "d9c1f66ade6e3c3c67286db7756a40af45e314cd98ff2df0d338643f32cefbfb"
+    }
+  ]
+}

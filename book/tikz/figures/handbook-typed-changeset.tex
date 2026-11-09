@@ -1,0 +1,32 @@
+% Native monochrome partner; authored dimensions in bp; inherits the book body family.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[rounded corners=3pt,fill=black!5,draw=black,line width=.65bp] (4,4) rectangle (124,48);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (64,21) {DOCUMENT MODEL};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont}] at (64,39) {Structure · semantics};
+\draw[rounded corners=3pt,fill=white,draw=black,line width=.65bp] (160,4) rectangle (442,48);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (301,19) {EDIT PRODUCERS};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (301,33) {Structured pipeline · agent · human editor};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont}] at (301,45) {Propose supported typed edits};
+\draw[-{Stealth[length=5bp,width=4bp]},line width=.65bp] (124,26) -- (160,26);
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10}{12}\selectfont}] at (142,16) {inspect};
+\draw[-{Stealth[length=5bp,width=4bp]},line width=.65bp] (301,48) -- (301,65) -- (64,65) -- (64,82);
+\draw[rounded corners=3pt,fill=white,draw=black,line width=.65bp] (4,82) rectangle (124,142);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (64,101) {TYPED CHANGESET};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (64,119) {Kind · target};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (64,134) {Payload};
+\draw[rounded corners=3pt,fill=white,draw=black,line width=.65bp] (156,82) rectangle (292,142);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (224,98) {CONTROLLED APPLIER};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (224,117) {Resolve · check};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (224,134) {Apply or refuse};
+\draw[-{Stealth[length=5bp,width=4bp]},line width=.65bp] (124,112) -- (156,112);
+\draw[rounded corners=3pt,fill=white,draw=black,line width=.65bp] (324,82) rectangle (442,142);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (383,97) {APPLICATION};
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (383,109) {EVIDENCE};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont}] at (383,125) {Per-operation results};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont}] at (383,138) {Applied-edit attribution};
+\draw[-{Stealth[length=5bp,width=4bp]},line width=.65bp] (292,112) -- (324,112);
+\draw[-{Stealth[length=5bp,width=4bp]},line width=.65bp] (224,142) -- (224,164);
+\draw[rounded corners=3pt,fill=white,draw=black,line width=.65bp] (156,164) rectangle (292,194);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (224,183) {UPDATED DOCUMENT};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10}{12}\selectfont}] at (223,214) {Controlled editing path; some internal mutations still bypass this interface.};
+\end{tikzpicture}

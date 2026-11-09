@@ -3,9 +3,9 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 152,
+  "candidate_count": 153,
   "refined_count": 67,
-  "reviewed_peer_groups": 88,
+  "reviewed_peer_groups": 89,
   "figures": [
     {
       "source": "book/assets/book-map.svg",
@@ -35,7 +35,7 @@
         "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
         "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
         "status": "passed",
-        "visual_review": "Shaded Chapters 2\u20135 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
+        "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs."
       },
       "page_layout": {
         "decision": "refined",
@@ -152,7 +152,7 @@
               "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
               "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
               "status": "passed",
-              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
+              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
             },
             "page_layout": {
               "decision": "refined",
@@ -1434,7 +1434,7 @@
       "baseline_candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
       "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
       "decision": "refined",
-      "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10\u201310.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
+      "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10–10.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         413.8110046386719,
@@ -1462,7 +1462,7 @@
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10\u201310.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
+        "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10–10.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
         "reviewed_visually": true,
         "svg_audit_review": {
           "strict_label_collision": "passed",
@@ -1523,7 +1523,7 @@
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Replace both component forks with the explicit read-through WEB\u2013API\u2013CACHE\u2013DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
+        "reason": "Replace both component forks with the explicit read-through WEB–API–CACHE–DATABASE chain, using the page height for relation labels and a separate forbidden bypass.",
         "reviewed_visually": true
       },
       "revision_history": [
@@ -2606,7 +2606,7 @@
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Lengthen the four-panel plate to show actual producer-to-result paths and separate decision/display outputs. Retain native 9.5\u201310.5pt prose sizes; all arrows have the required terminal clearance.",
+        "reason": "Lengthen the four-panel plate to show actual producer-to-result paths and separate decision/display outputs. Retain native 9.5–10.5pt prose sizes; all arrows have the required terminal clearance.",
         "before_sha256": "d99081d82a8a4762b08a595c4cfa3216a04b52ada5103276c18bc61df44f6a59",
         "after_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c",
         "after_dimensions_bp": [
@@ -4714,9 +4714,9 @@
           {
             "name": "page-worker peers",
             "labels": [
-              "Pages 1\u201310 worker",
-              "Pages 11\u201320 worker",
-              "Pages 21\u201330 worker"
+              "Pages 1–10 worker",
+              "Pages 11–20 worker",
+              "Pages 21–30 worker"
             ],
             "align": [
               "left",
@@ -7323,7 +7323,7 @@
             "name": "parallel rank 2",
             "labels": [
               "B.2 copies drift from authority",
-              "DERIVE; DON\u2019T COPY"
+              "DERIVE; DON’T COPY"
             ],
             "align": [
               "top",
@@ -7387,7 +7387,7 @@
           {
             "name": "parallel rank 7",
             "labels": [
-              "B.7 rules exist but aren\u2019t present",
+              "B.7 rules exist but aren’t present",
               "DELIVER KNOWLEDGE AT DECISION"
             ],
             "align": [
@@ -8124,7 +8124,7 @@
           {
             "name": "parallel rank 1",
             "labels": [
-              "advisory \u00b7 report-only informs the engineer",
+              "advisory · report-only informs the engineer",
               "finding / gate CHECKED where warranted"
             ],
             "align": [
@@ -8820,8 +8820,8 @@
           {
             "name": "parallel rank 1",
             "labels": [
-              "CHANGE MODEL ticket / issue observation \u00b7 intent",
-              "SYSTEM KNOWLEDGE architecture \u00b7 behavior \u00b7 ownership contracts \u00b7 dependencies"
+              "CHANGE MODEL ticket / issue observation · intent",
+              "SYSTEM KNOWLEDGE architecture · behavior · ownership contracts · dependencies"
             ],
             "align": [
               "top",
@@ -8834,7 +8834,7 @@
             "name": "parallel rank 2",
             "labels": [
               "history",
-              "DURABLE STRUCTURE model \u00b7 test \u00b7 constraint validator \u00b7 architecture \u00b7 design"
+              "DURABLE STRUCTURE model · test · constraint validator · architecture · design"
             ],
             "align": [
               "top",
@@ -8921,7 +8921,7 @@
             "name": "parallel rank 2",
             "labels": [
               "UPDATED MODEL",
-              "DURABLE MECHANISM invariant \u00b7 validator \u00b7 test constraint \u00b7 policy \u00b7 gate"
+              "DURABLE MECHANISM invariant · validator · test constraint · policy · gate"
             ],
             "align": [
               "top",
@@ -8992,8 +8992,8 @@
           {
             "name": "parallel rank 1",
             "labels": [
-              "MODEL EVIDENCE architecture \u00b7 behavior data flow \u00b7 access policy invariants",
-              "REALIZATION EVIDENCE implementation \u00b7 tests static analysis \u00b7 runtime evidence memory safety"
+              "MODEL EVIDENCE architecture · behavior data flow · access policy invariants",
+              "REALIZATION EVIDENCE implementation · tests static analysis · runtime evidence memory safety"
             ],
             "align": [
               "top",
@@ -9091,8 +9091,8 @@
           {
             "name": "parallel rank 3",
             "labels": [
-              "AUTONOMOUS REASONING reconstruction \u00b7 synthesis novel judgment \u00b7 open choices",
-              "ALIGNMENT constraints \u00b7 validators permissions \u00b7 gates"
+              "AUTONOMOUS REASONING reconstruction · synthesis novel judgment · open choices",
+              "ALIGNMENT constraints · validators permissions · gates"
             ],
             "align": [
               "top",
@@ -9822,7 +9822,7 @@
             "name": "parallel rank 1",
             "labels": [
               "realized work",
-              "realized code repos \u00b7 diffs \u00b7 PRs",
+              "realized code repos · diffs · PRs",
               "documents records / notes conversations",
               "drawings assemblies geometry"
             ],
@@ -9837,7 +9837,7 @@
             "name": "parallel rank 2",
             "labels": [
               "repeated low-level forms",
-              "primitive forms dict.Put raw argv \u00b7 loops",
+              "primitive forms dict.Put raw argv · loops",
               "terms / relations phrases entity patterns",
               "geometry constraints parameter bundles"
             ],
@@ -9882,7 +9882,7 @@
             "name": "parallel rank 5",
             "labels": [
               "explicit model / vocabulary",
-              "typed vocabulary and relations PdfModel \u00b7 JobId",
+              "typed vocabulary and relations PdfModel · JobId",
               "canonical term and relations the agreed name",
               "named feature constraint model interface"
             ],
@@ -9898,7 +9898,7 @@
             "labels": [
               "future work uses the concept",
               "tools search / check agents reuse",
-              "lexicon \u00b7 ontology \u00b7 schema",
+              "lexicon · ontology · schema",
               "reusable engineering vocabulary"
             ],
             "align": [
@@ -10257,7 +10257,7 @@
       },
       "title_revision_review": {
         "date": "2026-11-09",
-        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 \u00d7 81 bp and native 426.477 \u00d7 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
+        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 × 81 bp and native 426.477 × 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
         "validation": {
           "proof": "latex/build/tikz/candidates.pdf",
           "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
@@ -10728,7 +10728,7 @@
       "source_sha256": "bd2fa0afda20e3f7eddd79b53b9d98cf116efb4e68dfb9fa171630f4ec5fa9c5",
       "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5",
       "decision": "new",
-      "reason": "Three peer alternatives converge on a compact vertical PDF editing path. Explicit source geometry maintains 9.5\u201310.5 pt type and generous arrow approaches without scaling.",
+      "reason": "Three peer alternatives converge on a compact vertical PDF editing path. Explicit source geometry maintains 9.5–10.5 pt type and generous arrow approaches without scaling.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": null,
       "contracts": {
@@ -10771,19 +10771,19 @@
     {
       "source": "book/assets/handbook-derived-iam.svg",
       "candidate": "book/tikz/figures/handbook-derived-iam.tex",
-      "source_sha256": "5f487100552f1d94f0e8862a9fb66b9246af6bdd80a1860d8d358ef1f46d8729",
-      "candidate_sha256": "a6508fa341ce19a9dc1cd0be1334716a7b653249a242dc44ab5884ee2170b760",
-      "decision": "new",
-      "reason": "The join is the point of the figure. Two small peer inputs and two shallow stages preserve the relation without a tall stack.",
+      "source_sha256": "9642d61dbcc5064775247ecc62d8476f9fa3bb129b22a24fbec1d9fabb2a6714",
+      "candidate_sha256": "192ee9abcbf71a0e164cecee711deaeb72d29d94ee7bb8744aad0f0de94dec10",
+      "decision": "revised",
+      "reason": "Replace the misleading direct service-flow-to-grant join with the implemented map input. Place the independent fleet comparison in its own lane. Recompose horizontally without shrinking labels.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": null,
       "contracts": {
         "peer_groups": [
           {
-            "name": "independently useful input models",
+            "name": "name-set correspondence",
             "labels": [
-              "SERVICE-FLOW MODEL",
-              "DEPLOYMENT MODEL"
+              "DECLARED DEPLOYMENTS",
+              "OBSERVED FLEET"
             ],
             "align": [
               "top",
@@ -10797,57 +10797,836 @@
       },
       "validation": {
         "date": "2026-11-09",
-        "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
-        "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
-        "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
-        "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+        "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+        "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+        "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+        "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
         "page": 1,
-        "width_bp": 388.62298583984375,
-        "height_bp": 222.625,
+        "width_bp": 428.62298583984375,
+        "height_bp": 210.625,
         "minimum_prose_font_pt": 9.962639808654785,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 11,
+        "semantic_typography_checks": 19,
         "status": "passed",
-        "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+        "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+      },
+      "previous_revision": {
+        "source": "book/assets/handbook-derived-iam.svg",
+        "claim": "Two independently useful models combine to determine deployment authorization. The service-flow model supplies the communication obligation; the deployment model supplies runtime identity and resource names. Their join derives IAM grants. Deployment applies the grants; a separate correspondence check compares declared and observed service names.",
+        "topology": "Two equal input-model boxes join at a single rail. One vertical path leads to the derived IAM grants and then to applying grants and reconciling deployed names.",
+        "required_terms": [
+          "SERVICE-FLOW MODEL",
+          "Caller invokes callee",
+          "Authentication obligation",
+          "DEPLOYMENT MODEL",
+          "Environment · runtime identity",
+          "Deployed resource names",
+          "join",
+          "DERIVED IAM GRANTS",
+          "Caller identity to callee resource",
+          "DEPLOYMENT + CORRESPONDENCE",
+          "Apply grants · reconcile deployed names"
+        ],
+        "bw_encoding": "Light gray groups the two independently useful input models. The derived plan and deployment/correspondence stages remain white.",
+        "redesign": "The join is the point of the figure. Two small peer inputs and two shallow stages preserve the relation without a tall stack.",
+        "questions": [],
+        "alt": "The service-flow model supplies caller-to-callee communication and its authentication obligation. The deployment model supplies the environment, runtime identity, and deployed resource names. Joining these models derives IAM grants from caller identities to callee resources. Deployment applies the grants. A separate correspondence check reconciles declared and observed service names; it does not establish that every IAM binding is present.",
+        "qa": {
+          "compiler": "LuaLaTeX with production mage-figures.sty, book font profile, tight preview, no shell escape",
+          "warnings": [],
+          "width_pt": 388.62298583984375,
+          "height_pt": 222.625,
+          "monochrome": true,
+          "inspection": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the three pair PNGs."
+        },
+        "evidence": [
+          {
+            "path": "/Users/davisjam/Downloads/appendices-details.md",
+            "sha256": "aba880a45e2c3f1a069f777f89986cf380e47688363a477de9f8160dbf52f296"
+          },
+          {
+            "path": "/Users/davisjam/Downloads/more-models-reply.md",
+            "sha256": "d15d7b2309a62d724eee1fc8bedd5e1ccb75765c37e063561376e9d9f62c271b"
+          }
+        ],
+        "evidence_scope": {
+          "claim": "The correspondence check shown compares declared and observed service names. It does not certify all IAM bindings; generating a plan and successfully applying each grant remain distinct.",
+          "publication": "New pair remains pending author publication review. Do not add it to approved_monochrome."
+        },
+        "style_review": {
+          "source": "book/assets/handbook-derived-iam.svg",
+          "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+          "receipt": "book/tikz/receipts/handbook-derived-iam.json",
+          "source_sha256": "5f487100552f1d94f0e8862a9fb66b9246af6bdd80a1860d8d358ef1f46d8729",
+          "candidate_sha256": "a6508fa341ce19a9dc1cd0be1334716a7b653249a242dc44ab5884ee2170b760",
+          "decision": "new",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+          "status": "reviewed",
+          "fill": "Light gray groups the two independently useful input models. The derived plan and deployment/correspondence stages remain white.",
+          "bold": "Bold identifies stages or input roles; descriptions stay regular; relations are italic.",
+          "routing": "Two equal input-model boxes join at a single rail. One vertical path leads to the derived IAM grants and then to applying grants and reconciling deployed names.",
+          "shape": "Equal rounded boxes for peer inputs; shallow ordinary stages. Conversion uses circles and a spine instead of enclosing each sentence.",
+          "visual_review": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the three pair PNGs.",
+          "reviewed_visually": true,
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 1,
+            "width_bp": 388.62298583984375,
+            "height_bp": 222.625,
+            "minimum_prose_font_pt": 9.962639808654785,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          },
+          "book_references": []
+        },
+        "layout_review": {
+          "source": "book/assets/handbook-derived-iam.svg",
+          "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+          "source_sha256": "5f487100552f1d94f0e8862a9fb66b9246af6bdd80a1860d8d358ef1f46d8729",
+          "candidate_sha256": "a6508fa341ce19a9dc1cd0be1334716a7b653249a242dc44ab5884ee2170b760",
+          "decision": "new",
+          "reason": "The join is the point of the figure. Two small peer inputs and two shallow stages preserve the relation without a tall stack.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": null,
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "independently useful input models",
+                "labels": [
+                  "SERVICE-FLOW MODEL",
+                  "DEPLOYMENT MODEL"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_width": true,
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 1,
+            "width_bp": 388.62298583984375,
+            "height_bp": 222.625,
+            "minimum_prose_font_pt": 9.962639808654785,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/handbook-derived-iam.svg",
+          "candidate": "book/tikz/figures/handbook-derived-iam.tex",
+          "source_sha256": "5f487100552f1d94f0e8862a9fb66b9246af6bdd80a1860d8d358ef1f46d8729",
+          "candidate_sha256": "a6508fa341ce19a9dc1cd0be1334716a7b653249a242dc44ab5884ee2170b760",
+          "decision": "new",
+          "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+          "reviewed_visually": true,
+          "evidence": [
+            {
+              "source_text": "SERVICE-FLOW MODEL",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "SERVICE-FLOW MODEL",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Caller invokes callee",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Caller invokes callee",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Authentication obligation",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Authentication obligation",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "DEPLOYMENT MODEL",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "DEPLOYMENT MODEL",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Environment · runtime identity",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Environment · runtime identity",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Deployed resource names",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Deployed resource names",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "join",
+              "source_style": {
+                "font-size": "10",
+                "font-weight": "400",
+                "font-style": "italic"
+              },
+              "semantic_role": "relation",
+              "candidate_text": "join",
+              "candidate_style": "italic"
+            },
+            {
+              "source_text": "DERIVED IAM GRANTS",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "DERIVED IAM GRANTS",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Caller identity to callee resource",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Caller identity to callee resource",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "DEPLOYMENT + CORRESPONDENCE",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "DEPLOYMENT + CORRESPONDENCE",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Apply grants · reconcile deployed names",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Apply grants · reconcile deployed names",
+              "candidate_style": "regular"
+            }
+          ],
+          "checks": [
+            {
+              "text": "SERVICE-FLOW MODEL",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Caller invokes callee",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Authentication obligation",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "DEPLOYMENT MODEL",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Environment · runtime identity",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Deployed resource names",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "join",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "DERIVED IAM GRANTS",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Caller identity to callee resource",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "DEPLOYMENT + CORRESPONDENCE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Apply grants · reconcile deployed names",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 1,
+            "width_bp": 388.62298583984375,
+            "height_bp": 222.625,
+            "minimum_prose_font_pt": 9.962639808654785,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          }
+        }
       }
     },
     {
       "source": "book/assets/handbook-governance-conversion.svg",
       "candidate": "book/tikz/figures/handbook-governance-conversion.tex",
-      "source_sha256": "054492317bbecccc5aa6bd89758ab9c866996dca29809efa5c7d7f4421eb4656",
-      "candidate_sha256": "10557949db14de8d3346e0d909ce96351c48c6cd7ef8edb0744abd02741c6843",
-      "decision": "new",
-      "reason": "No stack of large empty boxes: a narrow spine keeps the method readable at 11 pt and reserves the caption for its claim.",
+      "source_sha256": "e82d12d35daf95180abde72f08d95c6ed61846e8126a01f3e8805c05353eed02",
+      "candidate_sha256": "8b23a7fc7c1e5595b6d4e957eb031874bdda9842d84e9e18c33663eb31307a16",
+      "decision": "revised",
+      "reason": "Replace a generic six-stage engineering-method sequence with the actual branch condition and outcomes of the duplicate-dispatch control. Keep the result compact and source-grounded.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": null,
-      "contracts": {},
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "gate outcomes",
+            "labels": [
+              "REFUSE BRIEF",
+              "CONTINUE COMPOSITION"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_width": true,
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ]
+      },
       "validation": {
         "date": "2026-11-09",
-        "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
-        "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
-        "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
-        "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+        "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+        "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+        "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+        "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
         "page": 2,
-        "width_bp": 213.406005859375,
-        "height_bp": 231.64300537109375,
-        "minimum_prose_font_pt": 10.460769653320312,
+        "width_bp": 428.62298583984375,
+        "height_bp": 218.3419952392578,
+        "minimum_prose_font_pt": 9.962639808654785,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 18,
+        "semantic_typography_checks": 13,
         "status": "passed",
-        "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+        "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+      },
+      "previous_revision": {
+        "source": "book/assets/handbook-governance-conversion.svg",
+        "claim": "A recurring failure becomes durable engineering structure. Judgment identifies the failure class and chooses an intervention; the engineered environment records the decision, checks the resulting mechanism, and makes subsequent work inherit it.",
+        "topology": "A simple downward spine joins six stages: observe, classify and choose, record, implement, check, inherit. Bold stage labels carry the method; regular secondary lines name the supporting activity.",
+        "required_terms": [
+          "1",
+          "Observed recurring failure",
+          "Preserve the evidence",
+          "2",
+          "Classify and choose intervention",
+          "Engineering judgment",
+          "3",
+          "Record the intended control",
+          "A durable work order",
+          "4",
+          "Implement the mechanism",
+          "Agentic implementation",
+          "5",
+          "Check behavior and correspondence",
+          "Tests and model checks",
+          "6",
+          "Later work inherits the control",
+          "Constraint · sensor · gate"
+        ],
+        "bw_encoding": "Small light-gray circles mark the six stages. The explanatory text has no outer containers.",
+        "redesign": "No stack of large empty boxes: a narrow spine keeps the method readable at 11 pt and reserves the caption for its claim.",
+        "questions": [],
+        "alt": "A compact sequence shows governance conversion: observe a recurring failure, classify it and choose an intervention, record the intended control in a durable work order, implement the mechanism, check its behavior and correspondence, and let later work inherit the constraint, sensor, or gate. The sequence describes an engineering method, not a count of recorded conversions.",
+        "qa": {
+          "compiler": "LuaLaTeX with production mage-figures.sty, book font profile, tight preview, no shell escape",
+          "warnings": [],
+          "width_pt": 213.406005859375,
+          "height_pt": 231.64300537109375,
+          "monochrome": true,
+          "inspection": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the three pair PNGs."
+        },
+        "evidence": [
+          {
+            "path": "/Users/davisjam/Downloads/appendices-details.md",
+            "sha256": "aba880a45e2c3f1a069f777f89986cf380e47688363a477de9f8160dbf52f296"
+          },
+          {
+            "path": "/Users/davisjam/Downloads/more-models-reply.md",
+            "sha256": "d15d7b2309a62d724eee1fc8bedd5e1ccb75765c37e063561376e9d9f62c271b"
+          }
+        ],
+        "evidence_scope": {
+          "claim": "No conversion totals, completion rates, or proposed/shipped/exercised metric are represented. The diagram does not claim that a gate identifies unrecorded phase completion or that override audit writes always succeed.",
+          "publication": "New pair remains pending author publication review. Do not add it to approved_monochrome."
+        },
+        "style_review": {
+          "source": "book/assets/handbook-governance-conversion.svg",
+          "candidate": "book/tikz/figures/handbook-governance-conversion.tex",
+          "receipt": "book/tikz/receipts/handbook-governance-conversion.json",
+          "source_sha256": "054492317bbecccc5aa6bd89758ab9c866996dca29809efa5c7d7f4421eb4656",
+          "candidate_sha256": "10557949db14de8d3346e0d909ce96351c48c6cd7ef8edb0744abd02741c6843",
+          "decision": "new",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+          "status": "reviewed",
+          "fill": "Small light-gray circles mark the six stages. The explanatory text has no outer containers.",
+          "bold": "Bold identifies stages or input roles; descriptions stay regular; relations are italic.",
+          "routing": "A simple downward spine joins six stages: observe, classify and choose, record, implement, check, inherit. Bold stage labels carry the method; regular secondary lines name the supporting activity.",
+          "shape": "Equal rounded boxes for peer inputs; shallow ordinary stages. Conversion uses circles and a spine instead of enclosing each sentence.",
+          "visual_review": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the three pair PNGs.",
+          "reviewed_visually": true,
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 2,
+            "width_bp": 213.406005859375,
+            "height_bp": 231.64300537109375,
+            "minimum_prose_font_pt": 10.460769653320312,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          },
+          "book_references": []
+        },
+        "layout_review": {
+          "source": "book/assets/handbook-governance-conversion.svg",
+          "candidate": "book/tikz/figures/handbook-governance-conversion.tex",
+          "source_sha256": "054492317bbecccc5aa6bd89758ab9c866996dca29809efa5c7d7f4421eb4656",
+          "candidate_sha256": "10557949db14de8d3346e0d909ce96351c48c6cd7ef8edb0744abd02741c6843",
+          "decision": "new",
+          "reason": "No stack of large empty boxes: a narrow spine keeps the method readable at 11 pt and reserves the caption for its claim.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": null,
+          "contracts": {},
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 2,
+            "width_bp": 213.406005859375,
+            "height_bp": 231.64300537109375,
+            "minimum_prose_font_pt": 10.460769653320312,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/handbook-governance-conversion.svg",
+          "candidate": "book/tikz/figures/handbook-governance-conversion.tex",
+          "source_sha256": "054492317bbecccc5aa6bd89758ab9c866996dca29809efa5c7d7f4421eb4656",
+          "candidate_sha256": "10557949db14de8d3346e0d909ce96351c48c6cd7ef8edb0744abd02741c6843",
+          "decision": "new",
+          "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+          "reviewed_visually": true,
+          "evidence": [
+            {
+              "source_text": "1",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "1",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Observed recurring failure",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "Observed recurring failure",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Preserve the evidence",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Preserve the evidence",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "2",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "2",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Classify and choose intervention",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "Classify and choose intervention",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Engineering judgment",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Engineering judgment",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "3",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "3",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Record the intended control",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "Record the intended control",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "A durable work order",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "A durable work order",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "4",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "4",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Implement the mechanism",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "Implement the mechanism",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Agentic implementation",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Agentic implementation",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "5",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "5",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Check behavior and correspondence",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "Check behavior and correspondence",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Tests and model checks",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Tests and model checks",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "6",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "6",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Later work inherits the control",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "Later work inherits the control",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Constraint · sensor · gate",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Constraint · sensor · gate",
+              "candidate_style": "regular"
+            }
+          ],
+          "checks": [
+            {
+              "text": "1",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Observed recurring failure",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Preserve the evidence",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "2",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Classify and choose intervention",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Engineering judgment",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "3",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Record the intended control",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "A durable work order",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "4",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Implement the mechanism",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Agentic implementation",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "5",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Check behavior and correspondence",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Tests and model checks",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "6",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Later work inherits the control",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Constraint · sensor · gate",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 2,
+            "width_bp": 213.406005859375,
+            "height_bp": 231.64300537109375,
+            "minimum_prose_font_pt": 10.460769653320312,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          }
+        }
       }
     },
     {
       "source": "book/assets/handbook-model-guided-delegation.svg",
       "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
-      "source_sha256": "9fafeae07999ea9fb445df9251a66895e0f2e673e288718974a0f6af3bff331e",
-      "candidate_sha256": "97434aa62ab82d28d574324759a2636b03ac8c9bf66118d86180b3fa5fe2c9b5",
-      "decision": "new",
-      "reason": "The drawing distinguishes the structured assignment from the brief assembled through model selection. The return path shows that completion rests on durable evidence, not conversation.",
+      "source_sha256": "3c25aa6927a3c4289c34602cc8334399e611f92336543dc5fa8c59bb844248ec",
+      "candidate_sha256": "b3160ad7e69fb09465829762e6e0b7299d56be51ef7d26a997148e28a7e54292",
+      "decision": "revised",
+      "reason": "Retain the useful composition and feedback, but move the brief, agent, and completion evidence onto one row. The drawing is 154bp high rather than264bp; labels retain at least10pt authored size.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": null,
       "contracts": {
@@ -10870,20 +11649,446 @@
       },
       "validation": {
         "date": "2026-11-09",
-        "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
-        "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
-        "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
-        "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
-        "page": 3,
-        "width_bp": 387.62298583984375,
-        "height_bp": 261.625,
+        "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+        "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+        "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+        "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+        "page": 4,
+        "width_bp": 440.62298583984375,
+        "height_bp": 150.62600708007812,
         "minimum_prose_font_pt": 9.962639808654785,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 15,
+        "semantic_typography_checks": 18,
         "status": "passed",
-        "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+        "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+      },
+      "previous_revision": {
+        "source": "book/assets/handbook-model-guided-delegation.svg",
+        "claim": "A structured work order selects applicable engineering knowledge from maintained models. The agent implements and commits; completion review compares landed work and independent check evidence with the work order, then updates its status. An agent report alone does not establish completion.",
+        "topology": "Two equal input boxes supply selection into an assembled brief. A compact vertical path continues to the agent and completion evidence. An outer return path represents review and work-order status update.",
+        "required_terms": [
+          "WORK ORDER",
+          "Role · target paths",
+          "Verification · acceptance",
+          "ENGINEERING MODELS",
+          "Components · constraints",
+          "Procedures",
+          "select",
+          "ASSEMBLED BRIEF",
+          "Selected knowledge · obligations",
+          "AGENT",
+          "Implement · commit",
+          "COMPLETION EVIDENCE",
+          "Landed changes · independent checks",
+          "Review and",
+          "update status"
+        ],
+        "bw_encoding": "Light gray identifies the engineering models as the maintained knowledge input. Work order, assembled brief, agent, and completion evidence remain white.",
+        "redesign": "The drawing distinguishes the structured assignment from the brief assembled through model selection. The return path shows that completion rests on durable evidence, not conversation.",
+        "questions": [],
+        "alt": "A structured work order and maintained engineering models feed a selection step that assembles a brief containing selected knowledge and obligations. The agent implements and commits. Completion evidence combines durable landed changes and independent checks. Review uses this evidence to update the work order status; an agent report alone does not establish completion.",
+        "qa": {
+          "compiler": "LuaLaTeX with production mage-figures.sty, book font profile, tight preview, no shell escape",
+          "warnings": [],
+          "width_pt": 387.62298583984375,
+          "height_pt": 261.625,
+          "monochrome": true,
+          "inspection": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the three pair PNGs."
+        },
+        "evidence": [
+          {
+            "path": "/Users/davisjam/Downloads/appendices-details.md",
+            "sha256": "aba880a45e2c3f1a069f777f89986cf380e47688363a477de9f8160dbf52f296"
+          },
+          {
+            "path": "/Users/davisjam/Downloads/more-models-reply.md",
+            "sha256": "d15d7b2309a62d724eee1fc8bedd5e1ccb75765c37e063561376e9d9f62c271b"
+          }
+        ],
+        "evidence_scope": {
+          "claim": "The path is an architectural composition of the described dispatch, model selection, landing, and checking mechanisms. It is not an independently measured end-to-end experiment or a claim of guaranteed completion.",
+          "publication": "New pair remains pending author publication review. Do not add it to approved_monochrome."
+        },
+        "style_review": {
+          "source": "book/assets/handbook-model-guided-delegation.svg",
+          "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+          "receipt": "book/tikz/receipts/handbook-model-guided-delegation.json",
+          "source_sha256": "9fafeae07999ea9fb445df9251a66895e0f2e673e288718974a0f6af3bff331e",
+          "candidate_sha256": "97434aa62ab82d28d574324759a2636b03ac8c9bf66118d86180b3fa5fe2c9b5",
+          "decision": "new",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+          "status": "reviewed",
+          "fill": "Light gray identifies the engineering models as the maintained knowledge input. Work order, assembled brief, agent, and completion evidence remain white.",
+          "bold": "Bold identifies stages or input roles; descriptions stay regular; relations are italic.",
+          "routing": "Two equal input boxes supply selection into an assembled brief. A compact vertical path continues to the agent and completion evidence. An outer return path represents review and work-order status update.",
+          "shape": "Equal rounded boxes for peer inputs; shallow ordinary stages. Conversion uses circles and a spine instead of enclosing each sentence.",
+          "visual_review": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the three pair PNGs.",
+          "reviewed_visually": true,
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 3,
+            "width_bp": 387.62298583984375,
+            "height_bp": 261.625,
+            "minimum_prose_font_pt": 9.962639808654785,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 15,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          },
+          "book_references": []
+        },
+        "layout_review": {
+          "source": "book/assets/handbook-model-guided-delegation.svg",
+          "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+          "source_sha256": "9fafeae07999ea9fb445df9251a66895e0f2e673e288718974a0f6af3bff331e",
+          "candidate_sha256": "97434aa62ab82d28d574324759a2636b03ac8c9bf66118d86180b3fa5fe2c9b5",
+          "decision": "new",
+          "reason": "The drawing distinguishes the structured assignment from the brief assembled through model selection. The return path shows that completion rests on durable evidence, not conversation.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": null,
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "brief selection inputs",
+                "labels": [
+                  "WORK ORDER",
+                  "ENGINEERING MODELS"
+                ],
+                "align": [
+                  "top",
+                  "bottom"
+                ],
+                "equal_width": true,
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 3,
+            "width_bp": 387.62298583984375,
+            "height_bp": 261.625,
+            "minimum_prose_font_pt": 9.962639808654785,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 15,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/handbook-model-guided-delegation.svg",
+          "candidate": "book/tikz/figures/handbook-model-guided-delegation.tex",
+          "source_sha256": "9fafeae07999ea9fb445df9251a66895e0f2e673e288718974a0f6af3bff331e",
+          "candidate_sha256": "97434aa62ab82d28d574324759a2636b03ac8c9bf66118d86180b3fa5fe2c9b5",
+          "decision": "new",
+          "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+          "reviewed_visually": true,
+          "evidence": [
+            {
+              "source_text": "WORK ORDER",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "WORK ORDER",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Role · target paths",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Role · target paths",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Verification · acceptance",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Verification · acceptance",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "ENGINEERING MODELS",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "ENGINEERING MODELS",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Components · constraints",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Components · constraints",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Procedures",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Procedures",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "select",
+              "source_style": {
+                "font-size": "10",
+                "font-weight": "400",
+                "font-style": "italic"
+              },
+              "semantic_role": "relation",
+              "candidate_text": "select",
+              "candidate_style": "italic"
+            },
+            {
+              "source_text": "ASSEMBLED BRIEF",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "ASSEMBLED BRIEF",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Selected knowledge · obligations",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Selected knowledge · obligations",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "AGENT",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "AGENT",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Implement · commit",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Implement · commit",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "COMPLETION EVIDENCE",
+              "source_style": {
+                "font-size": "11",
+                "font-weight": "700",
+                "font-style": "normal"
+              },
+              "semantic_role": "stage or input role",
+              "candidate_text": "COMPLETION EVIDENCE",
+              "candidate_style": "bold"
+            },
+            {
+              "source_text": "Landed changes · independent checks",
+              "source_style": {
+                "font-size": "10.5",
+                "font-weight": "400",
+                "font-style": "normal"
+              },
+              "semantic_role": "contents or supporting activity",
+              "candidate_text": "Landed changes · independent checks",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "Review and",
+              "source_style": {
+                "font-size": "10",
+                "font-weight": "400",
+                "font-style": "italic"
+              },
+              "semantic_role": "relation",
+              "candidate_text": "Review and",
+              "candidate_style": "italic"
+            },
+            {
+              "source_text": "update status",
+              "source_style": {
+                "font-size": "10",
+                "font-weight": "400",
+                "font-style": "italic"
+              },
+              "semantic_role": "relation",
+              "candidate_text": "update status",
+              "candidate_style": "italic"
+            }
+          ],
+          "checks": [
+            {
+              "text": "WORK ORDER",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Role · target paths",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Verification · acceptance",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "ENGINEERING MODELS",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Components · constraints",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Procedures",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "select",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "ASSEMBLED BRIEF",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Selected knowledge · obligations",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "AGENT",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Implement · commit",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "COMPLETION EVIDENCE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Landed changes · independent checks",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Review and",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "update status",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "/private/tmp/mage-appendices-overhaul-20261109/figures/proof/native.pdf",
+            "proof_sha256": "156abc6de263bc820d0d19c75f466e27cfd4ceacb05d945fc7f93553cd4961ba",
+            "audit_sha256": "a5c843cd9e7cbfa6dfd29b3cc25659d0bd853f6786806920f04017d2fbb461ef",
+            "typography_audit_sha256": "0de02ce285deaed4f8e5022f133a3f959b9cacb96d1a5cbf19ddc67e9aab683b",
+            "page": 3,
+            "width_bp": 387.62298583984375,
+            "height_bp": 261.625,
+            "minimum_prose_font_pt": 9.962639808654785,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 15,
+            "status": "passed",
+            "validation_scope": "Isolated three-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+          }
+        }
+      }
+    },
+    {
+      "source": "book/assets/handbook-typed-changeset.svg",
+      "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+      "source_sha256": "341747c36214dfea3757a15dd550bf0becbae179a3da92ba22c29162d5e927f1",
+      "candidate_sha256": "21b6089f268e7db714ab99df97d2a95685c4409b51f9ae61db30718f6e4971b6",
+      "decision": "new",
+      "reason": "Add the product-side composition requested by the author. A compact two-row drawing separates representation, proposal, mutation, and evidence without a tall pipeline or a misleading transaction box.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": null,
+      "contracts": {},
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+        "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+        "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+        "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+        "page": 3,
+        "width_bp": 444.62200927734375,
+        "height_bp": 218.49200439453125,
+        "minimum_prose_font_pt": 9.962639808654785,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 18,
+        "status": "passed",
+        "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
       }
     }
   ],

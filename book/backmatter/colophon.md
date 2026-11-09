@@ -6,18 +6,12 @@
 
 # Colophon — Dogfooding MAGE
 
-In a typical colophon, I would tell you about the font. This book uses LuaLaTeX and the `book` class, with Source Sans 3 for body text, Source Serif 4 for headings, and IBM Plex Mono for code. A custom `house` package handles the page layout, captions, and breakable insets. Commodity intelligences developed by OpenAI and Anthropic were used in editing the manuscript and developing its figures. Tradition satisfied.
+In a traditional colophon, I am supposed to tell you about the font. This book uses LuaLaTeX and the `book` class, with Source Sans 3 for body text, Source Serif 4 for headings, and IBM Plex Mono for code. A custom `house` package handles the page layout, captions, and breakable insets. There, tradition satisfied.
 
-This book was built and revised using some of the same engineering ideas it describes.
-
-During editing, important properties of the manuscript were represented explicitly rather than left entirely in prose or editorial memory. Models tracked properties and obligations such as section identity, the argument spine, claims, terminology, evidence relationships, and book structure. Generated projections and consistency checks helped keep those representations synchronized as the manuscript changed.
-
-The point was not to mechanize editorial judgment. It was to make consequential editorial knowledge explicit so changes could propagate coherently and decidable inconsistencies could be caught before publication.
-
-**The models and checks behind the manuscript**
+Perhaps of greater interest, this book was also developed using MAGE. Commodity intelligences developed by OpenAI and Anthropic were used in editing the manuscript and developing its figures. What Modeling and Alignment did I apply? Important properties of the manuscript—its argument, claims, terminology, evidence relationships, and structure—were represented explicitly rather than left entirely in prose or editorial memory. Generated projections and consistency checks helped maintain correspondence as the manuscript changed. [ref:manuscript-models] shows the models and the failures they were intended to prevent.
 
 <!-- label: manuscript-models -->
-<!-- table: *The manuscript's models.* Each structured model alongside the manuscript, the facet of the argument it carried, and the failure a consistency check on it prevented. [short: The manuscript's governing models and the failures they prevent] -->
+<!-- table: Modeling and Alignment in the production of this book. [short: Modeling and Alignment in the production of this book.] -->
 | Model | Purpose | Prevented failure |
 |---|---|---|
 | Argument-spine model | The book's numbered claims, their order, and the sections that advance them | A claim advanced nowhere, duplicated across sections, or spread thinner than it is taught |

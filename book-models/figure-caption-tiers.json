@@ -847,7 +847,7 @@
       "location": "part5",
       "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
     },
-    "backmatter/colophon.md::The manuscript's governing models and the failures they prevent": {
+    "backmatter/colophon.md::Modeling and Alignment in the production of this book.": {
       "tier": "C",
       "kind": "reference-colophon",
       "location": "backmatter",
@@ -1338,6 +1338,12 @@
       "kind": "process-diagram",
       "location": "appendix-handbook",
       "rationale": "Compact supporting diagram of the worked handbook composition; caption names inputs, transformation, and evidence boundary."
+    },
+    "assets/handbook-typed-changeset.svg": {
+      "tier": "B",
+      "kind": "architecture",
+      "location": "appendix-handbook",
+      "rationale": "Compact supporting diagram of the typed product editing boundary; caption distinguishes proposal, per-operation application evidence, and remaining direct paths."
     }
   },
   "historical_tiers": {

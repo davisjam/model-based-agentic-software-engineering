@@ -16,10 +16,10 @@ This is a complete conversion: a recurring failure prompted diagnosis, the diagn
 
 A conversion ledger supplies supporting traceability. A failure-class identifier links the proposed intervention to the engineering phase that installs it; recorded phase transitions let the ledger derive that link’s status. This gives an engineer a route from the original incident to the responsible change. The mechanism’s behavior is established separately by its code, tests, and use.
 
-[ref:handbook-governance-conversion] traces this conversion from a recurring failure to a control that later work inherits.
+[ref:handbook-governance-conversion] shows the completed-phase control inherited by subsequent work orders.
 
 <!-- label: handbook-governance-conversion -->
-<!-- figure: assets/handbook-governance-conversion.svg | A recurring failure becomes durable engineering structure. Judgment identifies the failure class and chooses an intervention; the engineered environment records the decision, checks the resulting mechanism, and makes subsequent work inherit it. [short: A failure becomes inherited structure] -->
+<!-- figure: assets/handbook-governance-conversion.svg | A work order is refused when its resolved phase is recorded as DONE, unless a valid explicit override is supplied. Missing or unresolved state does not establish completion. Reopening sets the phase to queued; an override permits one dispatch and attempts a best-effort audit write. Dispatch repeats the check. [short: Refusing duplicate assignments from reconciled phase state] -->
 
 ## Governance Graph {#handbook-model-governance-graph}
 

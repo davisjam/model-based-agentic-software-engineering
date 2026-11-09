@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 654,
+    "total_sites": 653,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 316,
+      "book-web": 315,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -161,7 +161,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 21
+            "occ": 25
           },
           {
             "file": "book/web/docs/appendix-a-model-coherence.md",
@@ -189,7 +189,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 73
+            "occ": 76
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -858,16 +858,12 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/appendix-a-governance-conversion.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 2
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -877,7 +873,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 17
+            "occ": 16
           }
         ]
       },
@@ -1107,7 +1103,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-governance-conversion.md",
-            "occ": 12
+            "occ": 9
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
@@ -1131,7 +1127,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-handbook.md",
@@ -1151,11 +1147,11 @@
           },
           {
             "file": "book/web/docs/colophon.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 193
+            "occ": 190
           },
           {
             "file": "book/web/docs/index.md",
@@ -1651,15 +1647,15 @@
           },
           {
             "file": "book/web/docs/appendix-a-governance-conversion.md",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 7
+            "occ": 10
           },
           {
             "file": "book/web/docs/appendix-a-model-coherence.md",
-            "occ": 25
+            "occ": 22
           },
           {
             "file": "book/web/docs/appendix-b-brownfield-migration.md",
@@ -1671,7 +1667,7 @@
           },
           {
             "file": "book/web/docs/appendix-b-measuring-mage.md",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "book/web/docs/appendix-b-operating-a-gee.md",
@@ -1691,11 +1687,11 @@
           },
           {
             "file": "book/web/docs/colophon.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 213
+            "occ": 212
           },
           {
             "file": "book/web/docs/index.md",
@@ -2609,7 +2605,7 @@
           },
           {
             "file": "book/web/docs/appendix-a-governed-delegation.md",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/web/docs/appendix-b-getting-started.md",
@@ -2621,11 +2617,11 @@
           },
           {
             "file": "book/web/docs/colophon.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 18
+            "occ": 20
           },
           {
             "file": "book/web/docs/part-2-intro.md",

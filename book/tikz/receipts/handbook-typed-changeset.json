@@ -1,0 +1,436 @@
+{
+  "source": "book/assets/handbook-typed-changeset.svg",
+  "claim": "Supported typed edits share a controlled application path. A pipeline, agent, or human editor can propose changes against the document model. The PDF applier checks selected restrictions and applies or refuses operations individually; results and applied-edit attribution describe what occurred. Some internal remediation still edits directly.",
+  "topology": "Document model supports inspection by edit producers. Their supported typed changesets enter the controlled applier. Application produces an updated document and separate evidence; the latter distinguishes per-operation results from applied-edit attribution. A visible scope annotation excludes remaining direct internal mutations.",
+  "required_terms": [
+    "DOCUMENT MODEL",
+    "Structure \u00b7 semantics",
+    "EDIT PRODUCERS",
+    "Structured pipeline \u00b7 agent \u00b7 human editor",
+    "Propose supported typed edits",
+    "inspect",
+    "TYPED CHANGESET",
+    "Kind \u00b7 target",
+    "Payload",
+    "CONTROLLED APPLIER",
+    "Resolve \u00b7 check",
+    "Apply or refuse",
+    "APPLICATION",
+    "EVIDENCE",
+    "Per-operation results",
+    "Applied-edit attribution",
+    "UPDATED DOCUMENT",
+    "Controlled editing path; some internal mutations still bypass this interface."
+  ],
+  "bw_encoding": "Light gray distinguishes the current document model. Producers, proposal, application, results, and updated document stay white.",
+  "redesign": "Add the product-side composition requested by the author. A compact two-row drawing separates representation, proposal, mutation, and evidence without a tall pipeline or a misleading transaction box.",
+  "questions": [],
+  "alt": "A document model supplies structure and semantics to edit producers: a structured pipeline, an agent, or a human editor. Supported proposals are encoded as typed changesets with kind, target, and payload. The controlled PDF applier resolves targets, checks selected restrictions, and applies or refuses each operation. Its outputs are an updated document and application evidence: per-operation results plus attribution for edits actually applied. This is the controlled editing path; some internal remediation paths still mutate documents directly.",
+  "qa": {
+    "compiler": "LuaLaTeX with production mage-figures.sty, book font profile, tight preview, no shell escape",
+    "warnings": [],
+    "width_pt": 444.62200927734375,
+    "height_pt": 218.49200439453125,
+    "monochrome": true,
+    "inspection": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the four pair PNGs."
+  },
+  "evidence": [
+    {
+      "path": "/private/tmp/mage-appendix-followups-20261109/evidence/review.md",
+      "sha256": "1f44892474e7d575301d9d9bfe9bd2e5a851f64ec8d6e80eebb803e99775b40d"
+    },
+    {
+      "path": "/private/tmp/mage-appendix-followups-20261109/evidence/source-hashes.json",
+      "sha256": "294e25989a7dd79f67ed3dd94563fce6d065d0c4dafd80be6d027c6bb1bc878b"
+    },
+    {
+      "path": "/Users/davisjam/.codex/attachments/39d648e5-fb77-47f9-bace-865f0d5bbe79/Pasted text.txt",
+      "sha256": "d6443a28081e74c683eda1bed99a1318ac76a1411980cd020303095c18436658"
+    }
+  ],
+  "evidence_scope": {
+    "claim": "PDF only: PdfEditOpApplier applies to an already-open document, caller owns file lifecycle, and one failed operation does not roll back other successes. Interactive editor and migrated internal passes share the engine; external-agent envelopes can use the CLI. Agent strategy effectiveness is empirical, not established by this architecture. Attribution is scoped to configured producer/session channels and applied operations, not every proposed operation. Some internal mutations bypass the typed interface.",
+    "publication": "New pair remains pending author publication review. Do not add it to approved_monochrome."
+  },
+  "style_review": {
+    "source": "book/assets/handbook-typed-changeset.svg",
+    "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+    "receipt": "book/tikz/receipts/handbook-typed-changeset.json",
+    "source_sha256": "341747c36214dfea3757a15dd550bf0becbae179a3da92ba22c29162d5e927f1",
+    "candidate_sha256": "21b6089f268e7db714ab99df97d2a95685c4409b51f9ae61db30718f6e4971b6",
+    "decision": "new",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Light gray distinguishes the current document model. Producers, proposal, application, results, and updated document stay white.",
+    "bold": "Bold identifies stages or input roles; descriptions stay regular; relations are italic.",
+    "routing": "Document model supports inspection by edit producers. Their supported typed changesets enter the controlled applier. Application produces an updated document and separate evidence; the latter distinguishes per-operation results from applied-edit attribution. A visible scope annotation excludes remaining direct internal mutations.",
+    "shape": "Rounded boxes retain the established handbook aesthetic. Peer outcomes and assignment inputs have equal size; supporting explanations remain regular type.",
+    "visual_review": "Color and native pair inspected at authored print size and 108 dpi. Labels, line approaches, and grouping remain clear; no overlaps or clipping. Parent also inspected the four pair PNGs.",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+      "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+      "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+      "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+      "page": 3,
+      "width_bp": 444.62200927734375,
+      "height_bp": 218.49200439453125,
+      "minimum_prose_font_pt": 9.962639808654785,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 18,
+      "status": "passed",
+      "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+    },
+    "book_references": []
+  },
+  "layout_review": {
+    "source": "book/assets/handbook-typed-changeset.svg",
+    "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+    "source_sha256": "341747c36214dfea3757a15dd550bf0becbae179a3da92ba22c29162d5e927f1",
+    "candidate_sha256": "21b6089f268e7db714ab99df97d2a95685c4409b51f9ae61db30718f6e4971b6",
+    "decision": "new",
+    "reason": "Add the product-side composition requested by the author. A compact two-row drawing separates representation, proposal, mutation, and evidence without a tall pipeline or a misleading transaction box.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": null,
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+      "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+      "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+      "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+      "page": 3,
+      "width_bp": 444.62200927734375,
+      "height_bp": 218.49200439453125,
+      "minimum_prose_font_pt": 9.962639808654785,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 18,
+      "status": "passed",
+      "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/handbook-typed-changeset.svg",
+    "candidate": "book/tikz/figures/handbook-typed-changeset.tex",
+    "source_sha256": "341747c36214dfea3757a15dd550bf0becbae179a3da92ba22c29162d5e927f1",
+    "candidate_sha256": "21b6089f268e7db714ab99df97d2a95685c4409b51f9ae61db30718f6e4971b6",
+    "decision": "new",
+    "reason": "Bold identifies stages or input roles; regular prose names contents and supporting activities; italic names relations. Both versions preserve those roles.",
+    "reviewed_visually": true,
+    "evidence": [
+      {
+        "source_text": "DOCUMENT MODEL",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "DOCUMENT MODEL",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Structure \u00b7 semantics",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Structure \u00b7 semantics",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "EDIT PRODUCERS",
+        "source_style": {
+          "font-size": "11",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "EDIT PRODUCERS",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Structured pipeline \u00b7 agent \u00b7 human editor",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Structured pipeline \u00b7 agent \u00b7 human editor",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Propose supported typed edits",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Propose supported typed edits",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "inspect",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "inspect",
+        "candidate_style": "italic"
+      },
+      {
+        "source_text": "TYPED CHANGESET",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "TYPED CHANGESET",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Kind \u00b7 target",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Kind \u00b7 target",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Payload",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Payload",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "CONTROLLED APPLIER",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "CONTROLLED APPLIER",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Resolve \u00b7 check",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Resolve \u00b7 check",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Apply or refuse",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Apply or refuse",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "APPLICATION",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "APPLICATION",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "EVIDENCE",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "EVIDENCE",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Per-operation results",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Per-operation results",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Applied-edit attribution",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "normal"
+        },
+        "semantic_role": "contents or supporting activity",
+        "candidate_text": "Applied-edit attribution",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "UPDATED DOCUMENT",
+        "source_style": {
+          "font-size": "10.5",
+          "font-weight": "700",
+          "font-style": "normal"
+        },
+        "semantic_role": "stage or input role",
+        "candidate_text": "UPDATED DOCUMENT",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Controlled editing path; some internal mutations still bypass this interface.",
+        "source_style": {
+          "font-size": "10",
+          "font-weight": "400",
+          "font-style": "italic"
+        },
+        "semantic_role": "relation",
+        "candidate_text": "Controlled editing path; some internal mutations still bypass this interface.",
+        "candidate_style": "italic"
+      }
+    ],
+    "checks": [
+      {
+        "text": "DOCUMENT MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Structure \u00b7 semantics",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "EDIT PRODUCERS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Structured pipeline \u00b7 agent \u00b7 human editor",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Propose supported typed edits",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "inspect",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "TYPED CHANGESET",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Kind \u00b7 target",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Payload",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "CONTROLLED APPLIER",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Resolve \u00b7 check",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Apply or refuse",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "APPLICATION",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "EVIDENCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Per-operation results",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Applied-edit attribution",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "UPDATED DOCUMENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Controlled editing path; some internal mutations still bypass this interface.",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "date": "2026-11-09",
+      "proof": "/private/tmp/mage-appendix-followups-20261109/figures/proof/native.pdf",
+      "proof_sha256": "f3e06806fbeeddbc6aed2064e54ba143da7bd7b90691be06048b1e58be4702da",
+      "audit_sha256": "4fcabdd8b8f68b9c57896c13af05a53ce5042ba42d7d10b5d1bdbf4ccf1df09a",
+      "typography_audit_sha256": "c0690f998b03348213c05633ff2682eb0714de914fb390127d0b8d33d940c5a0",
+      "page": 3,
+      "width_bp": 444.62200927734375,
+      "height_bp": 218.49200439453125,
+      "minimum_prose_font_pt": 9.962639808654785,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 18,
+      "status": "passed",
+      "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
+    }
+  }
+}
