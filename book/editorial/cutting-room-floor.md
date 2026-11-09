@@ -18094,3 +18094,14 @@ The rows are not maturity levels: stronger semantic commitment is useful only wh
 ```latex
 Choosing those distinctions is a judgment process, not an algorithm.
 ```
+
+### Semantic commitment: interpretation burden (Edit 2C)
+
+- Source: `book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex:397`
+- Source revision: `b3024f92d704662db392121fafcef5139b0d828d`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved three-sentence account of the interpretive tradeoff, using a period between the informal and formal cases.
+
+```latex
+The columns do not form a single progression from weak to strong engineering. Greater semantic commitment usually makes more mechanical interpretation possible, but it does not simply lower the interpretation burden --- it relocates it. An informal sketch asks almost nothing of a reader who already shares its context and a great deal of one who does not; a semantically defined language asks for language and tool knowledge up front, and in exchange leaves less meaning to be reconstructed each time the model is read. What changes across the rows is where the interpretive work is done, and by whom.
+```
