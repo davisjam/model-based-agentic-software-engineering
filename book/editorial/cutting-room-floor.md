@@ -18224,3 +18224,63 @@ These techniques produce candidate representations, not authoritative specificat
 ```latex
 Packaging does not itself enforce anything. Prose, examples, models, and decision procedures can make a satisfactory decision substantially more likely while leaving the decision probabilistic. The same skill can also invoke enforcing mechanisms or carry the models and correctness conditions those mechanisms consume. Where an obligation should not depend on the agent\textquotesingle s reasoning, the environment still needs a constraint or gate that controls the relevant action independently. A checker may supply the evaluation such a gate uses. A skill can support a reasoner\textquotesingle s judgment and carry or invoke mechanisms that enforce selected obligations.
 ```
+
+
+## Chapter 5 incremental prose edits — 9 November 2026
+
+Apply the author's five direct replacements. Preserve the inventory values and their source bindings, the ownership example's semicolon, the subsequent temporal-checking and correspondence account, and the Cloudflare override count and citation.
+
+### What Does a Software Factory Produce? (Edit 1)
+
+- Source: `book/latex/sources/part5/5.1-software-factory.tex:58`
+- Source revision: `dcc6892608f334b809d45e3a000dc7a7ad75afcd`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the empirical account and its material limitations.
+
+```latex
+The output of a software factory is therefore not another copy of the product. It is the next working realization of the product. Software organizations repeatedly change an existing system: adding features, repairing defects, adapting to new environments, migrating dependencies, changing architectures, and responding to new requirements. Each production cycle begins with a working software system and attempts to produce a changed system that still works.
+```
+
+### The Build, Measured Weekly (Edit 4)
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:174`
+- Source revision: `dcc6892608f334b809d45e3a000dc7a7ad75afcd`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the empirical account and its material limitations.
+
+```latex
+The final snapshot identifies \magevalue{seip_models} model modules, \magevalue{seip_consumers} consumers of at least two models, and \magevalue{seip_static} static and \magevalue{seip_dynamic} dynamic verifier files. The inventory shows an increasing investment in representations and checks. Whether that investment was useful depends on what the artifacts represented, what their consumers did, and whether the checks were adequate. The examples below examine those relationships.
+```
+
+### What the Factory Knows (Edit 5)
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:236`
+- Source revision: `dcc6892608f334b809d45e3a000dc7a7ad75afcd`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the empirical account and its material limitations.
+
+```latex
+Each representation gives the engineer a purpose-built view of a consequential property. The \textbf{supervisory consequence} is what the engineer no longer has to reconstruct from implementation because the model carries it. This applies the purposeful reduction developed in Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} to factory supervision. \autoref{factory-census-specimens} shows six representative models, chosen for the variety of question, form, and consumer.
+```
+
+### The Computation Graph (Edit 6)
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:315`
+- Source revision: `dcc6892608f334b809d45e3a000dc7a7ad75afcd`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the empirical account and its material limitations.
+
+```latex
+Explicit models changed not only what the system recorded but what questions the environment could ask of it. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was written as small temporal specifications and checked mechanically; with recovery disabled, the checker produced exactly the stranded execution the property was meant to exclude. Checking the model created a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercised production operations against the executable model, and when one such test drifted red for days after production changed, the durable response was correspondence machinery --- model-to-implementation checks selected automatically when modeled surfaces change. The factory then added machinery to keep the map true.
+```
+
+### Cloudflare’s Measured Overrides (Edit 10)
+
+- Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex:34`
+- Source revision: `dcc6892608f334b809d45e3a000dc7a7ad75afcd`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved positive formulation or consolidation; preserve the empirical account and its material limitations.
+
+```latex
+Human reviewers retain an exception path: commenting ``break glass'' forces approval and records the override. Cloudflare reports 288 such overrides, 0.6 percent of merge requests, from March 10 to April 9, 2026.\citep{skidmore2026review} That is useful evidence about the operation of the control. It does not estimate violations the reviewers missed or defects they prevented. Review runs, findings, and blocked merges likewise measure activity. The account makes the allocation of authority visible even where the effectiveness of the checking remains incompletely measured.
+```
