@@ -29,9 +29,14 @@ def inset_flow_labels(path: Path = LAYOUT) -> set[str]:
 def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
     data = _layout(path)
     widths = {}
+    flush_after = set()
     for label, rule in data.items():
         if rule.get('inset_placement') not in (None, 'flow'):
             raise ValueError('Invalid inset placement for ' + label)
+        if not isinstance(rule.get('flush_after', False), bool):
+            raise ValueError('Invalid float boundary for ' + label)
+        if rule.get('flush_after'):
+            flush_after.add(label)
         width = rule.get('width_bp')
         if (rule.get('placement') != 'centered' or isinstance(width, bool) or
                 not isinstance(width, (int, float)) or not 180 <= width <= 450):
@@ -47,7 +52,12 @@ def apply_figure_print_layout(latex: str, path: Path = LAYOUT) -> str:
         # caption braces alone. Every original comes from the common projector.
         if content.count(r'width=\linewidth') != 1:
             raise ValueError('Expected one original width for ' + label[1])
-        return content.replace(r'width=\linewidth',
-                               'width=' + str(widths[label[1]]) + 'bp', 1)
+        content = content.replace(r'width=\linewidth',
+                                  'width=' + str(widths[label[1]]) + 'bp', 1)
+        # A reviewed exhibit must precede the following discussion. The later
+        # pairing pass inserts its native companion before this flush too.
+        if label[1] in flush_after:
+            content += '\n' + r'\clearpage' + '\n'
+        return content
 
     return re.sub(r'\\begin\{figure\}.*?\\end\{figure\}', figure, latex, flags=re.S)

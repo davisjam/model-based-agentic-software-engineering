@@ -33,7 +33,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
     "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes Delegated:; Environment:; 1. CO-CODER. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -58,7 +58,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
     "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -183,9 +183,9 @@
   },
   "color_source_revision": {
     "date": "2026-11-09",
-    "previous_source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-    "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
-    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "previous_source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+    "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
   }
 }

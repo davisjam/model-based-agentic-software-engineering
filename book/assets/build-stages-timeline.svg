@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: build-stages-timeline). A retrospective vertical timeline of the
-     seven build stages, each carrying its dates, the pressure that forced it, and the major
-     engineering consequence that followed. Replaces the former two-page seven-stage table (Table
-     5.2-2): the table's product/machinery inventory is dropped in favour of a temporal scaffold —
-     stage → pressure → consequence. Stage 7 names the whole July–September period (deployment,
-     iteration, and optimization); the serverless re-platforming is one episode inside it, not a
-     peer of PowerPoint or SaaS. Dates on every stage keep the sequence from reading as a plan.
-     Palette: Umber Monograph tokens (accent #9a3f12 the stage nodes/names, ink #1c1917 body,
-     muted #57534e secondary, rule #e4e0d8 dividers/spine). Font Source Sans 3. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 856"
-     role="img" aria-labelledby="bsTitle bsDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bsTitle">The seven build stages as a dated timeline of pressure and consequence</title>
-  <desc id="bsDesc">A retrospective vertical timeline of seven build stages, each row naming the
+<!-- Hand-authored Chapter 5 print composition: source geometry and readable type, not blind shrinking. Original title/description and native monochrome partner retained. -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" width="900" height="680" role="img" aria-labelledby="bsTitle bsDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="bsTitle">The seven build stages as a dated timeline of pressure and consequence</title>
+<desc id="bsDesc">A retrospective vertical timeline of seven build stages, each row naming the
     stage, its dates, the pressure that forced it, and the major engineering consequence that
     followed. Feasibility, March: vision-language capability became usable, so the build began.
     PowerPoint, March to April: colleagues supplied their own decks, producing the first real
@@ -25,100 +16,81 @@
     the production system exposed performance, cost, reliability, and architectural limits,
     forcing repeated measurement, redesign, optimization, and re-platforming. The stages are
     labels drawn afterward, not a preplanned roadmap.</desc>
-
-  <!-- column headers -->
-  <text x="128" y="66" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#57534e">STAGE</text>
-  <text x="372" y="66" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#57534e">THE PRESSURE</text>
-  <text x="672" y="66" font-size="20" font-weight="700" letter-spacing="0.06em" fill="#57534e">THE CONSEQUENCE</text>
-  <line x1="60" y1="80" x2="980" y2="80" stroke="#1c1917" stroke-width="1.5"/>
-
-  <!-- vertical spine through the stage nodes -->
-  <line x1="76" y1="134" x2="76" y2="774" stroke="#e4e0d8" stroke-width="2"/>
-
-  <!-- ============ rows: y-centres 134,240,346,452,558,664,774 ============ -->
-
-  <!-- 1 · Feasibility · March -->
-  <circle cx="76" cy="134" r="7" fill="#9a3f12"/>
-  <text x="76" y="138.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">1</text>
-  <text x="100" y="119" font-size="20" font-weight="700" fill="#9a3f12">Feasibility</text>
-  <text x="100" y="140" font-size="20" font-weight="600" fill="#9a3f12">March</text>
-  <text x="100" y="160" font-size="20" fill="#57534e">a probe in a meeting</text>
-  <text x="360" y="130" font-size="20" fill="#1c1917">Vision-language capability</text>
-  <text x="360" y="149" font-size="20" fill="#1c1917">became usable</text>
-  <text x="628" y="139" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="139" font-size="20" fill="#1c1917">the build began</text>
-
-  <!-- 2 · PowerPoint · March–April -->
-  <circle cx="76" cy="240" r="7" fill="#9a3f12"/>
-  <text x="76" y="244.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">2</text>
-  <text x="100" y="225" font-size="20" font-weight="700" fill="#9a3f12">PowerPoint</text>
-  <text x="100" y="246" font-size="20" font-weight="600" fill="#9a3f12">March&#8211;April</text>
-  <text x="100" y="266" font-size="20" fill="#57534e">the first format</text>
-  <text x="360" y="236" font-size="20" fill="#1c1917">Colleagues supplied</text>
-  <text x="360" y="255" font-size="20" fill="#1c1917">their own decks</text>
-  <text x="628" y="245" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="238" font-size="20" fill="#1c1917">the first real</text>
-  <text x="662" y="257" font-size="20" fill="#1c1917">remediation pipeline</text>
-
-  <!-- 3 · Format expansion · April -->
-  <circle cx="76" cy="346" r="7" fill="#9a3f12"/>
-  <text x="76" y="350.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">3</text>
-  <text x="100" y="331" font-size="20" font-weight="700" fill="#9a3f12">Format expansion</text>
-  <text x="100" y="352" font-size="20" font-weight="600" fill="#9a3f12">April</text>
-  <text x="100" y="372" font-size="20" fill="#57534e">Word &#183; Excel &#183; PDF</text>
-  <text x="360" y="342" font-size="20" fill="#1c1917">New formats broke the</text>
-  <text x="360" y="361" font-size="20" fill="#1c1917">one-size-fits-all assumptions</text>
-  <text x="628" y="351" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="351" font-size="20" fill="#1c1917">the architecture differentiated</text>
-
-  <!-- 4 · SaaS · April -->
-  <circle cx="76" cy="452" r="7" fill="#9a3f12"/>
-  <text x="76" y="456.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">4</text>
-  <text x="100" y="437" font-size="20" font-weight="700" fill="#9a3f12">SaaS</text>
-  <text x="100" y="458" font-size="20" font-weight="600" fill="#9a3f12">April</text>
-  <text x="100" y="478" font-size="20" fill="#57534e">a deployed service</text>
-  <text x="360" y="448" font-size="20" fill="#1c1917">Real users on</text>
-  <text x="360" y="467" font-size="20" fill="#1c1917">real documents</text>
-  <text x="628" y="457" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="450" font-size="20" fill="#1c1917">auth, quota, cost, security &#8212;</text>
-  <text x="662" y="469" font-size="20" fill="#1c1917">and the first fidelity limits</text>
-
-  <!-- 5 · Standards · April–May -->
-  <circle cx="76" cy="558" r="7" fill="#9a3f12"/>
-  <text x="76" y="562.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">5</text>
-  <text x="100" y="543" font-size="20" font-weight="700" fill="#9a3f12">Standards</text>
-  <text x="100" y="564" font-size="20" font-weight="600" fill="#9a3f12">April&#8211;May</text>
-  <text x="100" y="584" font-size="20" fill="#57534e">a defensible claim</text>
-  <text x="360" y="554" font-size="20" fill="#1c1917">The need for a defensible</text>
-  <text x="360" y="573" font-size="20" fill="#1c1917">accessibility claim</text>
-  <text x="628" y="563" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="563" font-size="20" fill="#1c1917">standards-grounded validation</text>
-
-  <!-- 6 · Hardening · May–June -->
-  <circle cx="76" cy="664" r="7" fill="#9a3f12"/>
-  <text x="76" y="668.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">6</text>
-  <text x="100" y="649" font-size="20" font-weight="700" fill="#9a3f12">Hardening</text>
-  <text x="100" y="670" font-size="20" font-weight="600" fill="#9a3f12">May&#8211;June</text>
-  <text x="100" y="690" font-size="20" fill="#57534e">structural work</text>
-  <text x="360" y="660" font-size="20" fill="#1c1917">Time became available</text>
-  <text x="360" y="679" font-size="20" fill="#1c1917">for structural work</text>
-  <text x="628" y="669" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="669" font-size="20" fill="#1c1917">models, tests, gates, provenance</text>
-
-  <!-- 7 · Deployment, iteration, and optimization · July–September -->
-  <circle cx="76" cy="774" r="7" fill="#9a3f12"/>
-  <text x="76" y="778.5" text-anchor="middle" font-size="20" font-weight="700" fill="#fbf9f4">7</text>
-  <text x="100" y="748" font-size="20" font-weight="700" fill="#9a3f12">Deployment, iteration,</text>
-  <text x="100" y="769" font-size="20" font-weight="700" fill="#9a3f12">and optimization</text>
-  <text x="100" y="790" font-size="20" font-weight="600" fill="#9a3f12">July&#8211;September</text>
-  <text x="100" y="810" font-size="20" fill="#57534e">operating what shipped</text>
-  <text x="360" y="755" font-size="20" fill="#1c1917">Production operation exposed</text>
-  <text x="360" y="774" font-size="20" fill="#1c1917">limits on performance, cost,</text>
-  <text x="360" y="793" font-size="20" fill="#1c1917">reliability, and architecture</text>
-  <text x="628" y="774" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="765" font-size="20" fill="#1c1917">repeated measurement, redesign,</text>
-  <text x="662" y="784" font-size="20" fill="#1c1917">optimization, and re-platforming</text>
-
-  <!-- footer note -->
-  <text x="60" y="842" font-size="20" font-style="italic" fill="#57534e">Stages are labels drawn afterward, not a plan followed at the time.</text>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
+<text x="58" y="29" text-anchor="start" font-size="20" fill="#57534e" font-weight="700">STAGE</text>
+<text x="307" y="29" text-anchor="start" font-size="20" fill="#57534e" font-weight="700">THE PRESSURE</text>
+<text x="609" y="29" text-anchor="start" font-size="20" fill="#57534e" font-weight="700">THE CONSEQUENCE</text>
+<path d="M14 41 L887 41" fill="none" stroke="#1c1917" stroke-width="2.2"/>
+<path d="M24 86 L24 591" fill="none" stroke="#57534e" stroke-width="2.2"/>
+<circle cx="24" cy="87" r="14" fill="#9a3f12"/>
+<text x="24" y="94" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">1</text>
+<text x="58" y="65" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">Feasibility</text>
+<text x="58" y="87" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">March</text>
+<text x="58" y="109" text-anchor="start" font-size="20" fill="#57534e">a probe in a meeting</text>
+<text x="307" y="76" text-anchor="start" font-size="20" fill="#1c1917">Vision-language capability</text>
+<text x="307" y="98" text-anchor="start" font-size="20" fill="#1c1917">became usable</text>
+<text x="581" y="94" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="94" text-anchor="start" font-size="20" fill="#1c1917">the build began</text>
+<circle cx="24" cy="169" r="14" fill="#9a3f12"/>
+<text x="24" y="176" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">2</text>
+<text x="58" y="147" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">PowerPoint</text>
+<text x="58" y="169" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">March–April</text>
+<text x="58" y="191" text-anchor="start" font-size="20" fill="#57534e">the first format</text>
+<text x="307" y="158" text-anchor="start" font-size="20" fill="#1c1917">Colleagues supplied</text>
+<text x="307" y="180" text-anchor="start" font-size="20" fill="#1c1917">their own decks</text>
+<text x="581" y="176" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="158" text-anchor="start" font-size="20" fill="#1c1917">the first real</text>
+<text x="609" y="180" text-anchor="start" font-size="20" fill="#1c1917">remediation pipeline</text>
+<circle cx="24" cy="251" r="14" fill="#9a3f12"/>
+<text x="24" y="258" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">3</text>
+<text x="58" y="229" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">Format expansion</text>
+<text x="58" y="251" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">April</text>
+<text x="58" y="273" text-anchor="start" font-size="20" fill="#57534e">Word · Excel · PDF</text>
+<text x="307" y="240" text-anchor="start" font-size="20" fill="#1c1917">New formats broke the</text>
+<text x="307" y="262" text-anchor="start" font-size="20" fill="#1c1917">one-size-fits-all assumptions</text>
+<text x="581" y="258" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="258" text-anchor="start" font-size="20" fill="#1c1917">the architecture differentiated</text>
+<circle cx="24" cy="333" r="14" fill="#9a3f12"/>
+<text x="24" y="340" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">4</text>
+<text x="58" y="311" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">SaaS</text>
+<text x="58" y="333" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">April</text>
+<text x="58" y="355" text-anchor="start" font-size="20" fill="#57534e">a deployed service</text>
+<text x="307" y="322" text-anchor="start" font-size="20" fill="#1c1917">Real users on</text>
+<text x="307" y="344" text-anchor="start" font-size="20" fill="#1c1917">real documents</text>
+<text x="581" y="340" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="322" text-anchor="start" font-size="20" fill="#1c1917">auth, quota, cost, security —</text>
+<text x="609" y="344" text-anchor="start" font-size="20" fill="#1c1917">and the first fidelity limits</text>
+<circle cx="24" cy="415" r="14" fill="#9a3f12"/>
+<text x="24" y="422" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">5</text>
+<text x="58" y="393" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">Standards</text>
+<text x="58" y="415" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">April–May</text>
+<text x="58" y="437" text-anchor="start" font-size="20" fill="#57534e">a defensible claim</text>
+<text x="307" y="404" text-anchor="start" font-size="20" fill="#1c1917">The need for a defensible</text>
+<text x="307" y="426" text-anchor="start" font-size="20" fill="#1c1917">accessibility claim</text>
+<text x="581" y="422" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="422" text-anchor="start" font-size="20" fill="#1c1917">standards-grounded validation</text>
+<circle cx="24" cy="497" r="14" fill="#9a3f12"/>
+<text x="24" y="504" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">6</text>
+<text x="58" y="475" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">Hardening</text>
+<text x="58" y="497" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">May–June</text>
+<text x="58" y="519" text-anchor="start" font-size="20" fill="#57534e">structural work</text>
+<text x="307" y="486" text-anchor="start" font-size="20" fill="#1c1917">Time became available</text>
+<text x="307" y="508" text-anchor="start" font-size="20" fill="#1c1917">for structural work</text>
+<text x="581" y="504" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="486" text-anchor="start" font-size="20" fill="#1c1917">models, tests, gates,</text>
+<text x="609" y="508" text-anchor="start" font-size="20" fill="#1c1917">provenance</text>
+<circle cx="24" cy="590" r="14" fill="#9a3f12"/>
+<text x="24" y="597" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">7</text>
+<text x="58" y="557" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">Deployment, iteration,</text>
+<text x="58" y="579" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">and optimization</text>
+<text x="58" y="601" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">July–September</text>
+<text x="58" y="623" text-anchor="start" font-size="20" fill="#57534e">operating what shipped</text>
+<text x="307" y="568" text-anchor="start" font-size="20" fill="#1c1917">Production operation exposed</text>
+<text x="307" y="590" text-anchor="start" font-size="20" fill="#1c1917">limits on performance, cost,</text>
+<text x="307" y="612" text-anchor="start" font-size="20" fill="#1c1917">reliability, and architecture</text>
+<text x="581" y="597" text-anchor="middle" font-size="20" fill="#9a3f12">→</text>
+<text x="609" y="568" text-anchor="start" font-size="20" fill="#1c1917">repeated measurement,</text>
+<text x="609" y="590" text-anchor="start" font-size="20" fill="#1c1917">redesign, optimization,</text>
+<text x="609" y="612" text-anchor="start" font-size="20" fill="#1c1917">and re-platforming</text>
+<text x="14" y="667" text-anchor="start" font-size="20" fill="#57534e" font-style="italic">Stages are labels drawn afterward, not a plan followed at the time.</text>
 </svg>

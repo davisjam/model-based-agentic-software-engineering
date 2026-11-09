@@ -12370,7 +12370,7 @@
       "source": "book/assets/process-design-and-tolerance.svg",
       "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
       "decision": "refined",
-      "source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
+      "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
       "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
       "evidence": [
         {
@@ -12573,13 +12573,20 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 7
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
+        "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
+        "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
       "source": "book/assets/build-stages-timeline.svg",
       "candidate": "book/tikz/figures/build-stages-timeline.tex",
       "decision": "refined",
-      "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+      "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
       "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
       "evidence": [
         {
@@ -12855,6 +12862,13 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 9
+      },
+      "color_source_revision": {
+        "date": "2026-11-09",
+        "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+        "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+        "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+        "native_candidate_changed": false
       }
     },
     {
@@ -13113,7 +13127,7 @@
       "source": "book/assets/measurement-no-gate.svg",
       "candidate": "book/tikz/figures/measurement-no-gate.tex",
       "decision": "refined",
-      "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
+      "source_sha256": "354f1f56c8fd407f36e87fe962906a0037bc5d2054f7bd4fe1f5dc7c107ddb04",
       "candidate_sha256": "6dc15299794bc73e4968dc5380574349225d822495225948d47dce23f4af9fa9",
       "evidence": [
         {
@@ -13469,9 +13483,9 @@
       },
       "color_source_revision": {
         "date": "2026-11-09",
-        "previous_source_sha256": "76888af26d57705d28369da0a5ac181700c87c53d6140d4aff64666f3e7c528c",
-        "source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "previous_source_sha256": "d2409e62f416f6ed888f9ec2177434f69514ff93b08e6ba044331046f5147e79",
+        "source_sha256": "354f1f56c8fd407f36e87fe962906a0037bc5d2054f7bd4fe1f5dc7c107ddb04",
+        "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
       }
     },
@@ -13479,7 +13493,7 @@
       "source": "book/assets/mage-staircase.svg",
       "candidate": "book/tikz/figures/mage-staircase.tex",
       "decision": "refined",
-      "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+      "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
       "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
       "evidence": [
         {
@@ -13544,9 +13558,9 @@
       },
       "color_source_revision": {
         "date": "2026-11-09",
-        "previous_source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-        "source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "previous_source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+        "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+        "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
       }
     },
@@ -22339,7 +22353,7 @@
     {
       "source": "book/assets/docable-work-order-flow.svg",
       "candidate": "book/tikz/figures/docable-work-order-flow.tex",
-      "source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
+      "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
       "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
       "decision": "new",
       "reason": "Named stages and actors use bold titles; annotations remain regular at native print size.",
@@ -22521,9 +22535,9 @@
       },
       "color_source_revision": {
         "date": "2026-11-09",
-        "previous_source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
-        "source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+        "previous_source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
+        "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
+        "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
       }
     },

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/build-stages-timeline.svg",
-  "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+  "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July\u2013September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
   "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
   "required_terms": [
     "Stage / dates",
@@ -45,7 +45,7 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+    "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
     "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes Deployment / iteration / optimization; Format expansion; Feasibility; PowerPoint; Standards; Hardening; SaaS. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
@@ -70,7 +70,7 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+    "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
     "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
@@ -406,5 +406,12 @@
       "width_bp": 390.258,
       "height_bp": 440.737
     }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+    "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+    "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
   }
 }

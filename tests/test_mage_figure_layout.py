@@ -46,6 +46,18 @@ class FigurePrintLayoutTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.render(self.figure.replace(r'width=\linewidth', 'width=400bp'))
 
+    def test_reviewed_exhibit_flushes_before_following_discussion(self):
+        self.rule['figures']['compact']['flush_after'] = True
+        following = '\nField note and the next section.'
+        result = self.render(self.figure + following)
+        self.assertIn(r'\label{compact}\end{figure}' + '\n\\clearpage\n' + following, result)
+        self.assertIn(r'\caption{A {formatted} caption.}', result)
+
+    def test_float_boundary_requires_an_explicit_boolean(self):
+        self.rule['figures']['compact']['flush_after'] = 'yes'
+        with self.assertRaisesRegex(ValueError, 'float boundary'):
+            self.render(self.figure)
+
 
 
 class InsetPlacementPolicyTests(unittest.TestCase):

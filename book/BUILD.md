@@ -244,7 +244,7 @@ narrow text columns, collisions, stranded captions, and unstable page breaks; fa
 centered placement when wrapping degrades the reading sequence. Preserve accessible tagging,
 figure numbering, links, and the color/monochrome review policy in either layout.
 
-`book/data/figure-print-layout.json` records reviewed widths by stable figure label.
+`book/data/figure-print-layout.json` records reviewed widths by stable figure label. A reviewed exhibit can set `flush_after: true` when it must precede the following discussion; this flushes the original and its publication companion before later prose. The support-ratio exhibit uses this boundary to stay ahead of the counterfactual field note.
 The print projector applies them to original artwork while preserving captions and
 alternate text. Native monochrome review drawings keep their authored point sizes.
 The current tagged-PDF wrapfig probe produces placement warnings, so this edition

@@ -75,11 +75,28 @@
       "placement": "centered"
     },
     "docable-work-order-flow": {
-      "width_bp": 400,
+      "width_bp": 315,
       "placement": "centered"
     },
     "measurement-no-gate": {
-      "width_bp": 360,
+      "width_bp": 337.5,
+      "placement": "centered"
+    },
+    "support-ratio-curve": {
+      "width_bp": 450,
+      "placement": "centered",
+      "flush_after": true
+    },
+    "process-design-and-tolerance": {
+      "width_bp": 405,
+      "placement": "centered"
+    },
+    "build-stages-timeline": {
+      "width_bp": 405,
+      "placement": "centered"
+    },
+    "mage-staircase": {
+      "width_bp": 427.5,
       "placement": "centered"
     }
   }

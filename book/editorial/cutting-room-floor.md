@@ -12620,3 +12620,38 @@ Human review (P4) & Code review versus model-and-evidence review, at fixed revie
 \end{longtable}
 }
 ```
+
+## Chapter 5 final prose follow-up — 2026-11-09
+
+Base revision: `4cd2ac66f81e9fc5c5cf788e76c45981505a5cde`. Source originals retained below before two user-requested condensations. User override withdraws attachment edit 3 in full; evaluation and coda are unchanged.
+
+### §5.1 — ch5-final-1
+
+Source: `book/latex/sources/part5/5.1-software-factory.tex`, lines 74–74 at `4cd2ac66f81e9fc5c5cf788e76c45981505a5cde`. Original: 80 words; replacement: 36 words.
+
+```tex
+Producing changes rather than copies also changes how process design and tolerance apply. Process design organizes the production of changes: how engineering intent becomes work, how that work is decomposed and realized, what information and tools reach the fabricator, and how a proposed change moves through evaluation and admission. Tolerance constrains the resulting realization: how much freedom the fabricator may exercise while the changed product remains acceptable. These decisions concern an evolving system whose consequential properties must survive the change.
+```
+
+Reason: exact user replacement in attachment edit 1; removes repeated explanation while retaining the principal observation.
+
+### §5.3 — ch5-final-4
+
+Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex`, lines 126–126 at `4cd2ac66f81e9fc5c5cf788e76c45981505a5cde`. Original: 89 words; replacement: 67 words.
+
+```tex
+The four factory questions reveal different arrangements rather than a common maturity sequence. Cloudflare documents the route from approved policy to merge decisions. Spotify distinguishes admission for deterministic changes from admission for agent-authored work. Shopify describes a particular security workflow, while Uber retains human approval without publishing future automatic-approval criteria. These are observations about where judgment and authority sit. Their measurements answer different questions: override frequency, veto and correction rates, merge rate, token cost, review delay, and engineering-health indicators cannot be combined into a single ranking of factory effectiveness.
+```
+
+Reason: exact user replacement in attachment edit 4; removes repeated explanation while retaining the principal observation.
+
+
+## Chapter 2 property-to-checker detail — 2026-11-09
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, “Connecting a property to its checker”, lines 208–210 at `4cd2ac66f`. Replaced at the author’s request with one transition to Chapter 3; retain the detailed example here for possible reuse.
+
+```latex
+DocAble also links a property to the checker required to examine it. A document job can arrive more than once, so concurrent deliveries must not each dispatch a new set of child jobs. The state-machine model records the participants, the atomic database operation used to claim the job, and the requirement that dispatch occur at most once. The project\textquotesingle s verification policy uses those facts to require a checker that explores every reachable state of a bounded model. DocAble calls this requirement a \emph{verification tier}: a category that selects the required kind of check.
+
+Engineers and their agents write and maintain the checker code. For this property, a separately authored Python model represents three deliveries and their claim, dispatch, and acknowledgement steps. A reusable search routine explores their possible orderings and checks that dispatch occurs at most once. Disabling the modeled atomic claim produces duplicate dispatch, confirming that the check can detect the fault it targets. The invariant record cites this checker. A repository check follows the citation and requires an existing file and the declared checker kind specified by the tier. Running the checker and judging whether its bounded model adequately represents the implementation remain separate tasks. \magevalue{chapter:alignment} examines how to assess the evidence and decide whether a failed check should block a commit.
+```

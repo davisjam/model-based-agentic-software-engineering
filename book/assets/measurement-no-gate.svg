@@ -1,40 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Custom SVG: compact print composition with explicit node/edge geometry and 9pt minimum labels at its reviewed width. Native monochrome partner remains independent. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 266" width="360" height="266" role="group" aria-labelledby="mngTitle mngDesc" font-family="'Source Sans 3', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 337.5 210" width="337.5" height="210" role="group" aria-labelledby="mngTitle mngDesc" font-family="'Source Sans 3', Arial, sans-serif">
 <title id="mngTitle">Modeled and Observed, Not Yet Binding — the measurement history that stops before the gate</title>
-  <desc id="mngDesc">An engineering history, not a system model. A vertical chain. A silent hang and a bare
+<desc id="mngDesc">An engineering history, not a system model. A two-row chain. A silent hang and a bare
     timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,
     whose evidence lets the environment report a would-be breach. The chain ends at report — and then an
     enforcement node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,
     deliberately deferred. The model reports a predicted breach but does not refuse the work. The tail model,
-    evidence, report rhymes with Chapter 3's ungated measurement. The lesson: a model can be left unbound on
+    evidence, report rhymes with Chapter 3&#x27;s ungated measurement. The lesson: a model can be left unbound on
     purpose — modeled and observed, reported, not yet enforced.</desc>
 <defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5.5" markerHeight="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#57534e"/></marker></defs>
-<text x="12" y="17" font-size="11" fill="#57534e" text-anchor="start" font-weight="600"><tspan x="12" dy="0">A model left unbound on purpose:</tspan></text>
-<text x="12" y="32" font-size="10" fill="#57534e" text-anchor="start"><tspan x="12" dy="0">modeled, observed, reported, not enforced.</tspan></text>
-<rect x="12" y="48" width="124" height="22" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
-<text x="74" y="63" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="74" dy="0">timeout</tspan></text>
-<text x="148" y="63" font-size="9" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="148" dy="0">a bare kill, after the budget was spent</tspan></text>
-<polyline points="74,70 74,82" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="12" y="82" width="124" height="22" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
-<text x="74" y="97" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="74" dy="0">measurement</tspan></text>
-<text x="148" y="97" font-size="9" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="148" dy="0">one incident, timestamped, provisional</tspan></text>
-<polyline points="74,104 74,116" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="12" y="116" width="124" height="22" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
-<text x="74" y="131" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="74" dy="0">model</tspan></text>
-<text x="148" y="131" font-size="9" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="148" dy="0">per-chunk worst case vs the ceiling</tspan></text>
-<polyline points="74,138 74,150" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="12" y="150" width="124" height="22" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
-<text x="74" y="165" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="74" dy="0">evidence</tspan></text>
-<text x="148" y="165" font-size="9" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="148" dy="0">a would-be breach, made observable</tspan></text>
-<polyline points="74,172 74,184" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="12" y="184" width="124" height="22" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
-<text x="74" y="199" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="74" dy="0">report</tspan></text>
-<text x="148" y="199" font-size="9" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="148" dy="0">surfaced, not enforced</tspan></text>
-<polyline points="74,206 74,218" fill="none" stroke="#57534e" stroke-width="0.8" marker-end="url(#arrow)" stroke-dasharray="3 2"/>
-<rect x="12" y="218" width="124" height="22" rx="3" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" stroke-dasharray="3 2"/>
-<text x="74" y="233" font-size="10" fill="#1c1917" text-anchor="middle" font-weight="700"><tspan x="74" dy="0">? enforcement</tspan></text>
-<text x="148" y="233" font-size="9" fill="#57534e" text-anchor="start" font-style="italic"><tspan x="148" dy="0">[ no gate yet — deliberately deferred ]</tspan></text>
-<text x="180" y="255" font-size="9" fill="#57534e" text-anchor="middle" font-style="italic"><tspan x="180" dy="0">An engineering history, not a system model.</tspan></text>
+<rect width="337.5" height="210" fill="white"/>
 
+<polyline id="timeout-measurement" points="103,16 119,16" fill="none" stroke="#57534e" stroke-width="0.75" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline id="measurement-model" points="218,16 234,16" fill="none" stroke="#57534e" stroke-width="0.75" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline id="model-evidence" points="333,16 335.5,16 335.5,77 53.5,77 53.5,94" fill="none" stroke="#57534e" stroke-width="0.75" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline id="evidence-report" points="103,107 119,107" fill="none" stroke="#57534e" stroke-width="0.75" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline id="report-deferred-enforcement" points="218,107 234,107" fill="none" stroke="#57534e" stroke-width="0.75" stroke-linejoin="round" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<g id="timeout"><rect x="4" y="3" width="99" height="26" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65"/>
+<text x="53.5" y="20" font-size="10" text-anchor="middle" fill="#1c1917" font-weight="700">Timeout</text>
+</g>
+<g id="measurement"><rect x="119" y="3" width="99" height="26" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65"/>
+<text x="168.5" y="20" font-size="10" text-anchor="middle" fill="#1c1917" font-weight="700">Measurement</text>
+</g>
+<g id="model"><rect x="234" y="3" width="99" height="26" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65"/>
+<text x="283.5" y="20" font-size="10" text-anchor="middle" fill="#1c1917" font-weight="700">Provisional model</text>
+</g>
+<g id="evidence"><rect x="4" y="94" width="99" height="26" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65"/>
+<text x="53.5" y="111" font-size="10" text-anchor="middle" fill="#1c1917" font-weight="700">Evidence</text>
+</g>
+<g id="report"><rect x="119" y="94" width="99" height="26" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65"/>
+<text x="168.5" y="111" font-size="10" text-anchor="middle" fill="#1c1917" font-weight="700">Report</text>
+</g>
+<g id="enforcement"><rect x="234" y="94" width="99" height="26" rx="2.5" fill="#f6f4ef" stroke="#57534e" stroke-width="0.65" stroke-dasharray="3 2"/>
+<text x="283.5" y="111" font-size="10" text-anchor="middle" fill="#1c1917" font-weight="700">? Enforcement</text>
+</g>
+<text x="53.5" y="44" font-size="9" text-anchor="middle" fill="#3d3935">a bare kill, after</text>
+<text x="53.5" y="56" font-size="9" text-anchor="middle" fill="#3d3935">the budget was spent</text>
+<text x="168.5" y="44" font-size="9" text-anchor="middle" fill="#3d3935">one incident,</text>
+<text x="168.5" y="56" font-size="9" text-anchor="middle" fill="#3d3935">timestamped</text>
+<text x="283.5" y="44" font-size="9" text-anchor="middle" fill="#3d3935">per-chunk worst case</text>
+<text x="283.5" y="56" font-size="9" text-anchor="middle" fill="#3d3935">vs the ceiling</text>
+<text x="53.5" y="135" font-size="9" text-anchor="middle" fill="#3d3935">a would-be breach,</text>
+<text x="53.5" y="147" font-size="9" text-anchor="middle" fill="#3d3935">made observable</text>
+<text x="168.5" y="135" font-size="9" text-anchor="middle" fill="#3d3935">surfaced,</text>
+<text x="168.5" y="147" font-size="9" text-anchor="middle" fill="#3d3935">not enforced</text>
+<text x="283.5" y="135" font-size="9" text-anchor="middle" fill="#3d3935">no gate yet —</text>
+<text x="283.5" y="147" font-size="9" text-anchor="middle" fill="#3d3935">deliberately deferred</text>
+<text x="168.75" y="172" font-size="9" text-anchor="middle" fill="#3d3935">Bound not calibrated enough to justify blocking.</text>
+<text x="168.75" y="185" font-size="9" text-anchor="middle" fill="#3d3935">Observation and reporting remain useful.</text>
+<text x="168.75" y="204" font-size="9" text-anchor="middle" fill="#3d3935">An engineering history, not a system model.</text>
 </svg>
