@@ -18284,3 +18284,42 @@ Explicit models changed not only what the system recorded but what questions the
 ```latex
 Human reviewers retain an exception path: commenting ``break glass'' forces approval and records the override. Cloudflare reports 288 such overrides, 0.6 percent of merge requests, from March 10 to April 9, 2026.\citep{skidmore2026review} That is useful evidence about the operation of the control. It does not estimate violations the reviewers missed or defects they prevented. Review runs, findings, and blocked merges likewise measure activity. The account makes the allocation of authority visible even where the effectiveness of the checking remains incompletely measured.
 ```
+
+
+## Chapter 5 labor-comparison and foundation-model follow-ups — 9 November 2026
+
+Use the author's single-paragraph production-effort comparison, including the author-supplied faculty observations. Shorten the Shopify interpretation and append only the requested sentence on foundation-model variation to the existing maintenance-cost paragraph. Preserve the prior versions below.
+
+### Production Effort and Labor Savings (Edit 7)
+
+- Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex:504`
+- Source revision: `c58ef527f16756732d4c6aae536f640b1be3d1c1`
+- Revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved consolidation or extension; distinguish production effort from unmeasured labor savings and connect model variation to maintenance costs.
+
+```latex
+These quantities support a practical result: the specialized system can produce remediation outputs quickly and with little inference expenditure. They do not measure labor saved. Corpus-wide billed human hours and unattended machine runtime are different quantities, and neither tells us how much competent review and correction remain after the output is produced.
+```
+
+### Shopify: Improvement with an Unchanged Foundation Model
+
+- Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex:68`
+- Source revision: `c58ef527f16756732d4c6aae536f640b1be3d1c1`
+- Revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved consolidation or extension; distinguish production effort from unmeasured labor savings and connect model variation to maintenance costs.
+
+```latex
+People use that record to change what later agents receive. They watch River work, identify what it should have known, and add a skill, revise an \texttt{AGENTS.md} file, or record another reusable instruction in the monorepo.\citep{moreno2026river} These artifacts sit alongside code, conventions, intent documents, and runbooks. River\textquotesingle s reported merge rate rose from 36 to 77 percent over two months while its foundation model stayed the same.\citep{lutke2026shopfloor} The observation does not separate human learning from changes to the environment. It does show an improvement without a foundation-model change, in an arrangement where people deliberately preserve lessons for later work. Unlike DocAble\textquotesingle s one-engineer account, this mechanism distributes observation and knowledge maintenance across an organization.
+```
+
+### Factory Maintenance and Foundation-Model Variation
+
+- Source: `book/latex/sources/part5/5.3-other-agentic-software-factories.tex:134`
+- Source revision: `c58ef527f16756732d4c6aae536f640b1be3d1c1`
+- Revision date: 9 November 2026; committed with this entry.
+- Reason: Author-approved consolidation or extension; distinguish production effort from unmeasured labor savings and connect model variation to maintenance costs.
+
+```latex
+The second cost is maintaining what later work inherits. Shopify repairs divergent instructions; Cloudflare revises policy representations and moves suitable checks earlier; Kiro\textquotesingle s improvement experiments acquire new regression assertions. Each preserved lesson can reduce future reconstruction or repeated judgment, but the resulting artifact must remain connected to the work it governs. This is the carrying-cost question from \magevalue{sec:the-software-factory} in operational form.
+
+```
