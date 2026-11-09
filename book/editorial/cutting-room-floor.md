@@ -18351,3 +18351,30 @@ Nor does the bound argue for complete specification. Some transformations leave 
 ```latex
 The proposition does not require engineers to design every representation in advance. \magevalue{chapter:one-problem-many-models} showed how implementation signals and commodity intelligence can help recover latent models from an existing system. Repeated structures may reveal a domain concept that the implementation already embodies but has never named. Recovery makes that structure explicit; it does not establish that the observed behavior is the behavior the system ought to have.
 ```
+
+
+## Chapter 6 valuation and judgment follow-ups — 9 November 2026
+
+Apply the author's replacement paragraphs for P3's economic prediction and the ending of the Hard Obligations, Judgment Calls inset. Preserve the counterfactual valuation conditions and the explanation of human and artificial expertise.
+
+### P3: The Economic Prediction (Edit 9)
+
+- Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex:164`
+- Source revision: `d0ee4f56e8c75f984007534b739bba01bbc68038`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved consolidation and positive formulation; preserve the economic comparison and the role of judgment.
+
+```latex
+The economic prediction adds a valuation problem to the tests of representation leverage and governance conversion. All three require credible comparisons. To estimate a financial return, we must also ask what the same work would have cost without the asset, under comparable capability, quality, and task conditions. Changes in the capability and price of foundation models affect that comparison; organizations also value human attention differently, and engineering assets depreciate. The proposition identifies quantities to measure without claiming known coefficients.
+```
+
+### Hard Obligations, Judgment Calls: Inset Ending
+
+- Source: `book/latex/sources/part6/6.3-scope-conditions.tex:69`
+- Source revision: `d0ee4f56e8c75f984007534b739bba01bbc68038`
+- Removal date: 9 November 2026; committed with this entry.
+- Reason: Author-approved consolidation and positive formulation; preserve the economic comparison and the role of judgment.
+
+```latex
+The historic-building and accessibility examples make the same point. An obligation can be important, explicit, and legally binding without having a complete formal test. Engineering can still make the judgment better: make the obligation explicit, mechanize the parts that can be checked, and gather good evidence for the rest. The boundary can also move. Better models and measurements can turn judgments that once required an expert into properties the environment can check; better GenAI may make us willing to entrust increasingly difficult judgments to an artificial expert. Here, expert does not necessarily mean human: it means a reasoner capable of making the judgment well enough for the consequence at stake. The goal is therefore not to eliminate judgment, but to give each obligation the strongest form of evaluation and enforcement the available evidence can support.
+```
