@@ -876,19 +876,6 @@
   },
   {
     "chapter": "4.4-engineering-the-environment",
-    "source": "assets/engineering-recurring-work.svg",
-    "caption": "*Engineering recurring work.* A governed engineering environment combines support for probabilistic reasoning with enforcement of selected obligations; the same models, knowledge, procedures, skills, tools, and evidence may contribute to both. The dashed arrow marks a recurring MAGE move: as judgment becomes better understood, some obligations may become sufficiently clear and evaluable to enforce. The return path observes outcomes and failures and improves the environment; where recurring judgment can be encoded economically, that encoding is governance conversion (§3.4).",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Engineering recurring work: a governed environment both supports reasoning and enforces selected obligations, and the cycle iterates",
-    "svg_description": "Recurring engineering work exposes a judgment and is handled by engineering the environment. The\n    environment supports the reasoner — models, knowledge, examples, procedures, context, skills, tools, evidence — and\n    enforces selected obligations — constraints, validators, permissions, gates, checks. A dashed arrow from\n    support to enforcement marks the recurring move of adding enforcement where feasible. The governed engineering\n    environment then hosts realization, enforcement mechanisms act on selected obligations, and work is realized. A\n    return edge runs from realized work back to recurring engineering work: its lower portion observes outcomes and\n    failures, and its upper portion improves the environment — the governance conversion of Section 3.4, where recurring\n    judgment can be encoded economically."
-  },
-  {
-    "chapter": "4.4-engineering-the-environment",
     "source": "assets/two-evidence-boundaries.svg",
     "caption": "*Two evidence boundaries.* Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change. [short: Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",

@@ -2,13 +2,22 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 149,
-  "refined_count": 124,
-  "check_count": 913,
+  "candidate_count": 148,
+  "refined_count": 123,
+  "check_count": 903,
   "shared_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
   "validation": {
-    "status": "pending",
-    "reason": "Candidate set changed during Chapter 5 revision; full figure pool will be rebuilt."
+    "status": "passed",
+    "reviewed_on": "2026-11-09",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+    "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+    "semantic_typography_checks": 903,
+    "checked_terminal_approaches": 646,
+    "reviewed_peer_groups": 85,
+    "unapproved_compile_diagnostics": 0
   },
   "figures": [
     {
@@ -12201,318 +12210,6 @@
       }
     },
     {
-      "source": "book/assets/engineering-recurring-work.svg",
-      "candidate": "book/tikz/figures/engineering-recurring-work.tex",
-      "decision": "refined",
-      "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
-      "candidate_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
-      "evidence": [
-        {
-          "source_text": "GOVERNED ENGINEERING ENVIRONMENT",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "17"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "GOVERNED ENGINEERING ENVIRONMENT",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "GOVERNED ENGINEERING ENVIRONMENT",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "17"
-              },
-              "location": {
-                "x": "470",
-                "y": "404",
-                "text_element": 14
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "ENFORCE SELECTED OBLIGATIONS",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "17"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "ENFORCE SELECTED OBLIGATIONS",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "ENFORCE SELECTED OBLIGATIONS",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "17"
-              },
-              "location": {
-                "x": "720",
-                "y": "222",
-                "text_element": 8
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "RECURRING ENGINEERING WORK",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "18"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "RECURRING ENGINEERING WORK",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "RECURRING ENGINEERING WORK",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "18"
-              },
-              "location": {
-                "x": "470",
-                "y": "47",
-                "text_element": 1
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "ENGINEER THE ENVIRONMENT",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "18"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "ENGINEER THE ENVIRONMENT",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "ENGINEER THE ENVIRONMENT",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "18"
-              },
-              "location": {
-                "x": "470",
-                "y": "129",
-                "text_element": 3
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "SUPPORT THE REASONER",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "17"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "SUPPORT THE REASONER",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "SUPPORT THE REASONER",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "17"
-              },
-              "location": {
-                "x": "220",
-                "y": "222",
-                "text_element": 4
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "REALIZED WORK",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "18"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "REALIZED WORK",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "REALIZED WORK",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "18"
-              },
-              "location": {
-                "x": "470",
-                "y": "531",
-                "text_element": 17
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "expose the judgment",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "15"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "exposes judgment",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "expose the judgment",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "15"
-              },
-              "location": {
-                "x": "484",
-                "y": "86",
-                "text_element": 2
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "where feasible",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "14"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "where feasible",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "where feasible",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "14"
-              },
-              "location": {
-                "x": "470",
-                "y": "266",
-                "text_element": 13
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "observe outcomes and failures\nimprove the environment;",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "15"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Observe outcomes and failures; improve environment",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "observe outcomes and failures",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "15"
-              },
-              "location": {
-                "x": "795",
-                "y": "516",
-                "text_element": 18
-              }
-            },
-            {
-              "text": "improve the environment;",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "15"
-              },
-              "location": {
-                "x": "1000",
-                "y": "414",
-                "text_element": 19
-              }
-            }
-          ]
-        }
-      ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "checks": [
-        {
-          "text": "GOVERNED ENGINEERING ENVIRONMENT",
-          "bold": true
-        },
-        {
-          "text": "ENFORCE SELECTED OBLIGATIONS",
-          "bold": true
-        },
-        {
-          "text": "RECURRING ENGINEERING WORK",
-          "bold": true
-        },
-        {
-          "text": "ENGINEER THE ENVIRONMENT",
-          "bold": true
-        },
-        {
-          "text": "SUPPORT THE REASONER",
-          "bold": true
-        },
-        {
-          "text": "REALIZED WORK",
-          "bold": true
-        },
-        {
-          "text": "exposes judgment",
-          "italic": true
-        },
-        {
-          "text": "where feasible",
-          "italic": true
-        },
-        {
-          "text": "Observe outcomes and failures; improve environment",
-          "italic": true
-        },
-        {
-          "text": "Models; knowledge; examples",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 67,
-        "width_bp": 439.921,
-        "height_bp": 251.772,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 10
-      }
-    },
-    {
       "source": "book/assets/two-evidence-boundaries.svg",
       "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
       "decision": "refined",
@@ -13781,8 +13478,8 @@
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
       "decision": "refined",
-      "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
-      "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
       "evidence": [
         {
           "source_text": "Pressure / discovery loop\nStructural diagnosis",
@@ -14521,23 +14218,49 @@
         }
       ],
       "validation": {
+        "status": "passed",
+        "reviewed_on": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+        "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+        "semantic_typography_checks": 21,
+        "checked_terminal_approaches": 646,
+        "reviewed_peer_groups": 85,
+        "unapproved_compile_diagnostics": 0,
         "page": 83,
         "width_bp": 426.515,
         "height_bp": 489.063,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 21
-      }
+        "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+        "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
+      },
+      "superseded_reviews": [
+        {
+          "superseded_on": "2026-11-09",
+          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+          "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+          "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 83,
+            "width_bp": 426.515,
+            "height_bp": 489.063,
+            "minimum_prose_font_pt": 10.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 21
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
       "decision": "refined",
-      "source_sha256": "1e5abab9d235d2589d06f61ec2967e6e23b0b80f37e0eb6fa0f88f7b17b5c5f1",
+      "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
       "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
       "evidence": [
         {
@@ -14730,17 +14453,43 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/probability-two-term.pdf",
-        "proof_sha256": "867818b220086c265526939bb13039b55271d220a12f608d5fc6f366f44897ad",
-        "page": 1,
+        "status": "passed",
+        "reviewed_on": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+        "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+        "semantic_typography_checks": 7,
+        "checked_terminal_approaches": 646,
+        "reviewed_peer_groups": 85,
+        "unapproved_compile_diagnostics": 0,
+        "page": 84,
         "width_bp": 420.234,
         "height_bp": 352.203,
-        "minimum_prose_font_pt": 8.97,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 7
-      }
+        "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+        "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a"
+      },
+      "superseded_reviews": [
+        {
+          "superseded_on": "2026-11-09",
+          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+          "source_sha256": "1e5abab9d235d2589d06f61ec2967e6e23b0b80f37e0eb6fa0f88f7b17b5c5f1",
+          "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
+          "validation": {
+            "proof": "latex/build/tikz/probability-two-term.pdf",
+            "proof_sha256": "867818b220086c265526939bb13039b55271d220a12f608d5fc6f366f44897ad",
+            "page": 1,
+            "width_bp": 420.234,
+            "height_bp": 352.203,
+            "minimum_prose_font_pt": 8.97,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 7
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/determinization-frontier.svg",
@@ -24247,6 +23996,322 @@
       },
       "retired_on": "2026-11-09",
       "retirement_reason": "Replaced or retired in the author-approved Chapter 5 evidence revision."
+    },
+    {
+      "retired_date": "2026-11-09",
+      "reason": "Author-approved Chapter 4 focus revision retires a redundant support/enforcement overview; source artwork and historical proofs remain.",
+      "review": {
+        "source": "book/assets/engineering-recurring-work.svg",
+        "candidate": "book/tikz/figures/engineering-recurring-work.tex",
+        "decision": "refined",
+        "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
+        "candidate_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
+        "evidence": [
+          {
+            "source_text": "GOVERNED ENGINEERING ENVIRONMENT",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "GOVERNED ENGINEERING ENVIRONMENT",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "GOVERNED ENGINEERING ENVIRONMENT",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "17"
+                },
+                "location": {
+                  "x": "470",
+                  "y": "404",
+                  "text_element": 14
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "ENFORCE SELECTED OBLIGATIONS",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "ENFORCE SELECTED OBLIGATIONS",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "ENFORCE SELECTED OBLIGATIONS",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "17"
+                },
+                "location": {
+                  "x": "720",
+                  "y": "222",
+                  "text_element": 8
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "RECURRING ENGINEERING WORK",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "RECURRING ENGINEERING WORK",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "RECURRING ENGINEERING WORK",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "18"
+                },
+                "location": {
+                  "x": "470",
+                  "y": "47",
+                  "text_element": 1
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "ENGINEER THE ENVIRONMENT",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "ENGINEER THE ENVIRONMENT",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "ENGINEER THE ENVIRONMENT",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "18"
+                },
+                "location": {
+                  "x": "470",
+                  "y": "129",
+                  "text_element": 3
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "SUPPORT THE REASONER",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "SUPPORT THE REASONER",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "SUPPORT THE REASONER",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "17"
+                },
+                "location": {
+                  "x": "220",
+                  "y": "222",
+                  "text_element": 4
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "REALIZED WORK",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "18"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "REALIZED WORK",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "REALIZED WORK",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "18"
+                },
+                "location": {
+                  "x": "470",
+                  "y": "531",
+                  "text_element": 17
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "expose the judgment",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "15"
+            },
+            "semantic_role": "explanatory annotation or feedback relation",
+            "candidate_text": "exposes judgment",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "expose the judgment",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "15"
+                },
+                "location": {
+                  "x": "484",
+                  "y": "86",
+                  "text_element": 2
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "where feasible",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "14"
+            },
+            "semantic_role": "explanatory annotation or feedback relation",
+            "candidate_text": "where feasible",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "where feasible",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "14"
+                },
+                "location": {
+                  "x": "470",
+                  "y": "266",
+                  "text_element": 13
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "observe outcomes and failures\nimprove the environment;",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "15"
+            },
+            "semantic_role": "explanatory annotation or feedback relation",
+            "candidate_text": "Observe outcomes and failures; improve environment",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "observe outcomes and failures",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "15"
+                },
+                "location": {
+                  "x": "795",
+                  "y": "516",
+                  "text_element": 18
+                }
+              },
+              {
+                "text": "improve the environment;",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "15"
+                },
+                "location": {
+                  "x": "1000",
+                  "y": "414",
+                  "text_element": 19
+                }
+              }
+            ]
+          }
+        ],
+        "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+        "checks": [
+          {
+            "text": "GOVERNED ENGINEERING ENVIRONMENT",
+            "bold": true
+          },
+          {
+            "text": "ENFORCE SELECTED OBLIGATIONS",
+            "bold": true
+          },
+          {
+            "text": "RECURRING ENGINEERING WORK",
+            "bold": true
+          },
+          {
+            "text": "ENGINEER THE ENVIRONMENT",
+            "bold": true
+          },
+          {
+            "text": "SUPPORT THE REASONER",
+            "bold": true
+          },
+          {
+            "text": "REALIZED WORK",
+            "bold": true
+          },
+          {
+            "text": "exposes judgment",
+            "italic": true
+          },
+          {
+            "text": "where feasible",
+            "italic": true
+          },
+          {
+            "text": "Observe outcomes and failures; improve environment",
+            "italic": true
+          },
+          {
+            "text": "Models; knowledge; examples",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 67,
+          "width_bp": 439.921,
+          "height_bp": 251.772,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 10
+        }
+      }
     }
   ],
   "governance_revision_date": "2026-11-08",
@@ -24291,6 +24356,10 @@
           "SourceSans3-Regular"
         ]
       }
+    },
+    {
+      "status": "pending",
+      "reason": "Candidate set changed during Chapter 5 revision; full figure pool will be rebuilt."
     }
   ]
 }

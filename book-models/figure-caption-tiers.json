@@ -613,12 +613,6 @@
       "location": "part6",
       "rationale": "the durable authorship split — what Self-Governance carries vs. what the engineer remains answerable for; §6.6.1 answerability table"
     },
-    "assets/engineering-recurring-work.svg": {
-      "tier": "A",
-      "kind": "flow",
-      "location": "part4",
-      "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
-    },
     "assets/figure-composition.svg": {
       "tier": "B",
       "kind": "conceptual-framework",
@@ -1394,6 +1388,12 @@
       "kind": "summary-of-points",
       "location": "part5",
       "rationale": "the 2x2 of Modeling and Alignment as separable levers — each cell's primary contribution"
+    },
+    "assets/engineering-recurring-work.svg": {
+      "tier": "A",
+      "kind": "flow",
+      "location": "part4",
+      "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
     }
   }
 }

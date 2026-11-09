@@ -43,9 +43,7 @@ In passive alignment, a proposed change is evaluated against governing models an
 \label{active-passive-alignment}
 \end{figure}
 
-The two modes normally occur in sequence. An engineer introduces a model because some consequential property deserves stronger representation and control. Active alignment brings the existing realization into correspondence with it. The model and its alignment mechanisms then remain in the GEE. What was the target of one engineering episode becomes a constraint on later ones.
-
-Active alignment therefore produces engineering capital. The result is not merely code that now happens to satisfy an obligation. The environment has gained an explicit model of that obligation and machinery capable of evaluating subsequent changes against it. Future agents inherit that structure.
+Once active alignment establishes correspondence, the model and its checks remain available for later changes. That reusable structure is engineering capital: subsequent work inherits an obligation and machinery for evaluating it.
 
 This matters because active alignment is not necessarily behavior preserving. Asking an agent to make a state machine explicit, replace an architectural boundary, separate storage from computation, or satisfy a new ownership model may require substantial changes to the realization. Those changes may satisfy the new model while damaging some other property that has not yet been made visible to the environment. That possibility creates an ordering problem.
 
@@ -53,9 +51,7 @@ This matters because active alignment is not necessarily behavior preserving. As
 
 The first models brought into governance should protect the properties that subsequent transformations must not be allowed to damage. Together, these models form the alignment kernel.
 
-The kernel does not introduce another class of model. \magevalue{chapter:modeling} described different projections through which an engineer can represent consequential properties of a system: its behavior, structure, resources, deployment, ownership, and other concerns. Here the question is different: in what order should those models become governing constraints?
-
-The answer need not follow the taxonomy. Active alignment can substantially change a system while bringing it into correspondence with a model, so the properties that such transformations must not damage belong in governance first. Additional models can then be introduced incrementally, each active alignment performed subject to the constraints already established. \autoref{alignment-kernel} shows the governed surface growing this way.
+\magevalue{chapter:modeling} organized models by the properties they represent. The kernel instead concerns their order of introduction: protect the properties that an upcoming transformation must preserve, then expand the governed surface under those existing constraints (\autoref{alignment-kernel}).
 
 \begin{figure}[htbp]
 \centering
@@ -66,11 +62,7 @@ The answer need not follow the taxonomy. Active alignment can substantially chan
 
 The order is system-dependent. For a conventional information system, behavioral correctness and state management may belong in the initial kernel: later structural changes must preserve what the system does. For an embedded system, resource properties such as latency, memory, or energy may need to enter first. An implementation may contain unusual structure precisely because it satisfies a timing constraint. Asking an agent first to make an implicit state machine explicit could invite a reasonable-looking refactoring that removes those optimizations. If the timing model is already aligned and enforced, the agent remains free to restructure the implementation---but only within the performance envelope that must survive.
 
-The sequence is therefore an engineering decision, not merely a documentation order.
-
-The model projections in \magevalue{chapter:modeling} were deliberately peers: each represented a different consequential aspect of the same realization. Once active alignment begins changing that realization, however, time matters. Aligning one projection can perturb properties represented by another. The models already under governance define the region within which the next transformation may safely operate.
-
-The kernel can then grow. A newly aligned model becomes part of the protected environment for the next episode; another can be introduced, actively aligned, and retained. MAGE adoption can therefore proceed incrementally rather than requiring a complete model of the system before governance begins.
+A newly aligned model can join the protected environment for the next episode. Adoption therefore proceeds incrementally; it does not require a complete model of the system before governance begins.
 
 Nor should the kernel necessarily grow without bound. A model earns its place by making a consequential property cheaper to understand, predict, constrain, or evaluate than leaving that knowledge implicit. The kernel is large enough when the consequential degrees of freedom are under control; maximum representation is not the goal.
 
@@ -102,26 +94,12 @@ Cheap implementation changes engineering experience in three related ways.
 
 \textbf{Connection amplification: compressed experience.} Agents surface related failures, observations, and design consequences in dense succession, where conventional development would have separated them by days or weeks. Their proximity can make relationships visible: several local failures reveal one architectural gap; a measurement exposes a missing model; one change makes the consequence of another immediately apparent.
 
-None of the three is something an engineer performs; all three are conditions the engineer now works inside.
-
-In simpler terms:
-
-\begin{itemize}
-\tightlist
-\item
-  You can build faster.
-\item
-  You can better understand what you meant to build.
-\item
-  You can better understand how what you built affects everything else you are trying to build.
-\end{itemize}
-
 But comprehension amplification is bounded by what the feedback makes visible. Ousterhout\textquotesingle s guidance to measure one level deeper captures the danger:\citep{ousterhout2018} optimizing only for an immediately visible, high-level property can improve that property while degrading the structures that sustain it. A system can look simpler to a user while becoming more complex internally; a change can satisfy its functional goal while worsening performance, security, or maintainability. Fast realization therefore does not eliminate the need for models. It increases the importance of deciding which properties must be represented and measured beneath the surface being experienced, a question \magevalue{sec:engineering-the-environment} takes up directly.
 \end{quote}
 
 In DocAble, related failures sometimes arrived quickly enough that what first appeared to be separate defects became recognizable as symptoms of a missing architectural concept. The response was not another sequence of local repairs. The shared relationship became a system model, which in turn enabled static analyses that prevented several classes of failure. Speed had changed what the engineer could see.
 
-The engineer still decides which alternatives are worth exploring, which realizations reveal a misunderstanding, and which apparent connections matter. When a connection reveals a recurring engineering lesson, governance conversion provides the next move: preserve that lesson in the environment so that later work inherits it. Once that knowledge is explicit, it can compound: later work begins with the model, constraint, evidence, or mechanism produced by earlier experience rather than reconstructing the same judgment. And because comprehension amplification exposes intent the engineers had underspecified, the environment accumulates not only knowledge for agents, but clarifications of the engineers\textquotesingle{} own intent.
+The engineer still judges which alternatives are worth exploring and which apparent connections matter. When experience reveals a recurring lesson, governance conversion preserves it in the environment so that later work can use the resulting representation, procedure, or control.
 
 % <!-- box-family: canonical -->
 
@@ -134,11 +112,9 @@ A recurring failure, a repeated judgment, or a newly discovered relationship is 
 It does not decide \emph{what} deserves capturing; that judgment stays with the engineer. It names what follows the decision: the lesson stops living in one person\textquotesingle s memory and starts living in the environment that governs the next change.
 \end{quote}
 
-The resulting loop is therefore more than generate and check. Cheap realization can accelerate learning about the system, while governance conversion changes the environment in response to that learning. What the engineer learns can become engineering capital.
-
 % <!-- point: the-improvement-loop-has-familiar-ancestors-the-changed-condition-is-abundance | The improvement loop has familiar ancestors; the changed condition is implementation abundance. | terms: governance-conversion -->
 
-% <!-- gloss-only: Jidoka | The Toyota Production System's stop-the-line move: halt the instant a defect appears, so nothing downstream builds on it; the manufacturing lineage of the sensor's fail-the-iteration reflex. -->
+% <!-- gloss-only: Jidoka | The Toyota Production System's stop-the-line move: halt the instant a defect appears, so nothing downstream builds on it; the manufacturing lineage of a gate's stop-the-iteration decision. -->
 
 % <!-- gloss-only: Kaizen | Continuous improvement as the Toyota Production System practices it: every recurring problem becomes a permanent countermeasure; the manufacturing lineage of MAGE's convert-a-failure-into-a-mechanism loop. -->
 
@@ -156,4 +132,4 @@ The engineers supervising this process do not begin without understanding. They 
 
 Degrees of freedom provide the criterion for when that transition should occur. Leave a degree of freedom open while variation is producing useful information. Once a choice becomes sufficiently understood and consequential, represent it and, where justified, align the realization to it. What began as exploratory freedom becomes governed engineering knowledge.
 
-Greenfield and brownfield MAGE therefore converge. Brownfield work begins with an existing realization and induces models from it. Greenfield work may begin with cheap realizations deliberately produced to learn what should be modeled. In both cases, engineering alternates among realization, observation, interpretation, modeling, alignment, and measurement. Realization amplification supplies the experience; comprehension amplification turns it back on intent; connection amplification compresses it in time; governance conversion lets selected lessons survive the episode that produced them. The difference is where the first useful evidence comes from. Brownfield systems do pose one additional problem: the relevant models and obligations may already exist implicitly in implementation, tests, procedures, and organizational knowledge; \magevalue{sec:brownfield-engineering} returns to how to recover them.
+Greenfield and brownfield MAGE converge on this cycle. Brownfield work begins with an existing realization; greenfield work may use cheap realizations to discover what should be modeled. Both alternate among observation, interpretation, modeling, alignment, and measurement. The difference is where the first useful evidence comes from. In an inherited system, that evidence may already be distributed across implementation, tests, procedures, and organizational knowledge; \magevalue{sec:brownfield-engineering} examines how to recover it.

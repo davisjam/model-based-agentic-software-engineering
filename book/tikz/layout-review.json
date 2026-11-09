@@ -3,9 +3,9 @@
   "minimum_terminal_approach_pt": 9,
   "preferred_terminal_approach_pt": 12,
   "coverage_limits": "Filled Stealth and Latex arrowheads on straight terminal shafts into rectangular or rounded-rectangular text nodes. Curved shafts, open arrowheads and other shapes require visual review. Peer constraints are explicitly reviewed; unrelated containers are not presumed equal.",
-  "candidate_count": 149,
-  "refined_count": 68,
-  "reviewed_peer_groups": 87,
+  "candidate_count": 148,
+  "refined_count": 67,
+  "reviewed_peer_groups": 85,
   "figures": [
     {
       "source": "book/assets/book-map.svg",
@@ -4850,79 +4850,6 @@
       }
     },
     {
-      "source": "book/assets/engineering-recurring-work.svg",
-      "candidate": "book/tikz/figures/engineering-recurring-work.tex",
-      "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
-      "baseline_candidate_sha256": "8c637082ade0d2e6b5f9756d697ea40a73a74840c3f54525f43ba72b3d1365bf",
-      "candidate_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
-      "decision": "refined",
-      "reason": "Equal-height parallel moves, longer incoming fork terminals, and more space before governed/realized capital.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        439.9209899902344,
-        231.9290008544922
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel engineering moves",
-            "labels": [
-              "SUPPORT THE REASONER",
-              "ENFORCE SELECTED OBLIGATIONS"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 67,
-        "width_bp": 439.921,
-        "height_bp": 251.772
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing engineering recurring work layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
-        "after_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
-        "before_dimensions_bp": [
-          439.9209899902344,
-          251.77200317382812
-        ],
-        "after_dimensions_bp": [
-          439.9209899902344,
-          251.77200317382812
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
       "source": "book/assets/two-evidence-boundaries.svg",
       "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
       "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
@@ -5713,9 +5640,9 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
-      "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
       "baseline_candidate_sha256": "368587e1d62db3d011b8d01d7390a25326a781110511c2de61f788818eda115d",
-      "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+      "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
       "decision": "refined",
       "reason": "Equalize capacity/environment and work/performance peers; widen pressure/diagnosis descriptions to remove a wrapped line and reveal sequential arrow shafts. Removed a redundant text-width option without changing the layout. Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
       "reviewed_visually": true,
@@ -5729,7 +5656,7 @@
             "name": "parallel rank 1",
             "labels": [
               "Agentic capacity capability; concurrency; velocity",
-              "Governed environment E representation; coverage; coherence; economy"
+              "Governed environment G representation; coverage; coherence; economy"
             ],
             "align": [
               "top",
@@ -5755,54 +5682,81 @@
         "terminal_exceptions": []
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
         "status": "passed",
+        "reviewed_on": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+        "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+        "semantic_typography_checks": 21,
+        "checked_terminal_approaches": 646,
+        "reviewed_peer_groups": 85,
+        "unapproved_compile_diagnostics": 0,
         "page": 83,
         "width_bp": 426.515,
-        "height_bp": 489.063
+        "height_bp": 489.063,
+        "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+        "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
       },
-      "page_layout": {
-        "decision": "refined",
-        "reason": "Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
-        "before_sha256": "e309ffe7d0dbedda051f38ca1155e65c024250670ed6560d93621be9b632b5b0",
-        "after_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
-        "before_dimensions_bp": [
-          426.5150146484375,
-          400.2640075683594
-        ],
-        "after_dimensions_bp": [
-          426.5150146484375,
-          489.06298828125
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          10.0,
-          11.0
-        ],
-        "reviewed_visually": true
-      }
+      "superseded_reviews": [
+        {
+          "superseded_on": "2026-11-09",
+          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+          "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+          "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+          "reviewed_visually": true,
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 83,
+            "width_bp": 426.515,
+            "height_bp": 489.063
+          },
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
+            "before_sha256": "e309ffe7d0dbedda051f38ca1155e65c024250670ed6560d93621be9b632b5b0",
+            "after_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+            "before_dimensions_bp": [
+              426.5150146484375,
+              400.2640075683594
+            ],
+            "after_dimensions_bp": [
+              426.5150146484375,
+              489.06298828125
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              10.0,
+              11.0
+            ],
+            "reviewed_visually": true
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-      "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+      "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
       "baseline_candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
-      "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+      "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
       "decision": "refined",
       "reason": "Align four production-process peer boxes at common top/bottom.",
       "reviewed_visually": true,
@@ -5831,49 +5785,76 @@
         "terminal_exceptions": []
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
         "status": "passed",
+        "reviewed_on": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+        "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+        "semantic_typography_checks": 7,
+        "checked_terminal_approaches": 646,
+        "reviewed_peer_groups": 85,
+        "unapproved_compile_diagnostics": 0,
         "page": 84,
         "width_bp": 420.234,
-        "height_bp": 352.203
+        "height_bp": 352.203,
+        "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+        "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a"
       },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing probability in the software factory layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
-        "after_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
-        "before_dimensions_bp": [
-          420.2340087890625,
-          352.2030029296875
-        ],
-        "after_dimensions_bp": [
-          420.2340087890625,
-          352.2030029296875
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0,
-          12.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0,
-          12.0
-        ],
-        "reviewed_visually": true
-      }
+      "superseded_reviews": [
+        {
+          "superseded_on": "2026-11-09",
+          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+          "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+          "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+          "reviewed_visually": true,
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 84,
+            "width_bp": 420.234,
+            "height_bp": 352.203
+          },
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing probability in the software factory layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+            "after_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+            "before_dimensions_bp": [
+              420.2340087890625,
+              352.2030029296875
+            ],
+            "after_dimensions_bp": [
+              420.2340087890625,
+              352.2030029296875
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0,
+              12.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0,
+              12.0
+            ],
+            "reviewed_visually": true
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/determinization-frontier.svg",
@@ -10286,8 +10267,17 @@
     }
   ],
   "validation": {
-    "status": "pending",
-    "reason": "Candidate set changed during Chapter 5 revision; full figure pool will be rebuilt."
+    "status": "passed",
+    "reviewed_on": "2026-11-09",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+    "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+    "semantic_typography_checks": 903,
+    "checked_terminal_approaches": 646,
+    "reviewed_peer_groups": 85,
+    "unapproved_compile_diagnostics": 0
   },
   "page_layout_review": {
     "candidate_count": 146,
@@ -10536,6 +10526,83 @@
       },
       "retired_on": "2026-11-09",
       "retirement_reason": "Replaced or retired in the author-approved Chapter 5 evidence revision."
+    },
+    {
+      "retired_date": "2026-11-09",
+      "reason": "Author-approved Chapter 4 focus revision retires a redundant support/enforcement overview; source artwork and historical proofs remain.",
+      "review": {
+        "source": "book/assets/engineering-recurring-work.svg",
+        "candidate": "book/tikz/figures/engineering-recurring-work.tex",
+        "source_sha256": "63336573063a56860f5582450dd9b4977a42c681c24fe8ff8ab3c6730b60f587",
+        "baseline_candidate_sha256": "8c637082ade0d2e6b5f9756d697ea40a73a74840c3f54525f43ba72b3d1365bf",
+        "candidate_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
+        "decision": "refined",
+        "reason": "Equal-height parallel moves, longer incoming fork terminals, and more space before governed/realized capital.",
+        "reviewed_visually": true,
+        "baseline_dimensions_bp": [
+          439.9209899902344,
+          231.9290008544922
+        ],
+        "contracts": {
+          "peer_groups": [
+            {
+              "name": "parallel engineering moves",
+              "labels": [
+                "SUPPORT THE REASONER",
+                "ENFORCE SELECTED OBLIGATIONS"
+              ],
+              "align": [
+                "top",
+                "bottom"
+              ],
+              "equal_height": true,
+              "tolerance_pt": 1
+            }
+          ]
+        },
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 67,
+          "width_bp": 439.921,
+          "height_bp": 251.772
+        },
+        "page_layout": {
+          "decision": "retained",
+          "reason": "Retain existing engineering recurring work layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+          "before_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
+          "after_sha256": "f551e1301a41dac7be9d7f855a13c5e0600a254d794eaaddfa473d82134fc9b6",
+          "before_dimensions_bp": [
+            439.9209899902344,
+            251.77200317382812
+          ],
+          "after_dimensions_bp": [
+            439.9209899902344,
+            251.77200317382812
+          ],
+          "before_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "after_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "reviewed_visually": true
+        }
+      }
     }
   ],
   "governance_revision_date": "2026-11-08",
@@ -10572,6 +10639,10 @@
         560
       ],
       "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+    },
+    {
+      "status": "pending",
+      "reason": "Candidate set changed during Chapter 5 revision; full figure pool will be rebuilt."
     }
   ]
 }

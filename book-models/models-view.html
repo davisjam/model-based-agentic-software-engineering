@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>32</b> chapters · <b>187</b> sections · <b>45</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>32</b> chapters · <b>183</b> sections · <b>45</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -504,7 +504,7 @@
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--predicting-the-cost-of-a-design-change">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Predicting the cost of a design change</a></div>
-<p class="topic">Models can also answer questions about designs that do not exist yet.</p>
+<p class="topic">A proposed intermediate representation can be inserted into the dependency graph before it is implemented.</p>
 </div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--use-prediction-error-as-evidence">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Use prediction error as evidence</a></div>
@@ -518,25 +518,13 @@
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Models get falsified; the obligation survives</a></div>
 <p class="topic">A ratchet does not make the current model true forever.</p>
 </div>
-<div class="section s3" id="sec-4-2-one-problem-many-models--what-a-score-does-not-carry">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">What a score does not carry</a></div>
-<p class="topic">A black-box optimization loop could target peak memory or elapsed time directly, and for some tasks that is the economical choice.</p>
-</div>
 <div class="section s2" id="sec-4-2-one-problem-many-models--the-resulting-model-family">
 <div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">The Resulting Model Family</a></div>
 <p class="topic">The large-file requirement did not produce one model.</p>
 </div>
-<div class="section s3" id="sec-4-2-one-problem-many-models--from-examples-to-a-bound">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">From examples to a bound</a></div>
-<p class="topic">The memory story shows the progression clearly:</p>
-</div>
 <div class="section s3" id="sec-4-2-one-problem-many-models--three-days">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Three days</a></div>
-<p class="topic">Laid out this way, the sequence looks like a substantial architecture project.</p>
-</div>
-<div class="section s3" id="sec-4-2-one-problem-many-models--from-a-story-to-a-method">
-<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">From a story to a method</a></div>
-<p class="topic">Nobody began this work with a plan to construct seven models.</p>
+<div class="sec-h"><a href="../book/4.2-one-problem-many-models.html">Modeling Inside the Implementation Loop</a></div>
+<p class="topic">This sequence took about three days inside the existing governed engineering environment.</p>
 </div>
 </div>
 <div class="chapter">
@@ -551,48 +539,43 @@
 </div>
 <div class="section s2" id="sec-4-3-brownfield-engineering--reconcile-the-map-and-the-territory">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Reconcile the Map and the Territory</a></div>
-<p class="topic">A recovered model may be wrong.</p>
+<p class="topic">Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.</p>
 </div>
 <div class="section s2" id="sec-4-3-brownfield-engineering--invest-where-it-pays">
 <div class="sec-h"><a href="../book/4.3-brownfield-engineering.html">Invest Where It Pays</a></div>
-<p class="topic">Brownfield MAGE is not a project to model everything.</p>
+<p class="topic">Prioritize recovery where explicit structure can reduce recurring work:</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-4-4-engineering-the-environment"><span class="tier-kick">Lesson</span><a href="../book/4.4-engineering-the-environment.html" class="ch-link">4.4-engineering-the-environment</a> <span class="ch-slug">4.4-engineering-the-environment</span></h3>
 <div class="section s2" id="sec-4-4-engineering-the-environment--the-gee-as-a-distributed-cognitive-system">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">The GEE as a Distributed Cognitive System</a></div>
+<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Equip the Reasoner</a></div>
 <p class="topic">Not every important judgment should become deterministic.</p>
 </div>
-<div class="section s2" id="sec-4-4-engineering-the-environment--validate-the-change-not-the-producer-s-story">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Validate the Change, Not the Producer&#x27;s Story</a></div>
-<p class="topic">Every engineering process eventually asks the same question: **what evidence is sufficient to accept this change?** Code review, testing, static analysis, operational measurement, and expert judgment answered that question long before coding agents arrived.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the core generative-validation move: a generator hunting a counterexample to a stated property or model. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s3" id="sec-4-4-engineering-the-environment--package-recurring-judgment">
+<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Package Recurring Judgment</a></div>
+<p class="topic">**Skills preserve recurring procedures and judgment.** Package the representations, examples, heuristics, decision procedures, and tools that help later work avoid reconstructing the same practice from general knowledge.</p>
+</div>
+<div class="section s2" id="sec-4-4-engineering-the-environment--validate-the-change-not-the-producers-story">
+<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Evaluate the Work</a></div>
+<p class="topic">Every engineering process must decide what evidence justifies accepting a change.</p>
 </div>
 <div class="section s2" id="sec-4-4-engineering-the-environment--operate-the-environment">
 <div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Operate the Environment</a></div>
-<p class="topic">The governed engineering environment is itself a consequential system that requires maintenance.</p>
+<p class="topic">A method has to survive terrible, horrible, no good, very bad days, too.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply Ousterhout&#x27;s rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus the failure states that matter and the sanctioned recovery from each — pairing every prohibition with the recovery path an agent cannot supply on its own. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can author a runbook that types each step — Execute, Delegate, or Escalate — and surrounds a judgment-laden step with deterministic preparation and measurement, preserving the rationale separately from the trace. <span class="prov">derived</span></span></li></ul></div>
 </div>
 <div class="section s3" id="sec-4-4-engineering-the-environment--when-validation-becomes-the-bottleneck">
 <div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">When Validation Becomes the Bottleneck</a></div>
 <p class="topic">DocAble’s agents eventually outpaced the infrastructure that checked their work.</p>
 </div>
-<div class="section s3" id="sec-4-4-engineering-the-environment--engineering-capital-depreciates">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Engineering capital depreciates</a></div>
-<p class="topic">Engineering capital depreciates.</p>
-</div>
-<div class="section s2" id="sec-4-4-engineering-the-environment--package-recurring-judgment">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Package Recurring Judgment</a></div>
-<p class="topic">One kind of engineering capital remains.</p>
+<div class="section s2" id="sec-4-4-engineering-the-environment--engineering-capital-depreciates">
+<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Maintain the Machinery</a></div>
+<p class="topic">The governed engineering environment is itself a consequential system that requires maintenance.</p>
 </div>
 <div class="section s2" id="sec-4-4-engineering-the-environment--portable-moves">
 <div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Portable Moves</a></div>
 <p class="topic">Strip away DocAble, the companion repository, and the current generation of agent harnesses, and a small set of moves remains from this chapter&#x27;s dynamics and practice.</p>
-</div>
-<div class="section s2" id="sec-4-4-engineering-the-environment--carrying-knowledge-forward">
-<div class="sec-h"><a href="../book/4.4-engineering-the-environment.html">Carrying Knowledge Forward</a></div>
-<p class="topic">Realization amplification compressed exploration, and connection amplification compressed experience.</p>
 </div>
 </div>
 </section>
