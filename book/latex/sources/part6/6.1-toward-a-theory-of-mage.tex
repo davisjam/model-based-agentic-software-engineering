@@ -671,16 +671,14 @@ Candidate observables
 
 \begin{bookbox}{inset}{Human Attention Is Not a Free Control}
 \label{inset-human-attention-not-a-free-control}
-Moving work from human execution to machine execution does not eliminate the cost of human attention if people must inspect the resulting stream. Human-factors research has studied this problem for decades. Wolfe and colleagues found that rare targets in visual search were disproportionately missed as target prevalence fell.\citep{wolfe2005rare} Warm, Parasuraman, and Matthews synthesize a broader vigilance literature showing that sustained monitoring is not passive work: it consumes attentional resources, imposes substantial workload, and can produce performance decrements and stress.\citep{warm2008vigilance} These findings apply particularly to human-machine systems in which people monitor automated processes.
+Moving work from human execution to machine execution does not eliminate the cost of human attention if people must inspect the resulting stream. Software engineering has long relied on one engineer reviewing another\textquotesingle s work, but code review is imperfect. Studies document the improvements reviewers prompt and associate review coverage and participation with post-release quality.\citep{beller2014modern, mcintosh2014impact} At Microsoft, reviews spanning more files had a lower proportion of useful feedback, and developers reported that such reviews required more time and effort.\citep{bosu2015useful} As agents assume more implementation work, software engineering faces a problem familiar to industries that automated earlier. Bainbridge\textquotesingle s \emph{Ironies of Automation} described how automation can leave human operators responsible for monitoring rare failures and intervening when something goes wrong.\citep{bainbridge1983}
 
-Operational practice illustrates why inspection must itself be evaluated. The Transportation Security Administration uses covert tests of airport screening to identify vulnerabilities in passenger and checked-baggage screening. A Government Accountability Office review found weaknesses in the quality of some covert tests and in the process for addressing discovered vulnerabilities.\citep{gao2019covert} The report does not isolate limited attention as the cause of these weaknesses. It complements the human-factors research by showing why the presence of trained inspectors is not, by itself, evidence that an assurance process is effective.
-
-In agentic engineering, human attention becomes a throughput and assurance bottleneck if implementation output grows while assurance continues to require proportional human inspection. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment.
+As agentic output grows, proportional human inspection becomes a bottleneck. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment.
 \end{bookbox}
 
-% <!-- point: human-attention-is-a-conserved-resource | Human attention is not an implementation detail of governance; it is one of the scarce resources the engineered environment is intended to conserve. -->
+% <!-- point: human-attention-is-a-conserved-resource | Human attention is an engineering resource. -->
 
-Human attention is therefore one of the scarce resources the engineered environment is intended to conserve, not an implementation detail of the governance process.
+Human attention is an engineering resource.
 
 % <!-- point: activity-counts-are-not-outcome | Easy-to-count quantities (commits, lines, control files, support ratio) measure activity or investment, not outcome. -->
 

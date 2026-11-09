@@ -6193,3 +6193,159 @@ Reason: Author-approved §6.1 review and final delegated-choice wording.
 ```latex
 \magefootnote{activity-data}{The activity-versus-outcome gap already shows up in industry data. A 2026 benchmark of 83,000 developers across 253 organizations\citep{linearb2026} reports large merge-rate gains among heavy AI users, yet finds yield falling among the heaviest even as merge rates roughly doubled. An industry analyst reads the same period as rising AI spend without proportionate shipping velocity, the difficulty having moved from comprehension to confidence.\citep{riggins2026} Activity is not the same as durable progress.}
 ```
+
+## Final theory feedback — 8 November 2026
+
+The author approved the shorter software-review attention inset, A58’s economic measurement clarification, and A59/A61/A62. A60 remains a separate proposal.
+
+### A56 — Ground the human-attention inset in software review and automation
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, §6.1, lines 674–683.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final theory feedback.
+
+```latex
+Moving work from human execution to machine execution does not eliminate the cost of human attention if people must inspect the resulting stream. Human-factors research has studied this problem for decades. Wolfe and colleagues found that rare targets in visual search were disproportionately missed as target prevalence fell.\citep{wolfe2005rare} Warm, Parasuraman, and Matthews synthesize a broader vigilance literature showing that sustained monitoring is not passive work: it consumes attentional resources, imposes substantial workload, and can produce performance decrements and stress.\citep{warm2008vigilance} These findings apply particularly to human-machine systems in which people monitor automated processes.
+
+Operational practice illustrates why inspection must itself be evaluated. The Transportation Security Administration uses covert tests of airport screening to identify vulnerabilities in passenger and checked-baggage screening. A Government Accountability Office review found weaknesses in the quality of some covert tests and in the process for addressing discovered vulnerabilities.\citep{gao2019covert} The report does not isolate limited attention as the cause of these weaknesses. It complements the human-factors research by showing why the presence of trained inspectors is not, by itself, evidence that an assurance process is effective.
+
+In agentic engineering, human attention becomes a throughput and assurance bottleneck if implementation output grows while assurance continues to require proportional human inspection. Where recurring obligations can be represented explicitly and checked or enforced adequately, reusable mechanisms can reduce the inspection required for each change. Engineers can then concentrate their attention on ambiguous evidence, novel failures, tradeoffs, exceptions, and decisions whose consequences require expert judgment.
+\end{bookbox}
+
+% <!-- point: human-attention-is-a-conserved-resource | Human attention is not an implementation detail of governance; it is one of the scarce resources the engineered environment is intended to conserve. -->
+
+Human attention is therefore one of the scarce resources the engineered environment is intended to conserve, not an implementation detail of the governance process.
+```
+
+### A58 — Explain the additional difficulty of economic measurement
+
+- Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, §6.2, lines 90–92.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final theory feedback.
+
+```latex
+% <!-- point: economic-predictions-least-settled-need-a-counterfactual | The economic predictions are least settled: estimating return needs a counterfactual amid moving capability and prices. -->
+
+The economic predictions are the least settled of the three families. Representation leverage and governance conversion can be observed directly within an engineered environment; estimating their economic return requires a counterfactual: what would the same work have cost without the asset, under comparable intelligence, quality, and task conditions? Model capability is changing at the same time, token prices are moving, organizations value human attention differently, and engineering assets depreciate. The hypotheses below therefore name quantities worth measuring, not coefficients MAGE claims to know.
+```
+
+### A59 — Name the two kinds of obligation instead of leaving 'both' unresolved
+
+- Source: `book/latex/sources/part6/6.3-scope-conditions.tex`, §6.3, lines 72–74.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final theory feedback.
+
+```latex
+% <!-- point: most-systems-mix-surfaces-which-deserve-enforcement | Most systems mix surfaces; the question is which properties deserve durable representation or enforcement, not whether a project uses MAGE. -->
+
+Most real systems contain both kinds of surfaces. The practical question is therefore not whether a project "uses MAGE," but which properties deserve durable representation or enforcement, how strong the evidence should be, and which decisions should remain with experts.
+```
+
+### A61 — Make the return from the inset work on either reading path
+
+- Source: `book/latex/sources/part6/6.3-scope-conditions.tex`, §6.3, lines 109–115.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final theory feedback.
+
+```latex
+% <!-- point: full-formalization-is-a-region-not-a-ladder-endpoint | Full formalization is an important region of the design space, not the endpoint of a ladder. -->
+
+These examples show why explicit engineering is not a ladder ending in full formalization. Formal methods occupy an important region of the design space: obligations represented with semantics precise enough for machines to derive, search, transform, or verify solutions. Program synthesis, compiler optimization, model-driven engineering, configuration tuning, and formal methods all exploit such representations. Their historical reach has also been limited by cost, because specifications, models, proofs, generators, correspondence machinery, and verification infrastructure cost engineering effort. Commodity intelligence can lower those costs by assisting with specification, invariant discovery, model construction, proof construction, and translation between engineering intent and formal artifacts.
+
+% <!-- point: consequence-can-justify-investment-without-governability | Where governability is limited, added consequence can justify more investment without making complete formalization feasible. -->
+
+But full formalization is a region of the design space, not its endpoint. Where governability remains limited, greater consequence can justify more investment without making complete formalization feasible. A design organization may invest heavily in models, precedent, examples, structured critique, evaluation procedures, and expert review. An accessibility system may mechanize dozens of standards-derived obligations while retaining semantic and user-experience judgments that no checker can settle. Greater consequence can justify more engineering in either case; it does not make the underlying obligation more governable. A scientific organization may enforce provenance, units, workflow, and reproducibility while leaving scientific interpretation to expert judgment. A bridge project may formally analyze structural obligations while using substantially different evidence and review for its aesthetic relationship to a historic or scenic setting. The right unit remains the obligation or engineering surface, not the industry or artifact.
+```
+
+### A62 — Keep lower construction cost a conditional economic mechanism
+
+- Source: `book/latex/sources/part6/6.3-scope-conditions.tex`, §6.3, lines 128–130.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved final theory feedback.
+
+```latex
+% <!-- point: ci-lowers-the-cost-of-explicit-structure | Commodity intelligence first lowers the cost of explicit structure, so assets repay at lower recurrence or consequence. -->
+
+Commodity intelligence can change where work falls in this design space in two ways. First, it lowers the cost of constructing and maintaining explicit structure. Models, skills, specifications, validators, proofs, and other engineering assets can therefore repay their cost at lower levels of recurrence or consequence. This makes explicit engineering worthwhile for more obligations without changing the obligations themselves.
+```
+
+### A63 — Define the routing comparison without a claim about every conventional router
+
+- Source: `book/latex/sources/part6/6.4-research-agenda.tex`, §6.4, lines 152–154.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.4 review.
+
+```latex
+% <!-- point: model-routing-treats-the-task-as-given | Task difficulty need not be treated as fixed: engineering can change the representation of a problem before selecting the model that will solve it, where conventional model routing treats the task as given. -->
+
+Task difficulty need not be treated as fixed. Engineering can change the representation of a problem before selecting the model that will solve it. Conventional model routing assumes the opposite: it treats the task as given, estimates its difficulty, and selects a model whose capability and cost are appropriate to it.
+```
+
+### A64 — Require useful delivery as well as an escape bound in engineering routing
+
+- Source: `book/latex/sources/part6/6.4-research-agenda.tex`, §6.4, lines 172–180.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.4 review.
+
+```latex
+subject to an engineering assurance requirement
+
+\[
+P(\text{unacceptable outcome escapes}\mid T,M,R,H,A,k) \le \varepsilon_T
+\]
+
+% <!-- point: the-assurance-bound-is-task-specific | The assurance bound is task-specific: routing should reflect the obligations and consequences, not just apparent difficulty. -->
+
+The task-specific bound \(\varepsilon_T\) matters. Renaming a local variable, changing a user-visible layout, modifying a billing calculation, and altering an authentication boundary need not warrant the same assurance strategy. Routing should reflect the obligations and consequences of the work, not only its apparent implementation difficulty.
+```
+
+### A65 — Distinguish the fixed-gate comparison from the full factorial experiment
+
+- Source: `book/latex/sources/part6/6.4-research-agenda.tex`, §6.4, lines 228–230.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.4 review.
+
+```latex
+% <!-- point: design-separate-modeling-from-alignment-by-hiding-the-representation | Holding the gate fixed while hiding or exposing the representation separates Alignment's independence from Modeling's leverage. -->
+
+A factorial design can cleanly separate Modeling from Alignment. Hold the task, reasoning engine, and admission mechanism fixed while varying whether the producer receives the structured representation used by the environment. With a sound gate, covered defect escape should remain zero whether or not the producer sees the model. For imperfect gates, record both escape and false rejection: changing the representation can also change the kinds of mistakes presented to the gate. Modeling earns its cost if it improves correct delivery or reduces the effort needed to reach it. This design tests H1 and H5 directly.
+```
+
+### A66 — State what a failure history can reveal and what requires a comparison
+
+- Source: `book/latex/sources/part6/6.4-research-agenda.tex`, §6.4, lines 254–256.
+- Source revision: `7913ff50e75ea40c4ac4b27beeb9a57f11607508`.
+- Removal date: 2026-11-08.
+- Removal revision: the commit introducing this entry.
+
+Reason: Author-approved §6.4 review.
+
+```latex
+% <!-- point: event-centered-design-separates-engineer-improved-from-environment-learned | An event-centered design follows one failure class end to end, separating 'the engineer improved' from 'the environment learned.' -->
+
+Follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset. This is the strongest way to separate "the engineer got better" from "the environment learned," and it tests H6 directly. Applied across organizations, it also tests H7: whether authority pathways determine whether a local diagnosis becomes shared engineering capital.
+```

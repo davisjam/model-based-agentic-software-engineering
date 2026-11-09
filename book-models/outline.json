@@ -4416,7 +4416,7 @@
             },
             {
               "slug": "human-attention-is-a-conserved-resource",
-              "text": "Human attention is not an implementation detail of governance; it is one of the scarce resources the engineered environment is intended to conserve.",
+              "text": "Human attention is an engineering resource.",
               "block_index": 232
             },
             {
@@ -4853,13 +4853,13 @@
           "section_id": "engineering-economics",
           "level": 2,
           "heading_text": "Engineering Economics",
-          "topic_sentence": "The economic predictions are the least settled of the three families.",
+          "topic_sentence": "The economic predictions add a valuation problem to the tests of representation leverage and governance conversion.",
           "id_source": "derived",
           "block_index": 39,
           "points": [
             {
               "slug": "economic-predictions-least-settled-need-a-counterfactual",
-              "text": "The economic predictions are least settled: estimating return needs a counterfactual amid moving capability and prices.",
+              "text": "Economic evaluation requires credible comparisons as well as valuations of human effort, compute, and depreciating assets; the hypotheses identify quantities, not known coefficients.",
               "block_index": 40
             },
             {
@@ -5007,7 +5007,7 @@
             },
             {
               "slug": "ci-lowers-the-cost-of-explicit-structure",
-              "text": "Commodity intelligence first lowers the cost of explicit structure, so assets repay at lower recurrence or consequence.",
+              "text": "Where commodity intelligence lowers construction and maintenance cost without sacrificing quality or useful life, explicit engineering can repay its cost at lower recurrence or consequence.",
               "block_index": 46
             },
             {
@@ -5208,13 +5208,13 @@
           "section_id": "engineering-routing",
           "level": 2,
           "heading_text": "Engineering Routing",
-          "topic_sentence": "Task difficulty need not be treated as fixed.",
+          "topic_sentence": "Task difficulty depends partly on how the problem is presented.",
           "id_source": "derived",
           "block_index": 45,
           "points": [
             {
               "slug": "model-routing-treats-the-task-as-given",
-              "text": "Task difficulty need not be treated as fixed: engineering can change the representation of a problem before selecting the model that will solve it, where conventional model routing treats the task as given.",
+              "text": "A router can select a reasoner for a fixed task representation; engineering routing also considers changing the representation and the work the reasoner must reconstruct.",
               "block_index": 46
             },
             {
@@ -5235,22 +5235,22 @@
             {
               "slug": "the-assurance-bound-is-task-specific",
               "text": "The assurance bound is task-specific: routing should reflect the obligations and consequences, not just apparent difficulty.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "engineering-routing-selects-the-realization-strategy",
               "text": "Engineering routing asks which engineered realization strategy should receive a task, not merely which reasoner.",
-              "block_index": 59
+              "block_index": 60
             },
             {
               "slug": "task-difficulty-is-not-fixed-engineering-can-change-it",
               "text": "Because engineering can change the difficulty routing takes as fixed, the optimum depends on task, capability, environment, assurance, and recurrence.",
-              "block_index": 61
+              "block_index": 62
             },
             {
               "slug": "research-question-how-cheaply-to-engineer-a-task-safe-to-delegate",
               "text": "The research question becomes how cheaply a task can be engineered to be safe to delegate, not merely how difficult it is.",
-              "block_index": 63
+              "block_index": 64
             }
           ]
         },
@@ -5260,42 +5260,42 @@
           "heading_text": "Representation Selection, Induction, and Innovation",
           "topic_sentence": "Choosing the right representation is itself an engineering problem.",
           "id_source": "derived",
-          "block_index": 65,
+          "block_index": 66,
           "points": [
             {
               "slug": "representation-selection-is-a-research-problem",
               "text": "Choosing the right representation is itself an engineering problem: different representations expose different properties, support different analyses, and impose different costs.",
-              "block_index": 66
+              "block_index": 67
             },
             {
               "slug": "sufficient-vs-minimal-useful-representation-families",
               "text": "A sufficient family answers the declared questions; a minimal-useful family drops representations whose benefit fails to justify carrying cost.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "dependency-graph-example-of-leverage-vs-redundant-cost",
               "text": "A dependency graph earns its cost by answering the question and enabling a validator; a second redundant representation adds cost without leverage.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "induction-recovers-latent-structure-the-system-embodies",
               "text": "Induction recovers latent structure the system already embodies; it is not yet innovation in the strongest sense.",
-              "block_index": 72
+              "block_index": 73
             },
             {
               "slug": "innovation-proposing-representations-neither-supplied-nor-latent",
               "text": "The stronger question is whether a reasoner can innovate representations that make relationships tractable when neither supplied nor latent.",
-              "block_index": 74
+              "block_index": 75
             },
             {
               "slug": "learning-formulation-which-representation-preserves-needed-distinctions",
               "text": "A learning formulation asks which representation preserves the distinctions engineering questions need while suppressing irrelevant state.",
-              "block_index": 76
+              "block_index": 77
             },
             {
               "slug": "experiment-compares-authored-induced-and-innovated-representations",
               "text": "An experiment compares authored, induced, and innovated representations on reasoning success, correspondence, carrying cost, and later benefit — the test of H4.",
-              "block_index": 78
+              "block_index": 79
             }
           ]
         },
@@ -5305,21 +5305,21 @@
           "heading_text": "Experimental Designs",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 81,
           "points": []
         },
         {
           "section_id": "separating-modeling-from-alignment",
           "level": 3,
           "heading_text": "Separating Modeling from Alignment",
-          "topic_sentence": "A factorial design can cleanly separate Modeling from Alignment.",
+          "topic_sentence": "A controlled comparison can isolate the contribution of a representation while retaining independent assurance.",
           "id_source": "derived",
-          "block_index": 81,
+          "block_index": 82,
           "points": [
             {
               "slug": "design-separate-modeling-from-alignment-by-hiding-the-representation",
-              "text": "Holding the gate fixed while hiding or exposing the representation separates Alignment's independence from Modeling's leverage.",
-              "block_index": 82
+              "text": "Varying representation under a fixed gate tests Modeling's contribution; also varying the admission mechanism creates a factorial comparison of Modeling, Alignment, and their interaction.",
+              "block_index": 83
             }
           ]
         },
@@ -5329,22 +5329,22 @@
           "heading_text": "Multi-project longitudinal design",
           "topic_sentence": "This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months.",
           "id_source": "derived",
-          "block_index": 84,
+          "block_index": 86,
           "points": [
             {
               "slug": "crossed-longitudinal-design-substitute-vs-complement",
               "text": "A crossed longitudinal design tests whether environment quality substitutes for, complements, or barely affects model capability.",
-              "block_index": 85
+              "block_index": 87
             },
             {
               "slug": "measure-where-human-work-goes-narrow-vs-broad-account",
               "text": "Measuring where human work goes distinguishes the narrow coding-productivity account from MAGE's broader shift of realization work.",
-              "block_index": 87
+              "block_index": 89
             },
             {
               "slug": "human-review-tests-informed-control",
               "text": "At fixed review capacity, compare code review with model-and-evidence review, including incorrect obligations and stale evidence behind passing checks, and independently assess decisions and delivery.",
-              "block_index": 89
+              "block_index": 91
             }
           ]
         },
@@ -5354,12 +5354,12 @@
           "heading_text": "Subsystem-level design",
           "topic_sentence": "Compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible.",
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 93,
           "points": [
             {
               "slug": "subsystem-design-tests-leverage-where-theory-predicts",
               "text": "A subsystem design with stepped introduction tests whether leverage, determinization, and assurance appear where the theory predicts.",
-              "block_index": 92
+              "block_index": 94
             }
           ]
         },
@@ -5367,14 +5367,14 @@
           "section_id": "event-centered-longitudinal-design",
           "level": 3,
           "heading_text": "Event-centered longitudinal design",
-          "topic_sentence": "Follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.",
+          "topic_sentence": "An event-centered design follows one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.",
           "id_source": "derived",
-          "block_index": 94,
+          "block_index": 96,
           "points": [
             {
               "slug": "event-centered-design-separates-engineer-improved-from-environment-learned",
-              "text": "An event-centered design follows one failure class end to end, separating 'the engineer improved' from 'the environment learned.'",
-              "block_index": 95
+              "text": "An event-centered design traces a failure class and its conversion; comparisons with local repair or later work without the originating engineer help separate inherited structure from individual learning.",
+              "block_index": 97
             }
           ]
         },
@@ -5384,22 +5384,22 @@
           "heading_text": "What the designs still need",
           "topic_sentence": "All of these designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 99,
           "points": [
             {
               "slug": "designs-need-outcome-measures-until-then-counts-stay-descriptive",
               "text": "The designs need credible outcome measures; until then support ratio and counts stay descriptive, not proxies for value.",
-              "block_index": 98
+              "block_index": 100
             },
             {
               "slug": "ci-makes-these-experiments-tractable",
               "text": "Commodity intelligence may make these experiments tractable by holding engine, repository, and task fixed while one factor varies.",
-              "block_index": 100
+              "block_index": 102
             },
             {
               "slug": "theory-may-generalize-beyond-software-engineering",
               "text": "Whether the theory transfers beyond software engineering is an open empirical question the scope conditions already frame; this book does not test it.",
-              "block_index": 102
+              "block_index": 104
             }
           ]
         }
