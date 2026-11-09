@@ -5299,31 +5299,31 @@ def build_index_page(chapters: list[dict], concept_registry: dict[str, dict] | N
 # Count the words a READER READS, computed fresh every build from each page's RENDERED prose (so the
 # published number can never drift from the text). The prose count strips, in order:
 #   1. fenced code + mermaid blocks (rendered as <pre>…</pre>) — a reader doesn't "read" a diagram/listing;
-#   2. figure <figcaption> and any SVG <title>/<desc> — a11y/caption text describes a figure, it isn't prose;
+#   2. figure/table captions and complete inline SVGs — diagram labels and SVG styles aren't prose;
 #   3. every remaining HTML tag — leaving the visible words, which are then whitespace-tokenized.
 # The breakdown splits BODY (front matter + Parts 1–5 + back matter, per-Part subtotals) from APPENDIX (the
 # A/B/C GoF pattern Parts + Appendix D stacks + Appendix E recipe, per-letter subtotals); TOTAL = body + app.
 
-# <pre>…</pre> holds a rendered code OR mermaid fence; <figure>'s <figcaption> and an inline SVG's
-# <title>/<desc> hold caption / a11y text. Drop all of them before the prose is tokenized. Non-greedy,
+# <pre>…</pre> holds a rendered code OR mermaid fence. Captions and inline SVGs also carry non-prose
+# content, including diagram labels, styles, and alternate text. Drop them before tokenizing. Non-greedy,
 # DOTALL so a multi-line block is removed whole.
 _PRE_BLOCK_RE = re.compile(r"<pre\b.*?</pre>", re.S | re.I)
-_FIGCAPTION_RE = re.compile(r"<figcaption\b.*?</figcaption>", re.S | re.I)
-_SVG_DESC_RE = re.compile(r"<(title|desc)\b.*?</\1>", re.S | re.I)
+_CAPTION_RE = re.compile(r"<(figcaption|caption)\b.*?</\1>", re.S | re.I)
+_SVG_BLOCK_RE = re.compile(r"<svg\b.*?</svg>", re.S | re.I)
 _HTML_TAG_RE = re.compile(r"<[^>]+>")
 _HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
 
 
 def _prose_word_count(body_md: str) -> int:
     """Word count of one page's reader-facing prose. Render the markdown to HTML (same renderer the site
-    ships), strip code/mermaid <pre> blocks, figure captions, and SVG a11y text, then strip the remaining
+    ships), strip code/mermaid <pre> blocks, captions, and complete SVG diagrams, then strip the remaining
     tags and count whitespace-delimited tokens. Counts the words a reader actually reads — not code,
     diagrams, or caption/alt text."""
     rendered = md_to_html(body_md)
     rendered = _HTML_COMMENT_RE.sub(" ", rendered)
     rendered = _PRE_BLOCK_RE.sub(" ", rendered)
-    rendered = _FIGCAPTION_RE.sub(" ", rendered)
-    rendered = _SVG_DESC_RE.sub(" ", rendered)
+    rendered = _CAPTION_RE.sub(" ", rendered)
+    rendered = _SVG_BLOCK_RE.sub(" ", rendered)
     text = _HTML_TAG_RE.sub(" ", rendered)
     text = html.unescape(text)
     return len(text.split())
