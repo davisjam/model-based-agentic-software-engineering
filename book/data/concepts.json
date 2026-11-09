@@ -374,20 +374,20 @@
   "governance-target-agent": {
     "kind": "axis",
     "site_home": "N/A",
-    "status": "book-only",
-    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (a) — the agent/fleet + the substrate that PRODUCES work. Book index-def tagged on the target-axis bullet of the skill-recipe appendix (“The target axis — agent, models-bridge, product”), where the three governance targets survive as a named axis after the nine-capability grouping was retired."
+    "status": "site-only",
+    "note": "Retained catalogue classification: the agent fleet and the substrate that produces work, defined in agent/README.md and rendered at agent/README.html. The former skill-recipe appendix definition is outside the selected publication roster; the active book discusses related mechanisms but no longer defines this named three-target taxonomy. No standalone landing card."
   },
   "governance-target-models-bridge": {
     "kind": "axis",
     "site_home": "N/A",
-    "status": "book-only",
-    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (b) — the structured MBSE models the fleet reasons THROUGH. Book index-def tagged on the target-axis bullet of the skill-recipe appendix (“The target axis — agent, models-bridge, product”), where the three governance targets survive as a named axis after the nine-capability grouping was retired."
+    "status": "site-only",
+    "note": "Retained catalogue classification: the structured models through which agents reason about and govern the codebase, defined in models-bridge/README.md and rendered at models-bridge/README.html. The former skill-recipe appendix definition is outside the selected publication roster; the active book discusses related mechanisms but no longer defines this named three-target taxonomy. No standalone landing card."
   },
   "governance-target-product": {
     "kind": "axis",
     "site_home": "N/A",
-    "status": "book-only",
-    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (c) — the shipped artifact the fleet PRODUCES. Book index-def tagged on the target-axis bullet of the skill-recipe appendix (“The target axis — agent, models-bridge, product”), where the three governance targets survive as a named axis after the nine-capability grouping was retired."
+    "status": "site-only",
+    "note": "Retained catalogue classification: the shipped artifact produced by the fleet, defined in product/README.md and rendered at product/README.html. The former skill-recipe appendix definition is outside the selected publication roster; the active book discusses related mechanisms but no longer defines this named three-target taxonomy. No standalone landing card."
   },
   "engineered-agent-loop": {
     "kind": "core-construct",

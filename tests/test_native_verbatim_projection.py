@@ -46,6 +46,28 @@ class VerbatimProjectionTests(unittest.TestCase):
         projected = self.project(r'\begin{verbatim}' + '\n' + code + '\n' + r'\end{verbatim}' + '\n')
         self.assertIn('``` text\n' + code + '\n```', projected)
 
+    def test_print_migration_preserves_work_order_lines_inside_and_outside_inset(self):
+        code = '\n'.join([
+            '<!-- target-files:', '  src/example.cs -->',
+            '<!-- new-files-to-create:', '  tools/check.py -->',
+            '<!-- compute-class: lint-all-on-commit -->',
+            '<!-- brief-genre: lint -->',
+            '<!-- eq: a +', ' b -->',
+        ])
+        fence = '``` text\n' + code + '\n```'
+        inset = '> #### Inset — Work order {#work-order}\n>\n' + '\n'.join(
+            '> ' + line for line in fence.splitlines())
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / 'example.md'
+            destination = Path(directory) / 'example.tex'
+            source.write_text('# Example\n\n' + fence + '\n\n' + inset +
+                              '\n\nReal equation.\n<!-- eq: x +\n y -->\n')
+            ml.migrate(source, destination, driver_enabled=False)
+            text = destination.read_text()
+        examples = re.findall(r'\\begin\{verbatim\}\n(.*?)\n\\end\{verbatim\}', text, re.S)
+        self.assertEqual(examples, [code, code])
+        self.assertIn('\\[\nx +  y\n\\]', text)
+
 
 if __name__ == '__main__':
     unittest.main()

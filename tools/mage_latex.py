@@ -75,18 +75,41 @@ def unique_labels(text):
     return re.sub(r'\\label\{([^}]+)\}', label, text)
 
 
+def normalize_markdown_directives(text):
+    """Separate manuscript directives without changing literal fenced examples."""
+    def normalize(prose):
+        # The book IR recognizes single-line equation markers. Standalone
+        # metadata also needs paragraph boundaries to survive Pandoc as a block.
+        prose = re.sub(r'<!--\s*eq:\s*(.*?)\s*-->',
+                       lambda m: '<!-- eq: ' + ' '.join(m[1].splitlines()) + ' -->',
+                       prose, flags=re.S)
+        return re.sub(r'(?m)^(<!--[^\n]*-->)$', r'\n\1\n', prose)
+
+    result, prose = [], []
+    fence = None
+    for line in text.splitlines(keepends=True):
+        # A quoted fence becomes an ordinary fence when its inset is recursed.
+        candidate = re.sub(r'^(?:[ \t]*>[ \t]*)*', '', line).lstrip(' \t')
+        marker = re.match(r'(`{3,}|~{3,})(.*)$', candidate.rstrip('\r\n'))
+        if fence is None and marker:
+            result.append(normalize(''.join(prose)))
+            prose = []
+            fence = marker[1]
+            result.append(line)
+        elif fence is not None:
+            result.append(line)
+            if (marker and marker[1][0] == fence[0]
+                    and len(marker[1]) >= len(fence) and not marker[2].strip()):
+                fence = None
+        else:
+            prose.append(line)
+    result.append(normalize(''.join(prose)))
+    return ''.join(result)
+
+
 def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=None):
     source, destination = source.resolve(), destination.resolve()
     raw = source.read_text() if raw_override is None else raw_override
-    # Native display math may span source lines. The compatibility projection keeps
-    # those lines inside an eq marker, but the book IR recognizes single-line
-    # markers. Normalize that marker before parsing, or Pandoc drops it as HTML.
-    raw = re.sub(r'<!--\s*eq:\s*(.*?)\s*-->',
-                 lambda m: '<!-- eq: ' + ' '.join(m[1].splitlines()) + ' -->',
-                 raw, flags=re.S)
-    # Standalone metadata terminators may immediately follow prose; keep them as
-    # dedicated native comments rather than raw HTML inside a Pandoc paragraph.
-    raw = re.sub(r'(?m)^(<!--[^\n]*-->)$', r'\n\1\n', raw)
     global FOOTNOTES
     raw, FOOTNOTES = bb.collect_footnote_defs(raw)
     title_match = re.search(r'<!-- chapter-title:\s*(.*?)\s*-->', raw) or re.search(r'^# (.+)$', raw, re.M)
@@ -96,7 +119,7 @@ def migrate(source: Path, destination: Path, driver_enabled=True, raw_override=N
     def render_blocks(body):
         # Insets contain the same figure and editorial directives as the chapter.
         # Parse their bodies as blocks; Pandoc's inline path drops HTML comments.
-        body = re.sub(r'(?m)^(<!--[^\n]*-->)$', r'\n\1\n', body)
+        body = normalize_markdown_directives(body)
         rec = dict(slug=source.stem, part=2, chapter=1, title=title, body_md=body)
         chapter = book_ir._parse_chapter(rec)
         result = []

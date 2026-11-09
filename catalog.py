@@ -3755,16 +3755,16 @@ def _apply_body() -> str:
     """The 'Apply the MAGE Method' page — a concise, figure-led practical summary of the method (NOT a second
     copy of Chapter 4). Three questions, three shared-source book figures: what do I do (Fig 4.1-2), where do I
     start (Fig 4.2-1), and what changes as I delegate more (Fig G.1-1). It ends on pointers into Chapter 4 and
-    Appendix G — no mechanism-catalogue exposition (the catalogue is no longer advertised). Exactly one
+    Appendix B — no mechanism-catalogue exposition (the catalogue is no longer advertised). Exactly one
     <h1>. website-v3 (260906): replaces the old 'Constructing the GEE' catalogue page."""
     p: "list[str]" = []
     p.append("<h1>Apply the MAGE Method</h1>")
     p.append(render_md(
         "This page is a concise guide to applying MAGE. It summarizes the practical argument rather than "
-        "reproducing it: Chapter 4 of the book develops the method in full, and Appendix G develops "
-        "organizational adoption.\n\n"
+        "reproducing it: Chapter 4 of the book develops the method in full, and Appendix B provides "
+        "a practical reference for beginning, operating, and evaluating a Governed Engineering Environment.\n\n"
         "[Read Chapter 4: MAGE in Motion →](book/mage-book/4.1-the-dynamics-of-mage.html) · "
-        "[Read Appendix G: Adopting GenAI in an Organization →](book/mage-book/appendix-adopting-genai.html)"))
+        "[Read Appendix B: Practicing MAGE →](book/mage-book/appendix-practicing-mage.html)"))
     p.append(render_md(
         "## Engineer the environment, not just the realization\n\n"
         "MAGE starts from a practical observation: giving an agent a better prompt is not the only way to "
@@ -3823,10 +3823,9 @@ def _apply_body() -> str:
         "**MAGE in Motion: Engineering Through Models — Chapter 4.** The complete treatment of the practical method: "
         "the dynamics, the worked DocAble case, brownfield recovery, and engineering the environment — "
         "validation, operations, and reusable skills. [Read Chapter 4 →](book/mage-book/4.1-the-dynamics-of-mage.html)\n\n"
-        "**Adopting GenAI in an Organization — Appendix G.** Guidance for moving from individual assistance "
-        "toward bounded delegation: identifying the functions people currently supply, deciding which "
-        "responsibilities can move into the engineering environment, and expanding delegation where the "
-        "resulting basis is adequate. [Read Appendix G →](book/mage-book/appendix-adopting-genai.html)"))
+        "**Practicing MAGE — Appendix B.** A practical reference for getting started on one engineering "
+        "surface, migrating existing systems, operating a Governed Engineering Environment, and measuring "
+        "whether the investment improves future work. [Read Appendix B →](book/mage-book/appendix-practicing-mage.html)"))
     return "\n".join(p)
 
 
