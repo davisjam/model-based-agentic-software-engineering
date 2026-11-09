@@ -1,5 +1,6 @@
 % mage-auto-heading: prevention-and-observation
 % mage-auto-heading: validators-and-gates
+% mage-auto-heading: constraining-document-changes
 % mage-auto-heading: tests-and-models-work-together
 % mage-auto-heading: one-obligation-several-ways-to-hold-it
 % mage-auto-heading: one-measurement-different-enforcement-decisions
@@ -185,6 +186,16 @@ Making a check blocking does not broaden its evidence. A test gate requires the 
 % <!-- point: cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing | A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs. | terms: validator, gate -->
 
 A release check can regenerate evidence from the candidate being shipped, rather than trust the producing agent's report or a result from an earlier revision.\mageaside{Repeating the check costs computation and time. Reusing or caching an earlier result can be sound when the system establishes that the relevant inputs have not changed.} This keeps the evidence tied to the artifact being admitted and lets the release check evaluate it independently of the agent that produced the change. The agent's claim that its work passed is not a substitute for that evaluation.
+
+\subsection{Constraining Document Changes}\label{heading:constraining-document-changes}
+
+% <!-- point: typed-document-edits-separate-proposal-from-controlled-application | In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document. -->
+
+DocAble's PDF changeset interface provides an action boundary for document repair. A reasoning component may decide that an image needs alternative text without receiving unrestricted access to the PDF's internal representation. It proposes a typed operation naming the target and intended change. The operation vocabulary constrains which mutations can be expressed through this interface; the applier determines whether a supported operation can proceed against the current document.
+
+The applier's refusals make that boundary concrete. An operation that marks a structure as decorative must identify the source of the classification. The applier refuses it if the classification source is missing, or if the target is a heading, a formula, or content carrying authored alternative text. These are checks with enforced outcomes. Subsequent validation supplies evidence about selected properties of the resulting document, including content preservation and mechanically testable accessibility requirements. A well-formed proposal does not establish that its description is educationally appropriate, and successful application does not establish complete accessibility.
+
+The boundary also preserves freedom. A specialized pipeline and a general-purpose agent may use different methods to decide what to repair. Neither needs to reproduce the mechanics of applying a supported edit. Nor does either gain authority to bypass the restrictions imposed by the common interface. The architecture is therefore more than a convenient API: it separates the judgment that proposes a change from the mechanisms that determine which changes can be made and which results are acceptable.
 
 \section{Tests and Models Work Together}\label{heading:tests-and-models-work-together}
 

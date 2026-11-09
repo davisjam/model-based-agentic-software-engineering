@@ -136,7 +136,7 @@ The models are represented as data rather than importing the implementation they
 \label{modeling-substrate}
 \end{figure}
 
-\textbf{One dependency used for execution and analysis}
+\paragraph{One dependency used for execution and analysis}
 
 DocAble\textquotesingle s remediation subsystem illustrates how one set of declarations can support both execution and analysis. For a DOCX job with table-header repair enabled, one pass marks table headers and another checks the table\textquotesingle s structure. The registry declares that the repair pass writes table-header information and that the structure check reads it.
 
@@ -175,6 +175,12 @@ A static computation graph does not record the mutations performed during a part
 % <!-- point: a-typed-edit-record-replays-deterministically | Typed PDF edit values form a per-session log that a replay engine can apply deterministically while omitting the reasoning that produced them. -->
 
 During a PDF remediation session, typed edit values form a per-session log. A replay engine can apply the same sequence deterministically. This record preserves the mutations while omitting the reasoning, analyses, control decisions, and retries that produced them. The computation graph asks what may compose; the edit record asks what happened to this artifact. \autoref{two-reductions-static-realized} contrasts these two reductions.
+
+% <!-- point: proposed-edits-and-applied-history-are-different-representations | A typed changeset represents intended PDF mutations before application; per-operation results and attribution distinguish proposed changes from what was actually applied, independently of the producer's reasoning strategy. -->
+
+DocAble's PDF changeset interface also represents edits before they happen. A changeset is an ordered collection of typed operations, each naming a target and a supported mutation, such as assigning alternative text or changing a structural tag. The proposing computation does not manipulate PDF objects directly. An applier resolves the targets against the current document and returns a result for each operation. The proposal expresses intended mutations; the results and attribution record show what was actually applied.
+
+A specialized remediation pass, a general-purpose agent, or a human editor can propose operations using the same vocabulary. The interface preserves the information needed to apply and inspect the change while leaving its producer's reasoning unspecified. \magevalue{chapter:alignment} examines the constraints on applying such proposals; \magevalue{chapter:software-factories} returns to the reasoning strategies that can produce them.
 
 % <!-- point: record-and-replay-separate-three-questions | Declared computations, recorded mutations, and replay answer what may compose, what happened in a run, and whether its recorded mutations can be reproduced. -->
 

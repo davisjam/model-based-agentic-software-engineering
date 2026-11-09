@@ -73,7 +73,7 @@ None of these properties is wholly alien to human software engineering. Humans a
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/agentic-substrate-f28785289f.pdf}
-\caption{\emph{Agentic machinery and environment.} The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.}
+\caption{\emph{Agentic machinery and environment.} The foundation model supplies reasoning, the harness turns it into tool-mediated action, and the engineered environment supplies representations, evidence, and controls around that work.}
 \label{agentic-substrate}
 \end{figure}
 
@@ -103,7 +103,7 @@ Having information available does not guarantee that it can be used effectively.
 
 In this book, we use the term \emph{reasoning horizon} to describe the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness, external memory, and tools.\footnote{We borrow the term from Ramezanali and colleagues, who use it in seqBench to describe the length of a sequence a model can reliably complete.\citep{ramezanali2025seqbench} Here we extend it to the practical limits of the complete reasoning system, including its harness, external memory, and tools.}
 
-Better machinery can help the system handle more demanding tasks. Better representations can reduce the reasoning a task requires. A harness can preserve and recover more relevant state across a task; a useful representation can reduce what must be searched, reconstructed, or inferred. Research on external representations has long shown that how information is organized affects the work needed to reason with it.\citep{larkin1987diagram}\citep{zhang1994representations} These improvements may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+The reasoning horizon can expand in two ways: better machinery can preserve more relevant state, while better representations can reduce how much state the task requires. Research on external representations has long shown that how information is organized affects the work needed to reason with it.\citep{larkin1987diagram}\citep{zhang1994representations} These improvements may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
 
 \begin{figure}[htbp]
 \centering

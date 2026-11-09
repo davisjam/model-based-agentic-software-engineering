@@ -1,7 +1,7 @@
 {
   "scope": "All 143 native grayscale TikZ candidates compared with original artwork, including seven navigation maps.",
   "base_commit": "25ac79978",
-  "checked_count": 143,
+  "checked_count": 144,
   "refined_count": 69,
   "limitations": "Visual review records editorial judgment, not a proof of semantic equivalence. Geometry checks cannot detect missing visual meaning. Original color artwork remains immediately before each candidate for author review.",
   "figures": [
@@ -2841,6 +2841,34 @@
         "External annotations and units checked",
         "Native print-size legibility checked"
       ]
+    },
+    {
+      "source": "book/assets/docable-reasoning-substitution.svg",
+      "candidate": "book/tikz/figures/docable-reasoning-substitution.tex",
+      "source_sha256": "bd2fa0afda20e3f7eddd79b53b9d98cf116efb4e68dfb9fa171630f4ec5fa9c5",
+      "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5",
+      "checks": {
+        "icons_and_symbols": "No icons required; the figure represents interface composition, not quantitative results.",
+        "links_and_groups": "The three alternative strategies converge on the same typed interface; the model returns inspection information to the whole group.",
+        "annotation_placement": "The direct-mutation limit is in a separate dashed note outside the main path.",
+        "line_breaks": "Deliberate phrase breaks preserve complete strategy labels and full interface/evidence wording."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9.5,
+          10,
+          10.5
+        ],
+        "minimum": 9.5,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 389.521,
+      "height_bp": 396.521,
+      "monochrome": true,
+      "review": "Matched new color SVG and native TikZ labels and relationships; checked source evidence boundaries separately.",
+      "decision": "new"
     }
   ]
 }

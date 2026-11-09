@@ -66,6 +66,12 @@
    \vskip4pt{\color{bookrule}\hrule height .8pt}\vskip18pt}}
 \renewcommand\section{\@startsection{section}{1}{\z@}{-1.3em}{0.5em}{\bookheadingfont\bfseries\fontsize{15}{19}\selectfont}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-1em}{0.4em}{\bookheadingfont\bfseries\color{bookmuted}\fontsize{12}{16}\selectfont}}
+% Local headings retain their ordinary bold appearance inside quote/bookbox.
+% The standard sectioning continuation hook keeps the heading with the first
+% two lines of its paragraph, including when tcolorbox splits the content.
+\newcommand{\bookboxheading}[1]{%
+  \par\noindent\textbf{#1}\par\nobreak
+  \@afterindenttrue\@afterheading}
 \makeatother
 \captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
 % Table captions sit above their table and read as captions, not body paragraphs.

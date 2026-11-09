@@ -1,0 +1,44 @@
+% PDF changeset path. Native authored typography; no scaling.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[rounded corners=3pt,draw,fill=black!5,line width=.55pt] (40,4) rectangle (401,82);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10}{12}\selectfont }] at (220.5,21) {REASONING STRATEGIES};
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (48,34) rectangle (152,73);
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (100,50) {Structured};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (100,63) {pipeline};
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (168,34) rectangle (272,73);
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (220,50) {General-purpose};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (220,63) {agent};
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (288,34) rectangle (392,73);
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (340,50) {Human-directed};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (340,63) {editing};
+\draw[line width=.55pt] (100,73) -- (100,92);
+\draw[line width=.55pt] (220,73) -- (220,92);
+\draw[line width=.55pt] (340,73) -- (340,92);
+\draw[line width=.55pt] (100,92) -- (340,92);
+\draw[-Stealth,line width=.55pt] (220,92) -- (220,111);
+\node[anchor=base west,inner sep=0pt,font={\itshape \fontsize{9.5}{11.4}\selectfont }] at (228,105) {propose edits};
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (82,111) rectangle (362,162);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont }] at (222,127) {TYPED CHANGESET};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (222,142) {target \,\textperiodcentered\, operation \,\textperiodcentered\, arguments};
+\node[anchor=base,inner sep=0pt,font={\fontsize{9.5}{11.4}\selectfont }] at (222,155) {closed vocabulary of supported mutations};
+\draw[-Stealth,line width=.55pt] (222,162) -- (222,181);
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (82,181) rectangle (362,220);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont }] at (222,197) {CONTROLLED APPLIER};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10}{12}\selectfont }] at (222,212) {resolve \,\textperiodcentered\, check preconditions \,\textperiodcentered\, apply \,\textperiodcentered\, record};
+\draw[-Stealth,line width=.55pt] (222,220) -- (222,239);
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (82,239) rectangle (362,278);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont }] at (222,255) {STRUCTURED DOCUMENT MODEL};
+\node[anchor=base,inner sep=0pt,font={\fontsize{9.5}{11.4}\selectfont }] at (222,270) {Typed PDF objects \,\textperiodcentered\, format-specific implementation};
+\draw[-Stealth,line width=.55pt] (222,278) -- (222,297);
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt] (82,297) rectangle (362,344);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont }] at (222,313) {RESULT AND EVIDENCE};
+\node[anchor=base,inner sep=0pt,font={\fontsize{9.5}{11.4}\selectfont }] at (222,327) {remediated document \,\textperiodcentered\, applied-operation provenance};
+\node[anchor=base,inner sep=0pt,font={\fontsize{9.5}{11.4}\selectfont }] at (222,339) {independent validation};
+\draw[-Stealth,line width=.55pt] (82,258) -- (18,258) -- (18,21) -- (40,21);
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{9.5}{11.4}\selectfont }] at (49,187) {Inspect};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{9.5}{11.4}\selectfont }] at (49,199) {document};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{9.5}{11.4}\selectfont }] at (49,211) {model};
+\draw[rounded corners=3pt,draw,fill=white,line width=.55pt,dashed] (82,363) rectangle (362,394);
+\node[anchor=base,inner sep=0pt,font={\fontsize{9.5}{11.4}\selectfont }] at (222,376) {Some PDF operations still mutate directly};
+\node[anchor=base,inner sep=0pt,font={\fontsize{9.5}{11.4}\selectfont }] at (222,388) {outside the common changeset interface.};
+\end{tikzpicture}

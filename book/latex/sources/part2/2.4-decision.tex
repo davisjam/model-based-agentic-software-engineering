@@ -1,6 +1,7 @@
 % mage-auto-heading: the-canonical-move-permitted-alternatives
 % mage-auto-heading: compare-the-decision-with-the-facts
 % mage-auto-heading: preserve-the-cases-a-decision-must-distinguish
+% mage-auto-heading: when-the-decision-depends-on-context
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: Modeling -->
@@ -75,7 +76,19 @@ Finite balance & Insufficient credit for the request & Reject for insufficient c
 \end{longtable}
 }
 
-The table needs the entitlement kind as well as the balance. If a previous step passes only a number, zero cannot distinguish an exhausted finite allowance from unlimited use. The decision code cannot recover a distinction that its input has discarded. DocAble supplies two worked applications: a declared service-call policy and an upload-admission failure that required a richer decision model.
+The table needs the entitlement kind as well as the balance. If a previous step passes only a number, zero cannot distinguish an exhausted finite allowance from unlimited use. The decision code cannot recover a distinction that its input has discarded.
+
+\subsection{When the Decision Depends on Context}\label{heading:when-the-decision-depends-on-context}
+
+% <!-- point: image-purpose-and-uncertainty-govern-the-decorative-decision | An image's informational role depends on context; DocAble uses a VLM classification with an explicit conservative policy that retains content when the classification is uncertain. -->
+
+Some decisions cannot be made from the object alone. Accessibility standards distinguish informative images, which need a text alternative, from decorative images, which assistive technology can ignore.\citep{w3c2018wcag21} A blue square might decorate a restaurant menu but be the subject of a lecture on modern art.\magefootnote{blue-monochrome-context}{For a real example, consider Yves Klein's \emph{Blue Monochrome} (1961), in the Museum of Modern Art's collection.\citep{moma-blue-monochrome}} What matters is the image's contribution to the document, not merely what it depicts.
+
+DocAble's slide classifier gives a vision-language model (VLM) a rendered slide so it can judge each image or shape in context. The VLM returns a classification: clearly decorative, uncertain, or informational. That judgment supplies evidence; the decision policy determines what to do with it. For content-bearing images, only a clearly decorative verdict permits suppressing the description. An uncertain or missing verdict preserves the image's informational role. The asymmetry is deliberate: an unnecessary description is audible, while wrongly hiding information can leave a screen-reader user unaware that anything was omitted.
+
+An evaluation found that earlier classifiers had marked content-bearing images as decorative, particularly in visualization-heavy documents. We tightened the policy by representing uncertainty explicitly and making its conservative interpretation common to the classification paths. The decision model now states how uncertain evidence affects remediation without prescribing which VLM must supply that evidence. A different VLM can make the semantic judgment; it does not redefine the policy for acting on it.
+
+DocAble supplies two worked applications of permission: a declared service-call policy and an upload-admission failure that required a richer decision model.
 
 % <!-- box-family: inset -->
 

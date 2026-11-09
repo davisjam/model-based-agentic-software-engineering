@@ -12804,3 +12804,229 @@ Each example in this chapter began with an engineering question: where a depende
   "pdf_sha256": null
 }
 ```
+
+## Chapter 2–3 changeset additions — 2026-11-09
+
+Base book revision: `3e182707f43f610f8a5f12dab4b1ad7a5d681dcd` plus the root-integrated Chapter 2 working edits; exact file hashes are in manifest.json. Source lines refer to the captured working baseline. Removal commit: pending root integration.
+
+No substantive book example is removed. The entitlement transition is relocated and clarified; all other changes are additions. The rejected final paragraph below was supplied in the user proposal and never entered the manuscript.
+
+### Original entitlement transition
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, original lines 78–78. Retained in substance with the permission-inset transition moved after the new subsection.
+
+```tex
+The table needs the entitlement kind as well as the balance. If a previous step passes only a number, zero cannot distinguish an exhausted finite allowance from unlimited use. The decision code cannot recover a distinction that its input has discarded. DocAble supplies two worked applications: a declared service-call policy and an upload-admission failure that required a richer decision model.
+```
+
+### User-deleted universality paragraph from the proposal
+
+Source: `/Users/davisjam/.codex/attachments/3d1b090c-1a16-4aac-b0d2-c20f3595a65b/Pasted text.txt`, line 101; source SHA-256 `b8ce972748a33a2fd9e20ae7882684fcdf641fbff1cdf7627570314115b83421`. Excluded under the latest user clarification. The manuscript scopes the example to the PDF changeset interface without adding this final paragraph.
+
+The separation is not yet universal. Some PDF remediation computations still mutate document state directly, outside the common changeset interface. Those paths remain subject to their applicable format and validation controls, but they do not inherit every restriction provided by the changeset applier. The enforcement claim must therefore be scoped to the operations that actually pass through the interface.
+
+## Reasoning substitution: architecture and two bounded experiments — 2026-11-09
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 317–328 of the captured working baseline at book revision `3e182707f43f610f8a5f12dab4b1ad7a5d681dcd`. Exact source SHA-256: `a240da281135abd722258c9dfb9bc754bb6fd721dad05bcfd18f70696d6735d1`. Removal commit: pending root integration. The four original pilot paragraphs are preserved together below, including their original heading and point directive. They record the earlier October PowerPoint pilot; the replacement uses the separately verified September single-PDF cost comparison and November two-PDF loop evaluation. It does not retrospectively relabel those original PowerPoint results.
+
+```tex
+\subsection{Exploring Alternative Reasoning Engines}\label{heading:exploring-alternative-reasoning-engines}
+
+% <!-- point: reasoning-substitution-reuses-engineered-operations | Selecting a foundation model changes the reasoner assigned to a task; the OpenAI pilot changed reasoning orchestration while reusing DocAble's deterministic document operations. -->
+
+DocAble's separation of reasoning from deterministic document operations permits substitutions at different levels. For individual tasks, ModelSelector assigns an eligible foundation model using task-specific model tiers and capability requirements. The remediation graph remains unchanged; the foundation model performing a particular judgment can change.
+
+In October 2026, I explored a broader substitution: replacing the graph's reasoning orchestration with a general-purpose OpenAI agent. The agent received a subset of DocAble's engineering models as obligations, leaving it to decide how to accomplish the remediation. Separate skills explained how to inspect documents, make semantic judgments, and invoke existing tools. Those tools supplied the production pipeline's accessibility checks, typed document mutations, and content-preservation validation.
+
+The integration took a few hours and required no changes to DocAble's deterministic C\# code. The agent selected and sequenced operations through existing typed interfaces. This preserved engineering work invested in document representation, mutation, and validation while changing the reasoning strategy. The pilot exercised an alternative to the graph's orchestration; it neither replaced the production pipeline nor established that every computation represented in the graph had an agent-driven counterpart.
+
+A preliminary result on a few typical PowerPoint presentations put the agent's inference expenditure at roughly four times that of the production pipeline. Quality remained an open engineering problem: two outputs could not be retrieved, retrieved outputs had lower deterministic accessibility scores than production outputs, and an independent semantic evaluation remained outstanding. These results favored the specialized configuration's observed economics without establishing an inherent advantage for graphs. The architectural result was the reuse of engineered document operations under a different reasoning strategy.
+```
+
+The later evaluation cross-reference at original line 493 changes its display text from “Exploring Alternative Reasoning Engines” to “Substituting the Reasoning Engine”; the target and evaluation paragraph are unchanged.
+
+
+## Chapter 1: tighter examples and captions (November 9, 2026)
+
+### book/latex/sources/part1/1.1-the-printer.tex, lines 46–46
+
+Source revision: `3e182707f`. Superseded November 9, 2026 at the author’s request to shorten examples or captions while retaining their argument.
+
+```tex
+To illustrate this idea, let\textquotesingle s return to the familiar forms developed around printing. An event-poster template might reserve the top for the event name and the bottom for sponsor logos, leaving room between them for the designer\textquotesingle s composition. Once defined, that layout can serve an entire series of posters: the event details and artwork change, but the basic organization carries forward. A newspaper can similarly reuse its headline styles and page layout from one edition to the next. For a 3D printer, an enclosure design might fix mounting-hole positions and reserve space for the parts it will contain. Later versions can reuse those dimensions while varying other features. In both cases, the leverage comes from making some design decisions once and putting them into a form that can guide many subsequent artifacts.
+```
+
+### book/latex/sources/part1/1.1-the-printer.tex, line 53
+
+Source revision: `3e182707f`. Superseded November 9, 2026; author-approved caption compression.
+
+```tex
+\caption{\emph{Where engineering leverage acts.} When engineers write most implementation directly, much of their engineering leverage acts through the code. When agents provide abundant realization capacity, more of that leverage moves into the governed engineering environment---the software analogue of the models, fabrication constraints, process instructions, and acceptance criteria surrounding a 3D printer. The environment becomes one means through which engineers retain control while delegating realization: it represents important engineering intent, constrains realization, and evaluates what the fleet produces. MAGE further contends that a governed engineering environment must become the primary means through which engineers exercise control as realization is increasingly delegated.}
+```
+
+### book/latex/sources/part1/1.3-the-agentic-substrate.tex, line 76
+
+Source revision: `3e182707f`. Superseded November 9, 2026; author-approved caption compression.
+
+```tex
+\caption{\emph{Agentic machinery and environment.} The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.}
+```
+
+### book/latex/sources/part1/1.3-the-agentic-substrate.tex, lines 106–106
+
+Source revision: `3e182707f`. Superseded November 9, 2026 at the author’s request to shorten examples or captions while retaining their argument.
+
+```tex
+Better machinery can help the system handle more demanding tasks. Better representations can reduce the reasoning a task requires. A harness can preserve and recover more relevant state across a task; a useful representation can reduce what must be searched, reconstructed, or inferred. Research on external representations has long shown that how information is organized affects the work needed to reason with it.\citep{larkin1987diagram}\citep{zhang1994representations} These improvements may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+```
+
+### book/latex/sources/part1/1.4-the-new-engineering-problem.tex, line 43
+
+Source revision: `3e182707f`. Superseded November 9, 2026; author-approved caption compression.
+
+```tex
+\caption{\emph{From substrate to method.} Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem.}
+```
+
+
+## Chapter 7 — synthesis and professional implications (9 November 2026)
+
+Source revision: `3e182707f43f610f8a5f12dab4b1ad7a5d681dcd`. These passages were shortened into backward references while retaining their local implications. The full before/after editorial ledger is held with the review package.
+
+### C7-1: book/latex/sources/part7/7.1-reorganization-of-se.tex:65
+
+Keep the historical consequence after Rich and Waters; omit the second general history of MAGE. The original is preserved below for reuse.
+
+```latex
+Old ideas therefore return throughout MAGE. The ambition of an intelligent programming partner is old. Explicit machine-usable engineering knowledge is old. Models, constraints, verification, feedback, and delegated realization are old. What changes is the economics. Earlier systems could demonstrate pieces of the vision; today\textquotesingle s systems realize enough of it to expose the next-order engineering problems: keeping representations trustworthy, deciding which obligations deserve enforcement, producing evidence at agentic velocity, and converting recurring judgment into machinery that later work inherits.
+
+MAGE does not depend on a historically novel ambition. It is an engineering account of what happens when much of that ambition becomes operational at production scale.
+
+This history also shows a broader progression. AI has long engineered external machinery around finite reasoners through memory, structured representations, planners, tools, and world models. Agentic software engineering applies related machinery to work over repositories through retrieval, program-aware search, purpose-built interfaces, tests, and inferred specifications. MAGE moves the engineering boundary outward again: the repository and agent remain part of the system, while purposeful system models, enforced obligations, evidence, controls, and the machinery that maintains them become first-class objects of software engineering.
+```
+
+### C7-2: book/latex/sources/part7/7.1-reorganization-of-se.tex:179
+
+Replace the Chapter 4 re-explanation with a reference while retaining the reviewer-head observation. The original is preserved below for reuse.
+
+```latex
+Whatever technological trajectory dominates, operational experience becomes more valuable under the changed cost structure, because recurring engineering judgment creates an opportunity for durable improvement. A conventional review can solve an instance. Sometimes the same judgment keeps returning: a failure recurs, a relationship becomes apparent, or engineers repeatedly have to make the same decision. \magevalue{chapter:one-problem-many-models} calls the move from that experience to durable engineering structure governance conversion. The resulting model, control, or procedure becomes engineering capital when it allows later work to inherit what earlier work learned. \magevalue{chapter:one-problem-many-models} calls the practice by which such structures accumulate while remaining open to correction ratcheteering: the particular structure can be revised or replaced, but the consequential concern does not silently disappear. The engineering question is whether the judgment belongs in the next reviewer\textquotesingle s head or whether future work should inherit it from the environment.
+```
+
+### C7-3: book/latex/sources/part7/7.2-software-rejoins-engineering.tex:102
+
+The new chapter opening already synthesizes Modeling and Alignment; retain the implication for what must be engineered. The original is preserved below for reuse.
+
+```latex
+Commodity intelligence brings the two traditions into the same production system. Modeling makes engineering knowledge explicit so that autonomous work can be informed, scoped, checked, and reviewed through it. Alignment enforces selected obligations independently of the agent that produced the work. Both meet in the governed engineering environment, which holds the representations, the evidence, the constraints, and the controls as engineered objects rather than as project byproducts.
+```
+
+### C7-4: book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex:99
+
+Apply the transfer conditions to MBSE rather than list them again. The original is preserved below for reuse.
+
+```latex
+This does not mean that an MBSE environment is automatically a Governed Engineering Environment. Models address only part of the problem. Their correspondence with the engineered system must be established and maintained. Agents need appropriate capabilities and authority. Consequential obligations need evidence, and some need controls outside the producing agent. Proposed actions may need validation, admission, or escalation before they acquire consequence. MAGE places the agent inside the model-based engineering environment and asks how that environment must be engineered so that the resulting work remains governed.
+```
+
+### C7-5: book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex:167
+
+Retain comparative design and the important software-substrate falsifier; refer back to the failure conditions rather than repeat them. The original is preserved below for reuse.
+
+```latex
+The strongest test would be comparative rather than rhetorical. If the account is right, independently evolved systems for governing consequential agentic work should develop similar underlying structures despite producing very different outcomes: purposeful representations kept connected to the work they describe, independently produced evidence, allocated authority, and mechanisms that convert recurring judgment into structure later work inherits. The broader claim should fail where consequential work does not admit useful external representation, where correspondence cannot be maintained well enough to support consequential reasoning, where delegated actions cannot meaningfully be governed outside the producing agent, or where recurring experience cannot be converted into structure that later work can inherit. It should also fail if software\textquotesingle s unusually symbolic realization substrate turns out to be essential rather than merely favorable.
+```
+
+### C7-6: book/latex/sources/part7/7.4-the-engineer.tex:110
+
+Close the authority inset on its professional test rather than a recap of Modeling and Alignment. The original is preserved below for reuse.
+
+```latex
+MAGE aims to push outward the boundary within which autonomy can responsibly be granted. Better models can expand what machines can do. Better engineering environments must expand what humans and institutions can understand, constrain, assure, and govern. Modeling makes consequential knowledge explicit; Alignment enforces selected obligations; evidence makes the resulting claims challengeable. Together, these mechanisms enlarge the domain over which engineers can responsibly delegate action while retaining the ability to understand what has been delegated and to answer for the consequences.
+```
+
+### C7-7: book/latex/sources/part7/7.4-the-engineer.tex:326
+
+Keep the theoretical and table backreferences; omit the repeated four-trajectory explanation. The original is preserved below for reuse.
+
+```latex
+\magevalue{chapter:theory} explains why these competencies matter, and the four trajectories of \magevalue{sec:reorganization-of-se} (\autoref{effort-trajectories}) explain why their relative importance may continue to move. Better reasoners increase the value of choosing the consequential distinctions while leaving legitimate realization freedom unresolved. Better representation machinery increases the value of choosing abstractions, validating representations, and maintaining their correspondence with the system. Better realization machinery shifts effort from constructing implementations toward specifying and validating what should be realized. Better governance machinery raises the value of measurement, assurance, security, and placing controls around consequential obligations. These trajectories may advance unevenly, but they begin from a change already underway: capable reasoners have made much more of realization delegable.
+```
+
+## Colophon: retain the production account and end at the table — 2026-11-09
+
+Source: `book/latex/sources/backmatter/colophon.tex` at book revision `3e182707f43f610f8a5f12dab4b1ad7a5d681dcd`, with root working edits. Exact source SHA-256: `3907c0a0cc1efea484c150b7fd8e28f3c334135fa3a559bad26ec0b355382fcb`. Removal commit: pending root integration. Line ranges refer to the captured native baseline. The user requested a brief production opening, removal of the pre-table explanation, and deletion of both concluding sections.
+
+### Retain the playful frame; correct the font roles from the actual MAGE profile, name the LaTeX machinery and the user-specified provider-level AI credit.
+
+Original lines 12–12.
+
+```tex
+In a typical colophon, I would tell you about the font. The book was set in Source Serif, with Source Sans for headings. Tradition satisfied.
+```
+
+### Remove the requested redundant introduction immediately before the table.
+
+Original lines 22–24.
+
+```tex
+Each model made one aspect of the manuscript explicit, and checks kept it synchronized as the prose changed. \autoref{manuscript-models} shows each model and the failure its checks were designed to prevent.
+```
+
+### Remove both requested sections and let the colophon end at the unchanged models-and-checks table.
+
+Original lines 63–82.
+
+```tex
+\section{Structural change, semantic change}\label{heading:structural-change-semantic-change}
+
+Two edits during the final pass show what the models could do --- and where they stopped.
+
+The first was structural. During the final edit, the theory material was split into a dedicated theory chapter and a professional-synthesis chapter, and sections moved between them. Their reader-facing locations changed, but their stable identities did not. Because other manuscript models referred to those identities rather than to transient filenames, the reorganization propagated without manually repairing every dependent representation.
+
+The harder edits were semantic. During the final theory pass, the relationship between Modeling and Alignment changed. The old account made them causally dependent; the final theory treats them as independent activities addressing different problems, with Modeling as the principled route to greater semantic reach. The role of a sensor changed too: instead of deciding that a violation occurred, it observes and produces evidence for a validator. Existing references still resolved; nothing was mechanically "broken." But some declared statements now represented an obsolete theory.
+
+\textbf{A model can be structurally valid and semantically wrong.}
+
+Those changes required editorial judgment. Once the corrected meaning was encoded in the model, its consequences became easier to propagate and later drift easier to detect. But machinery could not decide what the corrected theory should be. Mechanical checks can establish that a reference resolves. They cannot establish that the idea it points to is still right. The manuscript needed a separate model-to-prose semantic audit for exactly this reason: a join could pass and still carry stale meaning.
+
+\section{What the models did --- and did not do}\label{heading:what-the-models-did-and-did-not-do}
+
+Explicit models make important properties available to machinery, and machinery can enforce relationships that are sufficiently decidable. But representation does not abolish judgment. A manuscript can satisfy every structural join and still say the wrong thing.
+
+The models did not supply the editorial judgment. They made selected properties explicit, allowed selected relationships to be checked, and helped propagate consequential decisions once those decisions had been made.
+
+This is a reflexive demonstration, not independent evidence for MAGE. It is a fitting final example: represent what matters, give machinery authority over what it can honestly decide, and leave semantic judgment where it belongs.
+```
+
+## 2026-11-09 — Law, scientific inquiry, and limits of transfer (A75–A77)
+
+Source: `book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex`, Professional Knowledge Work through Where the Generalization Fails; source revision `507bbaeb5739569d81a21523b77191e0799d051b`, lines 135–169, with pending synthesis edits. Reason: author-approved one-paragraph law comparison and A76/A77 replacements; preserve removed treatment here.
+
+```latex
+Legal analysis illustrates the opposite limit: representation can become rich while consequential judgment remains stubbornly semantic. Its representations are abundant: parties, claims, elements, facts, authorities, procedural posture, deadlines, and the relationships among precedents. An agent can organize those structures, trace a proposition to its authority, test whether a claim\textquotesingle s elements have supporting evidence, or flag conflicts among authorities. Some obligations are as governable as anything in software. A filing deadline can be enforced; a citation format can be checked; a procedural rule can gate a submission.
+
+Yet representation does not imply determinization. Interpretation, strategy, credibility, and the weight of competing authority are semantic and contested. Two lawyers holding the same represented facts and authorities can responsibly reach different conclusions, and the difference between them is argued, not computed. The environment can make an argument\textquotesingle s structure explicit and check its supports; it cannot decide which reading of an authority should prevail. In legal work, Modeling can extend the reasoning surface substantially while the determinization frontier barely moves.
+
+% <!-- point: unit-of-transfer-is-the-surface | The unit of transfer is the surface, not the profession — and the question is not simply how much work an agent can perform, but how much useful freedom the environment can grant it while retaining adequate means of evaluation and control. -->
+
+The contrast carries the lesson. Where accounting\textquotesingle s obligations were settled by the profession in advance and equipped with evidence, the frontier already sits far from the individual worker, and agents test how much further it can move. Where law\textquotesingle s obligations remain open to argument, the same representational richness leaves the frontier nearly where it was. In both, the unit of transfer is the surface rather than the profession: a reconciliation may be mechanized while a materiality judgment stays human; a deadline may be enforced while an interpretation stays open. Asking whether a profession as a whole "admits MAGE" is the wrong grain of analysis. The question is therefore not simply how much work an agent can perform, but how much useful freedom the environment can grant it while retaining adequate means of evaluation and control.
+
+\section{Science as the Harder Case}\label{heading:science-as-the-harder-case}
+
+% <!-- point: science-tests-the-theory | Science is the deliberately hard case: inquiry's conduct is governable, its conclusions are not. -->
+
+Scientific work is worth examining because it tests the theory rather than flattering it. Much of what an agent needs can be represented and inherited: hypotheses, experimental designs, datasets, provenance, measurement models, statistical assumptions, analysis plans, and the evidence relationships among them. Some obligations can be enforced outside the producing reasoner. An analysis plan can be preregistered and held to. Data integrity and provenance completeness can be checked mechanically. A computational result can be refused admission until its steps reproduce.
+
+What resists is the purpose of the work. A scientific claim is an attempt to revise the very knowledge a model would encode, and its ground truth is precisely what is under negotiation. The environment can verify that an analysis followed its plan; it cannot decide whether the explanation the analysis supports is scientifically compelling, or whether a surprising result reflects the world rather than the instrument. Accounting\textquotesingle s consequential obligations were settled by the profession before the work began. Science\textquotesingle s most consequential judgments are the ones the work exists to make.
+
+MAGE\textquotesingle s role here is coherent but bounded: govern the conduct of inquiry, and leave its conclusions to the community that owns them. Provenance, preregistration, reproduction, and disclosure are governable surfaces with independent paths to evidence. Novelty and interpretation are not. A governed environment for science that claimed to decide what counts as a discovery would not be an advance in rigor. It would be a category error.
+
+\section{Where the Generalization Fails}\label{heading:where-the-generalization-fails}
+
+% <!-- point: failure-traits-named | The transfer conditions predict their own failures; the traits deserve naming rather than a caveat. -->
+
+The transfer conditions predict their own failures, and the failures deserve naming rather than a passing caveat.
+
+Some consequential knowledge is tacit or embodied: the surgeon\textquotesingle s feel for tissue, the negotiator\textquotesingle s read of a room, the mechanic\textquotesingle s ear for a bearing going bad. Where the relevant state lives in trained perception rather than in any external record, there is no representation to maintain and nothing for a mechanism to hold. Some domains lack settled ground truth, or dispute it; evidence there cannot anchor enforcement because the parties do not agree on what the evidence shows. Some work changes its object by representing it. A disclosed negotiating position, a published trading model, and a community under observation all respond to their own description, so a representation is an intervention rather than a reduction, and correspondence in the engineering sense cannot be established. Highly novel work poses a different obstacle: stable models do not yet exist, so there is nothing for later work to inherit and no recurrence against which to amortize the structure. And some obligations cannot responsibly be interpreted apart from their context---a clinical decision, a use-of-force judgment---so moving them into machinery would not enforce the obligation. It would replace it with a proxy.
+```

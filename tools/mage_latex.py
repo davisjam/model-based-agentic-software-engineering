@@ -497,6 +497,20 @@ def sync(check=False):
 
 
 
+def format_box_headings(latex):
+    """Retain heading keep-with-next behavior inside boxed prose."""
+    def local_box_headings(match):
+        value = match[0]
+        while (heading := re.search(r'\\(?:sub)*section\*?(?=\{)', value)):
+            command = heading[0]
+            title = argument(value[heading.start():], command)
+            full = command + '{' + title + '}'
+            value = value[:heading.start()] + r'\bookboxheading{' + title + '}' + value[heading.start() + len(full):]
+        return value
+    latex = re.sub(r'\\begin\{(quote|bookbox)\}.*?\\end\{\1\}', local_box_headings, latex, flags=re.S)
+    return latex
+
+
 def apply_print_keep_with_next(text):
     """Honor authored local space requests; ordinary prose remains untouched.
 
@@ -565,15 +579,7 @@ def _prepare_record(task):
         size = r'\fontsize{8.5}{10.5}\selectfont' if longest > 96 else (r'\fontsize{9}{11}\selectfont' if longest > 88 else r'\footnotesize')
         return '{' + size + '\n' + match[0] + '\n}'
     latex = re.sub(r'\\begin\{verbatim\}(.*?)\\end\{verbatim\}', code_size, latex, flags=re.S)
-    def local_box_headings(match):
-        value = match[0]
-        while (heading := re.search(r'\\(?:sub)*section\*?(?=\{)', value)):
-            command = heading[0]
-            title = argument(value[heading.start():], command)
-            full = command + '{' + title + '}'
-            value = value[:heading.start()] + r'\par\noindent\textbf{' + title + r'}\par' + value[heading.start() + len(full):]
-        return value
-    latex = re.sub(r'\\begin\{(quote|bookbox)\}.*?\\end\{\1\}', local_box_headings, latex, flags=re.S)
+    latex = format_box_headings(latex)
     def concise_caption(match):
         body = argument(match[0], r'\caption')
         plain = pandoc(body, 'latex', 'plain')

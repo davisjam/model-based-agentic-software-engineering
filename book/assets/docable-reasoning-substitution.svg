@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="405" height="400" viewBox="0 0 405 400" role="img" aria-labelledby="title desc" font-family="&quot;Source Sans 3&quot;, sans-serif">
+<title id="title">Substitutable reasoning, controlled mutation</title>
+<desc id="desc">Three equal reasoning-strategy boxes—structured pipeline, general-purpose agent, and human-directed editing—converge on a typed changeset containing target, operation, and arguments from a closed mutation vocabulary. The PDF path continues through a controlled applier that resolves targets, checks preconditions, applies supported mutations, and records outcomes; a structured document model of typed PDF objects; and a result with applied-operation provenance and independent validation. A return arrow makes the model available to all reasoning strategies for inspection. A separate dashed note says that some PDF operations still mutate directly outside the common changeset interface. Other formats have their own model implementations.</desc>
+<defs><marker id="aflow" viewBox="0 0 6 6" refX="5.7" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="acontrol" viewBox="0 0 6 6" refX="5.7" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="aink" viewBox="0 0 6 6" refX="5.7" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker><marker id="agray" viewBox="0 0 6 6" refX="5.7" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker></defs>
+<rect x="40" y="4" width="361" height="78" rx="3" fill="#f1f4f6" stroke="#2f5169" stroke-width=".75"/>
+<text x="220.5" y="21" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">REASONING STRATEGIES</text>
+<rect x="48" y="34" width="104" height="39" rx="3" fill="#fff" stroke="#2f5169" stroke-width=".75"/>
+<text x="100" y="50" text-anchor="middle" font-size="10" fill="#1c1917">Structured</text>
+<text x="100" y="63" text-anchor="middle" font-size="10" fill="#1c1917">pipeline</text>
+<rect x="168" y="34" width="104" height="39" rx="3" fill="#fff" stroke="#2f5169" stroke-width=".75"/>
+<text x="220" y="50" text-anchor="middle" font-size="10" fill="#1c1917">General-purpose</text>
+<text x="220" y="63" text-anchor="middle" font-size="10" fill="#1c1917">agent</text>
+<rect x="288" y="34" width="104" height="39" rx="3" fill="#fff" stroke="#2f5169" stroke-width=".75"/>
+<text x="340" y="50" text-anchor="middle" font-size="10" fill="#1c1917">Human-directed</text>
+<text x="340" y="63" text-anchor="middle" font-size="10" fill="#1c1917">editing</text>
+<path d="M100,73 L100,92" fill="none" stroke="#2f5169" stroke-width=".8"/>
+<path d="M220,73 L220,92" fill="none" stroke="#2f5169" stroke-width=".8"/>
+<path d="M340,73 L340,92" fill="none" stroke="#2f5169" stroke-width=".8"/>
+<path d="M100,92 L340,92" fill="none" stroke="#2f5169" stroke-width=".8"/>
+<path d="M220,92 L220,111" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#aflow)"/>
+<text x="228" y="105" text-anchor="start" font-size="9.5" fill="#1c1917" font-style="italic">propose edits</text>
+<rect x="82" y="111" width="280" height="51" rx="3" fill="#fff" stroke="#2f5169" stroke-width=".75"/>
+<text x="222" y="127" text-anchor="middle" font-size="10.5" fill="#1c1917" font-weight="700">TYPED CHANGESET</text>
+<text x="222" y="142" text-anchor="middle" font-size="10" fill="#1c1917">target · operation · arguments</text>
+<text x="222" y="155" text-anchor="middle" font-size="9.5" fill="#1c1917">closed vocabulary of supported mutations</text>
+<path d="M222,162 L222,181" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#aflow)"/>
+<rect x="82" y="181" width="280" height="39" rx="3" fill="#fff" stroke="#086438" stroke-width=".75"/>
+<text x="222" y="197" text-anchor="middle" font-size="10.5" fill="#086438" font-weight="700">CONTROLLED APPLIER</text>
+<text x="222" y="212" text-anchor="middle" font-size="10" fill="#1c1917">resolve · check preconditions · apply · record</text>
+<path d="M222,220 L222,239" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#aflow)"/>
+<rect x="82" y="239" width="280" height="39" rx="3" fill="#fff" stroke="#2f5169" stroke-width=".75"/>
+<text x="222" y="255" text-anchor="middle" font-size="10.5" fill="#1c1917" font-weight="700">STRUCTURED DOCUMENT MODEL</text>
+<text x="222" y="270" text-anchor="middle" font-size="9.5" fill="#1c1917">Typed PDF objects · format-specific implementation</text>
+<path d="M222,278 L222,297" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#aflow)"/>
+<rect x="82" y="297" width="280" height="47" rx="3" fill="#fff" stroke="#57534e" stroke-width=".75"/>
+<text x="222" y="313" text-anchor="middle" font-size="10.5" fill="#1c1917" font-weight="700">RESULT AND EVIDENCE</text>
+<text x="222" y="327" text-anchor="middle" font-size="9.5" fill="#1c1917">remediated document · applied-operation provenance</text>
+<text x="222" y="339" text-anchor="middle" font-size="9.5" fill="#1c1917">independent validation</text>
+<path d="M82,258 L18,258 L18,21 L40,21" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#aflow)"/>
+<text x="49" y="187" text-anchor="middle" font-size="9.5" fill="#1c1917" font-style="italic">Inspect</text>
+<text x="49" y="199" text-anchor="middle" font-size="9.5" fill="#1c1917" font-style="italic">document</text>
+<text x="49" y="211" text-anchor="middle" font-size="9.5" fill="#1c1917" font-style="italic">model</text>
+<rect x="82" y="363" width="280" height="31" rx="3" fill="#fff" stroke="#57534e" stroke-width=".75" stroke-dasharray="3 2"/>
+<text x="222" y="376" text-anchor="middle" font-size="9.5" fill="#1c1917">Some PDF operations still mutate directly</text>
+<text x="222" y="388" text-anchor="middle" font-size="9.5" fill="#1c1917">outside the common changeset interface.</text>
+</svg>

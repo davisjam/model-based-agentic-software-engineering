@@ -1866,6 +1866,19 @@
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
+    "source": "assets/docable-reasoning-substitution.svg",
+    "caption": "*Substitutable reasoning, controlled mutation.* Different reasoning strategies inspect the document model and propose supported edits through a common typed changeset interface. A controlled applier executes those edits; provenance and independent validation provide evidence about the result. The drawing shows the PDF changeset path. Some PDF operations still mutate directly outside this interface. [short: Substitutable reasoning over the PDF changeset interface]",
+    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+    "d2_source": null,
+    "receipt": null,
+    "generator": null,
+    "data": [],
+    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+    "svg_title": "Substitutable reasoning, controlled mutation",
+    "svg_description": "Three equal reasoning-strategy boxes—structured pipeline, general-purpose agent, and human-directed editing—converge on a typed changeset containing target, operation, and arguments from a closed mutation vocabulary. The PDF path continues through a controlled applier that resolves targets, checks preconditions, applies supported mutations, and records outcomes; a structured document model of typed PDF objects; and a result with applied-operation provenance and independent validation. A return arrow makes the model available to all reasoning strategies for inspection. A separate dashed note says that some PDF operations still mutate directly outside the common changeset interface. Other formats have their own model implementations."
+  },
+  {
+    "chapter": "5.2-inside-docables-software-factory",
     "source": "assets/docable-human-evaluation-261109.svg",
     "caption": "*Remediation compared with the human reference:* (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Parity denotes similar measured improvement, not equivalent accessibility. [short: Human-reference remediation results]",
     "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",

@@ -1482,5 +1482,15 @@
     "rationale": "Seven ordered chapter stations; chapter 7 uses a filled larger marker and bold label, while other stations remain open.",
     "source_sha256": "965edb357c40949f1f76da81e8eac8b87b5ee30628e4eedb02126dc62e6f5d9b",
     "candidate_sha256": "e145fa020400711ca24d43cfe9a240068fa403ac014893cf7ff778bdc7977cbf"
+  },
+  {
+    "source": "book/assets/docable-reasoning-substitution.svg",
+    "candidate": "book/tikz/figures/docable-reasoning-substitution.tex",
+    "source_sha256": "bd2fa0afda20e3f7eddd79b53b9d98cf116efb4e68dfb9fa171630f4ec5fa9c5",
+    "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5",
+    "receipt": "book/tikz/receipts/docable-reasoning-substitution.json",
+    "reviewed": true,
+    "decision": "new",
+    "rationale": "White nodes preserve legibility; the sole 5% gray region groups alternative reasoning strategies. Dashed annotation retains the interface coverage limit without suggesting an alternate governed path."
   }
 ]

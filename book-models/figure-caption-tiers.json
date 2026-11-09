@@ -392,10 +392,10 @@
       "rationale": "the research arc — the book's evidence procedure from one case to the refined theory; the enlarged figure carries the sequence, the trimmed caption supports it"
     },
     "assets/engineering-leverage.svg": {
-      "tier": "A",
+      "tier": "B",
       "kind": "comparison-framework",
       "location": "part1",
-      "rationale": "engineering leverage moves into the environment when agents implement; Part-1 opener framing (260815 copyedit — replaces new-engineering-problem.svg as Fig 1.1-1). Promoted B->A 260911: the caption now also carries the control/responsibility claim — the environment as the means through which engineers retain control, and MAGE's primary-means contention (control-responsibility surgery)."
+      "rationale": "Author-approved concise caption; the surrounding prose develops the explanation."
     },
     "assets/multiple-routes-to-engineering-models.svg": {
       "tier": "A",
@@ -449,13 +449,13 @@
       "tier": "B",
       "kind": "conceptual-framework",
       "location": "part1",
-      "rationale": "foundation model + agentic harness -> agent -> engineering environment; the §1.3.1 substrate diagram the reasoning-horizon and authority arguments both derive from (260815 copyedit)"
+      "rationale": "Author-approved concise caption; the surrounding prose develops the explanation."
     },
     "assets/substrate-to-method.svg": {
-      "tier": "B",
+      "tier": "C",
       "kind": "comparison-framework",
       "location": "part1",
-      "rationale": "finite state -> representation problem -> Modeling; probabilistic work -> enforcement problem -> Alignment; Part 1's closing derivation figure (260815 copyedit)"
+      "rationale": "Author-approved concise caption; the surrounding prose develops the explanation."
     },
     "assets/sdlc-to-selc.svg": {
       "tier": "B",
@@ -1314,6 +1314,12 @@
       "kind": "comparison-summary",
       "location": "part6",
       "rationale": "Compact index connecting the four comparison designs to the proposition mechanisms; the body supplies interpretation."
+    },
+    "assets/docable-reasoning-substitution.svg": {
+      "tier": "A",
+      "kind": "architecture",
+      "location": "part5",
+      "rationale": "Shared PDF changeset path, interchangeable reasoning strategies, evidence and implementation scope."
     }
   },
   "historical_tiers": {
