@@ -56,6 +56,14 @@ Read \hyperref[details]{the details}.
         self.assertIn('Details {#details}', text)
         self.assertIn('](#details)', text)
 
+    def test_cross_chapter_heading_link_targets_the_corresponding_web_page(self):
+        text = self.project(r'''\chapter{Summary}
+Read \hyperref[1.4-the-agentic-substrate:heading:probabilistic-work-needs-external-enforcement]{\emph{Probabilistic Work Needs External Enforcement}}.
+''')
+        self.assertIn('(1.4-the-agentic-substrate.html#probabilistic-work-needs-external-enforcement)', text)
+        self.assertIn('Probabilistic Work Needs External Enforcement', text)
+        self.assertNotIn(':heading:', text)
+
 
 if __name__ == '__main__':
     unittest.main()

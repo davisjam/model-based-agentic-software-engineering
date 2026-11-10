@@ -266,6 +266,10 @@ def compatibility(source: Path, output: Path):
     """Project native source into legacy Markdown for existing model/web consumers."""
     source = source.resolve()
     text = source.read_text().replace(r'\mbox{}', '')
+    # Print heading anchors are chapter-qualified; web/EPUB chapters are separate
+    # pages. Preserve the same destination when projecting a cross-chapter link.
+    text = re.sub(r'\\hyperref\[([^\]:]+):heading:([^\]]+)\]',
+                  lambda m: r'\href{' + m[1] + '.html#' + m[2] + '}', text)
     box_prefixes = [value.rstrip() + ' ' if value.strip() else ''
                     for value in re.findall(r'^% mage-box-prefix:[ \t]*(.*)$', text, re.M)]
     text = re.sub(r'^% mage-box-prefix:.*$', '', text, flags=re.M)
@@ -661,8 +665,9 @@ def _prepare_record(task):
     latex = bold_table_headers(latex)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
     # This five-column comparison fits at its normal table size on one page.
-    # Float it intact instead of stranding the final row on a continuation page.
-    latex = single_page_tables(latex, {'semantic-commitment-spectrum'})
+    # Float it intact near its introduction, before the worked interpretation,
+    # rather than delaying it to a dedicated page amid the following example.
+    latex = single_page_tables(latex, {'semantic-commitment-spectrum'}, placement='htbp')
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
     # Each record retains its explicit chapter title and a unique chapter anchor.

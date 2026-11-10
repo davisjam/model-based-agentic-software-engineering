@@ -3,8 +3,8 @@
   "_counts": {
     "chapters": 32,
     "sections": 186,
-    "explicit_ids": 21,
-    "derived_ids": 165,
+    "explicit_ids": 22,
+    "derived_ids": 164,
     "missing_topic_sentence": 3,
     "sections_drained": 132,
     "paragraph_points": 554
@@ -363,7 +363,7 @@
           "level": 2,
           "heading_text": "Probabilistic Work Needs External Enforcement",
           "topic_sentence": "The second problem concerns assurance.",
-          "id_source": "derived",
+          "id_source": "explicit",
           "block_index": 76,
           "points": [
             {

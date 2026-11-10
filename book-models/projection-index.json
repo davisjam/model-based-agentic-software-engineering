@@ -3,14 +3,14 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 642,
+    "total_sites": 641,
     "by_projection": {
       "book-pdf": 16,
       "book-web": 305,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
-      "website-misc": 29,
+      "website-misc": 28,
       "website-resources": 6,
       "website-theory": 9
     }
@@ -515,7 +515,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 14
+            "occ": 12
           },
           {
             "file": "catalogue-figure.html",
@@ -870,12 +870,6 @@
         ]
       },
       "website": {
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          }
-        ],
         "website-theory": [
           {
             "file": "theory.html",
@@ -2085,7 +2079,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 31
+            "occ": 30
           },
           {
             "file": "catalogue-figure.html",

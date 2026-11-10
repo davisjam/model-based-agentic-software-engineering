@@ -58,8 +58,8 @@
     {
       "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
       "projection": "book/part1/1.4-the-agentic-substrate.md",
-      "source_hash": "abd760911922ccfc1c6fbc7ac7306fbce2b4fb8af2b41427312ab752fe0f8b2f",
-      "projection_hash": "5743aba1da7c813fe27f1be0db3f0b68a43ae8f3469b0ede01d72f199624e8c0"
+      "source_hash": "7e54495cdb0545149724eff14503f88771c4cdbc153dec798e3903660c0d5502",
+      "projection_hash": "1762adb12c639bb9d45a943a936361ca140182bbbad2a2dc07be4c9223796fec"
     },
     {
       "source": "book/latex/sources/part1/1.5-the-new-engineering-problem.tex",
@@ -70,8 +70,8 @@
     {
       "source": "book/latex/sources/part1/1.6-problem-summary.tex",
       "projection": "book/part1/1.6-problem-summary.md",
-      "source_hash": "2dcba6e863654b360bd81f3306a92db0bb15a9b3887d077234046b40a38227f4",
-      "projection_hash": "94ee6e3090a98401d4e1311781f587f350473cfcbac2fb8278738ef4ede82d56"
+      "source_hash": "29463cea748d5eb7624837c627ca24316e008df4ea5263b492506dcd72750ddb",
+      "projection_hash": "aaedba2634622d3e5c244a35037efa7aad714e0e20bbc64f213525b0ab5e714c"
     },
     {
       "source": "book/latex/sources/part2/00-part-intro.tex",
@@ -984,6 +984,6 @@
       "projection_hash": "e411608cf1d772db442badfed42134c61e17eb3d9b03d23cb80ab9b11ab0fe47"
     }
   ],
-  "engine_hash": "ad4815fe1eb5b09f4dec80fc24741d063fe36ddcb44d7d5f4787a731f7305d9f",
+  "engine_hash": "36d72a6cf9aeb6eb09bb546115f7c08511cf1aaa3a4b881292fe1e426deaec83",
   "renderer_version": "pandoc 3.9.0.2"
 }
