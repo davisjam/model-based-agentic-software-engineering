@@ -92,6 +92,15 @@
 \makeatother
 \setlist{topsep=0.4em,itemsep=0.15em,parsep=0pt,leftmargin=1.5em}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% Tagged lists acquired native, hyphenated keys in LaTeX 2025-06-01.
+% Keep the reviewed claims geometry on both the older local format and CI.
+% https://tagging-project.latex-project.org/documentation/usage-instructions
+\newenvironment{bookclaims}{%
+  \IfFormatAtLeastTF{2025-06-01}
+    {\begin{enumerate}[left-margin=0pt,label-sep=.5em,item-vspace=1.5pt,para-vspace=0pt,begin-vspace=2pt]}
+    {\begin{enumerate}[leftmargin=0pt,labelsep=.5em,itemsep=1.5pt,parsep=0pt,topsep=2pt]}%
+  \setlength{\itemsep}{1.5pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}%
+}{\end{enumerate}}
 % The colored frame is an artifact; the box content remains tagged paragraphs in a Div.
 \newcommand{\bookboxtagbegin}{\ifdefined\tagstructbegin\par\tagpdfparaOff\tagstructbegin{tag=Div}\fi}
 % tcolorbox's breakable minipage uses the legacy footnote writer. Restore

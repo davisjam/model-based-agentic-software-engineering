@@ -19,12 +19,13 @@ class ClaimsSpreadTests(unittest.TestCase):
                   r'\caption{Relationships.}\label{mage-method}\end{figure}')
         text = claims_spread(r'\chapter*{What This Book Argues}' + lists
                             + '\n\nRecto transition.\n\n' + figure)
-        self.assertEqual(text.count(r'\begin{enumerate}'), 1)
+        self.assertEqual(text.count(r'\begin{bookclaims}'), 1)
+        self.assertNotIn(r'\begin{enumerate}[', text)
         self.assertEqual(len(re.findall(r'\\item\b', text)), 6)
         for claim in claims:
             self.assertEqual(text.count(claim), 1)
         self.assertIn(r'\ifodd\value{page}', text)
-        self.assertIn(r'\end{enumerate}' + '\n\\clearpage\n', text)
+        self.assertIn(r'\end{bookclaims}' + '\n\\clearpage\n', text)
         self.assertEqual(text.count(r'\begin{bookinlinefigure}'), 1)
         self.assertIn(r'\includegraphics[page=2,alt={Description}]{pool.pdf}', text)
         self.assertIn('Recto transition.', text)

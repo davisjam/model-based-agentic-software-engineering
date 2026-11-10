@@ -146,9 +146,10 @@ def claims_spread(latex: str) -> str:
                        r'{\errmessage{Reference heading spacing changed}}'
                        + heading + r'\makeatother\endgroup')
     left = left.replace(heading, compact_heading, 1)
-    left = left.replace(r'\begin{enumerate}',
-                        r'\begin{enumerate}[leftmargin=0pt,labelsep=.5em,itemsep=1.5pt,parsep=0pt,topsep=2pt]'
-                        r'\setlength{\itemsep}{1.5pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}')
+    # The house environment selects enumitem or native tagged-list keys for the
+    # active LaTeX format. CI and the older local format use different interfaces.
+    left = left.replace(r'\begin{enumerate}', r'\begin{bookclaims}')
+    left = left.replace(r'\end{enumerate}', r'\end{bookclaims}')
     # Pandoc's compact-list declaration would otherwise override the reviewed gaps.
     left = left.replace(r'\tightlist', '')
     figure = figures[0][0]
