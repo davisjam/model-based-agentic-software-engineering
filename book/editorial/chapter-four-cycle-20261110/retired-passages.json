@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-10",
+  "source_revision": "4b7e792ad",
+  "entries": [
+    {
+      "file": "book/latex/sources/part4/00-part-intro.tex",
+      "source_revision": "4b7e792ad",
+      "source_lines": [
+        15,
+        19
+      ],
+      "reason": "Retain the Key Ideas wrapper, heading label, no-required-start statement and existing model-routes reference. The three activity labels match the schematic, while Alignment and governance conversion span their work.",
+      "old": "Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.\n\n\\textbf{Repeat.}\n\nYou can enter this cycle at any point. Recall \\autoref{multiple-routes-to-engineering-models} in \\magevalue{chapter:modeling}: engineering may begin with requirements, an existing system, or exploratory agent implementation.",
+      "replacement": "\\textbf{Model → Realize → Evaluate.}\n\nMake consequential knowledge and intent explicit. Build or modify the system, potentially through agents. Evaluate the result against the relevant obligations, returning to the models or realization as the evidence requires. Alignment operates throughout, establishing or preserving correspondence as the system changes. Governance conversion makes consequential lessons durable in the structure that later work inherits.\n\nYou can enter this cycle at any point. Recall \\autoref{multiple-routes-to-engineering-models} in \\magevalue{chapter:modeling}: engineering may begin with requirements, an existing system, an observed failure, or exploratory agent implementation."
+    },
+    {
+      "file": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
+      "source_revision": "4b7e792ad",
+      "source_lines": [
+        125,
+        129
+      ],
+      "reason": "Remove the competing seven-step process. The replacement prose explains entry points and concurrent activity without reintroducing Convert or Align as an extra phase. Root replaces the explicit draft marker with the actual schematic.",
+      "old": "% <!-- pullquote -->\n\n\\begin{quote}\nloose specification → realize → observe → connect → model → align → retain\n\\end{quote}",
+      "replacement": "\\autoref{agentic-engineering-cycle} brings these recurring activities together. Alignment operates throughout the work, while governance conversion can preserve a consequential lesson wherever it arises.\n\n% ROOT-SCHEMATIC-INSERT"
+    },
+    {
+      "file": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
+      "source_revision": "4b7e792ad",
+      "source_lines": [
+        133,
+        133
+      ],
+      "reason": "Retain the approved ordinary-prose transition and stable brownfield reference. The paragraph describes the work without displaying another process sequence.",
+      "old": "Greenfield and brownfield MAGE converge on this cycle. Brownfield work begins with an existing realization; greenfield work may use cheap realizations to discover what should be modeled. Both alternate among observation, interpretation, modeling, alignment, and measurement. The difference is where the first useful evidence comes from. In an inherited system, that evidence may already be distributed across implementation, tests, procedures, and organizational knowledge; \\magevalue{sec:brownfield-engineering} examines how to recover it.",
+      "replacement": "Greenfield and brownfield MAGE draw on the same recurring activities. Brownfield work begins with an existing realization; greenfield work may use cheap realizations to discover what should be modeled. In both settings, engineers make consequential knowledge explicit, change the system, evaluate the result, and preserve lessons worth carrying forward. The difference is where the first useful evidence comes from. In an inherited system, that evidence may already be distributed across implementation, tests, procedures, and organizational knowledge; \\magevalue{sec:brownfield-engineering} examines how to recover it."
+    },
+    {
+      "file": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
+      "source_revision": "4b7e792ad",
+      "source_lines": [
+        237,
+        252
+      ],
+      "reason": "Keep the canonical ratcheteering home, wrapper, label and memorable obligation/current-answer distinction. Explain an individual conversion versus cumulative correctable practice first, then end with selective addition/revision/retirement. The following standalone distinction is absorbed rather than duplicated.",
+      "old": "% <!-- index-def: ratcheteering -->\n\n% <!-- box-family: canonical -->\n\n\\begin{quote}\n\\mbox{}%\n\\subsection{Engineering technique --- Ratcheteering}\\label{heading:technique-ratcheteering}\n\nRatcheteering is the practice of converting a consequential engineering concern into explicit models, evidence, and controls that subsequent work must inherit, while keeping those structures open to falsification and revision.\n\nThe ratchet preserves the obligation, not necessarily the current answer. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control. The engineering environment should permit those corrections. What later work cannot do silently is return the consequential property to an unexamined implementation detail.\n\nA typical ratchet runs: observe → model → change → test → govern → continue. Later engineering proceeds under the resulting obligation. When new evidence disagrees, revise the model and ratchet again.\n\\end{quote}\n\nGovernance conversion and ratcheteering do different jobs. Governance conversion is the move that turns a recurring failure or judgment into durable structure. Ratcheteering is the practice by which such structures accumulate across episodes while staying correctable.",
+      "replacement": "% <!-- index-def: ratcheteering -->\n\n% <!-- box-family: canonical -->\n\n\\begin{quote}\n\\mbox{}%\n\\subsection{Engineering technique --- Ratcheteering}\\label{heading:technique-ratcheteering}\n\nGovernance conversion is an individual engineering move: it turns a recurring failure, judgment, or newly discovered relationship into durable structure. Ratcheteering is the continuing practice of accumulating and correcting that structure across engineering episodes.\n\nThe ratchet preserves the obligation, not necessarily the current answer. A later measurement may refute a model, change a parameter, expose another scaling dimension, or require a different control. The engineering environment should permit those corrections. What later work cannot do silently is return the consequential property to an unexamined implementation detail.\n\nEach episode may add, revise, or retire the structure that later engineering work inherits. The engineer retains models, procedures, evidence, and controls selectively, when their engineering value justifies the maintenance they require.\n\\end{quote}"
+    }
+  ]
+}

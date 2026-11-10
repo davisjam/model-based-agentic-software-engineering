@@ -42,6 +42,7 @@ Outside example.
 '''
             record = {'slug': 'fixture', 'chapter_title': 'Fixture', 'part': 2, 'chapter': 2,
                       'part_title': 'Modeling', '_build_directory': 'build', 'body_md': raw,
+                      '_heading_destinations': {},
                       '_index_anchors': {('model-drift', 'ex', 0): 'idx-ex-model-drift-1',
                                          ('model-drift', 'def', 0): 'idx-def-model-drift',
                                          ('model-drift', 'ex', 1): 'idx-ex-model-drift-2'}}

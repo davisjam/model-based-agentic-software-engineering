@@ -1,0 +1,69 @@
+{
+  "source": "book/assets/agentic-engineering-cycle.svg",
+  "candidate": "book/tikz/figures/agentic-engineering-cycle.tex",
+  "chapter": "4.1-the-dynamics-of-mage",
+  "draft_date": "2026-11-10",
+  "title": "Agentic Engineering Through Models",
+  "claim": "*Agentic engineering through models.* Modeling, realization, and evaluation recur as a system evolves. Alignment operates throughout; governance conversion can make a consequential lesson durable during any activity.",
+  "purpose": "Show that governance conversion spans all recurring agentic engineering activities rather than adding another phase.",
+  "required_terms": [
+    "Agentic Engineering Through Models",
+    "Model",
+    "Realize",
+    "Evaluate",
+    "Governance conversion",
+    "Make consequential lessons durable"
+  ],
+  "alt": "Model, Realize, and Evaluate form a repeating cycle. A brace spans all three activities and is labeled Governance conversion: Make consequential lessons durable. Conversion can occur during any activity; it is not a fourth phase.",
+  "bw_encoding": "White process boxes, black labels, black flow arrows and brace; no tonal role needed.",
+  "typography": "Bundled Source Sans 3; 11.5pt bold title, 11pt regular activities, 11pt bold governance label, 10.5pt regular explanation.",
+  "routing": "Orthogonal cycle edges; 45bp horizontal arrows and 20bp return approach. Native TikZ brace spans all three activities.",
+  "redesign": "Separate recurring engineering activities from governance conversion, which can occur during any of them. A return arrow indicates repetition, and a brace spans every activity. Alignment remains throughout the work rather than a new phase.",
+  "contracts": {
+    "peer_groups": [
+      {
+        "name": "Three recurring activities",
+        "labels": [
+          "Model",
+          "Realize",
+          "Evaluate"
+        ],
+        "align": [
+          "top",
+          "bottom"
+        ],
+        "equal_height": true
+      }
+    ]
+  },
+  "validation": {
+    "proof": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.pdf",
+    "proof_png": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.png",
+    "proof_sha256": "1ce2de6ac774610f65a52b7510c1a644f761a7951e4bbf9fb2cb27e47f0faf05",
+    "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+    "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+    "width_bp": 425.9729919433594,
+    "height_bp": 161.9759979248047,
+    "authored_type_sizes_pt": [
+      10.5,
+      11,
+      11.5
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "reviewed_peer_groups": 1,
+    "semantic_typography_checks": 6,
+    "typography_findings": 0,
+    "fonts": [
+      "SourceSans3-Bold",
+      "SourceSans3-Regular"
+    ],
+    "monochrome_pixels": true,
+    "reviewed_visually": true,
+    "date": "2026-11-10",
+    "status": "passed",
+    "validation_scope": "New cycle artwork only; final assembled chapter requires layout inspection.",
+    "geometry_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/geometry-audit.json",
+    "typography_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/typography-audit.json"
+  }
+}

@@ -1338,6 +1338,12 @@
       "kind": "architecture",
       "location": "appendix-handbook",
       "rationale": "Compact supporting diagram of the typed product editing boundary; caption distinguishes proposal, per-operation application evidence, and remaining direct paths."
+    },
+    "assets/agentic-engineering-cycle.svg": {
+      "tier": "B",
+      "kind": "process-diagram",
+      "location": "part4",
+      "rationale": "Three recurring activities with governance conversion spanning the cycle; supports the distinction between engineering work, Alignment throughout, and durable lessons."
     }
   },
   "historical_tiers": {

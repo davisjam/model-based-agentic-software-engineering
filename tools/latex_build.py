@@ -106,6 +106,20 @@ def namespace_heading_links(latex: str, slug: str) -> str:
                   lambda m: m[1] + destinations.get(m[2], m[2]) + m[3], latex)
 
 
+def restore_chapter_heading_links(latex: str, destinations: dict[str, str]) -> str:
+    """Restore internal PDF destinations from the web projection's chapter URLs.
+
+    Only authored heading IDs harvested from the assembled records are eligible.
+    Other links, including figure URLs, external sites and unknown anchors, retain
+    their existing meaning. The content argument is left untouched.
+    """
+    def restore(match):
+        url = match[1].replace(r'\#', '#')
+        target = destinations.get(url)
+        return r'\hyperref[' + target + ']' if target else match[0]
+    return re.sub(r'\\href\{([^{}]+)\}', restore, latex)
+
+
 def compile_tex(source: Path, output_dir: Path | None = None, *,
                 texmf_cache: Path | str | None = None) -> Path:
     source = Path(source).resolve()

@@ -2,9 +2,9 @@
   "review": "Semantic typography: boldface, capitals, italics and partial emphasis",
   "date": "2026-10-17",
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-  "candidate_count": 153,
+  "candidate_count": 154,
   "refined_count": 122,
-  "check_count": 1017,
+  "check_count": 1023,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
   "figures": [
     {
@@ -11147,6 +11147,71 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 7
+      }
+    },
+    {
+      "source": "book/assets/agentic-engineering-cycle.svg",
+      "candidate": "book/tikz/figures/agentic-engineering-cycle.tex",
+      "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+      "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+      "decision": "new",
+      "revision_date": "2026-11-10",
+      "checks": [
+        {
+          "text": "Agentic Engineering Through Models",
+          "bold": true
+        },
+        {
+          "text": "Model",
+          "bold": false
+        },
+        {
+          "text": "Realize",
+          "bold": false
+        },
+        {
+          "text": "Evaluate",
+          "bold": false
+        },
+        {
+          "text": "Governance conversion",
+          "bold": true
+        },
+        {
+          "text": "Make consequential lessons durable",
+          "bold": false
+        }
+      ],
+      "reason": "Bundled Source Sans 3; 11.5pt bold title, 11pt regular activities, 11pt bold governance label, 10.5pt regular explanation.",
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.png",
+        "proof_sha256": "1ce2de6ac774610f65a52b7510c1a644f761a7951e4bbf9fb2cb27e47f0faf05",
+        "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+        "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+        "width_bp": 425.9729919433594,
+        "height_bp": 161.9759979248047,
+        "authored_type_sizes_pt": [
+          10.5,
+          11,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 1,
+        "semantic_typography_checks": 6,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "date": "2026-11-10",
+        "status": "passed",
+        "validation_scope": "New cycle artwork only; final assembled chapter requires layout inspection.",
+        "geometry_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/typography-audit.json"
       }
     },
     {
@@ -26626,15 +26691,15 @@
   "validation": {
     "date": "2026-11-10",
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "ee4ead4580555b8db1c88e972c6bd75492641f5a494e631d019d96f5666b72b8",
-    "audit_sha256": "df5c64e8bdfda542638ac2160db616a991d9e41b9e98899cb3ea6980a98f63c4",
-    "typography_audit_sha256": "9d5ed167dd69f6478af1fbd04e69de0f0f6f32b0706d1096cd37fdb28cd5b29f",
-    "candidate_count": 153,
-    "semantic_typography_checks": 1017,
+    "proof_sha256": "72effbca8294572dfdb35151d712bd69362b7d5bf889282812facacd228bb70c",
+    "audit_sha256": "95bf1303ae2429b641a190607a78688bcd9f34b14446120c73afbbde9467a937",
+    "typography_audit_sha256": "2346070f02e00f5b7ad33b1337cf72ef859fc66cbe4c07685c6d19bef5b7d4b3",
+    "candidate_count": 154,
+    "semantic_typography_checks": 1023,
     "geometry_findings": 0,
     "unapproved_compile_diagnostics": 0,
     "status": "passed",
-    "validation_scope": "Whole-pool compile, native-size envelope, geometry, and semantic typography checks rerun after the agentic-substrate redesign. The revised figure was separately inspected in native PDF and bundled-font SVG proofs.",
+    "validation_scope": "Whole-pool compile, native-size envelope, geometry, and semantic typography checks rerun with the new Chapter 4 cycle. The new compact drawing was separately inspected in native PDF and SVG proofs.",
     "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
   },
   "last_revised_date": "2026-11-10"

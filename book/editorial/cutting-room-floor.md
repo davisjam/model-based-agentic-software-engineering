@@ -19263,3 +19263,8 @@ The passages replaced while connecting natural-language delegation, explicit mod
 
 
 The later P1/P2 pass moves the two canonical problem definitions to §1.4, retains §1.5 as synthesis, and attributes the product reliability model to Enforcement. Complete pre-relocation sources for §§1.4–1.6 are appended to the same retired-passages record. The economic-completion footnote is retained beside the reliability consequence, with its dangling opening removed.
+
+
+### Chapter 4 — agentic engineering through models (2026-11-10)
+
+The superseded opening, seven-step pullquote, greenfield/brownfield transition, and ratcheteering sequence are preserved verbatim with source revision and line ranges in [the retired-passages record](chapter-four-cycle-20261110/retired-passages.json). The author replaced competing sequences with modeling, realization, and evaluation, placing governance conversion beneath the entire cycle and retaining Alignment throughout. [Integration notes](chapter-four-cycle-20261110/integration-notes.md) record the receiving context and unchanged narrower processes.

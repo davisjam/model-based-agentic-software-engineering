@@ -1,7 +1,7 @@
 {
   "review": "Sparse grayscale, typography, routing, shape and explicit-reference pass",
   "date": "2026-10-17",
-  "candidate_count": 150,
+  "candidate_count": 151,
   "refined_count": 130,
   "linked_regions": 46,
   "figure_link_count": 15,
@@ -2115,6 +2115,54 @@
       },
       "book_references": [],
       "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors."
+    },
+    {
+      "source": "book/assets/agentic-engineering-cycle.svg",
+      "candidate": "book/tikz/figures/agentic-engineering-cycle.tex",
+      "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+      "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+      "receipt": "book/tikz/receipts/agentic-engineering-cycle.json",
+      "decision": "new",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "status": "reviewed",
+      "fill": "All process boxes are white; no fill conveys a needed extra role.",
+      "bold": "Title and governance-conversion label are bold; activity names and explanatory line are regular.",
+      "routing": "Orthogonal cycle edges; 45bp horizontal arrows and 20bp return approach. Native TikZ brace spans all three activities.",
+      "shape": "Three equal rounded rectangles establish equal visual weight. A brace groups all three without becoming a process edge.",
+      "visual_review": "Native and SVG proofs inspected; all labels fit and every edge remains clear of text.",
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.png",
+        "proof_sha256": "1ce2de6ac774610f65a52b7510c1a644f761a7951e4bbf9fb2cb27e47f0faf05",
+        "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+        "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+        "width_bp": 425.9729919433594,
+        "height_bp": 161.9759979248047,
+        "authored_type_sizes_pt": [
+          10.5,
+          11,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 1,
+        "semantic_typography_checks": 6,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "date": "2026-11-10",
+        "status": "passed",
+        "validation_scope": "New cycle artwork only; final assembled chapter requires layout inspection.",
+        "geometry_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/typography-audit.json"
+      },
+      "book_references": [],
+      "routing_exceptions": "None."
     },
     {
       "source": "book/assets/interlude-execution-unit.svg",

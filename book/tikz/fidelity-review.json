@@ -1,7 +1,7 @@
 {
   "scope": "All 143 native grayscale TikZ candidates compared with original artwork, including seven navigation maps.",
   "base_commit": "25ac79978",
-  "checked_count": 144,
+  "checked_count": 145,
   "refined_count": 69,
   "limitations": "Visual review records editorial judgment, not a proof of semantic equivalence. Geometry checks cannot detect missing visual meaning. Original color artwork remains immediately before each candidate for author review.",
   "figures": [
@@ -1066,6 +1066,34 @@
       "candidate_sha256": "cc42b5964c3b64bbbefb3e8591c4f88d330a76ef094fc741a9cfd129d59360fb",
       "review": "Restored ellipsis in expanding protection rings, preserving open-ended extension beyond the named models.",
       "decision": "refined"
+    },
+    {
+      "source": "book/assets/agentic-engineering-cycle.svg",
+      "candidate": "book/tikz/figures/agentic-engineering-cycle.tex",
+      "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+      "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+      "checks": {
+        "icons_and_symbols": "The native brace spans all three activities. The return arrow provides repetition without a fourth phase.",
+        "links_and_groups": "Exactly three peer activities, in the same order in SVG and TikZ; conversion label sits below the spanning brace.",
+        "annotation_placement": "Governance conversion is outside the cycle; no route attaches it only to Evaluate.",
+        "line_breaks": "Every label occupies one readable line."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.5,
+          11,
+          11.5
+        ],
+        "minimum": 10.5,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 425.9729919433594,
+      "height_bp": 161.9759979248047,
+      "monochrome": true,
+      "review": "Native and SVG proofs visually compared. Both preserve labels, cycle direction, and all-activities brace.",
+      "decision": "new"
     },
     {
       "source": "book/assets/interlude-execution-unit.svg",

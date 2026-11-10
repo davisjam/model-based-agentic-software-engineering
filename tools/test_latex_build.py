@@ -4,7 +4,8 @@ from pathlib import Path
 import re
 import tempfile
 
-from latex_build import diagnostics, bold_table_headers, single_page_tables, namespace_heading_links
+from latex_build import (diagnostics, bold_table_headers, single_page_tables,
+                         namespace_heading_links, restore_chapter_heading_links)
 
 
 class NativeMathRoundTrip(unittest.TestCase):
@@ -41,6 +42,35 @@ class HeadingLinks(unittest.TestCase):
             self.assertIn(r'\label{' + slug + ':heading:summary}', output)
             self.assertEqual(output.count(r'\hyperref[' + slug + ':heading:summary]'), 2)
             self.assertIn(r'\hyperref[figure-example]{Figure}', output)
+
+    def test_cross_chapter_heading_round_trip_is_internal_in_print(self):
+        import mage_latex
+        native = (r'\chapter{Summary}' '\n' +
+                  r'Read \hyperref[chapter-a:heading:assurance]{\emph{Assurance}}.')
+        with tempfile.TemporaryDirectory(dir=mage_latex.ROOT) as directory:
+            source, projection, output = [Path(directory, name) for name in
+                                          ('source.tex', 'projection.md', 'print.tex')]
+            source.write_text(native)
+            source.with_suffix('.assets.json').write_text('[]')
+            mage_latex.compatibility(source, projection)
+            self.assertIn('(chapter-a.html#assurance)', projection.read_text())
+            mage_latex.migrate(projection, output, driver_enabled=False)
+            restored = restore_chapter_heading_links(output.read_text(),
+                {'chapter-a.html#assurance': 'chapter-a:heading:assurance'})
+            self.assertIn(r'\hyperref[chapter-a:heading:assurance]{\emph{Assurance}}', restored)
+            self.assertNotIn(r'\href{chapter-a.html', restored)
+
+    def test_only_known_chapter_headings_become_internal_links(self):
+        native = (r'\href{chapter-a.html\#assurance}{Known} '
+                  r'\href{chapter-a.html\#figure-a}{Figure} '
+                  r'\href{missing.html\#assurance}{Missing} '
+                  r'\href{https://example.com/chapter-a.html\#assurance}{External}')
+        restored = restore_chapter_heading_links(native,
+            {'chapter-a.html#assurance': 'chapter-a:heading:assurance'})
+        self.assertIn(r'\hyperref[chapter-a:heading:assurance]{Known}', restored)
+        for target in ('chapter-a.html\\#figure-a', 'missing.html\\#assurance',
+                       'https://example.com/chapter-a.html\\#assurance'):
+            self.assertIn(r'\href{' + target + '}', restored)
 
 
 class DiagnosticPolicy(unittest.TestCase):

@@ -1,0 +1,18 @@
+% Compact three-activity cycle; governance conversion spans all activities.
+% Coordinates are final-print bp; the brace is TikZ's native named decoration.
+\begin{tikzpicture}[x=1bp,y=1bp]
+\path[use as bounding box] (0,0) rectangle (420,156);
+\node[inner sep=0pt,outer sep=0pt,font=\bfseries\fontsize{11.5}{13.5}\selectfont] at (210,145) {Agentic Engineering Through Models};
+\draw[draw=black,line width=0.65pt,rounded corners=3pt,fill=white] (30,72) rectangle (120,102);
+\draw[draw=black,line width=0.65pt,rounded corners=3pt,fill=white] (165,72) rectangle (255,102);
+\draw[draw=black,line width=0.65pt,rounded corners=3pt,fill=white] (300,72) rectangle (390,102);
+\node[inner sep=0pt,outer sep=0pt,font=\fontsize{11}{13}\selectfont] at (75,87) {Model};
+\node[inner sep=0pt,outer sep=0pt,font=\fontsize{11}{13}\selectfont] at (210,87) {Realize};
+\node[inner sep=0pt,outer sep=0pt,font=\fontsize{11}{13}\selectfont] at (345,87) {Evaluate};
+\draw[-Stealth,line width=0.8pt] (120,87) -- (165,87);
+\draw[-Stealth,line width=0.8pt] (255,87) -- (300,87);
+\draw[-Stealth,line width=0.8pt] (345,102) -- (345,122) -- (75,122) -- (75,102);
+\draw[decorate,decoration={brace,mirror,amplitude=7bp},line width=0.65pt] (30,60) -- (390,60);
+\node[inner sep=0pt,outer sep=0pt,font=\bfseries\fontsize{11}{13}\selectfont] at (210,33) {Governance conversion};
+\node[inner sep=0pt,outer sep=0pt,font=\fontsize{10.5}{12.5}\selectfont] at (210,17) {Make consequential lessons durable};
+\end{tikzpicture}

@@ -41,14 +41,7 @@ MAGE responds through three moves:
 
 That accumulated structure becomes **engineering capital** when later work continues to benefit from it.
 
-MAGE is a working cycle:
-
-1. model consequential knowledge;
-2. enforce important obligations;
-3. do the governed work;
-4. observe failures, friction, and repeated judgment;
-5. convert recurring lessons into durable structure;
-6. repeat.
+Agentic engineering through models involves recurring modeling, realization, and evaluation, with no required starting point. Alignment operates throughout: constraints govern realization, sensors supply evidence, and gates control admission. Governance conversion can occur during any of these activities; it is not a phase of the cycle. Repeated governance conversions accumulate correctable engineering structure through ratcheteering.
 
 The objective is not maximum automation. It is greater autonomy while preserving consequential engineering decisions.
 

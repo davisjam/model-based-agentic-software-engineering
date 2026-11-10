@@ -644,6 +644,46 @@
     "candidate_sha256": "36c71ce302d6e6c0614b0b4be0deca3f879cb42c796ddb225abce274eea1e41a"
   },
   {
+    "source": "book/assets/agentic-engineering-cycle.svg",
+    "candidate": "book/tikz/figures/agentic-engineering-cycle.tex",
+    "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+    "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+    "receipt": "book/tikz/receipts/agentic-engineering-cycle.json",
+    "reviewed": true,
+    "decision": "new",
+    "rationale": "White process boxes, black labels, black flow arrows and brace; no tonal role needed.",
+    "validation": {
+      "proof": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.pdf",
+      "proof_png": "/private/tmp/mage14-20261110/ch4-cycle-figure/proof.png",
+      "proof_sha256": "1ce2de6ac774610f65a52b7510c1a644f761a7951e4bbf9fb2cb27e47f0faf05",
+      "source_sha256": "2089197d50ca3c076bdc7bec498e98c46abad8d2240bd810354ae6ae3ee5f00b",
+      "candidate_sha256": "da96ee87f92323264b1250d5de7374484031afea78b539ab26d93bfe09a7408c",
+      "width_bp": 425.9729919433594,
+      "height_bp": 161.9759979248047,
+      "authored_type_sizes_pt": [
+        10.5,
+        11,
+        11.5
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "reviewed_peer_groups": 1,
+      "semantic_typography_checks": 6,
+      "typography_findings": 0,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "monochrome_pixels": true,
+      "reviewed_visually": true,
+      "date": "2026-11-10",
+      "status": "passed",
+      "validation_scope": "New cycle artwork only; final assembled chapter requires layout inspection.",
+      "geometry_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage14-20261110/ch4-cycle-figure/typography-audit.json"
+    }
+  },
+  {
     "source": "book/assets/interlude-execution-unit.svg",
     "candidate": "book/tikz/figures/interlude-execution-unit.tex",
     "receipt": "book/tikz/receipts/interlude-execution-unit.json",

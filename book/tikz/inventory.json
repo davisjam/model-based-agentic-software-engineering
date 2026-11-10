@@ -775,6 +775,28 @@
     "svg_description": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region."
   },
   {
+    "chapter": "4.1-the-dynamics-of-mage",
+    "source": "assets/agentic-engineering-cycle.svg",
+    "caption": "*Agentic engineering through models.* Modeling, realization, and evaluation recur as a system evolves. Alignment operates throughout; governance conversion can make a consequential lesson durable during any activity.",
+    "native_context": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/agentic-engineering-cycle.json",
+    "generator": null,
+    "data": [],
+    "conversion": "Native editable TikZ and live-text SVG authored together from the user specification.",
+    "svg_title": "Agentic Engineering Through Models",
+    "svg_description": "Model, Realize, and Evaluate form a repeating cycle. A brace spans all three activities and is labeled Governance conversion: Make consequential lessons durable. Conversion can occur during any activity; it is not a fourth phase.",
+    "native_dimensions_bp": [
+      425.9729919433594,
+      161.9759979248047
+    ],
+    "authored_font_sizes_pt": [
+      10.5,
+      11,
+      11.5
+    ]
+  },
+  {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-execution-unit.svg",
     "caption": "*Two execution units for document remediation.* (a) Whole-document execution keeps the artifact's working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.",

@@ -661,7 +661,8 @@ def _prepare_record(task):
     latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels(),
                                   inline_labels=inset_inline_labels())
 
-    from latex_build import bold_table_headers, single_page_tables, namespace_heading_links
+    from latex_build import (bold_table_headers, single_page_tables,
+                             namespace_heading_links, restore_chapter_heading_links)
     latex = bold_table_headers(latex)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
     # This five-column comparison fits at its normal table size on one page.
@@ -670,6 +671,7 @@ def _prepare_record(task):
     latex = single_page_tables(latex, {'semantic-commitment-spectrum'}, placement='htbp')
     # Headings repeat between chapters; make destination identities unambiguous.
     latex = namespace_heading_links(latex, slug)
+    latex = restore_chapter_heading_links(latex, record['_heading_destinations'])
     # Each record retains its explicit chapter title and a unique chapter anchor.
     latex = latex.replace('\\chapter{', '\\chapter*{', 1)
     chapter_heading = '\\chapter*{' + inline(record['chapter_title']) + '}'
@@ -808,7 +810,16 @@ def prepare_pdf(slugs=None, name="mage-book"):
     records = book_ir.book_records(include_appendices=True, for_print=True)
     index_registry, index_maps = bb._harvest_concept_tags(records)
     index_entries = bb.build_index_entries(records, index_registry)
+    # Web/EPUB chapters use URLs; the assembled PDF uses chapter-qualified labels.
+    # Harvest authored heading anchors before excerpt selection so links retain
+    # their canonical identity across both projections.
+    heading_destinations = {
+        record['slug'] + '.html#' + anchor: record['slug'] + ':heading:' + anchor
+        for record in records
+        for anchor in re.findall(r'(?m)^#{2,6} .+?\{#([^}]+)\}\s*$', record['body_md'])
+    }
     for record in records:
+        record['_heading_destinations'] = heading_destinations
         record['_build_directory'] = str(directory.relative_to(ROOT))
         record['_index_anchors'] = index_maps.get(record['slug'], {})
     if slugs is not None:
