@@ -19285,3 +19285,8 @@ The subsequent conservative flow pass replaces the evidence-source overview in K
 ### Chapter 5 — feasibility chronology and monochrome staircase (2026-11-10)
 
 The later scaffold/agent experiment and foundation-model selection policy move into Substituting the Reasoning Engine, leaving the feasibility probe at the initial capability test and system-building decision. The [retired-passages record](chapter-five-placement-20261110/retired-passages.json) preserves the replaced narration and connective text with source revisions and line ranges; the [prose review](chapter-five-placement-20261110/prose-review.md) records its reconciliation. The earlier monochrome staircase, receipt and six review rows are preserved in [the figure archive](chapter-five-placement-20261110/figure-before/manifest.json). The revised drawing retains the five stages and nonzero residual judgment, with left-aligned descriptions, aligned card edges and clearer qualitative trajectories.
+
+
+### Chapter 6 — Summary heading and opening (2026-11-10)
+
+The author renamed the closing section Summary and replaced its compressed-claims opening with five connected ideas. The [retired-text record](chapter-six-summary-20261110/retired-text.json) preserves the original heading and opening with source revision and line range. The five numbered statements and closing synthesis remain unchanged.
