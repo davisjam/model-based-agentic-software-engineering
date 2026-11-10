@@ -31,8 +31,9 @@ class PrintKeepWithNextTests(unittest.TestCase):
         actual = apply_print_keep_with_next(source)
         self.assertNotIn('<!-- print-keep-with-next:', actual)
         self.assertIn(box, actual)
-        self.assertTrue(actual.startswith('Before.\n\n\\afterpage{\\clearpage'))
-        self.assertTrue(actual.endswith('\\par\\clearpage}\n\nAfter.'))
+        self.assertEqual(actual, source.replace('% <!-- print-keep-with-next: page -->',
+                                                r'\Needspace{\textheight}'))
+        self.assertNotIn(r'\afterpage', actual)
 
     def test_literal_examples_are_unchanged(self):
         for environment in ['verbatim', 'Verbatim', 'lstlisting', 'minted']:

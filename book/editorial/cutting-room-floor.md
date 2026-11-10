@@ -19305,3 +19305,8 @@ The author reframed §7.2 as “Back to Models, but Not Back to Waterfall,” re
 ### Chapters 4, 5, and 7 — author voice and incremental adoption (2026-11-10)
 
 The author added a first-person account of discovering consequential obligations, integrated the loss and new satisfactions of delegated implementation with the existing learning argument, and clarified incremental adoption and different levels of autonomy. Exact earlier manuscript passages, source revisions, and original line ranges are preserved in [the retirement record](author-voice-followups-20261110/retired-passages.json). The [prose review](author-voice-followups-20261110/prose-review.md) records the four approved changes, topic-sentence outline, receiving-context choices, and preservation checks. The brownfield Appendix B pointer is moved rather than duplicated; the authority inset and final accountability paragraph remain unchanged.
+
+
+### Chapter 7 — authority inset placement (2026-11-10)
+
+The inset moves unchanged after the upstream-expertise discussion to fit a normal full page while keeping the preceding mainline developed. Its lead-in moves with it. The [placement record](chapter-seven-profession-followups-20261110/layout-disposition.md) gives the source revision, original lines, rationale, and minimum antecedent edit; the [complete before-source](chapter-seven-profession-followups-20261110/authority-placement-before.tex) preserves the original order.

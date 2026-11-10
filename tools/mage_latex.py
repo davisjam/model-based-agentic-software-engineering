@@ -572,25 +572,19 @@ def apply_print_keep_with_next(text):
 
     The HTML-comment directive survives native/Markdown projection, is inert on
     the web, and reserves enough line-height space for a lead-in and next block.
-    The `page` request inserts a reviewed page-sized inset at the next page
-    boundary, allowing the surrounding main text to fill the current page.
-    It does not change global float policy.
+    The `page` request reserves one full text page for a reviewed inset.
+    Content stays in the normal reading and tagging sequence.
     """
     def replace(match):
         value = match[1].strip()
+        if value == 'page':
+            return r'\Needspace{\textheight}'
         if not value.isdecimal() or not 2 <= int(value) <= 20:
             raise ValueError('print-keep-with-next needs 2–20 baseline lines or page')
         return r'\Needspace{' + str(int(value)) + r'\baselineskip}'
     directive = r'(?m)^% <!-- print-keep-with-next: ([^\n]*?) -->[ \t]*$'
     literal = r'(\\begin\{(?:verbatim|Verbatim|lstlisting|minted)\}.*?\\end\{(?:verbatim|Verbatim|lstlisting|minted)\})'
-    def project(part):
-        page_inset = (r'(?ms)^% <!-- print-keep-with-next: page -->[ \t]*$'
-                      r'([ \t\r\n]*(?:%[^\n]*\n[ \t\r\n]*)*'
-                      r'\\begin\{bookbox\}.*?\\end\{bookbox\})')
-        part = re.sub(page_inset, lambda m: r'\afterpage{\clearpage' + '\n' +
-                      m[1] + '\n' + r'\par\clearpage}', part)
-        return re.sub(directive, replace, part)
-    return ''.join(part if i % 2 else project(part)
+    return ''.join(part if i % 2 else re.sub(directive, replace, part)
                    for i, part in enumerate(re.split(literal, text, flags=re.S)))
 
 
@@ -882,7 +876,6 @@ def prepare_pdf(slugs=None, name="mage-book"):
     driver.write_text(r'''\DocumentMetadata{lang=en-US,pdfversion=2.0,testphase={phase-III,table,math}}
 \documentclass[11pt,openany]{book}
 \usepackage[mage]{house}
-\usepackage{afterpage}
 \usepackage[numbers]{natbib}
 \setlength{\emergencystretch}{2em}
 \renewcommand{\bibsection}{\chapter*{\bibname}\label{mage-bibliography}}
