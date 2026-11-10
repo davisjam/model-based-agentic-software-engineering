@@ -584,8 +584,9 @@ def apply_print_keep_with_next(text):
     directive = r'(?m)^% <!-- print-keep-with-next: ([^\n]*?) -->[ \t]*$'
     literal = r'(\\begin\{(?:verbatim|Verbatim|lstlisting|minted)\}.*?\\end\{(?:verbatim|Verbatim|lstlisting|minted)\})'
     def project(part):
-        page_inset = (r'(?ms)^% <!-- print-keep-with-next: page -->[ \t]*$\s*'
-                      r'(\\begin\{bookbox\}.*?\\end\{bookbox\})')
+        page_inset = (r'(?ms)^% <!-- print-keep-with-next: page -->[ \t]*$'
+                      r'([ \t\r\n]*(?:%[^\n]*\n[ \t\r\n]*)*'
+                      r'\\begin\{bookbox\}.*?\\end\{bookbox\})')
         part = re.sub(page_inset, lambda m: r'\afterpage{\clearpage' + '\n' +
                       m[1] + '\n' + r'\par\clearpage}', part)
         return re.sub(directive, replace, part)

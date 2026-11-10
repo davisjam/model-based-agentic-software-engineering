@@ -22,6 +22,18 @@ class PrintKeepWithNextTests(unittest.TestCase):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 apply_print_keep_with_next('% <!-- print-keep-with-next: '+value+' -->')
 
+    def test_page_inset_accepts_projected_metadata_without_losing_prose(self):
+        box = ('% mage-box-prefix: Inset —\n\n'
+               '\\begin{bookbox}{inset}{Authority}\n'
+               '\\label{inset-authority}\nEvidence and responsibility.\n'
+               '\\end{bookbox}')
+        source = 'Before.\n\n% <!-- print-keep-with-next: page -->\n\n' + box + '\n\nAfter.'
+        actual = apply_print_keep_with_next(source)
+        self.assertNotIn('<!-- print-keep-with-next:', actual)
+        self.assertIn(box, actual)
+        self.assertTrue(actual.startswith('Before.\n\n\\afterpage{\\clearpage'))
+        self.assertTrue(actual.endswith('\\par\\clearpage}\n\nAfter.'))
+
     def test_literal_examples_are_unchanged(self):
         for environment in ['verbatim', 'Verbatim', 'lstlisting', 'minted']:
             source = '\\begin{'+environment+'}\n% <!-- print-keep-with-next: 8 -->\n\\end{'+environment+'}'
