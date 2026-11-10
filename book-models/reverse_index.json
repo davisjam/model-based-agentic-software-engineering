@@ -1604,6 +1604,16 @@
         }
       ]
     },
+    "point:code-inspection-experiment-motivates-machinery": {
+      "kind": "point",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.4-the-agentic-substrate::block-2",
+          "role": "paragraph-point"
+        }
+      ]
+    },
     "point:combinations-land-differently-for-different-properties-of-one-system": {
       "kind": "point",
       "dependents": [
@@ -2199,12 +2209,12 @@
         }
       ]
     },
-    "point:engineering-methods-follow-from-the-material": {
+    "point:engineering-methods-fit-the-machinery": {
       "kind": "point",
       "dependents": [
         {
           "view": "outline",
-          "element": "1.4-the-agentic-substrate::block-2",
+          "element": "1.4-the-agentic-substrate::block-4",
           "role": "paragraph-point"
         }
       ]
@@ -5724,16 +5734,6 @@
         }
       ]
     },
-    "point:the-substrate-is-model-plus-harness-in-an-environment": {
-      "kind": "point",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.4-the-agentic-substrate::block-4",
-          "role": "paragraph-point"
-        }
-      ]
-    },
     "point:the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions": {
       "kind": "point",
       "dependents": [
@@ -6614,12 +6614,12 @@
         }
       ]
     },
-    "section-id:foundation-model-agentic-harness-and-engineered-environment": {
+    "section-id:foundation-model-and-agentic-harness": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "1.4-the-agentic-substrate::foundation-model-agentic-harness-and-engineered-environment",
+          "element": "1.4-the-agentic-substrate::foundation-model-and-agentic-harness",
           "role": "section-anchor"
         }
       ]

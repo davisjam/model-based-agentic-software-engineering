@@ -261,9 +261,9 @@
       "part": 1,
       "sections": [
         {
-          "section_id": "foundation-model-agentic-harness-and-engineered-environment",
+          "section_id": "foundation-model-and-agentic-harness",
           "level": 2,
-          "heading_text": "Foundation Model, Agentic Harness, and Engineered Environment",
+          "heading_text": "Foundation Model and Agentic Harness",
           "topic_sentence": "A **foundation model** makes broad semantic reasoning available at a marginal cost far below the skilled human labor that many such tasks previously required.",
           "id_source": "derived",
           "block_index": 6,
@@ -348,13 +348,13 @@
       ],
       "preamble_points": [
         {
-          "slug": "engineering-methods-follow-from-the-material",
-          "text": "Engineering methods fit the substrate they act on; reinforced concrete works because concrete takes compression and steel takes tension, and agentic engineering likewise begins by asking what productive machinery entered the process and which of its properties matter.",
+          "slug": "code-inspection-experiment-motivates-machinery",
+          "text": "The DocAble experiment sought informed control over agent-produced implementation with almost no personal code inspection; this motivates examining the machinery's capabilities and limitations.",
           "block_index": 2
         },
         {
-          "slug": "the-substrate-is-model-plus-harness-in-an-environment",
-          "text": "The relevant substrate is not a foundation model alone but a foundation model operating through an agentic harness inside an engineered environment; the combination determines both what autonomous work can do and where engineering can act on it.",
+          "slug": "engineering-methods-fit-the-machinery",
+          "text": "Engineering methods must fit the machinery they govern; the foundation model supplies reasoning and the harness turns that reasoning into action.",
           "block_index": 4
         }
       ]

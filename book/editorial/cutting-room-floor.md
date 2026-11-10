@@ -19240,3 +19240,8 @@ The previous §1.2 environment paragraph is preserved verbatim:
 ```latex
 Engineers increasingly exercise those decisions through the environment in which agents work. This is part of what I meant in the Preface by “a level of indirection.” An engineering environment is the surrounding structure through which engineering work occurs: its representations, tools, processes, permissions, evidence, and mechanisms. It becomes a governed engineering environment when that structure deliberately carries engineering decisions forward, making consequential knowledge available, enforcing selected obligations, and preserving evidence needed for engineering control. Governed Engineering Environment (GEE) names the resulting MAGE construct. \autoref{engineering-leverage} shows how engineering leverage shifts from implementation toward this environment.
 ```
+
+
+### Chapter 1 — opening the agentic-machinery section (2026-11-09)
+
+The reinforced-concrete analogy and opening model/harness/environment summary are preserved verbatim in [the retired opening](agentic-machinery-opening-before-20261109.tex). The author replaced them with the DocAble code-inspection experiment and a direct introduction to the foundation model and harness. The later explanation of the engineered environment and its hook example remain in place. The section is now “Agentic Machinery and Its Properties,” with the first subsection “Foundation Model and Agentic Harness.”
