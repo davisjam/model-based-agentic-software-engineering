@@ -2033,18 +2033,38 @@
           9.0,
           10.0
         ],
-        "minimum": 9,
+        "minimum": 9.0,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
       "width_bp": 399.9570007324219,
-      "height_bp": 351.7349853515625,
+      "height_bp": 351.4620056152344,
       "monochrome": true,
-      "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
-      "candidate_sha256": "d76f6006ddb88d4cc7a5ca95640d4b3f2726e2f3be453bb7532c5ac207366027",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
+      "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
+      "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
+      "review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+      "decision": "refined",
+      "revision_date": "2026-11-10",
+      "validation": {
+        "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+        "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+        "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+        "page": 1,
+        "width_bp": 399.9570007324219,
+        "height_bp": 351.4620056152344,
+        "font_sizes_pt": [
+          9.0,
+          10.0
+        ],
+        "minimum_prose_font_pt": 9.0,
+        "monochrome_pixels": true,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 14,
+        "reviewed_peer_groups": 0,
+        "unapproved_compile_diagnostics": 0,
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/governing-consequential-work.png",

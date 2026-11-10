@@ -1,0 +1,132 @@
+[
+  {
+    "id": "tradition-title-metadata",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 10,
+    "original_line_end": 10,
+    "original_text": "% <!-- chapter-title: MAGE in the Engineering Tradition -->",
+    "replacement_text": "% <!-- chapter-title: Back to Models, but Not Back to Waterfall -->",
+    "reason": "Adopt the directly approved argumentative section title without changing the chapter title The Profession."
+  },
+  {
+    "id": "tradition-title",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 12,
+    "original_line_end": 12,
+    "original_text": "\\chapter{MAGE in the Engineering Tradition}",
+    "replacement_text": "\\chapter{Back to Models, but Not Back to Waterfall}",
+    "reason": "Rename 7.2 while retaining its location and five historical subsections."
+  },
+  {
+    "id": "waterfall-question-and-historical-purpose",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 14,
+    "original_line_end": 16,
+    "original_text": "MAGE recomposes ideas that software engineering, the older engineering disciplines, and artificial intelligence each developed over decades, under one changed economic condition: realization by commodity intelligence.\n\nSoftware engineering has long possessed elaborate modeling techniques. Requirements models, architecture description, state machines, formal specification, types, model-driven engineering, and verification all predate the present moment by decades. What distinguished mainstream practice was the unusually powerful position code occupied. Source was symbolic, executable, cheap to copy, and precise enough to serve as artifact and representation at once. The concentration of model-heavy methods in particular software domains has an economic explanation: the benefits of explicit representations must justify the costs of creating, maintaining, and enforcing them.",
+    "replacement_text": "MAGE asks engineers to invest deliberately in models, specifications, and controls while delegating more implementation to agents. Does that mean software engineering is returning to waterfall: specifying the system in advance, then handing the specification to a fabricator? The resemblance is understandable. Much of software engineering\\textquotesingle s history has involved moving away from the expectation that a sufficiently complete design could precede implementation. Yet the iterative development examined in \\magevalue{chapter:one-problem-many-models} showed the opposite of a fixed handoff: implementation exposed missing knowledge, models were revised, and recurring failures changed the engineering environment inherited by later work.\n\nThe distinction is between working through models and requiring models to settle the implementation before work begins. Engineers have long used representations to make consequential decisions without expecting those representations to describe every detail of the finished artifact. Software engineering developed a different balance because code itself served as an unusually powerful representation and because maintaining additional models imposed costs. Commodity intelligence changes those costs. To understand what MAGE changes, and what it inherits, we need to examine why software engineering historically organized representation and implementation differently from other engineering disciplines.",
+    "reason": "Use the two supplied opening paragraphs to motivate the retained history as an answer to the waterfall question. Resolve Chapter 4 through its governed chapter macro."
+  },
+  {
+    "id": "tdd-and-agile-ground-iteration",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 28,
+    "original_line_end": 28,
+    "original_text": "\\textbf{The common engineering move is simple: ask the question over the cheapest representation that preserves the property you care about, then use evidence to justify realization.} Mature engineering still uses prototypes, experiments, and direct inspection. Models do not replace the artifact. They organize the reasoning around it.",
+    "replacement_text": "\\textbf{The common engineering move is simple: ask the question over the cheapest representation that preserves the property you care about, then use evidence to justify realization.} Mature engineering still uses prototypes, experiments, and direct inspection. Models do not replace the artifact. They organize the reasoning around it.\n\nSoftware engineering already combines explicit obligations with rapid iteration. Test-driven development, for example, states an expected behavior in a test before implementing it, then revises the implementation through repeated test–code–refactor cycles\\citep{beck2003tdd}. Specifying an obligation before implementing it is not the same as specifying the entire system before development begins. Likewise, agile methods do not dispense with planning. They favor delivering useful results early, learning from them, and revising subsequent plans as evidence accumulates\\citep{agile-principles2001}.",
+    "reason": "Insert the five directly approved sentences immediately after the artifact/representation distinction. Preserve the newest agile wording verbatim and use root-verified primary citation keys."
+  },
+  {
+    "id": "software-economics-opening",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 38,
+    "original_line_end": 38,
+    "original_text": "Software shared this engineering tradition, and its economics often favored a different allocation of representational work.",
+    "replacement_text": "Software engineering did not reject models in favor of iteration. Its economics made implementation itself an unusually attractive surface for engineering reasoning.",
+    "reason": "Connect the software-economics subsection to the new question without rewriting its historical explanation."
+  },
+  {
+    "id": "separate-model-first-from-sequential-process",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 73,
+    "original_line_end": 73,
+    "original_text": "The Siemens reconstruction demonstrates one such equilibrium in a mature engineering culture. The public account describes persistent models carrying geometry, requirements, behavior, physical relationships, allowable change, and traceability before an agent enters the picture. Software can appear downstream as one realization among others. The agentic question is therefore not how to recover engineering structure from source code, but how to let autonomous tools operate safely through structure the organization already made explicit.",
+    "replacement_text": "The Siemens reconstruction demonstrates one such equilibrium in a mature engineering culture. The public account describes persistent models carrying geometry, requirements, behavior, physical relationships, allowable change, and traceability before an agent enters the picture. Software can appear downstream as one realization among others. The agentic question is therefore not how to recover engineering structure from source code, but how to let autonomous tools operate safely through structure the organization already made explicit.\n\nModel-first engineering does not, by itself, imply waterfall. A model can be revised after a prototype, simulation, test, or deployment exposes a mistaken assumption. The distinction concerns how much engineering intent the representation determines, not whether development proceeds through a single pass. In a model-first system, a sufficiently complete representation may support deterministic generation of much of the implementation; in MAGE, the representation may instead preserve selected obligations while leaving substantial implementation freedom to an agent. Both arrangements can be iterative. What differs is how much the engineer chooses to settle before a particular act of realization.",
+    "reason": "Add the supplied model-first/iteration paragraph after Siemens and before the existing inversion, without adding another taxonomy or changing the five subsection headings."
+  },
+  {
+    "id": "novelty-answers-waterfall-question",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 110,
+    "original_line_end": 110,
+    "original_text": "The components of MAGE have deep precedents: models, constraints, verification, external memory, structured reasoning, and autonomous software agents. MAGE\\textquotesingle s claim concerns their architectural and disciplinary composition.",
+    "replacement_text": "MAGE neither restores a sequential development process nor requires a complete model before implementation begins. Its components have deep precedents: models, constraints, verification, external memory, structured reasoning, and autonomous software agents. The contribution lies in their architectural and disciplinary composition, made newly practical by commodity intelligence.",
+    "reason": "Use the supplied novelty opening to answer the initial process question before retaining the existing architectural and disciplinary claim."
+  },
+  {
+    "id": "retire-independent-reading-inset",
+    "source": "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 17,
+    "original_line_end": 48,
+    "original_text": "% <!-- box-family: inset -->\n\n% <!-- inset-domain: READING PATH -->\n\n% mage-box-prefix: Inset —\n\n\\begin{bookbox}{inset}{Reading this section on its own}\n\\label{inset-read-beyond-software-standalone}\nThis section is intended to stand on its own for readers interested in agentic engineering beyond software. If you have come directly here, the argument depends on a small set of ideas developed earlier in the book:\n\n\\begin{itemize}\n\\tightlist\n\\item\n  MAGE asks how people retain informed control when capable agents perform consequential work.\n\\item\n  \\textbf{Modeling} gives people and agents purposeful representations of the properties that matter, rather than requiring those properties to be reconstructed repeatedly from the artifact or work being produced.\n\\item\n  \\textbf{Alignment} places selected obligations outside the producing agent, where the surrounding environment can evaluate and enforce them independently.\n\\item\n  A \\textbf{Governed Engineering Environment (GEE)} combines these representations and enforcement mechanisms with evidence and allocated authority, so capable agents can work autonomously without being the sole judges of their own work.\n\\item\n  \\textbf{Governance conversion} turns recurring human judgment into models, checks, mechanisms, and other engineering structure that later work can inherit.\n\\item\n  Not every judgment should or can become machinery. The \\textbf{determinization frontier} separates properties that the environment can decide mechanically from those that continue to require situated judgment.\n\\end{itemize}\n\nFor example, consider an agent helping an organization evaluate suppliers for a major procurement. A model might represent the alternatives, requirements, costs, uncertainties, and dependencies that matter to the decision. Some obligations---such as spending authority, required disclosures, or minimum contractual terms---can be checked independently of the agent making the recommendation. The GEE connects those representations and checks with evidence about supplier performance and with the authority to make the decision. If the organization repeatedly discovers the same risk, it can turn that judgment into a required check or decision rule for future procurements. Other questions---whether a strategic dependency is acceptable, for example---may remain matters for accountable human judgment (i.e., they lie beyond the determinization frontier). The particular representations and controls differ from software; the governing pattern does not.\n\nWith that machinery in hand, this section asks whether MAGE describes something peculiar to software engineering or a more general way of governing consequential agentic work.\n\\end{bookbox}\n\n",
+    "replacement_text": "",
+    "reason": "Delete the full recap and procurement example as directly approved; subsequent accounting, law, and science cases carry the transfer argument without a second introduction."
+  },
+  {
+    "id": "merge-authority-inset-historical-cases",
+    "source": "book/latex/sources/part7/7.4-the-engineer.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 96,
+    "original_line_end": 98,
+    "original_text": "Engineering history contains painful demonstrations of this distinction. Before Challenger, Morton Thiokol engineers recommended against launching at the temperatures expected on January 28, 1986. Management reversed that recommendation, but the engineering objection survived in the record, allowing the Rogers Commission to reconstruct both the technical disagreement and the decision process that followed it\\citep{rogers1986}. Columbia illustrates a different failure: engineers raised concerns about the foam strike and sought additional imagery, but important assumptions and uncertainties did not reach the Mission Management Team with sufficient force or clarity. The Columbia Accident Investigation Board subsequently called for an independent technical authority and safety-assurance organization with authority over safety decisions\\citep{caib2003}.\n\nVolkswagen\\textquotesingle s diesel-emissions scandal brings the problem into software. Engineers implemented software that recognized emissions tests and changed vehicle behavior; the subsequent legal record made it possible to reconstruct what engineers and managers knew, what they concealed, and who participated in the decisions. Volkswagen engineer James Liang ultimately pleaded guilty to conspiracy and was sentenced to 40 months in federal prison\\citep{doj-vw-liang}. The disclosures of Frances Haugen and, later, former Facebook engineering director Arturo Béjar bring the pattern entirely into software systems. Facebook\\textquotesingle s own researchers studied harms experienced by young users, while Béjar later testified about internal measurements of such harms and his efforts to communicate them to senior executives\\citep{senate-haugen2021, senate-bejar2023}. Whatever judgment one makes about the appropriate product or policy response, these records made a more basic question answerable: what did the organization know about the behavior of its system, who knew it, and what did those with authority do with that knowledge?",
+    "replacement_text": "Engineering history shows what happens when technical knowledge and decision authority become disconnected. Before the Challenger launch, Morton Thiokol engineers recommended against launching at the expected temperatures, but management reversed the recommendation; the Rogers Commission later reconstructed the disagreement and the decision process\\citep{rogers1986}. Before Columbia\\textquotesingle s loss, engineers raised concerns about the foam strike and sought additional imagery, but their uncertainties did not reach decision-makers with sufficient force\\citep{caib2003}. Volkswagen\\textquotesingle s emissions scandal illustrates a different failure: engineers participated in implementing software that concealed regulatory violations, and the subsequent legal record established individual accountability\\citep{doj-vw-liang}. The disclosures of Frances Haugen and Arturo Béjar concerning harms on Facebook\\textquotesingle s platforms illustrate another form of the problem: internal measurements and warnings can exist without producing an adequate organizational response\\citep{senate-haugen2021, senate-bejar2023}. These cases differ in their causes and consequences, but each raises a question that engineering records should make answerable: what did the organization know, who knew it, and what did those with authority do with that knowledge?",
+    "reason": "Apply the latest surgical consolidation into one paragraph while preserving every historical citation at its relevant clause. Leave the ethical argument, delegated bounds, risk acceptance, and accountability paragraphs unchanged pending root's one-page PDF proof."
+  },
+  {
+    "id": "nondelegation-title-metadata",
+    "source": "book/latex/sources/part7/7.5-what-cannot-be-delegated.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 6,
+    "original_line_end": 6,
+    "original_text": "% <!-- chapter-title: What Cannot Be Delegated? -->",
+    "replacement_text": "% <!-- chapter-title: What Must Not Be Delegated? -->",
+    "reason": "Express the professional-obligation question rather than a claim about machine capability."
+  },
+  {
+    "id": "nondelegation-title",
+    "source": "book/latex/sources/part7/7.5-what-cannot-be-delegated.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 10,
+    "original_line_end": 10,
+    "original_text": "\\chapter{What Cannot Be Delegated?}",
+    "replacement_text": "\\chapter{What Must Not Be Delegated?}",
+    "reason": "Rename the closing section while retaining its argument and unnumbered coda status."
+  },
+  {
+    "id": "nondelegation-closing-question",
+    "source": "book/latex/sources/part7/7.5-what-cannot-be-delegated.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 20,
+    "original_line_end": 20,
+    "original_text": "What cannot be delegated?",
+    "replacement_text": "What must not be delegated?",
+    "reason": "Use the same normative question in the closing transition to the Conclusion."
+  },
+  {
+    "id": "capital-within-gee-caption",
+    "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "original_line_start": 94,
+    "original_line_end": 94,
+    "original_text": "\\caption{\\emph{Established traditions, new composition.} MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital.}",
+    "replacement_text": "\\caption{\\emph{Established traditions, new composition.} MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital within that environment.}",
+    "reason": "Root conveyed the directly authorized Figure 7.3 consistency correction: engineering capital accumulates within the GEE, matching its revised nesting. Only the final caption sentence changes."
+  }
+]

@@ -1,64 +1,90 @@
 {
   "source": "book/assets/established-traditions-new-composition.svg",
   "claim": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital.",
-  "topology": "Two traditions feed Modeling/Alignment within MAGE containment, converge on environment, then capital and intended autonomy outside boundary.",
+  "topology": "Engineering and AI traditions feed Modeling and Alignment, which meet in a GEE containing accumulated engineering capital; the inherited GEE supports subsequent work toward trustworthy autonomy.",
   "required_terms": [
-    "ENGINEERING TRADITIONS",
-    "AI TRADITIONS",
-    "MBSE / MDE: explicit models PL / compilers: types; constrained IRs Formal methods: specifications; verification Systems / safety: boundaries; control",
-    "Knowledge representation\\; planning state\\ reasoning\\ and interfaces",
-    "Modeling\\ knowledge explicit",
-    "Alignment\\ selected obligations",
-    "Governed engineering environment\\; evidence; constraints; controls",
-    "MAGE",
-    "Engineering capital\\ judgment made durable",
-    "Trustworthy autonomy\\ outcome",
-    "New economics drive a new composition; the provenance of the parts is old."
+    "Governed engineering environment",
+    "Knowledge representation",
+    "Memory; planning state",
+    "Structured reasoning",
+    "Tools and interfaces",
+    "Trustworthy autonomy",
+    "Engineering capital",
+    "Systems / safety",
+    "PL / compilers",
+    "Formal methods",
+    "MBSE / MDE",
+    "Alignment",
+    "Modeling",
+    "explicit models"
   ],
-  "bw_encoding": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Engineering versus AI sources separated; MAGE composition gets a bounded pale ground; durable environment/capital retain common fill.",
+  "bw_encoding": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+  "redesign": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
   "questions": [],
-  "alt": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited\n    by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
+  "alt": "Two columns of established traditions feed a central MAGE boundary. On the left, engineering traditions: model-based and model-driven engineering (explicit models); programming languages and compilers (types and constrained intermediate representations); formal methods (specifications and verification); systems and safety engineering (boundaries and control). On the right, AI traditions: knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into engineering capital inside that environment. The inherited environment supports subsequent work toward trustworthy autonomy, the intended outcome outside the boundary. New economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 399.957,
-    "height_pt": 351.735,
-    "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+    "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+    "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+    "page": 1,
+    "width_bp": 399.9570007324219,
+    "height_bp": 351.4620056152344,
+    "font_sizes_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum_prose_font_pt": 9.0,
+    "monochrome_pixels": true,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 14,
+    "reviewed_peer_groups": 0,
+    "unapproved_compile_diagnostics": 0,
+    "reviewed_visually": true
   },
   "style_review": {
+    "source": "book/assets/established-traditions-new-composition.svg",
+    "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "receipt": "book/tikz/receipts/established-traditions-new-composition.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
-    "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
+    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
     "fill": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
     "bold": "Source-derived emphasis includes Governed engineering environment; Knowledge representation; Memory; planning state; Structured reasoning; Tools and interfaces; Trustworthy autonomy; Engineering capital; Systems / safety. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Traditions remain separate, MAGE is the single pale composition container; intended outcome dashed.",
+    "routing": "Governance conversion runs within the GEE; the inheritance arrow leaves its lower boundary.",
+    "shape": "Engineering capital is a child box within the GEE; both are inside the MAGE boundary. Trustworthy autonomy remains outside as the intended outcome.",
+    "visual_review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 89,
-      "width_bp": 399.957,
-      "height_bp": 351.462,
+      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+      "page": 1,
+      "width_bp": 399.9570007324219,
+      "height_bp": 351.4620056152344,
+      "font_sizes_pt": [
+        9.0,
+        10.0
+      ],
       "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 14
+      "geometry_findings": 0,
+      "semantic_typography_checks": 14,
+      "reviewed_peer_groups": 0,
+      "unapproved_compile_diagnostics": 0,
+      "reviewed_visually": true
     },
     "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "revision_date": "2026-11-10"
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/established-traditions-new-composition.svg",
+    "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
     "decision": "refined",
-    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
-    "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
-    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
+    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
     "evidence": [
       {
         "source_text": "Governed Engineering Environment",
@@ -425,6 +451,7 @@
         ]
       }
     ],
+    "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
     "checks": [
       {
         "text": "Governed engineering environment",
@@ -485,51 +512,69 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 89,
-      "width_bp": 399.957,
-      "height_bp": 351.462,
+      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+      "page": 1,
+      "width_bp": 399.9570007324219,
+      "height_bp": 351.4620056152344,
+      "font_sizes_pt": [
+        9.0,
+        10.0
+      ],
       "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
       "monochrome_pixels": true,
+      "geometry_findings": 0,
       "semantic_typography_checks": 14,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
+      "reviewed_peer_groups": 0,
+      "unapproved_compile_diagnostics": 0,
+      "reviewed_visually": true
+    },
+    "revision_date": "2026-11-10"
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source": "book/assets/established-traditions-new-composition.svg",
+    "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
+    "baseline_candidate_sha256": "e692bb32516f6fd9fd75ef433f47c067175767a77581f70a02c237907e415502",
+    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
     "decision": "refined",
-    "reason": "Retained: Tradition summaries have intentionally content-dependent heights; central modeling/alignment peers already match. Raised the containing panel boundary to leave room before the arrow enters the MAGE box.",
-    "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing established traditions new composition layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
-      "after_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
-      "before_dimensions_bp": [
-        399.9570007324219,
-        351.4620056152344
+    "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      399.9570007324219,
+      351.4620056152344
+    ],
+    "contracts": {
+      "peer_groups": [],
+      "terminal_exceptions": []
+    },
+    "validation": {
+      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+      "page": 1,
+      "width_bp": 399.9570007324219,
+      "height_bp": 351.4620056152344,
+      "font_sizes_pt": [
+        9.0,
+        10.0
       ],
+      "minimum_prose_font_pt": 9.0,
+      "monochrome_pixels": true,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 14,
+      "reviewed_peer_groups": 0,
+      "unapproved_compile_diagnostics": 0,
+      "reviewed_visually": true
+    },
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+      "after_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
       "after_dimensions_bp": [
         399.9570007324219,
         351.4620056152344
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
       ],
       "after_font_sizes_pt": [
         9.0,
@@ -537,24 +582,71 @@
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
+    "revision_date": "2026-11-10"
+  },
+  "validation": {
+    "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+    "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+    "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+    "page": 1,
+    "width_bp": 399.9570007324219,
+    "height_bp": 351.4620056152344,
+    "font_sizes_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum_prose_font_pt": 9.0,
+    "monochrome_pixels": true,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 14,
+    "reviewed_peer_groups": 0,
+    "unapproved_compile_diagnostics": 0,
+    "reviewed_visually": true
+  },
+  "fidelity_review": {
+    "source": "book/assets/established-traditions-new-composition.svg",
+    "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
+    "checks": {
+      "icons_and_symbols": "No status icons; individual source tradition boxes consolidated but bold tradition labels retained.",
+      "links_and_groups": "Engineering/AI families remain separate; MAGE boundary, durable capital, dashed intended outcome preserved.",
+      "annotation_placement": "Conversion/inheritance annotations outside nodes and economics caveat below."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9.0,
+        10.0
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 89,
-      "width_bp": 399.957,
-      "height_bp": 351.462
+      "minimum": 9.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 399.9570007324219,
+    "height_bp": 351.4620056152344,
+    "monochrome": true,
+    "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
+    "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
+    "review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+    "decision": "refined",
+    "revision_date": "2026-11-10",
+    "validation": {
+      "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+      "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+      "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+      "page": 1,
+      "width_bp": 399.9570007324219,
+      "height_bp": 351.4620056152344,
+      "font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "minimum_prose_font_pt": 9.0,
+      "monochrome_pixels": true,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 14,
+      "reviewed_peer_groups": 0,
+      "unapproved_compile_diagnostics": 0,
+      "reviewed_visually": true
     }
   }
 }

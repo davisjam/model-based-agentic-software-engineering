@@ -2215,7 +2215,7 @@
             {
               "slug": "the-improvement-loop-has-familiar-ancestors-the-changed-condition-is-abundance",
               "text": "The improvement loop has familiar ancestors; the changed condition is implementation abundance.",
-              "block_index": 37
+              "block_index": 38
             }
           ]
         }
@@ -2401,7 +2401,7 @@
           "heading_text": "Recover Latent Models",
           "topic_sentence": "Begin with two questions.",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 12,
           "points": []
         },
         {
@@ -2410,7 +2410,7 @@
           "heading_text": "Reconcile the Map and the Territory",
           "topic_sentence": "Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 26,
           "points": []
         },
         {
@@ -2419,7 +2419,7 @@
           "heading_text": "Invest Where It Pays",
           "topic_sentence": "Prioritize recovery where explicit structure can reduce recurring work:",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 40,
           "points": []
         }
       ],
@@ -3379,7 +3379,7 @@
         {
           "slug": "process-design-and-tolerance-give-machinery-for-the-theory-chapter",
           "text": "Human incentives and accountability remain distinct from agent capability; engineering authority determines delegation and controls, and the theory chapter examines their costs and effects.",
-          "block_index": 3
+          "block_index": 4
         }
       ]
     },
@@ -4175,7 +4175,7 @@
             {
               "slug": "software-makes-the-same-move-through-its-own-traditions",
               "text": "Requirements engineering, architecture, type systems and intermediate representations, formal methods, and model-driven approaches are software's own manifestations of one engineering move: represent the property at a level where it can be reasoned about.",
-              "block_index": 9
+              "block_index": 10
             }
           ]
         },
@@ -4183,29 +4183,29 @@
           "section_id": "why-software-often-modeled-differently",
           "level": 2,
           "heading_text": "Why Software Often Modeled Differently",
-          "topic_sentence": "Software shared this engineering tradition, and its economics often favored a different allocation of representational work.",
+          "topic_sentence": "Software engineering did not reject models in favor of iteration.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 13,
           "points": [
             {
               "slug": "code-carried-representation-and-realization-at-once",
               "text": "Software design and implementation have historically been tightly coupled: the artifact handed to the compiler is itself the product of an iterative design process, so code served as realization, executable specification, and the primary surface for further reasoning.",
-              "block_index": 15
+              "block_index": 16
             },
             {
               "slug": "commodity-intelligence-moves-the-price-ratio",
               "text": "Commodity intelligence lowers the labor of realizing software and parts of the labor of deriving, updating, reconciling, and checking additional representations, so implementation and live modeling become cheaper together and model-mediated software engineering reaches surfaces the synchronization tax once excluded.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "the-economics-change-without-fixing-the-destination",
               "text": "Lower construction and maintenance costs can make additional representations worthwhile without determining which should become primary; that choice depends on the question and the cost of maintaining correspondence.",
-              "block_index": 22
+              "block_index": 23
             },
             {
               "slug": "the-separation-is-not-absolute",
               "text": "Implementation remains an important source of truth and a useful representation need not become authoritative; what changes is that code need no longer bear the whole burden of being realization, repository of system knowledge, and the surface over which reasoning occurs.",
-              "block_index": 24
+              "block_index": 25
             }
           ]
         },
@@ -4215,12 +4215,12 @@
           "heading_text": "Model-First Engineering as One Point in the Design Space",
           "topic_sentence": "Model-first engineering occupies one end of the representational design space: sufficiently complete models determine much of the realization that follows.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 27,
           "points": [
             {
               "slug": "mage-includes-model-first-organization-without-privileging-it",
               "text": "Model-first organization is one point in the representational design space, not the privileged destination; where a discipline settles depends on where the new prices land, and one system may settle differently for different properties.",
-              "block_index": 32
+              "block_index": 34
             }
           ]
         },
@@ -4230,12 +4230,12 @@
           "heading_text": "Established Traditions, New Composition",
           "topic_sentence": "MAGE combines two established lines of work around delegated realization.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 36,
           "points": [
             {
               "slug": "mage-composes-two-inheritances-around-delegated-realization",
               "text": "MAGE combines two established lines of work around delegated realization: engineering through representations, evidence, and control, and extending AI reasoners through external structure and tools.",
-              "block_index": 35
+              "block_index": 37
             }
           ]
         },
@@ -4243,14 +4243,14 @@
           "section_id": "what-mage-claims-is-new",
           "level": 2,
           "heading_text": "What MAGE Claims Is New",
-          "topic_sentence": "The components of MAGE have deep precedents: models, constraints, verification, external memory, structured reasoning, and autonomous software agents.",
+          "topic_sentence": "MAGE neither restores a sequential development process nor requires a complete model before implementation begins.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 44,
           "points": [
             {
               "slug": "what-mage-claims-is-new",
               "text": "The components of MAGE have deep precedents; its claim concerns their architectural and disciplinary composition — redesign the environment when autonomous implementation becomes a primary productive substrate.",
-              "block_index": 43
+              "block_index": 45
             }
           ]
         }
@@ -4267,7 +4267,7 @@
           "heading_text": "What Must Transfer",
           "topic_sentence": "The first requirement is representability: a purposeful reduction must preserve the distinctions relevant to a consequential decision.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 10,
           "points": []
         },
         {
@@ -4276,7 +4276,7 @@
           "heading_text": "Model-Based Engineering",
           "topic_sentence": "Conventional engineering is the nearest transfer because the shape of the outcome changes least.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 20,
           "points": []
         },
         {
@@ -4285,22 +4285,22 @@
           "heading_text": "Professional Knowledge Work",
           "topic_sentence": "Consider an ordinary recurring business decision: how much inventory to carry, which market to enter, how to price a product, whether to approve an investment, or how to respond to a change in demand.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 31,
           "points": [
             {
               "slug": "accounting-environment-already-engineered",
               "text": "Accounting supplies established representations and controls: double-entry makes balancing checkable, while reconciliation, review, and allocated authority address obligations that arithmetic alone cannot establish.",
-              "block_index": 39
+              "block_index": 36
             },
             {
               "slug": "law-representation-without-determinization",
               "text": "Legal analysis can have rich representations while important interpretations remain contested; making an argument explicit does not make its merits mechanically decidable.",
-              "block_index": 43
+              "block_index": 40
             },
             {
               "slug": "unit-of-transfer-is-the-surface",
               "text": "The unit of transfer is the engineering surface rather than the profession: a reconciliation or filing deadline may be mechanized while materiality and interpretation remain matters of judgment.",
-              "block_index": 45
+              "block_index": 42
             }
           ]
         },
@@ -4310,12 +4310,12 @@
           "heading_text": "Science as the Harder Case",
           "topic_sentence": "Scientific work tests the distinction between governing a process and establishing what its results warrant.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 44,
           "points": [
             {
               "slug": "science-tests-the-theory",
               "text": "Science tests the distinction between enforcing conditions on inquiry and establishing what its results warrant; reproducible conduct alone does not settle explanatory merit.",
-              "block_index": 48
+              "block_index": 45
             }
           ]
         },
@@ -4325,12 +4325,12 @@
           "heading_text": "Where the Generalization Fails",
           "topic_sentence": "The transfer conditions identify several ways strong governance can fail.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 49,
           "points": [
             {
               "slug": "failure-traits-named",
               "text": "Transfer becomes difficult where relevant knowledge cannot be represented adequately, evidence or correspondence is weak, recurrence is low, or a mechanized proxy would lose the context that gives an obligation its meaning.",
-              "block_index": 53
+              "block_index": 50
             }
           ]
         },
@@ -4340,7 +4340,7 @@
           "heading_text": "A Research Prediction",
           "topic_sentence": "The broader interpretation produces a testable prediction.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 57,
           "points": []
         }
       ],
@@ -4436,32 +4436,32 @@
             {
               "slug": "engineers-leverage-moves-upstream",
               "text": "Working with agents moves the engineer's leverage upstream, from supervising actions toward authoring and judging the environment.",
-              "block_index": 37
+              "block_index": 38
             },
             {
               "slug": "docable-was-not-deskilling-expertise-moved-upstream",
               "text": "Building DocAble was not deskilling: expertise moved from realizing implementation decisions to deciding what to represent, constrain, measure, and preserve.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "authored-environment-carries-reasoning-forward",
               "text": "An authored environment carries an engineer's reasoning into later work, accumulating engineering capital with unusual leverage.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "inheritance-is-not-abdication",
               "text": "Inheritance is not abdication: expert work moves to creating, evaluating, and revising the durable structure.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "authorship-allocation-should-be-explicit-and-governed",
               "text": "How the authorship responsibilities are allocated across roles should be explicit and governed.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "natural-language-is-an-interface-not-the-method",
               "text": "Natural language may be one interface to the work; it is not the engineering method.",
-              "block_index": 49
+              "block_index": 50
             }
           ]
         },
@@ -4471,77 +4471,77 @@
           "heading_text": "Sign-Off Moves Toward Models and Evidence",
           "topic_sentence": "In the factory Chapter 5 examined, the fleet constructed most of the implementation, maintained selected engineering representations, ran validators, and assembled evidence for the claims the design was supposed to satisfy.",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 52,
           "points": [
             {
               "slug": "review-becomes-technical-acceptance-of-models-and-evidence",
               "text": "In the observed factory, human review already became technical acceptance of representations and evidence rather than authorship of the implementation.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "implementation-inspection-cannot-remain-primary-assurance",
               "text": "The observed factory demonstrates one arrangement for technical acceptance; whether it generalizes beyond the case remains to be established.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "models-and-evidence-are-intermediate-review-surfaces",
               "text": "Models provide intermediate review surfaces and evidence supports their claims; neither is sufficient alone.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "models-evidence-governance-engineer-relationship",
               "text": "Models state claims, evidence justifies them, governance sets required evidence and authority, and the engineer stays answerable.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "object-of-review-moves-accountability-does-not",
               "text": "The object of review moves to models and evidence; accountability does not move.",
-              "block_index": 60
+              "block_index": 61
             },
             {
               "slug": "early-evidence-supervisory-engineering-work",
               "text": "A longitudinal study reports a shift in perceived effort toward verification and describes supervisory engineering work; MAGE proposes models and evidence as better surfaces for that supervision.",
-              "block_index": 62
+              "block_index": 63
             },
             {
               "slug": "answerability-requires-competence-and-a-path-to-change",
               "text": "Real answerability requires competence and a path to change the environment, or responsibility becomes nominal.",
-              "block_index": 64
+              "block_index": 65
             },
             {
               "slug": "models-remain-objects-of-engineering-fidelity-maintained",
               "text": "The correspondence discipline applies to review surfaces; sign-off requires evidence connecting a model’s claims to the realized system.",
-              "block_index": 66
+              "block_index": 67
             },
             {
               "slug": "probability-chain-locates-residual-uncertainty-upstream",
               "text": "Better realization does not establish that the encoded obligations were right; familiar implementations can be produced from little explicit specification.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "interpretation-term-is-not-constant-across-the-work",
               "text": "The interpretation burden within realization varies: familiar patterns can let an agent supply omitted detail, which is useful for exploration and prototyping.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "familiarity-reduces-specification-for-production-not-assurance",
               "text": "Production raises a different question: a familiar pattern can make the agent likely to do the right thing without making the right thing explicit enough to check, so familiarity can reduce the specification needed to produce software without reducing the specification needed to assure it.",
-              "block_index": 72
+              "block_index": 73
             },
             {
               "slug": "the-trouble-is-the-requirements",
               "text": "Cheapening realization moved the bottleneck rather than removing it: one expensive part of engineering became dramatically cheaper, and the opportunity now is to represent consequential requirements well enough that the new realization capacity can be used.",
-              "block_index": 74
+              "block_index": 75
             },
             {
               "slug": "represent-consequential-intent-not-the-implementation",
               "text": "The engineering response is a better representation of consequential intent, not a more complete specification of the implementation: capable agents can hold realization choices open, so the engineer must represent what matters well enough to survive that freedom.",
-              "block_index": 76
+              "block_index": 77
             },
             {
               "slug": "review-shift-changes-the-questions-not-the-expertise",
               "text": "Moving review toward models and evidence does not reduce the expertise required of the engineer; it changes the questions that expertise must answer.",
-              "block_index": 78
+              "block_index": 79
             }
           ]
         },
@@ -4551,42 +4551,42 @@
           "heading_text": "From Full-Stack to Full-System Engineering",
           "topic_sentence": "Software has used full-stack engineer to describe someone able to work across multiple implementation layers: interface, application logic, data, infrastructure, and deployment.",
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 81,
           "points": [
             {
               "slug": "commodity-intelligence-eases-full-stack-breadth",
               "text": "Commodity intelligence can make full-stack breadth across implementation layers easier to obtain.",
-              "block_index": 81
+              "block_index": 82
             },
             {
               "slug": "engineer-must-reason-across-full-system-and-lifecycle",
               "text": "MAGE requires reasoning across the full system and its lifecycle, not merely the implementation stack.",
-              "block_index": 83
+              "block_index": 84
             },
             {
               "slug": "docable-required-breadth-across-interacting-domains",
               "text": "Building DocAble required breadth across interacting domains, and the consequential decisions were the ones that crossed them — the checker-replacement decision reconciled a regulatory reading, a product observation, and a validation-architecture change in one judgment no single domain could settle.",
-              "block_index": 85
+              "block_index": 86
             },
             {
               "slug": "format-breadth-selected-for-knowledge",
               "text": "Supporting additional formats did different work — an architectural probe, not simply product expansion: each format tested whether the architecture captured general properties of remediation or assumptions inherited from the first formats, and cheap implementation made those experiments economical, so implementation can be selected for the knowledge it produces, not only the functionality it delivers.",
-              "block_index": 88
+              "block_index": 89
             },
             {
               "slug": "cheap-implementation-enables-judgment-developing-amplification",
               "text": "Cheap realization compresses the modeling cycle, so realization and connection amplification develop engineering judgment rather than deskilling the engineer.",
-              "block_index": 90
+              "block_index": 91
             },
             {
               "slug": "consequential-judgment-follows-a-property-across-the-lifecycle",
               "text": "Consequential judgment often requires following a property across the whole lifecycle, not just implementation.",
-              "block_index": 93
+              "block_index": 95
             },
             {
               "slug": "trajectory-from-full-stack-to-full-system",
               "text": "The professional trajectory runs from full-stack toward full-system engineering, the scarcer competence.",
-              "block_index": 95
+              "block_index": 97
             }
           ]
         },
@@ -4596,12 +4596,12 @@
           "heading_text": "What Should We Teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 99,
           "points": [
             {
               "slug": "education-should-shift-toward-representations-and-evidence",
               "text": "If review shifts to representations and evidence, education should shift accordingly.",
-              "block_index": 98
+              "block_index": 100
             }
           ]
         },
@@ -4611,27 +4611,27 @@
           "heading_text": "Is there software engineering knowledge you cannot just figure out for yourself?",
           "topic_sentence": "The question for software engineering education is whether there is important software engineering knowledge that practitioners cannot reasonably be expected to figure out for themselves, or whether software engineering is distinct among the engineering disciplines in being predicated on adaptability more than specific expertise.",
           "id_source": "derived",
-          "block_index": 100,
+          "block_index": 102,
           "points": [
             {
               "slug": "does-se-have-durable-knowledge-or-only-adaptability",
               "text": "Perhaps software engineering is adaptability, not durable technical knowledge.",
-              "block_index": 101
+              "block_index": 103
             },
             {
               "slug": "mature-disciplines-accumulate-non-rediscoverable-knowledge",
               "text": "Mature engineering disciplines accumulate knowledge practitioners cannot rediscover alone.",
-              "block_index": 103
+              "block_index": 105
             },
             {
               "slug": "the-skeptical-case-is-stronger-in-software",
               "text": "Much software-engineering wisdom is learnable through experience alone.",
-              "block_index": 105
+              "block_index": 107
             },
             {
               "slug": "many-professionals-succeed-without-formal-se-education",
               "text": "Many successful professionals learned software outside formal education.",
-              "block_index": 107
+              "block_index": 109
             }
           ]
         },
@@ -4641,52 +4641,52 @@
           "heading_text": "What shouldn't software engineers have to figure out for themselves?",
           "topic_sentence": "I would concede some of this ground.",
           "id_source": "derived",
-          "block_index": 109,
+          "block_index": 111,
           "points": [
             {
               "slug": "alignment-principle-intuition-is-discoverable-through-practice",
               "text": "The Alignment Principle's basic intuition is discoverable through practice.",
-              "block_index": 110
+              "block_index": 112
             },
             {
               "slug": "concession-stops-at-the-foundations-of-computing",
               "text": "The concession does not extend to computing's accumulated foundations.",
-              "block_index": 112
+              "block_index": 114
             },
             {
               "slug": "expertise-is-understanding-abstractions-guarantees-and-limits",
               "text": "Expertise means understanding abstractions, their guarantees, and their limits.",
-              "block_index": 114
+              "block_index": 116
             },
             {
               "slug": "mage-rests-on-the-foundations-rather-than-replacing-them",
               "text": "MAGE rests on these foundations rather than replacing them.",
-              "block_index": 116
+              "block_index": 118
             },
             {
               "slug": "delegation-makes-foundations-more-consequential",
               "text": "Delegating realization makes the technical foundations more consequential.",
-              "block_index": 118
+              "block_index": 120
             },
             {
               "slug": "curriculum-remains-substantially-recognizable",
               "text": "The curriculum remains substantially recognizable: programming, software engineering, and the computing foundations all stay, and engineers still need implementation fluency.",
-              "block_index": 120
+              "block_index": 122
             },
             {
               "slug": "fluency-moves-between-implementation-and-models",
               "text": "Implementation fluency is the ability to move between the realized system's behavior and the representations that direct subsequent work — not producing every implementation, but recognizing when the governing abstractions are inadequate.",
-              "block_index": 122
+              "block_index": 124
             },
             {
               "slug": "what-changes-is-the-allocation-of-attention",
               "text": "Routine implementation is already cheap enough to alter the engineering problem while specification, validation, coordination, and judgment stay scarce, so education should change which competencies it practices rather than which subjects it drops.",
-              "block_index": 124
+              "block_index": 126
             },
             {
               "slug": "trajectories-explain-why-the-competencies-may-keep-moving",
               "text": "Chapter 6 and the four trajectories explain why competencies may change in relative importance; education should prepare engineers to judge that changing allocation rather than assume one destination.",
-              "block_index": 126
+              "block_index": 128
             }
           ]
         },
@@ -4696,17 +4696,17 @@
           "heading_text": "Shift the emphasis",
           "topic_sentence": "Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work.",
           "id_source": "derived",
-          "block_index": 128,
+          "block_index": 130,
           "points": [
             {
               "slug": "shift-emphasis-to-abstractions-specification-validation",
               "text": "Shift educational emphasis toward abstractions, specification, validation, modeling, and formal methods.",
-              "block_index": 129
+              "block_index": 131
             },
             {
               "slug": "coordination-becomes-a-technical-concern-at-individual-scale",
               "text": "Coordination becomes a technical concern at individual scale under agentic implementation capacity.",
-              "block_index": 131
+              "block_index": 133
             }
           ]
         },
@@ -4716,27 +4716,27 @@
           "heading_text": "Change what students demonstrate",
           "topic_sentence": "A capstone should therefore demonstrate more than a working artifact.",
           "id_source": "derived",
-          "block_index": 136,
+          "block_index": 138,
           "points": [
             {
               "slug": "capstone-should-carry-the-engineering-case",
               "text": "A capstone should carry the engineering case, not only a working artifact.",
-              "block_index": 137
+              "block_index": 139
             },
             {
               "slug": "assessment-distinguishes-performed-from-directed-work",
               "text": "Assessment must distinguish work students performed from work they directed and evaluated: a successful implementation can show the arrangement worked without showing the student understood it, and the two outcomes require different evidence.",
-              "block_index": 139
+              "block_index": 141
             },
             {
               "slug": "program-objectives-change-little-practice-changes",
               "text": "Program objectives change little; how students practice and demonstrate the capabilities changes.",
-              "block_index": 141
+              "block_index": 143
             },
             {
               "slug": "teach-durable-principles-beneath-the-agent-interface",
               "text": "Teach the durable principles beneath the fast-changing agent interface, not the interface itself.",
-              "block_index": 143
+              "block_index": 145
             }
           ]
         },
@@ -4746,22 +4746,22 @@
           "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "The traditional path into software engineering runs through implementation.",
           "id_source": "derived",
-          "block_index": 145,
+          "block_index": 147,
           "points": [
             {
               "slug": "genai-erodes-the-implementation-apprenticeship",
               "text": "GenAI erodes the implementation apprenticeship through which the profession trained senior engineers.",
-              "block_index": 146
+              "block_index": 148
             },
             {
               "slug": "entry-rung-problem-acquiring-judgment-without-implementation-work",
               "text": "The entry-rung problem: how to acquire engineering judgment when routine implementation is abundant.",
-              "block_index": 148
+              "block_index": 150
             },
             {
               "slug": "profession-reorganizes-around-responsibility-for-the-whole",
               "text": "Education must develop people who can take responsibility for the engineered whole even when much of the work through which earlier generations learned is delegated.",
-              "block_index": 150
+              "block_index": 152
             }
           ]
         }

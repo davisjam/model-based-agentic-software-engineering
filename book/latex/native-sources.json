@@ -85,7 +85,7 @@
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
       "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
       "source_hash": "02c58e3280c0da9ea2226a6bc8453ea1bb5e542921dca0d3c77a5174f5441ffe",
-      "projection_hash": "b07a0ccda6349566cff66d98b61aa1bfa7ba31545d6802a904019a71e128ccf5"
+      "projection_hash": "de7468b239ff3335f6bd3be01d55c3a654340ce635ae6a47183e25069349fbe0"
     },
     {
       "source": "book/latex/sources/part2/2.2-structural.tex",
@@ -168,8 +168,8 @@
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
       "projection": "book/part4/4.1-the-dynamics-of-mage.md",
-      "source_hash": "4b82e55cbbffa2b2e4fe7ca2564c798930b7326797e430d397f3231fb8bc8309",
-      "projection_hash": "3541226b67fe687e4d322a1164f42c82bf745b01adaaa72ec324972df5162960"
+      "source_hash": "a138c6ceb4253633ebe7e813be2fe6252e0c39606b3b0b263bbd7e39a97231b9",
+      "projection_hash": "ef83d1d4a51d999159f3b0c9c574f0478f04dee12252f5758fe923c91b2ccf6d"
     },
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
@@ -180,8 +180,8 @@
     {
       "source": "book/latex/sources/part4/4.3-brownfield-engineering.tex",
       "projection": "book/part4/4.3-brownfield-engineering.md",
-      "source_hash": "6e4d7ded37f081f5c3266bef07fafb7ceef24bced6238f86fb6eb8ca9f1731e6",
-      "projection_hash": "fec0ab8d8dc5f8222d5deae0cc5a32090c3d6ab770d39f085bd8019d540930cd"
+      "source_hash": "dc22ae43db867522d1596e869a95325b81ab7fa52da589f781c7d9a2ce7953a1",
+      "projection_hash": "37f5aa406e4b49981c8f4a16d3ff173771c968bae1a7a627c9e25b48e43a2492"
     },
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
@@ -222,8 +222,8 @@
     {
       "source": "book/latex/sources/part5/5.5-engineering-the-factory.tex",
       "projection": "book/part5/5.5-engineering-the-factory.md",
-      "source_hash": "508c8e802868a3c10e8ef060ec36875eab1b671541e5a0d67ed6a10df1ecc25a",
-      "projection_hash": "c1f26829d2dd03ed9ec61aa31dfee22a025fc0c7b89c4b192a0815546c1b0295"
+      "source_hash": "c4184c9e5c2ad4a71181fa1693fc64d61022a96cef6603689d868a4530c9f3cf",
+      "projection_hash": "971e488a260c5763a605c3ba52c8c6415c4c8c302609c62805f0357021498f49"
     },
     {
       "source": "book/latex/sources/part6/00-part-intro.tex",
@@ -235,7 +235,7 @@
       "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
       "projection": "book/part6/6.1-toward-a-theory-of-mage.md",
       "source_hash": "e46ca3fc0f166e4302c775c9a926232700f8c7d39cbbe47ca98f531bcb9df722",
-      "projection_hash": "34cbfd9410eb271a4c5b99313ffb1080cf7378e83a4d3993e9bef76febb36d27"
+      "projection_hash": "dd365cc3ceaa39de91c71595378b6674bebcbdfb88bf9c11bb62e2cccdb68ae6"
     },
     {
       "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
@@ -276,26 +276,26 @@
     {
       "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
       "projection": "book/part7/7.2-software-rejoins-engineering.md",
-      "source_hash": "a29b7502acb41cb360bc6c1637479d1b13bf090c4f59eb9b8bb548f3d1e28381",
-      "projection_hash": "1281ce27fa9ffe2cc6f506b271668769e6bc8aa9d8b0968f85f0ecdf7056a953"
+      "source_hash": "38e6d5217c669417ebd680629bfcdf5388babd2eb33c0386b1109b96dcdcd5c3",
+      "projection_hash": "aa6a62a1fe0af596f1beea907461a7441126c3e2958207570d3380d4b8374516"
     },
     {
       "source": "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex",
       "projection": "book/part7/7.3-agentic-engineering-beyond-software.md",
-      "source_hash": "d549beb790db66da68ed44e4ecf020e1cb9ff48562f2f51223d6e18adc73b8db",
-      "projection_hash": "2a8a01a65080b05f9662a5b6f1fa143ba7502f85df93245261c2be9b1ac81cb3"
+      "source_hash": "48e7183a0fa0e7716ad531495f9f3fc7b4ec31a277836b10551527c59d6e6f83",
+      "projection_hash": "c7759d7da2a2a07411ac759cf506069dbf28fc8746abd11ce09b71f720d10689"
     },
     {
       "source": "book/latex/sources/part7/7.4-the-engineer.tex",
       "projection": "book/part7/7.4-the-engineer.md",
-      "source_hash": "4ccd8933d72e3b593a296bdb9a0c8ebaff37e15012f099aaf7e6e182ceb69cc4",
-      "projection_hash": "ab2f1c82d8fd79df203f71a7f6dd09ae06de38ce86c19a08c440ba424ac81270"
+      "source_hash": "546bbcf3c364f17a647705c630db6aafe8847effe859e8f553aba58fb4b1e22d",
+      "projection_hash": "6cc36a3bb371e944ecbc6f0575e68c231c1f387d423d002ed4f9a8c2a091ff01"
     },
     {
       "source": "book/latex/sources/part7/7.5-what-cannot-be-delegated.tex",
       "projection": "book/part7/7.5-what-cannot-be-delegated.md",
-      "source_hash": "9ed24207997ea41981e75ad60e66aca6cb11ad16f029b21bd51619cccee7ae22",
-      "projection_hash": "89f09744d7b97e85c9e943d21933bc97a5c783ac3d40035d14754fa480cca28e"
+      "source_hash": "ca239281724341b78ebf551b187ddbdc453eeed86f3c504d7648c2b090b606e4",
+      "projection_hash": "644e4606586e1a507fa9de244718ed76026337ca7bd216c13280aa5116c81eac"
     },
     {
       "source": "book/latex/sources/conclusion/9.1-the-part-that-stays-yours.tex",
@@ -992,6 +992,6 @@
       "projection_hash": "e411608cf1d772db442badfed42134c61e17eb3d9b03d23cb80ab9b11ab0fe47"
     }
   ],
-  "engine_hash": "36d72a6cf9aeb6eb09bb546115f7c08511cf1aaa3a4b881292fe1e426deaec83",
+  "engine_hash": "e0bc5a60b5d2d84523e8f4c4fdbfb3ec833d4107bdc28d4683f853b7252720a0",
   "renderer_version": "pandoc 3.9.0.2"
 }

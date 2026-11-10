@@ -1,0 +1,9 @@
+{
+  "revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+  "reason": "Keep accumulated engineering capital inside the GEE rather than depicting it as a separate downstream object.",
+  "source_paths": [
+    "book/assets/established-traditions-new-composition.svg",
+    "book/tikz/figures/established-traditions-new-composition.tex",
+    "book/tikz/receipts/established-traditions-new-composition.json"
+  ]
+}

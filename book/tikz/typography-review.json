@@ -15856,8 +15856,8 @@
       "source": "book/assets/established-traditions-new-composition.svg",
       "candidate": "book/tikz/figures/established-traditions-new-composition.tex",
       "decision": "refined",
-      "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
-      "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+      "source_sha256": "de9717ab2be56f4a44fb05a6c0b49cf248f1dee2dc22b66511696f77ec62d9cf",
+      "candidate_sha256": "26bfe9b42ffb34df90c0abf1fa223d3935650fa5b8c7d9e01866e33a76193828",
       "evidence": [
         {
           "source_text": "Governed Engineering Environment",
@@ -16224,7 +16224,7 @@
           ]
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
       "checks": [
         {
           "text": "Governed engineering environment",
@@ -16285,17 +16285,25 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 89,
-        "width_bp": 399.957,
-        "height_bp": 351.462,
+        "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
+        "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
+        "validation_scope": "Revised Figure 7.3 only; whole-pool verification follows.",
+        "page": 1,
+        "width_bp": 399.9570007324219,
+        "height_bp": 351.4620056152344,
+        "font_sizes_pt": [
+          9.0,
+          10.0
+        ],
         "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 14
-      }
+        "geometry_findings": 0,
+        "semantic_typography_checks": 14,
+        "reviewed_peer_groups": 0,
+        "unapproved_compile_diagnostics": 0,
+        "reviewed_visually": true
+      },
+      "revision_date": "2026-11-10"
     },
     {
       "source": "book/assets/governing-consequential-work.png",

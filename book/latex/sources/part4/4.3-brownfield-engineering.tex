@@ -20,6 +20,8 @@ How can engineers recover useful models and obligations from a system whose impl
 
 Most readers do not begin on a blank page. You inherit code, tests, schemas, architectural documents, CI rules, permissions, dashboards, conventions, and operational lore. Some of that inheritance is debt; some is useful engineering structure that has become fragmented, stale, or difficult to reuse. Brownfield engineering is therefore partly an exercise in recovery: find the representations and controls the system already owns, reconnect them to the territory they describe, repair or retire what has drifted, and invest in new structure where recurring engineering costs justify it.
 
+The objective is not to model the entire existing system before agents can work on it. It is to make the next consequential change safely, then improve the engineering environment so that later changes become easier to govern. Existing tests, permissions, architecture documents, and review practices are starting points. Some already enforce useful obligations; others depend on someone remembering what to check. The work is to discover which is which, establish what can be trusted, and strengthen the environment one important property at a time.
+
 % <!-- box-family: inset -->
 
 % <!-- inset-domain: SOFTWARE ENGINEERING -->
@@ -89,7 +91,7 @@ During the June 8--10 recovery work, findings were repeatedly reclassified as en
 
 Before allowing a recovered model to govern later work, establish which of its claims still describe the system and which represent intended obligations.
 
-Consider an inherited architecture wiki that no longer matches the code. Comparing the two reveals descriptions that need updating and discrepancies that may indicate defects. Verified claims can become part of a queryable model; unresolved claims remain advisory. {[}appendix: appendix-b-brownfield-migration{]} gives a procedure for this recovery. The inset works through the judgment needed before changing either the model or the code.
+Consider an inherited architecture wiki that no longer matches the code. Comparing the two reveals descriptions that need updating and discrepancies that may indicate defects. Verified claims can become part of a queryable model; unresolved claims remain advisory. The inset works through the judgment needed before changing either the model or the code.
 
 % <!-- box-family: inset -->
 
@@ -169,4 +171,4 @@ Compare the expected loss with the cost of building and maintaining a response. 
 
 Price upkeep as well as construction. Models drift, checks require calibration, and skills age. Build the smallest asset that resolves the recurring problem, and retire it when its value no longer justifies carrying it. \magevalue{chapter:theory} develops this economic tradeoff; the immediate decision is which inherited structure will help the next engineering task.
 
-Recovering one model is useful: a concept the system had been expressing for years gains a name, a representation, and perhaps an enforced obligation. Repeating the process changes something larger --- the environment in which subsequent engineering occurs.
+Recovering one model is useful: a concept the system had been expressing for years gains a name, a representation, and perhaps an enforced obligation. Repeating the process changes something larger --- the environment in which subsequent engineering occurs. {[}appendix: appendix-b-brownfield-migration{]} turns this recovery process into an incremental migration procedure, with exit criteria for deciding when a recovered representation or control is ready to govern subsequent work.

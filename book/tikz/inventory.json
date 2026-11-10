@@ -1244,7 +1244,7 @@
   {
     "chapter": "7.2-software-rejoins-engineering",
     "source": "assets/established-traditions-new-composition.svg",
-    "caption": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital.",
+    "caption": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital within that environment.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/established-traditions-new-composition.d2",
     "receipt": "book/d2-pilot/established-traditions-new-composition.receipt.yaml",
@@ -1252,7 +1252,15 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Established traditions, new composition: engineering and AI traditions converge in MAGE",
-    "svg_description": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited\n    by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old."
+    "svg_description": "Two columns of established traditions feed a central MAGE boundary. On the left, engineering traditions: model-based and model-driven engineering (explicit models); programming languages and compilers (types and constrained intermediate representations); formal methods (specifications and verification); systems and safety engineering (boundaries and control). On the right, AI traditions: knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into engineering capital inside that environment. The inherited environment supports subsequent work toward trustworthy autonomy, the intended outcome outside the boundary. New economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
+    "native_dimensions_bp": [
+      399.9570007324219,
+      351.4620056152344
+    ],
+    "authored_font_sizes_pt": [
+      9.0,
+      10.0
+    ]
   },
   {
     "chapter": "7.3-agentic-engineering-beyond-software",

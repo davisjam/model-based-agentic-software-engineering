@@ -1,0 +1,38 @@
+[
+  {
+    "id": "remove-broader-frontier-restatement",
+    "source": "book/latex/sources/part7/7.4-the-engineer.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "source_state": "Approved Chapter 7 followups, before one-page pagination trim",
+    "source_sha256": "fa4dfe1573dd5dab6e95a87412bd76927391de044cf715cab40401165775965f",
+    "original_line_start": 100,
+    "original_line_end": 100,
+    "original_text": "The engineering challenge is to extend the frontier over which meaningful authority can be exercised as the capabilities and autonomy of the system expand.",
+    "replacement_text": "",
+    "reason": "Root requested removal after the rendered authority inset spilled six lines; adjacent prose already develops this point."
+  },
+  {
+    "id": "remove-repeated-historical-record-question",
+    "source": "book/latex/sources/part7/7.4-the-engineer.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "source_state": "Approved Chapter 7 followups, before one-page pagination trim",
+    "source_sha256": "fa4dfe1573dd5dab6e95a87412bd76927391de044cf715cab40401165775965f",
+    "original_line_start": 96,
+    "original_line_end": 96,
+    "original_text": "These cases differ in their causes and consequences, but each raises a question that engineering records should make answerable: what did the organization know, who knew it, and what did those with authority do with that knowledge?",
+    "replacement_text": "",
+    "reason": "Root requested removal after the rendered authority inset spilled six lines; adjacent prose already develops this point."
+  },
+  {
+    "id": "shorten-authority-inset-opening",
+    "source": "book/latex/sources/part7/7.4-the-engineer.tex",
+    "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+    "source_state": "Approved Chapter 7 followups, before one-page pagination trim",
+    "source_sha256": "fa4dfe1573dd5dab6e95a87412bd76927391de044cf715cab40401165775965f",
+    "original_line_start": 94,
+    "original_line_end": 94,
+    "original_text": "The need to make expertise count is clearest when engineers advise someone else with authority to proceed. Engineers may not make the final decision, but they remain responsible for making the engineering case legible: what is understood, what can be assured, what remains uncertain, and what risk a decision would accept.",
+    "replacement_text": "Engineers advising those with authority to proceed must make their expertise count. They remain responsible for making the engineering case legible: what is understood, what can be assured, what remains uncertain, and what risk a decision would accept.",
+    "reason": "The two specified cuts save 386 source characters against a 456-character spill. A thirteen-word opening trim removes the remaining seventy characters without altering the engineering-case inventory or the protected risk/accountability paragraphs."
+  }
+]

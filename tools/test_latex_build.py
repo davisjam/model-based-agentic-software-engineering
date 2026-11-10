@@ -9,6 +9,27 @@ from latex_build import (diagnostics, bold_table_headers, single_page_tables,
 
 
 class NativeMathRoundTrip(unittest.TestCase):
+    def test_multiline_native_equation_reaches_web_mathml(self):
+        import mage_latex
+        import xml.etree.ElementTree as ET
+        equation = (r'p_i=p(T_i,M,\mathcal{G}_i),' + '\n' +
+                    r'\qquad \mathcal{G}_{i+1}=f(\mathcal{G}_i,a_i).')
+        with tempfile.TemporaryDirectory(dir=mage_latex.ROOT) as directory:
+            source, projection = [Path(directory, name) for name in
+                                  ('source.tex', 'projection.md')]
+            source.write_text(r'\chapter{Math regression}' + '\n\nBefore.\n\n\\[\n' +
+                              equation + '\n\\]\n\nAfter.')
+            source.with_suffix('.assets.json').write_text('[]')
+            mage_latex.compatibility(source, projection)
+            html = mage_latex.bb.md_to_html(projection.read_text())
+        maths = re.findall(r'<math\b.*?</math>', html, re.S)
+        self.assertEqual(len(maths), 1)
+        self.assertEqual(''.join(ET.fromstring(maths[0]).itertext()),
+                         'pi=p(Ti,M,Gi),Gi+1=f(Gi,ai).')
+        self.assertIn('display="block"', maths[0])
+        self.assertIn('Before.', html)
+        self.assertIn('After.', html)
+
     def test_multiline_display_equations_survive_print_assembly(self):
         import mage_latex
         equations = [

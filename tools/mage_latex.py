@@ -399,7 +399,12 @@ def compatibility(source: Path, output: Path):
     text = re.sub(r'^% (<!--.*?-->)$', lambda m: '\n\n' + token(m[1]) + '\n\n', text, flags=re.M)
     text = re.sub(r'\\magevalue\{([^}]+)\}', lambda m: token('{{' + m[1] + '}}'), text)
     text = text.replace(r'\magerule{}', token('<!-- coda-rule -->'))
-    text = re.sub(r'\\\[(.*?)\\\]', lambda m: '\n\n' + token('<!-- eq: ' + m[1].strip().replace(r'\$', '$') + ' -->') + '\n\n', text, flags=re.S)
+    def equation(match):
+        # Web/IR directives occupy one line. Native display equations may span
+        # several; preserve TeX row breaks while folding source line whitespace.
+        latex = re.sub(r'\s*\n\s*', ' ', match[1].strip()).replace(r'\$', '$')
+        return '\n\n' + token('<!-- eq: ' + latex + ' -->') + '\n\n'
+    text = re.sub(r'\\\[(.*?)\\\]', equation, text, flags=re.S)
     text = re.sub(r'\\autoref\{([^}]+)\}', lambda m: token('[ref:' + m[1] + ']'), text)
     text = re.sub(r'\\cite[pt]\{([^}]+)\}', lambda m: token('[cite: ' + m[1].replace(',', ';') + ']'), text)
     assets = {a['pdf']:a['source'].removeprefix('book/') for a in json.loads(source.with_suffix('.assets.json').read_text())}
@@ -567,12 +572,15 @@ def apply_print_keep_with_next(text):
 
     The HTML-comment directive survives native/Markdown projection, is inert on
     the web, and reserves enough line-height space for a lead-in and next block.
-    It does not force whole lists onto a page or change global float policy.
+    The `page` request starts a reviewed page-sized block on a fresh page.
+    It does not change global float policy.
     """
     def replace(match):
         value = match[1].strip()
+        if value == 'page':
+            return r'\Needspace{\textheight}'
         if not value.isdecimal() or not 2 <= int(value) <= 20:
-            raise ValueError('print-keep-with-next needs 2–20 baseline lines')
+            raise ValueError('print-keep-with-next needs 2–20 baseline lines or page')
         return r'\Needspace{' + str(int(value)) + r'\baselineskip}'
     directive = r'(?m)^% <!-- print-keep-with-next: ([^\n]*?) -->[ \t]*$'
     literal = r'(\\begin\{(?:verbatim|Verbatim|lstlisting|minted)\}.*?\\end\{(?:verbatim|Verbatim|lstlisting|minted)\})'

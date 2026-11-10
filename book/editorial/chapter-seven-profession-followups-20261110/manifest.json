@@ -1,0 +1,70 @@
+{
+  "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+  "sources": {
+    "book/latex/sources/part7/7.2-software-rejoins-engineering.tex": {
+      "before_sha256": "17d8894f19478380b406fc2bdcec4a56815079cad02dc7f0614226995b0ecef0",
+      "after_sha256": "2b61304bfa763157965b9a62516f4986dc6a12c8da3830443242aa11095d64f6",
+      "checks": {
+        "figure_blocks_byte_identical": false,
+        "table_blocks_byte_identical": true,
+        "point_ids_unchanged": true,
+        "existing_citation_targets_and_counts_preserved": true,
+        "tex_braces_balanced": true,
+        "only_figure_block_change_authorized_final_caption_sentence": true
+      }
+    },
+    "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex": {
+      "before_sha256": "7bb647fda0bcd02e822b9d176d52b3afdcbcad7d8d9ef9a8d395a6ebf6eff778",
+      "after_sha256": "bdc1e8b8d6b9592401c2e7a0a70d085ea4259a4344510f41b93e0722e22bff43",
+      "checks": {
+        "figure_blocks_byte_identical": true,
+        "table_blocks_byte_identical": true,
+        "point_ids_unchanged": true,
+        "existing_citation_targets_and_counts_preserved": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part7/7.4-the-engineer.tex": {
+      "before_sha256": "2f9eba0799cd15ce08831a167abc8a2c8b1d86c37ad87354459299a20cface78",
+      "after_sha256": "520a3dbbde63a9f207cd2ffd9568fda9467456dccaa01bfc719ae8e830f0ee0d",
+      "checks": {
+        "figure_blocks_byte_identical": true,
+        "table_blocks_byte_identical": true,
+        "point_ids_unchanged": true,
+        "existing_citation_targets_and_counts_preserved": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part7/7.5-what-cannot-be-delegated.tex": {
+      "before_sha256": "bf950164028dac148f6ac547b7831b2d79852ea366f998dd6436ec5c906b5560",
+      "after_sha256": "dbc67d06c5e9a644c9445cc9b8b12c2e9fa8296f992455a3283a36d99646142a",
+      "checks": {
+        "figure_blocks_byte_identical": true,
+        "table_blocks_byte_identical": true,
+        "point_ids_unchanged": true,
+        "existing_citation_targets_and_counts_preserved": true,
+        "tex_braces_balanced": true
+      }
+    }
+  },
+  "retired_inset_label": "inset-read-beyond-software-standalone",
+  "authority_inset_label_retained": "inset-frontier-authority",
+  "authority_history_words_before": 260,
+  "authority_history_words_after": 163,
+  "optional_frontier_sentence_retained_pending_pdf_proof": false,
+  "new_citation_keys": [
+    "beck2003tdd",
+    "agile-principles2001"
+  ],
+  "five_subheadings_and_labels_unchanged": true,
+  "retired_or_replaced_spans": 13,
+  "authorized_figure_caption_change": "Engineering capital within the GEE; Figure 7.3 final caption sentence only.",
+  "authority_pagination_trim": {
+    "retirement_record": "pagination-retired-passages.json",
+    "words_removed": 74,
+    "characters_removed": 458,
+    "risk_and_accountability_paragraphs_byte_identical": true,
+    "all_existing_citation_targets_preserved": true,
+    "one_page_render_pending_root_verification": true
+  }
+}

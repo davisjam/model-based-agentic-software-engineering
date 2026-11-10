@@ -1,0 +1,560 @@
+{
+  "source": "book/assets/established-traditions-new-composition.svg",
+  "claim": "*Established traditions, new composition.* MAGE draws on two long-running traditions. Engineering disciplines developed explicit models, constrained representations, verification, and external control; AI repeatedly extended reasoners through knowledge representation, planning state, memory, structured reasoning, tools, and surrounding machinery. MAGE brings these inheritances together around autonomous software work: Modeling makes engineering knowledge explicit, Alignment enforces selected obligations independently, and both meet in the Governed Engineering Environment. Governance conversion carries recurring judgment into durable engineering capital.",
+  "topology": "Two traditions feed Modeling/Alignment within MAGE containment, converge on environment, then capital and intended autonomy outside boundary.",
+  "required_terms": [
+    "ENGINEERING TRADITIONS",
+    "AI TRADITIONS",
+    "MBSE / MDE: explicit models PL / compilers: types; constrained IRs Formal methods: specifications; verification Systems / safety: boundaries; control",
+    "Knowledge representation\\; planning state\\ reasoning\\ and interfaces",
+    "Modeling\\ knowledge explicit",
+    "Alignment\\ selected obligations",
+    "Governed engineering environment\\; evidence; constraints; controls",
+    "MAGE",
+    "Engineering capital\\ judgment made durable",
+    "Trustworthy autonomy\\ outcome",
+    "New economics drive a new composition; the provenance of the parts is old."
+  ],
+  "bw_encoding": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Engineering versus AI sources separated; MAGE composition gets a bounded pale ground; durable environment/capital retain common fill.",
+  "questions": [],
+  "alt": "Two columns of established traditions feed a central MAGE boundary. On the left,\n    engineering traditions: model-based and model-driven engineering (explicit models); programming languages\n    and compilers (types and constrained intermediate representations); formal methods (specifications and\n    verification); systems and safety engineering (boundaries and control). On the right, AI traditions:\n    knowledge representation; memory and planning state; structured reasoning; tools and interfaces. Both\n    columns feed the MAGE boundary, inside which Modeling makes knowledge explicit and Alignment enforces\n    selected obligations; the two meet in the Governed Engineering Environment. Governance conversion carries\n    recurring judgment downward, out of the boundary, into engineering capital — durable structure inherited\n    by subsequent work — toward trustworthy autonomy, the intended outcome outside the boundary. New\n    economics under commodity intelligence drive the new composition; the provenance of the parts is old.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 399.957,
+    "height_pt": 351.735,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
+    "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+    "fill": "Only MAGE composition container is 5%; constituent methods and traditions stay white.",
+    "bold": "Source-derived emphasis includes Governed engineering environment; Knowledge representation; Memory; planning state; Structured reasoning; Tools and interfaces; Trustworthy autonomy; Engineering capital; Systems / safety. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Traditions remain separate, MAGE is the single pale composition container; intended outcome dashed.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 89,
+      "width_bp": 399.957,
+      "height_bp": 351.462,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 14
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "2b794ce50ab883b609932073ff79fad60199350630e3577f36229aaa51e8db09",
+    "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "Governed Engineering Environment",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Governed engineering environment",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Governed Engineering Environment",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "492",
+              "text_element": 27
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Knowledge\nrepresentation",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Knowledge representation",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Knowledge",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "536",
+              "y": "117",
+              "text_element": 12
+            }
+          },
+          {
+            "text": "representation",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "536",
+              "y": "138",
+              "text_element": 13
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Memory ·\nplanning state",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Memory; planning state",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Memory ·",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "758",
+              "y": "117",
+              "text_element": 15
+            }
+          },
+          {
+            "text": "planning state",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "758",
+              "y": "138",
+              "text_element": 16
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Structured reasoning",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Structured reasoning",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Structured reasoning",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "536",
+              "y": "201",
+              "text_element": 18
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Tools · interfaces",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Tools and interfaces",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Tools · interfaces",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "758",
+              "y": "201",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Trustworthy autonomy",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Trustworthy autonomy",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Trustworthy autonomy",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "814",
+              "text_element": 32
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Engineering capital",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Engineering capital",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Engineering capital",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "500",
+              "y": "706",
+              "text_element": 30
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Systems / safety",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Systems / safety",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Systems / safety",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "282",
+              "y": "201",
+              "text_element": 9
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "PL / compilers",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "PL / compilers",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "PL / compilers",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "282",
+              "y": "123",
+              "text_element": 5
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Formal methods",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Formal methods",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Formal methods",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "201",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "MBSE / MDE",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "MBSE / MDE",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "MBSE / MDE",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "60",
+              "y": "123",
+              "text_element": 3
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Alignment",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Alignment",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Alignment",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "678",
+              "y": "332",
+              "text_element": 25
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Modeling",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Modeling",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "322",
+              "y": "332",
+              "text_element": 23
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Governed engineering environment",
+        "bold": true
+      },
+      {
+        "text": "Knowledge representation",
+        "bold": true
+      },
+      {
+        "text": "Memory; planning state",
+        "bold": true
+      },
+      {
+        "text": "Structured reasoning",
+        "bold": true
+      },
+      {
+        "text": "Tools and interfaces",
+        "bold": true
+      },
+      {
+        "text": "Trustworthy autonomy",
+        "bold": true
+      },
+      {
+        "text": "Engineering capital",
+        "bold": true
+      },
+      {
+        "text": "Systems / safety",
+        "bold": true
+      },
+      {
+        "text": "PL / compilers",
+        "bold": true
+      },
+      {
+        "text": "Formal methods",
+        "bold": true
+      },
+      {
+        "text": "MBSE / MDE",
+        "bold": true
+      },
+      {
+        "text": "Alignment",
+        "bold": true
+      },
+      {
+        "text": "Modeling",
+        "bold": true
+      },
+      {
+        "text": "explicit models",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 89,
+      "width_bp": 399.957,
+      "height_bp": 351.462,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 14,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Retained: Tradition summaries have intentionally content-dependent heights; central modeling/alignment peers already match. Raised the containing panel boundary to leave room before the arrow enters the MAGE box.",
+    "candidate_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing established traditions new composition layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+      "after_sha256": "41e2b140c461948ed46960d63d069a3e74727635ba105f9153d453e418d46fce",
+      "before_dimensions_bp": [
+        399.9570007324219,
+        351.4620056152344
+      ],
+      "after_dimensions_bp": [
+        399.9570007324219,
+        351.4620056152344
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 89,
+      "width_bp": 399.957,
+      "height_bp": 351.462
+    }
+  }
+}

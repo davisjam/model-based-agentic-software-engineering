@@ -1,0 +1,65 @@
+{
+  "source_revision": "641b1386f2de4a2e42e9306fea15c0de5479627a",
+  "sources": {
+    "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex": {
+      "before_sha256": "682e2260eb766acba6c9bae7d12e5d00f7eac11fb2ead87accc7c9e13f945b67",
+      "after_sha256": "f95b95b1b0f3e6d203135507157c6cb1afa0236ff19f60ccf18cd9767bdf72fc",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "governed_reference_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part4/4.3-brownfield-engineering.tex": {
+      "before_sha256": "87d5c0aea08d4ce598c1e4eb1a1f23986255ee22b15683a50cca60304042d94f",
+      "after_sha256": "fd5a5eb5d5b94a54b8ab7103d633240f2774d7d8161b4fe60822a0140bb9de3e",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "governed_reference_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part5/5.5-engineering-the-factory.tex": {
+      "before_sha256": "6086580cba82e42c7c465df9d9c7e55b9cc44939a2110ba4b3278737b15454e0",
+      "after_sha256": "807fc6c3ed7850ce67ff54bfeaeb06324d4c070c6201d9c4981d14be619c2d18",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "governed_reference_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part7/7.4-the-engineer.tex": {
+      "before_sha256": "520a3dbbde63a9f207cd2ffd9568fda9467456dccaa01bfc719ae8e830f0ee0d",
+      "after_sha256": "01068c96fa2fb1f2e75180730608d09f877967b5663c49898a4849fcf09b76d3",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "governed_reference_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    }
+  },
+  "authority_inset_byte_identical": true,
+  "factory_accountability_closing_byte_identical": true,
+  "brownfield_appendix_pointer_count": 1,
+  "approved_recommendations_implemented": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "optional_chapter_one_line_not_applied": true,
+  "retired_or_extended_spans": 6,
+  "print_layout_note": "A print-only full-page space request was added immediately before the fitted authority inset. Its prose is unchanged; the request keeps this reviewed one-page inset on one physical page."
+}
