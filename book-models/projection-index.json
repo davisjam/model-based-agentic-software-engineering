@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 639,
+    "total_sites": 638,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 303,
+      "book-web": 302,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -69,7 +69,7 @@
           },
           {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
-            "occ": 17
+            "occ": 14
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
@@ -977,11 +977,11 @@
           },
           {
             "file": "book/web/docs/3.4-governance-conversion.md",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/web/docs/3.6-alignment-summary.md",
@@ -1294,10 +1294,6 @@
             "occ": 8
           },
           {
-            "file": "book/web/docs/3.5-when-guardrails-collide.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/3.6-alignment-summary.md",
             "occ": 1
           },
@@ -1369,7 +1365,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 22
+            "occ": 21
           }
         ]
       },

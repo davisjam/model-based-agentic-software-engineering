@@ -28,9 +28,9 @@ A check may inform a later decision, or a gate may use its result to refuse an a
 The obligation can also reside directly in a type, permission, schema, test, or policy.
 What matters is that it is distinguishable from the implementation being judged and that a mechanism can enforce the resulting decision.
 
-% <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis; engineers separately decide how an evaluation should affect the work. | terms: independent-obligation, traceability -->
+% <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis. | terms: independent-obligation, traceability -->
 
-Once an obligation is explicit, engineers need to determine whether the implementation satisfies it. You may be familiar with this work from requirements traceability, which connects a requirement to relevant design elements, implementation, tests, and other evidence\citep{estefan2008mbse}. These connections help engineers examine the design choices made to meet the requirement and find the evidence needed to evaluate the implementation. When a requirement or design changes, the links help identify which parts of the implementation and which checks need to be reconsidered. Designing enforcement requires a separate judgment about how the evaluation should affect the work: should its finding inform a later decision, or should a mechanism refuse an action or result that violates the obligation?
+Once an obligation is explicit, engineers need to determine whether the implementation satisfies it. You may be familiar with this work from requirements traceability, which connects a requirement to relevant design elements, implementation, tests, and other evidence\citep{estefan2008mbse}. These connections help engineers examine the design choices made to meet the requirement and find the evidence needed to evaluate the implementation. When a requirement or design changes, the links help identify which parts of the implementation and which checks need to be reconsidered.
 
 % <!-- point: traceability-connects-intent-realization-evidence-without-enforcement | Traceability can relate an obligation, its realization, and its evidence without any mechanism enforcing the obligation — a requirement can trace cleanly to a test whose failure is merely reported, and a permission boundary can enforce firmly without a rich traceability model. | terms: independent-obligation, traceability, alignment-principle -->
 
@@ -188,7 +188,7 @@ The agent-return check illustrates a general rule for placing enforcement:
   \textbf{Deployment gates} act after broader evidence has accumulated --- the last boundary before the artifact is accepted.
 \end{itemize}
 
-And some properties stay illegible until later still: a leak visible only across ten calls, a cost overrun visible only across a season of jobs. No boundary makes them readable sooner. The correct placement is not the earliest available boundary; it is the earliest boundary that can actually decide the obligation.
+And some properties stay illegible until later still: a leak visible only across ten calls, a cost overrun visible only across a season of jobs. No boundary makes them readable sooner.
 
 % <!-- point: the-part-two-rhyme-coarsest-representation-earliest-boundary | The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible. | terms: semantic-gap, earliest-legible-boundary, modeling-principle, alignment-principle -->
 
