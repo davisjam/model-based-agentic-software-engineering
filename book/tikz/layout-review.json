@@ -184,9 +184,9 @@
     {
       "source": "book/assets/mage-method.svg",
       "candidate": "book/tikz/figures/mage-method.tex",
-      "source_sha256": "ce4b6919249729faec8be439c57158e75ac4855a98366d05ef6b8909c72141cd",
+      "source_sha256": "3467bb7774b6be2395e1994bc98a0121e21d72ef9504a8957c46e482ca1e3ea5",
       "baseline_candidate_sha256": "c122d1a933772a5cad043ca6525cb4c3c08b216cf3bda7b1c0acc1938dc973ba",
-      "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
+      "candidate_sha256": "d07a067b486a33306fbb9ab0ba738d359a7ffd4ad6638b4c0ef5dc82c5c45f68",
       "decision": "refined",
       "reason": "Separated the final capital stage and moved the churn sidebar outward so both dashed arrow tips have forward terminal shafts instead of folding behind their bend. Raise conceptual labels/prose to11pt and relationship labels to10pt; spread causal ranks so annotations sit in clear shafts. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
       "reviewed_visually": true,
@@ -245,28 +245,19 @@
         }
       ],
       "governance_revision_date": "2026-11-08",
+      "review_date": "2026-11-09",
       "validation": {
+        "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-        "geometry_findings": 0,
-        "unapproved_compile_diagnostics": 0,
-        "status": "passed",
-        "date": "2026-11-08",
+        "proof_sha256": "dc243e0578784a6ceb369d260c19b018481ebc80f79a366c41336753494fe8e6",
         "page": 2,
-        "width_bp": 424.801,
-        "height_bp": 487.874,
-        "minimum_prose_font_bp": 9.9626,
+        "width_bp": 448.872,
+        "height_bp": 515.722,
+        "status": "passed",
+        "geometry_findings": 0,
+        "semantic_typography_checks": 9,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 17,
-        "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
-        "checked_terminal_approaches": 668,
-        "reviewed_peer_groups": 87,
-        "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+        "visual_review": "Inspected native candidate and rendered facing-page proof at book size. Black connectors and feedback arrowheads are distinct, text is legible, and the claim-six prediction is separated from the mechanism flow. Claims fit on verso6; transition and diagram fit on recto7 without reducing the body font or baseline."
       }
     },
     {

@@ -23,8 +23,8 @@
     {
       "source": "book/assets/mage-method.svg",
       "candidate": "book/tikz/figures/mage-method.tex",
-      "source_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-      "candidate_sha256": "be0cc5ae19b4c383419cf2abfa4378f098716599c82c1eb020022d936bea1d06",
+      "source_sha256": "3467bb7774b6be2395e1994bc98a0121e21d72ef9504a8957c46e482ca1e3ea5",
+      "candidate_sha256": "d07a067b486a33306fbb9ab0ba738d359a7ffd4ad6638b4c0ef5dc82c5c45f68",
       "decision": "refined",
       "review": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
@@ -32,7 +32,10 @@
         14.486,
         13.381
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "review_date": "2026-11-09",
+      "status": "author-directed redesign",
+      "evidence": "Figure now explains the six claims; removes the extra churn branch and capital-to-scale loop, makes Modeling and Alignment parallel, and identifies claim six as a prediction."
     },
     {
       "source": "book/assets/model-classes.svg",

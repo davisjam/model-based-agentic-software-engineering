@@ -1241,19 +1241,7 @@ def _how_to_read_title() -> str:
         return "how to read this book"
 
 
-def _mage_glance_title() -> str:
-    """The 'MAGE Method at a Glance' chapter title, resolved THROUGH its identity label so a retitle updates
-    the apparatus-frame match automatically (chapter_identity model). Falls back to the known literal if the
-    identity model is unavailable during a partial build — the literal is the current title, so the frame
-    still matches; this is a convenience derivation, not a correctness dependency."""
-    try:
-        import chapter_identity_model as _cim  # book-models is on sys.path (bb imported above)
-        return _cim.title("the-mage-method-at-a-glance").lower()
-    except Exception:  # noqa: BLE001 — see docstring: derivation is a convenience; the literal is the truth
-        return "the mage method at a glance"
-
-
-_APPARATUS_ONEPAGER_TITLES = {_how_to_read_title(), _mage_glance_title(), "the operator's dashboard"}
+_APPARATUS_ONEPAGER_TITLES = {_how_to_read_title(), "the operator's dashboard"}
 
 # A subset of the apparatus one-pagers that carry a WIDE table: typeset on a single LANDSCAPE page so a
 # 6-column reference fits without cramping.

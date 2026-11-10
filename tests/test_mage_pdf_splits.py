@@ -7,7 +7,9 @@ surfaces to it — the Pages workflow and the pre-push hook — so neither can d
 and neither can disagree with the other.
 """
 import fnmatch
+import contextlib
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -151,6 +153,202 @@ class PublicationScopeTests(unittest.TestCase):
                          "pre-push and publication must run the same command")
         self.assertTrue(build_book._pdf_split_enabled(builds[0], {}),
                         "pre-push must keep refreshing the author's review PDFs")
+
+
+class ExcerptPreparationTests(unittest.TestCase):
+    def test_unlabelled_figures_gain_anchors_before_excerpt_reference_resolution(self):
+        import concurrent.futures
+        import mage_assets
+        import mage_cover
+        import mage_latex
+
+        with tempfile.TemporaryDirectory() as temporary, contextlib.ExitStack() as stack:
+            root = Path(temporary)
+            (root / 'book').mkdir()
+            (root / 'book/references.bib').write_text('')
+            (root / 'book/book-manifest.json').write_text(json.dumps(
+                {'title': 'Book', 'subtitle': 'A subtitle', 'author': 'An author'}))
+            slug = '0.6-preface'
+            record = {'slug': slug, 'part': 0, 'part_title': 'Orientation'}
+            original = (r'\chapter*{Preface}\label{chapter:' + slug + '}\n'
+                        r'\autoref{mage-list-figure-0}' + '\n'
+                        r'\begin{figure}\includegraphics{book/assets/example.svg}' + '\n'
+                        r'\caption[Example]{An example without an authored label.}\end{figure}')
+
+            def prepare_record(item):
+                _, current = item
+                path = root / current['_build_directory'] / (slug + '.tex')
+                path.write_text(original)
+                return path.relative_to(root).as_posix()
+
+            def pool_figures(chapters, directory):
+                for chapter in chapters:
+                    self.assertIn(r'\label{mage-list-figure-0}', (root / chapter).read_text())
+
+            for obj, name, kwargs in [
+                (mage_latex, 'ROOT', {'new': root}),
+                (mage_latex, 'sync', {}),
+                (mage_latex, 'inline', {'side_effect': lambda text: text}),
+                (mage_latex, '_prepare_record', {'side_effect': prepare_record}),
+                (mage_latex.book_ir, 'book_records', {'side_effect': lambda **kwargs: [dict(record)]}),
+                (mage_latex.bb, '_harvest_concept_tags', {'return_value': ({}, {})}),
+                (mage_latex.bb, 'build_index_entries', {'return_value': []}),
+                (mage_assets, 'pool_figures', {'side_effect': pool_figures}),
+                (mage_cover, 'cover_tex', {'return_value': 'Cover'}),
+                (concurrent.futures, 'ProcessPoolExecutor',
+                 {'new': concurrent.futures.ThreadPoolExecutor}),
+            ]:
+                stack.enter_context(patch.object(obj, name, **kwargs))
+            labels = stack.enter_context(patch.object(
+                mage_latex, 'native_float_lists', wraps=mage_latex.native_float_lists))
+
+            full = mage_latex.prepare_pdf()
+            self.assertEqual(labels.call_count, 1)
+            self.assertIn(r'\chapter*{List of Figures}', full.read_text())
+            excerpt = mage_latex.prepare_pdf(slugs=[slug], name='excerpt')
+            self.assertEqual(labels.call_count, 2, 'each preparation supplies labels exactly once')
+            self.assertNotIn(r'\chapter*{List of Figures}', excerpt.read_text())
+            chapter = excerpt.parent / (slug + '.tex')
+            self.assertEqual(chapter.read_text().count(r'\label{mage-list-figure-0}'), 1)
+            self.assertIn(r'\autoref{mage-list-figure-0}', chapter.read_text(),
+                          'an excerpt-local figure reference must remain a live link')
+
+
+class SectionArtworkTests(unittest.TestCase):
+    """Exercise the split orchestration with the real publication pass and reuse key.
+
+    Only the expensive TeX/PDF tools are replaced. The fixture's original artwork
+    and native artwork differ, so compiling the unprojected chapter cannot pass.
+    """
+
+    def setUp(self):
+        import book_ir
+        import latex_build
+        import mage_latex
+        import mage_tikz_links
+        import mage_tikz_review
+        import pdf_structure
+
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.book = self.root / 'book'
+        self.base = self.book / 'tikz'
+        (self.base / 'receipts').mkdir(parents=True)
+        self.pool = self.root / 'native.pdf'
+        self.pool.write_bytes(b'native figure pool')
+        self.sources = ['book/assets/book-map.svg', 'book/assets/example.svg']
+        self.manifest = {source: {'page': index + 1, 'links': []}
+                         for index, source in enumerate(self.sources)}
+        self.manifest[self.sources[0]]['links'] = [
+            {'target': 'book-map', 'rect_bp': [1, 2, 30, 12]},
+            {'target': 'example', 'rect_bp': [1, 20, 30, 30]},
+        ]
+        policy = {'version': 1, 'web': 'color', 'pdf_default': 'paired',
+                  'approved_monochrome': {source: {'approved_date': '2026-11-09'}
+                                          for source in self.sources}}
+        (self.base / 'publication.json').write_text(json.dumps(policy))
+        for source in self.sources:
+            (self.base / 'receipts' / (Path(source).stem + '.json')).write_text(
+                json.dumps({'alt': Path(source).stem}))
+
+        def patched(obj, name, *args, **kwargs):
+            replacement = patch.object(obj, name, *args, **kwargs)
+            self.addCleanup(replacement.stop)
+            return replacement.start()
+
+        patched(build_book, 'HERE', self.book)
+        patched(latex_reuse, 'ROOT', self.root)
+        patched(latex_reuse, 'engine_identity', return_value='fixture-engine')
+        patched(latex_reuse, 'thread_cache_claimer', return_value=lambda: self.root / 'tex-cache')
+        patched(mage_tikz_review, 'ROOT', self.root)
+        patched(mage_tikz_review, 'BASE', self.base)
+        patched(book_ir, 'parse_book', return_value=None)
+        self.sections = [('FrontMatter', ['0.1-how-to-read-this-book']),
+                         ('Chapter1', ['1.1-example'])]
+        patched(build_book, '_pdf_split_sections', return_value=self.sections)
+        patched(build_book, '_split_jobs', return_value=1)
+        patched(build_book, '_pdf_page_count', return_value=1)
+        self.candidates = patched(mage_tikz_review, 'compile_candidates',
+                                  return_value=(self.pool, self.manifest))
+        patched(mage_latex, 'prepare_pdf', side_effect=self.prepare)
+        patched(mage_latex, 'pdf_sources', side_effect=self.read_sources)
+        self.compiled = patched(latex_build, 'compile_tex', side_effect=self.compile)
+        patched(pdf_structure, 'check_pdf')
+        self.verified = patched(mage_tikz_links, 'verify_book')
+        self.environment = patch.dict(os.environ, {'MAGE_PDF_SPLIT_FORCE': ''})
+        self.environment.start()
+        self.addCleanup(self.environment.stop)
+
+    def prepare(self, *, slugs, name):
+        directory = self.book / 'build' / name
+        directory.mkdir(parents=True, exist_ok=True)
+        chapter = directory / (slugs[0] + '.tex')
+        guide = name.endswith('FrontMatter')
+        source = self.sources[0 if guide else 1]
+        label = Path(source).stem
+        figure = ('\\begin{figure}[htbp]\n\\centering\n'
+                  f'\\includegraphics[width=\\linewidth]{{{source}}}\n'
+                  f'\\caption{{The {label}.}}\\label{{{label}}}\n\\end{{figure}}\n')
+        if guide:
+            text = ('\\chapter*{How to Read This Book}\n'
+                    '\\addcontentsline{toc}{chapter}{How to Read This Book}\n\n'
+                    'Inventory.\n\nFirst time here?\n\nLooking for a refresher?\n\n'
+                    'Chapter 1 begins the argument.\n\n' + figure + '\n'
+                    '\\begin{itemize}\n\\item Read Chapter 1.\n\\end{itemize}\n')
+        else:
+            text = '\\chapter{Example}\n' + figure
+        chapter.write_text(text)
+        driver = directory / (name + '.tex')
+        driver.write_text('\\begin{document}\n\\input{' +
+                          chapter.relative_to(self.root).as_posix() + '}\n\\end{document}')
+        return driver
+
+    def read_sources(self, driver):
+        text = driver.read_text()
+        chapters = [(self.root / name).read_text()
+                    for name in re.findall(r'\\input\{([^}]+)\}', text)]
+        return text, chapters, ''
+
+    def compile(self, driver, **kwargs):
+        text, chapters, _ = self.read_sources(driver)
+        self.assertIn(r'\magerecordfigureorigin', text)
+        self.assertIn('{native.pdf}', chapters[0])
+        self.assertNotIn('.svg}', chapters[0])
+        if driver.stem.endswith('FrontMatter'):
+            self.assertIn(r'\begin{minipage}', chapters[0])
+            self.assertIn(r'\begin{bookinlinefigure}', chapters[0])
+        pdf = driver.with_suffix('.pdf')
+        pdf.write_bytes(b'%PDF fixture ' + self.pool.read_bytes())
+        return pdf
+
+    def build(self):
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            return build_book.build_pdf_split()
+
+    def test_split_compiles_approved_artwork_and_layout_then_reuses_identical_inputs(self):
+        self.assertEqual(self.build(), 0)
+        self.candidates.assert_called_once()
+        self.assertEqual(self.compiled.call_count, 2)
+        self.assertEqual(self.verified.call_count, 2)
+        guide_manifest = self.verified.call_args_list[0].args[2]
+        self.assertEqual(set(guide_manifest), {self.sources[0]})
+        self.assertEqual([link['target'] for link in guide_manifest[self.sources[0]]['links']],
+                         ['book-map'])
+        for call in self.verified.call_args_list:
+            self.assertEqual(call.kwargs['anchor_prefix'], 'tikz-figure:')
+        self.assertEqual(self.build(), 0)
+        self.assertEqual(self.compiled.call_count, 2, 'identical projected inputs should reuse')
+
+        self.pool.write_bytes(b'revised native figure pool')
+        self.assertEqual(self.build(), 0)
+        self.assertEqual(self.compiled.call_count, 4, 'changed native artwork must recompile')
+
+    def test_failed_native_link_verification_does_not_publish_or_stamp(self):
+        self.verified.side_effect = ValueError('misdirected TikZ book links')
+        self.assertEqual(self.build(), 1)
+        self.assertEqual(list(self.book.glob('mage-book-*.pdf')), [])
+        self.assertEqual(list(self.book.rglob('*.cache.json')), [])
 
 
 class SectionReuseKeyTests(unittest.TestCase):

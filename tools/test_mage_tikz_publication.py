@@ -44,10 +44,10 @@ class PublicationTests(unittest.TestCase):
                 f'\\includegraphics[width=8cm]{{{source}}}\n'
                 f'\\caption{{Caption for {label}.}}\\label{{{label}}}\n\\end{{figure}}\n')
 
-    def assemble(self, text):
+    def assemble(self, text, **kwargs):
         self.chapter.write_text(text)
         (self.base / 'publication.json').write_text(json.dumps(self.policy))
-        active = review.publication_figures(self.driver, self.pool, self.manifest)
+        active = review.publication_figures(self.driver, self.pool, self.manifest, **kwargs)
         return (self.chapter.read_text(), active,
                 json.loads((self.build / 'figure-pairings.json').read_text()))
 
@@ -102,6 +102,39 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(text, original)
         self.assertEqual(active, {})
         self.assertEqual(report['monochrome_originals'], [source])
+
+    def test_excerpt_uses_approved_artwork_without_requiring_other_chapters(self):
+        selected = self.candidate('selected', approved=True)
+        self.candidate('another-chapter', approved=True)
+        text, active, report = self.assemble(self.figure(selected, 'selected'), excerpt=True)
+        self.assertNotIn('{book/assets/selected.svg}', text)
+        self.assertEqual(text.count(r'\begin{figure}'), 1)
+        self.assertEqual(set(active), {selected})
+        self.assertEqual([entry['source'] for entry in report['approved_monochrome']], [selected])
+
+    def test_excerpt_still_rejects_a_missing_approved_candidate(self):
+        selected = self.candidate('selected', approved=True)
+        orphan = self.candidate('missing-pool-entry', approved=True)
+        del self.manifest[orphan]
+        original = self.figure(selected, 'selected')
+        with self.assertRaisesRegex(ValueError, 'no replaceable monochrome candidate'):
+            self.assemble(original, excerpt=True)
+        self.assertEqual(self.chapter.read_text(), original)
+
+    def test_excerpt_links_and_verification_cover_only_present_destinations(self):
+        source = self.candidate('selected', approved=True)
+        internal = {'target': 'part:2', 'rect_bp': [1, 2, 30, 12]}
+        external = {'target': 'part:7', 'rect_bp': [1, 20, 30, 30]}
+        self.manifest[source]['links'] = [internal, external]
+        original = self.figure(source, 'selected')
+        text, active, _ = self.assemble(original, excerpt=True)
+        self.assertIn(r'\hyperref[part:2]', text)
+        self.assertNotIn(r'\hyperref[part:7]', text)
+        self.assertEqual(active[source]['links'], [internal])
+        self.assertEqual(self.manifest[source]['links'], [internal, external],
+                         'one excerpt must not alter the shared manifest for later excerpts')
+        with self.assertRaisesRegex(ValueError, 'Missing TikZ book-reference destination: part:7'):
+            self.assemble(original)
 
     def test_pdf_cannot_silently_fall_back_to_color(self):
         self.policy['pdf_default'] = 'color'

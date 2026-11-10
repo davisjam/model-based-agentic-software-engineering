@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 652,
+    "total_sites": 648,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 314,
+      "book-web": 310,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -608,10 +608,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/0.3-the-mage-method-at-a-glance.md",
-            "occ": 11
-          },
-          {
             "file": "book/web/docs/0.4-the-books-language.md",
             "occ": 6
           },
@@ -641,13 +637,13 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 25
+            "occ": 14
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 9
+            "occ": 8
           }
         ]
       },
@@ -655,7 +651,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 15
+            "occ": 4
           }
         ],
         "website-catalogue": [
@@ -931,11 +927,7 @@
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
-            "occ": 20
-          },
-          {
-            "file": "book/web/docs/0.3-the-mage-method-at-a-glance.md",
-            "occ": 19
+            "occ": 32
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
@@ -1147,7 +1139,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 188
+            "occ": 181
           },
           {
             "file": "book/web/docs/index.md",
@@ -1189,7 +1181,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 66
+            "occ": 65
           }
         ]
       },
@@ -1197,7 +1189,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 56
+            "occ": 51
           }
         ],
         "website-catalogue": [
@@ -1301,11 +1293,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/0.3-the-mage-method-at-a-glance.md",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
@@ -1377,7 +1365,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 21
+            "occ": 19
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1395,7 +1383,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 23
+            "occ": 22
           }
         ]
       },
@@ -1403,7 +1391,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 6
+            "occ": 4
           }
         ],
         "website-misc": [
@@ -2249,11 +2237,7 @@
         "book-web": [
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/0.3-the-mage-method-at-a-glance.md",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
@@ -2291,7 +2275,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 9
           }
         ]
       },
@@ -2355,7 +2339,7 @@
           },
           {
             "file": "book/web/docs/0.2-what-this-book-argues.md",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/web/docs/0.4-the-books-language.md",
@@ -2451,7 +2435,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/index.md",
@@ -2497,7 +2481,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 11
+            "occ": 12
           }
         ],
         "website-misc": [

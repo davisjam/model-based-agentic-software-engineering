@@ -111,3 +111,54 @@ def reading_guide_columns(latex: str) -> str:
             r'\end{minipage}\hfill\begin{minipage}[t]{.45\linewidth}\vspace{0pt}' + '\n' +
             r'\begin{bookinlinefigure}{' + alt + '}' + artwork +
             r'\end{bookinlinefigure}\end{minipage}\par' + '\n')
+
+
+def claims_spread(latex: str) -> str:
+    """The approved claims and their diagram share one verso–recto section.
+
+    Preserve the authored prose and body size. Only this deliberately facing-page
+    reference spread gets a parity boundary; ordinary sections still flow.
+    """
+    if r'\label{mage-method}' not in latex:
+        return latex
+    figures = list(re.finditer(r'\\begin\{figure\}.*?\\end\{figure\}', latex, re.S))
+    if len(figures) != 1 or r'\label{mage-method}' not in figures[0][0]:
+        raise ValueError('The claims spread requires one approved monochrome diagram')
+    lists = list(re.finditer(r'\\begin\{enumerate\}.*?\\end\{enumerate\}', latex, re.S))
+    if not lists or sum(block[0].count(r'\item') for block in lists) != 6:
+        raise ValueError('The claims spread must retain its six-claim list')
+    if any(latex[a.end():b.start()].strip() for a, b in zip(lists, lists[1:])):
+        raise ValueError('Cannot merge claim lists across intervening content')
+    # The block projector emits each numbered paragraph as a separate list.
+    # Rejoin this one semantic list so six default top/bottom margins do not
+    # consume the space intended for its prose. The item bodies stay verbatim.
+    items = []
+    for block in lists:
+        content = block[0].split(r'\item', 1)[1].removesuffix(r'\end{enumerate}')
+        items.append(r'\item' + content)
+    latex = (latex[:lists[0].start()] + r'\begin{enumerate}' + '\n'
+             + '\n'.join(items) + r'\end{enumerate}' + latex[lists[-1].end():])
+    left, right = latex.split(r'\end{enumerate}', 1)
+    left += r'\end{enumerate}'
+    heading = r'\chapter*{What This Book Argues}'
+    compact_heading = (r'\begingroup\makeatletter'
+                       r'\patchcmd{\@makeschapterhead}{\vskip18pt}{\vskip6pt}{}'
+                       r'{\errmessage{Reference heading spacing changed}}'
+                       + heading + r'\makeatother\endgroup')
+    left = left.replace(heading, compact_heading, 1)
+    left = left.replace(r'\begin{enumerate}',
+                        r'\begin{enumerate}[leftmargin=0pt,labelsep=.5em,itemsep=1.5pt,parsep=0pt,topsep=2pt]'
+                        r'\setlength{\itemsep}{1.5pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}')
+    # Pandoc's compact-list declaration would otherwise override the reviewed gaps.
+    left = left.replace(r'\tightlist', '')
+    figure = figures[0][0]
+    artwork = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure)
+    artwork = artwork.removesuffix(r'\end{figure}')
+    alt = ('The six claims connect commodity intelligence and scale to Modeling, '
+           'Alignment and governance conversion. The conversion loop adapts both '
+           'models and controls. Reorganization of engineering work is a prediction.')
+    right = right.replace(figure, r'\begin{bookinlinefigure}{' + alt + '}' + artwork + r'\end{bookinlinefigure}')
+    # After clearpage the counter names the next page. Insert only the parity leaf
+    # needed to start on a left-hand page, in both complete and excerpt editions.
+    parity = r'\clearpage\ifodd\value{page}\null\thispagestyle{empty}\newpage\fi'
+    return parity + '\n' + left + '\n\\clearpage\n' + right

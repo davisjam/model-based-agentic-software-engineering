@@ -287,7 +287,7 @@ GLOSSARY_CHAPTER_LABEL = "the-books-language"
 # The retired operator dashboard is no longer a published one-pager. The renderer
 # frames these in a `.apparatus-page` box (HTML) / a `#block` frame (Typst) — see the CSS
 # `.apparatus-page` swap-point block and `_APPARATUS_ONEPAGER_TITLES` in book_typst.py.
-_APPARATUS_ONEPAGER_LABELS = {"how-to-read-this-book", "the-mage-method-at-a-glance"}  # chapter members — matched by identity label
+_APPARATUS_ONEPAGER_LABELS = {"how-to-read-this-book"}  # chapter members — matched by identity label
 _APPARATUS_ONEPAGER_APPENDIX_SLUGS: set[str] = set()  # the two current appendices use ordinary prose layout
 # "What This Book Argues" — the six central claims. The renderer wraps its content in an `.argues-page`
 # class so the claims list reads as a deliberate front-matter feature (larger body, more air between
@@ -6799,6 +6799,7 @@ _SECTION_KEY_INPUTS = (
     "tools/latex_build.py",       # the pass loop AND the diagnostics allow-list — a gate input
     "tools/latex_reuse.py",       # the cache key and the stamp guard themselves
     "tools/pdf_structure.py",     # check_pdf: the per-section structure gate itself
+    "tools/mage_tikz_links.py",   # native-figure link geometry and destination gate
 )
 
 #: Namespaces this book's keys from the handbook's. Changing it invalidates every section stamp once,
@@ -6860,6 +6861,8 @@ def build_pdf_split() -> int:
     import book_ir
     sys.path.insert(0, str(ROOT / "tools"))
     import mage_latex
+    import mage_tikz_review
+    import mage_tikz_links
     from latex_build import compile_tex
     from pdf_structure import check_pdf
 
@@ -6867,6 +6870,11 @@ def build_pdf_split() -> int:
 
     doc = book_ir.parse_book(include_appendices=True, for_print=True)
     sections = _pdf_split_sections(doc)
+    try:
+        figure_pool, figure_manifest = mage_tikz_review.compile_candidates()
+    except (RuntimeError, ValueError, OSError) as error:
+        print(f"ERROR: section PDF artwork: {error}", file=sys.stderr)
+        return 1
     base = pathlib.Path(_PDF_FILENAME).stem
     # Prune ORPHANS only — a PDF whose section no longer exists under that index and name. The loop
     # here used to delete every section PDF up front, which would destroy the very artifact the cache
@@ -6884,7 +6892,10 @@ def build_pdf_split() -> int:
             continue
         name = f"{base}-{index:02d}-{suffix}"
         try:
-            prepared.append((suffix, name, mage_latex.prepare_pdf(slugs=slugs, name=name)))
+            driver = mage_latex.prepare_pdf(slugs=slugs, name=name)
+            active_figures = mage_tikz_review.publication_figures(
+                driver, figure_pool, figure_manifest, excerpt=True)
+            prepared.append((suffix, name, driver, active_figures))
         except (RuntimeError, ValueError, OSError) as error:
             print(f"ERROR: section {suffix}: {error}", file=sys.stderr)
             failures.append(suffix)
@@ -6896,7 +6907,7 @@ def build_pdf_split() -> int:
     reused = []
 
     def compile_section(task):
-        suffix, name, driver = task
+        suffix, name, driver, active_figures = task
         try:
             driver_text, chapter_texts, bibliography = mage_latex.pdf_sources(driver)
             source = driver_text + "\n" + "\n".join(chapter_texts)
@@ -6912,6 +6923,8 @@ def build_pdf_split() -> int:
             pdf = compile_tex(driver, texmf_cache=_my_cache())
             check_pdf(pdf, headings=_expected_chapter_headings(source),
                       sections=len(re.findall(r"\\section\*?\{", source)))
+            mage_tikz_links.verify_book(pdf, driver.with_suffix('.aux'), active_figures,
+                                        anchor_prefix='tikz-figure:')
             shutil.copy2(pdf, destination)
             pages = _pdf_page_count(destination)  # one `pdfinfo` per section, not two
             # Stamped only now — after the compile converged, the diagnostics allow-list passed, and

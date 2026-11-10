@@ -595,6 +595,18 @@ def emit(chapters: list[dict], extras: list[dict],
     for slug, md in bodies.items():
         (docs / f"{slug}.md").write_text(md, encoding="utf-8")
 
+    # Retain the old overview URL after merging its content into the claims.
+    # Static redirect leaves are absent from the reading sequence and search.
+    for retired, target in {
+        "0.3-the-mage-method-at-a-glance": "0.2-what-this-book-argues.html",
+    }.items():
+        (docs / f"{retired}.html").write_text(
+            '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            f'<meta http-equiv="refresh" content="0;url={target}">'
+            f'<link rel="canonical" href="{target}"><title>What This Book Argues</title>'
+            f'</head><body><a href="{target}">What This Book Argues</a></body></html>\n',
+            encoding="utf-8")
+
     css = _compose_css()
     (docs / "assets").mkdir(exist_ok=True)
     (docs / "assets" / "mage-book.css").write_text(css, encoding="utf-8")

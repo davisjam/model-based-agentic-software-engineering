@@ -1,30 +1,60 @@
-\begin{tikzpicture}[font=\fontsize{11}{13}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{10}{12}\selectfont},
-head/.style={note,font=\bfseries\fontsize{11}{13}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{10}{12}\selectfont}]
-\node[n,text width=6cm] (s0) at (0,0) {\textbf{Scale $\times$ finite reasoning}\\Large systems exceed one reasoner;\\state must be abstracted\\or reconstructed};
-\node[n,text width=6cm] (s1) at (0,-2.944) {\textbf{New engineering imbalance}\\Implementation abundant\\Judgment, representation,\\evidence and enforcement scarce};
-\draw[edge] (s0) -- node[lab,right,inner sep=1pt] {makes judgment scarce at scale} (s1);
-\node[strong,text width=6cm,fill=black!8] (s2) at (0,-5.76) {\textbf{Modeling Principle}\\Make consequential knowledge\\and intent explicit at useful scales};
-\draw[edge] (s1) -- (s2);
-\node[strong,text width=6cm,fill=black!8] (s3) at (0,-8.704) {\textbf{Alignment Principle}\\Enforce selected obligations\\Constraints · sensors · gates};
-\draw[edge] (s2) -- node[lab] {exposes properties for analysis} (s3);
-\node[n,text width=6cm,fill=white] (s4) at (0,-11.52) {\textbf{Governed Engineering\\Environment}\\\textit{Modeling and Alignment\\work together}};
-\draw[edge] (s3) -- (s4);
-\node[n,text width=6cm,fill=white] (s5) at (0,-14.592) {\textbf{Engineering Capital}\\\textit{Effort compounds over time}\\\textit{Can depreciate; maintain or retire}};
-\draw[edge] (s4) -- node[lab] {when future value exceeds upkeep} (s5);
-\node[n,text width=3cm,fill=white] (ci) at (-5.4,-2.944) {\textbf{Commodity\\intelligence}\\Implementation\\cheap and abundant};
-\draw[edge] (ci) -- (s1);
-\node[lab] at (-5.4,-.65) {changes the economics};
-\node[n,text width=3cm,fill=white] (churn) at (5.9,-7.296) {\textbf{Engineering\\Churn}\\Weak\\representation:\\reconstruction\\Weak\\enforcement:\\repeated\\adjudication\\\textit{Same work paid again}};
-\draw[edge,dashed] (s2.east) -- (3.7,-5.76) |- ([yshift=8mm]churn.west);
-\draw[edge,dashed] (s3.east) -- (3.7,-8.704) |- ([yshift=-8mm]churn.west);
-\node[n,text width=3cm] (conv) at (-5.4,-11.52) {\textbf{Governance conversion}\\Recurring failures and judgment adapt models and controls};
-\draw[edge] (s4.west) -- (conv.east);
-\draw[edge] (conv.north) |- (s2.west);
-\draw[edge,dotted] (s5.west) -- ++(-4,0) |- (s0.west);
-\node[note,text width=3.6cm] (scope) at (-5.1,1.152) {\textit{Greater scope reopens\\the reasoning problem}};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\fontsize{10.5}{12.5}\selectfont,
+box/.style={draw=black,line width=.75bp,rounded corners=3bp,inner sep=0pt},
+edge/.style={draw=black,line width=.9bp},
+txt/.style={align=center,inner sep=0pt},
+lab/.style={txt,fill=white,inner sep=2bp,font=\fontsize{10}{12}\selectfont}]
+\draw[edge] (121,82) -- (121,100) -- (329,100) -- (329,82);
+\draw[edge,-{Stealth[length=6bp,width=5bp]}] (121,100) -- (121,122);
+\draw[edge,-{Stealth[length=6bp,width=5bp]}] (329,100) -- (329,122);
+\draw[edge] (121,224) -- (121,246) -- (329,246) -- (329,224);
+\draw[edge,-{Stealth[length=6bp,width=5bp]}] (225,246) -- (225,270);
+\draw[edge,-{Stealth[length=6bp,width=5bp]}] (225,319) -- (225,361);
+\draw[edge,-{Stealth[length=6bp,width=5bp]}] (87,393) -- (4,393) -- (4,173) -- (28,173);
+\draw[edge,-{Stealth[length=6bp,width=5bp]}] (363,393) -- (446,393) -- (446,173) -- (422,173);
+\node[box,fill=white,minimum width=186bp,minimum height=78bp] (one) at (121.0,43.0) {};
+\node[txt] at (121.0,11.75) {\textbf{1 · Commodity intelligence}};
+\node[txt] at (121.0,24.25) {\textbf{changes the economics}};
+\node[txt] at (121.0,36.75) {\textbf{of software engineering}};
+\node[txt] at (121.0,49.25) {Implementation capacity becomes};
+\node[txt] at (121.0,61.75) {abundant relative to};
+\node[txt] at (121.0,74.25) {engineering judgment.};
+\node[box,fill=white,minimum width=186bp,minimum height=78bp] (two) at (329.0,43.0) {};
+\node[txt] at (329.0,18.0) {\textbf{2 · Scale creates}};
+\node[txt] at (329.0,30.5) {\textbf{a reasoning problem}};
+\node[txt] at (329.0,43.0) {Large software systems exceed};
+\node[txt] at (329.0,55.5) {the reasoning horizon of};
+\node[txt] at (329.0,68.0) {humans and agents.};
+\node[box,fill=black!8,minimum width=186bp,minimum height=102bp] (three) at (121.0,173.0) {};
+\node[txt] at (121.0,139.25) {\textbf{3 · Modeling}};
+\node[txt] at (121.0,151.75) {Purposeful models can reduce};
+\node[txt] at (121.0,164.25) {the cost of engineering reasoning.};
+\node[txt] at (121.0,181.75) {Capture consequential knowledge};
+\node[txt] at (121.0,194.25) {and intent while leaving};
+\node[txt] at (121.0,206.75) {irrelevant choices open.};
+\node[box,fill=black!8,minimum width=186bp,minimum height=102bp] (four) at (329.0,173.0) {};
+\node[txt] at (329.0,139.25) {\textbf{4 · Alignment}};
+\node[txt] at (329.0,151.75) {Explicit obligations can make};
+\node[txt] at (329.0,164.25) {autonomous implementation};
+\node[txt] at (329.0,176.75) {governable.};
+\node[txt] at (329.0,194.25) {Constraints restrict; sensors};
+\node[txt] at (329.0,206.75) {observe; gates control admission.};
+\node[box,fill=white,minimum width=276bp,minimum height=49bp] (work) at (225.0,294.5) {};
+\node[txt] at (225.0,282.0) {\textbf{Governed engineering work}};
+\node[txt] at (225.0,294.5) {Substantial implementation freedom;};
+\node[txt] at (225.0,307.0) {control over the properties that matter.};
+\node[box,fill=white,minimum width=276bp,minimum height=65bp] (five) at (225.0,393.5) {};
+\node[txt] at (225.0,374.75) {\textbf{5 · Governance conversion}};
+\node[txt] at (225.0,387.25) {Recurring judgment becomes durable structure.};
+\node[txt] at (225.0,399.75) {Future work inherits models and controls.};
+\node[txt] at (225.0,412.25) {Engineering capital when later work keeps benefiting.};
+\node[box,fill=white,dashed,minimum width=394bp,minimum height=57bp] (six) at (225.0,484.5) {};
+\node[txt] at (225.0,465.75) {\textbf{6 · Predicted reorganization of engineering work}};
+\node[txt] at (225.0,478.25) {Engineering work will reorganize around what remains scarce.};
+\node[txt] at (225.0,490.75) {Representation · evidence · governance · coordination · judgment};
+\node[txt] at (225.0,503.25) {Responsibility for consequential decisions remains.};
+\node[lab] at (225,111) {motivate the two principles};
+\node[lab] at (225,258) {guide and govern};
+\node[lab] at (225,340) {recurring failures and judgment};
+\node[lab] at (44,300) {adapt\\models};
+\node[lab] at (406,300) {adapt\\controls};
 \end{tikzpicture}

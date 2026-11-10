@@ -18788,3 +18788,32 @@ This book makes six central claims. Together they explain the problem created by
 \textbf{Modeling makes engineering knowledge and intent explicit.}
 \textbf{Alignment makes engineering obligations enforceable.}
 ```
+
+
+## Separate “MAGE on One Page” introduction, 9 November 2026
+
+- Source: `book/latex/sources/frontmatter/0.3-the-mage-method-at-a-glance.tex`, complete section, lines 1–21.
+- Source revision: `64481ef6d21673cfd9e3e64e0a6fb2f0c2797713`.
+- Reason: the author merged the six claims and their diagram into a single facing-page reference spread, with only a short transition on the diagram page. The six claims are retained verbatim. The original color artwork and its earlier topology remain recoverable at this revision in `book/assets/mage-method.svg`.
+
+```latex
+
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Orientation and Reference -->
+
+% <!-- chapter-title: MAGE on One Page -->
+
+\chapter{MAGE on One Page}
+
+This figure is a map, not a prerequisite. It compresses concepts developed throughout the book onto one page. On a first reading, use it for orientation; return to it as the terms become familiar.
+
+MAGE has two principles and a conversion loop. \autoref{mage-method} shows the whole argument: scale creates the old problem, commodity intelligence changes its economics, and MAGE turns repeated effort into structure that future work can reuse.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-method-5b47654b89.pdf}
+\caption{The MAGE method. Scale creates the enduring reasoning problem; commodity intelligence changes its economics. Modeling makes consequential engineering properties explicit and available to analysis; Alignment makes selected obligations enforceable. Governance conversion turns recurring failures and judgment into models and controls that future work can reuse, so engineering effort can accumulate instead of being paid for again.}
+\label{mage-method}
+\end{figure}
+```

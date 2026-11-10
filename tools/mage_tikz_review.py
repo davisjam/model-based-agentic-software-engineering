@@ -289,13 +289,15 @@ def _verify_monochrome_original(path, options):
             raise ValueError('Visible color in declared monochrome original: ' + path)
 
 
-def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
+def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *, excerpt=False):
     """Use reviewed monochrome figures; pair the rest for author review.
 
     Preserve original floats, captions, numbering and links. Legacy candidates
     remain in the source archive but are not inserted into the current manuscript.
     Already-monochrome originals are explicitly registered and raster-checked.
-    Validate all coverage before rewriting any generated chapter.
+    Validate all coverage before rewriting any generated chapter. An excerpt may
+    omit approved figures and reference destinations outside its selected chapters;
+    full-book coverage remains strict by default.
     """
     driver_text = driver.read_text()
     chapters = [ROOT / p for p in re.findall(r'\\input\{([^}]+)\}', driver_text)]
@@ -321,6 +323,9 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
         if source not in manifest:
             raise ValueError('Missing publication grayscale figure: ' + source)
         info = manifest[source]
+        links = info.get('links', [])
+        if excerpt:
+            links = [link for link in links if link['target'] in available]
         receipt = json.loads((BASE / 'receipts' / f'{Path(source).stem}.json').read_text())
         alt, stem = _text(str(receipt['alt'])), Path(source).stem
         used.append(source)
@@ -328,7 +333,7 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
         (approved_figures if source in approved else pairings).append(record)
         return (r'\leavevmode\hypertarget{' + anchor_prefix + stem + '}{}%\n' +
                 r'\magerecordfigureorigin{' + stem + '}%\n' +
-                mage_tikz_links.overlay(info.get('links', []), available) +
+                mage_tikz_links.overlay(links, available) +
                 r'\includegraphics[page=' + str(info['page']) + ',alt={' + alt + '}]{' +
                 pool.relative_to(ROOT).as_posix() + '}')
 
@@ -424,14 +429,23 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:'):
         if chapter.stem == '0.1-how-to-read-this-book':
             from mage_figure_layout import reading_guide_columns
             text = reading_guide_columns(text)
+        if chapter.stem == '0.2-what-this-book-argues':
+            from mage_figure_layout import claims_spread
+            text = claims_spread(text)
         replacements[chapter] = text
     all_sources = used + retained
     if len(all_sources) != len(set(all_sources)):
         raise ValueError(f'Publication figure mismatch: duplicates={len(all_sources)-len(set(all_sources))}')
     unused_approvals = set(approved) - set(used)
-    if unused_approvals:
+    if unused_approvals and not excerpt:
         raise ValueError('Approved figures absent from manuscript: ' + ', '.join(sorted(unused_approvals)))
     active = {source: manifest[source] for source in used}
+    if excerpt:
+        # The overlay only emits destinations present in this document. Verify
+        # those same links, without mutating the pool shared by other sections.
+        active = {source: {**info, 'links': [link for link in info.get('links', [])
+                                            if link['target'] in available]}
+                  for source, info in active.items()}
     for chapter, text in replacements.items():
         chapter.write_text(text)
     driver.write_text(driver_text.replace(r'\begin{document}', mage_tikz_links.ORIGIN_SETUP + r'\begin{document}', 1))

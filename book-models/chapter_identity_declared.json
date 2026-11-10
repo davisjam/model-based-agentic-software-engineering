@@ -1,10 +1,6 @@
 {
-  "_note": "Hand-authored chapter-identity dimension table — the ONE surrogate-key model the whole book joins against. Each row: a frozen number-free `label` (the join key; assigned once at chapter creation, survives BOTH renumber and retitle) + the mutable `filename`. `number` derives from the filename's N.M- prefix; `title` derives from the chapter file's `<!-- chapter-title: -->` metadata — NEITHER is stored (SSOT: a reorg edits ONE field, `filename`). Every other book-model references `label`, never a filename or number. On a reorg, edit only the moved rows' `filename` here; all downstream refs stay valid untouched. Resolver + bijection check: chapter_identity_model.py. Do NOT key any downstream model on a filename or number again — that is the failure class this model kills.",
+  "_note": "Hand-authored chapter-identity dimension table \u2014 the ONE surrogate-key model the whole book joins against. Each row: a frozen number-free `label` (the join key; assigned once at chapter creation, survives BOTH renumber and retitle) + the mutable `filename`. `number` derives from the filename's N.M- prefix; `title` derives from the chapter file's `<!-- chapter-title: -->` metadata \u2014 NEITHER is stored (SSOT: a reorg edits ONE field, `filename`). Every other book-model references `label`, never a filename or number. On a reorg, edit only the moved rows' `filename` here; all downstream refs stay valid untouched. Resolver + bijection check: chapter_identity_model.py. Do NOT key any downstream model on a filename or number again \u2014 that is the failure class this model kills.",
   "chapters": [
-    {
-      "label": "the-mage-method-at-a-glance",
-      "filename": "frontmatter/0.3-the-mage-method-at-a-glance.md"
-    },
     {
       "label": "what-this-book-argues",
       "filename": "frontmatter/0.2-what-this-book-argues.md"

@@ -1,11 +1,42 @@
 """Print geometry must not discard semantic figure or pairing inputs."""
 import json
 from pathlib import Path
+import re
 import sys
 import tempfile
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from mage_figure_layout import apply_figure_print_layout
+
+
+class ClaimsSpreadTests(unittest.TestCase):
+    def test_separate_projected_lists_keep_every_word_in_one_list(self):
+        from mage_figure_layout import claims_spread
+        claims = [f'Claim {n}: a qualification worth preserving.' for n in range(1, 7)]
+        lists = '\n\n'.join(r'\begin{enumerate}\tightlist\item ' + claim
+                            + r'\end{enumerate}' for claim in claims)
+        figure = (r'\begin{figure}[htbp]\includegraphics[page=2,alt={Description}]{pool.pdf}'
+                  r'\caption{Relationships.}\label{mage-method}\end{figure}')
+        text = claims_spread(r'\chapter*{What This Book Argues}' + lists
+                            + '\n\nRecto transition.\n\n' + figure)
+        self.assertEqual(text.count(r'\begin{enumerate}'), 1)
+        self.assertEqual(len(re.findall(r'\\item\b', text)), 6)
+        for claim in claims:
+            self.assertEqual(text.count(claim), 1)
+        self.assertIn(r'\ifodd\value{page}', text)
+        self.assertIn(r'\end{enumerate}' + '\n\\clearpage\n', text)
+        self.assertEqual(text.count(r'\begin{bookinlinefigure}'), 1)
+        self.assertIn(r'\includegraphics[page=2,alt={Description}]{pool.pdf}', text)
+        self.assertIn('Recto transition.', text)
+        self.assertNotIn(r'\small', text)
+
+    def test_refuses_to_discard_intervening_prose(self):
+        from mage_figure_layout import claims_spread
+        lists = '\n'.join(r'\begin{enumerate}\item Claim\end{enumerate}' for _ in range(6))
+        lists = lists.replace('\n', '\nImportant intervening paragraph.\n', 1)
+        figure = r'\begin{figure}\caption{A}\label{mage-method}\end{figure}'
+        with self.assertRaisesRegex(ValueError, 'intervening content'):
+            claims_spread(lists + figure)
 
 
 class FigurePrintLayoutTests(unittest.TestCase):

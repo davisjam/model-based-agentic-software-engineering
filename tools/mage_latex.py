@@ -676,11 +676,6 @@ def _prepare_record(task):
     latex = orientation + counters + latex
     latex = re.sub(r'^% <!-- latex-index-anchor: ([^ >]+) -->$', lambda m: r'\phantomsection\label{' + m[1] + '}', latex, flags=re.M)
     latex = re.sub(r'^\\chapter[^\n]+', lambda m: m[0].replace(',', r'\magecomma{}'), latex, flags=re.M)
-    if slug == '0.3-the-mage-method-at-a-glance':
-        # Compact reference-sheet typography may flow naturally across pages.
-        # Geometry changes would implicitly force breaks before and after it.
-        latex = (r'\begingroup\small\captionsetup{font=footnotesize}' + '\n'
-                 + latex.replace('[htbp]', '[!htbp]').replace(FIGURE_HEIGHT_OPTION, r'height=.50\textheight') + '\n' + r'\endgroup' + '\n')
     if slug == 'about-the-author':
         # The portrait accompanies the biography, rather than occupying a diagram
         # page. Preserve its established size and avoid stranding the short bio.
@@ -823,6 +818,10 @@ def prepare_pdf(slugs=None, name="mage-book"):
     from concurrent.futures import ProcessPoolExecutor
     with ProcessPoolExecutor(max_workers=4) as executor:
         chapters = list(executor.map(_prepare_record, enumerate(records)))
+    # This pass also supplies stable labels for captions without authored labels.
+    # Excerpts need those anchors before resolving references and replacing artwork,
+    # even though they do not print the whole book's figure and table lists.
+    float_lists = native_float_lists(chapters)
     if slugs is not None: resolve_external_references(chapters)
     from mage_assets import pool_figures
     pool_figures(chapters, directory)
@@ -876,7 +875,7 @@ def prepare_pdf(slugs=None, name="mage-book"):
         text = driver.read_text()
         preface = next((chapter for chapter in chapters if Path(chapter).stem.endswith('preface')), None)
         if preface:
-            text = text.replace(r'\input{' + preface + '}', r'\input{' + preface + '}' + '\n' + native_float_lists(chapters))
+            text = text.replace(r'\input{' + preface + '}', r'\input{' + preface + '}' + '\n' + float_lists)
         index = native_index(index_entries, chapters)
         text = text.replace(r'\phantomsection\label{mage-bibliography}', index + '\n' + r'\phantomsection\label{mage-bibliography}')
         text = text.replace(r'Bibliography\dotfill', r'Index\dotfill\pageref{mage-index}\par' + '\n' + r'Bibliography\dotfill')

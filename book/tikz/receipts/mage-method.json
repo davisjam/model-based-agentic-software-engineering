@@ -1,6 +1,6 @@
 {
   "source": "book/assets/mage-method.svg",
-  "chapter": "0.3-the-mage-method-at-a-glance",
+  "chapter": "0.2-what-this-book-argues",
   "claim": "The MAGE method. Scale creates the enduring reasoning problem; commodity intelligence changes its economics. Modeling makes consequential engineering properties explicit and available to analysis; Alignment makes selected obligations enforceable. Governance conversion turns recurring failures and judgment into models and controls that future work can reuse, so engineering effort can accumulate instead of being paid for again.",
   "topology": {
     "description": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
@@ -67,464 +67,68 @@
     "Greater scope reopens",
     "the reasoning problem"
   ],
-  "bw_encoding": "One 8% role marks the two named MAGE principles equally; ordinary conditions, outcomes and feedback nodes white.",
-  "redesign": "One 8% role marks the two named MAGE principles equally; ordinary conditions, outcomes and feedback nodes white. Vertical causal chain; orthogonal dashed churn branches. Outer dotted scope feedback and left governance feedback remain because these named loops are the argument.",
+  "bw_encoding": "Black 0.9 bp connectors and arrowheads; one light-gray role for the two principles; dashed outline marks the prediction.",
+  "redesign": "Author-approved B&W-only facing-page redesign, November 9. Claim numbers and vocabulary align the diagram with the prose; parallel principles and a two-target conversion loop preserve their distinct roles. The broader reorganization prediction is separate from the mechanism flow.",
   "questions": [],
-  "alt": "A vertical causal chain runs from scale and finite reasoning through scarce judgment, Modeling, Alignment and the governed engineering environment to engineering capital. Commodity intelligence enters from the left; dashed branches lead to churn on the right. Governance conversion feeds back to Modeling, and a dotted outer loop shows greater scope reopening the reasoning problem.",
-  "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
-    "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
-    ],
-    "outcome": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "native_dimensions_cm": [
-      14.486,
-      13.381
-    ]
-  },
-  "fidelity_review": {
-    "stem": "mage-method",
-    "source": "book/assets/mage-method.svg",
-    "status": "corrected",
-    "evidence": "Restored the abstract-or-reconstruct state phrase and causal edge annotations for scarcity, exposed properties, economic change, and future value versus upkeep. Retained Modeling and Alignment gray modes, dashed churn alternatives, governance feedback, and dotted scope feedback.",
-    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/mage-method.png",
-    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-0.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/mage-method.png",
-    "original_sha256": "1bcd88a57ee53defe74a95c2005abac57d62f030de508256eb08798d5ffa6ff3",
-    "native_sha256": "be0cc5ae19b4c383419cf2abfa4378f098716599c82c1eb020022d936bea1d06",
-    "page": 2,
-    "dimensions_cm": [
-      14.486,
-      13.381
-    ],
-    "diagnostics": [],
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
-  },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "ce4b6919249729faec8be439c57158e75ac4855a98366d05ef6b8909c72141cd",
-    "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
-    "fill": "One 8% role marks the two named MAGE principles equally; ordinary conditions, outcomes and feedback nodes white.",
-    "bold": "Source-derived emphasis includes New engineering imbalance; Modeling Principle; Alignment Principle; Governed Engineering Environment; Engineering Capital; Commodity intelligence; Engineering Churn; Governance conversion. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-    "routing": "Vertical causal chain; orthogonal dashed churn branches. Outer dotted scope feedback and left governance feedback remain because these named loops are the argument.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-    "book_references": [],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-      "geometry_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "status": "passed",
-      "date": "2026-11-08",
-      "page": 2,
-      "width_bp": 424.801,
-      "height_bp": 487.874,
-      "minimum_prose_font_bp": 9.9626,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 17,
-      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
-    }
-  },
+  "alt": "Claims one and two motivate parallel Modeling and Alignment principles. Both guide and govern engineering work. Recurring failures and judgment lead to governance conversion, whose feedback adapts models and controls. Later benefit makes durable structure engineering capital. Claim six is a separate prediction about the reorganization of engineering work.",
+  "governance_revision": "2026-11-08",
+  "governance_revision_reason": "The overview should name constraints, sensors, and gates; its description distinguishes restrictions, evidence, and admission.",
+  "source_sha256": "3467bb7774b6be2395e1994bc98a0121e21d72ef9504a8957c46e482ca1e3ea5",
+  "candidate_sha256": "d07a067b486a33306fbb9ab0ba738d359a7ffd4ad6638b4c0ef5dc82c5c45f68",
+  "integration_review_date": "2026-11-08",
   "typography_review": {
-    "source": "book/assets/mage-method.svg",
-    "candidate": "book/tikz/figures/mage-method.tex",
-    "decision": "refined",
-    "source_sha256": "ce4b6919249729faec8be439c57158e75ac4855a98366d05ef6b8909c72141cd",
-    "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
-    "evidence": [
-      {
-        "source_text": "Scale × finite reasoning",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Scale × finite reasoning",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Scale × finite reasoning",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "80"
-          }
-        ]
-      },
-      {
-        "source_text": "New engineering imbalance",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "New engineering imbalance",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "New engineering imbalance",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "278"
-          }
-        ]
-      },
-      {
-        "source_text": "Modeling Principle",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Modeling Principle",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Modeling Principle",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "434"
-          }
-        ]
-      },
-      {
-        "source_text": "Alignment Principle",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Alignment Principle",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Alignment Principle",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "636"
-          }
-        ]
-      },
-      {
-        "source_text": "Governed Engineering Environment",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Governed Engineering Environment",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Governed Engineering Environment",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "790"
-          }
-        ]
-      },
-      {
-        "source_text": "Engineering Capital",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Engineering Capital",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Engineering Capital",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "934"
-          }
-        ]
-      },
-      {
-        "source_text": "Commodity intelligence",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Commodity intelligence",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Commodity intelligence",
-            "weight": "700",
-            "style": "normal",
-            "x": "155",
-            "y": "278"
-          }
-        ]
-      },
-      {
-        "source_text": "Engineering Churn",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Engineering Churn",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Engineering Churn",
-            "weight": "700",
-            "style": "normal",
-            "x": "840",
-            "y": "892"
-          }
-        ]
-      },
-      {
-        "source_text": "Governance conversion",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named premise, principle, environment or outcome",
-        "candidate_text": "Governance conversion",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Governance conversion",
-            "weight": "700",
-            "style": "normal",
-            "x": "92",
-            "y": "588"
-          }
-        ]
-      },
-      {
-        "source_text": "Modeling and Alignment work together",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Explanation of outcome or feedback",
-        "candidate_text": "Modeling and Alignment work together",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "Modeling and Alignment",
-            "weight": "normal",
-            "style": "italic",
-            "x": "500",
-            "y": "818"
-          },
-          {
-            "text": "work together",
-            "weight": "normal",
-            "style": "italic",
-            "x": "500",
-            "y": "840"
-          }
-        ]
-      },
-      {
-        "source_text": "effort compounds over time",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Explanation of outcome or feedback",
-        "candidate_text": "Effort compounds over time",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "effort compounds over time",
-            "weight": "normal",
-            "style": "italic",
-            "x": "500",
-            "y": "964"
-          }
-        ]
-      },
-      {
-        "source_text": "can depreciate · maintain or retire",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Explanation of outcome or feedback",
-        "candidate_text": "Can depreciate; maintain or retire",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "can depreciate · maintain or retire",
-            "weight": "normal",
-            "style": "italic",
-            "x": "500",
-            "y": "988"
-          }
-        ]
-      },
-      {
-        "source_text": "the same work / gets paid for again",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Explanation of outcome or feedback",
-        "candidate_text": "Same work paid again",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "the same work",
-            "weight": "normal",
-            "style": "italic",
-            "x": "840",
-            "y": "922"
-          },
-          {
-            "text": "gets paid for again",
-            "weight": "normal",
-            "style": "italic",
-            "x": "840",
-            "y": "946"
-          }
-        ]
-      },
-      {
-        "source_text": "greater scope reopens the reasoning problem",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Explanation of outcome or feedback",
-        "candidate_text": "Greater scope reopens the reasoning problem",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "greater scope reopens",
-            "weight": "normal",
-            "style": "italic",
-            "x": "30",
-            "y": "462"
-          },
-          {
-            "text": "the reasoning problem",
-            "weight": "normal",
-            "style": "italic",
-            "x": "30",
-            "y": "486"
-          }
-        ]
-      }
-    ],
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text. Approved governance terminology updated; unchanged topology and typography reviewed against the current source.",
     "checks": [
-      {
-        "text": "New engineering imbalance",
-        "bold": true
-      },
-      {
-        "text": "Modeling Principle",
-        "bold": true
-      },
-      {
-        "text": "Alignment Principle",
-        "bold": true
-      },
-      {
-        "text": "Governed Engineering Environment",
-        "bold": true
-      },
-      {
-        "text": "Engineering Capital",
-        "bold": true
-      },
       {
         "text": "Commodity intelligence",
         "bold": true
       },
       {
-        "text": "Engineering Churn",
+        "text": "Scale creates",
         "bold": true
+      },
+      {
+        "text": "Modeling",
+        "bold": true
+      },
+      {
+        "text": "Alignment",
+        "bold": true
+      },
+      {
+        "text": "Purposeful models can reduce",
+        "bold": false
+      },
+      {
+        "text": "Explicit obligations can make",
+        "bold": false
       },
       {
         "text": "Governance conversion",
         "bold": true
       },
       {
-        "text": "Modeling and Alignment work together",
-        "italic": true
+        "text": "Predicted reorganization",
+        "bold": true
       },
       {
-        "text": "Effort compounds over time",
-        "italic": true
-      },
-      {
-        "text": "Can depreciate; maintain or retire",
-        "italic": true
-      },
-      {
-        "text": "Same work paid again",
-        "italic": true
-      },
-      {
-        "text": "Greater scope reopens the reasoning problem",
-        "italic": true
-      },
-      {
-        "text": "Make consequential knowledge",
+        "text": "Engineering capital when later work keeps benefiting.",
         "bold": false
-      },
-      {
-        "text": "Scale",
-        "bold": true
-      },
-      {
-        "text": "finite reasoning",
-        "bold": true
-      },
-      {
-        "text": "Constraints · sensors · gates",
-        "bold": false,
-        "italic": false
       }
     ],
-    "governance_revision_date": "2026-11-08",
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-      "geometry_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "status": "passed",
-      "date": "2026-11-08",
-      "page": 2,
-      "width_bp": 424.801,
-      "height_bp": 487.874,
-      "minimum_prose_font_bp": 9.9626,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 17,
-      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
-    }
+    "source_sha256": "3467bb7774b6be2395e1994bc98a0121e21d72ef9504a8957c46e482ca1e3ea5",
+    "candidate_sha256": "d07a067b486a33306fbb9ab0ba738d359a7ffd4ad6638b4c0ef5dc82c5c45f68"
   },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "source_sha256": "ce4b6919249729faec8be439c57158e75ac4855a98366d05ef6b8909c72141cd",
-    "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
-    "contracts": {},
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-      "geometry_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "status": "passed",
-      "date": "2026-11-08",
-      "page": 2,
-      "width_bp": 424.801,
-      "height_bp": 487.874,
-      "minimum_prose_font_bp": 9.9626,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 17,
-      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
-      "checked_terminal_approaches": 668,
-      "reviewed_peer_groups": 87,
-      "audit_sha256": "1b466087d04cc222ed1c22f3722729f7b190c9e3346c7168a80516190cfb8f94",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
-    }
-  },
-  "governance_revision": "2026-11-08",
-  "governance_revision_reason": "The overview should name constraints, sensors, and gates; its description distinguishes restrictions, evidence, and admission.",
-  "source_sha256": "ce4b6919249729faec8be439c57158e75ac4855a98366d05ef6b8909c72141cd",
-  "candidate_sha256": "2c41a2e5c02973282ecfacc6c2281fe537e123183c4b79873e4fb1420b46e56b",
-  "integration_review_date": "2026-11-08",
   "native_validation": {
+    "date": "2026-11-09",
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-    "geometry_findings": 0,
-    "unapproved_compile_diagnostics": 0,
-    "status": "passed",
-    "date": "2026-11-08",
+    "proof_sha256": "dc243e0578784a6ceb369d260c19b018481ebc80f79a366c41336753494fe8e6",
     "page": 2,
-    "width_bp": 424.801,
-    "height_bp": 487.874,
-    "minimum_prose_font_bp": 9.9626,
+    "width_bp": 448.872,
+    "height_bp": 515.722,
+    "status": "passed",
+    "geometry_findings": 0,
+    "semantic_typography_checks": 9,
     "monochrome_pixels": true,
-    "semantic_typography_checks": 17,
-    "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+    "visual_review": "Inspected native candidate and rendered facing-page proof at book size. Black connectors and feedback arrowheads are distinct, text is legible, and the claim-six prediction is separated from the mechanism flow. Claims fit on verso6; transition and diagram fit on recto7 without reducing the body font or baseline."
   }
 }
