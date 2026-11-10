@@ -1,0 +1,59 @@
+{
+  "changes": [
+    {
+      "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
+      "source_revision": "2f914c4fab178d39c94866b4cb2132aad858bd62",
+      "source_lines": [
+        93,
+        97
+      ],
+      "retired_date": "2026-11-10",
+      "reason": "Author requested the shorter human-fallibility and inexpensive-search account, followed by a researched natural-language-delegation segue; repeated production/inspection recap replaced.",
+      "original_tex": "\\textbf{Inexpensive repeated reasoning.} Once a foundation model has been trained, additional reasoning tasks can be performed at a marginal cost far below the skilled human labor that many such tasks previously required. Agents can generate implementations, investigate alternatives, execute tests, and revise their work repeatedly.\n\nThis changes the scale of software production. A single engineer can direct more implementation work than they could personally inspect. The opportunity is substantial, but so is the assurance problem: production can outpace the human attention available to evaluate it. Recurring engineering decisions and checks that depended on individual review can instead be carried forward through reusable structures in the development environment.\n\n"
+    },
+    {
+      "source": "book/latex/sources/part3/00-part-intro.tex",
+      "source_revision": "2f914c4fab178d39c94866b4cb2132aad858bd62",
+      "source_lines": [
+        7,
+        8
+      ],
+      "retired_date": "2026-11-10",
+      "reason": "Connects both kinds of model meaning to Alignment without re-teaching either example. The three governance functions remain distinct, and the state machine represents intended behavior as well as excluded transitions.",
+      "original_tex": "MAGE calls this move Alignment and treats it as the companion to Modeling. Modeling makes engineering knowledge and intent explicit. Alignment makes selected obligations enforceable through constraints on work or gates that evaluate evidence and control whether work may proceed. Sensors supply evidence for that evaluation. An obligation with no such mechanism may still matter greatly, but satisfying it continues to depend on human or agent judgment at the point of use.\n"
+    },
+    {
+      "source": "book/latex/sources/part3/3.2-models-and-the-semantic-gap.tex",
+      "source_revision": "2f914c4fab178d39c94866b4cb2132aad858bd62",
+      "source_lines": [
+        17,
+        22
+      ],
+      "retired_date": "2026-11-10",
+      "reason": "Uses the two shared examples to separate intended meaning, implementation evidence, and enforcement. Retains the independence and boundary conditions, and preserves obligations carried directly by types, permissions, schemas, tests, or policy. The existing traceability paragraphs now continue from concrete evaluation and admission choices.",
+      "original_tex": "Enforcement requires two things: \\textbf{an obligation independent of the work being judged and a boundary where the evidence needed to evaluate that obligation is available.} Without the first, a checker may only confirm that the system agrees with itself. Without the second, the mechanism tries to enforce a good obligation before the necessary evidence exists.\n\n% <!-- point: an-obligation-may-live-in-a-model-or-directly-in-a-type-or-policy | An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not require a particular representation. | terms: independent-obligation, modeling-principle, alignment-principle -->\n\n\\magevalue{chapter:modeling} supplied many ways to make obligations explicit. Some live in models: permitted service edges, legal state transitions, ownership relations, operational bounds. Others live directly in types, permissions, schemas, tests, or policy. Alignment does not require every obligation to originate in the same kind of representation. It requires that the obligation be distinguishable from the thing being judged and that a mechanism can enforce the result.\n"
+    },
+    {
+      "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
+      "source_revision": "2f914c4fab178d39c94866b4cb2132aad858bd62",
+      "source_lines": [
+        21,
+        22
+      ],
+      "retired_date": "2026-11-10",
+      "reason": "Continues the same architecture instead of introducing it again. Retains the access-control and schema rationale, then asks the question answered by the existing definition, taxonomy table, and worked mechanism example. Existing figures and the rest of the section remain intact.",
+      "original_tex": "Suppose you are adding a reporting service to a billing system. The service may obtain billing data through the billing API, but it must not connect directly to the billing database. Keeping that boundary lets the billing service control access to its data and change its schema without exposing it to every client. An architectural model can state the permitted relationship. How can the engineering environment help preserve it while agents change the reporting code?\n"
+    },
+    {
+      "source": "book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex",
+      "source_revision": "2f914c4fab178d39c94866b4cb2132aad858bd62",
+      "source_lines": [
+        202,
+        203
+      ],
+      "retired_date": "2026-11-10",
+      "reason": "Recalls the constructive meaning of the lifecycle before extending the problem to lease ownership. Explicitly introduces leases as additional behavior, keeps the stale-release regression and citation, and flows into property-based testing and the later reusable ownership model without implying that the simple lifecycle already contains lease semantics.",
+      "original_tex": "The reporting-service boundary concerns a relationship between components. Other obligations depend on how state changes over a sequence of operations. Tests already preserve engineering intent about those sequences. An example test records a case and the result it should produce; a regression test keeps checking behavior that a later change might break. Suppose the reporting service queues jobs that workers claim under expiring leases. Worker A's claim expires, worker B acquires a newer claim, and A then tries to release its old one. A regression test can reproduce that sequence against the implementation and assert that B remains the owner. It preserves a concrete failure scenario and makes a recurrence easier to diagnose. Such tests remain useful as the system acquires more explicit models\\citep{winters2020}.\n"
+    }
+  ]
+}

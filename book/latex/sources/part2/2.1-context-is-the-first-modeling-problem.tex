@@ -409,6 +409,43 @@ Greater semantic commitment changes where interpretive work is done and by whom,
 
 This distinction matters particularly for generative implementation. Semantic precision and generative completeness are different properties. A model can have precisely defined meaning while remaining radically incomplete as a program. Conversely, a detailed prompt can say a great deal about an intended implementation while leaving much of its meaning informal. The engineering question is which decisions the engineer has made explicit and which decisions the implementer remains authorized to make.
 
+\subsection{Giving a Model Defined Meaning}\label{heading:giving-a-model-defined-meaning}
+
+% <!-- section-terms: semantic-commitment, model-as-map, modeling-principle -->
+
+% <!-- point: defined-relations-make-architectural-questions-precise | Giving Calls a declared direct-invocation interpretation separates syntax from meaning; the model's purpose and scope determine whether recorded and omitted pairs describe observations or specify permitted behavior. | terms: semantic-commitment, model-as-map -->
+
+Consider three boxes labeled Reporting, BillingAPI, and BillingDB, representing a reporting service, the billing API, and the billing database. Arrows connect Reporting to BillingAPI and BillingAPI to BillingDB. An engineer may read this as a familiar design: the reporting service obtains billing data through the API. This boundary lets the billing service control access to its data and change its schema without exposing it to every client. Yet an arrow could record a call that was observed, specify a permitted call, or express another dependency. Typing it as a relation between components tells a tool which entities may occupy its endpoints; it still leaves the relation's meaning to be defined.
+
+Let \(C\) be the components within a declared architectural scope, including Reporting, BillingAPI, and BillingDB, and let \(\operatorname{Calls}\subseteq C\times C\). For this example, define \(\operatorname{Calls}(a,b)\) to mean that the intended architecture permits component \(a\) to invoke component \(b\) directly. Treat this relation as the complete set of permitted direct calls within that scope: a pair omitted from it is excluded by this specification. A graph of observed calls would have a different interpretation: its pairs record invocations found in a particular analysis or observation period. A missing observation establishes no prohibition and may reflect incomplete coverage. The same pair of typed component identifiers can therefore carry different claims. The engineer must choose which meaning the representation carries before using it to draw conclusions.
+
+Suppose the obligation is that Reporting must not call BillingDB directly. We can state it over the permitted-call relation:
+\[
+\neg\operatorname{Calls}(\mathrm{Reporting},\mathrm{BillingDB}).
+\]
+A stronger obligation is that every route from Reporting to BillingDB passes through BillingAPI. Define a path as a sequence of components whose successive pairs belong to \(\operatorname{Calls}\). The requirement is then
+\[
+\forall p\in\operatorname{Paths}_{\operatorname{Calls}}(\mathrm{Reporting},\mathrm{BillingDB}),
+\qquad \mathrm{BillingAPI}\in p.
+\]
+The distinction matters as the architecture grows. A route Reporting~\(\to\)~Helper~\(\to\)~BillingDB contains no direct Reporting-to-BillingDB call, but bypasses BillingAPI. Removing BillingAPI from the graph and asking whether BillingDB remains reachable from Reporting evaluates this path property. The definitions make a precise question answerable over the model while leaving algorithms and internal data structures open.
+
+% <!-- point: transition-semantics-can-construct-intended-behavior | A partial transition function defines the intended effects of start, finish, and fail over the same four-state job lifecycle used later; undefined pairs admit no lifecycle transition. | terms: semantic-commitment, modeling-principle -->
+
+Defined meaning can also specify how a system should operate. Consider the job lifecycle developed in \autoref{canonical-behavioral}. Its states are \(S=\{\mathrm{IDLE},\mathrm{RUNNING},\mathrm{DONE},\mathrm{FAILED}\}\), with an initial state of IDLE. Let the events be \(E=\{\mathrm{start},\mathrm{finish},\mathrm{fail}\}\). Interpret a state as the job's lifecycle status and define the effect of an event through the partial transition function \(\delta:S\times E\rightharpoonup S\):
+\[
+\begin{aligned}
+\delta(\mathrm{IDLE},\mathrm{start}) &= \mathrm{RUNNING},\\
+\delta(\mathrm{RUNNING},\mathrm{finish}) &= \mathrm{DONE},\\
+\delta(\mathrm{RUNNING},\mathrm{fail}) &= \mathrm{FAILED}.
+\end{aligned}
+\]
+These are the only defined transitions in this small specification. For every other state--event pair, \(\delta\) is undefined: the specification admits no lifecycle transition for that pair. For example, \(\delta(\mathrm{IDLE},\mathrm{finish})\) is undefined, so finish cannot take an idle job straight to completion. DONE and FAILED have no outgoing transitions in this lifecycle. The labels now denote particular statuses and events, and the arrows define their effects.
+
+The transition function supplies behavior to implement. A job starts in IDLE, start moves it to RUNNING, and finish or fail determines its terminal outcome. An agent can implement that protocol using a database, queue, or in-memory scheduler. Alternatively, a state-machine interpreter can consult \(\delta\) to determine the next state for a given event, so the representation participates directly in execution. A test generator can use the same definition to derive event sequences and expected states: start followed by finish ends in DONE; start followed by fail ends in FAILED. These are different uses of defined meaning, with different implementation choices still open.
+
+Both examples connect a notation to an interpretation and then to an engineering use. The structural relation defines permitted communication; the transition function defines the effects of lifecycle events. Established languages such as UML and SysML/KerML supply semantic foundations for many such constructs\citep{omg2017uml,omg2025sysml,omg2025kerml}; a small project-specific representation can also define the meaning needed for its task. Precise meaning does not, by itself, establish that an implementation conforms. The behavioral discussion below develops further analyses over executions, and \magevalue{chapter:alignment} examines how evidence and mechanisms can make conformance a condition of acceptance.
+
 % <!-- box-family: inset -->
 
 % <!-- inset-domain: AGENT HARNESS -->
@@ -513,6 +550,8 @@ This chapter does not attempt to enumerate every useful model nor every conseque
 Start with the models, patterns, and analyses your field has already developed. In software engineering, that repertoire includes techniques from model-based systems engineering, distributed systems, and operations research. State machines capture legal transitions; dependency and data-flow graphs support reachability questions; schemas capture entities and relations; queueing and resource models expose capacity and contention; decision tables and constraint systems expose permitted combinations. Each comes with known semantics, applicable analyses, strengths, and tradeoffs.
 
 An engineer who needs to sort data does not ordinarily invent a sorting algorithm from first principles. The engineer recognizes the problem and selects among established algorithms according to the properties and tradeoffs that matter. Modeling works the same way: recognize the engineering question, then choose a representation that preserves what is needed to answer it. Occasionally the established repertoire is inadequate and invention is required. Recognizing when that is true, and devising the new abstraction, is precisely the kind of judgment for which engineers are valuable.
+
+Training on code, textbook-style explanations, and programming exercises can give a foundation model reusable programming knowledge\citep{chen2021codex,gunasekar2023textbooks}. An agent may already be familiar with established modeling techniques. It may recognize a state-machine pattern or suggest a queueing model without the engineer teaching the technique from first principles. The engineer still supplies the purpose of the representation, the system-specific meanings of its entities and relations, and the obligations it must preserve. Familiarity with a notation is a useful starting point; it does not establish which interpretation or assumptions fit this system.
 
 In the MAGE methodology, engineers decide when to make that knowledge explicit in the agent's environment. They can make the relevant repertoire---or an approved subset of it---available directly to agents. DocAble's self-governance skill describes the MAGE method, a modeling repertoire, and operations agents can perform through the environment. The agent can use that guidance to recognize a situation, choose a suitable Modeling or Alignment step, and examine the resulting evidence. Selecting the appropriate technique remains an engineering judgment, but the available techniques need not be rediscovered on every task.
 \end{bookbox}

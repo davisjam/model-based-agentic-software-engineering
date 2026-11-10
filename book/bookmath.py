@@ -7,7 +7,7 @@ build (rendered natively by the browser — no JavaScript, no webfonts, no build
 emits Typst math atoms for the print edition.
 
 The subset is deliberately small — exactly the constructs the book uses (variables, numbers, sub/superscripts,
-`\\prod`/`\\sum`/`\\arg\\min` with limits, `\\text`, `\\bar`, `\\underbrace`, `\\substack`, `\\mathcal`, `\\boxed`, a fixed operator table,
+`\\prod`/`\\sum`/`\\arg\\min` with limits, `\\text`, `\\bar`, `\\underbrace`, `\\substack`, `aligned`, `\\mathcal`, `\\boxed`, a fixed operator table,
 grouping). Anything outside it raises `MathError` so a typo fails the build loud rather than mis-rendering
 silently.
 
@@ -47,6 +47,8 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "land": ("∧", "and"),
     "lor": ("∨", "or"),
     "lnot": ("¬", "not"),
+    "neg": ("¬", "not"),
+    "forall": ("∀", "forall"),
     "iff": ("⇔", "arrow.l.r.double"),
     "rightarrow": ("→", "arrow.r"),
     "longrightarrow": ("⟶", "arrow.r.long"),
@@ -66,6 +68,8 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "varepsilon": ("ε", "epsilon.alt"),
     "epsilon": ("ε", "epsilon"),
     "rho": ("ρ", "rho"),
+    "delta": ("δ", "delta"),
+    "rightharpoonup": ("⇀", '"⇀"'),
     "mapsto": ("↦", "arrow.r.bar"),
 }
 
@@ -94,7 +98,7 @@ _SPACING: dict[str, tuple[str, str]] = {
 # Delimiter-sizing commands — transparent (we render the delimiter that follows normally).
 _SIZERS = {"bigl", "bigr", "Bigl", "Bigr", "left", "right"}
 
-_SINGLE_OPS = set("=+-*<>|,")  # rendered as <mo>; also parens/brackets handled separately
+_SINGLE_OPS = set("=+-*<>|,:")  # rendered as <mo>; also parens/brackets handled separately
 
 
 # ── Tokenizer ────────────────────────────────────────────────────────────────────────────────────
@@ -114,7 +118,7 @@ def _tokenize(s: str) -> list[tuple[str, str]]:
                 while k < n and s[k].isalpha():
                     k += 1
                 name = s[j:k]
-                if name in ("text", "mathrm", "operatorname"):
+                if name in ("text", "mathrm", "operatorname", "begin", "end"):
                     # capture the {…} content RAW (spaces preserved — text runs are literal, not math)
                     p = k
                     while p < n and s[p].isspace():
@@ -134,7 +138,8 @@ def _tokenize(s: str) -> list[tuple[str, str]]:
                         q += 1
                     if depth != 0:
                         raise MathError(f"unbalanced {{ after \\{name}")
-                    toks.append(("text", "".join(buf)))
+                    token_kind = {"begin": "env-start", "end": "env-end"}.get(name, "text")
+                    toks.append((token_kind, "".join(buf)))
                     i = q + 1
                     continue
                 toks.append(("cmd", name))
@@ -153,6 +158,8 @@ def _tokenize(s: str) -> list[tuple[str, str]]:
             toks.append(("sub", c)); i += 1; continue
         if c == "^":
             toks.append(("sup", c)); i += 1; continue
+        if c == "&":
+            toks.append(("align", c)); i += 1; continue
         if c.isdigit() or c == ".":
             k = i
             while k < n and (s[k].isdigit() or s[k] == "."):
@@ -193,7 +200,8 @@ class _P:
     def next(self) -> tuple[str, str]:
         tok = self.t[self.i]; self.i += 1; return tok
 
-    def parse_row(self, until: str | None = None, *, row_break: bool = False) -> dict:
+    def parse_row(self, until: str | None = None, *, row_break: bool = False,
+                  cell_break: bool = False) -> dict:
         nodes: list[dict] = []
         while True:
             tok = self.peek()
@@ -202,6 +210,8 @@ class _P:
             if until and tok[0] == until:
                 break
             if row_break and tok == ("cmd", "\\"):
+                break
+            if cell_break and tok[0] == "align":
                 break
             nodes.append(self.parse_element())
         return {"k": "row", "kids": nodes}
@@ -231,6 +241,11 @@ class _P:
         if tok is None:
             raise MathError("unexpected end of math (expected an atom)")
         kind, val = tok
+        if kind == "env-start":
+            self.next()
+            if val != "aligned":
+                raise MathError(f"unsupported math environment {val!r}")
+            return self.parse_aligned()
         if kind == "lbrace":
             self.next()
             row = self.parse_row(until="rbrace")
@@ -251,6 +266,30 @@ class _P:
         if kind == "cmd":
             return self.parse_cmd()
         raise MathError(f"unexpected token {tok!r} in math")
+
+    def parse_aligned(self) -> dict:
+        rows = []
+        while True:
+            cells = []
+            while True:
+                cell = self.parse_row(until="env-end", row_break=True, cell_break=True)
+                if not cell["kids"]:
+                    raise MathError("aligned needs nonempty cells and rows")
+                cells.append(cell)
+                if self.peek() != ("align", "&"):
+                    break
+                self.next()
+            if rows and len(cells) != len(rows[0]):
+                raise MathError("aligned rows must have the same number of cells")
+            rows.append(cells)
+            if self.peek() == ("cmd", "\\"):
+                self.next()
+                if self.peek() != ("env-end", "aligned"):
+                    continue
+            if self.peek() != ("env-end", "aligned"):
+                raise MathError("aligned requires a matching \\end{aligned}")
+            self.next()
+            return {"k": "aligned", "rows": rows}
 
     def parse_cmd(self) -> dict:
         _, name = self.next()
@@ -376,6 +415,11 @@ def _ml(node: dict) -> str:
     if k == "stack":
         rows = "".join(f"<mtr><mtd>{_ml(row)}</mtd></mtr>" for row in node["rows"])
         return f'<mtable rowspacing="0.1em" columnalign="center">{rows}</mtable>'
+    if k == "aligned":
+        align = " ".join("right" if i % 2 == 0 else "left" for i in range(len(node["rows"][0])))
+        rows = "".join("<mtr>" + "".join(f"<mtd>{_ml(cell)}</mtd>" for cell in row) + "</mtr>"
+                       for row in node["rows"])
+        return f'<mtable displaystyle="true" rowspacing="0.25em" columnspacing="0em" columnalign="{align}">{rows}</mtable>'
     if k == "cal":
         return f'<mi mathvariant="script">{html.escape(node["v"])}</mi>'
     if k == "boxed":
@@ -448,6 +492,8 @@ def _ty(node: dict) -> str:
         return f"underbrace({_ty(node['kid'])})"
     if k == "stack":
         return "vec(delim: #none, " + ", ".join(_ty(row) for row in node["rows"]) + ")"
+    if k == "aligned":
+        return r" \ ".join(" & ".join(_ty(cell) for cell in row) for row in node["rows"])
     if k == "cal":
         return f"cal({node['v']})"
     if k == "boxed":

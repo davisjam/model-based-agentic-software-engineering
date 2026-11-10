@@ -159,7 +159,7 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer’s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The technical horizon and enforcement discussions then continue unchanged, preparing §1.5.",
+      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer’s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The technical horizon and enforcement discussions then continue unchanged, preparing §1.5. The inexpensive-reasoning discussion places human fallibility alongside agentic capacity, and FlowCheck supplies a concrete example of an obligation lost across natural-language iterations.",
       "opening_anchor": "In developing DocAble, I deliberately inspected almost none of the code the",
       "closing_anchor": "of the complete reasoning system, including its harness, external memory, and tools.",
       "delivers": {
@@ -232,7 +232,7 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Reframed intro chapter (one-model-class-per-chapter reconstruction). Opening states the failure (a foundation model knows the languages but not your system) and its answer (externalize engineering knowledge that should not have to be rediscovered); the Modeling-Principle link is explicit. Folds the former ladder/zoo/views essentials and introduces the six-class working ontology. Closes on the modeling→Alignment boundary that Part III begins from.",
+      "note": "Reframed intro chapter (one-model-class-per-chapter reconstruction). Opening states the failure (a foundation model knows the languages but not your system) and its answer (externalize engineering knowledge that should not have to be rediscovered); the Modeling-Principle link is explicit. Folds the former ladder/zoo/views essentials and introduces the six-class working ontology. Closes on the modeling→Alignment boundary that Part III begins from. A worked semantic interpretation now defines a permitted-call relation and constructive lifecycle transition function; the repertoire inset connects an agent’s general training to the engineer’s system-specific meanings and obligations.",
       "opening_anchor": "A foundation model knows Python, React, queues, databases, and common architectural patterns.",
       "closing_anchor": "Modeling makes an engineering property explicit. Alignment gives selected properties consequence.",
       "delivers": {
@@ -438,8 +438,8 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Two requirements for authority: an independent obligation + a boundary where it is legible. Lesson one, agreement is not correctness; lesson two, place at the earliest legible boundary (the semantic gap). Closes to 3.3 — what the mechanism at that boundary does.",
-      "opening_anchor": "Authority needs two things: **an obligation independent of the work being judged,",
+      "note": "An independent obligation and a boundary where its evidence is available remain the requirements for enforcement. The shared architectural path and constructive lifecycle examples make those requirements concrete before the unchanged traceability, correspondence/conformance/acceptance, and earliest-decidable-boundary discussions.",
+      "opening_anchor": "Enforcement requires two things: **an obligation independent of the work being judged",
       "closing_anchor": "The next question is what the mechanism at that boundary actually does.",
       "delivers": {
         "concepts": [
@@ -477,8 +477,8 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Three functional categories: constraints restrict possibilities, sensors observe and produce evidence, and gates evaluate whether work may proceed and enforce decisions. An optional inset connects these functions to familiar machinery, including observability and static analysis as well as CI and runtime authorization. Evaluation can be advisory or used within a gate. One proposed reporting change connects the categories through module restrictions, instrumented tests, and a merge gate. Closes on governance conversion.",
-      "opening_anchor": "Suppose you are adding a reporting service to a billing system.",
+      "note": "Three functional categories: constraints restrict possibilities, sensors observe and produce evidence, and gates evaluate whether work may proceed and enforce decisions. An optional inset connects these functions to familiar machinery, including observability and static analysis as well as CI and runtime authorization. Evaluation can be advisory or used within a gate. One proposed reporting change connects the categories through module restrictions, instrumented tests, and a merge gate. Closes on governance conversion. The opening continues Chapter 2’s billing architecture, and the testing discussion develops the simple constructive lifecycle into a richer lease-ownership protocol.",
+      "opening_anchor": "Return to the billing architecture: `Reporting` may obtain data through `BillingAPI`",
       "closing_anchor": "governed. That is the conversion problem, and it is the next chapter.",
       "delivers": {
         "concepts": [

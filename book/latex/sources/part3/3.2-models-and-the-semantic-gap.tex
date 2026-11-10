@@ -14,11 +14,19 @@
 
 % <!-- point: enforcement-needs-an-independent-obligation-and-a-legible-boundary | Enforcement needs an obligation independent of the work being judged, and a boundary at which that obligation is legible. | terms: independent-obligation, semantic-gap -->
 
-Enforcement requires two things: \textbf{an obligation independent of the work being judged and a boundary where the evidence needed to evaluate that obligation is available.} Without the first, a checker may only confirm that the system agrees with itself. Without the second, the mechanism tries to enforce a good obligation before the necessary evidence exists.
+Enforcement requires two things: \textbf{an obligation independent of the work being judged and a boundary where the evidence needed to evaluate that obligation is available.}
+The architectural model requires \texttt{Reporting} to obtain billing data through \texttt{BillingAPI}, preserving \texttt{BillingDB} behind that interface.
+The job-lifecycle model specifies how events move a job from \texttt{IDLE} through \texttt{RUNNING} to \texttt{DONE} or \texttt{FAILED}.
+These are accounts of intended construction and behavior against which an implementation can be evaluated.
 
 % <!-- point: an-obligation-may-live-in-a-model-or-directly-in-a-type-or-policy | An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not require a particular representation. | terms: independent-obligation, modeling-principle, alignment-principle -->
 
-\magevalue{chapter:modeling} supplied many ways to make obligations explicit. Some live in models: permitted service edges, legal state transitions, ownership relations, operational bounds. Others live directly in types, permissions, schemas, tests, or policy. Alignment does not require every obligation to originate in the same kind of representation. It requires that the obligation be distinguishable from the thing being judged and that a mechanism can enforce the result.
+The environment needs evidence that corresponds to those meanings.
+A dependency analysis can look for paths from \texttt{Reporting} to \texttt{BillingDB} that bypass \texttt{BillingAPI}; a model-based test can submit job events and compare the resulting states with the specified transitions.
+The engineer must choose where the relevant evidence becomes available and how the finding should affect the work.
+A check may inform a later decision, or a gate may use its result to refuse an action or candidate.
+The obligation can also reside directly in a type, permission, schema, test, or policy.
+What matters is that it is distinguishable from the implementation being judged and that a mechanism can enforce the resulting decision.
 
 % <!-- point: software-engineering-has-a-traceability-heritage-alignment-builds-on | Requirements traceability connects intent, implementation, and evidence to support evaluation and change analysis; engineers separately decide how an evaluation should affect the work. | terms: independent-obligation, traceability -->
 

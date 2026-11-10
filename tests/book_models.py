@@ -1206,6 +1206,36 @@ def check_bookmath_native_mappings():
             pass
         else:
             issues.append(f"malformed stack accepted: {malformed}")
+    # Transition definitions must retain their row/column structure in both
+    # editions; silently flattening alignment would change how readers parse them.
+    aligned = (r"\begin{aligned}"
+               r"\delta(\mathrm{IDLE},\mathrm{start}) &= \mathrm{RUNNING},\\"
+               r"\delta(\mathrm{RUNNING},\mathrm{finish}) &= \mathrm{DONE},\\"
+               r"\delta(\mathrm{RUNNING},\mathrm{fail}) &= \mathrm{FAILED}."
+               r"\end{aligned}")
+    try:
+        math = ET.fromstring(bookmath.to_mathml(aligned, display=True))
+        ns = {"m": "http://www.w3.org/1998/Math/MathML"}
+        table = math.find('.//m:mtable', ns)
+        rows = [] if table is None else table.findall('m:mtr', ns)
+        if table is None or table.attrib.get('columnalign') != 'right left':
+            issues.append("transition equations lost alignment at the relation")
+        if len(rows) != 3 or any(len(row.findall('m:mtd', ns)) != 2 for row in rows):
+            issues.append("transition equations lost their three rows and two columns")
+        words = "".join(math.itertext())
+        if not all(word in words for word in ('δ', 'IDLE', 'start', 'finish', 'fail', 'DONE', 'FAILED')):
+            issues.append("transition equations lost an event or state")
+    except Exception as exc:
+        issues.append(f"aligned math projection failed: {exc}")
+    for malformed in (r"\begin{aligned}a&=b", r"\begin{aligned}a&=b\end{array}",
+                      r"\begin{aligned}a&\\b&=c\end{aligned}",
+                      r"\begin{aligned}a&=b\\c\end{aligned}", r"a&=b"):
+        try:
+            bookmath.to_mathml(malformed)
+        except bookmath.MathError:
+            pass
+        else:
+            issues.append(f"malformed alignment accepted: {malformed}")
     if issues:
         return FAIL, issues
     if not shutil.which("lualatex"):
@@ -1217,7 +1247,7 @@ def check_bookmath_native_mappings():
     probe.write_text("\\documentclass{article}\n\\usepackage{amsmath,amssymb}\n"
                      "\\begin{document}\n"
                      + "\n".join("$\\" + name + "$\\par" for name in sorted(mappings))
-                     + "\n" + "\n".join(r"\[" + expr + r"\]" for expr in (annotated, nested))
+                     + "\n" + "\n".join(r"\[" + expr + r"\]" for expr in (annotated, nested, aligned))
                      + "\n\\end{document}\n")
     try:
         build.compile_tex(probe)
