@@ -19159,3 +19159,14 @@ The same account suggests a broader engineering problem: how people retain infor
 ```
 
 The superseded claim and argument-spine declarations affected by the Preface consolidation are preserved verbatim in [preface-retired-metadata-20261109.json](preface-retired-metadata-20261109.json).
+
+
+## 2026-11-09 — DocAble methodology opening and local copyedits
+
+Source: `book/latex/sources/part1/1.2-mage-by-example.tex`, revision `c876d530e66e3fbf83f5c78b62302921eda347f9`. The author requested an opening that establishes DocAble as the source of MAGE, states that coding agents wrote every implementation line, and trims local elaboration. The complete prior source is preserved in [docable-opening-before-20261109.tex](docable-opening-before-20261109.tex). The retired opening and labor qualification follow verbatim.
+
+```latex
+\href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} provides the book\textquotesingle s running case study: a production accessibility system built largely through coding agents. We treat it in detail in \magevalue{chapter:software-factories}. For now, a few facts about the system are in order.
+
+The reported labor amounted to on the order of three hours per document. Simple documents can take much less time, while complex PDFs can take far more; one colleague reported spending a week on a single PDF\citep{davis2026docable}.
+```
