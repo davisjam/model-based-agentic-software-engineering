@@ -1,0 +1,402 @@
+[
+  {
+    "id": "name-gee-as-factory-constituent",
+    "source": "book/latex/sources/part5/5.1-software-factory.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 70,
+    "original_line_end": 70,
+    "original_text": "A software factory contains more than its fabricators. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound what may be done and accepted through permissions, admission gates, and enforced policies. An agent can run a test and reason about its result. The test supplies evidence; a gate enforces a condition by requiring a passing result before admission. A failed test that is only reported leaves a different choice to the agent or reviewer. Fabricators build the product from models, using tools, subject to controls.",
+    "replacement_text": "A software factory contains more than its fabricators. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound what may be done and accepted through permissions, admission gates, and enforced policies. An agent can run a test and reason about its result. The test supplies evidence; a gate enforces a condition by requiring a passing result before admission. A failed test that is only reported leaves a different choice to the agent or reviewer. Fabricators build the product from models, using tools, subject to controls.\n\nThe governed engineering environment developed in Chapters \\magevalue{chapter:modeling|num}--\\magevalue{chapter:one-problem-many-models|num} is part of this larger factory. It comprises the reusable representations, tools, procedures, and controls through which engineering work is directed and governed. The factory also includes the people and agents doing the work, the production activities they perform, and the organizational arrangements that determine what work is undertaken and who has authority over its consequences.",
+    "reason": "Name the GEE as the reusable engineering structure within the larger production system, at the existing inventory of factory constituents."
+  },
+  {
+    "id": "point-a-factory-contains-more-than-its-fabricators",
+    "source": "book/latex/sources/part5/5.1-software-factory.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 68,
+    "original_line_end": 68,
+    "original_text": "% <!-- point: a-factory-contains-more-than-its-fabricators | A software factory combines models, tools, and controls; tests produce evidence and a gate makes a required result consequential at admission. -->",
+    "replacement_text": "% <!-- point: a-factory-contains-more-than-its-fabricators | A software factory includes a GEE of reusable representations, tools, procedures, and controls, together with its people, agents, production activities, and organizational authority. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "focus-theory-on-gee",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 14,
+    "original_line_end": 14,
+    "original_text": "Agentic engineering must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. Within the software factory (\\magevalue{chapter:software-factories}), engineers state consequential obligations and agents attempt to produce realizations that fulfill them.",
+    "replacement_text": "Agentic engineering must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. \\magevalue{chapter:software-factories} examined the software factory as a whole. We now focus on its governed engineering environment (GEE): the reusable engineering structure through which people and agents direct, evaluate, and control implementation.",
+    "reason": "Shift from the whole factory to its GEE while retaining the division between Modeling and Alignment."
+  },
+  {
+    "id": "point-the-pieces-this-chapter-assembles",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 12,
+    "original_line_end": 12,
+    "original_text": "% <!-- point: the-pieces-this-chapter-assembles | Agentic engineering brings Modeling and Alignment together around two responsibilities: engineers encode consequential intent, and agents produce realizations that must fulfill it. -->",
+    "replacement_text": "% <!-- point: the-pieces-this-chapter-assembles | Chapter 5 examined the complete software factory; the theory focuses on its GEE and how reusable engineering structure supports the encoding and realization of intent. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "connect-responsibilities-to-equation",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 18,
+    "original_line_end": 18,
+    "original_text": "We can begin by separating those two responsibilities. Let \\(E\\) mean that the encoding captures the consequential intent and \\(F\\) that the resulting artifact fulfills the encoded obligations. For a representation \\(R\\), the probability of both is",
+    "replacement_text": "We can begin by separating the encoding of intent from its realization. Let \\(E\\) mean that the encoding captures the consequential intent and \\(F\\) that the resulting artifact fulfills the encoded obligations. For a representation \\(R\\), the probability of both is",
+    "reason": "Make the transition explicit after changing the preceding paragraph to establish the GEE focus."
+  },
+  {
+    "id": "explain-decomposition-and-teach-chain-rule",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 24,
+    "original_line_end": 24,
+    "original_text": "This \\textbf{encoding–realization decomposition} is the chain rule; it requires no independence assumption. It tells us where to look for failure, but does not establish that a particular representation improves either factor. That requires evidence. Agents can help construct and revise the encoding, while engineers retain authority over the intent and agents retain freedom among acceptable realizations.",
+    "replacement_text": "This \\textbf{encoding–realization decomposition} applies the probability chain rule to separate two engineering questions: whether the representation captures the intended obligations, and whether the resulting artifact fulfills them.\\magefootnote{encoding-realization-chain-rule}{In general, the probability that two events \\(A\\) and \\(B\\) both occur is the probability of \\(A\\) multiplied by the probability of \\(B\\) given \\(A\\): \\(P(A\\cap B)=P(A)P(B\\mid A)\\). This is the probability chain rule; it does not require the events to be independent. Here we apply the same identity conditional on the representation \\(R\\), with \\(A=E\\) (correct encoding) and \\(B=F\\) (fulfillment), yielding \\(P(E\\cap F\\mid R)=P(E\\mid R)P(F\\mid E,R)\\).} The distinction lets us examine how representations, agent capabilities, and production processes affect faithful realization. We will then extend the account to the costs of evaluating, repairing, and admitting changes, and finally to how each engineering episode changes the environment inherited by the next.",
+    "reason": "Lead with the engineering purpose; teach the general chain rule and then its conditional engineering instantiation in a native footnote, including the independence qualification there."
+  },
+  {
+    "id": "point-the-starting-point-is-the-master-equation",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 16,
+    "original_line_end": 16,
+    "original_text": "% <!-- point: the-starting-point-is-the-master-equation | The encoding–realization decomposition separates adequate encoding from fulfillment; its chain rule does not itself establish the effect of an engineering intervention. -->",
+    "replacement_text": "% <!-- point: the-starting-point-is-the-master-equation | The encoding–realization decomposition applies the chain rule to distinguish adequate encoding from fulfillment, before extending the account to delivery cost and inherited structure. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "simplify-inherited-environment-model",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 135,
+    "original_line_end": 142,
+    "original_text": "The lifecycle account totals the work and its costs. It does not yet explain how earlier work changes the conditions for later production. Let \\(T_i\\) be the task at step \\(i\\), \\(M\\) the foundation model, \\(R_i\\) the representation supplied for that task, and \\(H\\) the harness and process. Write \\(\\mathcal{G}_i\\) for the governed engineering environment inherited at that step and \\(a_i\\) for the work and resulting changes that the episode leaves behind:\n\n\\[\np_i=p(T_i,M,R_i,H,\\mathcal{G}_i),\n\\qquad \\mathcal{G}_{i+1}=f(\\mathcal{G}_i,a_i).\n\\]\n\nHere \\(p_i\\) is the probability of faithful production for task \\(T_i\\), extending the earlier encoding–realization account to include the inherited environment. The second says that the episode can change that environment. A failed attempt may leave a useful diagnosis or a new control even when it produces no admitted change. The notation holds the model and harness fixed to expose inheritance; they too can change across a longer sequence. These are schematic relationships, not calibrated laws or a claim that every episode improves the environment.",
+    "replacement_text": "The lifecycle account totals the work and its costs. It does not yet explain how earlier work changes the conditions for later production. Let \\(T_i\\) be the task at step \\(i\\), \\(M\\) the foundation model, and \\(\\mathcal{G}_i\\) the governed engineering environment inherited at that step. The GEE includes the task-relevant representations, tools, procedures, and controls available to direct and evaluate the work. Let \\(a_i\\) denote the work performed during the episode and the changes it leaves behind:\n\n\\[\np_i=p(T_i,M,\\mathcal{G}_i),\n\\qquad \\mathcal{G}_{i+1}=f(\\mathcal{G}_i,a_i).\n\\]\n\nHere \\(p_i\\) is the probability of faithful production for task \\(T_i\\), extending the earlier encoding–realization account to include the inherited environment. The second relation describes how the episode can change that environment. A failed attempt may leave a useful diagnosis or a new control even when it produces no admitted change. Holding the foundation model fixed lets us examine how changes to the GEE affect subsequent work; over a longer sequence, the foundation model can change as well. These are schematic relationships describing inheritance, not calibrated laws or a claim that every episode improves the environment.",
+    "reason": "Treat task-relevant representations and process machinery as constituents of the inherited GEE rather than overlapping independent arguments. Retain the earlier R-based probability decomposition unchanged."
+  },
+  {
+    "id": "point-independence-omits-the-inherited-environment",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 133,
+    "original_line_end": 133,
+    "original_text": "% <!-- point: independence-omits-the-inherited-environment | Each engineering episode inherits an environment and may change the conditions of later work; the dynamic relation is schematic, not a fitted law. -->",
+    "replacement_text": "% <!-- point: independence-omits-the-inherited-environment | Faithful production depends schematically on the task, foundation model, and inherited GEE; an episode can change that GEE without necessarily improving it. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "introduce-feedback-through-gee",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 150,
+    "original_line_end": 150,
+    "original_text": "Engineering outcomes depend on the interaction between agentic capacity and the environment in which that capacity operates. \\textbf{Agentic capacity} supplies model capability, concurrency, and raw implementation rate. The \\textbf{governed engineering environment} supplies the representations, constraints, evidence, and enforcement through which that capacity acts. Together they shape durable throughput, defect escape, and human attention consumed per unit of useful output. \\autoref{mage-dynamic-model} draws the interaction and its feedback dynamics.",
+    "replacement_text": "Agentic capacity and the GEE jointly shape what a software factory can accomplish. More capable foundation models, greater concurrency, and faster implementation increase the work the factory can attempt. Whether that work becomes durable progress depends on the representations, controls, and evidence available to direct and evaluate it. \\autoref{mage-dynamic-model} shows how the resulting experience can change the GEE, and how those changes can affect later production.",
+    "reason": "Establish the joint effects of capacity and the GEE while retaining factory for the complete system whose production changes."
+  },
+  {
+    "id": "point-theory-of-mage-informal-statement",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 148,
+    "original_line_end": 148,
+    "original_text": "% <!-- point: theory-of-mage-informal-statement | Agentic capacity acts through an inherited environment, shaping durable throughput, defect escape and human-attention burden. -->",
+    "replacement_text": "% <!-- point: theory-of-mage-informal-statement | Agentic capacity and the inherited GEE jointly shape what the factory can accomplish; experience can change the GEE and affect later production. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "develop-corrective-and-amplifying-feedback",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 161,
+    "original_line_end": 161,
+    "original_text": "The feedback requires engineering judgment. Repeated failures can expose an inadequate model or missing control, but they can also provoke another local patch. Someone must distinguish the two and have a path to change the shared environment. Adaptation may add a representation, strengthen an admission mechanism, reconcile conflicting rules, or retire a control that no longer earns its cost. Prior engineering knowledge can also seed that environment before a failure occurs; MAGE does not require learning every lesson through an incident.",
+    "replacement_text": "The first feedback path is corrective, or negative feedback. As agents produce changes, recurring failures, repeated human interventions, and defects escaping into later stages expose gaps between the factory's capabilities and its engineering obligations. An engineer can diagnose whether the problem lies in an individual implementation, an inadequate representation, weak enforcement, or machinery that no longer fits the work. A structural diagnosis may lead to a new model, a stronger check, a revised procedure, or the retirement of an obsolete control. When the intervention addresses the underlying problem, later work encounters fewer instances of the same failure. The GEE has changed in response to evidence about its performance.\n\nThis corrective path depends on more than observing failures. The organization must be able to recognize a common cause, distinguish structural problems from local defects, and change the machinery that later work inherits. Otherwise, the same pressure may produce repeated local repairs without improving the GEE. Nor must the corrective response always add structure: removing a conflicting rule or replacing an expensive check can improve the GEE's fit as effectively as introducing a new control.\n\nThe second path is amplifying, or positive feedback. As representations and controls make existing work easier to direct and evaluate, the factory can attempt larger changes, operate more agents concurrently, or undertake work that was previously too expensive to supervise. That expanded activity exposes new engineering problems. A factory that can safely process ordinary changes may begin making cross-service migrations; one that can perform those migrations may attempt broader architectural transformations. The new work creates opportunities to develop further representations and controls, which can support still greater ambition. Positive feedback therefore expands the frontier of work the factory can undertake, rather than guaranteeing that each iteration becomes faster or more reliable.\n\nThe two paths operate together. Negative feedback can improve the GEE's fit to current work; positive feedback can change the work against which that fit is judged. A successful intervention may reduce one class of failures while making a more demanding class of tasks practical. The GEE also need not begin empty. Existing standards, requirements, architecture descriptions, tests, and lessons from other projects can supply useful structure before local experience reveals a gap. \\autoref{mage-dynamic-model} represents that prior knowledge as an input rather than another feedback loop.",
+    "reason": "Develop complete causal paths for corrective and amplifying feedback, including diagnosis, authority, subtractive adaptation, expanded task ambition, and prior knowledge. Preserve the intervening figure block unchanged."
+  },
+  {
+    "id": "point-diagnosis-and-authority-connect-pressure-to-adaptation",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 159,
+    "original_line_end": 159,
+    "original_text": "% <!-- point: diagnosis-and-authority-connect-pressure-to-adaptation | Pressure prompts useful adaptation only when someone can diagnose the structural cause and change the shared environment. -->",
+    "replacement_text": "% <!-- point: diagnosis-and-authority-connect-pressure-to-adaptation | Corrective feedback requires structural diagnosis and authority to adapt the GEE; amplifying feedback expands the task frontier, and prior knowledge can seed useful structure before local failures. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "name-gee-fit",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 167,
+    "original_line_end": 167,
+    "original_text": "More machinery does not mean a better environment. Ten thousand lines of stale checks are worse than one hundred lines that govern the obligations that matter. Four properties help us ask whether the environment fits the work:",
+    "replacement_text": "More machinery does not mean a better GEE. Ten thousand lines of stale checks are worse than one hundred lines that govern the obligations that matter. Four properties help us ask whether the GEE fits the work:",
+    "reason": "Retain the transition and four fit dimensions while identifying their object consistently as the GEE."
+  },
+  {
+    "id": "point-four-properties-of-an-effective-environment",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 163,
+    "original_line_end": 163,
+    "original_text": "% <!-- point: four-properties-of-an-effective-environment | Useful representations, adequate coverage, coherence and economy describe environment fit independently of machinery counts. -->",
+    "replacement_text": "% <!-- point: four-properties-of-an-effective-environment | Useful representations, adequate coverage, coherence and economy describe GEE fit independently of machinery counts. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "name-gee-judgment-boundary",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 177,
+    "original_line_end": 177,
+    "original_text": "Coverage does not require mechanizing every obligation. Some belong in a compiler rule or gate; others require statistical evidence, semantic evaluation, or human judgment. A strong environment makes clear where judgment belongs and where repeatedly buying the same judgment is wasteful.",
+    "replacement_text": "Coverage does not require mechanizing every obligation. Some belong in a compiler rule or gate; others require statistical evidence, semantic evaluation, or human judgment. A strong GEE makes clear where judgment belongs and where repeatedly buying the same judgment is wasteful.",
+    "reason": "Name the reusable structure under discussion without changing the scope of governability or judgment."
+  },
+  {
+    "id": "name-gee-fit-diagnosis",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 181,
+    "original_line_end": 181,
+    "original_text": "These properties describe different ways an environment can support the work, rather than stages of a maturity model\\citep{bollinger1991critical}. The appropriate investment depends on what is limiting progress. Repeated reconstruction of important state suggests a representation problem; escaped failures call for examining evidence and enforcement. When existing controls impose more friction than protection, reconciliation or retirement may improve the environment more than adding another mechanism.",
+    "replacement_text": "These properties describe different ways a GEE can support the work, rather than stages of a maturity model\\citep{bollinger1991critical}. The appropriate investment depends on what is limiting progress. Repeated reconstruction of important state suggests a representation problem; escaped failures call for examining evidence and enforcement. When existing controls impose more friction than protection, reconciliation or retirement may improve the GEE more than adding another mechanism.",
+    "reason": "Use GEE for the reusable structure whose fit the four dimensions diagnose; preserve the citation and substantive paragraph."
+  },
+  {
+    "id": "remove-repeated-section-roadmap",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 227,
+    "original_line_end": 227,
+    "original_text": "The production equation separates two responsibilities, lifecycle accounting counts the resources spent, and the dynamic relation makes inheritance explicit. None supplies a measured effect size. Together they support a more focused question: under what conditions do representations, independent enforcement, and inherited engineering judgment turn additional agentic capacity into useful progress? The next section develops four propositions that evidence could challenge.",
+    "replacement_text": "None of these descriptions supplies a measured effect size. Together they support a more focused question: under what conditions do representations, independent enforcement, and inherited engineering judgment turn additional agentic capacity into useful progress? The next section develops four propositions that evidence could challenge.",
+    "reason": "Remove the repeated inventory of the three analytical components after introducing that progression in the post-equation paragraph."
+  },
+  {
+    "id": "point-three-anchors-open-four-propositions",
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 225,
+    "original_line_end": 225,
+    "original_text": "% <!-- point: three-anchors-open-four-propositions | The production identity, lifecycle accounting and inherited environment motivate four conditional propositions requiring stronger empirical tests. -->",
+    "replacement_text": "% <!-- point: three-anchors-open-four-propositions | The schematic descriptions motivate four conditional propositions about useful progress, but supply no measured effect sizes. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "capital-lives-in-gee",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 148,
+    "original_line_end": 148,
+    "original_text": "That inheritance need not depend on the continued presence of the engineer who supplied the original judgment. When an architectural distinction becomes a trustworthy model, a review judgment becomes a validator, or an operational lesson becomes a reliable procedure, some of the originating engineer\\textquotesingle s productive capacity now lives in the environment. A later engineer or agent can benefit from the result without reconstructing the reasoning that produced it.",
+    "replacement_text": "That inheritance need not depend on the continued presence of the engineer who supplied the original judgment. When an architectural distinction becomes a trustworthy model, a review judgment becomes a validator, or an operational lesson becomes a reliable procedure, some of the originating engineer\\textquotesingle s productive capacity now lives in the GEE. A later engineer or agent can benefit from the result without reconstructing the reasoning that produced it.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "capital-test-inherited-gee",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 174,
+    "original_line_end": 174,
+    "original_text": "P3 would be challenged if later work gains no useful capacity over local repair or on-demand reconstruction once the asset's full costs are counted. A decline in recurrence alone is insufficient: the engineer may have become more experienced, or the work may have changed. Reuse by later engineers or agents, including work performed without the originator, provides a stronger test of what the environment actually preserves. The research agenda returns to how these comparisons can be made.",
+    "replacement_text": "P3 would be challenged if later work gains no useful capacity over local repair or on-demand reconstruction once the asset's full costs are counted. A decline in recurrence alone is insufficient: the engineer may have become more experienced, or the work may have changed. Reuse by later engineers or agents, including work performed without the originator, provides a stronger test of what the GEE actually preserves. The research agenda returns to how these comparisons can be made.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-capacity-through-gee",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 180,
+    "original_line_end": 180,
+    "original_text": "\\textbf{The effect of additional agentic capacity depends on the environment through which it acts.} Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection. Where the environment fits poorly, the same capacity can instead produce more churn, intervention, or escaped failure. Raw implementation activity may rise in either case.",
+    "replacement_text": "\\textbf{The effect of additional agentic capacity depends on the GEE through which it acts.} Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection. Where the GEE fits poorly, the same capacity can instead produce more churn, intervention, or escaped failure. Raw implementation activity may rise in either case.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-mechanism-fit-is-gee-fit",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 184,
+    "original_line_end": 184,
+    "original_text": "Consider two agents making more changes against the same service boundary. An explicit dependency model may spare both agents repeated reconstruction; a gate may keep the covered architectural violation out of admitted work. Those mechanisms can support a higher rate of acceptable changes. If the model is stale or the gate enforces the wrong rule, more activity can instead multiply the resulting repair and review. The proposition concerns these mechanisms and their fit to the tasks, rather than a blanket advantage for an environment described as stronger.",
+    "replacement_text": "Consider two agents making more changes against the same service boundary. An explicit dependency model may spare both agents repeated reconstruction; a gate may keep the covered architectural violation out of admitted work. Those mechanisms can support a higher rate of acceptable changes. If the model is stale or the gate enforces the wrong rule, more activity can instead multiply the resulting repair and review. The proposition concerns these mechanisms and their fit to the tasks, rather than a blanket advantage for a GEE described as stronger.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-assess-gee-independently",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 188,
+    "original_line_end": 188,
+    "original_text": "To test that claim, environment quality has to be characterized independently of the outcomes it is supposed to explain. The four dimensions in \\magevalue{sec:toward-a-theory-of-mage} provide questions about representation usefulness, obligation coverage, coherence, and economy. They do not yet supply a validated universal score. Counting checks would be easier, but an overgrown collection of conflicting checks can make the environment less useful. A comparison must identify which relevant properties differ, then observe what additional capacity does under those conditions.",
+    "replacement_text": "To test that claim, GEE quality has to be characterized independently of the outcomes it is supposed to explain. The four dimensions in \\magevalue{sec:toward-a-theory-of-mage} provide questions about representation usefulness, obligation coverage, coherence, and economy. They do not yet supply a validated universal score. Counting checks would be easier, but an overgrown collection of conflicting checks can make the GEE less useful. A comparison must identify which relevant properties differ, then observe what additional capacity does under those conditions.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-compare-gee-and-capability",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 192,
+    "original_line_end": 192,
+    "original_text": "Several outcomes are plausible. A good representation might let a weaker model perform work that previously required a stronger one. A stronger model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and environment together, not to assume that more Modeling must always accompany better agents.",
+    "replacement_text": "Several outcomes are plausible. A good representation might let a weaker model perform work that previously required a stronger one. A stronger model might benefit more because it can exploit relationships that the weaker model cannot. Or capable agents might reconstruct the required knowledge so cheaply that maintaining the representation contributes little to production efficiency. Independent assurance may still matter in that last case, because being able to produce a result does not establish that it should be admitted. These possibilities are reasons to compare capability and GEE together, not to assume that more Modeling must always accompany better agents.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-authority-to-change-gee",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 196,
+    "original_line_end": 196,
+    "original_text": "Acceleration can also change how quickly inadequacy becomes visible. Failures that would arrive months apart may occur close enough together for an engineer to recognize their common structure. That creates an opportunity for governance conversion, not an automatic learning mechanism. Without diagnostic capacity, the organization may simply produce patches faster. Without authority to change the shared environment, a correct diagnosis may remain local. Useful adaptation can also be subtractive when the pressure comes from obsolete constraints or duplicated controls.",
+    "replacement_text": "Acceleration can also change how quickly inadequacy becomes visible. Failures that would arrive months apart may occur close enough together for an engineer to recognize their common structure. That creates an opportunity for governance conversion, not an automatic learning mechanism. Without diagnostic capacity, the organization may simply produce patches faster. Without authority to change the shared GEE, a correct diagnosis may remain local. Useful adaptation can also be subtractive when the pressure comes from obsolete constraints or duplicated controls.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-gee-expands-task-frontier",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 200,
+    "original_line_end": 200,
+    "original_text": "An improved environment can in turn make larger tasks and greater concurrency economical. The organization may then attempt work that exposes different obligations and new failure classes. This explains the reinforcing loop in the dynamic figure: engineering capital can support a more ambitious task frontier, which renews the need for diagnosis and adaptation. It does not imply unlimited improvement or that every increase in capacity is worth purchasing.",
+    "replacement_text": "An improved GEE can in turn make larger tasks and greater concurrency economical. The organization may then attempt work that exposes different obligations and new failure classes. This explains the reinforcing loop in the dynamic figure: engineering capital can support a more ambitious task frontier, which renews the need for diagnosis and adaptation. It does not imply unlimited improvement or that every increase in capacity is worth purchasing.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "p4-compare-gee-conditions",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 204,
+    "original_line_end": 204,
+    "original_text": "P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable environments, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.",
+    "replacement_text": "P4 would be challenged if added capacity has essentially the same effect on durable throughput, escape, and human-attention burden across otherwise comparable GEE conditions, or if the apparent advantage disappears when task difficulty and quality are matched. Faster approvals alone are not evidence of governable acceleration. The relevant result is more useful work admitted with adequate assurance, while the costs and unresolved demands remain visible.",
+    "reason": "Use GEE for inherited reusable engineering structure in the theoretical proposition; preserve the full mechanism, evidence scope, and qualifications."
+  },
+  {
+    "id": "point-p4-governable-acceleration",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 178,
+    "original_line_end": 178,
+    "original_text": "% <!-- point: p4-governable-acceleration | Additional agentic capacity can amplify the fit or inadequacy of the inherited environment; durable gains depend on representation, assurance and adaptation. -->",
+    "replacement_text": "% <!-- point: p4-governable-acceleration | Additional agentic capacity can amplify the fit or inadequacy of the inherited GEE; durable gains depend on representation, assurance and adaptation. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "point-fit-cannot-be-defined-only-by-success",
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 186,
+    "original_line_end": 186,
+    "original_text": "% <!-- point: fit-cannot-be-defined-only-by-success | Environment quality must be assessed separately from outcomes, or a claim that better environments perform better is circular. -->",
+    "replacement_text": "% <!-- point: fit-cannot-be-defined-only-by-success | GEE quality must be assessed separately from outcomes, or a claim that better GEEs perform better is circular. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "representation-experiment-holds-obligations-fixed",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 45,
+    "original_line_end": 45,
+    "original_text": "Representation engineering asks what should be made explicit, in which form, and with what evidence of usefulness. A detailed natural-language task description is already a model of intended behavior. To isolate the effect of structure on realization, a structured model and its prose baseline should contain the same obligations. A separate elicitation study can ask whether the representation helps engineers discover or express obligations they would otherwise miss. This distinction preserves both channels in the production equation: a representation can help engineers encode consequential intent, agents fulfill it, or both.",
+    "replacement_text": "To test representation leverage, compare agents given structured models with agents given prose containing the same obligations. Hold the task, foundation model, tools, and admission mechanism fixed. Measure correct delivery, reasoning cost, and the human effort required to interpret or repair the result. This isolates the effect of representation form on fulfillment. A separate elicitation experiment should test whether structured representations help engineers discover or express obligations they would otherwise omit, rather than assuming that every treatment begins with an equally complete specification.",
+    "reason": "Specify controlled conditions and measurements rather than re-explaining the two channels of the production decomposition."
+  },
+  {
+    "id": "representation-admission-factorial-design",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 49,
+    "original_line_end": 49,
+    "original_text": "A controlled comparison can hold the task, foundation model, and admission mechanism fixed while varying whether the producer receives the structured representation used by the environment. With a sound gate, covered defect escape should remain zero whether or not the producer sees the model. For imperfect gates, record both escape and false rejection: the representation can change the kinds of mistakes presented to the gate. This tests P1 under the chosen Alignment strategy. A factorial extension also varies the admission mechanism, comparing the proposed gate with existing assurance under each representation condition. Independent assessment then tests P2 and whether the effects interact.",
+    "replacement_text": "The admission mechanism should also be varied independently. With a sound gate, covered violations cannot enter admitted work regardless of whether the producing agent receives the model, but the representation may reduce the number and cost of rejected attempts. With imperfect checks, compare escaped defects, false rejection, and correct delivery under each representation condition. Crossing representation and admission mechanism in a factorial design would distinguish their individual contributions and reveal whether they reinforce one another.",
+    "reason": "Make the factorial design and assurance outcomes explicit while retaining the sound-gate coverage condition."
+  },
+  {
+    "id": "direct-representation-development-comparison",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 53,
+    "original_line_end": 53,
+    "original_text": "Choosing a representation is itself an engineering problem. The six model classes in \\magevalue{chapter:modeling} were offered as useful, not proved necessary, sufficient, or minimal. A useful study could compare expert-designed, machine-recovered, and machine-invented representations against both raw implementation and one another. Recovery should faithfully expose consequential structure already present in the system. Innovation should make useful relationships available that the existing representations did not.",
+    "replacement_text": "A second set of experiments should compare representations designed by engineers, recovered from existing implementations, and proposed by agents as new abstractions, using raw implementation as a common baseline. The six model classes in \\magevalue{chapter:modeling} were offered as useful, not proved necessary, sufficient, or minimal. Recovery should faithfully expose consequential structure already present in the system. Innovation should make useful relationships available that the existing representations did not.",
+    "reason": "Use the direct expert-designed, recovered, and agent-proposed comparison requested in the later followup; preserve the raw-implementation baseline and taxonomy qualification."
+  },
+  {
+    "id": "refer-to-single-detailed-review-study",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 59,
+    "original_line_end": 59,
+    "original_text": "These studies should distinguish production efficiency from the representation's value for engineering control. A capable agent may reconstruct a relation cheaply while the engineer still needs an inspectable account of it to evaluate a consequential decision. \\magevalue{chapter:profession} takes up that use directly. Interpretation questions or requested plans can help diagnose a mechanism, but prompting for them can change the behavior being measured; a study using such probes should retain a comparison without them.",
+    "replacement_text": "Representation studies should also examine whether the resulting models improve human engineering decisions, a question taken up in the review experiment below.",
+    "reason": "Keep the human-engineering-decision outcome while retaining the complete fixed-attention review experiment once, in Capacity and Environment."
+  },
+  {
+    "id": "point-representation-has-oversight-value-beyond-realization",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 57,
+    "original_line_end": 57,
+    "original_text": "% <!-- point: representation-has-oversight-value-beyond-realization | Representation can remain valuable for engineering understanding and independent evaluation even if it adds little to a capable agent’s production efficiency. -->",
+    "replacement_text": "% <!-- point: representation-has-oversight-value-beyond-realization | Representation studies should test effects on human engineering decisions as well as production; the detailed review experiment follows below. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "capacity-gee-factorial-design",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 77,
+    "original_line_end": 77,
+    "original_text": "P4 calls for varying capability and environment together. A crossed comparison can run several foundation models over the same task families in environments with different, independently assessed representations and assurance. If those environments substitute for raw capability, weaker models should close part of the performance gap. If the two are complementary, stronger models should gain more from the improved environment. If the relevant environmental differences contribute little, outcomes should move mainly with model capability. Following the work over time would show whether those effects survive maintenance and changing tasks.",
+    "replacement_text": "A factorial study can vary foundation-model capability and GEE quality independently over matched task families. GEE conditions should differ in specified representations, controls, or evidence pipelines, with their adequacy assessed independently of the measured outcomes. The study should measure correct admitted work, escaped defects, human intervention, and lifecycle cost over a common horizon. Interactions would show whether improvements to the GEE substitute for model capability, complement it, or contribute little under the tested conditions. Repeating the comparison as tasks and GEEs evolve would test whether the observed effects persist.",
+    "reason": "Lead with the experimental conditions, outcomes, interaction, and longitudinal comparison, using the GEE as the engineering object varied."
+  },
+  {
+    "id": "point-crossed-capability-and-environment-design-tests-substitution",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 75,
+    "original_line_end": 75,
+    "original_text": "% <!-- point: crossed-capability-and-environment-design-tests-substitution | Cross foundation-model capability with independently characterized environment conditions over matched tasks to distinguish substitution, complementarity and negligible effects. -->",
+    "replacement_text": "% <!-- point: crossed-capability-and-environment-design-tests-substitution | Cross foundation-model capability with independently characterized GEE conditions over matched tasks to distinguish substitution, complementarity and negligible effects. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  },
+  {
+    "id": "remove-repeated-routing-accounting",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 89,
+    "original_line_end": 89,
+    "original_text": "These comparisons could eventually inform \\textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger model, a cheaper model with better structure, or a deterministic operation for a sufficiently specified task. The cost comparison must retain a minimum requirement for correct delivery over a fixed horizon; doing nothing or rejecting every result is not a successful low-cost strategy. Construction, failed attempts, human review, and upkeep belong in the comparison alongside the risk that remains.",
+    "replacement_text": "These comparisons could eventually inform \\textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger model, a cheaper model with better structure, or a deterministic operation for a sufficiently specified task. The cost comparison must retain a minimum requirement for correct delivery over a fixed horizon; doing nothing or rejecting every result is not a successful low-cost strategy.",
+    "reason": "Retain routing, minimum correct delivery, and the fixed horizon; remove the lifecycle-accounting recap already established in 6.1 and the agenda opening."
+  },
+  {
+    "id": "close-agenda-on-replication-and-transfer",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 93,
+    "original_line_end": 93,
+    "original_text": "The common measurement problem is to distinguish useful progress from activity. More commits, model files, or checks do not establish a return. Independent assessment of the obligations, correct delivery, later rework and escape, and human attention provides a stronger basis. Even then, results concern the tasks and organizations studied. Testing whether the mechanisms transfer beyond software remains open; the scope conditions identify what that further comparison would need to establish.",
+    "replacement_text": "These experiments would establish effects only for the tasks, agents, and engineering environments studied. Replication across organizations and task families would show how far the relationships extend. Testing them outside software would require additional evidence that the relevant obligations can be represented and evaluated adequately, as the scope conditions above suggest.",
+    "reason": "Close the agenda on empirical scope, replication, and conditional transfer instead of repeating the activity-versus-outcome distinction."
+  },
+  {
+    "id": "point-research-needs-durable-outcomes-not-activity-proxies",
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+    "original_line_start": 91,
+    "original_line_end": 91,
+    "original_text": "% <!-- point: research-needs-durable-outcomes-not-activity-proxies | The research agenda must distinguish durable useful progress from activity and preserve uncertainty about transfer beyond the studied tasks and organizations. -->",
+    "replacement_text": "% <!-- point: research-needs-durable-outcomes-not-activity-proxies | Effects are limited to the studied tasks, agents, and environments; replication and evidence of adequate representation and evaluation are needed for broader transfer. -->",
+    "reason": "Reconcile the existing stable point summary with its revised prose; retain its ID and term declarations."
+  }
+]

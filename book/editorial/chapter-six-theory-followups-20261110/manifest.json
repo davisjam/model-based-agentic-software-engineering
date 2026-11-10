@@ -1,0 +1,61 @@
+{
+  "source_revision": "8df97368abe45be163514a04d16a636bc1c27c9d",
+  "sources": {
+    "book/latex/sources/part5/5.1-software-factory.tex": {
+      "before_sha256": "bb3c394d2ec3e8f411684213f95e79b798cb56ee3c875b74fb3833f83da7e9b0",
+      "after_sha256": "d8d86b3e61d47ae5f8bc9c20d54d32bc7e4c341ca64c80d220b76393596dd280",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex": {
+      "before_sha256": "ed488849f31d319e79b3bd82cb685e4f5d0601a9bea5b2db464b88c383a33ed4",
+      "after_sha256": "0cb9980816be8db16c8c5a4e7fa361896a8cb34558d1f8351afd912dd39d63b5",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part6/6.2-what-the-theory-predicts.tex": {
+      "before_sha256": "693216d1a7b91b924ab1e9fc81cce257a19bf38a9a0d0d0c496b97e397521551",
+      "after_sha256": "695161fb05a5c65b64e96af1558433cddbcc76c47215fd47bc2e6f919831bf63",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    },
+    "book/latex/sources/part6/6.4-research-agenda.tex": {
+      "before_sha256": "3c8c9ae9b0f096f5468c0bc480f482ad1968f6385701cbf39012949a43846698",
+      "after_sha256": "3d639ff1d0b713b78e46a89a99a896f789b107084259919c43554e310c764151",
+      "checks": {
+        "figures_byte_identical": true,
+        "tables_byte_identical": true,
+        "citation_target_multiset_unchanged": true,
+        "point_id_multiset_unchanged": true,
+        "tex_braces_balanced": true
+      }
+    }
+  },
+  "unchanged_units": {
+    "book/latex/sources/part6/00-part-intro.tex": "916d759d8493df50f13346aa42836d87da9babf78e7c6827c0c861759c818719",
+    "book/latex/sources/part6/6.3-scope-conditions.tex": "5405a6ca79996e042f1e98d4b254e04df306d1da31cf7813c33d099f954b422c",
+    "book/latex/sources/part6/6.5-what-the-theory-claims.tex": "f5080718c7d1c719ee79d172910ad5f516cc862fc74650d0618e89a3cfd53719"
+  },
+  "encoding_realization_display_unchanged": true,
+  "chain_rule_footnote_id": "encoding-realization-chain-rule",
+  "dynamic_model": "p_i=p(T_i,M,\\mathcal{G}_i), \\mathcal{G}_{i+1}=f(\\mathcal{G}_i,a_i)",
+  "authorial_prediction_paragraph_byte_identical": true,
+  "human_review_design_paragraph_byte_identical": true,
+  "governance_capital_research_subsection_byte_identical": true,
+  "moved_or_replaced_spans": 40
+}

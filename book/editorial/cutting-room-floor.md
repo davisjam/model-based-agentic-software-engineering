@@ -19290,3 +19290,8 @@ The later scaffold/agent experiment and foundation-model selection policy move i
 ### Chapter 6 — Summary heading and opening (2026-11-10)
 
 The author renamed the closing section Summary and replaced its compressed-claims opening with five connected ideas. The [retired-text record](chapter-six-summary-20261110/retired-text.json) preserves the original heading and opening with source revision and line range. The five numbered statements and closing synthesis remain unchanged.
+
+
+### Chapters 5–6 — GEE relationship, feedback dynamics, and experimental agenda (2026-11-10)
+
+The author clarified the GEE as a constituent of the complete software factory, simplified the inherited-environment equation, and replaced the feedback and research-agenda explanations with developed causal accounts and experimental comparisons. All replaced text is preserved verbatim with its source revision and original line ranges in [the retired-passages record](chapter-six-theory-followups-20261110/retired-passages.json); complete before-sources and preservation checks are listed in [the manifest](chapter-six-theory-followups-20261110/manifest.json). The [prose review](chapter-six-theory-followups-20261110/prose-review.md) records the topic-sentence outline, targeted terminology choices, and final audit. The earlier annotated encoding–realization equation, all tables and figures, §6.3, §6.5, the first-person prediction, and the detailed human-review design remain unchanged.

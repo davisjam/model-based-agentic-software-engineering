@@ -2530,43 +2530,43 @@
             },
             {
               "slug": "a-factory-contains-more-than-its-fabricators",
-              "text": "A software factory combines models, tools, and controls; tests produce evidence and a gate makes a required result consequential at admission.",
+              "text": "A software factory includes a GEE of reusable representations, tools, procedures, and controls, together with its people, agents, production activities, and organizational authority.",
               "block_index": 23
             },
             {
               "slug": "the-two-problems-specialize-to-changes-not-copies",
               "text": "The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one.",
-              "block_index": 25
+              "block_index": 26
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
-              "block_index": 27
+              "block_index": 28
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
-              "block_index": 29
+              "block_index": 30
             },
             {
               "slug": "agile-is-intelligible-when-the-product-is-change",
               "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
-              "block_index": 31
+              "block_index": 32
             },
             {
               "slug": "earlier-separation-attempts-met-the-same-tradeoff",
               "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
-              "block_index": 33
+              "block_index": 34
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
-              "block_index": 35
+              "block_index": 36
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence.",
-              "block_index": 37
+              "block_index": 38
             }
           ]
         },
@@ -2576,22 +2576,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "Four questions orient a walkthrough without prescribing how the factory should be organized:",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 40,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 40
+              "block_index": 41
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment.",
-              "block_index": 46
+              "block_index": 47
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 48
+              "block_index": 49
             }
           ]
         }
@@ -3497,7 +3497,7 @@
             },
             {
               "slug": "independence-omits-the-inherited-environment",
-              "text": "Each engineering episode inherits an environment and may change the conditions of later work; the dynamic relation is schematic, not a fitted law.",
+              "text": "Faithful production depends schematically on the task, foundation model, and inherited GEE; an episode can change that GEE without necessarily improving it.",
               "block_index": 53
             },
             {
@@ -3507,38 +3507,38 @@
             },
             {
               "slug": "theory-of-mage-informal-statement",
-              "text": "Agentic capacity acts through an inherited environment, shaping durable throughput, defect escape and human-attention burden.",
+              "text": "Agentic capacity and the inherited GEE jointly shape what the factory can accomplish; experience can change the GEE and affect later production.",
               "block_index": 59
             },
             {
               "slug": "diagnosis-and-authority-connect-pressure-to-adaptation",
-              "text": "Pressure prompts useful adaptation only when someone can diagnose the structural cause and change the shared environment.",
+              "text": "Corrective feedback requires structural diagnosis and authority to adapt the GEE; amplifying feedback expands the task frontier, and prior knowledge can seed useful structure before local failures.",
               "block_index": 62
             },
             {
               "slug": "four-properties-of-an-effective-environment",
-              "text": "Useful representations, adequate coverage, coherence and economy describe environment fit independently of machinery counts.",
-              "block_index": 64
+              "text": "Useful representations, adequate coverage, coherence and economy describe GEE fit independently of machinery counts.",
+              "block_index": 67
             },
             {
               "slug": "not-a-maturity-model-improve-the-limiting-part",
               "text": "The properties are dimensions for diagnosing what limits the work, not maturity stages; the appropriate response may improve representations or assurance, or reconcile and retire controls.",
-              "block_index": 72
+              "block_index": 75
             },
             {
               "slug": "definitions-of-the-three-outcomes",
               "text": "Durable throughput, defect escape and human-attention burden are outcomes; their candidate observables require explicit measurement choices.",
-              "block_index": 74
+              "block_index": 77
             },
             {
               "slug": "activity-counts-are-not-outcome",
               "text": "Easy-to-count quantities (commits, lines, control files, support ratio) measure activity or investment, not outcome.",
-              "block_index": 77
+              "block_index": 80
             },
             {
               "slug": "three-anchors-open-four-propositions",
-              "text": "The production identity, lifecycle accounting and inherited environment motivate four conditional propositions requiring stronger empirical tests.",
-              "block_index": 79
+              "text": "The schematic descriptions motivate four conditional propositions about useful progress, but supply no measured effect sizes.",
+              "block_index": 82
             }
           ]
         }
@@ -3546,12 +3546,12 @@
       "preamble_points": [
         {
           "slug": "the-pieces-this-chapter-assembles",
-          "text": "Agentic engineering brings Modeling and Alignment together around two responsibilities: engineers encode consequential intent, and agents produce realizations that must fulfill it.",
+          "text": "Chapter 5 examined the complete software factory; the theory focuses on its GEE and how reusable engineering structure supports the encoding and realization of intent.",
           "block_index": 1
         },
         {
           "slug": "the-starting-point-is-the-master-equation",
-          "text": "The encoding–realization decomposition separates adequate encoding from fulfillment; its chain rule does not itself establish the effect of an engineering intervention.",
+          "text": "The encoding–realization decomposition applies the chain rule to distinguish adequate encoding from fulfillment, before extending the account to delivery cost and inherited structure.",
           "block_index": 3
         },
         {
@@ -3724,13 +3724,13 @@
           "section_id": "p4-governable-acceleration",
           "level": 2,
           "heading_text": "P4: Governable Acceleration",
-          "topic_sentence": "**The effect of additional agentic capacity depends on the environment through which it acts.** Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection.",
+          "topic_sentence": "**The effect of additional agentic capacity depends on the GEE through which it acts.** Where representations and assurance adequately support the work, added capacity can produce more durable progress without proportionate growth in human inspection.",
           "id_source": "derived",
           "block_index": 64,
           "points": [
             {
               "slug": "p4-governable-acceleration",
-              "text": "Additional agentic capacity can amplify the fit or inadequacy of the inherited environment; durable gains depend on representation, assurance and adaptation.",
+              "text": "Additional agentic capacity can amplify the fit or inadequacy of the inherited GEE; durable gains depend on representation, assurance and adaptation.",
               "block_index": 65
             },
             {
@@ -3740,7 +3740,7 @@
             },
             {
               "slug": "fit-cannot-be-defined-only-by-success",
-              "text": "Environment quality must be assessed separately from outcomes, or a claim that better environments perform better is circular.",
+              "text": "GEE quality must be assessed separately from outcomes, or a claim that better GEEs perform better is circular.",
               "block_index": 69
             },
             {
@@ -3895,7 +3895,7 @@
           "section_id": "representation-engineering",
           "level": 2,
           "heading_text": "Representation Engineering",
-          "topic_sentence": "Representation engineering asks what should be made explicit, in which form, and with what evidence of usefulness.",
+          "topic_sentence": "To test representation leverage, compare agents given structured models with agents given prose containing the same obligations.",
           "id_source": "derived",
           "block_index": 5,
           "points": [
@@ -3916,7 +3916,7 @@
             },
             {
               "slug": "representation-has-oversight-value-beyond-realization",
-              "text": "Representation can remain valuable for engineering understanding and independent evaluation even if it adds little to a capable agent’s production efficiency.",
+              "text": "Representation studies should test effects on human engineering decisions as well as production; the detailed review experiment follows below.",
               "block_index": 13
             }
           ]
@@ -3945,13 +3945,13 @@
           "section_id": "capacity-and-environment",
           "level": 2,
           "heading_text": "Capacity and Environment",
-          "topic_sentence": "P4 calls for varying capability and environment together.",
+          "topic_sentence": "A factorial study can vary foundation-model capability and GEE quality independently over matched task families.",
           "id_source": "derived",
           "block_index": 21,
           "points": [
             {
               "slug": "crossed-capability-and-environment-design-tests-substitution",
-              "text": "Cross foundation-model capability with independently characterized environment conditions over matched tasks to distinguish substitution, complementarity and negligible effects.",
+              "text": "Cross foundation-model capability with independently characterized GEE conditions over matched tasks to distinguish substitution, complementarity and negligible effects.",
               "block_index": 22
             },
             {
@@ -3971,7 +3971,7 @@
             },
             {
               "slug": "research-needs-durable-outcomes-not-activity-proxies",
-              "text": "The research agenda must distinguish durable useful progress from activity and preserve uncertainty about transfer beyond the studied tasks and organizations.",
+              "text": "Effects are limited to the studied tasks, agents, and environments; replication and evidence of adequate representation and evaluation are needed for broader transfer.",
               "block_index": 30
             }
           ]

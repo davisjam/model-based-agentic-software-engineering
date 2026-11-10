@@ -1,0 +1,125 @@
+% mage-auto-heading: what-does-a-software-factory-produce
+% mage-auto-heading: walking-through-a-software-factory
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: The Software Factory -->
+
+\chapter{The Software Factory}
+
+% <!-- section-terms: tolerance -->
+
+% <!-- point: the-printer-described-a-fabricator | The printer analogy explained fabricative technology — a machine that realizes a broad range of artifacts from a description of what should be made. | terms: printer-metaphor -->
+
+Earlier in this book, I compared coding agents to 2D and 3D printers. The comparison was about fabricative technology: unlike a specific-purpose tool such as a stapler, a fabricator can realize a broad range of artifacts from a description of what should be made.
+
+% <!-- point: the-printer-becomes-one-piece-of-the-factory | The printer metaphor expands rather than being replaced: once fabrication becomes a means of production, the fabricator sits inside a larger system that decides what should be made, organizes production, and judges what is acceptable. | terms: printer-metaphor -->
+
+We can now expand that metaphor. A fabricator does not operate alone. Once fabrication becomes a means of production, it sits inside a larger system that determines what should be made, organizes how production proceeds, and determines whether what was produced is acceptable. The printer becomes one piece of the factory.
+
+% <!-- point: scaling-fabrication-required-engineering-the-production-system | Interchangeable parts, mechanization, and machine tools each made production more repeatable and each exposed a problem, so scaling fabrication required engineering the production system around the fabricator. -->
+
+Factories developed to make production repeatable at scales that craft production could not support. Interchangeable parts allowed components made separately to participate in the same product. Mechanization increased the amount of work that machinery could perform. Machine tools increased precision and repeatability. Each advance also exposed a problem. Faster machinery could produce defects faster than people could inspect them; a design was of little use if the available machinery could not realize it accurately; interchangeable parts were not interchangeable if different shops produced incompatible dimensions. Scaling fabrication therefore required engineering the production system around the fabricator.
+
+% <!-- point: process-design-and-tolerance | Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable. | terms: tolerance -->
+
+Two engineering techniques from that history are especially useful for understanding software factories:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Process design} determines how production proceeds. Work is decomposed and sequenced; responsibilities, machinery, and information are arranged; measurements and decision points occur at selected stages. The process carries knowledge about how production should occur rather than requiring each fabricator to reconstruct it. Scientific management made this separation explicit by moving planning, work methods, instructions, and standards into a deliberately designed production system\citep{taylor1911}.
+\item
+  \textbf{Tolerance} states which variation in the product is acceptable. A drawing can specify a dimension and its allowable variation without prescribing every motion of the machinist or every property of the finished part. Gauges and metrology then establish whether selected properties of the realized part fall within those bounds. The factory can therefore leave substantial freedom to the fabricator while retaining control over the properties that matter\citep{winchester2018}.
+\end{itemize}
+
+% <!-- noqa: book-float-ref — the figure carries its own vocabulary and is deliberately not introduced by a lead-in sentence; the labelled float is cross-referenced from the chapter coda, Engineering the Factory -->
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/process-design-and-tolerance-7f14743861.pdf}
+\caption[Two problems of factory engineering --- process design organizes production around the fabricator; tolerance bounds the product and measurement establishes whether a realization falls inside those bounds]{\emph{Two problems of factory engineering.} Process design determines how production proceeds around the fabricator. Tolerance identifies acceptable variation in what the factory produces; measurement establishes whether a realization remains within those bounds. The two concerns are complementary: a production system may carry engineering knowledge in the organization of production, in explicit bounds on the resulting product, or in both.}
+\label{process-design-and-tolerance}
+\end{figure}
+
+% <!-- point: a-better-production-system-made-a-different-artifact-practical | Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance. | terms: tolerance -->
+
+Watt\textquotesingle s improved steam engine shows why production capability and product tolerance must develop together. Its design required cylinders more accurately bored than ordinary eighteenth-century production could reliably make; Wilkinson\textquotesingle s precision boring machinery made cylinders sufficiently true for the engine to perform as intended. The advance was therefore more than a faster way to make an existing artifact. A more capable production system made a different artifact practical.
+
+\section{What Does a Software Factory Produce?}\label{heading:what-does-a-software-factory-produce}
+
+% <!-- point: software-does-not-repeatedly-produce-instances | The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing. -->
+
+The analogy requires one adjustment before we apply it to software. A physical factory commonly produces many instances of a product. Software usually does not. Another copy of a program may cost almost nothing, while a software service may consist of one continuously evolving system serving millions of users.
+
+% <!-- point: the-output-is-the-next-working-realization | The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works. -->
+
+The output of a software factory is the next working realization of the product. Software organizations repeatedly change an existing system: adding features, repairing defects, adapting to new environments, migrating dependencies, changing architectures, and responding to new requirements. Each production cycle begins with a working software system and attempts to produce a changed system that still works.
+
+% <!-- point: a-software-factory-is-a-production-system-for-controlled-change | A software factory organizes controlled change while preserving control over consequential properties and consequences. -->
+
+The factory\textquotesingle s job is to realize controlled change: creating and evolving software while preserving sufficient control over the properties and consequences that matter\citep{davis2026sehandbook}. A software factory is the production system through which that change occurs.
+
+\begin{quote}
+\textbf{Software factory.} The engineered production system through which software changes are realized from engineering intent and evaluated, admitted, deployed, and improved.
+\end{quote}
+
+% <!-- point: a-factory-contains-more-than-its-fabricators | A software factory combines models, tools, and controls; tests produce evidence and a gate makes a required result consequential at admission. -->
+
+A software factory contains more than its fabricators. Models describe the product: architecture descriptions, service graphs, and the properties a change must preserve. Tools work on it: linters, test harnesses, validators, and analyzers. Controls bound what may be done and accepted through permissions, admission gates, and enforced policies. An agent can run a test and reason about its result. The test supplies evidence; a gate enforces a condition by requiring a passing result before admission. A failed test that is only reported leaves a different choice to the agent or reviewer. Fabricators build the product from models, using tools, subject to controls.
+
+% <!-- point: the-two-problems-specialize-to-changes-not-copies | The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one. | terms: tolerance -->
+
+Process design organizes how changes are produced; tolerance determines which resulting changes are acceptable. Unlike a factory producing repeated copies of a fixed design, a software factory must preserve consequential properties while changing the system itself.
+
+% <!-- point: representations-of-software-carry-a-carrying-cost | Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost. -->
+
+That task carries a cost that physical manufacturing can often amortize differently. A drawing for a manufactured part can remain useful across thousands of instances of that part. A representation of a software system describes a target that is itself being changed. Requirements, architecture descriptions, interface specifications, models, tests, and other engineering artifacts therefore incur a carrying cost: as the software changes, they may also have to change if they are to remain useful representations of it.
+
+% <!-- point: organizations-judge-the-carrying-cost-differently | Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate. -->
+
+Software organizations have made different economic judgments about that cost. Some have found enough durable value in explicit models, specifications, interface definitions, and other representations to justify creating and maintaining them; others have found it cheaper to keep skilled human engineers close to implementation, where they can resolve open questions about behavior, structure, interfaces, failure handling, and performance as the software changes\citep{kautz2018mbse}. Neither choice is intrinsically irrational. The tradeoff depends on how much reusable engineering knowledge a representation carries, how expensive that knowledge would be to reconstruct during implementation, and how expensive the representation is to keep accurate.
+
+% <!-- point: agile-is-intelligible-when-the-product-is-change | The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern. -->
+
+The Agile movement placed substantially greater weight on the second approach\citep{agile-manifesto2001}\citep{scrumguide2020}. Working software became the primary measure of progress; changing requirements were expected rather than exceptional; close collaboration was preferred to elaborate handoffs; and documentation was valuable insofar as it continued to serve the work. These choices make particular sense when the object of engineering is controlled change. A representation that does not change with the software can cease to describe the thing it is meant to govern. Keeping knowledgeable humans close to implementation accepts repeated human judgment partly in exchange for avoiding representations whose carrying cost may exceed their continuing value.
+
+% <!-- point: earlier-separation-attempts-met-the-same-tradeoff | Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply. -->
+
+Earlier attempts to separate engineering judgment from implementation encountered the same tradeoff from the other direction. Moving decisions upstream could allow implementation to be performed by less experienced programmers, but only if sufficiently detailed requirements, architecture, interfaces, or models carried the judgment that those programmers would otherwise need to supply. Producing those representations required skilled engineering labor, and maintaining them as the software changed added further cost. Leave more decisions open, however, and the organization again needed skilled human fabricators capable of resolving them during implementation.
+
+% <!-- point: the-question-was-where-judgment-is-carried-most-economically | The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply. -->
+
+The economic question was where engineering judgment could be carried most economically without losing control. Craft production remains economical when transferring enough judgment out of fabrication would cost as much as leaving that judgment with the skilled human fabricator. Factory production becomes economical when reusable production structures can carry consequential judgment more cheaply than repeatedly exercising it during fabrication.
+
+% <!-- point: commodity-intelligence-changes-the-tradeoff | Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence. | terms: commodity-intelligence -->
+
+Commodity intelligence changes this tradeoff. In an agentic software factory, inexpensive agents can perform substantial realization work and resolve many ordinary implementation decisions. The production system can carry selected consequential judgments while leaving the agent substantial realization freedom, subject to the evidence required for acceptance.
+
+\section{Walking Through a Software Factory}\label{heading:walking-through-a-software-factory}
+
+% <!-- point: four-questions-orient-a-walkthrough | Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied. | terms: tolerance -->
+
+Four questions orient a walkthrough without prescribing how the factory should be organized:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{What does the factory produce?} What changes enter it, and where do they originate?
+\item
+  \textbf{What do people do?} Which judgments and acts of realization do people retain or delegate?
+\item
+  \textbf{How is production organized?} How does work move through realization, evaluation, admission, and deployment, and how do lessons change that process?
+\item
+  \textbf{What are the tolerances?} Which properties must remain within bounds, how are those bounds represented, and what evidence establishes compliance?
+\end{enumerate}
+
+% <!-- point: software-tolerances-take-more-forms-than-a-dimension | Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment. | terms: tolerance -->
+
+Software tolerances include quantitative bounds, invariants, architectural constraints, and qualitative obligations that may still require human judgment; each identifies variation the factory must control while leaving other choices open.
+
+% <!-- point: the-four-questions-are-broader-than-mage | A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control. -->
+
+These questions can be answered at different levels of detail. A longitudinal account can show how a factory's arrangements developed, which problems prompted changes, and what the resulting machinery accomplished. Reports from established organizations can show how factories differ in their allocation of work, authority, and control, although they rarely expose the same development history. DocAble provides the first perspective; the industrial accounts provide the second.
