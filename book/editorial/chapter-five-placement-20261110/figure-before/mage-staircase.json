@@ -1,0 +1,191 @@
+{
+  "source": "book/assets/mage-staircase.svg",
+  "claim": "*The Delegation Staircase.* As explicit representation and environmental enforcement accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; enforcement moved repeatable admission decisions out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or enforcement could move work back down the staircase.",
+  "topology": "Five true ascending steps, accumulating environment capabilities and shrinking but nonzero human focus.",
+  "required_terms": [
+    "1. CO-CODER\\: Code generation\\: Ordinary repository; nothing durable",
+    "Read every diff; hold map; admit change",
+    "2. QA\\: Generation + second agent's audit\\: Probabilistic, episodic, advisory reviewer",
+    "Adjudicate findings",
+    "3. REVIEW LEAD\\: Specialized review per region\\: Deterministic checks for decidable findings",
+    "Residual semantic review",
+    "4. TECH LEAD\\: Bounded work inside a modeled zone\\: Named zones and boundary rules",
+    "System map and strategy",
+    "5. ARCHITECT\\: Model-guided work across the system\\: Explicit models, traceability, controls",
+    "Residual semantics and strategy",
+    "Representation and enforcement accumulate",
+    "HUMAN FOCUS",
+    "Delegation climbs; tactical human burden narrows but never vanishes. Failure in representation or enforcement can move work down."
+  ],
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+  "redesign": "Retained staircase and per-step delegated/environment/human distinctions. Removed colored side wedges; explicit labels preserve their qualitative meaning without implying measured magnitude. Role headings use 10pt type; delegated-work and environment annotations use 9pt type, with increased vertical step spacing. Grayscale refinement: Step cards retain readable role labels; environment stripes thicken by step and human-focus strokes narrow without reaching zero, restoring the two qualitative trajectories.",
+  "questions": [],
+  "alt": "A true staircase of five steps ascending from bottom-left to top-right. Step one at the bottom is Co-coder; step five at the summit is Architect. Each step card names the stage and uses written Delegated and Environment labels to distinguish the work delegated from the structure carried by the environment. Black step outlines rise along the left; heavier stripes at higher steps indicate accumulating environment structure. An annotation says representation and enforcement accumulate. A HUMAN FOCUS column at the right describes the residual human role at each stage; adjacent black strokes narrow toward the summit but never vanish, indicating reduced tactical human burden. Step one Co-coder: delegated is code generation; the environment carries nothing durable beyond an ordinary repository; the human reads every diff, holds the map, and admits the change. Step two QA: delegated is generation plus a second agent's audit; the environment carries a probabilistic, episodic, advisory reviewer; the human adjudicates findings. Step three Review lead: delegated is specialized review per region; the environment carries deterministic checks for the decidable findings; the human does the semantic review a check cannot settle. Step four Tech lead: delegated is bounded work inside one modeled zone; the environment carries named zones and boundary rules; the human holds the system map and strategy. Step five Architect: delegated is model-guided work across the whole system; the environment carries explicit models, traceability, and controls; the human is left with residual semantics and strategy. A failure in representation or enforcement can push work back down the staircase.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 426.688,
+    "height_pt": 414.833,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+    "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Source-derived emphasis includes Delegated:; Environment:; 1. CO-CODER. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Stage headings remain bold; Delegated labels regular; accumulation and narrowing strokes preserved.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 80,
+      "width_bp": 426.688,
+      "height_bp": 493.064,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4
+    },
+    "book_references": [],
+    "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+    "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "delegated \u2014 code generation",
+        "source_style": {
+          "font-weight": "600",
+          "font-style": "normal",
+          "font-size": "27"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Delegated:",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "delegated \u2014 code generation",
+            "style": {
+              "font-weight": "600",
+              "font-style": "normal",
+              "font-size": "27"
+            },
+            "location": {
+              "x": "64",
+              "y": "695",
+              "text_element": 28
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "Delegated:",
+        "bold": true
+      },
+      {
+        "text": "Code generation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Environment:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "1. CO-CODER",
+        "bold": true
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 80,
+      "width_bp": 426.688,
+      "height_bp": 493.064,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 4,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Retained: Stepped offsets encode progression, so equalizing their tops would erase meaning; terminal spacing is adequate. Raise delegation/environment explanations and human-focus annotations from9to10pt; separate steps to accommodate larger text while preserving step geometry.",
+    "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Raise delegation/environment explanations and human-focus annotations from9to10pt; separate steps to accommodate larger text while preserving step geometry.",
+      "before_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
+      "after_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+      "before_dimensions_bp": [
+        426.68798828125,
+        412.2179870605469
+      ],
+      "after_dimensions_bp": [
+        426.68798828125,
+        493.0639953613281
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        10.0
+      ],
+      "reviewed_visually": true
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 80,
+      "width_bp": 426.688,
+      "height_bp": 493.064
+    }
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "d1ec4f4febecec92982c935bd4bbff381af9dd15136782172e52cf4d1c8297e8",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+    "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
+}

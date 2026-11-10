@@ -1,35 +1,58 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1.12cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=7cm] (s0) at (-2.3,0) {\textbf{1. CO-CODER}\\\fontsize{10}{12}\selectfont \textbf{Delegated:} Code generation\\\textbf{Environment:} Ordinary repository; nothing durable};
-\node[note,text width=3cm] (human0) at (6.3,0) {Read every diff; hold map; admit change};
-\node[box,text width=7cm] (s1) at (-1.5999999999999999,2.64) {\textbf{2. QA}\\\fontsize{10}{12}\selectfont \textbf{Delegated:} Generation + second agent's audit\\\textbf{Environment:} Probabilistic, episodic, advisory reviewer};
-\node[note,text width=3cm] (human1) at (6.3,2.64) {Adjudicate findings};
-\draw[line width=.8pt] (-6.5,1.32)--(-5.8,1.32)--(-5.8,3.6);
-\node[box,text width=7cm] (s2) at (-0.8999999999999999,5.28) {\textbf{3. REVIEW LEAD}\\\fontsize{10}{12}\selectfont \textbf{Delegated:} Specialized review per region\\\textbf{Environment:} Deterministic checks for decidable findings};
-\node[note,text width=3cm] (human2) at (6.3,5.28) {Residual semantic review};
-\draw[line width=.8pt] (-5.8,3.96)--(-5.1,3.96)--(-5.1,6.24);
-\node[box,text width=7cm] (s3) at (-0.20000000000000018,7.92) {\textbf{4. TECH LEAD}\\\fontsize{10}{12}\selectfont \textbf{Delegated:} Bounded work inside a modeled zone\\\textbf{Environment:} Named zones and boundary rules};
-\node[note,text width=3cm] (human3) at (6.3,7.92) {System map and strategy};
-\draw[line width=.8pt] (-5.1000000000000005,6.6)--(-4.4,6.6)--(-4.4,8.88);
-\node[box,text width=7cm] (s4) at (0.5,10.56) {\textbf{5. ARCHITECT}\\\fontsize{10}{12}\selectfont \textbf{Delegated:} Model-guided work across the system\\\textbf{Environment:} Explicit models, traceability, controls};
-\node[note,text width=3cm] (human4) at (6.3,10.56) {Residual semantics and strategy};
-\draw[line width=.8pt] (-4.4,9.24)--(-3.7,9.24)--(-3.7,11.52);
-\node[note,text width=6.4cm] (left) at (-2.8,12.36) {Representation and enforcement accumulate};
-\node[head,text width=3.5cm] (right) at (6.3,12.36) {HUMAN FOCUS};
-\node[note,text width=13cm] (nt) at (0,-2.16) {Delegation climbs; tactical human burden narrows but never vanishes. Failure in representation or enforcement can move work down.};
-\draw[line width=1pt] (s0.north west)--(s0.south west);
-\draw[line width=5pt] (4.55,-0.54)--(4.55,0.54);
-\draw[line width=2pt] (s1.north west)--(s1.south west);
-\draw[line width=4pt] (4.55,2.1)--(4.55,3.18);
-\draw[line width=3pt] (s2.north west)--(s2.south west);
-\draw[line width=3pt] (4.55,4.74)--(4.55,5.82);
-\draw[line width=4pt] (s3.north west)--(s3.south west);
-\draw[line width=2pt] (4.55,7.38)--(4.55,8.46);
-\draw[line width=5pt] (s4.north west)--(s4.south west);
-\draw[line width=1pt] (4.55,10.02)--(4.55,11.1);
+% Native monochrome teaching figure: one right-aligned staircase, left-aligned stage text.
+% The pale stepped region and taper are qualitative, not measured quantities.
+\begin{tikzpicture}[x=1bp,y=1bp,font=\magefigurefont\fontsize{10.5}{12.5}\selectfont,
+ stage/.style={draw=black,rounded corners=2bp,line width=.65bp,fill=white,
+   align=left,anchor=north west,inner sep=7bp,outer sep=0bp},
+ focus/.style={align=left,anchor=west,inner sep=0bp,outer sep=0bp,text width=92bp,
+   font=\magefigurefont\fontsize{10.5}{12.5}\selectfont\bfseries},
+ heading/.style={align=left,anchor=south west,inner sep=0bp,outer sep=0bp,
+   font=\magefigurefont\fontsize{11}{13}\selectfont\bfseries}]
+\hyphenpenalty=10000
+\node[stage,text width=218bp] (s5) at (86,0) {\textbf{5. ARCHITECT}\\[2bp]
+ \textit{Explicit models carry system-level knowledge}\\[3bp]
+ \textbf{Delegated:} Model-guided work across the system\\[3bp]
+ \textbf{Environment:} Explicit models, traceability, controls};
+\node[stage,text width=236bp] (s4) at ($(s5.south west)+(-18,-10)$) {\textbf{4. TECH LEAD}\\[2bp]
+ \textit{Representation makes reasoning local}\\[3bp]
+ \textbf{Delegated:} Bounded work inside a modeled zone\\[3bp]
+ \textbf{Environment:} Named zones and boundary rules};
+\node[stage,text width=254bp] (s3) at ($(s4.south west)+(-18,-10)$) {\textbf{3. REVIEW LEAD}\\[2bp]
+ \textit{Semantic review after deterministic checks}\\[3bp]
+ \textbf{Delegated:} Specialized review per region\\[3bp]
+ \textbf{Environment:} Deterministic checks for decidable findings};
+\node[stage,text width=272bp] (s2) at ($(s3.south west)+(-18,-10)$) {\textbf{2. QA}\\[2bp]
+ \textit{Evaluation delegated before enforcement}\\[3bp]
+ \textbf{Delegated:} Generation + a second agent's audit\\[3bp]
+ \textbf{Environment:} Probabilistic reviewer; episodic, advisory};
+\node[stage,text width=290bp] (s1) at ($(s2.south west)+(-18,-10)$) {\textbf{1. CO-CODER}\\[2bp]
+ \textit{Direct human inspection carries everything}\\[3bp]
+ \textbf{Delegated:} Code generation\\[3bp]
+ \textbf{Environment:} Ordinary repository; nothing durable};
+\begin{scope}[on background layer]
+ \fill[black!8] (8,0)--(s5.north west)--(s5.south west)
+   |- (s4.north west)--(s4.south west)
+   |- (s3.north west)--(s3.south west)
+   |- (s2.north west)--(s2.south west)
+   |- (s1.north west)--(s1.south west)--(8,0 |- s1.south west)--cycle;
+\end{scope}
+\draw[line width=5bp] (s5.north west)--(s5.south west);
+\draw[line width=4bp] (s4.north west)--(s4.south west);
+\draw[line width=3bp] (s3.north west)--(s3.south west);
+\draw[line width=2bp] (s2.north west)--(s2.south west);
+\draw[line width=1bp] (s1.north west)--(s1.south west);
+% The nonzero top width preserves residual judgment; these widths do not encode measurements.
+\fill[black] (329.5,0)--(330.5,0)--(334,0 |- s1.south east)--(326,0 |- s1.south east)--cycle;
+\node[focus] at (343,0 |- s5.center) {Residual semantics\\and strategy};
+\node[focus] at (343,0 |- s4.center) {System map\\and strategy};
+\node[focus] at (343,0 |- s3.center) {Residual\\semantic review};
+\node[focus] at (343,0 |- s2.center) {Adjudicate\\findings};
+\node[focus] at (343,0 |- s1.center) {Read every diff;\\hold the map;\\admit the change};
+\node[heading] at (8,19) {ENVIRONMENT ACCUMULATES};
+\node[align=left,anchor=south west,inner sep=0bp,outer sep=0bp,
+ font=\magefigurefont\fontsize{10.5}{12.5}\selectfont] at (8,4) {Representation + enforcement};
+\node[heading] at (343,19) {HUMAN FOCUS};
+\node[align=left,anchor=north west,inner sep=0bp,outer sep=0bp,text width=427bp,
+ font=\magefigurefont\fontsize{10.5}{12.5}\selectfont] at ($(8,0 |- s1.south west)+(0,-15)$)
+ {Delegation climbs; tactical human burden narrows but never vanishes.\\
+ Failure in representation or enforcement can move work down.};
 \end{tikzpicture}

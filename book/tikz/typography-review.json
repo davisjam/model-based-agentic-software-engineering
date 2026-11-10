@@ -2899,7 +2899,7 @@
           "bold": true
         },
         {
-          "text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
+          "text": "AGENTIC MACHINERY — THE ACTING AGENT",
           "bold": true
         },
         {
@@ -3035,7 +3035,7 @@
           "bold": false
         }
       ],
-      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10\u201310.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
+      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10–10.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "MODEL DEVELOPMENT",
@@ -3043,7 +3043,7 @@
           "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
-          "candidate_text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
+          "candidate_text": "AGENTIC MACHINERY — THE ACTING AGENT",
           "candidate_style": "bold",
           "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
@@ -3321,7 +3321,7 @@
           "bold": false
         }
       ],
-      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "Finite working state Representation matters",
@@ -3451,7 +3451,7 @@
           "bold": true
         }
       ],
-      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "Finite working state",
@@ -13679,7 +13679,7 @@
       "candidate": "book/tikz/figures/mage-staircase.tex",
       "decision": "refined",
       "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
-      "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+      "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
       "evidence": [
         {
           "source_text": "delegated — code generation",
@@ -13708,11 +13708,68 @@
           ]
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
       "checks": [
+        {
+          "text": "1. CO-CODER",
+          "bold": true
+        },
+        {
+          "text": "2. QA",
+          "bold": true
+        },
+        {
+          "text": "3. REVIEW LEAD",
+          "bold": true
+        },
+        {
+          "text": "4. TECH LEAD",
+          "bold": true
+        },
+        {
+          "text": "5. ARCHITECT",
+          "bold": true
+        },
         {
           "text": "Delegated:",
           "bold": true
+        },
+        {
+          "text": "Environment:",
+          "bold": true
+        },
+        {
+          "text": "HUMAN FOCUS",
+          "bold": true
+        },
+        {
+          "text": "ENVIRONMENT ACCUMULATES",
+          "bold": true
+        },
+        {
+          "text": "Explicit models carry system-level knowledge",
+          "italic": true,
+          "bold": false
+        },
+        {
+          "text": "Representation makes reasoning local",
+          "italic": true,
+          "bold": false
+        },
+        {
+          "text": "Semantic review after deterministic checks",
+          "italic": true,
+          "bold": false
+        },
+        {
+          "text": "Evaluation delegated before enforcement",
+          "italic": true,
+          "bold": false
+        },
+        {
+          "text": "Direct human inspection carries everything",
+          "italic": true,
+          "bold": false
         },
         {
           "text": "Code generation",
@@ -13720,26 +13777,29 @@
           "italic": false
         },
         {
-          "text": "Environment:",
+          "text": "Residual semantics",
           "bold": true,
           "italic": false
-        },
-        {
-          "text": "1. CO-CODER",
-          "bold": true
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 80,
-        "width_bp": 426.688,
-        "height_bp": 493.064,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
+        "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
+        "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
+        "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+        "page": 1,
+        "width_bp": 432.9779968261719,
+        "height_bp": 487.3789978027344,
+        "font_sizes_pt": [
+          10.5,
+          11.0
+        ],
+        "minimum_prose_font_pt": 10.5,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 4
+        "geometry_findings": 0,
+        "semantic_typography_checks": 16,
+        "reviewed_peer_groups": 1,
+        "unapproved_compile_diagnostics": 0,
+        "reviewed_visually": true
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -13747,7 +13807,8 @@
         "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
         "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_date": "2026-11-10"
     },
     {
       "source": "book/assets/f19_delegation_over_time.svg",

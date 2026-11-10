@@ -2681,14 +2681,9 @@
               "block_index": 26
             },
             {
-              "slug": "engineering-set-the-price-of-the-reasoning",
-              "text": "Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures.",
-              "block_index": 28
-            },
-            {
               "slug": "cost-was-only-one-reason-not-to-hand-the-document-to-the-model",
-              "text": "Cost was one reason among several: DocAble separated semantic judgment from consequential mutation, so foundation models reasoned over engineering representations, typed operations changed the artifact, independent validators checked mechanically establishable properties, and provenance was embedded with mutations so the change record could be reconstructed from the document.",
-              "block_index": 30
+              "text": "The initial semantic capability supported building a remediation system around the foundation model; preservation, reviewability, conformance, dependable operation, and practical cost remained engineering obligations.",
+              "block_index": 28
             }
           ]
         },
@@ -2698,27 +2693,27 @@
           "heading_text": "The Two Rules of Agentic Software Engineering",
           "topic_sentence": "I began with two rules.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 30,
           "points": [
             {
               "slug": "not-reading-the-code-was-deliberate",
               "text": "Not reading the code was deliberate: inspecting agent-produced implementation would have bounded implementation throughput by the engineer's own reading capacity, so the first rule made reading the last resort and an engineering environment the surface through which work was directed and judged.",
-              "block_index": 33
+              "block_index": 31
             },
             {
               "slug": "reading-the-code-was-the-escape-hatch",
               "text": "The rule did not forbid reading source: needing to read it pointed to a missing supervisory surface — a model, test, lint, instrument, or architectural boundary — so reading was the escape hatch, not the operating model.",
-              "block_index": 36
+              "block_index": 34
             },
             {
               "slug": "good-fast-and-cheap-became-a-rule-for-the-factory",
               "text": "The second rule required the resulting system to be good, fast, and cheap — partly a DocAble requirement, partly a test of whether agents could help build a production system good enough to trust, fast enough to matter, and cheap enough to deploy at scale.",
-              "block_index": 38
+              "block_index": 36
             },
             {
               "slug": "failing-any-one-of-the-three-fails-the-test",
               "text": "A fast factory producing poor software would fail the test, and so would a high-quality system that stayed prohibitively expensive to develop or operate; agentic implementation was valuable only if the engineering system around it achieved all three.",
-              "block_index": 40
+              "block_index": 38
             }
           ]
         },
@@ -2728,12 +2723,12 @@
           "heading_text": "The Build, in Stages",
           "topic_sentence": "I began with PowerPoint, then generalized the system to Word and Excel and added PDF support as colleagues brought other documents (R1).",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 40,
           "points": [
             {
               "slug": "the-build-moved-under-concrete-pressures",
               "text": "Format expansion, deployment, user failures and changed deadline pressure drove successive development stages.",
-              "block_index": 43
+              "block_index": 41
             }
           ]
         },
@@ -2743,27 +2738,27 @@
           "heading_text": "The Build, Measured Weekly",
           "topic_sentence": "The repository reconstruction covers 31 complete seven-day weeks from March 12 through October 14, 2026[cite: davis2026docable].",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 45,
           "points": [
             {
               "slug": "four-traces-read-in-sequence",
               "text": "The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures.",
-              "block_index": 48
+              "block_index": 46
             },
             {
               "slug": "the-control-count-is-evidence-of-investment",
               "text": "Models and registered verifier files accumulated; the inventories establish available structure rather than successful execution.",
-              "block_index": 52
+              "block_index": 50
             },
             {
               "slug": "week-eleven-records-a-practice-change",
               "text": "Week 11 field notes and commit topics support a transition toward durable deterministic checks; first surviving records do not date the origin of the practices.",
-              "block_index": 54
+              "block_index": 52
             },
             {
               "slug": "longitudinal-methods-bound-the-inference",
               "text": "Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish.",
-              "block_index": 56
+              "block_index": 54
             }
           ]
         },
@@ -2773,22 +2768,17 @@
           "heading_text": "The Support Ratio",
           "topic_sentence": "The source composition gives a different view of the investment ([ref:support-ratio-curve]).",
           "id_source": "explicit",
-          "block_index": 58,
+          "block_index": 56,
           "points": [
             {
               "slug": "the-environment-outgrew-the-product",
               "text": "Ten consistently categorized snapshots show the growing apparatus; support ratio measures investment rather than return.",
-              "block_index": 60
-            },
-            {
-              "slug": "model-selection-was-an-engineering-decision",
-              "text": "Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator.",
-              "block_index": 64
+              "block_index": 58
             },
             {
               "slug": "the-exhibits-measure-what-the-requirements-cost",
               "text": "The exhibits show accumulated implementation and structure, leaving project feasibility as an author’s engineering judgment.",
-              "block_index": 66
+              "block_index": 62
             }
           ]
         },
@@ -2798,12 +2788,12 @@
           "heading_text": "Inside the Factory",
           "topic_sentence": "As DocAble grew, source code alone stopped being an adequate engineering interface.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 66,
           "points": [
             {
               "slug": "source-code-stopped-being-an-adequate-interface",
               "text": "The growth in supporting source reflects investment in representations, derivations, and controls that answer system-level questions and govern later changes.",
-              "block_index": 72
+              "block_index": 68
             }
           ]
         },
@@ -2813,17 +2803,17 @@
           "heading_text": "What the Factory Knows",
           "topic_sentence": "The 31-week reconstruction identifies 143 model modules at the final snapshot.",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 70,
           "points": [
             {
               "slug": "the-census-is-live-not-frozen",
               "text": "The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory.",
-              "block_index": 75
+              "block_index": 71
             },
             {
               "slug": "specimens-show-why-representations-afford-supervision",
               "text": "Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation.",
-              "block_index": 77
+              "block_index": 73
             }
           ]
         },
@@ -2833,27 +2823,27 @@
           "heading_text": "The Joins: What the Factory Can Derive and Enforce",
           "topic_sentence": "DocAble connects its representations so the environment can derive requirements and check relations among them.",
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 76,
           "points": [
             {
               "slug": "a-repository-of-documentation-is-not-a-supervisory-environment",
               "text": "The factory checks relations among representations and uses selected results to determine whether work may proceed.",
-              "block_index": 81
+              "block_index": 77
             },
             {
               "slug": "the-invariant-chain-derives-checker-obligations",
               "text": "The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes.",
-              "block_index": 83
+              "block_index": 79
             },
             {
               "slug": "the-iam-join-derives-grants",
               "text": "The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time.",
-              "block_index": 85
+              "block_index": 81
             },
             {
               "slug": "the-provenance-join-derives-the-changelog",
               "text": "The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp.",
-              "block_index": 87
+              "block_index": 83
             }
           ]
         },
@@ -2863,17 +2853,17 @@
           "heading_text": "The Computation Graph: a Representation That Took Over Execution",
           "topic_sentence": "The remediation graph makes a further connection: its representation determines execution.",
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 87,
           "points": [
             {
               "slug": "the-representation-became-authoritative-for-execution",
               "text": "Typed pass declarations determine dependency order and remain connected to analytical views by correspondence checks.",
-              "block_index": 92
+              "block_index": 88
             },
             {
               "slug": "explicit-models-changed-what-was-checkable",
               "text": "Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return.",
-              "block_index": 95
+              "block_index": 91
             }
           ]
         },
@@ -2883,12 +2873,22 @@
           "heading_text": "Substituting the Reasoning Engine",
           "topic_sentence": "DocAble separates the reasoning that proposes a repair from the machinery that changes the document.",
           "id_source": "explicit",
-          "block_index": 97,
+          "block_index": 93,
           "points": [
             {
               "slug": "reasoning-substitution-reuses-engineered-operations",
               "text": "Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass.",
-              "block_index": 98
+              "block_index": 94
+            },
+            {
+              "slug": "model-selection-was-an-engineering-decision",
+              "text": "Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator.",
+              "block_index": 96
+            },
+            {
+              "slug": "engineering-set-the-price-of-the-reasoning",
+              "text": "Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures.",
+              "block_index": 101
             },
             {
               "slug": "reasoning-substitution-cost-depends-on-context-and-quality",

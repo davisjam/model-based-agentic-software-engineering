@@ -1,0 +1,16 @@
+{
+  "source_revision": "1fd53db98b1c8d0dd95d9e274fd9bbcdcb41da17",
+  "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+  "before_sha256": "3217856975a4b23b417cb4f0557489d9a74b6ce87d48a3098319769e282d62dd",
+  "after_sha256": "e196cf8748cc3f1974449df25fe3520e4cba6ed9333feb8a26b01fa43ed9c8c8",
+  "retired_or_moved_spans": 5,
+  "checks": {
+    "metric_macro_multiset_unchanged": true,
+    "citation_target_multiset_unchanged": true,
+    "point_id_multiset_unchanged": true,
+    "figure_blocks_byte_identical": true,
+    "foundation_model_selection_immediately_after_ModelSelector": true,
+    "representation_experiments_before_dated_comparisons": true,
+    "tex_braces_balanced": true
+  }
+}

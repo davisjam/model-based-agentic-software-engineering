@@ -1,0 +1,10 @@
+{
+  "source_revision": "1fd53db98b1c8d0dd95d9e274fd9bbcdcb41da17",
+  "source_svg": "book/assets/mage-staircase.svg",
+  "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+  "retired_candidates": [
+    "book/tikz/figures/mage-staircase.tex",
+    "book/tikz/receipts/mage-staircase.json"
+  ],
+  "reason": "Author requested a more legible monochrome Delegation Staircase: retain five stages and residual judgments, improve hierarchy and comparisons."
+}

@@ -1025,9 +1025,29 @@
     "receipt": "book/tikz/receipts/mage-staircase.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Step cards retain readable role labels; environment stripes thicken by step and human-focus strokes narrow without reaching zero, restoring the two qualitative trajectories.",
-    "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
-    "candidate_sha256": "9e4240bbc843c011314a1305a44d3becb113934c3d44bbe470a158209ab68d39"
+    "rationale": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+    "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
+    "revision_date": "2026-11-10",
+    "validation": {
+      "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
+      "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
+      "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+      "page": 1,
+      "width_bp": 432.9779968261719,
+      "height_bp": 487.3789978027344,
+      "font_sizes_pt": [
+        10.5,
+        11.0
+      ],
+      "minimum_prose_font_pt": 10.5,
+      "monochrome_pixels": true,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 16,
+      "reviewed_peer_groups": 1,
+      "unapproved_compile_diagnostics": 0,
+      "reviewed_visually": true
+    }
   },
   {
     "source": "book/assets/f19_delegation_over_time.svg",

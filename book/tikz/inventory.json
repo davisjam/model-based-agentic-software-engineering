@@ -176,7 +176,7 @@
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/reasoning-horizon.svg",
-    "caption": "*Representation and the reasoning horizon.* When relevant system knowledge exceeds a reasoner\u2019s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.",
+    "caption": "*Representation and the reasoning horizon.* When relevant system knowledge exceeds a reasoner’s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/reasoning-horizon.json",
@@ -1107,12 +1107,20 @@
     "caption": "*The Delegation Staircase:* in DocAble’s observed development, stronger representations and environmental enforcement supported delegation of larger units of work. Human attention shifted toward system-level decisions and unresolved judgments. A failure in either representation or enforcement could return work to direct inspection. [short: DocAble’s delegation staircase]",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
-    "receipt": null,
+    "receipt": "book/tikz/receipts/mage-staircase.json",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes",
-    "svg_description": "A true staircase of five steps ascending from bottom-left to top-right. Step one at the\n    bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in\n    blue, what is now delegated, and in green, what the engineered environment now carries. Along the\n    left edge a green gauge thickens as the climb proceeds — representation and enforcement accumulate.\n    Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the\n    residual human focus moves from reading every diff at the bottom to system-level strategy and residual\n    semantic judgment at the top — the tactical burden shrinks but never reaches zero. Step one Co-coder:\n    delegated is code generation; the environment carries nothing durable beyond an ordinary repository;\n    the human reads every diff, holds the map, and admits the change. Step two QA: delegated is generation\n    plus a second agent's audit; the environment carries a probabilistic, episodic, advisory reviewer; the\n    human adjudicates findings. Step three Review lead: delegated is specialized review per region; the\n    environment carries deterministic checks for the decidable findings; the human does the semantic review\n    a check cannot settle. Step four Tech lead: delegated is bounded work inside one modeled zone; the\n    environment carries named zones and boundary rules; the human holds the system map and strategy. Step\n    five Architect: delegated is model-guided work across the whole system; the environment carries explicit\n    models, traceability, and controls; the human is left with residual semantics and strategy. A failure in\n    representation or enforcement can push work back down the staircase."
+    "svg_description": "A true staircase of five steps ascending from bottom-left to top-right. Step one at the\n    bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in\n    blue, what is now delegated, and in green, what the engineered environment now carries. Along the\n    left edge a green gauge thickens as the climb proceeds — representation and enforcement accumulate.\n    Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the\n    residual human focus moves from reading every diff at the bottom to system-level strategy and residual\n    semantic judgment at the top — the tactical burden shrinks but never reaches zero. Step one Co-coder:\n    delegated is code generation; the environment carries nothing durable beyond an ordinary repository;\n    the human reads every diff, holds the map, and admits the change. Step two QA: delegated is generation\n    plus a second agent's audit; the environment carries a probabilistic, episodic, advisory reviewer; the\n    human adjudicates findings. Step three Review lead: delegated is specialized review per region; the\n    environment carries deterministic checks for the decidable findings; the human does the semantic review\n    a check cannot settle. Step four Tech lead: delegated is bounded work inside one modeled zone; the\n    environment carries named zones and boundary rules; the human holds the system map and strategy. Step\n    five Architect: delegated is model-guided work across the whole system; the environment carries explicit\n    models, traceability, and controls; the human is left with residual semantics and strategy. A failure in\n    representation or enforcement can push work back down the staircase.",
+    "native_dimensions_bp": [
+      432.9779968261719,
+      487.3789978027344
+    ],
+    "authored_font_sizes_pt": [
+      10.5,
+      11.0
+    ]
   },
   {
     "chapter": "5.2-inside-docables-software-factory",

@@ -6115,61 +6115,74 @@
     {
       "source": "book/assets/mage-staircase.svg",
       "candidate": "book/tikz/figures/mage-staircase.tex",
-      "source_sha256": "d48392cfd281a2ce1f289f58239cd4791140fd74265f3b2d4603244e49584eef",
+      "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
       "baseline_candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
-      "candidate_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+      "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
       "decision": "refined",
-      "reason": "Retained: Stepped offsets encode progression, so equalizing their tops would erase meaning; terminal spacing is adequate. Raise delegation/environment explanations and human-focus annotations from9to10pt; separate steps to accommodate larger text while preserving step geometry.",
+      "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         426.68798828125,
         412.2179870605469
       ],
       "contracts": {
-        "peer_groups": [],
+        "peer_groups": [
+          {
+            "name": "stage cards share the right edge",
+            "labels": [
+              "1. CO-CODER",
+              "2. QA",
+              "3. REVIEW LEAD",
+              "4. TECH LEAD",
+              "5. ARCHITECT"
+            ],
+            "align": [
+              "right"
+            ],
+            "tolerance_pt": 1
+          }
+        ],
         "terminal_exceptions": []
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
+        "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
+        "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
+        "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+        "page": 1,
+        "width_bp": 432.9779968261719,
+        "height_bp": 487.3789978027344,
+        "font_sizes_pt": [
+          10.5,
+          11.0
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 80,
-        "width_bp": 426.688,
-        "height_bp": 493.064
+        "minimum_prose_font_pt": 10.5,
+        "monochrome_pixels": true,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 16,
+        "reviewed_peer_groups": 1,
+        "unapproved_compile_diagnostics": 0,
+        "reviewed_visually": true
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Raise delegation/environment explanations and human-focus annotations from9to10pt; separate steps to accommodate larger text while preserving step geometry.",
-        "before_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
-        "after_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+        "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+        "before_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
+        "after_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
         "before_dimensions_bp": [
-          426.68798828125,
-          412.2179870605469
+          426.688,
+          493.064
         ],
         "after_dimensions_bp": [
-          426.68798828125,
-          493.0639953613281
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
+          432.9779968261719,
+          487.3789978027344
         ],
         "after_font_sizes_pt": [
-          10.0
+          10.5,
+          11.0
         ],
         "reviewed_visually": true
-      }
+      },
+      "revision_date": "2026-11-10"
     },
     {
       "source": "book/assets/f19_delegation_over_time.svg",
