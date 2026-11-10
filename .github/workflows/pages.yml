@@ -506,7 +506,7 @@ jobs:
         run: python3 book/render_citations.py
       - name: Check PDF structure gate negative controls
         run: python3 tools/test_pdf_structure.py
-      - name: Render the published book editions (PDF + EPUB) + integrity gates
+      - name: Install print dependencies and check integrity gates
         run: |
           # The --pdf gate's inset-wrap sensor rasterizes aside pages (pillow + numpy); poppler is
           # already installed above. catalog.py itself stays stdlib-only — these deps are for the
@@ -520,9 +520,12 @@ jobs:
           python3 tools/test_mage_tikz_typography.py
           python3 tools/test_qpdf_repack.py
           python3 tools/mage_tikz_charts.py --check
-          python3 tools/mage_tikz_review.py --figures-only
-          python3 -m unittest tests.test_mage_pdf_splits
-          python3 book/build_book.py --pdf
+      - name: Render candidate figure pool and verify typography
+        run: python3 tools/mage_tikz_review.py --figures-only
+      - name: Check standalone PDF publication regressions
+        run: python3 -m unittest tests.test_mage_pdf_splits
+      - name: Render the whole book (PDF + EPUB) and check integrity
+        run: python3 book/build_book.py --pdf
       - name: Upload TikZ geometry audit for review
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -533,6 +536,38 @@ jobs:
           retention-days: 7
       - name: Validate the fresh EPUB produced by the native book build
         run: python3 book/book_epub.py --check
+      - name: Collect bounded print diagnostics after failure
+        if: failure()
+        run: |
+          print_diagnostic_root="${{ runner.temp }}/mage-print-diagnostics"
+          mkdir -p "$print_diagnostic_root"
+          printf '%s\n' \
+            'Fixed allowlist only; each file contains at most its final 262144 bytes.' \
+            'Missing files indicate that the failing stage did not produce them.' \
+            'A truncated typography audit may not be complete JSON.' \
+            > "$print_diagnostic_root/README.txt"
+          for print_diagnostic_path in \
+            latex/build/tikz/candidates.log \
+            latex/build/tikz/candidates.console.txt \
+            latex/build/tikz/figure-font-reference.log \
+            latex/build/tikz/figure-font-reference.console.txt \
+            latex/build/tikz/typography-audit.json \
+            book/latex/build/mage-book.log \
+            book/latex/build/mage-book.console.txt
+          do
+            if [ -f "$print_diagnostic_path" ]; then
+              mkdir -p "$print_diagnostic_root/$(dirname "$print_diagnostic_path")"
+              tail -c 262144 "$print_diagnostic_path" > "$print_diagnostic_root/$print_diagnostic_path"
+            fi
+          done
+      - name: Upload failed print diagnostics
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: book-print-diagnostics
+          path: ${{ runner.temp }}/mage-print-diagnostics/
+          if-no-files-found: warn
+          retention-days: 7
       - name: Upload book editions (consumed by assemble)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
