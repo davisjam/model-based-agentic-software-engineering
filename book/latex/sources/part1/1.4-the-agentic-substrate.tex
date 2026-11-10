@@ -126,7 +126,7 @@ The engineer's responsibility has always been to determine how a system ought to
 
 \section{The Reasoning Horizon}\label{heading:the-reasoning-horizon}
 
-% <!-- section-terms: long-horizon-task, reasoning-horizon, churn, context-window -->
+% <!-- section-terms: long-horizon-task, reasoning-horizon, churn, context-window, representation-problem, modeling-principle -->
 
 % <!-- point: scale-creates-the-reasoning-problem-before-an-agent-enters | Human working memory is limited even when long-term knowledge is extensive; notes, diagrams, and other external representations let engineers work with more information than they can hold actively in mind. | terms: long-horizon-task, context-window -->
 
@@ -150,7 +150,7 @@ Having information available does not guarantee that it can be used effectively.
 
 In this book, we use the term \emph{reasoning horizon} to describe the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness, external memory, and tools.\footnote{We borrow the term from Ramezanali and colleagues, who use it in seqBench to describe the length of a sequence a model can reliably complete\citep{ramezanali2025seqbench}. Here we extend it to the practical limits of the complete reasoning system, including its harness, external memory, and tools.}
 
-The reasoning horizon can expand in two ways: better machinery can preserve more relevant state, while better representations can reduce how much state the task requires. Research on external representations has long shown that how information is organized affects the work needed to reason with it\citep{larkin1987diagram}\citep{zhang1994representations}. These improvements may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+Research on external representations has long shown that how information is organized affects the work needed to reason with it\citep{larkin1987diagram}\citep{zhang1994representations}. Better representations may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
 
 \begin{figure}[htbp]
 \centering
@@ -176,9 +176,15 @@ Compaction can lose distinctions that later matter. If a summary preserves ``the
 The generation of commodity intelligence that motivated this book is built around language models with bounded context windows. We deliberately abstract from that machinery: the \textbf{reasoning horizon} concerns what a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. The concept is thus broader than a context-window limit, and is intended to remain useful as new kinds of intelligence bring different capabilities and constraints.
 \end{bookbox}
 
+% <!-- point: substrate-leaves-two-problems | The reasoning horizon grounds the Representation Problem: explicit representations can reduce task-state and reconstruction demands, and Modeling addresses how to preserve the properties relevant to an engineering question. | terms: engineering-substrate, reasoning-horizon, representation-problem, modeling-principle -->
+
+% <!-- index-def: representation-problem -->
+
+The reasoning horizon can expand in two ways: better machinery can preserve more relevant state, while better representations can reduce how much state the task requires. The \textbf{Representation Problem} asks: how should a large, evolving system be represented so that the properties relevant to an engineering question can be reasoned about without continually reconstructing them from implementation? \magevalue{chapter:modeling} develops the corresponding part of the MAGE methodology: Modeling.
+
 \section{Probabilistic Work Needs External Enforcement}\label{heading:probabilistic-work-needs-external-enforcement}
 
-% <!-- section-terms: foundation-model, engineering-substrate -->
+% <!-- section-terms: foundation-model, engineering-substrate, enforcement-problem, alignment-principle -->
 
 % <!-- point: authorship-is-separate-from-assurance | Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough. | terms: engineering-substrate, foundation-model -->
 
@@ -198,7 +204,7 @@ A simple model shows how an agent's reliability on individual features affects i
 P(\text{agent succeeds on all features}) = \prod_{i=1}^{n} p_i
 \]
 
-Remember, when you multiply fractions between zero and one, the product is smaller than any of the factors. The effect is small when the agent is highly reliable and has only a few features to implement. If an agent has a high probability of correctly implementing each feature, say 99\%, then its probability of getting three features right is \(0.99^3 \approx 97\%\). As we ask the agent to implement more features, its chance of getting them all right falls: \(0.99^{10} \approx 90\%\) for ten features, and \(0.99^{100} \approx 37\%\) for a hundred. If the agent is less reliable, say 95\% on each feature, its chance of correctly implementing all ten falls to \(0.95^{10} \approx 60\%\). An agent that usually gets individual features right can therefore have a much lower chance of getting every feature in a product right.
+Remember, when you multiply fractions between zero and one, the product is smaller than any of the factors. The effect is small when the agent is highly reliable and has only a few features to implement. If an agent has a high probability of correctly implementing each feature, say 99\%, then its probability of getting three features right is \(0.99^3 \approx 97\%\). As we ask the agent to implement more features, its chance of getting them all right falls: \(0.99^{10} \approx 90\%\) for ten features, and \(0.99^{100} \approx 37\%\) for a hundred. If the agent is less reliable, say 95\% on each feature, its chance of correctly implementing all ten falls to \(0.95^{10} \approx 60\%\). An agent that usually gets individual features right can therefore have a much lower chance of getting every feature in a product right.\footnote{Human code review and cleanup, or a final pass with a more capable but more expensive model, may supply what the initial agent leaves undone. The relevant cost is that of the whole process, including finding and fixing mistakes; the result must still meet its requirements.}
 
 % <!-- index-def: probabilistic-surface -->
 
@@ -209,3 +215,9 @@ Remember, when you multiply fractions between zero and one, the product is small
 The decisions that depend on agentic inference form the system's \textbf{probabilistic surface}. Other parts of the system may be deterministic, such as a tool that applies a fixed transformation or a test suite that evaluates explicit conditions. Better models and iterative loops can make the agent's judgments more reliable. As we will discuss throughout the book, we can also build mechanisms that enforce particular requirements even when the agent makes a mistake.
 
 On the other hand, even if agentic implementation were perfectly reliable, that would not tell us what to build. Engineers must still choose and justify the requirements, and determine what validation evidence would establish that the resulting system meets the needs it is meant to serve.
+
+% <!-- point: the-two-problems-representation-and-enforcement | The Enforcement Problem asks how important obligations can bind autonomous work without relying on the agent remembering or self-certifying each time; Alignment addresses this problem alongside the Representation Problem already named at the reasoning horizon. | terms: engineering-substrate, enforcement-problem, representation-problem, modeling-principle, alignment-principle, injection-point -->
+
+% <!-- index-def: enforcement-problem -->
+
+Autonomous work can be constrained and checked at the interfaces through which it acts. This is the \textbf{Enforcement Problem}: how should engineering intent be enforced over autonomous work, so that satisfying important obligations does not depend on the agent remembering, agreeing, or self-certifying each time? \magevalue{chapter:alignment} develops the corresponding part of the MAGE methodology: Alignment.

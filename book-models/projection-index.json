@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 641,
+    "total_sites": 642,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 304,
+      "book-web": 305,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -41,15 +41,15 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 41
+            "occ": 43
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 9
+            "occ": 1
           },
           {
             "file": "book/web/docs/1.6-problem-summary.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -951,11 +951,11 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 50
+            "occ": 52
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 12
+            "occ": 8
           },
           {
             "file": "book/web/docs/1.6-problem-summary.md",
@@ -1499,11 +1499,15 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 44
+            "occ": 45
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 3
+            "occ": 2
+          },
+          {
+            "file": "book/web/docs/1.6-problem-summary.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -1701,7 +1705,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 55
+            "occ": 56
           }
         ]
       },
@@ -2081,7 +2085,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 30
+            "occ": 31
           },
           {
             "file": "catalogue-figure.html",

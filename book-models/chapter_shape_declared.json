@@ -128,9 +128,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer’s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The technical horizon and enforcement discussions then continue unchanged, preparing §1.5. The inexpensive-reasoning discussion places human fallibility alongside agentic capacity, and FlowCheck supplies a concrete example of an obligation lost across natural-language iterations.",
+      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer’s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The reasoning-horizon and enforcement discussions now name their corresponding problems at their conclusions; the product calculation supports Enforcement. The inexpensive-reasoning discussion places human fallibility alongside agentic capacity, and FlowCheck supplies a concrete example of an obligation lost across natural-language iterations.",
       "opening_anchor": "In developing DocAble, I deliberately inspected almost none of the code the",
-      "closing_anchor": "of the complete reasoning system, including its harness, external memory, and tools."
+      "closing_anchor": "how should engineering intent be enforced over autonomous work"
     },
     {
       "slug": "why-mage-follows-from-the-machine",
@@ -147,9 +147,9 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation. DV4 resolution (260922): the chapter's handover is the pair of named-problem CONCEPTS — representation-problem and enforcement-problem — index-def'd at the defining list; the enforcement-problem registration was already scheduled by the authority->enforcement rename plan ('when the defining prose lands').",
-      "opening_anchor": "Commodity intelligence changes the economics of implementation without abolishing the",
-      "closing_anchor": "it does not remove the decisions themselves."
+      "note": "Synthesis opens with selective complementarity rather than re-deriving the two problems. Modeling may remain advisory, and permissions or resource limits can enforce obligations without an elaborate system model. The DocAble content-preservation example and substrate-to-method figure remain; the definitions and canonical index markers now occur at the conclusions of the horizon and enforcement discussions in §1.4.",
+      "opening_anchor": "Modeling and Alignment complement one another.",
+      "closing_anchor": "considers its implications beyond software."
     },
     {
       "slug": "the-agent-stack",

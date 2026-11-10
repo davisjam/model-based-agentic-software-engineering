@@ -19260,3 +19260,6 @@ The earlier §1.4 prose, original SVG, native black-and-white drawing, asset map
 ### Chapters 1–3 — defined meaning and its use in Alignment (2026-11-10)
 
 The passages replaced while connecting natural-language delegation, explicit model semantics, and enforcement are preserved with their source revisions and original line ranges in [the retired-passages record](semantic-meaning-and-callbacks-20261110/retired-passages.json). The Chapter 2 additions define both permitted architectural relationships and constructive lifecycle behavior. [Research notes](semantic-meaning-and-callbacks-20261110/research-notes.md) identify the FlowCheck study and the disclosed textbook-style training evidence; optional sources remain archived rather than being added to the book.
+
+
+The later P1/P2 pass moves the two canonical problem definitions to §1.4, retains §1.5 as synthesis, and attributes the product reliability model to Enforcement. Complete pre-relocation sources for §§1.4–1.6 are appended to the same retired-passages record. The economic-completion footnote is retained beside the reliability consequence, with its dangling opening removed.
