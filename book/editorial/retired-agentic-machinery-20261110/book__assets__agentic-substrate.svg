@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fig 1.3-1 NEW (part1-copyedit-260815; folds to book/assets/agentic-substrate.svg).
+     "Agentic machinery and environment." Two supplying columns converge on the agent, which in turn acts on the
+     engineered environment.
+       FOUNDATION MODEL (blue = model palette) — semantic reasoning, probabilistic output, bounded
+                        working state, cheap repeated reasoning.
+       AGENTIC HARNESS  (gray = neutral machinery) — tool-mediated action, context management,
+                        interposition, parallel execution.
+     Both feed AGENT (blue), which acts on the ENGINEERED ENVIRONMENT (green = the engineered lever).
+     Grayscale-survivable: every attribute labelled; the two-column convergence and the top-to-bottom
+     order carry the meaning; hue only reinforces which family a column belongs to. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600"
+     role="img" aria-labelledby="asTitle asDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="asTitle">Agentic machinery and environment</title>
+  <desc id="asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
+    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness
+    contributes tool-mediated action, context management, interposition, and parallel execution. Both
+    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —
+    the models, obligations, evidence, and controls the engineer builds.</desc>
+
+  <defs>
+    <marker id="as-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Agentic machinery and environment</text>
+
+  <!-- ===== LEFT column: foundation model (blue) ===== -->
+  <rect id="foundation-model" x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="260" y="102" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1.5" fill="#2f5169">FOUNDATION MODEL</text>
+
+  <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
+    <rect x="78" y="116" width="364" height="42" rx="8"/>
+    <rect x="78" y="164" width="364" height="42" rx="8"/>
+    <rect x="78" y="212" width="364" height="42" rx="8"/>
+    <rect x="78" y="260" width="364" height="42" rx="8"/>
+  </g>
+  <text x="260" y="143" text-anchor="middle" font-size="20" fill="#1c1917">semantic reasoning</text>
+  <text x="260" y="191" text-anchor="middle" font-size="20" fill="#1c1917">probabilistic output</text>
+  <text x="260" y="239" text-anchor="middle" font-size="20" fill="#1c1917">bounded working state</text>
+  <text x="260" y="287" text-anchor="middle" font-size="20" fill="#1c1917">cheap repeated reasoning</text>
+
+  <!-- ===== RIGHT column: agentic harness (gray) ===== -->
+  <rect id="agentic-harness" x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
+  <text x="740" y="102" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1.5" fill="#57534e">AGENTIC HARNESS</text>
+
+  <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
+    <rect x="558" y="116" width="364" height="42" rx="8"/>
+    <rect x="558" y="164" width="364" height="42" rx="8"/>
+    <rect x="558" y="212" width="364" height="42" rx="8"/>
+    <rect x="558" y="260" width="364" height="42" rx="8"/>
+  </g>
+  <text x="740" y="143" text-anchor="middle" font-size="20" fill="#1c1917">tool-mediated action</text>
+  <text x="740" y="191" text-anchor="middle" font-size="20" fill="#1c1917">context management</text>
+  <text x="740" y="239" text-anchor="middle" font-size="20" fill="#1c1917">interposition</text>
+  <text x="740" y="287" text-anchor="middle" font-size="20" fill="#1c1917">parallel execution</text>
+
+  <!-- ===== ENGINEERED ENVIRONMENT container (green) — ENCLOSES the agent; drawn FIRST so it sits behind
+             the convergence arrows + the agent node. Its heading and description sit below the agent, clear of incoming arrows. ===== -->
+  <rect x="180" y="344" width="640" height="224" rx="14" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
+  <text x="500" y="500" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Engineered Environment</text>
+  <text x="500" y="528" text-anchor="middle" font-size="20" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls</text>
+
+  <!-- convergence: both substrate columns feed the agent, which sits INSIDE the environment.
+       Orthogonal paths enter separate ports on the agent's top edge, above the container labels. -->
+  <!-- edge: foundation-model -> agent (heads pre-aimed perpendicular into agent top) -->
+  <path d="M260,314 V330 H452 V378" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
+  <!-- edge: agentic-harness -> agent -->
+  <path d="M740,314 V330 H548 V378" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
+
+  <!-- AGENT node (blue) — inside the environment container -->
+  <rect id="agent" x="388.88" y="380" width="222.24" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <text x="500" y="412" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agent</text>
+  <text x="500" y="434" text-anchor="middle" font-size="20" fill="#57534e">a tool-using reasoner</text>
+</svg>

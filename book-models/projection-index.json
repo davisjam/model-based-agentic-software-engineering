@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 640,
+    "total_sites": 641,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 303,
+      "book-web": 304,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -41,7 +41,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 38
+            "occ": 39
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
@@ -189,7 +189,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 68
+            "occ": 59
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -573,7 +573,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
@@ -589,7 +589,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 3
+            "occ": 1
           }
         ],
         "book-pdf": [
@@ -807,7 +807,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
@@ -851,7 +851,11 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 11
+            "occ": 12
+          },
+          {
+            "file": "book/web/docs/list-of-figures.md",
+            "occ": 1
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -861,7 +865,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 15
+            "occ": 16
           }
         ]
       },
@@ -947,7 +951,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 33
+            "occ": 49
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
@@ -1139,7 +1143,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 158
+            "occ": 161
           },
           {
             "file": "book/web/docs/index.md",
@@ -1495,7 +1499,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 30
+            "occ": 45
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
@@ -1643,7 +1647,7 @@
           },
           {
             "file": "book/web/docs/bibliography.md",
-            "occ": 8
+            "occ": 10
           },
           {
             "file": "book/web/docs/book-index.md",
@@ -1655,7 +1659,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 196
+            "occ": 197
           },
           {
             "file": "book/web/docs/index.md",
@@ -2323,7 +2327,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",

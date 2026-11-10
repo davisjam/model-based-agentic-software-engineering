@@ -419,12 +419,12 @@
   year      = {1994},
 }
 
-@misc{othello-gpt,
-  author       = {Li, Kenneth and Hopkins, Aspen K. and Bau, David and Vi{\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},
-  title        = {Emergent World Representations: Exploring a Sequence Model Trained on a Synthetic Task},
-  year         = {2022},
-  howpublished = {arXiv preprint arXiv:2210.13382},
-  url          = {https://arxiv.org/abs/2210.13382},
+@inproceedings{othello-gpt,
+  author    = {Li, Kenneth and Hopkins, Aspen K. and Bau, David and Vi{\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},
+  title     = {Emergent World Representations: Exploring a Sequence Model Trained on a Synthetic Task},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=DeG07_TcZvT},
 }
 
 @misc{arxiv-2605-10712,
@@ -4322,4 +4322,87 @@
   title = {dbt Semantic Layer},
   url = {https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl},
   note = {Developer documentation; accessed 10 November 2026}
+}
+
+% Verified against primary publisher/author records, 2026-11-10.
+% Reuse existing othello-gpt for Li et al.; update its venue/year using
+% existing-reference-updates.bib rather than adding a duplicate li2023emergent.
+% Reuse existing yao2023react for inference-time tool use.
+
+@inproceedings{bender2021stochastic,
+  author    = {Bender, Emily M. and Gebru, Timnit and McMillan-Major, Angelina and Shmitchell, Shmargaret},
+  title     = {On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?},
+  booktitle = {Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency},
+  pages     = {610--623},
+  year      = {2021},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3442188.3445922},
+  url       = {https://dl.acm.org/doi/10.1145/3442188.3445922},
+}
+
+@misc{bubeck2023sparks,
+  author       = {Bubeck, S{\'e}bastien and Chandrasekaran, Varun and Eldan, Ronen and Gehrke, Johannes and Horvitz, Eric and Kamar, Ece and Lee, Peter and Lee, Yin Tat and Li, Yuanzhi and Lundberg, Scott and Nori, Harsha and Palangi, Hamid and Ribeiro, Marco Tulio and Zhang, Yi},
+  title        = {Sparks of Artificial General Intelligence: Early Experiments with {GPT-4}},
+  year         = {2023},
+  howpublished = {arXiv preprint arXiv:2303.12712},
+  url          = {https://arxiv.org/abs/2303.12712},
+}
+
+@inproceedings{nanda2023othello,
+  author    = {Nanda, Neel and Lee, Andrew and Wattenberg, Martin},
+  title     = {Emergent Linear Representations in World Models of Self-Supervised Sequence Models},
+  booktitle = {Proceedings of the 6th BlackboxNLP Workshop: Analyzing and Interpreting Neural Networks for NLP},
+  pages     = {16--30},
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2023.blackboxnlp-1.2},
+  url       = {https://aclanthology.org/2023.blackboxnlp-1.2/},
+}
+
+@inproceedings{jin2024semantics,
+  author    = {Jin, Charles and Rinard, Martin},
+  title     = {Emergent Representations of Program Semantics in Language Models Trained on Programs},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {235},
+  pages     = {22160--22184},
+  year      = {2024},
+  publisher = {PMLR},
+  url       = {https://proceedings.mlr.press/v235/jin24e.html},
+}
+
+% Supporting the surrounding training account, not the reasoning subsection.
+@misc{chen2021codex,
+  author       = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and de Oliveira Pinto, Henrique Ponde and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chantzis, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},
+  title        = {Evaluating Large Language Models Trained on Code},
+  year         = {2021},
+  howpublished = {arXiv preprint arXiv:2107.03374},
+  url          = {https://arxiv.org/abs/2107.03374},
+}
+
+@inproceedings{ouyang2022instructions,
+  author    = {Ouyang, Long and Wu, Jeffrey and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F. and Leike, Jan and Lowe, Ryan},
+  title     = {Training Language Models to Follow Instructions with Human Feedback},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {35},
+  pages     = {27730--27744},
+  year      = {2022},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/b1efde53be364a73914f58805a001731-Abstract-Conference.html},
+}
+
+@inproceedings{hu2022lora,
+  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2022},
+  url       = {https://openreview.net/forum?id=nZeVKeeFYf9},
+}
+
+@misc{openai2023gpt4,
+  author = {{OpenAI}},
+  title = {{GPT-4} Technical Report},
+  year = {2023},
+  howpublished = {arXiv preprint arXiv:2303.08774},
+  url = {https://cdn.openai.com/papers/gpt-4.pdf}
 }

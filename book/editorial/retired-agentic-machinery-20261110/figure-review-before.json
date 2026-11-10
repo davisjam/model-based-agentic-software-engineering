@@ -1,0 +1,589 @@
+{
+  "retired_date": "2026-11-10",
+  "reason": "Author requested the model-origin, acting-agent and environmental-control redesign.",
+  "source": "book/assets/agentic-substrate.svg",
+  "actual_replaced_asset_hashes": {
+    "book/assets/agentic-substrate.svg": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+    "book/tikz/figures/agentic-substrate.tex": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+    "book/tikz/receipts/agentic-substrate.json": "44902b342b0390d9cf95290b26664a33069c2d04c4a7e1bcc2924e5093aff7e4"
+  },
+  "review_entries_before": {
+    "book/tikz/grayscale-review.json": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "receipt": "book/tikz/receipts/agentic-substrate.json",
+      "reviewed": true,
+      "decision": "refined",
+      "rationale": "Restored agent containment inside engineered environment. Foundation-model and harness inputs remain distinct gray modes. Removed invented sequential agent-to-environment relation.",
+      "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+      "candidate_sha256": "e8b7d6b7c958c0fe5a76baec8800d8e9cb72e4e82bedd18d298401524168e442"
+    },
+    "book/tikz/fidelity-review.json": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+      "candidate_sha256": "b9ad6b6e85a590da2cd594224a67b17b03c9e24c98a42a2dc23d2adb50221888",
+      "decision": "refined",
+      "review": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.3972,
+        8.7798
+      ],
+      "strict_compile_diagnostics": []
+    },
+    "book/tikz/style-review.json": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "receipt": "book/tikz/receipts/agentic-substrate.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "fill": "White foundation/harness components and Agent; 5% enclosing environment identifies shared context.",
+      "bold": "Source-derived emphasis includes FOUNDATION MODEL; AGENTIC HARNESS; Agent. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "routing": "Two short symmetric routes enter separate Agent top ports; environment heading and annotation sit below the routes.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 10,
+        "width_bp": 379.038,
+        "height_bp": 242.674,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4
+      },
+      "book_references": [],
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    },
+    "book/tikz/typography-review.json": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "decision": "refined",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "evidence": [
+        {
+          "source_text": "FOUNDATION MODEL",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Peer subsystem categories",
+          "candidate_text": "FOUNDATION MODEL",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "FOUNDATION MODEL",
+              "weight": "700",
+              "style": "normal",
+              "x": "260",
+              "y": "102"
+            }
+          ]
+        },
+        {
+          "source_text": "AGENTIC HARNESS",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Peer subsystem categories",
+          "candidate_text": "AGENTIC HARNESS",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "AGENTIC HARNESS",
+              "weight": "700",
+              "style": "normal",
+              "x": "740",
+              "y": "102"
+            }
+          ]
+        },
+        {
+          "source_text": "Agent",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Defined object versus its description",
+          "candidate_text": "Agent",
+          "candidate_style": "bold",
+          "source_fragments": [
+            {
+              "text": "Agent",
+              "weight": "700",
+              "style": "normal",
+              "x": "500",
+              "y": "38"
+            }
+          ]
+        }
+      ],
+      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "checks": [
+        {
+          "text": "FOUNDATION MODEL",
+          "bold": true
+        },
+        {
+          "text": "AGENTIC HARNESS",
+          "bold": true
+        },
+        {
+          "text": "Agent",
+          "bold": true
+        },
+        {
+          "text": "A tool-using reasoner",
+          "bold": false
+        }
+      ],
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 10,
+        "width_bp": 379.038,
+        "height_bp": 242.674,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    },
+    "book/tikz/layout-review.json": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "baseline_candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "decision": "retained",
+      "reason": "Capability panels and their internal lists already align. The agent and environment are nested roles, not peers. Outer group frames are not currently selectable as single text nodes by the rectangle sensor.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        379.0379943847656,
+        242.6739959716797
+      ],
+      "contracts": {},
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 10,
+        "width_bp": 379.038,
+        "height_bp": 242.674
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing agentic substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "before_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+        "after_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+        "before_dimensions_bp": [
+          379.0379943847656,
+          242.6739959716797
+        ],
+        "after_dimensions_bp": [
+          379.0379943847656,
+          242.6739959716797
+        ],
+        "before_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "after_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "reviewed_visually": true
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    },
+    "book/tikz/inventory.json": {
+      "chapter": "1.4-the-agentic-substrate",
+      "source": "assets/agentic-substrate.svg",
+      "caption": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/agentic-substrate.d2",
+      "receipt": "book/d2-pilot/agentic-substrate.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "Agentic machinery and environment",
+      "svg_description": "Two columns supply the agent. The foundation model contributes semantic reasoning,\n    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness\n    contributes tool-mediated action, context management, interposition, and parallel execution. Both\n    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment \u2014\n    the models, obligations, evidence, and controls the engineer builds."
+    }
+  },
+  "review_document_metadata_before": {
+    "book/tikz/fidelity-review.json": {
+      "checked_count": 144,
+      "refined_count": 69
+    },
+    "book/tikz/style-review.json": {
+      "candidate_count": 150,
+      "refined_count": 130
+    },
+    "book/tikz/typography-review.json": {
+      "candidate_count": 153,
+      "refined_count": 123,
+      "check_count": 980,
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "84509075d333f94b97d16c26881301407c0fa1682f3427c03849d53c53a7eeb7",
+        "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
+        "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
+        "candidate_count": 153,
+        "semantic_typography_checks": 988,
+        "geometry_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "status": "passed",
+        "validation_scope": "Whole-pool checks rerun. Rendered text, font faces, sizes, and positions of the other 152 figures match the prior pool exactly. The author-approved compact reading-guide map was visually inspected.",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      }
+    },
+    "book/tikz/layout-review.json": {
+      "candidate_count": 153,
+      "refined_count": 67,
+      "reviewed_peer_groups": 89,
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "fc4d15466dfe16dbdd94ae17f20fd916c5000105ae24eead8d708a87f30816dd",
+        "audit_sha256": "72d5bbdc01e96e8f89b8e89966f1f3c11b0e8ce3dafb86e320facd20c9eddf40",
+        "typography_audit_sha256": "3835928ad42004c13d8fbdb3ddf5c931cee864216aa15742c31feb2a86f25752",
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "validation_scope": "Whole-pool automated geometry and typography checks rerun. Three new appendix color/native pairs visually inspected at print size; unchanged figures retain their existing visual reviews.",
+        "candidate_count": 152,
+        "semantic_typography_checks": 971,
+        "checked_terminal_approaches": 655,
+        "reviewed_peer_groups": 88,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+      }
+    }
+  },
+  "receipt_before": {
+    "source": "book/assets/agentic-substrate.svg",
+    "chapter": "1.4-the-agentic-substrate",
+    "claim": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
+    "topology": {
+      "description": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+      "native_draw_commands": [
+        "\\draw[edge] (foundation.south) -- (-3.5,-4.2) -- (-5.5,-4.2) -- (-5.5,-7) -- (agent.west);",
+        "\\draw[edge] (harness.south) -- (3.5,-4.2) -- (5.5,-4.2) -- (5.5,-7) -- (agent.east);"
+      ]
+    },
+    "required_terms": [
+      "F oundation Model Agentic Harness",
+      "Semantic reasoning",
+      "Probabilistic output",
+      "Bounded working state",
+      "Cheap repeated reasoning",
+      "Tool-mediated action",
+      "Context management",
+      "Interposition",
+      "Parallel execution",
+      "Engineered Environment",
+      "Models \u00b7 obligations \u00b7 evidence \u00b7 controls",
+      "Agent",
+      "A tool-using reasoner"
+    ],
+    "bw_encoding": "White foundation/harness components and Agent; 5% enclosing environment identifies shared context.",
+    "redesign": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+    "questions": [],
+    "alt": "Foundation Model and Agentic Harness are parallel gray containers, each containing four capability boxes. Both feed an Agent box enclosed by a larger Engineered Environment panel whose models, obligations, evidence and controls surround the agent.",
+    "review": {
+      "reference": "authored SVG raster and labels, not D2 or caption alone",
+      "checks": [
+        "expansion/detail links",
+        "icons and prohibited-path marks",
+        "external annotations versus node content",
+        "node shapes and containment",
+        "direction and dashed meanings",
+        "grayscale semantic modes",
+        "native font legibility"
+      ],
+      "outcome": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+      "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+      "native_dimensions_cm": [
+        13.3972,
+        8.7798
+      ]
+    },
+    "fidelity_review": {
+      "stem": "agentic-substrate",
+      "source": "book/assets/agentic-substrate.svg",
+      "status": "corrected",
+      "evidence": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
+      "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/agentic-substrate.png",
+      "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
+      "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/agentic-substrate.png",
+      "original_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
+      "native_sha256": "b9ad6b6e85a590da2cd594224a67b17b03c9e24c98a42a2dc23d2adb50221888",
+      "page": 8,
+      "dimensions_cm": [
+        13.3972,
+        8.7798
+      ],
+      "diagnostics": [],
+      "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+      "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+    },
+    "style_review": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "receipt": "book/tikz/receipts/agentic-substrate.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "fill": "White foundation/harness components and Agent; 5% enclosing environment identifies shared context.",
+      "bold": "Source-derived emphasis includes FOUNDATION MODEL; AGENTIC HARNESS; Agent. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "routing": "Two short symmetric routes enter separate Agent top ports; environment heading and annotation sit below the routes.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 10,
+        "width_bp": 379.038,
+        "height_bp": 242.674,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4
+      },
+      "book_references": [],
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    },
+    "typography_review": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "decision": "refined",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "evidence": [
+        {
+          "source_text": "FOUNDATION MODEL",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Peer subsystem categories",
+          "candidate_text": "FOUNDATION MODEL",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "FOUNDATION MODEL",
+              "weight": "700",
+              "style": "normal",
+              "x": "260",
+              "y": "102"
+            }
+          ]
+        },
+        {
+          "source_text": "AGENTIC HARNESS",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Peer subsystem categories",
+          "candidate_text": "AGENTIC HARNESS",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "AGENTIC HARNESS",
+              "weight": "700",
+              "style": "normal",
+              "x": "740",
+              "y": "102"
+            }
+          ]
+        },
+        {
+          "source_text": "Agent",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Defined object versus its description",
+          "candidate_text": "Agent",
+          "candidate_style": "bold",
+          "source_fragments": [
+            {
+              "text": "Agent",
+              "weight": "700",
+              "style": "normal",
+              "x": "500",
+              "y": "38"
+            }
+          ]
+        }
+      ],
+      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "checks": [
+        {
+          "text": "FOUNDATION MODEL",
+          "bold": true
+        },
+        {
+          "text": "AGENTIC HARNESS",
+          "bold": true
+        },
+        {
+          "text": "Agent",
+          "bold": true
+        },
+        {
+          "text": "A tool-using reasoner",
+          "bold": false
+        }
+      ],
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 10,
+        "width_bp": 379.038,
+        "height_bp": 242.674,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    },
+    "layout_review": {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "baseline_candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "decision": "retained",
+      "reason": "Capability panels and their internal lists already align. The agent and environment are nested roles, not peers. Outer group frames are not currently selectable as single text nodes by the rectangle sensor.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        379.0379943847656,
+        242.6739959716797
+      ],
+      "contracts": {},
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 10,
+        "width_bp": 379.038,
+        "height_bp": 242.674
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing agentic substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "before_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+        "after_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+        "before_dimensions_bp": [
+          379.0379943847656,
+          242.6739959716797
+        ],
+        "after_dimensions_bp": [
+          379.0379943847656,
+          242.6739959716797
+        ],
+        "before_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "after_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "reviewed_visually": true
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 2,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    },
+    "author_feedback_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 2,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
+    }
+  },
+  "note": "Original artwork and prose were separately archived by the integrating author."
+}

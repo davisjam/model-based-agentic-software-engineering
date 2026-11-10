@@ -1,0 +1,52 @@
+{
+  "source_revision": "e83af827c44e71fe4b63f327be8d5c53d640d2c0",
+  "reason": "User-requested expansion of \u00a71.4, preserving the complete earlier prose and figure sources before replacement.",
+  "files": [
+    {
+      "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
+      "archive": "book/editorial/retired-agentic-machinery-20261110/book__latex__sources__part1__1.4-the-agentic-substrate.tex",
+      "sha256": "bd739b61908c84ea11334c01bf363e959ee187c6267b70fbc290ad77828c2311",
+      "source_lines": [
+        1,
+        164
+      ]
+    },
+    {
+      "source": "book/latex/sources/part1/1.4-the-agentic-substrate.assets.json",
+      "archive": "book/editorial/retired-agentic-machinery-20261110/book__latex__sources__part1__1.4-the-agentic-substrate.assets.json",
+      "sha256": "fbd8e764f125db0c0de4c94e072f8b0c6d3ba57ed49e50ab523cc6cf1de18fb4",
+      "source_lines": [
+        1,
+        10
+      ]
+    },
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "archive": "book/editorial/retired-agentic-machinery-20261110/book__assets__agentic-substrate.svg",
+      "sha256": "4f0dff47216be8773693bd698b8ea9f89511196d68b1875e00dbd4fe6c0fad43",
+      "source_lines": [
+        1,
+        79
+      ]
+    },
+    {
+      "source": "book/tikz/figures/agentic-substrate.tex",
+      "archive": "book/editorial/retired-agentic-machinery-20261110/book__tikz__figures__agentic-substrate.tex",
+      "sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "source_lines": [
+        1,
+        26
+      ]
+    },
+    {
+      "source": "book/tikz/receipts/agentic-substrate.json",
+      "archive": "book/editorial/retired-agentic-machinery-20261110/book__tikz__receipts__agentic-substrate.json",
+      "sha256": "44902b342b0390d9cf95290b26664a33069c2d04c4a7e1bcc2924e5093aff7e4",
+      "source_lines": [
+        1,
+        280
+      ]
+    }
+  ],
+  "removed_date": "2026-11-10"
+}

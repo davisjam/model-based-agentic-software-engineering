@@ -1,0 +1,842 @@
+[
+  {
+    "kind": "rect",
+    "x": 0,
+    "y": 0,
+    "w": 420,
+    "h": 100,
+    "fill": 5,
+    "stroke": 0.55,
+    "r": 3
+  },
+  {
+    "kind": "rect",
+    "x": 0,
+    "y": 122,
+    "w": 420,
+    "h": 205,
+    "fill": 0,
+    "stroke": 0.85,
+    "r": 3
+  },
+  {
+    "kind": "rect",
+    "x": 0,
+    "y": 403,
+    "w": 420,
+    "h": 110,
+    "fill": 5,
+    "stroke": 1.25,
+    "r": 3
+  },
+  {
+    "kind": "text",
+    "x": 10,
+    "y": 13,
+    "lines": [
+      "MODEL DEVELOPMENT"
+    ],
+    "size": 11.5,
+    "bold": true,
+    "italic": false,
+    "anchor": "start",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 10,
+    "y": 28,
+    "lines": [
+      "General-purpose capabilities acquired through training"
+    ],
+    "size": 10,
+    "bold": false,
+    "italic": false,
+    "anchor": "start",
+    "rotate": 0
+  },
+  {
+    "kind": "rect",
+    "x": 10,
+    "y": 39,
+    "w": 166,
+    "h": 53,
+    "fill": 0,
+    "stroke": 0.65,
+    "r": 3
+  },
+  {
+    "kind": "rect",
+    "x": 192,
+    "y": 39,
+    "w": 98,
+    "h": 53,
+    "fill": 0,
+    "stroke": 0.65,
+    "r": 3
+  },
+  {
+    "kind": "rect",
+    "x": 306,
+    "y": 39,
+    "w": 104,
+    "h": 53,
+    "fill": 0,
+    "stroke": 0.65,
+    "r": 3
+  },
+  {
+    "kind": "text",
+    "x": 93,
+    "y": 49,
+    "lines": [
+      "Training data"
+    ],
+    "size": 10.5,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 93,
+    "y": 73,
+    "lines": [
+      "Open-source code",
+      "Other text and code",
+      "Additional training data"
+    ],
+    "size": 10,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 241,
+    "y": 65,
+    "lines": [
+      "Pretraining and",
+      "post-training"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 358,
+    "y": 65,
+    "lines": [
+      "Foundation model",
+      "(trained weights)"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        176,
+        65
+      ],
+      [
+        192,
+        65
+      ]
+    ],
+    "width": 0.7,
+    "dash": false
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        290,
+        65
+      ],
+      [
+        306,
+        65
+      ]
+    ],
+    "width": 0.7,
+    "dash": false
+  },
+  {
+    "kind": "rect",
+    "x": 10,
+    "y": 150,
+    "w": 273,
+    "h": 166,
+    "fill": 0,
+    "stroke": 0.55,
+    "r": 3
+  },
+  {
+    "kind": "rect",
+    "x": 294,
+    "y": 150,
+    "w": 116,
+    "h": 166,
+    "fill": 0,
+    "stroke": 0.55,
+    "r": 3
+  },
+  {
+    "kind": "text",
+    "x": 210,
+    "y": 135,
+    "lines": [
+      "AGENTIC MACHINERY \u2014 THE ACTING AGENT"
+    ],
+    "size": 11.5,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 146.5,
+    "y": 161,
+    "lines": [
+      "FOUNDATION MODEL"
+    ],
+    "size": 10.8,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 82,
+    "y": 176,
+    "lines": [
+      "Property"
+    ],
+    "size": 9.5,
+    "bold": false,
+    "italic": true,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 226,
+    "y": 176,
+    "lines": [
+      "Engineering implication"
+    ],
+    "size": 9.5,
+    "bold": false,
+    "italic": true,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 352,
+    "y": 163,
+    "lines": [
+      "AGENTIC HARNESS"
+    ],
+    "size": 10.8,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 82,
+    "y": 198,
+    "lines": [
+      "Broad semantic",
+      "reasoning"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        151,
+        198
+      ],
+      [
+        170,
+        198
+      ]
+    ],
+    "width": 0.5,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 226,
+    "y": 198,
+    "lines": [
+      "Delegated",
+      "implementation"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 352,
+    "y": 198,
+    "lines": [
+      "Tool-mediated",
+      "action"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 82,
+    "y": 232,
+    "lines": [
+      "Probabilistic output"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        151,
+        232
+      ],
+      [
+        170,
+        232
+      ]
+    ],
+    "width": 0.5,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 226,
+    "y": 232,
+    "lines": [
+      "Independent",
+      "assurance"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 352,
+    "y": 232,
+    "lines": [
+      "Context",
+      "management"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 82,
+    "y": 266,
+    "lines": [
+      "Bounded working",
+      "state"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        151,
+        266
+      ],
+      [
+        170,
+        266
+      ]
+    ],
+    "width": 0.5,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 226,
+    "y": 266,
+    "lines": [
+      "External",
+      "representations"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 352,
+    "y": 266,
+    "lines": [
+      "Interposition"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 82,
+    "y": 300,
+    "lines": [
+      "Inexpensive repeated",
+      "reasoning"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        151,
+        300
+      ],
+      [
+        170,
+        300
+      ]
+    ],
+    "width": 0.5,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 226,
+    "y": 300,
+    "lines": [
+      "Scalable",
+      "governance"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 352,
+    "y": 300,
+    "lines": [
+      "Parallel",
+      "execution"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        358,
+        92
+      ],
+      [
+        358,
+        111
+      ],
+      [
+        25,
+        111
+      ],
+      [
+        25,
+        150
+      ]
+    ],
+    "width": 0.7,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 10,
+    "y": 416,
+    "lines": [
+      "ENGINEERED ENVIRONMENT"
+    ],
+    "size": 11.5,
+    "bold": true,
+    "italic": false,
+    "anchor": "start",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 106,
+    "y": 436,
+    "lines": [
+      "Existing system"
+    ],
+    "size": 10.8,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 106,
+    "y": 448,
+    "lines": [
+      "System being changed"
+    ],
+    "size": 9.5,
+    "bold": false,
+    "italic": true,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 315,
+    "y": 436,
+    "lines": [
+      "Engineering structure"
+    ],
+    "size": 10.8,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 106,
+    "y": 461,
+    "lines": [
+      "Codebase"
+    ],
+    "size": 10.2,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 106,
+    "y": 474,
+    "lines": [
+      "Architecture and design"
+    ],
+    "size": 10.2,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 106,
+    "y": 487,
+    "lines": [
+      "Documentation and configuration"
+    ],
+    "size": 10.2,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 106,
+    "y": 500,
+    "lines": [
+      "Tests and operational state"
+    ],
+    "size": 10.2,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 315,
+    "y": 454,
+    "lines": [
+      "Models and obligations"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 315,
+    "y": 470,
+    "lines": [
+      "Instructions and procedures"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 315,
+    "y": 486,
+    "lines": [
+      "Tools and permissions"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "text",
+    "x": 315,
+    "y": 502,
+    "lines": [
+      "Evidence and controls"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        35,
+        327
+      ],
+      [
+        35,
+        403
+      ]
+    ],
+    "width": 0.7,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 94,
+    "y": 363,
+    "lines": [
+      "Actions and",
+      "changes"
+    ],
+    "size": 10,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        160,
+        403
+      ],
+      [
+        160,
+        327
+      ]
+    ],
+    "width": 0.7,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 220,
+    "y": 363,
+    "lines": [
+      "Guidance",
+      "Supplies system",
+      "knowledge; influences",
+      "reasoning"
+    ],
+    "size": 9.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        290,
+        403
+      ],
+      [
+        290,
+        327
+      ]
+    ],
+    "width": 0.85,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 358,
+    "y": 363,
+    "lines": [
+      "Governance",
+      "Constrains actions;",
+      "controls acceptance",
+      "of selected results"
+    ],
+    "size": 9.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "rect",
+    "x": 310,
+    "y": 527,
+    "w": 80,
+    "h": 24,
+    "fill": 0,
+    "stroke": 0.8,
+    "r": 3
+  },
+  {
+    "kind": "text",
+    "x": 350,
+    "y": 539,
+    "lines": [
+      "Engineer"
+    ],
+    "size": 10.8,
+    "bold": true,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        350,
+        527
+      ],
+      [
+        350,
+        513
+      ]
+    ],
+    "width": 1.0,
+    "dash": false
+  },
+  {
+    "kind": "text",
+    "x": 337,
+    "y": 520,
+    "lines": [
+      "Engineers and maintains"
+    ],
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "end",
+    "rotate": 0
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        390,
+        539
+      ],
+      [
+        440,
+        539
+      ],
+      [
+        440,
+        65
+      ],
+      [
+        420,
+        65
+      ]
+    ],
+    "width": 0.5,
+    "dash": true
+  },
+  {
+    "kind": "text",
+    "x": 430,
+    "y": 238,
+    "lines": [
+      "Model training or fine-tuning (when available)"
+    ],
+    "size": 9.5,
+    "bold": false,
+    "italic": false,
+    "anchor": "middle",
+    "rotate": 90
+  }
+]

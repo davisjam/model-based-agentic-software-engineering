@@ -159,7 +159,7 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "The DocAble code-inspection experiment motivates examining the machinery needed for informed engineering control. The first subsection introduces the foundation model and harness, retaining the concrete distinction between a harness hook and an installed environment check. Reasoning horizons and probabilistic work then prepare the representation and enforcement problems in §1.5.",
+      "note": "The code-inspection experiment leads into the classroom observation, the origin of trained capabilities, concrete scientific evidence of reasoning and internal representations, four engineering properties, and the engineer’s authority over an explicit environment. The model/harness/system distinction is preserved, with a redesigned machinery figure; the final argument distinguishes inspectable external representations from internal learned representations. The technical horizon and enforcement discussions then continue unchanged, preparing §1.5.",
       "opening_anchor": "In developing DocAble, I deliberately inspected almost none of the code the",
       "closing_anchor": "of the complete reasoning system, including its harness, external memory, and tools.",
       "delivers": {
@@ -176,6 +176,11 @@
             "type": "framework",
             "name": "the reasoning-horizon figure",
             "anchor": "reasoning-horizon-fig"
+          },
+          {
+            "type": "framework",
+            "name": "commodity intelligence and its engineered environment",
+            "anchor": "agentic-substrate"
           }
         ],
         "artifact_would_help": false

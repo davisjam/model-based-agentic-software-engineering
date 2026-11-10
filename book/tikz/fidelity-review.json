@@ -167,16 +167,63 @@
     {
       "source": "book/assets/agentic-substrate.svg",
       "candidate": "book/tikz/figures/agentic-substrate.tex",
-      "source_sha256": "5e1ccdba56df0b003204cc56d216405e62bb113d4ebeef88e069d0d8ad7655fe",
-      "candidate_sha256": "b9ad6b6e85a590da2cd594224a67b17b03c9e24c98a42a2dc23d2adb50221888",
+      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
       "decision": "refined",
-      "review": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "revision_date": "2026-11-10",
+      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
+      "review": "Replaces the old parallel lists/converging-agent figure with the author's model-origin, agent-operation and environmental-control distinction. Adds all four property/implication mappings and the existing system as an explicit object of change.",
+      "checks": "Author specification plus native-size PDF and bundled-font web render: training provenance, component roles, explicit system of change, directed links, optional training route, semantic typography and grayscale.",
       "dimensions_cm": [
-        13.3972,
-        8.7798
+        15.7637,
+        19.6724
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
+        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
+        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "width_bp": 446.843994140625,
+        "height_bp": 557.6439819335938,
+        "caption_reserve_in_648bp_text_area": 90.35601806640625,
+        "authored_type_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 2,
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "shared_svg_sensors": {
+          "lint_figure_overflow": 0,
+          "lint_figure_text_occlusion": 0,
+          "lint_figure_text_intrusion": 0,
+          "lint_figure_label_collision": 0,
+          "lint_figure_font_band": 0
+        },
+        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "date": "2026-11-10",
+        "page": 1,
+        "status": "passed",
+        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
+        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      }
     },
     {
       "source": "book/assets/reasoning-horizon.svg",
@@ -2891,5 +2938,6 @@
       "review": "Matched new color SVG and native TikZ labels and relationships; checked source evidence boundaries separately.",
       "decision": "new"
     }
-  ]
+  ],
+  "last_revised_date": "2026-11-10"
 }

@@ -134,15 +134,32 @@
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/agentic-substrate.svg",
-    "caption": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
+    "caption": "*Commodity intelligence and its engineered environment.* Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/agentic-substrate.d2",
-    "receipt": "book/d2-pilot/agentic-substrate.receipt.yaml",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/agentic-substrate.json",
     "generator": null,
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Agentic machinery and environment",
-    "svg_description": "Two columns supply the agent. The foundation model contributes semantic reasoning,\n    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness\n    contributes tool-mediated action, context management, interposition, and parallel execution. Both\n    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —\n    the models, obligations, evidence, and controls the engineer builds."
+    "conversion": "Native editable TikZ and live-text SVG reauthored together from the author specification.",
+    "svg_title": "Commodity intelligence and its engineered environment",
+    "svg_description": "Training data, including open-source code and other data, is used in pretraining and post-training to produce foundation-model weights. A deployed model provides four properties, each paired with an engineering implication, while the harness supplies tool action, context management, interposition and parallel execution. The agent changes an existing system. The engineered environment supplies guidance and governs selected actions and results. The engineer principally engineers and maintains that environment, with training or fine-tuning shown as an optional route.",
+    "native_dimensions_bp": [
+      446.843994140625,
+      557.6439819335938
+    ],
+    "authored_font_sizes_pt": [
+      9.5,
+      10,
+      10.2,
+      10.5,
+      10.8,
+      11.5
+    ],
+    "draft_generation_provenance": {
+      "scene": "book/editorial/retired-agentic-machinery-20261110/draft-figure-scene.json",
+      "generator": "book/editorial/retired-agentic-machinery-20261110/draft-figure-generator.py",
+      "role": "Archived drafting provenance; not a new build dependency."
+    }
   },
   {
     "chapter": "1.4-the-agentic-substrate",

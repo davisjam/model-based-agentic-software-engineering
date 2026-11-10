@@ -19250,3 +19250,8 @@ The reinforced-concrete analogy and opening model/harness/environment summary ar
 ### Chapter 1 — shorter DocAble title and closing signpost (2026-11-10)
 
 The section title is now “MAGE by Example: DocAble.” Its former closing paragraph repeated the purpose established by the new §1.4 opening. The paragraph and associated point annotations are preserved verbatim in [the retired transition](docable-transition-before-20261110.tex); §1.4 now supplies the transition through the code-inspection experiment.
+
+
+### Chapter 1 — expanded agentic machinery and scientific evidence (2026-11-10)
+
+The earlier §1.4 prose, original SVG, native black-and-white drawing, asset mapping, and receipt are preserved with source hashes in [the retired-source manifest](retired-agentic-machinery-20261110/manifest.json). The classroom narrative, training account, reasoning review, developed properties, and engineering-authority conclusion replace the earlier compact opening. Definitions, terminology aside, and the harness/check distinction are reconciled into the new treatment; duplicate lists are retired. The reasoning-horizon and probabilistic-enforcement source remains byte-for-byte unchanged. [Prose dispositions](retired-agentic-machinery-20261110/prose-notes.md) and [verified research notes](retired-agentic-machinery-20261110/research-notes.md) record the integration. The optional causal-probing source is preserved there for later use.

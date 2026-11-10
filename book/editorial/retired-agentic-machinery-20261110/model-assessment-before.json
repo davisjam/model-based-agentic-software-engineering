@@ -1,0 +1,25 @@
+{
+  "slug": "reasoning-horizon",
+  "opening": {
+    "failure_question": "implicit",
+    "answer": "explicit",
+    "thesis_link": "explicit",
+    "thesis_target": "both"
+  },
+  "closing": {
+    "kind": "transition"
+  },
+  "delivers": {
+    "artifacts": [
+      {
+        "type": "framework",
+        "name": "the reasoning-horizon figure",
+        "anchor": "reasoning-horizon-fig"
+      }
+    ],
+    "artifact_would_help": false
+  },
+  "note": "The DocAble code-inspection experiment motivates examining the machinery needed for informed engineering control. The first subsection introduces the foundation model and harness, retaining the concrete distinction between a harness hook and an installed environment check. Reasoning horizons and probabilistic work then prepare the representation and enforcement problems in §1.5.",
+  "opening_anchor": "In developing DocAble, I deliberately inspected almost none of the code the",
+  "closing_anchor": "of the complete reasoning system, including its harness, external memory, and tools."
+}
