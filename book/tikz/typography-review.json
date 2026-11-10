@@ -2718,7 +2718,7 @@
       "candidate": "book/tikz/figures/docable-glimpse.tex",
       "decision": "refined",
       "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-      "candidate_sha256": "d4e2df11f4a2f5445e5f1673350212bf7f816ce016e91f5c72fca52157f63201",
+      "candidate_sha256": "91e6cfc5b59d9bca65f2d6840f5401b4fd70c14fabfcedc69952c471bf83f850",
       "evidence": [
         {
           "source_text": "not accessible",
@@ -2753,7 +2753,7 @@
           ]
         }
       ],
-      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "reason": "Author-approved polish: center the remediated-file label in a wider clear gap, align the two bottom headings and explanations at explicit 11 pt, remove the redundant internal-structure note, and keep both native dimensions below the color original at text width.",
       "checks": [
         {
           "text": "Not accessible",
@@ -2764,21 +2764,59 @@
           "bold": true
         },
         {
-          "text": "What the system does; internal structure is intentionally hidden.",
-          "bold": false
+          "text": "Inaccessible document",
+          "bold": true
+        },
+        {
+          "text": "Accessible document + evidence",
+          "bold": true
+        },
+        {
+          "text": "upload",
+          "italic": true
+        },
+        {
+          "text": "remediated file",
+          "italic": true
+        },
+        {
+          "text": "Unlabeled images",
+          "italic": true
+        },
+        {
+          "text": "No tags or reading order",
+          "italic": true
+        },
+        {
+          "text": "Tagged · reading order",
+          "italic": true
+        },
+        {
+          "text": "Every fix explained",
+          "italic": true
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 8,
-        "width_bp": 420.986,
-        "height_bp": 210.424,
-        "minimum_prose_font_pt": 10.0,
+        "proof": "latex/build/docable-glimpse-proof/after-driver.pdf",
+        "proof_sha256": "04a8e0ea8dd904490037fc1cb2047021b50764aef80c7f6ed2186403e95e218b",
+        "scope": "One revised figure, compiled and audited independently; unchanged pool pages were not recompiled.",
+        "page": 1,
+        "width_bp": 449.333,
+        "height_bp": 179.711,
+        "minimum_prose_font_pt": 10.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 1,
+        "reviewed_peer_groups": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 3
+        "semantic_typography_checks": 10,
+        "audit_sha256": "fab8607b4de75e2b985d6707158405b0535904c861f44f0986676b2d4aab76fb",
+        "maximum_dimensions_bp": [
+          450,
+          180.841
+        ],
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+        "status": "passed"
       }
     },
     {
