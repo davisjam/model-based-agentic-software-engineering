@@ -156,7 +156,7 @@ index entry (`definition of:` / `examples of:`) and suppresses the plain occurre
 display name. A tag whose slug is absent here fails the build. Display names are authored here once.
 
 - concept: commodity-intelligence | Commodity intelligence
-- concept: model-classes | Model classes
+- concept: model-classes | Modeling repertoire
 - concept: degrees-of-freedom | Degrees of freedom
 - concept: tolerance | Tolerance
 - concept: system-knowledge | System knowledge

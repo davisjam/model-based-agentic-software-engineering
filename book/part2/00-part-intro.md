@@ -24,13 +24,9 @@ MAGE therefore treats Modeling as an engineering activity in its own right:
 
 Which model is useful depends on what the engineer needs to know. A concurrency question may require ownership and lifecycle; an architectural-boundary question may require components and permitted communication edges. Different questions about the same system therefore call for different reductions.
 
-<!-- point: part-2-moves-through-five-model-classes | Structural, behavioral, ownership, decision, measurement, and provenance are useful views, not a partition; the author emphasizes ownership, decisions, and provenance because directing agents repeatedly raises those questions, and one worker can appear in several views. | terms: model-zoo, model-classes -->
+<!-- point: part-2-moves-through-five-model-classes | The chapter develops three familiar modeling questions and connects views to answer questions that cross them. | terms: model-zoo, model-classes -->
 
-Engineering questions recur in several broad forms. Structural questions ask what exists and what is connected; behavioral questions ask what may happen; ownership questions ask who controls work; decision questions ask what should happen next; measurement questions ask how much and against what bound; provenance questions ask what happened and what evidence records it.
-
-These are useful views into the modeling repertoire, not a partition of engineering models. I give particular prominence to ownership, decisions, and provenance because, in my experience directing agents, these are recurring sources of engineering difficulty. Who owns a resource? What should happen when evidence is incomplete or a result is unacceptable? How can we establish what an agent actually changed? Conventional modeling techniques can represent these concerns, but making them explicit helps engineers recognize when they deserve models of their own.
-
-The same worker may appear as a component in one model, an actor in a lifecycle in another, and the owner of work in a third. This chapter develops three of these views in detail, then connects several models to answer questions that cross individual views.
+We will develop three familiar modeling questions in detail: what is connected to what, what may happen, and what should happen next. We will then connect models to answer questions that cross individual views. The examples illustrate a broader engineering skill: recognizing which representation makes a particular question tractable.
 
 <!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Mainline examples introduce modeling questions; optional worked insets develop the production case, while property, invariant, analysis, and enforcement retain distinct meanings. -->
 
