@@ -525,7 +525,8 @@ jobs:
       - name: Check standalone PDF publication regressions
         run: python3 -m unittest tests.test_mage_pdf_splits
       - name: Render the whole book (PDF + EPUB) and check integrity
-        run: python3 book/build_book.py --pdf
+        run: |
+          python3 book/build_book.py --pdf
       - name: Upload TikZ geometry audit for review
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
