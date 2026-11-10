@@ -937,6 +937,9 @@ _PUB_YEAR = (re.match(r"\d{4}", _BOOK_MANIFEST.get("copyright_years", "")) or ["
 # `[[…]]`). SSOT for the renderer AND the CITE-RESOLVE gate (which imports these), so the gate can never
 # drift from what the build parses. A `[note:]` body must not contain a `]` (the non-greedy stop).
 _CITE_MARKER_RE = re.compile(r"\[cite:\s*([^\]]+?)\s*\]")
+_CITE_GROUP_RE = re.compile(
+    r"(?P<markers>\[cite:[^\]]+\](?:[ \t]*\[cite:[^\]]+\])*)"
+    r'''(?P<punct>["'”’]*[.!?]["'”’]*)?''')
 _NOTE_MARKER_RE = re.compile(r"\[note:\s*(.+?)\s*\]", re.S)
 # Editorial-note glyph cycle: `* † ‡ § ‖ ¶`, then doubled (`** †† …`). DISJOINT from the citation glyph set
 # (digits) by construction — the CITE-SYMBOLOGY gate asserts it. `_note_glyph(i)` is 0-indexed.
@@ -1077,7 +1080,7 @@ def _ensure_citations() -> None:
         _load_citations()
 
 
-def _render_cite_marker(spec: str) -> str:
+def _render_cite_marker(spec: str, deferred_notes: list[str] | None = None) -> str:
     """Render one `[cite: …]` payload → numeric superscript(s) linked to the chapter's Works Cited, each
     followed (first occurrence of the key only) by a right-gutter citation NOTE carrying the Chicago
     note-form string. Fails loud on a key absent from citations.json OR unnumbered (a cite outside a
@@ -1105,7 +1108,12 @@ def _render_cite_marker(spec: str) -> str:
             loc_txt = f", {html.escape(loc)}" if loc else ""
             note = (f'<span class="cite-note"><span class="cn-mark">{n}.</span> '
                     f'{_CITATIONS[key]["note_html"]}{loc_txt}</span>')
-        out.append(sup + note)
+        if deferred_notes is not None:
+            if note:
+                deferred_notes.append(note)
+            out.append(sup)
+        else:
+            out.append(sup + note)
     return "".join(out)
 
 
@@ -1409,7 +1417,16 @@ def inline(s: str) -> str:
         cite_spans.append(frag)
         return f"\x00CITE{len(cite_spans) - 1}\x00"
 
-    s = _CITE_MARKER_RE.sub(lambda m: _stash_cite(_render_cite_marker(m.group(1))), s)
+    def _stash_cite_group(match: "re.Match[str]") -> str:
+        # Keep all numeric references and terminal punctuation in the prose before emitting
+        # note cards. On narrow screens the cards are blocks; emitting one between a citation
+        # and its period would strand that period on a separate line.
+        notes: list[str] = []
+        marks = _CITE_MARKER_RE.sub(
+            lambda m: _render_cite_marker(m.group(1), notes), match.group("markers"))
+        return _stash_cite(marks + (match.group("punct") or "") + "".join(notes))
+
+    s = _CITE_GROUP_RE.sub(_stash_cite_group, s)
     # Standard-markdown footnote references `[^label]` → an editorial-note mark + gutter note (definitions
     # were pulled out of the flow by `collect_footnote_defs` in md_to_html and stashed in `_CITE_STATE`).
     # Runs before the markdown-link pass so a `[^label]` is consumed as a footnote, not mis-read as a link.

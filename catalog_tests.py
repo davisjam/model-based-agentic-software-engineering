@@ -490,15 +490,11 @@ CHECKS = [
     # See book/_design/readings-ssot-260925.md.
     Check("handbook: HB-CITE — Handbook cite keys resolve; no hand-written link in a READ FURTHER box "
           "(BIB-13)", 1, lambda strict: check_handbook_reading_citations()),
-    # BLOCKING (both drained to 0 before landing, per the audit-only-first discipline): a citation entry
-    # must never RENDER empty (Hayagriva chicago-notes emits an empty bibliography <li> for a locatorless
-    # @misc — 11 Works-Cited entries shipped as bare numbers, silently), and a [cite:] marker must FOLLOW
-    # its punctuation with no space before it (marker-before-period strands the period on its own line
-    # under the in-column note card — silently). Both defects are mechanically detectable and produce no
-    # build error, which is exactly why they are gates.
+    # A citation entry must render non-empty. Active manuscript citations follow the approved
+    # self-communicate style: citation groups precede terminal punctuation.
     Check("book: CITE-NONEMPTY — every citations.json entry renders non-empty in all forms (BIB-10)", 1,
           lambda strict: check_cite_nonempty()),
-    Check("book: CITE-PLACEMENT — [cite:] markers follow punctuation, no space before (BIB-11)", 1,
+    Check("book: CITE-PLACEMENT — citations precede terminal punctuation (BIB-11)", 1,
           lambda strict: check_cite_placement()),
     # BLOCKING (drained to 0 at landing — the 261008 derived-pair fix): a rendered citation string must
     # be WELL-FORMED, not merely fresh and non-empty. Hayagriva's BibTeX reader mis-typed 42 of 317

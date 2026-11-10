@@ -56,7 +56,8 @@ def _all_book_md_files() -> list[str]:
 
 # Source trees under book/ that are NOT authored chapter/appendix prose: generated projections (web,
 # dist), design notes and drafts (_design), the print/pitch scaffolding, and the vendored npm tree. The
-# PLACEMENT check scans everything else — any authored markdown a projection may render.
+# Legacy-source discovery keeps everything else. The placement gate below uses the active
+# publication roster so editorial archives retain the punctuation of the original text.
 #
 # `node_modules` was MISSING here until 261106, and that was a scope defect rather than a slow walk:
 # **388 of the 668 files this returned were vendored third-party READMEs** (`@babel/runtime`,
@@ -465,34 +466,38 @@ def check_cite_wellformed():
     return (FAIL if issues else PASS), issues
 
 
-# A [cite:] marker (no nested ] — the marker regex's own shape) immediately followed by sentence
-# punctuation = the marker sits BEFORE the punctuation it should follow.
-_CITE_BEFORE_PUNCT_RE = re.compile(r"\[cite:[^\]]+\][.,;:!?]")
-# A space/tab run directly before a marker = the marker floats off its word ("word [cite:x]").
-_CITE_SPACE_BEFORE_RE = re.compile(r"[ \t]+\[cite:")
+# House style places citation groups before terminal punctuation. Internal punctuation such as
+# commas and colons is outside this rule; so is the abbreviation period in "et al.[cite:x]".
+_CITE_AFTER_TERMINAL_RE = re.compile(r'''[.!?]["'”’]*[ \t]*\[cite:[^\]]+\]''')
+_ET_AL_RE = re.compile(r"\bet\s+al$", re.I)
 _FENCE_RE = re.compile(r"^```.*?^```", re.S | re.M)
 
 
+def cite_placement_lines(text: str) -> list[int]:
+    """Line numbers of citation groups placed after sentence-ending punctuation."""
+    text = _FENCE_RE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    lines = []
+    for match in _CITE_AFTER_TERMINAL_RE.finditer(text):
+        if match.group(0).startswith(".") and _ET_AL_RE.search(text[:match.start()]):
+            continue
+        lines.append(text.count("\n", 0, match.start()) + 1)
+    return lines
+
+
 def check_cite_placement():
-    """BIB-11 (BLOCKING). House citation-marker placement over every authored source file: a `[cite:]`
-    marker FOLLOWS punctuation (`artifact.[cite:x]`, never `artifact [cite:x].`) and attaches directly
-    to the preceding text (no space before the marker). The failure this pins is silent: on the
-    narrow-viewport web presentation the in-column citation-note card is display:block, so a marker
-    placed before its period strands that period alone on the next line — no build error, the
-    paragraph just renders broken. Fenced code blocks are exempt (a fence may quote the wrong form).
-    Drained to 0 by the 260921 codemod, so it lands BLOCKING."""
+    """BIB-11 (BLOCKING). Active manuscript citations precede terminal punctuation.
+
+    The style authority is self-communicate/writing/textbook.md. Read the publication roster,
+    including published appendices and back matter, rather than changing historical excerpts or
+    retired sources to match a new style. Fenced code examples are exempt.
+    """
+    import mage_latex
+
     issues: list[str] = []
-    for f in _all_cite_source_md_files():
-        text = _FENCE_RE.sub(lambda m: "\n" * m.group(0).count("\n"), open(f, encoding="utf-8").read())
-        for regex, what, fix in (
-            (_CITE_BEFORE_PUNCT_RE, "[cite:] marker sits BEFORE punctuation",
-             "move the marker after it: 'word.[cite:x]'"),
-            (_CITE_SPACE_BEFORE_RE, "space before [cite:] marker",
-             "attach the marker to the preceding text: 'word[cite:x]'"),
-        ):
-            for m in regex.finditer(text):
-                line = text.count("\n", 0, m.start()) + 1
-                issues.append(f"{rel(f)}:{line}: {what} — {fix}")
+    for source in mage_latex.author_sources():
+        for line in cite_placement_lines(source.read_text(encoding="utf-8")):
+            issues.append(f"{rel(str(source))}:{line}: [cite:] marker follows terminal punctuation — "
+                          "place the citation group before it: 'word[cite:x].'")
     return (FAIL if issues else PASS), issues
 
 
