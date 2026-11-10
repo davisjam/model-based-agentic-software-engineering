@@ -669,8 +669,8 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "The author separated product/factory evaluation from construction and operation. The section retains the human-reference corpus and qualifications, runtime/inference measures, limited general-purpose-agent comparison, startup/marginal/carrying-cost distinction, stale-model incident, maintenance obligations, and single-case limitations. Its ending motivates comparison with other organizational arrangements.",
-      "opening_anchor": "The preceding section examined how DocAble’s software factory developed and what its",
+      "note": "The author separated product/factory evaluation from construction and operation. The section retains the human-reference corpus and qualifications, runtime/inference measures, limited general-purpose-agent comparison, startup/marginal/carrying-cost distinction, stale-model incident, maintenance obligations, and single-case limitations. Its ending motivates comparison with other organizational arrangements. The subsequent flow pass states the evaluation criterion directly in its opening and leaves the subsections to introduce their own questions.",
+      "opening_anchor": "The engineering machinery described in the preceding section made substantial delegation possible.",
       "closing_anchor": "capacity in other software organizations, what changes in the surrounding production system?",
       "delivers": {
         "concepts": [],

@@ -1,0 +1,25 @@
+{
+  "slug": "evaluating-docable",
+  "opening": {
+    "failure_question": "explicit",
+    "answer": "implicit",
+    "thesis_link": "explicit",
+    "thesis_target": "both"
+  },
+  "closing": {
+    "kind": "transition"
+  },
+  "delivers": {
+    "artifacts": [
+      {
+        "type": "worked-example",
+        "name": "the human-reference remediation evaluation and its measured quality, cost, and scope",
+        "anchor": "docable-human-remediation-results"
+      }
+    ],
+    "artifact_would_help": false
+  },
+  "note": "The author separated product/factory evaluation from construction and operation. The section retains the human-reference corpus and qualifications, runtime/inference measures, limited general-purpose-agent comparison, startup/marginal/carrying-cost distinction, stale-model incident, maintenance obligations, and single-case limitations. Its ending motivates comparison with other organizational arrangements.",
+  "opening_anchor": "The preceding section examined how DocAble’s software factory developed and what its",
+  "closing_anchor": "capacity in other software organizations, what changes in the surrounding production system?"
+}

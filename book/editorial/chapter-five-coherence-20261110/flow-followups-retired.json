@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-10",
+  "passages": [
+    {
+      "source": "book/latex/sources/part5/00-part-intro.tex",
+      "section": "Key Ideas",
+      "source_revision": "e95080c168d84adfc2af5fcd116d9a0f3642f026",
+      "start_line": 13,
+      "end_line": 17,
+      "original_text": "MAGE was developed through one deeply observed production build. That case provides chronology, mechanism, and repeated observations within one system.\n\nIndependent industrial accounts provide a different kind of evidence: variation across systems built by other organizations under different constraints.\n\n\\textbf{The first shows how the method developed. The second asks whether the same engineering problems and responses appear elsewhere.}\n",
+      "reason": "Author-approved conservative flow edit: substantive Key Ideas, direct evaluation opening, and coda beginning with process-design/tolerance synthesis."
+    },
+    {
+      "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
+      "section": "Evaluation opening",
+      "source_revision": "e95080c168d84adfc2af5fcd116d9a0f3642f026",
+      "start_line": 12,
+      "end_line": 14,
+      "original_text": "% <!-- point: evaluation-covers-product-cost-and-maintenance | Evaluation examines remediation quality, operation cost relative to alternatives, and limitations in the product and the engineering environment; the undergraduate workflow supplies a practical reference. -->\n\nThe preceding section examined how DocAble's software factory developed and what its engineering machinery made possible. Those capabilities matter only insofar as the factory produces useful software at an acceptable cost. The product must still satisfy its requirements, and the machinery that supports its development must justify its own upkeep. I therefore examine three questions: how well DocAble remediates documents, what its operation costs relative to alternative approaches, and what limitations remain in both the product and its engineering environment. Purdue's undergraduate remediation effort provides a practical reference for the first question.\n",
+      "reason": "Author-approved conservative flow edit: substantive Key Ideas, direct evaluation opening, and coda beginning with process-design/tolerance synthesis."
+    },
+    {
+      "source": "book/latex/sources/part5/5.5-engineering-the-factory.tex",
+      "section": "Coda opening and former lead-in",
+      "source_revision": "e95080c168d84adfc2af5fcd116d9a0f3642f026",
+      "start_line": 10,
+      "end_line": 16,
+      "original_text": "% <!-- point: process-design-and-tolerance-describe-the-differences-without-a-maturity-model | A software factory arranges engineering knowledge, production capacity, evidence, and authority; those choices determine delegation, protected obligations, and the next production constraint. | terms: tolerance -->\n\nThe software factory is an arrangement of engineering knowledge, production capacity, evidence, and authority. The cases in this chapter show that these elements can be organized in substantially different ways. A factory may rely on explicit models, inherited organizational procedures, human reviewers, independent checks, or combinations of them. Those choices determine how much implementation can be delegated, which obligations remain protected, and where additional production capacity encounters its next constraint.\n\n% <!-- point: supervision-capacity-and-carrying-cost-become-visible-as-realization-gets-cheaper | Process design and tolerance are complementary responses to differing organizational conditions; finite supervision and the upkeep of representations influence where engineers place control. | terms: tolerance -->\n\nProcess design and tolerance help explain those choices (\\autoref{process-design-and-tolerance}). DocAble\\textquotesingle s accessibility obligations and one-engineer staffing made explicit requirements and automated rejection especially valuable: I had little inherited human process to accommodate and no spare reviewers for every implementation decision. Coordinating agents still required work orders, scheduling, and completion checks. In an established organization, the factory must also fit existing teams, knowledge, and authority. Both settings require judgments about which properties to preserve and how to organize work around them. A more capable agent may change the process needed to produce a system without changing its memory bound or deployment restriction. Engineers can leave implementation choices open within those bounds, while weighing the cost of supervision against the cost of maintaining the representations and checks that support it.\n",
+      "reason": "Author-approved conservative flow edit: substantive Key Ideas, direct evaluation opening, and coda beginning with process-design/tolerance synthesis."
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     "derived_ids": 160,
     "missing_topic_sentence": 2,
     "sections_drained": 130,
-    "paragraph_points": 564
+    "paragraph_points": 563
   },
   "chapters": [
     {
@@ -3158,7 +3158,7 @@
       "preamble_points": [
         {
           "slug": "evaluation-covers-product-cost-and-maintenance",
-          "text": "Evaluation examines remediation quality, operation cost relative to alternatives, and limitations in the product and the engineering environment; the undergraduate workflow supplies a practical reference.",
+          "text": "The factory's value depends on the accessibility and preservation properties of the software it produces and on production and maintenance costs; the undergraduate workflow supplies a practical reference for the documents.",
           "block_index": 2
         }
       ]
@@ -3372,19 +3372,14 @@
       "sections": [],
       "preamble_points": [
         {
-          "slug": "process-design-and-tolerance-describe-the-differences-without-a-maturity-model",
-          "text": "A software factory arranges engineering knowledge, production capacity, evidence, and authority; those choices determine delegation, protected obligations, and the next production constraint.",
-          "block_index": 1
-        },
-        {
           "slug": "supervision-capacity-and-carrying-cost-become-visible-as-realization-gets-cheaper",
           "text": "Process design and tolerance are complementary responses to differing organizational conditions; finite supervision and the upkeep of representations influence where engineers place control.",
-          "block_index": 3
+          "block_index": 1
         },
         {
           "slug": "process-design-and-tolerance-give-machinery-for-the-theory-chapter",
           "text": "Human incentives and accountability remain distinct from agent capability; engineering authority determines delegation and controls, and the theory chapter examines their costs and effects.",
-          "block_index": 5
+          "block_index": 3
         }
       ]
     },
