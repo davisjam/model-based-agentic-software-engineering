@@ -361,6 +361,9 @@ def _link_glossary_sites(body_html: str, gloss_link_map: "dict[str, tuple[str, s
 # `glossary-auto` is the arg-less generated-glossary directive; the rest take a `:`-delimited argument.
 MARKER_KEYWORDS = (
     "print-keep-with-next",  # local PDF spacing; no web structure
+    # Paired local print boundaries consumed by tools/mage_figure_layout.py.
+    # Web and EPUB preserve the ordinary prose/figure sequence and omit the markers.
+    "print-columns-start", "print-columns-end",
     # `coda: true` — the metadata flag marking an in-part UNNUMBERED closing (the Part-IV portable-moves
     #   coda). Stripped earlier by META_RE like part-title/chapter-title; kept in the vocabulary so a leaked
     #   `<!-- coda: true -->` is recognised as a marker (not a stray book comment) by the stray-comment gate.
@@ -1871,6 +1874,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # `<!-- inset-size: small -->` — a Typst-only directive (small-font, one-page inset). Consumed +
                 # stripped here so it never leaks into HTML; the print emitter (book_typst.py) applies it.
                 return True
+            if inner.startswith(("print-columns-start:", "print-columns-end:")):
+                return True  # native print layout boundary; no web-visible content
             if inner.startswith("box-weight:"):
                 # `<!-- box-weight: aside|callout|deep-dive -->` — arms the reading-weight treatment for the
                 # NEXT blockquote (orthogonal to box-family/inset-domain). Consumed + stripped like its siblings.

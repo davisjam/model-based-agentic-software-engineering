@@ -23,6 +23,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 - **[DECLARED]** (evaluate) After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world. — _anchor: 1.1 'Not every programming task needs the machinery this book describes' + the founding premise (commodity intelligence → judgment is the scarce resource) + 1.3 'an agent runs in a loop … give it a model of the world'._
 
+### Lesson 1.1-the-printer
+
+
 ### Lesson 1.2-the-engineering-object
 
   - **[DERIVED]** (create) After this chapter, the reader can author a lifecycle and its runbook, typing each runbook step Execute, Delegate, or Escalate and surrounding the judgment-laden steps with deterministic work. — _anchor: 4.4 'Operate the Environment' — lifecycle model (healthy path + failure states + sanctioned recovery) and typed runbook steps (Execute / Delegate / Escalate); re-homed from Operating MAGE in the Ch4/Ch5 merger._
@@ -36,10 +39,16 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.4-the-agentic-substrate
 
 
+### Lesson 1.5-the-new-engineering-problem
+
+
 ## Module 2 — Modeling
 
 - **[DECLARED]** (create) After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario. — _anchor: Modeling moves through five classes of model across eight chapters (context, engineering model, executable models, views as projections, structure, behavior and execution, measurement and evidence, and the scenario join), each kept honest by a drift check._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
+
+### Lesson part-2-intro
+
 
 ### Lesson 2.1-context-is-the-first-modeling-problem
 
@@ -110,7 +119,13 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 5.2-inside-docables-software-factory
 
 
-### Lesson 5.3-other-agentic-software-factories
+### Lesson 5.3-evaluating-docable
+
+
+### Lesson 5.4-other-agentic-software-factories
+
+
+### Lesson 5.5-engineering-the-factory
 
 
 ## Module 6 — The Theory

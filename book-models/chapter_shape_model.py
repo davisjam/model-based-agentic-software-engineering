@@ -233,7 +233,10 @@ def chapter_prose_anchors(ch: "book_ir.Chapter") -> "tuple[str, str]":
     # even when the IR classifies the unrecognized comment as a prose block.
     # Match only that standalone notice; authored prose/comments remain visible.
     blocks = [b for b in book_ir.blocks_outside_worked_examples(ch.blocks)
-              if not re.fullmatch(r"<!-- GENERATED from [^\n]* -->", b.raw.strip())]
+              if not re.fullmatch(r"<!-- GENERATED from [^\n]* -->", b.raw.strip())
+              # Projections collect footnote definitions after the chapter body.
+              # They must not replace the authored closing paragraph's anchor.
+              and not re.match(r"\[\^[^\]\n]+\]:", b.raw.lstrip())]
     lead: "list[str]" = []
     seen_h1 = False
     for b in blocks:

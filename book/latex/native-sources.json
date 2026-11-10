@@ -192,32 +192,38 @@
     {
       "source": "book/latex/sources/part5/00-part-intro.tex",
       "projection": "book/part5/00-part-intro.md",
-      "source_hash": "2329fc426bf37e4a4692e940ff2cae9060be9f3b35200db66c606b2bce1b526e",
-      "projection_hash": "bb09c32066177c06f78c6249a7129feff29a54acb658c5e207836ec58c8e9719"
+      "source_hash": "2d1d7abd240420998ba3b4ce92ed85012a81fb671cc95c978f58d7c5e1c0fd53",
+      "projection_hash": "f8da9fa0649b6c54ab03d684f6aca569ad798db188590756a455491a4d178b20"
     },
     {
       "source": "book/latex/sources/part5/5.1-software-factory.tex",
       "projection": "book/part5/5.1-software-factory.md",
-      "source_hash": "07599ff799969128453f5cf7b31a5e8f3537ad5714d09856cad91761723b1602",
-      "projection_hash": "c2d975a09162349722c4855be3e43fb9e06c45a85beb56a6625deda4ac470b7e"
+      "source_hash": "cbcefb1ad8a3c48d713d708760c1a2b2bfe456a1ba7ae093ae37575b69bf3615",
+      "projection_hash": "86e0e5fde1f39a5009afe6a7ba554cedbaec629430da17329ad9b1ca4badfce7"
     },
     {
       "source": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
       "projection": "book/part5/5.2-inside-docables-software-factory.md",
-      "source_hash": "7ef2d0648686f4195c0a4bc89923178fdb3fa256afcf13950e91d6e42dcb6fc5",
-      "projection_hash": "7af4b03511c13498f1574d556ee2ac8b9d6947b5bda65d89f45b37cb8718f9a9"
+      "source_hash": "fadcae7c18b363d56415c75befae62d7aba7de9b3fb7a3a9db11103731ae9f8b",
+      "projection_hash": "ac6d3b614ec4a6005ec119be0dad5cb12994ea129ce4e111f7e3bbdd07c019dc"
     },
     {
-      "source": "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
-      "projection": "book/part5/5.3-other-agentic-software-factories.md",
-      "source_hash": "d06ab630e8e3d2f50d146cfb7475899974793afca0ff961fd51f72dfa86d60eb",
-      "projection_hash": "c06c99ae92abf4039b812b0856b63f9b071856fac017d910125237cd48d7684c"
+      "source": "book/latex/sources/part5/5.3-evaluating-docable.tex",
+      "projection": "book/part5/5.3-evaluating-docable.md",
+      "source_hash": "6db09cef492fd1ee31a9f14da0e288f47e8b4a8b6b892248340a7b892d446e89",
+      "projection_hash": "bebc07d68c0add0a9df6b956f4fe30b912cf36a4e52cc7d73a5a52dcdd99cac0"
+    },
+    {
+      "source": "book/latex/sources/part5/5.4-other-agentic-software-factories.tex",
+      "projection": "book/part5/5.4-other-agentic-software-factories.md",
+      "source_hash": "f53d6a2f091334980efd3e662596cd11f9a514285fd8e151ef8de99363b1d6e0",
+      "projection_hash": "63f10012f1dfe53d5dbc0bfdc08e6ba758ca424262bb1dd4c6863b049b66d98b"
     },
     {
       "source": "book/latex/sources/part5/5.5-engineering-the-factory.tex",
       "projection": "book/part5/5.5-engineering-the-factory.md",
-      "source_hash": "2b18fa865c784c774738908e5f44cd57782efb7d9e9bbf158abdf5fb89fb8c92",
-      "projection_hash": "4ab51696dbe383058a6f80d6cfc15d81d8a42bafec1f687f1c819b939dbc9753"
+      "source_hash": "dc62d6c629eef5a9c6330ae0d18ddd2f6db643c3a2fac9f7677fc702dbacef84",
+      "projection_hash": "b964829ff9eeb8f3fed8bcb7493d26c80d86d7c52efce02ad68d732ad26d58d8"
     },
     {
       "source": "book/latex/sources/part6/00-part-intro.tex",

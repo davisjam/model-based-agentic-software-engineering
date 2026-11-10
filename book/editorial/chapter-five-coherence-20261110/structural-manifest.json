@@ -1,0 +1,54 @@
+{
+  "source_revision": "b28acdc700304fe78fc14e9bcfa0c516aa9941d6",
+  "final_sources": [
+    "book/latex/sources/part5/00-part-intro.tex",
+    "book/latex/sources/part5/5.1-software-factory.tex",
+    "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "book/latex/sources/part5/5.3-evaluating-docable.tex",
+    "book/latex/sources/part5/5.4-other-agentic-software-factories.tex",
+    "book/latex/sources/part5/5.5-engineering-the-factory.tex"
+  ],
+  "new_asset_map": "book/latex/sources/part5/5.3-evaluating-docable.assets.json",
+  "retained_factory_asset_map": "book/latex/sources/part5/5.2-inside-docables-software-factory.assets.json",
+  "renamed_industry_asset_map": "book/latex/sources/part5/5.4-other-agentic-software-factories.assets.json",
+  "removed_source": "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
+  "removed_asset_map": "book/latex/sources/part5/5.3-other-agentic-software-factories.assets.json",
+  "moved_figure": {
+    "label": "docable-human-remediation-results",
+    "source": "book/assets/docable-human-evaluation-261109.svg",
+    "from": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "to": "book/latex/sources/part5/5.3-evaluating-docable.tex",
+    "content_and_caption": "byte-identical"
+  },
+  "new_point_id": "evaluation-covers-product-cost-and-maintenance",
+  "retained_anchor_dispositions": {
+    "heading:economics": "Moved from Does DocAble Work? to new Evaluating DocAble chapter heading",
+    "heading:human-remediation-as-a-reference": "moved; same label, promoted to section",
+    "heading:runtime-and-cost": "moved; same label, promoted to section",
+    "heading:agents-and-specialized-service": "moved; same label, promoted to section",
+    "heading:what-the-economics-establish": "moved; same label, promoted to section",
+    "heading:liability": "moved and retained with visible title Limitations and Maintenance Costs",
+    "heading:exploring-alternative-reasoning-engines": "remains in5.2; new evaluation hyperlink explicitly qualified",
+    "one-system-one-engineer-one-problem-so-how-do-others-do-it": "same point in renamed5.4 with updated summary",
+    "the-public-sources-are-interested-accounts-read-conservatively": "same point and paragraph unchanged in5.4"
+  },
+  "new_reference_macro": "sec:evaluating-docable",
+  "factory_ending": "My attention moved toward deciding what should change, which properties mattered enough to represent or enforce, and what anomalous evidence meant. Ambiguous tradeoffs and failures in the factory still required judgment. The environment reduced the implementation I had to read; it did not settle those decisions or eliminate its own maintenance.",
+  "evaluation_ending": "DocAble provides evidence about one factory's development, operation, outputs, and costs. It shows how an engineer can construct machinery that permits substantial delegation while preserving selected engineering obligations, but also how that machinery can fail or become expensive to maintain. These observations do not establish that other organizations need the same arrangements. They do, however, raise a question worth examining: when agents increase implementation capacity in other software organizations, what changes in the surrounding production system?",
+  "industry_opening": "DocAble provides a longitudinal account of one engineer developing and operating an agentic software factory. Other organizations begin with different resources and constraints: established engineering teams, existing production processes, accumulated institutional knowledge, and obligations distributed across many people. Their factories may therefore organize delegation, evaluation, and admission differently. The four questions from \\magevalue{sec:the-software-factory} guide the comparison: what the factory produces, what people do, how production is organized, and what tolerances the resulting software must satisfy. The public accounts illuminate different parts of those questions; they need not supply the same answer or document every part equally well.",
+  "sanity_checks": [
+    "5.2 ends exactly after Supervisor's Job",
+    "all original figures retained byte-identically",
+    "all metric macros retained across5.2/5.3",
+    "all existing citations retained across split",
+    "all six industry cases and comparative synthesis unchanged after opening",
+    "one evaluation figure asset moved without duplication",
+    "all TeX braces balanced",
+    "counterfactual fieldnote stays in5.2",
+    "maintenance costs and evidentiary limitations stay in new5.3",
+    "no model/registry/projection/tool/Git mutations",
+    "5.5 coda source flag removed to restore numbering; body unchanged"
+  ],
+  "coda_numbered": true,
+  "retired_coda_flag": "coda: true"
+}

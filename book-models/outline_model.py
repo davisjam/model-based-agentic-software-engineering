@@ -91,10 +91,19 @@ def derive_outline(include_appendices: bool = False) -> Outline:
             points=[ParagraphPoint(slug=p.slug, text=p.text, block_index=p.block_index) for p in r.points],
         ))
     # Attach chapter-opener points (a decorator before the chapter's first heading) at chapter scope.
+    chapters = None
     for slug, pts in bs.chapter_preamble_points(include_appendices=include_appendices).items():
-        if slug in by_chapter:
-            by_chapter[slug].preamble_points = [
-                ParagraphPoint(slug=p.slug, text=p.text, block_index=p.block_index) for p in pts]
+        if slug not in by_chapter:
+            # A developed synthesis can have no subheadings. Its authored points
+            # still belong to the outline and must remain available to claims.
+            if chapters is None:
+                chapters = bs.book_ir.parse_book(include_appendices=include_appendices).chapters
+            chapter = next(c for c in chapters if c.slug == slug)
+            by_chapter[slug] = OutlineChapter(slug=slug, part=chapter.part)
+        by_chapter[slug].preamble_points = [
+            ParagraphPoint(slug=p.slug, text=p.text, block_index=p.block_index) for p in pts]
+    if chapters is not None:
+        order = [c.slug for c in chapters if c.slug in by_chapter]
     return Outline(chapters=[by_chapter[s] for s in order])
 
 

@@ -2,12 +2,6 @@
 
 <!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
 
-What happens to the software factory when agents substantially increase its capacity for realization?
-
-To answer that question, this chapter begins with an older change in production. The Industrial Revolution did more than increase the power available to make things. It changed how production was controlled. As machinery increased the rate of fabrication, engineers developed ways to organize production and to specify and measure the bounds within which its products had to remain.
-
-This chapter develops the software factory from that history and then examines contemporary agentic software factories. DocAble provides a case observed from the inside, including how its factory changed as production accelerated. Public accounts from other organizations show how different factories divide realization and supervision under different constraints.
-
 <!-- principlebox -->
 
 <!-- box-family: canonical -->
@@ -20,4 +14,8 @@ This chapter develops the software factory from that history and then examines c
 >
 > **The first shows how the method developed. The second asks whether the same engineering problems and responses appear elsewhere.**
 
-{{sec:the-software-factory}} develops the software-factory concept from the history of manufacturing and asks what a production system must know and control when fabrication outruns direct human supervision. {{sec:inside-docables-software-factory}} examines DocAble from the inside, tracing how its engineering structures changed with its capacity for realization. {{sec:mage-in-the-wild}} compares other organizations through their reported mechanisms, measurements, and operating decisions. The coda returns to process design, tolerance, and engineering authority, preparing the questions about cost and reliability developed in {{chapter:theory}}.
+{{chapter:one-problem-many-models}} followed Modeling and Alignment through individual engineering episodes, showing how representations and controls changed as DocAble evolved. We now widen the view from those episodes to the production system that made them possible. An agent may implement a change, but the surrounding factory determines how work is selected, what knowledge reaches the agent, which decisions remain open, how results are evaluated, and when a change may be accepted.
+
+The Industrial Revolution offers a useful comparison. It did more than increase the power available to fabricate things. It changed how production was organized and controlled. As machinery increased the rate of fabrication, engineers developed production processes, standards, and measurements that allowed work to proceed without continuous supervision of every operation. The factory became an engineered system in its own right.
+
+{{sec:the-software-factory}} develops the software-factory concept from the history of manufacturing, distinguishing process design from tolerance. {{sec:inside-docables-software-factory}} examines DocAble’s factory from the inside: how it developed, what engineering structures it acquired, and how those structures changed the work I could delegate. {{sec:evaluating-docable}} evaluates the resulting product and factory, including remediation quality, cost, and maintenance obligations. {{sec:mage-in-the-wild}} compares independently developed factories through their reported mechanisms and operating decisions. The coda returns to process design, tolerance, and engineering authority, preparing the theoretical questions developed in {{chapter:theory}}.

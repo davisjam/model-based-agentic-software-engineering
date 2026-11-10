@@ -1,0 +1,550 @@
+% mage-auto-heading: building-the-factory
+% mage-auto-heading: the-feasibility-probe
+% mage-auto-heading: the-two-rules-of-agentic-software-engineering
+% mage-auto-heading: the-build-in-stages
+% mage-auto-heading: the-build-measured-weekly
+% mage-auto-heading: inside-the-factory
+% mage-auto-heading: what-the-factory-knows
+% mage-auto-heading: the-joins-what-the-factory-can-derive-and-enforce
+% mage-auto-heading: the-computation-graph-a-representation-that-took-over-execution
+% mage-auto-heading: the-factory-in-operation
+% mage-auto-heading: from-a-priority-to-completed-work
+% mage-auto-heading: what-escalated-failures-became
+% mage-auto-heading: the-supervisors-job
+% mage-auto-heading: runtime-and-cost
+% mage-auto-heading: liability
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: DocAble Among Other Software Factories -->
+
+% <!-- chapter-title: Inside DocAble's Software Factory -->
+
+\chapter{Inside DocAble\textquotesingle s Software Factory}
+
+% <!-- box-family: evidence -->
+
+\begin{quote}
+\mbox{}%
+\subsection{This section illustrates}\label{heading:illustrates}
+
+✓ The Modeling Principle · ✓ The Alignment Principle · ✓ Governance Conversion · ✓ Residual Human Judgment
+\end{quote}
+
+% <!-- point: one-engineer-directed-a-fleet | One engineer directed coding agents while engineering both the remediation product and its factory; the final snapshot records production source, supporting source, and model modules. | terms: fleet-scale -->
+
+DocAble was built by one engineer (me) directing a fleet of coding agents. The product was a document-accessibility remediation service; the factory was the production system through which I directed changes to that service. I was engineering both. The product had to improve accessibility while preserving the document properties its users depended on. The factory had to organize implementation and preserve consequential engineering decisions as agents changed the system.
+
+The record examined here spans \magevalue{seip_weeks} complete weeks, from March 12 through October 14, 2026. At the final snapshot, DocAble contained \magevalue{seip_prod_loc} lines of production code and \magevalue{seip_apparatus_loc} lines of supporting source, including tests, checks, tools, infrastructure, models, and indexed documentation. The history identified \magevalue{seip_models} model modules. These measurements describe the resulting system and its engineering environment; they do not measure how much useful work each line or model represents.
+
+% <!-- point: the-engineers-role-was-engineering-not-implementation | Goals, users, production failures, standards and institutional use supplied engineering work; the engineer made consequential decisions while coding agents wrote every implementation line. | terms: governed-engineering-environment -->
+
+New work came from my goals for the system, user feedback, production failures, accessibility standards, public guidance from advocacy groups\citep{nfb-accessible-documents-2014}, and the demands of institutional use. I decided which pressures warranted engineering work and made consequential decisions about requirements, architecture, validation, and deployment. Coding agents wrote every line of the implementation. I inspected almost none of the code they produced.
+
+% <!-- point: product-decisions-became-factory-obligations | Process design organized work and tolerance preserved consequential requirements while agents retained implementation freedom; failures could require changes to both the product and its factory. -->
+
+That division of work required process design and tolerance. Work had to be selected, planned, dispatched, integrated, and evaluated without making me the bottleneck for every implementation decision. At the same time, agents needed freedom to choose implementations without being free to violate consequential requirements. The factory therefore developed models, procedures, tools, and controls that carried selected decisions into later work. A failure could require two repairs: changing the product and changing how future changes to it were governed.
+
+% <!-- point: the-division-of-work-is-the-factory-examined | The case follows factory development from initial requirements through production operation; implementation, institutional use, and observed failures exposed engineering decisions that needed to persist. -->
+
+The case follows the factory's development from initial requirements through production operation. Its chronology matters because the machinery did not arrive fully formed. Implementation, institutional use, and observed failures exposed engineering decisions that needed to persist; the factory changed to carry them.
+
+\section{The Problem}\label{heading:nearly-free}
+
+% <!-- section-terms: doj-2024-rule, remediation-cost -->
+
+% <!-- point: the-rule-and-the-extension | The 2024 DOJ rule set WCAG 2.1 AA and a 2026 deadline; four days before the deadline, the Department extended it by a year. | terms: doj-2024-rule, ada-title-ii -->
+
+In 2024, the U.S. Department of Justice required state and local governments, including public universities and schools, to make covered web content and mobile applications conform to \magevalue{doj_technical_standard}\citep{doj-web-accessibility-2024}. The original compliance date for larger public entities was April 24, 2026. Four days before that deadline, the Department extended it by one year\citep{doj2026extension}.
+
+% <!-- point: requirements-ordinary-capacity-unusual | The requirements were ordinary production-software requirements; the unusual condition was one engineer’s implementation capacity. | terms: governance-target-product -->
+
+For a university, compliance creates a recurring production problem: courses distribute documents whose meaning must remain available to readers using assistive technology. Purdue trained undergraduates to remediate course materials, providing both a practical reference workflow and the corpus used in the evaluation below. A checker can identify some defects, but supplying a useful description of a diagram or restoring the structure of a document requires interpreting its content. \magevalue{chapter:problem} introduced that difficulty; here it becomes a specification for a service.
+
+The requirements were ordinary production-software requirements. What was unusual was the implementation capacity available to one engineer.
+
+% <!-- point: the-eight-requirements-stated-where-they-work | The eight requirements are stated in full here, where they do their work: {{sec:mage-by-example}} grouped them into kinds of obligation to establish the problem; stated in full, they explain why demonstrating semantic reasoning was only the beginning. | terms: governance-target-product -->
+
+\magevalue{sec:mage-by-example} grouped these obligations by kind to establish the nature of the problem. \autoref{docable-requirements} states the eight requirements: they explain why demonstrating semantic reasoning was only the beginning.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[The DocAble requirements]{What DocAble had to accomplish. The eight requirements, R1--R8 --- the specification the factory had to satisfy, which \magevalue{sec:mage-by-example} introduced by kind.}\label{docable-requirements}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+R1 · Multi-format remediation & Remediate educational documents in the formats people actually use, including Office (PowerPoint, Word, Excel) and PDF. \\
+R2 · Semantic remediation & Perform semantic repairs that require understanding document content, not only syntactic, deterministic transformations. \\
+R3 · Preserve the document & Retain content, appearance, and behavior except where remediation requires a change. \\
+R4 · Standards-grounded accessibility & Evaluate and repair documents against their governing obligations (WCAG 2.1 AA), not proxy checker scores. \\
+R5 · Evidence & Record what accessibility requirement motivated each change and what evidence supports the resulting document state. \\
+R6 · Reviewability & Make outputs auditably traceable: consequential automated changes are inspectable and, where appropriate, reversible. \\
+R7 · Production operation & Process real documents at practical sizes, costs, and latency. \\
+R8 · Institutional deployment & Operate as a deployed service that scales to thousands of faculty at one institution, and preferably nationwide. \\
+\end{longtable}
+}
+
+% <!-- point: requirements-explain-the-size | Semantic reasoning was only one requirement of eight. The capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation. Those obligations generated the engineering system around that capability. | terms: governance-target-product -->
+
+These requirements explain why the resulting system grew large. Semantic reasoning was only one requirement of eight. A frontier foundation model could supply a capability that had previously been missing. That capability alone did not establish preservation, reviewable changes, conformance, or dependable service operation; each remained an engineering obligation. Those obligations generated the engineering system around that capability.
+
+\section{Building the Factory}\label{heading:building-the-factory}
+
+\subsection{The Feasibility Probe}\label{heading:the-feasibility-probe}
+
+% <!-- point: the-probe-tested-the-uncertain-part-first | The probe supplied initial evidence of semantic reasoning on equations, technical slides and handwritten notes. | terms: feasibility-probe, vision-language-model -->
+
+I tested the uncertain capability first. I gave a multimodal foundation model pictures of mathematical equations, technical slides, and handwritten notes. On those examples it produced useful transcriptions and alternative text. The results supplied initial evidence that generative AI could perform some of the semantic reasoning needed for remediation; they did not establish that it could reliably remediate arbitrary documents.
+
+% <!-- point: engineering-set-the-price-of-the-reasoning | Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures. -->
+
+Later experiments clarified the role of representation. Frontier agents inferred PDF structure through several tool interactions, while a foundation model given a prepared scaffold inferred structure in one pass on a separate prose fixture. The scaffolded pass achieved high agreement with its reference structure at much lower inference cost. Because the documents and interaction patterns differed, this was not a matched cost comparison at equivalent quality. It identified an architectural choice: which useful structure should the system supply, and which judgments should the foundation model make\citep{davis2026docable}?
+
+% <!-- point: cost-was-only-one-reason-not-to-hand-the-document-to-the-model | Cost was one reason among several: DocAble separated semantic judgment from consequential mutation, so foundation models reasoned over engineering representations, typed operations changed the artifact, independent validators checked mechanically establishable properties, and provenance was embedded with mutations so the change record could be reconstructed from the document. -->
+
+Cost was only one reason not to make the foundation model the remediation system. DocAble instead separated semantic judgment from consequential mutation. Foundation models reasoned over engineering representations; typed operations changed the artifact; independent validators checked properties that could be established mechanically; and provenance was embedded with consequential mutations, so that the eventual change record could be reconstructed from the document rather than trusted as an account generated by the reasoner.
+
+\subsection{The Two Rules of Agentic Software Engineering}\label{heading:the-two-rules-of-agentic-software-engineering}
+
+% <!-- point: not-reading-the-code-was-deliberate | Not reading the code was deliberate: inspecting agent-produced implementation would have bounded implementation throughput by the engineer's own reading capacity, so the first rule made reading the last resort and an engineering environment the surface through which work was directed and judged. | terms: fleet-scale -->
+
+I began with two rules.
+
+\textbf{Reading the code is the last resort.} If building DocAble required me to inspect the implementation produced by coding agents, then implementation throughput would remain bounded by my capacity to read code. I wanted to build an engineering environment in which I could direct work, understand the system, evaluate evidence, and decide whether changes were acceptable without routinely reconstructing those answers from implementation.
+
+% <!-- point: reading-the-code-was-the-escape-hatch | The rule did not forbid reading source: needing to read it pointed to a missing supervisory surface — a model, test, lint, instrument, or architectural boundary — so reading was the escape hatch, not the operating model. | terms: fleet-scale -->
+
+This did not mean that I refused to read source code. It meant that needing to read it pointed to a missing supervisory surface: a model, test, lint, instrument, architectural boundary, or other representation of the property I actually needed to reason about. Reading the code was the escape hatch, not the operating model.
+
+% <!-- point: good-fast-and-cheap-became-a-rule-for-the-factory | The second rule required the resulting system to be good, fast, and cheap — partly a DocAble requirement, partly a test of whether agents could help build a production system good enough to trust, fast enough to matter, and cheap enough to deploy at scale. -->
+
+\textbf{The resulting system should be good, fast, and cheap.} This was partly a requirement for DocAble and partly a test of agentic software engineering itself. I wanted to know whether agents could help build a production system that was not merely fast to develop, but good enough to trust, fast enough to matter, and cheap enough to deploy at scale. I therefore made all three requirements for the factory.
+
+% <!-- point: failing-any-one-of-the-three-fails-the-test | A fast factory producing poor software would fail the test, and so would a high-quality system that stayed prohibitively expensive to develop or operate; agentic implementation was valuable only if the engineering system around it achieved all three. -->
+
+A fast factory producing poor software would fail the test. So would a high-quality system whose development or operation remained prohibitively expensive. Agentic implementation was valuable only if the engineering system around it could achieve all three.
+
+\subsection{The Build, in Stages}\label{heading:the-build-in-stages}
+
+% <!-- point: the-build-moved-under-concrete-pressures | Format expansion, deployment, user failures and changed deadline pressure drove successive development stages. -->
+
+I began with PowerPoint, then generalized the system to Word and Excel and added PDF support as colleagues brought other documents (R1). Each new format tested assumptions that my own files had not exposed. Putting \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} online introduced authentication, deployment, institutional use, and unfamiliar workloads (R8). Users then found outputs that passed existing checkers while losing semantic equivalence, prompting validation grounded more directly in accessibility standards (R4). When the Department of Justice extended the deadline, I shifted more attention toward production hardening (R7).
+
+\autoref{build-stages-timeline} records the sequence. The stages mark changes in the engineering problem, not merely larger quantities of implementation. Supporting another format could reveal a weakness in the shared architecture; serving users could reveal a missing obligation that no development fixture had exercised.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/build-stages-timeline-a24e34269b.pdf}
+\caption[DocAble's development stages]{\emph{The build, in stages.} DocAble expanded from a feasibility probe through format support, institutional operation, and hardening. Each stage introduced obligations that changed the product and the environment governing its implementation.}
+\label{build-stages-timeline}
+\end{figure}
+
+\subsection{The Build, Measured Weekly}\label{heading:the-build-measured-weekly}
+
+% <!-- point: four-traces-read-in-sequence | The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures. -->
+
+The repository reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026\citep{davis2026docable}. \autoref{realization-over-time} brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions. They describe the activity and structure of the factory; none alone measures productivity.
+
+An \emph{Epic} represented a substantial engineering intention with a rationale, design, relevant invariants, phases, and acceptance criteria. Nontrivial designs received separate review using another foundation model, and a Definition-of-Done review assessed completion. One Epic could require several dispatches and many commits. Across the complete window, the reconstruction recovers \magevalue{seip_commits} work commits, \magevalue{seip_dispatches} dispatches, and \magevalue{seip_completions} affirmative completion claims.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-longitudinal-261109-4fdf2b18d2.pdf}
+\caption[Development activity and engineering structure]{\emph{Development activity and engineering structure over 31 weeks:} (a) reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory's growth, not the value or correctness of its output.}
+\label{realization-over-time}
+\end{figure}
+
+% <!-- point: the-control-count-is-evidence-of-investment | Models and registered verifier files accumulated; the inventories establish available structure rather than successful execution. | terms: governance-conversion -->
+
+The final snapshot identifies \magevalue{seip_models} model modules, \magevalue{seip_consumers} consumers of at least two models, and \magevalue{seip_static} static and \magevalue{seip_dynamic} dynamic verifier files. The inventory records an increasing investment in representations and checks; the examples below examine their engineering roles and consumers.
+
+% <!-- point: week-eleven-records-a-practice-change | Week 11 field notes and commit topics support a transition toward durable deterministic checks; first surviving records do not date the origin of the practices. -->
+
+Week 11 marks a deliberate change in my engineering practice. Notes from May 22 and 24 describe replacing repeated agent audits with deterministic checks, supported by typing, lint-authoring, and repair campaigns. The commit subjects and emerging formal Epic records agree with that account. They support an interpretation of a hardening campaign; the first surviving Epic or dispatch record does not establish when I first used agents, planning, or checks.
+
+% <!-- point: longitudinal-methods-bound-the-inference | Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish. -->
+
+The series require some care. Work commits are reconstructed from direct and expanded squash landings, with duplicates, empty commits, and integration bookkeeping excluded. Completion records are affirmative claims rather than independent outcome audits, and dispatch retention is uneven. Earlier model existence is traced by path so a later declaration convention does not create a false growth spike. Registered verifier files establish an available checking apparatus, not that every check ran.
+
+\subsection{The Support Ratio}\label{heading:support-ratio-curve}
+
+% <!-- index-def: support-ratio -->
+
+% <!-- point: the-environment-outgrew-the-product | Ten consistently categorized snapshots show the growing apparatus; support ratio measures investment rather than return. | terms: support-ratio, governance-target-product -->
+
+The source composition gives a different view of the investment (\autoref{support-ratio-curve}). Production includes remediation, web processing, the frontend, and shared services. The supporting apparatus includes tests, lints, tools, agent infrastructure, infrastructure-as-code, models, and indexed documentation. Historical snapshots and generated copies are excluded.
+
+Call apparatus divided by production the \textbf{support ratio}. At weeks 11, 21, and 31 it was approximately 2.6, 3.6, and \magevalue{seip_support_ratio}, respectively; it reached about 4.5 at week 17. The last snapshot contains \magevalue{seip_apparatus_loc} apparatus lines supporting \magevalue{seip_prod_loc} production lines. These are measurements at ten sampled revisions, with interpolation between them. A larger ratio is not a target. Tests, models, and operating tools carry different obligations, and supporting source earns its upkeep only while later work benefits from it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-seip-composition-261109-68ce0c8bdb.pdf}
+\caption[Product and supporting apparatus]{\emph{The product and its supporting apparatus:} composition at ten sampled revisions. The support ratio is apparatus divided by production: about 2.6× at week 11, 3.6× at week 21, and 3.8× at week 31. Lines between samples interpolate; the apparatus's size establishes investment, not its return.}
+\label{support-ratio-curve}
+\end{figure}
+
+% <!-- point: model-selection-was-an-engineering-decision | Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator. -->
+
+Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost --- the cheapest-adequate-judge rule of \magevalue{sec:engineering-the-environment} applied to the fabricator rather than to the validator.
+
+% <!-- point: the-exhibits-measure-what-the-requirements-cost | The exhibits show accumulated implementation and structure, leaving project feasibility as an author’s engineering judgment. | terms: governance-target-product -->
+
+Together, the measurements show sustained implementation accompanied by an expanding engineering environment. They do not isolate the cost of a requirement or the causal contribution of a control. They also leave a question for engineering judgment: would this project have been feasible under the same constraints without generative AI or the machinery built around it?
+
+% <!-- box-family: evidence -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Field note --- The counterfactual}\label{heading:fieldnote-counterfactual}
+
+\textbf{Within the actual constraints of this project---one primary engineer, an academic budget, and the development interval reported here---DocAble was not feasible for me without generative AI.} I would not have attempted a production system at this scope without commodity implementation capacity.
+
+Sustaining that delegation posed a second problem. Once the change volume exceeded what I could inspect conventionally, continuing required explicit representations, independent evidence, constraints, and gates. My judgment is that GenAI made the project feasible and the machinery that became MAGE made delegation at this rate feasible. This is an account of the project I could undertake, not a controlled estimate of either contribution.
+\end{quote}
+
+\section{Inside the Factory}\label{heading:inside-the-factory}
+
+% <!-- section-terms: modeling-principle, alignment-principle, governed-engineering-environment -->
+
+% <!-- point: source-code-stopped-being-an-adequate-interface | The growth in supporting source reflects investment in representations, derivations, and controls that answer system-level questions and govern later changes. | terms: modeling-principle -->
+
+As DocAble grew, source code alone stopped being an adequate engineering interface. Repository search could locate a symbol without explaining which services participated in a workflow, who owned a piece of state, or which resource bound a proposed change had to preserve. The growth in supporting source recorded in \autoref{support-ratio-curve} reflects my response to such problems. The following examples show what that investment made possible: representations that answered engineering questions directly, relationships from which the factory could derive checks and configuration, and controls that made selected obligations consequential for later changes.
+
+\subsection{What the Factory Knows}\label{heading:what-the-factory-knows}
+
+% <!-- point: the-census-is-live-not-frozen | The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory. | terms: modeling-principle -->
+
+The 31-week reconstruction identifies \magevalue{seip_models} model modules at the final snapshot. These representations change with the system and answer different engineering questions. Registries describe ownership and available operations; budgets make resource bounds explicit; state machines expose legal transitions; decision tables preserve policy distinctions. Some models describe the product, while others describe the agent fleet and its engineering environment. The factory represents both the software it produces and the process that produces it.
+
+% <!-- point: specimens-show-why-representations-afford-supervision | Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation. | terms: modeling-principle -->
+
+Each representation gives the engineer a purpose-built view of a consequential property. The model carries selected engineering knowledge that the supervisor can inspect directly, without reconstructing it from implementation. This applies the purposeful reduction developed in Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:one-problem-many-models|num} to factory supervision. \autoref{factory-census-specimens} shows six representative models, chosen for the variety of question, form, and consumer.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption[Census specimens and their supervisory consequences]{Six representative engineering models. Each row: the engineering question, the representation that answers it, what consumes it, and what the supervisor no longer reconstructs from implementation.}\label{factory-census-specimens}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Consumer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Supervisory consequence
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Engineering question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Representation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Consumer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Supervisory consequence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+
+Can a job always terminate legally? & Composed cross-service state-machine model with per-invariant facts & Exhaustive-state checkers; the workers\textquotesingle{} own transition tables & Legal progress and termination are reasoned over states and transitions, not a multi-thousand-line worker \\
+How much memory can a job need? & Peak-memory sizing model that upper-bounds a job and derives the deployment memory tier & Deployment configuration; regression tests on the bound & A resource bound is inspected directly rather than reconstructed from allocation behavior \\
+Which services exist, and what may call what? & Deployment topology plus a typed inter-service call-edge model & Deploy machinery; agents localizing changes & Ownership and boundaries are read from the map, not rediscovered per change \\
+May this user submit this document? & Entitlement decision table --- the single policy authority for the admission decision & The front door at upload time & The admission rule is one table; changing policy is editing a model, not hunting scattered conditionals \\
+What may touch a document format\textquotesingle s internals? & Registry of external seams plus typed format models owning all mutation & Build-time ban checks on raw library access & Raw library access outside the typed boundary is rejected at build time \\
+Which step changed this document element? & Per-mutation provenance stamps projected into a derived changelog & The customer-facing changelog; forensic queries & Diagnosis is a lookup over evidence, not a cross-file investigation \\
+\end{longtable}
+}
+
+\subsection{The Joins: What the Factory Can Derive and Enforce}\label{heading:the-joins-what-the-factory-can-derive-and-enforce}
+
+% <!-- point: a-repository-of-documentation-is-not-a-supervisory-environment | The factory checks relations among representations and uses selected results to determine whether work may proceed. | terms: alignment-principle -->
+
+DocAble connects its representations so the environment can derive requirements and check relations among them. These \textbf{joins} make selected engineering knowledge usable in decisions about whether work may proceed. The architecture resembles proof checking in one limited respect: a producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission\citep{ringer2019qed}. Three joins show the difference in increasing order of reach.
+
+% <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
+
+\textbf{Property facts → verification tier → required checker → blocking consequence.} Each invariant in the cross-service state-machine model carries declared property facts: how many concurrent lanes touch it, whether it is a safety or a liveness property, what state it ranges over. From those facts the model \emph{derives} a verification tier --- an invariant crossing multiple concurrent lanes demands exhaustive state-space exploration; a single-lane invariant demands a property test; a temporal obligation demands a model checker run. The tier is not advice: a check walks the model and fails when a mandated checker does not exist on disk. The supervisor need not choose a checker class afresh for every invariant. The encoded rule derives that requirement from the declared property facts, and the environment rejects a missing checker.
+
+% <!-- point: the-iam-join-derives-grants | The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time. | terms: alignment-principle -->
+
+\textbf{Service relationships × deployment wiring × runtime identity → an access-grant plan.} The typed inter-service edge model declares which service calls which, over which plane, under which identity. Deployment machinery consumes those edges and derives the invoker grants and token audiences each service needs --- and a coherence gate asserts at deploy time that the granted permissions match the modeled relationships. Least-privilege wiring is not a checklist a human re-audits; it is a projection of the service graph.
+
+% <!-- point: the-provenance-join-derives-the-changelog | The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp. | terms: alignment-principle -->
+
+\textbf{Mutation → stamp → derived account.} Every mutating operation in the remediation core writes a provenance stamp --- the verb, the pass, the visibility of the change --- and the customer-facing changelog is \emph{derived} from those stamps rather than authored beside them. A wiring validator identifies mutating paths that fail to stamp their work. The derived changelog provides structured evidence of the recorded mutations; the wiring check guards the obligation to record them.
+
+% <!-- pullquote -->
+
+\begin{quote}
+Modeling changed what the factory could know. Alignment changed what that knowledge could cause.
+\end{quote}
+
+\subsection{The Computation Graph: a Representation That Took Over Execution}\label{heading:the-computation-graph-a-representation-that-took-over-execution}
+
+% <!-- point: the-representation-became-authoritative-for-execution | Typed pass declarations determine dependency order and remain connected to analytical views by correspondence checks. | terms: governance-conversion -->
+
+The remediation graph makes a further connection: its representation determines execution. Each pass declares typed input and output relationships; the graph derives dependencies from those declarations, and execution machinery uses the dependencies to determine when work is ready. A blocking parity check holds the declarations and projected graph together. Composition therefore need not be reconstructed from behavior scattered across pass bodies.
+
+\magevalue{sec:interlude-one-problem-many-models} develops the architectural history, including the large presentation that exceeded page-chunked execution. Here the consequence is the mature capability: the same stable computation identities support execution and analytical views of critical paths, mutation boundedness, cost, and coverage. An analytical view can answer a question execution itself does not need to answer.
+
+% <!-- point: explicit-models-changed-what-was-checkable | Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return. | terms: modeling-principle -->
+
+Explicit models expanded the questions the environment could answer. A lifecycle model made illegal transitions explicit. An ownership model reduced a concurrency protocol to the states and interleavings needed to ask whether two workers could hold the same claim; a small purpose-built checker could then exhaustively explore that finite state space. Eventual termination --- a property over executions, not states --- was written as small temporal specifications and checked mechanically; with recovery disabled, the checker produced exactly the stranded execution the property was meant to exclude. Checking the model created a second obligation: why believe a property established over the model holds of the implementation? Conformance tests exercised production operations against the executable model, and when one such test drifted red for days after production changed, the durable response was correspondence machinery --- model-to-implementation checks selected automatically when modeled surfaces change. The factory then added machinery to keep the map true.
+
+\subsection{Substituting the Reasoning Engine}\label{heading:exploring-alternative-reasoning-engines}
+
+% <!-- point: reasoning-substitution-reuses-engineered-operations | Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass. -->
+
+DocAble separates the reasoning that proposes a repair from the machinery that changes the document. This permits substitution at two levels. For individual tasks, ModelSelector assigns a foundation model using task-specific configuration and capability requirements. The remediation graph stays the same while the model supplying a judgment changes. A per-task benchmark compares candidate models on quality, cost, and latency. At a coarser level, a general-purpose agent can choose and sequence repairs instead of following the production graph's orchestration.
+
+The PDF changeset interface gives these strategies a common way to request supported mutations. A proposed operation names its target and intended change; the applier resolves it against the current document, checks its preconditions, and records the outcome. The structured pipeline and an experimental agent can therefore reuse document operations, validation, and provenance while deciding differently what to repair. Human-directed editing uses the same operation vocabulary. \autoref{docable-reasoning-substitution} shows these architectural alternatives; the experiments below concern automated strategies.
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-reasoning-substitution-e499b821f0.pdf}
+\caption[Substitutable reasoning over the PDF changeset interface]{Substitutable reasoning, controlled mutation. Different reasoning strategies inspect the document model and propose supported edits through a common typed changeset interface. A controlled applier executes those edits; provenance and independent validation provide evidence about the result. The drawing shows the PDF changeset path. Some PDF operations still mutate directly outside this interface.}
+\label{docable-reasoning-substitution}
+\end{figure}
+
+
+This interface was still incomplete in November 2026. Dozens of PDF remediation passes retained direct-mutation paths, including repairs whose effects required additional operation types or more substantial restructuring. The common interface made some reasoning interchangeable; it did not make the entire pipeline replaceable. Extending the operation vocabulary was itself engineering work, especially where an edit changed several related structures or depended on targets created by an earlier edit.
+
+% <!-- point: reasoning-substitution-cost-depends-on-context-and-quality | A September 2026 single-PDF cost comparison measured the structured pipeline at about $0.0419 and estimated the agent's execution share at $2.29; the cost-accounting and quality limits prevent a claim of equal-quality substitution. -->
+
+I had expected that a more capable agent might sometimes lower total cost by inspecting the document more broadly and avoiding repeated specialized calls. An earlier experiment, in September 2026, compared the pipeline with an agent using DocAble's document tools on one handwritten PDF. It pointed the other way on cost. The pipeline's metered inference cost was about \$0.0419; the estimated agent execution cost was \$2.29.\magefootnote{reasoning-substitution-cost-accounting}{The agent figure was reconstructed from its transcript, including cached-input charges, rather than read from an API billing meter. A modeled minimal-context loop cost \$1.24; charging the whole experimental session gave \$6.92. These are alternative accounting scopes, not separate measured strategies.} Repeated processing of the agent's accumulated context accounted for much of the estimate. Both approaches had produced outputs with no failures on the evaluated veraPDF checks. The agent recovered more of the reference document structure, but had seen the reference sequence; this cost experiment could not establish an unbiased quality comparison.
+
+% <!-- point: a-completed-coached-loop-did-not-improve-the-measured-documents | In a November 2026 two-PDF evaluation, a completed second coached pass closed no additional findings on the harder document and cost $3.57 versus $1.35 for one pass; the clean document stopped after one pass in both arms. -->
+
+A November evaluation tested a narrower question: could a coached repair loop improve an agent's result? The loop inspected remaining findings and could request another repair pass. On two PDFs, it closed no additional findings beyond the single-pass agent. The harder document completed a second pass but retained the same 15 findings; its cost rose from \$1.35 to \$3.57. The other document had no remaining findings after one pass, so the loop stopped. The result did not justify promoting the loop to production. Both configurations already shared recently added document operations; a second round of reasoning supplied no measured benefit on this pair.
+
+The unresolved question is where additional reasoning earns its cost. Difficult semantic cases may justify a frontier agent, and an agent can help investigate failures or test what the specialized pipeline misses. Those uses require evidence about the quality gained as well as the inference bill. DocAble's architecture lets us investigate them while retaining the document representations, supported operations, and validation machinery already built. That retained work is engineering capital: a new reasoning strategy can inherit it without reproducing the engineering decisions it embodies.
+
+\section{The Factory in Operation}\label{heading:the-factory-in-operation}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+\subsection{From a Priority to Completed Work}\label{heading:from-a-priority-to-completed-work}
+
+% <!-- point: the-mature-production-flow | The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation and independently audited completion. -->
+
+How does one engineer keep several agents working without continually prompting each one? The workflow described here is the factory's November 3, 2026 configuration, following the measurements ending October 14. I record priorities and deployment prerequisites in a strategy document. An orchestrating agent selects ready work and coordinates its planning, implementation, and evaluation.
+
+A planning agent develops an \emph{epic}: a persistent work order recording the change's purpose, scope, phases, dependencies, and completion criteria. Its design document identifies consequential properties and the tests or analyses required for them. A separate agent reviews the plan; unresolved engineering decisions return to me. The work order preserves decisions across dispatches while leaving implementation choices within the stated requirements to the agents.
+
+% <!-- point: task-scoped-context-connects-models-to-dispatch | An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred. -->
+
+The phase dependencies determine which agents can work concurrently, as \autoref{docable-work-order-flow} shows. The orchestrator dispatches ready phases into isolated Git worktrees. Each agent first inspects its assigned component and records a refined plan, including target files, in its first commit. Before changing the implementation, it supplies those files to \emph{Query Repo}, which retrieves the associated models, invariants, tests, and static checks. A pre-commit check requires a record that this discovery occurred. Known obligations can therefore inform the agent's implementation choices from the outset.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-work-order-flow-de15c91f19.pdf}
+\caption[From engineering intent to completed work]{\emph{From engineering intent to completed work.} The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.}
+\label{docable-work-order-flow}
+\end{figure}
+
+Completed changes pass inexpensive checks before integration. Broader validation runs periodically against the combined code, and the deployment process reruns the full validation suite. Two changes may each work in isolation and still fail when combined, so separate worktrees do not remove the need to check the integrated result. \magevalue{sec:engineering-the-environment} explains the bottleneck that motivated this arrangement and the cost of delaying some checks.
+
+% <!-- point: repair-is-cheap-escalation-is-the-signal | Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer. -->
+
+Finally, an independent agent audits the epic against its completion criteria. It checks that the expected changes landed and that the required evidence supports completion. Missing work or failed checks lead to repair and another review. Problems the agents cannot resolve, including defects in the factory itself, return to me. The work order closes after the audit accepts the result.
+
+\subsection{What Escalated Failures Became}\label{heading:what-escalated-failures-became}
+
+% <!-- point: governance-conversion-is-an-empirical-claim-about-durable-structure | Six selected product and environment episodes show pressures, judgments and durable changes that later work inherited. | terms: governance-conversion -->
+
+Where did this factory machinery come from? The aggregate record shows accumulation; particular incidents explain the engineering decisions behind it. Four product episodes and two episodes in the development environment show different ways an observed problem became durable structure. The useful question in each is why that response addressed the failure and what future work could inherit.
+
+% <!-- point: destructive-library-behavior-became-a-typed-seam | A library operation that discarded accessibility structure led to typed mutation interfaces and checks rejecting raw access outside them. | terms: governance-conversion -->
+
+\textbf{Preservation required a controlled mutation boundary.} An early document operation produced a visually plausible result while discarding the tag structure that carried existing accessibility information. A convenient library call was therefore not an adequate interface for an operation whose obligation included preserving semantics.
+
+The response combined product architecture and development control. A canonical library policy and typed format model concentrated mutations behind an explicit interface; a build-time check rejected raw library access outside it. Later, a stale repository root caused that check to report green despite real findings, so the enforcement machinery needed repair too. The typed boundary narrowed how agents could change the document, while the check protected the boundary as the implementation evolved. Neither made the checking machinery immune to defects.
+
+% <!-- point: implicit-lifecycle-became-explicit-model | Slow dependencies and reflexive retry led to explicit lifecycle, ownership and progress evidence for recovery. | terms: governance-conversion -->
+
+\textbf{Recovery required a model of state and ownership.} Slow generation calls exposed a lifecycle whose status was written from scattered places and whose ordinary recovery reflex was to requeue. Under a slow dependency, that response amplified the load: each attempt timed out, another began, and every attempt incurred cost without a useful distinction between initial work and retry.
+
+I replaced that implicit behavior with named states and legal transitions, atomic claiming, and a rule against automatic requeue on ordinary failure. A later stale-owner sweep exposed another distinction: a slow worker is not necessarily a dead worker. Progress evidence became part of the recovery decision. The durable change was not simply a different timeout; it was a representation of when work could proceed, who could act, and what evidence justified recovery.
+
+% <!-- point: prompt-properties-preserved-useful-freedom | Unsupported numerical prompt demands became evidence-grounding obligations and checks while wording remained open. -->
+
+\textbf{Semantic judgment required an evidential obligation.} Agents writing prompts for DocAble's remediation models introduced numerical demands, such as a minimum number of facts in an image description. A source image might not contain enough evidence to support that many facts. The requirement then encouraged the model to supply content the image did not justify.
+
+Replacing one arbitrary count with another would retain the mistake. I instead modeled consequential prompt properties by kind and added checks, requiring descriptions to be grounded in source evidence. The agents could still choose the wording and organization. This converted an imprecise objective into an obligation appropriate to the semantic task, without requiring me to author every prompt or pretending that a check eliminated all hallucination\citep{davis2026docable}.
+
+% <!-- point: a-timeout-spoke-only-after-the-budget-was-spent | A timeout produced a provisional cost/time model and reportable evidence; the bound remained too weakly calibrated to justify blocking. | terms: governance-conversion -->
+
+\textbf{A performance model needed evidence before enforcement.} A document repair stalled in silence until the job timeout killed its subprocess after roughly eight minutes. The customer's progress bar remained at thirty-eight percent, and the budget was already spent. The incident led to a provisional per-chunk worst-case model against the job budget, with its seed retained as a timestamped observation rather than a permanent code constant.
+
+Instrumentation could report a would-be breach, but I did not make the model a production gate. Its bound was not calibrated strongly enough to justify rejecting jobs, and a false refusal could cost more than continued observation. \autoref{measurement-no-gate} shows this deliberate stopping point. The model made a risk inspectable and supplied a basis for further measurement; enforcement required an additional judgment about the evidence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/measurement-no-gate-300b62ff05.pdf}
+\caption[Measurement before enforcement]{\emph{Modeled and observed, not yet binding:} a timeout produced a provisional model and reportable evidence. Production admission does not depend on that model because its bound is not calibrated strongly enough to justify blocking. Observation can be useful before enforcement is warranted.}
+\label{measurement-no-gate}
+\end{figure}
+
+% <!-- point: an-unmade-decision-is-where-the-agent-guesses-worst | Destructive merge conflict handling led to removal of the unsafe fallback and explicit resolution of ambiguous cases. | terms: optionality-is-poison, governance-conversion -->
+
+\textbf{Merge automation needed explicit preservation semantics.} An automation kept stalling when agents edited the same file. A convenience option resolved conflicts by taking one side and dropping the other. That local remedy silently discarded real work. An audit could identify a dangerous conflict yet still fail to protect the repository if it only logged a warning.
+
+The repair removed the unsafe fallback and required human involvement for ambiguous merges. The consequential question was what information the integration process was permitted to discard. Leaving that decision implicit gave an autonomous actor a locally expedient choice with a destructive system-level effect. The environment had to make its diagnosis affect whether the merge could proceed; \magevalue{sec:when-guardrails-collide} develops the interaction.
+
+% <!-- index-def: optionality-is-poison -->
+
+% <!-- point: interacting-hooks-required-explicit-order | Turn-end reflection and stranded-work inspection required an explicit ordering constraint and model/configuration correspondence checks. | terms: governance-graph, governance-conversion -->
+
+\textbf{Useful controls needed an order when combined.} Two turn-end hooks exposed a different environment problem. One prompted reflection on notable or recurring failures that might warrant durable governance. The other prompted inspection for stranded work. That inspection could consume the remaining context before reflection completed. Each hook served a purpose; their composition could prevent one purpose from being served.
+
+The governance model therefore required reflection before stranded-work inspection. Its graph recorded the ordering constraint, topological sorting computed an order or reported a cycle, and a separate check compared modeled mechanisms with the configuration. The full example in \magevalue{sec:when-guardrails-collide} shows why engineering the environment includes relations among controls as well as their individual behavior.
+
+% <!-- point: the-case-contains-both-routes-to-durable-structure | The selected conversions coexist with structures designed prospectively from known obligations. | terms: governance-conversion -->
+
+These episodes were not the source of every useful structure. Some interfaces and architectural boundaries were designed from known obligations and later proved useful under change. Those are evidence of a design holding, not failures to be reconstructed after the fact. The factory accumulated through both prospective design and conversion of observed problems into decisions later work could reuse.
+
+\section{The Supervisor\textquotesingle s Job}\label{heading:the-supervisors-job}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+% <!-- point: the-preceding-subsections-recorded-substitutions | The Delegation Staircase names five stages in the author’s changing responsibilities; it is a chronology, not a maturity model. | terms: governance-conversion -->
+
+What was I doing as the factory acquired these capabilities? \autoref{mage-staircase} names five stages in my work: co-coder, QA, review lead, tech lead, and architect. The progression describes what this environment had become able to carry, not a prescribed maturity model for other teams.
+
+% <!-- point: rungs-compressed | Inspection gave way to delegated evaluation, deterministic checks, local reasoning and system-level models as the environment developed. | terms: governance-conversion -->
+
+Initially I read, judged, and merged the agent's changes. When generation exceeded my attention, a second agent took on some evaluation. Its recurring decidable findings identified work better performed by deterministic checks. Reviewers then specialized, while named zones gave agents enough ownership and boundary information to reason locally. Explicit architectural, behavioral, and ownership models eventually supplied system views for planning and review, and I rarely needed to inspect implementation directly.
+
+At that stage, a cross-format migration touching \magevalue{refactor_files} files and rewriting \magevalue{refactor_lines} lines took about \magevalue{refactor_hours} hours of agent time over a dinner break. The consequential engineering decision was that those files should change; the agents performed the migration. Model drift still required correspondence checks, and a failed representation or check could return work to direct inspection.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-staircase-ad5d286bc2.pdf}
+\caption[DocAble's delegation staircase]{\emph{The Delegation Staircase:} in DocAble's observed development, stronger representations and environmental enforcement supported delegation of larger units of work. Human attention shifted toward system-level decisions and unresolved judgments. A failure in either representation or enforcement could return work to direct inspection.}
+\label{mage-staircase}
+\end{figure}
+
+% <!-- point: the-staircase-has-two-interacting-supports | Modeling supplied system views and Alignment enforced selected repeatable obligations; judgment and upkeep remained necessary. | terms: alignment-principle, modeling-principle -->
+
+Two changes supported the progression. \textbf{Modeling} supplied views of the system that agents and I could use without reconstructing the implementation. \textbf{Alignment} made selected repeatable obligations enforceable, so a maintained check could evaluate further changes without an additional human inspection of each one.
+
+My attention moved toward deciding what should change, which properties mattered enough to represent or enforce, and what anomalous evidence meant. Ambiguous tradeoffs and failures in the factory still required judgment. The environment reduced the implementation I had to read; it did not settle those decisions or eliminate its own maintenance.
+
+\section{Does DocAble Work?}\label{heading:economics}
+
+% <!-- section-terms: remediation-cost -->
+
+\subsection{Human Remediation as a Reference}\label{heading:human-remediation-as-a-reference}
+
+% <!-- point: manual-remediation-provides-a-reference-not-an-oracle | The trained undergraduate corpus provides artifacts and billed labor for a reference workflow, not expert ground truth or matched labor savings. -->
+
+The engineering machinery would be of little value if its outputs did not serve the people who needed them. Purdue's undergraduate remediation effort provides a practical reference. Across approximately six months, \magevalue{seip_uta_workers} trained undergraduates billed \magevalue{seip_uta_hours} hours, and the recovered corpus contains \magevalue{seip_uta_pairs} identifiable before/after pairs from \magevalue{seip_uta_courses} courses. That is \magevalue{seip_uta_hours_per_pair} billed hours per pair. At an assumed typical wage of \$\magevalue{seip_uta_hourly_wage}, estimated direct labor is \$\magevalue{seip_uta_cost_per_pair} per pair. These are corpus-level quantities; individual document timings and subsequent review effort were not measured\citep{davis2026docable}.
+
+The student outputs document an institutional workflow rather than expert-verified accessibility. I developed DocAble against standards using independently obtained documents and did not examine the students' remediated files until near the end of development. Eligibility screening yielded \magevalue{seip_eval_eligible} pairs, randomly split by document and stratified by format into \magevalue{seip_eval_development} development documents and \magevalue{seip_eval_attempts} validation documents. One validation spreadsheet had prior development exposure. DocAble produced outputs for \magevalue{seip_eval_completed} attempts and failed on one PDF.
+
+% <!-- point: human-comparison-separates-syntax-and-semantics | The human-reference evaluation separately measures checker findings and transcript-based semantic improvements relative to the original. -->
+
+The evaluation in \autoref{docable-human-remediation-results} compared the original, human-remediated, and DocAble-remediated versions of each document along two dimensions. \textbf{Syntactic accessibility} concerns selected mechanically testable properties, measured with veraPDF's PDF/UA-1 checks and Microsoft Office's October 2026 Accessibility Checker. For each document, the study calculated the signed reduction in findings relative to the original, then summarized those reductions by format. A reduction does not establish that every accessibility obligation holds.
+
+\textbf{Semantic accessibility} asks what information the document conveys. A GPT-5.2 rubric assessment examined text transcripts, with the original identified and the two outputs presented under randomized labels concealing their provenance. The model judged individual criteria and supplied transcript evidence. A deterministic scorer credited improvements and penalized regressions relative to the original; an output-score difference within one point defined the parity band. The rubric was refined on the development partition before the validation run.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-human-evaluation-261109-342c45a2c1.pdf}
+\caption[Human-reference remediation results]{\emph{Remediation compared with the human reference:} (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Parity denotes similar measured improvement, not equivalent accessibility.}
+\label{docable-human-remediation-results}
+\end{figure}
+
+% <!-- point: human-comparison-results-vary-by-property | DocAble led on PDF and DOCX median checker reductions; humans led on PPTX. Of 62 rubric scores, 20 favored DocAble, 41 fell in parity, and one favored the human output. -->
+
+DocAble achieved larger median checker reductions for PDF and DOCX; the human workflow achieved larger reductions for PPTX. Both workflows had the same frequency of increased finding counts. The spreadsheet had no original findings, so its percentage reduction was undefined. The failed PDF's partial artifact was excluded from completed-output comparisons.
+
+Across the \magevalue{seip_eval_completed} scored outputs, the semantic rubric rated DocAble better on \magevalue{seip_eval_semantic_better}, within the parity band on \magevalue{seip_eval_semantic_parity}, and worse on \magevalue{seip_eval_semantic_worse}. Gains in complex-image descriptions accounted for much of its advantage. These are weighted document scores; the gain/regression panel separately counts document--criterion judgments, not unique defects.
+
+% <!-- point: semantic-example-exposes-the-checker-limit | A title-only description passed a checker but omitted table contents; a transcription improved access to those contents, while other examples favored human repair. -->
+
+One presentation makes the distinction concrete. It contained an image of a thermochemical table. The human-authored alternative text repeated the table's title, which satisfied a checker's requirement for alternative text but did not communicate the entries. DocAble supplied a description and a transcription next in the reading order. In the same presentation, the human version transcribed mathematical content that DocAble missed. These author-inspected examples explain disagreements between the measures; they are not systematic expert adjudication.
+
+% <!-- point: human-comparison-limits-define-the-result | Fallible transcript assessment, inconclusive criteria, changed checkers and unmeasured visual and screen-reader properties limit the results. -->
+
+The semantic assessment covered only part of the intended rubric. Of \magevalue{seip_eval_rubric_rows} criterion-level rows, \magevalue{seip_eval_inconclusive} were inconclusive for DocAble, including \magevalue{seip_eval_adapters_pending} whose automatic adapters were pending. Inconclusive judgments contributed no points; they were not evidence of satisfactory accessibility. Two scoring passes agreed on \magevalue{seip_eval_repeat_agreement} of \magevalue{seip_eval_completed} document classifications, but repeatability does not establish agreement with accessibility experts.
+
+The evaluation did not include vision-tier or screen-reader assessments, nor systematically measure complete content preservation or visual fidelity. The Office checker had also changed since the students' summer work, although all versions were evaluated with the same current tools. The findings show improvements on measured properties and identify remaining weaknesses. They do not establish full WCAG conformance or equivalent accessibility for outputs within the parity band.
+
+\subsection{Runtime and Cost}\label{heading:runtime-and-cost}
+
+% <!-- point: runtime-and-inference-are-measured-separately | The 63 attempts had median runtime 1.36 minutes; 62 completed outputs had median inference cost $0.066, excluding unmeasured review and full cloud costs. -->
+
+Median elapsed time across all \magevalue{seip_eval_attempts} attempts, including the failed attempt, was \magevalue{seip_eval_runtime_median_minutes} minutes. The \magevalue{seip_eval_completed} completed outputs had a median inference expenditure of \$\magevalue{seip_eval_inference_median_usd}, with a measured range of approximately \$\magevalue{seip_eval_inference_min_usd}--\$\magevalue{seip_eval_inference_max_usd}. Full cloud execution costs were not measured for this cohort. The paper separately reports coarse operating-cost estimates; those should not be mistaken for the measured distribution\citep{davis2026docable}.
+
+These quantities show that the specialized system can produce remediation outputs quickly and with little inference expenditure. The human reference required \magevalue{seip_uta_hours_per_pair} billed hours per document pair, compared with \magevalue{seip_eval_runtime_median_minutes} minutes of unattended DocAble runtime. These are different measures of production effort. Estimating labor savings would additionally require measuring the competent review and correction needed after automated remediation and human remediation. To the best of my knowledge, the faculty whose courses were manually remediated have not been surveyed regarding quality of the result and the need for subsequent changes. As to DocAble\textquotesingle s outputs, so far, faculty describe a few up to tens of minutes of follow-up per output.
+
+\subsection{General-Purpose Agents and a Specialized Service}\label{heading:agents-and-specialized-service}
+
+% <!-- point: agent-comparison-tests-economics-without-a-capability-boundary | A ten-document comparison found mixed checker quality and lower DocAble runtime and inference cost, without establishing comparable semantic quality. -->
+
+Could a general-purpose agent perform the remediation directly? A separate comparison in the DocAble study used community document tools, unlike the engineered DocAble operations reused in \hyperref[exploring-alternative-reasoning-engines]{Substituting the Reasoning Engine}. Opus and Fable each used one configuration on ten validation documents: five PDFs, two Word documents, two presentations, and one spreadsheet. Opus and DocAble completed all ten; Fable timed out on one PDF.
+
+Quality varied by format. On the four PDFs completed by every configuration, DocAble had the largest median reduction in checker findings. Both agents exceeded DocAble's reductions on the two Word documents, while human remediation led on the two presentations. Median runtime was 8.22 minutes for Opus, 7.77 for Fable, and 1.31 for DocAble; median agent inference costs were \$2.466 and \$3.977, compared with less than \$0.50 for DocAble. These costs concern this ten-document cohort, not the larger cohort underlying the \$\magevalue{seip_eval_inference_median_usd} median above.
+
+The result concerns particular configurations, community tools, and automatic findings. It does not establish comparable semantic quality or a lasting capability boundary between a specialized service and a general-purpose agent. The engineering problem includes acquiring a useful rubric, providing suitable tools, and delivering a workflow users can operate. A specialized service packages that accumulated work and can reduce the cost of applying it repeatedly; its advantage depends on the quality of that work, operating economics, and usability.
+
+\subsection{What the Economics Establish}\label{heading:what-the-economics-establish}
+
+% <!-- point: the-accounting-prices-the-case | Construction, operation, and retained human review are different costs; the SEIP development estimate is author-supplied. -->
+
+A factory's startup cost, its marginal change cost, and its carrying cost are different numbers --- a separation \magevalue{sec:toward-a-theory-of-mage} develops formally. The DocAble study estimates approximately \$110,000 to develop DocAble over six months: \$90,000 in engineering labor and \$20,000 in cloud expenditure. These are author-supplied estimates, not an independently audited ledger\citep{davis2026docable}. Much of that expenditure purchased reusable capability. Dividing it by the documents processed during development would confuse the cost of building the factory with the cost of using it.
+
+% <!-- point: measured-production-cost-leaves-review-and-carrying-cost-open | Startup investment, inference expenditure and retained review are separate costs; the case does not establish institutional savings. -->
+
+The alternatives incur costs in different places. Manual remediation purchases labor for each document. General-purpose agents need a rubric, tools, and supervision. A specialized service incurs development and maintenance costs to make the recurring workflow easier to run. Cheap output production is therefore only part of the return on the factory. Establishing that the outputs serve their readers, integrating the service into institutional work, and maintaining it remain engineering and economic obligations.
+
+\section{Liability}\label{heading:liability}
+
+% <!-- section-terms: governance-conversion -->
+
+% <!-- point: the-map-pointed-at-a-ghost | A model kept naming a moved symbol and stayed authoritative-looking for days — accumulated structure fails in its own ways. | terms: governance-conversion -->
+
+The factory also introduced substantial maintenance costs and new failure modes. One model named a code symbol that was later moved and renamed. Nothing invalidated the reference; the model continued to look authoritative, agents continued to reason from it, and the failure surfaced days later during deployment. A later audit showed the stale pointer was a class, not a one-off --- re-running closed work against current code found genuine model-to-code drifts a green definition of done had missed. That incident is why correspondence checking exists, and it generalizes.
+
+% <!-- point: accumulated-structure-has-carrying-costs | Models, controls and evidence require maintenance; the apparatus can stop being worth its upkeep. | terms: governance-conversion -->
+
+The apparatus requires maintenance of its own. Models drift, controls conflict, and evidence becomes stale as workloads change. A gate can continue enforcing an obsolete assumption long after the incident that justified it. Correspondence checks help detect some of these failures, but must themselves be operated and repaired. At the final snapshot, supporting source was about \magevalue{seip_support_ratio} times the production code. Its size is a liability as well as an investment; some of it will cease to justify its upkeep.
+
+% <!-- point: the-claim-is-bounded-one-engineer-one-ecosystem | The evidence has clear limits: one longitudinal case, one primary engineer, one model ecosystem, no controlled comparison — the case establishes mechanism and sequence, not prevalence. | terms: field-report -->
+
+The evidence has clear limits. This is one longitudinal production case led by one primary engineer directing an agent fleet, using one contemporary model ecosystem, without a controlled comparison against another engineering process. It cannot establish that another organization will encounter the same failures, build the same mechanisms, or achieve the same economics --- and checker scores do not establish complete end-user accessibility. What the case can establish is mechanism and sequence: these pressures occurred, these responses followed, and selected structures persisted long enough to be exercised under continuing change.
+
+{[}appendix: appendix-practicing-mage{]} offers a practical starting point for applying these techniques, including brownfield migration, operation of a governed engineering environment, and measurement.
+
+% <!-- point: turn-outward-to-other-factories | DocAble's organization of production and preservation of obligations incurred maintenance costs; public accounts can show whether related problems and responses recur under different organizational conditions. -->
+
+DocAble shows how one software factory developed as implementation capacity increased. The resulting machinery addressed two related concerns: organizing production so that agents could perform substantial work without requiring continuous human supervision, and preserving selected product and engineering obligations as that work proceeded. The case also shows the cost of these arrangements. Models, checks, and procedures had to be created, connected to implementation, and maintained as the system changed.
+
+Those observations raise a broader question. Were these problems peculiar to DocAble and its one-engineer development process, or were other organizations encountering similar pressures as they introduced agents into software production? The public accounts examined next describe factories built under different organizational conditions. They cannot provide the same longitudinal evidence, but they can show whether the engineering problems and responses identified here appear elsewhere.

@@ -1,10 +1,10 @@
 {
-  "_note": "HAND-AUTHORED source for the book's ARGUMENT-SPINE model — the book's linear argument as an ordered run of numbered claims, plus the per-chapter labeling of which spine claims each chapter advances. This file IS edited by hand; argument-spine.json is generated from it (`python3 book-models/argument_spine_model.py regenerate`). Mirrors claims_declared.json's declared-source→generated-artifact shape. WHY A NEW MODEL, NOT AN EXTENSION: the claims model holds unordered stances with a contradiction predicate; the Big-Ideas model holds six fixed landing slots. A spine claim is neither — it is an ordered STEP in the argument, and its distinctive fields (order, seed provenance, reconciliation links, chapter advancement) belong to no sibling. The spine does not restate the siblings as a second source: each spine claim RECONCILES into the sibling models via `reconciles` links (claim ids from claims_declared.json; big-idea slugs from landing-big-ideas.json) and cites the author's seed statements (`seeds`, the 10-statement draft in book/_design/book-editorial-discipline-directive-260802.md Part A Task 1). Each spine claim: {id, order, statement (<=32 words, split()-counted), seeds[], reconciles: {claims[], big_ideas[]}, reviewed_hash (AS8 freshness seed — the statement hash the chapter labels were reviewed against; a changed statement reddens its advancing chapters until re-reviewed)}. `chapter_advances` maps every outline chapter slug to the spine-claim ids it advances; `chapter_exemptions` marks the chapters whose breadth (or silence) is their job; `claim_exemptions` is the claim-side analogue — genuine premises marked `front-loaded-by-design` (or `bridge`) so they are NOT flagged thin — both with a reason from the closed enums in argument_spine_model.py. The FLAGS are DERIVED by the generator, never authored, informational, and never gate: chapter-side (a non-exempt chapter advancing 0 claims, or more than 3) AND claim-side (a non-exempt claim advanced by 0 chapters or only within Part 0/1 = thin; a claim advanced by more than OVERMAP_CAP chapters = an overmapping-audit surface).",
+  "_note": "HAND-AUTHORED source for the book's ARGUMENT-SPINE model \u2014 the book's linear argument as an ordered run of numbered claims, plus the per-chapter labeling of which spine claims each chapter advances. This file IS edited by hand; argument-spine.json is generated from it (`python3 book-models/argument_spine_model.py regenerate`). Mirrors claims_declared.json's declared-source\u2192generated-artifact shape. WHY A NEW MODEL, NOT AN EXTENSION: the claims model holds unordered stances with a contradiction predicate; the Big-Ideas model holds six fixed landing slots. A spine claim is neither \u2014 it is an ordered STEP in the argument, and its distinctive fields (order, seed provenance, reconciliation links, chapter advancement) belong to no sibling. The spine does not restate the siblings as a second source: each spine claim RECONCILES into the sibling models via `reconciles` links (claim ids from claims_declared.json; big-idea slugs from landing-big-ideas.json) and cites the author's seed statements (`seeds`, the 10-statement draft in book/_design/book-editorial-discipline-directive-260802.md Part A Task 1). Each spine claim: {id, order, statement (<=32 words, split()-counted), seeds[], reconciles: {claims[], big_ideas[]}, reviewed_hash (AS8 freshness seed \u2014 the statement hash the chapter labels were reviewed against; a changed statement reddens its advancing chapters until re-reviewed)}. `chapter_advances` maps every outline chapter slug to the spine-claim ids it advances; `chapter_exemptions` marks the chapters whose breadth (or silence) is their job; `claim_exemptions` is the claim-side analogue \u2014 genuine premises marked `front-loaded-by-design` (or `bridge`) so they are NOT flagged thin \u2014 both with a reason from the closed enums in argument_spine_model.py. The FLAGS are DERIVED by the generator, never authored, informational, and never gate: chapter-side (a non-exempt chapter advancing 0 claims, or more than 3) AND claim-side (a non-exempt claim advanced by 0 chapters or only within Part 0/1 = thin; a claim advanced by more than OVERMAP_CAP chapters = an overmapping-audit surface).",
   "spine": [
     {
       "id": "abundant-implementation",
       "order": 1,
-      "statement": "Coding agents make implementation abundant, fast, and cheap — and individually unreliable.",
+      "statement": "Coding agents make implementation abundant, fast, and cheap \u2014 and individually unreliable.",
       "seeds": [
         1
       ],
@@ -18,12 +18,12 @@
       "reviewed_hash": "36f4f3b40095",
       "quantifiable": true,
       "reality_claim": true,
-      "measurand": "throughput and cost per change — velocity, per-document cost, refactor wall-clock"
+      "measurand": "throughput and cost per change \u2014 velocity, per-document cost, refactor wall-clock"
     },
     {
       "id": "fault-lies-in-instructions",
       "order": 2,
-      "statement": "Treat a bad output first as evidence about the instructions, representation, task boundary, or environment — not automatically as a fixed capability ceiling.",
+      "statement": "Treat a bad output first as evidence about the instructions, representation, task boundary, or environment \u2014 not automatically as a fixed capability ceiling.",
       "seeds": [
         1
       ],
@@ -95,7 +95,7 @@
     {
       "id": "govern-the-environment",
       "order": 6,
-      "statement": "Build the environment first: encode each obligation as a mechanism the environment enforces — mechanized, not remembered — so quality is a property of the ground.",
+      "statement": "Build the environment first: encode each obligation as a mechanism the environment enforces \u2014 mechanized, not remembered \u2014 so quality is a property of the ground.",
       "seeds": [
         5
       ],
@@ -111,7 +111,7 @@
       "reviewed_hash": "78b391707b50",
       "quantifiable": true,
       "reality_claim": true,
-      "measurand": "support-apparatus LoC against production LoC — the build-the-environment-first revealed preference"
+      "measurand": "support-apparatus LoC against production LoC \u2014 the build-the-environment-first revealed preference"
     },
     {
       "id": "modeling-principle",
@@ -260,7 +260,7 @@
     {
       "id": "grounded-in-one-case",
       "order": 14,
-      "statement": "The DocAble case grounds the method and motivates hypotheses for broader use — a single-case field report, never a proof.",
+      "statement": "The DocAble case grounds the method and motivates hypotheses for broader use \u2014 a single-case field report, never a proof.",
       "seeds": [
         10
       ],
@@ -279,7 +279,7 @@
     {
       "id": "conversions-compound",
       "order": 15,
-      "statement": "Each conversion banks engineering capital that lowers the future cost of change, so effort compounds — later work extends capability instead of re-solving settled problems, while that capital stays fit.",
+      "statement": "Each conversion banks engineering capital that lowers the future cost of change, so effort compounds \u2014 later work extends capability instead of re-solving settled problems, while that capital stays fit.",
       "seeds": [
         6,
         7
@@ -468,6 +468,19 @@
     ],
     "agentic-engineering-beyond-software": [
       "grounded-in-one-case"
+    ],
+    "evaluating-docable": [
+      "grounded-in-one-case"
+    ],
+    "part-2-intro": [
+      "modeling-principle"
+    ],
+    "the-engineering-object": [
+      "govern-the-environment"
+    ],
+    "what-the-evidence-supports": [
+      "govern-the-environment",
+      "seat-moves"
     ]
   }
 }

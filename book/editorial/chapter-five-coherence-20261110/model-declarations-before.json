@@ -1,0 +1,126 @@
+{
+  "source_revision": "b28acdc700304fe78fc14e9bcfa0c516aa9941d6",
+  "reason": "Reconcile affected Chapter 5 outcomes and shape assessments to the coherent revised prose; no new outcome or taxonomy added.",
+  "rows": [
+    {
+      "source": "book-models/outcomes_declared.json",
+      "row_before": {
+        "granularity": "chapter",
+        "primary_unit": "inside-docables-software-factory",
+        "verb": "trace",
+        "obj": "how engineering failures leave behind several FORMS of durable capital \u2014 representation, decision rule, deterministic check, behavioral model, derived provenance, provisional measurement \u2014 some granted authority and some deliberately not, reading the case as evidence of mechanism and sequence rather than prevalence",
+        "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the two routes to durable structure, and state what a single longitudinal case can and cannot establish.",
+        "provenance": "declared",
+        "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the up-front confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'."
+      }
+    },
+    {
+      "source": "book-models/outcomes_declared.json",
+      "row_before": {
+        "granularity": "chapter",
+        "primary_unit": "inside-docables-software-factory",
+        "verb": "explain",
+        "obj": "why document accessibility is a hard, high-burden problem worth this machinery",
+        "statement": "After this chapter, the reader can explain the accessibility problem the case-study system solves and why a document is not just a file.",
+        "provenance": "declared",
+        "anchor": "Section titles 'a-noble-idea-with-a-crushing-implementation', 'the-rule-that-changed-the-burden', 'why-a-document-is-not-just-a-file'."
+      }
+    },
+    {
+      "source": "book-models/outcomes_declared.json",
+      "row_before": {
+        "granularity": "chapter",
+        "primary_unit": "inside-docables-software-factory",
+        "verb": "map",
+        "obj": "the project's stages to the kinds of work each demanded and the velocity each produced",
+        "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
+        "provenance": "declared",
+        "anchor": "Section titles 'six-stages-then-a-seventh', 'velocity', 'the-kinds-of-work-it-required'."
+      }
+    },
+    {
+      "source": "book-models/outcomes_declared.json",
+      "row_before": {
+        "granularity": "chapter",
+        "primary_unit": "inside-docables-software-factory",
+        "verb": "trace",
+        "obj": "how the built system forced the method out of it \u2014 the delegation staircase from solo co-coder to architect, each rung safe only because the step below minted the control it needed",
+        "statement": "After this chapter, the reader can trace the delegation staircase \u2014 co-coder, QA, review lead, tech lead, architect \u2014 by which the built system forced MAGE out of it, and can name why each rung was safe to climb only because the step below first minted the control that caught what the delegation dropped.",
+        "provenance": "declared",
+        "anchor": "The merged chapter: 'What ultimately got built' (six-responsibility tour + system-overview figure), 'The LLM as a function call' (#llm-as-function-call), and 'The staircase' with the five rung lead-ins (Co-coder / QA / Review lead / Tech lead / Architect) + the mage-staircase figure."
+      }
+    },
+    {
+      "source": "book-models/outcomes_declared.json",
+      "row_before": {
+        "granularity": "chapter",
+        "primary_unit": "mage-in-the-wild",
+        "verb": "analyze",
+        "obj": "seven independently documented engineering systems as software factories under one consistent lens \u2014 what increased realization, what work inherits, what structures supervision, what stays human \u2014 without mistaking corroboration for a controlled test",
+        "statement": "After this chapter, the reader can analyze an independently documented engineering system as a software factory \u2014 apply the six-question lens, place its public evidence against the modeling ceiling, and state the common asymmetry the reports expose \u2014 without mistaking corroboration across reconstructions for a controlled test.",
+        "provenance": "declared",
+        "anchor": "The seven factory-case reconstructions, the shared-baseline/differences section with the modeling-ceiling tiers, and the closing common-asymmetry diagnosis in the chapter with identity label 'mage-in-the-wild'."
+      }
+    },
+    {
+      "source": "book-models/chapter_shape_declared.json",
+      "row_before": {
+        "slug": "mage-in-the-wild",
+        "opening": {
+          "failure_question": "explicit",
+          "answer": "explicit",
+          "thesis_link": "implicit",
+          "thesis_target": "both"
+        },
+        "closing": {
+          "kind": "synthesis"
+        },
+        "delivers": {
+          "artifacts": [
+            {
+              "type": "worked-example",
+              "name": "Six unequal public factory reconstructions: institutional obligations, inherited pipelines, shared knowledge, review capacity, harness evaluation, and integrated permissions"
+            }
+          ],
+          "artifact_would_help": false
+        },
+        "note": "Author-directed focus revision, 2026-11-09: six unequal cases use four factory questions without the supplier/representation taxonomy. Cloudflare, Spotify and Shopify retain detailed mechanisms; Uber emphasizes measured production and reviewer costs; Kiro supplies harness/evaluation evidence; GitLab is brief. Siemens is a short Chapter 2 modeling footnote. The separate factory-engineering section is archived; the coda retains process design, tolerance and human accountability.",
+        "opening_anchor": "DocAble showed how one engineer assembled a factory around coding agents. What",
+        "closing_anchor": "it governs. This is the carrying-cost question from \u00a75.1 in operational form."
+      }
+    },
+    {
+      "source": "book-models/chapter_shape_declared.json",
+      "row_before": {
+        "slug": "inside-docables-software-factory",
+        "opening": {
+          "failure_question": "explicit",
+          "answer": "explicit",
+          "thesis_link": "explicit",
+          "thesis_target": "both"
+        },
+        "closing": {
+          "kind": "transition"
+        },
+        "delivers": {
+          "artifacts": [
+            {
+              "type": "table",
+              "name": "the census-specimen table (engineering question / representation / consumer / supervisory consequence)",
+              "anchor": "factory-census-specimens"
+            },
+            {
+              "type": "worked-example",
+              "name": "the MAGE-staircase figure",
+              "anchor": "mage-staircase"
+            }
+          ],
+          "artifact_would_help": false
+        },
+        "note": "Chapter 5 revision (2026-11-09): the depth case begins with one engineer directing agents and the coupled product/factory obligations. Requirements lead through feasibility, build stages, four longitudinal measures, and source composition into the mature factory. The section retains the census specimens, detailed joins, alternative-reasoner pilot, work-order workflow, and six governance-conversion episodes. The supervisory staircase precedes Does DocAble Work?, which develops the human-reference evaluation before the smaller agent comparison and economics. Liability closes the case and turns outward to other factories. Unique methods and measurement receipts appear in Appendix G; duplicated architectural narratives are archived and linked to Chapters 3 and 4.",
+        "opening_anchor": "> ### This section illustrates {#illustrates} > > \u2713 The Modeling Principle",
+        "closing_anchor": "that question does not depend on anyone else having heard of MAGE."
+      }
+    }
+  ]
+}

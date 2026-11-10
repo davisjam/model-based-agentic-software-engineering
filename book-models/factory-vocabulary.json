@@ -15,7 +15,7 @@
     "foreshadowing_pairs": 4,
     "misuse_named": 0,
     "misuse_author_defended": 1,
-    "author_named_sections": 14
+    "author_named_sections": 10
   },
   "partition": "control-is-a-role-not-a-bin",
   "formulation": "Fabricators build the product from models, using tools, subject to controls.",
@@ -251,8 +251,9 @@
     ],
     "software": [
       "5.2-inside-docables-software-factory.md",
-      "5.3-other-agentic-software-factories.md",
-      "5.4-two-problems-of-factory-engineering.md"
+      "5.3-evaluating-docable.md",
+      "5.4-other-agentic-software-factories.md",
+      "5.5-engineering-the-factory.md"
     ]
   },
   "misuse_collocations": [
@@ -260,7 +261,7 @@
       "phrase": "production machinery",
       "reassign_to": "",
       "confidence": "author-defended",
-      "note": "NOT a finding. The author defends this phrase — in the opening contrast of the two-problems section and again in the factories-inside-and-outside subsection — because DocAble genuinely has orchestration, merge, and execution machinery and the contrast is the argument. With `machinery` demoted from defined category to ordinary prose, the phrase is simply good English; the row survives so a later pass does not \"fix\" it into a term."
+      "note": "Author-defended ordinary wording for the orchestration, merge, and execution mechanisms in DocAble. The longer factory-engineering discussion was archived on 2026-11-09; this phrase remains a prose choice, not a taxonomy category."
     }
   ],
   "author_named_sections": [
@@ -295,39 +296,19 @@
       "heading": "The Supervisor's Job"
     },
     {
-      "id": "§5.2.6",
-      "file": "5.2-inside-docables-software-factory.md",
-      "heading": "Economics"
-    },
-    {
-      "id": "§5.2.7",
-      "file": "5.2-inside-docables-software-factory.md",
-      "heading": "Liability"
-    },
-    {
       "id": "§5.3",
-      "file": "5.3-other-agentic-software-factories.md",
-      "heading": ""
-    },
-    {
-      "id": "§5.4 opening",
-      "file": "5.4-two-problems-of-factory-engineering.md",
+      "file": "5.3-evaluating-docable.md",
       "heading": "*opening*"
     },
     {
-      "id": "§5.4.1",
-      "file": "5.4-two-problems-of-factory-engineering.md",
-      "heading": "Process Design and Tolerance"
+      "id": "§5.3 maintenance",
+      "file": "5.3-evaluating-docable.md",
+      "heading": "Limitations and Maintenance Costs"
     },
     {
-      "id": "§5.4.2",
-      "file": "5.4-two-problems-of-factory-engineering.md",
-      "heading": "The Engineer in the Factory"
-    },
-    {
-      "id": "§5.4.3",
-      "file": "5.4-two-problems-of-factory-engineering.md",
-      "heading": "Factories Inside and Outside the Organization"
+      "id": "§5.4",
+      "file": "5.4-other-agentic-software-factories.md",
+      "heading": ""
     },
     {
       "id": "the coda",

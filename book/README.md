@@ -66,7 +66,7 @@ book/
     4.3-brownfield-engineering.md
     4.4-engineering-the-environment.md
   part5/  (Part 5 — DocAble Among Other Software Factories)
-    5.1-software-factory.md … 5.4-what-the-factories-show.md
+    5.1-software-factory.md … 5.5-engineering-the-factory.md
   part6/  (Part 6 — The Theory)
     6.1-toward-a-theory-of-mage.md … 6.5-what-the-theory-claims.md
   part7/  (Part 7 — The Profession)

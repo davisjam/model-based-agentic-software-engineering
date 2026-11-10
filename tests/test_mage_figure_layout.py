@@ -107,6 +107,26 @@ class InsetPlacementPolicyTests(unittest.TestCase):
 
 
 
+class PrintColumnProjectionTests(unittest.TestCase):
+    def test_boundaries_are_typed_inert_markers_in_web_projection(self):
+        import book_ir
+        import build_book
+        from tests.test_native_site_boundaries import lint
+        text = ('Before.\n\n<!-- print-columns-start: reasoning-horizon-fig -->\n\n'
+                'Preserved body.\n\n<!-- print-columns-end: reasoning-horizon-fig -->\n\nAfter.')
+        for name in ['print-columns-start', 'print-columns-end']:
+            self.assertIn(name, build_book.MARKER_KEYWORDS)
+            self.assertIn(name, lint.RECOGNIZED)
+        chapter = book_ir.parse_records([{'slug': 'example', 'part': 1, 'body_md': text}]).chapters[0]
+        self.assertEqual([b.directive for b in chapter.blocks if b.kind is book_ir.BlockKind.DIRECTIVE],
+                         ['print-columns-start', 'print-columns-end'])
+        html = build_book.md_to_html(text)
+        self.assertNotIn('print-columns', html)
+        for phrase in ['Before.', 'Preserved body.', 'After.']:
+            self.assertEqual(html.count(phrase), 1)
+        self.assertNotIn('print-colums-start', lint.RECOGNIZED)
+
+
 class CompactHorizonColumnsTests(unittest.TestCase):
     def fixture(self):
         figure = (r'\begin{figure}[htbp]\centering'

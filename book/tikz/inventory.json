@@ -1946,10 +1946,10 @@
     "svg_description": "Three equal reasoning-strategy boxes—structured pipeline, general-purpose agent, and human-directed editing—converge on a typed changeset containing target, operation, and arguments from a closed mutation vocabulary. The PDF path continues through a controlled applier that resolves targets, checks preconditions, applies supported mutations, and records outcomes; a structured document model of typed PDF objects; and a result with applied-operation provenance and independent validation. A return arrow makes the model available to all reasoning strategies for inspection. A separate dashed note says that some PDF operations still mutate directly outside the common changeset interface. Other formats have their own model implementations."
   },
   {
-    "chapter": "5.2-inside-docables-software-factory",
+    "chapter": "5.3-evaluating-docable",
     "source": "assets/docable-human-evaluation-261109.svg",
     "caption": "*Remediation compared with the human reference:* (a) median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. Percentage reductions exclude documents with no original findings. Parity denotes similar measured improvement, not equivalent accessibility. [short: Human-reference remediation results]",
-    "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "native_context": "book/latex/sources/part5/5.3-evaluating-docable.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/docable-human-evaluation-261109.json",
     "generator": "book/figures/docable-case-261109/generate.py",

@@ -2622,7 +2622,6 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
 _CODA_SLUGS = frozenset({
     "2.6-modeling-summary",
     "3.6-alignment-summary",
-    "5.5-engineering-the-factory",
     "6.5-what-the-theory-claims",
     "7.5-what-cannot-be-delegated",
 })

@@ -600,6 +600,8 @@ def emit(chapters: list[dict], extras: list[dict],
     for retired, (target, title) in {
         "0.3-the-mage-method-at-a-glance": (
             "0.2-what-this-book-argues.html", "What This Book Argues"),
+        "5.3-other-agentic-software-factories": (
+            "5.4-other-agentic-software-factories.html", "Other Agentic Software Factories"),
         "1.6-problem-summary": (
             "1.5-the-new-engineering-problem.html", "From the Engineering Problems to MAGE"),
     }.items():

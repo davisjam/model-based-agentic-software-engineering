@@ -281,37 +281,37 @@
       "granularity": "chapter",
       "primary_unit": "inside-docables-software-factory",
       "verb": "trace",
-      "obj": "how engineering failures leave behind several FORMS of durable capital — representation, decision rule, deterministic check, behavioral model, derived provenance, provisional measurement — some granted authority and some deliberately not, reading the case as evidence of mechanism and sequence rather than prevalence",
-      "statement": "After this chapter, the reader can trace how a failure becomes durable engineering capital (or deliberately remains provisional), distinguish the two routes to durable structure, and state what a single longitudinal case can and cannot establish.",
+      "obj": "how selected product and factory failures became durable representations, procedures, checks, and controls, while some evidence remained provisional",
+      "statement": "After this chapter, the reader can trace selected governance conversions, distinguish incident-driven changes from prospectively designed structure, and explain how those structures changed later work.",
       "provenance": "declared",
-      "anchor": "The eight episode sections under the standardized template ('The instruction satisfied to the letter' through 'Measurement: the story that stops before the gate', 6.4.1-6.4.8), the up-front confirmation 'Not every useful structure has an incident arc' (6.4.9), and the bounded epistemic close 'What this case supports' (6.4.10) in the chapter with identity label 'failures'."
+      "anchor": "point:governance-conversion-is-an-empirical-claim-about-durable-structure; point:the-case-contains-both-routes-to-durable-structure."
     },
     {
       "granularity": "chapter",
       "primary_unit": "inside-docables-software-factory",
       "verb": "explain",
-      "obj": "why document accessibility is a hard, high-burden problem worth this machinery",
-      "statement": "After this chapter, the reader can explain the accessibility problem the case-study system solves and why a document is not just a file.",
+      "obj": "the accessibility obligations and production requirements that shaped DocAble and its factory",
+      "statement": "After this chapter, the reader can explain how document-accessibility requirements shaped both the service and the production system governing changes to it.",
       "provenance": "declared",
-      "anchor": "Section titles 'a-noble-idea-with-a-crushing-implementation', 'the-rule-that-changed-the-burden', 'why-a-document-is-not-just-a-file'."
+      "anchor": "The opening product/factory distinction, heading:nearly-free (The Problem), docable-requirements, and point:requirements-explain-the-size."
     },
     {
       "granularity": "chapter",
       "primary_unit": "inside-docables-software-factory",
       "verb": "map",
-      "obj": "the project's stages to the kinds of work each demanded and the velocity each produced",
-      "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
+      "obj": "the project stages, their changing engineering pressures, and the scope of the longitudinal measurements",
+      "statement": "After this chapter, the reader can relate DocAble\u2019s development stages to the obligations they exposed and distinguish measurements of activity and structure from effectiveness.",
       "provenance": "declared",
-      "anchor": "Section titles 'six-stages-then-a-seventh', 'velocity', 'the-kinds-of-work-it-required'."
+      "anchor": "heading:the-build-in-stages; build-stages-timeline; heading:the-build-measured-weekly; heading:support-ratio-curve."
     },
     {
       "granularity": "chapter",
       "primary_unit": "inside-docables-software-factory",
       "verb": "trace",
-      "obj": "how the built system forced the method out of it — the delegation staircase from solo co-coder to architect, each rung safe only because the step below minted the control it needed",
-      "statement": "After this chapter, the reader can trace the delegation staircase — co-coder, QA, review lead, tech lead, architect — by which the built system forced MAGE out of it, and can name why each rung was safe to climb only because the step below first minted the control that caught what the delegation dropped.",
+      "obj": "the changing supervisory role as representations and controls supported further delegation",
+      "statement": "After this chapter, the reader can trace the Delegation Staircase and explain how models, evaluation, and controls changed the author\u2019s supervisory work.",
       "provenance": "declared",
-      "anchor": "The merged chapter: 'What ultimately got built' (six-responsibility tour + system-overview figure), 'The LLM as a function call' (#llm-as-function-call), and 'The staircase' with the five rung lead-ins (Co-coder / QA / Review lead / Tech lead / Architect) + the mage-staircase figure."
+      "anchor": "heading:the-supervisors-job; point:the-preceding-subsections-recorded-substitutions; point:rungs-compressed; mage-staircase."
     },
     {
       "granularity": "chapter",
@@ -344,10 +344,10 @@
       "granularity": "chapter",
       "primary_unit": "mage-in-the-wild",
       "verb": "analyze",
-      "obj": "seven independently documented engineering systems as software factories under one consistent lens — what increased realization, what work inherits, what structures supervision, what stays human — without mistaking corroboration for a controlled test",
-      "statement": "After this chapter, the reader can analyze an independently documented engineering system as a software factory — apply the six-question lens, place its public evidence against the modeling ceiling, and state the common asymmetry the reports expose — without mistaking corroboration across reconstructions for a controlled test.",
+      "obj": "six unequal public factory accounts through the four factory questions, comparing admission authority, supervisory capacity, and carrying cost",
+      "statement": "After this chapter, the reader can compare public factory accounts through four engineering questions, distinguish admission arrangements and recurring costs, and bound conclusions to the reported evidence.",
       "provenance": "declared",
-      "anchor": "The seven factory-case reconstructions, the shared-baseline/differences section with the modeling-ceiling tiers, and the closing common-asymmetry diagnosis in the chapter with identity label 'mage-in-the-wild'."
+      "anchor": "The six organization sections; point:the-public-sources-are-interested-accounts-read-conservatively; heading:what-the-factories-share-and-where-they-differ and its admission-authority, supervisory-capacity, and carrying-cost synthesis."
     },
     {
       "granularity": "chapter",
@@ -432,6 +432,15 @@
       "statement": "After this section, the reader can distinguish constraints, sensors, and gates by the questions they answer: what is possible, what evidence is available, and whether work may proceed. The reader can explain how checking supports advisory findings or gate decisions and identify functions combined in one implementation.",
       "provenance": "derived",
       "anchor": "point: four-roles-separate-prevention-observation-judgment-admission / a-sensor-observes-and-produces-evidence-and-costs-iterations / a-validator-turns-evidence-into-a-judgment / a-gate-supplies-the-consequence-and-a-gate-is-a-commitment"
+    },
+    {
+      "granularity": "chapter",
+      "primary_unit": "evaluating-docable",
+      "verb": "assess",
+      "obj": "DocAble\u2019s product results, production costs, maintenance obligations, and the scope of the evaluation evidence",
+      "statement": "After this chapter, the reader can assess DocAble\u2019s reported quality and cost results, distinguish production effort from labor savings, and identify remaining product, maintenance, and evidentiary limitations.",
+      "provenance": "declared",
+      "anchor": "point:evaluation-covers-product-cost-and-maintenance; docable-human-remediation-results; heading:runtime-and-cost; heading:what-the-economics-establish; heading:liability."
     }
   ]
 }

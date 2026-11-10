@@ -1,0 +1,67 @@
+{
+  "source_revision": "b28acdc700304fe78fc14e9bcfa0c516aa9941d6",
+  "changed_sources": [
+    "book/latex/sources/part5/00-part-intro.tex",
+    "book/latex/sources/part5/5.1-software-factory.tex",
+    "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
+    "book/latex/sources/part5/5.3-other-agentic-software-factories.tex",
+    "book/latex/sources/part5/5.5-engineering-the-factory.tex"
+  ],
+  "original_source_sha256": {
+    "book/latex/sources/part5/00-part-intro.tex": "fc7c8ebd33ff5b1fc8460c3e33f4f691cc8e7757dd375661db75638043a351d5",
+    "book/latex/sources/part5/5.1-software-factory.tex": "3a3119733c756dc97347f83806b7c0a67837e28d4b9b0e81f53346446af866c6",
+    "book/latex/sources/part5/5.2-inside-docables-software-factory.tex": "4ab3f315a067d388539e3a9341e5ae5bb442fd13e8cdbcfb1d6dfbfdefad62da",
+    "book/latex/sources/part5/5.3-other-agentic-software-factories.tex": "ce3ec1680555c59e771b15ecec91660a4caee7b9d299c83b28dff19d26c6a33a",
+    "book/latex/sources/part5/5.5-engineering-the-factory.tex": "8bb56921b7a2a2a25db60d2c0c570d1cede9ff1fe823fdfefcfecc857860e9bf"
+  },
+  "updated_source_sha256": {
+    "book/latex/sources/part5/00-part-intro.tex": "5dbd3010ea3c5f097b9af7399edfa97c4d3ab2f392089ac804676a578b59c7d7",
+    "book/latex/sources/part5/5.1-software-factory.tex": "bb3c394d2ec3e8f411684213f95e79b798cb56ee3c875b74fb3833f83da7e9b0",
+    "book/latex/sources/part5/5.2-inside-docables-software-factory.tex": "af0636e385602f6a471190cd76679ddb7e220b0171914df57863d86f4bd8ecf6",
+    "book/latex/sources/part5/5.3-other-agentic-software-factories.tex": "c1bfff6e05f339bc669d26109ac12e666648658e68ba218dd248e0bef3a6ba0e",
+    "book/latex/sources/part5/5.5-engineering-the-factory.tex": "db7cbe8ac18f308834246091b439d0665b13c3d05948e7561843625d0539e068"
+  },
+  "edit_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "preservation_checks": [
+    "all figures byte-identical",
+    "metric macro multisets unchanged",
+    "headings and subsection order unchanged",
+    "existing citation targets retained",
+    "Key Ideas callout unchanged",
+    "four-principle callout unchanged",
+    "industry accounts/openings unchanged",
+    "counterfactual field note unchanged",
+    "maintenance/limitations/appendix material unchanged",
+    "coda framework payoff and accountability conclusion unchanged",
+    "every implementation line attribution preserved"
+  ],
+  "affected_points": [
+    "the-four-questions-are-broader-than-mage",
+    "one-engineer-directed-a-fleet",
+    "the-engineers-role-was-engineering-not-implementation",
+    "product-decisions-became-factory-obligations",
+    "the-division-of-work-is-the-factory-examined",
+    "source-code-stopped-being-an-adequate-interface",
+    "turn-outward-to-other-factories",
+    "the-factories-place-admission-in-four-different-locations",
+    "process-design-and-tolerance-describe-the-differences-without-a-maturity-model"
+  ],
+  "new_or_retired_headings": [],
+  "new_citation_keys": [],
+  "existing_keys_reused_in_comparison": [
+    "skidmore2026review",
+    "charas2025honk",
+    "curtis2026spotifyqcon",
+    "son2026security",
+    "gitlab2026securityreview"
+  ],
+  "models_projections_tools_figures_git_mutations": false
+}
