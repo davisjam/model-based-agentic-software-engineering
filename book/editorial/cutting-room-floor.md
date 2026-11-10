@@ -19245,3 +19245,8 @@ Engineers increasingly exercise those decisions through the environment in which
 ### Chapter 1 — opening the agentic-machinery section (2026-11-09)
 
 The reinforced-concrete analogy and opening model/harness/environment summary are preserved verbatim in [the retired opening](agentic-machinery-opening-before-20261109.tex). The author replaced them with the DocAble code-inspection experiment and a direct introduction to the foundation model and harness. The later explanation of the engineered environment and its hook example remain in place. The section is now “Agentic Machinery and Its Properties,” with the first subsection “Foundation Model and Agentic Harness.”
+
+
+### Chapter 1 — shorter DocAble title and closing signpost (2026-11-10)
+
+The section title is now “MAGE by Example: DocAble.” Its former closing paragraph repeated the purpose established by the new §1.4 opening. The paragraph and associated point annotations are preserved verbatim in [the retired transition](docable-transition-before-20261110.tex); §1.4 now supplies the transition through the code-inspection experiment.

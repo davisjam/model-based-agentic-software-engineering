@@ -1,0 +1,28 @@
+{
+  "source_revision": "3f69cc28d1aad1dfb87bdfcfd39b6de399016a5f",
+  "prior_chapter_shape": {
+    "slug": "mage-by-example",
+    "opening": {
+      "failure_question": "implicit",
+      "answer": "explicit",
+      "thesis_link": "explicit",
+      "thesis_target": "argument-step"
+    },
+    "closing": {
+      "kind": "transition"
+    },
+    "delivers": {
+      "artifacts": [
+        {
+          "type": "worked-example",
+          "name": "the introductory DocAble case: accessibility obligations and the user-facing result",
+          "anchor": "docable-glimpse"
+        }
+      ],
+      "artifact_would_help": false
+    },
+    "note": "The originating case establishes the accessibility obligation, the engineering experiment, and context-dependent semantic judgments before the agentic machinery. The requirements table and interface glimpse carry the introductory evidence. The earlier internal architecture and preservation-validator walkthrough are archived; Chapters 2–5 teach the representations, controls, engineering process, and case evidence.",
+    "opening_anchor": "The engineering methodology described in this book emerged from six months of",
+    "closing_anchor": "productive machinery used to build it and the properties engineering must accommodate."
+  }
+}
