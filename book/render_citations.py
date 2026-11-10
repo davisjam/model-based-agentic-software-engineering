@@ -12,9 +12,11 @@ Exit codes: 0 success, 1 rendering/data error, 2 missing Pandoc.
 """
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import datetime
 import hashlib
 import json
+import os
 import pathlib
 import re
 import html as _html
@@ -454,9 +456,13 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as td:
         wd = pathlib.Path(td)
         (wd / "references.bib").write_text(_protect_title_case(bib_text), encoding="utf-8")
-        for e in entries:
+        # Each invocation reads the same inputs independently. Collect results
+        # in BibTeX order so parallel rendering leaves the JSON stable.
+        workers = min(4, os.cpu_count() or 1)
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            rendered = list(executor.map(lambda entry: _render_one(entry["key"], wd), entries))
+        for e, (note_html, bib_html) in zip(entries, rendered):
             key = e["key"]
-            note_html, bib_html = _render_one(key, wd)
             # Numbered works-cited entries must never be blank. Chicago notes-only sources
             # use the full note text; missing text in both forms is a data/rendering error.
             if not bib_html:
