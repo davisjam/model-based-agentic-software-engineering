@@ -1,0 +1,65 @@
+{
+  "source": "book/assets/mage-dynamic-model.svg",
+  "candidate": "book/tikz/figures/mage-dynamic-model.tex",
+  "receipt": "book/tikz/receipts/mage-dynamic-model.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+  "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
+  "fill": "Only governed environment state G is 5%; feedback labels identify other roles.",
+  "bold": "Source-derived emphasis includes 2 Pressure / discovery: structural diagnosis; Prior engineering knowledge; 3 Governance adaptation; Governed environment; Realized performance; Governance pressure; Agentic capacity; Agentic work. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+  "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "The inherited governed environment uses G consistently. Both feedback loops, labels and arrow routes remain legible without clipping or overlap.",
+  "validation": {
+    "status": "passed",
+    "reviewed_on": "2026-11-09",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+    "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+    "semantic_typography_checks": 21,
+    "checked_terminal_approaches": 646,
+    "reviewed_peer_groups": 85,
+    "unapproved_compile_diagnostics": 0,
+    "page": 83,
+    "width_bp": 426.515,
+    "height_bp": 489.063,
+    "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
+  },
+  "book_references": [],
+  "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+  "superseded_reviews": [
+    {
+      "superseded_on": "2026-11-09",
+      "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+      "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+      "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+      "status": "reviewed",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 83,
+        "width_bp": 426.515,
+        "height_bp": 489.063,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 21
+      },
+      "visual_review": "Bootstrap, pressure, adaptation and amplification stay numbered; B/R loops retain outside routes."
+    }
+  ],
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
+}

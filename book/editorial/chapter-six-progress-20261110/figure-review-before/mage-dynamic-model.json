@@ -1,0 +1,1752 @@
+{
+  "source": "book/assets/mage-dynamic-model.svg",
+  "claim": "*The MAGE Dynamic Model.* Agentic capacity acts through a governed engineering environment. Mismatch creates governance pressure; diagnosis and adaptation can improve the environment inherited by later work. The balancing loop seeks fit, while capability amplification reopens the frontier as stronger environments support more ambitious work. Prior engineering knowledge seeds the system before failure occurs.",
+  "topology": "Eight-construct directed system with numbered bootstrap, pressure, adaptation, amplification; balancing return to environment and reinforcing return to capacity.",
+  "required_terms": [
+    "Prior engineering knowledge\\; requirements; brownfield assets; lessons",
+    "Agentic capacity\\; concurrency; velocity",
+    "Governed environment G\\; coverage; coherence; economy",
+    "Agentic work\\ change; task frontier",
+    "Realized performance\\; defect escape; human attention",
+    "Governance pressure\\; recurring failures; escaped defects; intervention; control friction",
+    "Structural diagnosis\\ defect? missing representation? weak enforcement? stale mechanism?",
+    "Governance adaptation\\; constrain; validate; strengthen; reconcile; retire",
+    "B: diagnosis and adaptation seek fit. R: stronger environments reopen the frontier. Bootstrap is an input, not feedback. Directional model, not a fitted law."
+  ],
+  "bw_encoding": "Only governed environment state G is 5%; feedback labels identify other roles.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Capacity family, governed environment/adaptation, and pressure regain distinct gray families; numbered dynamics receive heavier strokes than shared plumbing.",
+  "questions": [],
+  "alt": "A monochrome system diagram with eight constructs and four numbered dynamics. Prior engineering knowledge sits at the top and enters the governed environment G through 1 Bootstrap. Agentic capacity at left exercises G at right and drives agentic work below. G shapes realized performance; agentic work also produces performance. Work-environment mismatch and a performance gap feed governance pressure. The downward path continues through 2 Pressure / discovery: structural diagnosis, then 3 Governance adaptation. Diagnosis asks about local defects, missing representations, weak enforcement, or stale mechanisms. Adaptation can represent, constrain, validate, strengthen, reconcile, or retire structure. Its outer return arrow, marked B, feeds G and forms a balancing loop seeking fit. Above G and capacity, a return arrow labelled 4 Capability amplification (R) shows a stronger environment enabling bigger tasks and more concurrency. This reinforcing loop reopens the frontier. Written numbers and labels distinguish the dynamics; all arrows are black. A bottom note states that bootstrap is an input rather than feedback, and the model is directional rather than a fitted law.",
+  "qa": {
+    "status": "passed",
+    "reviewed_on": "2026-11-09",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+    "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+    "semantic_typography_checks": 21,
+    "checked_terminal_approaches": 646,
+    "reviewed_peer_groups": 85,
+    "unapproved_compile_diagnostics": 0,
+    "page": 83,
+    "width_bp": 426.515,
+    "height_bp": 489.063,
+    "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
+    "compiler": "LuaLaTeX; strict book compiler, no shell escape",
+    "warnings": [],
+    "inspection": "The inherited governed environment uses G consistently. Both feedback loops, labels and arrow routes remain legible without clipping or overlap."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+    "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
+    "fill": "Only governed environment state G is 5%; feedback labels identify other roles.",
+    "bold": "Source-derived emphasis includes 2 Pressure / discovery: structural diagnosis; Prior engineering knowledge; 3 Governance adaptation; Governed environment; Realized performance; Governance pressure; Agentic capacity; Agentic work. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "The inherited governed environment uses G consistently. Both feedback loops, labels and arrow routes remain legible without clipping or overlap.",
+    "validation": {
+      "status": "passed",
+      "reviewed_on": "2026-11-09",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+      "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+      "semantic_typography_checks": 21,
+      "checked_terminal_approaches": 646,
+      "reviewed_peer_groups": 85,
+      "unapproved_compile_diagnostics": 0,
+      "page": 83,
+      "width_bp": 426.515,
+      "height_bp": 489.063,
+      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+    "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
+    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "evidence": [
+      {
+        "source_text": "Pressure / discovery loop\nStructural diagnosis",
+        "source_style": "Per-fragment inherited styles; see source_fragments.",
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "2 Pressure / discovery: structural diagnosis",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Pressure / discovery loop",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "292",
+              "y": "1076",
+              "text_element": 49
+            }
+          },
+          {
+            "text": "Structural diagnosis",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "410",
+              "y": "840",
+              "text_element": 37
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Prior engineering knowledge",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Prior engineering knowledge",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Prior engineering knowledge",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "430",
+              "y": "76",
+              "text_element": 15
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Governance adaptation",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "3 Governance adaptation",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Governance adaptation",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "410",
+              "y": "962",
+              "text_element": 39
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Governed\nenvironment",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Governed environment",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Governed",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "685",
+              "y": "280",
+              "text_element": 21
+            }
+          },
+          {
+            "text": "environment",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "685",
+              "y": "304",
+              "text_element": 22
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Realized performance",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Realized performance",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Realized performance",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "685",
+              "y": "508",
+              "text_element": 30
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Governance pressure",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Governance pressure",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Governance pressure",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "410",
+              "y": "700",
+              "text_element": 34
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Agentic capacity",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Agentic capacity",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Agentic capacity",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "180",
+              "y": "292",
+              "text_element": 18
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Agentic work",
+        "source_style": {
+          "font-weight": "700",
+          "font-style": "normal",
+          "font-size": "20"
+        },
+        "semantic_role": "concept/category versus explanation",
+        "candidate_text": "Agentic work",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Agentic work",
+            "style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "location": {
+              "x": "180",
+              "y": "512",
+              "text_element": 27
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "exercises",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "exercises",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "exercises",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "430",
+              "y": "283",
+              "text_element": 6
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "shapes",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "shapes",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "shapes",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "702",
+              "y": "448",
+              "text_element": 7
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "mismatch",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "mismatch",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "mismatch",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "238",
+              "y": "632",
+              "text_element": 8
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "standards \u00b7 requirements\nbrownfield assets \u00b7 prior lessons",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "standards; requirements; brownfield assets; lessons",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "standards \u00b7 requirements",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "430",
+              "y": "102",
+              "text_element": 16
+            }
+          },
+          {
+            "text": "brownfield assets \u00b7 prior lessons",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "430",
+              "y": "121",
+              "text_element": 17
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "model capability\nconcurrency \u00b7 raw velocity",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "capability; concurrency; velocity",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "model capability",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "180",
+              "y": "318",
+              "text_element": 19
+            }
+          },
+          {
+            "text": "concurrency \u00b7 raw velocity",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "180",
+              "y": "337",
+              "text_element": 20
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "representation quality\nobligation coverage\ncoherence \u00b7 economy",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "representation; coverage; coherence; economy",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "representation quality",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "685",
+              "y": "356",
+              "text_element": 24
+            }
+          },
+          {
+            "text": "obligation coverage",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "685",
+              "y": "374",
+              "text_element": 25
+            }
+          },
+          {
+            "text": "coherence \u00b7 economy",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "685",
+              "y": "392",
+              "text_element": 26
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "attempted change\ntask frontier",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "attempted change; task frontier",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "attempted change",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "180",
+              "y": "538",
+              "text_element": 28
+            }
+          },
+          {
+            "text": "task frontier",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "180",
+              "y": "557",
+              "text_element": 29
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "durable throughput\ndefect escape\nhuman attention",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "throughput; defect escape; human attention",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "durable throughput",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "685",
+              "y": "534",
+              "text_element": 31
+            }
+          },
+          {
+            "text": "defect escape",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "685",
+              "y": "553",
+              "text_element": 32
+            }
+          },
+          {
+            "text": "human attention",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "685",
+              "y": "572",
+              "text_element": 33
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "churn \u00b7 recurring failure \u00b7 escaped defect\nrepeated intervention \u00b7 control friction",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "churn; recurring failures; escaped defects; intervention; control friction",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "churn \u00b7 recurring failure \u00b7 escaped defect",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "410",
+              "y": "726",
+              "text_element": 35
+            }
+          },
+          {
+            "text": "repeated intervention \u00b7 control friction",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "410",
+              "y": "745",
+              "text_element": 36
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "local defect? missing representation? weak enforcement? stale mechanism?",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "410",
+              "y": "866",
+              "text_element": 38
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
+        "source_style": {
+          "font-weight": "400",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "represent; constrain; validate; strengthen; reconcile; retire",
+        "candidate_style": "italic",
+        "source_fragments": [
+          {
+            "text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
+            "style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "410",
+              "y": "990",
+              "text_element": 40
+            }
+          }
+        ]
+      },
+      {
+        "source_text": "Capability amplification",
+        "source_style": {
+          "font-weight": "600",
+          "font-style": "italic",
+          "font-size": "17.6"
+        },
+        "semantic_role": "source label/description or feedback hierarchy",
+        "candidate_text": "Capability amplification",
+        "candidate_style": "bold",
+        "source_fragments": [
+          {
+            "text": "Capability amplification",
+            "style": {
+              "font-weight": "600",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "location": {
+              "x": "400",
+              "y": "208",
+              "text_element": 3
+            }
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "text": "2 Pressure / discovery: structural diagnosis",
+        "bold": true
+      },
+      {
+        "text": "Prior engineering knowledge",
+        "bold": true
+      },
+      {
+        "text": "3 Governance adaptation",
+        "bold": true
+      },
+      {
+        "text": "Governed environment",
+        "bold": true
+      },
+      {
+        "text": "Realized performance",
+        "bold": true
+      },
+      {
+        "text": "Governance pressure",
+        "bold": true
+      },
+      {
+        "text": "Agentic capacity",
+        "bold": true
+      },
+      {
+        "text": "Agentic work",
+        "bold": true
+      },
+      {
+        "text": "exercises",
+        "italic": true
+      },
+      {
+        "text": "shapes",
+        "italic": true
+      },
+      {
+        "text": "mismatch",
+        "italic": true
+      },
+      {
+        "text": "standards; requirements; brownfield assets; lessons",
+        "italic": true
+      },
+      {
+        "text": "capability; concurrency; velocity",
+        "italic": true
+      },
+      {
+        "text": "representation; coverage; coherence; economy",
+        "italic": true
+      },
+      {
+        "text": "attempted change; task frontier",
+        "italic": true
+      },
+      {
+        "text": "throughput; defect escape; human attention",
+        "italic": true
+      },
+      {
+        "text": "churn; recurring failures; escaped defects; intervention; control friction",
+        "italic": true
+      },
+      {
+        "text": "local defect? missing representation? weak enforcement? stale mechanism?",
+        "italic": true
+      },
+      {
+        "text": "represent; constrain; validate; strengthen; reconcile; retire",
+        "italic": true
+      },
+      {
+        "text": "Capability amplification",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "Directional model, not a fitted law.",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "status": "passed",
+      "reviewed_on": "2026-11-09",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+      "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+      "semantic_typography_checks": 21,
+      "checked_terminal_approaches": 646,
+      "reviewed_peer_groups": 85,
+      "unapproved_compile_diagnostics": 0,
+      "page": 83,
+      "width_bp": 426.515,
+      "height_bp": 489.063,
+      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Equalize capacity/environment and work/performance peers; widen pressure/diagnosis descriptions to remove a wrapped line and reveal sequential arrow shafts. Removed a redundant text-width option without changing the layout. Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
+    "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
+    "validation": {
+      "status": "passed",
+      "reviewed_on": "2026-11-09",
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+      "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+      "semantic_typography_checks": 21,
+      "checked_terminal_approaches": 646,
+      "reviewed_peer_groups": 85,
+      "unapproved_compile_diagnostics": 0,
+      "page": 83,
+      "width_bp": 426.515,
+      "height_bp": 489.063,
+      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
+    },
+    "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "parallel rank 1",
+          "labels": [
+            "Agentic capacity capability; concurrency; velocity",
+            "Governed environment G representation; coverage; coherence; economy"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "parallel rank 2",
+          "labels": [
+            "Agentic work attempted change; task frontier",
+            "Realized performance throughput; defect escape; human attention"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ],
+      "terminal_exceptions": []
+    }
+  },
+  "superseded_reviews": [
+    {
+      "superseded_on": "2026-11-09",
+      "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+      "qa": {
+        "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+        "warnings": [],
+        "width_pt": 426.515,
+        "height_pt": 400.687,
+        "monochrome": true,
+        "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+      },
+      "style_review": {
+        "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+        "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+        "status": "reviewed",
+        "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+        "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+        "fill": "Only governed environment state E is 5%; feedback labels identify other roles.",
+        "bold": "Source-derived emphasis includes 2 Pressure / discovery: structural diagnosis; Prior engineering knowledge; 3 Governance adaptation; Governed environment; Realized performance; Governance pressure; Agentic capacity; Agentic work. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+        "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+        "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+        "visual_review": "Bootstrap, pressure, adaptation and amplification stay numbered; B/R loops retain outside routes.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 83,
+          "width_bp": 426.515,
+          "height_bp": 489.063,
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 21
+        },
+        "book_references": [],
+        "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      },
+      "typography_review": {
+        "review": "book/tikz/typography-review.json",
+        "decision": "refined",
+        "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+        "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+        "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+        "evidence": [
+          {
+            "source_text": "Pressure / discovery loop\nStructural diagnosis",
+            "source_style": "Per-fragment inherited styles; see source_fragments.",
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "2 Pressure / discovery: structural diagnosis",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Pressure / discovery loop",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "292",
+                  "y": "1076",
+                  "text_element": 49
+                }
+              },
+              {
+                "text": "Structural diagnosis",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "840",
+                  "text_element": 37
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Prior engineering knowledge",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "Prior engineering knowledge",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Prior engineering knowledge",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "430",
+                  "y": "76",
+                  "text_element": 15
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Governance adaptation",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "3 Governance adaptation",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Governance adaptation",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "962",
+                  "text_element": 39
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Governed\nenvironment",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "Governed environment",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Governed",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "280",
+                  "text_element": 21
+                }
+              },
+              {
+                "text": "environment",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "304",
+                  "text_element": 22
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Realized performance",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "Realized performance",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Realized performance",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "508",
+                  "text_element": 30
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Governance pressure",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "Governance pressure",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Governance pressure",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "700",
+                  "text_element": 34
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Agentic capacity",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "Agentic capacity",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Agentic capacity",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "180",
+                  "y": "292",
+                  "text_element": 18
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Agentic work",
+            "source_style": {
+              "font-weight": "700",
+              "font-style": "normal",
+              "font-size": "20"
+            },
+            "semantic_role": "concept/category versus explanation",
+            "candidate_text": "Agentic work",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Agentic work",
+                "style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "location": {
+                  "x": "180",
+                  "y": "512",
+                  "text_element": 27
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "exercises",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "exercises",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "exercises",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "430",
+                  "y": "283",
+                  "text_element": 6
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "shapes",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "shapes",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "shapes",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "702",
+                  "y": "448",
+                  "text_element": 7
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "mismatch",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "mismatch",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "mismatch",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "238",
+                  "y": "632",
+                  "text_element": 8
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "standards \u00b7 requirements\nbrownfield assets \u00b7 prior lessons",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "standards; requirements; brownfield assets; lessons",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "standards \u00b7 requirements",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "430",
+                  "y": "102",
+                  "text_element": 16
+                }
+              },
+              {
+                "text": "brownfield assets \u00b7 prior lessons",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "430",
+                  "y": "121",
+                  "text_element": 17
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "model capability\nconcurrency \u00b7 raw velocity",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "capability; concurrency; velocity",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "model capability",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "180",
+                  "y": "318",
+                  "text_element": 19
+                }
+              },
+              {
+                "text": "concurrency \u00b7 raw velocity",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "180",
+                  "y": "337",
+                  "text_element": 20
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "representation quality\nobligation coverage\ncoherence \u00b7 economy",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "representation; coverage; coherence; economy",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "representation quality",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "356",
+                  "text_element": 24
+                }
+              },
+              {
+                "text": "obligation coverage",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "374",
+                  "text_element": 25
+                }
+              },
+              {
+                "text": "coherence \u00b7 economy",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "392",
+                  "text_element": 26
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "attempted change\ntask frontier",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "attempted change; task frontier",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "attempted change",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "180",
+                  "y": "538",
+                  "text_element": 28
+                }
+              },
+              {
+                "text": "task frontier",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "180",
+                  "y": "557",
+                  "text_element": 29
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "durable throughput\ndefect escape\nhuman attention",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "throughput; defect escape; human attention",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "durable throughput",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "534",
+                  "text_element": 31
+                }
+              },
+              {
+                "text": "defect escape",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "553",
+                  "text_element": 32
+                }
+              },
+              {
+                "text": "human attention",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "685",
+                  "y": "572",
+                  "text_element": 33
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "churn \u00b7 recurring failure \u00b7 escaped defect\nrepeated intervention \u00b7 control friction",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "churn; recurring failures; escaped defects; intervention; control friction",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "churn \u00b7 recurring failure \u00b7 escaped defect",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "726",
+                  "text_element": 35
+                }
+              },
+              {
+                "text": "repeated intervention \u00b7 control friction",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "745",
+                  "text_element": 36
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "local defect? missing representation? weak enforcement? stale mechanism?",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "866",
+                  "text_element": 38
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "represent; constrain; validate; strengthen; reconcile; retire",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "410",
+                  "y": "990",
+                  "text_element": 40
+                }
+              }
+            ]
+          },
+          {
+            "source_text": "Capability amplification",
+            "source_style": {
+              "font-weight": "600",
+              "font-style": "italic",
+              "font-size": "17.6"
+            },
+            "semantic_role": "source label/description or feedback hierarchy",
+            "candidate_text": "Capability amplification",
+            "candidate_style": "bold",
+            "source_fragments": [
+              {
+                "text": "Capability amplification",
+                "style": {
+                  "font-weight": "600",
+                  "font-style": "italic",
+                  "font-size": "17.6"
+                },
+                "location": {
+                  "x": "400",
+                  "y": "208",
+                  "text_element": 3
+                }
+              }
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "text": "2 Pressure / discovery: structural diagnosis",
+            "bold": true
+          },
+          {
+            "text": "Prior engineering knowledge",
+            "bold": true
+          },
+          {
+            "text": "3 Governance adaptation",
+            "bold": true
+          },
+          {
+            "text": "Governed environment",
+            "bold": true
+          },
+          {
+            "text": "Realized performance",
+            "bold": true
+          },
+          {
+            "text": "Governance pressure",
+            "bold": true
+          },
+          {
+            "text": "Agentic capacity",
+            "bold": true
+          },
+          {
+            "text": "Agentic work",
+            "bold": true
+          },
+          {
+            "text": "exercises",
+            "italic": true
+          },
+          {
+            "text": "shapes",
+            "italic": true
+          },
+          {
+            "text": "mismatch",
+            "italic": true
+          },
+          {
+            "text": "standards; requirements; brownfield assets; lessons",
+            "italic": true
+          },
+          {
+            "text": "capability; concurrency; velocity",
+            "italic": true
+          },
+          {
+            "text": "representation; coverage; coherence; economy",
+            "italic": true
+          },
+          {
+            "text": "attempted change; task frontier",
+            "italic": true
+          },
+          {
+            "text": "throughput; defect escape; human attention",
+            "italic": true
+          },
+          {
+            "text": "churn; recurring failures; escaped defects; intervention; control friction",
+            "italic": true
+          },
+          {
+            "text": "local defect? missing representation? weak enforcement? stale mechanism?",
+            "italic": true
+          },
+          {
+            "text": "represent; constrain; validate; strengthen; reconcile; retire",
+            "italic": true
+          },
+          {
+            "text": "Capability amplification",
+            "bold": true,
+            "italic": true
+          },
+          {
+            "text": "Directional model, not a fitted law.",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 83,
+          "width_bp": 426.515,
+          "height_bp": 489.063,
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 21,
+          "book_font_inheritance": {
+            "configuration": "latex/book-fonts.tex",
+            "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+            "reference": "latex/build/tikz/body-font-reference.pdf",
+            "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+            "body_faces": [
+              "SourceSans3-Bold",
+              "SourceSans3-BoldIt",
+              "SourceSans3-It",
+              "SourceSans3-Regular"
+            ]
+          }
+        }
+      },
+      "layout_review": {
+        "review": "book/tikz/layout-review.json",
+        "decision": "refined",
+        "reason": "Equalize capacity/environment and work/performance peers; widen pressure/diagnosis descriptions to remove a wrapped line and reveal sequential arrow shafts. Removed a redundant text-width option without changing the layout. Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
+        "candidate_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+        "page_layout": {
+          "decision": "refined",
+          "reason": "Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
+          "before_sha256": "e309ffe7d0dbedda051f38ca1155e65c024250670ed6560d93621be9b632b5b0",
+          "after_sha256": "01b981372a0d958910e69c937db9dc1fac5ce8033e5165ac496790da21d4d761",
+          "before_dimensions_bp": [
+            426.5150146484375,
+            400.2640075683594
+          ],
+          "after_dimensions_bp": [
+            426.5150146484375,
+            489.06298828125
+          ],
+          "before_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "after_font_sizes_pt": [
+            10.0,
+            11.0
+          ],
+          "reviewed_visually": true
+        },
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 83,
+          "width_bp": 426.515,
+          "height_bp": 489.063
+        }
+      }
+    }
+  ],
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+    "source_sha256": "a68584da6ceb0d13db464f7eb7743ab9e5f482d94b7454a3a2024cd8c6cc9146",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
+}

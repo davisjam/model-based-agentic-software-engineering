@@ -85,6 +85,9 @@ _BIGOPS: dict[str, tuple[str, str]] = {
 # Named operators rendered upright (function-style). `\arg\min` is combined by the parser.
 _NAMEDOPS = {"arg", "log", "exp"}
 
+# Greek identifiers used for an engineering policy and its policy space.
+_GREEK = {"pi": ("π", "pi"), "Pi": ("Π", "Pi")}
+
 # Spacing commands → (MathML width in em, Typst spacing atom).
 _SPACING: dict[str, tuple[str, str]] = {
     "quad": ("1", "quad"),
@@ -273,12 +276,17 @@ class _P:
             cells = []
             while True:
                 cell = self.parse_row(until="env-end", row_break=True, cell_break=True)
-                if not cell["kids"]:
-                    raise MathError("aligned needs nonempty cells and rows")
+                # A continued constraint may leave its left label blank, as in
+                # a native aligned optimization. The expression on the right
+                # must still be present.
+                if not cell["kids"] and cells:
+                    raise MathError("aligned needs a nonempty right-hand expression")
                 cells.append(cell)
                 if self.peek() != ("align", "&"):
                     break
                 self.next()
+            if not any(cell["kids"] for cell in cells):
+                raise MathError("aligned needs nonempty rows")
             if rows and len(cells) != len(rows[0]):
                 raise MathError("aligned rows must have the same number of cells")
             rows.append(cells)
@@ -319,11 +327,11 @@ class _P:
                 if self.peek() != ("cmd", "\\"):
                     raise MathError("unbalanced { after \\substack")
                 self.next()
-        if name == "mathcal":
+        if name in ("mathcal", "mathbb"):
             letter = _sole_letter(self.parse_atom())
             if letter is None:
-                raise MathError("\\mathcal must wrap a single letter")
-            return {"k": "cal", "v": letter}
+                raise MathError("\\" + name + " must wrap a single letter")
+            return {"k": "cal" if name == "mathcal" else "bb", "v": letter}
         if name == "boxed":
             if self.peek() is None or self.peek()[0] != "lbrace":
                 raise MathError("\\boxed must be followed by {…}")
@@ -343,6 +351,9 @@ class _P:
             return {"k": "bigop", "ml": ml, "ty": ty, "named": name in ("min", "max", "lim")}
         if name in _NAMEDOPS:
             return {"k": "op", "v": name, "named": True}
+        if name in _GREEK:
+            ml, ty = _GREEK[name]
+            return {"k": "greek", "ml": ml, "ty": ty}
         if name == "%":
             # `\%` → a literal percent sign. In Typst math a bare `%` starts a comment, so emit it as
             # upright text; in MathML it is an ordinary operator glyph.
@@ -380,6 +391,8 @@ def _ml(node: dict) -> str:
         return f'<mn>{html.escape(node["v"])}</mn>'
     if k == "var":
         return f'<mi>{html.escape(node["v"])}</mi>'
+    if k == "greek":
+        return f'<mi>{node["ml"]}</mi>'
     if k == "op":
         if node.get("named"):
             return f'<mi>{html.escape(node["v"])}</mi>'
@@ -422,6 +435,8 @@ def _ml(node: dict) -> str:
         return f'<mtable displaystyle="true" rowspacing="0.25em" columnspacing="0em" columnalign="{align}">{rows}</mtable>'
     if k == "cal":
         return f'<mi mathvariant="script">{html.escape(node["v"])}</mi>'
+    if k == "bb":
+        return f'<mi mathvariant="double-struck">{html.escape(node["v"])}</mi>'
     if k == "boxed":
         return _ml(node["kid"])  # the border is applied by the HTML wrapper, not menclose
     raise MathError(f"cannot emit MathML for node {k}")
@@ -462,6 +477,8 @@ def _ty(node: dict) -> str:
         return node["v"]
     if k == "var":
         return node["v"]
+    if k == "greek":
+        return node["ty"]
     if k == "op":
         v = node["v"]
         if node.get("named"):
@@ -496,6 +513,8 @@ def _ty(node: dict) -> str:
         return r" \ ".join(" & ".join(_ty(cell) for cell in row) for row in node["rows"])
     if k == "cal":
         return f"cal({node['v']})"
+    if k == "bb":
+        return f"bb({node['v']})"
     if k == "boxed":
         return _ty(node["kid"])  # the border is applied by the Typst wrapper
     raise MathError(f"cannot emit Typst for node {k}")

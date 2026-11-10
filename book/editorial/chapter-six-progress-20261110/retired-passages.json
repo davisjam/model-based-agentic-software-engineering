@@ -1,0 +1,162 @@
+[
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 8,
+    "line_end": 10,
+    "original": "% <!-- chapter-title: A Theory of MAGE -->\n\n\\chapter{A Theory of MAGE}",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 14,
+    "line_end": 14,
+    "original": "Agentic engineering must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. \\magevalue{chapter:software-factories} examined the software factory as a whole. We now focus on its governed engineering environment (GEE): the reusable engineering structure through which people and agents direct, evaluate, and control implementation.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 18,
+    "line_end": 18,
+    "original": "We can begin by separating the encoding of intent from its realization. Let \\(E\\) mean that the encoding captures the consequential intent and \\(F\\) that the resulting artifact fulfills the encoded obligations. For a representation \\(R\\), the probability of both is",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 24,
+    "line_end": 24,
+    "original": "This \\textbf{encoding–realization decomposition} applies the probability chain rule to separate two engineering questions: whether the representation captures the intended obligations, and whether the resulting artifact fulfills them.\\magefootnote{encoding-realization-chain-rule}{In general, the probability that two events \\(A\\) and \\(B\\) both occur is the probability of \\(A\\) multiplied by the probability of \\(B\\) given \\(A\\): \\(P(A\\cap B)=P(A)P(B\\mid A)\\). This is the probability chain rule; it does not require the events to be independent. Here we apply the same identity conditional on the representation \\(R\\), with \\(A=E\\) (correct encoding) and \\(B=F\\) (fulfillment), yielding \\(P(E\\cap F\\mid R)=P(E\\mid R)P(F\\mid E,R)\\).} The distinction lets us examine how representations, agent capabilities, and production processes affect faithful realization. We will then extend the account to the costs of evaluating, repairing, and admitting changes, and finally to how each engineering episode changes the environment inherited by the next.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 37,
+    "line_end": 38,
+    "original": "\\section{Encoding and Realization}\\label{heading:encoding-and-realization}\n",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 61,
+    "line_end": 61,
+    "original": "There are limits to what can be recovered from the available evidence. The entitlement failure from \\magevalue{chapter:modeling} illustrates the problem. A scalar representation read each group's unlimited flag and still returned a single finite sum: its output type had no place for the distinction. A reasoner using only that output could not distinguish unlimited entitlement from the finite sum it received. Repair required revisiting the representation or consulting information outside it.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 71,
+    "line_end": 71,
+    "original": "\\section{Lifecycle Cost and Engineering Value}\\label{heading:cost-and-failure-separately}",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 127,
+    "line_end": 127,
+    "original": "\\section{The Inherited Engineering Environment}\\label{heading:the-dynamic-model}",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 131,
+    "line_end": 131,
+    "original": "Software engineering extends the model beyond one episode: each realization changes the conditions inherited by the next. Winters et al. characterize software engineering as ``programming integrated over time'': software is developed, modified, and maintained as both the system and its environment change\\citep{winters2020}. One realization therefore becomes part of the architecture, conventions, representations, tests, and other structure inherited by subsequent work. A good change can make later work easier to reason about; a locally acceptable but structurally poor change can make it harder.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 135,
+    "line_end": 135,
+    "original": "The lifecycle account totals the work and its costs. It does not yet explain how earlier work changes the conditions for later production. Let \\(T_i\\) be the task at step \\(i\\), \\(M\\) the foundation model, and \\(\\mathcal{G}_i\\) the governed engineering environment inherited at that step. The GEE includes the task-relevant representations, tools, procedures, and controls available to direct and evaluate the work. Let \\(a_i\\) denote the work performed during the episode and the changes it leaves behind:",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 155,
+    "line_end": 155,
+    "original": "\\caption{\\emph{The MAGE Dynamic Model.} Agentic capacity acts through a governed engineering environment. Mismatch creates governance pressure; diagnosis and adaptation can improve the environment inherited by later work. The balancing loop seeks fit, while capability amplification reopens the frontier as stronger environments support more ambitious work. Prior engineering knowledge seeds the system before failure occurs.}",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.2-what-the-theory-predicts.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 164,
+    "line_end": 166,
+    "original": "The economic prediction adds a valuation problem to the tests of representation leverage and governance conversion. Estimating financial return requires a comparison with what the same work would have cost without the asset, under comparable capability, quality, and task conditions. Changes in the capability and price of foundation models affect that comparison, as do the value assigned to human attention and the depreciation of engineering assets. The proposition identifies quantities to measure without claiming known coefficients.\n\nCheaper agents may lower the cost of constructing and maintaining some assets, making new investments worthwhile. They may also lower the cost of reconstructing the same knowledge on demand. Both sides of the comparison can move. The claim is consequently conditional: inherited capacity pays where the value of the work it enables or saves justifies construction and upkeep over its useful life.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 31,
+    "line_end": 31,
+    "original": "\\textbf{Does the investment earn a return?} Recurrence is the usual source of return. If the same architectural knowledge, review judgment, or failure class will be encountered hundreds of times, making it explicit once can avoid paying for the same reasoning repeatedly. But recurrence is not the only justification. A rare obligation with catastrophic consequences may warrant extensive modeling and assurance because preventing a single failure can repay the investment. The economic question is therefore broader: \\textbf{does the expected reduction in future reasoning, risk, or recovery cost justify the construction and carrying cost of the asset?}",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.3-scope-conditions.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 35,
+    "line_end": 35,
+    "original": "\\textbf{Can the obligation be governed adequately?} Some properties can be represented precisely and settled mechanically: a schema conforms, a dependency is permitted, an invariant holds. Others admit statistical evidence but not a definitive predicate. Still others depend substantially on aesthetic, scientific, organizational, or social judgment. Governability is the degree to which an important obligation can be made explicit, supplied with relevant evidence, and evaluated with adequate reliability and acceptable cost. Deterministic checking is its strongest region, not its definition.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 87,
+    "line_end": 87,
+    "original": "% <!-- point: engineering-routing-chooses-the-production-arrangement | Engineering routing chooses representations, process and assurance as well as the reasoner, under comparable requested work and minimum correct-delivery requirements. -->",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.4-research-agenda.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 89,
+    "line_end": 89,
+    "original": "These comparisons could eventually inform \\textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger model, a cheaper model with better structure, or a deterministic operation for a sufficiently specified task. The cost comparison must retain a minimum requirement for correct delivery over a fixed horizon; doing nothing or rejecting every result is not a successful low-cost strategy.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/latex/sources/part6/6.5-what-the-theory-claims.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 29,
+    "line_end": 29,
+    "original": "Together, these claims explain the dynamic at the center of MAGE. Commodity intelligence increases what an agent can attempt. Engineering determines how much of that capacity becomes reliable, governable, and cumulative.",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/assets/mage-dynamic-model.svg",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 48,
+    "line_end": 48,
+    "original": "<text x=\"335\" y=\"138\" text-anchor=\"middle\" font-size=\"20\" fill=\"#7c6bb0\" font-weight=\"700\" font-style=\"italic\">Capability amplification</text>",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/assets/mage-dynamic-model.svg",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 116,
+    "line_end": 117,
+    "original": "<text x=\"493\" y=\"942\" text-anchor=\"start\" font-size=\"20\" fill=\"#1c1917\" font-weight=\"700\">Capability amplification</text>\n<text x=\"493\" y=\"966\" text-anchor=\"start\" font-size=\"20\" fill=\"#57534e\">Stronger environments enlarge ambition.</text>",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  },
+  {
+    "source": "book/tikz/figures/mage-dynamic-model.tex",
+    "source_revision": "511ce1167dbe0f3f4e3574e67906ee6e20025747",
+    "line_start": 26,
+    "line_end": 26,
+    "original": "\\draw[edge,line width=1.3pt] (env.north)--(3.5,-.9)--(-4,-.9)--(cap.north);\\node[note,text width=7cm] at (-.25,-.1) {4 \\textbf{\\textit{Capability amplification}} (R): bigger tasks, more concurrency};",
+    "reason": "Author-requested Chapter 6 analytical progression and open optimization formulation, 2026-11-10."
+  }
+]

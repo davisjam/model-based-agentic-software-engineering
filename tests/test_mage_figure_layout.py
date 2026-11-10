@@ -40,6 +40,61 @@ class ClaimsSpreadTests(unittest.TestCase):
             claims_spread(lists + figure)
 
 
+class TheoryPerspectivesTests(unittest.TestCase):
+    def sample(self):
+        return r'''Before.
+% <!-- print-columns-start: theory-perspectives -->
+The GEE connects the three questions (\autoref{theory-perspectives}).
+{\footnotesize
+\begin{longtable}[]{@{}p{\linewidth}@{}}
+\caption[Three perspectives]{Three perspectives on progress.}\label{theory-perspectives}\tabularnewline
+\toprule
+Question \\
+\midrule
+\endfirsthead
+\toprule
+Question \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Faithful production: preserve intended obligations. \\
+Economical production: count all costs. \\
+Cumulative progress: preserve inheritance. \\
+\end{longtable}
+}
+% <!-- print-columns-end: theory-perspectives -->
+\section{What Makes Production Faithful?}
+\[p_R=P(E\cap F\mid R).\]
+After.'''
+
+    def test_keeps_table_content_caption_link_and_following_equation(self):
+        from mage_figure_layout import theory_perspectives_columns
+        text = theory_perspectives_columns(self.sample())
+        for phrase in ['preserve intended obligations', 'count all costs',
+                       'preserve inheritance', 'Three perspectives on progress.',
+                       r'\label{theory-perspectives}', r'\autoref{theory-perspectives}']:
+            self.assertEqual(text.count(phrase), 1)
+        self.assertEqual(text.count('Question'), 1)
+        self.assertIn(r'\captionof{table}', text)
+        self.assertNotIn(r'\begin{longtable}', text)
+        self.assertNotIn(r'\begin{wraptable}', text)
+        self.assertTrue(text.endswith('\\section{What Makes Production Faithful?}\n'
+                                      '\\[p_R=P(E\\cap F\\mid R).\\]\nAfter.'))
+
+    def test_refuses_unaccounted_content_and_broken_boundaries(self):
+        from mage_figure_layout import theory_perspectives_columns
+        for source in [self.sample().replace('% <!-- print-columns-end: theory-perspectives -->', ''),
+                       self.sample().replace('\n}\n% <!-- print-columns-end:', '\n}\nKeep this.\n% <!-- print-columns-end:'),
+                       self.sample().replace('The GEE connects', r'\section{Unexpected} The GEE connects')]:
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                theory_perspectives_columns(source)
+
+    def test_unmarked_chapters_are_unchanged(self):
+        from mage_figure_layout import theory_perspectives_columns
+        self.assertEqual(theory_perspectives_columns('Other chapter.'), 'Other chapter.')
+
+
 class FigurePrintLayoutTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()

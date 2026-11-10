@@ -672,6 +672,8 @@ def _prepare_record(task):
     from latex_build import (bold_table_headers, layout_selected_table, single_page_tables,
                              namespace_heading_links, restore_chapter_heading_links)
     latex = bold_table_headers(latex)
+    from mage_figure_layout import theory_perspectives_columns
+    latex = theory_perspectives_columns(latex)
     latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
                                   row_gap_bp=4, row_stretch=1.2)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)

@@ -113,6 +113,52 @@ def reading_guide_columns(latex: str) -> str:
             r'\end{bookinlinefigure}\end{minipage}\par' + '\n')
 
 
+def theory_perspectives_columns(latex: str) -> str:
+    """Keep the theory's semantic table beside its opening paragraph.
+
+    Use aligned columns, as in the reading guide, rather than wrapfig's
+    incompatible tagged-paragraph hooks. The source remains an ordinary table
+    for HTML and EPUB. Refuse extra content instead of silently dropping it.
+    """
+    start = '% <!-- print-columns-start: theory-perspectives -->'
+    end = '% <!-- print-columns-end: theory-perspectives -->'
+    if start not in latex and end not in latex:
+        return latex
+    if latex.count(start) != 1 or latex.count(end) != 1:
+        raise ValueError('Theory perspectives require one complete column boundary')
+    before, body = latex.split(start, 1)
+    body, after = body.split(end, 1)
+    if re.search(r'\\(?:begin\{bookbox\}|(?:sub)*section\b|footnote\b)', body):
+        raise ValueError('Theory perspectives cannot span an inset or heading')
+    tables = list(re.finditer(r'\\begin\{longtable\}.*?\\end\{longtable\}', body, re.S))
+    if len(tables) != 1 or r'\label{theory-perspectives}' not in tables[0][0]:
+        raise ValueError('Theory perspectives require their single labeled table')
+    table = tables[0]
+    prose = body[:table.start()].strip()
+    if prose.endswith(r'{\footnotesize'):
+        prose = prose.removesuffix(r'{\footnotesize').strip()
+        if body[table.end():].strip() != '}':
+            raise ValueError('Unexpected content after theory perspectives')
+    elif body[table.end():].strip():
+        raise ValueError('Unexpected content after theory perspectives')
+    preamble, content = table[0].split(r'\caption', 1)
+    caption, content = content.split(r'\tabularnewline', 1)
+    header, content = content.split(r'\endfirsthead', 1)
+    _, content = content.split(r'\endhead', 1)
+    footer, rows = content.split(r'\endlastfoot', 1)
+    rows = rows.removesuffix(r'\end{longtable}')
+    tabular = re.sub(r'\\begin\{longtable\}(?:\[[^]]*\])?',
+                     lambda _: r'\begin{tabular}', preamble, count=1)
+    # Caption and table stay in the right column, with generous row leading.
+    columns = (r'\noindent\begin{minipage}[t]{.41\linewidth}\vspace{0pt}'
+               r'\raggedright\setlength{\parskip}{.25\baselineskip}' + '\n' + prose + '\n' +
+               r'\end{minipage}\hfill\begin{minipage}[t]{.57\linewidth}\vspace{0pt}' + '\n' +
+               r'\small\booktablecaptionstyle\renewcommand{\arraystretch}{1.25}' + '\n' +
+               r'\captionof{table}' + caption + '\n' + tabular + header + rows + footer +
+               r'\end{tabular}\end{minipage}\par' + '\n')
+    return before + columns + after
+
+
 def reasoning_horizon_columns(latex: str) -> str:
     """Place the compact comparison beside its ordinary closing prose.
 

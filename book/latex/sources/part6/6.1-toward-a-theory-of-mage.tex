@@ -1,27 +1,51 @@
-% mage-auto-heading: encoding-and-realization
-% mage-auto-heading: cost-and-failure-separately
-% mage-auto-heading: the-dynamic-model
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: The Theory -->
 
-% <!-- chapter-title: A Theory of MAGE -->
+% <!-- chapter-title: From Production to Cumulative Progress -->
 
-\chapter{A Theory of MAGE}
+\chapter{From Production to Cumulative Progress}
 
 % <!-- point: the-pieces-this-chapter-assembles | Chapter 5 examined the complete software factory; the theory focuses on its GEE and how reusable engineering structure supports the encoding and realization of intent. -->
 
-Agentic engineering must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. \magevalue{chapter:software-factories} examined the software factory as a whole. We now focus on its governed engineering environment (GEE): the reusable engineering structure through which people and agents direct, evaluate, and control implementation.
+% <!-- print-columns-start: theory-perspectives -->
+
+Agentic engineering must preserve engineering intent while delegating implementation. Modeling makes that intent available for reasoning; Alignment supplies independent evidence and enforcement. \magevalue{chapter:software-factories} examined the software factory as a whole. We now focus on its governed engineering environment (GEE): the reusable engineering structure through which people and agents direct, evaluate, and control implementation. Three questions organize the theory, moving from individual production to engineering over time (\autoref{theory-perspectives}).
+
+{\footnotesize
+\begin{longtable}[]{@{}p{\linewidth}@{}}
+\caption[Three perspectives on engineering progress]{Three perspectives on engineering progress.}\label{theory-perspectives}\tabularnewline
+\toprule\noalign{}
+Perspective and engineering question \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Perspective and engineering question \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Faithful production.} Did the representation capture the intended obligations, and did the implementation fulfill them? \\
+\textbf{Economical production.} What did correct, admitted delivery cost, including failed attempts and upkeep? \\
+\textbf{Cumulative progress.} How does today's work change the environment inherited by later engineering? \\
+\end{longtable}
+}
+
+% <!-- print-columns-end: theory-perspectives -->
+
+\section{What Makes Production Faithful?}\label{heading:encoding-and-realization}
 
 % <!-- point: the-starting-point-is-the-master-equation | The encoding–realization decomposition applies the chain rule to distinguish adequate encoding from fulfillment, before extending the account to delivery cost and inherited structure. -->
 
-We can begin by separating the encoding of intent from its realization. Let \(E\) mean that the encoding captures the consequential intent and \(F\) that the resulting artifact fulfills the encoded obligations. For a representation \(R\), the probability of both is
+Recall the entitlement failure from \magevalue{chapter:modeling}. The client based its upload decision on a finite-credit total, ignoring a separate unlimited-status flag. That scalar could not distinguish exhausted finite credit from unlimited access. An implementation could faithfully compare the scalar with the upload cost and still make the wrong admission decision. The representation used for the decision had omitted a consequential distinction available elsewhere in the system.
+
+This illustrates two ways delegated implementation can fail. The engineer may encode the wrong obligations, or the agent may fail to fulfill correctly encoded obligations. Let \(E\) mean that the encoding captures the consequential intent and \(F\) that the resulting artifact fulfills the encoded obligations. For a representation \(R\), the probability of both is
 
 \[
 p_R = P(E \cap F \mid R) = \underbrace{P(E \mid R)}_{\substack{\text{Encoding: engineers state}\\\text{what must hold}}} \;\underbrace{P(F \mid E,R)}_{\substack{\text{Realization: agents fulfill}\\\text{those obligations}}}
 \]
 
-This \textbf{encoding–realization decomposition} applies the probability chain rule to separate two engineering questions: whether the representation captures the intended obligations, and whether the resulting artifact fulfills them.\magefootnote{encoding-realization-chain-rule}{In general, the probability that two events \(A\) and \(B\) both occur is the probability of \(A\) multiplied by the probability of \(B\) given \(A\): \(P(A\cap B)=P(A)P(B\mid A)\). This is the probability chain rule; it does not require the events to be independent. Here we apply the same identity conditional on the representation \(R\), with \(A=E\) (correct encoding) and \(B=F\) (fulfillment), yielding \(P(E\cap F\mid R)=P(E\mid R)P(F\mid E,R)\).} The distinction lets us examine how representations, agent capabilities, and production processes affect faithful realization. We will then extend the account to the costs of evaluating, repairing, and admitting changes, and finally to how each engineering episode changes the environment inherited by the next.
+This \textbf{encoding–realization decomposition} applies the probability chain rule to separate two engineering questions: whether the representation captures the intended obligations, and whether the resulting artifact fulfills them.\magefootnote{encoding-realization-chain-rule}{In general, the probability that two events \(A\) and \(B\) both occur is the probability of \(A\) multiplied by the probability of \(B\) given \(A\): \(P(A\cap B)=P(A)P(B\mid A)\). This is the probability chain rule; it does not require the events to be independent. Here we apply the same identity conditional on the representation \(R\), with \(A=E\) (correct encoding) and \(B=F\) (fulfillment), yielding \(P(E\cap F\mid R)=P(E\mid R)P(F\mid E,R)\).} The distinction lets us examine how representations, agent capabilities, and production processes affect faithful realization.
 
 % <!-- point: the-probabilities-belong-to-a-production-system | The probabilities belong to a production system: the factory of Chapter 5, redrawn with each step of the realization path carrying the probability that it succeeds and the encoded property also supplying the tolerance the result is evaluated against. | terms: tolerance -->
 
@@ -33,8 +57,6 @@ This \textbf{encoding–realization decomposition} applies the probability chain
 \caption[Probability in the software factory --- encoding and realization, with the encoded property also supplying the tolerance]{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two factors condition on representation R, omitted here for legibility. Interpretation is a mechanism within realization. The encoded property also supplies an independently evaluable tolerance, so evidence and admission can govern it even when production fails.}
 \label{probability-in-the-software-factory}
 \end{figure}
-
-\section{Encoding and Realization}\label{heading:encoding-and-realization}
 
 % <!-- point: p-r-factors-into-encode-interpret-realize | Encoding and realization locate different interventions; faithful production through a representation is distinct from independently assessed task correctness. -->
 
@@ -58,7 +80,7 @@ Process design changes the conditions under which agents realize intent: context
 
 A stronger reasoner can sometimes recover meaning that a weaker one misses. A terse requirement may be enough for an agent that knows the domain and can inspect the surrounding system. Better retrieval, tools, and feedback can also help it discover what the representation leaves implicit. These possibilities affect the cost and reliability of realization; they are reasons to compare richer representations with more capable inference rather than assume that either must win.
 
-There are limits to what can be recovered from the available evidence. The entitlement failure from \magevalue{chapter:modeling} illustrates the problem. A scalar representation read each group's unlimited flag and still returned a single finite sum: its output type had no place for the distinction. A reasoner using only that output could not distinguish unlimited entitlement from the finite sum it received. Repair required revisiting the representation or consulting information outside it.
+The entitlement failure also shows the limit of inference from an inadequate representation. A reasoner using only the finite-credit total could not recover the distinction between exhausted credit and unlimited access. Better reasoning could help only by revisiting the decision representation or consulting the existing unlimited-status signal.
 
 % <!-- point: reliable-realization-does-not-repair-wrong-encoding | With encoding quality fixed, perfectly reliable fulfillment leaves faithful production bounded by the encoding term; this does not imply complete specification. -->
 
@@ -68,7 +90,7 @@ Even perfectly reliable realization cannot, by itself, establish that the encode
 
 The appropriate degree of specification depends on the work. Some transformations leave little useful freedom, and the cost of ambiguity may outweigh any benefit from delegation. Elsewhere, specifying nearly every realization decision in advance recreates much of the specification cost discussed in \magevalue{chapter:software-factories}. It also sacrifices a major advantage of commodity intelligence: agents can explore implementation choices that engineers need not make themselves. The engineer can specify consequential obligations, leave other choices open, and let the agent find a satisfactory realization. The economic value of Modeling and Alignment therefore depends partly on how much useful freedom the environment can preserve while maintaining adequate control.
 
-\section{Lifecycle Cost and Engineering Value}\label{heading:cost-and-failure-separately}
+\section{What Makes Production Economical?}\label{heading:cost-and-failure-separately}
 
 % <!-- point: lifecycle-cost-counts-correct-delivery | Cost per correct admitted change counts construction, all attempts and upkeep over comparable requested work and a declared horizon. -->
 
@@ -101,6 +123,10 @@ The alternative is often to buy inference when the question arises. A capable ag
 
 This gives packaged agent systems a place in the theory. A capable reasoner and generic supervisory machinery may economically replace some structure that a weaker reasoner would need. How much can they replace, and for which obligations? We can compare what those arrangements deliver, what escapes their assurance, and what they cost, while also asking what engineering knowledge survives for the next task.
 
+% <!-- point: accounting-compares-arrangements-but-choice-remains-open | Lifecycle accounting supports comparison; choosing reasoning, representation and assurance is a constrained engineering decision. -->
+
+This accounting makes alternative engineering arrangements comparable, but it does not tell us which arrangement to choose. A stronger foundation model may reduce the need for explicit representations; a better representation may let a cheaper foundation model perform the same work. A gate may reduce escaped failures while increasing rejection and repair costs. The engineering problem is to choose among these arrangements under requirements for correct delivery, acceptable risk, and human attention. The cheapest implementation attempt need not be the cheapest way to deliver acceptable work.
+
 % <!-- point: human-attention-belongs-in-lifecycle-cost | Human review and intervention consume engineering resources even when machine execution is inexpensive. -->
 
 Human attention is part of this accounting. A production system that generates changes cheaply but requires an expert to reconstruct each one has moved work onto that expert. The relevant cost includes the time needed to interpret the evidence, diagnose failures, and decide whether the result is acceptable. The following inset explains why increasing output can make this cost decisive.
@@ -124,15 +150,17 @@ As agentic output grows, proportional human inspection becomes a bottleneck. Whe
 
 The return on an engineering environment depends on the value of the work it enables and its cost over time. Product work may deliver new capabilities, security work may retire risks, and reliability work may prevent failures or shorten recovery. The environment also incurs costs between production episodes as its models, controls, and other assets require maintenance. Some structures remain useful for years with little attention; others lose fit quickly.
 
-\section{The Inherited Engineering Environment}\label{heading:the-dynamic-model}
+\section{What Makes Progress Cumulative?}\label{heading:the-dynamic-model}
 
 % <!-- point: se-needs-a-model-where-each-realization-changes-the-next | Software engineering extends the episode model: each realization becomes structure inherited by the next. -->
 
-Software engineering extends the model beyond one episode: each realization changes the conditions inherited by the next. Winters et al. characterize software engineering as ``programming integrated over time'': software is developed, modified, and maintained as both the system and its environment change\citep{winters2020}. One realization therefore becomes part of the architecture, conventions, representations, tests, and other structure inherited by subsequent work. A good change can make later work easier to reason about; a locally acceptable but structurally poor change can make it harder.
+Choosing the least costly arrangement for the next change is not necessarily the best decision for the next hundred changes. A model, validator, or procedure may cost more to construct than the immediate task justifies, yet repay that investment through later work. Conversely, a locally inexpensive change can introduce architectural irregularity or obscure information that subsequent engineers and agents must reconstruct.
+
+Winters et al. characterize software engineering as ``programming integrated over time'': software is developed, modified, and maintained as both the system and its environment change\citep{winters2020}. Each realization therefore changes the architecture, conventions, representations, tests, and other structure inherited by subsequent work. The lifecycle account totals these costs, but does not yet explain how earlier work changes the conditions for later production. We need to represent that inheritance explicitly.
 
 % <!-- point: independence-omits-the-inherited-environment | Faithful production depends schematically on the task, foundation model, and inherited GEE; an episode can change that GEE without necessarily improving it. -->
 
-The lifecycle account totals the work and its costs. It does not yet explain how earlier work changes the conditions for later production. Let \(T_i\) be the task at step \(i\), \(M\) the foundation model, and \(\mathcal{G}_i\) the governed engineering environment inherited at that step. The GEE includes the task-relevant representations, tools, procedures, and controls available to direct and evaluate the work. Let \(a_i\) denote the work performed during the episode and the changes it leaves behind:
+Let \(T_i\) be the task at step \(i\), \(M\) the foundation model, and \(\mathcal{G}_i\) the governed engineering environment inherited at that step. The GEE includes the task-relevant representations, tools, procedures, and controls available to direct and evaluate the work. Let \(a_i\) denote the work performed during the episode and the changes it leaves behind:
 
 \[
 p_i=p(T_i,M,\mathcal{G}_i),
@@ -152,7 +180,7 @@ Agentic capacity and the GEE jointly shape what a software factory can accomplis
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/mage-dynamic-model-62588a5597.pdf}
-\caption{\emph{The MAGE Dynamic Model.} Agentic capacity acts through a governed engineering environment. Mismatch creates governance pressure; diagnosis and adaptation can improve the environment inherited by later work. The balancing loop seeks fit, while capability amplification reopens the frontier as stronger environments support more ambitious work. Prior engineering knowledge seeds the system before failure occurs.}
+\caption{\emph{The MAGE Dynamic Model.} Agentic capacity acts through a governed engineering environment. Mismatch creates governance pressure; diagnosis and adaptation can improve the environment inherited by later work. The balancing loop seeks fit, while the reinforcing loop reopens the task frontier as stronger environments make more ambitious work feasible. Prior engineering knowledge seeds the system before failure occurs.}
 \label{mage-dynamic-model}
 \end{figure}
 

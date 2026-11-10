@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/mage-dynamic-model.svg",
+  "candidate": "book/tikz/figures/mage-dynamic-model.tex",
+  "receipt": "book/tikz/receipts/mage-dynamic-model.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Capacity family, governed environment/adaptation, and pressure regain distinct gray families; numbered dynamics receive heavier strokes than shared plumbing.",
+  "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+  "candidate_sha256": "023428f0eeb7750778b506c84bdbd0bb3bdb2f70d77374b5ab5000bdd5c5f9fb"
+}

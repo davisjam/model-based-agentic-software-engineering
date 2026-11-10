@@ -1,0 +1,93 @@
+% mage-auto-heading: research-representation-engineering
+% mage-auto-heading: research-governance-and-engineering-capital
+% mage-auto-heading: research-capacity-and-environment
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The Theory -->
+
+% <!-- chapter-title: Research Agenda -->
+
+\chapter{Research Agenda}
+
+% <!-- point: three-research-directions-test-four-propositions | Three research directions examine representation engineering, governance capital, and capacity/environment interaction without treating the propositions as fitted laws. -->
+
+The next step is to find out when these mechanisms matter, by how much, and at what cost. The central experimental difficulty is to distinguish improvements in the reasoning engine from improvements in the engineering environment through which it works. Three research directions organize that problem: representation engineering, governance and engineering capital, and the interaction between capacity and environment.
+
+\autoref{theory-experimental-comparisons} collects four useful comparisons. Each holds the proposed move against an alternative that could plausibly work. Independent acceptance and the lifecycle accounting of \magevalue{sec:toward-a-theory-of-mage} provide a common basis: include failed work and upkeep, report unresolved requests, and compare delivery under declared quality requirements and evaluation horizons.
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.19}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.40}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.41}}@{}}
+\caption[Comparisons that distinguish MAGE's proposed effects]{Four comparisons connecting the theoretical propositions to observable outcomes.}\label{theory-experimental-comparisons}\tabularnewline
+\toprule\noalign{}
+Question & Comparison & What to measure \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Question & Comparison & What to measure \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Representation (P1) & Structured representation versus prose containing the same obligations & Correctness and reasoning cost across task families and agent capabilities \\
+Assurance (P2) & Independent model-derived checks versus existing checks & Escape and false rejection, alongside correct delivery \\
+Conversion (P3) & Corrections retained as instructions versus conversion into durable controls & Later capability, recurrence and cost per correct delivery, including construction and upkeep \\
+Capacity × environment (P4) & Different model capabilities crossed with different engineering environments & Durable throughput, defect escape, and human attention \\
+\end{longtable}
+}
+
+\section{Representation Engineering}\label{heading:research-representation-engineering}
+
+% <!-- point: natural-language-descriptions-are-models-so-compare-against-strong-baselines | Compare structured representations with equivalent prose to isolate structure; study elicitation separately to learn whether engineers encode better obligations. -->
+
+To test representation leverage, compare agents given structured models with agents given prose containing the same obligations. Hold the task, foundation model, tools, and admission mechanism fixed. Measure correct delivery, reasoning cost, and the human effort required to interpret or repair the result. This isolates the effect of representation form on fulfillment. A separate elicitation experiment should test whether structured representations help engineers discover or express obligations they would otherwise omit, rather than assuming that every treatment begins with an equally complete specification.
+
+% <!-- point: fixed-gate-comparison-and-factorial-extension | A fixed gate isolates representation effects; varying representation and admission mechanism additionally tests assurance and their interaction. -->
+
+The admission mechanism should also be varied independently. With a sound gate, covered violations cannot enter admitted work regardless of whether the producing agent receives the model, but the representation may reduce the number and cost of rejected attempts. With imperfect checks, compare escaped defects, false rejection, and correct delivery under each representation condition. Crossing representation and admission mechanism in a factorial design would distinguish their individual contributions and reveal whether they reinforce one another.
+
+% <!-- point: experiment-compares-authored-induced-and-innovated-representations | Compare designed, recovered and invented representations using independent correspondence evidence and held-out engineering questions, including costs and later benefit. -->
+
+A second set of experiments should compare representations designed by engineers, recovered from existing implementations, and proposed by agents as new abstractions, using raw implementation as a common baseline. The six model classes in \magevalue{chapter:modeling} were offered as useful, not proved necessary, sufficient, or minimal. Recovery should faithfully expose consequential structure already present in the system. Innovation should make useful relationships available that the existing representations did not.
+
+For either route, discovery is only the beginning of evaluation. Use held-out engineering questions and failures to test usefulness; assess claimed correspondence independently; measure reconstruction cost, reasoning success, human comprehensibility, and maintenance. A representation that solves the demonstration question but misleads later work has not established leverage. The comparison should also ask whether any added structure is more economical to retain or to reconstruct when needed.
+
+% <!-- point: representation-has-oversight-value-beyond-realization | Representation studies should test effects on human engineering decisions as well as production; the detailed review experiment follows below. -->
+
+Representation studies should also examine whether the resulting models improve human engineering decisions, a question taken up in the review experiment below.
+
+\section{Governance and Engineering Capital}\label{heading:research-governance-and-engineering-capital}
+
+% <!-- point: event-centered-design-tests-conversion-and-propagation | Following a failure class can reveal inheritance, but comparisons with local repair or later work without the originator are needed to distinguish conversion from learning or changed tasks. -->
+
+Governance research asks which interventions leave capacity that later work can actually inherit. One practical design follows a recurring failure class from first occurrence through diagnosis, local repair, any durable conversion, later reuse, and eventual maintenance or retirement. Record what the intervention enables as well as which failures recur: a model may make larger changes tractable, and a validator may make independent operation possible.
+
+That history can show when later work began to inherit an intervention, but a decline in recurrence alone cannot establish its cause. The engineer may have become more experienced, or the work may have changed. Comparing similar work that received only local repair, or observing later work without the originating engineer, helps distinguish these explanations. Across organizations, the same design can examine how authority connects a local diagnosis to changes in the shared environment.
+
+% <!-- point: capital-measurement-includes-upkeep-retirement-and-attribution | Capital comparisons require full cost and continuing fit, and must account for shared/interacting assets instead of assigning every gain to a single new control. -->
+
+The economic comparison must include construction, carrying cost, and the work spent reconciling or retiring assets that lose fit. Several assets may contribute jointly to a result: a model, a typed operation, and an admission check can reinforce one another. A credible return estimate needs an explicit allocation or a comparison of the bundle, rather than assigning the entire gain to whichever asset was added last. The aim is to learn when inherited capacity pays and how organizations can preserve that value without merely accumulating controls.
+
+\section{Capacity and Environment}\label{heading:research-capacity-and-environment}
+
+% <!-- point: crossed-capability-and-environment-design-tests-substitution | Cross foundation-model capability with independently characterized GEE conditions over matched tasks to distinguish substitution, complementarity and negligible effects. -->
+
+A factorial study can vary foundation-model capability and GEE quality independently over matched task families. GEE conditions should differ in specified representations, controls, or evidence pipelines, with their adequacy assessed independently of the measured outcomes. The study should measure correct admitted work, escaped defects, human intervention, and lifecycle cost over a common horizon. Interactions would show whether improvements to the GEE substitute for model capability, complement it, or contribute little under the tested conditions. Repeating the comparison as tasks and GEEs evolve would test whether the observed effects persist.
+
+% <!-- point: environment-investment-may-dominate-marginal-reasoner-gains | The author conjectures that better environments may offer greater marginal value than stronger reasoners for some task classes; this crossover is not established by controlled evidence. -->
+
+I expect the marginal value of a stronger reasoner eventually to be dominated by the value of a better engineering environment. Indeed, I suspect we have already reached that point for some classes of software-engineering work. A more capable agent may implement a change faster, but if the surrounding environment cannot preserve intent, supply adequate evidence, and govern acceptance, the additional capacity may produce little durable progress. The comparison is not between intelligence and engineering, but between investing in more intelligence and investing in the conditions under which intelligence becomes useful.
+
+% <!-- point: human-review-compares-fixed-attention-and-misleading-evidence | Compare review surfaces at equal time budgets with access to code, including false reassurance from incorrect obligations or stale evidence. -->
+
+Human review deserves a direct comparison within this design. Give engineers the same review-time budget, but vary whether they begin with code or with changed models and verification evidence, retaining access to code when needed. Include cases where a passing check rests on an incorrect obligation or stale evidence; a reassuring display can make the wrong decision easier. As agent output increases, measure whether engineers still distinguish acceptable changes from faulty ones and how much correct work is admitted. Faster approval alone would not support P4 if more violations enter the system.
+
+% <!-- point: engineering-routing-chooses-the-production-arrangement | Engineering routing chooses representations, process and assurance as well as the reasoner, under comparable requested work and minimum correct-delivery requirements. -->
+
+These comparisons could eventually inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger model, a cheaper model with better structure, or a deterministic operation for a sufficiently specified task. The cost comparison must retain a minimum requirement for correct delivery over a fixed horizon; doing nothing or rejecting every result is not a successful low-cost strategy.
+
+% <!-- point: research-needs-durable-outcomes-not-activity-proxies | Effects are limited to the studied tasks, agents, and environments; replication and evidence of adequate representation and evaluation are needed for broader transfer. -->
+
+These experiments would establish effects only for the tasks, agents, and engineering environments studied. Replication across organizations and task families would show how far the relationships extend. Testing them outside software would require additional evidence that the relevant obligations can be represented and evaluated adequately, as the scope conditions above suggest.

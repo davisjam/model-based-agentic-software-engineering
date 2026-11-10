@@ -76,6 +76,10 @@ The economic comparison must include construction, carrying cost, and the work s
 
 A factorial study can vary foundation-model capability and GEE quality independently over matched task families. GEE conditions should differ in specified representations, controls, or evidence pipelines, with their adequacy assessed independently of the measured outcomes. The study should measure correct admitted work, escaped defects, human intervention, and lifecycle cost over a common horizon. Interactions would show whether improvements to the GEE substitute for model capability, complement it, or contribute little under the tested conditions. Repeating the comparison as tasks and GEEs evolve would test whether the observed effects persist.
 
+% <!-- point: independently-assessed-gee-conditions-ground-comparison | A dependency model and admission check can be assessed for correspondence and coverage before both conditions receive the same independent outcome evaluation. -->
+
+For example, two engineering environments could operate on the same codebase and task population, with the same foundation model and production tools. One could provide a validated dependency model and an admission check covering a declared set of architectural obligations; the other could rely on existing source files and ordinary review. The experiment would assess the model's correspondence and the check's coverage independently, before measuring delivery outcomes. Both conditions would use the same independent outcome assessment. This tests a specific engineering investment without assuming that GEE quality can be reduced to a universal score.
+
 % <!-- point: environment-investment-may-dominate-marginal-reasoner-gains | The author conjectures that better environments may offer greater marginal value than stronger reasoners for some task classes; this crossover is not established by controlled evidence. -->
 
 I expect the marginal value of a stronger reasoner eventually to be dominated by the value of a better engineering environment. Indeed, I suspect we have already reached that point for some classes of software-engineering work. A more capable agent may implement a change faster, but if the surrounding environment cannot preserve intent, supply adequate evidence, and govern acceptance, the additional capacity may produce little durable progress. The comparison is not between intelligence and engineering, but between investing in more intelligence and investing in the conditions under which intelligence becomes useful.
@@ -84,9 +88,35 @@ I expect the marginal value of a stronger reasoner eventually to be dominated by
 
 Human review deserves a direct comparison within this design. Give engineers the same review-time budget, but vary whether they begin with code or with changed models and verification evidence, retaining access to code when needed. Include cases where a passing check rests on an incorrect obligation or stale evidence; a reassuring display can make the wrong decision easier. As agent output increases, measure whether engineers still distinguish acceptable changes from faulty ones and how much correct work is admitted. Faster approval alone would not support P4 if more violations enter the system.
 
-% <!-- point: engineering-routing-chooses-the-production-arrangement | Engineering routing chooses representations, process and assurance as well as the reasoner, under comparable requested work and minimum correct-delivery requirements. -->
+\section{Optimizing the Engineering Environment}\label{heading:research-optimizing-the-engineering-environment}
 
-These comparisons could eventually inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger model, a cheaper model with better structure, or a deterministic operation for a sufficiently specified task. The cost comparison must retain a minimum requirement for correct delivery over a fixed horizon; doing nothing or rejecting every result is not a successful low-cost strategy.
+% <!-- point: engineering-routing-chooses-the-production-arrangement | Engineering routing chooses representations, process and assurance as well as the reasoner; a policy can adapt those choices and invest in the inherited GEE. -->
+
+These comparisons could eventually inform \textbf{engineering routing}: choosing how a task should be engineered for realization, including its representation, foundation model, tools, iteration, and admission mechanisms. A routing decision may favor a stronger foundation model, a cheaper foundation model with better structure, or a deterministic operation for a sufficiently specified task. Across repeated work, the decision also concerns what to invest in the GEE. The engineer must allocate resources among reasoning, representation, implementation, and assurance while accounting for the environment that later work will inherit.
+
+% <!-- point: engineering-investment-is-a-constrained-sequential-decision | An engineering policy minimizes lifecycle cost over declared work and a horizon, subject to delivery, heterogeneous assurance and human-attention requirements as the GEE changes. -->
+
+Let \(\pi\) be an engineering policy that selects a production arrangement and any investment in the GEE for each task. Its choices depend on the inherited environment, the available evidence, and current conditions, including the capabilities and prices of available foundation models. Let \(\Pi\) be the set of policies available to the engineer. For a declared task sequence and evaluation horizon of \(H\) engineering episodes, let \(C_i\) denote the total cost incurred in episode \(i\): production, checking, repair, valued human attention, and investment or maintenance attributable to that episode. Charge initial construction to the first episode and allocate shared costs once across the horizon. One formulation of the investment problem is
+
+\[
+\begin{aligned}
+\min_{\pi\in\Pi}\quad& \mathbb{E}_{\pi}\left[\sum_{i=1}^{H} C_i\right]\\
+\text{subject to}\quad& \mathbb{E}_{\pi}[D_H]\ge D_{\min},\\
+& \mathcal{A}(\pi,H)=\text{acceptable},\\
+& \mathbb{E}_{\pi}[A_H]\le A_{\max},\\
+& \mathcal{G}_{i+1}=f(\mathcal{G}_i,a_i),\quad i=1,\ldots,H.
+\end{aligned}
+\]
+
+Here \(D_H\) counts independently assessed correct admitted delivery and \(D_{\min}>0\) is the minimum required delivery. \(A_H\) is total human attention consumed over the horizon, measured in a declared unit such as engineer-hours, and \(A_{\max}\) is the available attention budget. The expectation is over the outcomes under policy \(\pi\). Human attention is both a valued cost and a limited resource; its constraint does not add a second charge. The condition \(\mathcal{A}\) represents the declared assurance obligations, which may combine invariants, probabilistic failure bounds, and required human authorization. These obligations must also specify which requests or task classes require delivery when an aggregate count would permit the policy to select only easy work. The positive delivery minimum rules out rejecting everything; coverage requirements address selective avoidance.
+
+The final relation retains the schematic inheritance model: episode work \(a_i\), including any engineering investment, changes the GEE available to later work. The policy generalizes the earlier fixed-foundation-model comparison by allowing the reasoning engine and production arrangement to change between episodes. This is an illustrative problem formulation; particular settings will require their own assurance conditions, resource budgets, and valuations of useful delivery.
+
+% <!-- point: optimal-investment-is-unknown-and-conditions-move | The policy, costs and GEE transitions are uncalibrated; changes in foundation models, tasks and obligations can change which engineering investments pay. -->
+
+We do not know the optimal policy. The cost and transition functions are not calibrated, the effects of representations and controls depend on the tasks, and the capabilities and prices of foundation models continue to change. Better agents may make some maintained representations unnecessary by reconstructing their information cheaply. They may also make other representations economical to build and maintain. Requirements, dependencies, and organizational authority change as well. An engineering arrangement that is economical today may not remain so.
+
+The formulation gives the research agenda a decision problem to address. The propositions identify mechanisms that can affect its objective and constraints; the proposed experiments can begin estimating those effects. Such evidence may eventually support policies that choose where to invest in durable structure, where to rely on probabilistic reasoning, and where human judgment remains necessary. The economically appropriate division of labor is an empirical question whose answer can change as the available technology and work change.
 
 % <!-- point: research-needs-durable-outcomes-not-activity-proxies | Effects are limited to the studied tasks, agents, and environments; replication and evidence of adequate representation and evaluation are needed for broader transfer. -->
 

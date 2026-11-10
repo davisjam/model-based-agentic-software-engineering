@@ -1,0 +1,26 @@
+{
+  "source": "book/assets/mage-dynamic-model.svg",
+  "candidate": "book/tikz/figures/mage-dynamic-model.tex",
+  "checks": {
+    "icons_and_symbols": "Numbered dynamics and B/R labels retained.",
+    "links_and_groups": "Bootstrap input, balancing adaptation return and reinforcing amplification return remain separate.",
+    "annotation_placement": "Mismatch/gap and dynamics annotations outside nodes; scope limitation below."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 426.5150146484375,
+  "height_bp": 400.68701171875,
+  "monochrome": true,
+  "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
+  "candidate_sha256": "023428f0eeb7750778b506c84bdbd0bb3bdb2f70d77374b5ab5000bdd5c5f9fb",
+  "review": "Reviewed and retained.",
+  "decision": "retained"
+}

@@ -19310,3 +19310,8 @@ The author added a first-person account of discovering consequential obligations
 ### Chapter 7 — authority inset placement (2026-11-10)
 
 The inset moves unchanged after the upstream-expertise discussion to fit a normal full page while keeping the preceding mainline developed. Its lead-in moves with it. The [placement record](chapter-seven-profession-followups-20261110/layout-disposition.md) gives the source revision, original lines, rationale, and minimum antecedent edit; the [complete before-source](chapter-seven-profession-followups-20261110/authority-placement-before.tex) preserves the original order.
+
+
+### Chapter 6 — analytical progression and open investment problem (2026-11-10)
+
+The author requested a compact three-question orientation, question-based headings, reuse of the entitlement failure, a clearer transition from lifecycle accounting to inherited engineering structure, and a formal open optimization problem. All replaced text, source revision and original line ranges are retained in [the retirement record](chapter-six-progress-20261110/retired-passages.json); the complete earlier section and figure sources are preserved alongside it. The [editorial record](chapter-six-progress-20261110/prose-review.md) gives the topic-sentence outline and technical decisions. The four propositions, existing equations and chain-rule teaching footnote remain. The optimization expresses heterogeneous assurance obligations and an evolving policy; it does not claim known costs, transition functions or an optimal solution.
