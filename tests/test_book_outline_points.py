@@ -12,7 +12,8 @@ import chapter_shape_model as shape
 
 class HeadinglessPointTests(unittest.TestCase):
     def test_headingless_points_keep_book_order_and_claim_identity(self):
-        chapters = [SimpleNamespace(slug=slug, part=1) for slug in ['before', 'headed', 'after']]
+        chapters = [SimpleNamespace(slug=slug, part=1, is_part_page=False)
+                    for slug in ['before', 'headed', 'after']]
         points = {slug: [symbols.PointRow(slug+'-claim', 'A consequential claim.', 0)]
                   for slug in ['before', 'after']}
         heading = symbols.HeadingRow('headed', 1, 2, 'A heading', 'a-heading',
@@ -32,6 +33,20 @@ class HeadinglessPointTests(unittest.TestCase):
         with patch.object(symbols, 'heading_rows', return_value=[]), \
                 patch.object(symbols, 'chapter_preamble_points', return_value={}):
             self.assertEqual(outline.derive_outline().chapters, [])
+
+    def test_synthetic_part_opener_points_do_not_invent_chapter_identity(self):
+        document = symbols.book_ir.parse_records([
+            {'slug': 'part-2-intro', 'part': 2, 'is_part_page': True,
+             'body_md': '<!-- point: part-opening | An orientation point. -->\n\nOrientation prose.'},
+            {'slug': '2.1-synthesis', 'part': 2, 'chapter': 1,
+             'body_md': '<!-- point: synthesis | A substantive claim. -->\n\nDeveloped synthesis.'},
+        ])
+        self.assertTrue(document.chapters[0].is_part_page)
+        self.assertFalse(document.chapters[1].is_part_page)
+        with patch.object(symbols.book_ir, 'parse_book', return_value=document):
+            model = outline.derive_outline()
+        self.assertEqual([c.slug for c in model.chapters], ['2.1-synthesis'])
+        self.assertEqual(model.chapters[0].preamble_points[0].slug, 'synthesis')
 
 
 class ChapterClosingTests(unittest.TestCase):

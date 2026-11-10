@@ -296,6 +296,9 @@ class Chapter:
     #: The chapter's part display title ("Back Matter" for the synthetic tail) — carried so the divider text
     #: for a matter part whose number is not in `_PART_TITLES` is available on the record.
     part_title: str = ""
+    #: Synthetic Part landing pages are not numbered manuscript units. Keep the build's explicit
+    #: distinction available to structural views rather than inferring it from a slug or title.
+    is_part_page: bool = False
 
     def floats(self) -> list[Block]:
         return [b for b in self.blocks if b.is_float]
@@ -491,7 +494,8 @@ def _parse_chapter(rec: dict) -> Chapter:
     return Chapter(slug=slug, part=rec["part"],
                    title=rec.get("chapter_title") or rec.get("part_title", ""), blocks=blocks,
                    chapter=rec.get("chapter", 0), fig_prefix=rec.get("fig_prefix"),
-                   is_matter=bool(rec.get("is_matter")), part_title=rec.get("part_title", ""))
+                   is_matter=bool(rec.get("is_matter")), part_title=rec.get("part_title", ""),
+                   is_part_page=bool(rec.get("is_part_page")))
 
 
 def book_records(include_appendices: bool = False, for_print: bool = False) -> "list[dict]":

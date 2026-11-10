@@ -99,6 +99,10 @@ def derive_outline(include_appendices: bool = False) -> Outline:
             if chapters is None:
                 chapters = bs.book_ir.parse_book(include_appendices=include_appendices).chapters
             chapter = next(c for c in chapters if c.slug == slug)
+            # A Part landing page can carry opener points too, but it is synthetic apparatus,
+            # not a chapter-identity unit. Preserve the existing outline domain.
+            if chapter.is_part_page:
+                continue
             by_chapter[slug] = OutlineChapter(slug=slug, part=chapter.part)
         by_chapter[slug].preamble_points = [
             ParagraphPoint(slug=p.slug, text=p.text, block_index=p.block_index) for p in pts]
