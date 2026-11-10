@@ -2883,22 +2883,22 @@
             {
               "slug": "model-selection-was-an-engineering-decision",
               "text": "Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator.",
-              "block_index": 96
+              "block_index": 97
             },
             {
               "slug": "engineering-set-the-price-of-the-reasoning",
               "text": "Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures.",
-              "block_index": 101
+              "block_index": 102
             },
             {
               "slug": "reasoning-substitution-cost-depends-on-context-and-quality",
               "text": "A September 2026 single-PDF cost comparison measured the structured pipeline at about $0.0419 and estimated the agent's execution share at $2.29; the cost-accounting and quality limits prevent a claim of equal-quality substitution.",
-              "block_index": 103
+              "block_index": 104
             },
             {
               "slug": "a-completed-coached-loop-did-not-improve-the-measured-documents",
               "text": "In a November 2026 two-PDF evaluation, a completed second coached pass closed no additional findings on the harder document and cost $3.57 versus $1.35 for one pass; the clean document stopped after one pass in both arms.",
-              "block_index": 105
+              "block_index": 106
             }
           ]
         },
@@ -2908,7 +2908,7 @@
           "heading_text": "The Factory in Operation",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 108,
+          "block_index": 109,
           "points": []
         },
         {
@@ -2917,22 +2917,22 @@
           "heading_text": "From a Priority to Completed Work",
           "topic_sentence": "How does one engineer keep several agents working without continually prompting each one?",
           "id_source": "derived",
-          "block_index": 110,
+          "block_index": 111,
           "points": [
             {
               "slug": "the-mature-production-flow",
               "text": "The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation and independently audited completion.",
-              "block_index": 111
+              "block_index": 112
             },
             {
               "slug": "task-scoped-context-connects-models-to-dispatch",
               "text": "An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred.",
-              "block_index": 114
+              "block_index": 115
             },
             {
               "slug": "repair-is-cheap-escalation-is-the-signal",
               "text": "Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer.",
-              "block_index": 118
+              "block_index": 119
             }
           ]
         },
@@ -2942,47 +2942,47 @@
           "heading_text": "What Escalated Failures Became",
           "topic_sentence": "Where did this factory machinery come from?",
           "id_source": "derived",
-          "block_index": 120,
+          "block_index": 121,
           "points": [
             {
               "slug": "governance-conversion-is-an-empirical-claim-about-durable-structure",
               "text": "Six selected product and environment episodes show pressures, judgments and durable changes that later work inherited.",
-              "block_index": 121
+              "block_index": 122
             },
             {
               "slug": "destructive-library-behavior-became-a-typed-seam",
               "text": "A library operation that discarded accessibility structure led to typed mutation interfaces and checks rejecting raw access outside them.",
-              "block_index": 123
+              "block_index": 124
             },
             {
               "slug": "implicit-lifecycle-became-explicit-model",
               "text": "Slow dependencies and reflexive retry led to explicit lifecycle, ownership and progress evidence for recovery.",
-              "block_index": 126
+              "block_index": 127
             },
             {
               "slug": "prompt-properties-preserved-useful-freedom",
               "text": "Unsupported numerical prompt demands became evidence-grounding obligations and checks while wording remained open.",
-              "block_index": 129
+              "block_index": 130
             },
             {
               "slug": "a-timeout-spoke-only-after-the-budget-was-spent",
               "text": "A timeout produced a provisional cost/time model and reportable evidence; the bound remained too weakly calibrated to justify blocking.",
-              "block_index": 132
+              "block_index": 133
             },
             {
               "slug": "an-unmade-decision-is-where-the-agent-guesses-worst",
               "text": "Destructive merge conflict handling led to removal of the unsafe fallback and explicit resolution of ambiguous cases.",
-              "block_index": 136
+              "block_index": 137
             },
             {
               "slug": "interacting-hooks-required-explicit-order",
               "text": "Turn-end reflection and stranded-work inspection required an explicit ordering constraint and model/configuration correspondence checks.",
-              "block_index": 140
+              "block_index": 141
             },
             {
               "slug": "the-case-contains-both-routes-to-durable-structure",
               "text": "The selected conversions coexist with structures designed prospectively from known obligations.",
-              "block_index": 143
+              "block_index": 144
             }
           ]
         },
@@ -2992,22 +2992,22 @@
           "heading_text": "The Supervisor's Job",
           "topic_sentence": "What was I doing as the factory acquired these capabilities?",
           "id_source": "derived",
-          "block_index": 145,
+          "block_index": 146,
           "points": [
             {
               "slug": "the-preceding-subsections-recorded-substitutions",
               "text": "The Delegation Staircase names five stages in the author’s changing responsibilities; it is a chronology, not a maturity model.",
-              "block_index": 147
+              "block_index": 148
             },
             {
               "slug": "rungs-compressed",
               "text": "Inspection gave way to delegated evaluation, deterministic checks, local reasoning and system-level models as the environment developed.",
-              "block_index": 149
+              "block_index": 150
             },
             {
               "slug": "the-staircase-has-two-interacting-supports",
               "text": "Modeling supplied system views and Alignment enforced selected repeatable obligations; judgment and upkeep remained necessary.",
-              "block_index": 153
+              "block_index": 154
             }
           ]
         }
@@ -3196,7 +3196,7 @@
           "section_id": "spotify",
           "level": 2,
           "heading_text": "Spotify",
-          "topic_sentence": "Spotify introduced agents into a production process that already knew how to change a large software estate.",
+          "topic_sentence": "Spotify introduced agents into an established process for changing software across many repositories.",
           "id_source": "derived",
           "block_index": 13,
           "points": [

@@ -310,7 +310,9 @@ Explicit models expanded the questions the environment could answer. A lifecycle
 
 % <!-- point: reasoning-substitution-reuses-engineered-operations | Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass. -->
 
-DocAble separates the reasoning that proposes a repair from the machinery that changes the document. This permits substitution at two levels. For individual tasks, ModelSelector assigns a foundation model using task-specific configuration and capability requirements. The remediation graph stays the same while the model supplying a judgment changes. A per-task benchmark compares candidate models on quality, cost, and latency. At a coarser level, a general-purpose agent can choose and sequence repairs instead of following the production graph's orchestration.
+DocAble separates the reasoning that proposes a repair from the machinery that changes the document. The separation preserves much of the engineering investment when the reasoning strategy changes: a new strategy can reuse the document models, controlled operations, and validation machinery rather than reconstructing them. It also lets us ask whether more general reasoning earns its additional cost.
+
+Substitution occurs at two levels. For individual tasks, ModelSelector assigns a foundation model using task-specific configuration and capability requirements. The remediation graph stays the same while the model supplying a judgment changes. A per-task benchmark compares candidate models on quality, cost, and latency. At a coarser level, a general-purpose agent can choose and sequence repairs instead of following the production graph's orchestration.
 
 % <!-- point: model-selection-was-an-engineering-decision | Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator. -->
 
