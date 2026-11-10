@@ -94,6 +94,23 @@ After.'''
         from mage_figure_layout import theory_perspectives_columns
         self.assertEqual(theory_perspectives_columns('Other chapter.'), 'Other chapter.')
 
+    def test_orientation_table_is_listed_in_reading_order(self):
+        from unittest.mock import patch
+        import mage_latex
+        source = (r'\begin{figure}\caption[Figure]{A figure.}\label{first}\end{figure}'
+                  r'\captionof{table}[Perspectives]{Three questions.}\label{theory-perspectives}'
+                  r'\begin{tabular}{l}Faithful production.\\Economical production.\end{tabular}'
+                  r'\begin{longtable}{l}\caption[Outcomes]{Outcomes.}\label{outcomes}\end{longtable}')
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root/'chapter.tex').write_text(source)
+            with patch.object(mage_latex, 'ROOT', root):
+                lists = mage_latex.native_float_lists(['chapter.tex'])
+            self.assertEqual((root/'chapter.tex').read_text(), source)
+        self.assertIn(r'\ref*{theory-perspectives}\quad Perspectives', lists)
+        self.assertLess(lists.index('theory-perspectives'), lists.index('outcomes'))
+        self.assertEqual(lists.count(r'\ref*{theory-perspectives}'), 1)
+
 
 class FigurePrintLayoutTests(unittest.TestCase):
     def setUp(self):

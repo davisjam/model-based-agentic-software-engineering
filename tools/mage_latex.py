@@ -725,10 +725,10 @@ def native_float_lists(chapters):
     for chapter in chapters:
         path = ROOT / chapter
         def collect(match):
-            content, kind = match[0], match[1]
+            content, kind = match[0], match[1] or match[2]
             if kind == 'table': kind = 'longtable'
             if kind == 'bookinlinefigure': kind = 'figure'
-            cap = re.search(r'\\caption(?!\*)(?:\[([^]]*)\])?', content)
+            cap = re.search(r'\\caption(?:of\{table\})?(?!\*)(?:\[([^]]*)\])?', content)
             if not cap: return content
             body = argument(content[cap.start():], cap[0])
             # The optional short title is group 1 of the caption match.
@@ -740,7 +740,9 @@ def native_float_lists(chapters):
                 content = content.replace(full, full + r'\label{' + label + '}', 1)
             entries[kind].append(r'\noindent\ref*{' + label + r'}\quad ' + title + r'\dotfill\pageref*{' + label + r'}\par\smallskip')
             return content
-        value = re.sub(r'\\begin\{(figure|bookinlinefigure|longtable|table)\}.*?\\end\{\1\}', collect, path.read_text(), flags=re.S)
+        value = re.sub(r'\\begin\{(figure|bookinlinefigure|longtable|table)\}.*?\\end\{\1\}'
+                       r'|\\captionof\{(table)\}.*?\\end\{tabular\}',
+                       collect, path.read_text(), flags=re.S)
         path.write_text(value)
     return '\n'.join(r'\chapter*{List of ' + title + '}' + '\n{\\small\n' + '\n'.join(entries[kind]) + '\n}' for kind, title in [('figure','Figures'),('longtable','Tables')])
 

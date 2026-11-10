@@ -35,3 +35,5 @@ The semantic table and optimization remain shared text across HTML, EPUB and pri
 ## Rendered proof
 
 The whole-book proof converged in three passes with zero unapproved diagnostics. The opening uses normal body text beside a compact table, balanced at 50/48 percent widths with 4bp between rows. Its caption and reference link retain semantic tagging. The encoding equation, teaching footnote, inherited-GEE discussion and new optimization were visually inspected. A small copyedit to the moving-target paragraph removes an isolated continuation line without changing its argument; the final complete build verifies this.
+
+The final production audit found that the newly nonfloating table needed inclusion in the printed List of Tables. The shared collector now includes captioned inline tables in reading order, with a regression test preserving the caption, label and cell contents. This changes navigation only. The final targeted test set contains 21 passing tests.
