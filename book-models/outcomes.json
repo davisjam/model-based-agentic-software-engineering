@@ -10,14 +10,14 @@
     "by_granularity": {
       "book": 3,
       "part": 5,
-      "chapter": 29,
-      "section": 8
+      "chapter": 30,
+      "section": 7
     },
     "by_tier": {
       "program": 3,
       "module": 5,
-      "lesson": 29,
-      "outcome": 8
+      "lesson": 30,
+      "outcome": 7
     },
     "by_bloom": {
       "know": 4,
@@ -30,8 +30,8 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 183,
-    "sections_primary_of_an_outcome": 6,
+    "sections_total": 185,
+    "sections_primary_of_an_outcome": 5,
     "modules": 8,
     "lessons": 30
   },
@@ -120,25 +120,27 @@
         ],
         "lessons": [
           {
-            "lesson": "1.1-the-printer",
+            "lesson": "1.2-the-engineering-object",
             "own_outcomes": [],
             "section_outcomes": [
-              "the-engineering-object::explain-why-an-agent-needs-a-model-of-how-to-bui",
-              "whose-fault-is-it::adopt-the-posture-that-when-an-agent-produces"
+              "engineering-the-environment::author-a-lifecycle-and-a-runbook-that-splits-th",
+              "engineering-the-environment::design-a-metric-that-measures-one-level-deeper",
+              "engineering-the-environment::package-a-recurring-procedure-as-engineering-cap",
+              "whose-fault-is-it::adopt-the-posture-of-inspecting-the-engineered"
             ]
           },
           {
-            "lesson": "1.2-mage-by-example",
+            "lesson": "1.3-mage-by-example",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "1.3-the-agentic-substrate",
+            "lesson": "1.4-the-agentic-substrate",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "1.4-the-new-engineering-problem",
+            "lesson": "1.5-the-new-engineering-problem",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -796,6 +798,19 @@
       "gap_note": null
     },
     {
+      "outcome_id": "the-engineering-object::explain-how-models-and-controls-preserve-consequ",
+      "granularity": "chapter",
+      "primary_unit": "the-engineering-object",
+      "secondary_units": [],
+      "verb": "explain",
+      "obj": "how models and controls preserve consequential decisions while leaving acceptable implementation choices open",
+      "statement": "After this section, the reader can explain how an engineered environment preserves consequential engineering decisions while leaving acceptable implementation choices open.",
+      "bloom": "understand",
+      "provenance": "derived",
+      "anchor": "points: a-simple-specification-leaves-enormous-freedom / leverage-moves-into-the-environment / mage-is-about-that-environment (§1.2 The Engineering Object).",
+      "gap_note": null
+    },
+    {
       "outcome_id": "the-printer::judge-when-an-open-ended-task-needs-governance",
       "granularity": "chapter",
       "primary_unit": "the-printer",
@@ -805,7 +820,7 @@
       "statement": "After this chapter, the reader can judge whether a task is open-ended enough to need the book's machinery, and reason about accountability when an agent produces a wrong result.",
       "bloom": "evaluate",
       "provenance": "declared",
-      "anchor": "Section titles: 'The Engineering Object', 'an-open-ended-technology', 'whose-fault-is-it'.",
+      "anchor": "§1.1 The Printer; §1.2 The Engineering Object, including When Agents Produce the Wrong Result.",
       "gap_note": null
     },
     {
@@ -887,19 +902,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-engineering-object::explain-why-an-agent-needs-a-model-of-how-to-bui",
-      "granularity": "section",
-      "primary_unit": "the-engineering-object",
-      "secondary_units": [],
-      "verb": "explain",
-      "obj": "why an agent needs a model of how to build the thing, not just a picture of it",
-      "statement": "After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result.",
-      "bloom": "understand",
-      "provenance": "derived",
-      "anchor": "point: modeling-and-alignment-supply-the-instruction-package (The Printer, 'The Engineering Object' — intent is not fabrication instructions; a photograph does not specify the build).",
-      "gap_note": null
-    },
-    {
       "outcome_id": "the-semantic-gap::define-the-semantic-gap-between-a-model-and-the",
       "granularity": "section",
       "primary_unit": "the-semantic-gap",
@@ -941,16 +943,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "whose-fault-is-it::adopt-the-posture-that-when-an-agent-produces",
+      "outcome_id": "whose-fault-is-it::adopt-the-posture-of-inspecting-the-engineered",
       "granularity": "section",
       "primary_unit": "whose-fault-is-it",
       "secondary_units": [],
       "verb": "adopt",
-      "obj": "the posture that when an agent produces the wrong thing, the first suspect is the instructions",
-      "statement": "After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain.",
+      "obj": "the posture of inspecting the engineered setup before diagnosing an agent capability limit",
+      "statement": "After this section, the reader can inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing failed output as an agent capability limit.",
       "bloom": "apply",
       "provenance": "derived",
-      "anchor": "point: agent-is-a-printer-not-a-stapler-so-suspect-the-instructions / models-can-build-anything-you-can-explain",
+      "anchor": "points: suspect-the-engineered-setup-before-a-machine-limit / inspect-what-the-engineer-controlled-first (§1.2 When Agents Produce the Wrong Result).",
       "gap_note": null
     }
   ]

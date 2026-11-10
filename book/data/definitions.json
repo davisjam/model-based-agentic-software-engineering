@@ -5,7 +5,7 @@
 
   "_book_home_note": "The four CORE-TERM definitions (model, agent, engineering, software-engineering) are tagged with an index-def in §2.1 (The Agent Stack), so their `book_home_owed.status: landed` and each carries a resolved `book_home` (the `#idx-def-<slug>` anchor on the 2.1 page). The fifth record, `structured`, is the ADJECTIVE rider on the model definition — also index-def-tagged in §2.1 (`book_home_owed.status: landed`, `book_home` → `#idx-def-structured`), rendering as the blue def-box in the web book + PDF. The book home is the definitions' realization; the landing no longer projects them (see `_book_only_note`).",
 
-  "_book_only_note": "Every record now carries `site_home` = \"N/A\": the landing dropped its on-landing definitions strip (commit 727378a — 'end the landing at the nav cards; drop on-landing catalogue + vocabulary strip'), so NO definition projects to the site. The landing's conceptual preview is carried by the big-ideas projection (`id=bi-*`) plus the nav cards; each definition's realization is its BOOK home (§2.1 for the core four + the structured rider; the preface, §2.3, and §1.3 for the three core-construct insets — churn, governance-mechanism, engineered-agent-loop). `check_definitions_site` skips N/A records in the model→site direction, and the site→model direction is vacuously satisfied (no `def-*` ids on the landing). The three core-construct records also carry the concepts model's L1 home (joined by slug); their definitional text here is the SSOT the prose insets mirror. RECONCILIATION (projection metamodel, book-models/projections.json + projection-index.json): `site_home` names only the landing def-strip anchor (dropped in 727378a), NOT every website appearance of the concept. Churn, for instance, is `site_home:\"N/A\"` here yet renders a dedicated website concept page (concept-churn.html) plus a landing Big-Idea card (bi-churn) — a real cross-cutting site presence this field cannot express. That contradiction is now caught mechanically by the projection-index SITE-HOME gate (`projections_model.py site-home`, audit-only): a book-only definition whose concept has its own website concept page is flagged, so the `site_home:\"N/A\"` claim can no longer silently under-report a concept that does project to the site. The value is left as-is on purpose — flipping it would re-render the removed def-strip and break `check_definitions_site`; the projection index is the reconciling source of truth for where the concept actually renders.",
+  "_book_only_note": "Every record now carries `site_home` = \"N/A\": the landing dropped its on-landing definitions strip (commit 727378a — 'end the landing at the nav cards; drop on-landing catalogue + vocabulary strip'), so NO definition projects to the site. The landing's conceptual preview is carried by the big-ideas projection (`id=bi-*`) plus the nav cards; each definition's realization is its BOOK home (§2.1 for the core four + the structured rider; the preface, §2.3, and §1.4 for the three core-construct insets — churn, governance-mechanism, engineered-agent-loop). `check_definitions_site` skips N/A records in the model→site direction, and the site→model direction is vacuously satisfied (no `def-*` ids on the landing). The three core-construct records also carry the concepts model's L1 home (joined by slug); their definitional text here is the SSOT the prose insets mirror. RECONCILIATION (projection metamodel, book-models/projections.json + projection-index.json): `site_home` names only the landing def-strip anchor (dropped in 727378a), NOT every website appearance of the concept. Churn, for instance, is `site_home:\"N/A\"` here yet renders a dedicated website concept page (concept-churn.html) plus a landing Big-Idea card (bi-churn) — a real cross-cutting site presence this field cannot express. That contradiction is now caught mechanically by the projection-index SITE-HOME gate (`projections_model.py site-home`, audit-only): a book-only definition whose concept has its own website concept page is flagged, so the `site_home:\"N/A\"` claim can no longer silently under-report a concept that does project to the site. The value is left as-is on purpose — flipping it would re-render the removed def-strip and break `check_definitions_site`; the projection index is the reconciling source of truth for where the concept actually renders.",
 
   "_order": ["model", "agent", "agentic-harness", "engineered-environment", "engineering", "software-engineering", "structured", "churn", "compounding", "governance-mechanism", "engineered-agent-loop", "reasoning-horizon", "long-horizon-task"],
 
@@ -145,7 +145,7 @@
     "site_home": "N/A",
     "derived_from": "book/_design/book-editorial-discipline-directive-260802.md#the-engineered-agent-loop",
     "book_home": "the-agent-stack#idx-def-engineered-agent-loop",
-    "book_home_owed": {"section": "Chapter 3 — §3.1 The Agent Stack", "status": "landed", "note": "Landed: the engineered-loop index-def now anchors on §3.1 The Agent Stack's soft/hard/feedback three-kinds paragraph (re-homed from §1.3's orphan loop-def block when R24 restored §1.3's ending). Book-only by design."},
+    "book_home_owed": {"section": "Chapter 3 — §3.1 The Agent Stack", "status": "landed", "note": "Landed: the engineered-loop index-def now anchors on §3.1 The Agent Stack's soft/hard/feedback three-kinds paragraph (re-homed from §1.4's orphan loop-def block when R24 restored §1.4's ending). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -155,12 +155,12 @@
     "box": "The practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources.",
     "aspects": [
       {"lead": "The whole reasoning system", "text": "For an agent, the horizon depends on the foundation model together with the harness, external memory, and tools. Stored information contributes only insofar as the system can recover and use it when needed."},
-      {"lead": "Two ways to extend the horizon", "text": "Better machinery can help the system handle more demanding tasks. Better representations can reduce the reasoning a task requires. Either can extend the range of tasks handled reliably or reduce cost within that range. The definition is a system-level generalization, not a universal scalar measurement; §1.3 distinguishes it from the narrower sequential-reasoning use in seqBench and cites ReadAgent, Larkin and Simon, and Zhang and Norman for the supporting mechanisms."}
+      {"lead": "Two ways to extend the horizon", "text": "Better machinery can help the system handle more demanding tasks. Better representations can reduce the reasoning a task requires. Either can extend the range of tasks handled reliably or reduce cost within that range. The definition is a system-level generalization, not a universal scalar measurement; §1.4 distinguishes it from the narrower sequential-reasoning use in seqBench and cites ReadAgent, Larkin and Simon, and Zhang and Norman for the supporting mechanisms."}
     ],
     "site_home": "N/A",
-    "derived_from": "book/part1/1.3-the-agentic-substrate.md#reasoning-horizon",
+    "derived_from": "book/part1/1.4-the-agentic-substrate.md#reasoning-horizon",
     "book_home": "reasoning-horizon#idx-def-reasoning-horizon",
-    "book_home_owed": {"section": "Chapter 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design; the modeling-principle reframe (§1.4) is where the causal chain it names is worked out."},
+    "book_home_owed": {"section": "Chapter 1 — §1.4 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.4 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design; the modeling-principle reframe (§1.5) is where the causal chain it names is worked out."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -173,9 +173,9 @@
       {"lead": "Task demands and system capacity", "text": "A long sequence of decisions need not exceed the reasoning horizon of a well-supported system. Sequence length, required state, and reconstruction cost are distinct considerations. Their demands depend on the task and its representation; whether they can be met depends on the reasoner and supporting machinery."}
     ],
     "site_home": "N/A",
-    "derived_from": "book/part1/1.3-the-agentic-substrate.md#long-horizon-task",
+    "derived_from": "book/part1/1.4-the-agentic-substrate.md#long-horizon-task",
     "book_home": "reasoning-horizon#idx-def-long-horizon-task",
-    "book_home_owed": {"section": "Chapter 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design."},
+    "book_home_owed": {"section": "Chapter 1 — §1.4 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.4 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Chapter 4 §4.1). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -194,10 +194,10 @@
       }
     ],
     "site_home": "N/A",
-    "derived_from": "book/latex/sources/part1/1.3-the-agentic-substrate.tex#idx-def-agentic-harness",
+    "derived_from": "book/latex/sources/part1/1.4-the-agentic-substrate.tex#idx-def-agentic-harness",
     "book_home": "reasoning-horizon#idx-def-agentic-harness",
     "book_home_owed": {
-      "section": "Chapter 1 — §1.3 Agentic Machinery and Engineering Mechanisms",
+      "section": "Chapter 1 — §1.4 Agentic Machinery and Engineering Mechanisms",
       "status": "landed",
       "note": "Canonical definition introduced with the author-approved harness/environment distinction on 2 November 2026."
     },
@@ -222,10 +222,10 @@
       }
     ],
     "site_home": "N/A",
-    "derived_from": "book/latex/sources/part1/1.3-the-agentic-substrate.tex#idx-def-engineered-environment",
+    "derived_from": "book/latex/sources/part1/1.4-the-agentic-substrate.tex#idx-def-engineered-environment",
     "book_home": "reasoning-horizon#idx-def-engineered-environment",
     "book_home_owed": {
-      "section": "Chapter 1 — §1.3 Agentic Machinery and Engineering Mechanisms",
+      "section": "Chapter 1 — §1.4 Agentic Machinery and Engineering Mechanisms",
       "status": "landed",
       "note": "Canonical definition introduced with the author-approved harness/environment distinction on 2 November 2026."
     },

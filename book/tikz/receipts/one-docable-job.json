@@ -1,6 +1,6 @@
 {
   "source": "book/assets/one-docable-job.svg",
-  "chapter": "1.2-mage-by-example",
+  "chapter": "1.3-mage-by-example",
   "claim": "*Processing one document in DocAble.* A user submits a document, creating a job that tracks its processing. The work may be divided into chunks and processed by workers using specialized services for generation, rendering, optical character recognition (OCR), and document-format processing. The resulting changes are reassembled and validated, and the remediated document is returned with evidence.",
   "topology": {
     "description": "Restored folded-corner input/output documents, four separate specialist service boxes, repaired-pieces node and separate evidence output. The document creates a job; chunks join at workers, services join at repaired pieces, then merge and validation branch to document and evidence.",

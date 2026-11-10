@@ -1,6 +1,6 @@
 {
   "source": "book/assets/engineering-leverage.svg",
-  "chapter": "1.1-the-printer",
+  "chapter": "1.2-the-engineering-object",
   "claim": "*Where engineering leverage acts.* When engineers write most implementation directly, much of their engineering leverage acts through the code. When agents provide abundant realization capacity, more of that leverage moves into the governed engineering environment—the software analogue of the models, fabrication constraints, process instructions, and acceptance criteria surrounding a 3D printer. The environment becomes one means through which engineers retain control while delegating realization: it represents important engineering intent, constrains realization, and evaluates what the fleet produces. MAGE further contends that a governed engineering environment must become the primary means through which engineers exercise control as realization is increasingly delegated.",
   "topology": {
     "description": "Two comparable production pipelines; engineering leverage moves upstream to environment.",

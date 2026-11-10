@@ -2718,7 +2718,7 @@
       "candidate": "book/tikz/figures/docable-glimpse.tex",
       "decision": "refined",
       "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-      "candidate_sha256": "91e6cfc5b59d9bca65f2d6840f5401b4fd70c14fabfcedc69952c471bf83f850",
+      "candidate_sha256": "e8d5f87bf16c470d931aadec53df5c6713539861713582e93b7e7aba8518ecb5",
       "evidence": [
         {
           "source_text": "not accessible",
@@ -2740,7 +2740,7 @@
           "source_text": "evidence record",
           "source_style": "weight 700, normal",
           "semantic_role": "Document status and evidence badge",
-          "candidate_text": "Evidence record",
+          "candidate_text": "Changelog",
           "candidate_style": "bold ",
           "source_fragments": [
             {
@@ -2760,7 +2760,7 @@
           "bold": true
         },
         {
-          "text": "Evidence record",
+          "text": "Changelog",
           "bold": true
         },
         {

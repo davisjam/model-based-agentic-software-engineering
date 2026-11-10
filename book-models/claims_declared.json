@@ -260,7 +260,7 @@
     {
       "id": "printer-not-coder",
       "kind": "metaphor",
-      "statement": "Building with an agent is running a printer, not a coder: suspect the instructions before the agent's capability.",
+      "statement": "Agents are printers, not staplers: inspect the engineered setup before diagnosing a capability limit.",
       "distinguishes": [],
       "home": "the-printer",
       "asserted_at": [
@@ -273,7 +273,7 @@
         "definition:agent"
       ],
       "provenance": "stated",
-      "anchor": "Preface through-line + 1.1 the-printer / whose-fault-is-it: the agent is a printer; a bad output is first evidence about the instructions, representation, task boundary, or environment, not by reflex a fixed capability ceiling."
+      "anchor": "§1.1 The Printer and §1.2 When Agents Produce the Wrong Result: broad productive capacity, followed by inspection of instructions, representation, task boundary, tools, and evidence before diagnosing a capability limit."
     },
     {
       "id": "seat-moves-not-lifecycle",

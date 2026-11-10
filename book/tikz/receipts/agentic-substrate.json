@@ -1,6 +1,6 @@
 {
   "source": "book/assets/agentic-substrate.svg",
-  "chapter": "1.3-the-agentic-substrate",
+  "chapter": "1.4-the-agentic-substrate",
   "claim": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
   "topology": {
     "description": "Restored four separate capability sub-boxes inside both Foundation Model and Agentic Harness containers. Both feed the agent inside the engineered-environment enclosure; external connecting routes avoid the environment label.",

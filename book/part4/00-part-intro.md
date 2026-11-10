@@ -14,7 +14,7 @@ Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeli
 >
 > **Repeat.**
 >
-> You can enter this cycle at any point. Recall [ref:multiple-routes-to-engineering-models] in {{chapter:problem}}: engineering may begin with requirements, an existing system, or exploratory agent implementation.
+> You can enter this cycle at any point. Recall [ref:multiple-routes-to-engineering-models] in {{chapter:modeling}}: engineering may begin with requirements, an existing system, or exploratory agent implementation.
 
 {{sec:the-dynamics-of-mage}} explains how engineers introduce models incrementally and protect established properties while exploring change. {{sec:interlude-one-problem-many-models}} follows that process through DocAble’s memory and execution problems; {{sec:brownfield-engineering}} shows how to recover useful models from an existing system. {{sec:engineering-the-environment}} turns to equipping, evaluating, operating, and maintaining the environment that later work inherits.
 

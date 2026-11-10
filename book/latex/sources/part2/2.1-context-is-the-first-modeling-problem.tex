@@ -289,6 +289,15 @@ The complementary direction is bottom-up, from the proposed model. For each dist
 
 Neither direction guarantees that the model preserves exactly what is needed. Analysis, implementation, measurement, or a failure may show that an omission was acceptable or that the model needs to change. The later examples show both possibilities.
 
+A model may be constructed from requirements, recovered from an existing system, or developed through agent exploration. These are alternative routes rather than prescribed stages; \autoref{multiple-routes-to-engineering-models} shows their possible uses.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/multiple-routes-to-engineering-models-abe57356fe.pdf}
+\caption{\emph{Multiple routes to engineering models.} A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it can support three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; engineers judge whether its design is desirable and which discovered properties should become obligations. Further engineering discoveries may motivate new or revised models.}
+\label{multiple-routes-to-engineering-models}
+\end{figure}
+
 % <!-- point: the-most-important-evidence-comes-from-realization | Implementing and trying a design can reveal distinctions that were not evident in the initial model. | terms: modeling-principle -->
 
 \subsection{Learning from implementation}\label{heading:implementation-can-induce-a-model}

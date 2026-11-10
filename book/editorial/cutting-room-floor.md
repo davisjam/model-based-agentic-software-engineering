@@ -19170,3 +19170,62 @@ Source: `book/latex/sources/part1/1.2-mage-by-example.tex`, revision `c876d530e6
 
 The reported labor amounted to on the order of three hours per document. Simple documents can take much less time, while complex PDFs can take far more; one colleague reported spending a week on a single PDF\citep{davis2026docable}.
 ```
+
+
+## 2026-11-09 — Chapter 1 printer/object split (pending disposition review)
+
+Source revision: `cc92e3fac92da2b38a3569a00ca3f4ecdd85696c`; source `book/latex/sources/part1/1.1-the-printer.tex`, lines 1–116. Preservation date: 2026-11-09. Removal revision: pending; the new structure is a review draft, not landed.
+
+The complete original, including every paragraph, note, figure, caption, point/index marker, and asset reference, is preserved in [chapter-one-printer-before-20261109.tex](chapter-one-printer-before-20261109.tex). The approved DocAble opening and local copyedits are backed by [chapter-one-docable-before-20261109.tex](chapter-one-docable-before-20261109.tex). Existing figure artwork, PDF assets, TikZ sources, and receipts remain in the repository.
+
+Disposition rationale: retain the printer analogy and concrete engineering choices in §§1.1–1.2; propose moving the terminology note to §1.4 and the model-origins figure to §2.1; propose retiring the remaining callbacks, scope repetitions, and chapter pointers because their explanatory roles already have fuller homes. No substantive disposition is considered approved merely because this preservation entry exists. The complete paragraph/footnote/figure audit is in `chapter-one-disposition-review-20261109.md`.
+
+### Displaced passages, verbatim
+
+```latex
+Realization is the act of producing the concrete artifact or action called for by engineering intent. In the software-engineering case developed in this book, that work is conventionally called implementation, so I use implementation from here forward. Implementation here includes the broader work of realizing a software change, not only writing source code. Agents may implement requirements through code, but they may also realize engineering work in documentation, system models, configuration, deployment artifacts, support materials, and operational procedures.
+
+A reusable form preserves some decisions while leaving others open. A poster template can fix the placement of the title and sponsor logos while leaving the designer free to compose the artwork. A 3D-printed enclosure can fix mounting-hole positions while leaving other dimensions open. The value lies in making consequential design decisions once and carrying them forward into later artifacts.
+
+Engineering models need not precede implementation. An engineer may construct a model from requirements, recover one from an existing system, or discover a useful architecture through agent exploration and then record it. These are alternatives rather than stages, and a model reached by any of them serves the same three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. \autoref{multiple-routes-to-engineering-models} illustrates these routes and uses.
+
+Agent products and foundation models will continue to change.\mageaside{Engineering predates machine learning in its use of models as purposeful representations of systems. Machine learning later adopted the same word for a learned approximation of a function---also reasonably a model, but a different kind. This book gives the engineering usage precedence: unqualified model means a purposeful representation of an engineered system or some property of it. I therefore use foundation model for the trained machine-learning system and agent for the acting system built around one through a harness, tools, and working state. Where the distinction matters, I will not ask the reader to infer which "model" I mean.} The durable engineering problem begins when an agent works autonomously on a system large enough, important enough, or long-lived enough that "it usually works" is not an acceptable standard.
+
+Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} develop these ideas. Modeling makes consequential properties explicit; Alignment enforces selected obligations during implementation.
+
+MAGE concerns how established software-engineering knowledge should be used in autonomous implementation. Engineers still draw on decades of theory and practice to choose programming languages, architectural patterns, and verification techniques. MAGE asks how consequential knowledge should be represented so that the machinery can use it, and which resulting obligations should constrain what the machinery may produce.
+
+These ideas have antecedents in AI research on external representations, memory, specialized solvers, and tools for working with software. \magevalue{chapter:profession} examines those traditions and their relation to MAGE. Here the engineering question is how such resources become part of an environment that preserves useful knowledge and obligations as the software changes.
+```
+
+### Superseded DocAble opening, verbatim
+
+```latex
+\href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble} provides the book\textquotesingle s running case study: a production accessibility system built largely through coding agents. We treat it in detail in \magevalue{chapter:software-factories}. For now, a few facts about the system are in order.
+```
+
+The author approved all three Chapter 1 dispositions on 2026-11-09. Superseded learning-outcome and claim declarations are preserved in [chapter-one-retired-metadata-20261109.json](chapter-one-retired-metadata-20261109.json); their replacements follow the approved prose and live anchors.
+
+
+## 2026-11-09 — Separate the accessibility problem from the engineering experiment
+
+Source: `book/latex/sources/part1/1.3-mage-by-example.tex`, revision `1c901dd761b629544270df7fb990ec834e7b5dca`, original opening subsection. Superseded by the author-approved three-paragraph accessibility introduction and separate engineering experiment. The original regulatory summary, personal motivation, and repetitive one-engineer claim are preserved below.
+
+```latex
+\section{Accessibility and the Engineering Experiment}\label{heading:accessibility-and-the-engineering-experiment}
+
+% <!-- section-terms: document-accessibility, supervised-autonomy -->
+
+% <!-- point: explicit-problem-inaccessible-documents-at-scale | The explicit problem: inaccessible university documents at scale. | terms: document-accessibility, remediation-cost -->
+
+In 2024, the U.S. Department of Justice gave public universities a deadline to make their digital content accessible, measured against the Web Content Accessibility Guidelines (\magevalue{doj_technical_standard}). Among its principles, information must be \emph{perceivable} even when a reader cannot see it, and navigation and controls must be \emph{operable} even when a reader cannot use a mouse. A typical slide deck can therefore fail the standard in dozens of ways, including images without descriptions, missing titles, or a reading order that a screen reader cannot follow.
+
+Manual remediation is slow and costly. At Purdue, trained undergraduate teaching assistants billed \magevalue{seip_uta_hours} hours over approximately six months to remediate materials for just \magevalue{seip_uta_courses} courses, out of the thousands offered across the Purdue system in Fall 2026. The reported labor amounted to roughly three hours per document\citep{davis2026docable}.
+
+I personally maintain two courses and had no desire to spend a full semester remediating them manually. I could delegate some of that work to other people, but delegation would not make me any less responsible for the result. As a lazy software engineer, however, I was perfectly willing to spend six months attempting to automate the work to my own standard.
+
+% <!-- point: two-birds-one-stone-motive | One project answered both problems: build the production system, and use the engineering work to discover what sustained agentic development demanded. | terms: document-accessibility, running-example -->
+
+In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to know what software engineering would look like if I stopped writing most of the implementation myself, so I used accessibility remediation as a real problem on which to find out. The system became DocAble; the resulting method became MAGE. MAGE makes the judgment of one engineer capable of governing the implementation capacity of a software team. \magevalue{chapter:software-factories} returns to the build and examines how that capability emerged.
+
+```

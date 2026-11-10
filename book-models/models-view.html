@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>32</b> chapters · <b>183</b> sections · <b>45</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>32</b> chapters · <b>185</b> sections · <b>45</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -117,68 +117,76 @@
 <h2>Module 1 — The New Engineering Problem</h2>
 <div class="outcomes"><div class="oc-h">After Module 1 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this Part, the reader can judge which engineering tasks warrant the book&#x27;s machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-1-1-the-printer"><span class="tier-kick">Lesson</span><a href="../book/1.1-the-printer.html" class="ch-link">1.1-the-printer</a> <span class="ch-slug">1.1-the-printer</span></h3>
-<div class="section s2" id="sec-1-1-the-printer--the-engineering-object">
-<div class="sec-h"><a href="../book/1.1-the-printer.html">The Engineering Object</a></div>
-<p class="topic">Agent products and foundation models will continue to change.[note: Engineering predates machine learning in its use of models as purposeful representations of systems.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result. <span class="prov">derived</span></span></li></ul></div>
+<h3 id="ch-1-2-the-engineering-object"><span class="tier-kick">Lesson</span><a href="../book/1.2-the-engineering-object.html" class="ch-link">1.2-the-engineering-object</a> <span class="ch-slug">1.2-the-engineering-object</span></h3>
+<div class="section s2" id="sec-1-2-the-engineering-object--consequential-choices-and-degrees-of-freedom">
+<div class="sec-h"><a href="../book/1.2-the-engineering-object.html">Consequential Choices and Degrees of Freedom</a></div>
+<p class="topic">When implementation is delegated, engineers must decide which properties to preserve and which choices to leave open.</p>
 </div>
-<div class="section s2" id="sec-1-1-the-printer--whose-fault-is-it">
-<div class="sec-h"><a href="../book/1.1-the-printer.html">Examine the Environment First</a></div>
+<div class="section s2" id="sec-1-2-the-engineering-object--engineering-the-environment">
+<div class="sec-h"><a href="../book/1.2-the-engineering-object.html">Engineering the Environment</a></div>
+<p class="topic">Engineers increasingly exercise those decisions through the environment in which agents work.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this chapter, the reader can author a lifecycle and its runbook, typing each runbook step Execute, Delegate, or Escalate and surrounding the judgment-laden steps with deterministic work. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — keeping measurement separate from enforcement: the metric supplies evidence a validator may interpret and a gate may act on. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this chapter, the reader can package a recurring procedure as a skill — the representations needed to reason about the work, the recurring decisions that matter, and a procedure for making them — and recognize that packaging preserves knowledge capital but does not by itself grant authority. <span class="prov">declared</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-1-2-the-engineering-object--whose-fault-is-it">
+<div class="sec-h"><a href="../book/1.2-the-engineering-object.html">When Agents Produce the Wrong Result</a></div>
 <p class="topic">“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain. <span class="prov">derived</span></span></li></ul></div>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing failed output as an agent capability limit. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-1-2-mage-by-example"><span class="tier-kick">Lesson</span><a href="../book/1.2-mage-by-example.html" class="ch-link">1.2-mage-by-example</a> <span class="ch-slug">1.2-mage-by-example</span></h3>
-<div class="section s2" id="sec-1-2-mage-by-example--accessibility-and-the-engineering-experiment">
-<div class="sec-h"><a href="../book/1.2-mage-by-example.html">Accessibility and the Engineering Experiment</a></div>
+<h3 id="ch-1-3-mage-by-example"><span class="tier-kick">Lesson</span><a href="../book/1.3-mage-by-example.html" class="ch-link">1.3-mage-by-example</a> <span class="ch-slug">1.3-mage-by-example</span></h3>
+<div class="section s2" id="sec-1-3-mage-by-example--the-accessibility-problem">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">The Accessibility Problem</a></div>
 <p class="topic">In 2024, the U.S.</p>
 </div>
-<div class="section s2" id="sec-1-2-mage-by-example--what-the-user-sees">
-<div class="sec-h"><a href="../book/1.2-mage-by-example.html">What the User Sees</a></div>
-<p class="topic">From the user&#x27;s perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and an evidence record.</p>
+<div class="section s2" id="sec-1-3-mage-by-example--the-engineering-experiment">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">The Engineering Experiment</a></div>
+<p class="topic">While I was developing DocAble, the DOJ extended its original April 2026 compliance deadline for larger public entities by one year, to April 2027.</p>
 </div>
-<div class="section s2" id="sec-1-2-mage-by-example--adding-a-description-without-losing-the-document">
-<div class="sec-h"><a href="../book/1.2-mage-by-example.html">Adding a Description Without Losing the Document</a></div>
+<div class="section s2" id="sec-1-3-mage-by-example--what-the-user-sees">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">What the User Sees</a></div>
+<p class="topic">From the user&#x27;s perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and a changelog.</p>
+</div>
+<div class="section s2" id="sec-1-3-mage-by-example--adding-a-description-without-losing-the-document">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">Adding a Description Without Losing the Document</a></div>
 <p class="topic">Consider a lecture slide containing a diagram and several sentences explaining it.</p>
 </div>
-<div class="section s2" id="sec-1-2-mage-by-example--one-system-several-engineering-questions">
-<div class="sec-h"><a href="../book/1.2-mage-by-example.html">One System, Several Engineering Questions</a></div>
+<div class="section s2" id="sec-1-3-mage-by-example--one-system-several-engineering-questions">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">One System, Several Engineering Questions</a></div>
 <p class="topic">Building DocAble well is not one engineering problem.</p>
 </div>
-<div class="section s2" id="sec-1-2-mage-by-example--following-one-job">
-<div class="sec-h"><a href="../book/1.2-mage-by-example.html">Following One Job</a></div>
+<div class="section s2" id="sec-1-3-mage-by-example--following-one-job">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">Following One Job</a></div>
 <p class="topic">Before Chapters 2 and 3 examine particular properties of DocAble, [ref:one-docable-job] follows one ordinary job through the system.</p>
 </div>
-<div class="section s2" id="sec-1-2-mage-by-example--how-the-book-uses-docable">
-<div class="sec-h"><a href="../book/1.2-mage-by-example.html">How the Book Uses DocAble</a></div>
+<div class="section s2" id="sec-1-3-mage-by-example--how-the-book-uses-docable">
+<div class="sec-h"><a href="../book/1.3-mage-by-example.html">How the Book Uses DocAble</a></div>
 <p class="topic">DocAble gives us a common system in which to examine different engineering questions.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-1-3-the-agentic-substrate"><span class="tier-kick">Lesson</span><a href="../book/1.3-the-agentic-substrate.html" class="ch-link">1.3-the-agentic-substrate</a> <span class="ch-slug">1.3-the-agentic-substrate</span></h3>
-<div class="section s2" id="sec-1-3-the-agentic-substrate--foundation-model-agentic-harness-and-engineered-environment">
-<div class="sec-h"><a href="../book/1.3-the-agentic-substrate.html">Foundation Model, Agentic Harness, and Engineered Environment</a></div>
+<h3 id="ch-1-4-the-agentic-substrate"><span class="tier-kick">Lesson</span><a href="../book/1.4-the-agentic-substrate.html" class="ch-link">1.4-the-agentic-substrate</a> <span class="ch-slug">1.4-the-agentic-substrate</span></h3>
+<div class="section s2" id="sec-1-4-the-agentic-substrate--foundation-model-agentic-harness-and-engineered-environment">
+<div class="sec-h"><a href="../book/1.4-the-agentic-substrate.html">Foundation Model, Agentic Harness, and Engineered Environment</a></div>
 <p class="topic">A **foundation model** makes broad semantic reasoning available at a marginal cost far below the skilled human labor that many such tasks previously required.</p>
 </div>
-<div class="section s2" id="sec-1-3-the-agentic-substrate--the-reasoning-horizon">
-<div class="sec-h"><a href="../book/1.3-the-agentic-substrate.html">The Reasoning Horizon</a></div>
+<div class="section s2" id="sec-1-4-the-agentic-substrate--the-reasoning-horizon">
+<div class="sec-h"><a href="../book/1.4-the-agentic-substrate.html">The Reasoning Horizon</a></div>
 <p class="topic">Scale has always created problems.</p>
 </div>
-<div class="section s2" id="sec-1-3-the-agentic-substrate--probabilistic-work-needs-external-enforcement">
-<div class="sec-h"><a href="../book/1.3-the-agentic-substrate.html">Probabilistic Work Needs External Enforcement</a></div>
+<div class="section s2" id="sec-1-4-the-agentic-substrate--probabilistic-work-needs-external-enforcement">
+<div class="sec-h"><a href="../book/1.4-the-agentic-substrate.html">Probabilistic Work Needs External Enforcement</a></div>
 <p class="topic">The second problem concerns assurance.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-1-4-the-new-engineering-problem"><span class="tier-kick">Lesson</span><a href="../book/1.4-the-new-engineering-problem.html" class="ch-link">1.4-the-new-engineering-problem</a> <span class="ch-slug">1.4-the-new-engineering-problem</span></h3>
-<div class="section s2" id="sec-1-4-the-new-engineering-problem--the-two-problems-in-software">
-<div class="sec-h"><a href="../book/1.4-the-new-engineering-problem.html">The Two Problems in Software</a></div>
-<p class="topic">The probability model in §1.3 gives us one aim: increase the agent’s chance of implementing all the required features correctly.[^1] The engineered environment—the structures and practices we arrange around the agent’s work—can also support engineers in deciding what those requirements should be and establishing whether the result meets them.</p>
+<h3 id="ch-1-5-the-new-engineering-problem"><span class="tier-kick">Lesson</span><a href="../book/1.5-the-new-engineering-problem.html" class="ch-link">1.5-the-new-engineering-problem</a> <span class="ch-slug">1.5-the-new-engineering-problem</span></h3>
+<div class="section s2" id="sec-1-5-the-new-engineering-problem--the-two-problems-in-software">
+<div class="sec-h"><a href="../book/1.5-the-new-engineering-problem.html">The Two Problems in Software</a></div>
+<p class="topic">The probability model in §1.4 gives us one aim: increase the agent’s chance of implementing all the required features correctly.[^1] The engineered environment—the structures and practices we arrange around the agent’s work—can also support engineers in deciding what those requirements should be and establishing whether the result meets them.</p>
 </div>
-<div class="section s2" id="sec-1-4-the-new-engineering-problem--the-methodology-extends-beyond-software">
-<div class="sec-h"><a href="../book/1.4-the-new-engineering-problem.html">The Methodology Extends Beyond Software</a></div>
+<div class="section s2" id="sec-1-5-the-new-engineering-problem--the-methodology-extends-beyond-software">
+<div class="sec-h"><a href="../book/1.5-the-new-engineering-problem.html">The Methodology Extends Beyond Software</a></div>
 <p class="topic">The same questions will arise wherever humans delegate work to agents.</p>
 </div>
 </div>

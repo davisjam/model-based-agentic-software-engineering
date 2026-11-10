@@ -115,33 +115,6 @@
       ]
     },
     {
-      "slug": "the-printer",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "consequence"
-      },
-      "note": "Phase-2c added a real untitled lead: failure (implementation abundant but unreliable), question (whose fault when the build is wrong?), answer (the agent is a printer, not a coder — a bad build indicts the instructions), argument role stated (the premise everything after rests on) = fault-lies-in-instructions / abundant-implementation. The body sections develop the metaphor the lead now frames. Closing is strong: the printer builds your mistake with the same fidelity (consequence) + hand-off to 1.2.",
-      "opening_anchor": "Coding agents have made writing software cheap. Describe what you want and",
-      "closing_anchor": "system that shipped. The next chapter gives you a first concrete look.",
-      "delivers": {
-        "concepts": [
-          "printer-metaphor"
-        ],
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "abundant-implementation",
-        "fault-lies-in-instructions"
-      ]
-    },
-    {
       "slug": "mage-by-example",
       "opening": {
         "failure_question": "explicit",
@@ -796,6 +769,33 @@
       },
       "exempt": "apparatus",
       "spine_advances": []
+    },
+    {
+      "slug": "the-printer",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "argument-step"
+      },
+      "closing": {
+        "kind": "consequence"
+      },
+      "note": "Phase-2c added a real untitled lead: failure (implementation abundant but unreliable), question (whose fault when the build is wrong?), answer (the agent is a printer, not a coder — a bad build indicts the instructions), argument role stated (the premise everything after rests on) = fault-lies-in-instructions / abundant-implementation. The body sections develop the metaphor the lead now frames. Closing is strong: the printer builds your mistake with the same fidelity (consequence) + hand-off to 1.2.",
+      "opening_anchor": "Coding agents have made writing software cheap. Describe what you want and",
+      "closing_anchor": "system that shipped. The next chapter gives you a first concrete look.",
+      "delivers": {
+        "concepts": [
+          "printer-metaphor"
+        ],
+        "artifacts": [],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "abundant-implementation",
+        "fault-lies-in-instructions"
+      ]
     },
     {
       "slug": "how-to-read-this-book",

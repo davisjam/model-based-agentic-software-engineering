@@ -1,6 +1,6 @@
 {
   "source": "book/assets/reasoning-horizon.svg",
-  "chapter": "1.3-the-agentic-substrate",
+  "chapter": "1.4-the-agentic-substrate",
   "claim": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system’s reasoning horizon.",
   "topology": {
     "description": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",

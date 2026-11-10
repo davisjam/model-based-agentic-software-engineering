@@ -1,4 +1,5 @@
-% mage-auto-heading: accessibility-and-the-engineering-experiment
+% mage-auto-heading: the-accessibility-problem
+% mage-auto-heading: the-engineering-experiment
 % mage-auto-heading: what-the-user-sees
 % mage-auto-heading: adding-a-description-without-losing-the-document
 % mage-auto-heading: one-system-several-engineering-questions
@@ -16,33 +17,41 @@
 
 The engineering methodology described in this book emerged from six months of developing and studying a production document-accessibility system called \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble}. I directed the development, but coding agents wrote every line of its implementation. My role was to exercise engineering judgment, direct the agents, and develop the models and controls governing their work. \magevalue{chapter:software-factories} examines the system and its development in detail. For now, a few facts about DocAble are in order.
 
-\section{Accessibility and the Engineering Experiment}\label{heading:accessibility-and-the-engineering-experiment}
+\section{The Accessibility Problem}\label{heading:the-accessibility-problem}
 
-% <!-- section-terms: document-accessibility, supervised-autonomy -->
+% <!-- section-terms: document-accessibility, remediation-cost -->
 
-% <!-- point: explicit-problem-inaccessible-documents-at-scale | The explicit problem: inaccessible university documents at scale. | terms: document-accessibility, remediation-cost -->
+% <!-- point: explicit-problem-inaccessible-documents-at-scale | University document accessibility combines an explicit legal obligation, semantic and structural requirements, and institutional scale. | terms: document-accessibility, remediation-cost -->
 
-In 2024, the U.S. Department of Justice gave public universities a deadline to make their digital content accessible, measured against the Web Content Accessibility Guidelines (\magevalue{doj_technical_standard}). Among its principles, information must be \emph{perceivable} even when a reader cannot see it, and navigation and controls must be \emph{operable} even when a reader cannot use a mouse. A typical slide deck can therefore fail the standard in dozens of ways, including images without descriptions, missing titles, or a reading order that a screen reader cannot follow.
+In 2024, the U.S. Department of Justice (DOJ) adopted a rule under Title II of the Americans with Disabilities Act (ADA) requiring covered state and local government entities, including public universities, to make their web content and mobile applications accessible. The rule establishes the Web Content Accessibility Guidelines (\magevalue{doj_technical_standard}) as the technical standard, including for documents distributed through covered websites. The educational purpose is straightforward: students using assistive technologies, such as screen readers, should be able to obtain and use the information their classmates can access. The rule describes access in terms of ``substantially equivalent timeliness, privacy, independence, and ease of use''\citep{doj-web-accessibility-2024}.
 
-Manual remediation is slow and costly. At Purdue, trained undergraduate teaching assistants billed \magevalue{seip_uta_hours} hours over approximately six months to remediate materials for just \magevalue{seip_uta_courses} courses, out of the thousands offered across the Purdue system in Fall 2026. The reported labor amounted to roughly three hours per document\citep{davis2026docable}.
+A university's digital content extends well beyond its public website. Faculty distribute lecture slides, readings, assignments, laboratory instructions, spreadsheets, and other materials through learning-management systems. These documents come in many formats, including PowerPoint, Word, Excel, PDF, and LaTeX. Accessibility requires more than making their text machine-readable. A screen reader needs a meaningful reading order, figures need descriptions that convey their educational purpose, and tables and headings need structure that supports navigation\citep{w3c2018wcag21}. A document can pass a mechanical accessibility check while still conveying important information poorly to a student using assistive technology. One way to eliminate the problem would be to stop distributing documents to students altogether, but the students might take this amiss.
+
+The scale makes manual remediation difficult. A course may distribute dozens of slide decks and readings, together amounting to hundreds or thousands of pages and slides. Multiply that workload by thousands of university courses, with materials revised each semester, and accessibility becomes a substantial continuing obligation. Manual remediation is slow and costly. At Purdue, trained undergraduate teaching assistants billed \magevalue{seip_uta_hours} hours over approximately six months to remediate materials for just \magevalue{seip_uta_courses} courses. The reported labor amounted to roughly three hours per document\citep{davis2026docable}.
+
+\section{The Engineering Experiment}\label{heading:the-engineering-experiment}
+
+% <!-- section-terms: supervised-autonomy, document-accessibility -->
+
+While I was developing DocAble, the DOJ extended its original April 2026 compliance deadline for larger public entities by one year, to April 2027. In its April 2026 rulemaking, the Department acknowledged that available technology and institutional resources had fallen short of its expectations: ``Advanced technology, such as generative AI, does not yet reliably automate the remediation of inaccessible content at scale''\citep{doj2026extension}. The engineering task was to produce accessible documents reliably enough for institutional use.
 
 I personally maintain two courses and had no desire to spend a full semester remediating them manually. I could delegate some of that work to other people, but delegation would not make me any less responsible for the result. As a lazy software engineer, however, I was perfectly willing to spend six months attempting to automate the work to my own standard.
 
-% <!-- point: two-birds-one-stone-motive | One project answered both problems: build the production system, and use the engineering work to discover what sustained agentic development demanded. | terms: document-accessibility, running-example -->
+% <!-- point: two-birds-one-stone-motive | One project answered both problems: build the accessibility system, and use the engineering work to discover what sustained agentic development demanded. | terms: document-accessibility, running-example -->
 
-In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to know what software engineering would look like if I stopped writing most of the implementation myself, so I used accessibility remediation as a real problem on which to find out. The system became DocAble; the resulting method became MAGE. MAGE makes the judgment of one engineer capable of governing the implementation capacity of a software team. \magevalue{chapter:software-factories} returns to the build and examines how that capability emerged.
+In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to discover what software engineering would look like if I delegated implementation to agents while retaining responsibility for the resulting system. Accessibility remediation provided a real problem on which to find out.
 
 \section{What the User Sees}\label{heading:what-the-user-sees}
 
 % <!-- section-terms: governance-target-product, document-accessibility -->
 
-% <!-- point: upload-in-remediated-file-plus-evidence-out | From the user's view DocAble is simple: an inaccessible document goes in; a remediated document and an evidence record come back. | terms: governance-target-product -->
+% <!-- point: upload-in-remediated-file-plus-evidence-out | From the user's view DocAble is simple: an inaccessible document goes in; a remediated document and a changelog come back. | terms: governance-target-product -->
 
 % <!-- index-def: fidelity-validator -->
 
 % <!-- index-def: provenance-layer -->
 
-From the user\textquotesingle s perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and an evidence record. It works across common document formats: Word, PowerPoint, and Excel; their LibreOffice equivalents; PDF; and text-based formats including LaTeX and Typst. Figures are described, reading order is repaired, and structural accessibility is restored where possible.
+From the user\textquotesingle s perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and a changelog. It works across common document formats: Word, PowerPoint, and Excel; their LibreOffice equivalents; PDF; and text-based formats including LaTeX and Typst. Figures are described, reading order is repaired, and structural accessibility is restored where possible.
 
 Why not simply give the entire document to a capable multimodal model and ask it to make the document accessible? I tried that too. For documents within their operating range, capable models can produce impressive results. But the approach is expensive because the model must reconstruct properties already available deterministically in the document (the document\textquotesingle s title may be right there on the page, but represented as large bold text rather than Word\textquotesingle s Title style); large documents can exceed its practical operating range (the model may simply give up before finishing the deck); and support varies across formats (a model that handles PowerPoint may not accept PDF).
 
@@ -61,7 +70,7 @@ Before looking inside the system, \autoref{docable-glimpse} shows only the engin
 
 % <!-- point: the-interface-hides-a-large-production-system | The simple interface hides a large production system. | terms: governance-target-product -->
 
-That simple interface hides a large production system. At the final snapshot of the 31-week record, October 14, 2026, DocAble contained \magevalue{seip_prod_loc} lines of production code and \magevalue{seip_apparatus_loc} lines of engineering apparatus, about \magevalue{seip_support_ratio} times as much. The apparatus includes tests, checks, tools, infrastructure, models, and indexed documentation. The examples that follow isolate individual engineering questions from that system. Together they show different places where Modeling and Alignment enter the work.
+That simple interface hides a large production system. At the final snapshot of the 31-week record, October 14, 2026, DocAble contained \magevalue{seip_prod_loc} lines of production code and \magevalue{seip_apparatus_loc} lines of engineering apparatus, about \magevalue{seip_support_ratio} times as much. The apparatus includes tests, checks, tools, infrastructure, models, and indexed documentation. The examples that follow show how those decisions were made in DocAble.
 
 % <!-- point: four-kinds-of-obligation-state-the-case | What DocAble had to accomplish falls into four kinds of obligation. | terms: governance-target-product -->
 

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/multiple-routes-to-engineering-models.svg",
-  "chapter": "1.1-the-printer",
+  "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "*Multiple routes to engineering models.* A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration—the routes are alternatives, not stages. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; it does not establish that the observed design is desirable, and the engineer decides which discovered properties become obligations. Modeling is not a prescribed phase before implementation: engineering continues, and further discoveries may motivate new or revised models.",
   "topology": {
     "description": "Three routes fan in to one modeling band; three uses fan out; the uses rejoin and engineering continues. The horizontal bars are collection rails, not process edges.",
@@ -220,8 +220,8 @@
       "decision": "retained",
       "reason": "New figure authored at its reviewed size: 376.34 × 289.30 bp inside the 450 × 560 bp envelope, every label at 11 pt or larger, and no terminal shaft below the 9 pt approach floor. Added height would not improve this drawing.",
       "after_dimensions_bp": [
-        376.33901977539062,
-        289.30099487304688
+        376.3390197753906,
+        289.3009948730469
       ],
       "after_font_sizes_pt": [
         11.0,

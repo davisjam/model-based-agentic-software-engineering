@@ -80,7 +80,7 @@
     "svg_description": "A single vertical chain of five stages, read from top to bottom, each a titled box joined to\n    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —\n    its research provenance, in the true order the evidence produced it, which is not the order in which the\n    book later teaches the method.\n    Stage one, DocAble — one production system, observed in longitudinal depth over months.\n    Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance\n    conversion, engineering capital. Stage three, independent industrial accounts — systems developed by other organizations. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:\n    recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage\n    five, MAGE theory — the account developed in Chapter 6. Beneath it a split: the originating case gives\n    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);\n    together they converge on a stronger basis for theory. The theory stages are green (modeling); the\n    evidence and procedure stages and the spine are gray (neutral)."
   },
   {
-    "chapter": "1.1-the-printer",
+    "chapter": "1.2-the-engineering-object",
     "source": "assets/engineering-leverage.svg",
     "caption": "*Where engineering leverage acts.* When engineers write most implementation directly, much of their engineering leverage acts through the code. When agents provide abundant realization capacity, more of that leverage moves into the governed engineering environment—the software analogue of the models, fabrication constraints, process instructions, and acceptance criteria surrounding a 3D printer. The environment becomes one means through which engineers retain control while delegating realization: it represents important engineering intent, constrains realization, and evaluates what the fleet produces. MAGE further contends that a governed engineering environment must become the primary means through which engineers exercise control as realization is increasingly delegated.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -93,7 +93,7 @@
     "svg_description": "Two pipelines are stacked for contrast. In the classical pipeline the engineer builds\n    the implementation directly, so the implementation is the primary engineered object: Engineer, then\n    Implementation, then Product. In the agentic pipeline agents build the implementation inside an\n    engineered environment the engineer constructs, so the environment becomes the primary engineered\n    lever: Engineer, then Engineered Environment, then Agents, then Implementation, then Product. A rust\n    badge marks the primary node in each row; it moves upstream from the implementation to the environment.\n    A footer strip unpacks the environment into models, obligations, evidence, controls, and\n    infrastructure."
   },
   {
-    "chapter": "1.1-the-printer",
+    "chapter": "2.1-context-is-the-first-modeling-problem",
     "source": "assets/multiple-routes-to-engineering-models.svg",
     "caption": "*Multiple routes to engineering models.* A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration—the routes are alternatives, not stages. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; it does not establish that the observed design is desirable, and the engineer decides which discovered properties become obligations. Modeling is not a prescribed phase before implementation: engineering continues, and further discoveries may motivate new or revised models.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -106,7 +106,7 @@
     "svg_description": "Three routes arrive at modeling from above and three uses leave it below. The\n    incoming routes are requirements and intent, agent exploration and discovery, and existing systems\n    and experience. Each joins one full-width rail, so none is privileged and none is a stage before\n    another; a single arrow carries the rail into modeling. Modeling yields engineering models, which\n    hold knowledge and the selected obligations drawn from it. From the model, one rail fans out to\n    three uses: reason and design, direct agent work, and evaluate and check. Those three rejoin a\n    rail that continues downward to further engineering, because engineering does not stop at the\n    model: later discoveries may motivate new or revised models. The incoming routes are blue (source\n    material); the model and its uses are green (modeling); the continuing-engineering tail is rust."
   },
   {
-    "chapter": "1.2-mage-by-example",
+    "chapter": "1.3-mage-by-example",
     "source": "assets/docable-glimpse.svg",
     "caption": "*DocAble from the user's view.* An inaccessible document goes in; a remediated document and evidence of consequential changes come back. Internal structure is omitted because it is not yet relevant.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -119,7 +119,7 @@
     "svg_description": "A single input-to-output panel with no internal structure. On the left, an inaccessible\n    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow\n    labelled the upload leads into DocAble, drawn as one closed box — the production system at\n    scholaccess.com — with a note that this shows what it does, not yet how. An arrow labelled the file,\n    remediated leads out to the right, to an accessible document with described images, reading order, and\n    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind\n    of production system these ideas govern — what it does, not yet how."
   },
   {
-    "chapter": "1.2-mage-by-example",
+    "chapter": "1.3-mage-by-example",
     "source": "assets/one-docable-job.svg",
     "caption": "*Processing one document in DocAble.* A user submits a document, creating a job that tracks its processing. The work may be divided into chunks and processed by workers using specialized services for generation, rendering, optical character recognition (OCR), and document-format processing. The resulting changes are reassembled and validated, and the remediated document is returned with evidence.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -132,7 +132,7 @@
     "svg_description": "A user submits a document (drawn as a document artifact), which creates a job that tracks\n    its processing. The work splits into chunks so several workers process it concurrently. Workers claim\n    work and call specialized services — generation, render, OCR, and document/format machinery — when\n    remediation needs those capabilities. Repaired pieces are merged and reassembled, the result is\n    validated, and the system returns both the remediated document (again a document artifact) and the\n    evidence describing consequential changes. Document artifacts are drawn with a folded corner; the job,\n    workers, and services are control boxes."
   },
   {
-    "chapter": "1.3-the-agentic-substrate",
+    "chapter": "1.4-the-agentic-substrate",
     "source": "assets/agentic-substrate.svg",
     "caption": "*Agentic machinery and environment.* The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into action, manages its context, and exposes points where the environment can observe or constrain it. These are the properties of the productive substrate the engineered environment must work with.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -145,7 +145,7 @@
     "svg_description": "Two columns supply the agent. The foundation model contributes semantic reasoning,\n    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness\n    contributes tool-mediated action, context management, interposition, and parallel execution. Both\n    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —\n    the models, obligations, evidence, and controls the engineer builds."
   },
   {
-    "chapter": "1.3-the-agentic-substrate",
+    "chapter": "1.4-the-agentic-substrate",
     "source": "assets/reasoning-horizon.svg",
     "caption": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system’s reasoning horizon.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
@@ -158,7 +158,7 @@
     "svg_description": "At sufficient scale a task requires more reasoning state than a finite reasoner can\n    keep active, so some state must be reconstructed. A branch node, representation matters, states that the\n    representation the reasoner works through determines how much of that state must be reconstructed. The\n    figure forks from that node. On the left, raw implementation as the working substrate carries a large\n    active state, forces repeated reconstruction, and easily loses relevant structure, ending in churn. On\n    the right, a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction\n    burden, and sustains longer coherent reasoning. A causal spine at the foot reads: finite active state,\n    reconstruction unavoidable, representation determines burden."
   },
   {
-    "chapter": "1.4-the-new-engineering-problem",
+    "chapter": "1.5-the-new-engineering-problem",
     "source": "assets/substrate-to-method.svg",
     "caption": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",

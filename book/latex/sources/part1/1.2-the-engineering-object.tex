@@ -1,0 +1,62 @@
+% mage-auto-heading: consequential-choices-and-degrees-of-freedom
+% mage-auto-heading: engineering-the-environment
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The New Engineering Problem -->
+
+% <!-- chapter-title: The Engineering Object -->
+
+\chapter{The Engineering Object}\label{heading:the-engineering-object}
+
+\section{Consequential Choices and Degrees of Freedom}\label{heading:consequential-choices-and-degrees-of-freedom}
+
+% <!-- point: a-simple-specification-leaves-enormous-freedom | Even a simple software specification leaves enormous freedom — ten lines or ten thousand, a monolith or microservices — so engineers can specify the properties that matter and leave other decisions to the intelligence performing the work; which choices can safely remain open is itself an engineering decision. -->
+
+When implementation is delegated, engineers must decide which properties to preserve and which choices to leave open. A function could be implemented in ten lines or ten thousand. A service could be built as a monolith or decomposed into microservices. Different algorithms, data structures, and architectures might all satisfy the same requirements. Some choices are better than others, but engineers need not make every choice in advance. They can specify the properties that matter and leave other decisions to the intelligence performing the work. Which choices can safely remain open is itself an engineering decision.
+
+Commodity intelligence can also change why an engineering choice matters. Consider the choice of a programming language. A human team might favor Java both because its developers can write it fluently and because they can readily review or audit code written in it. If an agent can implement competently in several languages, the first consideration weakens: the developers no longer have to author every line themselves. The second may become more important as agents produce more code for people to examine. Meanwhile, a safety requirement may favor a language that provides a needed property, such as automatic garbage collection to reduce memory leaks caused by missing deallocation. A deployment target may also require a particular toolchain. These considerations persist regardless of who writes the code. The relevant question is what made the choice matter, and how those reasons change when agents perform the implementation.
+
+The same distinction applies at larger scales. Suppose a service needs persistent storage. If either a relational or nonrelational database can satisfy every property that matters, choosing between them may simply be a degree of freedom left to implementation. But if the system requires transactions across related records, a particular consistency model, or another property that distinguishes the alternatives, the choice becomes consequential. MAGE does not supply the database theory needed to make that judgment. It asks that the consequential property be represented---and, where necessary, enforced---rather than relying on each implementing agent to rediscover why the choice mattered.
+
+Notice the distinction between unmodeled and free. A choice is unmodeled when the engineering representations do not state it; it is free only when engineering permits the alternatives. Suppose the model says nothing about which database to use. If either database really can satisfy every consequential property, the omission represents a genuine degree of freedom. But if one alternative would violate a security, consistency, or performance obligation, the choice was never free. The model simply failed to make the relevant obligation explicit.
+
+\section{Engineering the Environment}\label{heading:engineering-the-environment}
+
+% <!-- point: leverage-moves-into-the-environment | As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work. | terms: printer-metaphor, commodity-intelligence -->
+
+% <!-- point: mage-is-about-that-environment | A governed engineering environment carries engineering decisions forward by making consequential knowledge available, enforcing selected obligations, and preserving evidence for control. | terms: commodity-intelligence -->
+
+Engineers increasingly exercise those decisions through the environment in which agents work. This is part of what I meant in the Preface by “a level of indirection.” An engineering environment is the surrounding structure through which engineering work occurs: its representations, tools, processes, permissions, evidence, and mechanisms. It becomes a governed engineering environment when that structure deliberately carries engineering decisions forward, making consequential knowledge available, enforcing selected obligations, and preserving evidence needed for engineering control. Governed Engineering Environment (GEE) names the resulting MAGE construct. \autoref{engineering-leverage} shows how engineering leverage shifts from implementation toward this environment.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/engineering-leverage-7e6a434370.pdf}
+\caption{\emph{Where engineering leverage acts.} When engineers implement systems directly, much of their control acts through the code. With agentic implementation, more of that control acts through the governed engineering environment, which represents consequential intent, constrains work, and evaluates results.}
+\label{engineering-leverage}
+\end{figure}
+
+The environment can serve two different purposes: establishing consequential properties and reducing the cost of repeated engineering work. For assurance, models and checks can provide a manageable basis for evaluating a system even when an agent needs little help understanding its implementation. For efficiency, reusable representations can reduce the work agents spend recovering system knowledge. The two benefits may arise at different scales. Their value must justify the cost of building and maintaining the supporting structure.
+
+The environment we build for agents need not simply reproduce the one built for human developers. Agents can consume and maintain representations at scales that would be impractical for people, and automated analyses can check properties that human review would otherwise have to reconstruct from implementation. The design question is therefore two-sided: what existing engineering machinery should agents inherit, and what stronger machinery becomes practical because the workers are now machines?
+
+\section{When Agents Produce the Wrong Result}\label{heading:whose-fault-is-it}
+
+% <!-- section-terms: whose-fault, build-instructions -->
+
+% <!-- point: suspect-the-engineered-setup-before-a-machine-limit | Before blaming productive machinery, examine the engineer’s work in representing the problem, choosing required properties, and arranging how the result will be checked. | terms: whose-fault -->
+
+“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked. A 3D-printed bracket may fail because the printer cannot achieve the required accuracy, but it may also fail because the design, material, or fabrication instructions were unsuitable. Diagnosing the printer alone would overlook much of the engineering.
+
+% <!-- point: inferred-completion-is-not-explicit | Agent inference can fill gaps in the engineering supplied to it, hiding omissions; a completed artifact does not establish that the inferred choices satisfy the intended properties or acceptable tradeoffs. | terms: whose-fault, build-instructions -->
+
+Software agents blur the distinction between the productive machinery and the engineering supplied to it because they can infer missing structure. A capable agent may produce an impressive result from a screenshot, prose request, or incomplete specification, filling in decisions that an engineer might otherwise have had to make explicit. That inferential capacity makes delegation useful, but it can also make omissions in the engineer’s work harder to notice. A completed artifact does not establish that the inferred choices satisfy the intended properties or reflect acceptable tradeoffs.
+
+% <!-- point: inspect-what-the-engineer-controlled-first | Inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing a capability limit; failed output alone does not establish that limit. | terms: whose-fault, build-instructions -->
+
+When an agent produces the wrong result, start with what the engineer controlled: the instructions, the representation of the problem, the task boundary, the available tools, and the evidence required of the result. Were important properties missing from the representation? Did an instruction leave a decision open that should have been settled? Could the checks detect the error? Sometimes the foundation model simply lacks the necessary capability. Failed output alone does not establish that diagnosis.
+
+% <!-- point: velocity-amplifies-sound-and-bad-engineering-alike | Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike. | terms: build-instructions -->
+
+% <!-- slogan: danger-in-instructions -->
+
+Abundant implementation raises the stakes. Capable agents can execute a bad direction with extraordinary speed. Velocity amplifies sound engineering and bad engineering alike.\mageaside{My field notes on this point were less measured: ``Claude is the fastest road to hell.''}

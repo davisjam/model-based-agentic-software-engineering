@@ -356,13 +356,14 @@
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "status": "reviewed",
       "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-      "candidate_sha256": "91e6cfc5b59d9bca65f2d6840f5401b4fd70c14fabfcedc69952c471bf83f850",
+      "candidate_sha256": "e8d5f87bf16c470d931aadec53df5c6713539861713582e93b7e7aba8518ecb5",
       "fill": "White documents, image regions, system box and evidence pill; dark badges have white warning/check symbols.",
       "bold": "Status pills and parallel document headings are bold; explanatory annotations and relation labels are italic. Peer annotations have matching explicit sizes.",
       "routing": "Straight input/output arrows with centered labels above clear gaps; document folds, warning/check marks and dashed/solid image regions retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Compared the color original, prior native proof, and revised native proof. Return label clears box borders; both bottom pairs align at the same size; native dimensions do not exceed the color original.",
-      "validation": {
+      "book_references": [],
+      "previous_validation": {
         "proof": "latex/build/docable-glimpse-proof/after-driver.pdf",
         "proof_sha256": "04a8e0ea8dd904490037fc1cb2047021b50764aef80c7f6ed2186403e95e218b",
         "scope": "One revised figure, compiled and audited independently; unchanged pool pages were not recompiled.",
@@ -384,7 +385,18 @@
         "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
         "status": "passed"
       },
-      "book_references": []
+      "validation": {
+        "proof": "latex/build/docable-changelog-proof/proof.pdf",
+        "proof_sha256": "cba5762eb008d0025ee522617dae737aac1152f095e999d7c65f2f294e08f4d0",
+        "scope": "Author-requested label replacement; one-figure compile with geometry and semantic typography audits.",
+        "page": 1,
+        "width_bp": 449.3330078125,
+        "height_bp": 179.71099853515625,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/one-docable-job.svg",

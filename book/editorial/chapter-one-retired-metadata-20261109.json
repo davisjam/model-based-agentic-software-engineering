@@ -1,0 +1,42 @@
+{
+  "source_revision": "cc92e3fac92da2b38a3569a00ca3f4ecdd85696c",
+  "reason": "Approved Chapter 1 restructuring replaces retired anchors and updates the preserved engineering outcomes.",
+  "original_declarations": [
+    {
+      "granularity": "section",
+      "primary_unit": "the-engineering-object",
+      "verb": "explain",
+      "obj": "why an agent needs a model of how to build the thing, not just a picture of it",
+      "statement": "After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result.",
+      "provenance": "derived",
+      "anchor": "point: modeling-and-alignment-supply-the-instruction-package (The Printer, 'The Engineering Object' — intent is not fabrication instructions; a photograph does not specify the build)."
+    },
+    {
+      "granularity": "section",
+      "primary_unit": "whose-fault-is-it",
+      "verb": "adopt",
+      "obj": "the posture that when an agent produces the wrong thing, the first suspect is the instructions",
+      "statement": "After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain.",
+      "provenance": "derived",
+      "anchor": "point: agent-is-a-printer-not-a-stapler-so-suspect-the-instructions / models-can-build-anything-you-can-explain"
+    },
+    {
+      "id": "printer-not-coder",
+      "kind": "metaphor",
+      "statement": "Building with an agent is running a printer, not a coder: suspect the instructions before the agent's capability.",
+      "distinguishes": [],
+      "home": "the-printer",
+      "asserted_at": [
+        "the-printer",
+        "whose-fault-is-it"
+      ],
+      "contradicted_by": "Treating a bad output as a fixed capability ceiling by reflex, without first examining the instructions, representation, task boundary, or environment.",
+      "watch_phrases": [],
+      "relates_to": [
+        "definition:agent"
+      ],
+      "provenance": "stated",
+      "anchor": "Preface through-line + 1.1 the-printer / whose-fault-is-it: the agent is a printer; a bad output is first evidence about the instructions, representation, task boundary, or environment, not by reflex a fixed capability ceiling."
+    }
+  ]
+}

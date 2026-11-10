@@ -40,30 +40,36 @@
     {
       "source": "book/latex/sources/part1/1.1-the-printer.tex",
       "projection": "book/part1/1.1-the-printer.md",
-      "source_hash": "f012bb526bca555e4b1eba8d2db888bf7b7ebca3435d6b1e9cbefae70895d6c0",
-      "projection_hash": "47d2f2481330be3302da790830f401f2006c3db8d89f8802e4e3998f8972a800"
+      "source_hash": "399cfc98480c74f285a6f242f63a28dd81f0da90fd1d032732ea027355118905",
+      "projection_hash": "cd0ff945c9eac7b0cc5d67da730577d9d3b84574ae004189a62400d823ab605f"
     },
     {
-      "source": "book/latex/sources/part1/1.2-mage-by-example.tex",
-      "projection": "book/part1/1.2-mage-by-example.md",
-      "source_hash": "e5cb1ee87dd33cdbfb8d3143f37264d388cd2a35b48797e0190c7f770dfd5120",
-      "projection_hash": "de56e574973d10994c425e7d89c57d3ebc87ac6af9291110f7075c531c109d05"
+      "source": "book/latex/sources/part1/1.2-the-engineering-object.tex",
+      "projection": "book/part1/1.2-the-engineering-object.md",
+      "source_hash": "8b40ec5cbf3ecd3b44874b0cbd00d366a1bcc9135da7ca85b9c1e54e2c5d5c3c",
+      "projection_hash": "68245f5e43125d3348a39f18d5d42cdc0e2cfac05cc793e121a856c8bfbb79ce"
     },
     {
-      "source": "book/latex/sources/part1/1.3-the-agentic-substrate.tex",
-      "projection": "book/part1/1.3-the-agentic-substrate.md",
-      "source_hash": "54f69bb3a613355cf859f69f851f4d2b434ca1261d89ac3c5bf8fb74f6482f11",
-      "projection_hash": "cc02de54b2bcb65c79e3e37180ff79f11979f553e635457dfb053915a58d9bc8"
+      "source": "book/latex/sources/part1/1.3-mage-by-example.tex",
+      "projection": "book/part1/1.3-mage-by-example.md",
+      "source_hash": "1af531ee9b694fcbf6d8f93251aecb95c2652e0ae7fd4d91736a77fef06bc8cc",
+      "projection_hash": "c53977cc1ef8984f4f8ff45f1278f52e98e4dece2fa333ab024395fd7e79445f"
     },
     {
-      "source": "book/latex/sources/part1/1.4-the-new-engineering-problem.tex",
-      "projection": "book/part1/1.4-the-new-engineering-problem.md",
+      "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
+      "projection": "book/part1/1.4-the-agentic-substrate.md",
+      "source_hash": "fd50586e3b838507bf2c30c39665aea1908b3c22fc6ee85ccbe0e101898e69d8",
+      "projection_hash": "4409cd632d551448222819955d17005d8721a4459ae4baf6ea195e3b18ba447b"
+    },
+    {
+      "source": "book/latex/sources/part1/1.5-the-new-engineering-problem.tex",
+      "projection": "book/part1/1.5-the-new-engineering-problem.md",
       "source_hash": "37d64d3e917627219fb261b99814d900c9f5080c2a1870da5190de7f43985e88",
       "projection_hash": "4efe59e0d772edeb870dfc3f7ba7234f19c864dfffc6171cf7cb8061d5b59262"
     },
     {
-      "source": "book/latex/sources/part1/1.5-problem-summary.tex",
-      "projection": "book/part1/1.5-problem-summary.md",
+      "source": "book/latex/sources/part1/1.6-problem-summary.tex",
+      "projection": "book/part1/1.6-problem-summary.md",
       "source_hash": "ba68d35972d471a5091eff0927479c4067acda56d587b45e18d324f13e86f264",
       "projection_hash": "5e3b0a00af1de21e26613f3ba365d7d2dfc4bc265db4d434081b0e5326396ffb"
     },
@@ -76,8 +82,8 @@
     {
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
       "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
-      "source_hash": "36188c0276087a75a1e3325a136a9e1a8b2c12c8ea12b776dc12126710daafc1",
-      "projection_hash": "e513d88157ed0e713fe215b2a47799b553be074ec09aadb502fe835ab0106bdb"
+      "source_hash": "0009a11b6a68260b10e9069cdeb1f4d10d234586b698af8ecb1bb3905c2942da",
+      "projection_hash": "d9875fd936d9be0296bbf23d1cda4a0fd95bad1986b84f08da6356f3eaf18376"
     },
     {
       "source": "book/latex/sources/part2/2.2-structural.tex",
@@ -154,8 +160,8 @@
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
       "projection": "book/part4/00-part-intro.md",
-      "source_hash": "378fadaa10647aa8003bbeab0b3a51bc44f14b9d9d6f9d11e8d027ba57483e76",
-      "projection_hash": "6ae98ef5598c0eb87fe6cdc40022a7fabea32461ac035a3076dc288111880ac2"
+      "source_hash": "e801120e891e370b2204157c6cf8f7107dee893b68c6884fe7ac6e538777d995",
+      "projection_hash": "8136801cd818f4ee349ea603236093b455e231b2234ea90fddb02ba41e02e923"
     },
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",

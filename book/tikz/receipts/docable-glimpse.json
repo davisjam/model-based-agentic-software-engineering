@@ -1,6 +1,6 @@
 {
   "source": "book/assets/docable-glimpse.svg",
-  "chapter": "1.2-mage-by-example",
+  "chapter": "1.3-mage-by-example",
   "claim": "*DocAble from the user's view.* An inaccessible document goes in; a remediated document and evidence of consequential changes come back. Internal structure is omitted because it is not yet relevant.",
   "topology": {
     "description": "Black-box transformation with document input and remediated document plus evidence output.",
@@ -26,7 +26,7 @@
     "Image \u2014 no alt text",
     "Image \u2014 described",
     "Not accessible",
-    "Evidence record",
+    "Changelog",
     "Inaccessible document",
     "Accessible document + evidence",
     "Tagged \u00b7 reading order",
@@ -37,9 +37,9 @@
     "No tags or reading order"
   ],
   "bw_encoding": "White documents, image regions, system box and evidence pill; dark badges have white warning/check symbols.",
-  "redesign": "Retain document pictograms, text bars, folded corners, warning/check badges, dashed/solid image panels, and external accessibility annotations. Return label is centered above its arrow between the system and output. Bottom headings are 11 pt bold and explanations 11 pt italic; relation labels and status pills are 10.5 pt. The redundant bottom note is removed. Native size is 449.333 by 179.711 bp, below the color original at 450 by 180.841 bp.",
+  "redesign": "Retain document pictograms, text bars, folded corners, warning/check badges, dashed/solid image panels, and external accessibility annotations. Return label is centered above its arrow between the system and output. Bottom headings are 11 pt bold and explanations 11 pt italic; relation labels and status pills are 10.5 pt. The redundant bottom note is removed. Native size is 449.333 by 179.711 bp, below the color original at 450 by 180.841 bp. The author renamed the output record to Changelog on 2026-11-09.",
   "questions": [],
-  "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by an evidence record explaining each fix. The black-box view shows what the system does without exposing its internals. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Input and output are page pictograms with warning and check badges; annotations below explain accessibility status, while dashed and solid image panels distinguish undescribed from described images.",
+  "alt": "An inaccessible document enters the closed DocAble production-system box. The output is an accessible document with described images, reading order and tags, accompanied by a changelog explaining each fix. The black-box view shows what the system does without exposing its internals. Gray fills distinguish the source semantic roles; labels and line conventions retain their meanings. Input and output are page pictograms with warning and check badges; annotations below explain accessibility status, while dashed and solid image panels distinguish undescribed from described images.",
   "visual_fidelity_review": {
     "reason": "Author-approved polish: center the remediated-file label in a wider clear gap, align the two bottom headings and explanations at explicit 11 pt, remove the redundant internal-structure note, and keep both native dimensions below the color original at text width.",
     "changes": "Retain document pictograms, text bars, folded corners, warning/check badges, dashed/solid image panels, and external accessibility annotations. Return label is centered above its arrow between the system and output. Bottom headings are 11 pt bold and explanations 11 pt italic; relation labels and status pills are 10.5 pt. The redundant bottom note is removed. Native size is 449.333 by 179.711 bp, below the color original at 450 by 180.841 bp.",
@@ -54,13 +54,15 @@
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
     "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-    "candidate_sha256": "91e6cfc5b59d9bca65f2d6840f5401b4fd70c14fabfcedc69952c471bf83f850",
+    "candidate_sha256": "e8d5f87bf16c470d931aadec53df5c6713539861713582e93b7e7aba8518ecb5",
     "fill": "White documents, image regions, system box and evidence pill; dark badges have white warning/check symbols.",
     "bold": "Status pills and parallel document headings are bold; explanatory annotations and relation labels are italic. Peer annotations have matching explicit sizes.",
     "routing": "Straight input/output arrows with centered labels above clear gaps; document folds, warning/check marks and dashed/solid image regions retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
     "visual_review": "Compared the color original, prior native proof, and revised native proof. Return label clears box borders; both bottom pairs align at the same size; native dimensions do not exceed the color original.",
-    "validation": {
+    "book_references": [],
+    "decision": "refined",
+    "previous_validation": {
       "proof": "latex/build/docable-glimpse-proof/after-driver.pdf",
       "proof_sha256": "04a8e0ea8dd904490037fc1cb2047021b50764aef80c7f6ed2186403e95e218b",
       "scope": "One revised figure, compiled and audited independently; unchanged pool pages were not recompiled.",
@@ -82,14 +84,24 @@
       "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
       "status": "passed"
     },
-    "book_references": [],
-    "decision": "refined"
+    "validation": {
+      "proof": "latex/build/docable-changelog-proof/proof.pdf",
+      "proof_sha256": "cba5762eb008d0025ee522617dae737aac1152f095e999d7c65f2f294e08f4d0",
+      "scope": "Author-requested label replacement; one-figure compile with geometry and semantic typography audits.",
+      "page": 1,
+      "width_bp": 449.3330078125,
+      "height_bp": 179.71099853515625,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 10,
+      "status": "passed"
+    }
   },
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "019004f112b1f918870f3045d9c1b8fd3d6bdbce235f8ffe6d8f17a74dd270ce",
-    "candidate_sha256": "91e6cfc5b59d9bca65f2d6840f5401b4fd70c14fabfcedc69952c471bf83f850",
+    "candidate_sha256": "e8d5f87bf16c470d931aadec53df5c6713539861713582e93b7e7aba8518ecb5",
     "reason": "Author-approved polish: center the remediated-file label in a wider clear gap, align the two bottom headings and explanations at explicit 11 pt, remove the redundant internal-structure note, and keep both native dimensions below the color original at text width.",
     "evidence": [
       {
@@ -112,7 +124,7 @@
         "source_text": "evidence record",
         "source_style": "weight 700, normal",
         "semantic_role": "Document status and evidence badge",
-        "candidate_text": "Evidence record",
+        "candidate_text": "Changelog",
         "candidate_style": "bold ",
         "source_fragments": [
           {
@@ -131,7 +143,7 @@
         "bold": true
       },
       {
-        "text": "Evidence record",
+        "text": "Changelog",
         "bold": true
       },
       {
@@ -194,7 +206,7 @@
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Author-approved polish: center the remediated-file label in a wider clear gap, align the two bottom headings and explanations at explicit 11 pt, remove the redundant internal-structure note, and keep both native dimensions below the color original at text width.",
-    "candidate_sha256": "91e6cfc5b59d9bca65f2d6840f5401b4fd70c14fabfcedc69952c471bf83f850",
+    "candidate_sha256": "e8d5f87bf16c470d931aadec53df5c6713539861713582e93b7e7aba8518ecb5",
     "page_layout": {
       "decision": "refined",
       "reason": "Author-approved polish: center the remediated-file label in a wider clear gap, align the two bottom headings and explanations at explicit 11 pt, remove the redundant internal-structure note, and keep both native dimensions below the color original at text width.",

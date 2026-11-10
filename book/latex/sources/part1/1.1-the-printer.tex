@@ -1,4 +1,3 @@
-% mage-auto-heading: the-engineering-object
 % Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
 
 % <!-- part-title: The New Engineering Problem -->
@@ -7,110 +6,24 @@
 
 \chapter{The Printer}
 
-% <!-- point: agents-made-implementation-cheap-not-reliable | Coding agents make implementation cheap enough to change the engineering problem; a sound spec, a useful representation, and evidence do not arrive with that capacity — implementation speed amplifies the engineering around it. | terms: code-fabricator -->
+% <!-- point: agents-made-implementation-cheap-not-reliable | Coding agents make software implementation cheap enough to change the engineering problem, creating the question of what engineers should do with the new productive capacity. | terms: code-fabricator -->
 
-Coding agents make implementation cheap enough to change the engineering problem. Describe a change and a capable agent can often build it quickly, at a scale that once required substantial human effort. But the agent may not build what you wanted. Reliable production still requires a sound specification, useful representations, and evidence that the result is acceptable.
-
-% <!-- point: the-3d-printer-is-open-ended | A printer is fabricative (open-ended) productive machinery: 2D printers realize documents from descriptions of their contents, 3D printers physical artifacts from descriptions of their geometry. | terms: printer-metaphor -->
+Coding agents make software implementation cheap enough to change the engineering problem. Describe a change and an agent can often implement it quickly. The opportunity is substantial, but what should we do with this new capacity?
 
 % <!-- index-def: printer-metaphor -->
 
-For an analogy, let us begin with office supplies. Consider first a stapler and a hole-punch. The purpose and limitations are in the names. Need two sheets joined together, or a hole punched? Look no further. These tools perform narrow operations on artifacts that already exist.
+For an analogy, let us begin with office supplies. Consider first a stapler and a hole punch. Their purposes and limitations are in their names. Need two sheets joined together, or a hole punched? Look no further. These tools perform narrow operations on artifacts that already exist.
 
-But is the same true about printers? A 2D printer can produce pages of text, images, or a combination of the two. A 3D printer builds physical objects from descriptions of their shapes. In each case, the same machine can produce an enormous variety of artifacts. Both are fabricative: their productive capacity is open-ended.\magefootnote{fabricative}{Here, \emph{fabricative} means open-ended in the kinds of artifacts the machinery can realize, rather than limited to one predetermined operation.}
+% <!-- point: the-3d-printer-is-open-ended | A printer can produce many kinds of artifacts, subject to the capabilities and limitations of its machinery. | terms: printer-metaphor -->
 
-% <!-- point: open-ended-capacity-must-be-engineered | People make fabricative capacity useful by developing forms and ways of working. | terms: printer-metaphor, commodity-intelligence -->
+% <!-- point: open-ended-capacity-must-be-engineered | People make broad productive capacity useful by developing forms and ways of working. | terms: printer-metaphor, commodity-intelligence -->
 
-People make fabricative capacity useful by developing forms and ways of working. For 2D printers, familiar forms include newspapers, posters, and maps, each with conventions for layout and legibility. For a 3D printer, you might be trying to make a mounting bracket, a protective enclosure, or an adapter. These have different purposes and recurring requirements for strength, clearance, and fit. Templates, reusable designs, and established production practices give people starting points for making such artifacts. People develop and adapt this knowledge as they discover what the machinery can usefully make.
+Printers are different. A 2D printer can produce pages of text and images. A 3D printer can build physical objects from descriptions of their shapes. The same machine can produce many different artifacts, subject to the capabilities and limitations of the machinery. People make that productive capacity useful by developing forms and ways of working. For 2D printers, familiar forms include newspapers, posters, and maps, each with conventions for layout and legibility. For a 3D printer, you might be making a mounting bracket, a protective enclosure, or an adapter. These have different purposes and recurring requirements for strength, clearance, and fit. Templates, reusable designs, and established production practices give people starting points for making such artifacts. People develop and adapt this knowledge as they discover what the machinery can usefully make.
 
-% <!-- point: agent-inference-needs-engineered-boundaries | Agents can supply unspecified implementation choices; the forms and ways of working around them should preserve freedom among acceptable choices and constrain it where those choices are unacceptable. | terms: printer-metaphor, commodity-intelligence -->
+% <!-- point: agent-inference-needs-engineered-boundaries | Software agents supply broad productive capacity and can infer implementation decisions that incomplete instructions leave unspecified. | terms: printer-metaphor, commodity-intelligence -->
 
-Software agents likewise supply broad realization capacity. Agents can infer much more from an incomplete description than a physical printer can: an algorithm, a data structure, or a decomposition may never have been specified, and yet an agent can choose them and produce an implementation. That inferential capacity is precisely what makes the machinery powerful. The forms and ways of working we develop around agents should preserve this freedom where different choices are acceptable, and constrain it where they are not.
-
-Realization is the act of producing the concrete artifact or action called for by engineering intent. In the software-engineering case developed in this book, that work is conventionally called implementation, so I use implementation from here forward. Implementation here includes the broader work of realizing a software change, not only writing source code. Agents may implement requirements through code, but they may also realize engineering work in documentation, system models, configuration, deployment artifacts, support materials, and operational procedures.
+Software agents are printers, not staplers. They likewise supply broad productive capacity. Like printers, agents can follow instructions. But agents can infer much more from an incomplete description than a physical printer can: an algorithm, a data structure, or a decomposition may never have been specified, and yet an agent can choose them and produce an implementation. That inferential capacity is precisely what makes the machinery powerful.
 
 % <!-- point: delegating-judgment-is-an-opportunity-not-a-requirement | Delegation can leave useful judgment to the agent, but the engineer decides which decisions to make explicit and which to delegate. -->
 
-When we work with agents, we delegate some judgment as well as production. We do not have to, of course. We could write the entire implementation, hand it to an agent, and ask it to reproduce it. That would be an unusually expensive way to copy a file. Much of the opportunity lies in letting the agent work out things we have not already worked out ourselves. The engineering question is which decisions we should make explicit and which we can responsibly leave to the agent.
-
-% <!-- point: a-simple-specification-leaves-enormous-freedom | Even a simple software specification leaves enormous freedom — ten lines or ten thousand, a monolith or microservices — so engineers can specify the properties that matter and leave other decisions to the intelligence performing the work; which choices can safely remain open is itself an engineering decision. -->
-
-Consider how much freedom even a simple software specification leaves. A function could be implemented in ten lines or ten thousand. A service could be built as a monolith or decomposed into microservices. Different algorithms, data structures, and architectures might all satisfy the same requirements. Some choices are better than others, but engineers need not make every choice in advance. They can specify the properties that matter and leave other decisions to the intelligence performing the work. Which choices can safely remain open is itself an engineering decision.
-
-% <!-- point: leverage-moves-into-the-environment | As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work. | terms: printer-metaphor, commodity-intelligence -->
-
-When agents perform the implementation, more of the engineer\textquotesingle s control acts through the environment in which that work occurs. This is part of what I meant in the Preface by “a level of indirection.” Engineers can express decisions in the representations, constraints, and checks surrounding autonomous work. These structures shape what information is available to the agent, what actions it can take, and what results the environment accepts. Other implementation choices can remain open. \autoref{engineering-leverage} shows the shift.
-
-% <!-- point: reusable-forms-carry-design-decisions-forward | A layout or physical design preserves decisions made once across many later artifacts while leaving room for variation. | terms: printer-metaphor -->
-
-A reusable form preserves some decisions while leaving others open. A poster template can fix the placement of the title and sponsor logos while leaving the designer free to compose the artwork. A 3D-printed enclosure can fix mounting-hole positions while leaving other dimensions open. The value lies in making consequential design decisions once and carrying them forward into later artifacts.
-
-An engineering environment is the surrounding structure through which engineering work occurs: its representations, tools, processes, permissions, evidence, and mechanisms. It becomes a governed engineering environment when that structure deliberately carries engineering decisions forward---making consequential knowledge available, enforcing selected obligations, and preserving evidence needed for engineering control. Governed Engineering Environment (GEE) names the resulting MAGE construct.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/engineering-leverage-7e6a434370.pdf}
-\caption{\emph{Where engineering leverage acts.} When engineers implement systems directly, much of their control acts through the code. With agentic implementation, more of that control acts through the governed engineering environment, which represents consequential intent, constrains work, and evaluates results.}
-\label{engineering-leverage}
-\end{figure}
-
-Engineering models need not precede implementation. An engineer may construct a model from requirements, recover one from an existing system, or discover a useful architecture through agent exploration and then record it. These are alternatives rather than stages, and a model reached by any of them serves the same three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. \autoref{multiple-routes-to-engineering-models} illustrates these routes and uses.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/multiple-routes-to-engineering-models-abe57356fe.pdf}
-\caption{\emph{Multiple routes to engineering models.} A model may be constructed from requirements and intent, recovered from existing systems and experience, or discovered through agent exploration. However it arrives, the model carries engineering knowledge and the selected obligations drawn from it, and it serves three uses: engineers reason and design through it, agents are directed by it, and results are evaluated and checked against it. A model recovered from an implementation describes what exists; engineers judge whether its design is desirable and which discovered properties should become obligations. Further engineering discoveries may motivate new or revised models.}
-\label{multiple-routes-to-engineering-models}
-\end{figure}
-
-\section{The Engineering Object}\label{heading:the-engineering-object}
-
-% <!-- point: the-agent-is-not-the-engineering-object | Foundation models and agent products keep changing; the durable engineering problem begins when an agent works autonomously where "it usually works" is not an acceptable standard. | terms: commodity-intelligence -->
-
-Agent products and foundation models will continue to change.\mageaside{Engineering predates machine learning in its use of models as purposeful representations of systems. Machine learning later adopted the same word for a learned approximation of a function---also reasonably a model, but a different kind. This book gives the engineering usage precedence: unqualified model means a purposeful representation of an engineered system or some property of it. I therefore use foundation model for the trained machine-learning system and agent for the acting system built around one through a harness, tools, and working state. Where the distinction matters, I will not ask the reader to infer which "model" I mean.} The durable engineering problem begins when an agent works autonomously on a system large enough, important enough, or long-lived enough that "it usually works" is not an acceptable standard.
-
-% <!-- point: mage-is-about-that-environment | MAGE is an engineering methodology that uses models and the engineered environment to guide work and enforce selected obligations; engineers choose which decisions persist and how much judgment to delegate in light of potential leverage and risk. | terms: commodity-intelligence -->
-
-MAGE is an engineering methodology for working with agents. Models make relevant engineering knowledge and intent explicit, and the engineered environment uses those models to guide work and enforce selected obligations. Engineers choose which decisions should persist across tasks and which can remain open to the agent\textquotesingle s judgment. Leaving more judgment to the agent offers greater potential leverage, but can also increase the risk of an unacceptable result. How far to go along that spectrum is an engineering decision.
-
-Two factors may affect this decision: assurance and efficiency. Can the responsible engineer readily establish the properties that matter? If not, models and checks may provide a manageable basis for assurance, even when the agent needs little help understanding the implementation. Does the agent repeatedly spend substantial effort recovering the same knowledge? If so, preserving that knowledge in a useful representation may make later work cheaper. Human assurance needs and agent reconstruction costs can become consequential at different system scales.
-
-The environment we build for agents need not simply reproduce the one built for human developers. Agents can consume and maintain representations at scales that would be impractical for people, and automated analyses can check properties that human review would otherwise have to reconstruct from implementation. The design question is therefore two-sided: what existing engineering machinery should agents inherit, and what stronger machinery becomes practical because the workers are now machines?
-
-% <!-- point: modeling-and-alignment-supply-the-instruction-package | Modeling and Alignment supply the printer's missing instruction halves. | terms: printer-metaphor -->
-
-Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} develop these ideas. Modeling makes consequential properties explicit; Alignment enforces selected obligations during implementation.
-
-MAGE concerns how established software-engineering knowledge should be used in autonomous implementation. Engineers still draw on decades of theory and practice to choose programming languages, architectural patterns, and verification techniques. MAGE asks how consequential knowledge should be represented so that the machinery can use it, and which resulting obligations should constrain what the machinery may produce.
-
-Commodity intelligence can also change why an engineering choice matters. Consider the choice of a programming language. A human team might favor Java both because its developers can write it fluently and because they can readily review or audit code written in it. If an agent can implement competently in several languages, the first consideration weakens: the developers no longer have to author every line themselves. The second may become more important as agents produce more code for people to examine. Meanwhile, a safety requirement may favor a language that provides a needed property, such as automatic garbage collection to reduce memory leaks caused by missing deallocation. A deployment target may also require a particular toolchain. These considerations persist regardless of who writes the code. The relevant question is what made the choice matter, and how those reasons change when agents perform the implementation.
-
-The same distinction applies at larger scales. Suppose a service needs persistent storage. If either a relational or nonrelational database can satisfy every property that matters, choosing between them may simply be a degree of freedom left to implementation. But if the system requires transactions across related records, a particular consistency model, or another property that distinguishes the alternatives, the choice becomes consequential. MAGE does not supply the database theory needed to make that judgment. It asks that the consequential property be represented---and, where necessary, enforced---rather than relying on each implementing agent to rediscover why the choice mattered.
-
-Notice the distinction between unmodeled and free. A choice is unmodeled when the engineering representations do not state it; it is free only when engineering permits the alternatives. Suppose the model says nothing about which database to use. If either database really can satisfy every consequential property, the omission represents a genuine degree of freedom. But if one alternative would violate a security, consistency, or performance obligation, the choice was never free. The model simply failed to make the relevant obligation explicit.
-
-% <!-- point: mage-accepts-the-lesson-changes-the-level | External representation, memory, and tools have long improved machine reasoning; MAGE shifts the primary engineering focus to the engineered environment through which autonomous work proceeds over time. -->
-
-These ideas have antecedents in AI research on external representations, memory, specialized solvers, and tools for working with software. \magevalue{chapter:profession} examines those traditions and their relation to MAGE. Here the engineering question is how such resources become part of an environment that preserves useful knowledge and obligations as the software changes.
-
-\section{Examine the Environment First}\label{heading:whose-fault-is-it}
-
-% <!-- section-terms: whose-fault, build-instructions -->
-
-% <!-- point: suspect-the-engineered-setup-before-a-machine-limit | Before blaming productive machinery, examine the engineer’s work in representing the problem, choosing required properties, and arranging how the result will be checked. | terms: whose-fault -->
-
-“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked. A 3D-printed bracket may fail because the printer cannot achieve the required accuracy, but it may also fail because the design, material, or fabrication instructions were unsuitable. Diagnosing the printer alone would overlook much of the engineering.
-
-% <!-- point: inferred-completion-is-not-explicit | Agent inference can fill gaps in the engineering supplied to it, hiding omissions; a completed artifact does not establish that the inferred choices satisfy the intended properties or acceptable tradeoffs. | terms: whose-fault, build-instructions -->
-
-Software agents blur the distinction between the productive machinery and the engineering supplied to it because they can infer missing structure. A capable agent may produce an impressive result from a screenshot, prose request, or incomplete specification, filling in decisions that an engineer might otherwise have had to make explicit. That inferential capacity makes delegation useful, but it can also make omissions in the engineer\textquotesingle s work harder to notice. A completed artifact does not establish that the inferred choices satisfy the intended properties or reflect acceptable tradeoffs.
-
-% <!-- point: inspect-what-the-engineer-controlled-first | Inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing a capability limit; failed output alone does not establish that limit. | terms: whose-fault, build-instructions -->
-
-When an agent produces the wrong result, start with what the engineer controlled: the instructions, the representation of the problem, the task boundary, the available tools, and the evidence required of the result. Were important properties missing from the representation? Did an instruction leave a decision open that should have been settled? Could the checks detect the error? Sometimes the foundation model simply lacks the necessary capability. Failed output alone does not establish that diagnosis.
-
-% <!-- point: velocity-amplifies-sound-and-bad-engineering-alike | Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike. | terms: build-instructions -->
-
-% <!-- slogan: danger-in-instructions -->
-
-Abundant implementation raises the stakes. Capable agents can execute a bad direction with extraordinary speed. Velocity amplifies sound engineering and bad engineering alike.\mageaside{My field notes on this point were less measured: ``Claude is the fastest road to hell.''}
+When we work with agents, we delegate some judgment as well as production. We could specify the entire implementation, hand it to an agent, and ask it to reproduce it. That would be an unusually expensive way to copy a file. Much of the opportunity lies in letting agents work out things we have not already worked out ourselves. The engineering question is which decisions we should make explicit and which we can responsibly leave to the agent.

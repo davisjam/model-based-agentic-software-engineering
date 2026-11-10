@@ -23,18 +23,20 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 - **[DECLARED]** (evaluate) After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world. — _anchor: 1.1 'Not every programming task needs the machinery this book describes' + the founding premise (commodity intelligence → judgment is the scarce resource) + 1.3 'an agent runs in a loop … give it a model of the world'._
 
-### Lesson 1.1-the-printer
+### Lesson 1.2-the-engineering-object
 
-  - **[DERIVED]** (understand) After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result. — _anchor: point: modeling-and-alignment-supply-the-instruction-package (The Printer, 'The Engineering Object' — intent is not fabrication instructions; a photograph does not specify the build)._
-  - **[DERIVED]** (apply) After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain. — _anchor: point: agent-is-a-printer-not-a-stapler-so-suspect-the-instructions / models-can-build-anything-you-can-explain_
+  - **[DERIVED]** (create) After this chapter, the reader can author a lifecycle and its runbook, typing each runbook step Execute, Delegate, or Escalate and surrounding the judgment-laden steps with deterministic work. — _anchor: 4.4 'Operate the Environment' — lifecycle model (healthy path + failure states + sanctioned recovery) and typed runbook steps (Execute / Delegate / Escalate); re-homed from Operating MAGE in the Ch4/Ch5 merger._
+  - **[DERIVED]** (create) After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — keeping measurement separate from enforcement: the metric supplies evidence a validator may interpret and a gate may act on. — _anchor: 4.4 'Operate the Environment' — Ousterhout's measure-one-level-deeper paragraph + measurement/validator/gate role separation; re-homed from Operating MAGE in the Ch4/Ch5 merger._
+  - **[DECLARED]** (create) After this chapter, the reader can package a recurring procedure as a skill — the representations needed to reason about the work, the recurring decisions that matter, and a procedure for making them — and recognize that packaging preserves knowledge capital but does not by itself grant authority. — _anchor: 4.4 'Package Recurring Judgment' — a reusable skill needs three things; packaging does not itself enforce anything; re-homed from The Skills in the Ch4/Ch5 merger._
+  - **[DERIVED]** (apply) After this section, the reader can inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing failed output as an agent capability limit. — _anchor: points: suspect-the-engineered-setup-before-a-machine-limit / inspect-what-the-engineer-controlled-first (§1.2 When Agents Produce the Wrong Result)._
 
-### Lesson 1.2-mage-by-example
+### Lesson 1.3-mage-by-example
 
 
-### Lesson 1.3-the-agentic-substrate
+### Lesson 1.4-the-agentic-substrate
 
 
-### Lesson 1.4-the-new-engineering-problem
+### Lesson 1.5-the-new-engineering-problem
 
 
 ## Module 2 — Modeling
