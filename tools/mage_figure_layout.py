@@ -147,13 +147,15 @@ def theory_perspectives_columns(latex: str) -> str:
     _, content = content.split(r'\endhead', 1)
     footer, rows = content.split(r'\endlastfoot', 1)
     rows = rows.removesuffix(r'\end{longtable}')
+    rows = rows.replace('\\\\\n', '\\\\[4bp]\n')
     tabular = re.sub(r'\\begin\{longtable\}(?:\[[^]]*\])?',
                      lambda _: r'\begin{tabular}', preamble, count=1)
     # Caption and table stay in the right column, with generous row leading.
-    columns = (r'\noindent\begin{minipage}[t]{.41\linewidth}\vspace{0pt}'
+    columns = (r'\noindent\begin{minipage}[t]{.50\linewidth}\vspace{0pt}'
                r'\raggedright\setlength{\parskip}{.25\baselineskip}' + '\n' + prose + '\n' +
-               r'\end{minipage}\hfill\begin{minipage}[t]{.57\linewidth}\vspace{0pt}' + '\n' +
-               r'\small\booktablecaptionstyle\renewcommand{\arraystretch}{1.25}' + '\n' +
+               r'\end{minipage}\hfill\begin{minipage}[t]{.48\linewidth}\vspace{0pt}' + '\n' +
+               r'\small\booktablecaptionstyle\captionsetup{hypcap=false}'
+               r'\renewcommand{\arraystretch}{1.25}' + '\n' +
                r'\captionof{table}' + caption + '\n' + tabular + header + rows + footer +
                r'\end{tabular}\end{minipage}\par' + '\n')
     return before + columns + after

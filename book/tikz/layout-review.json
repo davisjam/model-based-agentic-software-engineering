@@ -6247,9 +6247,9 @@
     {
       "source": "book/assets/mage-dynamic-model.svg",
       "candidate": "book/tikz/figures/mage-dynamic-model.tex",
-      "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
+      "source_sha256": "9534e885129c883a3bff09861a320f70c7cb302b408516bc20da2a95083e0015",
       "baseline_candidate_sha256": "368587e1d62db3d011b8d01d7390a25326a781110511c2de61f788818eda115d",
-      "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63",
+      "candidate_sha256": "213da73827675ab474244b56f01190b6ef437cedaf7268ac4b1f87a3ff939c51",
       "decision": "refined",
       "reason": "Equalize capacity/environment and work/performance peers; widen pressure/diagnosis descriptions to remove a wrapped line and reveal sequential arrow shafts. Removed a redundant text-width option without changing the layout. Use11pt model descriptions/10pt external annotations, larger matched peer boxes and more room for pressure/discovery feedback ranks.",
       "reviewed_visually": true,
@@ -6289,22 +6289,17 @@
         "terminal_exceptions": []
       },
       "validation": {
-        "status": "passed",
-        "reviewed_on": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+        "proof_sha256": "57f7a6d0a0f492e6c01a5111e072ee288e8c2800effb04aa1e60bccddaa8cb42",
+        "page": 84,
+        "width_bp": 426.5150146484375,
+        "height_bp": 489.06298828125,
+        "validation_scope": "All 154 candidate figures: geometry 0 findings; 1034 semantic typography checks 0 findings; strict compilation and monochrome checks passed. Revised dynamic figure visually inspected at authored size.",
         "geometry_findings": 0,
-        "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
-        "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
-        "semantic_typography_checks": 21,
-        "checked_terminal_approaches": 646,
-        "reviewed_peer_groups": 85,
+        "semantic_typography_pool_checks": 1034,
         "unapproved_compile_diagnostics": 0,
-        "page": 83,
-        "width_bp": 426.515,
-        "height_bp": 489.063,
-        "source_sha256": "a26d164d46e6c322d4f7b7c81978aa1812abd943bc3f64951697131c0b8a5386",
-        "candidate_sha256": "229d6119ae6d9d750ea30f8d6bd57e7c15286f725a66aa8328d9dcddb40cac63"
+        "reviewed_visually": true,
+        "reviewed_on": "2026-11-10"
       },
       "superseded_reviews": [
         {

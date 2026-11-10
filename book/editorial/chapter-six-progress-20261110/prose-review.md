@@ -25,3 +25,13 @@ Use one compact table beside the introduction, rather than another conceptual fi
 The optimization uses a general assurance condition rather than a single failure probability. Aggregate delivery is not claimed to prevent cherry-picking; required requests/task-class coverage belong in the declared conditions. Charge construction and shared costs once. Human attention can be priced in the objective and bounded as scarce capacity. Policies observe current capability and price information; they generalize the fixed-foundation-model illustration.
 
 Full before-sources and both figure sources are archived here. The retired-passages record will preserve exact replaced text and original line ranges.
+
+## Final prose and mathematical review
+
+An independent authoring-agent review read all five sections in context. Its two final refinements were applied: A_H denotes total attention consumed in declared units, and initial construction is allocated to episode 1. No further omitted conceptual insertion or flow issue was found. The earlier probability decomposition and inheritance equations, every citation target and original point ID were verified preserved. The client's available unlimited-status signal is distinguished from the insufficient scalar used in its admission decision.
+
+The semantic table and optimization remain shared text across HTML, EPUB and print. The web math parser now supports policy identifiers, blackboard expectation and blank left labels in continued aligned constraints, while rejecting empty right-hand expressions and rows. Twenty targeted tests pass. The full figure pool passes geometry, typography, monochrome and strict compilation checks; the revised Figure 6.2 was visually inspected.
+
+## Rendered proof
+
+The whole-book proof converged in three passes with zero unapproved diagnostics. The opening uses normal body text beside a compact table, balanced at 50/48 percent widths with 4bp between rows. Its caption and reference link retain semantic tagging. The encoding equation, teaching footnote, inherited-GEE discussion and new optimization were visually inspected. A small copyedit to the moving-target paragraph removes an isolated continuation line without changing its argument; the final complete build verifies this.

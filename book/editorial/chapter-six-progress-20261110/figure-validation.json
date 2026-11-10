@@ -1,0 +1,13 @@
+{
+  "proof": "latex/build/tikz/candidates.pdf",
+  "proof_sha256": "57f7a6d0a0f492e6c01a5111e072ee288e8c2800effb04aa1e60bccddaa8cb42",
+  "page": 84,
+  "width_bp": 426.5150146484375,
+  "height_bp": 489.06298828125,
+  "validation_scope": "All 154 candidate figures: geometry 0 findings; 1034 semantic typography checks 0 findings; strict compilation and monochrome checks passed. Revised dynamic figure visually inspected at authored size.",
+  "geometry_findings": 0,
+  "semantic_typography_pool_checks": 1034,
+  "unapproved_compile_diagnostics": 0,
+  "reviewed_visually": true,
+  "reviewed_on": "2026-11-10"
+}

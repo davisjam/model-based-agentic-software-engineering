@@ -1103,8 +1103,21 @@
     "reviewed": true,
     "decision": "refined",
     "rationale": "Capacity family, governed environment/adaptation, and pressure regain distinct gray families; numbered dynamics receive heavier strokes than shared plumbing.",
-    "source_sha256": "61951a3137e94ec3ffc6bdb90ea5767d82e4a805416608679a90bf9887611f1f",
-    "candidate_sha256": "023428f0eeb7750778b506c84bdbd0bb3bdb2f70d77374b5ab5000bdd5c5f9fb"
+    "source_sha256": "9534e885129c883a3bff09861a320f70c7cb302b408516bc20da2a95083e0015",
+    "candidate_sha256": "213da73827675ab474244b56f01190b6ef437cedaf7268ac4b1f87a3ff939c51",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "57f7a6d0a0f492e6c01a5111e072ee288e8c2800effb04aa1e60bccddaa8cb42",
+      "page": 84,
+      "width_bp": 426.5150146484375,
+      "height_bp": 489.06298828125,
+      "validation_scope": "All 154 candidate figures: geometry 0 findings; 1034 semantic typography checks 0 findings; strict compilation and monochrome checks passed. Revised dynamic figure visually inspected at authored size.",
+      "geometry_findings": 0,
+      "semantic_typography_pool_checks": 1034,
+      "unapproved_compile_diagnostics": 0,
+      "reviewed_visually": true,
+      "reviewed_on": "2026-11-10"
+    }
   },
   {
     "source": "book/assets/probability-in-the-software-factory.svg",
