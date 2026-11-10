@@ -18772,3 +18772,19 @@ Before the Preface, you'll find a summary of the book's argument, a one-page ove
 
 \item \textbf{Show me the evidence:} \magevalue{chapter:problem} → \magevalue{chapter:software-factories}.
 ```
+
+## “What This Book Argues” opening and claim headings, 9 November 2026
+
+- Source: `book/latex/sources/frontmatter/0.2-what-this-book-argues.tex`, opening paragraphs (lines 10–12) and claims 3–4 (lines 24 and 26).
+- Source revision: `bc78ad6fb91bc9ca5f59602d38afe8c1682e42b1`.
+- Removal/revision date: 9 November 2026; committed with this entry.
+- Reason: The author approved one italicized introductory paragraph, commodity intelligence before scale, and “can” propositions in place of the definitional openings of claims 3–4. The scope paragraph and six-item structure are retained.
+
+```latex
+This section is a compact statement of the book\textquotesingle s argument, intended for orientation and later reference. The chapters that follow develop and support these claims. You do not need their terminology yet.
+
+This book makes six central claims. Together they explain the problem created by scale, what commodity intelligence changes, and how MAGE responds.
+
+\textbf{Modeling makes engineering knowledge and intent explicit.}
+\textbf{Alignment makes engineering obligations enforceable.}
+```
