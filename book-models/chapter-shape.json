@@ -117,33 +117,24 @@
     {
       "slug": "mage-by-example",
       "opening": {
-        "failure_question": "explicit",
+        "failure_question": "implicit",
         "answer": "explicit",
-        "thesis_link": "implicit",
+        "thesis_link": "explicit",
         "thesis_target": "argument-step"
       },
       "closing": {
         "kind": "transition"
       },
-      "note": "Exempt (overview). Opens on the promise + three questions; grounding-case role implicit. Closes mapping Parts 2-5 with the grounding-case-not-proof stance. The one-picture pipeline figure was demoted to the outside-only glimpse (W3 drain 2); the running example's system walk now lives in the one-docable-job figure, re-anchored here.",
-      "opening_anchor": "The last chapter closed on a promise: the running example of this",
-      "closing_anchor": "place every claim in the coming chapters can be traced back to.",
+      "note": "The originating case establishes the accessibility obligation, the engineering experiment, and context-dependent semantic judgments before the agentic machinery. The requirements table and interface glimpse carry the introductory evidence. The earlier internal architecture and preservation-validator walkthrough are archived; Chapters 2–5 teach the representations, controls, engineering process, and case evidence.",
+      "opening_anchor": "The engineering methodology described in this book emerged from six months of",
+      "closing_anchor": "productive machinery used to build it and the properties engineering must accommodate.",
       "delivers": {
-        "concepts": [
-          "fidelity-validator",
-          "provenance-layer",
-          "remediation-job",
-          "worker",
-          "chunk",
-          "remediation-service",
-          "work-queue",
-          "evidence-record"
-        ],
+        "concepts": [],
         "artifacts": [
           {
             "type": "worked-example",
-            "name": "the running DocAble example (one job traced through the system)",
-            "anchor": "one-docable-job"
+            "name": "the introductory DocAble case: accessibility obligations and the user-facing result",
+            "anchor": "docable-glimpse"
           }
         ],
         "artifact_would_help": false

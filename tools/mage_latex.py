@@ -517,7 +517,10 @@ def sync(check=False):
     engine_hash = hashlib.sha256((renderer_version + ''.join(inspect.getsource(function) for function in (pandoc, argument, guard_native, strip_noops, compatibility))).encode()).hexdigest()
     for record in manifest['sources']:
         source, projection = ROOT / record['source'], ROOT / record['projection']
-        source_hash = hashlib.sha256(source.read_bytes() + source.with_suffix('.assets.json').read_bytes()).hexdigest()
+        # The generated provenance header includes the paths. A rename must
+        # invalidate reuse even when the manuscript and asset bytes are identical.
+        identity = (record['source'] + '\n' + record['projection'] + '\n').encode()
+        source_hash = hashlib.sha256(identity + source.read_bytes() + source.with_suffix('.assets.json').read_bytes()).hexdigest()
         projection_hash = hashlib.sha256(projection.read_bytes()).hexdigest() if projection.exists() else None
         if manifest.get('engine_hash') == engine_hash and record.get('source_hash') == source_hash and record.get('projection_hash') == projection_hash:
             continue

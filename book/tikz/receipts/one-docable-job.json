@@ -284,5 +284,11 @@
     "geometry_findings": 0,
     "typography_findings": 0,
     "reviewed_visually": true
+  },
+  "retired_from_manuscript": {
+    "date": "2026-11-09",
+    "source_revision": "a989927185271c4e15e71b62ac50c1bddb05247d",
+    "reason": "Author removed the earlier job/chunk/worker walkthrough from the introductory case. Architecture and its evolution belong in Chapter 4.",
+    "archive": "book/editorial/docable-introduction-before-focus-20261109.tex"
   }
 }

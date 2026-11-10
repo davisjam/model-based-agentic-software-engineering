@@ -341,18 +341,6 @@
     "status": "book-only",
     "note": "Gate: a mechanism that evaluates whether an action or result may proceed and enforces the resulting decision at a boundary. It may evaluate the condition locally or rely on another checker. Gates can govern changes, releases, resource use, or runtime operations. The table caption in §3.3 connects this classification to protection and policy enforcement. Book-only by design."
   },
-  "fidelity-validator": {
-    "kind": "mechanism-class",
-    "site_home": "N/A",
-    "status": "book-only",
-    "note": "Fidelity Validator (DocAble specific). Asserts a remediated document's meaning survived the remediation, catching the file that became more accessible and less true to the original. Book index-def tagged at the 1.2 DocAble trust-half paragraph. Registered in index-terms.md; front-glossary vocabulary term. Book-only by design (no landing card)."
-  },
-  "provenance-layer": {
-    "kind": "mechanism-class",
-    "site_home": "N/A",
-    "status": "book-only",
-    "note": "Provenance Layer (DocAble specific). Stamps every artifact the system inserts, so a document's remediation history can be reconstructed and any single change explained or reversed. Book index-def tagged at the 1.2 DocAble trust-half paragraph. Registered in index-terms.md; front-glossary vocabulary term. Book-only by design (no landing card)."
-  },
   "generative-validation": {
     "kind": "family",
     "site_home": "N/A",

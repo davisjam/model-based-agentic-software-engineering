@@ -19229,3 +19229,14 @@ I personally maintain two courses and had no desire to spend a full semester rem
 In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to know what software engineering would look like if I stopped writing most of the implementation myself, so I used accessibility remediation as a real problem on which to find out. The system became DocAble; the resulting method became MAGE. MAGE makes the judgment of one engineer capable of governing the implementation capacity of a software team. \magevalue{chapter:software-factories} returns to the build and examines how that capability emerged.
 
 ```
+
+
+## 2026-11-09 — Focus the DocAble introduction on the accessibility problem
+
+Source: `book/latex/sources/part1/1.3-mage-by-example.tex`, revision `a989927185271c4e15e71b62ac50c1bddb05247d`. The author requested moving the obligations table into the accessibility discussion, replacing the preservation-validator lesson with contextual accessibility examples, and removing the early architecture walkthrough. The complete prior source is preserved in [docable-introduction-before-focus-20261109.tex](docable-introduction-before-focus-20261109.tex). The retired `one-docable-job` SVG, native TikZ artwork, and receipt remain in their original paths as historical material; they are no longer inserted in the manuscript. The production metrics already receive their full treatment in Chapter 5; the preservation machinery and model taxonomy remain in Chapters 2–3. No additional prose is relocated merely to retain it. Retired vocabulary declarations are preserved in [docable-introduction-retired-metadata-20261109.json](docable-introduction-retired-metadata-20261109.json).
+
+The previous §1.2 environment paragraph is preserved verbatim:
+
+```latex
+Engineers increasingly exercise those decisions through the environment in which agents work. This is part of what I meant in the Preface by “a level of indirection.” An engineering environment is the surrounding structure through which engineering work occurs: its representations, tools, processes, permissions, evidence, and mechanisms. It becomes a governed engineering environment when that structure deliberately carries engineering decisions forward, making consequential knowledge available, enforcing selected obligations, and preserving evidence needed for engineering control. Governed Engineering Environment (GEE) names the resulting MAGE construct. \autoref{engineering-leverage} shows how engineering leverage shifts from implementation toward this environment.
+```

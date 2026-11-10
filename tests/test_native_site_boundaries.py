@@ -1,6 +1,10 @@
 """Native compiler files are not served pages; generated headers are exact metadata."""
 import importlib.util
+import contextlib
+import io
+import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -16,6 +20,45 @@ spec.loader.exec_module(lint)
 
 
 class NativeBoundaryTests(unittest.TestCase):
+    def test_renaming_unchanged_source_refreshes_projection_provenance(self):
+        sys.path.insert(0, str(ROOT / 'tools'))
+        import mage_latex as native
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / 'book/latex/old.tex'
+            projection = root / 'book/part1/old.md'
+            source.parent.mkdir(parents=True)
+            projection.parent.mkdir(parents=True)
+            source.write_text('Unchanged manuscript.')
+            source.with_suffix('.assets.json').write_text('[]')
+            manifest = root / 'native-sources.json'
+            manifest.write_text(json.dumps({'sources': [{
+                'source': str(source.relative_to(root)),
+                'projection': str(projection.relative_to(root))}]}))
+
+            def compatibility(source, output):
+                output.write_text('<!-- GENERATED from ' + str(source.relative_to(root))
+                                  + '; edit the LaTeX source, then run tools/mage_latex.py sync. -->\nBody.\n')
+
+            with patch.object(native, 'ROOT', root), patch.object(native, 'MANIFEST', manifest), \
+                    patch.object(native, 'compatibility', compatibility), \
+                    patch.object(native.subprocess, 'check_output', return_value='pandoc test\n'), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                native.sync()
+                renamed = source.with_name('new.tex')
+                source.rename(renamed)
+                source.with_suffix('.assets.json').rename(renamed.with_suffix('.assets.json'))
+                moved_projection = projection.with_name('new.md')
+                projection.rename(moved_projection)
+                data = json.loads(manifest.read_text())
+                data['sources'][0].update(source=str(renamed.relative_to(root)),
+                                          projection=str(moved_projection.relative_to(root)))
+                manifest.write_text(json.dumps(data))
+                with self.assertRaisesRegex(SystemExit, 'Stale native-LaTeX projections'):
+                    native.sync(check=True)
+                native.sync()
+            self.assertIn('GENERATED from book/latex/new.tex;', moved_projection.read_text())
+
     def test_exact_generated_header_only(self):
         rel = 'book/part2/chapter.md'
         header = 'GENERATED from book/latex/sources/part2/chapter.tex; edit the LaTeX source, then run tools/mage_latex.py sync.'

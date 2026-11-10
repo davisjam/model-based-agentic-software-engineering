@@ -1,0 +1,54 @@
+{
+  "source_revision": "a989927185271c4e15e71b62ac50c1bddb05247d",
+  "retired_concepts": {
+    "fidelity-validator": {
+      "kind": "mechanism-class",
+      "site_home": "N/A",
+      "status": "book-only",
+      "note": "Fidelity Validator (DocAble specific). Asserts a remediated document's meaning survived the remediation, catching the file that became more accessible and less true to the original. Book index-def tagged at the 1.2 DocAble trust-half paragraph. Registered in index-terms.md; front-glossary vocabulary term. Book-only by design (no landing card)."
+    },
+    "provenance-layer": {
+      "kind": "mechanism-class",
+      "site_home": "N/A",
+      "status": "book-only",
+      "note": "Provenance Layer (DocAble specific). Stamps every artifact the system inserts, so a document's remediation history can be reconstructed and any single change explained or reversed. Book index-def tagged at the 1.2 DocAble trust-half paragraph. Registered in index-terms.md; front-glossary vocabulary term. Book-only by design (no landing card)."
+    }
+  },
+  "retired_registry_rows": [
+    "- concept: fidelity-validator | The fidelity validator",
+    "- concept: provenance-layer | The provenance layer"
+  ],
+  "reason": "The introductory preservation machinery is retired; the full source is archived. Other chapters retain the substantive preservation and provenance treatments.",
+  "prior_chapter_shape": {
+    "slug": "mage-by-example",
+    "opening": {
+      "failure_question": "explicit",
+      "answer": "explicit",
+      "thesis_link": "implicit",
+      "thesis_target": "argument-step"
+    },
+    "closing": {
+      "kind": "transition"
+    },
+    "delivers": {
+      "artifacts": [
+        {
+          "type": "worked-example",
+          "name": "the running DocAble example (one job traced through the system)",
+          "anchor": "one-docable-job"
+        }
+      ],
+      "artifact_would_help": false
+    },
+    "note": "Exempt (overview). Opens on the promise + three questions; grounding-case role implicit. Closes mapping Parts 2-5 with the grounding-case-not-proof stance. The one-picture pipeline figure was demoted to the outside-only glimpse (W3 drain 2); the running example's system walk now lives in the one-docable-job figure, re-anchored here.",
+    "opening_anchor": "The last chapter closed on a promise: the running example of this",
+    "closing_anchor": "place every claim in the coming chapters can be traced back to."
+  },
+  "retired_operator_references": [
+    {
+      "card-id": "release-readiness",
+      "reference": "CONC:fidelity-validator",
+      "reason": "The retired introductory concept has no canonical definition; the release card retains the content-validator catalogue reference."
+    }
+  ]
+}

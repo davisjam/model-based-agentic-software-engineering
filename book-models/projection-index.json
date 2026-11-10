@@ -3,14 +3,14 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 643,
+    "total_sites": 640,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 305,
+      "book-web": 303,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
-      "website-misc": 30,
+      "website-misc": 29,
       "website-resources": 6,
       "website-theory": 9
     }
@@ -515,7 +515,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 16
+            "occ": 14
           },
           {
             "file": "catalogue-figure.html",
@@ -939,11 +939,11 @@
           },
           {
             "file": "book/web/docs/1.2-the-engineering-object.md",
-            "occ": 33
+            "occ": 31
           },
           {
             "file": "book/web/docs/1.3-mage-by-example.md",
-            "occ": 25
+            "occ": 14
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
@@ -1221,7 +1221,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 74
+            "occ": 73
           },
           {
             "file": "catalogue-figure.html",
@@ -1494,10 +1494,6 @@
             "occ": 4
           },
           {
-            "file": "book/web/docs/1.3-mage-by-example.md",
-            "occ": 10
-          },
-          {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
             "occ": 31
           },
@@ -1701,7 +1697,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 56
+            "occ": 55
           }
         ]
       },
@@ -2202,14 +2198,6 @@
             "occ": 7
           }
         ]
-      },
-      "website": {
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 2
-          }
-        ]
       }
     },
     "reasoning-horizon": {
@@ -2500,10 +2488,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/1.3-mage-by-example.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
             "occ": 8
           },
@@ -2591,7 +2575,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 22
+            "occ": 21
           }
         ]
       },

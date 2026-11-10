@@ -173,8 +173,6 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: long-horizon-task | Long-horizon task
 - concept: one-shot-scripting | One-shot scripting
 - concept: supervised-autonomy | Supervised autonomy
-- concept: fidelity-validator | The fidelity validator
-- concept: provenance-layer | The provenance layer
 - concept: remediation-job | A remediation job
 - concept: worker | A worker
 - concept: chunk | A chunk

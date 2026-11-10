@@ -209,7 +209,6 @@
       "evidence_refs": [
         "CAT:agent/gates-and-merge-train/staged-deploy-gates",
         "CAT:product/validation-and-conformance/content-validator",
-        "CONC:fidelity-validator",
         "CAT:models-bridge/system-models/drift-parity-gates",
         "DASH:grammar-coverage",
         "DASH:model-claim-coverage",
