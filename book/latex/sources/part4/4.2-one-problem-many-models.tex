@@ -128,7 +128,7 @@ An end-to-end measurement says whether the outcome moved. It does not say why it
 
 Measurement tests the residency model\textquotesingle s explanation. A peak-memory figure reports what happened on the inputs in one sweep; the model predicts which changes to those inputs should change the result. Comparing the two can expose a missing relationship, as a later sweep did in this case. The engineer needs both: measurements to test the account, and an account of memory growth to assess the next unfamiliar document.
 
-Ousterhout puts the same instruction compactly: measure one level deeper.\citep{ousterhout2018} One level, not arbitrarily deep. The deeper cut earns its cost when it exposes an optimization target, a failure class, or a decision that the surface number hides. Media residency did all three, and the surface number --- peak resident memory --- would have named none of them.
+Ousterhout puts the same instruction compactly: measure one level deeper\citep{ousterhout2018}. One level, not arbitrarily deep. The deeper cut earns its cost when it exposes an optimization target, a failure class, or a decision that the surface number hides. Media residency did all three, and the surface number --- peak resident memory --- would have named none of them.
 
 \section{Memory Did Not Stop Mattering}\label{heading:memory-did-not-stop-mattering}
 

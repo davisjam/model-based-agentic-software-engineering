@@ -28,7 +28,7 @@ Most readers do not begin on a blank page. You inherit code, tests, schemas, arc
 
 \begin{bookbox}{inset}{Software evolves; its engineering structure must evolve with it}
 \label{inset-lehman-software-evolution}
-The inherited structure can become stale because the software itself keeps changing. Lehman\textquotesingle s work on software evolution observed that systems embedded in a changing real-world environment must continually adapt, while their complexity tends to increase unless engineers act to control it.\citep{lehman1985}
+The inherited structure can become stale because the software itself keeps changing. Lehman\textquotesingle s work on software evolution observed that systems embedded in a changing real-world environment must continually adapt, while their complexity tends to increase unless engineers act to control it\citep{lehman1985}.
 
 Models and governance mechanisms need corresponding maintenance. For example, retiring a service may leave its old dependencies in an architecture model and its recovery steps in a runbook. Both artifacts still exist, but neither describes the current system. A brownfield inventory therefore needs to establish which models, checks, and procedures remain applicable, which need repair, and which can be retired.
 \end{bookbox}
@@ -48,13 +48,13 @@ Several techniques can help recover models from an existing system:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Static program analysis.} Analyze source code, types, dependencies, and configurations to recover structural relationships without executing the system.\citep{ducasse2009architecture} For example, extract a component dependency graph from imports and calls, then compare it with the intended architecture. The graph supplies evidence about dependencies; identifying architectural boundaries also requires interpreting the roles those components play.\citep{garcia2013groundtruth}
+  \textbf{Static program analysis.} Analyze source code, types, dependencies, and configurations to recover structural relationships without executing the system\citep{ducasse2009architecture}. For example, extract a component dependency graph from imports and calls, then compare it with the intended architecture. The graph supplies evidence about dependencies; identifying architectural boundaries also requires interpreting the roles those components play\citep{garcia2013groundtruth}.
 \item
-  \textbf{Dynamic program analysis.} Analyze execution traces, logs, and test results to recover models of system behavior.\citep{cornelissen2009dynamic, ammons2002mining} For example, traces of job submission, retry, and completion can suggest a lifecycle state machine. The resulting model describes observed executions, which may omit important behaviors or include defects.
+  \textbf{Dynamic program analysis.} Analyze execution traces, logs, and test results to recover models of system behavior\citep{cornelissen2009dynamic, ammons2002mining}. For example, traces of job submission, retry, and completion can suggest a lifecycle state machine. The resulting model describes observed executions, which may omit important behaviors or include defects.
 \item
   \textbf{Agentic program analysis.} Direct a coding agent to investigate a subsystem and propose models of its architecture, behavior, or invariants. The agent can combine static and dynamic methods, following leads through source inspection, repository search, tests, and execution traces. Require evidence for each proposed relationship or behavioral claim, and distinguish observed implementation from inferred engineering intent.
 \item
-  \textbf{Interview engineers.} Ask experienced maintainers about architectural rules, behavioral assumptions, and recurring decisions that are not adequately documented.\citep{bjornson2008knowledge} Walking through a recent change or failure can expose knowledge that engineers routinely use but the implementation does not explicitly represent.\citep{anandayuvaraj2026failures} Compare this account with the recovered models and investigate disagreements about what the system does or ought to do.
+  \textbf{Interview engineers.} Ask experienced maintainers about architectural rules, behavioral assumptions, and recurring decisions that are not adequately documented\citep{bjornson2008knowledge}. Walking through a recent change or failure can expose knowledge that engineers routinely use but the implementation does not explicitly represent\citep{anandayuvaraj2026failures}. Compare this account with the recovered models and investigate disagreements about what the system does or ought to do.
 \end{itemize}
 
 These techniques produce candidate representations for engineering review. Engineers must determine which distinctions matter, whether observed behavior is intended, and which recovered models are worth maintaining. Connect the resulting models to the implementation and existing controls so that representation and enforcement can improve together.
@@ -136,7 +136,7 @@ Even a correct rule may be unsuitable for immediate enforcement. A legacy codeba
 \end{itemize}
 \end{quote}
 
-Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enable enforcement once the codebase is clean.\citep{reimann2026codex} \autoref{audit-drain-promote-beats} draws the three stages as one lint is worn into a legacy tree.
+Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enable enforcement once the codebase is clean\citep{reimann2026codex}. \autoref{audit-drain-promote-beats} draws the three stages as one lint is worn into a legacy tree.
 
 \begin{figure}[htbp]
 \centering

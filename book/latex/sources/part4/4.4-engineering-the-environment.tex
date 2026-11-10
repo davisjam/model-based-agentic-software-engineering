@@ -17,7 +17,7 @@ There are two complementary ways to improve recurring engineering work. One is t
 
 Both effects can come from the same artifact. A model can guide an agent and state properties consumed by a validator. A runbook can brief a reasoner and trigger a gate. Evidence can inform a decision or feed a gate. A governed engineering environment composes these roles rather than assigning each artifact permanently to one side.
 
-Distributed cognition provides a useful frame for this composition: reasoning can be performed by a system of people, representations, procedures, and artifacts rather than one isolated individual. The inset explains the connection.\citep{hutchins1995cognition}
+Distributed cognition provides a useful frame for this composition: reasoning can be performed by a system of people, representations, procedures, and artifacts rather than one isolated individual. The inset explains the connection\citep{hutchins1995cognition}.
 
 % <!-- box-family: inset -->
 
@@ -27,18 +27,18 @@ Distributed cognition provides a useful frame for this composition: reasoning ca
 
 \begin{bookbox}{inset}{The GEE as a Distributed Cognitive System}
 \label{inset-distributed-cognitive-system}
-Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it.\citep{hutchins1995cognition}
+Studies of distributed cognition ask us to move the boundary of analysis outward. Edwin Hutchins\textquotesingle s classic study of ship navigation, for example, does not explain navigation solely by asking what one navigator knows. Position is established through a system of people with different roles, instruments, charts, procedures, communications, and intermediate representations. The relevant cognitive system is larger than any individual participating in it\citep{hutchins1995cognition}.
 
 The same perspective is useful for agentic engineering. A coding agent need not carry the whole engineering problem inside its context window. Models preserve selected facts about the system; skills preserve procedures; tools perform operations that need not be approximated through language-model reasoning; evidence records what occurred; people or agents supply judgments that remain difficult to evaluate mechanically. The capability of the resulting engineering system is therefore not simply the capability of its foundation model.
 
-External representations matter for more than storage. Work on distributed cognitive tasks shows that the form of an external representation can change the operations required to solve a problem.\citep{zhang1994representations} A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
+External representations matter for more than storage. Work on distributed cognitive tasks shows that the form of an external representation can change the operations required to solve a problem\citep{zhang1994representations}. A state machine exposes legal transitions; a dependency graph exposes reachability and coupling; a measurement model exposes a bound. The representation changes the reasoning problem presented to whoever---or whatever---reasons next.
 
 A GEE adds another step. Its surrounding machinery can sometimes act on the represented property. A dependency model may help an agent understand the architecture, but a validator can also compare an observed dependency with an architectural obligation, and a gate can refuse the change. The environment therefore does not merely distribute cognition across reasoners and artifacts. For selected obligations, it can enforce what those representations express.
 \end{bookbox}
 
-Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape later action.\citep{argyris1978organizational} Governance conversion is a concrete engineering move within that broader concern: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
+Organizational-learning research distinguishes correcting an error from changing the assumptions or rules that shape later action\citep{argyris1978organizational}. Governance conversion is a concrete engineering move within that broader concern: a recurring gap becomes a model, procedure, check, or permission that later work inherits.
 
-Some recent work automates parts of this improvement: analyzing traces to distil reusable skills,\citep{ni2026trace2skill} diagnose harness defects,\citep{chen2026harnessfix} or revise the harness from observability data.\citep{lin2026agentic} Such techniques can supply candidates; engineers still decide which lessons and obligations the environment should preserve.
+Some recent work automates parts of this improvement: analyzing traces to distil reusable skills,\citep{ni2026trace2skill} diagnose harness defects,\citep{chen2026harnessfix} or revise the harness from observability data\citep{lin2026agentic}. Such techniques can supply candidates; engineers still decide which lessons and obligations the environment should preserve.
 
 Some recurring judgments should remain qualitative. Others contain narrower obligations that can be enforced while the larger decision stays open. The unit of that decision is the obligation, not the entire task.
 
@@ -80,11 +80,11 @@ In software testing, an \emph{oracle} is the means of deciding whether an observ
 
 \begin{bookbox}{inset}{The oracle problem}
 \label{inset-oracle-asymmetry}
-A longstanding difficulty in software testing is that executing a program can be much easier than deciding whether its result is correct. Testing research calls this the oracle problem.\citep{barr2015oracle} For a sorting function, checking that the output is ordered is insufficient: an implementation that returns an empty list would pass that check. The oracle must also establish that the output contains the same values, with the same multiplicities, as the input.
+A longstanding difficulty in software testing is that executing a program can be much easier than deciding whether its result is correct. Testing research calls this the oracle problem\citep{barr2015oracle}. For a sorting function, checking that the output is ordered is insufficient: an implementation that returns an empty list would pass that check. The oracle must also establish that the output contains the same values, with the same multiplicities, as the input.
 
 Complex behavior may require properties, reference implementations, metamorphic relations, models, runtime evidence, or human judgment. Agents can cheaply produce implementations and test inputs, but more candidates do not supply the criteria for accepting them. Before expanding the search, the engineer must identify evidence that can distinguish an acceptable result from a plausible but incorrect one.
 
-Existing behavior can stand in for a surprising amount of written specification. In a compatibility port or a structure-preserving migration, a reference implementation supplies an executable oracle: challenge a new realization with the same inputs and compare it against known behavior.\citep{anthropic2026migration, carlini2026ccompiler, faulkner2026vinext, toub2026copilotrust} Tests, benchmarks, compatibility suites, and production traces close the target further. The implementation problem may stay enormous, but much less of the engineering question remains open.
+Existing behavior can stand in for a surprising amount of written specification. In a compatibility port or a structure-preserving migration, a reference implementation supplies an executable oracle: challenge a new realization with the same inputs and compare it against known behavior\citep{anthropic2026migration, carlini2026ccompiler, faulkner2026vinext, toub2026copilotrust}. Tests, benchmarks, compatibility suites, and production traces close the target further. The implementation problem may stay enormous, but much less of the engineering question remains open.
 \end{bookbox}
 
 % <!-- index-def: property-test-models-the-output -->
@@ -93,7 +93,7 @@ Existing behavior can stand in for a surprising amount of written specification.
 
 Generative validation searches for counterexamples to a property, as discussed in \magevalue{sec:constraints-sensors-validators-gates}. For sorting, generated empty lists, duplicates, and different input orders can test whether the result is an ordered permutation. A failure may reveal a law worth checking beyond the original example. A run without a counterexample still depends on which inputs the generator could reach; test count and line coverage alone do not establish that the property holds.
 
-Docker\textquotesingle s autonomous coding fleet separates producer from grader: the agent that writes a change does not grade it. An independent reviewer with its own model invocation, a determinized test suite, and a human gate stand between a pull request and main. The fleet may open a pull request; it may not merge one.\citep{delapena2026fleet}
+Docker\textquotesingle s autonomous coding fleet separates producer from grader: the agent that writes a change does not grade it. An independent reviewer with its own model invocation, a determinized test suite, and a human gate stand between a pull request and main. The fleet may open a pull request; it may not merge one\citep{delapena2026fleet}.
 
 Evidence also ages. \magevalue{chapter:alignment} gave the placement rule: evaluate an obligation at the earliest boundary where it becomes legible and enforceable, so a defect is caught close to its cause. Consequential work often deserves a second boundary: re-evaluate at the last safe point before the consequence becomes difficult to reverse. The two rules answer different questions --- when can this property first be decided honestly, and what is the last point at which stale or invalid evidence can still be caught?\mageaside{The security analogy is time-of-check to time-of-use (TOCTOU): a property established at one instant may no longer hold when the protected action occurs because relevant state changed in between. The problem here is broader than the classical TOCTOU race, but the engineering instinct is the same.} \autoref{evidence-two-boundaries} draws the span between them.
 

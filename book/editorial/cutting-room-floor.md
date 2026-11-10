@@ -18817,3 +18817,58 @@ MAGE has two principles and a conversion loop. \autoref{mage-method} shows the w
 \label{mage-method}
 \end{figure}
 ```
+
+
+## Glossary introduction and companion-handbook aside, 9 November 2026
+
+- Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, introduction (line 14) and Software engineering entry (line 22).
+- Source revision: `001a54894b16e5ab454442c22457a4400a8e58c0`.
+- Reason: author approved three alphabetical subject groups, a single-sentence introduction, and removal of the companion-handbook aside. All definitions otherwise retain their complete wording.
+
+```latex
+Agentic software engineering is moving quickly, and its vocabulary has not settled. This glossary is a reference to the vocabulary used throughout the book. Definitions are collected here for lookup; the main text introduces and motivates the important concepts in context. It has three parts: software engineering vocabulary, software agents, and the governed engineering environment.
+
+The definition is shared with the companion \emph{Software Engineering Handbook}, which develops it fully.\citep{davis2026sehandbook}
+```
+
+
+## Glossary conceptual figures, 9 November 2026
+
+Source: `book/latex/sources/frontmatter/0.4-the-books-language.tex`, revision `001a54894b16e5ab454442c22457a4400a8e58c0`. Removed from the active glossary at the author’s request: definitions remain, and chapters carry the teaching diagrams. Chapter 1 integration and Chapter 2 relocation are proposals awaiting review; the governed-environment summary is retired because Chapter 3 already explains its relationships more precisely. All original SVG and native TikZ assets remain in the repository.
+
+### model-classes
+
+Original source lines 34–39. Complete artwork: [SVG](../assets/model-classes.svg), [native monochrome TikZ](../tikz/figures/model-classes.tex). These files preserve the original complete diagram, including the agent figure’s reasoning-horizon half.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/model-classes-eb951f4c70.pdf}
+\caption{The six model classes, organized by the engineering questions they answer.}
+\label{gloss-model-classes}
+\end{figure}
+```
+
+### gloss-agent-vocab
+
+Original source lines 69–73. Complete artwork: [SVG](../assets/gloss-agent-vocab.svg), [native monochrome TikZ](../tikz/figures/gloss-agent-vocab.tex). These files preserve the original complete diagram, including the agent figure’s reasoning-horizon half.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/gloss-agent-vocab-077dc29ef2.pdf}
+\caption{The agent stack and a characteristic failure mode. When a task exceeds the system's reasoning horizon, the agent may repeatedly reconstruct information without making progress. This churn can occur when the system cannot keep the information needed for later decisions available.}
+\end{figure}
+```
+
+### gloss-gee
+
+Original source lines 93–97. Complete artwork: [SVG](../assets/gloss-gee.svg), [native monochrome TikZ](../tikz/figures/gloss-gee.tex). These files preserve the original complete diagram, including the agent figure’s reasoning-horizon half.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/gloss-gee-7f15b69a80.pdf}
+\caption{The governed environment. Governance mechanisms support enforcement by restricting work, supplying evidence, or controlling whether work may proceed. They can operate directly on observable work or use explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.}
+\end{figure}
+```

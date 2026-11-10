@@ -5,7 +5,7 @@
     "sections": 185,
     "explicit_ids": 14,
     "derived_ids": 171,
-    "missing_topic_sentence": 5,
+    "missing_topic_sentence": 3,
     "sections_drained": 131,
     "paragraph_points": 575
   },
@@ -15,10 +15,10 @@
       "part": 0,
       "sections": [
         {
-          "section_id": "software-engineering-vocabulary",
+          "section_id": "engineering",
           "level": 2,
-          "heading_text": "Software engineering vocabulary",
-          "topic_sentence": "**Engineering.** The discipline of exercising informed *control* over consequential systems and accepting *responsibility* for their outcomes.",
+          "heading_text": "Engineering",
+          "topic_sentence": "**Authority.** Who is entitled to exercise engineering judgment: to decide what a system must do, permit or refuse an action, and answer for the result.",
           "id_source": "derived",
           "block_index": 3,
           "points": []
@@ -26,19 +26,19 @@
         {
           "section_id": "software-agents",
           "level": 2,
-          "heading_text": "Software agents",
-          "topic_sentence": null,
+          "heading_text": "Software Agents",
+          "topic_sentence": "**Agent.** An AI system that pursues an open-ended or underspecified task through multiple steps, exercising judgment about what to do next and using tools in response to intermediate results.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 15,
           "points": []
         },
         {
-          "section_id": "the-governed-engineering-environment",
+          "section_id": "mage",
           "level": 2,
-          "heading_text": "The Governed Engineering Environment",
-          "topic_sentence": null,
+          "heading_text": "MAGE",
+          "topic_sentence": "**Agentic engineering.** The engineering of systems and environments in which autonomous agents perform consequential work.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 25,
           "points": []
         }
       ],
@@ -2811,7 +2811,7 @@
           "section_id": "the-build-measured-weekly",
           "level": 3,
           "heading_text": "The Build, Measured Weekly",
-          "topic_sentence": "The repository reconstruction covers 31 complete seven-day weeks from March 12 through October 14, 2026.[cite: davis2026docable] [ref:realization-over-time] brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions.",
+          "topic_sentence": "The repository reconstruction covers 31 complete seven-day weeks from March 12 through October 14, 2026[cite: davis2026docable].",
           "id_source": "derived",
           "block_index": 46,
           "points": [
@@ -4453,7 +4453,7 @@
           "section_id": "the-judgment-frontier",
           "level": 3,
           "heading_text": "The judgment frontier",
-          "topic_sentence": "One social purpose of the engineer is to be entrusted with, and answerable for, technical work too complex or consequential for ordinary individuals to undertake for themselves.[cite: bugliarello-social-function] A small bridge across the ditch in my parents' yard allowed the neighborhood kids to visit more easily, but a few boards crossing a span of three feet did not call for a structural engineer.",
+          "topic_sentence": "One social purpose of the engineer is to be entrusted with, and answerable for, technical work too complex or consequential for ordinary individuals to undertake for themselves[cite: bugliarello-social-function].",
           "id_source": "derived",
           "block_index": 20,
           "points": [

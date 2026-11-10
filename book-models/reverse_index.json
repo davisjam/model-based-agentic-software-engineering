@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 185,
       "concepts": 84,
-      "labels": 83,
-      "refs": 100,
+      "labels": 82,
+      "refs": 99,
       "chapters": 73,
       "parts": 9,
       "points": 583,
@@ -6689,6 +6689,16 @@
         }
       ]
     },
+    "section-id:engineering": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "0.4-the-books-language::engineering",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:engineering-capital": {
       "kind": "section-id",
       "dependents": [
@@ -6955,6 +6965,16 @@
         {
           "view": "outline",
           "element": "6.1-toward-a-theory-of-mage::lifecycle-cost-and-engineering-value",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:mage": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "0.4-the-books-language::mage",
           "role": "section-anchor"
         }
       ]
@@ -7514,16 +7534,6 @@
         }
       ]
     },
-    "section-id:software-engineering-vocabulary": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "0.4-the-books-language::software-engineering-vocabulary",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:some-correspondence-remains-semantic": {
       "kind": "section-id",
       "dependents": [
@@ -7745,16 +7755,6 @@
         {
           "view": "outline",
           "element": "4.4-engineering-the-environment::the-gee-as-a-distributed-cognitive-system",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:the-governed-engineering-environment": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "0.4-the-books-language::the-governed-engineering-environment",
           "role": "section-anchor"
         }
       ]

@@ -68,11 +68,11 @@
       "closing_anchor": "from model provenance, which tracks what a derived model was generated from.)",
       "delivers": {
         "concepts": [
-          "model-classes",
           "tolerance",
           "degrees-of-freedom",
+          "commodity-intelligence",
           "compounding",
-          "commodity-intelligence"
+          "model-classes"
         ],
         "artifacts": [],
         "artifact_would_help": false

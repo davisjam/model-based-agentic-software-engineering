@@ -680,6 +680,11 @@ def _prepare_record(task):
         # The portrait accompanies the biography, rather than occupying a diagram
         # page. Preserve its established size and avoid stranding the short bio.
         latex = latex.replace(FIGURE_HEIGHT_OPTION, r'height=.66\textheight')
+    if slug == '0.4-the-books-language':
+        # Keep a definition's first and last lines with its explanation. Scope
+        # the penalties to the lookup reference; longer entries may still split.
+        latex = (r'\begingroup\clubpenalties 1 10000\widowpenalties 1 10000' + '\n' +
+                 latex + '\n' + r'\par\endgroup' + '\n')
     tex_source.write_text(latex)
     print('Prepared native print chapter', slug, flush=True)
     return str(tex_source.relative_to(ROOT))

@@ -28,6 +28,9 @@ and vocabulary. Use individual studies or products when their specific results o
 In a teaching passage, close with what the engineer can understand or do; reserve arguments about the
 book's novelty or durability for a place where those questions are actually at issue.
 
+Place citations before terminal punctuation throughout the manuscript, including prose, captions, insets,
+and footnotes. Preserve citation targets and ordering.
+
 ## Judge length by explanatory work
 
 Before shortening, ask **what must the reader now infer?** Keep intuition, worked examples,
