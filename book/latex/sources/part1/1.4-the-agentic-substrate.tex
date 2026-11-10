@@ -53,7 +53,7 @@ This distinction establishes the principal locus of control in MAGE. The enginee
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/agentic-substrate-f28785289f.pdf}
-\caption{\emph{Commodity intelligence and its engineered environment.} Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.}
+\caption{\emph{Commodity intelligence and the governed engineering environment.} Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.}
 \label{agentic-substrate}
 \end{figure}
 
@@ -149,14 +149,7 @@ Having information available does not guarantee that it can be used effectively.
 
 In this book, we use the term \emph{reasoning horizon} to describe the practical limit of the work a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. For an agent, this depends on the foundation model together with the harness, external memory, and tools.\footnote{We borrow the term from Ramezanali and colleagues, who use it in seqBench to describe the length of a sequence a model can reliably complete\citep{ramezanali2025seqbench}. Here we extend it to the practical limits of the complete reasoning system, including its harness, external memory, and tools.}
 
-Research on external representations has long shown that how information is organized affects the work needed to reason with it\citep{larkin1987diagram}\citep{zhang1994representations}. Better representations may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/reasoning-horizon-7eba103f30.pdf}
-\caption{\emph{Representation and the reasoning horizon.} When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system's reasoning horizon.}
-\label{reasoning-horizon-fig}
-\end{figure}
 
 % <!-- box-family: inset -->
 
@@ -175,11 +168,24 @@ Compaction can lose distinctions that later matter. If a summary preserves ``the
 The generation of commodity intelligence that motivated this book is built around language models with bounded context windows. We deliberately abstract from that machinery: the \textbf{reasoning horizon} concerns what a reasoner and its supporting machinery can carry through reliably, given the available representations and resources. The concept is thus broader than a context-window limit, and is intended to remain useful as new kinds of intelligence bring different capabilities and constraints.
 \end{bookbox}
 
+% <!-- print-columns-start: reasoning-horizon-fig -->
+
+Research on external representations has long shown that how information is organized affects the work needed to reason with it\citep{larkin1987diagram}\citep{zhang1994representations}. Better representations may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/reasoning-horizon-7eba103f30.pdf}
+\caption{\emph{Representation and the reasoning horizon.} When relevant system knowledge exceeds a reasoner's working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.}
+\label{reasoning-horizon-fig}
+\end{figure}
+
 % <!-- point: substrate-leaves-two-problems | The reasoning horizon grounds the Representation Problem: explicit representations can reduce task-state and reconstruction demands, and Modeling addresses how to preserve the properties relevant to an engineering question. | terms: engineering-substrate, reasoning-horizon, representation-problem, modeling-principle -->
 
 % <!-- index-def: representation-problem -->
 
 The reasoning horizon can expand in two ways: better machinery can preserve more relevant state, while better representations can reduce how much state the task requires. The \textbf{Representation Problem} asks: how should a large, evolving system be represented so that the properties relevant to an engineering question can be reasoned about without continually reconstructing them from implementation? \magevalue{chapter:modeling} develops the corresponding part of the MAGE methodology: Modeling.
+
+% <!-- print-columns-end: reasoning-horizon-fig -->
 
 \section{Probabilistic Work Needs External Enforcement}\label{heading:probabilistic-work-needs-external-enforcement}
 

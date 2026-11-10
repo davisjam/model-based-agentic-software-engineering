@@ -1,311 +1,462 @@
 {
   "source": "book/assets/reasoning-horizon.svg",
   "chapter": "1.4-the-agentic-substrate",
-  "claim": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system’s reasoning horizon.",
+  "claim": "*Representation and the reasoning horizon.* When relevant system knowledge exceeds a reasoner\u2019s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.",
+  "caption": "*Representation and the reasoning horizon.* When relevant system knowledge exceeds a reasoner\u2019s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.",
   "topology": {
-    "description": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
+    "description": "Author-requested compact comparison of reconstruction burden. The shared premise is merged; causal-spine repetition and terminal churn/longer-coherence labels are retired. Matched raw-code and purposeful-abstraction branches compare reconstruction with retrieval without guaranteeing either outcome.",
     "native_draw_commands": [
-      "\\draw[edge] (task) -- (rep);",
-      "\\draw[edge] (rep.south) -- (0,-2.7) -| (l0.north);",
-      "\\draw[edge] (0,-2.7) -| (r0.north);",
-      "\\draw[edge] (\\a) -- (\\b);",
-      "\\draw[edge] (c0) -- (c1);",
-      "\\draw[edge] (c1) -- (c2);"
+      "\\draw[edge] (102,34.4) -- (102,49.4) -- (47.4,49.4) -- (47.4,68);",
+      "\\draw[edge] (102,49.4) -- (156.6,49.4) -- (156.6,68);",
+      "\\draw[edge] (47.4,103) -- (47.4,124);",
+      "\\draw[edge] (156.6,103) -- (156.6,124);",
+      "\\draw[edge] (47.4,160) -- (47.4,181);",
+      "\\draw[edge] (156.6,160) -- (156.6,181);"
     ]
   },
   "required_terms": [
-    "Relevant state cannot all remain active",
-    "Preserve what later decisions need",
-    "Representation matters",
-    "It determines how much must be reconstructed",
-    "Raw implementation as",
-    "working substrate Purposeful abstraction",
-    "Large active state",
-    "Repeated reconstruction",
-    "Relevant structure",
-    "may be lost",
-    "Smaller relevant state",
-    "Lower reconstruction burden",
-    "Churn",
-    "Longer coherent reasoning",
-    "The causal spine",
-    "Finite active state State must remain available Representationdetermines burden"
+    "Finite working state Representation matters",
+    "Raw code",
+    "Purposeful abstraction",
+    "Reconstruct relevant structure",
+    "Retrieve relevant structure",
+    "Higher reconstruction cost",
+    "Lower reconstruction cost"
   ],
-  "bw_encoding": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
-  "redesign": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
+  "bw_encoding": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
+  "redesign": "Author-requested compact comparison of reconstruction burden. The shared premise is merged; causal-spine repetition and terminal churn/longer-coherence labels are retired. Matched raw-code and purposeful-abstraction branches compare reconstruction with retrieval without guaranteeing either outcome.",
+  "typography": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+  "routing": "Orthogonal downward branch rail; all three pairs have equal top/bottom edges and equal height.",
   "questions": [],
-  "alt": "Two parallel paths contrast raw state with abstraction. The raw-state path proceeds through large active state, repeated reconstruction and possible loss of relevant structure to churn. The abstraction path reduces relevant state and reconstruction burden, extending coherent reasoning. A three-box causal spine below links finite active state, the need to keep state available and representation-dependent burden.",
+  "alt": "Finite working state makes representation matter. Two parallel paths compare raw code, which requires reconstructing relevant structure at higher reconstruction cost, with purposeful abstraction, which supports retrieval of relevant structure at lower reconstruction cost. The comparison describes burden, not guaranteed outcomes.",
   "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
+    "reference": "Author-requested simplified comparison, current local prose and two paired editable realizations.",
     "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
+      "peer structure",
+      "arrow meaning",
+      "removed repetitive labels",
+      "no outcome guarantees",
+      "native and web typography",
+      "print and web footprint"
     ],
-    "outcome": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
+    "outcome": "Author-requested compact comparison of reconstruction burden. The shared premise is merged; causal-spine repetition and terminal churn/longer-coherence labels are retired. Matched raw-code and purposeful-abstraction branches compare reconstruction with retrieval without guaranteeing either outcome.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      12.4852,
-      12.3634
+      7.4075,
+      7.9155
     ]
   },
   "fidelity_review": {
-    "stem": "reasoning-horizon",
     "source": "book/assets/reasoning-horizon.svg",
-    "status": "corrected",
-    "evidence": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
-    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/reasoning-horizon.png",
-    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/reasoning-horizon.png",
-    "original_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
-    "native_sha256": "f80edb1b1c4dea34ee79d5a634d81f89d7b1a325583dd971663ac2838c776874",
-    "page": 9,
+    "candidate": "book/tikz/figures/reasoning-horizon.tex",
+    "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+    "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+    "decision": "refined",
+    "revision_date": "2026-11-10",
+    "review": "Author-requested compact comparison of reconstruction burden. The shared premise is merged; causal-spine repetition and terminal churn/longer-coherence labels are retired. Matched raw-code and purposeful-abstraction branches compare reconstruction with retrieval without guaranteeing either outcome.",
+    "checks": "Author specification plus native-size PDF and bundled-font SVG proof; retained peer branches, relations, semantic typography and equal visual weight.",
     "dimensions_cm": [
-      12.4852,
-      12.3634
+      7.4075,
+      7.9155
     ],
-    "diagnostics": [],
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+    "strict_compile_diagnostics": [],
+    "validation": {
+      "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+      "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 209.97500610351562,
+      "height_bp": 224.375,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "font_sizes_pt": [
+        9.5,
+        10.0
+      ],
+      "semantic_typography_checks": 7,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 1,
+      "reviewed_peer_groups": 3,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 448.8,
+      "declared_web_label_sizes_px": [
+        20.9,
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
+    }
   },
   "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "source": "book/assets/reasoning-horizon.svg",
+    "candidate": "book/tikz/figures/reasoning-horizon.tex",
+    "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+    "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+    "decision": "refined",
+    "revision_date": "2026-11-10",
+    "receipt": "book/tikz/receipts/reasoning-horizon.json",
     "status": "reviewed",
-    "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
-    "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
-    "fill": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
-    "bold": "Source-derived emphasis includes Task exceeds the finite active state; REPRESENTATION MATTERS; THE CAUSAL SPINE; Churn; Longer coherent reasoning. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-    "routing": "Aligned downward flows and orthogonal branch rail; outcomes have equal visual weight.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "fill": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
+    "bold": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+    "routing": "Orthogonal downward branch rail; all three pairs have equal top/bottom edges and equal height.",
+    "shape": "Modestly rounded ordinary concept boxes; no decorative pictograms.",
+    "visual_review": "Native final-size PDF and bundled-font Chromium web proof inspected for routing, fits, semantic weight and label legibility.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 11,
-      "width_bp": 353.911,
-      "height_bp": 350.719,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
+      "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+      "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 209.97500610351562,
+      "height_bp": 224.375,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "font_sizes_pt": [
+        9.5,
+        10.0
+      ],
+      "semantic_typography_checks": 7,
       "geometry_findings": 0,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 6
+      "page": 1,
+      "reviewed_peer_groups": 3,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 448.8,
+      "declared_web_label_sizes_px": [
+        20.9,
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
     },
     "book_references": []
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/reasoning-horizon.svg",
+    "candidate": "book/tikz/figures/reasoning-horizon.tex",
+    "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+    "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
     "decision": "refined",
-    "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
-    "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-    "evidence": [
-      {
-        "source_text": "Task exceeds the finite active state",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Premise heading versus explanatory sentence",
-        "candidate_text": "Task exceeds the finite active state",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Task exceeds the finite active state",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "50"
-          }
-        ]
-      },
-      {
-        "source_text": "REPRESENTATION MATTERS",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Central causal claim (already bold)",
-        "candidate_text": "REPRESENTATION MATTERS",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "REPRESENTATION MATTERS",
-            "weight": "700",
-            "style": "normal",
-            "x": "500",
-            "y": "135"
-          }
-        ]
-      },
-      {
-        "source_text": "THE CAUSAL SPINE",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Summary diagram heading (already bold)",
-        "candidate_text": "THE CAUSAL SPINE",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "THE CAUSAL SPINE",
-            "weight": "700",
-            "style": "normal",
-            "x": "90",
-            "y": "626"
-          }
-        ]
-      },
-      {
-        "source_text": "Churn",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Peer outcomes, equally emphasized",
-        "candidate_text": "Churn",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Churn",
-            "weight": "700",
-            "style": "normal",
-            "x": "250",
-            "y": "563"
-          }
-        ]
-      },
-      {
-        "source_text": "Longer coherent reasoning",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Peer outcomes, equally emphasized",
-        "candidate_text": "Longer coherent reasoning",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Longer coherent",
-            "weight": "700",
-            "style": "normal",
-            "x": "750",
-            "y": "475"
-          },
-          {
-            "text": "reasoning",
-            "weight": "700",
-            "style": "normal",
-            "x": "750",
-            "y": "496"
-          }
-        ]
-      }
-    ],
+    "revision_date": "2026-11-10",
     "checks": [
       {
-        "text": "Task exceeds the finite active state",
+        "text": "Finite working state Representation matters",
         "bold": true
       },
       {
-        "text": "REPRESENTATION MATTERS",
+        "text": "Raw code",
         "bold": true
       },
       {
-        "text": "THE CAUSAL SPINE",
+        "text": "Purposeful abstraction",
         "bold": true
       },
       {
-        "text": "Churn",
-        "bold": true
+        "text": "Reconstruct relevant structure",
+        "bold": false
       },
       {
-        "text": "Longer coherent reasoning",
-        "bold": true
+        "text": "Retrieve relevant structure",
+        "bold": false
       },
       {
-        "text": "Some reasoning state must be reconstructed",
+        "text": "Higher reconstruction cost",
+        "bold": false
+      },
+      {
+        "text": "Lower reconstruction cost",
         "bold": false
       }
     ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 11,
-      "width_bp": 353.911,
-      "height_bp": 350.719,
-      "minimum_prose_font_pt": 9.5,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 6,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+    "reason": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+    "evidence": [
+      {
+        "candidate_text": "Finite working state Representation matters",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Raw code",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Purposeful abstraction",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Reconstruct relevant structure",
+        "candidate_style": "regular",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Retrieve relevant structure",
+        "candidate_style": "regular",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Higher reconstruction cost",
+        "candidate_style": "regular",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Lower reconstruction cost",
+        "candidate_style": "regular",
+        "semantic_role": "Named category or process/comparison explanation."
       }
+    ],
+    "validation": {
+      "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+      "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 209.97500610351562,
+      "height_bp": 224.375,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "font_sizes_pt": [
+        9.5,
+        10.0
+      ],
+      "semantic_typography_checks": 7,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 1,
+      "reviewed_peer_groups": 3,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 448.8,
+      "declared_web_label_sizes_px": [
+        20.9,
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
     }
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source": "book/assets/reasoning-horizon.svg",
+    "candidate": "book/tikz/figures/reasoning-horizon.tex",
+    "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+    "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
     "decision": "refined",
-    "reason": "Aligned the two initial causal alternatives at equal height and restored incoming shaft clearance.",
-    "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing vertical progression: nodes already have comfortable padding and clear shafts at native text size; no remaining cap-driven compression.",
-      "before_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
-      "after_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
-      "before_dimensions_bp": [
-        353.9110107421875,
-        350.718994140625
+    "revision_date": "2026-11-10",
+    "reason": "Author-requested compact comparison of reconstruction burden. The shared premise is merged; causal-spine repetition and terminal churn/longer-coherence labels are retired. Matched raw-code and purposeful-abstraction branches compare reconstruction with retrieval without guaranteeing either outcome.",
+    "reviewed_visually": true,
+    "baseline_candidate_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "reasoning-horizon aligned peer group 1",
+          "labels": [
+            "Raw code",
+            "Purposeful abstraction"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "reasoning-horizon aligned peer group 2",
+          "labels": [
+            "Reconstruct relevant structure",
+            "Retrieve relevant structure"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "reasoning-horizon aligned peer group 3",
+          "labels": [
+            "Higher reconstruction cost",
+            "Lower reconstruction cost"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+      "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 209.97500610351562,
+      "height_bp": 224.375,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
       ],
-      "after_dimensions_bp": [
-        353.9110107421875,
-        350.718994140625
-      ],
-      "before_font_sizes_pt": [
+      "font_sizes_pt": [
         9.5,
-        10.0,
-        10.5
+        10.0
+      ],
+      "semantic_typography_checks": 7,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 1,
+      "reviewed_peer_groups": 3,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 448.8,
+      "declared_web_label_sizes_px": [
+        20.9,
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
+    },
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested compact comparison of reconstruction burden. The shared premise is merged; causal-spine repetition and terminal churn/longer-coherence labels are retired. Matched raw-code and purposeful-abstraction branches compare reconstruction with retrieval without guaranteeing either outcome.",
+      "before_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
+      "after_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+      "after_dimensions_bp": [
+        209.97500610351562,
+        224.375
       ],
       "after_font_sizes_pt": [
         9.5,
-        10.0,
-        10.5
+        10.0
       ],
       "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 11,
-      "width_bp": 353.911,
-      "height_bp": 350.719
     }
   },
-  "caption_update_2026_11_02": {
-    "source": "13-horizon-caption",
-    "scope": "Approved caption only; figure-label proposals horizon-figure-task and horizon-figure-spine remain pending. Existing figure validation records describe the unchanged drawing."
-  },
-  "editorial_update_2026_11_03": {
-    "scope": "Author-approved task and causal-spine labels; matching SVG and accessibility wording. The SVG bottom-row boxes and arrows were spaced to remove overlap, and the native label was wrapped at a word boundary.",
-    "source_sha256": "fefec131079acfd8e94d114886c0149ab73d55e93c6206965b8343f48054c4f0",
-    "native_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
-    "proof": "/private/tmp/mage-horizon-labels-nov03/reasoning-horizon.pdf",
-    "strict_compile": "Two passes, zero unapproved diagnostics",
-    "label_fit": "All SVG labels fit their padded boxes; approved labels present in the native PDF",
+  "validation": {
+    "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+    "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+    "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+    "width_bp": 209.97500610351562,
+    "height_bp": 224.375,
+    "fonts": [
+      "SourceSans3-Bold",
+      "SourceSans3-Regular"
+    ],
+    "font_sizes_pt": [
+      9.5,
+      10.0
+    ],
+    "semantic_typography_checks": 7,
     "geometry_findings": 0,
-    "palette": "Unchanged; two existing #fbeee6 warnings",
-    "historical_reviews": "Earlier geometry, typography, and caption records describe the preceding labels."
+    "typography_findings": 0,
+    "unapproved_compile_diagnostics": 0,
+    "monochrome_pixels": true,
+    "page": 1,
+    "reviewed_peer_groups": 3,
+    "svg_sensors": {
+      "overflow": 0,
+      "label_collision": 0,
+      "text_occlusion": 0,
+      "text_intrusion": 0,
+      "font_band_full_width_assumption": 13,
+      "font_band_at_declared_web_width": 0
+    },
+    "date": "2026-11-10",
+    "status": "passed",
+    "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+    "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
+    "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
+    "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+    "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+    "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+    "reviewed_visually": true,
+    "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+    "declared_web_width_px": 448.8,
+    "declared_web_label_sizes_px": [
+      20.9,
+      22.0
+    ],
+    "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
+  },
+  "drafting_provenance": {
+    "scene": "/private/tmp/mage-ch1-followup-20261110/compact-figures/scene.json",
+    "generator": "/private/tmp/mage-ch1-followup-20261110/compact-figures/generate.py",
+    "role": "Draft provenance; not a new runtime build dependency."
   }
 }

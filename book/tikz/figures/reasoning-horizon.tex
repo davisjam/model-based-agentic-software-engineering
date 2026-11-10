@@ -1,25 +1,26 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
-edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
-
-\node[n,fill=white,text width=8cm] (task) at (0,0) {\textbf{Relevant state cannot all remain active}\\Preserve what later decisions need};
-\node[n,fill=black!5,text width=8cm] (rep) at (0,-1.8) {\textbf{REPRESENTATION MATTERS}\\It determines how much must be reconstructed};
-\draw[edge] (task) -- (rep);
-\node[n,fill=white,text width=4.7cm,minimum height=1.2cm] (l0) at (-3.6,-3.7) {\textbf{Raw implementation as\\working substrate}};
-\node[n,fill=white,text width=4.7cm,minimum height=1.2cm] (r0) at (3.6,-3.7) {\textbf{Purposeful abstraction}};
-\draw[edge] (rep.south) -- (0,-2.6) -| (l0.north);
-\draw[edge] (0,-2.6) -| (r0.north);
-\foreach \id/\x/\y/\txt in {l1/-3.6/-5.2/{Large active state},l2/-3.6/-6.4/{Repeated reconstruction},l3/-3.6/-7.8/{Relevant structure\\may be lost},r1/3.6/-5.2/{Smaller relevant state},r2/3.6/-6.4/{Lower reconstruction burden}} {
- \node[n,fill=white,text width=4.7cm] (\id) at (\x,\y) {\txt};}
-\node[n,fill=white,text width=4.7cm] (l4) at (-3.6,-9.2) {\textbf{Churn}};
-\node[n,fill=white,text width=4.7cm] (r3) at (3.6,-7.8) {\textbf{Longer coherent reasoning}};
-\foreach \a/\b in {l0/l1,l1/l2,l2/l3,l3/l4,r0/r1,r1/r2,r2/r3} {\draw[edge] (\a) -- (\b);}
-\node[head] at (0,-10.3) {THE CAUSAL SPINE};
-\node[note,draw,text width=3.2cm] (c0) at (-4.4,-11.2) {Finite active state};
-\node[note,draw,text width=3.2cm] (c1) at (0,-11.2) {State must remain\\available};
-\node[note,draw,text width=3.2cm] (c2) at (4.4,-11.2) {Representation determines burden};
-\draw[edge] (c0) -- (c1);\draw[edge] (c1) -- (c2);
-
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\fontsize{10}{12}\selectfont,
+edge/.style={-{Stealth[length=4.2bp,width=3.6bp]},line width=.65bp},
+compactbox/.style={draw=black,line width=.65bp,rounded corners=2.5bp,fill=white,align=center,inner sep=0pt},
+compactlabel/.style={align=center,inner sep=0pt}]
+\path[use as bounding box] (0,0) rectangle (204,218.4);
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (9,0.4) rectangle (195,34.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (premise) at (102.0,17.4) {\textbf{Finite working state}\\\textbf{Representation matters}};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (0.4,68) rectangle (94.4,103);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (raw) at (47.4,85.5) {\textbf{Raw code}};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (109.6,68) rectangle (203.6,103);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (abstraction) at (156.6,85.5) {\textbf{Purposeful}\\\textbf{abstraction}};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (0.4,124) rectangle (94.4,160);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (reconstruct) at (47.4,142.0) {Reconstruct\\relevant structure};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (109.6,124) rectangle (203.6,160);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (retrieve) at (156.6,142.0) {Retrieve\\relevant structure};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (0.4,181) rectangle (94.4,218);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{9.5}{12}\selectfont] (higher) at (47.4,199.5) {Higher\\reconstruction cost};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (109.6,181) rectangle (203.6,218);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{9.5}{12}\selectfont] (lower) at (156.6,199.5) {Lower\\reconstruction cost};
+\draw[edge] (102,34.4) -- (102,49.4) -- (47.4,49.4) -- (47.4,68);
+\draw[edge] (102,49.4) -- (156.6,49.4) -- (156.6,68);
+\draw[edge] (47.4,103) -- (47.4,124);
+\draw[edge] (156.6,103) -- (156.6,124);
+\draw[edge] (47.4,160) -- (47.4,181);
+\draw[edge] (156.6,160) -- (156.6,181);
 \end{tikzpicture}

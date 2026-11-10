@@ -134,7 +134,7 @@
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/agentic-substrate.svg",
-    "caption": "*Commodity intelligence and its engineered environment.* Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.",
+    "caption": "*Commodity intelligence and the governed engineering environment.* Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/agentic-substrate.json",
@@ -142,7 +142,7 @@
     "data": [],
     "conversion": "Native editable TikZ and live-text SVG reauthored together from the author specification.",
     "svg_title": "Commodity intelligence and its engineered environment",
-    "svg_description": "Training data, including open-source code and other data, is used in pretraining and post-training to produce foundation-model weights. A deployed model provides four properties, each paired with an engineering implication, while the harness supplies tool action, context management, interposition and parallel execution. The agent changes an existing system. The engineered environment supplies guidance and governs selected actions and results. The engineer principally engineers and maintains that environment, with training or fine-tuning shown as an optional route.",
+    "svg_description": "Training data leads through pretraining and post-training to trained foundation-model weights. A deployed model provides four properties, each paired with an engineering implication, while the harness supplies tool action, context management, interposition and parallel execution. The agent changes an existing system. Guidance supplies system knowledge to the agent. Governance connects to the actions-and-changes boundary, constraining actions and controlling acceptance of selected results. The Governed Engineering Environment (GEE) contains the existing system and engineering structure. The engineer maintains this environment; an optional dashed training or fine-tuning route enters the pretraining and post-training process.",
     "native_dimensions_bp": [
       446.843994140625,
       557.6439819335938
@@ -159,33 +159,62 @@
       "scene": "book/editorial/retired-agentic-machinery-20261110/draft-figure-scene.json",
       "generator": "book/editorial/retired-agentic-machinery-20261110/draft-figure-generator.py",
       "role": "Archived drafting provenance; not a new build dependency."
-    }
+    },
+    "web_dimensions_css_px": [
+      1003.5,
+      1253.25
+    ],
+    "web_authored_font_sizes_css_px": [
+      21.375,
+      22.5,
+      22.95,
+      23.625,
+      24.3,
+      25.875
+    ]
   },
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/reasoning-horizon.svg",
-    "caption": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system’s reasoning horizon.",
+    "caption": "*Representation and the reasoning horizon.* When relevant system knowledge exceeds a reasoner\u2019s working state, it must be recovered for later decisions. Purposeful representations can reduce reconstruction effort and sometimes extend the range of tasks the system can handle reliably.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/reasoning-horizon.d2",
-    "receipt": "book/d2-pilot/reasoning-horizon.receipt.yaml",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/reasoning-horizon.json",
     "generator": null,
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The reasoning horizon",
-    "svg_description": "At sufficient scale a task requires more reasoning state than a finite reasoner can\n    keep active, so some state must be reconstructed. A branch node, representation matters, states that the\n    representation the reasoner works through determines how much of that state must be reconstructed. The\n    figure forks from that node. On the left, raw implementation as the working substrate carries a large\n    active state, forces repeated reconstruction, and easily loses relevant structure, ending in churn. On\n    the right, a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction\n    burden, and sustains longer coherent reasoning. A causal spine at the foot reads: finite active state,\n    reconstruction unavoidable, representation determines burden."
+    "conversion": "Editable native TikZ and SVG reauthored together from a compact teaching scene; no auto-layout dependency.",
+    "svg_title": "Representation and the reasoning horizon",
+    "svg_description": "Finite working state makes representation matter. Two parallel paths compare raw code, which requires reconstructing relevant structure at higher reconstruction cost, with purposeful abstraction, which supports retrieval of relevant structure at lower reconstruction cost. The comparison describes burden, not guaranteed outcomes.",
+    "native_dimensions_bp": [
+      209.97500610351562,
+      224.375
+    ],
+    "authored_font_sizes_pt": [
+      9.5,
+      10.0
+    ],
+    "declared_web_width_px": 448.8
   },
   {
     "chapter": "1.5-the-new-engineering-problem",
     "source": "assets/substrate-to-method.svg",
-    "caption": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem.",
+    "caption": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. The two principles address different engineering problems and operate together.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/substrate-to-method.d2",
-    "receipt": "book/d2-pilot/substrate-to-method.receipt.yaml",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/substrate-to-method.json",
     "generator": null,
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "From substrate to method",
-    "svg_description": "Two derivations run left to right. In the first, a finite working state raises the\n    representation problem, which modeling addresses in Chapter 2. In the second, probabilistic productive\n    work over observable, interposable seams raises the enforcement problem, which alignment addresses in Chapter 3. These are the two core activities Chapter 1 derives; Chapter 4 puts them in motion as the MAGE method."
+    "conversion": "Editable native TikZ and SVG reauthored together from a compact teaching scene; no auto-layout dependency.",
+    "svg_title": "From agentic machinery to MAGE",
+    "svg_description": "Two rows connect substrate properties to engineering problems and MAGE responses: finite working state to the Representation Problem and Modeling; probabilistic agentic work to the Enforcement Problem and Alignment.",
+    "native_dimensions_bp": [
+      317.9739990234375,
+      105.97599792480469
+    ],
+    "authored_font_sizes_pt": [
+      10.0
+    ],
+    "declared_web_width_px": 686.4
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",

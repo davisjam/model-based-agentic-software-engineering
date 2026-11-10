@@ -58,6 +58,36 @@ def single_page_tables(latex: str, labels: set[str], *, placement: str = "p",
     return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', convert, latex, flags=re.S)
 
 
+def layout_selected_table(latex: str, label: str, proportions: tuple[float, ...],
+                          *, row_gap_bp: float = 4, row_stretch: float = 1.2) -> str:
+    """Give a reviewed table content-appropriate columns and readable row spacing.
+
+    Projection through Markdown loses native column proportions. Restore this
+    local print choice without touching other tables or changing cell content.
+    """
+    if (not proportions or any(not 0 < p < 1 for p in proportions)
+            or abs(sum(proportions) - 1) > .0001
+            or not 0 <= row_gap_bp <= 12 or not 1 <= row_stretch <= 2):
+        raise ValueError('Invalid reviewed table geometry')
+    def table(match):
+        block = match[0]
+        if r'\label{' + label + '}' not in block:
+            return block
+        preamble, caption, remainder = block.partition(r'\caption')
+        cells = list(re.finditer(r'\\real\{[0-9.]+\}', preamble))
+        if not caption or len(cells) != len(proportions):
+            raise ValueError('Column count changed for ' + label)
+        for cell, width in reversed(list(zip(cells, proportions))):
+            preamble = preamble[:cell.start()] + r'\real{' + f'{width:.4f}' + '}' + preamble[cell.end():]
+        header, footer, body = remainder.partition(r'\endlastfoot')
+        if not footer:
+            raise ValueError('Expected table body boundary for ' + label)
+        body = re.sub(r'\\\\(?=\s*\n)', lambda _: r'\\[' + str(row_gap_bp) + 'bp]', body)
+        return ('{\\renewcommand{\\arraystretch}{' + str(row_stretch) + '}\n' +
+                preamble + caption + header + footer + body + '\n}')
+    return re.sub(r'\\begin\{longtable\}.*?\\end\{longtable\}', table, latex, flags=re.S)
+
+
 def bold_table_headers(latex: str) -> str:
     """Style Pandoc longtable header cells, including repeated page headers.
 

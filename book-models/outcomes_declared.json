@@ -137,10 +137,10 @@
       "granularity": "chapter",
       "primary_unit": "why-mage-follows-from-the-machine",
       "verb": "explain",
-      "obj": "the two engineering problems and why MAGE develops Modeling first as a methodological choice",
-      "statement": "After this chapter, the reader can explain the two engineering problems — representation (Problem A, Part II) and enforcement (Problem B, Part III) — and why they are related but independent, so MAGE develops Modeling first as a methodological choice rather than a logical prerequisite of Alignment.",
+      "obj": "how Modeling and Alignment provide complementary, independent means of informed engineering control",
+      "statement": "After this section, the reader can explain how Modeling and Alignment provide complementary but independent means of engineering control, distinguish a content representation from its validation and acceptance rule, and identify the engineering judgments governing selective representation, enforcement, and implementation freedom.",
       "provenance": "declared",
-      "anchor": "Section 'the-two-problems-in-software': selective complementarity of Modeling and Alignment, followed by DocAble content preservation."
+      "anchor": "Section 'From the Engineering Problems to MAGE': point modeling-and-alignment-complement-one-another, the DocAble extracted-content preservation example, and the following engineering-judgment paragraph."
     },
     {
       "granularity": "chapter",

@@ -1,0 +1,429 @@
+{
+  "source": "book/assets/substrate-to-method.svg",
+  "chapter": "1.5-the-new-engineering-problem",
+  "claim": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE's corresponding answers: Modeling and Alignment.",
+  "topology": {
+    "description": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "native_draw_commands": [
+      "\\draw[edge] (n00) -- (n01);",
+      "\\draw[edge] (n01) -- (n02);",
+      "\\draw[edge] (n10) -- (n11);",
+      "\\draw[edge] (n11) -- (n12);"
+    ]
+  },
+  "required_terms": [
+    "Finite working state Representation problem",
+    "Modeling",
+    "Compact rele-",
+    "vant properties",
+    "Probabilistic pro-",
+    "ductive work",
+    "Observable, inter-",
+    "posable seams",
+    "Enforcement problem",
+    "Alignment",
+    "Enforce selected",
+    "obligations",
+    "Substrate trait Problem Method",
+    "Chapter 1 derives the two core activities; Chap-",
+    "ter 4 puts them in motion as the MAGE method."
+  ],
+  "bw_encoding": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
+  "redesign": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+  "questions": [],
+  "alt": "A grayscale dependency diagram connects the agentic substrate to the MAGE method, keeping representation, evidence and controls distinct. The external footer connects the Chapter 1 substrate discussion with the method developed by Chapter 4.",
+  "review": {
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
+    "checks": [
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
+    ],
+    "outcome": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "native_dimensions_cm": [
+      13.9869,
+      6.5114
+    ]
+  },
+  "fidelity_review": {
+    "stem": "substrate-to-method",
+    "source": "book/assets/substrate-to-method.svg",
+    "status": "corrected",
+    "evidence": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/substrate-to-method.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/substrate-to-method.png",
+    "original_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+    "native_sha256": "6a5032b25ab9c23b378611956ff63d62c0cadb9cab55ec864b2ce5da9b39b59a",
+    "page": 10,
+    "dimensions_cm": [
+      13.9869,
+      6.5114
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "receipt": "book/tikz/receipts/substrate-to-method.json",
+    "decision": "refined",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+    "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
+    "bold": "Source-derived emphasis includes SUBSTRATE TRAIT; PROBLEM; METHOD; Representation problem; Enforcement problem; Modeling; Alignment. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 12,
+      "width_bp": 418.229,
+      "height_bp": 184.495,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    },
+    "book_references": [
+      "part:2",
+      "part:3",
+      "part:1",
+      "part:4"
+    ],
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 3,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "decision": "refined",
+    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+    "evidence": [
+      {
+        "source_text": "SUBSTRATE TRAIT",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Column category (already bold)",
+        "candidate_text": "SUBSTRATE TRAIT",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "SUBSTRATE TRAIT",
+            "weight": "700",
+            "style": "normal",
+            "x": "180",
+            "y": "86"
+          }
+        ]
+      },
+      {
+        "source_text": "PROBLEM",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Column category (already bold)",
+        "candidate_text": "PROBLEM",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "PROBLEM",
+            "weight": "700",
+            "style": "normal",
+            "x": "470",
+            "y": "86"
+          }
+        ]
+      },
+      {
+        "source_text": "method",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Column category (already bold)",
+        "candidate_text": "METHOD",
+        "candidate_style": "capitals",
+        "source_fragments": [
+          {
+            "text": "method",
+            "weight": "700",
+            "style": "normal",
+            "x": "450",
+            "y": "40"
+          }
+        ]
+      },
+      {
+        "source_text": "Representation problem",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Representation problem",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Representation problem",
+            "weight": "700",
+            "style": "normal",
+            "x": "470",
+            "y": "143"
+          }
+        ]
+      },
+      {
+        "source_text": "Enforcement problem",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Enforcement problem",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Enforcement problem",
+            "weight": "700",
+            "style": "normal",
+            "x": "470",
+            "y": "293"
+          }
+        ]
+      },
+      {
+        "source_text": "Modeling",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Modeling",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Modeling",
+            "weight": "700",
+            "style": "normal",
+            "x": "752",
+            "y": "130"
+          }
+        ]
+      },
+      {
+        "source_text": "Alignment",
+        "source_style": "weight 700, normal",
+        "semantic_role": "Named problem or method; explanation stays regular",
+        "candidate_text": "Alignment",
+        "candidate_style": "bold ",
+        "source_fragments": [
+          {
+            "text": "Alignment",
+            "weight": "700",
+            "style": "normal",
+            "x": "752",
+            "y": "284"
+          }
+        ]
+      },
+      {
+        "source_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+        "source_style": "weight normal, italic",
+        "semantic_role": "Cross-book explanatory annotation",
+        "candidate_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+        "candidate_style": "italic ",
+        "source_fragments": [
+          {
+            "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+            "weight": "normal",
+            "style": "italic",
+            "x": "450",
+            "y": "384"
+          }
+        ]
+      }
+    ],
+    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "checks": [
+      {
+        "text": "SUBSTRATE TRAIT",
+        "bold": true
+      },
+      {
+        "text": "PROBLEM",
+        "bold": true
+      },
+      {
+        "text": "METHOD",
+        "bold": true
+      },
+      {
+        "text": "Representation problem",
+        "bold": true
+      },
+      {
+        "text": "Enforcement problem",
+        "bold": true
+      },
+      {
+        "text": "Modeling",
+        "bold": true
+      },
+      {
+        "text": "Alignment",
+        "bold": true
+      },
+      {
+        "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+        "italic": true
+      },
+      {
+        "text": "Compact relevant",
+        "bold": false
+      },
+      {
+        "text": "Chapter 2",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Chapter 3",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 12,
+      "width_bp": 418.229,
+      "height_bp": 184.495,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9
+    },
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 3,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
+    }
+  },
+  "layout_review": {
+    "source": "book/assets/substrate-to-method.svg",
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+    "baseline_candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
+    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+    "decision": "refined",
+    "reason": "Aligned comparison peers in each row without changing the trait/problem/method hierarchy.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      408.88299560546875,
+      184.4949951171875
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "finite-state comparison row",
+          "labels": [
+            "Finite working state",
+            "Representation problem",
+            "Modeling"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "productive-work comparison row",
+          "labels": [
+            "Probabilistic productive work",
+            "Enforcement problem",
+            "Alignment"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 12,
+      "width_bp": 418.229,
+      "height_bp": 184.495
+    },
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing substrate to method layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+      "after_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+      "before_dimensions_bp": [
+        418.22900390625,
+        184.4949951171875
+      ],
+      "after_dimensions_bp": [
+        418.22900390625,
+        184.4949951171875
+      ],
+      "before_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
+    "revision_20261106": {
+      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+      "page": 3,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "reviewed_visually": true
+    }
+  },
+  "author_feedback_20261106": {
+    "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+    "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+    "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+    "page": 3,
+    "geometry_findings": 0,
+    "typography_findings": 0,
+    "reviewed_visually": true
+  },
+  "caption": "From substrate to method. Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem."
+}

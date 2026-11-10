@@ -661,9 +661,11 @@ def _prepare_record(task):
     latex = isolate_inset_figures(latex, flow_labels=inset_flow_labels(),
                                   inline_labels=inset_inline_labels())
 
-    from latex_build import (bold_table_headers, single_page_tables,
+    from latex_build import (bold_table_headers, layout_selected_table, single_page_tables,
                              namespace_heading_links, restore_chapter_heading_links)
     latex = bold_table_headers(latex)
+    latex = layout_selected_table(latex, 'docable-obligation-kinds', (.28, .72),
+                                  row_gap_bp=4, row_stretch=1.2)
     latex = re.sub(r'\\(?:toprule|midrule|bottomrule)(?:\\noalign\{\})?', lambda m: r'\hline', latex)
     # This five-column comparison fits at its normal table size on one page.
     # Float it intact near its introduction, before the worked interpretation,

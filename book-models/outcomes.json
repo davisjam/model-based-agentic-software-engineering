@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 8,
     "elaborative_links": 11,
     "units_serving_as_elaborative": 10,
-    "sections_total": 186,
+    "sections_total": 185,
     "sections_primary_of_an_outcome": 5,
     "modules": 8,
-    "lessons": 30
+    "lessons": 29
   },
   "taxonomy": {
     "know": [
@@ -136,11 +136,6 @@
           },
           {
             "lesson": "1.4-the-agentic-substrate",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "1.5-the-new-engineering-problem",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -850,16 +845,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "why-mage-follows-from-the-machine::explain-the-two-engineering-problems-and-why-mag",
+      "outcome_id": "why-mage-follows-from-the-machine::explain-how-modeling-and-alignment-provide-compl",
       "granularity": "chapter",
       "primary_unit": "why-mage-follows-from-the-machine",
       "secondary_units": [],
       "verb": "explain",
-      "obj": "the two engineering problems and why MAGE develops Modeling first as a methodological choice",
-      "statement": "After this chapter, the reader can explain the two engineering problems — representation (Problem A, Part II) and enforcement (Problem B, Part III) — and why they are related but independent, so MAGE develops Modeling first as a methodological choice rather than a logical prerequisite of Alignment.",
+      "obj": "how Modeling and Alignment provide complementary, independent means of informed engineering control",
+      "statement": "After this section, the reader can explain how Modeling and Alignment provide complementary but independent means of engineering control, distinguish a content representation from its validation and acceptance rule, and identify the engineering judgments governing selective representation, enforcement, and implementation freedom.",
       "bloom": "understand",
       "provenance": "declared",
-      "anchor": "Section 'the-two-problems-in-software': selective complementarity of Modeling and Alignment, followed by DocAble content preservation.",
+      "anchor": "Section 'From the Engineering Problems to MAGE': point modeling-and-alignment-complement-one-another, the DocAble extracted-content preservation example, and the following engineering-judgment paragraph.",
       "gap_note": null
     },
     {

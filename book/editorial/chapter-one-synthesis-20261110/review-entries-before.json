@@ -1,0 +1,1370 @@
+{
+  "inventory": [
+    {
+      "chapter": "1.4-the-agentic-substrate",
+      "source": "assets/agentic-substrate.svg",
+      "caption": "*Commodity intelligence and its engineered environment.* Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": null,
+      "receipt": "book/tikz/receipts/agentic-substrate.json",
+      "generator": null,
+      "data": [],
+      "conversion": "Native editable TikZ and live-text SVG reauthored together from the author specification.",
+      "svg_title": "Commodity intelligence and its engineered environment",
+      "svg_description": "Training data, including open-source code and other data, is used in pretraining and post-training to produce foundation-model weights. A deployed model provides four properties, each paired with an engineering implication, while the harness supplies tool action, context management, interposition and parallel execution. The agent changes an existing system. The engineered environment supplies guidance and governs selected actions and results. The engineer principally engineers and maintains that environment, with training or fine-tuning shown as an optional route.",
+      "native_dimensions_bp": [
+        446.843994140625,
+        557.6439819335938
+      ],
+      "authored_font_sizes_pt": [
+        9.5,
+        10,
+        10.2,
+        10.5,
+        10.8,
+        11.5
+      ],
+      "draft_generation_provenance": {
+        "scene": "book/editorial/retired-agentic-machinery-20261110/draft-figure-scene.json",
+        "generator": "book/editorial/retired-agentic-machinery-20261110/draft-figure-generator.py",
+        "role": "Archived drafting provenance; not a new build dependency."
+      }
+    },
+    {
+      "chapter": "1.4-the-agentic-substrate",
+      "source": "assets/reasoning-horizon.svg",
+      "caption": "*Representation and the reasoning horizon.* When relevant state cannot all remain active, it must be preserved elsewhere and recovered. Raw implementation can demand repeated reconstruction; purposeful abstraction can reduce that burden, making work cheaper and sometimes bringing more demanding tasks within the system\u2019s reasoning horizon.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/reasoning-horizon.d2",
+      "receipt": "book/d2-pilot/reasoning-horizon.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "The reasoning horizon",
+      "svg_description": "At sufficient scale a task requires more reasoning state than a finite reasoner can\n    keep active, so some state must be reconstructed. A branch node, representation matters, states that the\n    representation the reasoner works through determines how much of that state must be reconstructed. The\n    figure forks from that node. On the left, raw implementation as the working substrate carries a large\n    active state, forces repeated reconstruction, and easily loses relevant structure, ending in churn. On\n    the right, a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction\n    burden, and sustains longer coherent reasoning. A causal spine at the foot reads: finite active state,\n    reconstruction unavoidable, representation determines burden."
+    },
+    {
+      "chapter": "1.5-the-new-engineering-problem",
+      "source": "assets/substrate-to-method.svg",
+      "caption": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/substrate-to-method.d2",
+      "receipt": "book/d2-pilot/substrate-to-method.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "From substrate to method",
+      "svg_description": "Two derivations run left to right. In the first, a finite working state raises the\n    representation problem, which modeling addresses in Chapter 2. In the second, probabilistic productive\n    work over observable, interposable seams raises the enforcement problem, which alignment addresses in Chapter 3. These are the two core activities Chapter 1 derives; Chapter 4 puts them in motion as the MAGE method."
+    }
+  ],
+  "grayscale-review": [
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+      "decision": "refined",
+      "revision_date": "2026-11-10",
+      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
+      "receipt": "book/tikz/receipts/agentic-substrate.json",
+      "reviewed": true,
+      "rationale": "5% black fill identifies the model-development and environment regions; the heavier environment border identifies the engineer's principal sphere of control. Components and ordinary nodes are white. Text is black. Only the optional training relation is dashed and lightened.",
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
+        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
+        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "width_bp": 446.843994140625,
+        "height_bp": 557.6439819335938,
+        "caption_reserve_in_648bp_text_area": 90.35601806640625,
+        "authored_type_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 2,
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "shared_svg_sensors": {
+          "lint_figure_overflow": 0,
+          "lint_figure_text_occlusion": 0,
+          "lint_figure_text_intrusion": 0,
+          "lint_figure_label_collision": 0,
+          "lint_figure_font_band": 0
+        },
+        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "date": "2026-11-10",
+        "page": 1,
+        "status": "passed",
+        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
+        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      }
+    },
+    {
+      "source": "book/assets/reasoning-horizon.svg",
+      "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "receipt": "book/tikz/receipts/reasoning-horizon.json",
+      "reviewed": true,
+      "decision": "refined",
+      "rationale": "Obligation-level representation choice emphasized; raw implementation and purposeful-abstraction outcomes differentiated in gray. Causal text and fork retained.",
+      "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+      "candidate_sha256": "5d9510271aacbb98e37f7dc70026d273ffbc9f9482cf65b43a3c0e0078fc8840"
+    },
+    {
+      "source": "book/assets/substrate-to-method.svg",
+      "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "receipt": "book/tikz/receipts/substrate-to-method.json",
+      "reviewed": true,
+      "decision": "refined",
+      "rationale": "Distinct gray encodings for problems, Modeling and Alignment preserve two parallel derivations.",
+      "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+      "candidate_sha256": "b237362d9ef5c503fed5e695c0f1044022a72a8ee88e66e9a6e7152fa174ec64"
+    }
+  ],
+  "fidelity-review": [
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+      "decision": "refined",
+      "revision_date": "2026-11-10",
+      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
+      "review": "Replaces the old parallel lists/converging-agent figure with the author's model-origin, agent-operation and environmental-control distinction. Adds all four property/implication mappings and the existing system as an explicit object of change.",
+      "checks": "Author specification plus native-size PDF and bundled-font web render: training provenance, component roles, explicit system of change, directed links, optional training route, semantic typography and grayscale.",
+      "dimensions_cm": [
+        15.7637,
+        19.6724
+      ],
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
+        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
+        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "width_bp": 446.843994140625,
+        "height_bp": 557.6439819335938,
+        "caption_reserve_in_648bp_text_area": 90.35601806640625,
+        "authored_type_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 2,
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "shared_svg_sensors": {
+          "lint_figure_overflow": 0,
+          "lint_figure_text_occlusion": 0,
+          "lint_figure_text_intrusion": 0,
+          "lint_figure_label_collision": 0,
+          "lint_figure_font_band": 0
+        },
+        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "date": "2026-11-10",
+        "page": 1,
+        "status": "passed",
+        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
+        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      }
+    },
+    {
+      "source": "book/assets/reasoning-horizon.svg",
+      "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+      "candidate_sha256": "f80edb1b1c4dea34ee79d5a634d81f89d7b1a325583dd971663ac2838c776874",
+      "decision": "refined",
+      "review": "Restored every intermediate stage in the raw-state and abstraction paths and the three-box causal spine below. Churn versus longer coherent reasoning remain distinct grayscale outcomes.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.4852,
+        12.3634
+      ],
+      "strict_compile_diagnostics": []
+    },
+    {
+      "source": "book/assets/substrate-to-method.svg",
+      "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "source_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
+      "candidate_sha256": "6a5032b25ab9c23b378611956ff63d62c0cadb9cab55ec864b2ce5da9b39b59a",
+      "decision": "refined",
+      "review": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        13.9869,
+        6.5114
+      ],
+      "strict_compile_diagnostics": []
+    }
+  ],
+  "style-review": [
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+      "decision": "refined",
+      "revision_date": "2026-11-10",
+      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
+      "receipt": "book/tikz/receipts/agentic-substrate.json",
+      "status": "reviewed",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+      "fill": "5% black fill identifies the model-development and environment regions; the heavier environment border identifies the engineer's principal sphere of control. Components and ordinary nodes are white. Text is black. Only the optional training relation is dashed and lightened.",
+      "bold": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10\u201310.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
+      "routing": "Orthogonal connectors only. The training-to-deployment route enters a clear left port of the foundation-model panel. Guidance and governance use separate upward ports; actions use a downward port. The optional training route runs outside all panels on the right, with a vertical relation label beside the shaft. Rotation keeps the full qualification legible without consuming the region width.",
+      "shape": "Modestly rounded region and component boxes; border weight distinguishes the principal control region.",
+      "visual_review": "Native-size PDF and static Source Sans 3 SVG rendering inspected; glyphs, routes and region semantics checked.",
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
+        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
+        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "width_bp": 446.843994140625,
+        "height_bp": 557.6439819335938,
+        "caption_reserve_in_648bp_text_area": 90.35601806640625,
+        "authored_type_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 2,
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "shared_svg_sensors": {
+          "lint_figure_overflow": 0,
+          "lint_figure_text_occlusion": 0,
+          "lint_figure_text_intrusion": 0,
+          "lint_figure_label_collision": 0,
+          "lint_figure_font_band": 0
+        },
+        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "date": "2026-11-10",
+        "page": 1,
+        "status": "passed",
+        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
+        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      },
+      "book_references": []
+    },
+    {
+      "source": "book/assets/reasoning-horizon.svg",
+      "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "receipt": "book/tikz/receipts/reasoning-horizon.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+      "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
+      "fill": "White peer branches; a single 5% tint marks the shared Representation matters focus.",
+      "bold": "Source-derived emphasis includes Task exceeds the finite active state; REPRESENTATION MATTERS; THE CAUSAL SPINE; Churn; Longer coherent reasoning. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "routing": "Aligned downward flows and orthogonal branch rail; outcomes have equal visual weight.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 11,
+        "width_bp": 353.911,
+        "height_bp": 350.719,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 6
+      },
+      "book_references": []
+    },
+    {
+      "source": "book/assets/substrate-to-method.svg",
+      "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "receipt": "book/tikz/receipts/substrate-to-method.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+      "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+      "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
+      "bold": "Source-derived emphasis includes SUBSTRATE TRAIT; PROBLEM; METHOD; Representation problem; Enforcement problem; Modeling; Alignment. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 12,
+        "width_bp": 418.229,
+        "height_bp": 184.495,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9
+      },
+      "book_references": [
+        "part:2",
+        "part:3",
+        "part:1",
+        "part:4"
+      ],
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 3,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    }
+  ],
+  "layout-review": [
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+      "decision": "refined",
+      "revision_date": "2026-11-10",
+      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
+      "reason": "Replaces the old parallel lists/converging-agent figure with the author's model-origin, agent-operation and environmental-control distinction. Adds all four property/implication mappings and the existing system as an explicit object of change.",
+      "reviewed_visually": true,
+      "baseline_candidate_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "Model-development stages",
+            "labels": [
+              "Training data",
+              "Pretraining and post-training",
+              "Foundation model (trained weights)"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true
+          },
+          {
+            "name": "Two agent components",
+            "labels": [
+              "FOUNDATION MODEL",
+              "AGENTIC HARNESS"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true
+          }
+        ]
+      },
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
+        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
+        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "width_bp": 446.843994140625,
+        "height_bp": 557.6439819335938,
+        "caption_reserve_in_648bp_text_area": 90.35601806640625,
+        "authored_type_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 2,
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "shared_svg_sensors": {
+          "lint_figure_overflow": 0,
+          "lint_figure_text_occlusion": 0,
+          "lint_figure_text_intrusion": 0,
+          "lint_figure_label_collision": 0,
+          "lint_figure_font_band": 0
+        },
+        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "date": "2026-11-10",
+        "page": 1,
+        "status": "passed",
+        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
+        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      },
+      "page_layout": {
+        "decision": "refined",
+        "reason": "Replaces the old parallel lists/converging-agent figure with the author's model-origin, agent-operation and environmental-control distinction. Adds all four property/implication mappings and the existing system as an explicit object of change.",
+        "before_sha256": "bcac154367e087924fd41e63477b1cdd2fd006c165ad9ba8721fc972dc8058c4",
+        "after_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "before_dimensions_bp": [
+          379.038,
+          242.674
+        ],
+        "after_dimensions_bp": [
+          446.843994140625,
+          557.6439819335938
+        ],
+        "after_font_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "reviewed_visually": true
+      }
+    },
+    {
+      "source": "book/assets/reasoning-horizon.svg",
+      "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "source_sha256": "93edad0f26c70164c3307f111bd21584552323cfe4dc9c8b57fbf60161cadc7d",
+      "baseline_candidate_sha256": "764552a1875e858007697fac1dbea28bbf9221d6248e2bfa0f140d71542d45cd",
+      "candidate_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
+      "decision": "refined",
+      "reason": "Aligned the two initial causal alternatives at equal height and restored incoming shaft clearance.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        353.9110107421875,
+        350.718994140625
+      ],
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "representation alternatives",
+            "labels": [
+              "Raw implementation as working substrate",
+              "Purposeful abstraction"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ]
+      },
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 11,
+        "width_bp": 353.911,
+        "height_bp": 350.719
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing vertical progression: nodes already have comfortable padding and clear shafts at native text size; no remaining cap-driven compression.",
+        "before_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
+        "after_sha256": "3d0df3375e6a1abcf2160d29ffcb4d5245deca72f9e4fd716c3a3d00b3d80b14",
+        "before_dimensions_bp": [
+          353.9110107421875,
+          350.718994140625
+        ],
+        "after_dimensions_bp": [
+          353.9110107421875,
+          350.718994140625
+        ],
+        "before_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "after_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "reviewed_visually": true
+      }
+    },
+    {
+      "source": "book/assets/substrate-to-method.svg",
+      "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+      "baseline_candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
+      "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+      "decision": "refined",
+      "reason": "Aligned comparison peers in each row without changing the trait/problem/method hierarchy.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        408.88299560546875,
+        184.4949951171875
+      ],
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "finite-state comparison row",
+            "labels": [
+              "Finite working state",
+              "Representation problem",
+              "Modeling"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
+          },
+          {
+            "name": "productive-work comparison row",
+            "labels": [
+              "Probabilistic productive work",
+              "Enforcement problem",
+              "Alignment"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ]
+      },
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 12,
+        "width_bp": 418.229,
+        "height_bp": 184.495
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing substrate to method layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "before_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+        "after_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
+        "before_dimensions_bp": [
+          418.22900390625,
+          184.4949951171875
+        ],
+        "after_dimensions_bp": [
+          418.22900390625,
+          184.4949951171875
+        ],
+        "before_font_sizes_pt": [
+          9.0,
+          10.0
+        ],
+        "after_font_sizes_pt": [
+          9.0,
+          10.0
+        ],
+        "reviewed_visually": true
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 3,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    }
+  ],
+  "typography-review": [
+    {
+      "source": "book/assets/agentic-substrate.svg",
+      "candidate": "book/tikz/figures/agentic-substrate.tex",
+      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+      "decision": "refined",
+      "revision_date": "2026-11-10",
+      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
+      "checks": [
+        {
+          "text": "MODEL DEVELOPMENT",
+          "bold": true
+        },
+        {
+          "text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
+          "bold": true
+        },
+        {
+          "text": "FOUNDATION MODEL",
+          "bold": true
+        },
+        {
+          "text": "AGENTIC HARNESS",
+          "bold": true
+        },
+        {
+          "text": "ENGINEERED ENVIRONMENT",
+          "bold": true
+        },
+        {
+          "text": "Existing system",
+          "bold": true
+        },
+        {
+          "text": "Engineering structure",
+          "bold": true
+        },
+        {
+          "text": "Engineer",
+          "bold": true
+        },
+        {
+          "text": "Open-source code",
+          "bold": false
+        },
+        {
+          "text": "Other text and code",
+          "bold": false
+        },
+        {
+          "text": "Additional training data",
+          "bold": false
+        },
+        {
+          "text": "Pretraining and post-training",
+          "bold": false
+        },
+        {
+          "text": "Foundation model (trained weights)",
+          "bold": false
+        },
+        {
+          "text": "Broad semantic reasoning",
+          "bold": false
+        },
+        {
+          "text": "Probabilistic output",
+          "bold": false
+        },
+        {
+          "text": "Bounded working state",
+          "bold": false
+        },
+        {
+          "text": "Inexpensive repeated reasoning",
+          "bold": false
+        },
+        {
+          "text": "Delegated implementation",
+          "bold": false
+        },
+        {
+          "text": "Independent assurance",
+          "bold": false
+        },
+        {
+          "text": "External representations",
+          "bold": false
+        },
+        {
+          "text": "Scalable governance",
+          "bold": false
+        },
+        {
+          "text": "Tool-mediated action",
+          "bold": false
+        },
+        {
+          "text": "Context management",
+          "bold": false
+        },
+        {
+          "text": "Interposition",
+          "bold": false
+        },
+        {
+          "text": "Parallel execution",
+          "bold": false
+        },
+        {
+          "text": "Guidance",
+          "bold": false
+        },
+        {
+          "text": "Governance",
+          "bold": false
+        },
+        {
+          "text": "Codebase",
+          "bold": false
+        },
+        {
+          "text": "Architecture and design",
+          "bold": false
+        },
+        {
+          "text": "Documentation and configuration",
+          "bold": false
+        },
+        {
+          "text": "Tests and operational state",
+          "bold": false
+        },
+        {
+          "text": "System being changed",
+          "italic": true
+        },
+        {
+          "text": "Engineering implication",
+          "italic": true
+        },
+        {
+          "text": "Property",
+          "italic": true
+        }
+      ],
+      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10\u201310.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
+      "evidence": [
+        {
+          "candidate_text": "MODEL DEVELOPMENT",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "FOUNDATION MODEL",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "AGENTIC HARNESS",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "ENGINEERED ENVIRONMENT",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Existing system",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Engineering structure",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Engineer",
+          "candidate_style": "bold",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Open-source code",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Other text and code",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Additional training data",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Pretraining and post-training",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Foundation model (trained weights)",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Broad semantic reasoning",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Probabilistic output",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Bounded working state",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Inexpensive repeated reasoning",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Delegated implementation",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Independent assurance",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "External representations",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Scalable governance",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Tool-mediated action",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Context management",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Interposition",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Parallel execution",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Guidance",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Governance",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Codebase",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Architecture and design",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Documentation and configuration",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Tests and operational state",
+          "candidate_style": "regular",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "System being changed",
+          "candidate_style": "italic",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Engineering implication",
+          "candidate_style": "italic",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        },
+        {
+          "candidate_text": "Property",
+          "candidate_style": "italic",
+          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+        }
+      ],
+      "validation": {
+        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
+        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
+        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
+        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "width_bp": 446.843994140625,
+        "height_bp": 557.6439819335938,
+        "caption_reserve_in_648bp_text_area": 90.35601806640625,
+        "authored_type_sizes_pt": [
+          9.5,
+          10,
+          10.2,
+          10.5,
+          10.8,
+          11.5
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 2,
+        "semantic_typography_checks": 34,
+        "typography_findings": 0,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ],
+        "monochrome_pixels": true,
+        "reviewed_visually": true,
+        "shared_svg_sensors": {
+          "lint_figure_overflow": 0,
+          "lint_figure_text_occlusion": 0,
+          "lint_figure_text_intrusion": 0,
+          "lint_figure_label_collision": 0,
+          "lint_figure_font_band": 0
+        },
+        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "date": "2026-11-10",
+        "page": 1,
+        "status": "passed",
+        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
+        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+      }
+    },
+    {
+      "source": "book/assets/reasoning-horizon.svg",
+      "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "decision": "refined",
+      "source_sha256": "fefec131079acfd8e94d114886c0149ab73d55e93c6206965b8343f48054c4f0",
+      "candidate_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
+      "evidence": [
+        {
+          "source_text": "Relevant state cannot all remain active",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Premise heading versus explanatory sentence",
+          "candidate_text": "Relevant state cannot all remain active",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Relevant state cannot all remain active",
+              "weight": "700",
+              "style": "normal",
+              "x": "500",
+              "y": "50"
+            }
+          ]
+        },
+        {
+          "source_text": "REPRESENTATION MATTERS",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Central causal claim (already bold)",
+          "candidate_text": "REPRESENTATION MATTERS",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "REPRESENTATION MATTERS",
+              "weight": "700",
+              "style": "normal",
+              "x": "500",
+              "y": "135"
+            }
+          ]
+        },
+        {
+          "source_text": "THE CAUSAL SPINE",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Summary diagram heading (already bold)",
+          "candidate_text": "THE CAUSAL SPINE",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "THE CAUSAL SPINE",
+              "weight": "700",
+              "style": "normal",
+              "x": "90",
+              "y": "626"
+            }
+          ]
+        },
+        {
+          "source_text": "Churn",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Peer outcomes, equally emphasized",
+          "candidate_text": "Churn",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Churn",
+              "weight": "700",
+              "style": "normal",
+              "x": "250",
+              "y": "563"
+            }
+          ]
+        },
+        {
+          "source_text": "Longer coherent reasoning",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Peer outcomes, equally emphasized",
+          "candidate_text": "Longer coherent reasoning",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Longer coherent",
+              "weight": "700",
+              "style": "normal",
+              "x": "750",
+              "y": "475"
+            },
+            {
+              "text": "reasoning",
+              "weight": "700",
+              "style": "normal",
+              "x": "750",
+              "y": "496"
+            }
+          ]
+        }
+      ],
+      "reason": "Preserve the author-approved reasoning-horizon labels and their original distinction between bold headings and regular explanation. Updated after the November 2026 terminology edits.",
+      "checks": [
+        {
+          "text": "Relevant state cannot all remain active",
+          "bold": true
+        },
+        {
+          "text": "REPRESENTATION MATTERS",
+          "bold": true
+        },
+        {
+          "text": "THE CAUSAL SPINE",
+          "bold": true
+        },
+        {
+          "text": "Churn",
+          "bold": true
+        },
+        {
+          "text": "Longer coherent reasoning",
+          "bold": true
+        },
+        {
+          "text": "Preserve what later decisions need",
+          "bold": false
+        },
+        {
+          "text": "State must remain available",
+          "bold": false
+        }
+      ],
+      "validation": {
+        "proof": "latex/build/tikz-horizon-approval/approved-horizon-figures.pdf",
+        "proof_sha256": "8d3783be1dba613d65bec55ff3c1d0d116aa60e83f6a0ee99a9be5d9f4bd82b6",
+        "page": 2,
+        "width_bp": 353.911,
+        "height_bp": 349.663,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 7,
+        "body_fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    },
+    {
+      "source": "book/assets/substrate-to-method.svg",
+      "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "decision": "refined",
+      "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
+      "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+      "evidence": [
+        {
+          "source_text": "SUBSTRATE TRAIT",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Column category (already bold)",
+          "candidate_text": "SUBSTRATE TRAIT",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "SUBSTRATE TRAIT",
+              "weight": "700",
+              "style": "normal",
+              "x": "180",
+              "y": "86"
+            }
+          ]
+        },
+        {
+          "source_text": "PROBLEM",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Column category (already bold)",
+          "candidate_text": "PROBLEM",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "PROBLEM",
+              "weight": "700",
+              "style": "normal",
+              "x": "470",
+              "y": "86"
+            }
+          ]
+        },
+        {
+          "source_text": "method",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Column category (already bold)",
+          "candidate_text": "METHOD",
+          "candidate_style": "capitals",
+          "source_fragments": [
+            {
+              "text": "method",
+              "weight": "700",
+              "style": "normal",
+              "x": "450",
+              "y": "40"
+            }
+          ]
+        },
+        {
+          "source_text": "Representation problem",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Named problem or method; explanation stays regular",
+          "candidate_text": "Representation problem",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Representation problem",
+              "weight": "700",
+              "style": "normal",
+              "x": "470",
+              "y": "143"
+            }
+          ]
+        },
+        {
+          "source_text": "Enforcement problem",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Named problem or method; explanation stays regular",
+          "candidate_text": "Enforcement problem",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Enforcement problem",
+              "weight": "700",
+              "style": "normal",
+              "x": "470",
+              "y": "293"
+            }
+          ]
+        },
+        {
+          "source_text": "Modeling",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Named problem or method; explanation stays regular",
+          "candidate_text": "Modeling",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Modeling",
+              "weight": "700",
+              "style": "normal",
+              "x": "752",
+              "y": "130"
+            }
+          ]
+        },
+        {
+          "source_text": "Alignment",
+          "source_style": "weight 700, normal",
+          "semantic_role": "Named problem or method; explanation stays regular",
+          "candidate_text": "Alignment",
+          "candidate_style": "bold ",
+          "source_fragments": [
+            {
+              "text": "Alignment",
+              "weight": "700",
+              "style": "normal",
+              "x": "752",
+              "y": "284"
+            }
+          ]
+        },
+        {
+          "source_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+          "source_style": "weight normal, italic",
+          "semantic_role": "Cross-book explanatory annotation",
+          "candidate_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+          "candidate_style": "italic ",
+          "source_fragments": [
+            {
+              "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+              "weight": "normal",
+              "style": "italic",
+              "x": "450",
+              "y": "384"
+            }
+          ]
+        }
+      ],
+      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "checks": [
+        {
+          "text": "SUBSTRATE TRAIT",
+          "bold": true
+        },
+        {
+          "text": "PROBLEM",
+          "bold": true
+        },
+        {
+          "text": "METHOD",
+          "bold": true
+        },
+        {
+          "text": "Representation problem",
+          "bold": true
+        },
+        {
+          "text": "Enforcement problem",
+          "bold": true
+        },
+        {
+          "text": "Modeling",
+          "bold": true
+        },
+        {
+          "text": "Alignment",
+          "bold": true
+        },
+        {
+          "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
+          "italic": true
+        },
+        {
+          "text": "Compact relevant",
+          "bold": false
+        },
+        {
+          "text": "Chapter 2",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Chapter 3",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 12,
+        "width_bp": 418.229,
+        "height_bp": 184.495,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9
+      },
+      "revision_20261106": {
+        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
+        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
+        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
+        "page": 3,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "reviewed_visually": true
+      }
+    }
+  ]
+}

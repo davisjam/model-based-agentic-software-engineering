@@ -19268,3 +19268,8 @@ The later P1/P2 pass moves the two canonical problem definitions to §1.4, retai
 ### Chapter 4 — agentic engineering through models (2026-11-10)
 
 The superseded opening, seven-step pullquote, greenfield/brownfield transition, and ratcheteering sequence are preserved verbatim with source revision and line ranges in [the retired-passages record](chapter-four-cycle-20261110/retired-passages.json). The author replaced competing sequences with modeling, realization, and evaluation, placing governance conversion beneath the entire cycle and retaining Alignment throughout. [Integration notes](chapter-four-cycle-20261110/integration-notes.md) record the receiving context and unchanged narrower processes.
+
+
+### Chapters 1 and 4 — synthesis, compact figures, and structural follow-ups (2026-11-10)
+
+The author-approved merger of §§1.5–1.6, compact Chapter 1 figures, reading-guide correction, and Chapter 4 heading/copy edits are documented in [the integration notes](chapter-one-synthesis-20261110/integration-notes.md). Complete pre-edit native sources, the retired §1.6 projection and asset map, three original drawings and receipts, and the old review rows are preserved in [the source manifest](chapter-one-synthesis-20261110/manifest.json). The [Chapter 4 retired-passages record](chapter-one-synthesis-20261110/chapter-four-followups-retired.json) retains the exact replaced text and source locations. The original problem definitions and reliability model remain in §1.4; the former summary's repeated derivation is retired rather than repeated elsewhere.

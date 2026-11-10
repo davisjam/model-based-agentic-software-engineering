@@ -10,8 +10,8 @@
     {
       "source": "book/latex/sources/frontmatter/0.1-how-to-read-this-book.tex",
       "projection": "book/frontmatter/0.1-how-to-read-this-book.md",
-      "source_hash": "dda18ff9e6d1da417ca8c7370ca1399bd0521c186a23759c732d55d605c39fca",
-      "projection_hash": "d411d491b1d9b6b4d946e94cdb664849ac35e588153321b7d5cacff80d5c2db3"
+      "source_hash": "5e04229b1a329658527b9888da4d7bc1688ece510568d3b47a974b6531f5dfa6",
+      "projection_hash": "6412895283a1a4515eecef8ae6e9beeb63be8eb3ab97e7105940cffc6aa68737"
     },
     {
       "source": "book/latex/sources/frontmatter/0.2-what-this-book-argues.tex",
@@ -52,26 +52,28 @@
     {
       "source": "book/latex/sources/part1/1.3-mage-by-example.tex",
       "projection": "book/part1/1.3-mage-by-example.md",
-      "source_hash": "d68976b60c84c7cff07e2b0fe558dea237c8eb3e40bf6ddd906f9014bb420d15",
+      "source_hash": "1d85fe43ac81bdca5fc1168d12d37e7143d0682c8c0043196dc8971bbbb887f6",
       "projection_hash": "476978e474a8498ebdde69f449ba99926eff0abab6a1aa96a655a7f95ed084d5"
     },
     {
       "source": "book/latex/sources/part1/1.4-the-agentic-substrate.tex",
       "projection": "book/part1/1.4-the-agentic-substrate.md",
-      "source_hash": "7e54495cdb0545149724eff14503f88771c4cdbc153dec798e3903660c0d5502",
-      "projection_hash": "1762adb12c639bb9d45a943a936361ca140182bbbad2a2dc07be4c9223796fec"
+      "source_hash": "14eafdc232771968143c6eade18f6e51f768cb980cc2a017a1f69e136ef7ca8d",
+      "projection_hash": "e765136b06060343ebd8618996c947d7da2aa8e223e0798042a5d105315b9331"
     },
     {
       "source": "book/latex/sources/part1/1.5-the-new-engineering-problem.tex",
       "projection": "book/part1/1.5-the-new-engineering-problem.md",
-      "source_hash": "2d80187126a69e5b4d6674ed97799ef4a17e827ae9af676d3937ded6db1c8346",
-      "projection_hash": "5899484cc33b29bd51e0163da8ec3937c991387b31fb4e16866e12b63340999b"
+      "source_hash": "f78abaca03192d34deb4e9d26cc16754da67d312809bd76741be03bb3bb0b7ee",
+      "projection_hash": "824278c03217d2b44191561649364ee87a3bfe3c5693599882b8264b1ba4e4fc"
     },
     {
-      "source": "book/latex/sources/part1/1.6-problem-summary.tex",
-      "projection": "book/part1/1.6-problem-summary.md",
-      "source_hash": "29463cea748d5eb7624837c627ca24316e008df4ea5263b492506dcd72750ddb",
-      "projection_hash": "aaedba2634622d3e5c244a35037efa7aad714e0e20bbc64f213525b0ab5e714c"
+      "source": "book/editorial/chapter-one-synthesis-20261110/1.6-problem-summary.tex",
+      "projection": "book/editorial/chapter-one-synthesis-20261110/1.6-problem-summary.md",
+      "source_hash": "c732581773d762b2881b4738d824c889967863652861f2a87404e2b518cb3919",
+      "projection_hash": "36d968b4ba751865dd026ae2a1fe03a6a1b2c70e50f7155cbc517daddc13ac7d",
+      "publication_status": "retired",
+      "retirement_reason": "Merged into From the Engineering Problems to MAGE at \u00a71.5 on author approval; retained verbatim for cutting-room and research/catalogue use."
     },
     {
       "source": "book/latex/sources/part2/00-part-intro.tex",
@@ -160,14 +162,14 @@
     {
       "source": "book/latex/sources/part4/00-part-intro.tex",
       "projection": "book/part4/00-part-intro.md",
-      "source_hash": "c4d210648db2b50c544fce308bafd318793a2db92ee077b24e86ed99f8e6cf86",
-      "projection_hash": "a80dae2c0917e1818573417df139c55c7f12e45a5a783631c21c7b526cc556c3"
+      "source_hash": "27eb6fbc46cfb888f5820acb16553611ac372c90b051c5074e249f4a2ecdfe2d",
+      "projection_hash": "2fa7a35e73c2eee29c639effdc6b233c6e507b3efaf52f566fec66c6a712a3ef"
     },
     {
       "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
       "projection": "book/part4/4.1-the-dynamics-of-mage.md",
-      "source_hash": "306e05a0fb49e0acd1b844d9cca141bdb9ae0aab1b13f21f9103cc3a0885cb3a",
-      "projection_hash": "ba816d7be623163ff8bffb7aa79b460bdbd9400755ce2e5d559f7b3cb0505822"
+      "source_hash": "4b82e55cbbffa2b2e4fe7ca2564c798930b7326797e430d397f3231fb8bc8309",
+      "projection_hash": "3541226b67fe687e4d322a1164f42c82bf745b01adaaa72ec324972df5162960"
     },
     {
       "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
@@ -184,8 +186,8 @@
     {
       "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
       "projection": "book/part4/4.4-engineering-the-environment.md",
-      "source_hash": "d570f308e49a6ca46e4dbb778651564c845c044bc2415c3e7043ce6105c1173e",
-      "projection_hash": "9e0ffd8e7394a71a40da8233717d3033204192cbb7724b73f8b69b530eb8776f"
+      "source_hash": "b08e2dc1680d0c0372870220caa1b9ca0c1c975d5cf49e4d8a8f4b60be51a944",
+      "projection_hash": "01f9b23977db86d498bed0a94f710289faae4de368bfa37bb5c9e781ebc61723"
     },
     {
       "source": "book/latex/sources/part5/00-part-intro.tex",

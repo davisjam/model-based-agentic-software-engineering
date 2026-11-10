@@ -36,9 +36,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.4-the-agentic-substrate
 
 
-### Lesson 1.5-the-new-engineering-problem
-
-
 ## Module 2 — Modeling
 
 - **[DECLARED]** (create) After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario. — _anchor: Modeling moves through five classes of model across eight chapters (context, engineering model, executable models, views as projections, structure, behavior and execution, measurement and evidence, and the scenario join), each kept honest by a drift check._

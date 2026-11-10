@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 31,
     "slugs_rendered": 24,
-    "total_sites": 641,
+    "total_sites": 636,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 305,
+      "book-web": 300,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -41,15 +41,11 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 43
+            "occ": 44
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 1
-          },
-          {
-            "file": "book/web/docs/1.6-problem-summary.md",
-            "occ": 1
+            "occ": 6
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -189,7 +185,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 59
+            "occ": 60
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -215,7 +211,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 48
+            "occ": 47
           }
         ]
       },
@@ -616,10 +612,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 4
-          },
-          {
             "file": "book/web/docs/6.1-toward-a-theory-of-mage.md",
             "occ": 6
           },
@@ -637,13 +629,13 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 9
+            "occ": 5
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 6
           }
         ]
       },
@@ -807,11 +799,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 1
+            "occ": 4
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -851,11 +839,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 12
-          },
-          {
-            "file": "book/web/docs/list-of-figures.md",
-            "occ": 1
+            "occ": 8
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -865,7 +849,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 16
+            "occ": 14
           }
         ]
       },
@@ -945,15 +929,11 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 52
+            "occ": 58
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 8
-          },
-          {
-            "file": "book/web/docs/1.6-problem-summary.md",
-            "occ": 8
+            "occ": 18
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -1017,7 +997,7 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 38
+            "occ": 39
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -1137,15 +1117,15 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 165
+            "occ": 173
           },
           {
             "file": "book/web/docs/index.md",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/web/docs/list-of-figures.md",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/web/docs/part-1-intro.md",
@@ -1153,7 +1133,7 @@
           },
           {
             "file": "book/web/docs/part-2-intro.md",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -1179,7 +1159,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 66
+            "occ": 65
           }
         ]
       },
@@ -1318,6 +1298,10 @@
             "occ": 3
           },
           {
+            "file": "book/web/docs/4.4-engineering-the-environment.md",
+            "occ": 1
+          },
+          {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
             "occ": 1
           },
@@ -1377,7 +1361,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 21
+            "occ": 22
           }
         ]
       },
@@ -1493,15 +1477,11 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 45
+            "occ": 44
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 2
-          },
-          {
-            "file": "book/web/docs/1.6-problem-summary.md",
-            "occ": 1
+            "occ": 5
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",
@@ -1657,7 +1637,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 199
+            "occ": 198
           },
           {
             "file": "book/web/docs/index.md",
@@ -1699,7 +1679,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 56
+            "occ": 55
           }
         ]
       },
@@ -2215,7 +2195,7 @@
           },
           {
             "file": "book/web/docs/1.4-the-agentic-substrate.md",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
@@ -2235,7 +2215,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -2329,7 +2309,7 @@
           },
           {
             "file": "book/web/docs/1.5-the-new-engineering-problem.md",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/web/docs/2.1-context-is-the-first-modeling-problem.md",

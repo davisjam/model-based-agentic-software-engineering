@@ -55,7 +55,7 @@ book/
   frontmatter/0.0-acknowledgments.md, 0.1-how-to-read-this-book.md, 0.2-what-this-book-argues.md,
              0.3-the-mage-method-at-a-glance.md, 0.4-the-books-language.md, 0.5-preface.md
   part1/  (Part 1 — The New Engineering Problem)
-    1.1-the-printer.md … 1.6-problem-summary.md
+    1.1-the-printer.md … 1.5-the-new-engineering-problem.md
   part2/  (Part 2 — Modeling)
     2.1-context-is-the-first-modeling-problem.md … 2.6-modeling-summary.md
   part3/  (Part 3 — Alignment)

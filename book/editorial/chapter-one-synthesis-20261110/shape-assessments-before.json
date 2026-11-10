@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "how-to-read-this-book",
+    "opening": {
+      "failure_question": "implicit",
+      "answer": "explicit",
+      "thesis_link": "absent",
+      "thesis_target": "none"
+    },
+    "closing": {
+      "kind": "transition"
+    },
+    "delivers": {
+      "artifacts": [
+        {
+          "type": "framework",
+          "name": "the book map",
+          "anchor": "book-map"
+        }
+      ],
+      "artifact_would_help": false
+    },
+    "note": "Apparatus / navigation. Opens by laying out the six Parts in their deliberate argument order (Modeling before Alignment is a principled progression \u2014 representation then authority \u2014 not a dependency) and the three shorter routes; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions \u2014 a pre-existing spine gap, tracked separately.",
+    "opening_anchor": "The six Parts follow the method's argument in a deliberate order. Part",
+    "closing_anchor": "the appendices are intended to work as a reference while you build."
+  },
+  {
+    "slug": "why-mage-follows-from-the-machine",
+    "opening": {
+      "failure_question": "explicit",
+      "answer": "explicit",
+      "thesis_link": "explicit",
+      "thesis_target": "both"
+    },
+    "closing": {
+      "kind": "synthesis"
+    },
+    "delivers": {
+      "artifacts": [
+        {
+          "type": "framework",
+          "name": "the compact synthesis from agentic machinery to MAGE",
+          "anchor": "substrate-to-method"
+        }
+      ],
+      "artifact_would_help": false
+    },
+    "note": "The merged chapter conclusion develops informed control through the larger engineered system, selective complementarity of Modeling and Alignment, and the DocAble extracted-content representation, validator, and completion rule. Four substantial explanatory paragraphs lead to the cross-domain scope and chapter roadmap; the compact substrate-to-method figure summarizes the primary motivations. The former separate Summary is absorbed. Canonical Representation and Enforcement Problem definitions remain at their earned locations in \u00a71.4; the product-reliability calculation continues to support Enforcement only.",
+    "opening_anchor": "The preceding discussion suggests a different unit of analysis for agentic software",
+    "closing_anchor": "{{chapter:theory}} develops the theoretical argument, while {{chapter:profession}} considers its implications beyond software."
+  }
+]

@@ -1,0 +1,36 @@
+% mage-auto-heading: the-two-problems-in-software
+% mage-auto-heading: the-methodology-extends-beyond-software
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The New Engineering Problem -->
+
+% <!-- chapter-title: Two Problems the Method Must Solve -->
+
+\chapter{Two Problems the Method Must Solve}
+
+\section{The Two Problems in Software}\label{heading:the-two-problems-in-software}
+
+% <!-- section-terms: representation-problem, enforcement-problem, modeling-principle, alignment-principle -->
+
+% <!-- point: modeling-and-alignment-complement-one-another | Modeling makes selected properties explicit, while Alignment makes selected obligations enforceable. They can be used independently and combined selectively; DocAble's content representation and job-failing validator demonstrate their complementary use. | terms: representation-problem, enforcement-problem, modeling-principle, alignment-principle -->
+
+Modeling and Alignment complement one another. Modeling makes selected system properties explicit enough to reason about; Alignment makes selected obligations enforceable through the engineered environment. A model can remain advisory, and a permission or resource limit can be enforced without an elaborate system model. Engineers combine the two selectively, according to the knowledge the work needs and the obligations that warrant enforcement.
+
+Consider DocAble's obligation to preserve the original document's content during remediation. A content representation lets a validator compare the original and revised documents. The validator fails the job if the revised document is missing any of the original extracted content. Together, these structures carry an engineering decision forward into later work. \autoref{substrate-to-method} connects the two problems to the method.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/substrate-to-method-7fa75819e3.pdf}
+\caption{\emph{From substrate to method.} Finite reasoning state makes representation necessary at scale; probabilistic autonomous implementation makes independent enforcement especially important.}
+\label{substrate-to-method}
+\end{figure}
+
+\section{The Methodology Extends Beyond Software}\label{heading:the-methodology-extends-beyond-software}
+
+% <!-- point: the-problem-is-larger-than-software | Delegating work to agents raises the same engineering questions across domains, but the useful representations and credible evidence differ. -->
+
+The same questions will arise wherever humans delegate work to agents. However, the useful representations and credible evidence will differ by domain. Software engineering has architectures, dependency graphs, and tests. Mechanical engineering has geometry, tolerances, simulations, and physical tests. Accounting has ledgers, reconciliations, and audit evidence.
+
+The balance between delegation, explicit representation, and enforcement will change as agents improve. MAGE does not prescribe that balance in advance. It asks engineers to decide which requirements to represent and enforce, and which choices to leave open as degrees of freedom for the agent.
+
+In Chapters \magevalue{chapter:modeling|num}--\magevalue{chapter:software-factories|num}, this book develops MAGE through software engineering, drawing on the DocAble case study. \magevalue{chapter:theory} develops the theory and examines its scope and limits. \magevalue{chapter:profession} considers its implications beyond software.

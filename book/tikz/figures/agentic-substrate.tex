@@ -37,7 +37,7 @@
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{10.5}{12.5}\selectfont] at (226,300) {Scalable\\governance};
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{10.5}{12.5}\selectfont] at (352,300) {Parallel\\execution};
 \draw[-Stealth,line width=0.7pt] (358,92) -- (358,111) -- (25,111) -- (25,150);
-\node[inner sep=0pt,outer sep=0pt,align=left,anchor=west,font=\bfseries\fontsize{11.5}{13.5}\selectfont] at (10,416) {ENGINEERED ENVIRONMENT};
+\node[inner sep=0pt,outer sep=0pt,align=left,anchor=west,font=\bfseries\fontsize{11.5}{13.5}\selectfont] at (10,416) {GOVERNED ENGINEERING ENVIRONMENT (GEE)};
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\bfseries\fontsize{10.8}{12.8}\selectfont] at (106,436) {Existing system};
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\itshape\fontsize{9.5}{11.5}\selectfont] at (106,448) {System being changed};
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\bfseries\fontsize{10.8}{12.8}\selectfont] at (315,436) {Engineering structure};
@@ -50,15 +50,17 @@
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{10.5}{12.5}\selectfont] at (315,486) {Tools and permissions};
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{10.5}{12.5}\selectfont] at (315,502) {Evidence and controls};
 \draw[-Stealth,line width=0.7pt] (35,327) -- (35,403);
-\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{10}{12}\selectfont] at (94,363) {Actions and\\changes};
-\draw[-Stealth,line width=0.7pt] (160,403) -- (160,327);
-\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{9.5}{11.5}\selectfont] at (220,363) {Guidance\\Supplies system\\knowledge; influences\\reasoning};
-\draw[-Stealth,line width=0.85pt] (290,403) -- (290,327);
-\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{9.5}{11.5}\selectfont] at (358,363) {Governance\\Constrains actions;\\controls acceptance\\of selected results};
+\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{10}{12}\selectfont] at (94,345) {Actions and\\changes};
+\draw[-Stealth,line width=0.7pt] (290,403) -- (290,327);
+\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{9.5}{11.5}\selectfont] at (358,363) {Guidance\\Supplies system\\knowledge; influences\\reasoning};
+% Governance acts on the action boundary rather than entering the reasoner.
+\draw[line width=1.25pt] (27,375) -- (43,375);
+\draw[-Stealth,line width=0.85pt] (160,403) -- (160,375) -- (43,375);
+\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{9.5}{11.5}\selectfont] at (220,363) {Governance\\Constrains actions;\\controls acceptance\\of selected results};
 \draw[draw=black,line width=0.8pt,rounded corners=3pt,fill=black!0] (310,527) rectangle (390,551);
 \node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\bfseries\fontsize{10.8}{12.8}\selectfont] at (350,539) {Engineer};
 \draw[-Stealth,line width=1.0pt] (350,527) -- (350,513);
 \node[inner sep=0pt,outer sep=0pt,align=left,anchor=east,font=\fontsize{10.5}{12.5}\selectfont] at (337,520) {Engineers and maintains};
-\draw[-Stealth,line width=0.5pt,dashed,black!60] (390,539) -- (440,539) -- (440,65) -- (420,65);
-\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{9.5}{11.5}\selectfont,rotate=90] at (430,238) {Model training or fine-tuning (when available)};
+\draw[-Stealth,line width=0.5pt,dashed,black!60] (390,539) -- (440,539) -- (440,21) -- (278,21) -- (278,39);
+\node[inner sep=0pt,outer sep=0pt,align=center,anchor=center,font=\fontsize{9.5}{11.5}\selectfont,rotate=90] at (430,238) {Training or fine-tuning (when feasible)};
 \end{tikzpicture}

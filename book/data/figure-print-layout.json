@@ -198,6 +198,15 @@
     "handbook-typed-changeset": {
       "width_bp": 446,
       "placement": "centered"
+    },
+    "reasoning-horizon-fig": {
+      "width_bp": 210,
+      "placement": "centered"
+    },
+    "substrate-to-method": {
+      "width_bp": 318,
+      "placement": "centered",
+      "float_placement": "!htb"
     }
   }
 }

@@ -1,273 +1,186 @@
 {
   "source": "book/assets/substrate-to-method.svg",
   "chapter": "1.5-the-new-engineering-problem",
-  "claim": "*From substrate to method.* Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem. Chapters 2 and 3 develop MAGE's corresponding answers: Modeling and Alignment.",
+  "claim": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. The two principles address different engineering problems and operate together.",
+  "caption": "*From agentic machinery to MAGE.* Finite working state motivates Modeling; probabilistic autonomous work motivates Alignment. The two principles address different engineering problems and operate together.",
   "topology": {
-    "description": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "description": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
     "native_draw_commands": [
-      "\\draw[edge] (n00) -- (n01);",
-      "\\draw[edge] (n01) -- (n02);",
-      "\\draw[edge] (n10) -- (n11);",
-      "\\draw[edge] (n11) -- (n12);"
+      "\\draw[edge] (91.6,38.9) -- (114,38.9);",
+      "\\draw[edge] (217.6,38.9) -- (239.6,38.9);",
+      "\\draw[edge] (91.6,83.9) -- (114,83.9);",
+      "\\draw[edge] (217.6,83.9) -- (239.6,83.9);"
     ]
   },
   "required_terms": [
-    "Finite working state Representation problem",
+    "Finite working state",
+    "Representation Problem",
     "Modeling",
-    "Compact rele-",
-    "vant properties",
-    "Probabilistic pro-",
-    "ductive work",
-    "Observable, inter-",
-    "posable seams",
-    "Enforcement problem",
+    "Probabilistic agentic work",
+    "Enforcement Problem",
     "Alignment",
-    "Enforce selected",
-    "obligations",
-    "Substrate trait Problem Method",
-    "Chapter 1 derives the two core activities; Chap-",
-    "ter 4 puts them in motion as the MAGE method."
+    "SUBSTRATE",
+    "PROBLEM",
+    "RESPONSE"
   ],
-  "bw_encoding": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
-  "redesign": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+  "bw_encoding": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
+  "redesign": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
+  "typography": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+  "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
   "questions": [],
-  "alt": "A grayscale dependency diagram connects the agentic substrate to the MAGE method, keeping representation, evidence and controls distinct. The external footer connects the Chapter 1 substrate discussion with the method developed by Chapter 4.",
+  "alt": "Two rows connect substrate properties to engineering problems and MAGE responses: finite working state to the Representation Problem and Modeling; probabilistic agentic work to the Enforcement Problem and Alignment.",
   "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
+    "reference": "Author-requested simplified comparison, current local prose and two paired editable realizations.",
     "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
+      "peer structure",
+      "arrow meaning",
+      "removed repetitive labels",
+      "no outcome guarantees",
+      "native and web typography",
+      "print and web footprint"
     ],
-    "outcome": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
+    "outcome": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      13.9869,
-      6.5114
+      11.2174,
+      3.7386
     ]
   },
   "fidelity_review": {
-    "stem": "substrate-to-method",
     "source": "book/assets/substrate-to-method.svg",
-    "status": "corrected",
-    "evidence": "Restored the omitted Chapter 1 to Chapter 4 explanatory footer. Retained source substrate-to-method dependency and distinct evidence/control roles.",
-    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/substrate-to-method.png",
-    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-6.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/substrate-to-method.png",
-    "original_sha256": "b949e4284b2b420f43f1803717002197c99a54735562001ac08706009a159871",
-    "native_sha256": "6a5032b25ab9c23b378611956ff63d62c0cadb9cab55ec864b2ce5da9b39b59a",
-    "page": 10,
+    "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "decision": "refined",
+    "revision_date": "2026-11-10",
+    "review": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
+    "checks": "Author specification plus native-size PDF and bundled-font SVG proof; retained peer branches, relations, semantic typography and equal visual weight.",
     "dimensions_cm": [
-      13.9869,
-      6.5114
+      11.2174,
+      3.7386
     ],
-    "diagnostics": [],
-    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+    "strict_compile_diagnostics": [],
+    "validation": {
+      "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+      "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 317.9739990234375,
+      "height_bp": 105.97599792480469,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "font_sizes_pt": [
+        10.0
+      ],
+      "semantic_typography_checks": 9,
+      "geometry_findings": 0,
+      "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 2,
+      "reviewed_peer_groups": 2,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-2.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/substrate-to-method-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 686.4,
+      "declared_web_label_sizes_px": [
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
+    }
   },
   "style_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "receipt": "book/tikz/receipts/substrate-to-method.json",
+    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
     "decision": "refined",
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "revision_date": "2026-11-10",
+    "receipt": "book/tikz/receipts/substrate-to-method.json",
     "status": "reviewed",
-    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
-    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
-    "fill": "White traits/problems; one 7% tint identifies the two Method nodes. Black-on-dark-gray body text removed.",
-    "bold": "Source-derived emphasis includes SUBSTRATE TRAIT; PROBLEM; METHOD; Representation problem; Enforcement problem; Modeling; Alignment. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-    "routing": "Two horizontal trait/problem/method paths; outside annotation preserved, with clickable chapter references.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Native-size render inspected for contrast, typography, shape cues, annotation placement and routing.",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "fill": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
+    "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+    "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
+    "shape": "Modestly rounded ordinary concept boxes; no decorative pictograms.",
+    "visual_review": "Native final-size PDF and bundled-font Chromium web proof inspected for routing, fits, semantic weight and label legibility.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 12,
-      "width_bp": 418.229,
-      "height_bp": 184.495,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9
-    },
-    "book_references": [
-      "part:2",
-      "part:3",
-      "part:1",
-      "part:4"
-    ],
-    "revision_20261106": {
-      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
-      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
-      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
-      "page": 3,
+      "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+      "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 317.9739990234375,
+      "height_bp": 105.97599792480469,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "font_sizes_pt": [
+        10.0
+      ],
+      "semantic_typography_checks": 9,
       "geometry_findings": 0,
       "typography_findings": 0,
-      "reviewed_visually": true
-    }
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 2,
+      "reviewed_peer_groups": 2,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-2.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/substrate-to-method-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 686.4,
+      "declared_web_label_sizes_px": [
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
+    },
+    "book_references": []
   },
   "typography_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
+    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
     "decision": "refined",
-    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
-    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
-    "evidence": [
-      {
-        "source_text": "SUBSTRATE TRAIT",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Column category (already bold)",
-        "candidate_text": "SUBSTRATE TRAIT",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "SUBSTRATE TRAIT",
-            "weight": "700",
-            "style": "normal",
-            "x": "180",
-            "y": "86"
-          }
-        ]
-      },
-      {
-        "source_text": "PROBLEM",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Column category (already bold)",
-        "candidate_text": "PROBLEM",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "PROBLEM",
-            "weight": "700",
-            "style": "normal",
-            "x": "470",
-            "y": "86"
-          }
-        ]
-      },
-      {
-        "source_text": "method",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Column category (already bold)",
-        "candidate_text": "METHOD",
-        "candidate_style": "capitals",
-        "source_fragments": [
-          {
-            "text": "method",
-            "weight": "700",
-            "style": "normal",
-            "x": "450",
-            "y": "40"
-          }
-        ]
-      },
-      {
-        "source_text": "Representation problem",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named problem or method; explanation stays regular",
-        "candidate_text": "Representation problem",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Representation problem",
-            "weight": "700",
-            "style": "normal",
-            "x": "470",
-            "y": "143"
-          }
-        ]
-      },
-      {
-        "source_text": "Enforcement problem",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named problem or method; explanation stays regular",
-        "candidate_text": "Enforcement problem",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Enforcement problem",
-            "weight": "700",
-            "style": "normal",
-            "x": "470",
-            "y": "293"
-          }
-        ]
-      },
-      {
-        "source_text": "Modeling",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named problem or method; explanation stays regular",
-        "candidate_text": "Modeling",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Modeling",
-            "weight": "700",
-            "style": "normal",
-            "x": "752",
-            "y": "130"
-          }
-        ]
-      },
-      {
-        "source_text": "Alignment",
-        "source_style": "weight 700, normal",
-        "semantic_role": "Named problem or method; explanation stays regular",
-        "candidate_text": "Alignment",
-        "candidate_style": "bold ",
-        "source_fragments": [
-          {
-            "text": "Alignment",
-            "weight": "700",
-            "style": "normal",
-            "x": "752",
-            "y": "284"
-          }
-        ]
-      },
-      {
-        "source_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-        "source_style": "weight normal, italic",
-        "semantic_role": "Cross-book explanatory annotation",
-        "candidate_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-        "candidate_style": "italic ",
-        "source_fragments": [
-          {
-            "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-            "weight": "normal",
-            "style": "italic",
-            "x": "450",
-            "y": "384"
-          }
-        ]
-      }
-    ],
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "revision_date": "2026-11-10",
     "checks": [
       {
-        "text": "SUBSTRATE TRAIT",
-        "bold": true
+        "text": "Finite working state",
+        "bold": false
       },
       {
-        "text": "PROBLEM",
-        "bold": true
-      },
-      {
-        "text": "METHOD",
-        "bold": true
-      },
-      {
-        "text": "Representation problem",
-        "bold": true
-      },
-      {
-        "text": "Enforcement problem",
+        "text": "Representation Problem",
         "bold": true
       },
       {
@@ -275,70 +188,140 @@
         "bold": true
       },
       {
+        "text": "Probabilistic agentic work",
+        "bold": false
+      },
+      {
+        "text": "Enforcement Problem",
+        "bold": true
+      },
+      {
         "text": "Alignment",
         "bold": true
       },
       {
-        "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-        "italic": true
+        "text": "SUBSTRATE",
+        "bold": true
       },
       {
-        "text": "Compact relevant",
-        "bold": false
+        "text": "PROBLEM",
+        "bold": true
       },
       {
-        "text": "Chapter 2",
-        "bold": false,
-        "italic": false
+        "text": "RESPONSE",
+        "bold": true
+      }
+    ],
+    "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+    "evidence": [
+      {
+        "candidate_text": "Finite working state",
+        "candidate_style": "regular",
+        "semantic_role": "Named category or process/comparison explanation."
       },
       {
-        "text": "Chapter 3",
-        "bold": false,
-        "italic": false
+        "candidate_text": "Representation Problem",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Modeling",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Probabilistic agentic work",
+        "candidate_style": "regular",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Enforcement Problem",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "Alignment",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "SUBSTRATE",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "PROBLEM",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
+      },
+      {
+        "candidate_text": "RESPONSE",
+        "candidate_style": "bold",
+        "semantic_role": "Named category or process/comparison explanation."
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 12,
-      "width_bp": 418.229,
-      "height_bp": 184.495,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9
-    },
-    "revision_20261106": {
-      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
-      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
-      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
-      "page": 3,
+      "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+      "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 317.9739990234375,
+      "height_bp": 105.97599792480469,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
+      ],
+      "font_sizes_pt": [
+        10.0
+      ],
+      "semantic_typography_checks": 9,
       "geometry_findings": 0,
       "typography_findings": 0,
-      "reviewed_visually": true
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 2,
+      "reviewed_peer_groups": 2,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-2.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/substrate-to-method-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 686.4,
+      "declared_web_label_sizes_px": [
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
     }
   },
   "layout_review": {
     "source": "book/assets/substrate-to-method.svg",
     "candidate": "book/tikz/figures/substrate-to-method.tex",
-    "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
-    "baseline_candidate_sha256": "5987a5c1963bd70b434a73a355c03849fbcab0bc422d5b917547cc9c144af8ac",
-    "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
     "decision": "refined",
-    "reason": "Aligned comparison peers in each row without changing the trait/problem/method hierarchy.",
+    "revision_date": "2026-11-10",
+    "reason": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
     "reviewed_visually": true,
-    "baseline_dimensions_bp": [
-      408.88299560546875,
-      184.4949951171875
-    ],
+    "baseline_candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
     "contracts": {
       "peer_groups": [
         {
-          "name": "finite-state comparison row",
+          "name": "substrate-to-method aligned peer group 1",
           "labels": [
             "Finite working state",
-            "Representation problem",
+            "Representation Problem",
             "Modeling"
           ],
           "align": [
@@ -349,10 +332,10 @@
           "tolerance_pt": 1
         },
         {
-          "name": "productive-work comparison row",
+          "name": "substrate-to-method aligned peer group 2",
           "labels": [
-            "Probabilistic productive work",
-            "Enforcement problem",
+            "Probabilistic agentic work",
+            "Enforcement Problem",
             "Alignment"
           ],
           "align": [
@@ -365,65 +348,111 @@
       ]
     },
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
+      "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+      "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+      "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+      "width_bp": 317.9739990234375,
+      "height_bp": 105.97599792480469,
+      "fonts": [
+        "SourceSans3-Bold",
+        "SourceSans3-Regular"
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 12,
-      "width_bp": 418.229,
-      "height_bp": 184.495
-    },
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing substrate to method layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
-      "after_sha256": "1566e74961db78da9ad8f181c1e62e40cc35e11513769077c00af1145f6ec4b0",
-      "before_dimensions_bp": [
-        418.22900390625,
-        184.4949951171875
-      ],
-      "after_dimensions_bp": [
-        418.22900390625,
-        184.4949951171875
-      ],
-      "before_font_sizes_pt": [
-        9.0,
+      "font_sizes_pt": [
         10.0
       ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "revision_20261106": {
-      "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
-      "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
-      "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
-      "page": 3,
+      "semantic_typography_checks": 9,
       "geometry_findings": 0,
       "typography_findings": 0,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "page": 2,
+      "reviewed_peer_groups": 2,
+      "svg_sensors": {
+        "overflow": 0,
+        "label_collision": 0,
+        "text_occlusion": 0,
+        "text_intrusion": 0,
+        "font_band_full_width_assumption": 13,
+        "font_band_at_declared_web_width": 0
+      },
+      "date": "2026-11-10",
+      "status": "passed",
+      "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+      "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-2.png",
+      "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/substrate-to-method-svg.png",
+      "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+      "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+      "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+      "reviewed_visually": true,
+      "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+      "declared_web_width_px": 686.4,
+      "declared_web_label_sizes_px": [
+        22.0
+      ],
+      "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
+    },
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested compact two-row, three-column synthesis. Retains the two motivations and MAGE responses; removes chapter pointers, explanatory subtitles, the interposable-seams qualification and the navigation footer. The arrows show primary motivations, not exclusive dependencies.",
+      "before_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
+      "after_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+      "after_dimensions_bp": [
+        317.9739990234375,
+        105.97599792480469
+      ],
+      "after_font_sizes_pt": [
+        10.0
+      ],
       "reviewed_visually": true
     }
   },
-  "author_feedback_20261106": {
-    "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
-    "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
-    "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
-    "page": 3,
+  "validation": {
+    "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+    "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+    "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+    "width_bp": 317.9739990234375,
+    "height_bp": 105.97599792480469,
+    "fonts": [
+      "SourceSans3-Bold",
+      "SourceSans3-Regular"
+    ],
+    "font_sizes_pt": [
+      10.0
+    ],
+    "semantic_typography_checks": 9,
     "geometry_findings": 0,
     "typography_findings": 0,
-    "reviewed_visually": true
+    "unapproved_compile_diagnostics": 0,
+    "monochrome_pixels": true,
+    "page": 2,
+    "reviewed_peer_groups": 2,
+    "svg_sensors": {
+      "overflow": 0,
+      "label_collision": 0,
+      "text_occlusion": 0,
+      "text_intrusion": 0,
+      "font_band_full_width_assumption": 13,
+      "font_band_at_declared_web_width": 0
+    },
+    "date": "2026-11-10",
+    "status": "passed",
+    "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+    "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-2.png",
+    "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/substrate-to-method-svg.png",
+    "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+    "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+    "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+    "reviewed_visually": true,
+    "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+    "declared_web_width_px": 686.4,
+    "declared_web_label_sizes_px": [
+      22.0
+    ],
+    "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
   },
-  "caption": "From substrate to method. Finite reasoning state creates the Representation Problem; probabilistic autonomous work creates the Enforcement Problem."
+  "drafting_provenance": {
+    "scene": "/private/tmp/mage-ch1-followup-20261110/compact-figures/scene.json",
+    "generator": "/private/tmp/mage-ch1-followup-20261110/compact-figures/generate.py",
+    "role": "Draft provenance; not a new runtime build dependency."
+  }
 }

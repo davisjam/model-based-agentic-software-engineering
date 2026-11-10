@@ -1,22 +1,25 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner xsep=3pt,inner ysep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=1pt,fill=black!7},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-\node[n,text width=4.1cm,minimum height=2cm] (n00) at (0.0,0.0) {Finite working state};
-\node[n,text width=4.1cm,fill=white,minimum height=2cm] (n01) at (5.0,0.0) {\textbf{Representation\\problem}};
-\draw[edge] (n00) -- (n01);
-\node[strong,text width=4.1cm,fill=black!7,minimum height=2cm] (n02) at (10.0,0.0) {\textbf{Modeling}\\\magebookref{part:2}{Chapter 2}\\Compact relevant\\properties};
-\draw[edge] (n01) -- (n02);
-\node[n,text width=4.1cm,minimum height=2cm] (n10) at (0.0,-2.5) {Probabilistic productive\\work\\Observable, interposable\\seams};
-\node[n,text width=4.1cm,fill=white,minimum height=2cm] (n11) at (5.0,-2.5) {\textbf{Enforcement problem}};
-\draw[edge] (n10) -- (n11);
-\node[strong,text width=4.1cm,fill=black!7,minimum height=2cm] (n12) at (10.0,-2.5) {\textbf{Alignment}\\\magebookref{part:3}{Chapter 3}\\Enforce selected\\obligations};
-\draw[edge] (n11) -- (n12);
-\node[head,text width=4.1cm] (h0) at (0.0,1.4) {SUBSTRATE TRAIT};
-\node[head,text width=4.1cm] (h1) at (5.0,1.4) {PROBLEM};
-\node[head,text width=4.1cm] (h2) at (10.0,1.4) {METHOD};
-\node[note,text width=14cm] at (4.7,-4.3) {\textit{\magebookref{part:1}{Chapter 1} derives the two core activities;\\\magebookref{part:4}{Chapter 4} puts them in motion as the MAGE method.}};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\fontsize{10}{12}\selectfont,
+edge/.style={-{Stealth[length=4.2bp,width=3.6bp]},line width=.65bp},
+compactbox/.style={draw=black,line width=.65bp,rounded corners=2.5bp,fill=white,align=center,inner sep=0pt},
+compactlabel/.style={align=center,inner sep=0pt}]
+\path[use as bounding box] (0,0) rectangle (312,100);
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (0.4,23.4) rectangle (91.60000000000001,54.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (finite) at (46.0,38.9) {Finite working\\state};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (114,23.4) rectangle (217.6,54.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (representation) at (165.8,38.9) {\textbf{Representation}\\\textbf{Problem}};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (239.6,23.4) rectangle (311.6,54.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (modeling) at (275.6,38.9) {\textbf{Modeling}};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (0.4,68.4) rectangle (91.60000000000001,99.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (probabilistic) at (46.0,83.9) {Probabilistic\\agentic work};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (114,68.4) rectangle (217.6,99.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (enforcement) at (165.8,83.9) {\textbf{Enforcement}\\\textbf{Problem}};
+\draw[draw=black,line width=.65bp,rounded corners=2.5bp,fill=white] (239.6,68.4) rectangle (311.6,99.4);
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\fontsize{10}{12}\selectfont] (alignment) at (275.6,83.9) {\textbf{Alignment}};
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\bookfigurefont\bfseries\fontsize{10}{12}\selectfont] at (46,6) {SUBSTRATE};
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\bookfigurefont\bfseries\fontsize{10}{12}\selectfont] at (165.8,6) {PROBLEM};
+\node[inner sep=0pt,outer sep=0pt,align=center,font=\bookfigurefont\bfseries\fontsize{10}{12}\selectfont] at (275.6,6) {RESPONSE};
+\draw[edge] (91.6,38.9) -- (114,38.9);
+\draw[edge] (217.6,38.9) -- (239.6,38.9);
+\draw[edge] (91.6,83.9) -- (114,83.9);
+\draw[edge] (217.6,83.9) -- (239.6,83.9);
 \end{tikzpicture}

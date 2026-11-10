@@ -426,6 +426,9 @@ def publication_figures(driver, pool, manifest, anchor_prefix='tikz-figure:', *,
             opening = (opening[:heading_end] + '\\begingroup\\setlength{\\parskip}{3pt}\n' +
                        opening[heading_end:] + '\\par\\endgroup\n')
             text = opening + separator + rest
+        if chapter.stem == '1.4-the-agentic-substrate':
+            from mage_figure_layout import reasoning_horizon_columns
+            text = reasoning_horizon_columns(text)
         if chapter.stem == '0.1-how-to-read-this-book':
             from mage_figure_layout import reading_guide_columns
             text = reading_guide_columns(text)

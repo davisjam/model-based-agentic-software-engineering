@@ -1,72 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Fig 1.4-1 NEW (part1-copyedit-260815; folds to book/assets/substrate-to-method.svg).
-     "From substrate to method." Chapter 1's closing figure: two substrate traits each raise a problem, and
-     each problem is answered by a method. Rhymes with the front-matter MAGE overview (Modeling / Alignment)
-     without reproducing the full four-part method.
-       ROW A — finite working state -> REPRESENTATION PROBLEM (rust) -> MODELING (blue).
-       ROW B — probabilistic productive work + observable, interposable seams -> ENFORCEMENT PROBLEM (rust)
-               -> ALIGNMENT (green).
-     Palette: gray #57534e/#f6f4ef (substrate traits), rust #9a3f12/#fbeee6 (the problems), blue
-     #2f5169/#e7edf3 (modeling), governed green #155c38/#e3f0e7 (alignment), ink #1c1917, page #fdfcf9.
-     Grayscale-survivable: three labelled columns (trait / problem / method), two rows; left-to-right
-     order carries the derivation, hue only reinforces which method answers which problem. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420"
-     role="img" aria-labelledby="smTitle smDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="smTitle">From substrate to method</title>
-  <desc id="smDesc">Two derivations run left to right. In the first, a finite working state raises the
-    representation problem, which modeling addresses in Chapter 2. In the second, probabilistic productive
-    work over observable, interposable seams raises the enforcement problem, which alignment addresses in Chapter 3. These are the two core activities Chapter 1 derives; Chapter 4 puts them in motion as the MAGE method.</desc>
-
-  <defs>
-    <marker id="sm-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="900" height="420" fill="#fdfcf9"/>
-  <text x="450" y="40" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">From substrate to method</text>
-
-  <!-- column headers -->
-  <text x="180" y="86" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1.5" fill="#57534e">SUBSTRATE TRAIT</text>
-  <text x="470" y="86" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1.5" fill="#9a3f12">PROBLEM</text>
-  <text x="730" y="86" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1.5" fill="#155c38">METHOD</text>
-
-  <!-- ===== EDGES (drawn under nodes; source runs to node centre, directed head seats on target rim) ===== -->
-  <!-- edge: trait-a -> representation-problem -->
-  <line x1="320" y1="138" x2="347" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-  <!-- edge: representation-problem -> modeling -->
-  <line x1="580" y1="138" x2="618" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-  <!-- edge: trait-b -> authority-problem -->
-  <line x1="320" y1="288" x2="358" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-  <!-- edge: authority-problem -> alignment -->
-  <line x1="580" y1="288" x2="618" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-
-  <!-- ===== ROW A: representation problem -> modeling ===== -->
-  <rect id="trait-a" x="40" y="110" width="280" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="180" y="143" text-anchor="middle" font-size="18" fill="#1c1917">finite working state</text>
-
-  <rect id="representation-problem" x="349.25" y="110" width="241.5" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="470" y="143" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Representation problem</text>
-
-  <rect id="modeling" x="620" y="104" width="264" height="68" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
-  <text x="752" y="130" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Modeling · Chapter 2</text>
-  <text x="752" y="150" text-anchor="middle" font-size="18" fill="#57534e">represent relevant</text>
-  <text x="752" y="167" text-anchor="middle" font-size="18" fill="#57534e">properties compactly</text>
-
-  <!-- ===== ROW B: enforcement problem -> alignment ===== -->
-  <rect id="trait-b" x="40" y="252" width="280" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="180" y="282" text-anchor="middle" font-size="18" fill="#1c1917">probabilistic productive work</text>
-  <text x="180" y="304" text-anchor="middle" font-size="18" fill="#1c1917">observable, interposable seams</text>
-
-  <rect id="authority-problem" x="360" y="260" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="470" y="293" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Enforcement problem</text>
-
-  <rect id="alignment" x="620" y="258" width="264" height="60" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-  <text x="752" y="284" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Alignment · Chapter 3</text>
-  <text x="752" y="305" text-anchor="middle" font-size="18" fill="#57534e">enforce selected obligations</text>
-
-  <!-- rhyme with the MAGE overview, without reproducing it -->
-  <text x="450" y="384" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="686.4" height="220.0" viewBox="0 0 686.4 220.0" role="img" aria-labelledby="title desc">
+<title id="title">From agentic machinery to MAGE</title>
+<desc id="desc">Two rows connect substrate properties to engineering problems and MAGE responses: finite working state to the Representation Problem and Modeling; probabilistic agentic work to the Enforcement Problem and Alignment.</desc>
+<!-- Authored paired SVG/TikZ scene: compact peer geometry must preserve the half-width or summary slot. -->
+<defs><marker id="arrow" markerWidth="13.2" markerHeight="13.2" refX="11.44" refY="6.6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L11.44,6.6 L0,13.2 Z" fill="black"/></marker></defs>
+<rect width="686.4" height="220.0" fill="white"/>
+<style>text{font-family:"Source Sans 3",Arial,sans-serif;fill:black}</style>
+<g fill="black">
+<rect x="0.88" y="51.48" width="200.64" height="68.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="101.2" y="79.64" text-anchor="middle" font-size="22.0" font-weight="400">Finite working</text>
+<text x="101.2" y="106.04" text-anchor="middle" font-size="22.0" font-weight="400">state</text>
+<rect x="250.8" y="51.48" width="227.92" height="68.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="364.76" y="79.64" text-anchor="middle" font-size="22.0" font-weight="700">Representation</text>
+<text x="364.76" y="106.04" text-anchor="middle" font-size="22.0" font-weight="700">Problem</text>
+<rect x="527.12" y="51.48" width="158.4" height="68.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="606.32" y="92.84" text-anchor="middle" font-size="22.0" font-weight="700">Modeling</text>
+<rect x="0.88" y="150.48" width="200.64" height="68.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="101.2" y="178.64" text-anchor="middle" font-size="22.0" font-weight="400">Probabilistic</text>
+<text x="101.2" y="205.04" text-anchor="middle" font-size="22.0" font-weight="400">agentic work</text>
+<rect x="250.8" y="150.48" width="227.92" height="68.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="364.76" y="178.64" text-anchor="middle" font-size="22.0" font-weight="700">Enforcement</text>
+<text x="364.76" y="205.04" text-anchor="middle" font-size="22.0" font-weight="700">Problem</text>
+<rect x="527.12" y="150.48" width="158.4" height="68.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="606.32" y="191.84" text-anchor="middle" font-size="22.0" font-weight="700">Alignment</text>
+<text x="101.2" y="20.46" text-anchor="middle" font-size="22" font-weight="700">SUBSTRATE</text>
+<text x="364.76" y="20.46" text-anchor="middle" font-size="22" font-weight="700">PROBLEM</text>
+<text x="606.32" y="20.46" text-anchor="middle" font-size="22" font-weight="700">RESPONSE</text>
+<path d="M201.52,85.58 L250.8,85.58" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M478.72,85.58 L527.12,85.58" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M201.52,184.58 L250.8,184.58" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M478.72,184.58 L527.12,184.58" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+</g>
 </svg>

@@ -4,7 +4,7 @@
   "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
   "candidate_count": 154,
   "refined_count": 122,
-  "check_count": 1023,
+  "check_count": 1022,
   "shared_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
   "figures": [
     {
@@ -2889,18 +2889,17 @@
     {
       "source": "book/assets/agentic-substrate.svg",
       "candidate": "book/tikz/figures/agentic-substrate.tex",
-      "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
-      "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
+      "source_sha256": "e06b03f325a0d9a4baec26888e5f20d3f5206a21aaccbf143d200146d9f251c5",
+      "candidate_sha256": "411a5d810366bab400086ff3c0875af17cd5d6bc52bc37e0420323838e869bcf",
       "decision": "refined",
       "revision_date": "2026-11-10",
-      "prior_review_archive": "book/editorial/retired-agentic-machinery-20261110/figure-review-before.json",
       "checks": [
         {
           "text": "MODEL DEVELOPMENT",
           "bold": true
         },
         {
-          "text": "AGENTIC MACHINERY — THE ACTING AGENT",
+          "text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
           "bold": true
         },
         {
@@ -2912,7 +2911,7 @@
           "bold": true
         },
         {
-          "text": "ENGINEERED ENVIRONMENT",
+          "text": "GOVERNED ENGINEERING ENVIRONMENT (GEE)",
           "bold": true
         },
         {
@@ -3030,190 +3029,198 @@
         {
           "text": "Property",
           "italic": true
+        },
+        {
+          "text": "Training or fine-tuning (when feasible)",
+          "bold": false
         }
       ],
-      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10–10.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
+      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10\u201310.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "MODEL DEVELOPMENT",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
-          "candidate_text": "AGENTIC MACHINERY — THE ACTING AGENT",
+          "candidate_text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "FOUNDATION MODEL",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "AGENTIC HARNESS",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
-          "candidate_text": "ENGINEERED ENVIRONMENT",
+          "candidate_text": "GOVERNED ENGINEERING ENVIRONMENT (GEE)",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Existing system",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Engineering structure",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Engineer",
           "candidate_style": "bold",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Open-source code",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Other text and code",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Additional training data",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Pretraining and post-training",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Foundation model (trained weights)",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Broad semantic reasoning",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Probabilistic output",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Bounded working state",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Inexpensive repeated reasoning",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Delegated implementation",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Independent assurance",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "External representations",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Scalable governance",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Tool-mediated action",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Context management",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Interposition",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Parallel execution",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Guidance",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Governance",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Codebase",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Architecture and design",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Documentation and configuration",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Tests and operational state",
           "candidate_style": "regular",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "System being changed",
           "candidate_style": "italic",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Engineering implication",
           "candidate_style": "italic",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
           "candidate_text": "Property",
           "candidate_style": "italic",
-          "semantic_role": "Current reviewed region, component, property, implication or annotation."
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
+        },
+        {
+          "candidate_text": "Training or fine-tuning (when feasible)",
+          "candidate_style": "regular",
+          "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         }
       ],
       "validation": {
-        "proof": "/private/tmp/mage14-20261110/figure/proof.pdf",
-        "proof_png": "/private/tmp/mage14-20261110/figure/proof.png",
-        "proof_sha256": "7179da0525713cd76c2b014fce6555a12bbd30fcad310010649f988dcfc8c2a0",
-        "candidate_sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262",
-        "source_sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e",
+        "proof": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.pdf",
+        "proof_png": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.png",
+        "proof_sha256": "cf89f8e137bb272f7cab2be1c29e6e2e41d4801d94cd653abf692eaf6c5b57bf",
+        "candidate_sha256": "411a5d810366bab400086ff3c0875af17cd5d6bc52bc37e0420323838e869bcf",
+        "source_sha256": "e06b03f325a0d9a4baec26888e5f20d3f5206a21aaccbf143d200146d9f251c5",
         "width_bp": 446.843994140625,
         "height_bp": 557.6439819335938,
-        "caption_reserve_in_648bp_text_area": 90.35601806640625,
         "authored_type_sizes_pt": [
           9.5,
           10,
@@ -3225,7 +3232,7 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "reviewed_peer_groups": 2,
-        "semantic_typography_checks": 34,
+        "semantic_typography_checks": 35,
         "typography_findings": 0,
         "fonts": [
           "SourceSans3-Bold",
@@ -3235,323 +3242,184 @@
         "monochrome_pixels": true,
         "reviewed_visually": true,
         "shared_svg_sensors": {
-          "lint_figure_overflow": 0,
-          "lint_figure_text_occlusion": 0,
-          "lint_figure_text_intrusion": 0,
-          "lint_figure_label_collision": 0,
-          "lint_figure_font_band": 0
+          "overflow": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "label_collision": 0,
+          "font_band": 0
         },
-        "shared_svg_sensors_report": "/private/tmp/mage14-20261110/figure/shared-svg-sensors.json",
+        "shared_svg_sensors_report": "/private/tmp/mage-ch1-followup-20261110/machinery/shared-svg-sensors.json",
         "date": "2026-11-10",
         "page": 1,
         "status": "passed",
-        "validation_scope": "Revised agentic-substrate figure only; native and web proofs inspected.",
-        "geometry_audit": "/private/tmp/mage14-20261110/figure/geometry-audit.json",
-        "typography_audit": "/private/tmp/mage14-20261110/figure/typography-audit.json",
-        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
+        "validation_scope": "Targeted agentic-substrate revision only; native and live-text SVG proofs inspected.",
+        "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/machinery/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage-ch1-followup-20261110/machinery/typography-audit.json",
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+        "web_projection": {
+          "scale_from_native_drawing_coordinates": 2.25,
+          "width_css_px": 1003.5,
+          "height_css_px": 1253.25,
+          "viewBox": "-6.75 -6.75 1003.5 1253.25",
+          "authored_text_sizes_css_px": [
+            21.375,
+            22.5,
+            22.95,
+            23.625,
+            24.3,
+            25.875
+          ],
+          "rendered_text_sizes_at_832px_column": [
+            17.722,
+            18.655,
+            19.028,
+            19.587,
+            20.147,
+            21.453
+          ],
+          "svg_text_strings_unchanged": true,
+          "native_tikz_bytes_unchanged_by_web_projection": true,
+          "proof_832px": "/private/tmp/mage-ch1-followup-20261110/machinery/web-832px.png",
+          "sizing_reason": "Natural SVG dimensions must support readable browser labels before max-width clamps to the article column. All geometric coordinates and text sizes scale together; conceptual geometry and native print artwork are unchanged."
+        }
       }
     },
     {
       "source": "book/assets/reasoning-horizon.svg",
       "candidate": "book/tikz/figures/reasoning-horizon.tex",
+      "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+      "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
       "decision": "refined",
-      "source_sha256": "fefec131079acfd8e94d114886c0149ab73d55e93c6206965b8343f48054c4f0",
-      "candidate_sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0",
-      "evidence": [
-        {
-          "source_text": "Relevant state cannot all remain active",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Premise heading versus explanatory sentence",
-          "candidate_text": "Relevant state cannot all remain active",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Relevant state cannot all remain active",
-              "weight": "700",
-              "style": "normal",
-              "x": "500",
-              "y": "50"
-            }
-          ]
-        },
-        {
-          "source_text": "REPRESENTATION MATTERS",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Central causal claim (already bold)",
-          "candidate_text": "REPRESENTATION MATTERS",
-          "candidate_style": "capitals",
-          "source_fragments": [
-            {
-              "text": "REPRESENTATION MATTERS",
-              "weight": "700",
-              "style": "normal",
-              "x": "500",
-              "y": "135"
-            }
-          ]
-        },
-        {
-          "source_text": "THE CAUSAL SPINE",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Summary diagram heading (already bold)",
-          "candidate_text": "THE CAUSAL SPINE",
-          "candidate_style": "capitals",
-          "source_fragments": [
-            {
-              "text": "THE CAUSAL SPINE",
-              "weight": "700",
-              "style": "normal",
-              "x": "90",
-              "y": "626"
-            }
-          ]
-        },
-        {
-          "source_text": "Churn",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Peer outcomes, equally emphasized",
-          "candidate_text": "Churn",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Churn",
-              "weight": "700",
-              "style": "normal",
-              "x": "250",
-              "y": "563"
-            }
-          ]
-        },
-        {
-          "source_text": "Longer coherent reasoning",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Peer outcomes, equally emphasized",
-          "candidate_text": "Longer coherent reasoning",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Longer coherent",
-              "weight": "700",
-              "style": "normal",
-              "x": "750",
-              "y": "475"
-            },
-            {
-              "text": "reasoning",
-              "weight": "700",
-              "style": "normal",
-              "x": "750",
-              "y": "496"
-            }
-          ]
-        }
-      ],
-      "reason": "Preserve the author-approved reasoning-horizon labels and their original distinction between bold headings and regular explanation. Updated after the November 2026 terminology edits.",
+      "revision_date": "2026-11-10",
       "checks": [
         {
-          "text": "Relevant state cannot all remain active",
+          "text": "Finite working state Representation matters",
           "bold": true
         },
         {
-          "text": "REPRESENTATION MATTERS",
+          "text": "Raw code",
           "bold": true
         },
         {
-          "text": "THE CAUSAL SPINE",
+          "text": "Purposeful abstraction",
           "bold": true
         },
         {
-          "text": "Churn",
-          "bold": true
-        },
-        {
-          "text": "Longer coherent reasoning",
-          "bold": true
-        },
-        {
-          "text": "Preserve what later decisions need",
+          "text": "Reconstruct relevant structure",
           "bold": false
         },
         {
-          "text": "State must remain available",
+          "text": "Retrieve relevant structure",
           "bold": false
+        },
+        {
+          "text": "Higher reconstruction cost",
+          "bold": false
+        },
+        {
+          "text": "Lower reconstruction cost",
+          "bold": false
+        }
+      ],
+      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+      "evidence": [
+        {
+          "candidate_text": "Finite working state Representation matters",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Raw code",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Purposeful abstraction",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Reconstruct relevant structure",
+          "candidate_style": "regular",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Retrieve relevant structure",
+          "candidate_style": "regular",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Higher reconstruction cost",
+          "candidate_style": "regular",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Lower reconstruction cost",
+          "candidate_style": "regular",
+          "semantic_role": "Named category or process/comparison explanation."
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz-horizon-approval/approved-horizon-figures.pdf",
-        "proof_sha256": "8d3783be1dba613d65bec55ff3c1d0d116aa60e83f6a0ee99a9be5d9f4bd82b6",
-        "page": 2,
-        "width_bp": 353.911,
-        "height_bp": 349.663,
-        "minimum_prose_font_pt": 9.5,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 7,
-        "body_fonts": [
+        "source_sha256": "6b2790895a9503635591384a7dfe72a48eefe4b62bdb4b2fcb7feeedf36df482",
+        "candidate_sha256": "5383981a7c828f7597b0dbb436bb31abdd23218535aaaf25f146ec6515e7a975",
+        "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+        "width_bp": 209.97500610351562,
+        "height_bp": 224.375,
+        "fonts": [
           "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
           "SourceSans3-Regular"
-        ]
+        ],
+        "font_sizes_pt": [
+          9.5,
+          10.0
+        ],
+        "semantic_typography_checks": 7,
+        "geometry_findings": 0,
+        "typography_findings": 0,
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "page": 1,
+        "reviewed_peer_groups": 3,
+        "svg_sensors": {
+          "overflow": 0,
+          "label_collision": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "font_band_full_width_assumption": 13,
+          "font_band_at_declared_web_width": 0
+        },
+        "date": "2026-11-10",
+        "status": "passed",
+        "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+        "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-1.png",
+        "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/reasoning-horizon-svg.png",
+        "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+        "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+        "reviewed_visually": true,
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+        "declared_web_width_px": 448.8,
+        "declared_web_label_sizes_px": [
+          20.9,
+          22.0
+        ],
+        "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
       }
     },
     {
       "source": "book/assets/substrate-to-method.svg",
       "candidate": "book/tikz/figures/substrate-to-method.tex",
+      "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+      "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
       "decision": "refined",
-      "source_sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7",
-      "candidate_sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5",
-      "evidence": [
-        {
-          "source_text": "SUBSTRATE TRAIT",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Column category (already bold)",
-          "candidate_text": "SUBSTRATE TRAIT",
-          "candidate_style": "capitals",
-          "source_fragments": [
-            {
-              "text": "SUBSTRATE TRAIT",
-              "weight": "700",
-              "style": "normal",
-              "x": "180",
-              "y": "86"
-            }
-          ]
-        },
-        {
-          "source_text": "PROBLEM",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Column category (already bold)",
-          "candidate_text": "PROBLEM",
-          "candidate_style": "capitals",
-          "source_fragments": [
-            {
-              "text": "PROBLEM",
-              "weight": "700",
-              "style": "normal",
-              "x": "470",
-              "y": "86"
-            }
-          ]
-        },
-        {
-          "source_text": "method",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Column category (already bold)",
-          "candidate_text": "METHOD",
-          "candidate_style": "capitals",
-          "source_fragments": [
-            {
-              "text": "method",
-              "weight": "700",
-              "style": "normal",
-              "x": "450",
-              "y": "40"
-            }
-          ]
-        },
-        {
-          "source_text": "Representation problem",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Named problem or method; explanation stays regular",
-          "candidate_text": "Representation problem",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Representation problem",
-              "weight": "700",
-              "style": "normal",
-              "x": "470",
-              "y": "143"
-            }
-          ]
-        },
-        {
-          "source_text": "Enforcement problem",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Named problem or method; explanation stays regular",
-          "candidate_text": "Enforcement problem",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Enforcement problem",
-              "weight": "700",
-              "style": "normal",
-              "x": "470",
-              "y": "293"
-            }
-          ]
-        },
-        {
-          "source_text": "Modeling",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Named problem or method; explanation stays regular",
-          "candidate_text": "Modeling",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Modeling",
-              "weight": "700",
-              "style": "normal",
-              "x": "752",
-              "y": "130"
-            }
-          ]
-        },
-        {
-          "source_text": "Alignment",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Named problem or method; explanation stays regular",
-          "candidate_text": "Alignment",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "Alignment",
-              "weight": "700",
-              "style": "normal",
-              "x": "752",
-              "y": "284"
-            }
-          ]
-        },
-        {
-          "source_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Cross-book explanatory annotation",
-          "candidate_text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-          "candidate_style": "italic ",
-          "source_fragments": [
-            {
-              "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-              "weight": "normal",
-              "style": "italic",
-              "x": "450",
-              "y": "384"
-            }
-          ]
-        }
-      ],
-      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "revision_date": "2026-11-10",
       "checks": [
         {
-          "text": "SUBSTRATE TRAIT",
-          "bold": true
+          "text": "Finite working state",
+          "bold": false
         },
         {
-          "text": "PROBLEM",
-          "bold": true
-        },
-        {
-          "text": "METHOD",
-          "bold": true
-        },
-        {
-          "text": "Representation problem",
-          "bold": true
-        },
-        {
-          "text": "Enforcement problem",
+          "text": "Representation Problem",
           "bold": true
         },
         {
@@ -3559,48 +3427,121 @@
           "bold": true
         },
         {
+          "text": "Probabilistic agentic work",
+          "bold": false
+        },
+        {
+          "text": "Enforcement Problem",
+          "bold": true
+        },
+        {
           "text": "Alignment",
           "bold": true
         },
         {
-          "text": "Chapter 1 derives the two core activities; Chapter 4 puts them in motion as the MAGE method.",
-          "italic": true
+          "text": "SUBSTRATE",
+          "bold": true
         },
         {
-          "text": "Compact relevant",
-          "bold": false
+          "text": "PROBLEM",
+          "bold": true
         },
         {
-          "text": "Chapter 2",
-          "bold": false,
-          "italic": false
+          "text": "RESPONSE",
+          "bold": true
+        }
+      ],
+      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
+      "evidence": [
+        {
+          "candidate_text": "Finite working state",
+          "candidate_style": "regular",
+          "semantic_role": "Named category or process/comparison explanation."
         },
         {
-          "text": "Chapter 3",
-          "bold": false,
-          "italic": false
+          "candidate_text": "Representation Problem",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Modeling",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Probabilistic agentic work",
+          "candidate_style": "regular",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Enforcement Problem",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "Alignment",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "SUBSTRATE",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "PROBLEM",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
+        },
+        {
+          "candidate_text": "RESPONSE",
+          "candidate_style": "bold",
+          "semantic_role": "Named category or process/comparison explanation."
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 12,
-        "width_bp": 418.229,
-        "height_bp": 184.495,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 9
-      },
-      "revision_20261106": {
-        "reason": "Author requested routing repairs in the color figures and Chapter 2/3 labels in both editions.",
-        "proof": "latex/build/tikz/ch1-feedback-20261106/candidates.pdf",
-        "proof_sha256": "660bf108c877da7a876cd09ba4b86d76df43fac9c48e0944e4d8ca8270b7c58a",
-        "page": 3,
+        "source_sha256": "549d3f5dc226b2bbcd95227511b452b0a45ee2a37eaef0765db04f60cea09708",
+        "candidate_sha256": "71910b617b65890c3b06364f707bd969a9a9be2c46cc8c858436d4b6ff34c55f",
+        "proof_sha256": "1e46918d052d1e29c56fb563cb52569e640986a4e7bff04d48c3e179dcc9ec81",
+        "width_bp": 317.9739990234375,
+        "height_bp": 105.97599792480469,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-Regular"
+        ],
+        "font_sizes_pt": [
+          10.0
+        ],
+        "semantic_typography_checks": 9,
         "geometry_findings": 0,
         "typography_findings": 0,
-        "reviewed_visually": true
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "page": 2,
+        "reviewed_peer_groups": 2,
+        "svg_sensors": {
+          "overflow": 0,
+          "label_collision": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "font_band_full_width_assumption": 13,
+          "font_band_at_declared_web_width": 0
+        },
+        "date": "2026-11-10",
+        "status": "passed",
+        "proof": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof.pdf",
+        "proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/proof-2.png",
+        "svg_proof_png": "/private/tmp/mage-ch1-followup-20261110/compact-figures/substrate-to-method-svg.png",
+        "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/geometry-audit.json",
+        "typography_audit": "/private/tmp/mage-ch1-followup-20261110/compact-figures/typography-audit.json",
+        "validation_scope": "Two revised compact Chapter 1 figures only; not a whole-pool verdict.",
+        "reviewed_visually": true,
+        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+        "declared_web_width_px": 686.4,
+        "declared_web_label_sizes_px": [
+          22.0
+        ],
+        "web_font_band_note": "The audit-only shared sensor assumes a 1000px full-width figure and reports 13 TOO_BIG labels. At the declared natural web width the same sensor reports zero findings. No exemption or sensor change was added."
       }
     },
     {
@@ -26691,15 +26632,15 @@
   "validation": {
     "date": "2026-11-10",
     "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "72effbca8294572dfdb35151d712bd69362b7d5bf889282812facacd228bb70c",
-    "audit_sha256": "95bf1303ae2429b641a190607a78688bcd9f34b14446120c73afbbde9467a937",
-    "typography_audit_sha256": "2346070f02e00f5b7ad33b1337cf72ef859fc66cbe4c07685c6d19bef5b7d4b3",
+    "proof_sha256": "97b259348545f46814ac1001d7f3ba8ee6a5bd175e5034c0fd1f93bd76e4ee50",
+    "audit_sha256": "3f927e5ae06e1ef44dd5c6e9950bccd9ab94e8dbada9f0e00dbcfc0fb06369dc",
+    "typography_audit_sha256": "96bd23e2c8f0b72cfcd492e6c81fce3fdc54bcf1c997563794edcc75bc4ab1d7",
     "candidate_count": 154,
-    "semantic_typography_checks": 1023,
+    "semantic_typography_checks": 1022,
     "geometry_findings": 0,
     "unapproved_compile_diagnostics": 0,
     "status": "passed",
-    "validation_scope": "Whole-pool compile, native-size envelope, geometry, and semantic typography checks rerun with the new Chapter 4 cycle. The new compact drawing was separately inspected in native PDF and SVG proofs.",
+    "validation_scope": "Integrated whole-pool compile, native envelope, geometry and semantic typography checks rerun after the three Chapter 1 revisions. The revised drawings were separately inspected in native and web proofs.",
     "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a"
   },
   "last_revised_date": "2026-11-10"

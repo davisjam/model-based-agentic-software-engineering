@@ -1,0 +1,59 @@
+{
+  "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+  "date": "2026-11-10",
+  "reason": "Author requested a revised obligations table, targeted machinery-figure connections, compact horizon and summary figures, and merged chapter synthesis.",
+  "files": {
+    "book/latex/sources/part1/1.3-mage-by-example.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/1.3-mage-by-example.tex",
+      "sha256": "a36faa6db1cda02616c82875172b049b2b1b59321a79a8b80476d8c3a5f5a2bf"
+    },
+    "book/latex/sources/part1/1.4-the-agentic-substrate.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/1.4-the-agentic-substrate.tex",
+      "sha256": "6fc523368b88c103148a38f0614b552fc1055d1a69a51f0abb21935bd00db747"
+    },
+    "book/latex/sources/part1/1.5-the-new-engineering-problem.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/1.5-the-new-engineering-problem.tex",
+      "sha256": "d5a6060e6c7943e1ce88cf716b2421cf62a3ba67676578ade54950c222d0b1d5"
+    },
+    "book/latex/sources/part1/1.6-problem-summary.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/1.6-problem-summary.tex",
+      "sha256": "f6eb2c893ba609aa5b67289fb60eab0e791898c730e4b65b48b303d83e085114"
+    },
+    "book/assets/agentic-substrate.svg": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-agentic-substrate.svg",
+      "sha256": "d6f9a928089f0cfeb3cba8bccde00921b55fd146fd958773e60b44ec4acd255e"
+    },
+    "book/tikz/figures/agentic-substrate.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-agentic-substrate.tex",
+      "sha256": "680446a94572c1bcb7b6a0328e2f6cb3d18db347c90cdf64496cf44166ba3262"
+    },
+    "book/tikz/receipts/agentic-substrate.json": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-agentic-substrate-receipt.json",
+      "sha256": "e105efb97188266d85aa4877979234cd427d22b129ddcb9d52ae9a9175c6ec45"
+    },
+    "book/assets/reasoning-horizon.svg": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-reasoning-horizon.svg",
+      "sha256": "fefec131079acfd8e94d114886c0149ab73d55e93c6206965b8343f48054c4f0"
+    },
+    "book/tikz/figures/reasoning-horizon.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-reasoning-horizon.tex",
+      "sha256": "6e28cf50e9ab3e02b510e95cca1c4df388c0a6352461ff2f95e50184cecbf7a0"
+    },
+    "book/tikz/receipts/reasoning-horizon.json": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-reasoning-horizon-receipt.json",
+      "sha256": "775ba85a8a26e94465e6c819664b73da5f40b20a9c79358ec0cc22f37b1e9001"
+    },
+    "book/assets/substrate-to-method.svg": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-substrate-to-method.svg",
+      "sha256": "88de881e2a8cebeb0398b004770b2b5a256622c7d9d35c137bcd13d153fd1dd7"
+    },
+    "book/tikz/figures/substrate-to-method.tex": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-substrate-to-method.tex",
+      "sha256": "be4bafc48391489e0abf1e3e1531bb261c66d377ff5cd6b09ef5679de908c3a5"
+    },
+    "book/tikz/receipts/substrate-to-method.json": {
+      "archive": "book/editorial/chapter-one-synthesis-20261110/before-substrate-to-method-receipt.json",
+      "sha256": "505c37a99f96c3631560cc792d9b97b5e17e24394abcf8656efbb2226a01a5a2"
+    }
+  }
+}

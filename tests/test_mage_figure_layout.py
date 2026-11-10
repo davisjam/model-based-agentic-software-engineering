@@ -106,5 +106,44 @@ class InsetPlacementPolicyTests(unittest.TestCase):
                 apply_figure_print_layout('', path)
 
 
+
+class CompactHorizonColumnsTests(unittest.TestCase):
+    def fixture(self):
+        figure = (r'\begin{figure}[htbp]\centering'
+                  r'\includegraphics[page=3,alt={The full alternative text}]{pool.pdf}'
+                  r'\caption{A complete caption.}\label{reasoning-horizon-fig}\end{figure}')
+        return ('Before.\n% <!-- print-columns-start: reasoning-horizon-fig -->\n'
+                'External representations reduce reconstruction.\n\n' + figure +
+                '\n\nThe Representation Problem is named here.\n'
+                '% <!-- print-columns-end: reasoning-horizon-fig -->\nAfter.')
+
+    def test_side_by_side_preserves_prose_caption_links_and_native_art(self):
+        from mage_figure_layout import reasoning_horizon_columns
+        result = reasoning_horizon_columns(self.fixture())
+        for phrase in ['Before.', 'External representations reduce reconstruction.',
+                       'The Representation Problem is named here.', 'After.',
+                       r'\caption{A complete caption.}', r'\label{reasoning-horizon-fig}',
+                       r'\includegraphics[page=3,alt={The full alternative text}]{pool.pdf}']:
+            self.assertEqual(result.count(phrase), 1)
+        self.assertIn(r'\begin{minipage}[t]{.48\linewidth}', result)
+        self.assertIn(r'\begin{bookinlinefigure}', result)
+        self.assertNotIn(r'\small', result)
+        self.assertNotIn(r'\clearpage', result)
+        self.assertNotIn('print-columns-start', result)
+
+    def test_inset_heading_or_footnote_cannot_be_wrapped(self):
+        from mage_figure_layout import reasoning_horizon_columns
+        for inserted in (r'\begin{bookbox}{inset}{A}', r'\section{Next}', r'\footnote{Note}'):
+            with self.subTest(inserted=inserted), self.assertRaises(ValueError):
+                reasoning_horizon_columns(self.fixture().replace('External representations',
+                                                                  inserted + ' External representations'))
+
+    def test_missing_boundary_and_unselected_chapters_fail_or_remain_untouched(self):
+        from mage_figure_layout import reasoning_horizon_columns
+        self.assertEqual(reasoning_horizon_columns('Unrelated prose.'), 'Unrelated prose.')
+        with self.assertRaises(ValueError):
+            reasoning_horizon_columns(self.fixture().replace('print-columns-end:', 'missing-end:'))
+
+
 if __name__ == '__main__':
     unittest.main()

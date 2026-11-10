@@ -1,0 +1,97 @@
+% mage-auto-heading: the-accessibility-problem
+% mage-auto-heading: the-engineering-experiment
+% mage-auto-heading: the-challenge-of-accessibility
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: The New Engineering Problem -->
+
+% <!-- chapter-title: MAGE by Example: DocAble -->
+
+\chapter{MAGE by Example: DocAble}
+
+% <!-- point: teaser-grounds-the-abstractions | MAGE emerged from developing and studying DocAble; the case introduces the engineering experience behind the methodology. | terms: running-example -->
+
+The engineering methodology described in this book emerged from six months of developing and studying a production document-accessibility system called \href{\%7B\%7Bproduct_url\%7D\%7D}{DocAble}. I directed the development, but coding agents wrote every line of its implementation. My role was to exercise engineering judgment, direct the agents, and develop the models and controls governing their work. \magevalue{chapter:software-factories} examines the system and its development in detail. For now, a few facts about DocAble are in order.
+
+\section{The Accessibility Problem}\label{heading:the-accessibility-problem}
+
+% <!-- section-terms: document-accessibility, remediation-cost -->
+
+% <!-- point: explicit-problem-inaccessible-documents-at-scale | University document accessibility combines an explicit legal obligation, semantic and structural requirements, and institutional scale. | terms: document-accessibility, remediation-cost -->
+
+In 2024, the U.S. Department of Justice (DOJ) adopted a rule under Title II of the Americans with Disabilities Act (ADA) requiring covered state and local government entities, including public universities, to make their web content and mobile applications accessible. The rule establishes the Web Content Accessibility Guidelines (\magevalue{doj_technical_standard}) as the technical standard, including for documents distributed through covered websites. The educational purpose is straightforward: students using assistive technologies, such as screen readers, should be able to obtain and use the information their classmates can access. The rule describes access in terms of ``substantially equivalent timeliness, privacy, independence, and ease of use''\citep{doj-web-accessibility-2024}.
+
+A university's digital content extends well beyond its public website. Faculty distribute lecture slides, readings, assignments, laboratory instructions, spreadsheets, and other materials through learning-management systems. These documents come in many formats, including PowerPoint, Word, Excel, PDF, and LaTeX. Accessibility requires more than making their text machine-readable. A screen reader needs a meaningful reading order, figures need descriptions that convey their educational purpose, and tables and headings need structure that supports navigation\citep{w3c2018wcag21}. A document can pass a mechanical accessibility check while still conveying important information poorly to a student using assistive technology. One way to eliminate the problem would be to stop distributing documents to students altogether, but the students might take this amiss.
+
+The scale makes manual remediation difficult. A course may distribute dozens of slide decks and readings, together amounting to hundreds or thousands of pages and slides. Multiply that workload by thousands of university courses, with materials revised each semester, and accessibility becomes a substantial continuing obligation. Manual remediation is slow and costly. At Purdue, trained undergraduate teaching assistants billed \magevalue{seip_uta_hours} hours over approximately six months to remediate materials for just \magevalue{seip_uta_courses} courses. The reported labor amounted to roughly three hours per document\citep{davis2026docable}. \autoref{docable-obligation-kinds} groups the obligations DocAble would need to satisfy.
+
+% <!-- point: four-kinds-of-obligation-state-the-case | DocAble's requirements include genuine accessibility, preservation, accountability, and practical operation at scale. | terms: governance-target-product -->
+
+{\footnotesize
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\caption[Four kinds of obligation]{What DocAble had to accomplish, grouped into four kinds of obligation. \magevalue{chapter:software-factories} states the complete requirements this grouping summarizes.}\label{docable-obligation-kinds}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Kind of obligation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Kind of obligation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DocAble must\ldots{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Genuine accessibility & Repair problems that require understanding document content, judged against the governing standard (WCAG 2.1 AA) rather than proxy checker scores. \\
+Preservation & Retain the document\textquotesingle s content, appearance, and behavior except where remediation requires a change. \\
+Accountability & Record what motivated each change and what evidence supports the result, keeping consequential changes inspectable and, where appropriate, reversible. \\
+Practical operation at scale & Handle the formats people actually use, at practical sizes, costs, and latency, as a deployed service for thousands of faculty. \\
+\end{longtable}
+}
+
+% <!-- point: two-tensions-make-it-an-engineering-problem | Accessibility, preservation, accountability, and economical operation must be satisfied together. | terms: document-accessibility, governance-target-product -->
+
+These obligations interact. Remediation must improve accessibility without damaging the original document, and it must interpret content accurately while remaining economical enough for institutional use. The resulting system therefore needs both semantic judgment and reliable document processing.
+
+\section{The Engineering Experiment}\label{heading:the-engineering-experiment}
+
+% <!-- section-terms: supervised-autonomy, document-accessibility -->
+
+While I was developing DocAble, the DOJ extended its original April 2026 compliance deadline for larger public entities by one year, to April 2027. In its April 2026 rulemaking, the Department acknowledged that available technology and institutional resources had fallen short of its expectations: ``Advanced technology, such as generative AI, does not yet reliably automate the remediation of inaccessible content at scale''\citep{doj2026extension}. The engineering task was to produce accessible documents reliably enough for institutional use.
+
+I personally maintain two courses and had no desire to spend a full semester remediating them manually. I could delegate some of that work to other people, but delegation would not make me any less responsible for the result. As a lazy software engineer, however, I was perfectly willing to spend six months attempting to automate the work to my own standard.
+
+% <!-- point: two-birds-one-stone-motive | One project answered both problems: build the accessibility system, and use the engineering work to discover what sustained agentic development demanded. | terms: document-accessibility, running-example -->
+
+In early 2026, coding agents had also become capable enough to make a different experiment possible. I wanted to discover what software engineering would look like if I delegated implementation to agents while retaining responsibility for the resulting system. Accessibility remediation provided a real problem on which to find out.
+
+\section{The Challenge of Accessibility}\label{heading:the-challenge-of-accessibility}
+
+% <!-- section-terms: document-accessibility, running-example -->
+
+% <!-- point: upload-in-remediated-file-plus-evidence-out | The user supplies an inaccessible document and receives a remediated document and a changelog. | terms: governance-target-product -->
+
+From the user's perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and a changelog. The service supports Word, PowerPoint, Excel, their LibreOffice equivalents, PDF, and text-based formats including LaTeX and Typst. Where possible, it describes figures, repairs reading order, and restores structural accessibility while preserving the original content and presentation. \autoref{docable-glimpse} shows the intended result.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-glimpse-d34d027fb5.pdf}
+\caption{\emph{DocAble from the user\textquotesingle s view.} An inaccessible document goes in; a remediated document and evidence of consequential changes come back. Internal structure is omitted because it is not yet relevant.}
+\label{docable-glimpse}
+\end{figure}
+
+% <!-- point: accessibility-depends-on-educational-context | Art, language instruction, and handwritten mathematics illustrate why accessible output depends on the document's educational purpose. | terms: document-accessibility -->
+
+Deciding what to change requires understanding what the content contributes to the lesson. A blue square might decorate a restaurant menu but be the subject of a lecture on modern art. The same visual object calls for different treatment because its purpose differs. Foreign-language materials pose another problem. Language tagging can help a screen reader pronounce a French passage correctly, but supplying a translation that students are supposed to produce themselves would undermine the assignment. A scanned page of handwritten mathematics presents yet another challenge: making it accessible may require recovering notation in a form assistive technology can interpret, while preserving its mathematical meaning.
+
+% <!-- point: semantic-interpretation-and-evidence-serve-different-obligations | Semantic interpretation helps propose changes; reliable document processing and suitable evidence are needed to establish whether the result satisfies the obligations. | terms: document-accessibility, governance-target-product -->
+
+These examples explain why document remediation requires engineering judgment. A system must interpret content in context, decide which changes are appropriate, and establish that its output satisfies the relevant obligations. Generative AI can help with semantic interpretation. The resulting system must also handle document formats reliably, preserve the author's content, and record what it changed and what remains uncertain.

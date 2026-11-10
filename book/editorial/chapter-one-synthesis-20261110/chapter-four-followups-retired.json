@@ -1,0 +1,55 @@
+{
+  "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+  "entries": [
+    {
+      "source": "book/latex/sources/part4/00-part-intro.tex",
+      "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+      "source_lines": [
+        42,
+        43
+      ],
+      "reason": "Remove navigation from the SDD inset.",
+      "original_tex": "The next section examines where to begin and which known properties to protect as these representations evolve.\n"
+    },
+    {
+      "source": "book/latex/sources/part4/4.1-the-dynamics-of-mage.tex",
+      "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+      "source_lines": [
+        97,
+        97
+      ],
+      "reason": "Defer the explanation of measuring one level deeper to the actual DocAble case in §4.2; preserve source attribution.",
+      "original_tex": "But comprehension amplification is bounded by what the feedback makes visible. Ousterhout\\textquotesingle s guidance to measure one level deeper captures the danger:\\citep{ousterhout2018} optimizing only for an immediately visible, high-level property can improve that property while degrading the structures that sustain it. A system can look simpler to a user while becoming more complex internally; a change can satisfy its functional goal while worsening performance, security, or maintainability. Fast realization therefore does not eliminate the need for models. It increases the importance of deciding which properties must be represented and measured beneath the surface being experienced, a question \\magevalue{sec:engineering-the-environment} takes up directly."
+    },
+    {
+      "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
+      "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+      "source_lines": [
+        204,
+        204
+      ],
+      "reason": "Open maintenance on preserving and developing reusable engineering capital.",
+      "original_tex": "The governed engineering environment is itself a consequential system that requires maintenance. A model may drift from the implementation, while a gate continues to enforce an obsolete policy. Noisy controls and broken evidence pipelines can make their verdicts difficult to trust; skills can preserve procedures whose assumptions have expired. Engineers therefore need to observe, reconcile, repair, and sometimes retire these structures, just as they do for the system those structures govern."
+    },
+    {
+      "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
+      "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+      "source_lines": [
+        222,
+        222
+      ],
+      "reason": "Rename the practical closing section while retaining its durable anchor.",
+      "original_tex": "\\section{Portable Moves}\\label{heading:portable-moves}"
+    },
+    {
+      "source": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
+      "source_revision": "86d77393180e3ab2789e23d076a538b2f50acbd1",
+      "source_lines": [
+        224,
+        224
+      ],
+      "reason": "State the transferable engineering moves directly.",
+      "original_tex": "Strip away DocAble, the companion repository, and the current generation of agent harnesses, and a small set of moves remains from this chapter\\textquotesingle s dynamics and practice."
+    }
+  ]
+}

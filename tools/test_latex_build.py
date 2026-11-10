@@ -172,5 +172,39 @@ Body \\
         self.assertEqual(bold_table_headers(styled), styled)
 
 
+class SelectedTableLayoutTests(unittest.TestCase):
+    def setUp(self):
+        self.table = r'''\begin{longtable}{p{\real{0.5000}}p{\real{0.5000}}}
+\caption{The complete caption.}\label{obligations}\tabularnewline
+Heading A & Heading B \\
+\endfirsthead
+Heading A & Heading B \\
+\endhead
+\endlastfoot
+Preservation & Retain the original content. \\
+Accountability & Record evidence for every change. \\
+\end{longtable}'''
+
+    def test_content_and_headers_survive_unequal_columns_and_body_row_gaps(self):
+        from latex_build import layout_selected_table
+        result = layout_selected_table(self.table, 'obligations', (.28, .72))
+        self.assertIn(r'\real{0.2800}', result)
+        self.assertIn(r'\real{0.7200}', result)
+        self.assertEqual(result.count(r'\\[4bp]'), 2)
+        self.assertIn('Heading A & Heading B ' + r'\\' + '\n', result)
+        for content in ['The complete caption.', 'Retain the original content.',
+                        'Record evidence for every change.', r'\label{obligations}']:
+            self.assertEqual(result.count(content), 1)
+        self.assertIn(r'\renewcommand{\arraystretch}{1.2}', result)
+
+    def test_unselected_tables_stay_byte_identical_and_drift_is_rejected(self):
+        from latex_build import layout_selected_table
+        self.assertEqual(layout_selected_table(self.table, 'another', (.28, .72)), self.table)
+        with self.assertRaises(ValueError):
+            layout_selected_table(self.table, 'obligations', (.2, .3, .5))
+        with self.assertRaises(ValueError):
+            layout_selected_table(self.table, 'obligations', (.5, .7))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -65,7 +65,7 @@ from the path, and reads the title metadata from each file.
 ```
 book/
   frontmatter/    0.0-acknowledgments.md … 0.5-preface.md (6 chapters)                              (Part 0 — Front Matter)
-  part1/          1.1-the-printer.md … 1.6-problem-summary.md (6 sections)                          (Part 1 — The New Engineering Problem)
+  part1/          1.1-the-printer.md … 1.5-the-new-engineering-problem.md (5 sections)                          (Part 1 — The New Engineering Problem)
   part2/          2.1-context-is-the-first-modeling-problem.md … 2.6-modeling-summary.md (7 chapters)  (Part 2 — Modeling)
   part3/          3.1-where-obligations-can-be-enforced.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
   part4/          4.1-the-dynamics-of-mage.md … 4.4-engineering-the-environment.md (4 chapters)     (Part 4 — MAGE in Motion: Engineering Through Models)

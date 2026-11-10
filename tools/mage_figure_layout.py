@@ -113,6 +113,41 @@ def reading_guide_columns(latex: str) -> str:
             r'\end{bookinlinefigure}\end{minipage}\par' + '\n')
 
 
+def reasoning_horizon_columns(latex: str) -> str:
+    """Place the compact comparison beside its ordinary closing prose.
+
+    The tagged book format cannot use wrapfig's paragraph hooks. This locally
+    aligned pair preserves body size, accessible artwork and caption numbering,
+    and refuses to span an inset or section heading.
+    """
+    start = '% <!-- print-columns-start: reasoning-horizon-fig -->'
+    end = '% <!-- print-columns-end: reasoning-horizon-fig -->'
+    if start not in latex and end not in latex:
+        return latex
+    if latex.count(start) != 1 or latex.count(end) != 1:
+        raise ValueError('Reasoning-horizon columns require one complete boundary')
+    before, body = latex.split(start, 1)
+    body, after = body.split(end, 1)
+    if re.search(r'\\(?:begin\{bookbox\}|(?:sub)*section\b|footnote\b)', body):
+        raise ValueError('Compact comparison cannot cross an inset or heading')
+    figures = list(re.finditer(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}', body, re.S))
+    if len(figures) != 1 or r'\label{reasoning-horizon-fig}' not in figures[0][0]:
+        raise ValueError('Compact comparison requires its single labeled figure')
+    figure = figures[0]
+    prose = (body[:figure.start()] + body[figure.end():]).strip()
+    artwork = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure[0])
+    artwork = artwork.removesuffix(r'\end{figure}')
+    from mage_cover import _text
+    receipt = json.loads((ROOT / 'book/tikz/receipts/reasoning-horizon.json').read_text())
+    alt = _text(receipt['alt'])
+    columns = (r'\noindent\begin{minipage}[t]{.50\linewidth}\vspace{0pt}'
+               r'\raggedright\setlength{\parskip}{.45\baselineskip}' + '\n' + prose + '\n' +
+               r'\end{minipage}\hfill\begin{minipage}[t]{.48\linewidth}\vspace{0pt}' + '\n' +
+               r'\begin{bookinlinefigure}{' + alt + '}' + artwork +
+               r'\end{bookinlinefigure}\end{minipage}\par' + '\n')
+    return before + columns + after
+
+
 def claims_spread(latex: str) -> str:
     """The approved claims and their diagram share one verso–recto section.
 

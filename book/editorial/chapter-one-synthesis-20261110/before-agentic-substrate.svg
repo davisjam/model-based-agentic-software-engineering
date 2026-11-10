@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="446" height="557" viewBox="-3 -3 446 557" role="img" aria-labelledby="title desc">
+<title id="title">Commodity intelligence and its engineered environment</title>
+<desc id="desc">Training data, including open-source code and other data, is used in pretraining and post-training to produce foundation-model weights. A deployed model provides four properties, each paired with an engineering implication, while the harness supplies tool action, context management, interposition and parallel execution. The agent changes an existing system. The engineered environment supplies guidance and governs selected actions and results. The engineer principally engineers and maintains that environment, with training or fine-tuning shown as an optional route.</desc>
+<rect x="-3" y="-3" width="446" height="557" fill="white"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>
+<style>text{font-family:"Source Sans 3",Arial,sans-serif;fill:#000}.edge{fill:none;stroke:#000;marker-end:url(#arrow);stroke-linejoin:miter}</style>
+<rect x="0" y="0" width="420" height="100" rx="3" fill="rgb(242,242,242)" stroke="#000" stroke-width="0.55"/>
+<rect x="0" y="122" width="420" height="205" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.85"/>
+<rect x="0" y="403" width="420" height="110" rx="3" fill="rgb(242,242,242)" stroke="#000" stroke-width="1.25"/>
+<text x="10" y="16.795" font-size="11.5" text-anchor="start" font-weight="700">MODEL DEVELOPMENT</text>
+<text x="10" y="31.3" font-size="10" text-anchor="start">General-purpose capabilities acquired through training</text>
+<rect x="10" y="39" width="166" height="53" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.65"/>
+<rect x="192" y="39" width="98" height="53" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.65"/>
+<rect x="306" y="39" width="104" height="53" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.65"/>
+<text x="93" y="52.465" font-size="10.5" text-anchor="middle" font-weight="700">Training data</text>
+<text x="93" y="64.3" font-size="10" text-anchor="middle">Open-source code</text>
+<text x="93" y="76.3" font-size="10" text-anchor="middle">Other text and code</text>
+<text x="93" y="88.3" font-size="10" text-anchor="middle">Additional training data</text>
+<text x="241" y="62.215" font-size="10.5" text-anchor="middle">Pretraining and</text>
+<text x="241" y="74.715" font-size="10.5" text-anchor="middle">post-training</text>
+<text x="358" y="62.215" font-size="10.5" text-anchor="middle">Foundation model</text>
+<text x="358" y="74.715" font-size="10.5" text-anchor="middle">(trained weights)</text>
+<path class="edge" d="M 176 65 L 192 65" stroke-width="0.7"/>
+<path class="edge" d="M 290 65 L 306 65" stroke-width="0.7"/>
+<rect x="10" y="150" width="273" height="166" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.55"/>
+<rect x="294" y="150" width="116" height="166" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.55"/>
+<text x="210" y="138.795" font-size="11.5" text-anchor="middle" font-weight="700">AGENTIC MACHINERY — THE ACTING AGENT</text>
+<text x="146.5" y="164.564" font-size="10.8" text-anchor="middle" font-weight="700">FOUNDATION MODEL</text>
+<text x="82" y="179.135" font-size="9.5" text-anchor="middle" font-style="italic">Property</text>
+<text x="226" y="179.135" font-size="9.5" text-anchor="middle" font-style="italic">Engineering implication</text>
+<text x="352" y="166.564" font-size="10.8" text-anchor="middle" font-weight="700">AGENTIC HARNESS</text>
+<text x="82" y="195.215" font-size="10.5" text-anchor="middle">Broad semantic</text>
+<text x="82" y="207.715" font-size="10.5" text-anchor="middle">reasoning</text>
+<path class="edge" d="M 151 198 L 170 198" stroke-width="0.5"/>
+<text x="226" y="195.215" font-size="10.5" text-anchor="middle">Delegated</text>
+<text x="226" y="207.715" font-size="10.5" text-anchor="middle">implementation</text>
+<text x="352" y="195.215" font-size="10.5" text-anchor="middle">Tool-mediated</text>
+<text x="352" y="207.715" font-size="10.5" text-anchor="middle">action</text>
+<text x="82" y="235.465" font-size="10.5" text-anchor="middle">Probabilistic output</text>
+<path class="edge" d="M 151 232 L 170 232" stroke-width="0.5"/>
+<text x="226" y="229.215" font-size="10.5" text-anchor="middle">Independent</text>
+<text x="226" y="241.715" font-size="10.5" text-anchor="middle">assurance</text>
+<text x="352" y="229.215" font-size="10.5" text-anchor="middle">Context</text>
+<text x="352" y="241.715" font-size="10.5" text-anchor="middle">management</text>
+<text x="82" y="263.215" font-size="10.5" text-anchor="middle">Bounded working</text>
+<text x="82" y="275.715" font-size="10.5" text-anchor="middle">state</text>
+<path class="edge" d="M 151 266 L 170 266" stroke-width="0.5"/>
+<text x="226" y="263.215" font-size="10.5" text-anchor="middle">External</text>
+<text x="226" y="275.715" font-size="10.5" text-anchor="middle">representations</text>
+<text x="352" y="269.465" font-size="10.5" text-anchor="middle">Interposition</text>
+<text x="82" y="297.215" font-size="10.5" text-anchor="middle">Inexpensive repeated</text>
+<text x="82" y="309.715" font-size="10.5" text-anchor="middle">reasoning</text>
+<path class="edge" d="M 151 300 L 170 300" stroke-width="0.5"/>
+<text x="226" y="297.215" font-size="10.5" text-anchor="middle">Scalable</text>
+<text x="226" y="309.715" font-size="10.5" text-anchor="middle">governance</text>
+<text x="352" y="297.215" font-size="10.5" text-anchor="middle">Parallel</text>
+<text x="352" y="309.715" font-size="10.5" text-anchor="middle">execution</text>
+<path class="edge" d="M 358 92 L 358 111 L 25 111 L 25 150" stroke-width="0.7"/>
+<text x="10" y="419.795" font-size="11.5" text-anchor="start" font-weight="700">ENGINEERED ENVIRONMENT</text>
+<text x="106" y="439.564" font-size="10.8" text-anchor="middle" font-weight="700">Existing system</text>
+<text x="106" y="451.135" font-size="9.5" text-anchor="middle" font-style="italic">System being changed</text>
+<text x="315" y="439.564" font-size="10.8" text-anchor="middle" font-weight="700">Engineering structure</text>
+<text x="106" y="464.366" font-size="10.2" text-anchor="middle">Codebase</text>
+<text x="106" y="477.366" font-size="10.2" text-anchor="middle">Architecture and design</text>
+<text x="106" y="490.366" font-size="10.2" text-anchor="middle">Documentation and configuration</text>
+<text x="106" y="503.366" font-size="10.2" text-anchor="middle">Tests and operational state</text>
+<text x="315" y="457.465" font-size="10.5" text-anchor="middle">Models and obligations</text>
+<text x="315" y="473.465" font-size="10.5" text-anchor="middle">Instructions and procedures</text>
+<text x="315" y="489.465" font-size="10.5" text-anchor="middle">Tools and permissions</text>
+<text x="315" y="505.465" font-size="10.5" text-anchor="middle">Evidence and controls</text>
+<path class="edge" d="M 35 327 L 35 403" stroke-width="0.7"/>
+<text x="94" y="360.3" font-size="10" text-anchor="middle">Actions and</text>
+<text x="94" y="372.3" font-size="10" text-anchor="middle">changes</text>
+<path class="edge" d="M 160 403 L 160 327" stroke-width="0.7"/>
+<text x="220" y="348.885" font-size="9.5" text-anchor="middle">Guidance</text>
+<text x="220" y="360.385" font-size="9.5" text-anchor="middle">Supplies system</text>
+<text x="220" y="371.885" font-size="9.5" text-anchor="middle">knowledge; influences</text>
+<text x="220" y="383.385" font-size="9.5" text-anchor="middle">reasoning</text>
+<path class="edge" d="M 290 403 L 290 327" stroke-width="0.85"/>
+<text x="358" y="348.885" font-size="9.5" text-anchor="middle">Governance</text>
+<text x="358" y="360.385" font-size="9.5" text-anchor="middle">Constrains actions;</text>
+<text x="358" y="371.885" font-size="9.5" text-anchor="middle">controls acceptance</text>
+<text x="358" y="383.385" font-size="9.5" text-anchor="middle">of selected results</text>
+<rect x="310" y="527" width="80" height="24" rx="3" fill="rgb(255,255,255)" stroke="#000" stroke-width="0.8"/>
+<text x="350" y="542.564" font-size="10.8" text-anchor="middle" font-weight="700">Engineer</text>
+<path class="edge" d="M 350 527 L 350 513" stroke-width="1.0"/>
+<text x="337" y="523.465" font-size="10.5" text-anchor="end">Engineers and maintains</text>
+<path class="edge" d="M 390 539 L 440 539 L 440 65 L 420 65" stroke-width="0.5" stroke-dasharray="3 2" style="stroke:#666"/>
+<text x="430" y="241.135" font-size="9.5" text-anchor="middle" transform="translate(430 238) rotate(-90) translate(-430 -238)">Model training or fine-tuning (when available)</text>
+</svg>

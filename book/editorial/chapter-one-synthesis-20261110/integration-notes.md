@@ -1,0 +1,15 @@
+# Chapter 1 synthesis and follow-up layout edits — 2026-11-10
+
+The author approved direct implementation and rebuilding. The pre-edit native sources, three figure assets and receipts, and their ledger rows are preserved with hashes in `manifest.json` and `review-entries-before.json`. Retired §1.6 retains its native source, asset map, and compatibility projection here; it is removed from the live source registry and identity model.
+
+The concluding sections now form one §1.5, “From the Engineering Problems to MAGE.” Five developed paragraphs connect the environment, the complementarity of Modeling and Alignment, the DocAble preservation example, engineering choices, and the wider argument. The two canonical problem definitions remain at their earned conclusions in §1.4. The reliability product model remains with probabilistic work and Enforcement. Its repeated derivation and callback in the former summary are retired, not relocated.
+
+The three revised monochrome drawings retain their stable source paths and labels. The machinery drawing keeps its three-region structure, routes training to the training process, names the governed engineering environment, and attaches governance to actions. The reasoning-horizon comparison removes deterministic churn/coherence outcomes and contrasts reconstruction with retrieval. The summary is a shallow two-row diagram rather than a chapter roadmap. Current receipts and review rows record the actual revised proofs; original reviews are preserved in this archive. Draft scene/generator files are provenance only, not new build dependencies.
+
+Table 1.1 uses 28/72 column proportions and local row spacing. The compact reasoning-horizon artwork sits beside its ordinary closing prose after the compaction inset. The tagged book format is incompatible with wrapfig paragraph hooks; the locally aligned columns use the established accessible inline-figure environment, retain body size, and cannot span an inset or heading. The summary artwork retains its native authored size and appears once as the revised native black-and-white figure, without a duplicate monochrome companion. No global font or table policy changes are introduced.
+
+The reading guide now begins “This reference section of the book contains…”. Its previous source is preserved as `reading-guide-before.tex`.
+
+Chapter 4 receives heading and copy edits without moving its material: “What Cheap Implementation Changes” begins after the adoption discussion; the amplification inset now points to §4.2 for Ousterhout; the SDD signpost is removed; maintenance opens by preserving engineering capital; “Portable Moves” becomes “Summary” while retaining its stable anchor. Exact replaced spans, original line ranges and revision are in `chapter-four-followups-retired.json`. The cycle and narrower process figures remain unchanged.
+
+Affected model declarations, redirects, and projections follow the revised prose. Validation and rendered-page inspection are recorded separately from the source disposition.

@@ -1,0 +1,25 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
+edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
+
+\node[n,fill=white,text width=8cm] (task) at (0,0) {\textbf{Relevant state cannot all remain active}\\Preserve what later decisions need};
+\node[n,fill=black!5,text width=8cm] (rep) at (0,-1.8) {\textbf{REPRESENTATION MATTERS}\\It determines how much must be reconstructed};
+\draw[edge] (task) -- (rep);
+\node[n,fill=white,text width=4.7cm,minimum height=1.2cm] (l0) at (-3.6,-3.7) {\textbf{Raw implementation as\\working substrate}};
+\node[n,fill=white,text width=4.7cm,minimum height=1.2cm] (r0) at (3.6,-3.7) {\textbf{Purposeful abstraction}};
+\draw[edge] (rep.south) -- (0,-2.6) -| (l0.north);
+\draw[edge] (0,-2.6) -| (r0.north);
+\foreach \id/\x/\y/\txt in {l1/-3.6/-5.2/{Large active state},l2/-3.6/-6.4/{Repeated reconstruction},l3/-3.6/-7.8/{Relevant structure\\may be lost},r1/3.6/-5.2/{Smaller relevant state},r2/3.6/-6.4/{Lower reconstruction burden}} {
+ \node[n,fill=white,text width=4.7cm] (\id) at (\x,\y) {\txt};}
+\node[n,fill=white,text width=4.7cm] (l4) at (-3.6,-9.2) {\textbf{Churn}};
+\node[n,fill=white,text width=4.7cm] (r3) at (3.6,-7.8) {\textbf{Longer coherent reasoning}};
+\foreach \a/\b in {l0/l1,l1/l2,l2/l3,l3/l4,r0/r1,r1/r2,r2/r3} {\draw[edge] (\a) -- (\b);}
+\node[head] at (0,-10.3) {THE CAUSAL SPINE};
+\node[note,draw,text width=3.2cm] (c0) at (-4.4,-11.2) {Finite active state};
+\node[note,draw,text width=3.2cm] (c1) at (0,-11.2) {State must remain\\available};
+\node[note,draw,text width=3.2cm] (c2) at (4.4,-11.2) {Representation determines burden};
+\draw[edge] (c0) -- (c1);\draw[edge] (c1) -- (c2);
+
+\end{tikzpicture}

@@ -1,119 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Fig 1.3-x REDRAW (part1-copyedit-260815; folds over book/assets/reasoning-horizon.svg).
-     GRAMMAR FIX: the hinge "the representation decides how much must be reconstructed" was floating text
-     under a fork arrow; it is now a real BRANCH NODE ("Representation matters") that the two branches
-     fork from. Hand-authored SVG (not Mermaid).
-       TOP  — relevant state cannot all remain active; preserve what later decisions need.
-       HINGE (rust branch node) — REPRESENTATION MATTERS: the representation determines the burden.
-       LEFT  — raw implementation as working substrate -> large active state -> repeated reconstruction
-               -> relevant structure may be lost -> CHURN.
-       RIGHT — purposeful abstraction -> smaller relevant state -> lower reconstruction burden
-               -> LONGER COHERENT REASONING.
-     Causal spine (strip at foot): finite active state -> state must remain available -> representation
-     determines burden. Palette: ink #1c1917, muted #57534e, cream #f6f4ef, rust #9a3f12/#fbeee6 (hinge),
-     churn #b23b3b/#fbeaea, governed green #1f7a4d/#e3f0e7, page #fdfcf9. Grayscale-survivable: every node
-     labelled; the fork and the top-to-bottom order carry the meaning; hue reinforces the terminals. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700"
-     role="img" aria-labelledby="rhTitle rhDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rhTitle">The reasoning horizon</title>
-  <desc id="rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
-    keep active. Information needed for later decisions must remain available through preservation and recovery. A branch node, representation matters, states that the
-    representation the reasoner works through determines how much of that state must be reconstructed. The
-    figure forks from that node. On the left, raw implementation as the working substrate carries a large
-    active state, forces repeated reconstruction, and easily loses relevant structure, ending in churn. On
-    the right, a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction
-    burden, and sustains longer coherent reasoning. A causal spine at the foot reads: finite active state,
-    state must remain available, representation determines burden.</desc>
-
-  <defs>
-    <marker id="rh-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
-
-  <!-- ===== shared top: the horizon condition ===== -->
-  <rect id="task" x="270" y="24" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="500" y="50" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Relevant state cannot all remain active</text>
-  <text x="500" y="72" text-anchor="middle" font-size="20" fill="#57534e">Preserve what later decisions need</text>
-
-  <!-- edge: task -> hinge -->
-  <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <!-- ===== HINGE: the branch node (rust) ===== -->
-  <rect id="hinge" x="260.16" y="108" width="479.67" height="64" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
-  <text x="500" y="135" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1" fill="#9a3f12">REPRESENTATION MATTERS</text>
-  <text x="500" y="157" text-anchor="middle" font-size="20" fill="#57534e">it determines how much must be reconstructed</text>
-
-  <!-- fork arrows from hinge node to the two branch heads (seated toward each head's centre) -->
-  <!-- edge: hinge -> raw-impl -->
-  <path fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)" d="M360,172 L360,206"/>
-  <!-- edge: hinge -> abstraction -->
-  <path fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)" d="M640,172 L640,206"/>
-
-  <!-- ================= LEFT BRANCH: raw implementation -> churn ================= -->
-  <rect id="raw-impl" x="90" y="208" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="250" y="232" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Raw implementation as</text>
-  <text x="250" y="253" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">working substrate</text>
-  <!-- edge: raw-impl -> large-active -->
-  <line x1="250" y1="264" x2="250" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="large-active" x="90" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="250" y="324" text-anchor="middle" font-size="20" fill="#1c1917">Large active state</text>
-  <!-- edge: large-active -> repeated-recon -->
-  <line x1="250" y1="342" x2="250" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="repeated-recon" x="90" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="250" y="402" text-anchor="middle" font-size="20" fill="#1c1917">Repeated reconstruction</text>
-  <!-- edge: repeated-recon -> structure-lost -->
-  <line x1="250" y1="420" x2="250" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="structure-lost" x="90" y="450" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="250" y="480" text-anchor="middle" font-size="20" fill="#1c1917">Relevant structure may be lost</text>
-  <!-- edge: structure-lost -> churn -->
-  <line x1="250" y1="498" x2="250" y2="526" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="churn" x="150" y="528" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="250" y="563" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">Churn</text>
-
-  <!-- ================= RIGHT BRANCH: purposeful abstraction -> longer coherent reasoning ============ -->
-  <rect id="abstraction" x="590" y="208" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="750" y="242" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Purposeful abstraction</text>
-  <!-- edge: abstraction -> smaller-state -->
-  <line x1="750" y1="264" x2="750" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="smaller-state" x="590" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="750" y="324" text-anchor="middle" font-size="20" fill="#1c1917">Smaller relevant state</text>
-  <!-- edge: smaller-state -> lower-burden -->
-  <line x1="750" y1="342" x2="750" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="lower-burden" x="590" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="750" y="402" text-anchor="middle" font-size="20" fill="#1c1917">Lower reconstruction burden</text>
-  <!-- edge: lower-burden -> longer-reasoning -->
-  <line x1="750" y1="420" x2="750" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
-
-  <rect id="longer-reasoning" x="620" y="450" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="750" y="475" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Longer coherent</text>
-  <text x="750" y="496" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">reasoning</text>
-
-  <!-- ===== causal spine (foot) ===== -->
-  <text x="90" y="626" font-size="20" font-weight="700" letter-spacing="1.5" fill="#57534e">THE CAUSAL SPINE</text>
-  <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.8">
-    <rect id="spine-fas" x="90" y="636" width="230" height="44" rx="9"/>
-    <rect id="spine-recon" x="345" y="636" width="280" height="44" rx="9"/>
-    <rect id="spine-rep" x="650" y="636" width="320" height="44" rx="9"/>
-  </g>
-  <text x="205" y="663" text-anchor="middle" font-size="20" fill="#1c1917">finite active state</text>
-  <text x="485" y="663" text-anchor="middle" font-size="20" fill="#1c1917">state must remain available</text>
-  <text x="810" y="654" text-anchor="middle" font-size="20" fill="#1c1917">representation</text>
-  <text x="810" y="674" text-anchor="middle" font-size="20" fill="#1c1917">determines burden</text>
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)">
-    <!-- edge: spine-fas -> spine-recon -->
-    <line x1="320" y1="658" x2="345" y2="658"/>
-    <!-- edge: spine-recon -> spine-rep -->
-    <line x1="625" y1="658" x2="650" y2="658"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="448.8" height="480.48" viewBox="0 0 448.8 480.48" role="img" aria-labelledby="title desc">
+<title id="title">Representation and the reasoning horizon</title>
+<desc id="desc">Finite working state makes representation matter. Two parallel paths compare raw code, which requires reconstructing relevant structure at higher reconstruction cost, with purposeful abstraction, which supports retrieval of relevant structure at lower reconstruction cost. The comparison describes burden, not guaranteed outcomes.</desc>
+<!-- Authored paired SVG/TikZ scene: compact peer geometry must preserve the half-width or summary slot. -->
+<defs><marker id="arrow" markerWidth="13.2" markerHeight="13.2" refX="11.44" refY="6.6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L11.44,6.6 L0,13.2 Z" fill="black"/></marker></defs>
+<rect width="448.8" height="480.48" fill="white"/>
+<style>text{font-family:"Source Sans 3",Arial,sans-serif;fill:black}</style>
+<g fill="black">
+<rect x="19.8" y="0.88" width="409.2" height="74.8" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="224.4" y="32.34" text-anchor="middle" font-size="22.0" font-weight="700">Finite working state</text>
+<text x="224.4" y="58.74" text-anchor="middle" font-size="22.0" font-weight="700">Representation matters</text>
+<rect x="0.88" y="149.6" width="206.8" height="77.0" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="104.28" y="195.36" text-anchor="middle" font-size="22.0" font-weight="700">Raw code</text>
+<rect x="241.12" y="149.6" width="206.8" height="77.0" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="344.52" y="182.16" text-anchor="middle" font-size="22.0" font-weight="700">Purposeful</text>
+<text x="344.52" y="208.56" text-anchor="middle" font-size="22.0" font-weight="700">abstraction</text>
+<rect x="0.88" y="272.8" width="206.8" height="79.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="104.28" y="306.46" text-anchor="middle" font-size="22.0" font-weight="400">Reconstruct</text>
+<text x="104.28" y="332.86" text-anchor="middle" font-size="22.0" font-weight="400">relevant structure</text>
+<rect x="241.12" y="272.8" width="206.8" height="79.2" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="344.52" y="306.46" text-anchor="middle" font-size="22.0" font-weight="400">Retrieve</text>
+<text x="344.52" y="332.86" text-anchor="middle" font-size="22.0" font-weight="400">relevant structure</text>
+<rect x="0.88" y="398.2" width="206.8" height="81.4" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="104.28" y="432.597" text-anchor="middle" font-size="20.9" font-weight="400">Higher</text>
+<text x="104.28" y="458.997" text-anchor="middle" font-size="20.9" font-weight="400">reconstruction cost</text>
+<rect x="241.12" y="398.2" width="206.8" height="81.4" rx="5.5" fill="white" stroke="black" stroke-width="1.43"/>
+<text x="344.52" y="432.597" text-anchor="middle" font-size="20.9" font-weight="400">Lower</text>
+<text x="344.52" y="458.997" text-anchor="middle" font-size="20.9" font-weight="400">reconstruction cost</text>
+<path d="M224.4,75.68 L224.4,108.68 L104.28,108.68 L104.28,149.6" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M224.4,108.68 L344.52,108.68 L344.52,149.6" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M104.28,226.6 L104.28,272.8" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M344.52,226.6 L344.52,272.8" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M104.28,352.0 L104.28,398.2" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+<path d="M344.52,352.0 L344.52,398.2" fill="none" stroke="black" stroke-width="1.43" marker-end="url(#arrow)"/>
+</g>
 </svg>

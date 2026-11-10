@@ -8,9 +8,9 @@
     "closings_failing": 0,
     "thesis_spine_mismatches": 0,
     "openings_implicit_thesis": 5,
-    "chapters_with_artifact": 15,
+    "chapters_with_artifact": 16,
     "chapters_concept_only": 2,
-    "delivers_neither": 1,
+    "delivers_neither": 0,
     "all_prose_would_benefit": 0
   },
   "taxonomy": {
@@ -181,7 +181,7 @@
           },
           {
             "type": "framework",
-            "name": "commodity intelligence and its engineered environment",
+            "name": "commodity intelligence and its Governed Engineering Environment",
             "anchor": "agentic-substrate"
           }
         ],
@@ -191,33 +191,6 @@
       "spine_advances": [
         "modeling-principle",
         "alignment-principle"
-      ]
-    },
-    {
-      "slug": "why-mage-follows-from-the-machine",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "both"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "note": "Synthesis opens with selective complementarity rather than re-deriving the two problems. Modeling may remain advisory, and permissions or resource limits can enforce obligations without an elaborate system model. The DocAble content-preservation example and substrate-to-method figure remain; the definitions and canonical index markers now occur at the conclusions of the horizon and enforcement discussions in §1.4.",
-      "opening_anchor": "Modeling and Alignment complement one another.",
-      "closing_anchor": "considers its implications beyond software.",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle",
-        "alignment-principle",
-        "principles-treat-the-causes",
-        "three-not-knowings-cause-churn"
       ]
     },
     {
@@ -793,6 +766,39 @@
       ]
     },
     {
+      "slug": "why-mage-follows-from-the-machine",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "both"
+      },
+      "closing": {
+        "kind": "synthesis"
+      },
+      "note": "The merged chapter conclusion develops informed control through the larger engineered system, selective complementarity of Modeling and Alignment, and the DocAble extracted-content representation, validator, and completion rule. Four substantial explanatory paragraphs lead to the cross-domain scope and chapter roadmap; the compact substrate-to-method figure summarizes the primary motivations. The former separate Summary is absorbed. Canonical Representation and Enforcement Problem definitions remain at their earned locations in §1.4; the product-reliability calculation continues to support Enforcement only.",
+      "opening_anchor": "The preceding discussion suggests a different unit of analysis for agentic software",
+      "closing_anchor": "develops the theoretical argument, while Chapter 7 considers its implications beyond software.",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the compact synthesis from agentic machinery to MAGE",
+            "anchor": "substrate-to-method"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes",
+        "three-not-knowings-cause-churn"
+      ]
+    },
+    {
       "slug": "how-to-read-this-book",
       "opening": {
         "failure_question": "implicit",
@@ -803,9 +809,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Apparatus / navigation. Opens by laying out the six Parts in their deliberate argument order (Modeling before Alignment is a principled progression — representation then authority — not a dependency) and the three shorter routes; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately.",
-      "opening_anchor": "The six Parts follow the method's argument in a deliberate order. Part",
-      "closing_anchor": "the appendices are intended to work as a reference while you build.",
+      "note": "Reference navigation: inventories the six claims, their connecting diagram, and glossary; distinguishes first reading from lookup, explains the chapter sequence, and supplies four shorter reading routes. The compact book map is a navigational framework rather than a substantive thesis.",
+      "opening_anchor": "This reference section of the book contains a summary of its six",
+      "closing_anchor": "**Adopt it in an organization:** Chapter 1 → §5.3 → [appendix: appendix-practicing-mage].",
       "delivers": {
         "concepts": [],
         "artifacts": [
@@ -828,17 +834,12 @@
         "missing": [
           "thesis-link"
         ],
-        "note": "Apparatus / navigation. Opens by laying out the six Parts in their deliberate argument order (Modeling before Alignment is a principled progression — representation then authority — not a dependency) and the three shorter routes; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately."
+        "note": "Reference navigation: inventories the six claims, their connecting diagram, and glossary; distinguishes first reading from lookup, explains the chapter sequence, and supplies four shorter reading routes. The compact book map is a navigational framework rather than a substantive thesis."
       }
     ],
     "failing_closings": [],
     "thesis_spine_mismatches": [],
-    "delivers_neither": [
-      {
-        "chapter": "why-mage-follows-from-the-machine",
-        "note": "Synthesis opens with selective complementarity rather than re-deriving the two problems. Modeling may remain advisory, and permissions or resource limits can enforce obligations without an elaborate system model. The DocAble content-preservation example and substrate-to-method figure remain; the definitions and canonical index markers now occur at the conclusions of the horizon and enforcement discussions in §1.4."
-      }
-    ],
+    "delivers_neither": [],
     "all_prose_would_benefit": []
   }
 }

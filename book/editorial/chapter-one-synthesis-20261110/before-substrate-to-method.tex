@@ -1,0 +1,22 @@
+\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
+n/.style={draw,rounded corners=3pt,fill=white,align=center,inner xsep=3pt,inner ysep=5pt,minimum height=.72cm},
+state/.style={n,ellipse,rounded corners=0pt},
+strong/.style={n,line width=1pt,fill=black!7},
+note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
+head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
+edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
+\node[n,text width=4.1cm,minimum height=2cm] (n00) at (0.0,0.0) {Finite working state};
+\node[n,text width=4.1cm,fill=white,minimum height=2cm] (n01) at (5.0,0.0) {\textbf{Representation\\problem}};
+\draw[edge] (n00) -- (n01);
+\node[strong,text width=4.1cm,fill=black!7,minimum height=2cm] (n02) at (10.0,0.0) {\textbf{Modeling}\\\magebookref{part:2}{Chapter 2}\\Compact relevant\\properties};
+\draw[edge] (n01) -- (n02);
+\node[n,text width=4.1cm,minimum height=2cm] (n10) at (0.0,-2.5) {Probabilistic productive\\work\\Observable, interposable\\seams};
+\node[n,text width=4.1cm,fill=white,minimum height=2cm] (n11) at (5.0,-2.5) {\textbf{Enforcement problem}};
+\draw[edge] (n10) -- (n11);
+\node[strong,text width=4.1cm,fill=black!7,minimum height=2cm] (n12) at (10.0,-2.5) {\textbf{Alignment}\\\magebookref{part:3}{Chapter 3}\\Enforce selected\\obligations};
+\draw[edge] (n11) -- (n12);
+\node[head,text width=4.1cm] (h0) at (0.0,1.4) {SUBSTRATE TRAIT};
+\node[head,text width=4.1cm] (h1) at (5.0,1.4) {PROBLEM};
+\node[head,text width=4.1cm] (h2) at (10.0,1.4) {METHOD};
+\node[note,text width=14cm] at (4.7,-4.3) {\textit{\magebookref{part:1}{Chapter 1} derives the two core activities;\\\magebookref{part:4}{Chapter 4} puts them in motion as the MAGE method.}};
+\end{tikzpicture}
