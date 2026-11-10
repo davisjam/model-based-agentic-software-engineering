@@ -595,8 +595,9 @@ def _prepare_record(task):
         asset = ROOT / f'book/assets/nav-subway-p{part}.svg'
         asset_pdf = ROOT / f'book/latex/assets/nav-subway-p{part}.pdf'
         render_svg_cached(asset, asset_pdf)
-        vocab = json.loads((ROOT / 'book-models/nav-model.json').read_text())['parts'][str(part)]
         orientation = r'\chapter*{' + inline(f'Chapter {part}: ' + record['part_title']) + '}\\label{part:' + str(part) + '}\n'
+        orientation += r'\phantomsection\label{chapter:' + slug + '}\n'
+        orientation += r'\addcontentsline{toc}{chapter}{' + inline(record['chapter_title']) + '}\n'
         orientation += r'\includegraphics[width=\linewidth,alt={Book chapter navigation}]{' + str(asset_pdf.relative_to(ROOT)) + '}\n\\par\\medskip\n'
         orientation += r'\textbf{' + inline(bb._PART_OPENER_QUESTION_LABEL.upper()) + '}\\par\n' + inline(bb._PART_OPENER_QUESTIONS[part]) + '\n\\par\\medskip\n'
         principle = re.search(r'(?m)^<!-- principlebox -->.*?^(>[^\n]*(?:\n>[^\n]*)*)', raw, re.S)
@@ -605,10 +606,13 @@ def _prepare_record(task):
                 orientation += r'\phantomsection\label{' + anchor + '}\n'
             quote = re.sub(r'^> ?', '', principle[1], flags=re.M)
             title, _, body = quote.partition('\n')
-            orientation += r'\begin{bookbox}{principle}{' + inline(title.lstrip('# ')) + '}\n' + inline(body) + '\n' + r'\end{bookbox}' + '\n'
+            heading = re.fullmatch(r'#+\s+(.+?)(?:\s+\{#([^}]+)\})?', title)
+            if not heading or heading[1] != bb._PART_OPENER_IDEAS_LABEL:
+                raise ValueError(f'{slug}: expected {bb._PART_OPENER_IDEAS_LABEL} opener heading')
+            if heading[2]:
+                orientation += r'\phantomsection\label{' + slug + ':heading:' + heading[2] + '}\n'
+            orientation += r'\begin{bookbox}{' + inline(bb._PART_OPENER_IDEAS_LABEL) + '}{}\n' + inline(body) + '\n' + r'\end{bookbox}' + '\n'
             raw = raw[:principle.start()] + raw[principle.end():]
-        for label, field in [('Carrying forward','carrying_forward'),('New here','new_here_vocab')]:
-            if vocab.get(field): orientation += '\n\\par\\medskip\n' + r'\textbf{' + label.upper() + '}\\par\n' + inline(' · '.join(vocab[field])) + '\n'
         orientation += '\n% mage-orientation-end\n'
     raw = bb.apply_token_passes(raw)
     raw = re.sub(r'\[\[([^]|]+)(?:\|([^]]+))?\]\]', lambda m: '[' + (m[2] or m[1]) + '](../ABSTRACTIONS.html#' + m[1] + ')', raw)
@@ -660,7 +664,11 @@ def _prepare_record(task):
     latex = namespace_heading_links(latex, slug)
     # Each record retains its explicit chapter title and a unique chapter anchor.
     latex = latex.replace('\\chapter{', '\\chapter*{', 1)
-    latex = latex.replace('\\chapter*{' + inline(record['chapter_title']) + '}', '\\chapter*{' + inline(record['chapter_title']) + '}\n\\phantomsection\\label{chapter:' + slug + '}\n\\addcontentsline{toc}{chapter}{' + inline(record['chapter_title']) + '}', 1)
+    chapter_heading = '\\chapter*{' + inline(record['chapter_title']) + '}'
+    # A chapter opener already carries its title and navigation destination.
+    # Continue directly into its prose, without a second title or page break.
+    replacement = '' if record.get('is_part_page') else chapter_heading + '\n\\phantomsection\\label{chapter:' + slug + '}\n\\addcontentsline{toc}{chapter}{' + inline(record['chapter_title']) + '}'
+    latex = latex.replace(chapter_heading, replacement, 1)
     if not record.get('is_part_page') and not record.get('is_matter') and not record.get('_group_start'):
         latex = re.sub(r'\\(sub)*section(?=[{*])', lambda m: r'\subsubsection' if m[1] else r'\subsection', latex)
         prefix = f"{record['part']}.{record['chapter']} " if 0 < record['part'] < 9 and record.get('chapter',0) else ''

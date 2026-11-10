@@ -16,9 +16,9 @@ Selected obligations can instead be encoded into the engineered environment. Som
 
 <!-- index-def: alignment-principle -->
 
-> ### Alignment principle
+> ### Key Ideas {#alignment-principle}
 >
-> Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
+> **Alignment Principle.** Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
 
 A direct constraint may be sufficient; other obligations require evidence and a gate that acts on it. Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. {{chapter:modeling}}'s tolerances and degrees of freedom also distinguish obligations from variation that engineering deliberately leaves open. The sections ahead develop how to choose among these possibilities.
 

@@ -12,12 +12,8 @@ This final chapter considers what follows for the profession. It begins with the
 
 <!-- box-family: canonical -->
 
-> ### The synthesis
+> ### Key Ideas {#the-synthesis}
 >
 > When implementation becomes abundant, software engineering does not disappear. Its scarce work moves. Engineers can delegate more realization while remaining responsible for the resulting system. Their work increasingly centers on retaining informed control: deciding what must be true, choosing representations that make consequential properties understandable, establishing evidence, allocating authority, coordinating autonomous work, and accepting consequential tradeoffs.
 >
 > The same account suggests a broader engineering problem: how people retain informed control when agents perform consequential engineering work in domains whose representations, evidence, and means of enforcement differ from software.
-
-**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Degrees of freedom
-
-**New here:** Representation engineering · Agentic engineering beyond software · Full-system engineering · Professional responsibility

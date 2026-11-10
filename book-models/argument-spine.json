@@ -7,14 +7,14 @@
     "chapters_exempt": 11,
     "advancement_edges": 87,
     "feeds_edges": 1,
-    "reconciled_claims": 21,
+    "reconciled_claims": 19,
     "reconciled_big_ideas": 6,
     "zero_claim_suspects": 0,
-    "over_cap_unfocused": 2,
+    "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
     "overmapped_claims": 2,
-    "claims_exempt": 5,
+    "claims_exempt": 3,
     "claims_stale": 0,
     "quantifiable_claims": 9,
     "reality_claims": 10,
@@ -143,60 +143,59 @@
     {
       "id": "churn-is-the-limit",
       "order": 4,
-      "statement": "Ungoverned, the project decays into churn: an increasing share of effort goes to rediscovering context, undoing recent work, and reconciling inconsistencies rather than advancing the system.",
+      "statement": "Additional agentic capacity can multiply churn, intervention, or escaped failure when the inherited engineering environment poorly supports the work.",
       "seeds": [
         3
       ],
       "reconciles_claims": [
-        "fleet-scaling-bounds"
+        "three-not-knowings"
       ],
       "reconciles_big_ideas": [
         "churn"
       ],
       "reconciles_argues_claims": [],
       "feeds": [],
-      "exempt": "front-loaded-by-design",
-      "reviewed_hash": "d1e8982b2cc0",
+      "exempt": null,
+      "reviewed_hash": "08a72b39d17a",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "share of effort on rediscovery, undo, and reconciliation versus advancing the system",
-      "word_count": 26,
-      "statement_hash": "d1e8982b2cc0",
+      "word_count": 19,
+      "statement_hash": "08a72b39d17a",
       "advanced_by": [
-        "0.5-preface",
-        "1.1-the-printer"
+        "6.2-what-the-theory-predicts"
       ],
-      "body_depth": 0,
-      "front_loaded": true,
+      "body_depth": 1,
+      "front_loaded": false,
       "overmapped": false,
       "fresh": true
     },
     {
       "id": "three-not-knowings-cause-churn",
       "order": 5,
-      "statement": "Churn is a symptom; its causes are exactly three not-knowings — what to build, how to realize it, how to change safely.",
+      "statement": "Weak representation forces repeated reconstruction; inadequate evidence or enforcement leaves consequential obligations dependent on repeated judgment.",
       "seeds": [
         3
       ],
       "reconciles_claims": [
-        "churn-is-symptom",
         "three-not-knowings"
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
       "feeds": [],
-      "exempt": "front-loaded-by-design",
-      "reviewed_hash": "0723642b2b10",
+      "exempt": null,
+      "reviewed_hash": "054100a51e08",
       "quantifiable": false,
       "reality_claim": false,
       "measurand": "",
-      "word_count": 22,
-      "statement_hash": "0723642b2b10",
+      "word_count": 16,
+      "statement_hash": "054100a51e08",
       "advanced_by": [
-        "0.5-preface"
+        "1.4-the-new-engineering-problem",
+        "6.1-toward-a-theory-of-mage"
       ],
-      "body_depth": 0,
-      "front_loaded": true,
+      "body_depth": 1,
+      "front_loaded": false,
       "overmapped": false,
       "fresh": true
     },
@@ -579,8 +578,6 @@
         "abundant-implementation",
         "fault-lies-in-instructions",
         "oversight-does-not-scale",
-        "churn-is-the-limit",
-        "three-not-knowings-cause-churn",
         "govern-the-environment",
         "modeling-principle",
         "alignment-principle",
@@ -595,8 +592,7 @@
       "slug": "1.1-the-printer",
       "advances": [
         "abundant-implementation",
-        "fault-lies-in-instructions",
-        "churn-is-the-limit"
+        "fault-lies-in-instructions"
       ],
       "exempt": null
     },
@@ -624,7 +620,8 @@
       "advances": [
         "modeling-principle",
         "alignment-principle",
-        "principles-treat-the-causes"
+        "principles-treat-the-causes",
+        "three-not-knowings-cause-churn"
       ],
       "exempt": null
     },
@@ -774,7 +771,8 @@
     {
       "slug": "6.1-toward-a-theory-of-mage",
       "advances": [
-        "conversions-compound"
+        "conversions-compound",
+        "three-not-knowings-cause-churn"
       ],
       "exempt": null
     },
@@ -782,7 +780,8 @@
       "slug": "6.2-what-the-theory-predicts",
       "advances": [
         "grounded-in-one-case",
-        "conversions-compound"
+        "conversions-compound",
+        "churn-is-the-limit"
       ],
       "exempt": null
     },
@@ -854,6 +853,16 @@
   "flags": {
     "zero_claim_suspects": [],
     "over_cap_unfocused": [
+      {
+        "chapter": "1.4-the-new-engineering-problem",
+        "advances": 4,
+        "spine_ids": [
+          "modeling-principle",
+          "alignment-principle",
+          "principles-treat-the-causes",
+          "three-not-knowings-cause-churn"
+        ]
+      },
       {
         "chapter": "4.4-engineering-the-environment",
         "advances": 4,

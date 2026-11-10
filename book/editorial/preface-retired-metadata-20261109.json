@@ -1,0 +1,197 @@
+{
+  "_note": "Exact prior metadata preserved during the approved 2026-11-09 Preface shortening. This is an editorial archive, not an active semantic-model declaration. Historical IDs retained in active spine rows are join keys, not endorsements of their former wording.",
+  "date": "2026-11-09",
+  "reason": "The new Preface removes the-new-bottleneck, the-originating-system, evidence-and-scope, and the research-arc figure. Current chapter prose governs the migrated declarations.",
+  "retired_claims": {
+    "source": "book-models/claims_declared.json",
+    "rows": [
+      {
+        "id": "churn-is-symptom",
+        "kind": "distinction",
+        "statement": "Churn is the symptom; its causes are the three not-knowings, and every technique attacks a cause.",
+        "distinguishes": [
+          "churn — the symptom",
+          "the three not-knowings — the causes"
+        ],
+        "home": "the-new-bottleneck",
+        "asserted_at": [
+          "the-new-bottleneck"
+        ],
+        "contradicted_by": "Treating churn as the root problem to fix directly, or a technique aimed at the symptom rather than a cause.",
+        "watch_phrases": [],
+        "relates_to": [
+          "big-idea:churn"
+        ],
+        "provenance": "stated",
+        "anchor": "Preface premise: churn is the symptom; the causes are the three not-knowings, and each technique attacks a cause."
+      },
+      {
+        "id": "fleet-scaling-bounds",
+        "kind": "distinction",
+        "statement": "The fleet is bounded by reasoning power and context window, not Brooks's N² communication overhead.",
+        "distinguishes": [
+          "reasoning power and context window — the real bounds",
+          "Brooks N² communication overhead"
+        ],
+        "home": "the-new-bottleneck",
+        "asserted_at": [
+          "the-new-bottleneck",
+          "reorganization-of-se"
+        ],
+        "contradicted_by": "Blaming coordination / communication overhead; OR treating the context window as the sole bound, ignoring reasoning capacity.",
+        "watch_phrases": [
+          "scaling limit is the context window"
+        ],
+        "relates_to": [
+          "big-idea:churn"
+        ],
+        "provenance": "stated",
+        "anchor": "Preface premise + 6.0: the fleet hits churn, not Brooks's N² wall; both reasoning capacity and the context window are engineered against."
+      }
+    ]
+  },
+  "rehomed_claims_before": {
+    "source": "book-models/claims_declared.json",
+    "rows": [
+      {
+        "id": "three-not-knowings",
+        "kind": "scope-boundary",
+        "statement": "Churn's recurring causes are weak representation (knowledge rediscovered) and weak enforcement (obligations re-inspected).",
+        "distinguishes": [],
+        "home": "the-new-bottleneck",
+        "asserted_at": [
+          "the-new-bottleneck"
+        ],
+        "contradicted_by": "Enumerating a fixed count of churn causes unrelated to weak representation or weak enforcement.",
+        "watch_phrases": [],
+        "relates_to": [
+          "big-idea:churn"
+        ],
+        "provenance": "stated",
+        "anchor": "Preface 'What changed': churn is what happens when knowledge or obligations must be paid for again — weak representation forces rediscovery, weak enforcement forces repeated inspection."
+      },
+      {
+        "id": "grounding-case-not-proof",
+        "kind": "stance",
+        "statement": "Part 5 is the grounding case the method was derived from, never its proof.",
+        "distinguishes": [],
+        "home": "the-originating-system",
+        "asserted_at": [
+          "the-originating-system"
+        ],
+        "contradicted_by": "Prose presenting Part 5 or DocAble as proof of the method or its principles — 'the proof', 'proves the method' — rather than as the grounding case / worked case / evidence base.",
+        "watch_phrases": [
+          "is the proof",
+          "proves the method"
+        ],
+        "relates_to": [],
+        "provenance": "stated",
+        "anchor": "Preface caution: 'This is a single-case field report … read it as an observation from that case rather than a measured law.'"
+      }
+    ]
+  },
+  "reconciled_spine_before": {
+    "source": "book-models/argument_spine_declared.json",
+    "rows": [
+      {
+        "id": "churn-is-the-limit",
+        "order": 4,
+        "statement": "Ungoverned, the project decays into churn: an increasing share of effort goes to rediscovering context, undoing recent work, and reconciling inconsistencies rather than advancing the system.",
+        "seeds": [
+          3
+        ],
+        "reconciles": {
+          "claims": [
+            "fleet-scaling-bounds"
+          ],
+          "big_ideas": [
+            "churn"
+          ]
+        },
+        "reviewed_hash": "d1e8982b2cc0",
+        "quantifiable": true,
+        "reality_claim": true,
+        "measurand": "share of effort on rediscovery, undo, and reconciliation versus advancing the system"
+      },
+      {
+        "id": "three-not-knowings-cause-churn",
+        "order": 5,
+        "statement": "Churn is a symptom; its causes are exactly three not-knowings — what to build, how to realize it, how to change safely.",
+        "seeds": [
+          3
+        ],
+        "reconciles": {
+          "claims": [
+            "churn-is-symptom",
+            "three-not-knowings"
+          ],
+          "big_ideas": []
+        },
+        "reviewed_hash": "0723642b2b10",
+        "quantifiable": false,
+        "reality_claim": false
+      }
+    ]
+  },
+  "chapter_advances_before": {
+    "source": "book-models/argument_spine_declared.json",
+    "rows": {
+      "preface": [
+        "abundant-implementation",
+        "fault-lies-in-instructions",
+        "oversight-does-not-scale",
+        "churn-is-the-limit",
+        "three-not-knowings-cause-churn",
+        "govern-the-environment",
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes",
+        "failures-become-machinery",
+        "mage-becomes-practical",
+        "grounded-in-one-case"
+      ],
+      "the-printer": [
+        "abundant-implementation",
+        "fault-lies-in-instructions",
+        "churn-is-the-limit"
+      ],
+      "why-mage-follows-from-the-machine": [
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes"
+      ],
+      "toward-a-theory-of-mage": [
+        "conversions-compound"
+      ],
+      "what-the-theory-predicts": [
+        "grounded-in-one-case",
+        "conversions-compound"
+      ]
+    }
+  },
+  "removed_claim_exemptions": {
+    "source": "book-models/argument_spine_declared.json",
+    "rows": {
+      "churn-is-the-limit": "front-loaded-by-design",
+      "three-not-knowings-cause-churn": "front-loaded-by-design"
+    }
+  },
+  "removed_caption_tiers": {
+    "source": "book-models/figure-caption-tiers.json",
+    "rows": {
+      "assets/research-arc.svg": {
+        "tier": "B",
+        "kind": "methodology",
+        "location": "frontmatter",
+        "rationale": "the research arc — the book's evidence procedure from one case to the refined theory; the enlarged figure carries the sequence, the trimmed caption supports it"
+      }
+    }
+  },
+  "reconciliation": {
+    "churn-is-symptom": "Retired: the fixed three-not-knowings formulation is absent from current prose and disagrees with the surviving representation/enforcement account.",
+    "fleet-scaling-bounds": "Retired: the claim excluding coordination limits has no faithful current home; Chapter 7 explicitly treats coordination as engineering work.",
+    "churn-is-the-limit": "Historical spine ID retained for P4: added capacity can amplify an environment that poorly supports the work.",
+    "three-not-knowings-cause-churn": "Historical spine ID retained for the two-problems and dynamic-model diagnosis; the statement no longer asserts an exact count.",
+    "research-arc": "The figure was removed from the Preface; the caption tier is archived with it."
+  }
+}

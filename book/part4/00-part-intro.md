@@ -8,7 +8,7 @@ Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeli
 
 <!-- box-family: canonical -->
 
-> ### The MAGE cycle
+> ### Key Ideas {#the-mage-cycle}
 >
 > Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.
 >

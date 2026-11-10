@@ -230,6 +230,17 @@ Build normally with `python3 book/build_book.py --pdf`. The generated
 black-and-white figures. Do not edit generated chapters or remove color source assets;
 the web build continues to use them.
 
+### Chapter openings
+
+Each of the seven chapters opens with its title, one approved black-and-white
+navigation map, the chapter question, and a **Key Ideas** box. Chapters 2 and 3
+retain the named Modeling Principle and Alignment Principle inside that box.
+Introductory prose follows directly, without repeating the chapter title or
+adding an Introduction heading. Vocabulary bands are omitted; their source
+inventory remains available to other consumers. Verify that the question and
+Key Ideas stay together at normal body size and that chapter links and contents
+entries still point to the opening page.
+
 ### Figure scale and placement
 
 The letter-sized MAGE edition uses 11-point Source Serif 4 with 13.6-point line

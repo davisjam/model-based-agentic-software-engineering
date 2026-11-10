@@ -96,8 +96,8 @@
     ],
     "site_home": "N/A",
     "derived_from": "book/_design/book-editorial-discipline-directive-260802.md#the-churn-definition",
-    "book_home": "preface#idx-def-churn",
-    "book_home_owed": {"section": "Front Matter — Preface", "status": "landed", "note": "Landed: the churn inset in the preface premise carries the index-def tag and renders as the light def-inset. Book-only by design; the landing realizes churn as the bi-churn Big-Idea slot."},
+    "book_home": "the-books-language#idx-def-churn",
+    "book_home_owed": {"section": "Front Matter — Glossary, Software Agents", "status": "landed", "note": "The Churn glossary entry carries the index-def tag. The shortened Preface introduces the problem without repeating this definition; Chapter 1 develops reasoning horizons and churn. The landing realizes churn as the bi-churn Big-Idea slot."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },

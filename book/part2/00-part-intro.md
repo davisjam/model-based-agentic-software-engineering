@@ -10,9 +10,9 @@ Explicit models cost work to create, maintain, and keep consistent with a changi
 
 <!-- box-family: canonical -->
 
-> ### Modeling principle
+> ### Key Ideas {#modeling-principle}
 >
-> Externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through.
+> **Modeling Principle.** Externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through.
 >
 > Appropriate representations make broader engineering questions tractable and make additional properties available for Alignment.
 

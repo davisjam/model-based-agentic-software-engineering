@@ -58,19 +58,19 @@
     {
       "id": "churn-is-the-limit",
       "order": 4,
-      "statement": "Ungoverned, the project decays into churn: an increasing share of effort goes to rediscovering context, undoing recent work, and reconciling inconsistencies rather than advancing the system.",
+      "statement": "Additional agentic capacity can multiply churn, intervention, or escaped failure when the inherited engineering environment poorly supports the work.",
       "seeds": [
         3
       ],
       "reconciles": {
         "claims": [
-          "fleet-scaling-bounds"
+          "three-not-knowings"
         ],
         "big_ideas": [
           "churn"
         ]
       },
-      "reviewed_hash": "d1e8982b2cc0",
+      "reviewed_hash": "08a72b39d17a",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "share of effort on rediscovery, undo, and reconciliation versus advancing the system"
@@ -78,18 +78,17 @@
     {
       "id": "three-not-knowings-cause-churn",
       "order": 5,
-      "statement": "Churn is a symptom; its causes are exactly three not-knowings — what to build, how to realize it, how to change safely.",
+      "statement": "Weak representation forces repeated reconstruction; inadequate evidence or enforcement leaves consequential obligations dependent on repeated judgment.",
       "seeds": [
         3
       ],
       "reconciles": {
         "claims": [
-          "churn-is-symptom",
           "three-not-knowings"
         ],
         "big_ideas": []
       },
-      "reviewed_hash": "0723642b2b10",
+      "reviewed_hash": "054100a51e08",
       "quantifiable": false,
       "reality_claim": false
     },
@@ -304,8 +303,6 @@
   "claim_exemptions": {
     "abundant-implementation": "front-loaded-by-design",
     "fault-lies-in-instructions": "front-loaded-by-design",
-    "churn-is-the-limit": "front-loaded-by-design",
-    "three-not-knowings-cause-churn": "front-loaded-by-design",
     "principles-treat-the-causes": "bridge"
   },
   "chapter_exemptions": {
@@ -326,8 +323,6 @@
       "abundant-implementation",
       "fault-lies-in-instructions",
       "oversight-does-not-scale",
-      "churn-is-the-limit",
-      "three-not-knowings-cause-churn",
       "govern-the-environment",
       "modeling-principle",
       "alignment-principle",
@@ -340,8 +335,7 @@
     "acknowledgments": [],
     "the-printer": [
       "abundant-implementation",
-      "fault-lies-in-instructions",
-      "churn-is-the-limit"
+      "fault-lies-in-instructions"
     ],
     "mage-by-example": [
       "abundant-implementation",
@@ -357,7 +351,8 @@
     "why-mage-follows-from-the-machine": [
       "modeling-principle",
       "alignment-principle",
-      "principles-treat-the-causes"
+      "principles-treat-the-causes",
+      "three-not-knowings-cause-churn"
     ],
     "the-agent-stack": [
       "alignment-principle",
@@ -409,7 +404,8 @@
       "govern-the-environment"
     ],
     "toward-a-theory-of-mage": [
-      "conversions-compound"
+      "conversions-compound",
+      "three-not-knowings-cause-churn"
     ],
     "reorganization-of-se": [
       "oversight-does-not-scale",
@@ -459,7 +455,8 @@
     ],
     "what-the-theory-predicts": [
       "grounded-in-one-case",
-      "conversions-compound"
+      "conversions-compound",
+      "churn-is-the-limit"
     ],
     "research-agenda": [
       "grounded-in-one-case"

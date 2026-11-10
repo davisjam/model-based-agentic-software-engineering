@@ -65,56 +65,15 @@
       "anchor": "Preface Lineage: models 'earn their keep twice.' 3.1 and 2.2 develop both the context and the quality wins."
     },
     {
-      "id": "churn-is-symptom",
-      "kind": "distinction",
-      "statement": "Churn is the symptom; its causes are the three not-knowings, and every technique attacks a cause.",
-      "distinguishes": [
-        "churn — the symptom",
-        "the three not-knowings — the causes"
-      ],
-      "home": "the-new-bottleneck",
-      "asserted_at": [
-        "the-new-bottleneck"
-      ],
-      "contradicted_by": "Treating churn as the root problem to fix directly, or a technique aimed at the symptom rather than a cause.",
-      "watch_phrases": [],
-      "relates_to": [
-        "big-idea:churn"
-      ],
-      "provenance": "stated",
-      "anchor": "Preface premise: churn is the symptom; the causes are the three not-knowings, and each technique attacks a cause."
-    },
-    {
-      "id": "fleet-scaling-bounds",
-      "kind": "distinction",
-      "statement": "The fleet is bounded by reasoning power and context window, not Brooks's N² communication overhead.",
-      "distinguishes": [
-        "reasoning power and context window — the real bounds",
-        "Brooks N² communication overhead"
-      ],
-      "home": "the-new-bottleneck",
-      "asserted_at": [
-        "the-new-bottleneck",
-        "reorganization-of-se"
-      ],
-      "contradicted_by": "Blaming coordination / communication overhead; OR treating the context window as the sole bound, ignoring reasoning capacity.",
-      "watch_phrases": [
-        "scaling limit is the context window"
-      ],
-      "relates_to": [
-        "big-idea:churn"
-      ],
-      "provenance": "stated",
-      "anchor": "Preface premise + 6.0: the fleet hits churn, not Brooks's N² wall; both reasoning capacity and the context window are engineered against."
-    },
-    {
       "id": "three-not-knowings",
       "kind": "scope-boundary",
       "statement": "Churn's recurring causes are weak representation (knowledge rediscovered) and weak enforcement (obligations re-inspected).",
       "distinguishes": [],
-      "home": "the-new-bottleneck",
+      "home": "the-two-problems-in-software",
       "asserted_at": [
-        "the-new-bottleneck"
+        "the-two-problems-in-software",
+        "the-inherited-engineering-environment",
+        "p4-governable-acceleration"
       ],
       "contradicted_by": "Enumerating a fixed count of churn causes unrelated to weak representation or weak enforcement.",
       "watch_phrases": [],
@@ -122,7 +81,7 @@
         "big-idea:churn"
       ],
       "provenance": "stated",
-      "anchor": "Preface 'What changed': churn is what happens when knowledge or obligations must be paid for again — weak representation forces rediscovery, weak enforcement forces repeated inspection."
+      "anchor": "Chapter 1 'The Two Problems in Software' distinguishes reconstruction from independent assurance. Chapter 6 'The Inherited Engineering Environment' diagnoses repeated reconstruction and escaped failures; P4 shows how inadequate representations or gates can multiply repair and review."
     },
     {
       "id": "principles-divide-the-not-knowings",
@@ -356,9 +315,9 @@
       "kind": "stance",
       "statement": "Part 5 is the grounding case the method was derived from, never its proof.",
       "distinguishes": [],
-      "home": "the-originating-system",
+      "home": "where-the-theory-came-from",
       "asserted_at": [
-        "the-originating-system"
+        "where-the-theory-came-from"
       ],
       "contradicted_by": "Prose presenting Part 5 or DocAble as proof of the method or its principles — 'the proof', 'proves the method' — rather than as the grounding case / worked case / evidence base.",
       "watch_phrases": [
@@ -367,7 +326,7 @@
       ],
       "relates_to": [],
       "provenance": "stated",
-      "anchor": "Preface caution: 'This is a single-case field report … read it as an observation from that case rather than a measured law.'"
+      "anchor": "Preface 'The origins of MAGE': the method grew from building DocAble; DocAble supplies the deepest worked example, industrial accounts supply variation, and Chapter 5 presents both sources of evidence and their limitations."
     },
     {
       "id": "model-earns-keep-via-invariants",

@@ -10,12 +10,8 @@ This chapter develops that account. We begin with production, lifecycle cost, an
 
 <!-- box-family: canonical -->
 
-> ### The synthesis
+> ### Key Ideas {#the-synthesis}
 >
 > The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
 >
 > The question is how engineers make that inheritance useful: which knowledge to represent, which obligations to enforce, and which decisions should remain with a reasoner. The objective is durable progress at a justified cost, rather than maximum machinery or maximum implementation speed.
-
-**Carrying forward:** Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Probabilistic surface
-
-**New here:** Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Four theoretical propositions · Scope conditions · Research agenda

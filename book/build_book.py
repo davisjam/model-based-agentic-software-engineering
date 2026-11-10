@@ -613,6 +613,7 @@ _assert_chapter_label_parity()
 # sensor greps the same label + strings, so the print divider and its gate cannot disagree on which
 # question a Part carries.
 _PART_OPENER_QUESTION_LABEL = "Question this Chapter answers"
+_PART_OPENER_IDEAS_LABEL = "Key Ideas"
 _PART_OPENER_QUESTIONS = {
     1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
@@ -5997,52 +5998,22 @@ def _pdf_orphan_caption_pages(pdf_path: pathlib.Path) -> list[tuple[int, str]]:
 
 # ── Part-opener single-page sensor ────────────────────────────────────────────────────────────────────
 # A numbered Part opens with a divider block — the "Part N" kicker over the big Part title — immediately
-# followed (on the same page) by the Part's intro prose, its thesis box, and the Part-nav strip (the row of
-# `PART 1 — THE MINDSET` … `PART 6 — THE PROFESSION` chips that closes the landing). The whole opener is meant
-# to fit on ONE page. The failure this catches: an intro long enough to push the nav strip onto a SECOND page,
-# splitting the opener (Part 2 "Modeling" is the longest intro and the binding constraint). The Typst
-# part-divider top-space knob is tuned so every opener fits; this build-time control catches any residual — a
-# lengthened intro, or a layout-metric shift.
-#
-# Detection reads the rendered PDF per page. The divider heading extracts TITLE-CASE ("Part 4 The MAGE
-# Method"); the nav chips extract UPPERCASE ("PART 4 — THE MAGE METHOD"), so the two never collide. For each
-# numbered Part it (1) finds the opener page — the page whose text carries the title-case divider heading,
-# breaking ties toward the page with the most words (the real opener, never a short table-of-contents line) —
-# then (2) asserts that SAME page also carries the FULL nav strip: all six uppercase chips. Both the heading
-# and the chip labels are built from `_PART_TITLES` (one source of truth), so the sensor cannot drift from
-# what the renderer emits.
+# The chapter title, one navigation map, question and Key Ideas form the opener.
+# Introductory prose follows directly. Check the rendered apparatus together;
+# no duplicated chapter heading or vocabulary-band marker is required.
 def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
                             norm: "Callable[[str], str]",
                             facing_parity: bool) -> list[dict]:
-    """PART-OPENER SPREAD sensor (round-7). Each numbered Part 1–6 opens on a two-page orientation SPREAD: a
-    VERSO orientation page (Part title · whole-book subway map · "Question this Part answers" DO-ladder line ·
-    thesis box · Carrying-forward / New-here vocab block) with the intro PROSE leading the facing RECTO. The old
-    one-page invariant ("divider + intro + nav all on ONE page") is retired by design; this sensor gates the new
-    shape with FOUR legs, per Part:
+    """Check that each chapter title, question and Key Ideas appear together.
 
-      (a) orientation_found — a page carries the title-case divider heading "Part N <title>".
-      (b) fits_one_page     — the orientation does NOT spill: the page AFTER the verso lacks the question
-                              label (had it spilled, the label — unique to the orientation — would repeat there).
-      (c) carries_nav       — the verso carries the KEPT orientation apparatus: the "Question this Part answers"
-                              DO-ladder label AND the "New here" vocab-band heading. (Round-7 W3 anatomy change:
-                              the six-Part footer chip strip + the Part-local map were cut, so the leg no longer
-                              greps nav chips.) The KEPT whole-book subway map renders as an `image()` that fails
-                              the COMPILE if missing, so its presence needs no text re-check here.
-      (d) facing_parity     — PRINT ONLY (`facing_parity`): the verso page number is EVEN and the recto ODD (a
-                              real bound-edition facing pair). Skipped for the shipped SCREEN PDF (no facing).
-
-    Both the divider and this sensor read `_PART_TITLES` + `_PART_OPENER_QUESTION_LABEL` + the vocab-band label
-    SSOT (`book_typst.NAV_VOCAB_NEWHERE_LABEL`), so the gate cannot drift from the renderer. Returns one dict per
-    Part with the four leg booleans + pages."""
+    The navigation graphic is verified by figure assembly. Vocabulary bands and
+    the repeated title before introductory prose were retired by the author.
+    Optional facing parity is retained for callers requesting a print spread;
+    the letter-sized reading edition does not impose it.
+    """
     per_page = _pdf_per_page_text(pdf_path)
     q_label = norm(_PART_OPENER_QUESTION_LABEL).upper()
-    # Round-7 W3 anatomy: the verso's text orientation apparatus is the DO-ladder QUESTION LABEL + the "New here"
-    # VOCAB heading (the footer chip strip + Part-local map were cut). The KEPT whole-book subway map renders as
-    # an image() that fails the COMPILE if missing, so its presence needs no text re-check. Both markers extract
-    # UPPERCASE (norm-folded) and are unique to the orientation verso — a stray TOC line echoing the divider
-    # heading carries neither.
-    import book_typst as _bt  # noqa: E402 — the vocab-band label SSOT the divider renders (one source, no drift)
-    apparatus = [q_label, norm(_bt.NAV_VOCAB_NEWHERE_LABEL).upper()]
+    apparatus = [q_label, norm(_PART_OPENER_IDEAS_LABEL).upper()]
     normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
     normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
@@ -6059,7 +6030,7 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
         orientation_found = opener is not None
         carries_nav = bool(opener is not None
                            and all(c in normed_upper[opener - 1] for c in apparatus))
-        fits_one_page = bool(opener is not None and q_label not in nxt)
+        fits_one_page = bool(opener is not None and not any(marker in nxt for marker in apparatus))
         facing_ok = True
         if facing_parity and opener is not None:
             facing_ok = (opener % 2 == 0) and ((opener + 1) % 2 == 1)

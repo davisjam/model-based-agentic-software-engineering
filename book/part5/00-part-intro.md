@@ -12,14 +12,12 @@ This chapter develops the software factory from that history and then examines c
 
 <!-- box-family: canonical -->
 
-> ### Depth and breadth
+> ### Key Ideas {#depth-and-breadth}
 >
 > MAGE was developed through one deeply observed production build. That case provides chronology, mechanism, and repeated observations within one system.
 >
 > Independent industrial accounts provide a different kind of evidence: variation across systems built by other organizations under different constraints.
 >
 > **The first shows how the method developed. The second asks whether the same engineering problems and responses appear elsewhere.**
-
-**New here:** Software factory · Agentic software factory · Support ratio · Delegation staircase
 
 {{sec:the-software-factory}} develops the software-factory concept from the history of manufacturing and asks what a production system must know and control when fabrication outruns direct human supervision. {{sec:inside-docables-software-factory}} examines DocAble from the inside, tracing how its engineering structures changed with its capacity for realization. {{sec:mage-in-the-wild}} compares other organizations through their reported mechanisms, measurements, and operating decisions. The coda returns to process design, tolerance, and engineering authority, preparing the questions about cost and reliability developed in {{chapter:theory}}.

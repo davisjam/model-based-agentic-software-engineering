@@ -18872,3 +18872,290 @@ Original source lines 93–97. Complete artwork: [SVG](../assets/gloss-gee.svg),
 \caption{The governed environment. Governance mechanisms support enforcement by restricting work, supplying evidence, or controlling whether work may proceed. They can operate directly on observable work or use explicit models that expose richer semantics. Durable models, mechanisms, procedures, and documentation accumulate as engineering capital.}
 \end{figure}
 ```
+
+
+## Preface consolidation, 9 November 2026
+
+Source: `book/latex/sources/frontmatter/0.5-preface.tex`, revision `32d96d3103cca6d66a812191275168123c594900`. The author requested five coherent sections, two or three paragraphs each, the four recurring activities retained, vivid personal prose preserved, no figures, and approximately three to four typeset pages. This complete pre-edit source preserves all removed wording, references, and the research-arc figure. Original artwork remains in [SVG](../assets/research-arc.svg) and [native TikZ](../tikz/figures/research-arc.tex).
+
+The shorter Preface incorporates the method list under MAGE, joins the personal account and evidence orientation under The origins of MAGE, and defers the extended bottleneck, system, scope, and related-method discussions to the chapters.
+
+```latex
+% mage-auto-heading: why-mage-why-models
+% mage-auto-heading: where-the-theory-came-from
+% mage-auto-heading: the-new-bottleneck
+% mage-auto-heading: the-originating-system
+% mage-auto-heading: evidence-and-scope
+% mage-auto-heading: the-mage-method
+% mage-auto-heading: who-this-book-is-for
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-title: Orientation and Reference -->
+
+% <!-- chapter-title: Preface -->
+
+\chapter{Preface}
+
+\textbf{How do we safely grant autonomy to commodity intelligence?}
+
+This is a book about engineering: what engineering becomes when reasoning capacity becomes abundant.
+
+Engineering is the discipline of exercising informed control over consequential systems and accepting responsibility for their outcomes. Engineers need not personally perform every act required to realize a system. They must retain sufficient command to understand and direct it, evaluate the evidence for its consequential properties, recognize when its assumptions fail, and intervene when necessary. They remain answerable for the consequential decisions made under their authority.
+
+Generative AI changes how that control can be exercised. Agents can produce implementation at extraordinary speed, but engineers remain responsible for the resulting systems. As implementation becomes cheaper, engineering judgment becomes more exposed as the scarce resource.
+
+When agents produce and modify software faster than people can inspect it, engineers cannot review every generated decision. Engineers must decide which questions require their judgment, which decisions should be recorded in models, and which obligations can be enforced independently of the producing agent.
+
+Society has long entrusted consequential work to computers. Software flies aircraft, calculates tax returns, routes telephone calls, and controls power plants. Traditionally, software engineers stood between human intent and machine action. Through expertise and judgment, they translated goals and constraints into specifications, programs, and controls that computers could execute.
+
+Now, the boundary between human intent and machine action is shifting. General-purpose machine intelligence can interpret intent, make judgments, and produce implementation cheaply enough and at enough scale to become an ordinary engineering resource.\magefootnote{functional-terms}{Here and throughout, terms such as interpret, reason, and judge describe functional capabilities, not claims about cognition or consciousness. Contemporary language models approximate these capabilities through learned statistical computation; they are an imperfect realization of the general-purpose machine intelligence assumed here.} In this book, I call this increasingly available capability commodity intelligence\citep{nosta2026commodity}\citep{ling2026barrel}. Software engineering has begun to confront the consequences.
+
+MAGE offers two potential benefits at different scales. For product assurance, models and checks can establish consequential properties without requiring engineers to inspect every implementation decision. For production efficiency, reusable representations can reduce the work agents spend recovering system knowledge, lowering costs or enabling them to work on more complex systems. A system may benefit from one without benefiting from the other. In either case, the gain must justify the cost of building and maintaining the supporting structure.
+
+This book develops MAGE through software engineering, but its underlying subject is broader: how to govern capable agents performing consequential engineering work. Today\textquotesingle s agents can inspect large codebases, modify software, run experiments, and evaluate their own results. As agents become more capable, engineering the environment through which their capabilities act becomes increasingly important.
+
+Nothing about that problem is unique to source code. An agent analyzing a contract, reconciling accounts, or conducting scientific research can likewise produce work faster than people can inspect it. Important knowledge may remain implicit, and some obligations require evidence independent of the agent performing the work. Models and enforcement mechanisms offer ways to address both problems, whether they arise in software engineering or accounting.
+
+Software engineering is MAGE\textquotesingle s first worked domain. It is where my engineering expertise lies, where the approach was developed, and where the evidence in this book lies. Chapters \magevalue{chapter:problem|num}--\magevalue{chapter:theory|num} develop MAGE through software engineering, examining its mechanisms, production use, and theoretical implications. \magevalue{chapter:profession} then asks which parts of the account extend beyond software.
+
+Call the broader problem \textbf{agentic engineering}: the engineering of systems and environments in which autonomous agents perform consequential work. The term names the conditions engineered around agentic work, not engineering performed by agents. Model-Based Agentic Engineering (MAGE) is the account this book develops for addressing it: make consequential knowledge explicit in purposeful representations, give selected obligations evidence and enforcement outside the producing reasoner, and preserve useful judgment in durable structures that later work can inherit.
+
+\section{Why MAGE? Why Models?}\label{heading:why-mage-why-models}
+
+% <!-- gloss-only: MAGE | Model-Based Agentic Engineering — the framework of this book: engineering with a fleet of agents by binding intent to structured models the fleet reasons through, and governing what it builds with mechanisms (constraints and sensors); developed and demonstrated here through software engineering. The name packages the book's two principles, the Modeling Principle and the Alignment Principle. -->
+
+One way to understand MAGE---Model-Based Agentic Engineering---is as a classical software-engineering move: \textbf{add a level of indirection.}\magefootnote{indirection}{Adding a level of indirection is so commonly a solution that it is sometimes jokingly called the \emph{fundamental theorem of software engineering}.}
+
+When engineers wrote most of the code themselves, they could make design decisions and implement them directly. This often reduced the pressure to formalize those decisions separately. The Agile Manifesto famously preferred ``working software over comprehensive documentation''\citep{agile-manifesto2001}. That preference did not require abandoning design, but it was compatible with engineering practices in which many design decisions remained implicit in code. When agents perform the implementation, the coupling between engineering judgment and the code that expresses it weakens further. Delegation transfers implementation work; it does not transfer engineering control or responsibility.
+
+The engineer increasingly exercises that control through an intermediate structure: an engineered environment. This environment represents consequential properties, constrains permissible variation, requires evidence, and determines which changes may be accepted.
+
+MAGE makes that intermediate structure the primary object of engineering. Modeling externalizes consequential knowledge and intent into representations over which humans, agents, and tools can reason. Alignment enforces selected engineering obligations through constraints, sensors, and gates. Modeling helps engineers express and preserve what matters; Alignment makes delegated work answer to what they expressed. Together they create a governed engineering environment through which autonomous implementation proceeds.
+
+The purpose of this indirection is to preserve consequential engineering decisions while leaving other implementation choices open. Within those degrees of freedom, agents can exploit abundant implementation capacity to search, implement, revise, and improve solutions. The governed environment articulates those decisions and enforces selected obligations, so subsequent agents and reviewers need not reconstruct them from implementation. Models and controls that merely reproduce the implementation add little value. Meaningful degrees of freedom let agents explore alternative solutions while engineering retains control over the properties that matter.
+
+Software engineering has made this move repeatedly. Interfaces separate what a component provides from how it provides it. Virtual memory separates a program\textquotesingle s address space from physical memory. Compilers separate a source-level program from the machine instructions that realize it. Commodity intelligence makes it increasingly practical to decouple engineering authority from implementation capability. The same person need not decide what a system must do and also implement it. A person can exercise engineering authority while a machine supplies much of the implementation capability. MAGE proposes how to exercise that authority through Modeling and Alignment: make consequential knowledge and intent explicit, and enforce selected obligations through an engineered environment whose controls do not depend on the producing agent.
+
+In some respects, the MAGE methodology may look rather ordinary. That is deliberate. Conventional engineering has long separated the engineering of an artifact from its physical realization. The familiar "Designed by Apple in California" inscription is an everyday example: the people who establish a product\textquotesingle s architecture, requirements, tolerances, and other engineering models need not be the people---or machines---that realize it. Other engineering disciplines rely on complementary representations of an artifact, use them to reason about different obligations, and establish that the realized artifact corresponds to them. MAGE brings that familiar pattern to software, whose realization can increasingly be delegated to machines.
+
+There is a further consequence. The engineering environment itself need not remain shaped around human limitations. Tests, documentation, code review, dashboards, and other familiar mechanisms evolved partly around what human engineers could feasibly write, inspect, remember, and execute. Giving agents access to those mechanisms is useful, but it captures only part of the opportunity. Machine-scale engineering can make representations economical that would be burdensome for people to maintain manually: behavioral models, large collections of invariants, and machine-readable relationships among engineering concerns.
+
+MAGE draws on established ideas in architecture, abstraction, and verification. MAGE asks how engineers preserve understanding and control as the system evolves. That requires choosing which consequential relationships and invariants to represent, which obligations to enforce independently of the producing agent, and what evidence justifies accepting a change. It also requires governance conversion: using failures and repeated judgment to revise the models and controls that subsequent work inherits. If you practice agentic spec-driven development (SDD) with tools such as Kiro or GitHub's Spec Kit, you have already begun to think about these concerns\citep{kiro2026specs, githubspeckit2026sdd}. This book develops the MAGE methodology and the engineering judgment needed to make those choices, including when the benefits of additional structure justify its maintenance cost. Commodity intelligence changes the economics of that arrangement.
+
+That economic argument provides one reason for MAGE. Today, explicit representations and independent controls can make autonomous engineering cheaper and more reliable. Better agents may eventually reduce those benefits. But the question of engineering authority remains. Engineers---and the societies that rely on them---should not cede their authority over engineered systems to the machines that produce them. This remains true even if machines eventually perform nearly every engineering activity people perform today. Engineering has repeatedly reorganized as new technologies made established work cheaper or unnecessary, freeing engineers to address problems at new levels of abstraction and undertake work that was previously impractical. MAGE does not depend on preserving particular tasks for humans. It asks how consequential systems remain subject to informed control and responsibility as the work of engineering itself evolves.
+
+\section{Where the theory came from}\label{heading:where-the-theory-came-from}
+
+MAGE grew out of an engineering problem I encountered while building DocAble. This book develops the method that resulted and compares its mechanisms with those described in published accounts from AWS, Cloudflare, Shopify, Spotify, Siemens, Uber, and GitLab. \magevalue{chapter:software-factories} presents both views of the evidence: DocAble in depth, then the industrial reconstructions in breadth. \magevalue{chapter:theory} asks what account explains both. \autoref{research-arc} shows the evidentiary path.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/research-arc-e63e033715.pdf}
+\caption{\emph{From case to theory.} MAGE began with one deeply observed production system, then was compared with systems developed by other organizations. The originating case shows mechanism and sequence; the industrial cases show variation and alternative ways to realize the same moves.}
+\label{research-arc}
+\end{figure}
+
+Some of the ideas in this book emerged from a resource-poor engineering environment. I built DocAble by myself --- just me and Claude, which produces software far faster than I can inspect. The resulting system still had to satisfy consequential accessibility requirements. I could not solve that problem by supervising the agents more closely; human attention was precisely the resource I did not have. As I watched my weekly Apple Watch sleep report trendline decay, I instead had to make the requirements and other consequential properties explicit enough that the production system could preserve and evaluate them without requiring me to inspect every realization. Much of MAGE grew from following that constraint seriously. In retrospect, that constraint was useful: I could not rely on abundant human supervision. As \magevalue{chapter:software-factories} shows, large engineering organizations can place people at review points, escalation boundaries, and other consequential decisions. I could not. That difference in resources helped push MAGE toward a question that their production systems could more readily leave to human judgment: what properties must the product preserve, and how can the production system establish them without requiring a human to inspect every realization?
+
+\section{The new bottleneck}\label{heading:the-new-bottleneck}
+
+% <!-- index-def: fleet -->
+
+% <!-- gloss: Fleet | The set of coding agents working the codebase — the agentic-era workforce this book governs, in place of a team of human engineers. -->
+
+Agents can produce changes much faster than the surrounding environment can understand or govern them. When supervision requires human inspection of each change, the required attention grows with production volume. But does the quality team truly need to examine every widget? MAGE seeks to weaken that dependence by making consequential properties accessible through models and evidence, so engineers can evaluate what matters without understanding every implementation decision.
+
+The difficulty extends beyond inspection to system-level understanding and engineering judgment. When necessary knowledge remains implicit, agents repeatedly reconstruct it. When evaluating a change requires knowledge of architecture, ownership, or end-to-end behavior that the environment cannot supply, somebody must reconstruct that knowledge. In many organizations that somebody is still a human reviewer. The human sits in the gap between what the environment can check and what the system actually needs guaranteed.
+
+% <!-- index-def: churn -->
+
+\textbf{Churn} is what happens when too much of that knowledge and judgment must be paid for again: agents rediscover context, undo recent changes, repair regressions, reconcile inconsistencies, or wait for humans to resolve questions the environment cannot settle. MAGE targets the recurring causes. Modeling makes more consequential properties explicit and tractable; Alignment makes selected obligations enforceable; governance conversion turns failures in either into structure the next task inherits.
+
+\section{The originating system}\label{heading:the-originating-system}
+
+% <!-- gloss: Lint | An automated check that scans code for a banned pattern and fails the commit when it finds one, so a rule holds without a human remembering it. -->
+
+% <!-- gloss: Gate | A governance mechanism that evaluates whether an action or result may proceed and enforces the decision. Gates can govern changes, releases, resource use, or runtime operations. -->
+
+DocAble is a web-based service for making documents accessible to people with disabilities. As of \magevalue{measurement_snapshot}, coding agents had written roughly \magevalue{prod_loc_rounded} lines of production code. The environment governing that code---tests, checks, agent infrastructure, and documentation---had grown about three and a half times larger, to \magevalue{support_loc_rounded} lines.
+
+Although DocAble is an interesting application of natural language processing and compiler techniques in its own right, the most interesting thing about DocAble is not DocAble. It is MAGE. MAGE predicts that one engineer can use agents to build and sustain a production system whose implementation would ordinarily require a software team. DocAble shows this in action. It also poses the question this book answers: once agents write almost all of the code, what engineering remains?
+
+DocAble therefore serves as the book\textquotesingle s deepest worked example. Chapters \magevalue{chapter:modeling|num} and \magevalue{chapter:alignment|num} examine the mature system from the perspectives of Modeling and Alignment. \magevalue{chapter:one-problem-many-models} puts those mechanisms in motion, tracing engineering problems through successive models, enforcement, work, and governance conversion. \magevalue{chapter:software-factories} then takes the production-system view: it reconstructs DocAble\textquotesingle s software factory and compares it with independently documented industrial factories.
+
+\section{Evidence and scope}\label{heading:evidence-and-scope}
+
+MAGE draws on two kinds of evidence. The first is a longitudinal case: DocAble, built by one engineer using one vendor\textquotesingle s agents over several months and used in production at Purdue. The second consists of reconstructions from published industrial accounts. DocAble provides depth about engineering decisions and their consequences; the industrial accounts provide variation across organizations and production environments. \magevalue{chapter:software-factories} presents both sources, states their limits, and ties empirical claims to supporting data or citations.
+
+\section{The MAGE Method}\label{heading:the-mage-method}
+
+Two principles organize MAGE:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Modeling makes consequential knowledge and intent explicit.
+\item
+  Alignment makes important engineering obligations enforceable.
+\end{enumerate}
+
+Modeling and Alignment work together. Models let engineers and agents reason about consequential properties without reconstructing them from implementation each time. Alignment uses constraints, checks, and gates to hold autonomous work to selected obligations. The MAGE method combines these principles through four recurring engineering activities:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Model the consequential knowledge.} Choose the engineering question first, then externalize the facts and intent needed to answer it without carrying unnecessary detail. The goal is not to model the whole system. It is to make larger properties easier to reason about without reconstructing them from implementation.
+\item
+  \textbf{Enforce important obligations.} Encode important obligations into constraints, sensors, or gates. Constraints restrict actions or artifacts; sensors supply evidence; gates evaluate whether work may proceed and enforce that decision. Explicit models make richer, system-level obligations available to automated analysis and, where appropriate, enforcement.
+\item
+  \textbf{Do the governed work.} Let agents operate inside the resulting environment. Models provide representations for reasoning; governance mechanisms provide evidence and boundaries. Human attention moves toward questions for which human judgment remains necessary or desirable, instead of being spent reconstructing facts the environment can check itself.
+\item
+  \textbf{Convert recurring failures.} When autonomous work exposes missing knowledge, a weak abstraction, or an unenforced obligation, repair the instance and then encode the lesson into durable structure. The environment improves because the next task inherits the model or control rather than the memory of the person who solved the problem.
+\end{enumerate}
+
+Neither principle is MAGE by itself. The method combines modeling consequential properties, enforcing selected obligations, doing governed work, and converting recurring failures into durable engineering structure. These activities need not occur in a fixed order. Useful structure becomes engineering capital when later work benefits from it.
+
+\section{Who this book is for}\label{heading:who-this-book-is-for}
+
+This book is for several distinct audiences. For software engineers, the MAGE methodology provides a way to decide what to model, what to enforce, and how to preserve engineering knowledge as systems evolve. For architects, technical leads, and engineering managers, it provides a way to examine and improve the engineering environment around autonomous development: its representations, controls, evidence, infrastructure, and remaining human decisions.
+
+The book is also intended for advanced undergraduate and graduate students studying software engineering, software architecture, or AI-assisted development. It assumes familiarity with ordinary software-development practice: source control, testing, APIs, build and deployment workflows, and the basic idea of software architecture. No prior experience with coding agents, formal methods, model-based engineering, or machine learning is required. Concepts from those areas are introduced where the argument needs them and illustrated through the systems and examples in the book.
+
+\textbf{MAGE is neither a general software-engineering textbook nor a textbook on model-based systems engineering (MBSE).} It assumes the relevant knowledge of those fields and draws on their representations and techniques when they serve the engineering question at hand. MAGE adopts the MBSE habit of reasoning through explicit representations and applies it to choosing, structuring, and governing models for agentic software engineering; it does not attempt to teach the full range of modeling languages, viewpoints, transformation techniques, systems-engineering methods, or MBSE practice.
+
+The book draws on several other traditions for the same reason. Model-driven software engineering supplies established ideas about metamodels, transformations, and generated artifacts; programming languages and compilers supply types, intermediate representations, and constrained transformation; formal methods supply executable specifications and machine-checked properties. MAGE uses those ideas where they help, without trying to teach the disciplines they come from. Those subjects have their own literatures and textbooks. The same applies to machine learning: the book introduces only the concepts the argument or examples need.
+
+The machinery described in this book is a repertoire, not a required architecture. Different engineering problems call for different representations and controls, and some need very little of either. The question is what consequential properties must be understood or enforced, and what structure is worth building to do so. MAGE provides a way to make those choices.
+
+After reading this book, you should be able to recognize when an engineering problem is being paid for repeatedly in reconstruction or human judgment; decide whether a better model, stronger enforcement, or both could remove that recurring cost; and design mechanisms suited to your own system rather than copying another organization\textquotesingle s process.
+
+A central practice of the MAGE methodology is to \textbf{convert recurring judgment into durable engineering structure.} DevOps learned to make infrastructure, configuration, and policy durable as code. MAGE applies that practice across models, constraints, evidence, validators, workflows, and the engineering judgment encoded in them.
+
+```
+
+## Chapter openings simplified, 9 November 2026
+
+Source: revision `32d96d3103cc`. The author approved one monochrome navigation map, a common Key Ideas heading, removal of vocabulary bands and repeated chapter titles, and the two-paragraph Chapter 1 opening. Original prose and box headings are retained below; navigation artwork and vocabulary data remain in their source files.
+
+### Chapter 1
+
+```latex
+% mage-auto-heading: founding-premise
+% Authoritative LaTeX manuscript; Markdown is a generated compatibility projection.
+
+% <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
+
+When a constraint moves, engineering reorganizes\citep{amdahl1967,goldratt1984}.\mageaside{Amdahl\textquotesingle s law shows how work left unaccelerated limits overall speedup. Goldratt\textquotesingle s Theory of Constraints considers related limits in production systems. The analogy here extends that constraint reasoning to the allocation of engineering effort.} Steam engines made mechanical power more widely available, helping mechanize industrial production. Integrated circuits made computation compact and inexpensive enough to embed in machinery and everyday products. Coding agents are now reducing the cost of software implementation. In this book, I argue that their capabilities are sufficient to warrant a reorganization of engineering work.
+
+Commodity intelligence also changes the division of engineering work. An engineer can decide what a system must accomplish and what evidence would justify accepting it while agents produce and revise the implementation. The same person need not perform both kinds of work. The challenge is to retain informed control without inspecting or directing every implementation decision.
+
+When implementation becomes cheap, four engineering questions come into sharper focus: What should we build? What must the agent know about the system? How will we know whether its changes are correct? Which rules must it obey?
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Founding premise}\label{heading:founding-premise}
+
+Commodity intelligence makes implementation abundant relative to engineering judgment.
+
+Engineering effort concentrates around what limits reliable production. As implementation capacity becomes cheaper and more abundant, judgment, representation, evidence, and enforcement become relatively scarcer. Engineers can delegate more realization work, but remain responsible for retaining sufficient control over the resulting system. Engineering effort moves with the constraint.
+\end{quote}
+
+A factory with abundant machine capacity and one inspector remains limited by what that inspector can examine. Human inspection cannot be assumed to keep pace with growing output: sustained monitoring consumes finite attention, and rare problems can be hard to detect among mostly acceptable results.\mageaside{Wolfe, Horowitz, and Kenner found that rare targets in visual search are disproportionately missed as their prevalence falls\citep{wolfe2005rare}. Sustained monitoring is itself costly: the vigilance literature finds it consumes attention, imposes workload, and degrades detection over a watch\citep{warm2008vigilance}. Bainbridge\textquotesingle s \emph{Ironies of Automation} identifies the related difficulty of leaving people to monitor reliable automation and intervene when it fails\citep{bainbridge1983}. \magevalue{chapter:theory} returns to this evidence.} In software, agents can now produce changes faster than engineers can specify, understand, validate, and govern them. Models let later work reuse representations across many acts of implementation; validators and gates can likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding what to represent, what evidence to require, which obligations to enforce, and how the surrounding environment should preserve those decisions across later work. This chapter asks what follows from that shift: what remains hard, which properties of the new substrate matter, and what engineering problems they leave us to solve.
+
+```
+
+### Chapter 2
+
+```latex
+\begin{quote}
+\mbox{}%
+\subsection{Modeling principle}\label{heading:modeling-principle}
+
+Externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through.
+
+Appropriate representations make broader engineering questions tractable and make additional properties available for Alignment.
+\end{quote}
+
+```
+
+### Chapter 3
+
+```latex
+\begin{quote}
+\mbox{}%
+\subsection{Alignment principle}\label{heading:alignment-principle}
+
+Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
+\end{quote}
+
+```
+
+### Chapter 4
+
+```latex
+\begin{quote}
+\mbox{}%
+\subsection{The MAGE cycle}\label{heading:the-mage-cycle}
+
+Model the intent. Enforce stable obligations. Convert recurring judgment into durable engineering structure.
+
+\textbf{Repeat.}
+
+You can enter this cycle at any point. Recall \autoref{multiple-routes-to-engineering-models} in \magevalue{chapter:problem}: engineering may begin with requirements, an existing system, or exploratory agent implementation.
+\end{quote}
+
+```
+
+### Chapter 5
+
+```latex
+\begin{quote}
+\mbox{}%
+\subsection{Depth and breadth}\label{heading:depth-and-breadth}
+
+MAGE was developed through one deeply observed production build. That case provides chronology, mechanism, and repeated observations within one system.
+
+Independent industrial accounts provide a different kind of evidence: variation across systems built by other organizations under different constraints.
+
+\textbf{The first shows how the method developed. The second asks whether the same engineering problems and responses appear elsewhere.}
+\end{quote}
+\textbf{New here:} Software factory · Agentic software factory · Support ratio · Delegation staircase
+```
+
+### Chapter 6
+
+```latex
+\begin{quote}
+\mbox{}%
+\subsection{The synthesis}\label{heading:the-synthesis}
+
+The encoding–realization decomposition separates stating the intended obligations from fulfilling them. Engineering, however, does not consist of one attempt. Real systems are changed repeatedly, failures have consequences, and each episode can change the environment inherited by the next.
+
+The question is how engineers make that inheritance useful: which knowledge to represent, which obligations to enforce, and which decisions should remain with a reasoner. The objective is durable progress at a justified cost, rather than maximum machinery or maximum implementation speed.
+\end{quote}
+\textbf{Carrying forward:} Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Probabilistic surface
+\textbf{New here:} Dynamic Model · Environment quality · Determinization frontier · Representation innovation · Four theoretical propositions · Scope conditions · Research agenda
+```
+
+### Chapter 7
+
+```latex
+\begin{quote}
+\mbox{}%
+\subsection{The synthesis}\label{heading:the-synthesis}
+
+When implementation becomes abundant, software engineering does not disappear. Its scarce work moves. Engineers can delegate more realization while remaining responsible for the resulting system. Their work increasingly centers on retaining informed control: deciding what must be true, choosing representations that make consequential properties understandable, establishing evidence, allocating authority, coordinating autonomous work, and accepting consequential tradeoffs.
+
+The same account suggests a broader engineering problem: how people retain informed control when agents perform consequential engineering work in domains whose representations, evidence, and means of enforcement differ from software.
+\end{quote}
+\textbf{Carrying forward:} Commodity intelligence · Modeling Principle · Alignment Principle · Governed Engineering Environment · Engineering capital · Degrees of freedom
+\textbf{New here:} Representation engineering · Agentic engineering beyond software · Full-system engineering · Professional responsibility
+```
+
+The superseded claim and argument-spine declarations affected by the Preface consolidation are preserved verbatim in [preface-retired-metadata-20261109.json](preface-retired-metadata-20261109.json).

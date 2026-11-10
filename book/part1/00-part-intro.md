@@ -2,9 +2,7 @@
 
 <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
 
-When a constraint moves, engineering reorganizes[cite: amdahl1967;goldratt1984].[note: Amdahl's law shows how work left unaccelerated limits overall speedup. Goldratt's Theory of Constraints considers related limits in production systems. The analogy here extends that constraint reasoning to the allocation of engineering effort.] Steam engines made mechanical power more widely available, helping mechanize industrial production. Integrated circuits made computation compact and inexpensive enough to embed in machinery and everyday products. Coding agents are now reducing the cost of software implementation. In this book, I argue that their capabilities are sufficient to warrant a reorganization of engineering work.
-
-Commodity intelligence also changes the division of engineering work. An engineer can decide what a system must accomplish and what evidence would justify accepting it while agents produce and revise the implementation. The same person need not perform both kinds of work. The challenge is to retain informed control without inspecting or directing every implementation decision.
+When a constraint moves, engineering reorganizes[cite: amdahl1967;goldratt1984]. Steam engines made mechanical power widely available, enabling locomotives to haul heavy loads and excavators to move earth on a scale previously impractical. Mechanized factories made production faster and cheaper, shifting engineering effort toward designing products for manufacture and organizing the machinery and processes that produced them. Coding agents are now reducing the cost of software implementation. I argue that their capabilities warrant a similar reorganization of engineering work. Engineers can delegate more implementation decisions while retaining responsibility for the resulting systems. The challenge is to exercise informed control without inspecting or directing every implementation decision.
 
 When implementation becomes cheap, four engineering questions come into sharper focus: What should we build? What must the agent know about the system? How will we know whether its changes are correct? Which rules must it obey?
 
@@ -12,10 +10,6 @@ When implementation becomes cheap, four engineering questions come into sharper 
 
 <!-- box-family: canonical -->
 
-> ### Founding premise
+> ### Key Ideas {#founding-premise}
 >
-> Commodity intelligence makes implementation abundant relative to engineering judgment.
->
-> Engineering effort concentrates around what limits reliable production. As implementation capacity becomes cheaper and more abundant, judgment, representation, evidence, and enforcement become relatively scarcer. Engineers can delegate more realization work, but remain responsible for retaining sufficient control over the resulting system. Engineering effort moves with the constraint.
-
-A factory with abundant machine capacity and one inspector remains limited by what that inspector can examine. Human inspection cannot be assumed to keep pace with growing output: sustained monitoring consumes finite attention, and rare problems can be hard to detect among mostly acceptable results.[note: Wolfe, Horowitz, and Kenner found that rare targets in visual search are disproportionately missed as their prevalence falls[cite: wolfe2005rare]. Sustained monitoring is itself costly: the vigilance literature finds it consumes attention, imposes workload, and degrades detection over a watch[cite: warm2008vigilance]. Bainbridge's *Ironies of Automation* identifies the related difficulty of leaving people to monitor reliable automation and intervene when it fails[cite: bainbridge1983]. {{chapter:theory}} returns to this evidence.] In software, agents can now produce changes faster than engineers can specify, understand, validate, and govern them. Models let later work reuse representations across many acts of implementation; validators and gates can likewise reuse selected engineering judgments by evaluating and enforcing them repeatedly. Engineering effort therefore moves toward deciding what to represent, what evidence to require, which obligations to enforce, and how the surrounding environment should preserve those decisions across later work. This chapter asks what follows from that shift: what remains hard, which properties of the new substrate matter, and what engineering problems they leave us to solve.
+> Engineering effort concentrates around what limits reliable production. Commodity intelligence makes implementation abundant relative to engineering judgment. Engineers can delegate more realization work, but remain responsible for retaining sufficient control over the resulting system.

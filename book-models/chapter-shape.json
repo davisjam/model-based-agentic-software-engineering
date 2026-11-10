@@ -70,6 +70,7 @@
         "concepts": [
           "tolerance",
           "degrees-of-freedom",
+          "churn",
           "commodity-intelligence",
           "compounding",
           "model-classes"
@@ -95,10 +96,7 @@
       "opening_anchor": "**How do we safely grant autonomy to commodity intelligence?** In this book,",
       "closing_anchor": "models, constraints, evidence, validators, workflows, and the engineering judgment encoded in them.",
       "delivers": {
-        "concepts": [
-          "fleet",
-          "churn"
-        ],
+        "concepts": [],
         "artifacts": [],
         "artifact_would_help": false
       },
@@ -107,8 +105,6 @@
         "abundant-implementation",
         "fault-lies-in-instructions",
         "oversight-does-not-scale",
-        "churn-is-the-limit",
-        "three-not-knowings-cause-churn",
         "govern-the-environment",
         "modeling-principle",
         "alignment-principle",
@@ -142,8 +138,7 @@
       "exempt": null,
       "spine_advances": [
         "abundant-implementation",
-        "fault-lies-in-instructions",
-        "churn-is-the-limit"
+        "fault-lies-in-instructions"
       ]
     },
     {
@@ -253,7 +248,8 @@
       "spine_advances": [
         "modeling-principle",
         "alignment-principle",
-        "principles-treat-the-causes"
+        "principles-treat-the-causes",
+        "three-not-knowings-cause-churn"
       ]
     },
     {
@@ -716,7 +712,8 @@
       },
       "exempt": null,
       "spine_advances": [
-        "conversions-compound"
+        "conversions-compound",
+        "three-not-knowings-cause-churn"
       ]
     },
     {
