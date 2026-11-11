@@ -87,7 +87,7 @@
           "source_style": "Author-approved compact navigation revision"
         }
       ],
-      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
+      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2\u20135 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
       "checks": [
         {
           "text": "Preface",
@@ -181,14 +181,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 1 · The New Engineering Problem",
+                "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "1 The New Engineering Problem",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 1 · The New Engineering Problem",
+                    "text": "Chapter 1 \u00b7 The New Engineering Problem",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -197,14 +197,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 2 · Modeling",
+                "source_text": "Chapter 2 \u00b7 Modeling",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "2 Modeling",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 2 · Modeling",
+                    "text": "Chapter 2 \u00b7 Modeling",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -213,14 +213,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 3 · Alignment",
+                "source_text": "Chapter 3 \u00b7 Alignment",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "3 Alignment",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 3 · Alignment",
+                    "text": "Chapter 3 \u00b7 Alignment",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -229,14 +229,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 4 · MAGE in Motion",
+                "source_text": "Chapter 4 \u00b7 MAGE in Motion",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "4 MAGE in Motion",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 4 · MAGE in Motion",
+                    "text": "Chapter 4 \u00b7 MAGE in Motion",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -245,14 +245,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 5 · Agentic Software Factories",
+                "source_text": "Chapter 5 \u00b7 Agentic Software Factories",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "5 Agentic Software Factories",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 5 · Agentic Software Factories",
+                    "text": "Chapter 5 \u00b7 Agentic Software Factories",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -261,14 +261,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 6 · The Theory",
+                "source_text": "Chapter 6 \u00b7 The Theory",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "6 The Theory",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 6 · The Theory",
+                    "text": "Chapter 6 \u00b7 The Theory",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -277,14 +277,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 7 · The Profession",
+                "source_text": "Chapter 7 \u00b7 The Profession",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "7 The Profession",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 7 · The Profession",
+                    "text": "Chapter 7 \u00b7 The Profession",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -396,14 +396,14 @@
                 ]
               },
               {
-                "source_text": "dynamics · economics · predictions · scope",
+                "source_text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Dynamics · economics · predictions · scope",
+                "candidate_text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "dynamics · economics · predictions · scope",
+                    "text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -412,14 +412,14 @@
                 ]
               },
               {
-                "source_text": "software work · broader engineering · responsibility",
+                "source_text": "software work \u00b7 broader engineering \u00b7 responsibility",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Software work · broader engineering responsibility",
+                "candidate_text": "Software work \u00b7 broader engineering responsibility",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "software work · broader engineering · responsibility",
+                    "text": "software work \u00b7 broader engineering \u00b7 responsibility",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -571,11 +571,11 @@
                 "italic": true
               },
               {
-                "text": "Dynamics · economics · predictions · scope",
+                "text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "italic": true
               },
               {
-                "text": "Software work · broader engineering responsibility",
+                "text": "Software work \u00b7 broader engineering responsibility",
                 "italic": true
               },
               {
@@ -599,7 +599,7 @@
                 "bold": true
               },
               {
-                "text": "Model · align · work · convert",
+                "text": "Model \u00b7 align \u00b7 work \u00b7 convert",
                 "bold": false
               }
             ],
@@ -660,14 +660,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 1 · The New Engineering Problem",
+                "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "1 The New Engineering Problem",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 1 · The New Engineering Problem",
+                    "text": "Chapter 1 \u00b7 The New Engineering Problem",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -676,14 +676,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 2 · Modeling",
+                "source_text": "Chapter 2 \u00b7 Modeling",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "2 Modeling",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 2 · Modeling",
+                    "text": "Chapter 2 \u00b7 Modeling",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -692,14 +692,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 3 · Alignment",
+                "source_text": "Chapter 3 \u00b7 Alignment",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "3 Alignment",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 3 · Alignment",
+                    "text": "Chapter 3 \u00b7 Alignment",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -708,14 +708,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 4 · MAGE in Motion",
+                "source_text": "Chapter 4 \u00b7 MAGE in Motion",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "4 MAGE in Motion",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 4 · MAGE in Motion",
+                    "text": "Chapter 4 \u00b7 MAGE in Motion",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -724,14 +724,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 5 · Agentic Software Factories",
+                "source_text": "Chapter 5 \u00b7 Agentic Software Factories",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "5 Agentic Software Factories",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 5 · Agentic Software Factories",
+                    "text": "Chapter 5 \u00b7 Agentic Software Factories",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -740,14 +740,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 6 · The Theory",
+                "source_text": "Chapter 6 \u00b7 The Theory",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "6 The Theory",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 6 · The Theory",
+                    "text": "Chapter 6 \u00b7 The Theory",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -756,14 +756,14 @@
                 ]
               },
               {
-                "source_text": "Chapter 7 · The Profession",
+                "source_text": "Chapter 7 \u00b7 The Profession",
                 "source_style": "weight 700, normal",
                 "semantic_role": "Book destination heading",
                 "candidate_text": "7 The Profession",
                 "candidate_style": "bold ",
                 "source_fragments": [
                   {
-                    "text": "Chapter 7 · The Profession",
+                    "text": "Chapter 7 \u00b7 The Profession",
                     "weight": "700",
                     "style": "normal",
                     "x": "268",
@@ -875,14 +875,14 @@
                 ]
               },
               {
-                "source_text": "dynamics · economics · predictions · scope",
+                "source_text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Dynamics · economics · predictions · scope",
+                "candidate_text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "dynamics · economics · predictions · scope",
+                    "text": "dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -891,14 +891,14 @@
                 ]
               },
               {
-                "source_text": "software work · broader engineering · responsibility",
+                "source_text": "software work \u00b7 broader engineering \u00b7 responsibility",
                 "source_style": "weight normal, italic",
                 "semantic_role": "Explanatory subtitle or question",
-                "candidate_text": "Software work · broader engineering responsibility",
+                "candidate_text": "Software work \u00b7 broader engineering responsibility",
                 "candidate_style": "italic ",
                 "source_fragments": [
                   {
-                    "text": "software work · broader engineering · responsibility",
+                    "text": "software work \u00b7 broader engineering \u00b7 responsibility",
                     "weight": "normal",
                     "style": "italic",
                     "x": "268",
@@ -1050,11 +1050,11 @@
                 "italic": true
               },
               {
-                "text": "Dynamics · economics · predictions · scope",
+                "text": "Dynamics \u00b7 economics \u00b7 predictions \u00b7 scope",
                 "italic": true
               },
               {
-                "text": "Software work · broader engineering responsibility",
+                "text": "Software work \u00b7 broader engineering responsibility",
                 "italic": true
               },
               {
@@ -1078,7 +1078,7 @@
                 "bold": true
               },
               {
-                "text": "Model · align · work · convert",
+                "text": "Model \u00b7 align \u00b7 work \u00b7 convert",
                 "bold": false
               }
             ],
@@ -1096,7 +1096,7 @@
               "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
               "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
               "status": "passed",
-              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
+              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
             }
           }
         }
@@ -1116,7 +1116,7 @@
         "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
         "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
         "status": "passed",
-        "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2–5 enclosure; full one-page guide proof inspected."
+        "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2\u20135 enclosure; full one-page guide proof inspected."
       }
     },
     {
@@ -1474,14 +1474,14 @@
           ]
         },
         {
-          "source_text": "Connected through shared identity and traceability, these models form the system’s explicit engineering knowledge.",
+          "source_text": "Connected through shared identity and traceability, these models form the system\u2019s explicit engineering knowledge.",
           "source_style": "weight normal, italic",
           "semantic_role": "Question answered by the class, or qualification",
           "candidate_text": "Shared identity and traceability connect explicit engineering knowledge.",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "Connected through shared identity and traceability, these models form the system’s explicit engineering knowledge.",
+              "text": "Connected through shared identity and traceability, these models form the system\u2019s explicit engineering knowledge.",
               "weight": "normal",
               "style": "italic",
               "x": "480",
@@ -1490,14 +1490,14 @@
           ]
         },
         {
-          "source_text": "MODEL CLASS — What engineering question does it answer?",
+          "source_text": "MODEL CLASS \u2014 What engineering question does it answer?",
           "source_style": "weight 700, normal",
           "semantic_role": "Model-class axis contrasted with representation-form axis",
-          "candidate_text": "MODEL CLASS — What engineering question does it answer?",
+          "candidate_text": "MODEL CLASS \u2014 What engineering question does it answer?",
           "candidate_style": "bold with capitalized axis name",
           "source_fragments": [
             {
-              "text": "MODEL CLASS — What engineering question does it answer?",
+              "text": "MODEL CLASS \u2014 What engineering question does it answer?",
               "weight": "700",
               "style": "normal",
               "x": "480",
@@ -1917,14 +1917,14 @@
           ]
         },
         {
-          "source_text": "Constraint · Sensor · Gate",
+          "source_text": "Constraint \u00b7 Sensor \u00b7 Gate",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Constraint · Sensor · Gate",
+          "candidate_text": "Constraint \u00b7 Sensor \u00b7 Gate",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "Constraint · Sensor · Gate",
+              "text": "Constraint \u00b7 Sensor \u00b7 Gate",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -1933,14 +1933,14 @@
           ]
         },
         {
-          "source_text": "action · artifact · execution result",
+          "source_text": "action \u00b7 artifact \u00b7 execution result",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Action · artifact · execution result",
+          "candidate_text": "Action \u00b7 artifact \u00b7 execution result",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "action · artifact · execution result",
+              "text": "action \u00b7 artifact \u00b7 execution result",
               "weight": "normal",
               "style": "italic",
               "x": "270",
@@ -1965,14 +1965,14 @@
           ]
         },
         {
-          "source_text": "architecture · behavior · policy · bounds",
+          "source_text": "architecture \u00b7 behavior \u00b7 policy \u00b7 bounds",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Architecture · behavior Policy · bounds",
+          "candidate_text": "Architecture \u00b7 behavior Policy \u00b7 bounds",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "architecture · behavior · policy · bounds",
+              "text": "architecture \u00b7 behavior \u00b7 policy \u00b7 bounds",
               "weight": "normal",
               "style": "italic",
               "x": "730",
@@ -1997,14 +1997,14 @@
           ]
         },
         {
-          "source_text": "models · mechanisms · procedures · canonical documentation",
+          "source_text": "models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
           "source_style": "weight normal, italic",
           "semantic_role": "Role explanation or named relation",
-          "candidate_text": "Models · mechanisms · procedures · canonical documentation",
+          "candidate_text": "Models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "models · mechanisms · procedures · canonical documentation",
+              "text": "models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2104,11 +2104,11 @@
           "bold": true
         },
         {
-          "text": "Constraint · Sensor · Gate",
+          "text": "Constraint \u00b7 Sensor \u00b7 Gate",
           "italic": true
         },
         {
-          "text": "Action · artifact · execution result",
+          "text": "Action \u00b7 artifact \u00b7 execution result",
           "italic": true
         },
         {
@@ -2116,7 +2116,7 @@
           "italic": true
         },
         {
-          "text": "Architecture · behavior Policy · bounds",
+          "text": "Architecture \u00b7 behavior Policy \u00b7 bounds",
           "italic": true
         },
         {
@@ -2124,7 +2124,7 @@
           "italic": true
         },
         {
-          "text": "Models · mechanisms · procedures · canonical documentation",
+          "text": "Models \u00b7 mechanisms \u00b7 procedures \u00b7 canonical documentation",
           "italic": true
         },
         {
@@ -2339,14 +2339,14 @@
           ]
         },
         {
-          "source_text": "Modeling · Alignment · conversion · capital",
+          "source_text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
-          "candidate_text": "Modeling · Alignment · conversion · capital",
+          "candidate_text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "Modeling · Alignment · conversion · capital",
+              "text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2371,14 +2371,14 @@
           ]
         },
         {
-          "source_text": "recurring moves · variation · limits",
+          "source_text": "recurring moves \u00b7 variation \u00b7 limits",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
-          "candidate_text": "Recurring moves · variation · limits",
+          "candidate_text": "Recurring moves \u00b7 variation \u00b7 limits",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "recurring moves · variation · limits",
+              "text": "recurring moves \u00b7 variation \u00b7 limits",
               "weight": "normal",
               "style": "italic",
               "x": "500",
@@ -2403,14 +2403,14 @@
           ]
         },
         {
-          "source_text": "mechanism · sequence",
+          "source_text": "mechanism \u00b7 sequence",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
           "candidate_text": "Mechanism and sequence",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "mechanism · sequence",
+              "text": "mechanism \u00b7 sequence",
               "weight": "normal",
               "style": "italic",
               "x": "310",
@@ -2419,14 +2419,14 @@
           ]
         },
         {
-          "source_text": "variation · alternatives",
+          "source_text": "variation \u00b7 alternatives",
           "source_style": "weight normal, italic",
           "semantic_role": "Explanation of stage or evidence dimension",
           "candidate_text": "Variation and alternatives",
           "candidate_style": "italic ",
           "source_fragments": [
             {
-              "text": "variation · alternatives",
+              "text": "variation \u00b7 alternatives",
               "weight": "normal",
               "style": "italic",
               "x": "690",
@@ -2474,7 +2474,7 @@
           "italic": true
         },
         {
-          "text": "Modeling · Alignment · conversion · capital",
+          "text": "Modeling \u00b7 Alignment \u00b7 conversion \u00b7 capital",
           "italic": true
         },
         {
@@ -2482,7 +2482,7 @@
           "italic": true
         },
         {
-          "text": "Recurring moves · variation · limits",
+          "text": "Recurring moves \u00b7 variation \u00b7 limits",
           "italic": true
         },
         {
@@ -2622,14 +2622,14 @@
           ]
         },
         {
-          "source_text": "Knowledge · selected obligations",
+          "source_text": "Knowledge \u00b7 selected obligations",
           "source_style": "weight normal, normal",
           "semantic_role": "Explanatory gloss on what the model holds",
-          "candidate_text": "Knowledge · selected obligations",
+          "candidate_text": "Knowledge \u00b7 selected obligations",
           "candidate_style": "regular",
           "source_fragments": [
             {
-              "text": "Knowledge · selected obligations",
+              "text": "Knowledge \u00b7 selected obligations",
               "weight": "normal",
               "style": "normal",
               "x": "500",
@@ -2832,7 +2832,7 @@
           "italic": true
         },
         {
-          "text": "Tagged · reading order",
+          "text": "Tagged \u00b7 reading order",
           "italic": true
         },
         {
@@ -2957,7 +2957,7 @@
           "bold": true
         },
         {
-          "text": "AGENTIC MACHINERY — THE ACTING AGENT",
+          "text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
           "bold": true
         },
         {
@@ -3093,7 +3093,7 @@
           "bold": false
         }
       ],
-      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10–10.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
+      "reason": "Bundled Source Sans 3; 11.5 pt region headings, 10.8 pt component headings, 10\u201310.5 pt ordinary labels, 9.5 pt relation and column annotations. Bold names regions/components; italic annotations distinguish the property/implication column roles and the system being changed. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "MODEL DEVELOPMENT",
@@ -3101,7 +3101,7 @@
           "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
         {
-          "candidate_text": "AGENTIC MACHINERY — THE ACTING AGENT",
+          "candidate_text": "AGENTIC MACHINERY \u2014 THE ACTING AGENT",
           "candidate_style": "bold",
           "semantic_role": "Existing reviewed term, updated GEE heading, or explicitly qualified optional training route."
         },
@@ -3379,7 +3379,7 @@
           "bold": false
         }
       ],
-      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
+      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "Finite working state Representation matters",
@@ -3509,7 +3509,7 @@
           "bold": true
         }
       ],
-      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
+      "reason": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
       "evidence": [
         {
           "candidate_text": "Finite working state",
@@ -3666,7 +3666,7 @@
           "source_style": "Author-requested revision"
         }
       ],
-      "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+      "reason": "Author review 2026-11-11: enlarge labels to 11\u201312 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / \u2264200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
       "checks": [
         {
           "text": "POSSIBLE SOFTWARE IMPLEMENTATIONS",
@@ -6133,12 +6133,12 @@
           "source_text": "the sanctioned seam",
           "source_style": "weight normal; italic; source size 14",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "shared interfaces · sanctioned seam",
+          "candidate_text": "shared interfaces \u00b7 sanctioned seam",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/document-mutation-model.svg",
             "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "shared interfaces · sanctioned seam",
+            "text_element_context": "shared interfaces \u00b7 sanctioned seam",
             "matching_fragment_count": 1
           }
         },
@@ -6182,7 +6182,7 @@
           "italic": false
         },
         {
-          "text": "shared interfaces · sanctioned seam",
+          "text": "shared interfaces \u00b7 sanctioned seam",
           "bold": false,
           "italic": true
         },
@@ -6550,7 +6550,7 @@
       "evidence": [
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "A typed structural model of DocAble’s remediation computations.",
+          "candidate_text": "A typed structural model of DocAble\u2019s remediation computations.",
           "candidate_style": "italic",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
@@ -6766,7 +6766,7 @@
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "declared dependencies—not the code implementing each computation.",
+          "candidate_text": "declared dependencies\u2014not the code implementing each computation.",
           "candidate_style": "italic",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
@@ -6802,13 +6802,13 @@
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "•",
+          "candidate_text": "\u2022",
           "candidate_style": "regular or mixed as authored",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "typed patch —",
+          "candidate_text": "typed patch \u2014",
           "candidate_style": "regular or mixed as authored",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
@@ -6820,13 +6820,13 @@
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "•",
+          "candidate_text": "\u2022",
           "candidate_style": "regular or mixed as authored",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "direct edit —",
+          "candidate_text": "direct edit \u2014",
           "candidate_style": "regular or mixed as authored",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
@@ -6838,13 +6838,13 @@
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "•",
+          "candidate_text": "\u2022",
           "candidate_style": "regular or mixed as authored",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
           "semantic_role": "Computation label, relation, or explanatory annotation",
-          "candidate_text": "read-only —",
+          "candidate_text": "read-only \u2014",
           "candidate_style": "regular or mixed as authored",
           "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
@@ -6876,7 +6876,7 @@
       "reason": "Correct mutation semantics after author review: read-only Classify and report-only Check alt-text use ellipses; typed repair producers use diamonds; Apply patches is a direct-edit rounded box. Apply-seam annotation remains separate from mutation behavior. Three indented bullets and legend entries distinguish the behaviors. Preserve italic e.g., counts125/57, and the house font/arrow grammar. This is an illustrative subset, not a complete runtime path or all mutation categories.",
       "checks": [
         {
-          "text": "A typed structural model of DocAble’s remediation computations.",
+          "text": "A typed structural model of DocAble\u2019s remediation computations.",
           "bold": false,
           "italic": true
         },
@@ -7052,7 +7052,7 @@
           "italic": true
         },
         {
-          "text": "declared dependencies—not the code implementing each computation.",
+          "text": "declared dependencies\u2014not the code implementing each computation.",
           "bold": false,
           "italic": true
         },
@@ -7082,12 +7082,12 @@
           "italic": false
         },
         {
-          "text": "•",
+          "text": "\u2022",
           "bold": false,
           "italic": false
         },
         {
-          "text": "typed patch —",
+          "text": "typed patch \u2014",
           "bold": false,
           "italic": false
         },
@@ -7097,12 +7097,12 @@
           "italic": false
         },
         {
-          "text": "•",
+          "text": "\u2022",
           "bold": false,
           "italic": false
         },
         {
-          "text": "direct edit —",
+          "text": "direct edit \u2014",
           "bold": false,
           "italic": false
         },
@@ -7112,12 +7112,12 @@
           "italic": false
         },
         {
-          "text": "•",
+          "text": "\u2022",
           "bold": false,
           "italic": false
         },
         {
-          "text": "read-only —",
+          "text": "read-only \u2014",
           "bold": false,
           "italic": false
         },
@@ -7200,15 +7200,15 @@
             "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
             "evidence": [
               {
-                "source_text": "A typed structural model of DocAble’s remediation computations.",
+                "source_text": "A typed structural model of DocAble\u2019s remediation computations.",
                 "source_style": "font-size:21.5px;font-style:italic;",
                 "semantic_role": "annotation heading or model-summary emphasis",
-                "candidate_text": "A typed structural model of DocAble’s remediation computations.",
+                "candidate_text": "A typed structural model of DocAble\u2019s remediation computations.",
                 "candidate_style": "italic",
                 "source_locator": {
                   "svg": "book/assets/from-nodes-to-composition.svg",
                   "element_text_path": "/svg/text[1]/text()",
-                  "text_element_context": "A typed structural model of DocAble’s remediation computations.",
+                  "text_element_context": "A typed structural model of DocAble\u2019s remediation computations.",
                   "matching_fragment_count": 1
                 }
               },
@@ -7408,15 +7408,15 @@
                 }
               },
               {
-                "source_text": "declared dependencies—not the code implementing each computation.",
+                "source_text": "declared dependencies\u2014not the code implementing each computation.",
                 "source_style": "font-size:20px;font-style:italic;",
                 "semantic_role": "annotation heading or model-summary emphasis",
-                "candidate_text": "declared dependencies—not the code implementing each computation.",
+                "candidate_text": "declared dependencies\u2014not the code implementing each computation.",
                 "candidate_style": "italic",
                 "source_locator": {
                   "svg": "book/assets/from-nodes-to-composition.svg",
                   "element_text_path": "/svg/text[42]/text()",
-                  "text_element_context": "declared dependencies—not the code implementing each computation.",
+                  "text_element_context": "declared dependencies\u2014not the code implementing each computation.",
                   "matching_fragment_count": 1
                 }
               }
@@ -7424,7 +7424,7 @@
             "reason": "Preserve the approved Source Sans 3 hierarchy; only e.g., in the Computation example becomes italic, while classify, repair, remains regular. Indented bullet entries remain regular.",
             "checks": [
               {
-                "text": "A typed structural model of DocAble’s remediation computations.",
+                "text": "A typed structural model of DocAble\u2019s remediation computations.",
                 "bold": false,
                 "italic": true
               },
@@ -7552,7 +7552,7 @@
                 "italic": false
               },
               {
-                "text": "typed patch —",
+                "text": "typed patch \u2014",
                 "bold": false,
                 "italic": false
               },
@@ -7562,7 +7562,7 @@
                 "italic": false
               },
               {
-                "text": "direct edit —",
+                "text": "direct edit \u2014",
                 "bold": false,
                 "italic": false
               },
@@ -7625,7 +7625,7 @@
                 "italic": true
               },
               {
-                "text": "declared dependencies—not the code implementing each computation.",
+                "text": "declared dependencies\u2014not the code implementing each computation.",
                 "bold": false,
                 "italic": true
               },
@@ -7640,12 +7640,12 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -7913,7 +7913,7 @@
           "italic": false
         },
         {
-          "text": "e.g., n ≤3).",
+          "text": "e.g., n \u22643).",
           "bold": false,
           "italic": false
         },
@@ -7923,17 +7923,17 @@
           "italic": false
         },
         {
-          "text": "• At most N retry attempts (e.g., N = 3).",
+          "text": "\u2022 At most N retry attempts (e.g., N = 3).",
           "bold": false,
           "italic": false
         },
         {
-          "text": "• A job eventually reaches Succeeded or Failed.",
+          "text": "\u2022 A job eventually reaches Succeeded or Failed.",
           "bold": false,
           "italic": false
         },
         {
-          "text": "• Only one worker actively executes the job at a time.",
+          "text": "\u2022 Only one worker actively executes the job at a time.",
           "bold": false,
           "italic": false
         }
@@ -8903,15 +8903,15 @@
                 }
               },
               {
-                "source_text": "owner · epoch · expires_at",
+                "source_text": "owner \u00b7 epoch \u00b7 expires_at",
                 "source_style": "weight normal; italic; source size 14.5",
                 "semantic_role": "named category versus explanatory text",
-                "candidate_text": "owner · epoch · expires_at",
+                "candidate_text": "owner \u00b7 epoch \u00b7 expires_at",
                 "candidate_style": "italic",
                 "source_locator": {
                   "svg": "book/assets/in-flight-ownership-states.svg",
                   "element_text_path": "/svg/text[4]/text()",
-                  "text_element_context": "owner · epoch · expires_at",
+                  "text_element_context": "owner \u00b7 epoch \u00b7 expires_at",
                   "matching_fragment_count": 1
                 }
               },
@@ -8970,7 +8970,7 @@
                 "italic": false
               },
               {
-                "text": "owner · epoch · expires_at",
+                "text": "owner \u00b7 epoch \u00b7 expires_at",
                 "bold": false,
                 "italic": true
               },
@@ -9105,13 +9105,13 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "Unowned — no active claim",
+                "candidate_text": "Unowned \u2014 no active claim",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "Owned(w, g) — job held by worker w",
+                "candidate_text": "Owned(w, g) \u2014 job held by worker w",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9123,7 +9123,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "Reclaimable — previous claim",
+                "candidate_text": "Reclaimable \u2014 previous claim",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9135,7 +9135,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "•",
+                "candidate_text": "\u2022",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9153,7 +9153,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "•",
+                "candidate_text": "\u2022",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9171,7 +9171,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "•",
+                "candidate_text": "\u2022",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9272,10 +9272,10 @@
                 "italic": false
               },
               {
-                "text": "Unowned — no active claim"
+                "text": "Unowned \u2014 no active claim"
               },
               {
-                "text": "Owned(w, g) — job held by worker w"
+                "text": "Owned(w, g) \u2014 job held by worker w"
               },
               {
                 "text": "with generation g",
@@ -9283,7 +9283,7 @@
                 "italic": false
               },
               {
-                "text": "Reclaimable — previous claim"
+                "text": "Reclaimable \u2014 previous claim"
               },
               {
                 "text": "expired, job can be claimed",
@@ -9291,7 +9291,7 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -9304,7 +9304,7 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -9317,7 +9317,7 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -9449,13 +9449,13 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "Unowned — no active claim",
+                "candidate_text": "Unowned \u2014 no active claim",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "Owned(w, g) — job held by worker w",
+                "candidate_text": "Owned(w, g) \u2014 job held by worker w",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9467,7 +9467,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "Reclaimable — previous claim",
+                "candidate_text": "Reclaimable \u2014 previous claim",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9479,7 +9479,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "•",
+                "candidate_text": "\u2022",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9497,7 +9497,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "•",
+                "candidate_text": "\u2022",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9515,7 +9515,7 @@
               },
               {
                 "semantic_role": "Reference label or explanation",
-                "candidate_text": "•",
+                "candidate_text": "\u2022",
                 "candidate_style": "regular or mixed as in reference",
                 "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
               },
@@ -9611,10 +9611,10 @@
                 "italic": false
               },
               {
-                "text": "Unowned — no active claim"
+                "text": "Unowned \u2014 no active claim"
               },
               {
-                "text": "Owned(w, g) — job held by worker w"
+                "text": "Owned(w, g) \u2014 job held by worker w"
               },
               {
                 "text": "with generation g",
@@ -9622,7 +9622,7 @@
                 "italic": false
               },
               {
-                "text": "Reclaimable — previous claim"
+                "text": "Reclaimable \u2014 previous claim"
               },
               {
                 "text": "expired, job can be claimed",
@@ -9630,7 +9630,7 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -9643,7 +9643,7 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -9656,7 +9656,7 @@
                 "italic": false
               },
               {
-                "text": "•",
+                "text": "\u2022",
                 "bold": false,
                 "italic": false
               },
@@ -10400,7 +10400,7 @@
           "italic": false
         },
         {
-          "text": "traceability · derivation · query surfaces",
+          "text": "traceability \u00b7 derivation \u00b7 query surfaces",
           "bold": true,
           "italic": false
         },
@@ -10483,7 +10483,7 @@
                 "italic": false
               },
               {
-                "text": "traceability · derivation · query surfaces",
+                "text": "traceability \u00b7 derivation \u00b7 query surfaces",
                 "bold": true,
                 "italic": false
               },
@@ -10650,7 +10650,7 @@
           "italic": true
         },
         {
-          "text": "audit · debugging · changelog",
+          "text": "audit \u00b7 debugging \u00b7 changelog",
           "bold": false,
           "italic": false
         }
@@ -11510,7 +11510,7 @@
           "italic": true
         },
         {
-          "text": "Records · edges · states",
+          "text": "Records \u00b7 edges \u00b7 states",
           "bold": false,
           "italic": false
         }
@@ -11549,7 +11549,7 @@
           }
         },
         {
-          "source_text": "“What quantity and bound matter?”",
+          "source_text": "\u201cWhat quantity and bound matter?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "What quantity and bound matter?",
@@ -11557,12 +11557,12 @@
           "source_locator": {
             "svg": "book/assets/modeling-perp-enforcement.svg",
             "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "“What quantity and bound matter?”",
+            "text_element_context": "\u201cWhat quantity and bound matter?\u201d",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "“What enforcement is justified?”",
+          "source_text": "\u201cWhat enforcement is justified?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "What enforcement is justified?",
@@ -11570,7 +11570,7 @@
           "source_locator": {
             "svg": "book/assets/modeling-perp-enforcement.svg",
             "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "“What enforcement is justified?”",
+            "text_element_context": "\u201cWhat enforcement is justified?\u201d",
             "matching_fragment_count": 1
           }
         }
@@ -11821,7 +11821,7 @@
           }
         },
         {
-          "source_text": "“Do they agree?”",
+          "source_text": "\u201cDo they agree?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "class question",
           "candidate_text": "Do they agree?",
@@ -11829,7 +11829,7 @@
           "source_locator": {
             "svg": "book/assets/three-relations.svg",
             "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "“Do they agree?”",
+            "text_element_context": "\u201cDo they agree?\u201d",
             "matching_fragment_count": 1
           }
         },
@@ -11847,7 +11847,7 @@
           }
         },
         {
-          "source_text": "“Does it satisfy?”",
+          "source_text": "\u201cDoes it satisfy?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "class question",
           "candidate_text": "Does it satisfy?",
@@ -11855,7 +11855,7 @@
           "source_locator": {
             "svg": "book/assets/three-relations.svg",
             "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "“Does it satisfy?”",
+            "text_element_context": "\u201cDoes it satisfy?\u201d",
             "matching_fragment_count": 1
           }
         },
@@ -11873,7 +11873,7 @@
           }
         },
         {
-          "source_text": "“Will it accept?”",
+          "source_text": "\u201cWill it accept?\u201d",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "class question",
           "candidate_text": "Will it accept?",
@@ -11881,7 +11881,7 @@
           "source_locator": {
             "svg": "book/assets/three-relations.svg",
             "element_text_path": "/svg/text[17]/text()",
-            "text_element_context": "“Will it accept?”",
+            "text_element_context": "\u201cWill it accept?\u201d",
             "matching_fragment_count": 1
           }
         }
@@ -12038,7 +12038,7 @@
           "italic": true
         },
         {
-          "text": "Analysis · governance",
+          "text": "Analysis \u00b7 governance",
           "bold": false,
           "italic": false
         }
@@ -13336,7 +13336,7 @@
           }
         },
         {
-          "source_text": "logged — not enforced",
+          "source_text": "logged \u2014 not enforced",
           "source_style": "weight normal; italic; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "logged, not enforced",
@@ -13344,7 +13344,7 @@
           "source_locator": {
             "svg": "book/assets/judgment-without-consequence.svg",
             "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "logged — not enforced",
+            "text_element_context": "logged \u2014 not enforced",
             "matching_fragment_count": 1
           }
         },
@@ -13362,7 +13362,7 @@
           }
         },
         {
-          "source_text": "Durable repair — remove the unsafe capability; escalate an ambiguous merge to a human.",
+          "source_text": "Durable repair \u2014 remove the unsafe capability; escalate an ambiguous merge to a human.",
           "source_style": "weight 700; normal; source size 19.2",
           "semantic_role": "named category versus explanatory text",
           "candidate_text": "Durable repair:",
@@ -13370,7 +13370,7 @@
           "source_locator": {
             "svg": "book/assets/judgment-without-consequence.svg",
             "element_text_path": "/svg/text[15]/text()",
-            "text_element_context": "Durable repair — remove the unsafe capability; escalate an ambiguous merge to a human.",
+            "text_element_context": "Durable repair \u2014 remove the unsafe capability; escalate an ambiguous merge to a human.",
             "matching_fragment_count": 1
           }
         }
@@ -13959,7 +13959,7 @@
                 }
               },
               {
-                "source_text": "modeled order — first to last",
+                "source_text": "modeled order \u2014 first to last",
                 "source_style": "weight normal; italic; source size 19.2",
                 "semantic_role": "named category versus explanatory text",
                 "candidate_text": "modeled order",
@@ -13967,7 +13967,7 @@
                 "source_locator": {
                   "svg": "book/assets/turn-end-ordering.svg",
                   "element_text_path": "/svg/text[1]/text()",
-                  "text_element_context": "modeled order — first to last",
+                  "text_element_context": "modeled order \u2014 first to last",
                   "matching_fragment_count": 1
                 }
               },
@@ -14031,7 +14031,7 @@
                 "italic": true
               },
               {
-                "text": "the turn’s closing message",
+                "text": "the turn\u2019s closing message",
                 "bold": true,
                 "italic": false
               },
@@ -14548,8 +14548,8 @@
       "source": "book/assets/interlude-execution-unit.svg",
       "candidate": "book/tikz/figures/interlude-execution-unit.tex",
       "decision": "refined",
-      "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
-      "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
+      "source_sha256": "804d18118d4605694220d128bcc305e790c169834e5cd110f23f6ccdc7dcda75",
+      "candidate_sha256": "d868d3c067b40154c02601a8164630e9092caa84f1df1b934dd6be46dae8da0e",
       "evidence": [
         {
           "semantic_role": "Panel label, worker state, or reference bullet",
@@ -14613,19 +14613,19 @@
         },
         {
           "semantic_role": "Panel label, worker state, or reference bullet",
-          "candidate_text": "Pages 1–10",
+          "candidate_text": "Pages 1\u201310",
           "candidate_style": "regular",
           "authorization": "Author-requested working-set triptych,2026-11-11"
         },
         {
           "semantic_role": "Panel label, worker state, or reference bullet",
-          "candidate_text": "Pages 11–20",
+          "candidate_text": "Pages 11\u201320",
           "candidate_style": "regular",
           "authorization": "Author-requested working-set triptych,2026-11-11"
         },
         {
           "semantic_role": "Panel label, worker state, or reference bullet",
-          "candidate_text": "Pages 21–30",
+          "candidate_text": "Pages 21\u201330",
           "candidate_style": "regular",
           "authorization": "Author-requested working-set triptych,2026-11-11"
         },
@@ -14673,7 +14673,7 @@
         },
         {
           "semantic_role": "Panel label, worker state, or reference bullet",
-          "candidate_text": "•",
+          "candidate_text": "\u2022",
           "candidate_style": "regular",
           "authorization": "Author-requested working-set triptych,2026-11-11"
         },
@@ -14739,7 +14739,7 @@
         },
         {
           "semantic_role": "Panel label, worker state, or reference bullet",
-          "candidate_text": "the chunk’s structure",
+          "candidate_text": "the chunk\u2019s structure",
           "candidate_style": "regular",
           "authorization": "Author-requested working-set triptych,2026-11-11"
         },
@@ -14810,7 +14810,7 @@
           "authorization": "Author-requested working-set triptych,2026-11-11"
         }
       ],
-      "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+      "reason": "Fit correction after the aggregate SVG-plus-caption float exceeded a page by1.44pt: remove12bp of unused space below the panel headers and lift diagram content and notes together. Retain all font sizes, labels, internal box sizes, topology, three-panel equality, and pending author-review status.",
       "checks": [
         {
           "text": "(a) Whole-document",
@@ -14863,17 +14863,17 @@
           "italic": false
         },
         {
-          "text": "Pages 1–10",
+          "text": "Pages 1\u201310",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Pages 11–20",
+          "text": "Pages 11\u201320",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Pages 21–30",
+          "text": "Pages 21\u201330",
           "bold": false,
           "italic": false
         },
@@ -14913,7 +14913,7 @@
           "italic": false
         },
         {
-          "text": "•",
+          "text": "\u2022",
           "bold": false,
           "italic": false
         },
@@ -14968,7 +14968,7 @@
           "italic": false
         },
         {
-          "text": "the chunk’s structure",
+          "text": "the chunk\u2019s structure",
           "bold": false,
           "italic": false
         },
@@ -15031,10 +15031,10 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
-        "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+        "proof_sha256": "58b7b68f530ace5f2b97ee6ba1a1abfbad6fe52256c8194ccab7a7bc24afae9f",
         "page": 1,
         "width_bp": 449.972,
-        "height_bp": 553.971,
+        "height_bp": 541.971,
         "maximum_dimensions_bp": [
           450,
           560
@@ -15045,11 +15045,11 @@
         "monochrome_pixels": true,
         "maximum_rgb_channel_delta": 0,
         "semantic_typography_checks": 43,
-        "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+        "geometry_audit_sha256": "bd727e5d32f74350944bedecf88df84275f7bcd974b1ad00517f64c4b96318a4",
         "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
         "source_geometry_checks": [
-          "three equal142×546bp panels",
-          "three equal108×62bp page workers"
+          "three equal142\u00d7534bp panels",
+          "three equal108\u00d762bp page workers"
         ],
         "status": "passed"
       },
@@ -15127,6 +15127,527 @@
               "geometry_findings": 0,
               "monochrome_pixels": true,
               "semantic_typography_checks": 3
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+              "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Fit correction after the aggregate SVG-plus-caption float exceeded a page by1.44pt: remove12bp of unused space below the panel headers and lift diagram content and notes together. Retain all font sizes, labels, internal box sizes, topology, three-panel equality, and pending author-review status.",
+          "previous": {
+            "source": "book/assets/interlude-execution-unit.svg",
+            "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+            "decision": "refined",
+            "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
+            "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
+            "evidence": [
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "(a) Whole-document",
+                "candidate_style": "bold",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "execution",
+                "candidate_style": "bold",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "(b) Page-chunked",
+                "candidate_style": "bold",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "(c) Skeletonized",
+                "candidate_style": "bold",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Document",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Worker",
+                "candidate_style": "bold",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Structure",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Media",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "(all resident)",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Output",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Pages 1\u201310",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Pages 11\u201320",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Pages 21\u201330",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Merge",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "(skeletonized)",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Media references",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "GenAI",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "service",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "External",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "media",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "\u2022",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "One worker retains the",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "complete document.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Structure and all media",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "are resident.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Memory scales with the",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "document payload.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "The document is",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "partitioned into page",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "chunks.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Each worker retains",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "the chunk\u2019s structure",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "and media.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "A smaller working set",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "per worker reduces",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "memory.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "The worker retains",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "structure and media",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "references.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Media is not resident,",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "but streamed on demand.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "Media is processed by a",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              },
+              {
+                "semantic_role": "Panel label, worker state, or reference bullet",
+                "candidate_text": "GenAI service.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested working-set triptych,2026-11-11"
+              }
+            ],
+            "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+            "checks": [
+              {
+                "text": "(a) Whole-document",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "execution",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(b) Page-chunked",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(c) Skeletonized",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Document",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Worker",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Structure",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Media",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(all resident)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Output",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Pages 1\u201310",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Pages 11\u201320",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Pages 21\u201330",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Merge",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(skeletonized)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Media references",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "GenAI",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "service",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "External",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "media",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "\u2022",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "One worker retains the",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "complete document.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Structure and all media",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "are resident.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Memory scales with the",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "document payload.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "The document is",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "partitioned into page",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "chunks.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Each worker retains",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "the chunk\u2019s structure",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "and media.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "A smaller working set",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "per worker reduces",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "memory.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "The worker retains",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "structure and media",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "references.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Media is not resident,",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "but streamed on demand.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Media is processed by a",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "GenAI service.",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
+              "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 553.971,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10.162,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "maximum_rgb_channel_delta": 0,
+              "semantic_typography_checks": 43,
+              "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+              "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
+              "source_geometry_checks": [
+                "three equal142\u00d7546bp panels",
+                "three equal108\u00d762bp page workers"
+              ],
+              "status": "passed"
             },
             "color_source_revision": {
               "date": "2026-11-09",
@@ -16246,18 +16767,18 @@
           ]
         },
         {
-          "source_text": "Findings → 0",
+          "source_text": "Findings \u2192 0",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "24"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Findings → 0",
+          "candidate_text": "Findings \u2192 0",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Findings → 0",
+              "text": "Findings \u2192 0",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -16465,7 +16986,7 @@
       "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
       "evidence": [
         {
-          "source_text": "context · tools · routing · authority · sequencing",
+          "source_text": "context \u00b7 tools \u00b7 routing \u00b7 authority \u00b7 sequencing",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -16476,7 +16997,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "context · tools · routing · authority · sequencing",
+              "text": "context \u00b7 tools \u00b7 routing \u00b7 authority \u00b7 sequencing",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -17588,7 +18109,7 @@
       "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
       "evidence": [
         {
-          "source_text": "delegated — code generation",
+          "source_text": "delegated \u2014 code generation",
           "source_style": {
             "font-weight": "600",
             "font-style": "normal",
@@ -17599,7 +18120,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "delegated — code generation",
+              "text": "delegated \u2014 code generation",
               "style": {
                 "font-weight": "600",
                 "font-style": "normal",
@@ -18068,7 +18589,7 @@
           ]
         },
         {
-          "source_text": "standards · requirements\nbrownfield assets · prior lessons",
+          "source_text": "standards \u00b7 requirements\nbrownfield assets \u00b7 prior lessons",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -18079,7 +18600,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "standards · requirements",
+              "text": "standards \u00b7 requirements",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18092,7 +18613,7 @@
               }
             },
             {
-              "text": "brownfield assets · prior lessons",
+              "text": "brownfield assets \u00b7 prior lessons",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18107,7 +18628,7 @@
           ]
         },
         {
-          "source_text": "model capability\nconcurrency · raw velocity",
+          "source_text": "model capability\nconcurrency \u00b7 raw velocity",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -18131,7 +18652,7 @@
               }
             },
             {
-              "text": "concurrency · raw velocity",
+              "text": "concurrency \u00b7 raw velocity",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18146,7 +18667,7 @@
           ]
         },
         {
-          "source_text": "representation quality\nobligation coverage\ncoherence · economy",
+          "source_text": "representation quality\nobligation coverage\ncoherence \u00b7 economy",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -18183,7 +18704,7 @@
               }
             },
             {
-              "text": "coherence · economy",
+              "text": "coherence \u00b7 economy",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18289,7 +18810,7 @@
           ]
         },
         {
-          "source_text": "churn · recurring failure · escaped defect\nrepeated intervention · control friction",
+          "source_text": "churn \u00b7 recurring failure \u00b7 escaped defect\nrepeated intervention \u00b7 control friction",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -18300,7 +18821,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "churn · recurring failure · escaped defect",
+              "text": "churn \u00b7 recurring failure \u00b7 escaped defect",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18313,7 +18834,7 @@
               }
             },
             {
-              "text": "repeated intervention · control friction",
+              "text": "repeated intervention \u00b7 control friction",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18328,7 +18849,7 @@
           ]
         },
         {
-          "source_text": "local defect · missing representation · weak enforcement · stale mechanism?",
+          "source_text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -18339,7 +18860,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "local defect · missing representation · weak enforcement · stale mechanism?",
+              "text": "local defect \u00b7 missing representation \u00b7 weak enforcement \u00b7 stale mechanism?",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -18354,7 +18875,7 @@
           ]
         },
         {
-          "source_text": "represent · constrain · validate · strengthen · reconcile · retire",
+          "source_text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -18365,7 +18886,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "represent · constrain · validate · strengthen · reconcile · retire",
+              "text": "represent \u00b7 constrain \u00b7 validate \u00b7 strengthen \u00b7 reconcile \u00b7 retire",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -19196,7 +19717,7 @@
           ]
         },
         {
-          "source_text": "High value · Low feasible governability",
+          "source_text": "High value \u00b7 Low feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -19207,7 +19728,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "High value · Low feasible governability",
+              "text": "High value \u00b7 Low feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -19222,7 +19743,7 @@
           ]
         },
         {
-          "source_text": "High value · High feasible governability",
+          "source_text": "High value \u00b7 High feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -19233,7 +19754,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "High value · High feasible governability",
+              "text": "High value \u00b7 High feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -19248,7 +19769,7 @@
           ]
         },
         {
-          "source_text": "Low value · Low feasible governability",
+          "source_text": "Low value \u00b7 Low feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -19259,7 +19780,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Low value · Low feasible governability",
+              "text": "Low value \u00b7 Low feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -19274,7 +19795,7 @@
           ]
         },
         {
-          "source_text": "Low value · High feasible governability",
+          "source_text": "Low value \u00b7 High feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -19285,7 +19806,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Low value · High feasible governability",
+              "text": "Low value \u00b7 High feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -19826,7 +20347,7 @@
           ]
         },
         {
-          "source_text": "Memory ·\nplanning state",
+          "source_text": "Memory \u00b7\nplanning state",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -19837,7 +20358,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Memory ·",
+              "text": "Memory \u00b7",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -19891,7 +20412,7 @@
           ]
         },
         {
-          "source_text": "Tools · interfaces",
+          "source_text": "Tools \u00b7 interfaces",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -19902,7 +20423,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "Tools · interfaces",
+              "text": "Tools \u00b7 interfaces",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -20125,7 +20646,7 @@
           ]
         }
       ],
-      "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+      "reason": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9\u201310pt native type are unchanged.",
       "checks": [
         {
           "text": "Governed engineering environment",
@@ -20485,7 +21006,7 @@
           ]
         },
         {
-          "source_text": "OBSERVE → REACT",
+          "source_text": "OBSERVE \u2192 REACT",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -20496,7 +21017,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "OBSERVE → REACT",
+              "text": "OBSERVE \u2192 REACT",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -20560,7 +21081,7 @@
           "bold": true
         },
         {
-          "text": "OBSERVE–REACT",
+          "text": "OBSERVE\u2013REACT",
           "bold": true
         },
         {
@@ -21710,7 +22231,7 @@
           "bold": true
         },
         {
-          "text": "capacity · scope",
+          "text": "capacity \u00b7 scope",
           "bold": false,
           "italic": false
         }
@@ -22187,7 +22708,7 @@
           ]
         },
         {
-          "source_text": "“What makes this false?”",
+          "source_text": "\u201cWhat makes this false?\u201d",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -22198,7 +22719,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "“What makes this false?”",
+              "text": "\u201cWhat makes this false?\u201d",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -22611,7 +23132,7 @@
             "font-size": "20"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "DERIVE; DON’T COPY",
+          "candidate_text": "DERIVE; DON\u2019T COPY",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -22721,7 +23242,7 @@
           "bold": true
         },
         {
-          "text": "DERIVE; DON’T COPY",
+          "text": "DERIVE; DON\u2019T COPY",
           "bold": true
         },
         {
@@ -23085,18 +23606,18 @@
       "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
       "evidence": [
         {
-          "source_text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+          "source_text": "\u2026 the next check sees it \u2014 coupled to the interface, not yesterday's answer",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "20"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+          "candidate_text": "The next check sees the change: coupled to the interface, not yesterday\u2019s answer.",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "… the next check sees it — coupled to the interface, not yesterday's answer",
+              "text": "\u2026 the next check sees it \u2014 coupled to the interface, not yesterday's answer",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -23111,7 +23632,7 @@
           ]
         },
         {
-          "source_text": "… the snapshot does not — the check trusts a stale answer",
+          "source_text": "\u2026 the snapshot does not \u2014 the check trusts a stale answer",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -23122,7 +23643,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "… the snapshot does not — the check trusts a stale answer",
+              "text": "\u2026 the snapshot does not \u2014 the check trusts a stale answer",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -23137,18 +23658,18 @@
           ]
         },
         {
-          "source_text": "GOOD · query at the point of use",
+          "source_text": "GOOD \u00b7 query at the point of use",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "20"
           },
           "semantic_role": "concept/category versus explanation",
-          "candidate_text": "GOOD · query at the point of use",
+          "candidate_text": "GOOD \u00b7 query at the point of use",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "GOOD · query at the point of use",
+              "text": "GOOD \u00b7 query at the point of use",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -23163,18 +23684,18 @@
           ]
         },
         {
-          "source_text": "GOOD · query at the point of use",
+          "source_text": "GOOD \u00b7 query at the point of use",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
             "font-size": "20"
           },
           "semantic_role": "Parallel contrast heading: candidate BAD heading mirrors the original bold GOOD heading; BAD is not itself printed in the source SVG.",
-          "candidate_text": "BAD · copied snapshot",
+          "candidate_text": "BAD \u00b7 copied snapshot",
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "GOOD · query at the point of use",
+              "text": "GOOD \u00b7 query at the point of use",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -23189,18 +23710,18 @@
           ]
         },
         {
-          "source_text": "query — no second editable truth",
+          "source_text": "query \u2014 no second editable truth",
           "source_style": {
             "font-weight": "700",
             "font-style": "italic",
             "font-size": "20"
           },
           "semantic_role": "live-query relation contrasted with copied snapshot",
-          "candidate_text": "query — no second editable truth",
+          "candidate_text": "query \u2014 no second editable truth",
           "candidate_style": "bold italic",
           "source_fragments": [
             {
-              "text": "query — no second editable truth",
+              "text": "query \u2014 no second editable truth",
               "style": {
                 "font-weight": "700",
                 "font-style": "italic",
@@ -23218,7 +23739,7 @@
       "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "checks": [
         {
-          "text": "The next check sees the change: coupled to the interface, not yesterday’s answer.",
+          "text": "The next check sees the change: coupled to the interface, not yesterday\u2019s answer.",
           "bold": true
         },
         {
@@ -23226,15 +23747,15 @@
           "bold": true
         },
         {
-          "text": "GOOD · query at the point of use",
+          "text": "GOOD \u00b7 query at the point of use",
           "bold": true
         },
         {
-          "text": "BAD · copied snapshot",
+          "text": "BAD \u00b7 copied snapshot",
           "bold": true
         },
         {
-          "text": "query — no second editable truth",
+          "text": "query \u2014 no second editable truth",
           "bold": true,
           "italic": true
         },
@@ -23393,21 +23914,21 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "seams · failure edges · invariants",
+          "source_text": "seams \u00b7 failure edges \u00b7 invariants",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-          "candidate_text": "seams · failure edges · invariants",
+          "candidate_text": "seams \u00b7 failure edges \u00b7 invariants",
           "candidate_style": "italic"
         },
         {
-          "source_text": "tests · checks that actually exist",
+          "source_text": "tests \u00b7 checks that actually exist",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-          "candidate_text": "tests · checks that actually exist",
+          "candidate_text": "tests \u00b7 checks that actually exist",
           "candidate_style": "italic"
         },
         {
-          "source_text": "Measure the required set minus the present evidence — not the evidence you happen to have written.",
+          "source_text": "Measure the required set minus the present evidence \u2014 not the evidence you happen to have written.",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
           "candidate_text": "Required set minus present evidence.",
@@ -23422,7 +23943,7 @@
           "italic": false
         },
         {
-          "text": "tests · checks that actually exist",
+          "text": "tests \u00b7 checks that actually exist",
           "bold": false,
           "italic": true
         },
@@ -23534,14 +24055,14 @@
       "candidate_sha256": "c02d5fc8760d4eb87503a2d4096b89ab5dd6e953de53725ec14c15b62bf79d00",
       "evidence": [
         {
-          "source_text": "OPEN · any route",
+          "source_text": "OPEN \u00b7 any route",
           "source_style": "font-weight=700",
           "semantic_role": "Open unknown routes versus bounded named seam and finite verbs",
           "candidate_text": "OPEN",
           "candidate_style": "bold"
         },
         {
-          "source_text": "CLOSED · one named seam",
+          "source_text": "CLOSED \u00b7 one named seam",
           "source_style": "font-weight=700",
           "semantic_role": "Open unknown routes versus bounded named seam and finite verbs",
           "candidate_text": "CLOSED",
@@ -23738,7 +24259,7 @@
           "candidate_style": "italic"
         },
         {
-          "source_text": "the identity travels with the work — and can be checked for completeness",
+          "source_text": "the identity travels with the work \u2014 and can be checked for completeness",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
           "candidate_text": "identity travels with the work",
@@ -23960,10 +24481,10 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "advisory · report-only",
+          "source_text": "advisory \u00b7 report-only",
           "source_style": "font-weight=700",
           "semantic_role": "Category heading distinguished from explanatory description",
-          "candidate_text": "advisory · report-only",
+          "candidate_text": "advisory \u00b7 report-only",
           "candidate_style": "bold"
         },
         {
@@ -24053,7 +24574,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "CHECKED · door",
+          "source_text": "CHECKED \u00b7 door",
           "source_style": "font-weight=700",
           "semantic_role": "Category heading distinguished from explanatory description",
           "candidate_text": "CHECKED",
@@ -24101,7 +24622,7 @@
           "italic": true
         },
         {
-          "text": "ownership · seams",
+          "text": "ownership \u00b7 seams",
           "bold": false,
           "italic": false
         }
@@ -24349,7 +24870,7 @@
           "italic": true
         },
         {
-          "text": "latency · cost · queue",
+          "text": "latency \u00b7 cost \u00b7 queue",
           "bold": false,
           "italic": false
         }
@@ -24389,7 +24910,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "CHECKED · completion gate",
+          "source_text": "CHECKED \u00b7 completion gate",
           "source_style": "font-weight=700",
           "semantic_role": "Factual representation, checked gate, and re-derivability contrast with independent prose",
           "candidate_text": "CHECKED",
@@ -24575,7 +25096,7 @@
           "source_text": "humans enforce",
           "source_style": "font-weight=700",
           "semantic_role": "Category heading distinguished from explanatory description",
-          "candidate_text": "Understands — humans enforce",
+          "candidate_text": "Understands \u2014 humans enforce",
           "candidate_style": "bold"
         },
         {
@@ -24860,7 +25381,7 @@
           "italic": true
         },
         {
-          "text": "hypotheses · needs",
+          "text": "hypotheses \u00b7 needs",
           "bold": false,
           "italic": false
         }
@@ -25096,7 +25617,7 @@
           "italic": false
         },
         {
-          "text": "architecture · behavior",
+          "text": "architecture \u00b7 behavior",
           "bold": false,
           "italic": false
         }
@@ -25192,10 +25713,10 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "experience · failures · evidence · governance conversion",
+          "source_text": "experience \u00b7 failures \u00b7 evidence \u00b7 governance conversion",
           "source_style": "font-style=italic",
           "semantic_role": "Explanatory qualifier or relation, subordinate to category label",
-          "candidate_text": "experience · failures · evidence · governance conversion",
+          "candidate_text": "experience \u00b7 failures \u00b7 evidence \u00b7 governance conversion",
           "candidate_style": "italic"
         }
       ],
@@ -25212,7 +25733,7 @@
           "italic": false
         },
         {
-          "text": "identity · provenance",
+          "text": "identity \u00b7 provenance",
           "bold": false,
           "italic": false
         }
@@ -25549,7 +26070,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Value × feasible governability",
+          "source_text": "Value \u00d7 feasible governability",
           "source_style": "font-weight=700",
           "semantic_role": "Linked source locator and concept title distinguish card heading from summary prose",
           "candidate_text": "Value $\\times$ feasible governability",
@@ -25961,10 +26482,10 @@
       "candidate_sha256": "d1f4fe31bbc543b5846be7f88e15f327caa573b68bc9945fef8853fa87b72107",
       "evidence": [
         {
-          "source_text": "backend/ +941,120 / −286,378",
+          "source_text": "backend/ +941,120 / \u2212286,378",
           "source_style": "font-weight=700",
           "semantic_role": "Extreme mechanization/backend contribution called out separately from series definitions",
-          "candidate_text": "Mechanization backend: +941,120 / −286,378 lines.",
+          "candidate_text": "Mechanization backend: +941,120 / \u2212286,378 lines.",
           "candidate_style": "bold"
         }
       ],
@@ -26016,7 +26537,7 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "grounded — DocAble (software) evidence",
+          "source_text": "grounded \u2014 DocAble (software) evidence",
           "source_style": "font-style=italic",
           "semantic_role": "Grounded versus inferred evidence status",
           "candidate_text": "grounded: DocAble",
@@ -26030,14 +26551,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "repos · diffs · PRs",
+          "source_text": "repos \u00b7 diffs \u00b7 PRs",
           "source_style": "font-style=italic",
           "semantic_role": "Concrete examples beneath stage label",
-          "candidate_text": "repos · diffs · PRs",
+          "candidate_text": "repos \u00b7 diffs \u00b7 PRs",
           "candidate_style": "italic"
         },
         {
-          "source_text": "documents · records",
+          "source_text": "documents \u00b7 records",
           "source_style": "font-weight=700",
           "semantic_role": "Knowledge-work source objects",
           "candidate_text": "documents / records",
@@ -26051,10 +26572,10 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "PdfModel · JobId ·",
+          "source_text": "PdfModel \u00b7 JobId \u00b7",
           "source_style": "font-style=italic",
           "semantic_role": "Illustrative vocabulary entries",
-          "candidate_text": "PdfModel · JobId",
+          "candidate_text": "PdfModel \u00b7 JobId",
           "candidate_style": "italic"
         },
         {
@@ -26085,7 +26606,7 @@
           "italic": true
         },
         {
-          "text": "repos · diffs · PRs",
+          "text": "repos \u00b7 diffs \u00b7 PRs",
           "bold": false,
           "italic": true
         },
@@ -26135,7 +26656,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 1 · The New Engineering Problem",
+          "source_text": "Chapter 1 \u00b7 The New Engineering Problem",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:1",
@@ -26190,7 +26711,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 2 · Modeling",
+          "source_text": "Chapter 2 \u00b7 Modeling",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:2",
@@ -26245,7 +26766,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 3 · Alignment",
+          "source_text": "Chapter 3 \u00b7 Alignment",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:3",
@@ -26300,7 +26821,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 4 · MAGE in Motion: Engineering Through Models",
+          "source_text": "Chapter 4 \u00b7 MAGE in Motion: Engineering Through Models",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:4",
@@ -26355,7 +26876,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 5 · DocAble Among Other Software Factories",
+          "source_text": "Chapter 5 \u00b7 DocAble Among Other Software Factories",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:5",
@@ -26397,7 +26918,7 @@
       },
       "title_revision_review": {
         "date": "2026-11-09",
-        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 × 81 bp and native 426.477 × 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
+        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 \u00d7 81 bp and native 426.477 \u00d7 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
         "validation": {
           "proof": "latex/build/tikz/candidates.pdf",
           "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
@@ -26428,7 +26949,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 6 · The Theory",
+          "source_text": "Chapter 6 \u00b7 The Theory",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:6",
@@ -26483,7 +27004,7 @@
           "candidate_style": "bfseries current station; regular peers"
         },
         {
-          "source_text": "Chapter 7 · The Profession",
+          "source_text": "Chapter 7 \u00b7 The Profession",
           "source_style": "bold chapter heading",
           "semantic_role": "Linked current chapter title",
           "candidate_text": "magebookref part:7",
@@ -27110,13 +27631,13 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "models · rules · procedures",
+          "source_text": "models \u00b7 rules \u00b7 procedures",
           "source_style": {
             "font-weight": "normal",
             "font-style": "italic",
             "font-size": "20"
           },
-          "candidate_text": "models · rules · procedures",
+          "candidate_text": "models \u00b7 rules \u00b7 procedures",
           "candidate_style": "italic",
           "semantic_role": "description or feedback annotation"
         },
@@ -27132,13 +27653,13 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "mission · compact method",
+          "source_text": "mission \u00b7 compact method",
           "source_style": {
             "font-weight": "normal",
             "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "mission · compact method",
+          "candidate_text": "mission \u00b7 compact method",
           "candidate_style": "regular",
           "semantic_role": "description or feedback annotation"
         },
@@ -27176,13 +27697,13 @@
           "semantic_role": "description or feedback annotation"
         },
         {
-          "source_text": "examples — retrieved when needed",
+          "source_text": "examples \u2014 retrieved when needed",
           "source_style": {
             "font-weight": "normal",
             "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "examples — retrieved when needed",
+          "candidate_text": "examples \u2014 retrieved when needed",
           "candidate_style": "regular",
           "semantic_role": "description or feedback annotation"
         },
@@ -27220,13 +27741,13 @@
           "semantic_role": "description or feedback annotation"
         },
         {
-          "source_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+          "source_text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
           "source_style": {
             "font-weight": "normal",
             "font-style": "italic",
             "font-size": "20"
           },
-          "candidate_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+          "candidate_text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
           "candidate_style": "italic",
           "semantic_role": "description or feedback annotation"
         }
@@ -27238,7 +27759,7 @@
           "italic": false
         },
         {
-          "text": "models · rules · procedures",
+          "text": "models \u00b7 rules \u00b7 procedures",
           "bold": false,
           "italic": true
         },
@@ -27248,7 +27769,7 @@
           "italic": false
         },
         {
-          "text": "mission · compact method",
+          "text": "mission \u00b7 compact method",
           "bold": false,
           "italic": false
         },
@@ -27268,7 +27789,7 @@
           "italic": false
         },
         {
-          "text": "examples — retrieved when needed",
+          "text": "examples \u2014 retrieved when needed",
           "bold": false,
           "italic": false
         },
@@ -27288,7 +27809,7 @@
           "italic": true
         },
         {
-          "text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
+          "text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
           "bold": false,
           "italic": true
         }
@@ -27601,14 +28122,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "target · operation · arguments",
+          "source_text": "target \u00b7 operation \u00b7 arguments",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "strategy or explanation",
-          "candidate_text": "target · operation · arguments",
+          "candidate_text": "target \u00b7 operation \u00b7 arguments",
           "candidate_style": "regular"
         },
         {
@@ -27634,14 +28155,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "resolve · check preconditions · apply · record",
+          "source_text": "resolve \u00b7 check preconditions \u00b7 apply \u00b7 record",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "strategy or explanation",
-          "candidate_text": "resolve · check preconditions · apply · record",
+          "candidate_text": "resolve \u00b7 check preconditions \u00b7 apply \u00b7 record",
           "candidate_style": "regular"
         },
         {
@@ -27656,14 +28177,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Typed PDF objects · format-specific implementation",
+          "source_text": "Typed PDF objects \u00b7 format-specific implementation",
           "source_style": {
             "font-size": "9.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "strategy or explanation",
-          "candidate_text": "Typed PDF objects · format-specific implementation",
+          "candidate_text": "Typed PDF objects \u00b7 format-specific implementation",
           "candidate_style": "regular"
         },
         {
@@ -27678,14 +28199,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "remediated document · applied-operation provenance",
+          "source_text": "remediated document \u00b7 applied-operation provenance",
           "source_style": {
             "font-size": "9.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "strategy or explanation",
-          "candidate_text": "remediated document · applied-operation provenance",
+          "candidate_text": "remediated document \u00b7 applied-operation provenance",
           "candidate_style": "regular"
         },
         {
@@ -27755,7 +28276,7 @@
           "candidate_style": "regular"
         }
       ],
-      "reason": "New paired artwork shares the same label text and semantic emphasis at 9.5–10.5 pt. Body faces are inherited from the production book style; color proof uses bundled static Source Sans 3 faces.",
+      "reason": "New paired artwork shares the same label text and semantic emphasis at 9.5\u201310.5 pt. Body faces are inherited from the production book style; color proof uses bundled static Source Sans 3 faces.",
       "checks": [
         {
           "text": "REASONING STRATEGIES",
@@ -27803,7 +28324,7 @@
           "italic": false
         },
         {
-          "text": "target · operation · arguments",
+          "text": "target \u00b7 operation \u00b7 arguments",
           "bold": false,
           "italic": false
         },
@@ -27818,7 +28339,7 @@
           "italic": false
         },
         {
-          "text": "resolve · check preconditions · apply · record",
+          "text": "resolve \u00b7 check preconditions \u00b7 apply \u00b7 record",
           "bold": false,
           "italic": false
         },
@@ -27828,7 +28349,7 @@
           "italic": false
         },
         {
-          "text": "Typed PDF objects · format-specific implementation",
+          "text": "Typed PDF objects \u00b7 format-specific implementation",
           "bold": false,
           "italic": false
         },
@@ -27838,7 +28359,7 @@
           "italic": false
         },
         {
-          "text": "remediated document · applied-operation provenance",
+          "text": "remediated document \u00b7 applied-operation provenance",
           "bold": false,
           "italic": false
         },
@@ -27945,14 +28466,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Accounts · resources",
+          "source_text": "Accounts \u00b7 resources",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Accounts · resources",
+          "candidate_text": "Accounts \u00b7 resources",
           "candidate_style": "regular"
         },
         {
@@ -28011,14 +28532,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Principal · service",
+          "source_text": "Principal \u00b7 service",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Principal · service",
+          "candidate_text": "Principal \u00b7 service",
           "candidate_style": "regular"
         },
         {
@@ -28132,7 +28653,7 @@
           "italic": false
         },
         {
-          "text": "Accounts · resources",
+          "text": "Accounts \u00b7 resources",
           "bold": false,
           "italic": false
         },
@@ -28162,7 +28683,7 @@
           "italic": false
         },
         {
-          "text": "Principal · service",
+          "text": "Principal \u00b7 service",
           "bold": false,
           "italic": false
         },
@@ -28246,14 +28767,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Project · phase",
+          "source_text": "Project \u00b7 phase",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Project · phase",
+          "candidate_text": "Project \u00b7 phase",
           "candidate_style": "regular"
         },
         {
@@ -28385,7 +28906,7 @@
           "italic": false
         },
         {
-          "text": "Project · phase",
+          "text": "Project \u00b7 phase",
           "bold": false,
           "italic": false
         },
@@ -28484,25 +29005,25 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Role · target paths",
+          "source_text": "Role \u00b7 target paths",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Role · target paths",
+          "candidate_text": "Role \u00b7 target paths",
           "candidate_style": "regular"
         },
         {
-          "source_text": "Verification · acceptance",
+          "source_text": "Verification \u00b7 acceptance",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Verification · acceptance",
+          "candidate_text": "Verification \u00b7 acceptance",
           "candidate_style": "regular"
         },
         {
@@ -28517,14 +29038,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Components · constraints",
+          "source_text": "Components \u00b7 constraints",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Components · constraints",
+          "candidate_text": "Components \u00b7 constraints",
           "candidate_style": "regular"
         },
         {
@@ -28678,12 +29199,12 @@
           "italic": false
         },
         {
-          "text": "Role · target paths",
+          "text": "Role \u00b7 target paths",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Verification · acceptance",
+          "text": "Verification \u00b7 acceptance",
           "bold": false,
           "italic": false
         },
@@ -28693,7 +29214,7 @@
           "italic": false
         },
         {
-          "text": "Components · constraints",
+          "text": "Components \u00b7 constraints",
           "bold": false,
           "italic": false
         },
@@ -28802,14 +29323,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Structure · semantics",
+          "source_text": "Structure \u00b7 semantics",
           "source_style": {
             "font-size": "10",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Structure · semantics",
+          "candidate_text": "Structure \u00b7 semantics",
           "candidate_style": "regular"
         },
         {
@@ -28824,14 +29345,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Structured pipeline · agent · human editor",
+          "source_text": "Structured pipeline \u00b7 agent \u00b7 human editor",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Structured pipeline · agent · human editor",
+          "candidate_text": "Structured pipeline \u00b7 agent \u00b7 human editor",
           "candidate_style": "regular"
         },
         {
@@ -28868,14 +29389,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Kind · target",
+          "source_text": "Kind \u00b7 target",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Kind · target",
+          "candidate_text": "Kind \u00b7 target",
           "candidate_style": "regular"
         },
         {
@@ -28901,14 +29422,14 @@
           "candidate_style": "bold"
         },
         {
-          "source_text": "Resolve · check",
+          "source_text": "Resolve \u00b7 check",
           "source_style": {
             "font-size": "10.5",
             "font-weight": "400",
             "font-style": "normal"
           },
           "semantic_role": "contents or supporting activity",
-          "candidate_text": "Resolve · check",
+          "candidate_text": "Resolve \u00b7 check",
           "candidate_style": "regular"
         },
         {
@@ -28996,7 +29517,7 @@
           "italic": false
         },
         {
-          "text": "Structure · semantics",
+          "text": "Structure \u00b7 semantics",
           "bold": false,
           "italic": false
         },
@@ -29006,7 +29527,7 @@
           "italic": false
         },
         {
-          "text": "Structured pipeline · agent · human editor",
+          "text": "Structured pipeline \u00b7 agent \u00b7 human editor",
           "bold": false,
           "italic": false
         },
@@ -29026,7 +29547,7 @@
           "italic": false
         },
         {
-          "text": "Kind · target",
+          "text": "Kind \u00b7 target",
           "bold": false,
           "italic": false
         },
@@ -29041,7 +29562,7 @@
           "italic": false
         },
         {
-          "text": "Resolve · check",
+          "text": "Resolve \u00b7 check",
           "bold": false,
           "italic": false
         },
@@ -29151,7 +29672,7 @@
             }
           },
           {
-            "source_text": "typed enum · permission · narrow API",
+            "source_text": "typed enum \u00b7 permission \u00b7 narrow API",
             "source_style": "weight normal; italic; source size 19.2",
             "semantic_role": "named category versus explanatory text",
             "candidate_text": "typed enum; permission; narrow API",
@@ -29159,12 +29680,12 @@
             "source_locator": {
               "svg": "book/assets/constraint-vs-sensor.svg",
               "element_text_path": "/svg/text[8]/text()",
-              "text_element_context": "typed enum · permission · narrow API",
+              "text_element_context": "typed enum \u00b7 permission \u00b7 narrow API",
               "matching_fragment_count": 1
             }
           },
           {
-            "source_text": "metric · trace · call scan · log",
+            "source_text": "metric \u00b7 trace \u00b7 call scan \u00b7 log",
             "source_style": "weight normal; italic; source size 19.2",
             "semantic_role": "named category versus explanatory text",
             "candidate_text": "metric; trace; call scan; log",
@@ -29172,7 +29693,7 @@
             "source_locator": {
               "svg": "book/assets/constraint-vs-sensor.svg",
               "element_text_path": "/svg/text[11]/text()",
-              "text_element_context": "metric · trace · call scan · log",
+              "text_element_context": "metric \u00b7 trace \u00b7 call scan \u00b7 log",
               "matching_fragment_count": 1
             }
           },
@@ -29858,7 +30379,7 @@
           ]
         },
         {
-          "source_text": "pass decomposition — the nodes already project",
+          "source_text": "pass decomposition \u2014 the nodes already project",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -29869,7 +30390,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "pass decomposition — the nodes already project",
+              "text": "pass decomposition \u2014 the nodes already project",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -29884,7 +30405,7 @@
           ]
         },
         {
-          "source_text": "repeated traversal · shared-state reads · direct mutation · special cases",
+          "source_text": "repeated traversal \u00b7 shared-state reads \u00b7 direct mutation \u00b7 special cases",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -29895,7 +30416,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "repeated traversal · shared-state reads · direct mutation · special cases",
+              "text": "repeated traversal \u00b7 shared-state reads \u00b7 direct mutation \u00b7 special cases",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -29962,7 +30483,7 @@
           ]
         },
         {
-          "source_text": "critical paths · boundedness · latency · coverage",
+          "source_text": "critical paths \u00b7 boundedness \u00b7 latency \u00b7 coverage",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -29973,7 +30494,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "critical paths · boundedness · latency · coverage",
+              "text": "critical paths \u00b7 boundedness \u00b7 latency \u00b7 coverage",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",

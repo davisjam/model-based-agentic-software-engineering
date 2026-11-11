@@ -10,7 +10,11 @@ import argparse, subprocess
 ROOT=Path(__file__).resolve().parents[3]
 OUT=Path(__file__).resolve().parent
 KEY='interlude-execution-unit'
-W,H=444,548
+W,H=444,536
+
+def compact_y(y):
+    """Remove12bp of unused space below the panel headers; preserve type sizes."""
+    return y-12 if y>=65 else y
 
 def tex(s):
     return ''.join({'&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','{':r'\{','}':r'\}','\\':r'\textbackslash{}'}.get(c,c) for c in s)
@@ -20,14 +24,17 @@ class Figure:
         self.s=[f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W*3}" height="{H*3}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc"><title id="title">Evolution of DocAble’s document working set</title><desc id="desc">Three equal panels: whole-document execution, page-chunked execution, and skeletonized execution. Chunking partitions execution; skeletonization separates resident structure from externally stored media. Media access and the GenAI connection are distinct.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#222"/></marker></defs><rect width="{W}" height="{H}" fill="white"/><style>text{{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}}path,rect{{stroke-linejoin:round;}}</style>''']
         self.t=['% Consolidated working-set triptych; shared SVG/native geometry.\n',r'\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]'+'\n',f'\\path[use as bounding box] (0,0) rectangle ({W},{H});\n']
     def text(self,x,y,s,size=10.2,bold=False,anchor='start'):
+        y=compact_y(y)
         self.s.append(f'<text x="{x}" y="{y}" text-anchor="{anchor}" style="font-size:{size}px;'+('font-weight:bold;' if bold else '')+f'">{escape(s)}</text>')
         a={'start':'base west','middle':'base','end':'base east'}[anchor];face=r'\bfseries ' if bold else ''
         self.t.append(f'\\node[anchor={a},inner sep=0pt,font={{{face}\\fontsize{{{size}}}{{{size*1.2:g}}}\\selectfont}}] at ({x},{y}) {{{tex(s)}}};\n')
     def rect(self,x,y,w,h,gray=0,rx=3,stroke=True):
+        y=compact_y(y)
         color=round(255*(1-gray/100));fill=f'#{color:02x}{color:02x}{color:02x}'
         self.s.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="'+('#444' if stroke else 'none')+'" stroke-width=".65"/>')
         self.t.append(f'\\path[fill=black!{gray},'+('draw=black!75,line width=.65bp,' if stroke else '')+f'rounded corners={rx}bp] ({x},{y}) rectangle ({x+w},{y+h});\n')
     def line(self,pts,arrow=True,dashed=False,both=False):
+        pts=[(x,compact_y(y)) for x,y in pts]
         coords=' '.join(('M' if i==0 else 'L')+f'{x},{y}' for i,(x,y) in enumerate(pts))
         self.s.append(f'<path d="{coords}" fill="none" stroke="#222" stroke-width=".8"'+(' stroke-dasharray="3 2"' if dashed else '')+(' marker-end="url(#arrow)"' if arrow else '')+(' marker-start="url(#arrow)"' if both else '')+'/>')
         opt='line width=.8bp'+(',-{Stealth[length=4.5bp,width=3.8bp]}' if arrow and not both else '')+(',{Stealth[length=4.5bp,width=3.8bp]}-{Stealth[length=4.5bp,width=3.8bp]}' if both else '')+(',dash pattern=on 3bp off 2bp' if dashed else '')
@@ -52,7 +59,7 @@ def build():
     f=Figure()
     # Equal panels; no internal overall heading, which belongs in the caption.
     for x,top,bottom in [(1,'(a) Whole-document','execution'),(151,'(b) Page-chunked','execution'),(301,'(c) Skeletonized','execution')]:
-        f.rect(x,1,142,546,0,4)
+        f.rect(x,1,142,534,0,4)
         f.rect(x+1,2,140,42,4,2,False)
         f.rect(x+1,420,140,126,3,2,False)
         f.text(x+71,18,top,11.2,True,'middle');f.text(x+71,32,bottom,11.2,True,'middle')

@@ -22,4 +22,8 @@ The generator writes the canonical SVG, matching editorial `interlude-execution-
 
 ## Review
 
-The native standalone proof is 449.972×553.971bp with type authored at 10.2–11.2pt. This requires full-width placement. The figure and caption together need careful page placement; retain a concise caption rather than shrinking the artwork. Compile diagnostics, geometry, semantic typography, grayscale, and visual inspection are recorded in the figure receipt. This is a review candidate; the integration pass owns the prose/caption changes, old 4.6 retirement, inventory update, and publication approval.
+The native standalone proof is 449.972×541.971bp with type authored at 10.2–11.2pt. This requires full-width placement. The figure and caption together need careful page placement; retain a concise caption rather than shrinking the artwork. Compile diagnostics, geometry, semantic typography, grayscale, and visual inspection are recorded in the figure receipt. This is a review candidate; the integration pass owns the prose/caption changes, old 4.6 retirement, inventory update, and publication approval.
+
+The combined original artwork and caption exceeded the page by 1.44pt in the aggregate build. This fit correction removes 12bp of empty space below the three panel headers, lifting every diagram and note together. All font sizes, words, box sizes within the diagrams, and arrow topology are unchanged.
+
+A focused proof used the actual manuscript caption and the original SVG projection at 450bp in the 11pt MAGE book house style. The complete float fits on one page with zero unapproved compilation diagnostics; the rendered page was inspected.

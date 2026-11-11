@@ -16,11 +16,11 @@
       "status": "reviewed",
       "source_sha256": "7348e5c194fb29c170695a0bc70838855894781cdd356d0428344ad9fe602fc8",
       "candidate_sha256": "695ca67463d23d12794455aa3c82a83f5eb519445ffe1e9b01ff366ce50f0455",
-      "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter boxes remain white.",
+      "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter boxes remain white.",
       "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-      "routing": "A single vertical chapter sequence; the optional appendix branches were removed at the author’s request.",
+      "routing": "A single vertical chapter sequence; the optional appendix branches were removed at the author\u2019s request.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Shaded Chapters 2–5 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs.",
+      "visual_review": "Shaded Chapters 2\u20135 group with readable white nodes and connectors; optional appendix branches absent in color and monochrome proofs.",
       "book_references": [
         "part:1",
         "part:2",
@@ -43,7 +43,7 @@
             "status": "reviewed",
             "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
             "candidate_sha256": "2f7d26bb6e3a72c5f1ab45b99574d01d6e13817cc34303cd0860f9e18a0ec96b",
-            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
             "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -86,7 +86,7 @@
             "status": "reviewed",
             "source_sha256": "fa33ab525f809309b9fbec4d3b53e5291045bd783c353395c6fa37ea1e832a6e",
             "candidate_sha256": "e0e488a816536137faae76449690a4cd69bf67b5c2c87571e299139de706c522",
-            "fill": "A light gray enclosure groups Chapters 2–5 as the software-engineering case; individual chapter and appendix boxes remain white.",
+            "fill": "A light gray enclosure groups Chapters 2\u20135 as the software-engineering case; individual chapter and appendix boxes remain white.",
             "bold": "Source-derived emphasis includes Preface; Conclusion; 1 The New Engineering Problem; 2 Modeling; 3 Alignment; 4 MAGE in Motion; 5 Agentic Software Factories; 6 The Theory. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
             "routing": "Vertical chapter sequence; short orthogonal dotted appendix-detail connectors outside boxes.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
@@ -105,7 +105,7 @@
               "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
               "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
               "status": "passed",
-              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2–5; chapter nodes stay white, labels and connectors remain legible."
+              "visual_review": "Inspected the shaded native proof at legible size: light gray groups Chapters 2\u20135; chapter nodes stay white, labels and connectors remain legible."
             },
             "book_references": [
               "part:1",
@@ -122,7 +122,7 @@
         }
       ],
       "reviewed_visually": true,
-      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2–5 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
+      "reason": "Author approved black-and-white output and a compact navigation diagram on 2026-11-09: retain chapter boxes, arrows, the Chapters 2\u20135 enclosure, and opening/closing questions; remove descriptive subtitles. Geometry is reauthored at 10pt, without scaling.",
       "validation": {
         "date": "2026-11-09",
         "proof": "latex/build/tikz/candidates.pdf",
@@ -137,7 +137,7 @@
         "audit_sha256": "5052c26b420f01616a0d49b6e33f8187d5a67ef557abbc458d3cdfc8a3f21565",
         "typography_audit_sha256": "534b3f7f9fb476ad288e5b25bd1ca0f1112ff7c65d9c0a6e8db8c908f7054602",
         "status": "passed",
-        "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2–5 enclosure; full one-page guide proof inspected."
+        "visual_review": "Compact map at native 10pt, with legible chapter boxes, clear arrows and a shaded Chapters 2\u20135 enclosure; full one-page guide proof inspected."
       }
     },
     {
@@ -451,7 +451,7 @@
       "bold": "Region and component headings preserve boldface; the updated GEE heading keeps the original 11.5pt region style. Ordinary labels remain regular, with original property/implication and system-role italics.",
       "routing": "Orthogonal connectors only. The optional dashed route enters Pretraining and post-training from the clear upper port; it no longer terminates at the outer model-development border or trained weights. Guidance retains its own upward arrow to agentic work. Governance uses a separate middle port and a leftward turn to a perpendicular control mark across Actions and changes. Swapping only the two gap channels avoids any governance/guidance crossing. All existing boxes and property rows retain their coordinates.",
       "shape": "Original three regions and all peer boxes retain their geometry; only a small perpendicular control mark is added at the action boundary.",
-      "visual_review": "Native and SVG proofs inspected at final readable size. Training route enters the intended process; guidance and governance remain visibly distinct; GEE heading fits. Web natural dimensions are 1003.5×1253.25px; the 832px-column realization was inspected separately.",
+      "visual_review": "Native and SVG proofs inspected at final readable size. Training route enters the intended process; guidance and governance remain visibly distinct; GEE heading fits. Web natural dimensions are 1003.5\u00d71253.25px; the 832px-column realization was inspected separately.",
       "validation": {
         "proof": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.pdf",
         "proof_png": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.png",
@@ -537,7 +537,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "fill": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
-      "bold": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
+      "bold": "Source Sans 3 figure profile; 10 pt principal labels and 9.5 pt cost annotations. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
       "routing": "Orthogonal downward branch rail; all three pairs have equal top/bottom edges and equal height.",
       "shape": "Modestly rounded ordinary concept boxes; no decorative pictograms.",
       "visual_review": "Native final-size PDF and bundled-font Chromium web proof inspected for routing, fits, semantic weight and label legibility.",
@@ -601,7 +601,7 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
       "fill": "All ordinary boxes are white with black text and thin black outlines. No decorative shading.",
-      "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21–22 px labels at its declared natural width. No shrink-to-fit.",
+      "bold": "Source Sans 3 figure profile; 10 pt principal labels and 10 pt column headings. Bold identifies the shared premise, comparison sources and named problems/responses; process and cost labels stay regular. Web artwork uses 21\u201322 px labels at its declared natural width. No shrink-to-fit.",
       "routing": "Straight horizontal left-to-right arrows; peer boxes in each row share top/bottom edges and equal height.",
       "shape": "Modestly rounded ordinary concept boxes; no decorative pictograms.",
       "visual_review": "Native final-size PDF and bundled-font Chromium web proof inspected for routing, fits, semantic weight and label legibility.",
@@ -701,7 +701,7 @@
           }
         }
       ],
-      "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+      "reason": "Author review 2026-11-11: enlarge labels to 11\u201312 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / \u2264200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-1-review/proof.pdf",
@@ -1833,7 +1833,7 @@
       "bold": "Only comparison-panel headings are bold; service labels are regular.",
       "routing": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
       "shape": "Uniform house-scale rounded rectangles for services.",
-      "visual_review": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book’s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+      "visual_review": "Author-approved comparison compacted for side-by-side chapter placement: reduce horizontal and vertical edge lengths while retaining 10.2pt labels and all observed/declared relationships. Use the tagged book\u2019s accessible aligned-column mechanism beside the introductory paragraph; the qualification resumes full width. Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
@@ -2811,7 +2811,7 @@
             "source_sha256": "6ff6f84e0881906383bc18648920d97c1819d95c82ade50d540eacaf32d32e95",
             "candidate_sha256": "3143a0eb28e48aa912fab7278621a6a35e7e1f5660345997c7c96e8d4b625390",
             "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-            "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn’s closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
+            "bold": "Source-derived emphasis includes Discourages premature stops; Prompts reflection on failures; Checks for stranded work; the turn\u2019s closing message. Italic hook qualifiers introduce bold purpose labels; shared message identity and italic ordering/writes labels recover source hierarchy.",
             "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
             "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
             "visual_review": "Modeled ordering uses heavy horizontal arrows; writes use lighter aligned vertical ports.",
@@ -2937,7 +2937,7 @@
       "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
       "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
-      "visual_review": "Nested M1–M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+      "visual_review": "Nested M1\u2013M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
       "validation": {
         "proof": "latex/build/tikz/candidates.pdf",
         "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
@@ -3009,20 +3009,20 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
-      "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
+      "source_sha256": "804d18118d4605694220d128bcc305e790c169834e5cd110f23f6ccdc7dcda75",
+      "candidate_sha256": "d868d3c067b40154c02601a8164630e9092caa84f1df1b934dd6be46dae8da0e",
       "fill": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required.",
       "bold": "Panel titles and Worker labels are bold. Other labels and bullet explanations are regular.",
       "routing": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
       "shape": "Modestly rounded worker and document boxes; nested structure/media rectangles distinguish residency.",
-      "visual_review": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+      "visual_review": "Fit correction after the aggregate SVG-plus-caption float exceeded a page by1.44pt: remove12bp of unused space below the panel headers and lift diagram content and notes together. Retain all font sizes, labels, internal box sizes, topology, three-panel equality, and pending author-review status.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
-        "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+        "proof_sha256": "58b7b68f530ace5f2b97ee6ba1a1abfbad6fe52256c8194ccab7a7bc24afae9f",
         "page": 1,
         "width_bp": 449.972,
-        "height_bp": 553.971,
+        "height_bp": 541.971,
         "maximum_dimensions_bp": [
           450,
           560
@@ -3033,11 +3033,11 @@
         "monochrome_pixels": true,
         "maximum_rgb_channel_delta": 0,
         "semantic_typography_checks": 43,
-        "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+        "geometry_audit_sha256": "bd727e5d32f74350944bedecf88df84275f7bcd974b1ad00517f64c4b96318a4",
         "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
         "source_geometry_checks": [
-          "three equal142×546bp panels",
-          "three equal108×62bp page workers"
+          "three equal142\u00d7534bp panels",
+          "three equal108\u00d762bp page workers"
         ],
         "status": "passed"
       },
@@ -3083,6 +3083,60 @@
             },
             "book_references": [],
             "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+              "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Fit correction after the aggregate SVG-plus-caption float exceeded a page by1.44pt: remove12bp of unused space below the panel headers and lift diagram content and notes together. Retain all font sizes, labels, internal box sizes, topology, three-panel equality, and pending author-review status.",
+          "previous": {
+            "source": "book/assets/interlude-execution-unit.svg",
+            "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+            "receipt": "book/tikz/receipts/interlude-execution-unit.json",
+            "decision": "refined",
+            "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+            "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+            "status": "reviewed",
+            "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
+            "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
+            "fill": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required.",
+            "bold": "Panel titles and Worker labels are bold. Other labels and bullet explanations are regular.",
+            "routing": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
+            "shape": "Modestly rounded worker and document boxes; nested structure/media rectangles distinguish residency.",
+            "visual_review": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
+              "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 553.971,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10.162,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "maximum_rgb_channel_delta": 0,
+              "semantic_typography_checks": 43,
+              "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+              "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
+              "source_geometry_checks": [
+                "three equal142\u00d7546bp panels",
+                "three equal108\u00d762bp page workers"
+              ],
+              "status": "passed"
+            },
+            "book_references": [],
+            "routing_exceptions": "None: simple straight or orthogonal connectors; no crossed edges.",
             "color_source_revision": {
               "date": "2026-11-09",
               "previous_source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
@@ -4046,7 +4100,7 @@
       "bold": "Source-derived emphasis includes Governed engineering environment; Knowledge representation; Memory; planning state; Structured reasoning; Tools and interfaces; Trustworthy autonomy; Engineering capital; Systems / safety. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "Governance conversion runs within the GEE; the inheritance arrow leaves its lower boundary.",
       "shape": "Engineering capital is a child box within the GEE; both are inside the MAGE boundary. Trustworthy autonomy remains outside as the intended outcome.",
-      "visual_review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9–10pt native type are unchanged.",
+      "visual_review": "Author-requested consistency correction: engineering capital is nested inside the Governed Engineering Environment, with governance conversion inside that region and an outgoing inheritance connection to the intended outcome. Tools and procedures remain explicit constituents. Figure footprint and 9\u201310pt native type are unchanged.",
       "validation": {
         "proof": "/private/tmp/mage-ch7-followups-20261110/proof.pdf",
         "proof_sha256": "df021ecd5de4e8cc517992a4292508d00a1af3efb667908694dc2b1d651a508f",
@@ -4111,7 +4165,7 @@
       "source_sha256": "597cd5e840477b321ce2b7986cc243ae4e4174868a8e202faa2f2d9e9af29d25",
       "candidate_sha256": "e82cb37d2574da224bb9372db136bf6354a5beac2999980e356c0c5860a98b1e",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE–REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "bold": "Source-derived emphasis includes AUDITABLE TRANSFORMATION; GOVERNANCE CONVERSION; RESOURCE MEDIATION; CONTEXT DELIVERY; MODEL COHERENCE; OBSERVE\u2013REACT; ASSURANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Common relations orthogonal; resource mediation and context delivery still detached.",
@@ -4471,7 +4525,7 @@
       "source_sha256": "9d8d024b6350246acda49614796c7447105781f58ffd76170ae5366e78011b2f",
       "candidate_sha256": "81a4470b21a784a770425f879db780c56a1294b482b9cb7d10bfe7e78963a8bc",
       "fill": "Ordinary nodes, artifacts, evidence and outcomes are white. Named roles, position and relation styles provide the necessary distinctions.",
-      "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday’s answer.; the snapshot does not. The check trusts a stale answer.; GOOD · query at the point of use; BAD · copied snapshot; query — no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "bold": "Source-derived emphasis includes The next check sees the change: coupled to the interface, not yesterday\u2019s answer.; the snapshot does not. The check trusts a stale answer.; GOOD \u00b7 query at the point of use; BAD \u00b7 copied snapshot; query \u2014 no second editable truth. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
       "routing": "Existing aligned process links retained; restored symbols and external annotations preserved.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Rendered and visually inspected all 43 pages, including enlarged inspection of revised gate branches and crowded peer junctions. Required dashed relationships, icons, topology, labels and external annotations retained. Geometry checks supplement, rather than replace, visual review.",
@@ -5791,7 +5845,7 @@
       },
       "title_revision_review": {
         "date": "2026-11-09",
-        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 × 81 bp and native 426.477 × 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
+        "reason": "Chapter 5 title changed to DocAble Among Other Software Factories. Color 450 \u00d7 81 bp and native 426.477 \u00d7 75.857 bp proofs visually inspected; full title fits, seven station labels remain legible, and the fifth station retains filled/bold emphasis. Color labels 9 bp; native labels 10 TeX pt and title 11 TeX pt. No topology or geometry change.",
         "validation": {
           "proof": "latex/build/tikz/candidates.pdf",
           "proof_sha256": "bd79c763291d2dc7a3f1badba20d3bc4cd55301c8550f8bbefe9027850b281c4",
