@@ -5275,9 +5275,9 @@
     {
       "source": "book/assets/interlude-modeling-cycle.svg",
       "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
-      "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+      "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
       "baseline_candidate_sha256": "fdb6fb1b03ffbe353a91b88a606abbdbf8d93e366f9381bac9f8880e5b51b067",
-      "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+      "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
       "decision": "refined",
       "reason": "Moved feedback and prediction elbow rails away from target borders.",
       "reviewed_visually": true,

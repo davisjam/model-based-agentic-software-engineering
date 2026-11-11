@@ -1416,7 +1416,7 @@
       "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
       "checks": {
         "icons_and_symbols": "No icons.",
-        "links_and_groups": "After-implementation sequence contrasted with feedback loop; prior acknowledged causality correction remains in questions.",
+        "links_and_groups": "Single feedback loop; analysis-to-prediction route enters the side port.",
         "annotation_placement": "Refine-model caption is outside loop nodes."
       },
       "font_qa": {
@@ -1432,8 +1432,8 @@
       "width_bp": 396.3800048828125,
       "height_bp": 227.6280059814453,
       "monochrome": true,
-      "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
-      "candidate_sha256": "cc47c3cb58caa573832a34643d00b379c4aef28203a799770482cf23ea276e19",
+      "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+      "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
       "review": "Reviewed and retained.",
       "decision": "retained"
     },

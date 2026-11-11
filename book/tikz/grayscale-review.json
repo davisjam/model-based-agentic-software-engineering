@@ -865,9 +865,9 @@
     "receipt": "book/tikz/receipts/interlude-modeling-cycle.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "After-the-fact document chain muted; live model emphasized; editorial arrow resolution retained.",
-    "source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
-    "candidate_sha256": "cc47c3cb58caa573832a34643d00b379c4aef28203a799770482cf23ea276e19"
+    "rationale": "Live model emphasized; editorial arrow resolution retained.",
+    "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+    "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06"
   },
   {
     "source": "book/assets/discovering-models-migration.svg",

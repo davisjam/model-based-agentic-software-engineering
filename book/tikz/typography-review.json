@@ -11855,8 +11855,8 @@
       "source": "book/assets/interlude-modeling-cycle.svg",
       "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
       "decision": "refined",
-      "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
-      "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+      "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+      "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
       "evidence": [
         {
           "source_text": "refine model",
@@ -11890,11 +11890,6 @@
         {
           "text": "refine model",
           "italic": true
-        },
-        {
-          "text": "Design",
-          "bold": false,
-          "italic": false
         }
       ],
       "validation": {
@@ -11907,7 +11902,7 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 2
+        "semantic_typography_checks": 1
       },
       "color_source_revision": {
         "date": "2026-11-09",
