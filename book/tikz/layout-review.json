@@ -682,9 +682,9 @@
       "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
       "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
       "baseline_candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
-      "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
-      "decision": "retained",
-      "reason": "New figure authored at its reviewed size in the same change as the colour source. The three routes are interchangeable alternatives and so are the three uses, which is why each row shares one rail and one node width rather than being ranked or sequenced; ranking any member would assert what the figure exists to deny. No peer contract is declared because the symmetry is authored into the coordinates rather than inferred from them.",
+      "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+      "decision": "refined",
+      "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         376.3390197753906,
@@ -692,33 +692,71 @@
       ],
       "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
+        "date": "2026-11-11",
+        "proof": "latex/build/model-routes-proof/model-routes.pdf",
+        "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
+        "width_bp": 376.339,
+        "height_bp": 273.356,
+        "minimum_prose_font_pt": 10.959,
         "geometry_findings": 0,
+        "semantic_typography_checks": 6,
         "unapproved_compile_diagnostics": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 5,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
         "status": "passed",
-        "width_bp": 376.339,
-        "height_bp": 289.301,
-        "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
+        "note": "Isolated single-figure proof; shared pool recompiles at next book build."
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "376.34 x 289.30 bp inside the 450 x 560 bp envelope, every label at 11 pt or larger, and no terminal shaft below the 9 pt approach floor. Added height would not improve this drawing.",
+        "decision": "refined",
+        "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
         "after_dimensions_bp": [
-          376.3390197753906,
-          289.3009948730469
+          376.339,
+          273.356
         ],
         "after_font_sizes_pt": [
-          11.0,
-          12.0
+          11,
+          12
         ],
         "reviewed_visually": true
-      }
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "geometry_findings": 0,
+            "unapproved_compile_diagnostics": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "status": "passed",
+            "width_bp": 376.339,
+            "height_bp": 289.301,
+            "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "e97bc0194d9e8de6f763cdad56f66cc21aa093fc0e53fa3b0339bf9db7dc3abc",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/model-routes-proof/model-routes.pdf",
+            "proof_sha256": "e71807cc7524cf231ae0924ee8db6459115b1ebf74f1e892b1f1eb30acc975b8",
+            "width_bp": 376.339,
+            "height_bp": 273.356,
+            "minimum_prose_font_pt": 9.963,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 6,
+            "unapproved_compile_diagnostics": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/docable-glimpse.svg",
@@ -1555,69 +1593,42 @@
       "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
       "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
       "baseline_candidate_sha256": "cf9df3963225b8ef5ad9da45833fb9ffe4b537798e9ddb76e82b690b61b6b10b",
-      "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
+      "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
       "decision": "refined",
-      "reason": "Parallel outcomes retain equal-height, top/bottom-aligned boxes. Selectors match the current wording; chapter link stays in the enforcement outcome.",
+      "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         396.1809997558594,
         296.5799865722656
       ],
       "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel outcomes",
-            "labels": [
-              "inform architecture / design",
-              "decide what deserves enforcement"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
+        "peer_groups": []
       },
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
+        "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+        "page": 1,
+        "width_bp": 349.829,
+        "height_bp": 308.817,
+        "minimum_prose_font_pt": 10.959,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 16,
-        "width_bp": 315.522,
-        "height_bp": 338.367,
-        "minimum_prose_font_pt": 9.96,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 11,
+        "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
+        "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing question to consequence progression layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
-        "after_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
-        "before_dimensions_bp": [
-          396.1809997558594,
-          310.7539978027344
-        ],
+        "decision": "refined",
+        "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+        "after_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+        "reviewed_visually": true,
         "after_dimensions_bp": [
-          396.1809997558594,
-          310.7539978027344
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+          349.829,
+          308.817
+        ]
       },
       "revision_history": [
         {
@@ -1645,6 +1656,80 @@
               "height_bp": 310.754
             },
             "reason": "Parallel outcomes retain equal-height, top/bottom-aligned boxes. Selectors match the current wording; chapter link stays in the enforcement outcome."
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+          "previous": {
+            "source": "book/assets/question-to-consequence-progression.svg",
+            "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+            "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+            "baseline_candidate_sha256": "cf9df3963225b8ef5ad9da45833fb9ffe4b537798e9ddb76e82b690b61b6b10b",
+            "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
+            "decision": "refined",
+            "reason": "Parallel outcomes retain equal-height, top/bottom-aligned boxes. Selectors match the current wording; chapter link stays in the enforcement outcome.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              396.1809997558594,
+              296.5799865722656
+            ],
+            "contracts": {
+              "peer_groups": [
+                {
+                  "name": "parallel outcomes",
+                  "labels": [
+                    "inform architecture / design",
+                    "decide what deserves enforcement"
+                  ],
+                  "align": [
+                    "top",
+                    "bottom"
+                  ],
+                  "equal_height": true,
+                  "tolerance_pt": 1
+                }
+              ]
+            },
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 16,
+              "width_bp": 315.522,
+              "height_bp": 338.367,
+              "minimum_prose_font_pt": 9.96,
+              "semantic_typography_checks": 8
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Retain existing question to consequence progression layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+              "before_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+              "after_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+              "before_dimensions_bp": [
+                396.1809997558594,
+                310.7539978027344
+              ],
+              "after_dimensions_bp": [
+                396.1809997558594,
+                310.7539978027344
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
           }
         }
       ]

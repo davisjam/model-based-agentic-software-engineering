@@ -2603,7 +2603,7 @@
       "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
       "decision": "refined",
       "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
-      "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+      "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
       "evidence": [
         {
           "source_text": "MODELING",
@@ -2638,23 +2638,21 @@
           ]
         },
         {
-          "source_text": "Three routes in, three uses out — alternatives, not stages.",
-          "source_style": "weight normal, italic",
-          "semantic_role": "The figure's closing anti-waterfall note",
-          "candidate_text": "Three routes in, three uses out --- alternatives, not stages.",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "Three routes in, three uses out — alternatives, not stages.",
-              "weight": "normal",
-              "style": "italic",
-              "x": "500",
-              "y": "664"
-            }
-          ]
+          "source_text": "ROUTES IN",
+          "semantic_role": "Heading for model sources",
+          "candidate_text": "Sources of models",
+          "candidate_style": "bold",
+          "author_requested_change": true
+        },
+        {
+          "source_text": "USES OUT",
+          "semantic_role": "Heading for model uses",
+          "candidate_text": "Uses of models",
+          "candidate_style": "bold",
+          "author_requested_change": true
         }
       ],
-      "reason": "Carry the source typography that separates the named stage, the model, the continuing-engineering tail and the explanatory lines.",
+      "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
       "checks": [
         {
           "text": "MODELING",
@@ -2673,31 +2671,73 @@
           "bold": false
         },
         {
-          "text": "Three routes in, three uses out",
-          "italic": true
+          "text": "Sources of models",
+          "bold": true
+        },
+        {
+          "text": "Uses of models",
+          "bold": true
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
+        "date": "2026-11-11",
+        "proof": "latex/build/model-routes-proof/model-routes.pdf",
+        "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
         "width_bp": 376.339,
-        "height_bp": 289.301,
-        "minimum_prose_font_pt": 11.0,
-        "unapproved_compile_diagnostics": 0,
+        "height_bp": 273.356,
+        "minimum_prose_font_pt": 10.959,
         "geometry_findings": 0,
+        "semantic_typography_checks": 6,
+        "unapproved_compile_diagnostics": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 5,
-        "book_font_inheritance": {
-          "configuration": "latex/book-fonts.tex",
-          "reference": "latex/build/tikz/body-font-reference.pdf",
-          "body_faces": [
-            "SourceSans3-Bold",
-            "SourceSans3-BoldIt",
-            "SourceSans3-It",
-            "SourceSans3-Regular"
-          ]
+        "status": "passed",
+        "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "width_bp": 376.339,
+            "height_bp": 289.301,
+            "minimum_prose_font_pt": 11.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            },
+            "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
+          }
         },
-        "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
-      }
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "e97bc0194d9e8de6f763cdad56f66cc21aa093fc0e53fa3b0339bf9db7dc3abc",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/model-routes-proof/model-routes.pdf",
+            "proof_sha256": "e71807cc7524cf231ae0924ee8db6459115b1ebf74f1e892b1f1eb30acc975b8",
+            "width_bp": 376.339,
+            "height_bp": 273.356,
+            "minimum_prose_font_pt": 9.963,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 6,
+            "unapproved_compile_diagnostics": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/docable-glimpse.svg",
@@ -4187,171 +4227,137 @@
       "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
       "decision": "refined",
       "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
-      "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
+      "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
       "evidence": [
         {
-          "source_text": "engineering question",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Reasoning stage heading versus examples or consequences",
+          "semantic_role": "Step heading",
           "candidate_text": "Engineering question",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "engineering question",
-              "weight": "700",
-              "style": "normal",
-              "x": "500",
-              "y": "58"
-            }
-          ]
+          "candidate_style": "bold",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         },
         {
-          "source_text": "choose the representation",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Reasoning stage heading versus examples or consequences",
-          "candidate_text": "Choose representation",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "choose the representation",
-              "weight": "700",
-              "style": "normal",
-              "x": "500",
-              "y": "142"
-            }
-          ]
+          "semantic_role": "Step heading",
+          "candidate_text": "Model and define properties",
+          "candidate_style": "bold",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         },
         {
-          "source_text": "choose an analysis appropriate to the property",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Reasoning stage heading versus examples or consequences",
-          "candidate_text": "Choose analysis appropriate to the property",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "choose an analysis appropriate to the property",
-              "weight": "700",
-              "style": "normal",
-              "x": "500",
-              "y": "338"
-            }
-          ]
+          "semantic_role": "Step heading",
+          "candidate_text": "Analyze the modeled properties",
+          "candidate_style": "bold",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         },
         {
-          "source_text": "interpret the evidence",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Reasoning stage heading versus examples or consequences",
-          "candidate_text": "Interpret evidence",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "interpret the evidence",
-              "weight": "700",
-              "style": "normal",
-              "x": "500",
-              "y": "450"
-            }
-          ]
+          "semantic_role": "Step heading",
+          "candidate_text": "Interpret the evidence",
+          "candidate_style": "bold",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         },
         {
-          "source_text": "inform architecture / design",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Reasoning stage heading versus examples or consequences",
-          "candidate_text": "Inform architecture / design",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "inform architecture / design",
-              "weight": "700",
-              "style": "normal",
-              "x": "260",
-              "y": "566"
-            }
-          ]
+          "semantic_role": "Step heading",
+          "candidate_text": "Make engineering decisions",
+          "candidate_style": "bold",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         },
         {
-          "source_text": "decide what deserves enforcement",
-          "source_style": "weight 700, normal",
-          "semantic_role": "Reasoning stage heading versus examples or consequences",
-          "candidate_text": "Decide what deserves enforcement",
-          "candidate_style": "bold ",
-          "source_fragments": [
-            {
-              "text": "decide what deserves enforcement",
-              "weight": "700",
-              "style": "normal",
-              "x": "750",
-              "y": "571"
-            }
-          ]
+          "semantic_role": "Example, outcome or feedback",
+          "candidate_text": "Representations: state machines",
+          "candidate_style": "regular",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         },
         {
-          "source_text": "Alignment (Chapter 3)",
-          "source_style": "weight normal, italic",
-          "semantic_role": "Cross-book destination note",
-          "candidate_text": "Alignment (Chapter 3)",
-          "candidate_style": "italic ",
-          "source_fragments": [
-            {
-              "text": "Alignment (Chapter 3)",
-              "weight": "normal",
-              "style": "italic",
-              "x": "750",
-              "y": "648"
-            }
-          ]
+          "semantic_role": "Example, outcome or feedback",
+          "candidate_text": "Properties: legal transitions",
+          "candidate_style": "regular",
+          "authorization": "Author-requested structural revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Example, outcome or feedback",
+          "candidate_text": "Refine architecture and design",
+          "candidate_style": "regular",
+          "authorization": "Author-requested structural revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Example, outcome or feedback",
+          "candidate_text": "Choose which obligations warrant enforcement",
+          "candidate_style": "regular",
+          "authorization": "Author-requested structural revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Example, outcome or feedback",
+          "candidate_text": "Selected obligations",
+          "candidate_style": "regular",
+          "authorization": "Author-requested structural revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Example, outcome or feedback",
+          "candidate_text": "Revise model and properties",
+          "candidate_style": "regular",
+          "authorization": "Author-requested structural revision, 2026-11-11"
         }
       ],
-      "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+      "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
       "checks": [
         {
-          "text": "engineering question",
+          "text": "Engineering question",
           "bold": true
         },
         {
-          "text": "choose the representation",
+          "text": "Model and define properties",
           "bold": true
         },
         {
-          "text": "choose an analysis appropriate to the property",
+          "text": "Analyze the modeled properties",
           "bold": true
         },
         {
-          "text": "interpret the evidence",
+          "text": "Interpret the evidence",
           "bold": true
         },
         {
-          "text": "inform architecture / design",
+          "text": "Make engineering decisions",
           "bold": true
         },
         {
-          "text": "decide what deserves enforcement",
-          "bold": true
+          "text": "Representations: state machines",
+          "bold": false
         },
         {
-          "text": "Alignment (Chapter 3)",
-          "italic": true
+          "text": "Properties: legal transitions",
+          "bold": false
         },
         {
-          "text": "closed state / action space",
+          "text": "Refine architecture and design",
+          "bold": false
+        },
+        {
+          "text": "Choose which obligations warrant enforcement",
+          "bold": false
+        },
+        {
+          "text": "Selected obligations",
+          "bold": false
+        },
+        {
+          "text": "Revise model and properties",
           "bold": false
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
+        "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+        "page": 1,
+        "width_bp": 349.829,
+        "height_bp": 308.817,
+        "minimum_prose_font_pt": 10.959,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 16,
-        "width_bp": 315.522,
-        "height_bp": 338.367,
-        "minimum_prose_font_pt": 9.96,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 11,
+        "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
+        "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -4379,6 +4385,189 @@
               "semantic_typography_checks": 8
             },
             "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text."
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+          "previous": {
+            "source": "book/assets/question-to-consequence-progression.svg",
+            "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+            "decision": "refined",
+            "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+            "candidate_sha256": "2e9a6b4c01be829a192cb50b9e3b316644cd377e61a48a34e47876b4cae81fdc",
+            "evidence": [
+              {
+                "source_text": "engineering question",
+                "source_style": "weight 700, normal",
+                "semantic_role": "Reasoning stage heading versus examples or consequences",
+                "candidate_text": "Engineering question",
+                "candidate_style": "bold ",
+                "source_fragments": [
+                  {
+                    "text": "engineering question",
+                    "weight": "700",
+                    "style": "normal",
+                    "x": "500",
+                    "y": "58"
+                  }
+                ]
+              },
+              {
+                "source_text": "choose the representation",
+                "source_style": "weight 700, normal",
+                "semantic_role": "Reasoning stage heading versus examples or consequences",
+                "candidate_text": "Choose representation",
+                "candidate_style": "bold ",
+                "source_fragments": [
+                  {
+                    "text": "choose the representation",
+                    "weight": "700",
+                    "style": "normal",
+                    "x": "500",
+                    "y": "142"
+                  }
+                ]
+              },
+              {
+                "source_text": "choose an analysis appropriate to the property",
+                "source_style": "weight 700, normal",
+                "semantic_role": "Reasoning stage heading versus examples or consequences",
+                "candidate_text": "Choose analysis appropriate to the property",
+                "candidate_style": "bold ",
+                "source_fragments": [
+                  {
+                    "text": "choose an analysis appropriate to the property",
+                    "weight": "700",
+                    "style": "normal",
+                    "x": "500",
+                    "y": "338"
+                  }
+                ]
+              },
+              {
+                "source_text": "interpret the evidence",
+                "source_style": "weight 700, normal",
+                "semantic_role": "Reasoning stage heading versus examples or consequences",
+                "candidate_text": "Interpret evidence",
+                "candidate_style": "bold ",
+                "source_fragments": [
+                  {
+                    "text": "interpret the evidence",
+                    "weight": "700",
+                    "style": "normal",
+                    "x": "500",
+                    "y": "450"
+                  }
+                ]
+              },
+              {
+                "source_text": "inform architecture / design",
+                "source_style": "weight 700, normal",
+                "semantic_role": "Reasoning stage heading versus examples or consequences",
+                "candidate_text": "Inform architecture / design",
+                "candidate_style": "bold ",
+                "source_fragments": [
+                  {
+                    "text": "inform architecture / design",
+                    "weight": "700",
+                    "style": "normal",
+                    "x": "260",
+                    "y": "566"
+                  }
+                ]
+              },
+              {
+                "source_text": "decide what deserves enforcement",
+                "source_style": "weight 700, normal",
+                "semantic_role": "Reasoning stage heading versus examples or consequences",
+                "candidate_text": "Decide what deserves enforcement",
+                "candidate_style": "bold ",
+                "source_fragments": [
+                  {
+                    "text": "decide what deserves enforcement",
+                    "weight": "700",
+                    "style": "normal",
+                    "x": "750",
+                    "y": "571"
+                  }
+                ]
+              },
+              {
+                "source_text": "Alignment (Chapter 3)",
+                "source_style": "weight normal, italic",
+                "semantic_role": "Cross-book destination note",
+                "candidate_text": "Alignment (Chapter 3)",
+                "candidate_style": "italic ",
+                "source_fragments": [
+                  {
+                    "text": "Alignment (Chapter 3)",
+                    "weight": "normal",
+                    "style": "italic",
+                    "x": "750",
+                    "y": "648"
+                  }
+                ]
+              }
+            ],
+            "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+            "checks": [
+              {
+                "text": "engineering question",
+                "bold": true
+              },
+              {
+                "text": "choose the representation",
+                "bold": true
+              },
+              {
+                "text": "choose an analysis appropriate to the property",
+                "bold": true
+              },
+              {
+                "text": "interpret the evidence",
+                "bold": true
+              },
+              {
+                "text": "inform architecture / design",
+                "bold": true
+              },
+              {
+                "text": "decide what deserves enforcement",
+                "bold": true
+              },
+              {
+                "text": "Alignment (Chapter 3)",
+                "italic": true
+              },
+              {
+                "text": "closed state / action space",
+                "bold": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 16,
+              "width_bp": 315.522,
+              "height_bp": 338.367,
+              "minimum_prose_font_pt": 9.96,
+              "semantic_typography_checks": 8
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+              "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
           }
         }
       ]

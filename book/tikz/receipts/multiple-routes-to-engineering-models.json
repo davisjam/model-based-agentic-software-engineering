@@ -72,52 +72,55 @@
     "Direct agent work",
     "Evaluate and check",
     "Further engineering awaits",
-    "Three routes in, three uses out — alternatives, not stages."
+    "Sources of models",
+    "Uses of models"
   ],
-  "bw_encoding": "White nodes throughout; the two strong-outlined bands locate the model and the continuing-engineering tail without shading. ROUTES IN and USES OUT name the two rows so the fan-in/fan-out reading survives without hue.",
-  "redesign": "Authored natively against the colour source rather than traced from it. Each row of three joins ONE full-width rail before a single arrow continues, so the anti-waterfall claim is carried by geometry: no route and no use is privileged or sequenced. Labels and annotations use 11 pt, heading 12 pt.",
+  "bw_encoding": "White nodes and collection rails preserve parallel sources and uses. Sources of models and Uses of models name the two groups without color.",
+  "redesign": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison. The added separation below the modeling band keeps the uses heading clear of the fan-out rail.",
   "questions": [
     "The author's verbatim prose for the body paragraph was preserved only in fragments by the specifying pass (opening sentence, the three-route enumeration, and the closing cross-reference). The connective sentence between them, and the caption's middle sentences, are agent-drafted in the author's register and should be replaced with his own copy if he still has it."
   ],
-  "alt": "Three routes arrive at modeling from above and three uses leave it below. The incoming routes are requirements and intent, agent exploration and discovery, and existing systems and experience. Each joins one full-width rail, so none is privileged and none is a stage before another; a single arrow carries the rail into modeling. Modeling yields engineering models, which hold knowledge and the selected obligations drawn from it. From the model, one rail fans out to three uses: reason and design, direct agent work, and evaluate and check. Those three rejoin a rail that continues downward to further engineering, because engineering does not stop at the model: later discoveries may motivate new or revised models. The horizontal rails are collection bars, not process edges.",
+  "alt": "Three routes arrive at modeling from above and three uses leave it below. The incoming routes are requirements and intent, existing systems and experience, and agent exploration and discovery. Each joins one full-width rail, so none is privileged and none is a stage before another; a single arrow carries the rail into modeling. Modeling yields engineering models, which hold knowledge and the selected obligations drawn from it. From the model, one rail fans out to three uses: reason and design, direct agent work, and evaluate and check. Those three rejoin a rail that continues downward to further engineering, because engineering does not stop at the model: later discoveries may motivate new or revised models. The horizontal rails are collection bars, not process edges.",
   "visual_fidelity_review": {
-    "reason": "New figure (Chapter 1 insert, 261106). No prior grayscale pass to correct; authored against the colour source in the same change.",
-    "changes": "Matched the colour source's node set, row grouping, rail structure and wording exactly. Row labels ROUTES IN and USES OUT carry the two-row distinction that hue carries in colour.",
-    "reference": "Authored SVG rendered beside the native candidate; native-size PDF checked at 376.34 × 289.30 bp.",
-    "font_pt": [
-      11,
-      12
-    ]
+    "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
+    "changes": "Preserved all nodes and rail relationships; sources reordered and headings simplified as directed by the author.",
+    "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
+    "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+    "reviewed_visually": true,
+    "date": "2026-11-11"
   },
   "style_review": {
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "status": "reviewed",
     "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
-    "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+    "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
     "fill": "White nodes throughout; strong outlines on the modeling band and the continuing-engineering tail.",
     "bold": "Source-derived emphasis includes MODELING; Engineering models; Further engineering awaits; the explanatory knowledge line and the closing note stay unemphasized.",
     "routing": "Vertical flows only; the two horizontal bars are collection rails rather than process edges, so they carry no arrowheads.",
     "shape": "Ordinary boxes use modest rounded corners; the model and the tail use the same box with a heavier rule.",
-    "visual_review": "Native-size render inspected for contrast, typography, rail-versus-edge legibility and annotation placement.",
+    "visual_review": "Rendered proof inspected at native size: source/use labels, reordered sources, clear rails, no closing annotation. Author-requested wording differences preserved.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
+      "date": "2026-11-11",
+      "proof": "latex/build/model-routes-proof/model-routes.pdf",
+      "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
       "width_bp": 376.339,
-      "height_bp": 289.301,
-      "minimum_prose_font_pt": 11.0,
-      "unapproved_compile_diagnostics": 0,
+      "height_bp": 273.356,
+      "minimum_prose_font_pt": 10.959,
       "geometry_findings": 0,
+      "semantic_typography_checks": 6,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5,
-      "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate."
+      "status": "passed",
+      "note": "Isolated single-figure proof; shared pool recompiles at next book build."
     },
     "book_references": []
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/multiple-routes-to-engineering-models.svg",
+    "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
     "decision": "refined",
     "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
-    "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
-    "reason": "Carry the source typography that separates the named stage, the model, the continuing-engineering tail and the explanatory lines.",
+    "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
     "evidence": [
       {
         "source_text": "MODELING",
@@ -152,22 +155,21 @@
         ]
       },
       {
-        "source_text": "Three routes in, three uses out — alternatives, not stages.",
-        "source_style": "weight normal, italic",
-        "semantic_role": "The figure's closing anti-waterfall note",
-        "candidate_text": "Three routes in, three uses out --- alternatives, not stages.",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "Three routes in, three uses out — alternatives, not stages.",
-            "weight": "normal",
-            "style": "italic",
-            "x": "500",
-            "y": "664"
-          }
-        ]
+        "source_text": "ROUTES IN",
+        "semantic_role": "Heading for model sources",
+        "candidate_text": "Sources of models",
+        "candidate_style": "bold",
+        "author_requested_change": true
+      },
+      {
+        "source_text": "USES OUT",
+        "semantic_role": "Heading for model uses",
+        "candidate_text": "Uses of models",
+        "candidate_style": "bold",
+        "author_requested_change": true
       }
     ],
+    "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
     "checks": [
       {
         "text": "MODELING",
@@ -186,60 +188,226 @@
         "bold": false
       },
       {
-        "text": "Three routes in, three uses out",
-        "italic": true
+        "text": "Sources of models",
+        "bold": true
+      },
+      {
+        "text": "Uses of models",
+        "bold": true
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
+      "date": "2026-11-11",
+      "proof": "latex/build/model-routes-proof/model-routes.pdf",
+      "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
       "width_bp": 376.339,
-      "height_bp": 289.301,
-      "minimum_prose_font_pt": 11.0,
-      "unapproved_compile_diagnostics": 0,
+      "height_bp": 273.356,
+      "minimum_prose_font_pt": 10.959,
       "geometry_findings": 0,
+      "semantic_typography_checks": 6,
+      "unapproved_compile_diagnostics": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "status": "passed",
+      "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "width_bp": 376.339,
+          "height_bp": 289.301,
+          "minimum_prose_font_pt": 11.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 5,
+          "book_font_inheritance": {
+            "configuration": "latex/book-fonts.tex",
+            "reference": "latex/build/tikz/body-font-reference.pdf",
+            "body_faces": [
+              "SourceSans3-Bold",
+              "SourceSans3-BoldIt",
+              "SourceSans3-It",
+              "SourceSans3-Regular"
+            ]
+          },
+          "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
+        }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "e97bc0194d9e8de6f763cdad56f66cc21aa093fc0e53fa3b0339bf9db7dc3abc",
+        "validation": {
+          "date": "2026-11-11",
+          "proof": "latex/build/model-routes-proof/model-routes.pdf",
+          "proof_sha256": "e71807cc7524cf231ae0924ee8db6459115b1ebf74f1e892b1f1eb30acc975b8",
+          "width_bp": 376.339,
+          "height_bp": 273.356,
+          "minimum_prose_font_pt": 9.963,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 6,
+          "unapproved_compile_diagnostics": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+        }
       }
-    }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The three routes are interchangeable alternatives and so are the three uses, which is why each row shares one rail and one width rather than being ranked or sequenced. Preserve the symmetry; ranking any member would assert what the figure exists to deny.",
-    "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+    "source": "book/assets/multiple-routes-to-engineering-models.svg",
+    "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
+    "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
+    "baseline_candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+    "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+    "decision": "refined",
+    "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      376.3390197753906,
+      289.3009948730469
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/model-routes-proof/model-routes.pdf",
+      "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
+      "width_bp": 376.339,
+      "height_bp": 273.356,
+      "minimum_prose_font_pt": 10.959,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 6,
+      "unapproved_compile_diagnostics": 0,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+    },
     "page_layout": {
-      "decision": "retained",
-      "reason": "New figure authored at its reviewed size: 376.34 × 289.30 bp inside the 450 × 560 bp envelope, every label at 11 pt or larger, and no terminal shaft below the 9 pt approach floor. Added height would not improve this drawing.",
+      "decision": "refined",
+      "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
       "after_dimensions_bp": [
-        376.3390197753906,
-        289.3009948730469
+        376.339,
+        273.356
       ],
       "after_font_sizes_pt": [
-        11.0,
-        12.0
+        11,
+        12
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "geometry_findings": 0,
-      "unapproved_compile_diagnostics": 0,
-      "maximum_dimensions_bp": [
-        450,
-        560
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "geometry_findings": 0,
+          "unapproved_compile_diagnostics": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 5,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "status": "passed",
+          "width_bp": 376.339,
+          "height_bp": 289.301,
+          "note": "Measured on an isolated single-figure compile of this candidate before it entered the shared pool; the pool recompiles on the next --pdf run and re-asserts every gate over all candidates."
+        }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "e97bc0194d9e8de6f763cdad56f66cc21aa093fc0e53fa3b0339bf9db7dc3abc",
+        "validation": {
+          "date": "2026-11-11",
+          "proof": "latex/build/model-routes-proof/model-routes.pdf",
+          "proof_sha256": "e71807cc7524cf231ae0924ee8db6459115b1ebf74f1e892b1f1eb30acc975b8",
+          "width_bp": 376.339,
+          "height_bp": 273.356,
+          "minimum_prose_font_pt": 9.963,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 6,
+          "unapproved_compile_diagnostics": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+        }
+      }
+    ]
+  },
+  "revision_history": [
+    {
+      "superseded_date": "2026-11-11",
+      "change": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Original color artwork retained for comparison.",
+      "candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
+      "required_terms": [
+        "Requirements and intent",
+        "Agent exploration and discovery",
+        "Existing systems and experience",
+        "MODELING",
+        "Engineering models",
+        "Knowledge · selected obligations",
+        "Reason and design",
+        "Direct agent work",
+        "Evaluate and check",
+        "Further engineering awaits",
+        "Three routes in, three uses out — alternatives, not stages."
       ],
-      "status": "passed",
-      "width_bp": 376.339,
-      "height_bp": 289.301
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "width_bp": 376.339,
+        "height_bp": 289.301,
+        "minimum_prose_font_pt": 11.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 5,
+        "book_font_inheritance": {
+          "configuration": "latex/book-fonts.tex",
+          "reference": "latex/build/tikz/body-font-reference.pdf",
+          "body_faces": [
+            "SourceSans3-Bold",
+            "SourceSans3-BoldIt",
+            "SourceSans3-It",
+            "SourceSans3-Regular"
+          ]
+        }
+      }
+    },
+    {
+      "superseded_date": "2026-11-11",
+      "change": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
+      "candidate_sha256": "e97bc0194d9e8de6f763cdad56f66cc21aa093fc0e53fa3b0339bf9db7dc3abc",
+      "required_terms": [
+        "Requirements and intent",
+        "Agent exploration and discovery",
+        "Existing systems and experience",
+        "MODELING",
+        "Engineering models",
+        "Knowledge · selected obligations",
+        "Reason and design",
+        "Direct agent work",
+        "Evaluate and check",
+        "Further engineering awaits",
+        "Sources of models",
+        "Uses of models"
+      ],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/model-routes-proof/model-routes.pdf",
+        "proof_sha256": "e71807cc7524cf231ae0924ee8db6459115b1ebf74f1e892b1f1eb30acc975b8",
+        "width_bp": 376.339,
+        "height_bp": 273.356,
+        "minimum_prose_font_pt": 9.963,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 6,
+        "unapproved_compile_diagnostics": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+      }
     }
-  }
+  ]
 }
