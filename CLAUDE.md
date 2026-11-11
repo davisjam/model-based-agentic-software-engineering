@@ -493,6 +493,62 @@ re-deriving these, so they live here:**
     with `grep -rn "<basename>" --include="*.py" .`. Derived view artifacts (`book-models/*.json`)
     are **re-derived through their generator, never hand-edited** — renaming a chapter heading is a
     join that reaches `outline.json`, which has its own freshness-drift check.
+- **Where a colour original has been followed by a black-and-white rendition, that figure has TWO
+  sources — and the one you find first is probably not the one that ships. Edit both, or they
+  diverge permanently.** This is a **transitional state, not a property of every figure**: it
+  applies only where the publisher grayscale pass has already produced a monochrome candidate, and
+  it ends when that pass does. The cheap test before assuming either way: look for a
+  `book/tikz/figures/<name>.tex` beside `book/assets/<name>.svg`. No candidate, one source.
+  Measured 261111 while removing a panel from Figure 4.11.
+  - **The shipped asset renders from the authored SVG**, `book/assets/<name>.svg`.
+    `mage_latex.py:145` names its PDF by hashing the SVG's **path**, not its content —
+    `book/latex/assets/<name>-<10hex>.pdf` — then calls `render_svg_cached`. Two consequences
+    that read backwards if you assume content-hashing: the asset **filename never changes when
+    you edit the figure**, so no `\includegraphics` path needs updating; and that PDF is
+    gitignored (`/book/latex/assets/`), so it is created, never committed.
+  - **`book/tikz/figures/<name>.tex` is the PUBLISHER's grayscale candidate**, compiled by
+    `tools/mage_tikz_review.py` into `latex/build/tikz/candidates.pdf`. It is a parallel
+    rendition of the same drawing, not the book's copy. I edited it first and would have
+    shipped an unchanged figure.
+  - **`book/tikz/inventory.json` is an INPUT, not an output** — `mage_tikz_review.inventory()`
+    READS it and only appends nav records in memory. So it is hand-maintained, and its `caption`
+    field duplicates the manuscript caption: a caption edit must touch both or they drift.
+    (`mage_tikz_charts.py` DOES generate receipts, but only for quantitative charts, and it
+    writes `required_terms=[]` — a receipt with hand-authored required terms was review-authored
+    and is yours to edit.)
+  - **The receipt's hashes have checkable semantics, so check them rather than guessing:**
+    `source_sha256` is sha256 of the SVG and `candidate_sha256` sha256 of the TikZ `.tex` — both
+    verifiable with `git show HEAD:<path> | shasum -a 256`. The `proof_sha256` / `page` /
+    `width_bp` / `height_bp` / `geometry_findings` fields come from the review compile. **Do not
+    estimate those**; leave them stale with a key that names them, or run the compile.
+  - **CHANGING A FIGURE'S CONTENT MEANS RETIRING ITS REVIEW RECORDS, and that is enforced at
+    PRE-PUSH ONLY.** `tools/mage_tikz_review.py` compiles the candidate pool and audits its text
+    against `book/tikz/{typography,layout,style,fidelity,grayscale}-review.json`; delete a label
+    and the audit refuses with `Semantic typography differs from review: [... "text": "Design",
+    "problem": "missing text or changed capitalization"]`. Neither `catalog.py validate` NOR
+    `catalog_tests.py --tier1` reaches this — both went green on the 261111 panel removal that
+    the push then refused. **So a figure edit can be fully green locally and still be refused.**
+    Check the prose fields too, not only the mechanical ones: the same change left
+    `fidelity-review.links_and_groups` and `grayscale-review.rationale` describing a panel that
+    no longer existed, and neither is audited, so nothing would ever have told you.
+  - **Verify that chain in ~2 minutes instead of paying a ~15-minute push:**
+    `timeout 1200 python3 tools/mage_tikz_review.py --figures-only` — the gate itself reached the
+    failure at 113s. It VALIDATES and does not regenerate these records, so they stay
+    hand-maintained. A green run prints `N figures; N checks; 0 findings` for semantic typography
+    plus a 0-finding geometry audit.
+- **Deleting part of a figure MAGNIFIES what remains — it does not shrink the figure.** Every
+  figure in the book is `\includegraphics[width=\linewidth]` (135 of 135; zero fractional widths).
+  So removing a panel narrows the viewBox and the survivor is scaled UP to the same printed width.
+  On 261111 deleting one of two panels would have taken 10.27pt labels to **~16.6pt in a 10pt
+  book**, which looks like a rendering bug and is really arithmetic. The fix is to **re-lay the
+  survivor out to fill the ORIGINAL viewBox width at unchanged font sizes**, not to narrow the
+  include (that would be the book's only fractional width, against the uniformity the 135 share).
+  Verify by measuring, never by eye: render the asset, read its MediaBox, and compute
+  `scale = 450 / native_width_bp` (the text block is 450bp = 6.25in, which is also the
+  `maximum_dimensions_bp` the reviews pin), then `label_pt = svg_px * 0.75 * scale`. Hold that
+  number equal to its pre-edit value and the type cannot drift. Related: a `wrapfig` is usually
+  unavailable for these — holding label size inside a wrap column needs ~0.46–0.62\linewidth,
+  which leaves a prose column too narrow to read.
 - **A deck PowerPoint offers to REPAIR: get the repaired copy, diff the packages, and rank parts by
   byte delta — but remember the delta shows what PowerPoint REMOVED, which is often collateral, not
   cause.** Measured 261103 on `3-2-Data-Management.pptx`, where **every tool we own passed**: zip
