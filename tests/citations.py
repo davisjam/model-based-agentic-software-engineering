@@ -468,7 +468,7 @@ def check_cite_wellformed():
 
 # House style places citation groups before terminal punctuation. Internal punctuation such as
 # commas and colons is outside this rule; so is the abbreviation period in "et al.[cite:x]".
-_CITE_AFTER_TERMINAL_RE = re.compile(r'''[.!?]["'”’]*[ \t]*\[cite:[^\]]+\]''')
+_CITE_AFTER_TERMINAL_RE = re.compile(r'''[.!?]["'”’]*[ \t\u00a0]*\[cite:[^\]]+\]''')
 _ET_AL_RE = re.compile(r"\bet\s+al$", re.I)
 _FENCE_RE = re.compile(r"^```.*?^```", re.S | re.M)
 
@@ -498,6 +498,57 @@ def check_cite_placement():
         for line in cite_placement_lines(source.read_text(encoding="utf-8")):
             issues.append(f"{rel(str(source))}:{line}: [cite:] marker follows terminal punctuation — "
                           "place the citation group before it: 'word[cite:x].'")
+    return (FAIL if issues else PASS), issues
+
+
+_NATIVE_CITE_LITERAL_RE = re.compile(
+    r'\\begin\{(?P<environment>verbatim\*?|Verbatim|lstlisting|minted)\}'
+    r'.*?\\end\{(?P=environment)\}'
+    r'|\\verb\*?(?P<delimiter>[^\w\s])[^\n]*?(?P=delimiter)'
+    r'|(?<!\\)%[^\n]*',
+    re.S,
+)
+_NATIVE_CITE_SEPARATOR_RE = re.compile(
+    r'[^\s~{](?P<separator>[ \t]*(?:\n[ \t]*)?)'
+    r'(?P<citation>\\cite(?:p|t|alp|alt|author|yearpar|year|num)?\*?'
+    r'(?:\[[^\]]*\]){0,2}\{)'
+)
+
+
+def native_cite_spacing_matches(text: str) -> list[re.Match]:
+    """Missing nonbreaking separators in native prose, with original source offsets."""
+    masked = _NATIVE_CITE_LITERAL_RE.sub(
+        lambda match: re.sub(r'[^\n]', ' ', match.group()), text)
+    return list(_NATIVE_CITE_SEPARATOR_RE.finditer(masked))
+
+
+def check_cite_spacing():
+    """BIB-15. Published native citations attach to preceding text with a nonbreaking space."""
+    import json
+    import mage_latex
+
+    try:
+        rows = json.loads(mage_latex.MANIFEST.read_text(encoding="utf-8"))["sources"]
+        by_projection = {os.path.normpath(os.path.join(ROOT, row["projection"])): row["source"]
+                         for row in rows}
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        return FAIL, [f"cannot read native source manifest for citation spacing: {exc}"]
+    issues = []
+    for projection in mage_latex.author_sources():
+        source = by_projection.get(os.path.normpath(str(projection)))
+        if source is None:
+            issues.append(f"{rel(str(projection))}: no native source for citation-spacing check")
+            continue
+        try:
+            with open(os.path.join(ROOT, source), encoding="utf-8") as manuscript:
+                text = manuscript.read()
+        except OSError as exc:
+            issues.append(f"cannot read {source} for citation spacing: {exc}")
+            continue
+        for match in native_cite_spacing_matches(text):
+            line = text.count("\n", 0, match.start("citation")) + 1
+            issues.append(f"{source}:{line}: citation needs a nonbreaking separator: "
+                          r"'word~\citep{key}'")
     return (FAIL if issues else PASS), issues
 
 

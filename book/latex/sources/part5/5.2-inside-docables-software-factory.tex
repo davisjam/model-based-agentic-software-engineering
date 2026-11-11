@@ -36,7 +36,7 @@ The record examined here spans \magevalue{seip_weeks} complete weeks, from March
 
 % <!-- point: the-engineers-role-was-engineering-not-implementation | Goals, users, production failures, standards and institutional use supplied engineering work; the engineer made consequential decisions while coding agents wrote every implementation line. | terms: governed-engineering-environment -->
 
-New work came from my goals for the system, user feedback, production failures, accessibility standards, public guidance from advocacy groups\citep{nfb-accessible-documents-2014}, and the demands of institutional use. I decided which pressures warranted engineering work and made consequential decisions about requirements, architecture, validation, and deployment. Coding agents wrote every line of the implementation. I inspected almost none of the code they produced.
+New work came from my goals for the system, user feedback, production failures, accessibility standards, public guidance from advocacy groups~\citep{nfb-accessible-documents-2014}, and the demands of institutional use. I decided which pressures warranted engineering work and made consequential decisions about requirements, architecture, validation, and deployment. Coding agents wrote every line of the implementation. I inspected almost none of the code they produced.
 
 % <!-- point: product-decisions-became-factory-obligations | Process design organized work and tolerance preserved consequential requirements while agents retained implementation freedom; failures could require changes to both the product and its factory. -->
 
@@ -52,7 +52,7 @@ The case follows the factory's development from initial requirements through pro
 
 % <!-- point: the-rule-and-the-extension | The 2024 DOJ rule set WCAG 2.1 AA and a 2026 deadline; four days before the deadline, the Department extended it by a year. | terms: doj-2024-rule, ada-title-ii -->
 
-In 2024, the U.S. Department of Justice required state and local governments, including public universities and schools, to make covered web content and mobile applications conform to \magevalue{doj_technical_standard}\citep{doj-web-accessibility-2024}. The original compliance date for larger public entities was April 24, 2026. Four days before that deadline, the Department extended it by one year\citep{doj2026extension}.
+In 2024, the U.S. Department of Justice required state and local governments, including public universities and schools, to make covered web content and mobile applications conform to \magevalue{doj_technical_standard}~\citep{doj-web-accessibility-2024}. The original compliance date for larger public entities was April 24, 2026. Four days before that deadline, the Department extended it by one year~\citep{doj2026extension}.
 
 % <!-- point: requirements-ordinary-capacity-unusual | The requirements were ordinary production-software requirements; the unusual condition was one engineer’s implementation capacity. | terms: governance-target-product -->
 
@@ -158,7 +158,7 @@ The repair was to complete the lifecycle model by adding a cleanup step for obso
 
 % <!-- point: four-traces-read-in-sequence | The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures. -->
 
-The repository reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026\citep{davis2026docable}. \autoref{realization-over-time} brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions. They describe the activity and structure of the factory; none alone measures productivity.
+The repository reconstruction covers \magevalue{seip_weeks} complete seven-day weeks from March 12 through October 14, 2026~\citep{davis2026docable}. \autoref{realization-over-time} brings four dimensions together: landed work commits, accumulated models and checks, recovered agent dispatches, and documented Epic completions. They describe the activity and structure of the factory; none alone measures productivity.
 
 An \emph{Epic} represented a substantial engineering intention with a rationale, design, relevant invariants, phases, and acceptance criteria. Nontrivial designs received separate review using another foundation model, and a Definition-of-Done review assessed completion. One Epic could require several dispatches and many commits. Across the complete window, the reconstruction recovers \magevalue{seip_commits} work commits, \magevalue{seip_dispatches} dispatches, and \magevalue{seip_completions} affirmative completion claims.
 
@@ -278,7 +278,7 @@ Which step changed this document element? & Per-mutation provenance stamps proje
 
 % <!-- point: a-repository-of-documentation-is-not-a-supervisory-environment | The factory checks relations among representations and uses selected results to determine whether work may proceed. | terms: alignment-principle -->
 
-DocAble connects its representations so the environment can derive requirements and check relations among them. These \textbf{joins} make selected engineering knowledge usable in decisions about whether work may proceed. The architecture resembles proof checking in one limited respect: a producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission\citep{ringer2019qed}. Three joins show the difference in increasing order of reach.
+DocAble connects its representations so the environment can derive requirements and check relations among them. These \textbf{joins} make selected engineering knowledge usable in decisions about whether work may proceed. The architecture resembles proof checking in one limited respect: a producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission~\citep{ringer2019qed}. Three joins show the difference in increasing order of reach.
 
 % <!-- point: the-invariant-chain-derives-checker-obligations | The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes. | terms: alignment-principle -->
 
@@ -337,7 +337,7 @@ This interface was still incomplete in November 2026. Dozens of PDF remediation 
 
 % <!-- point: engineering-set-the-price-of-the-reasoning | Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures. -->
 
-Experiments clarified the role of representation. Frontier agents inferred PDF structure through several tool interactions, while a foundation model given a prepared scaffold inferred structure in one pass on a separate prose fixture. The scaffolded pass achieved high agreement with its reference structure at much lower inference cost. Because the documents and interaction patterns differed, this was not a matched cost comparison at equivalent quality. It identified an architectural choice: which useful structure should the system supply, and which judgments should the foundation model make\citep{davis2026docable}?
+Experiments clarified the role of representation. Frontier agents inferred PDF structure through several tool interactions, while a foundation model given a prepared scaffold inferred structure in one pass on a separate prose fixture. The scaffolded pass achieved high agreement with its reference structure at much lower inference cost. Because the documents and interaction patterns differed, this was not a matched cost comparison at equivalent quality. It identified an architectural choice: which useful structure should the system supply, and which judgments should the foundation model make~\citep{davis2026docable}?
 
 % <!-- point: reasoning-substitution-cost-depends-on-context-and-quality | A September 2026 single-PDF cost comparison measured the structured pipeline at about $0.0419 and estimated the agent's execution share at $2.29; the cost-accounting and quality limits prevent a claim of equal-quality substitution. -->
 
@@ -400,7 +400,7 @@ I replaced that implicit behavior with named states and legal transitions, atomi
 
 \textbf{Semantic judgment required an evidential obligation.} Agents writing prompts for DocAble's remediation models introduced numerical demands, such as a minimum number of facts in an image description. A source image might not contain enough evidence to support that many facts. The requirement then encouraged the model to supply content the image did not justify.
 
-Replacing one arbitrary count with another would retain the mistake. I instead modeled consequential prompt properties by kind and added checks, requiring descriptions to be grounded in source evidence. The agents could still choose the wording and organization. This converted an imprecise objective into an obligation appropriate to the semantic task, without requiring me to author every prompt or pretending that a check eliminated all hallucination\citep{davis2026docable}.
+Replacing one arbitrary count with another would retain the mistake. I instead modeled consequential prompt properties by kind and added checks, requiring descriptions to be grounded in source evidence. The agents could still choose the wording and organization. This converted an imprecise objective into an obligation appropriate to the semantic task, without requiring me to author every prompt or pretending that a check eliminated all hallucination~\citep{davis2026docable}.
 
 % <!-- point: a-timeout-spoke-only-after-the-budget-was-spent | A timeout produced a provisional cost/time model and reportable evidence; the bound remained too weakly calibrated to justify blocking. | terms: governance-conversion -->
 

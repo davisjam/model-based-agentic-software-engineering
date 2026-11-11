@@ -29,7 +29,9 @@ In a teaching passage, close with what the engineer can understand or do; reserv
 book's novelty or durability for a place where those questions are actually at issue.
 
 Place citations before terminal punctuation throughout the manuscript, including prose, captions, insets,
-and footnotes. Preserve citation targets and ordering.
+and footnotes. In native LaTeX, separate a citation from the preceding text with a nonbreaking space,
+as in `word~\citep{key}.` Use `~` before narrative citation commands such as `\citet{key}` as well.
+Preserve citation targets and ordering.
 
 ## Judge length by explanatory work
 

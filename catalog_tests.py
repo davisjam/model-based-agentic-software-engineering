@@ -91,6 +91,7 @@ from tests.citations import (
     check_cite_parity,
     check_cite_placement,
     check_cite_resolve,
+    check_cite_spacing,
     check_cite_wellformed,
     check_cite_symbology,
     check_handbook_reading_citations,
@@ -496,6 +497,8 @@ CHECKS = [
           lambda strict: check_cite_nonempty()),
     Check("book: CITE-PLACEMENT — citations precede terminal punctuation (BIB-11)", 1,
           lambda strict: check_cite_placement()),
+    Check("book: CITE-SPACING — native citations have nonbreaking separators (BIB-15)", 1,
+          lambda strict: check_cite_spacing()),
     # BLOCKING (drained to 0 at landing — the 261008 derived-pair fix): a rendered citation string must
     # be WELL-FORMED, not merely fresh and non-empty. Hayagriva's BibTeX reader mis-typed 42 of 317
     # entries (every @inproceedings as a special-issue journal article, every @incollection with its
