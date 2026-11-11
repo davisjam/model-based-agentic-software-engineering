@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: interlude-modeling-cycle). (a) The process is not the linear design → implement
-     → document-with-models. (b) It can instead be a loop: a problem drives a model, whose analysis yields
-     predictions and a design, which drive implementation and measurement, which refine the model. viewBox 920
-     for the figure font band. -->
+<!-- Hand-authored SVG (label: interlude-modeling-cycle). Modeling inside the implementation loop: a problem
+     drives a model, whose analysis yields predictions and a design, which drive implementation and
+     measurement, which refine the model. viewBox 920 for the figure font band. -->
 <!-- semantic-families: modeling, governance, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 392" width="920" height="392" role="group" aria-labelledby="mcTitle mcDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="mcTitle">Modeling as a loop, not a linear documentation step</title>
-  <desc id="mcDesc">Two panels. (a) The process is not linear — design, then implement, then document with
-    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a
-    design; those drive implementation and then measurement; measurement refines the model, and the loop
-    continues while the questions justify the cost.</desc>
-<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 410" width="920" height="410" role="group" aria-labelledby="mcTitle mcDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="mcTitle">Modeling inside the implementation loop</title>
+  <desc id="mcDesc">A loop. A problem drives a model; analyzing the model yields a prediction and a design;
+    those drive implementation and then measurement; measurement refines the model, and the loop continues
+    while the questions justify the cost.</desc>
+<!-- Print refinement: retain the source geometry semantics and text; reflow labels at publication width. -->
 <defs>
 <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
 <marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
@@ -18,37 +16,24 @@
 <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
 <marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
 </defs>
-<rect x="0" y="0" width="920" height="392" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
-<line x1="330" y1="44" x2="330" y2="372" stroke="#e7e2d6" stroke-width="1.5"/>
-<text x="24" y="28" font-size="22" text-anchor="start" fill="#57534e" font-weight="700">(a) Models after</text>
-<text x="24" y="52" font-size="22" text-anchor="start" fill="#57534e" font-weight="700">implementation</text>
-<text x="360" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(b) A modeling loop</text>
-<rect x="82" y="64" width="166" height="50" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="165.0" y="95.93" font-size="21" text-anchor="middle" fill="#1c1917">design</text>
-<rect x="82" y="154" width="166" height="50" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="165.0" y="185.93" font-size="21" text-anchor="middle" fill="#1c1917">implement</text>
-<rect x="65" y="244" width="200" height="70" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="165.0" y="273.93" font-size="21" text-anchor="middle" fill="#1c1917">document</text>
-<text x="165.0" y="297.93" font-size="21" text-anchor="middle" fill="#1c1917">with models</text>
-<line x1="165" y1="114" x2="165" y2="154" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="165" y1="204" x2="165" y2="244" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<rect x="400" y="56" width="150" height="50" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="475.0" y="87.93" font-size="21" text-anchor="middle" fill="#1c1917">problem</text>
-<rect x="400" y="146" width="150" height="50" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="475.0" y="177.93" font-size="21" text-anchor="middle" fill="#1c1917">model</text>
-<rect x="400" y="236" width="150" height="50" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="475.0" y="267.93" font-size="21" text-anchor="middle" fill="#1c1917">analyze</text>
-<rect x="650" y="146" width="230" height="50" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="765.0" y="177.93" font-size="21" text-anchor="middle" fill="#1c1917">prediction / design</text>
-<rect x="650" y="236" width="230" height="50" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="765.0" y="267.93" font-size="21" text-anchor="middle" fill="#1c1917">implementation</text>
-<rect x="650" y="326" width="230" height="50" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="765.0" y="357.93" font-size="21" text-anchor="middle" fill="#1c1917">measurement</text>
-<line x1="475" y1="106" x2="475" y2="146" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="475" y1="196" x2="475" y2="236" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<polyline points="550,261 602,261 602,171 650,171" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="765" y1="196" x2="765" y2="236" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<line x1="765" y1="286" x2="765" y2="326" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
-<polyline points="650,351 360,351 360,171 400,171" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
-<text x="455" y="376" font-size="20" text-anchor="start" fill="#57534e" font-style="italic">refine model</text>
+<rect x="0" y="0" width="920" height="410" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
+<rect x="72" y="36" width="250" height="56" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="197.0" y="72" font-size="21" text-anchor="middle" fill="#1c1917">problem</text>
+<rect x="72" y="132" width="250" height="56" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="197.0" y="168" font-size="21" text-anchor="middle" fill="#1c1917">model</text>
+<rect x="72" y="228" width="250" height="56" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="197.0" y="264" font-size="21" text-anchor="middle" fill="#1c1917">analyze</text>
+<rect x="570" y="132" width="320" height="56" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="730.0" y="168" font-size="21" text-anchor="middle" fill="#1c1917">prediction / design</text>
+<rect x="570" y="228" width="320" height="56" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="730.0" y="264" font-size="21" text-anchor="middle" fill="#1c1917">implementation</text>
+<rect x="570" y="324" width="320" height="56" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="730.0" y="360" font-size="21" text-anchor="middle" fill="#1c1917">measurement</text>
+<line x1="197" y1="92" x2="197" y2="132" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="197" y1="188" x2="197" y2="228" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<polyline points="322,256 446,256 446,160 570,160" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="730" y1="188" x2="730" y2="228" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<line x1="730" y1="284" x2="730" y2="324" stroke="#57534e" stroke-width="2" marker-end="url(#arrow-muted)"/>
+<polyline points="570,352 24,352 24,160 72,160" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<text x="200" y="377" font-size="20" text-anchor="start" fill="#57534e" font-style="italic">refine model</text>
 </svg>

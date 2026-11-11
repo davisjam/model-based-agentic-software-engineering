@@ -906,7 +906,7 @@
   {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-modeling-cycle.svg",
-    "caption": "*Modeling as a loop.* (a) Models produced after implementation: the linear design → implement → document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
+    "caption": "*Modeling inside the implementation loop.* An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model’s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,

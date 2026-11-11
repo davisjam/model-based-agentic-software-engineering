@@ -1,26 +1,20 @@
 {
   "source": "book/assets/interlude-modeling-cycle.svg",
-  "claim": "*Modeling as a loop.* (a) Models produced after implementation: the linear design \u2192 implement \u2192 document-with-models sequence. (b) A problem drives a model; analysis yields a prediction and a design; those drive implementation and measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
-  "topology": "Linear after-the-fact documentation contrasted with model-analysis-prediction-implementation-measurement feedback.",
+  "claim": "*Modeling inside the implementation loop.* An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model’s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.",
+  "topology": "Single feedback loop: problem, model, analysis, prediction/design, implementation, measurement, and a directed revision return to the model.",
   "required_terms": [
-    "(a) Models after implementation",
-    "(b) A modeling loop",
-    "Design",
-    "Implement",
-    "Document with models",
     "Problem",
     "Model",
     "Analyze",
     "Prediction / design",
     "Implementation",
-    "Measurement"
+    "Measurement",
+    "refine model"
   ],
   "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Resolved inconsistent original SVG arrow near prediction/design to chapter-described causality: analysis yields prediction/design, which drives implementation. Grayscale refinement: After-the-fact document chain muted; live model emphasized; editorial arrow resolution retained.",
-  "questions": [
-    "Original SVG arrow near prediction/design pointed upward from implementation; candidate follows chapter and SVG description. Confirm this editorial repair."
-  ],
-  "alt": "Two panels. (a) Models after implementation: a linear sequence of design, implement, then document with models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a design; those drive implementation and then measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
+  "redesign": "Panel (a), the linear design/implement/document-with-models chain, was removed on author instruction: the chapter establishes that contrast repeatedly before this point, and the juxtaposition risked implying that modeling conventionally follows implementation, which misdescribes model-driven engineering. The surviving loop was re-laid out to fill the original 920-unit figure width at unchanged font sizes, so rendered label sizes are unchanged rather than magnified. Earlier editorial arrow resolution and grayscale emphasis retained.",
+  "questions": [],
+  "alt": "A loop. A problem drives a model; analyzing the model yields a prediction and a design; those drive implementation and then measurement; measurement refines the model, and the loop continues while the questions justify the cost.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
@@ -33,8 +27,8 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
-    "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+    "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+    "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
@@ -58,8 +52,8 @@
   "typography_review": {
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
-    "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+    "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+    "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
     "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "evidence": [
       {
@@ -129,12 +123,12 @@
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
     "reason": "Moved feedback and prediction elbow rails away from target borders.",
-    "candidate_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+    "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing interlude modeling cycle layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
-      "after_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+      "before_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
+      "after_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
       "before_dimensions_bp": [
         396.3800048828125,
         227.29600524902344
@@ -174,10 +168,11 @@
     }
   },
   "color_source_revision": {
-    "date": "2026-11-09",
-    "previous_source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
-    "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
-    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-    "native_candidate_changed": false
-  }
+    "date": "2026-11-11",
+    "previous_source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
+    "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+    "reason": "Panel (a) removed on author instruction; surviving loop re-laid out to the full figure width at unchanged font sizes. Both the colour original and the native monochrome candidate changed.",
+    "native_candidate_changed": true
+  },
+  "pending_publisher_review": "Panel removal and re-layout have not been through the publisher review compile, so every compile-derived number below is STALE and deliberately left at its two-panel value rather than estimated: qa.width_pt/height_pt, qa.inspection, and the proof_sha256 / page / width_bp / height_bp / geometry_findings entries under style_review.validation, typography_review.validation and layout_review.validation. Re-run tools/mage_tikz_review.py to refresh them. Measured directly from the rendered production asset: 690.00 x 307.50 bp native, 0.652x at a 450 bp text width, box labels 10.27 pt and the annotation 9.78 pt — both unchanged from the two-panel figure."
 }

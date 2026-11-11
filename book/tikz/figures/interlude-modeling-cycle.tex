@@ -5,23 +5,16 @@
  note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=5.5cm] (ha) at (-4,0) {(a) Models after implementation};
-\node[head,text width=6.5cm] (hb) at (3.4,0) {(b) A modeling loop};
-\node[box,text width=3.8cm,fill=white] (a0) at (-4,-1.5) {Design};
-\node[box,text width=3.8cm,fill=white] (a1) at (-4,-3.1) {Implement};
-\node[box,text width=3.8cm,fill=white] (a2) at (-4,-4.7) {Document with models};
-\draw[edge,] (a0) -- (a1);
-\draw[edge,] (a1) -- (a2);
-\node[box,text width=2.9cm] (p) at (1,-1.4) {Problem};
-\node[box,text width=2.9cm,fill=white] (m) at (1,-2.9) {Model};
-\node[box,text width=2.9cm] (a) at (1,-4.4) {Analyze};
-\node[box,text width=2.9cm] (d) at (5,-2.9) {Prediction / design};
-\node[box,text width=2.9cm] (i) at (5,-4.4) {Implementation};
-\node[box,text width=2.9cm] (me) at (5,-6) {Measurement};
+\node[box,text width=3.7cm] (p) at (0,-0.8) {Problem};
+\node[box,text width=3.7cm,fill=white] (m) at (0,-2.35) {Model};
+\node[box,text width=3.7cm] (a) at (0,-3.9) {Analyze};
+\node[box,text width=4.8cm] (d) at (8.6,-2.35) {Prediction / design};
+\node[box,text width=4.8cm] (i) at (8.6,-3.9) {Implementation};
+\node[box,text width=4.8cm] (me) at (8.6,-5.45) {Measurement};
 \draw[edge,] (p) -- (m);
 \draw[edge,] (m) -- (a);
-\draw[edge,] (a.east) -- (2.9,-4.4) -- (2.9,-2.9) -- (d.west);
+\draw[edge,] (a.east) -- (4.0,-3.9) -- (4.0,-2.35) -- (d.west);
 \draw[edge,] (d) -- (i);
 \draw[edge,] (i) -- (me);
-\draw[edge] (me.south)--(5,-7)--node[note,below] {\textit{refine model}}(-1.2,-7)--(-1.2,-2.9)--(m.west);
+\draw[edge] (me.west) -- node[note,below] {\textit{refine model}} (-2.9,-5.45) -- (-2.9,-2.35) -- (m.west);
 \end{tikzpicture}
