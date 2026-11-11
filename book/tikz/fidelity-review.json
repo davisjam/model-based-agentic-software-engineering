@@ -517,16 +517,37 @@
     {
       "source": "book/assets/modeling-repertoire.svg",
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
-      "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
-      "candidate_sha256": "6327b149d746e0c1345b986b161a508bc4843681e1b7566891c0cea38e0f061b",
+      "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
+      "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
       "decision": "refined",
-      "review": "Restored visible node boxes in all nine miniature model forms and the quantitative bound bracket. Preserved each actual graph, forbidden/stale crosses and dashed edges, source questions/properties/analyses, and three-column hierarchy.",
+      "review": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        14.5983,
-        13.9749
+        15.8598,
+        19.6978
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/canonical-structural.svg",

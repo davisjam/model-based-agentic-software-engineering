@@ -2603,7 +2603,7 @@
       "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
       "decision": "refined",
       "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
-      "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+      "candidate_sha256": "bc8c67fa3115900a055b200b313095803fb9e1eb9ad8021565281a9dd70a38c7",
       "evidence": [
         {
           "source_text": "MODELING",
@@ -2652,7 +2652,7 @@
           "author_requested_change": true
         }
       ],
-      "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
+      "reason": "Author additionally requested a smaller central Modeling box: narrowed its text width from12.3cm to6.4cm without changing font size, labels, or rail connections. Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
       "checks": [
         {
           "text": "MODELING",
@@ -2682,7 +2682,7 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/model-routes-proof/model-routes.pdf",
-        "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
+        "proof_sha256": "4077a0a177abaf61947e25a70ddf1d742e034244bb181df4f1353472e4233c11",
         "width_bp": 376.339,
         "height_bp": 273.356,
         "minimum_prose_font_pt": 10.959,
@@ -2729,6 +2729,24 @@
             "width_bp": 376.339,
             "height_bp": 273.356,
             "minimum_prose_font_pt": 9.963,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 6,
+            "unapproved_compile_diagnostics": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/model-routes-proof/model-routes.pdf",
+            "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
+            "width_bp": 376.339,
+            "height_bp": 273.356,
+            "minimum_prose_font_pt": 10.959,
             "geometry_findings": 0,
             "semantic_typography_checks": 6,
             "unapproved_compile_diagnostics": 0,
@@ -4577,13 +4595,13 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
+      "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "COMPONENT / DEPENDENCY",
+          "candidate_text": "Component/dependency",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4608,7 +4626,7 @@
           "source_text": "FINITE-STATE",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "FINITE-STATE",
+          "candidate_text": "Finite-state",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4625,7 +4643,7 @@
           "source_text": "DATA-FLOW",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "DATA-FLOW",
+          "candidate_text": "Data flow",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4642,7 +4660,7 @@
           "source_text": "OWNERSHIP / RESOURCE",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "OWNERSHIP / RESOURCE",
+          "candidate_text": "Ownership/resource",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4667,7 +4685,7 @@
           "source_text": "DECISION / POLICY",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "DECISION / POLICY",
+          "candidate_text": "Decision/policy",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4684,7 +4702,7 @@
           "source_text": "QUANTITATIVE",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "QUANTITATIVE",
+          "candidate_text": "Quantitative",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4701,7 +4719,7 @@
           "source_text": "ENTITY / SCHEMA",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "ENTITY / SCHEMA",
+          "candidate_text": "Entity/schema",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4718,7 +4736,7 @@
           "source_text": "PROVENANCE / DERIVATION",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "PROVENANCE / DERIVATION",
+          "candidate_text": "Provenance/derivation",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4743,7 +4761,7 @@
           "source_text": "CALL / CONTROL-FLOW",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "CALL / CONTROL-FLOW",
+          "candidate_text": "Call/control flow",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -5003,42 +5021,42 @@
           ]
         }
       ],
-      "reason": "Full-page three-by-three repertoire: bold capital family names and Q/P/A labels, italic relation semantics, regular entity and explanatory text. Both versions share the read-through component chain.",
+      "reason": "Bold single-line title-case family headings and Q/P/A labels; italic relation semantics; regular miniature entities and explanatory text. All existing 10–10.5pt type retained.",
       "checks": [
         {
-          "text": "COMPONENT / DEPENDENCY",
+          "text": "Component/dependency",
           "bold": true
         },
         {
-          "text": "FINITE-STATE",
+          "text": "Finite-state",
           "bold": true
         },
         {
-          "text": "DATA-FLOW",
+          "text": "Data flow",
           "bold": true
         },
         {
-          "text": "OWNERSHIP / RESOURCE",
+          "text": "Ownership/resource",
           "bold": true
         },
         {
-          "text": "DECISION / POLICY",
+          "text": "Decision/policy",
           "bold": true
         },
         {
-          "text": "QUANTITATIVE",
+          "text": "Quantitative",
           "bold": true
         },
         {
-          "text": "ENTITY / SCHEMA",
+          "text": "Entity/schema",
           "bold": true
         },
         {
-          "text": "PROVENANCE / DERIVATION",
+          "text": "Provenance/derivation",
           "bold": true
         },
         {
-          "text": "CALL / CONTROL-FLOW",
+          "text": "Call/control flow",
           "bold": true
         },
         {
@@ -5102,17 +5120,40 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 16,
-        "width_bp": 440.973,
-        "height_bp": 546.264,
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 23
-      }
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 16,
+          "width_bp": 440.973,
+          "height_bp": 546.264,
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 23
+        }
+      ]
     },
     {
       "source": "book/assets/canonical-structural.svg",

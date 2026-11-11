@@ -682,9 +682,9 @@
       "candidate": "book/tikz/figures/multiple-routes-to-engineering-models.tex",
       "source_sha256": "78ad25706696270997b689040f23f0e7dc74bf216e14bae505c2229869b7871d",
       "baseline_candidate_sha256": "866b40b643dea6c5435feeaeb870b6874acc6754c1674b756a563be53f6d25b0",
-      "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+      "candidate_sha256": "bc8c67fa3115900a055b200b313095803fb9e1eb9ad8021565281a9dd70a38c7",
       "decision": "refined",
-      "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
+      "reason": "Author additionally requested a smaller central Modeling box: narrowed its text width from12.3cm to6.4cm without changing font size, labels, or rail connections. Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         376.3390197753906,
@@ -694,7 +694,7 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/model-routes-proof/model-routes.pdf",
-        "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
+        "proof_sha256": "4077a0a177abaf61947e25a70ddf1d742e034244bb181df4f1353472e4233c11",
         "width_bp": 376.339,
         "height_bp": 273.356,
         "minimum_prose_font_pt": 10.959,
@@ -707,7 +707,7 @@
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
+        "reason": "Author additionally requested a smaller central Modeling box: narrowed its text width from12.3cm to6.4cm without changing font size, labels, or rail connections. Author requested source/use headings, agent exploration as the third source, and deletion of the overall title and redundant closing sentence. Both group headings share the same left alignment and bold12pt typography, as requested in followup. Original color artwork retained for comparison.",
         "after_dimensions_bp": [
           376.339,
           273.356
@@ -748,6 +748,24 @@
             "width_bp": 376.339,
             "height_bp": 273.356,
             "minimum_prose_font_pt": 9.963,
+            "geometry_findings": 0,
+            "semantic_typography_checks": 6,
+            "unapproved_compile_diagnostics": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "note": "Isolated single-figure proof; shared pool recompiles at next book build."
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "06264be7cdd9363824a6fe07bdd333643a83695527ee8c31a8bb068a5b222afb",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/model-routes-proof/model-routes.pdf",
+            "proof_sha256": "03d8db8eb5f04ecd07a10e5b471f99189cdf58777775c4bbdbd598ba19d9874c",
+            "width_bp": 376.339,
+            "height_bp": 273.356,
+            "minimum_prose_font_pt": 10.959,
             "geometry_findings": 0,
             "semantic_typography_checks": 6,
             "unapproved_compile_diagnostics": 0,
@@ -1739,9 +1757,9 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
       "baseline_candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
-      "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
+      "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
       "decision": "refined",
-      "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10–10.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
+      "reason": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         413.8110046386719,
@@ -1749,34 +1767,64 @@
       ],
       "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 16,
-        "width_bp": 440.973,
-        "height_bp": 546.264
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Reflow both color and grayscale into a full-page three-by-three plate with10–10.5pt labels, roomy two-rank miniatures and aligned Q/P/A fields.",
+        "reason": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
         "reviewed_visually": true,
-        "svg_audit_review": {
-          "strict_label_collision": "passed",
-          "strict_text_occlusion": "passed",
-          "heuristic_stroke_flags": "Two estimated-width flags are false positives: rendered labels end at119.03bp and271.35bp, before the145.5bp and294.5bp dividers. Measured clearances26.47bp and23.15bp at native440bp width."
+        "single_line_headings": [
+          "Component/dependency",
+          "Finite-state",
+          "Data flow",
+          "Ownership/resource",
+          "Decision/policy",
+          "Quantitative",
+          "Entity/schema",
+          "Provenance/derivation",
+          "Call/control flow"
+        ],
+        "minimum_prose_font_pt": 10.0
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 16,
+          "width_bp": 440.973,
+          "height_bp": 546.264
         }
-      }
+      ]
     },
     {
       "source": "book/assets/canonical-structural.svg",

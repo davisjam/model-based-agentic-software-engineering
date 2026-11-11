@@ -906,25 +906,48 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "1e8d58eb77ebda89fd0b7ace493446e544acd8f96b7dbc805366b68a855bf980",
-      "fill": "Nine equal white panels and all miniature nodes white. Shape, topology, labels and dashed/cross marks distinguish forms.",
-      "bold": "Source-derived emphasis includes COMPONENT / DEPENDENCY; FINITE-STATE; DATA-FLOW; OWNERSHIP / RESOURCE; DECISION / POLICY; QUANTITATIVE; ENTITY / SCHEMA; PROVENANCE / DERIVATION. Full-page three-by-three repertoire: bold capital family names and Q/P/A labels, italic relation semantics, regular entity and explanatory text. Both versions share the read-through component chain.",
+      "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
+      "fill": "White content cells with 8% gray header bands, horizontal and vertical rules. Family titles and Q/P/A labels are bold; named arrow relations are italic. Dashed crossed stale claims and prohibited calls remain distinct from ordinary relations.",
+      "bold": "Single-line title-case family headings and Q/P/A prefixes; regular body and miniature labels; italic named relation semantics.",
       "routing": "All miniature process/relation edges use aligned ports and short orthogonal branches; forbidden/stale crosses follow their dashed paths.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+      "visual_review": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 16,
-        "width_bp": 440.973,
-        "height_bp": 546.264,
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 23
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
       },
-      "book_references": []
+      "book_references": [],
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 16,
+          "width_bp": 440.973,
+          "height_bp": 546.264,
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 23
+        }
+      ]
     },
     {
       "source": "book/assets/canonical-structural.svg",

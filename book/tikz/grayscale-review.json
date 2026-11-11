@@ -401,9 +401,30 @@
     "receipt": "book/tikz/receipts/modeling-repertoire.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Gray header bands preserve source family groupings. Nine mini-graphs, edge endpoints, crossed dashed stale/prohibited meanings and Q/P/A descriptions retained.",
-    "source_sha256": "bd5da23df1b200098f4161be5b7d7c8ab9e66ddccc74834b2898be0ce46c72a9",
-    "candidate_sha256": "d16c40420769e09046162c7342b0c68ee6c2c4f7f28dd993e58d7a2a600d99e2"
+    "rationale": "White content cells with 8% gray header bands, horizontal and vertical rules. Family titles and Q/P/A labels are bold; named arrow relations are italic. Dashed crossed stale claims and prohibited calls remain distinct from ordinary relations.",
+    "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
+    "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
+    "validation": {
+      "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "page": 1,
+      "width_bp": 449.57,
+      "height_bp": 558.364,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 22,
+      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 23,
+      "single_line_family_headings": 9,
+      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "status": "passed"
+    }
   },
   {
     "source": "book/assets/canonical-structural.svg",
