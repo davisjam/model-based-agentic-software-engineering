@@ -812,10 +812,10 @@
     {
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
-      "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
-      "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+      "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
+      "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
       "decision": "refined",
-      "review": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+      "review": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         15.825,
@@ -825,7 +825,7 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+        "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
         "page": 1,
         "width_bp": 448.584,
         "height_bp": 430.472,
@@ -837,10 +837,10 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
-        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+        "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+        "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 46,
+        "semantic_typography_checks": 50,
         "status": "passed"
       },
       "validation_history": [
@@ -884,6 +884,27 @@
           "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
           "monochrome_pixels": true,
           "semantic_typography_checks": 45,
+          "status": "passed"
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+          "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+          "page": 1,
+          "width_bp": 448.584,
+          "height_bp": 430.472,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 0,
+          "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+          "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 46,
           "status": "passed"
         }
       ]

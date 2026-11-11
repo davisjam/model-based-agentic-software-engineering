@@ -75,11 +75,13 @@
     "declared dependencies—not the code implementing each computation.",
     "determines which",
     "repairs run.",
+    "•",
+    "•",
     "document.",
     "(executes if condition holds)"
   ],
   "bw_encoding": "Classify and Apply patches use 13% gray, typed-patch diamonds 5%, Validate 25%. Shape and labels duplicate the distinctions so shade is not the only carrier. Solid arrows indicate data flow; dashed arrows indicate control gates. Thin unadorned leader lines connect explanatory annotations.",
-  "redesign": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+  "redesign": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
   "questions": [],
   "alt": "Classify controls two repair computations with dashed arrows. Repair structure and Repair metadata produce typed patches, both flowing to Apply patches and then Validate. Rounded rectangles and diamonds retain the supplied mutation-type distinction; solid and dashed arrows distinguish payload data flow from conditional execution. Annotation leaders have no endpoints or arrowheads.",
   "review": {
@@ -93,7 +95,7 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+    "outcome": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
     "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
       15.825,
@@ -102,7 +104,7 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
       "page": 1,
       "width_bp": 448.584,
       "height_bp": 430.472,
@@ -114,10 +116,10 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 0,
-      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
-      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+      "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 46,
+      "semantic_typography_checks": 50,
       "status": "passed"
     }
   },
@@ -125,12 +127,12 @@
     "stem": "from-nodes-to-composition",
     "source": "book/assets/from-nodes-to-composition.svg",
     "status": "corrected",
-    "evidence": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+    "evidence": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
     "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/from-nodes-to-composition.png",
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
     "candidate_render": "/private/tmp/mage-figures-2-9-2-10-native-20261111/latex/build/reference-native-proof/from-nodes-to-composition.png",
-    "original_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
-    "native_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "original_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
+    "native_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
     "page": 1,
     "dimensions_cm": [
       13.7879,
@@ -142,7 +144,7 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
       "page": 1,
       "width_bp": 448.584,
       "height_bp": 430.472,
@@ -154,10 +156,10 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 0,
-      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
-      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+      "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 46,
+      "semantic_typography_checks": 50,
       "status": "passed"
     }
   },
@@ -166,17 +168,17 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
-    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
+    "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
     "fill": "Classify and Apply patches use 13% gray, typed-patch diamonds 5%, Validate 25%. Shape and labels duplicate the distinctions so shade is not the only carrier. Solid arrows indicate data flow; dashed arrows indicate control gates. Thin unadorned leader lines connect explanatory annotations.",
     "bold": "Bold labels identify computations and annotation headings; state labels remain regular except Retrying as in the supplied reference.",
     "routing": "Classify controls two repair computations with dashed arrows. Repair structure and Repair metadata produce typed patches, both flowing to Apply patches and then Validate. Rounded rectangles and diamonds retain the supplied mutation-type distinction; solid and dashed arrows distinguish payload data flow from conditional execution. Annotation leaders have no endpoints or arrowheads.",
     "shape": "House-scale corner radii; supplied semantic diamond/rectangle/state shapes remain.",
-    "visual_review": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+    "visual_review": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
       "page": 1,
       "width_bp": 448.584,
       "height_bp": 430.472,
@@ -188,10 +190,10 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 0,
-      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
-      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+      "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 46,
+      "semantic_typography_checks": 50,
       "status": "passed"
     },
     "book_references": [],
@@ -218,7 +220,7 @@
       {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
         "page": 1,
         "width_bp": 448.584,
         "height_bp": 430.472,
@@ -230,39 +232,18 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
-        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 45,
-        "status": "passed"
-      },
-      {
-        "date": "2026-11-11",
-        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
-        "page": 1,
-        "width_bp": 448.584,
-        "height_bp": 430.472,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
-        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 45,
+        "semantic_typography_checks": 46,
         "status": "passed"
       }
     ]
   },
   "typography_review": {
     "decision": "refined",
-    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
-    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
+    "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
     "evidence": [
       {
         "source_text": "A typed structural model of DocAble’s remediation computations.",
@@ -486,7 +467,7 @@
         }
       }
     ],
-    "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
+    "reason": "Preserve the approved Source Sans 3 hierarchy; only e.g., in the Computation example becomes italic, while classify, repair, remains regular. Indented bullet entries remain regular.",
     "checks": [
       {
         "text": "A typed structural model of DocAble’s remediation computations.",
@@ -569,9 +550,7 @@
         "italic": false
       },
       {
-        "text": "(e.g., classify, repair,",
-        "bold": false,
-        "italic": false
+        "text": "(e.g., classify, repair,"
       },
       {
         "text": "validate).",
@@ -707,6 +686,16 @@
         "italic": false
       },
       {
+        "text": "•",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "•",
+        "bold": false,
+        "italic": false
+      },
+      {
         "text": "document.",
         "bold": false,
         "italic": false
@@ -715,12 +704,22 @@
         "text": "(executes if condition holds)",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "e.g.,",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "classify, repair,",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
       "page": 1,
       "width_bp": 448.584,
       "height_bp": 430.472,
@@ -732,10 +731,10 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 0,
-      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
-      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+      "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 46,
+      "semantic_typography_checks": 50,
       "status": "passed"
     },
     "color_source_revision": {
@@ -787,7 +786,7 @@
       {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
         "page": 1,
         "width_bp": 448.584,
         "height_bp": 430.472,
@@ -799,41 +798,20 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
-        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 45,
-        "status": "passed"
-      },
-      {
-        "date": "2026-11-11",
-        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
-        "page": 1,
-        "width_bp": 448.584,
-        "height_bp": 430.472,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
-        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 45,
+        "semantic_typography_checks": 46,
         "status": "passed"
       }
     ]
   },
   "layout_review": {
-    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+    "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
     "baseline_candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
     "decision": "refined",
-    "reason": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+    "reason": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       390.8389892578125,
@@ -843,7 +821,7 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
       "page": 1,
       "width_bp": 448.584,
       "height_bp": 430.472,
@@ -855,15 +833,15 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 0,
-      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
-      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+      "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 46,
+      "semantic_typography_checks": 50,
       "status": "passed"
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+      "reason": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
       "reviewed_visually": true,
       "full_width_required": true,
       "half_width_minimum_font_pt": 4.71
@@ -917,7 +895,7 @@
       {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
         "page": 1,
         "width_bp": 448.584,
         "height_bp": 430.472,
@@ -929,31 +907,10 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
-        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 45,
-        "status": "passed"
-      },
-      {
-        "date": "2026-11-11",
-        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
-        "page": 1,
-        "width_bp": 448.584,
-        "height_bp": 430.472,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
-        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 45,
+        "semantic_typography_checks": 46,
         "status": "passed"
       }
     ]

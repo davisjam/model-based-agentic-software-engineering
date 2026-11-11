@@ -97,6 +97,11 @@
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved the revised black-and-white Figure 2.6, including the final serif errors/requests quantity fraction.",
       "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31"
+    },
+    "book/assets/from-nodes-to-composition.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved black-and-white Figure 2.9 after the requested indented mutation-behavior bullets and italic e.g. annotation were applied.",
+      "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8"
     }
   }
 }

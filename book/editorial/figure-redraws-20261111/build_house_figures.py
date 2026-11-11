@@ -60,7 +60,14 @@ class HouseFigure(reference.Figure):
             if tag=='path' and e.get('class')=='edge':
                 e.set('style','marker-end:url(#arrow)')
             if not is_state and tag=='text':
-                if e.get('x')=='622':e.set('x','590')
+                if e.get('x')=='622':
+                    e.set('x','606')
+                    if t in ['typed patch —','direct edit —']:
+                        root.append(text(590,e.get('y'),'•'))
+                if t=='(e.g., classify, repair,':
+                    e.text='('
+                    example=ET.SubElement(e,'{'+NS+'}tspan',{'font-style':'italic'})
+                    example.text='e.g.,';example.tail=' classify, repair,'
                 if t=='Repair':e.set('y','286')
                 if t in ['structure','metadata']:e.set('y','307')
                 if t=='(typed patch)':e.set('y','326');e.set('style','font-size:18px;')
