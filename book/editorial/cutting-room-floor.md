@@ -19594,3 +19594,58 @@ The consequential invariant is about time and contention. Suppose worker A holds
 
 \autoref{in-flight-ownership-states} follows this sequence. Worker A initially holds generation 7. After its lease expires, the job becomes reclaimable, and worker B acquires generation 8. When A returns, its release request still names generation 7. The current claim belongs to B at generation 8, so the release must be rejected. The generation number distinguishes successive claims on the same job even when both workers believe they have authority to act. Without it, a delayed operation from A could clear B's valid claim. The model therefore preserves owner, generation, and lifetime while omitting the worker implementation and the machinery that stores the lease.
 ```
+
+
+## 2026-11-11 — Consolidate Chapter 4 architectural and modeling figures
+
+The author combined the execution/residency diagrams and the modeling-loop/residual diagrams. Original assets remain available; the following manuscript blocks and replaced passages are retained here.
+
+```latex
+\autoref{interlude-execution-unit} traces how that execution unit later changed.
+```
+
+```latex
+\caption{\emph{Two execution units for document remediation.} (a) Whole-document execution keeps the artifact\textquotesingle s working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.}
+```
+
+```latex
+The existing representation coupled the two, and \autoref{interlude-storage-vs-reasoning} contrasts that arrangement with the one that replaced it.
+```
+
+```latex
+A residency model made the alternative visible (panel b):
+```
+
+```latex
+Remediation then operates on the skeleton.
+```
+
+```latex
+Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question, and it drives a loop that runs both before and after implementation (\autoref{interlude-prediction-residual}).
+```
+
+```latex
+\caption{\emph{Using prediction error as evidence.} (a) The gap between a model\textquotesingle s prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.}
+```
+
+```latex
+ \autoref{interlude-modeling-cycle} summarizes this process.
+```
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-storage-vs-reasoning-65a384adac.pdf}
+\caption{\emph{Chunked residency versus skeletonized residency.} (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker\textquotesingle s resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.}
+\label{interlude-storage-vs-reasoning}
+\end{figure}
+```
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/interlude-modeling-cycle-9d6747c7c6.pdf}
+\caption{\emph{Modeling inside the implementation loop.} An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model\textquotesingle s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.}
+\label{interlude-modeling-cycle}
+\end{figure}
+```

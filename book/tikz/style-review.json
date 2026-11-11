@@ -1985,26 +1985,65 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-      "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+      "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
+      "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
       "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
       "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
       "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
       "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 30,
-        "width_bp": 371.803,
-        "height_bp": 297.395,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
+        "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
+        "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
+        "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 2
+        "status": "passed",
+        "page": 1,
+        "width_bp": 292.522,
+        "height_bp": 237.411,
+        "minimum_prose_font_pt": 9.963,
+        "semantic_typography_checks": 4
       },
-      "book_references": []
+      "book_references": [],
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "source": "book/assets/modeling-substrate.svg",
+            "candidate": "book/tikz/figures/modeling-substrate.tex",
+            "receipt": "book/tikz/receipts/modeling-substrate.json",
+            "decision": "refined",
+            "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+            "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+            "status": "reviewed",
+            "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+            "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+            "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
+            "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
+            "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
+            "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+            "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 30,
+              "width_bp": 371.803,
+              "height_bp": 297.395,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 2
+            },
+            "book_references": []
+          }
+        }
+      ],
+      "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained."
     },
     {
       "source": "book/assets/attribution-model.svg",
@@ -2970,71 +3009,90 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
-      "candidate_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
-      "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Source-derived emphasis includes Long-running Kubernetes worker. Worker identity is bold above resident-state descriptions; italic memory consequence remains separate from the unchanged-media qualification.",
-      "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Whole-document execution versus three parallel page workers; short side rails split and merge.",
+      "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
+      "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
+      "fill": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required.",
+      "bold": "Panel titles and Worker labels are bold. Other labels and bullet explanations are regular.",
+      "routing": "Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
+      "shape": "Modestly rounded worker and document boxes; nested structure/media rectangles distinguish residency.",
+      "visual_review": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 58,
-        "width_bp": 356.695,
-        "height_bp": 283.783,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
+        "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 553.971,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.162,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 3
+        "maximum_rgb_channel_delta": 0,
+        "semantic_typography_checks": 43,
+        "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+        "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
+        "source_geometry_checks": [
+          "three equal142×546bp panels",
+          "three equal108×62bp page workers"
+        ],
+        "status": "passed"
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "routing_exceptions": "None: simple straight or orthogonal connectors; no crossed edges.",
       "color_source_revision": {
         "date": "2026-11-09",
         "previous_source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
         "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
-    },
-    {
-      "source": "book/assets/interlude-storage-vs-reasoning.svg",
-      "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
-      "receipt": "book/tikz/receipts/interlude-storage-vs-reasoning.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
-      "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
-      "fill": "Only media is 5%, inside chunks and external store; structure stays white.",
-      "bold": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
-      "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
-      "visual_review": "Media role alone shaded, paired with labels; reference path dashed, streaming solid. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 59,
-        "width_bp": 413.388,
-        "height_bp": 269.617,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 4
       },
-      "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
-        "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
-      }
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+          "previous": {
+            "source": "book/assets/interlude-execution-unit.svg",
+            "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+            "receipt": "book/tikz/receipts/interlude-execution-unit.json",
+            "decision": "refined",
+            "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+            "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+            "status": "reviewed",
+            "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
+            "candidate_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
+            "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+            "bold": "Source-derived emphasis includes Long-running Kubernetes worker. Worker identity is bold above resident-state descriptions; italic memory consequence remains separate from the unchanged-media qualification.",
+            "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+            "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+            "visual_review": "Whole-document execution versus three parallel page workers; short side rails split and merge.",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 58,
+              "width_bp": 356.695,
+              "height_bp": 283.783,
+              "minimum_prose_font_pt": 9.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 3
+            },
+            "book_references": [],
+            "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+              "source_sha256": "27f7453fb269fc24963f45c54f5d954bda203c9afb779106f34544b2a56fd6c6",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-graph-two-partitions.svg",
@@ -3155,24 +3213,34 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
-      "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-      "fill": "Residual and explain-residual share 5%; all ordinary stages stay white.",
+      "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
+      "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
+      "fill": "Three pale gray heading bands separate panels. Residual has 8% gray emphasis and the acceptance diamond 5%; ordinary action boxes remain white. Black directed edges and the decision diamond preserve meaning independently of shade.",
       "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+      "routing": "Forward vertical chains, terminal arrowheads on a shared investigation branch, and outer feedback rails; no arrows cross labels.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Residual and explanation share a pale role fill; three causes use equal white boxes.",
+      "visual_review": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 63,
-        "width_bp": 394.1,
-        "height_bp": 226.109,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+        "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 295.597,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+        "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+        "semantic_typography_checks": 28,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 2
+        "status": "passed",
+        "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
       },
       "book_references": [],
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
@@ -3182,44 +3250,43 @@
         "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
-    },
-    {
-      "source": "book/assets/interlude-modeling-cycle.svg",
-      "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
-      "receipt": "book/tikz/receipts/interlude-modeling-cycle.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
-      "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
-      "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Late documentation versus iterative modeling preserved; analysis-to-prediction route enters side port.",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 64,
-        "width_bp": 396.38,
-        "height_bp": 227.296,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 2
       },
-      "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
-        "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
-      }
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 63,
+          "width_bp": 394.1,
+          "height_bp": 226.109,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 2
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+          "proof_sha256": "dc4ac9ab566915e74fcf316fb0a57759faf0e07936f715bda8f31deea136c916",
+          "page": 1,
+          "width_bp": 449.972,
+          "height_bp": 295.597,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "e6b995962cbadf3f143aa68e330b081b0864078886c637c57350ad74318d2be5",
+          "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+          "semantic_typography_checks": 28,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+          "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+        }
+      ]
     },
     {
       "source": "book/assets/discovering-models-migration.svg",

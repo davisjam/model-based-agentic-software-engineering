@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1332" height="1644" viewBox="0 0 444 548" role="img" aria-labelledby="title desc"><title id="title">Evolution of DocAble’s document working set</title><desc id="desc">Three equal panels: whole-document execution, page-chunked execution, and skeletonized execution. Chunking partitions execution; skeletonization separates resident structure from externally stored media. Media access and the GenAI connection are distinct.</desc><defs><marker id="arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L5,2.5 L0,5 Z" fill="#222"/></marker></defs><rect width="444" height="548" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect{stroke-linejoin:round;}</style>
+<rect x="1" y="1" width="142" height="546" rx="4" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<rect x="2" y="2" width="140" height="42" rx="2" fill="#f5f5f5" stroke="none" stroke-width=".65"/>
+<rect x="2" y="420" width="140" height="126" rx="2" fill="#f7f7f7" stroke="none" stroke-width=".65"/>
+<text x="72" y="18" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">(a) Whole-document</text>
+<text x="72" y="32" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">execution</text>
+<rect x="151" y="1" width="142" height="546" rx="4" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<rect x="152" y="2" width="140" height="42" rx="2" fill="#f5f5f5" stroke="none" stroke-width=".65"/>
+<rect x="152" y="420" width="140" height="126" rx="2" fill="#f7f7f7" stroke="none" stroke-width=".65"/>
+<text x="222" y="18" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">(b) Page-chunked</text>
+<text x="222" y="32" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">execution</text>
+<rect x="301" y="1" width="142" height="546" rx="4" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<rect x="302" y="2" width="140" height="42" rx="2" fill="#f5f5f5" stroke="none" stroke-width=".65"/>
+<rect x="302" y="420" width="140" height="126" rx="2" fill="#f7f7f7" stroke="none" stroke-width=".65"/>
+<text x="372" y="18" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">(c) Skeletonized</text>
+<text x="372" y="32" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">execution</text>
+<rect x="38" y="81" width="68" height="26" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="72.0" y="97.4" text-anchor="middle" style="font-size:10.4px;">Document</text>
+<path d="M72,107 L72,151" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<rect x="18" y="152" width="108" height="127" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="72" y="171" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">Worker</text>
+<rect x="26" y="183" width="92" height="29" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="72.0" y="200.9" text-anchor="middle" style="font-size:10.4px;">Structure</text>
+<rect x="26" y="223" width="92" height="42" rx="3" fill="#d1d1d1" stroke="#444" stroke-width=".65"/>
+<text x="72.0" y="241.4" text-anchor="middle" style="font-size:10.4px;">Media</text>
+<text x="72.0" y="253.4" text-anchor="middle" style="font-size:10.4px;">(all resident)</text>
+<path d="M72,279 L72,349" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<rect x="38" y="350" width="68" height="26" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="72.0" y="366.4" text-anchor="middle" style="font-size:10.4px;">Output</text>
+<rect x="190" y="65" width="66" height="26" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="223.0" y="81.4" text-anchor="middle" style="font-size:10.4px;">Document</text>
+<path d="M223,91 L223,104 L163,104 L163,297" fill="none" stroke="#222" stroke-width=".8"/>
+<rect x="174" y="118" width="108" height="62" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="228" y="132" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">Worker</text>
+<text x="228" y="145" text-anchor="middle" style="font-size:10.4px;">Pages 1–10</text>
+<rect x="179" y="152" width="53" height="22" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="205.5" y="166.4" text-anchor="middle" style="font-size:10.4px;">Structure</text>
+<rect x="237" y="152" width="40" height="22" rx="3" fill="#d1d1d1" stroke="#444" stroke-width=".65"/>
+<text x="257.0" y="166.4" text-anchor="middle" style="font-size:10.4px;">Media</text>
+<path d="M163,149 L174,149" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M282,149 L291,149" fill="none" stroke="#222" stroke-width=".8"/>
+<rect x="174" y="192" width="108" height="62" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="228" y="206" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">Worker</text>
+<text x="228" y="219" text-anchor="middle" style="font-size:10.4px;">Pages 11–20</text>
+<rect x="179" y="226" width="53" height="22" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="205.5" y="240.4" text-anchor="middle" style="font-size:10.4px;">Structure</text>
+<rect x="237" y="226" width="40" height="22" rx="3" fill="#d1d1d1" stroke="#444" stroke-width=".65"/>
+<text x="257.0" y="240.4" text-anchor="middle" style="font-size:10.4px;">Media</text>
+<path d="M163,223 L174,223" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M282,223 L291,223" fill="none" stroke="#222" stroke-width=".8"/>
+<rect x="174" y="266" width="108" height="62" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="228" y="280" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">Worker</text>
+<text x="228" y="293" text-anchor="middle" style="font-size:10.4px;">Pages 21–30</text>
+<rect x="179" y="300" width="53" height="22" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="205.5" y="314.4" text-anchor="middle" style="font-size:10.4px;">Structure</text>
+<rect x="237" y="300" width="40" height="22" rx="3" fill="#d1d1d1" stroke="#444" stroke-width=".65"/>
+<text x="257.0" y="314.4" text-anchor="middle" style="font-size:10.4px;">Media</text>
+<path d="M163,297 L174,297" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<path d="M282,297 L291,297" fill="none" stroke="#222" stroke-width=".8"/>
+<path d="M291,149 L291,338 L223,338 L223,348" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<rect x="192" y="349" width="62" height="24" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="223.0" y="364.4" text-anchor="middle" style="font-size:10.4px;">Merge</text>
+<path d="M223,373 L223,390" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<rect x="192" y="391" width="62" height="24" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="223.0" y="406.4" text-anchor="middle" style="font-size:10.4px;">Output</text>
+<rect x="338" y="81" width="68" height="26" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="372.0" y="97.4" text-anchor="middle" style="font-size:10.4px;">Document</text>
+<path d="M372,107 L372,151" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)"/>
+<rect x="319" y="152" width="106" height="113" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="372" y="170" text-anchor="middle" style="font-size:11.2px;font-weight:bold;">Worker</text>
+<text x="372" y="184" text-anchor="middle" style="font-size:10.4px;">(skeletonized)</text>
+<rect x="326" y="194" width="92" height="25" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="372.0" y="209.9" text-anchor="middle" style="font-size:10.4px;">Structure</text>
+<rect x="326" y="231" width="92" height="25" rx="3" fill="#d1d1d1" stroke="#444" stroke-width=".65"/>
+<text x="372.0" y="246.9" text-anchor="middle" style="font-size:10.4px;">Media references</text>
+<rect x="307" y="333" width="66" height="43" rx="3" fill="#ffffff" stroke="#444" stroke-width=".65"/>
+<text x="340.0" y="351.9" text-anchor="middle" style="font-size:10.4px;">GenAI</text>
+<text x="340.0" y="363.9" text-anchor="middle" style="font-size:10.4px;">service</text>
+<rect x="383" y="333" width="53" height="43" rx="3" fill="#d1d1d1" stroke="#444" stroke-width=".65"/>
+<text x="409.5" y="351.9" text-anchor="middle" style="font-size:10.4px;">External</text>
+<text x="409.5" y="363.9" text-anchor="middle" style="font-size:10.4px;">media</text>
+<path d="M340,265 L340,333" fill="none" stroke="#222" stroke-width=".8" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<path d="M416,265 L416,333" fill="none" stroke="#222" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<path d="M397,333 L397,265" fill="none" stroke="#222" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+<text x="8" y="436" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="18" y="436" text-anchor="start" style="font-size:10.2px;">One worker retains the</text>
+<text x="18" y="448" text-anchor="start" style="font-size:10.2px;">complete document.</text>
+<text x="8" y="465" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="18" y="465" text-anchor="start" style="font-size:10.2px;">Structure and all media</text>
+<text x="18" y="477" text-anchor="start" style="font-size:10.2px;">are resident.</text>
+<text x="8" y="494" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="18" y="494" text-anchor="start" style="font-size:10.2px;">Memory scales with the</text>
+<text x="18" y="506" text-anchor="start" style="font-size:10.2px;">document payload.</text>
+<text x="158" y="432" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="168" y="432" text-anchor="start" style="font-size:10.2px;">The document is</text>
+<text x="168" y="444" text-anchor="start" style="font-size:10.2px;">partitioned into page</text>
+<text x="168" y="456" text-anchor="start" style="font-size:10.2px;">chunks.</text>
+<text x="158" y="473" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="168" y="473" text-anchor="start" style="font-size:10.2px;">Each worker retains</text>
+<text x="168" y="485" text-anchor="start" style="font-size:10.2px;">the chunk’s structure</text>
+<text x="168" y="497" text-anchor="start" style="font-size:10.2px;">and media.</text>
+<text x="158" y="514" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="168" y="514" text-anchor="start" style="font-size:10.2px;">A smaller working set</text>
+<text x="168" y="526" text-anchor="start" style="font-size:10.2px;">per worker reduces</text>
+<text x="168" y="538" text-anchor="start" style="font-size:10.2px;">memory.</text>
+<text x="308" y="436" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="318" y="436" text-anchor="start" style="font-size:10.2px;">The worker retains</text>
+<text x="318" y="448" text-anchor="start" style="font-size:10.2px;">structure and media</text>
+<text x="318" y="460" text-anchor="start" style="font-size:10.2px;">references.</text>
+<text x="308" y="477" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="318" y="477" text-anchor="start" style="font-size:10.2px;">Media is not resident,</text>
+<text x="318" y="489" text-anchor="start" style="font-size:10.2px;">but streamed on demand.</text>
+<text x="308" y="506" text-anchor="start" style="font-size:10.4px;">•</text>
+<text x="318" y="506" text-anchor="start" style="font-size:10.2px;">Media is processed by a</text>
+<text x="318" y="518" text-anchor="start" style="font-size:10.2px;">GenAI service.</text></svg>

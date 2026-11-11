@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: interlude-prediction-residual). (a) A residual is the gap between a model's
+     prediction and the observed measurement; it points to a wrong parameter, a wrong relation, or a missing
+     mechanism. (b) The modeling loop that follows: model, predict, implement, measure, explain the residual,
+     and refine the model. viewBox 920 for the figure font band. Illustrative numbers. -->
+<!-- semantic-families: modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 374" width="920" height="374" role="group" aria-labelledby="prTitle prDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="prTitle">A residual turns prediction error into an engineering question</title>
+  <desc id="prDesc">Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8
+    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong
+    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)
+    The loop this drives: model, predict, implement, measure, then explain the residual and refine the
+    model. Modeling therefore contributes both before implementation and after it.</desc>
+<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
+<defs>
+<marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
+<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
+<marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
+</defs>
+<rect x="0" y="0" width="920" height="374" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
+<line x1="460" y1="44" x2="460" y2="354" stroke="#e7e2d6" stroke-width="1.5"/>
+<text x="24" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(a) Prediction versus observation</text>
+<text x="490" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(b) The modeling loop</text>
+<rect x="120" y="53" width="230" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="235.0" y="83.93" font-size="21" text-anchor="middle" fill="#1c1917">model predicts 11.5 s</text>
+<rect x="120" y="137" width="230" height="48" rx="7" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
+<text x="235.0" y="167.93" font-size="21" text-anchor="middle" fill="#1c1917">observed 17.8 s</text>
+<rect x="145" y="221" width="180" height="46" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="235.0" y="251.26" font-size="22" text-anchor="middle" fill="#1c1917">residual</text>
+<line x1="235" y1="101" x2="235" y2="137" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<text x="254" y="125" font-size="20" text-anchor="start" fill="#57534e">compare</text>
+<line x1="235" y1="185" x2="235" y2="221" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<line x1="235" y1="267" x2="235" y2="292" stroke="#1c1917" stroke-width="2"/>
+<line x1="92" y1="292" x2="378" y2="292" stroke="#1c1917" stroke-width="2"/>
+<line x1="92" y1="292" x2="92" y2="312" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<text x="92" y="336" font-size="20" text-anchor="middle" fill="#1c1917">wrong</text>
+<text x="92" y="360" font-size="20" text-anchor="middle" fill="#1c1917">parameter</text>
+<line x1="235" y1="292" x2="235" y2="312" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<text x="235" y="336" font-size="20" text-anchor="middle" fill="#1c1917">wrong</text>
+<text x="235" y="360" font-size="20" text-anchor="middle" fill="#1c1917">relation</text>
+<line x1="378" y1="292" x2="378" y2="312" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<text x="378" y="336" font-size="20" text-anchor="middle" fill="#1c1917">missing</text>
+<text x="378" y="360" font-size="20" text-anchor="middle" fill="#1c1917">mechanism</text>
+<rect x="550" y="57" width="145" height="48" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="622.5" y="87.93" font-size="21" text-anchor="middle" fill="#1c1917">model</text>
+<rect x="745" y="57" width="145" height="48" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="817.5" y="87.93" font-size="21" text-anchor="middle" fill="#1c1917">predict</text>
+<rect x="745" y="153" width="145" height="48" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="817.5" y="183.93" font-size="21" text-anchor="middle" fill="#1c1917">implement</text>
+<rect x="550" y="153" width="145" height="48" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+<text x="622.5" y="183.93" font-size="21" text-anchor="middle" fill="#1c1917">measure</text>
+<rect x="535" y="260" width="175" height="48" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="622.5" y="290.6" font-size="20" text-anchor="middle" fill="#1c1917">explain residual</text>
+<line x1="695" y1="81" x2="745" y2="81" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<line x1="817.5" y1="105" x2="817.5" y2="153" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<line x1="745" y1="177" x2="695" y2="177" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<line x1="622.5" y1="201" x2="622.5" y2="260" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
+<polyline points="535,284 515,284 515,81 550,81" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
+<text x="497" y="185" font-size="20" text-anchor="middle" fill="#9a3f12" font-style="italic" transform="rotate(-90 497 185)">refine model</text>
+</svg>

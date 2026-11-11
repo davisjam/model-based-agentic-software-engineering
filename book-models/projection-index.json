@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 640,
+    "total_sites": 639,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 304,
+      "book-web": 303,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -993,7 +993,7 @@
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
@@ -1537,7 +1537,7 @@
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 64
+            "occ": 55
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
@@ -1645,7 +1645,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 172
+            "occ": 162
           },
           {
             "file": "book/web/docs/index.md",
@@ -2802,10 +2802,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 2
-          },
-          {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
             "occ": 2
           },
@@ -2823,13 +2819,13 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 4
+            "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 6
+            "occ": 5
           }
         ]
       },

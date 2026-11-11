@@ -1,178 +1,453 @@
 {
   "source": "book/assets/interlude-prediction-residual.svg",
-  "claim": "*Using prediction error as evidence.* (a) The gap between a model's prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.",
-  "topology": "Comparison yields three possible residual causes; adjacent feedback loop uses the discrepancy to revise the model.",
+  "claim": "Modeling through prediction and measurement: analysis informs implementation; measured discrepancies direct investigation and iterative model refinement. Values are illustrative; an acceptable residual addresses the selected prediction, not all system obligations.",
+  "topology": "(a) Problem → Model → Analyze → Prediction / design → Implementation → Measurement → Explain residual, returning to Model via refine model. (b) Model predicts 11.5 s → Observed 17.8 s → Residual: +6.3 s, branching to Wrong parameter, Wrong relation and Missing mechanism. (c) Update the model → Reanalyze (e.g., new prediction) → Implement change → Measure again → Residual acceptable? Yes leads to Keep the change; No returns to Update the model.",
   "required_terms": [
-    "(a) Prediction versus observation",
-    "(b) Modeling loop",
+    "(a) The engineering loop",
+    "(b) One prediction error",
+    "(c) Revise and repeat",
+    "Residual: +6.3 s",
+    "Problem",
+    "Analyze",
+    "Prediction / design",
+    "Implementation",
+    "Measurement",
+    "Explain residual",
     "Model predicts 11.5 s",
     "Observed 17.8 s",
-    "Residual: 6.3 s",
-    "Wrong\\",
-    "Wrong\\",
-    "Missing\\",
-    "Model",
-    "Predict",
-    "Implement",
-    "Measure",
-    "Explain residual",
-    "Illustrative numbers, not benchmark measurements."
+    "Wrong",
+    "parameter",
+    "relation",
+    "Missing",
+    "mechanism",
+    "Update the model",
+    "Reanalyze",
+    "(e.g., new prediction)",
+    "Implement change",
+    "Measure again",
+    "Residual",
+    "acceptable?",
+    "No",
+    "Yes",
+    "Keep the change",
+    "refine model"
   ],
-  "bw_encoding": "Residual and explain-residual share 5%; all ordinary stages stay white.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Prediction, observation, residual and model-refinement roles regain distinct fills.",
-  "questions": [],
-  "alt": "Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8\n    seconds; the difference is a residual that points to one of three causes \u2014 a wrong parameter, a wrong\n    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)\n    The loop this drives: model, predict, implement, measure, then explain the residual and refine the\n    model. Modeling therefore contributes both before implementation and after it.",
+  "bw_encoding": "Three pale gray heading bands separate panels. Residual has 8% gray emphasis and the acceptance diamond 5%; ordinary action boxes remain white. Black directed edges and the decision diamond preserve meaning independently of shade.",
+  "redesign": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
+  "questions": [
+    "Review candidate; prose/caption integration and retirement of the duplicate modeling-cycle figure are separately coordinated."
+  ],
+  "alt": "(a) Problem → Model → Analyze → Prediction / design → Implementation → Measurement → Explain residual, returning to Model via refine model. (b) Model predicts 11.5 s → Observed 17.8 s → Residual: +6.3 s, branching to Wrong parameter, Wrong relation and Missing mechanism. (c) Update the model → Reanalyze (e.g., new prediction) → Implement change → Measure again → Residual acceptable? Yes leads to Keep the change; No returns to Update the model.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 394.963,
-    "height_pt": 226.289,
+    "width_pt": 449.972,
+    "height_pt": 295.597,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Native PDF and SVG raster visually inspected against the supplied three-panel drawing. All labels, loops and decision branches preserved. 10pt minimum; geometry zero; semantic typography passes.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+      "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 295.597,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+      "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+      "semantic_typography_checks": 28,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
-    "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-    "fill": "Residual and explain-residual share 5%; all ordinary stages stay white.",
+    "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
+    "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
+    "fill": "Three pale gray heading bands separate panels. Residual has 8% gray emphasis and the acceptance diamond 5%; ordinary action boxes remain white. Black directed edges and the decision diamond preserve meaning independently of shade.",
     "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "routing": "Forward vertical chains, terminal arrowheads on a shared investigation branch, and outer feedback rails; no arrows cross labels.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Residual and explanation share a pale role fill; three causes use equal white boxes.",
+    "visual_review": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 63,
-      "width_bp": 394.1,
-      "height_bp": 226.109,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-11",
+      "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+      "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 295.597,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+      "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+      "semantic_typography_checks": 28,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 2
+      "status": "passed",
+      "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
     },
     "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
+      "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
+      "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 63,
+        "width_bp": 394.1,
+        "height_bp": 226.109,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 2
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+        "proof_sha256": "dc4ac9ab566915e74fcf316fb0a57759faf0e07936f715bda8f31deea136c916",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 295.597,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e6b995962cbadf3f143aa68e330b081b0864078886c637c57350ad74318d2be5",
+        "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+        "semantic_typography_checks": 28,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
-    "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "evidence": [
-      {
-        "source_text": "refine model",
-        "source_style": {
-          "font-weight": "400",
-          "font-style": "italic",
-          "font-size": "13"
-        },
-        "semantic_role": "explanatory annotation or feedback relation",
-        "candidate_text": "refine model",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "refine model",
-            "style": {
-              "font-weight": "400",
-              "font-style": "italic",
-              "font-size": "13"
-            },
-            "location": {
-              "x": "500",
-              "y": "165",
-              "text_element": 18
-            }
-          }
-        ]
-      }
-    ],
+    "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
+    "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
+    "evidence": [],
+    "reason": "All prose is 10pt Source Sans 3; headings and numerical residual are bold, refine model is italic.",
     "checks": [
       {
-        "text": "refine model",
-        "italic": true
+        "text": "(a) The engineering loop",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(b) One prediction error",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(c) Revise and repeat",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Residual: +6.3 s",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Problem",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Analyze",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Prediction / design",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Measurement",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Explain residual",
+        "bold": false,
+        "italic": false
       },
       {
         "text": "Model predicts 11.5 s",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Observed 17.8 s",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Wrong",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "parameter",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "relation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Missing",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "mechanism",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Update the model",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Reanalyze",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(e.g., new prediction)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implement change",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Measure again",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Residual",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "acceptable?",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "No",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Yes",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Keep the change",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "refine",
+        "bold": false,
+        "italic": true
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 63,
-      "width_bp": 394.1,
-      "height_bp": 226.109,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 2,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
-  },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "refined",
-    "reason": "Separated and equalized explanation peers, raised their fork, and moved the modeling-loop column right to lengthen the feedback terminal.",
-    "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing interlude prediction residual layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-      "after_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-      "before_dimensions_bp": [
-        394.1000061035156,
-        226.10899353027344
-      ],
-      "after_dimensions_bp": [
-        394.1000061035156,
-        226.10899353027344
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "date": "2026-11-11",
+      "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+      "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 295.597,
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+      "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+      "semantic_typography_checks": 28,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 63,
-      "width_bp": 394.1,
-      "height_bp": 226.109
-    }
+      "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+    },
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
+      "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
+      "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 63,
+        "width_bp": 394.1,
+        "height_bp": 226.109,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 2
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+        "proof_sha256": "dc4ac9ab566915e74fcf316fb0a57759faf0e07936f715bda8f31deea136c916",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 295.597,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e6b995962cbadf3f143aa68e330b081b0864078886c637c57350ad74318d2be5",
+        "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+        "semantic_typography_checks": 28,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+      }
+    ]
+  },
+  "layout_review": {
+    "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
+    "baseline_candidate_sha256": "66c8e99a2a049fe3fc5221c5d23587bf68ea13509898db7fbe6d9e3a968a57f5",
+    "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
+    "decision": "refined",
+    "reason": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      396.22601318359375,
+      226.10899353027344
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+      "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 295.597,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+      "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+      "semantic_typography_checks": 28,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+    },
+    "page_layout": {
+      "decision": "review candidate",
+      "reason": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
+      "native_dimensions_bp": [
+        449.972,
+        295.597
+      ],
+      "reviewed_visually": true
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 63,
+        "width_bp": 394.1,
+        "height_bp": 226.109
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+        "proof_sha256": "dc4ac9ab566915e74fcf316fb0a57759faf0e07936f715bda8f31deea136c916",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 295.597,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e6b995962cbadf3f143aa68e330b081b0864078886c637c57350ad74318d2be5",
+        "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+        "semantic_typography_checks": 28,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+      }
+    ]
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -180,5 +455,8 @@
     "source_sha256": "0bcfffc0e1425fab45549ddb7bb48bae10675b7deae5d422aceed51bd9554ac1",
     "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
-  }
+  },
+  "author_reference": "/var/folders/l1/cnm7hcx94cz75djz3dd0ny_00000gs/T/codex-clipboard-84265843-1ee4-4ecd-949a-afc9af71b9a1.png",
+  "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
+  "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023"
 }

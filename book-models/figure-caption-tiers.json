@@ -1028,16 +1028,10 @@
       "rationale": "the alignment kernel as concentric accumulation — protected properties at the core, later models extending the governed surface under the constraints already established; anchor caption telling the reader the layers are the same class of model entering governance over time (book-style SVG redraw of the author artwork)"
     },
     "assets/interlude-execution-unit.svg": {
-      "tier": "B",
+      "tier": "A",
       "kind": "comparison",
       "location": "part4",
-      "rationale": "two execution units for document remediation — (a) whole-document resident state beside (b) page-chunked division; supporting caption on reducing per-worker working state"
-    },
-    "assets/interlude-storage-vs-reasoning.svg": {
-      "tier": "B",
-      "kind": "comparison",
-      "location": "part4",
-      "rationale": "chunked residency beside skeletonized residency — media resident vs streamed on demand; supporting caption on total media size no longer bounding worker memory"
+      "rationale": "The consolidated three-panel architectural trajectory is the anchor for execution partitioning versus media residency across the worked episode."
     },
     "assets/interlude-graph-two-partitions.svg": {
       "tier": "A",
@@ -1058,16 +1052,10 @@
       "rationale": "the GenAI dependency chain and its irreducible latency floor; supporting caption on why the three dependent levels' per-call times add"
     },
     "assets/interlude-prediction-residual.svg": {
-      "tier": "B",
+      "tier": "A",
       "kind": "comparison",
       "location": "part4",
-      "rationale": "using prediction error as evidence — (a) the residual pointing to a wrong parameter/relation/mechanism beside (b) the refine-and-retest feedback loop; supporting caption on turning the gap into an engineering question"
-    },
-    "assets/interlude-modeling-cycle.svg": {
-      "tier": "B",
-      "kind": "cycle",
-      "location": "part4",
-      "rationale": "modeling as a loop — the non-linear problem→model→prediction/design→implementation/measurement cycle that continues while the questions justify the cost"
+      "rationale": "The consolidated three-panel modeling loop connects the general method, illustrative residual diagnosis, and scoped iterative refinement."
     },
     "inside-docables-software-factory::The build's scale at one snapshot": {
       "tier": "B",
@@ -1430,6 +1418,18 @@
       "kind": "flow",
       "location": "part4",
       "rationale": "the Part IV synthesis: an environment both supports the reasoner and enforces selected obligations (dashed = enforce where feasible), and the cycle iterates; anchor figure for 4.1.4"
+    },
+    "assets/interlude-storage-vs-reasoning.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part4",
+      "rationale": "chunked residency beside skeletonized residency — media resident vs streamed on demand; supporting caption on total media size no longer bounding worker memory"
+    },
+    "assets/interlude-modeling-cycle.svg": {
+      "tier": "B",
+      "kind": "cycle",
+      "location": "part4",
+      "rationale": "modeling as a loop — the non-linear problem→model→prediction/design→implementation/measurement cycle that continues while the questions justify the cost"
     }
   }
 }

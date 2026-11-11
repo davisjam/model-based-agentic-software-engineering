@@ -1,0 +1,510 @@
+{
+  "date": "2026-11-11",
+  "source": "book/latex/sources/part4/4.2-one-problem-many-models.tex",
+  "retired_figures": [
+    {
+      "label": "interlude-storage-vs-reasoning",
+      "source": "book/assets/interlude-storage-vs-reasoning.svg",
+      "block": "\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{book/latex/assets/interlude-storage-vs-reasoning-65a384adac.pdf}\n\\caption{\\emph{Chunked residency versus skeletonized residency.} (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker\\textquotesingle s resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.}\n\\label{interlude-storage-vs-reasoning}\n\\end{figure}",
+      "disposition": "retired manuscript occurrence; original source assets retained",
+      "replaced_by": "interlude-execution-unit"
+    },
+    {
+      "label": "interlude-modeling-cycle",
+      "source": "book/assets/interlude-modeling-cycle.svg",
+      "block": "\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{book/latex/assets/interlude-modeling-cycle-9d6747c7c6.pdf}\n\\caption{\\emph{Modeling inside the implementation loop.} An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model\\textquotesingle s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.}\n\\label{interlude-modeling-cycle}\n\\end{figure}",
+      "disposition": "retired manuscript occurrence; original source assets retained",
+      "replaced_by": "interlude-prediction-residual"
+    }
+  ],
+  "replaced_prose": [
+    {
+      "original": "\\autoref{interlude-execution-unit} traces how that execution unit later changed.",
+      "replacement": "\\autoref{interlude-execution-unit} traces the architectural progression from whole-document execution through page chunking to skeletonized residency."
+    },
+    {
+      "original": "\\caption{\\emph{Two execution units for document remediation.} (a) Whole-document execution keeps the artifact\\textquotesingle s working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.}",
+      "replacement": "\\caption{\\emph{Three stages of DocAble\\textquotesingle s document processing architecture.} (a) Initially, one worker retained the complete document, including its media. (b) Page chunking reduced the working set per worker, but each chunk still retained its media. (c) Skeletonization separated document structure from media, retaining only structure and references in worker memory while streaming media on demand. Chunking changed the execution unit; skeletonization changed the residency requirement.}"
+    },
+    {
+      "original": "The existing representation coupled the two, and \\autoref{interlude-storage-vs-reasoning} contrasts that arrangement with the one that replaced it.",
+      "replacement": "The existing representation coupled the two. \\autoref{interlude-execution-unit}, panel c, shows how skeletonization separated them."
+    },
+    {
+      "original": "A residency model made the alternative visible (panel b):",
+      "replacement": "A residency model made the alternative visible (\\autoref{interlude-execution-unit}, panel c):"
+    },
+    {
+      "original": "Remediation then operates on the skeleton.",
+      "replacement": "Remediation then operates on the skeleton (\\autoref{interlude-execution-unit}, panel c)."
+    },
+    {
+      "original": "Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question, and it drives a loop that runs both before and after implementation (\\autoref{interlude-prediction-residual}).",
+      "replacement": "Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question. \\autoref{interlude-prediction-residual} connects the general engineering loop in panel a to an illustrative prediction error in panel b and the refinement of the model in panel c."
+    },
+    {
+      "original": "\\caption{\\emph{Using prediction error as evidence.} (a) The gap between a model\\textquotesingle s prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.}",
+      "replacement": "\\caption{\\emph{Modeling through prediction and measurement.} (a) An engineering problem motivates a model whose analysis informs implementation. Measurements test its predictions and may require the model to be revised. (b) A discrepancy between predicted and observed latency directs investigation toward an incorrect parameter, an incorrect relationship, or a missing mechanism. The numerical values are illustrative. (c) The revised model is tested again until its residual is acceptable for the question being investigated.}"
+    },
+    {
+      "original": " \\autoref{interlude-modeling-cycle} summarizes this process.",
+      "replacement": ""
+    }
+  ],
+  "scope": "Two figure consolidations only. Execution partitioning and media residency remain independent; prediction values are illustrative; panel c concerns model refinement.",
+  "retired_registry_rows": {
+    "book/assets/interlude-storage-vs-reasoning.svg": {
+      "inventory": {
+        "chapter": "4.2-one-problem-many-models",
+        "source": "assets/interlude-storage-vs-reasoning.svg",
+        "caption": "*Chunked residency versus skeletonized residency.* (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker's resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.",
+        "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+        "d2_source": null,
+        "receipt": null,
+        "generator": null,
+        "data": [],
+        "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+        "svg_title": "Chunked residency versus skeletonized residency",
+        "svg_description": "Two panels. (a) Chunked, format-native representation: an OOXML document is split into\n    page chunks, and each of several workers holds its chunk's structural state together with the media for\n    that chunk, so media remains part of the worker's resident representation. (b) Skeletonized\n    representation: the OOXML document becomes a structural skeleton plus media references held by the\n    worker, while media stays in an external store and individual media objects stream to the GenAI service\n    on demand. Total media size no longer determines persistent worker memory."
+      },
+      "layout-review": {
+        "source": "book/assets/interlude-storage-vs-reasoning.svg",
+        "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+        "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+        "baseline_candidate_sha256": "81bb9fec52d12053209a2eff471096b6a629b8b9530ccd2512e2aae278adc98f",
+        "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
+        "decision": "refined",
+        "reason": "Raised the worker fork rail to leave a legible shaft above the structured/media worker boxes.",
+        "reviewed_visually": true,
+        "baseline_dimensions_bp": [
+          413.38800048828125,
+          269.61700439453125
+        ],
+        "contracts": {},
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 59,
+          "width_bp": 413.388,
+          "height_bp": 269.617
+        },
+        "page_layout": {
+          "decision": "retained",
+          "reason": "Retain existing interlude storage vs reasoning layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+          "before_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
+          "after_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
+          "before_dimensions_bp": [
+            413.38800048828125,
+            269.61700439453125
+          ],
+          "after_dimensions_bp": [
+            413.38800048828125,
+            269.61700439453125
+          ],
+          "before_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "after_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "reviewed_visually": true
+        }
+      },
+      "typography-review": {
+        "source": "book/assets/interlude-storage-vs-reasoning.svg",
+        "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+        "decision": "refined",
+        "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
+        "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
+        "evidence": [
+          {
+            "source_text": "stream on demand",
+            "source_style": "weight normal; italic; source size 13",
+            "semantic_role": "named category versus explanatory text",
+            "candidate_text": "stream on demand",
+            "candidate_style": "italic",
+            "source_locator": {
+              "svg": "book/assets/interlude-storage-vs-reasoning.svg",
+              "element_text_path": "/svg/text[14]/text()",
+              "text_element_context": "stream on demand",
+              "matching_fragment_count": 1
+            }
+          },
+          {
+            "source_text": "each chunk still carries its media in the worker",
+            "source_style": "weight normal; italic; source size 14.5",
+            "semantic_role": "named category versus explanatory text",
+            "candidate_text": "Each chunk still carries its media in the worker.",
+            "candidate_style": "italic",
+            "source_locator": {
+              "svg": "book/assets/interlude-storage-vs-reasoning.svg",
+              "element_text_path": "/svg/text[5]/text()",
+              "text_element_context": "each chunk still carries its media in the worker",
+              "matching_fragment_count": 1
+            }
+          },
+          {
+            "source_text": "media bypasses persistent worker residency",
+            "source_style": "weight normal; italic; source size 14.5",
+            "semantic_role": "named category versus explanatory text",
+            "candidate_text": "Media bypasses persistent worker residency.",
+            "candidate_style": "italic",
+            "source_locator": {
+              "svg": "book/assets/interlude-storage-vs-reasoning.svg",
+              "element_text_path": "/svg/text[15]/text()",
+              "text_element_context": "media bypasses persistent worker residency",
+              "matching_fragment_count": 1
+            }
+          }
+        ],
+        "reason": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
+        "checks": [
+          {
+            "text": "stream on demand",
+            "bold": false,
+            "italic": true
+          },
+          {
+            "text": "Each chunk still carries its media in the worker.",
+            "bold": false,
+            "italic": true
+          },
+          {
+            "text": "Media bypasses persistent worker residency.",
+            "bold": false,
+            "italic": true
+          },
+          {
+            "text": "OOXML document",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 59,
+          "width_bp": 413.388,
+          "height_bp": 269.617,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 4
+        },
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+          "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
+          "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        }
+      },
+      "style-review": {
+        "source": "book/assets/interlude-storage-vs-reasoning.svg",
+        "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+        "receipt": "book/tikz/receipts/interlude-storage-vs-reasoning.json",
+        "decision": "refined",
+        "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+        "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+        "status": "reviewed",
+        "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
+        "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
+        "fill": "Only media is 5%, inside chunks and external store; structure stays white.",
+        "bold": "Existing bold architecture headings are retained; italic streaming and residency annotations distinguish data movement from container labels.",
+        "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+        "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
+        "visual_review": "Media role alone shaded, paired with labels; reference path dashed, streaming solid. Restored outlined structure, media, structural-skeleton and media-reference sub-artifact cards within workers; media remains the only pale fill role.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 59,
+          "width_bp": 413.388,
+          "height_bp": 269.617,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 4
+        },
+        "book_references": [],
+        "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+          "source_sha256": "9f137f7952ad8debff0e942148b5d519229e157a0c4ede91bd498350540c8049",
+          "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        }
+      },
+      "grayscale-review": {
+        "source": "book/assets/interlude-storage-vs-reasoning.svg",
+        "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+        "receipt": "book/tikz/receipts/interlude-storage-vs-reasoning.json",
+        "reviewed": true,
+        "decision": "refined",
+        "rationale": "Internal structural state versus media restored with labeled inline shading and distinct external-media fill; reference link remains dashed.",
+        "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+        "candidate_sha256": "77ebf8a2fc397fcc0ab0ba7e61147ab30de7a702669319388d0ee305bce33ea0"
+      },
+      "fidelity-review": {
+        "source": "book/assets/interlude-storage-vs-reasoning.svg",
+        "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
+        "checks": {
+          "icons_and_symbols": "No source status icons; structure/media distinction retained with labeled gray patches.",
+          "links_and_groups": "Media reference dashed; actual streaming arrow solid and external to worker.",
+          "annotation_placement": "Bypass-residency and chunk-residency explanations outside worker nodes."
+        },
+        "font_qa": {
+          "rendered_prose_sizes_tex_pt": [
+            9.0,
+            10.0
+          ],
+          "minimum": 9,
+          "final_size_no_scaling": true
+        },
+        "geometry_findings": [],
+        "compiler_diagnostics": [],
+        "width_bp": 413.38800048828125,
+        "height_bp": 275.3110046386719,
+        "monochrome": true,
+        "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
+        "candidate_sha256": "77ebf8a2fc397fcc0ab0ba7e61147ab30de7a702669319388d0ee305bce33ea0",
+        "review": "Reviewed and retained.",
+        "decision": "retained"
+      },
+      "caption_tier": {
+        "tier": "B",
+        "kind": "comparison",
+        "location": "part4",
+        "rationale": "chunked residency beside skeletonized residency — media resident vs streamed on demand; supporting caption on total media size no longer bounding worker memory"
+      }
+    },
+    "book/assets/interlude-modeling-cycle.svg": {
+      "inventory": {
+        "chapter": "4.2-one-problem-many-models",
+        "source": "assets/interlude-modeling-cycle.svg",
+        "caption": "*Modeling inside the implementation loop.* An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model’s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.",
+        "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+        "d2_source": null,
+        "receipt": null,
+        "generator": null,
+        "data": [],
+        "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+        "svg_title": "Modeling as a loop, not a linear documentation step",
+        "svg_description": "Two panels. (a) The process is not linear — design, then implement, then document with\n    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a\n    design; those drive implementation and then measurement; measurement refines the model, and the loop\n    continues while the questions justify the cost."
+      },
+      "layout-review": {
+        "source": "book/assets/interlude-modeling-cycle.svg",
+        "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+        "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+        "baseline_candidate_sha256": "fdb6fb1b03ffbe353a91b88a606abbdbf8d93e366f9381bac9f8880e5b51b067",
+        "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
+        "decision": "refined",
+        "reason": "Moved feedback and prediction elbow rails away from target borders.",
+        "reviewed_visually": true,
+        "baseline_dimensions_bp": [
+          396.3800048828125,
+          227.29600524902344
+        ],
+        "contracts": {},
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 64,
+          "width_bp": 396.38,
+          "height_bp": 227.296
+        },
+        "page_layout": {
+          "decision": "retained",
+          "reason": "Retain existing interlude modeling cycle layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+          "before_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+          "after_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
+          "before_dimensions_bp": [
+            396.3800048828125,
+            227.29600524902344
+          ],
+          "after_dimensions_bp": [
+            396.3800048828125,
+            227.29600524902344
+          ],
+          "before_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "after_font_sizes_pt": [
+            9.0,
+            10.0
+          ],
+          "reviewed_visually": true
+        }
+      },
+      "typography-review": {
+        "source": "book/assets/interlude-modeling-cycle.svg",
+        "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+        "decision": "refined",
+        "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+        "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
+        "evidence": [
+          {
+            "source_text": "refine model",
+            "source_style": {
+              "font-weight": "400",
+              "font-style": "italic",
+              "font-size": "12.5"
+            },
+            "semantic_role": "explanatory annotation or feedback relation",
+            "candidate_text": "refine model",
+            "candidate_style": "italic",
+            "source_fragments": [
+              {
+                "text": "refine model",
+                "style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "12.5"
+                },
+                "location": {
+                  "x": "420",
+                  "y": "296",
+                  "text_element": 13
+                }
+              }
+            ]
+          }
+        ],
+        "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+        "checks": [
+          {
+            "text": "refine model",
+            "italic": true
+          }
+        ],
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 64,
+          "width_bp": 396.38,
+          "height_bp": 227.296,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 1
+        },
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+          "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
+          "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        }
+      },
+      "style-review": {
+        "source": "book/assets/interlude-modeling-cycle.svg",
+        "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+        "receipt": "book/tikz/receipts/interlude-modeling-cycle.json",
+        "decision": "refined",
+        "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+        "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+        "status": "reviewed",
+        "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+        "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
+        "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+        "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+        "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+        "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+        "visual_review": "Late documentation versus iterative modeling preserved; analysis-to-prediction route enters side port.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 64,
+          "width_bp": 396.38,
+          "height_bp": 227.296,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 2
+        },
+        "book_references": [],
+        "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "b9b4846719b2ce27a9774d6e90773c754a993e7095456dcb7de60781b127dc3d",
+          "source_sha256": "3ca5835efc99d2f46ef801d7ebc82f1811dd56d8b0351aa9033c69faa2edd722",
+          "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        }
+      },
+      "grayscale-review": {
+        "source": "book/assets/interlude-modeling-cycle.svg",
+        "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+        "receipt": "book/tikz/receipts/interlude-modeling-cycle.json",
+        "reviewed": true,
+        "decision": "refined",
+        "rationale": "Live model emphasized; editorial arrow resolution retained.",
+        "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+        "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06"
+      },
+      "fidelity-review": {
+        "source": "book/assets/interlude-modeling-cycle.svg",
+        "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
+        "checks": {
+          "icons_and_symbols": "No icons.",
+          "links_and_groups": "Single feedback loop; analysis-to-prediction route enters the side port.",
+          "annotation_placement": "Refine-model caption is outside loop nodes."
+        },
+        "font_qa": {
+          "rendered_prose_sizes_tex_pt": [
+            9.0,
+            10.0
+          ],
+          "minimum": 9,
+          "final_size_no_scaling": true
+        },
+        "geometry_findings": [],
+        "compiler_diagnostics": [],
+        "width_bp": 396.3800048828125,
+        "height_bp": 227.6280059814453,
+        "monochrome": true,
+        "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
+        "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
+        "review": "Reviewed and retained.",
+        "decision": "retained"
+      },
+      "caption_tier": {
+        "tier": "B",
+        "kind": "cycle",
+        "location": "part4",
+        "rationale": "modeling as a loop — the non-linear problem→model→prediction/design→implementation/measurement cycle that continues while the questions justify the cost"
+      }
+    }
+  }
+}

@@ -1259,9 +1259,40 @@
     "receipt": "book/tikz/receipts/modeling-substrate.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
-    "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-    "candidate_sha256": "99b2abc9cd5fa6a67d662ff8dbfbe87f829c76d6edf0697799cca81f027d8d71"
+    "rationale": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
+    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
+    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-11",
+        "review": {
+          "source": "book/assets/modeling-substrate.svg",
+          "candidate": "book/tikz/figures/modeling-substrate.tex",
+          "receipt": "book/tikz/receipts/modeling-substrate.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
+          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
+          "candidate_sha256": "99b2abc9cd5fa6a67d662ff8dbfbe87f829c76d6edf0697799cca81f027d8d71"
+        }
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
+      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
+      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
+      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "page": 1,
+      "width_bp": 292.522,
+      "height_bp": 237.411,
+      "minimum_prose_font_pt": 9.963,
+      "semantic_typography_checks": 4
+    }
   },
   {
     "source": "book/assets/attribution-model.svg",
@@ -1579,19 +1610,50 @@
     "receipt": "book/tikz/receipts/interlude-execution-unit.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Single resident execution versus partitioned workers distinguished while retaining input/output neutrality.",
-    "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
-    "candidate_sha256": "0b2f3a1e9657dd39a4ff1f7250955ac20a5516dd46bd4e1821fbd39aa27a9433"
-  },
-  {
-    "source": "book/assets/interlude-storage-vs-reasoning.svg",
-    "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
-    "receipt": "book/tikz/receipts/interlude-storage-vs-reasoning.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Internal structural state versus media restored with labeled inline shading and distinct external-media fill; reference link remains dashed.",
-    "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
-    "candidate_sha256": "77ebf8a2fc397fcc0ab0ba7e61147ab30de7a702669319388d0ee305bce33ea0"
+    "rationale": "White workers, structure, and input/output boxes;18% gray media and media references preserve the supplied reference encoding. Very light header and note fields group the three equal panels. No color is required. Panel a: document to one worker to output. Panel b: document fan-out to three page workers, then merge to output. Panel c: document to a skeleton worker; separate bidirectional GenAI link and two dashed media-access directions connect the worker to external media.",
+    "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
+    "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+        "previous": {
+          "source": "book/assets/interlude-execution-unit.svg",
+          "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+          "receipt": "book/tikz/receipts/interlude-execution-unit.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Single resident execution versus partitioned workers distinguished while retaining input/output neutrality.",
+          "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+          "candidate_sha256": "0b2f3a1e9657dd39a4ff1f7250955ac20a5516dd46bd4e1821fbd39aa27a9433"
+        }
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
+      "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 553.971,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.162,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 43,
+      "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+      "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
+      "source_geometry_checks": [
+        "three equal142×546bp panels",
+        "three equal108×62bp page workers"
+      ],
+      "status": "passed"
+    }
   },
   {
     "source": "book/assets/interlude-graph-two-partitions.svg",
@@ -1629,19 +1691,55 @@
     "receipt": "book/tikz/receipts/interlude-prediction-residual.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Prediction, observation, residual and model-refinement roles regain distinct fills.",
-    "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
-    "candidate_sha256": "9de1e3da0e3f3c8872c9327dd592f6339ce39063b54ef99a7224ce46ae384b62"
-  },
-  {
-    "source": "book/assets/interlude-modeling-cycle.svg",
-    "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
-    "receipt": "book/tikz/receipts/interlude-modeling-cycle.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Live model emphasized; editorial arrow resolution retained.",
-    "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
-    "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06"
+    "rationale": "Three pale gray heading bands separate panels. Residual has 8% gray emphasis and the acceptance diamond 5%; ordinary action boxes remain white. Black directed edges and the decision diamond preserve meaning independently of shade.",
+    "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
+    "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+      "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 295.597,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+      "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+      "semantic_typography_checks": 28,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+        "proof_sha256": "dc4ac9ab566915e74fcf316fb0a57759faf0e07936f715bda8f31deea136c916",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 295.597,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e6b995962cbadf3f143aa68e330b081b0864078886c637c57350ad74318d2be5",
+        "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+        "semantic_typography_checks": 28,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+      }
+    ]
   },
   {
     "source": "book/assets/discovering-models-migration.svg",

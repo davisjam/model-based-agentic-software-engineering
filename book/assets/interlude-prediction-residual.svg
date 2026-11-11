@@ -1,62 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: interlude-prediction-residual). (a) A residual is the gap between a model's
-     prediction and the observed measurement; it points to a wrong parameter, a wrong relation, or a missing
-     mechanism. (b) The modeling loop that follows: model, predict, implement, measure, explain the residual,
-     and refine the model. viewBox 920 for the figure font band. Illustrative numbers. -->
-<!-- semantic-families: modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 374" width="920" height="374" role="group" aria-labelledby="prTitle prDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="prTitle">A residual turns prediction error into an engineering question</title>
-  <desc id="prDesc">Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8
-    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong
-    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)
-    The loop this drives: model, predict, implement, measure, then explain the residual and refine the
-    model. Modeling therefore contributes both before implementation and after it.</desc>
-<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
-<defs>
-<marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
-<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
-<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
-<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
-<marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
-</defs>
-<rect x="0" y="0" width="920" height="374" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
-<line x1="460" y1="44" x2="460" y2="354" stroke="#e7e2d6" stroke-width="1.5"/>
-<text x="24" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(a) Prediction versus observation</text>
-<text x="490" y="30" font-size="23" text-anchor="start" fill="#57534e" font-weight="700">(b) The modeling loop</text>
-<rect x="120" y="53" width="230" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="235.0" y="83.93" font-size="21" text-anchor="middle" fill="#1c1917">model predicts 11.5 s</text>
-<rect x="120" y="137" width="230" height="48" rx="7" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
-<text x="235.0" y="167.93" font-size="21" text-anchor="middle" fill="#1c1917">observed 17.8 s</text>
-<rect x="145" y="221" width="180" height="46" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-<text x="235.0" y="251.26" font-size="22" text-anchor="middle" fill="#1c1917">residual</text>
-<line x1="235" y1="101" x2="235" y2="137" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<text x="254" y="125" font-size="20" text-anchor="start" fill="#57534e">compare</text>
-<line x1="235" y1="185" x2="235" y2="221" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<line x1="235" y1="267" x2="235" y2="292" stroke="#1c1917" stroke-width="2"/>
-<line x1="92" y1="292" x2="378" y2="292" stroke="#1c1917" stroke-width="2"/>
-<line x1="92" y1="292" x2="92" y2="312" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<text x="92" y="336" font-size="20" text-anchor="middle" fill="#1c1917">wrong</text>
-<text x="92" y="360" font-size="20" text-anchor="middle" fill="#1c1917">parameter</text>
-<line x1="235" y1="292" x2="235" y2="312" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<text x="235" y="336" font-size="20" text-anchor="middle" fill="#1c1917">wrong</text>
-<text x="235" y="360" font-size="20" text-anchor="middle" fill="#1c1917">relation</text>
-<line x1="378" y1="292" x2="378" y2="312" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<text x="378" y="336" font-size="20" text-anchor="middle" fill="#1c1917">missing</text>
-<text x="378" y="360" font-size="20" text-anchor="middle" fill="#1c1917">mechanism</text>
-<rect x="550" y="57" width="145" height="48" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="622.5" y="87.93" font-size="21" text-anchor="middle" fill="#1c1917">model</text>
-<rect x="745" y="57" width="145" height="48" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="817.5" y="87.93" font-size="21" text-anchor="middle" fill="#1c1917">predict</text>
-<rect x="745" y="153" width="145" height="48" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="817.5" y="183.93" font-size="21" text-anchor="middle" fill="#1c1917">implement</text>
-<rect x="550" y="153" width="145" height="48" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-<text x="622.5" y="183.93" font-size="21" text-anchor="middle" fill="#1c1917">measure</text>
-<rect x="535" y="260" width="175" height="48" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-<text x="622.5" y="290.6" font-size="20" text-anchor="middle" fill="#1c1917">explain residual</text>
-<line x1="695" y1="81" x2="745" y2="81" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<line x1="817.5" y1="105" x2="817.5" y2="153" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<line x1="745" y1="177" x2="695" y2="177" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<line x1="622.5" y1="201" x2="622.5" y2="260" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<polyline points="535,284 515,284 515,81 550,81" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#arrow-rust)"/>
-<text x="497" y="185" font-size="20" text-anchor="middle" fill="#9a3f12" font-style="italic" transform="rotate(-90 497 185)">refine model</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="580" viewBox="0 0 444 290" role="img" aria-labelledby="title desc">
+<title id="title">Modeling through prediction and measurement</title>
+<desc id="desc">Three panels: an engineering loop, an illustrative latency residual, and revision until the residual is acceptable.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L7,3.5 L0,7 Z" fill="black"/></marker></defs>
+<rect width="444" height="290" fill="white"/>
+<rect x="0" y="0" width="132" height="23" rx="3" fill="#e8e8e8"/>
+<text x="66.0" y="14.8" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">(a) The engineering loop</text>
+<rect x="139" y="0" width="163" height="23" rx="3" fill="#e8e8e8"/>
+<text x="220.5" y="14.8" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">(b) One prediction error</text>
+<rect x="309" y="0" width="135" height="23" rx="3" fill="#e8e8e8"/>
+<text x="376.5" y="14.8" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">(c) Revise and repeat</text>
+<path d="M135.5,0 L135.5,288" fill="none" stroke="black" stroke-width=".65"/>
+<path d="M305.5,0 L305.5,288" fill="none" stroke="black" stroke-width=".65"/>
+<rect x="3.0" y="31.0" width="94" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="46.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Problem</text>
+<rect x="3.0" y="68.0" width="94" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="83.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Model</text>
+<rect x="3.0" y="105.0" width="94" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="120.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Analyze</text>
+<rect x="1.0" y="142.0" width="98" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="157.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Prediction / design</text>
+<rect x="3.0" y="179.0" width="94" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="194.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Implementation</text>
+<rect x="3.0" y="216.0" width="94" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="231.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Measurement</text>
+<rect x="1.0" y="253.0" width="98" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="50" y="268.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Explain residual</text>
+<path d="M50,55 L50,68" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M50,92 L50,105" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M50,129 L50,142" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M50,166 L50,179" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M50,203 L50,216" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M50,240 L50,253" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M99,265 L130,265 L130,80 L97,80" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<text x="115" y="173.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">refine</text>
+<text x="115" y="185.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">model</text>
+<rect x="145.0" y="64.0" width="146" height="28" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="218" y="81.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Model predicts 11.5 s</text>
+<rect x="145.0" y="110.0" width="146" height="28" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="218" y="127.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Observed 17.8 s</text>
+<rect x="145.0" y="156.0" width="146" height="28" rx="3" fill="rgb(235,235,235)" stroke="black" stroke-width=".6"/>
+<text x="218" y="173.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">Residual: +6.3 s</text>
+<path d="M218,92 L218,110" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M218,138 L218,156" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M218,184 L218,210" fill="none" stroke="black" stroke-width=".65"/>
+<path d="M165,210 L272,210" fill="none" stroke="black" stroke-width=".65"/>
+<rect x="139.0" y="231.0" width="52" height="38" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="165" y="247.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Wrong</text>
+<text x="165" y="259.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">parameter</text>
+<path d="M165,210 L165,231" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="195.0" y="231.0" width="46" height="38" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="218" y="247.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Wrong</text>
+<text x="218" y="259.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">relation</text>
+<path d="M218,210 L218,231" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="243.5" y="231.0" width="57" height="38" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="272" y="247.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Missing</text>
+<text x="272" y="259.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">mechanism</text>
+<path d="M272,210 L272,231" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="312.0" y="30.0" width="112" height="26" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="368" y="46.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Update the model</text>
+<rect x="312.0" y="69.0" width="112" height="34" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="368" y="83.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Reanalyze</text>
+<text x="368" y="95.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(e.g., new prediction)</text>
+<rect x="312.0" y="118.0" width="112" height="26" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="368" y="134.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Implement change</text>
+<rect x="312.0" y="159.0" width="112" height="26" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="368" y="175.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Measure again</text>
+<path d="M368,56 L368,69" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M368,103 L368,118" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M368,144 L368,159" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M368,185 L368,201" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<polygon points="368,201 421,225 368,249 315,225" fill="#f3f3f3" stroke="black" stroke-width=".6"/>
+<text x="368" y="222.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Residual</text>
+<text x="368" y="234.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">acceptable?</text>
+<path d="M421,225 L440,225 L440,43 L424,43" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<text x="429" y="217.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">No</text>
+<rect x="312.0" y="265.0" width="112" height="24" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="368" y="280.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Keep the change</text>
+<path d="M368,249 L368,265" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<text x="382" y="260.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Yes</text>
 </svg>

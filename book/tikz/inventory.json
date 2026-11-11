@@ -789,28 +789,15 @@
   {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-execution-unit.svg",
-    "caption": "*Two execution units for document remediation.* (a) Whole-document execution keeps the artifact's working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.",
+    "caption": "*Three stages of DocAble's document processing architecture.* (a) Initially, one worker retained the complete document, including its media. (b) Page chunking reduced the working set per worker, but each chunk still retained its media. (c) Skeletonization separated document structure from media, retaining only structure and references in worker memory while streaming media on demand. Chunking changed the execution unit; skeletonization changed the residency requirement.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
-    "generator": null,
+    "generator": "book/editorial/figure-consolidations-20261111/build_working_set_triptych.py",
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The first change reduced the unit of residency",
-    "svg_description": "Two panels. (a) Whole-document execution: a document enters one long-running Kubernetes\n    worker that holds the full document state and its media resident in memory, sources GenAI requests from\n    that memory, and emits the output. (b) Page-chunked execution: the document is split into page-range\n    partitions, each handled by a smaller worker holding only its range; the results are recombined into the\n    output. Chunking lowers per-worker memory without changing how document media is represented."
-  },
-  {
-    "chapter": "4.2-one-problem-many-models",
-    "source": "assets/interlude-storage-vs-reasoning.svg",
-    "caption": "*Chunked residency versus skeletonized residency.* (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker's resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Chunked residency versus skeletonized residency",
-    "svg_description": "Two panels. (a) Chunked, format-native representation: an OOXML document is split into\n    page chunks, and each of several workers holds its chunk's structural state together with the media for\n    that chunk, so media remains part of the worker's resident representation. (b) Skeletonized\n    representation: the OOXML document becomes a structural skeleton plus media references held by the\n    worker, while media stays in an external store and individual media objects stream to the GenAI service\n    on demand. Total media size no longer determines persistent worker memory."
+    "svg_title": "Evolution of DocAble’s document working set",
+    "svg_description": "Three equal panels: whole-document execution, page-chunked execution, and skeletonized execution. Chunking partitions execution; skeletonization separates resident structure from externally stored media. Media access and the GenAI connection are distinct."
   },
   {
     "chapter": "4.2-one-problem-many-models",
@@ -854,28 +841,15 @@
   {
     "chapter": "4.2-one-problem-many-models",
     "source": "assets/interlude-prediction-residual.svg",
-    "caption": "*Using prediction error as evidence.* (a) The gap between a model's prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.",
+    "caption": "*Modeling through prediction and measurement.* (a) An engineering problem motivates a model whose analysis informs implementation. Measurements test its predictions and may require the model to be revised. (b) A discrepancy between predicted and observed latency directs investigation toward an incorrect parameter, an incorrect relationship, or a missing mechanism. The numerical values are illustrative. (c) The revised model is tested again until its residual is acceptable for the question being investigated.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
-    "generator": null,
+    "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py",
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "A residual turns prediction error into an engineering question",
-    "svg_description": "Two panels. (a) A model predicts 11.5 seconds; the implemented system is observed at 17.8\n    seconds; the difference is a residual that points to one of three causes — a wrong parameter, a wrong\n    relation between quantities, or a mechanism missing from the model. (The numbers are illustrative.) (b)\n    The loop this drives: model, predict, implement, measure, then explain the residual and refine the\n    model. Modeling therefore contributes both before implementation and after it."
-  },
-  {
-    "chapter": "4.2-one-problem-many-models",
-    "source": "assets/interlude-modeling-cycle.svg",
-    "caption": "*Modeling inside the implementation loop.* An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model’s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Modeling as a loop, not a linear documentation step",
-    "svg_description": "Two panels. (a) The process is not linear — design, then implement, then document with\n    models. (b) It can be a loop: a problem drives a model; analyzing the model yields a prediction and a\n    design; those drive implementation and then measurement; measurement refines the model, and the loop\n    continues while the questions justify the cost."
+    "svg_title": "Modeling through prediction and measurement",
+    "svg_description": "Three panels: an engineering loop, an illustrative latency residual, and revision until the residual is acceptable."
   },
   {
     "chapter": "4.3-brownfield-engineering",

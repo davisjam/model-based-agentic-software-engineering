@@ -32,12 +32,12 @@ The sequence also runs from outcomes to explanations. "Reduce peak memory" state
 
 \section{One Document, One Worker}\label{heading:one-document-one-worker}
 
-DocAble originally treated an entire document as one unit of execution. A long-running Kubernetes worker opened the document, held the state needed for remediation in memory, modified it, and produced the result. \autoref{interlude-execution-unit} traces how that execution unit later changed.
+DocAble originally treated an entire document as one unit of execution. A long-running Kubernetes worker opened the document, held the state needed for remediation in memory, modified it, and produced the result. \autoref{interlude-execution-unit} traces the architectural progression from whole-document execution through page chunking to skeletonized residency.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-execution-unit-3ac64b0b5d.pdf}
-\caption{\emph{Two execution units for document remediation.} (a) Whole-document execution keeps the artifact\textquotesingle s working state and media resident in one long-running worker. (b) Page-chunked execution divides the document across workers, reducing the working state and memory required by any one worker.}
+\caption{\emph{Three stages of DocAble\textquotesingle s document processing architecture.} (a) Initially, one worker retained the complete document, including its media. (b) Page chunking reduced the working set per worker, but each chunk still retained its media. (c) Skeletonization separated document structure from media, retaining only structure and references in worker memory while streaming media on demand. Chunking changed the execution unit; skeletonization changed the residency requirement.}
 \label{interlude-execution-unit}
 \end{figure}
 
@@ -69,24 +69,17 @@ The structural portion is comparatively small. It is largely text, and even an u
 
 Until this point, DocAble had largely accepted the storage representation supplied by the document format as its working representation. For Office documents, that meant opening the OOXML package through the document library and letting its structure and media participate in the in-memory object graph; other formats followed analogous format-native representations. That was reasonable while the input sizes fit the worker. Handling a roughly 250 MB media-heavy file without allocating correspondingly large workers required reconsidering the arrangement itself.
 
-The existing representation coupled the two, and \autoref{interlude-storage-vs-reasoning} contrasts that arrangement with the one that replaced it.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/interlude-storage-vs-reasoning-65a384adac.pdf}
-\caption{\emph{Chunked residency versus skeletonized residency.} (a) Page chunking limits how much document state and associated media a worker holds at once, but media remains part of the worker\textquotesingle s resident representation. (b) Skeletonization keeps only document structure and media references resident. Individual media objects stream from external storage to the consumer on demand, so total media size no longer determines persistent worker memory.}
-\label{interlude-storage-vs-reasoning}
-\end{figure}
+The existing representation coupled the two. \autoref{interlude-execution-unit}, panel c, shows how skeletonization separated them.
 
 The architecture therefore carried an implicit scaling relation: total media size drove resident worker state. Finer chunking could reduce that state, at the cost of more coordination and less semantic context, but could not eliminate the relationship. The new file made that limitation consequential.
 
-A residency model made the alternative visible (panel b): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
+A residency model made the alternative visible (\autoref{interlude-execution-unit}, panel c): the structural pipeline could operate on a lightweight representation while media lived in object storage, and operations that needed media could reach it by reference.
 
 \section{Remove Media from the Working Set}\label{heading:remove-media-from-the-working-set}
 
 The memory problem came from coupling document structure to media residency: total media size increased the worker\textquotesingle s persistent working set even though most remediation operations needed only the document\textquotesingle s structural skeleton. Skeletonization removes that coupling. For OOXML documents, the pipeline streams through the package, moves media into external storage, and leaves stable references in a much smaller structural skeleton.
 
-Remediation then operates on the skeleton. If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document\textquotesingle s complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.
+Remediation then operates on the skeleton (\autoref{interlude-execution-unit}, panel c). If a GenAI operation needs an image, the worker follows the reference and streams that media through the network to the GenAI service without first materializing the document\textquotesingle s complete media payload in worker memory. Recombination follows the same discipline in reverse. The worker no longer needs memory proportional to total media size.
 
 The corresponding memory invariant states the property directly:
 
@@ -207,12 +200,12 @@ A proposed intermediate representation can be inserted into the dependency graph
 
 \subsection{Use prediction error as evidence}\label{heading:use-prediction-error-as-evidence}
 
-Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question, and it drives a loop that runs both before and after implementation (\autoref{interlude-prediction-residual}).
+Implementation eventually supplies measurements to compare with the model’s predictions. A residual --- the gap between prediction and observation --- turns into an engineering question. \autoref{interlude-prediction-residual} connects the general engineering loop in panel a to an illustrative prediction error in panel b and the refinement of the model in panel c.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/interlude-prediction-residual-358697131d.pdf}
-\caption{\emph{Using prediction error as evidence.} (a) The gap between a model\textquotesingle s prediction and the observed measurement is a residual, pointing to a wrong parameter, a wrong relation, or a missing mechanism; the numbers are illustrative. (b) Prediction and measurement create a feedback loop: explain the residual, refine the model, and test the revised model against subsequent observations.}
+\caption{\emph{Modeling through prediction and measurement.} (a) An engineering problem motivates a model whose analysis informs implementation. Measurements test its predictions and may require the model to be revised. (b) A discrepancy between predicted and observed latency directs investigation toward an incorrect parameter, an incorrect relationship, or a missing mechanism. The numerical values are illustrative. (c) The revised model is tested again until its residual is acceptable for the question being investigated.}
 \label{interlude-prediction-residual}
 \end{figure}
 
@@ -292,11 +285,4 @@ Some answers follow from structure; others depend on calibrated measurements. Th
 
 This sequence took about three days inside the existing governed engineering environment. It included skeletonization and streaming, typed-patch work, reconsidering ChunkWorker, remediation and fact graphs, quantitative analysis, the chunkless execution design, and corrections when assumptions proved wrong. The timescale matters because modeling could participate in the implementation loop rather than follow it as a separate documentation phase.
 
-I did not begin with a plan to construct seven models. Larger inputs exposed a memory problem; changing how media was stored made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each model answered a question raised by the work. Together, they let me predict the consequences of proposed changes and test those predictions against measurements. When the measurements disagreed, I revised the models. \autoref{interlude-modeling-cycle} summarizes this process.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/interlude-modeling-cycle-9d6747c7c6.pdf}
-\caption{\emph{Modeling inside the implementation loop.} An engineering problem motivates a model whose analysis informs design and implementation. Measurements test the model\textquotesingle s predictions and expose assumptions that need revision. Modeling and implementation proceed together as new engineering questions arise.}
-\label{interlude-modeling-cycle}
-\end{figure}
+I did not begin with a plan to construct seven models. Larger inputs exposed a memory problem; changing how media was stored made the execution boundary worth reconsidering; the dependency graph exposed latency limits and possible redesigns. Each model answered a question raised by the work. Together, they let me predict the consequences of proposed changes and test those predictions against measurements. When the measurements disagreed, I revised the models.

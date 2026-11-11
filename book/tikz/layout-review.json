@@ -3605,9 +3605,9 @@
       "candidate": "book/tikz/figures/modeling-substrate.tex",
       "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
       "baseline_candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-      "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
-      "decision": "retained",
-      "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row.",
+      "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
+      "decision": "refined",
+      "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         371.8030090332031,
@@ -3615,20 +3615,20 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
+        "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
+        "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
+        "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "status": "passed",
-        "page": 31,
+        "page": 1,
         "width_bp": 292.522,
-        "height_bp": 229.887,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 2
+        "height_bp": 237.411,
+        "minimum_prose_font_pt": 9.963,
+        "semantic_typography_checks": 4
       },
       "page_layout": {
         "decision": "retained",
@@ -3679,6 +3679,63 @@
               "height_bp": 297.395
             },
             "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row."
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "source": "book/assets/modeling-substrate.svg",
+            "candidate": "book/tikz/figures/modeling-substrate.tex",
+            "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
+            "baseline_candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+            "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
+            "decision": "retained",
+            "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              371.8030090332031,
+              297.3949890136719
+            ],
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 31,
+              "width_bp": 292.522,
+              "height_bp": 229.887,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 2
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Retain existing modeling substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+              "before_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+              "after_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
+              "before_dimensions_bp": [
+                371.8030090332031,
+                297.3949890136719
+              ],
+              "after_dimensions_bp": [
+                371.8030090332031,
+                297.3949890136719
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
           }
         }
       ]
@@ -5730,11 +5787,11 @@
     {
       "source": "book/assets/interlude-execution-unit.svg",
       "candidate": "book/tikz/figures/interlude-execution-unit.tex",
-      "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+      "source_sha256": "ab3c4aa394f5efd89a006f8d84853b7dcbd30e35331aa67850b2d7b5c90a4104",
       "baseline_candidate_sha256": "c10dd0c07c8d13bf4e59c8c041005b7c509964105bfc9562963551a6f67a2503",
-      "candidate_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
+      "candidate_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
       "decision": "refined",
-      "reason": "Aligned the page-worker peers and moved the fan-out rail clear of their left edges.",
+      "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         356.69500732421875,
@@ -5743,15 +5800,14 @@
       "contracts": {
         "peer_groups": [
           {
-            "name": "page-worker peers",
+            "name": "skeletonized external consumers",
             "labels": [
-              "Pages 1–10 worker",
-              "Pages 11–20 worker",
-              "Pages 21–30 worker"
+              "GenAI service",
+              "External media"
             ],
             "align": [
-              "left",
-              "right"
+              "top",
+              "bottom"
             ],
             "equal_height": true,
             "tolerance_pt": 1
@@ -5759,104 +5815,126 @@
         ]
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "date": "2026-11-11",
+        "proof": "latex/build/working-set-triptych-proof/interlude-execution-unit.pdf",
+        "proof_sha256": "1747c343e85bbf7232f98d077af284252111a488e6e91e1cbe4b5ad528b7b337",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 553.971,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 58,
-        "width_bp": 356.695,
-        "height_bp": 283.783
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing interlude execution unit layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
-        "after_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
-        "before_dimensions_bp": [
-          356.69500732421875,
-          283.7829895019531
-        ],
-        "after_dimensions_bp": [
-          356.69500732421875,
-          283.7829895019531
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/interlude-storage-vs-reasoning.svg",
-      "candidate": "book/tikz/figures/interlude-storage-vs-reasoning.tex",
-      "source_sha256": "a1769ec0e279136c8c4249068917e2ad540b8ed50672d076e2dde995c947b09a",
-      "baseline_candidate_sha256": "81bb9fec52d12053209a2eff471096b6a629b8b9530ccd2512e2aae278adc98f",
-      "candidate_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
-      "decision": "refined",
-      "reason": "Raised the worker fork rail to leave a legible shaft above the structured/media worker boxes.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        413.38800048828125,
-        269.61700439453125
-      ],
-      "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
+        "minimum_prose_font_pt": 10.162,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "maximum_rgb_channel_delta": 0,
+        "semantic_typography_checks": 43,
+        "geometry_audit_sha256": "75a0020edd79c16b41b1c1e6ec45f48cce378429fa5b0df4f032ddb4beed5d95",
+        "typography_audit_sha256": "5b3625eef150bfa9b8027cb627a5011864bac19e721fa7d906f04dcd1a478bf0",
+        "source_geometry_checks": [
+          "three equal142×546bp panels",
+          "three equal108×62bp page workers"
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 59,
-        "width_bp": 413.388,
-        "height_bp": 269.617
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing interlude storage vs reasoning layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
-        "after_sha256": "acea39b610be742809b523261acc64623b33b1656645859dedaa5e74a95a9acc",
-        "before_dimensions_bp": [
-          413.38800048828125,
-          269.61700439453125
-        ],
+        "decision": "refined",
+        "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+        "reviewed_visually": true,
+        "full_width_required": true,
+        "after_sha256": "fd335f460af4ef97b77dbb74ef16b4caf8a61acd0f75a9db2f96823cf0863fe3",
         "after_dimensions_bp": [
-          413.38800048828125,
-          269.61700439453125
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
+          449.972,
+          553.971
         ],
         "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
+          10.2,
+          10.4,
+          11.2
+        ]
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested consolidation of Figures4.5 and4.6 into three equal panels: whole-document, page-chunked, and skeletonized execution. All reference labels and bullet wording retained, with internal flows reflowed vertically to preserve10pt+ print type. Overall title is left to the manuscript caption. Chunk fan-out/merge remains parallel; skeleton media request/return paths are complete and distinct from the GenAI connection. Chunking changes execution partitioning; skeletonization changes residency independently.",
+          "previous": {
+            "source": "book/assets/interlude-execution-unit.svg",
+            "candidate": "book/tikz/figures/interlude-execution-unit.tex",
+            "source_sha256": "bc685cec6be2acf319f45c523633c2d8a5a30f2ddd302bd841b35fe848a4f87d",
+            "baseline_candidate_sha256": "c10dd0c07c8d13bf4e59c8c041005b7c509964105bfc9562963551a6f67a2503",
+            "candidate_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
+            "decision": "refined",
+            "reason": "Aligned the page-worker peers and moved the fan-out rail clear of their left edges.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              356.69500732421875,
+              283.7829895019531
+            ],
+            "contracts": {
+              "peer_groups": [
+                {
+                  "name": "page-worker peers",
+                  "labels": [
+                    "Pages 1–10 worker",
+                    "Pages 11–20 worker",
+                    "Pages 21–30 worker"
+                  ],
+                  "align": [
+                    "left",
+                    "right"
+                  ],
+                  "equal_height": true,
+                  "tolerance_pt": 1
+                }
+              ]
+            },
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 633,
+              "reviewed_peer_groups": 81,
+              "semantic_typography_checks": 875,
+              "unapproved_compile_diagnostics": 0,
+              "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+              "status": "passed",
+              "page": 58,
+              "width_bp": 356.695,
+              "height_bp": 283.783
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Retain existing interlude execution unit layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+              "before_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
+              "after_sha256": "d7189a04fd16c94dc25eb975035d32c2a841bc4d20639ec3ae546775c16ea212",
+              "before_dimensions_bp": [
+                356.69500732421875,
+                283.7829895019531
+              ],
+              "after_dimensions_bp": [
+                356.69500732421875,
+                283.7829895019531
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-graph-two-partitions.svg",
@@ -6050,133 +6128,91 @@
     {
       "source": "book/assets/interlude-prediction-residual.svg",
       "candidate": "book/tikz/figures/interlude-prediction-residual.tex",
-      "source_sha256": "2f2519ef0af30a0745d9550485fdec11aee72771c30475c9ace8d33be257d472",
+      "source_sha256": "8576fb9b68fce9ee741b95aa9cacfb6cc7a9d0456edab65498a1ba1d5ee65b38",
       "baseline_candidate_sha256": "66c8e99a2a049fe3fc5221c5d23587bf68ea13509898db7fbe6d9e3a968a57f5",
-      "candidate_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
+      "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023",
       "decision": "refined",
-      "reason": "Separated and equalized explanation peers, raised their fork, and moved the modeling-loop column right to lengthen the feedback terminal.",
+      "reason": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         396.22601318359375,
         226.10899353027344
       ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "residual explanations",
-            "labels": [
-              "Wrong parameter",
-              "Wrong relation",
-              "Missing mechanism"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 63,
-        "width_bp": 394.1,
-        "height_bp": 226.109
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing interlude prediction residual layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-        "after_sha256": "246ecd090c70a12bb8f972f6676e79481eab67541948b1b5b91d2e023c127de5",
-        "before_dimensions_bp": [
-          394.1000061035156,
-          226.10899353027344
-        ],
-        "after_dimensions_bp": [
-          394.1000061035156,
-          226.10899353027344
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/interlude-modeling-cycle.svg",
-      "candidate": "book/tikz/figures/interlude-modeling-cycle.tex",
-      "source_sha256": "2a50c0cc6375f662b40b8383b9f2936c402a04130d1a15ae85cd564dd8a338fc",
-      "baseline_candidate_sha256": "fdb6fb1b03ffbe353a91b88a606abbdbf8d93e366f9381bac9f8880e5b51b067",
-      "candidate_sha256": "4ed65498ac5d31a60a01db7748c959ad80ba011e859cdd066c3c5c35a7693f06",
-      "decision": "refined",
-      "reason": "Moved feedback and prediction elbow rails away from target borders.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        396.3800048828125,
-        227.29600524902344
-      ],
       "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "date": "2026-11-11",
+        "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+        "proof_sha256": "8854c51db8efd596841df8cc630dd2bdd2235da183d2a5feaedc8d0d6c6d5df0",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 295.597,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "c533a88becfcab49004b6a6041005b638077682e91381444c6e0dc6f562f6fe1",
+        "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+        "semantic_typography_checks": 28,
+        "monochrome_pixels": true,
         "status": "passed",
-        "page": 64,
-        "width_bp": 396.38,
-        "height_bp": 227.296
+        "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing interlude modeling cycle layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
-        "after_sha256": "6eb4e2ded616d28b5dda64394f61e3e858c5c44eadd017f5715304b2babe0f8c",
-        "before_dimensions_bp": [
-          396.3800048828125,
-          227.29600524902344
-        ],
-        "after_dimensions_bp": [
-          396.3800048828125,
-          227.29600524902344
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
+        "decision": "review candidate",
+        "reason": "Author-requested consolidation of former Figures 4.10 and 4.11, following the latest supplied three-panel drawing rather than the earlier two-panel notes. Preserve the engineering loop, concrete latency discrepancy and revise/repeat decision as distinct panels. Remove only the redundant overall internal figure title. One editable generator produces the SVG and native TikZ with the same wording and topology, house sans fonts, restrained gray bands and 10pt prose. Numerical values remain illustrative; acceptable residual is a model-evaluation criterion, not a claim of complete system correctness. Old modeling-cycle retirement and caption/prose reconciliation are separately coordinated.",
+        "native_dimensions_bp": [
+          449.972,
+          295.597
         ],
         "reviewed_visually": true
-      }
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 63,
+          "width_bp": 394.1,
+          "height_bp": 226.109
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/prediction-loop-proof/interlude-prediction-residual.pdf",
+          "proof_sha256": "dc4ac9ab566915e74fcf316fb0a57759faf0e07936f715bda8f31deea136c916",
+          "page": 1,
+          "width_bp": 449.972,
+          "height_bp": 295.597,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "e6b995962cbadf3f143aa68e330b081b0864078886c637c57350ad74318d2be5",
+          "typography_audit_sha256": "df29e35d06a883696e568dfe56a7cedf74a6e61ac2ebfc2156981fddbf43bbdf",
+          "semantic_typography_checks": 28,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "svg_proof": "latex/build/prediction-loop-proof/interlude-prediction-residual-svg.png",
+          "generator": "book/editorial/figure-redraws-20261111/build_prediction_loop.py"
+        }
+      ]
     },
     {
       "source": "book/assets/discovering-models-migration.svg",
