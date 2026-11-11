@@ -172,6 +172,16 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July\u2013October dates retained.",
       "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16"
+    },
+    "book/assets/docable-seip-longitudinal-261109.svg": {
+      "approved_date": "2026-11-11",
+      "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+      "reason": "Author explicitly approved revised Figure 5.3 and publication after reviewing the sidebar proof."
+    },
+    "book/assets/docable-work-order-flow.svg": {
+      "approved_date": "2026-11-11",
+      "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+      "reason": "Author explicitly approved revised Figure 5.6 and publication after reviewing the sidebar proof."
     }
   }
 }

@@ -315,5 +315,10 @@
     "monochrome_pixels": true,
     "semantic_typography_checks": 10,
     "status": "passed"
+  },
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+    "decision": "approved"
   }
 }

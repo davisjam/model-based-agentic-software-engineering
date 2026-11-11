@@ -9,7 +9,7 @@
   "alt": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
   "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
   "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
-  "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory\u2019s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
+  "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory’s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
   "generator": "book/figures/docable-case-261109/generate.py",
   "data": "book/data/docable-case-261109",
   "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
@@ -18,7 +18,7 @@
     "(b) Models and checks",
     "(c) Dispatches",
     "(d) Epic completions",
-    "Consumers of \u22652 models",
+    "Consumers of ≥2 models",
     "No records"
   ],
   "native_validation": {
@@ -49,7 +49,7 @@
     "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
     "baseline_candidate_sha256": null,
     "decision": "refined",
-    "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+    "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
     "reviewed_visually": true,
     "contracts": {},
     "validation": {
@@ -75,7 +75,7 @@
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
       "after_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
       "after_dimensions_bp": [
         393.323,
@@ -121,7 +121,7 @@
       },
       {
         "semantic_role": "Author-requested chart labels",
-        "candidate_text": "Consumers of \u22652 models",
+        "candidate_text": "Consumers of ≥2 models",
         "candidate_style": "regular",
         "authorization": "Author Figure5.3 correction,2026-11-11"
       },
@@ -154,7 +154,7 @@
         "italic": false
       },
       {
-        "text": "Consumers of \u22652 models",
+        "text": "Consumers of ≥2 models",
         "bold": false,
         "italic": false
       },
@@ -185,13 +185,13 @@
       "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
       "status": "passed"
     },
-    "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review."
+    "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review."
   },
   "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults.",
   "revision_history": [
     {
       "date": "2026-11-11",
-      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
       "previous": {
         "id": "docable-seip-longitudinal-261109",
         "date": "2026-11-09",
@@ -203,7 +203,7 @@
         "alt": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
         "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
         "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
-        "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory\u2019s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
+        "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory’s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
         "generator": "book/figures/docable-case-261109/generate.py",
         "data": "book/data/docable-case-261109",
         "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
@@ -322,7 +322,7 @@
       }
     }
   ],
-  "redesign": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+  "redesign": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
   "review": {
     "reference": "Author Figure5.3 correction,2026-11-11",
     "outcome": "Requested labels implemented; one-column legend inspected; all data and plotted coordinates unchanged. Pending author review.",
@@ -361,7 +361,7 @@
     "bold": "Regular panel headings and data labels; no decorative emphasis.",
     "routing": "No conceptual connectors; charts directly encode measured data.",
     "shape": "Bars, lines, and stacked bands encode quantities.",
-    "visual_review": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+    "visual_review": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
@@ -383,5 +383,11 @@
       "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
       "status": "passed"
     }
-  }
+  },
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+    "decision": "approved"
+  },
+  "questions": []
 }
