@@ -23,10 +23,9 @@ BUILD=ROOT/'latex/build/tikz'
 #   2. the book PDF build, which pools the finished figure pages into the edition and needs this
 #      function's return values to do it.
 #
-# Both land in `latex/build/tikz/`. Pre-push orders them (1) then (2) through a phase dependency;
-# the publishing workflow runs (2) then (1) inside one job. So the second consumer reuses the
-# first's artifact when every input digests the same — and reuse is keyed on CONTENT, never on which
-# consumer ran first, because the two surfaces disagree about the order and neither is wrong.
+# Both land in `latex/build/tikz/`. The local and publishing workflows validate the pool first.
+# The book render then reuses it when its inputs and artifact digests match. CI can also restore
+# the same pool from a previous run, with the same verification.
 #
 # Contents, never mtimes: the drivers are rewritten on every call, so an mtime always looks new.
 #
@@ -67,10 +66,10 @@ _POOL_VERIFIED=('candidates.pdf','pages.json')
 #: Side effects a reusing consumer must merely find PRESENT. Re-digesting an audit report would say
 #: nothing useful — its contents are a function of the same inputs the key already covers — but its
 #: absence means the reuse is not equivalent to the compile, because a later reader expects the file.
-_POOL_PRESENT=('geometry-audit.json','typography-audit.json')
+_POOL_PRESENT=('geometry-audit.json','geometry-audit.pdf','typography-audit.json')
 
 #: Everything the compile path leaves behind, DERIVED from the two roles above rather than restated:
-#: a third spelling of this list is how one of the four stops being checked.
+#: a third spelling of this list is how an artifact stops being checked.
 _POOL_ARTIFACTS=_POOL_VERIFIED+_POOL_PRESENT
 
 #: Namespaces this pool's keys from the book's section splits and the handbook's chapters, which run
@@ -117,6 +116,8 @@ def _pool_asset_inputs(paths):
         assets.append((BASE/'receipts'/f'{path.stem}.json').relative_to(ROOT).as_posix())
     assets.extend((BASE/name).relative_to(ROOT).as_posix()
                   for name in ('inventory.json','layout-review.json','typography-review.json'))
+    assets.extend(path.relative_to(ROOT).as_posix()
+                  for path in sorted((ROOT/'book/fonts').rglob('*')) if path.is_file())
     return assets
 
 def _pool_cache_key(paths,driver_text,font_driver_text)->str:

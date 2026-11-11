@@ -520,12 +520,62 @@ jobs:
           python3 tools/test_mage_tikz_typography.py
           python3 tools/test_qpdf_repack.py
           python3 tools/mage_tikz_charts.py --check
+      - name: Fingerprint print cache environment
+        id: print-cache
+        env:
+          TEXLIVE_RECIPE: ${{ hashFiles('tools/install_texlive_ci.sh') }}
+        run: |
+          set -euo pipefail
+          fingerprint=$({
+            printf '%s\n' "$ImageOS" "$ImageVersion" "$TEXLIVE_RECIPE"
+            lualatex --version
+            pdftoppm -v 2>&1
+            python3 -m pip freeze --all | LC_ALL=C sort
+          } | sha256sum | cut -d ' ' -f 1)
+          printf 'fingerprint=%s\n' "$fingerprint" >> "$GITHUB_OUTPUT"
+      # The renderer independently checks the stamp and re-digests the restored PDF and page map.
+      # Only an exact key can restore a completed figure pool.
+      - name: Cache verified native TikZ pool
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: |
+            latex/build/tikz/candidates-pool-stamp.json
+            latex/build/tikz/candidates.pdf
+            latex/build/tikz/pages.json
+            latex/build/tikz/geometry-audit.json
+            latex/build/tikz/geometry-audit.pdf
+            latex/build/tikz/typography-audit.json
+          key: tikz-pool-v1-${{ steps.print-cache.outputs.fingerprint }}-${{ hashFiles('book/tikz/**', 'book/fonts/**', 'latex/*.sty', 'latex/*.tex', 'tools/*.py') }}
       - name: Render candidate figure pool and verify typography
         run: python3 tools/mage_tikz_review.py --figures-only
       - name: Check standalone PDF publication regressions
         run: python3 -m unittest tests.test_mage_pdf_splits
+      # A previous run can seed cross-references and bibliography state. LuaLaTeX still
+      # converges on the current source and the complete PDF and EPUB checks still run.
+      - name: Cache whole-book LaTeX auxiliary state
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: |
+            book/latex/build/mage-book.aux
+            book/latex/build/mage-book.bbl
+            book/latex/build/mage-book.toc
+            book/latex/build/mage-book.out
+            book/latex/build/mage-book.lof
+            book/latex/build/mage-book.lot
+            book/latex/build/mage-book-luamml-mathml.html
+          key: book-aux-v1-${{ steps.print-cache.outputs.fingerprint }}-${{ github.sha }}
+          restore-keys: |
+            book-aux-v1-${{ steps.print-cache.outputs.fingerprint }}-
       - name: Render the whole book (PDF + EPUB) and check integrity
         run: |
+          if [[ -f book/latex/build/mage-book.aux ]]; then
+            if python3 book/build_book.py --pdf; then
+              exit 0
+            fi
+            echo "Warm print build failed; retrying from clean LaTeX state."
+            rm -f book/latex/build/mage-book.{aux,bbl,toc,out,lof,lot} \
+              book/latex/build/mage-book-luamml-mathml.html
+          fi
           python3 book/build_book.py --pdf
       - name: Upload TikZ geometry audit for review
         if: always()

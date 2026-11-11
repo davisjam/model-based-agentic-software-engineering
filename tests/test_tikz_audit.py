@@ -209,6 +209,14 @@ class TikzPoolReuseTests(unittest.TestCase):
         self.receipt.write_text('{"alt": "a different description"}')
         self.assertNotEqual(before,self.key())
 
+    def test_key_changes_on_font_edit(self):
+        font=self.root/'book/fonts/SourceSans3/SourceSans3-Regular.ttf'
+        font.parent.mkdir(parents=True)
+        font.write_bytes(b'original font')
+        before=self.key()
+        font.write_bytes(b'updated font')
+        self.assertNotEqual(before,self.key())
+
     def test_key_changes_on_each_review_contract(self):
         """The geometry and typography audits read these; a contract edit must re-run them."""
         for name in ('inventory.json','layout-review.json','typography-review.json'):
@@ -252,8 +260,8 @@ class TikzPoolReuseTests(unittest.TestCase):
         """A complete, verifying pool: all artifacts present and a stamp written over them."""
         (self.build/'candidates.pdf').write_bytes(b'%PDF-1.7 pool\n')
         (self.build/'pages.json').write_text('{"book/a.svg": {"page": 1}}')
-        for name in ('geometry-audit.json','typography-audit.json'):
-            (self.build/name).write_text('{"findings": []}')
+        for name in self.pool._POOL_PRESENT:
+            (self.build/name).write_bytes(b'audit report')
         key=self.key();self.pool._pool_stamp_write(key)
         return key
 
@@ -296,8 +304,8 @@ class TikzPoolReuseTests(unittest.TestCase):
 
     # ── The artifact ROLES: digests for the pooled PDF and its manifest, presence for the audits ──
 
-    def test_the_four_artifacts_split_into_verified_and_present_with_nothing_dropped(self):
-        """A third spelling of the artifact list is how one of the four stops being checked."""
+    def test_artifacts_split_into_verified_and_present_with_nothing_dropped(self):
+        """A third spelling of the artifact list is how an artifact stops being checked."""
         self.assertEqual(self.pool._POOL_ARTIFACTS,
                          self.pool._POOL_VERIFIED+self.pool._POOL_PRESENT)
         self.assertEqual(set(self.pool._POOL_VERIFIED)&set(self.pool._POOL_PRESENT),set())

@@ -616,6 +616,15 @@ def _phase_gate_worktree(ctx: _PhaseCtx) -> str | None:
 
 def _phase_site_build(ctx: _PhaseCtx) -> str | None:
     where = "pushed commit" if CONTENT.isolated else "WORKING TREE"
+    if in_book:
+        # The canon check reads sources only. Run it on the pushed commit before the PDF
+        # dependency starts, while retaining the check in the complete Tier-1 suite.
+        ctx.echo(f"pre-push: check canonical principle statements on the {where} …")
+        if ctx.py("-c", "from tests.book_models import check_canon_pins; "
+                  "result, findings = check_canon_pins(); "
+                  "print(result, *findings, sep=chr(10)); raise SystemExit(result != 'PASS')",
+                  cwd=CONTENT.path):
+            return "pre-push: book canon check FAILED — push refused.\n"
     ctx.echo(f"pre-push: catalog.py build on the {where} "
              "(render gate — catches build aborts CI would hit) …")
     if ctx.py(CONTENT.script("catalog.py"), "build", cwd=CONTENT.path):
