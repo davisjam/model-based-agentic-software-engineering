@@ -69,6 +69,8 @@ book/_design/*-brief*.md
 # The rendered book ePub (book/book_epub.py, the 4th IR projection) — same posture as the PDF:
 # a binary created locally / in CI, never committed; published at /book/mage-book.epub.
 /book/mage-book.epub
+# Deterministic rendered-prose word counts emitted by the build.
+/book/mage-book-word-counts.json
 # The two landing cover thumbnails — build-derived from the books' own Typst covers by
 # tools/cover_assets.py (manifest → Typst cover → Pillow downscale) — same posture as mage-book.pdf:
 # created locally / in CI, never committed. Deriving them (not committing them) makes title drift

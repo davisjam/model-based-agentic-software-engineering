@@ -31,6 +31,17 @@ and the design record for the annotation work.
   replacing the previous edition; failure stops publication. `python3 book/book_epub.py --check`
   validates an existing EPUB without rebuilding it. CI publishes both downloads at
   `/book/mage-book/`, and the book landing page links to them.
+- **Word counts:** Every build that renders the book pages writes
+  `book/mage-book-word-counts.json` from the same `WordCounts` used for its printed breakdown.
+  This local, ignored, deterministic report includes each chapter, front/back matter, both appendices,
+  subtotals, and the total. `version: 1` and `counting_method: mage-rendered-prose-v1` identify
+  the schema and method: rendered prose tokenized on whitespace, excluding code/Mermaid blocks,
+  captions, SVG diagrams, HTML metadata, and image alt text. These are manuscript prose counts,
+  not words extracted from the typeset PDF; rendered citation notes remain included. The report
+  compares the **total including both appendices** with the author’s 110,000-word target and records
+  remaining headroom. `python3 book/wordcount.py --json` uses the identical schema and counter
+  without a full build; `--band N` overrides only its comparison target. The report is not currently
+  included in the published Pages artifact.
 - **Never hand-edit the `.html`.** Every page is generated and overwritten on the next build. Edit the
   markdown source, then rebuild.
 - **Mermaid needs `mmdc` on `PATH`.** The build renders each ` ```mermaid ` fence to a static SVG through

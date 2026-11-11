@@ -5341,7 +5341,44 @@ def compute_word_counts(chapters: list[dict]) -> WordCounts:
     )
 
 
-def _print_word_counts(wc: WordCounts) -> None:
+RECOMMENDED_TOTAL_WORDS = 110_000
+WORD_COUNT_METHOD = "mage-rendered-prose-v1"
+WORD_COUNT_REPORT = HERE / "mage-book-word-counts.json"
+
+
+def word_counts_as_json(wc: WordCounts, target: int = RECOMMENDED_TOTAL_WORDS) -> dict:
+    """Serialize the already-computed count; this does not count or render again."""
+    return {
+        "version": 1,
+        "counting_method": WORD_COUNT_METHOD,
+        "target_scope": "total_including_appendices",
+        "recommended_total_words": target,
+        "headroom_words": target - wc.total,
+        "total_over_recommendation": wc.total - target,
+        "total_pct_of_recommendation": round(100.0 * wc.total / target, 1),
+        "over_recommendation": wc.total > target,
+        "methodology": {
+            "unit": "whitespace-delimited tokens in rendered reader-facing prose, including rendered citation notes",
+            "excludes": ["code and Mermaid blocks", "figure and table captions",
+                         "complete SVG diagrams", "HTML tags and comment metadata", "image alt text"],
+            "body_scope": "All non-appendix pages, including front matter, chapters, conclusion, and back matter",
+            "appendix_scope": "Appendix pages grouped by letter",
+        },
+        "body_parts": [{"label": label, "words": n} for label, n in wc.body_parts],
+        "body_total": wc.body_total,
+        "appendix_letters": [{"label": label, "words": n} for label, n in wc.appendix_letters],
+        "appendix_total": wc.appendix_total,
+        "total": wc.total,
+    }
+
+
+def _write_word_counts(wc: WordCounts, path: pathlib.Path = WORD_COUNT_REPORT) -> None:
+    """Persist the build's counts deterministically, without timestamps or a second counter."""
+    path.write_text(json.dumps(word_counts_as_json(wc), indent=2, ensure_ascii=False) + "\n",
+                    encoding="utf-8")
+
+
+def _print_word_counts(wc: WordCounts, target: int = RECOMMENDED_TOTAL_WORDS) -> None:
     """Print the word-count breakdown to stdout, so `catalog.py build` / the deploy REPORTS it (the repo's
     'tools report their results' discipline). A stable, greppable shape (`  BODY  <part> : <n>`)."""
     print("book word count (rendered prose; code/diagrams/captions excluded):")
@@ -5354,6 +5391,8 @@ def _print_word_counts(wc: WordCounts) -> None:
         print(f"    {label:<48} {n:>7,}")
     print(f"    {'APPENDIX subtotal':<48} {wc.appendix_total:>7,}")
     print(f"  {'TOTAL':<50} {wc.total:>7,}")
+    print(f"  TOTAL target (including appendices): {target:,}; "
+          f"headroom: {target - wc.total:+,} words")
 
 
 # ─────────────────────────── PDF print edition (opt-in `--pdf`) ──────────────────────────────────
@@ -7241,6 +7280,7 @@ def build_pages() -> "tuple[list[dict], list[dict]]":
     # Printed to stdout (tools report their results) and rendered onto book-index.html as a "Book length" table.
     word_counts = compute_word_counts(chapters)
     _print_word_counts(word_counts)
+    _write_word_counts(word_counts)
 
     bib_main, bib_meta = build_bibliography_page(chapters, chapters[-1]["slug"])
     fig_count = sum(1 for e in float_entries if e["kind"] == "fig")
