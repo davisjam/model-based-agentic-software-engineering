@@ -22,9 +22,11 @@ We can now expand that metaphor. A fabricator does not operate alone. Once fabri
 
 Factories developed to make production repeatable at scales that craft production could not support. Interchangeable parts allowed components made separately to participate in the same product. Mechanization increased the amount of work that machinery could perform. Machine tools increased precision and repeatability. Each advance also exposed a problem. Faster machinery could produce defects faster than people could inspect them; a design was of little use if the available machinery could not realize it accurately; interchangeable parts were not interchangeable if different shops produced incompatible dimensions. Scaling fabrication therefore required engineering the production system around the fabricator.
 
+Software engineering has already made much of this move. Continuous integration and delivery organize building, testing, and deployment into repeatable processes, with automated checks governing what may proceed\citep{humble2010continuous}. Coding agents extend automation into the production of the changes themselves. The factory must now govern not only how software is built and delivered, but also how implementation decisions are delegated, what system knowledge informs them, and what evidence justifies accepting the result.
+
 % <!-- point: process-design-and-tolerance | Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable. | terms: tolerance -->
 
-Two engineering techniques from that history are especially useful for understanding software factories:
+Two ideas from manufacturing help explain what this expanded software factory must do:
 
 \begin{itemize}
 \tightlist

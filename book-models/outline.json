@@ -2460,62 +2460,62 @@
           "heading_text": "What Does a Software Factory Produce?",
           "topic_sentence": "The analogy requires one adjustment before we apply it to software.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 16,
           "points": [
             {
               "slug": "software-does-not-repeatedly-produce-instances",
               "text": "The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "the-output-is-the-next-working-realization",
               "text": "The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "a-software-factory-is-a-production-system-for-controlled-change",
               "text": "A software factory organizes controlled change while preserving control over consequential properties and consequences.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "a-factory-contains-more-than-its-fabricators",
               "text": "A software factory includes a GEE of reusable representations, tools, procedures, and controls, together with its people, agents, production activities, and organizational authority.",
-              "block_index": 23
+              "block_index": 24
             },
             {
               "slug": "the-two-problems-specialize-to-changes-not-copies",
               "text": "The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one.",
-              "block_index": 26
+              "block_index": 27
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
-              "block_index": 28
+              "block_index": 29
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
-              "block_index": 30
+              "block_index": 31
             },
             {
               "slug": "agile-is-intelligible-when-the-product-is-change",
               "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
-              "block_index": 32
+              "block_index": 33
             },
             {
               "slug": "earlier-separation-attempts-met-the-same-tradeoff",
               "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
-              "block_index": 34
+              "block_index": 35
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence.",
-              "block_index": 38
+              "block_index": 39
             }
           ]
         },
@@ -2525,22 +2525,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "Four questions orient a walkthrough without prescribing how the factory should be organized:",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 41,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 49
+              "block_index": 50
             }
           ]
         }
@@ -2564,12 +2564,12 @@
         {
           "slug": "process-design-and-tolerance",
           "text": "Two techniques from that history carry into software factories: process design determines how production proceeds, and tolerance states which variation in the product is acceptable.",
-          "block_index": 8
+          "block_index": 9
         },
         {
           "slug": "a-better-production-system-made-a-different-artifact-practical",
           "text": "Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance.",
-          "block_index": 13
+          "block_index": 14
         }
       ]
     },
