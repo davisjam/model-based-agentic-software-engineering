@@ -26,7 +26,7 @@ Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeli
 
 > #### Inset — Spec-driven development and engineering through models {#inset-sdd-engineering-through-models}
 >
-> Here is how **spec-driven development (SDD)** and the MAGE methodology relate. MAGE is a general method for engineering through system models and independently enforcing selected obligations as a system evolves. The family of SDD approaches provides specific workflows for organizing implementation and evaluation around specifications; engineers can use these workflows within the broader method.
+> **Spec-driven development (SDD)** provides workflows for organizing implementation and evaluation around specifications. These workflows can support MAGE, but do not replace its broader concern with modeling consequential properties and enforcing selected engineering obligations as a system evolves.
 >
 > In SDD, explicit specifications guide agentic implementation and evaluation. The tools organize that work in different ways[cite: agarwal2026sddpractice]. GitHub’s Spec Kit argues for specifications as primary artifacts from which code is derived[cite: githubspeckit2026sdd]. OpenSpec preserves capability specifications while recording proposed and completed changes; Conductor combines shared project context with specifications and plans for individual changes[cite: openspec2026concepts; ballinger2025conductor]. Specifications can evolve as implementation and operating experience expose missing requirements.
 >
