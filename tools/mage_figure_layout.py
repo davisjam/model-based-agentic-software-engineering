@@ -196,6 +196,43 @@ def reasoning_horizon_columns(latex: str) -> str:
     return before + columns + after
 
 
+def observation_policy_columns(latex: str) -> str:
+    """Keep the compact approved policy comparison beside its introduction.
+
+    Aligned columns follow the existing tagged-book layout mechanism: wrapfig's
+    paragraph hooks are incompatible with this format. Only the first ordinary
+    paragraph shares the figure; the following qualification resumes full width.
+    """
+    start = '% <!-- print-columns-start: observed-vs-declared -->'
+    end = '% <!-- print-columns-end: observed-vs-declared -->'
+    if start not in latex and end not in latex:
+        return latex
+    if latex.count(start) != 1 or latex.count(end) != 1:
+        raise ValueError('Policy-comparison columns require one complete boundary')
+    before, body = latex.split(start, 1)
+    body, after = body.split(end, 1)
+    if re.search(r'\\(?:begin\{bookbox\}|(?:sub)*section\b|footnote\b)', body):
+        raise ValueError('Policy comparison cannot cross an inset or heading')
+    figures = list(re.finditer(r'\\begin\{figure\}(?:\[[^]]*\])?.*?\\end\{figure\}', body, re.S))
+    if len(figures) != 1 or r'\label{observed-vs-declared}' not in figures[0][0]:
+        raise ValueError('Policy comparison requires one approved figure')
+    figure = figures[0]
+    prose = (body[:figure.start()] + body[figure.end():]).strip()
+    if len(prose.split('\n\n')) != 1:
+        raise ValueError('Policy comparison shares exactly its introductory paragraph')
+    artwork = re.sub(r'^\\begin\{figure\}(?:\[[^]]*\])?', '', figure[0])
+    artwork = artwork.removesuffix(r'\end{figure}')
+    from mage_tikz_review import _text
+    receipt = json.loads((ROOT / 'book/tikz/receipts/observed-vs-declared.json').read_text())
+    alt = _text(receipt['alt'])
+    columns = (r'\noindent\begin{minipage}[t]{.50\linewidth}\vspace{0pt}'
+               r'\raggedright\setlength{\parskip}{.45\baselineskip}' + '\n' + prose + '\n' +
+               r'\end{minipage}\hfill\begin{minipage}[t]{.48\linewidth}\vspace{0pt}' + '\n' +
+               r'\begin{bookinlinefigure}{' + alt + '}' + artwork +
+               r'\end{bookinlinefigure}\end{minipage}\par' + '\n')
+    return before + columns + after
+
+
 def claims_spread(latex: str) -> str:
     """The approved claims and their diagram share one verso–recto section.
 

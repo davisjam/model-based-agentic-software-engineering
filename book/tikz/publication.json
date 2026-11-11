@@ -102,6 +102,31 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved black-and-white Figure 2.9 after the requested indented mutation-behavior bullets and italic e.g. annotation were applied.",
       "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8"
+    },
+    "book/assets/canonical-behavioral.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved black-and-white Figure 2.10 in the sidebar review; remove the color companion from the PDF.",
+      "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7"
+    },
+    "book/assets/recovery-ordering-model.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved black-and-white Figure 2.12 in the sidebar review; remove the color companion from the PDF.",
+      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92"
+    },
+    "book/assets/service-flow-model.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved black-and-white Figure 2.17 in the sidebar review; remove the color companion from the PDF.",
+      "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806"
+    },
+    "book/assets/in-flight-ownership-states.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved black-and-white Figure 2.13 after removing the entire State meaning / Key transitions legend.",
+      "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc"
+    },
+    "book/assets/observed-vs-declared.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved black-and-white Figure 2.16 after compacting it and placing it beside its explanatory prose.",
+      "candidate_sha256": "4cc812a03c83eb105d371763f5ea1f9517b6f28133917f1efe5eb4c2e733a955"
     }
   }
 }

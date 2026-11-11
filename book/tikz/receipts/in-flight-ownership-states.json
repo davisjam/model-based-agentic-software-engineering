@@ -35,6 +35,7 @@
   },
   "required_terms": [
     "A behavioral model for job ownership with generations.",
+    "Claims identify (worker, generation).",
     "Unowned",
     "Owned",
     "(A, 7)",
@@ -46,26 +47,10 @@
     "claim(B, 8)",
     "release(A, 7) (rejected: stale generation)",
     "release(B, 8)",
-    "State meaning",
-    "Key transitions",
-    "Unowned \u2014 no active claim",
-    "Owned(w, g) \u2014 job held by worker w",
-    "with generation g",
-    "Reclaimable \u2014 previous claim",
-    "expired, job can be claimed",
-    "\u2022",
-    "claim(w, g): acquire the job with",
-    "generation g",
-    "\u2022",
-    "expire: previous claim",
-    "becomes invalid",
-    "\u2022",
-    "release(w, g): release only if",
-    "the current claim matches (w, g)",
-    "A release may modify a job only if it still holds the current generation."
+    "Release clears ownership only when worker and generation match the current claim."
   ],
   "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
-  "redesign": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+  "redesign": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
   "questions": [],
   "alt": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
   "review": {
@@ -73,25 +58,25 @@
     "checks": [
       "state and generation identity",
       "permitted and prohibited transitions",
-      "legend wording",
+      "worker/generation key and release condition",
       "default house typography",
       "native print envelope"
     ],
-    "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
+    "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. The author approved the diagram with this legend-removal request; publication approval is recorded separately by integration.",
     "validation": {
       "date": "2026-11-11",
-      "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
-      "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+      "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
+      "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 397.973,
-      "minimum_prose_font_pt": 9.963,
+      "height_bp": 257.975,
+      "minimum_prose_font_pt": 10.461,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 29,
-      "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
-      "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+      "semantic_typography_checks": 14,
+      "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
+      "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
       "status": "passed"
     }
   },
@@ -122,27 +107,27 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
-    "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
-    "fill": "Light gray state nodes and an unfilled ownership legend; no decorative title banner.",
-    "bold": "Bold state identifiers and legend headings; explanatory text remains regular; subtitle and final obligation italic.",
+    "source_sha256": "0f137f9d59ee214e38d503e7e86dcb5c12413ef25fd90205d5e5376dd4ad443a",
+    "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
+    "fill": "Light gray state nodes; the entire ownership legend and its panel are removed.",
+    "bold": "Bold Owned state labels; the worker/generation key remains regular; subtitle and final release condition are italic.",
     "routing": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Final SVG and native proof inspected for state identity, cross markers, arrow directions, annotation clearance and readable default house typography. Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+    "visual_review": "Final SVG and native proof inspected for state identity, cross markers, arrow directions, annotation clearance and readable default house typography. Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
     "validation": {
       "date": "2026-11-11",
-      "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
-      "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+      "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
+      "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 397.973,
-      "minimum_prose_font_pt": 9.963,
+      "height_bp": 257.975,
+      "minimum_prose_font_pt": 10.461,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 29,
-      "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
-      "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+      "semantic_typography_checks": 14,
+      "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
+      "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
       "status": "passed"
     },
     "book_references": []
@@ -151,13 +136,19 @@
     "source": "book/assets/in-flight-ownership-states.svg",
     "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
     "decision": "refined",
-    "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
-    "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+    "source_sha256": "0f137f9d59ee214e38d503e7e86dcb5c12413ef25fd90205d5e5376dd4ad443a",
+    "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
     "evidence": [
       {
         "semantic_role": "Reference label or explanation",
         "candidate_text": "A behavioral model for job ownership with generations.",
         "candidate_style": "italic",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "Claims identify (worker, generation).",
+        "candidate_style": "regular or mixed as in reference",
         "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       },
       {
@@ -228,113 +219,22 @@
       },
       {
         "semantic_role": "Reference label or explanation",
-        "candidate_text": "State meaning",
-        "candidate_style": "bold",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "Key transitions",
-        "candidate_style": "bold",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "Unowned \u2014 no active claim",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "Owned(w, g) \u2014 job held by worker w",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "with generation g",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "Reclaimable \u2014 previous claim",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "expired, job can be claimed",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "\u2022",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "claim(w, g): acquire the job with",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "generation g",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "\u2022",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "expire: previous claim",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "becomes invalid",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "\u2022",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "release(w, g): release only if",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "the current claim matches (w, g)",
-        "candidate_style": "regular or mixed as in reference",
-        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Reference label or explanation",
-        "candidate_text": "A release may modify a job only if it still holds the current generation.",
+        "candidate_text": "Release clears ownership only when worker and generation match the current claim.",
         "candidate_style": "italic",
         "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       }
     ],
-    "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+    "reason": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
     "checks": [
       {
         "text": "A behavioral model for job ownership with generations.",
         "bold": false,
         "italic": true
+      },
+      {
+        "text": "Claims identify (worker, generation).",
+        "bold": false,
+        "italic": false
       },
       {
         "text": "Unowned",
@@ -392,104 +292,36 @@
         "italic": false
       },
       {
-        "text": "State meaning",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Key transitions",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Unowned \u2014 no active claim"
-      },
-      {
-        "text": "Owned(w, g) \u2014 job held by worker w"
-      },
-      {
-        "text": "with generation g",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "Reclaimable \u2014 previous claim"
-      },
-      {
-        "text": "expired, job can be claimed",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "\u2022",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "claim(w, g): acquire the job with"
-      },
-      {
-        "text": "generation g",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "\u2022",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "expire: previous claim"
-      },
-      {
-        "text": "becomes invalid",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "\u2022",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "release(w, g): release only if"
-      },
-      {
-        "text": "the current claim matches (w, g)",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "A release may modify a job only if it still holds the current generation.",
+        "text": "Release clears ownership only when worker and generation match the current claim.",
         "bold": false,
         "italic": true
       }
     ],
     "validation": {
       "date": "2026-11-11",
-      "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
-      "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+      "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
+      "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 397.973,
-      "minimum_prose_font_pt": 9.963,
+      "height_bp": 257.975,
+      "minimum_prose_font_pt": 10.461,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 29,
-      "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
-      "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+      "semantic_typography_checks": 14,
+      "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
+      "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
       "status": "passed"
     }
   },
   "layout_review": {
     "source": "book/assets/in-flight-ownership-states.svg",
     "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
-    "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+    "source_sha256": "0f137f9d59ee214e38d503e7e86dcb5c12413ef25fd90205d5e5376dd4ad443a",
     "baseline_candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
-    "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+    "candidate_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
     "decision": "refined",
-    "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+    "reason": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       361.0220031738281,
@@ -516,28 +348,28 @@
     },
     "validation": {
       "date": "2026-11-11",
-      "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
-      "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+      "proof": "latex/build/ownership-legend-proof/in-flight-ownership-states.pdf",
+      "proof_sha256": "2a38c8636e63a511e709b637a8a4d15c07623970c34c1788a30ad9466e1102a5",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 397.973,
-      "minimum_prose_font_pt": 9.963,
+      "height_bp": 257.975,
+      "minimum_prose_font_pt": 10.461,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 29,
-      "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
-      "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+      "semantic_typography_checks": 14,
+      "audit_sha256": "b8574df7a85060acbdef6aaaf3ac004211be8d3fde8966e888f88480da8042ef",
+      "typography_audit_sha256": "8d3549a3252fa1917649d0dbbf6a0222f4e8c819a9e1a6cb41ca49ff06c958c8",
       "status": "passed"
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
-      "after_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+      "reason": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
+      "after_sha256": "0a9d1bce946ac26a039870ac4380a80295ff631e7d5b9b12422da651406cd0bc",
       "reviewed_visually": true,
       "after_dimensions_bp": [
         449.972,
-        397.973
+        257.975
       ]
     }
   },
@@ -1695,6 +1527,564 @@
             "after_dimensions_bp": [
               449.972,
               417.973
+            ]
+          }
+        },
+        "chapter2_layout_revision": {
+          "date": "2026-11-09",
+          "source_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
+          "prior_source_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+          "standalone_proof": "native-after.pdf",
+          "standalone_proof_page": 3,
+          "width_bp": 257.5379943847656,
+          "height_bp": 190.84800720214844,
+          "status": "geometry proof inspected; pending publication-pair review"
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "reason": "Author-approved ownership diagram with requested removal of the entire legend. The unchanged chart retains A/7 expiry, B/8 acquisition, rejected stale A/7 release, and valid B/8 release. A short worker/generation key and precise release footer retain essential meaning; the former legend space is cropped. Release is retained because it clears ownership rather than committing a result.",
+      "previous": {
+        "source": "book/assets/in-flight-ownership-states.svg",
+        "chapter": "2.3-behavioral",
+        "claim": "A stale generation cannot release the current owner: claim(A,7) expires, B claims generation8, and release(A,7) is rejected.",
+        "topology": {
+          "description": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
+          "relations": [
+            [
+              "Unowned",
+              "Owned(A,7)",
+              "claim(A,7)"
+            ],
+            [
+              "Owned(A,7)",
+              "Reclaimable",
+              "expire"
+            ],
+            [
+              "Reclaimable",
+              "Owned(B,8)",
+              "claim(B,8)"
+            ],
+            [
+              "Owned(B,8)",
+              "Unowned",
+              "release(B,8)"
+            ],
+            [
+              "Owned(A,7)",
+              "Owned(B,8)",
+              "release(A,7) rejected: stale generation",
+              "crossed dashed"
+            ]
+          ]
+        },
+        "required_terms": [
+          "A behavioral model for job ownership with generations.",
+          "Unowned",
+          "Owned",
+          "(A, 7)",
+          "Owned",
+          "(B, 8)",
+          "Reclaimable",
+          "claim(A, 7)",
+          "expire",
+          "claim(B, 8)",
+          "release(A, 7) (rejected: stale generation)",
+          "release(B, 8)",
+          "State meaning",
+          "Key transitions",
+          "Unowned \u2014 no active claim",
+          "Owned(w, g) \u2014 job held by worker w",
+          "with generation g",
+          "Reclaimable \u2014 previous claim",
+          "expired, job can be claimed",
+          "\u2022",
+          "claim(w, g): acquire the job with",
+          "generation g",
+          "\u2022",
+          "expire: previous claim",
+          "becomes invalid",
+          "\u2022",
+          "release(w, g): release only if",
+          "the current claim matches (w, g)",
+          "A release may modify a job only if it still holds the current generation."
+        ],
+        "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
+        "redesign": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+        "questions": [],
+        "alt": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
+        "review": {
+          "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
+          "checks": [
+            "state and generation identity",
+            "permitted and prohibited transitions",
+            "legend wording",
+            "default house typography",
+            "native print envelope"
+          ],
+          "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+            "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 397.973,
+            "minimum_prose_font_pt": 9.963,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 29,
+            "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+            "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+            "status": "passed"
+          }
+        },
+        "fidelity_review": {
+          "stem": "in-flight-ownership-states",
+          "source": "book/assets/in-flight-ownership-states.svg",
+          "status": "corrected",
+          "evidence": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+          "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/in-flight-ownership-states.png",
+          "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+          "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/in-flight-ownership-states.png",
+          "original_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+          "native_sha256": "0610ec587de6da821f739142b83a177745e3f542c74c45de3229ecdae69a5729",
+          "page": 21,
+          "dimensions_cm": [
+            12.7361,
+            7.2935
+          ],
+          "diagnostics": [],
+          "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+          "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+        },
+        "style_review": {
+          "source": "book/assets/in-flight-ownership-states.svg",
+          "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+          "receipt": "book/tikz/receipts/in-flight-ownership-states.json",
+          "decision": "refined",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+          "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+          "fill": "Light gray state nodes and an unfilled ownership legend; no decorative title banner.",
+          "bold": "Bold state identifiers and legend headings; explanatory text remains regular; subtitle and final obligation italic.",
+          "routing": "Unowned to Owned(A,7) to Reclaimable to Owned(B,8); valid release(B,8) returns to Unowned; stale release(A,7) is rejected.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Final SVG and native proof inspected for state identity, cross markers, arrow directions, annotation clearance and readable default house typography. Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+            "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 397.973,
+            "minimum_prose_font_pt": 9.963,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 29,
+            "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+            "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+            "status": "passed"
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "source": "book/assets/in-flight-ownership-states.svg",
+          "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+          "decision": "refined",
+          "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+          "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+          "evidence": [
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "A behavioral model for job ownership with generations.",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Unowned",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Owned",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "(A, 7)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Owned",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "(B, 8)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Reclaimable",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "claim(A, 7)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "expire",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "claim(B, 8)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "release(A, 7) (rejected: stale generation)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "release(B, 8)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "State meaning",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Key transitions",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Unowned \u2014 no active claim",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Owned(w, g) \u2014 job held by worker w",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "with generation g",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Reclaimable \u2014 previous claim",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "expired, job can be claimed",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "\u2022",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "claim(w, g): acquire the job with",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "generation g",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "\u2022",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "expire: previous claim",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "becomes invalid",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "\u2022",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "release(w, g): release only if",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "the current claim matches (w, g)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "A release may modify a job only if it still holds the current generation.",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            }
+          ],
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "checks": [
+            {
+              "text": "A behavioral model for job ownership with generations.",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Unowned",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Owned",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(A, 7)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Owned",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(B, 8)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Reclaimable",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "claim(A, 7)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "expire",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "claim(B, 8)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "release(A, 7) (rejected: stale generation)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "release(B, 8)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "State meaning",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Key transitions",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Unowned \u2014 no active claim"
+            },
+            {
+              "text": "Owned(w, g) \u2014 job held by worker w"
+            },
+            {
+              "text": "with generation g",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Reclaimable \u2014 previous claim"
+            },
+            {
+              "text": "expired, job can be claimed",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "\u2022",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "claim(w, g): acquire the job with"
+            },
+            {
+              "text": "generation g",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "\u2022",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "expire: previous claim"
+            },
+            {
+              "text": "becomes invalid",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "\u2022",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "release(w, g): release only if"
+            },
+            {
+              "text": "the current claim matches (w, g)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "A release may modify a job only if it still holds the current generation.",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+            "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 397.973,
+            "minimum_prose_font_pt": 9.963,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 29,
+            "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+            "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+            "status": "passed"
+          }
+        },
+        "layout_review": {
+          "source": "book/assets/in-flight-ownership-states.svg",
+          "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+          "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+          "baseline_candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+          "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+          "decision": "refined",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            361.0220031738281,
+            206.87899780273438
+          ],
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "successive owned claims",
+                "labels": [
+                  "Owned (A, 7)",
+                  "Owned (B, 8)"
+                ],
+                "align": [
+                  "top",
+                  "bottom",
+                  "center_y"
+                ],
+                "equal_width": true,
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+            "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 397.973,
+            "minimum_prose_font_pt": 9.963,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 29,
+            "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+            "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+            "status": "passed"
+          },
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+            "after_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+            "reviewed_visually": true,
+            "after_dimensions_bp": [
+              449.972,
+              397.973
             ]
           }
         },

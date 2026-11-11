@@ -75,8 +75,9 @@ def recovery(bw=False):
     return f.save()
 
 def ownership(bw=False):
-    f=Figure('in-flight-ownership-states','Ownership Under Contention',444,412,bw)
+    f=Figure('in-flight-ownership-states','Ownership Under Contention',444,272,bw)
     f.text(222,39,'A behavioral model for job ownership with generations.',11,italic=True,anchor='middle')
+    f.text(222,53,'Claims identify (worker, generation).',10.5,anchor='middle')
     for x,w,col in [(15,69,'blue'),(121,72,'blue'),(235,78,'yellow'),(361,72,'blue')]:f.rect(x,90,w,38,col)
     f.text(49.5,113,'Unowned',11,anchor='middle')
     for x,who in [(157,'(A, 7)'),(397,'(B, 8)')]:
@@ -90,21 +91,7 @@ def ownership(bw=False):
     f.text(258,174,'release(A, 7) (rejected: stale generation)',10.5,anchor='middle',red=True)
     f.path('M397,128 C397,242 49.5,242 49.5,129','(397,128) .. controls (397,242) and (49.5,242) .. (49.5,129)')
     f.text(226,230,'release(B, 8)',11,anchor='middle')
-    f.rect(10,250,424,132,'panel',rx=6)
-    f.text(21,267,'State meaning',11.5,True);f.text(240,267,'Key transitions',11.5,True)
-    f.path('M226,265 V373','(226,265) -- (226,373)',False,width=.65)
-    f.rect(21,279,23,13,rx=3);f.rich(52,289,[('Unowned',True),(' — no active claim',False)])
-    f.rect(21,308,23,13,rx=3);f.rich(52,318,[('Owned(w, g)',True),(' — job held by worker w',False)],10)
-    f.text(52,331,'with generation g',10.5)
-    f.rect(21,344,23,13,'yellow',rx=3);f.rich(52,354,[('Reclaimable',True),(' — previous claim',False)],10)
-    f.text(52,367,'expired, job can be claimed',10.5)
-    f.text(242,289,'•',10.5);f.rich(252,289,[('claim(w, g):',True),(' acquire the job with',False)],10)
-    f.text(252,302,'generation g',10.5)
-    f.text(242,323,'•',10.5);f.rich(252,323,[('expire:',True),(' previous claim',False)],10)
-    f.text(252,336,'becomes invalid',10.5)
-    f.text(242,354,'•',10.5);f.rich(252,354,[('release(w, g):',True),(' release only if',False)],10)
-    f.text(252,367,'the current claim matches (w, g)',10.5)
-    f.text(222,400,'A release may modify a job only if it still holds the current generation.',10.5,italic=True,anchor='middle')
+    f.text(222,260,'Release clears ownership only when worker and generation match the current claim.',10.5,italic=True,anchor='middle')
     return f.save()
 
 def main():

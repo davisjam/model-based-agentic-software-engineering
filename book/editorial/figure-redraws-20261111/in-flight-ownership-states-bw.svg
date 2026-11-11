@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="888" height="784" viewBox="0 0 444 392" role="img" aria-labelledby="title desc"><title id="title">Ownership Under Contention</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker></defs><rect width="444" height="392" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="504" viewBox="0 0 444 252" role="img" aria-labelledby="title desc"><title id="title">Ownership Under Contention</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker></defs><rect width="444" height="252" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
 <text x="222" y="39" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">A behavioral model for job ownership with generations.</text>
+<text x="222" y="53" text-anchor="middle" style="font-size:10.5px;fill:#222222">Claims identify (worker, generation).</text>
 <rect x="15" y="90" width="69" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
 <rect x="121" y="90" width="72" height="38" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
 <rect x="235" y="90" width="78" height="38" rx="4" fill="#f7f7f7" stroke="#444444" stroke-width="0.75"/>
@@ -24,25 +25,4 @@
 <text x="258" y="174" text-anchor="middle" style="font-size:10.5px;fill:#222222">release(A, 7) (rejected: stale generation)</text>
 <path d="M397,128 C397,242 49.5,242 49.5,129" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
 <text x="226" y="230" text-anchor="middle" style="font-size:11px;fill:#222222">release(B, 8)</text>
-<rect x="10" y="250" width="424" height="132" rx="6" fill="#ffffff" stroke="#cccccc" stroke-width="0.75"/>
-<text x="21" y="267" text-anchor="start" style="font-size:11.5px;font-weight:bold;fill:#222222">State meaning</text>
-<text x="240" y="267" text-anchor="start" style="font-size:11.5px;font-weight:bold;fill:#222222">Key transitions</text>
-<path d="M226,265 V373" fill="none" stroke="#222222" stroke-width="0.65"/>
-<rect x="21" y="279" width="23" height="13" rx="3" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
-<text xml:space="preserve" x="52" y="289" style="font-size:10.5px"><tspan font-weight="bold">Unowned</tspan><tspan> — no active claim</tspan></text>
-<rect x="21" y="308" width="23" height="13" rx="3" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
-<text xml:space="preserve" x="52" y="318" style="font-size:10px"><tspan font-weight="bold">Owned(w, g)</tspan><tspan> — job held by worker w</tspan></text>
-<text x="52" y="331" text-anchor="start" style="font-size:10.5px;fill:#222222">with generation g</text>
-<rect x="21" y="344" width="23" height="13" rx="3" fill="#f7f7f7" stroke="#444444" stroke-width="0.75"/>
-<text xml:space="preserve" x="52" y="354" style="font-size:10px"><tspan font-weight="bold">Reclaimable</tspan><tspan> — previous claim</tspan></text>
-<text x="52" y="367" text-anchor="start" style="font-size:10.5px;fill:#222222">expired, job can be claimed</text>
-<text x="242" y="289" text-anchor="start" style="font-size:10.5px;fill:#222222">•</text>
-<text xml:space="preserve" x="252" y="289" style="font-size:10px"><tspan font-weight="bold">claim(w, g):</tspan><tspan> acquire the job with</tspan></text>
-<text x="252" y="302" text-anchor="start" style="font-size:10.5px;fill:#222222">generation g</text>
-<text x="242" y="323" text-anchor="start" style="font-size:10.5px;fill:#222222">•</text>
-<text xml:space="preserve" x="252" y="323" style="font-size:10px"><tspan font-weight="bold">expire:</tspan><tspan> previous claim</tspan></text>
-<text x="252" y="336" text-anchor="start" style="font-size:10.5px;fill:#222222">becomes invalid</text>
-<text x="242" y="354" text-anchor="start" style="font-size:10.5px;fill:#222222">•</text>
-<text xml:space="preserve" x="252" y="354" style="font-size:10px"><tspan font-weight="bold">release(w, g):</tspan><tspan> release only if</tspan></text>
-<text x="252" y="367" text-anchor="start" style="font-size:10.5px;fill:#222222">the current claim matches (w, g)</text>
-<text x="222" y="400" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">A release may modify a job only if it still holds the current generation.</text></g></svg>
+<text x="222" y="260" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">Release clears ownership only when worker and generation match the current claim.</text></g></svg>

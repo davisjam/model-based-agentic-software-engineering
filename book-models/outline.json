@@ -1036,7 +1036,7 @@
           "heading_text": "Preserve the Cases a Decision Must Distinguish",
           "topic_sentence": "The input representation can make a decision wrong before any rule is evaluated.",
           "id_source": "derived",
-          "block_index": 14,
+          "block_index": 16,
           "points": []
         },
         {
@@ -1045,12 +1045,12 @@
           "heading_text": "When the Decision Depends on Context",
           "topic_sentence": "Some decisions cannot be made from the object alone.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 20,
           "points": [
             {
               "slug": "image-purpose-and-uncertainty-govern-the-decorative-decision",
               "text": "An image's informational role depends on context; DocAble uses a VLM classification with an explicit conservative policy that retains content when the classification is uncertain.",
-              "block_index": 19
+              "block_index": 21
             }
           ]
         }

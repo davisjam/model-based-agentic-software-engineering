@@ -1,8 +1,9 @@
 % Author-reference redraw; geometry and labels generated with the SVG.
 \begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
-\path[use as bounding box] (0,0) rectangle (444,392);
+\path[use as bounding box] (0,0) rectangle (444,252);
 \begin{scope}[yshift=20bp]
 \node[anchor=base,inner sep=0pt,font={\itshape \fontsize{11}{13.2}\selectfont}] at (222,39) {A behavioral model for job ownership with generations.};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (222,53) {Claims identify (worker, generation).};
 \draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,90) rectangle (84,128);
 \draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,90) rectangle (193,128);
 \draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,90) rectangle (313,128);
@@ -27,27 +28,6 @@
 \node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (258,174) {release(A, 7) (rejected: stale generation)};
 \draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (397,128) .. controls (397,242) and (49.5,242) .. (49.5,129);
 \node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (226,230) {release(B, 8)};
-\draw[fill=black!0,draw=black!25,line width=.65pt,rounded corners=6bp] (10,250) rectangle (434,382);
-\node[anchor=base west,inner sep=0pt,font={\bfseries \fontsize{11.5}{13.8}\selectfont}] at (21,267) {State meaning};
-\node[anchor=base west,inner sep=0pt,font={\bfseries \fontsize{11.5}{13.8}\selectfont}] at (240,267) {Key transitions};
-\draw[line width=0.65bp] (226,265) -- (226,373);
-\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=3bp] (21,279) rectangle (44,292);
-\node[anchor=base west,inner sep=0pt,font=\fontsize{10.5}{12.6}\selectfont] at (52,289) {\textbf{Unowned} — no active claim};
-\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=3bp] (21,308) rectangle (44,321);
-\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (52,318) {\textbf{Owned(w, g)} — job held by worker w};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (52,331) {with generation g};
-\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=3bp] (21,344) rectangle (44,357);
-\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (52,354) {\textbf{Reclaimable} — previous claim};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (52,367) {expired, job can be claimed};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (242,289) {•};
-\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (252,289) {\textbf{claim(w, g):} acquire the job with};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (252,302) {generation g};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (242,323) {•};
-\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (252,323) {\textbf{expire:} previous claim};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (252,336) {becomes invalid};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (242,354) {•};
-\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (252,354) {\textbf{release(w, g):} release only if};
-\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (252,367) {the current claim matches (w, g)};
-\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (222,400) {A release may modify a job only if it still holds the current generation.};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (222,260) {Release clears ownership only when worker and generation match the current claim.};
 \end{scope}
 \end{tikzpicture}

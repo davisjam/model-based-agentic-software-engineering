@@ -237,5 +237,40 @@ class CompactHorizonColumnsTests(unittest.TestCase):
             reasoning_horizon_columns(self.fixture().replace('print-columns-end:', 'missing-end:'))
 
 
+
+class CompactPolicyColumnsTests(unittest.TestCase):
+    def fixture(self):
+        return ('Before.\n% <!-- print-columns-start: observed-vs-declared -->\n'
+                'The introduction explains the hypothetical example.\n\n'
+                r'\begin{figure}[htbp]\centering'
+                r'\includegraphics[page=4,alt={Complete alternative text}]{pool.pdf}'
+                r'\caption{Complete caption.}\label{observed-vs-declared}\end{figure}'
+                '\n% <!-- print-columns-end: observed-vs-declared -->\n'
+                'The qualification remains full width.')
+
+    def test_preserves_one_numbered_accessible_figure_and_all_prose(self):
+        from mage_figure_layout import observation_policy_columns
+        result = observation_policy_columns(self.fixture())
+        for phrase in ['Before.', 'The introduction explains the hypothetical example.',
+                       'The qualification remains full width.', r'\caption{Complete caption.}',
+                       r'\label{observed-vs-declared}',
+                       r'\includegraphics[page=4,alt={Complete alternative text}]{pool.pdf}']:
+            self.assertEqual(result.count(phrase), 1)
+        self.assertEqual(result.count(r'\begin{bookinlinefigure}'), 1)
+        self.assertIn(r'\end{minipage}\par', result)
+        self.assertNotIn(r'\small', result)
+        self.assertNotIn(r'\clearpage', result)
+
+    def test_rejects_extra_figure_or_content_that_cannot_share_a_paragraph(self):
+        from mage_figure_layout import observation_policy_columns
+        for inserted in [r'\section{Next}', r'\begin{bookbox}{inset}{A}',
+                         r'\footnote{Note}', 'Another paragraph.\n\n']:
+            with self.subTest(inserted=inserted), self.assertRaises(ValueError):
+                observation_policy_columns(self.fixture().replace('The introduction',
+                                                                  inserted+' The introduction'))
+        with self.assertRaises(ValueError):
+            observation_policy_columns(self.fixture().replace('print-columns-end:', 'missing-end:'))
+        self.assertEqual(observation_policy_columns('Unrelated prose.'), 'Unrelated prose.')
+
 if __name__ == '__main__':
     unittest.main()
