@@ -225,6 +225,32 @@ Modeling does not require a complete specification. Engineers can represent what
 
 Ask whether two workers can process the same job at once, and the color of the web interface falls away; you need who can own work, how ownership is acquired, when it expires, and what happens after a crash. Ask instead whether one service may bypass another, and the ownership details fall away; now you need components, communication edges, and the seams a call must pass through. The system did not change. The question did. The useful reduction is not always obvious at first. Sometimes you have to look at the problem differently to see which relationships matter.
 
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: ENGINEERING -->
+
+% mage-box-prefix: Inset —
+
+% <!-- print-keep-with-next: page -->
+
+\begin{bookbox}{inset}{Debugging Models Before Code}
+\label{inset-debugging-models-before-code}
+One question may need several models. Suppose we are designing a battery-powered device that collects measurements and transmits them over a radio. Can any measurements be lost?
+
+Start with a structural model, \autoref{sensor-buffer-radio}(a). The sensor produces measurements, the buffer stores them, and the radio transmits them. The model shows the data path. To decide whether the buffer can overflow, we need to know how quickly it fills and when it empties.
+
+Add the quantities in \autoref{sensor-buffer-radio}(b). The sensor samples once a second, the buffer holds ten samples and discards new arrivals when full, and the radio transmits the accumulated samples every twelve seconds. The behavioral model in \autoref{sensor-buffer-radio}(c) puts those quantities on one timeline. Start with an empty buffer, take the first sample at one second, and let the radio empty the buffer at twelve seconds, just before that second's sample. The buffer fills at ten seconds. The eleventh sample arrives before the radio runs, so there is no room to store it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,alt={A sensor feeds a ten-sample buffer once a second. It fills at ten seconds and loses the next sample, one second before the radio first transmits.}]{book/latex/assets/sensor-buffer-radio-de7cbf9651.pdf}
+\caption[Three models of one sensor system]{\emph{Three models of one sensor system.} Structure shows where measurements flow, and quantities specify the rates and capacity. Putting the events on a timeline exposes the loss of the eleventh sample before the radio first runs.}
+\label{sensor-buffer-radio}
+\end{figure}
+
+We can now investigate alternatives: transmit more frequently, increase the buffer capacity, sample less often, or change the transmission policy. Each affects energy consumption, memory, or measurement quality. We have learned enough to change the design before deciding on interrupt handlers, allocation, or radio drivers. I would much rather discover this problem by examining a few small models than by debugging a thousand lines of C.
+\end{bookbox}
+
 \begin{quote}
 \textbf{Hold the system constant. Change the engineering question. Watch the model change.}
 \end{quote}
@@ -271,7 +297,7 @@ These representations may be written as diagrams, tables, type declarations, or 
 
 % <!-- point: purposeful-reduction-is-judgment-not-algorithm | Purposeful reduction is a judgment process, not an algorithm: no procedure takes an engineering question and returns the right model, so the engineer reasons toward the boundary from more than one direction and revises it as evidence arrives. | terms: modeling-principle, degrees-of-freedom -->
 
-Choosing those distinctions requires engineering judgment. No procedure takes an engineering question and returns the right model. The engineer reasons toward the boundary --- what the model must preserve, what it may leave free --- from more than one direction, and revises it as evidence arrives.
+How much is enough? There is no universal answer. Deciding what the model must preserve, and what it can leave open, is the engineer’s job. We can approach that decision from more than one direction, and revise it as evidence arrives.
 
 % <!-- point: reason-top-down-from-the-question | Reasoning top-down from the question asks what must remain true and which distinctions expressing or evaluating that obligation requires; the model preserves those, and the remaining implementation choices stay free. | terms: degrees-of-freedom, tolerance -->
 
@@ -340,9 +366,9 @@ A model can preserve the right distinctions without completely defining what tho
 
 That is often enough. But representations can make progressively stronger semantic commitments: they can move meaning from the interpreter into the representation itself. Boxes can become typed entities with stable identities. Arrows can become declared relations with defined source and target types. Properties can acquire units, multiplicities, constraints, or invariants. A modeling language can define rules for composition and analysis. At the stronger end, tools can determine mechanically what a representation means well enough to query, transform, check, simulate, or generate from it. Call this axis \textbf{semantic commitment}: how much of the representation\textquotesingle s meaning is carried explicitly by the representation itself, rather than supplied by the humans or agents interpreting it.
 
-% <!-- point: semantic-commitment-is-distinct-from-purposeful-reduction | Purposeful reduction governs what the model says; semantic commitment governs how much the model itself says about what it means. | terms: semantic-commitment, model-as-map -->
+% <!-- point: semantic-commitment-is-distinct-from-purposeful-reduction | Purposeful reduction determines which distinctions to preserve; semantic commitment determines how precisely the representation defines them. | terms: semantic-commitment, model-as-map -->
 
-This axis is distinct from purposeful reduction. Two models may preserve exactly the same engineering distinctions while making different semantic commitments. An informal component sketch and a typed system model might contain the same four components and three dependencies. They can preserve the same engineering facts while carrying different amounts of their meaning explicitly. \textbf{Purposeful reduction governs what the model says. Semantic commitment governs how much the model itself says about what it means.}
+This axis is distinct from purposeful reduction. An informal sketch and a structured system model might both show the same four components and three dependencies. In the sketch, a reader may have to infer whether an arrow denotes permission to call or a call observed at runtime. The structured model can define those as distinct relations and specify which kinds of components each can connect. \textbf{Purposeful reduction determines which distinctions the model preserves. Semantic commitment determines how precisely the model defines those distinctions.}
 
 % <!-- point: stronger-semantics-buy-capabilities-and-create-obligations | Stronger semantics buy capabilities and create obligations; they are not inherently better. | terms: semantic-commitment, degrees-of-freedom -->
 
@@ -538,6 +564,8 @@ This chapter does not attempt to enumerate every useful model nor every conseque
 Start with the models, patterns, and analyses your field has already developed. In software engineering, that repertoire includes techniques from model-based systems engineering, distributed systems, and operations research. State machines capture legal transitions; dependency and data-flow graphs support reachability questions; schemas capture entities and relations; queueing and resource models expose capacity and contention; decision tables and constraint systems expose permitted combinations. Each comes with known semantics, applicable analyses, strengths, and tradeoffs.
 
 An engineer who needs to sort data does not ordinarily invent a sorting algorithm from first principles. The engineer recognizes the problem and selects among established algorithms according to the properties and tradeoffs that matter. Modeling works the same way: recognize the engineering question, then choose a representation that preserves what is needed to answer it. Occasionally the established repertoire is inadequate and invention is required. Recognizing when that is true, and devising the new abstraction, is precisely the kind of judgment for which engineers are valuable.
+
+MAGE is not committed to a particular modeling language or toolchain. A useful model may be a diagram, a table, a typed schema, or a formal specification. Agents can help construct and maintain these representations, including by operating tools whose interfaces would otherwise make modeling laborious. The engineer chooses the representation according to the question it must answer and the analyses it should support. The notation is a means to that end, not the method itself.
 
 Training on code, textbook-style explanations, and programming exercises can give a foundation model reusable programming knowledge\citep{chen2021codex,gunasekar2023textbooks}. An agent may already be familiar with established modeling techniques. It may recognize a state-machine pattern or suggest a queueing model without the engineer teaching the technique from first principles. The engineer still supplies the purpose of the representation, the system-specific meanings of its entities and relations, and the obligations it must preserve. Familiarity with a notation is a useful starting point; it does not establish which interpretation or assumptions fit this system.
 

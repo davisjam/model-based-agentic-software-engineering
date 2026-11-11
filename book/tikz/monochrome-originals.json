@@ -1,4 +1,8 @@
 {
+  "book/assets/sensor-buffer-radio.svg": {
+    "reason": "The original uses labels, a dashed outline, and grayscale to distinguish the overflow event.",
+    "provenance": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex"
+  },
   "book/assets/docable-seip-work-261028.svg": {
     "reason": "Original chart already uses monochrome fills, patterns and line styles.",
     "generator": "book/figures/docable-seip-261028/generate.py",

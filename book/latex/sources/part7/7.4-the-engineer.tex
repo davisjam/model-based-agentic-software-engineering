@@ -193,6 +193,10 @@ The object of review moves; accountability does not. An engineer has never neede
 
 Early evidence describes a related change in engineers\textquotesingle{} experience. In questionnaires administered six months apart, Vella and Blincoe found that most respondents reported spending less time writing code, with the relative balance of work shifting toward verification. Their qualitative accounts describe \emph{supervisory engineering work}: directing, evaluating, and correcting AI output. Perceived productivity remained positive. Ratings of flow and cognitive-load benefits declined in the matched cohort, but those declines were not statistically significant\citep{vella2026impact}. These are reports of experience, not measurements of output. MAGE\textquotesingle s proposal is to give that supervision better reasoning surfaces through explicit models and evidence.
 
+Let me raise a concern about where this leaves the engineer. Is supervising agents necessarily a higher-skilled activity, or merely a more tedious one? There is nothing inherently satisfying about inspecting work one could have done oneself, finding mistakes, and asking for another attempt. Nor does spending less time writing code automatically mean spending more time exercising engineering judgment.
+
+As implementation becomes cheaper, organizations have a choice. They can ask their engineers to \textbf{shift left}, toward requirements, specification, design, and the consequential decisions that shape a system. Or they can ask them to \textbf{shift right}, toward endless reviews of agent-generated work. The former offers an opportunity to exercise engineering judgment over larger systems; the latter risks turning engineers into full-time inspectors of machine output. I suspect that sustained professional satisfaction will depend on which direction organizations choose. MAGE offers a way to make the first path practical: improve the engineering environment so that recurring mistakes no longer require repeated human intervention.
+
 % <!-- point: answerability-requires-competence-and-a-path-to-change | Real answerability requires competence and a path to change the environment, or responsibility becomes nominal. -->
 
 Real answerability requires competence and authority. The reviewer has to distinguish local defects from structural problems, and a structural diagnosis needs a path to the architecture, models, mechanisms, or infrastructure that can address it. Otherwise responsibility becomes nominal: the engineer can see the problem but cannot change the environment that produces it.
@@ -203,11 +207,9 @@ The correspondence discipline of \magevalue{chapter:modeling} applies to the rev
 
 % <!-- point: probability-chain-locates-residual-uncertainty-upstream | Better realization does not establish that the encoded obligations were right; familiar implementations can be produced from little explicit specification. -->
 
-Better realization does not establish that the encoded obligations were right. This matters especially when agents can produce familiar implementations from little explicit specification.
-
 % <!-- point: interpretation-term-is-not-constant-across-the-work | The interpretation burden within realization varies: familiar patterns can let an agent supply omitted detail, which is useful for exploration and prototyping. -->
 
-For an ordinary database interaction, a familiar algorithm, or a conventional architectural pattern, a capable agent may need very little explicit specification. Its prior experience supplies much of what was left unsaid. This is enormously useful for exploration and prototyping.
+Better realization does not establish that the encoded obligations were right. For an ordinary database interaction, a familiar algorithm, or a conventional architectural pattern, a capable agent can supply much of what the engineer left unsaid. This is enormously useful for exploration and prototyping.
 
 % <!-- point: familiarity-reduces-specification-for-production-not-assurance | Production raises a different question: a familiar pattern can make the agent likely to do the right thing without making the right thing explicit enough to check, so familiarity can reduce the specification needed to produce software without reducing the specification needed to assure it. -->
 
@@ -215,11 +217,9 @@ Production raises a different question. A familiar pattern may make the agent li
 
 % <!-- point: the-trouble-is-the-requirements | Cheapening realization moved the bottleneck rather than removing it: one expensive part of engineering became dramatically cheaper, and the opportunity now is to represent consequential requirements well enough that the new realization capacity can be used. -->
 
-The trouble is the requirements. In software engineering, it always has been\citep{brooks1987}. Agents promise to get us to that discovery more quickly, and that is good news: one expensive part of engineering has become dramatically cheaper. The opportunity now is to improve the next part of the production system---to represent consequential requirements well enough that the new realization capacity can be used without losing what matters.
-
 % <!-- point: represent-consequential-intent-not-the-implementation | The engineering response is a better representation of consequential intent, not a more complete specification of the implementation: capable agents can hold realization choices open, so the engineer must represent what matters well enough to survive that freedom. -->
 
-The goal is a better representation of consequential intent, not a more complete specification of the implementation. Capable agents allow many realization choices to remain open; engineers must establish which properties must survive that freedom.
+The trouble is the requirements. In software engineering, it always has been\citep{brooks1987}. Agents promise to get us to that discovery more quickly, and that is good news: one expensive part of engineering has become dramatically cheaper. The opportunity now is to represent consequential intent well enough to use this capacity. Capable agents allow many realization choices to remain open; engineers must establish which properties must survive that freedom.
 
 % <!-- point: review-shift-changes-the-questions-not-the-expertise | Moving review toward models and evidence does not reduce the expertise required of the engineer; it changes the questions that expertise must answer. -->
 

@@ -84,6 +84,8 @@ Cheap implementation has another consequence: agents can produce unnecessary com
 
 Much of my work with agents comes down to deciding what is an implementation detail and what is not. I generally do not care what a variable is called or how an ordinary function is organized, provided the result satisfies its obligations. I do care whether the implementation crosses an architectural boundary, introduces a new dependency, or changes the behavior of a service that other components rely on. The difficulty is that these distinctions are not always apparent in advance. Sometimes an agent makes a perfectly reasonable choice, I look at the result, and discover that I care about something I had never thought to specify. That is part of engineering. The next step is to decide whether the newly discovered obligation should become explicit, so that future work does not have to discover it again.
 
+A useful rule is to distinguish three kinds of decisions. If a choice follows mechanically from an established model, generate it rather than asking an agent to reason it out repeatedly. If several implementations satisfy the obligations, delegate the choice and let the agent explore them. If experience reveals a consequential decision that later work will face again, preserve it in the engineering environment. That may mean recording a model, adding a constraint, or establishing a check. The point is not to eliminate judgment, but to spend it where it is needed rather than repeatedly making the same decision.
+
 % <!-- print-keep-with-next: 8 -->
 
 Cheap implementation changes engineering experience in three related ways.

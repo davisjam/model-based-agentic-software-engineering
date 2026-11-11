@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="414" height="160" viewBox="0 0 414 160"
+     role="img" aria-labelledby="sensor-title sensor-description"
+     font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10.5" fill="#171717">
+  <title id="sensor-title">Three models of a sensor, buffer, and radio</title>
+  <desc id="sensor-description">The sensor sends measurements through the buffer to the radio.
+    Sampling occurs once per second, the buffer holds ten measurements, and the first radio
+    transmission is at twelve seconds. The initially empty buffer becomes full at ten seconds.
+    At eleven seconds the next sample is lost. At twelve seconds the radio empties the buffer
+    before the sample arrives, leaving one sample stored.</desc>
+  <!-- Fixed positions align the event trace with its occupancy values across the three panels. -->
+  <defs>
+    <marker id="sensor-arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0L5 2.5L0 5Z" fill="#333333"/>
+    </marker>
+  </defs>
+  <text x="10" y="16" font-size="12" font-weight="700">(a) Structure</text>
+  <text x="233" y="16" font-size="12" font-weight="700">(b) Quantities</text>
+  <g fill="#ffffff" stroke="#444444" stroke-width="0.85">
+    <rect x="10" y="32" width="52" height="25" rx="3"/>
+    <rect x="88" y="32" width="52" height="25" rx="3"/>
+    <rect x="166" y="32" width="52" height="25" rx="3"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="36" y="48">Sensor</text>
+    <text x="114" y="48">Buffer</text>
+    <text x="192" y="48">Radio</text>
+    <text x="114" y="73">Measurement flow</text>
+  </g>
+  <path d="M64 44.5H86" fill="none" stroke="#333333" marker-end="url(#sensor-arrow)"/>
+  <path d="M142 44.5H164" fill="none" stroke="#333333" marker-end="url(#sensor-arrow)"/>
+  <text x="233" y="35">Sample interval</text>
+  <text x="233" y="52">Buffer capacity</text>
+  <text x="233" y="69">Radio interval</text>
+  <g text-anchor="end">
+    <text x="404" y="35">1 s</text>
+    <text x="404" y="52">10 samples</text>
+    <text x="404" y="69">12 s</text>
+  </g>
+  <path d="M10 84H404M10 122H404" fill="none" stroke="#777777" stroke-width="0.7"/>
+  <text x="10" y="101" font-size="12" font-weight="700">(c) Behavior through the first transmission</text>
+  <text x="10" y="117">Time (s)</text>
+  <text x="10" y="137">Samples stored</text>
+  <g text-anchor="middle">
+    <text x="124" y="117">0</text>
+    <text x="162" y="117">1</text>
+    <text x="199" y="117">2</text>
+    <text x="237" y="117">…</text>
+    <text x="275" y="117">10</text>
+    <text x="329" y="117" font-weight="700">11</text>
+    <text x="384" y="117">12</text>
+    <text x="124" y="137">0</text>
+    <text x="162" y="137">1</text>
+    <text x="199" y="137">2</text>
+    <text x="237" y="137">…</text>
+    <text x="275" y="137">10</text>
+    <text x="329" y="137" font-weight="700">10</text>
+    <text x="384" y="137">1</text>
+  </g>
+  <path d="M316 105H342V142H316Z" fill="none" stroke="#444444" stroke-dasharray="2 2"/>
+  <text x="215" y="154" font-weight="700">11 s: sample lost</text>
+  <text x="404" y="154" text-anchor="end">12 s: send, then sample</text>
+</svg>

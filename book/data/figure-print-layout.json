@@ -1,6 +1,11 @@
 {
   "version": 1,
   "figures": {
+    "sensor-buffer-radio": {
+      "width_bp": 414,
+      "placement": "centered",
+      "inset_placement": "inline"
+    },
     "part3-nav-arc": {
       "width_bp": 270,
       "placement": "centered"
