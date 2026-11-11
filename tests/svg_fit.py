@@ -23,6 +23,7 @@ When it flags a figure, the report points the reader at the fix runbook so an ag
 """
 from __future__ import annotations
 
+import json
 import math
 import os
 import re
@@ -296,7 +297,8 @@ def check_svg_text_fit():
 
 
 # ---- page-fit sensor: a figure + its caption taller than the page (BLOCKING) -------------------------
-# The print build sizes each `<!-- figure: -->` image to IMAGE_WIDTH_FRAC of the text measure and applies
+# Figures with reviewed print-layout entries use their declared width in PDF big points (72bp/in).
+# Undeclared figures retain this sensor's legacy IMAGE_WIDTH_FRAC estimate of the text measure. It applies
 # no height cap, so a pathologically tall viewBox — OR a moderately tall one under a LONG caption — projects
 # past the page bottom and clips (the folio collision the messy-timeline figure hit at 11.6in; the
 # economic-synthesis-frontier caption overrun the author caught on p254). This reads each asset's viewBox
@@ -328,12 +330,14 @@ _CAPTION_LINE_IN = CAPTION_PT * CAPTION_LEADING / 72.0
 _FIGURE_MARKER_RE = re.compile(r"<!--\s*figure:\s*assets/([^\s|]+)\s*\|\s*(.*?)-->", re.S)
 
 
-def _figure_captions() -> dict[str, str]:
-    """Map each `assets/<name>.svg` basename to its caption text, harvested from every `<!-- figure: -->`
+def _figure_print_context() -> tuple[dict[str, str], dict[str, str]]:
+    """Map each `assets/<name>.svg` basename to its caption and adjacent authored label,
+    harvested from every `<!-- figure: -->`
     marker in the shipped book markdown (drafts under `_design/` are excluded — they never render). The
     caption is the join key the page-fit gate needs: the SVG file alone cannot know how much prose rides
     below it on the page."""
     captions: dict[str, str] = {}
+    labels: dict[str, str] = {}
     book_dir = os.path.join(ROOT, "book")
     # PRUNED, not skipped. The old loop `continue`d on a `_design` dirpath, which dropped that
     # directory's FILES and still descended through it — and it carried no exclusion at all for the
@@ -346,12 +350,40 @@ def _figure_captions() -> dict[str, str]:
                                      discard=pruned_walk.named("_design", "node_modules"),
                                      skip_hidden=False):
         try:
-            text = open(md, encoding="utf-8").read()
+            with open(md, encoding="utf-8") as stream:
+                text = stream.read()
         except OSError:
             continue
-        for asset, caption in _FIGURE_MARKER_RE.findall(text):
-            captions[asset.strip()] = re.sub(r"\s+", " ", caption).strip()
-    return captions
+        for match in _FIGURE_MARKER_RE.finditer(text):
+            asset, caption = match.groups()
+            asset = asset.strip()
+            captions[asset] = re.sub(r"\s+", " ", caption).strip()
+            # Layout is keyed by the authored label, not the asset basename.
+            # Blockquote prefixes may separate an inset's label and figure.
+            label = re.search(r"<!--\s*label:\s*([^\s]+)\s*-->[\s>]*$",
+                              text[:match.start()])
+            if label:
+                labels[asset] = label[1]
+            else:
+                labels.pop(asset, None)
+    return captions, labels
+
+
+def _declared_figure_widths_in() -> dict[str, float]:
+    """Read the same authored width contract used by mage_figure_layout."""
+    path = os.path.join(ROOT, "book", "data", "figure-print-layout.json")
+    with open(path, encoding="utf-8") as stream:
+        data = json.load(stream)
+    if data.get("version") != 1 or not isinstance(data.get("figures"), dict):
+        raise ValueError("Unsupported figure print layout")
+    widths = {}
+    for label, rule in data["figures"].items():
+        width = rule.get("width_bp")
+        if (rule.get("placement") != "centered" or isinstance(width, bool) or
+                not isinstance(width, (int, float)) or not 180 <= width <= 450):
+            raise ValueError("Invalid centered print width for " + label)
+        widths[label] = width / 72.0
+    return widths
 
 
 def _caption_height_in(caption: str) -> float:
@@ -376,17 +408,22 @@ def _viewbox_dims(root: ET.Element) -> tuple[float, float] | None:
 def check_svg_page_fit():
     """Scan every `book/assets/*.svg`; flag any whose projected image height PLUS its caption overflows the page.
 
-    image_height = IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN * (viewBox_h / viewBox_w); caption_height is estimated
+    image_height = declared_width_in * (viewBox_h / viewBox_w), using the reviewed print layout
+    when present and the legacy text-measure estimate otherwise; caption_height is estimated
     from the real `<!-- figure: -->` caption text. A figure whose image + caption clears PAGE_HEIGHT_IN clips
     on the page. When the caption text can't be located, fall back to the flat-budget figure-only check
     (image > PAGE_FIT_LIMIT_IN). BLOCKING: FAIL on any overflow (deterministic — a pure function of the
-    viewBox and the caption string; the tree is drained to 0 at promotion).
+    viewBox, declared width, and caption string; the tree is drained to 0 at promotion).
     """
     assets_dir = os.path.join(ROOT, "book", "assets")
     if not os.path.isdir(assets_dir):
         return PASS, ["no book/assets/ dir — nothing to scan"]
 
-    captions = _figure_captions()
+    captions, labels = _figure_print_context()
+    try:
+        widths = _declared_figure_widths_in()
+    except (OSError, ValueError, TypeError, AttributeError) as error:
+        return FAIL, ["Cannot read declared figure print widths: " + str(error)]
     issues: list[str] = []
     for fn in sorted(os.listdir(assets_dir)):
         if not fn.endswith(".svg"):
@@ -401,7 +438,8 @@ def check_svg_page_fit():
         w, h = dims
         if w <= 0:
             continue
-        image = IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN * (h / w)
+        image_width = widths.get(labels.get(fn), IMAGE_WIDTH_FRAC * TEXT_WIDTH_IN)
+        image = image_width * (h / w)
         caption = captions.get(fn)
         if caption is not None:
             cap_h = _caption_height_in(caption)
@@ -409,7 +447,7 @@ def check_svg_page_fit():
             if total > PAGE_HEIGHT_IN:
                 issues.append(
                     f"book/assets/{fn}: image {image:.2f}in + caption {cap_h:.2f}in = {total:.2f}in exceeds "
-                    f"page height {PAGE_HEIGHT_IN:.2f}in (viewBox {w:.0f}x{h:.0f}, aspect {h / w:.2f}; caption "
+                    f"page height {PAGE_HEIGHT_IN:.2f}in (print width {image_width:.2f}in; viewBox {w:.0f}x{h:.0f}, aspect {h / w:.2f}; caption "
                     f"{len(caption)} chars) — densify the figure (cut vertical slack, keep the viewBox width so "
                     f"text stays legible), shorten the caption, or split the figure")
         elif image > PAGE_FIT_LIMIT_IN:
