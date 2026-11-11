@@ -10,62 +10,81 @@
     "Engineering obligation Consequential distinctions that must be preserved",
     "Scaffolding Additional structure this agent needs to interpret and satisfy the obligation reliably",
     "Degrees of freedom Implementation choices left to the agent",
-    "Obligation boundary Set by the problem; does not move with capability",
-    "Specification boundary Set by obligation and agent capability",
-    "Greater capability can reduce scaffolding"
+    "Obligation boundary Determined by the problem",
+    "Specification boundary Determined by obligation and agent capability",
+    "Stronger agents need less scaffolding"
   ],
   "bw_encoding": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white.",
-  "redesign": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "redesign": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
   "questions": [],
   "alt": "A specified region stacks the engineering obligation above scaffolding. The obligation boundary is fixed by the engineering problem; the specification boundary depends on both obligation and agent capability. Below are implementation choices left to the agent. An upward capability arrow indicates that greater capability can reduce required scaffolding.",
   "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
+    "reference": "Author Figure 2.2 wording request, 2026-11-11",
     "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
+      "amended labels",
+      "boundary relationships",
+      "native-size layout",
+      "monochrome pixels",
+      "semantic typography"
     ],
-    "outcome": "Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
-    "strict_compile": "zero warnings, overfull boxes, missing glyphs or errors",
-    "native_dimensions_cm": [
-      14.0014,
-      7.26
-    ]
-  },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e",
-    "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
-    "fill": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white.",
-    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; SCAFFOLDING; DEGREES OF FREEDOM; SPECIFIED REGION; Obligation boundary; Specification boundary. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
-    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "outcome": "Inspected standalone native-size proof; amended labels fit without changing the layout.",
     "validation": {
-      "date": "2026-11-05",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-      "page": 14,
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-2-proof/figure-2-2.pdf",
+      "proof_sha256": "8e7b49f1880a3bc9477dde58a6532c454aaaed218690184bea6c07e9b3fb8b86",
+      "page": 1,
       "width_bp": 396.891,
       "height_bp": 204.955,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+      "semantic_typography_checks": 11,
+      "audit_sha256": "72b258b944787363d3c17bdf50f01e5e3afd5b54a28c23e946eb73ba4aebac8a",
+      "typography_audit_sha256": "8e84bd29474dc442f45464355042dc8e176cc5ff661635ffbb84ecae6a1afafa",
       "status": "passed",
-      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
+      "visual_review": "Inspected standalone native-size proof; amended labels fit without changing the layout."
+    }
+  },
+  "style_review": {
+    "source": "book/assets/specified-region.svg",
+    "candidate": "book/tikz/figures/specified-region.tex",
+    "receipt": "book/tikz/receipts/specified-region.json",
+    "decision": "refined",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e",
+    "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
+    "fill": "Only the fixed engineering obligation uses 8%; scaffolding, free choices and outer territory are white.",
+    "bold": "Source-derived emphasis includes ENGINEERING OBLIGATION; SCAFFOLDING; DEGREES OF FREEDOM; SPECIFIED REGION; Obligation boundary; Specification boundary. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Inspected the 2026-11-11 standalone proof at native size and enlarged. Three amended labels fit; regions, boundary lines, and capability arrow retain their relationships.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-2-proof/figure-2-2.pdf",
+      "proof_sha256": "8e7b49f1880a3bc9477dde58a6532c454aaaed218690184bea6c07e9b3fb8b86",
+      "page": 1,
+      "width_bp": 396.891,
+      "height_bp": 204.955,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11,
+      "audit_sha256": "72b258b944787363d3c17bdf50f01e5e3afd5b54a28c23e946eb73ba4aebac8a",
+      "typography_audit_sha256": "8e84bd29474dc442f45464355042dc8e176cc5ff661635ffbb84ecae6a1afafa",
+      "status": "passed",
+      "visual_review": "Inspected standalone native-size proof; amended labels fit without changing the layout."
     },
     "book_references": [],
     "revision_history": [
       {
         "superseded_date": "2026-11-05",
         "review": {
+          "source": "book/assets/specified-region.svg",
+          "candidate": "book/tikz/figures/specified-region.tex",
+          "receipt": "book/tikz/receipts/specified-region.json",
+          "decision": "refined",
           "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
           "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
           "status": "reviewed",
@@ -90,15 +109,36 @@
           },
           "book_references": []
         }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+        "change": "Author requested clearer capability and boundary labels.",
+        "validation": {
+          "date": "2026-11-05",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+          "page": 14,
+          "width_bp": 396.891,
+          "height_bp": 204.955,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 9,
+          "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+          "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+          "status": "passed",
+          "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
+        }
       }
     ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/specified-region.svg",
+    "candidate": "book/tikz/figures/specified-region.tex",
     "decision": "refined",
     "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e",
-    "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
-    "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+    "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
     "evidence": [
       {
         "source_text": "ENGINEERING OBLIGATION",
@@ -197,6 +237,7 @@
         ]
       }
     ],
+    "reason": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
     "checks": [
       {
         "text": "ENGINEERING OBLIGATION",
@@ -231,35 +272,43 @@
         "bold": false
       },
       {
-        "text": "Set by the problem; does not move with capability",
+        "text": "Determined by the problem",
+        "bold": false
+      },
+      {
+        "text": "Stronger agents need less scaffolding",
+        "bold": false
+      },
+      {
+        "text": "Determined by obligation and agent capability",
         "bold": false
       }
     ],
     "validation": {
-      "date": "2026-11-05",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-      "page": 14,
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-2-proof/figure-2-2.pdf",
+      "proof_sha256": "8e7b49f1880a3bc9477dde58a6532c454aaaed218690184bea6c07e9b3fb8b86",
+      "page": 1,
       "width_bp": 396.891,
       "height_bp": 204.955,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+      "semantic_typography_checks": 11,
+      "audit_sha256": "72b258b944787363d3c17bdf50f01e5e3afd5b54a28c23e946eb73ba4aebac8a",
+      "typography_audit_sha256": "8e84bd29474dc442f45464355042dc8e176cc5ff661635ffbb84ecae6a1afafa",
       "status": "passed",
-      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
+      "visual_review": "Inspected standalone native-size proof; amended labels fit without changing the layout."
     },
     "revision_history": [
       {
         "superseded_date": "2026-11-05",
         "review": {
-          "review": "book/tikz/typography-review.json",
+          "source": "book/assets/specified-region.svg",
+          "candidate": "book/tikz/figures/specified-region.tex",
           "decision": "refined",
           "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
           "candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
-          "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
           "evidence": [
             {
               "source_text": "ENGINEERING OBLIGATION",
@@ -358,6 +407,7 @@
               ]
             }
           ],
+          "reason": "Restore the source typography that distinguishes named concepts, headings and explanatory text.",
           "checks": [
             {
               "text": "ENGINEERING OBLIGATION",
@@ -406,34 +456,68 @@
             "unapproved_compile_diagnostics": 0,
             "geometry_findings": 0,
             "monochrome_pixels": true,
-            "semantic_typography_checks": 9,
-            "book_font_inheritance": {
-              "configuration": "latex/book-fonts.tex",
-              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-              "reference": "latex/build/tikz/body-font-reference.pdf",
-              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-              "body_faces": [
-                "SourceSans3-Bold",
-                "SourceSans3-BoldIt",
-                "SourceSans3-It",
-                "SourceSans3-Regular"
-              ]
-            }
+            "semantic_typography_checks": 9
           }
+        }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+        "change": "Author requested clearer capability and boundary labels.",
+        "validation": {
+          "date": "2026-11-05",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+          "page": 14,
+          "width_bp": 396.891,
+          "height_bp": 204.955,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 9,
+          "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+          "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+          "status": "passed",
+          "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
         }
       }
     ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The specification region, obligation, scaffolding, and freedom have distinct enclosing/semantic roles. Their deliberate unequal heights and boundary markers remain legible.",
-    "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+    "source": "book/assets/specified-region.svg",
+    "candidate": "book/tikz/figures/specified-region.tex",
+    "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e",
+    "baseline_candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
+    "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
+    "decision": "refined",
+    "reason": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      396.8909912109375,
+      204.9550018310547
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-2-proof/figure-2-2.pdf",
+      "proof_sha256": "8e7b49f1880a3bc9477dde58a6532c454aaaed218690184bea6c07e9b3fb8b86",
+      "page": 1,
+      "width_bp": 396.891,
+      "height_bp": 204.955,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11,
+      "audit_sha256": "72b258b944787363d3c17bdf50f01e5e3afd5b54a28c23e946eb73ba4aebac8a",
+      "typography_audit_sha256": "8e84bd29474dc442f45464355042dc8e176cc5ff661635ffbb84ecae6a1afafa",
+      "status": "passed",
+      "visual_review": "Inspected standalone native-size proof; amended labels fit without changing the layout."
+    },
     "page_layout": {
       "decision": "retained",
-      "reason": "Retain spatial region/comparison layout: region geometry carries meaning and all explanations remain legible without making the spatial relations taller.",
+      "reason": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
       "before_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
-      "after_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+      "after_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
       "before_dimensions_bp": [
         396.8909912109375,
         204.9550018310547
@@ -452,30 +536,42 @@
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "date": "2026-11-05",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-      "page": 14,
-      "width_bp": 396.891,
-      "height_bp": 204.955,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-      "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
-      "status": "passed",
-      "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
-    },
     "revision_history": [
       {
         "superseded_date": "2026-11-05",
         "review": {
-          "review": "book/tikz/layout-review.json",
+          "source": "book/assets/specified-region.svg",
+          "candidate": "book/tikz/figures/specified-region.tex",
+          "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
+          "baseline_candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
+          "candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
           "decision": "retained",
           "reason": "The specification region, obligation, scaffolding, and freedom have distinct enclosing/semantic roles. Their deliberate unequal heights and boundary markers remain legible.",
-          "candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            396.8909912109375,
+            204.9550018310547
+          ],
+          "contracts": {},
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 14,
+            "width_bp": 396.891,
+            "height_bp": 204.955
+          },
           "page_layout": {
             "decision": "retained",
             "reason": "Retain spatial region/comparison layout: region geometry carries meaning and all explanations remain legible without making the spatial relations taller.",
@@ -498,30 +594,31 @@
               10.0
             ],
             "reviewed_visually": true
-          },
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 14,
-            "width_bp": 396.891,
-            "height_bp": 204.955
           }
         }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+        "change": "Author requested clearer capability and boundary labels.",
+        "validation": {
+          "date": "2026-11-05",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+          "page": 14,
+          "width_bp": 396.891,
+          "height_bp": 204.955,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 9,
+          "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+          "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+          "status": "passed",
+          "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
+        }
       }
-    ],
-    "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e"
+    ]
   },
   "terminology_revision": {
     "date": "2026-11-05",
@@ -545,5 +642,28 @@
       "status": "passed",
       "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
     }
-  }
+  },
+  "revision_history": [
+    {
+      "superseded_date": "2026-11-11",
+      "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+      "change": "Author requested the left label “Stronger agents need less scaffolding”, “Determined by” on the right, and removal of the capability-restatement clause.",
+      "validation": {
+        "date": "2026-11-05",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+        "page": 14,
+        "width_bp": 396.891,
+        "height_bp": 204.955,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9,
+        "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+        "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+        "status": "passed",
+        "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
+      }
+    }
+  ]
 }

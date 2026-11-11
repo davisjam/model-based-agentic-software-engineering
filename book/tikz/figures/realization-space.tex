@@ -1,39 +1,24 @@
-% Geometry reflow; authored type sizes retained.
+% Author revision 2026-11-11: readable requirement, balanced labels, sparse intersection.
 \begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (168.75,12.0) {POSSIBLE SOFTWARE IMPLEMENTATIONS};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (168.75,26.0) {Lists of up to 1,000 names};
-\draw (5,35) rectangle (332.5,212);
-\fill[black!7] (132,124) ellipse [x radius=110bp,y radius=80bp];
-\draw (132,124) ellipse [x radius=110bp,y radius=80bp];
-\draw (205,124) ellipse [x radius=110bp,y radius=80bp];
-\begin{scope}\clip (132,124) ellipse [x radius=110bp,y radius=80bp];\fill[pattern=north east lines,pattern color=black!35] (205,124) ellipse [x radius=110bp,y radius=80bp];\end{scope}
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (61,98.0) {Alphabetical};
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (61,108.8) {ordering};
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (278,99.0) {Response time};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (278,112.0) {$\leq$ 200 ms};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (278,125.0) {Tolerance};
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (169,78.0) {ACCEPTABLE};
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (169,90.0) {IMPLEMENTATIONS};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (169,105.0) {Satisfy both};
-\fill (35,51) circle [radius=1.6pt];
-\fill (67,137) circle [radius=1.6pt];
-\fill (82,157) circle [radius=1.6pt];
-\fill (70,177) circle [radius=1.6pt];
-\fill (142,128) circle [radius=1.6pt];
-\fill (165,137) circle [radius=1.6pt];
-\fill (181,130) circle [radius=1.6pt];
-\fill (194,120) circle [radius=1.6pt];
-\fill (206,141) circle [radius=1.6pt];
-\fill (156,153) circle [radius=1.6pt];
-\fill (179,156) circle [radius=1.6pt];
-\fill (167,173) circle [radius=1.6pt];
-\fill (192,176) circle [radius=1.6pt];
-\fill (155,190) circle [radius=1.6pt];
-\fill (181,186) circle [radius=1.6pt];
-\fill (273,148) circle [radius=1.6pt];
-\fill (288,161) circle [radius=1.6pt];
-\fill (275,179) circle [radius=1.6pt];
-\fill (311,200) circle [radius=1.6pt];
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (168.75,228.0) {Each dot is a distinct possible implementation.};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (168.75,243.0) {Degrees of freedom: choices among acceptable implementations};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries\fontsize{12}{14}\selectfont}] at (220,13) {POSSIBLE SOFTWARE IMPLEMENTATIONS};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{11}{13}\selectfont}] at (220,33) {Sort up to 1,000 names alphabetically within 200 ms};
+\draw (6,45) rectangle (434,260);
+\fill[black!7] (165,156) ellipse [x radius=135bp,y radius=100bp];
+\draw (165,156) ellipse [x radius=135bp,y radius=100bp];
+\draw (275,156) ellipse [x radius=135bp,y radius=100bp];
+\begin{scope}\clip (165,156) ellipse [x radius=135bp,y radius=100bp];\fill[pattern=north east lines,pattern color=black!35] (275,156) ellipse [x radius=135bp,y radius=100bp];\end{scope}
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries\fontsize{11}{13}\selectfont}] at (91,103) {Ordering};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{11}{13}\selectfont}] at (91,120) {Alphabetical};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries\fontsize{11}{13}\selectfont}] at (349,103) {Response time};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{11}{13}\selectfont}] at (349,120) {$\leq$ 200 ms};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries\fontsize{11}{13}\selectfont}] at (220,94) {ACCEPTABLE};
+\node[anchor=base,align=center,inner sep=0pt,font={\bfseries\fontsize{11}{13}\selectfont}] at (220,109) {IMPLEMENTATIONS};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{11}{13}\selectfont}] at (220,129) {Satisfy both};
+% Eight implementations in each exclusive region; four in the intersection.
+\foreach \x/\y in {69/145,105/157,65/179,112/184,91/207,123/219,137/238,151/244,
+371/145,335/157,375/179,328/184,349/207,317/219,303/238,289/244,
+201/155,241/174,213/203,245/223,32/65,421/236,18/227}
+  \fill (\x,\y) circle [radius=1.8pt];
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{11}{13}\selectfont}] at (220,280) {Each dot is a distinct possible implementation.};
+\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{11}{13}\selectfont}] at (220,298) {Degrees of freedom: choices among acceptable implementations};
 \end{tikzpicture}

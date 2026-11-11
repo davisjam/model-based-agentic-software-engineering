@@ -9,9 +9,9 @@ edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,ali
 \node[n,text width=7.5cm,fill=white] (s) at (0,-2.3) {\textbf{SCAFFOLDING}\\Additional structure this agent needs to interpret and satisfy the obligation reliably};
 \begin{scope}[on background layer]\node[draw,dashed,fill=white,inner sep=7pt,fit=(o)(s),label={[font=\fontsize{9}{11}\selectfont]above:{\textbf{SPECIFIED REGION}}}] {};\end{scope}
 \node[n,text width=7.5cm] (d) at (0,-5) {\textbf{DEGREES OF FREEDOM}\\Implementation choices left to the agent};
-\node[note,text width=3cm] (ob) at (5.7,-1.1) {\textbf{Obligation boundary}\\Set by the problem; does not move with capability};
-\node[note,text width=3cm] (sb) at (5.7,-3.7) {\textbf{Specification boundary}\\Set by obligation and agent capability};
+\node[note,text width=3cm] (ob) at (5.7,-1.1) {\textbf{Obligation boundary}\\Determined by the problem};
+\node[note,text width=3cm] (sb) at (5.7,-3.7) {\textbf{Specification boundary}\\Determined by obligation and agent capability};
 \draw[line width=.7pt] (-4,-1.1)--(4,-1.1);\draw[line width=.7pt] (-4,-3.7)--(4,-3.7);
 \draw[edge] (-4.7,-3.4)--(-4.7,-1.5);
-\node[note,text width=1.5cm] (cap) at (-5.7,-2.5) {Greater capability can reduce scaffolding};
+\node[note,text width=1.5cm] (cap) at (-5.7,-2.5) {Stronger agents need less scaffolding};
 \end{tikzpicture}

@@ -62,6 +62,16 @@
     "book/assets/substrate-to-method.svg": {
       "approved_date": "2026-11-10",
       "reason": "Author directed immediate implementation of the compact two-row synthesis and retention of one compact summary figure in the merged closing section. Publish the revised native black-and-white artwork without a duplicate companion."
+    },
+    "book/assets/realization-space.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the revised black-and-white Figure 2.1 after reviewing the requested wording and layout changes in the sidebar. Revised source commit: 60a15c65d2d069f1e815da0639c1ba13aed57d11.",
+      "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159"
+    },
+    "book/assets/specified-region.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the revised black-and-white Figure 2.2 after reviewing the requested wording and layout changes in the sidebar. Revised source commit: c1d40e66d451614c6c0ea0355c25f3d6a0f55392.",
+      "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763"
     }
   }
 }

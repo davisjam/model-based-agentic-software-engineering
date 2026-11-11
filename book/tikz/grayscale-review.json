@@ -325,9 +325,33 @@
     "receipt": "book/tikz/receipts/specified-region.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Restored dashed specified envelope and solid boundary cuts. Obligation/scaffolding receive distinct gray levels; capability arrow remains independent.",
-    "source_sha256": "50369ea00d8a297e1744f35fe4ea2d2b59a5926059104a2cad0ffe48da7d4f85",
-    "candidate_sha256": "d8b371ab6a0bf4397597e84b9c1b1454ac0620c0d2c2e4b637891a369b962891"
+    "rationale": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
+    "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e",
+    "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-11",
+        "candidate_sha256": "d8b371ab6a0bf4397597e84b9c1b1454ac0620c0d2c2e4b637891a369b962891",
+        "change": "Author requested clearer capability and boundary labels.",
+        "validation": {}
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-2-proof/figure-2-2.pdf",
+      "proof_sha256": "8e7b49f1880a3bc9477dde58a6532c454aaaed218690184bea6c07e9b3fb8b86",
+      "page": 1,
+      "width_bp": 396.891,
+      "height_bp": 204.955,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11,
+      "audit_sha256": "72b258b944787363d3c17bdf50f01e5e3afd5b54a28c23e946eb73ba4aebac8a",
+      "typography_audit_sha256": "8e84bd29474dc442f45464355042dc8e176cc5ff661635ffbb84ecae6a1afafa",
+      "status": "passed",
+      "visual_review": "Inspected standalone native-size proof; amended labels fit without changing the layout."
+    }
   },
   {
     "source": "book/assets/question-to-consequence-progression.svg",

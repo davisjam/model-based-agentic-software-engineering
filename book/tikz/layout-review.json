@@ -1244,9 +1244,9 @@
       "candidate": "book/tikz/figures/realization-space.tex",
       "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
       "baseline_candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-      "candidate_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
+      "candidate_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
       "decision": "refined",
-      "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
+      "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         350.1199951171875,
@@ -1255,26 +1255,22 @@
       "contracts": {},
       "page_layout": {
         "decision": "refined",
-        "reason": "Retain overlapping regions; move scope above them and the degree-of-freedom explanation below them.",
-        "before_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
-        "after_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
-        "before_dimensions_bp": [
-          350.1199951171875,
-          246.9429931640625
-        ],
-        "after_dimensions_bp": [
-          350.12,
-          265.611
-        ],
+        "reason": "Author review 2026-11-11: enlarge labels to 11–12 pt; state the sorting requirement on one line; use Ordering / Alphabetical and Response time / ≤200 ms as parallel labels; remove the Tolerance label; show eight implementations in each exclusive region and four in their intersection.",
+        "before_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
+        "after_sha256": "30cc46c10127be5c3ee8d3bae32b0a89228e46424e794a9c6a7501c0cf85e159",
         "before_font_sizes_pt": [
-          9.0,
-          10.0
+          9,
+          10
         ],
         "after_font_sizes_pt": [
-          9.0,
-          10.0
+          11,
+          12
         ],
-        "reviewed_visually": true
+        "reviewed_visually": true,
+        "after_dimensions_bp": [
+          434.371,
+          301.367
+        ]
       },
       "previous_validation": {
         "proof": "latex/build/tikz/candidates.pdf",
@@ -1294,22 +1290,6 @@
         "page": 13,
         "width_bp": 350.12,
         "height_bp": 246.943
-      },
-      "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "page": 14,
-        "width_bp": 333.872,
-        "height_bp": 245.599,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 8
       },
       "revision_history": [
         {
@@ -1334,17 +1314,113 @@
             },
             "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations."
           }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "source": "book/assets/realization-space.svg",
+            "candidate": "book/tikz/figures/realization-space.tex",
+            "source_sha256": "c5895c33920f900f7325db4a3c9d98c532951e04aa024bad3df7ac18e74c9659",
+            "baseline_candidate_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
+            "candidate_sha256": "3d8ab0d13b575021bbdd644b252cb89d2a285dc1ab1feb30d5a1cb1b932b4cf1",
+            "decision": "refined",
+            "reason": "Adapt the existing set diagram to the approved sorting example. Label the timing tolerance and the choices that remain among acceptable implementations.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              350.1199951171875,
+              246.9429931640625
+            ],
+            "contracts": {},
+            "page_layout": {
+              "decision": "refined",
+              "reason": "Retain overlapping regions; move scope above them and the degree-of-freedom explanation below them.",
+              "before_sha256": "4f97803a4948031f6c8996b13277f1cbf141a25158e637d42737c07f18f60492",
+              "after_sha256": "aaeae5dbe45d2db047f44b79a3322a77fb29abf9380bf7e43c3921b09aee32c3",
+              "before_dimensions_bp": [
+                350.1199951171875,
+                246.9429931640625
+              ],
+              "after_dimensions_bp": [
+                350.12,
+                265.611
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            },
+            "previous_validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 633,
+              "reviewed_peer_groups": 81,
+              "semantic_typography_checks": 875,
+              "unapproved_compile_diagnostics": 0,
+              "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+              "status": "passed",
+              "page": 13,
+              "width_bp": 350.12,
+              "height_bp": 246.943
+            },
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 14,
+              "width_bp": 333.872,
+              "height_bp": 245.599,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 8
+            }
+          }
         }
-      ]
+      ],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/figure-2-1-review/proof.pdf",
+        "proof_sha256": "61fe1a93e03ead712889005126de9b36394e0c2ccc0b9390a23851e9539bea19",
+        "page": 1,
+        "width_bp": 434.371,
+        "height_bp": 301.367,
+        "minimum_prose_font_pt": 10.959,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 8,
+        "set_membership": {
+          "left": 8,
+          "right": 8,
+          "both": 4,
+          "neither": 3
+        },
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/specified-region.svg",
       "candidate": "book/tikz/figures/specified-region.tex",
       "source_sha256": "a98233509c32a9ae1e18ba73cd0aa1b35cff9bde42b2288f5219e4c863e09f0e",
       "baseline_candidate_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
-      "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
-      "decision": "retained",
-      "reason": "The specification region, obligation, scaffolding, and freedom have distinct enclosing/semantic roles. Their deliberate unequal heights and boundary markers remain legible.",
+      "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
+      "decision": "refined",
+      "reason": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         396.8909912109375,
@@ -1352,26 +1428,26 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-05",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
-        "page": 14,
+        "date": "2026-11-11",
+        "proof": "latex/build/figure-2-2-proof/figure-2-2.pdf",
+        "proof_sha256": "8e7b49f1880a3bc9477dde58a6532c454aaaed218690184bea6c07e9b3fb8b86",
+        "page": 1,
         "width_bp": 396.891,
         "height_bp": 204.955,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 9,
-        "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
-        "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+        "semantic_typography_checks": 11,
+        "audit_sha256": "72b258b944787363d3c17bdf50f01e5e3afd5b54a28c23e946eb73ba4aebac8a",
+        "typography_audit_sha256": "8e84bd29474dc442f45464355042dc8e176cc5ff661635ffbb84ecae6a1afafa",
         "status": "passed",
-        "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
+        "visual_review": "Inspected standalone native-size proof; amended labels fit without changing the layout."
       },
       "page_layout": {
         "decision": "retained",
-        "reason": "Retain spatial region/comparison layout: region geometry carries meaning and all explanations remain legible without making the spatial relations taller.",
+        "reason": "Author-directed wording refinement: stronger agents need less scaffolding; boundaries are determined by the problem or by obligation and agent capability. Removed the capability-restatement clause. Geometry and relationships retained; color original preserved for comparison.",
         "before_sha256": "8bdd3f4b4932a86bd80d7229a4050422567a4b046923f6c1a0d78188aeb25210",
-        "after_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+        "after_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763",
         "before_dimensions_bp": [
           396.8909912109375,
           204.9550018310547
@@ -1449,6 +1525,27 @@
               ],
               "reviewed_visually": true
             }
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "candidate_sha256": "941e7d4e61ef6fe70f70ff118aff1bebaf2e41fb201ff1a6fc71549875249daf",
+          "change": "Author requested clearer capability and boundary labels.",
+          "validation": {
+            "date": "2026-11-05",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "3d55d47aa1b6f2062f779c8d7ae2c7923de2c7f1a6d694b6ecc7771a0e30b498",
+            "page": 14,
+            "width_bp": 396.891,
+            "height_bp": 204.955,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 9,
+            "audit_sha256": "c8eab26c649f95dae69e3c07515211ed2eabd270cd3d5926414588764ddd6c96",
+            "typography_audit_sha256": "3b2757c983dcc086977eef58e58ed8ad036374f70f82e010c2036736afe6307e",
+            "status": "passed",
+            "visual_review": "Inspected native black-and-white proof and color SVG at legible size. Both approved labels fit; boundary lines, headings and geometry remain intact."
           }
         }
       ]
