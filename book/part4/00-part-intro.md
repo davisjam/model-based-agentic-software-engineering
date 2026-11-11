@@ -24,6 +24,8 @@ Chapters {{chapter:modeling|num}} and {{chapter:alignment|num}} separated Modeli
 
 <!-- index-def: specification-driven-development -->
 
+<!-- print-keep-with-next: page -->
+
 > #### Inset — Spec-driven development and engineering through models {#inset-sdd-engineering-through-models}
 >
 > **Spec-driven development (SDD)** provides workflows for organizing implementation and evaluation around specifications. These workflows can support MAGE, but do not replace its broader concern with modeling consequential properties and enforcing selected engineering obligations as a system evolves.
