@@ -1515,27 +1515,27 @@
             {
               "slug": "a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration",
               "text": "A constraint excludes particular actions or representations within the scope of its language, interface, or runtime permissions; a closed type does not govern every possible behavior.",
-              "block_index": 21
+              "block_index": 20
             },
             {
               "slug": "selected-structure-can-be-generated-from-a-model",
               "text": "A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass.",
-              "block_index": 26
+              "block_index": 24
             },
             {
               "slug": "agents-can-construct-checking-and-enforcement-machinery",
               "text": "Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness.",
-              "block_index": 29
+              "block_index": 27
             },
             {
               "slug": "a-sensor-observes-and-produces-evidence-and-costs-iterations",
               "text": "A sensor produces evidence about artifacts, attempted actions, or observed executions; observability exposes the state or behavior that the environment must inspect.",
-              "block_index": 31
+              "block_index": 29
             },
             {
               "slug": "a-sensor-is-only-as-good-as-its-observability",
               "text": "Evidence must preserve the distinctions needed to judge the obligation, such as caller identity, destination, and architectural component.",
-              "block_index": 38
+              "block_index": 34
             }
           ]
         },
@@ -1543,39 +1543,39 @@
           "section_id": "gates-evaluation-and-enforcement",
           "level": 2,
           "heading_text": "Gates: Evaluation and Enforcement",
-          "topic_sentence": "A gate evaluates whether an action or result may proceed and enforces that decision at a boundary.",
+          "topic_sentence": "A gate evaluates a condition and permits or refuses passage, drawing on evidence it checks directly or receives from another checker.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 36,
           "points": [
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
               "text": "A gate evaluates whether an action or result may proceed, locally or through a delegated check, and enforces the decision; a blocking check can reject both genuine violations and false positives.",
-              "block_index": 42
+              "block_index": 38
             },
             {
               "slug": "a-ci-suite-bundles-three-roles-without-collapsing-the-distinction",
               "text": "Instrumented tests produce observations, a checker compares them with the architectural model, and the merge gate requires the build and interaction checks to pass.",
-              "block_index": 45
+              "block_index": 40
             },
             {
               "slug": "a-validator-turns-evidence-into-a-judgment",
               "text": "The merge gate uses build and interaction check results to decide whether a candidate meets its admission conditions.",
-              "block_index": 46
+              "block_index": 41
             },
             {
               "slug": "two-roles-act-on-the-work-two-act-at-the-door",
               "text": "Defense in depth combines protections with different coverage; tests and the gate that enforces their results constitute one protection together.",
-              "block_index": 51
+              "block_index": 45
             },
             {
               "slug": "human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates",
               "text": "Human review can combine tacit context, evaluation, and approval; selected obligations in agentic work need explicit rules, evidence, and admission consequences.",
-              "block_index": 53
+              "block_index": 47
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
               "text": "A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs.",
-              "block_index": 55
+              "block_index": 49
             }
           ]
         },
@@ -1585,12 +1585,12 @@
           "heading_text": "Constraining Document Changes",
           "topic_sentence": "DocAble’s PDF changeset interface provides an action boundary for document repair.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 51,
           "points": [
             {
               "slug": "typed-document-edits-separate-proposal-from-controlled-application",
               "text": "In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document.",
-              "block_index": 58
+              "block_index": 52
             }
           ]
         },
@@ -1600,7 +1600,7 @@
           "heading_text": "Tests and Models Work Together",
           "topic_sentence": "The reporting-service boundary concerns relationships among components.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 56,
           "points": []
         },
         {
@@ -1609,42 +1609,42 @@
           "heading_text": "One Obligation, Several Ways to Hold It",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 65,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand.",
-              "block_index": 73
+              "block_index": 67
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol.",
-              "block_index": 75
+              "block_index": 69
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior.",
-              "block_index": 77
+              "block_index": 71
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it.",
-              "block_index": 79
+              "block_index": 73
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission.",
-              "block_index": 81
+              "block_index": 75
             },
             {
               "slug": "mechanisms-match-properties-not-an-adoption-sequence",
               "text": "Select and combine mechanisms according to the evidence or restriction they contribute and the cost of obtaining it.",
-              "block_index": 85
+              "block_index": 79
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 87
+              "block_index": 81
             }
           ]
         },
@@ -1654,22 +1654,22 @@
           "heading_text": "One Measurement, Different Enforcement Decisions",
           "topic_sentence": "The reporting service’s usage measurements can support several responses, depending on the policy attached to them.",
           "id_source": "derived",
-          "block_index": 89,
+          "block_index": 83,
           "points": [
             {
               "slug": "one-model-several-enforcement-decisions",
               "text": "One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity.",
-              "block_index": 91
+              "block_index": 85
             },
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 94
+              "block_index": 88
             },
             {
               "slug": "margin-needs-a-meaningful-distance",
               "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 96
+              "block_index": 90
             }
           ]
         },
@@ -1679,12 +1679,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "The reporting-service rule forbids a particular access.",
           "id_source": "derived",
-          "block_index": 98,
+          "block_index": 92,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 100
+              "block_index": 94
             }
           ]
         },
@@ -1694,37 +1694,37 @@
           "heading_text": "Provenance-Carried Admission",
           "topic_sentence": "The reporting-service example concerns which components may interact.",
           "id_source": "derived",
-          "block_index": 103,
+          "block_index": 97,
           "points": [
             {
               "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact.",
-              "block_index": 105
+              "block_index": 99
             },
             {
               "slug": "restrict-a-recognizable-primitive-surface-directly",
               "text": "Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature.",
-              "block_index": 107
+              "block_index": 101
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
               "text": "Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path.",
-              "block_index": 109
+              "block_index": 103
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 111
+              "block_index": 105
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 117
+              "block_index": 111
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 119
+              "block_index": 113
             }
           ]
         },
@@ -1734,27 +1734,27 @@
           "heading_text": "The Freedom a Control Preserves",
           "topic_sentence": "Alignment should preserve the implementation freedom that Modeling deliberately leaves open.",
           "id_source": "derived",
-          "block_index": 122,
+          "block_index": 116,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 124
+              "block_index": 118
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 126
+              "block_index": 120
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 128
+              "block_index": 122
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 134
+              "block_index": 128
             }
           ]
         },
@@ -1764,27 +1764,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "**Policy**, **guidance**, and **governance mechanisms** contribute different things to engineering work.",
           "id_source": "derived",
-          "block_index": 136,
+          "block_index": 130,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 138
+              "block_index": 132
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions.",
-              "block_index": 140
+              "block_index": 134
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 142
+              "block_index": 136
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 147
+              "block_index": 141
             }
           ]
         }
