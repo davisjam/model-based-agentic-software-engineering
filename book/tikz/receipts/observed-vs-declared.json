@@ -1,32 +1,41 @@
 {
   "source": "book/assets/observed-vs-declared.svg",
   "chapter": "2.4-decision",
-  "claim": "*Observation and intent answer different questions.* The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.",
+  "claim": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
   "topology": {
-    "description": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+    "description": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
     "native_draw_commands": [
-      "\\draw[edge] (a0) -- (b0);",
-      "\\draw[edge] (a0) -- (c0);",
-      "\\draw[edge] (a1) -- node[lab,left] {declared} (b1);",
-      "\\draw[dashed] (a1) -- node[lab] {$\\times$} (c1);"
+      "\\path[fill=white] (0,0) rectangle (782,315);",
+      "\\path[draw=black!33,line width=0.6792bp] (391,52) -- (391,302);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (20,80) rectangle (140,145);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (227,80) rectangle (367,145);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (227,230) rectangle (367,288);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (140,112.5) -- (227,112.5);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (420,80) rectangle (540,145);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (627,80) rectangle (767,145);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (627,230) rectangle (767,288);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (540,112.5) -- (627,112.5);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (697,145) -- (697,230);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (80,145) -- (80,259) -- (227,259);",
+      "\\path[draw=black!87,line width=0.6792bp] (129,242) -- (141,254) (129,254) -- (141,242);"
     ]
   },
   "required_terms": [
-    "Observed system",
-    "Does A call C?",
-    "A",
-    "B C",
-    "Declared policy",
-    "May A call C?",
-    "A",
-    "B C",
-    "declared × no edge",
-    "Agreement establishes correspondence, not correctness."
+    "Observed calls",
+    "Declared permissions",
+    "web",
+    "report",
+    "service",
+    "renderer",
+    "web",
+    "report",
+    "service",
+    "renderer"
   ],
-  "bw_encoding": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction.",
-  "redesign": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction. Both relation forks use orthogonal ports; absent path retains its cross and arrowless dashed meaning.",
+  "bw_encoding": "Uniform pale-gray house boxes and black solid edges. The unmatched observed edge is marked by a separate cross. No dashed edge in the policy graph could be mistaken for permission. Panel labels distinguish observation from permission.",
+  "redesign": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
   "questions": [],
-  "alt": "Circular nodes compare observed and declared relationships. The declared A-to-B edge is labeled; a dashed crossed A-to-C path identifies an absent declared relationship.",
+  "alt": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -38,215 +47,367 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+    "outcome": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
-      13.6015,
-      6.4653
-    ]
+      15.825,
+      6.5005
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+      "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 184.265,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 4,
+      "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+      "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10,
+      "status": "passed"
+    }
   },
   "fidelity_review": {
     "stem": "observed-vs-declared",
     "source": "book/assets/observed-vs-declared.svg",
     "status": "corrected",
-    "evidence": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+    "evidence": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
     "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/observed-vs-declared.png",
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-24.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/observed-vs-declared.png",
-    "original_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-    "native_sha256": "a3697cc8c0067a5d49a6c75908a09644b1a00a0f92d1e20fbb4b2288e61b48e0",
-    "page": 25,
+    "candidate_render": "/private/tmp/mage-figures-2-9-2-10-native-20261111/latex/build/reference-native-proof/observed-vs-declared.png",
+    "original_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+    "native_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
+    "page": 1,
     "dimensions_cm": [
       13.6015,
       6.4653
     ],
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
-  },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-    "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-    "fill": "Both sets of circular peers white and equal; panel questions and the crossed absent policy edge carry the distinction.",
-    "bold": "Source-derived emphasis includes Does; May; no edge. Uppercase headings and bold modal words distinguish observed facts from permission; missing-edge status is emphasized.",
-    "routing": "Both relation forks use orthogonal ports; absent path retains its cross and arrowless dashed meaning.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 27,
-      "width_bp": 399.726,
-      "height_bp": 183.151,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 5
-    },
-    "book_references": []
-  },
-  "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "refined",
-    "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-    "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-    "reason": "Uppercase headings and bold modal words distinguish observed facts from permission; missing-edge status is emphasized.",
-    "evidence": [
-      {
-        "source_text": "“Does A call C?”",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "observed modality",
-        "candidate_text": "Does",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/observed-vs-declared.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "“Does A call C?”",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "“May A call C?”",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "normative modality",
-        "candidate_text": "May",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/observed-vs-declared.svg",
-          "element_text_path": "/svg/text[6]/text()",
-          "text_element_context": "“May A call C?”",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "declared",
-        "source_style": "weight normal; italic; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "declared",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/observed-vs-declared.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "declared",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "no edge",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "no edge",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/observed-vs-declared.svg",
-          "element_text_path": "/svg/text[5]/text()",
-          "text_element_context": "no edge",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
-    "checks": [
-      {
-        "text": "Does",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "May",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "declared",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "no edge",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Agreement establishes correspondence, not correctness.",
-        "bold": false,
-        "italic": false
-      }
-    ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 27,
-      "width_bp": 399.726,
-      "height_bp": 183.151,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 5,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
-  },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Circular state nodes are identical within each observed/declared graph; absent-edge semantics and spacious branches are retained.",
-    "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing observed vs declared layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-      "after_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-      "before_dimensions_bp": [
-        399.72601318359375,
-        183.1510009765625
-      ],
-      "after_dimensions_bp": [
-        399.72601318359375,
-        183.1510009765625
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+      "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 184.265,
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 27,
-      "width_bp": 399.726,
-      "height_bp": 183.151
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 4,
+      "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+      "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10,
+      "status": "passed"
     }
+  },
+  "style_review": {
+    "decision": "refined",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+    "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
+    "fill": "Uniform pale-gray house boxes and black solid edges. The unmatched observed edge is marked by a separate cross. No dashed edge in the policy graph could be mistaken for permission. Panel labels distinguish observation from permission.",
+    "bold": "Only comparison-panel headings are bold; service labels are regular.",
+    "routing": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
+    "shape": "Uniform house-scale rounded rectangles for services.",
+    "visual_review": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+      "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 184.265,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 4,
+      "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+      "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10,
+      "status": "passed"
+    },
+    "book_references": [],
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 27,
+        "width_bp": 399.726,
+        "height_bp": 183.151,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 5
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "f905cf98471f0cc8b243c8a9710a8627ed1981685a88a0be5f9433eb2013de6a",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 5,
+        "geometry_audit_sha256": "12a91a32fc63c3c1bee1f26a7e752bd4954399c2a3a50585d10dab44ad0636a2",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      }
+    ]
+  },
+  "typography_review": {
+    "decision": "refined",
+    "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+    "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
+    "evidence": [
+      {
+        "source_text": "Observed calls",
+        "source_style": "font-size:21px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Observed calls",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/observed-vs-declared.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "Observed calls",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Declared permissions",
+        "source_style": "font-size:21px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Declared permissions",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/observed-vs-declared.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "Declared permissions",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "reason": "Bundled Source Sans 3 matches the book figure profile. Observed/declared panel headings are bold; all node labels are regular. No redundant internal caption is present.",
+    "checks": [
+      {
+        "text": "Observed calls",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Declared permissions",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "web",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "report",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "service",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "renderer",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "web",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "report",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "service",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "renderer",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+      "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 184.265,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 4,
+      "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+      "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10,
+      "status": "passed"
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 27,
+        "width_bp": 399.726,
+        "height_bp": 183.151,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 5
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "f905cf98471f0cc8b243c8a9710a8627ed1981685a88a0be5f9433eb2013de6a",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 5,
+        "geometry_audit_sha256": "12a91a32fc63c3c1bee1f26a7e752bd4954399c2a3a50585d10dab44ad0636a2",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      }
+    ]
+  },
+  "layout_review": {
+    "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+    "baseline_candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
+    "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
+    "decision": "refined",
+    "reason": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      399.72601318359375,
+      183.1510009765625
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+      "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 184.265,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 4,
+      "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+      "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10,
+      "status": "passed"
+    },
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+      "reviewed_visually": true,
+      "full_width_required": true,
+      "half_width_minimum_font_pt": 5.36
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 27,
+        "width_bp": 399.726,
+        "height_bp": 183.151
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "f905cf98471f0cc8b243c8a9710a8627ed1981685a88a0be5f9433eb2013de6a",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 5,
+        "geometry_audit_sha256": "12a91a32fc63c3c1bee1f26a7e752bd4954399c2a3a50585d10dab44ad0636a2",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      }
+    ]
   }
 }

@@ -1,24 +1,53 @@
-% Geometry reflow; authored type sizes retained.
+% Author-reference redraw; geometry and labels generated with the SVG.
 \begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (126,26.0) {claim};
-\draw[-Stealth,line width=.55pt] (126,29) -- (126,40);
-\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (50,41) rectangle (202,82);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (126,58.0) {CLAIMED};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (126,73.0) {owner \,\textperiodcentered\, epoch \,\textperiodcentered\, expires\_at};
-\draw[-Stealth,line width=.55pt] (94,82) -- (94,103) -- (64,103) -- (64,127);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (64,98.0) {completion};
-\draw[-Stealth,line width=.55pt,dashed] (161,82) -- (161,103) -- (196,103) -- (196,127);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (196,98.0) {expiry};
-\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (8,128) rectangle (120,165);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (64,143.0) {RELEASED};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (64,157.0) {claim ends cleanly};
-\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (140,128) rectangle (252,165);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (196,143.0) {RECLAIMABLE};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (196,157.0) {lease lapsed / stale};
-\draw[-Stealth,line width=.55pt,dashed] (252,146) -- (263,146) -- (263,61) -- (202,61);
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (233,84.0) {another actor};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (233,94.8) {may claim};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (135,185.0) {Completion releases the claim; expiry makes it reclaimable.};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (135,195.8) {A live claim is distinguishable from a stale one ---};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (135,206.6) {expiry is a state, not an accident.};
+\path[use as bounding box] (0,0) rectangle (444,392);
+\begin{scope}[yshift=20bp]
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{11}{13.2}\selectfont}] at (222,39) {A behavioral model for job ownership with generations.};
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (15,90) rectangle (84,128);
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (121,90) rectangle (193,128);
+\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=4bp] (235,90) rectangle (313,128);
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (361,90) rectangle (433,128);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (49.5,113) {Unowned};
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (157,105) {Owned};
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (157,119) {(A, 7)};
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{11}{13.2}\selectfont}] at (397,105) {Owned};
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (397,119) {(B, 8)};
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (274,113) {Reclaimable};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (84,105) .. controls (96,100) and (109,100) .. (120,104);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (193,104) .. controls (207,102) and (220,102) .. (234,104);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (313,104) .. controls (329,102) and (345,102) .. (360,104);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (103,74) {claim(A, 7)};
+\draw[line width=0.65bp] (103,80) .. controls (105,91) .. (103,102);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (214,74) {expire};
+\draw[line width=0.65bp] (214,80) .. controls (216,91) .. (214,102);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (337,74) {claim(B, 8)};
+\draw[line width=0.65bp] (337,80) .. controls (339,91) .. (337,102);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]},dash pattern=on 5bp off 3bp] (157,128) .. controls (174,155) and (207,156) .. (272,156) .. controls (327,156) and (358,149) .. (375,129);
+\draw[line width=2.3bp] (184,147) -- (192,155) (184,155) -- (192,147);
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (258,174) {release(A, 7) (rejected: stale generation)};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (397,128) .. controls (397,242) and (49.5,242) .. (49.5,129);
+\node[anchor=base,inner sep=0pt,font={\fontsize{11}{13.2}\selectfont}] at (226,230) {release(B, 8)};
+\draw[fill=black!0,draw=black!25,line width=.65pt,rounded corners=6bp] (10,250) rectangle (434,382);
+\node[anchor=base west,inner sep=0pt,font={\bfseries \fontsize{11.5}{13.8}\selectfont}] at (21,267) {State meaning};
+\node[anchor=base west,inner sep=0pt,font={\bfseries \fontsize{11.5}{13.8}\selectfont}] at (240,267) {Key transitions};
+\draw[line width=0.65bp] (226,265) -- (226,373);
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=3bp] (21,279) rectangle (44,292);
+\node[anchor=base west,inner sep=0pt,font=\fontsize{10.5}{12.6}\selectfont] at (52,289) {\textbf{Unowned} — no active claim};
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=3bp] (21,308) rectangle (44,321);
+\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (52,318) {\textbf{Owned(w, g)} — job held by worker w};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (52,331) {with generation g};
+\draw[fill=black!3,draw=black!75,line width=.65pt,rounded corners=3bp] (21,344) rectangle (44,357);
+\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (52,354) {\textbf{Reclaimable} — previous claim};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (52,367) {expired, job can be claimed};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (242,289) {•};
+\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (252,289) {\textbf{claim(w, g):} acquire the job with};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (252,302) {generation g};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (242,323) {•};
+\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (252,323) {\textbf{expire:} previous claim};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (252,336) {becomes invalid};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (242,354) {•};
+\node[anchor=base west,inner sep=0pt,font=\fontsize{10}{12}\selectfont] at (252,354) {\textbf{release(w, g):} release only if};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (252,367) {the current claim matches (w, g)};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (222,400) {A release may modify a job only if it still holds the current generation.};
+\end{scope}
 \end{tikzpicture}

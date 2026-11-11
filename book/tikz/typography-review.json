@@ -4595,7 +4595,7 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
@@ -5097,7 +5097,7 @@
           "candidate_style": "regular"
         }
       ],
-      "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N.",
+      "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
       "checks": [
         {
           "text": "Component/dependency",
@@ -5285,14 +5285,19 @@
           "italic": false
         },
         {
-          "text": "E = errors; N = requests",
+          "text": "# errors",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "# requests",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
         "page": 1,
         "width_bp": 449.57,
         "height_bp": 558.569,
@@ -5304,15 +5309,25 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 41,
+        "semantic_typography_checks": 42,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
         "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
         "native_serif_math": true,
         "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-        "status": "passed"
+        "status": "passed",
+        "reviewed_math_labels": [
+          {
+            "text": "# errors",
+            "font": "SourceSerif4-Regular"
+          },
+          {
+            "text": "# requests",
+            "font": "SourceSerif4-Regular"
+          }
+        ]
       },
       "validation_history": [
         {
@@ -5391,6 +5406,40 @@
           "single_line_row_headings": 3,
           "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
           "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.569,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 41,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+          "native_serif_math": true,
+          "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
+          "status": "passed"
+        }
+      ],
+      "math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
         }
       ]
     },
@@ -6496,172 +6545,482 @@
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
       "decision": "refined",
-      "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
-      "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+      "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+      "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
       "evidence": [
         {
-          "source_text": "PAYLOAD-BEARING  ×33",
-          "source_style": "weight 700; normal; source size 14",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "PAYLOAD-BEARING: 33",
-          "candidate_style": "bold",
+          "source_text": "A typed structural model of DocAble’s remediation computations.",
+          "source_style": "font-size:21.5px;font-style:italic;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "A typed structural model of DocAble’s remediation computations.",
+          "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "PAYLOAD-BEARING ×33",
+            "element_text_path": "/svg/text[1]/text()",
+            "text_element_context": "A typed structural model of DocAble’s remediation computations.",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "CONTROL  ×24",
-          "source_style": "weight 700; normal; source size 14",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "CONTROL: 24",
+          "source_text": "Classify",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Classify",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[15]/text()",
-            "text_element_context": "CONTROL ×24",
+            "element_text_path": "/svg/text[2]/text()",
+            "text_element_context": "Classify",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "DATA_FLOW  ×32",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "DATA_FLOW ×32",
+          "source_text": "Repair",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Repair",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[4]/text()",
+            "text_element_context": "Repair",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "structure",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "structure",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[5]/text()",
+            "text_element_context": "structure",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Repair",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Repair",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "DATA_FLOW ×32",
+            "text_element_context": "Repair",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "CROSS_SERVICE  ×1",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "CROSS_SERVICE ×1",
+          "source_text": "metadata",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "metadata",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "CROSS_SERVICE ×1",
+            "element_text_path": "/svg/text[8]/text()",
+            "text_element_context": "metadata",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "CONTROL_GATE  ×24",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "CONTROL_GATE ×24",
+          "source_text": "Apply patches",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Apply patches",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[16]/text()",
-            "text_element_context": "CONTROL_GATE ×24",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "Produces → Consumes",
-          "source_style": "weight normal; italic; source size 13",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Produces → Consumes",
-          "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "Produces → Consumes",
+            "text_element_context": "Apply patches",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "cross-boundary payload",
-          "source_style": "weight normal; italic; source size 13",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Cross-boundary payload",
-          "candidate_style": "italic",
+          "source_text": "Validate",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Validate",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[12]/text()",
+            "text_element_context": "Validate",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Computation:",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Computation:",
+          "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[14]/text()",
-            "text_element_context": "cross-boundary payload",
+            "text_element_context": "Computation:",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "ConsumesForControl",
-          "source_style": "weight normal; italic; source size 13",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "ConsumesForControl",
-          "candidate_style": "italic",
+          "source_text": "Control gate:",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Control gate:",
+          "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/from-nodes-to-composition.svg",
             "element_text_path": "/svg/text[19]/text()",
-            "text_element_context": "ConsumesForControl",
+            "text_element_context": "Control gate:",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Data flow:",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Data flow:",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[21]/text()",
+            "text_element_context": "Data flow:",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Mutation behavior:",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Mutation behavior:",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[26]/text()",
+            "text_element_context": "Mutation behavior:",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Apply seam:",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Apply seam:",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[31]/text()",
+            "text_element_context": "Apply seam:",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Node (computation) type",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Node (computation) type",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[34]/text()",
+            "text_element_context": "Node (computation) type",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Dependency (edge) type",
+          "source_style": "font-size:19px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Dependency (edge) type",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[35]/text()",
+            "text_element_context": "Dependency (edge) type",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "The model preserves computation identity, mutation behavior, apply seams, and",
+          "source_style": "font-size:20px;font-style:italic;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "The model preserves computation identity, mutation behavior, apply seams, and",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[41]/text()",
+            "text_element_context": "The model preserves computation identity, mutation behavior, apply seams, and",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "declared dependencies—not the code implementing each computation.",
+          "source_style": "font-size:20px;font-style:italic;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "declared dependencies—not the code implementing each computation.",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/from-nodes-to-composition.svg",
+            "element_text_path": "/svg/text[42]/text()",
+            "text_element_context": "declared dependencies—not the code implementing each computation.",
             "matching_fragment_count": 1
           }
         }
       ],
-      "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
+      "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
       "checks": [
         {
-          "text": "PAYLOAD-BEARING: 33",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "CONTROL: 24",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "DATA_FLOW ×32",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "CROSS_SERVICE ×1",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "CONTROL_GATE ×24",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Cross-boundary payload",
+          "text": "A typed structural model of DocAble’s remediation computations.",
           "bold": false,
           "italic": true
         },
         {
-          "text": "ConsumesForControl",
+          "text": "Classify",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(format, needs)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Repair",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "structure",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(typed patch)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Repair",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "metadata",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(typed patch)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Apply patches",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(apply seam)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Validate",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(direct edit)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Computation:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "a registered",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "remediation step",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(e.g., classify, repair,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "validate).",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Control gate:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "classification",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Data flow:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "produces",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "information",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "used by another",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "computation.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Mutation behavior:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "typed patch —",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "produces a patch",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "direct edit —",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "mutates document",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Apply seam:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "where patches are",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "applied to the",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Node (computation) type",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Dependency (edge) type",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "= Direct edit (mutates document)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "= Typed patch (produces a patch)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "= Data flow (payload)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "= Control gate",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "125 registered computations; 57 typed composition relations."
+        },
+        {
+          "text": "The model preserves computation identity, mutation behavior, apply seams, and",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Pass A",
+          "text": "declared dependencies—not the code implementing each computation.",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "determines which",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "repairs run.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "document.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(executes if condition holds)",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 20,
-        "width_bp": 390.839,
-        "height_bp": 275.664,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 46,
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -6691,206 +7050,204 @@
             "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration."
           }
         }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-09",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+          "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+          "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "page": 20,
+          "width_bp": 390.839,
+          "height_bp": 275.664,
+          "minimum_prose_font_pt": 8.97,
+          "semantic_typography_checks": 8
+        }
       ]
     },
     {
       "source": "book/assets/canonical-behavioral.svg",
       "candidate": "book/tikz/figures/canonical-behavioral.tex",
       "decision": "refined",
-      "source_sha256": "140c0edfa111c00180f2492c9f69500612602e284196eb78c04b906758fe1529",
-      "candidate_sha256": "29811cb7e256dcf136b451f6aed33fbf8e6cf29519617ce73bde84a219250d5f",
+      "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+      "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
       "evidence": [
         {
-          "source_text": "IMPLEMENTATION",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "IMPLEMENTATION",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "IMPLEMENTATION",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "IDLE",
-          "source_style": "weight 700; normal; source size 23",
-          "semantic_role": "legal state identifier",
-          "candidate_text": "IDLE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "IDLE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "RUNNING",
-          "source_style": "weight 700; normal; source size 23",
-          "semantic_role": "legal state identifier",
-          "candidate_text": "RUNNING",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "RUNNING",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "DONE",
-          "source_style": "weight 700; normal; source size 23",
-          "semantic_role": "legal state identifier",
-          "candidate_text": "DONE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "DONE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "FAILED",
-          "source_style": "weight 700; normal; source size 23",
-          "semantic_role": "legal state identifier",
-          "candidate_text": "FAILED",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[9]/text()",
-            "text_element_context": "FAILED",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "reduce to",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "transition relation",
-          "candidate_text": "reduce to",
+          "source_text": "A state model for a remediation job, including retries.",
+          "source_style": "font-size:21.5px;font-style:italic;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "A state model for a remediation job, including retries.",
           "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/canonical-behavioral.svg",
+            "element_text_path": "/svg/text[1]/text()",
+            "text_element_context": "A state model for a remediation job, including retries.",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Retrying",
+          "source_style": "font-size:20px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Retrying",
+          "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-behavioral.svg",
             "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "reduce to",
+            "text_element_context": "Retrying",
             "matching_fragment_count": 1
           }
         },
         {
-          "source_text": "start",
-          "source_style": "weight normal; italic; source size 19",
-          "semantic_role": "transition relation",
-          "candidate_text": "start",
-          "candidate_style": "italic",
+          "source_text": "Key properties (examples)",
+          "source_style": "font-size:22px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Key properties (examples)",
+          "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "start",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "finish",
-          "source_style": "weight normal; italic; source size 19",
-          "semantic_role": "transition relation",
-          "candidate_text": "finish",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "finish",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "fail",
-          "source_style": "weight normal; italic; source size 19",
-          "semantic_role": "transition relation",
-          "candidate_text": "fail",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-behavioral.svg",
-            "element_text_path": "/svg/text[12]/text()",
-            "text_element_context": "fail",
+            "element_text_path": "/svg/text[19]/text()",
+            "text_element_context": "Key properties (examples)",
             "matching_fragment_count": 1
           }
         }
       ],
-      "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail.",
+      "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
       "checks": [
         {
-          "text": "IMPLEMENTATION",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "IDLE",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "RUNNING",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "DONE",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "FAILED",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "reduce to",
+          "text": "A state model for a remediation job, including retries.",
           "bold": false,
           "italic": true
         },
         {
-          "text": "start",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "finish",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "fail",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Handlers · retries",
+          "text": "Pending",
           "bold": false,
           "italic": false
         },
         {
-          "text": "writes · logging",
+          "text": "Running",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Succeeded",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Retrying",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(attempt = n)"
+        },
+        {
+          "text": "Failed",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "A worker executes the",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "next computation for the job.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Job completes",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "with a corrected",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "document.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "On a repairable failure,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "retry (up to a limit,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "If retries are exhausted",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "or the error is not repairable,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "the job fails.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "e.g., n ≤3).",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Key properties (examples)",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "• At most N retry attempts (e.g., N = 3).",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "• A job eventually reaches Succeeded or Failed.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "• Only one worker actively executes the job at a time.",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+        "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 21,
-        "width_bp": 285.049,
-        "height_bp": 267.731,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 11
+        "semantic_typography_checks": 22,
+        "status": "passed"
       },
       "revision_history": [
         {
@@ -6913,112 +7270,156 @@
             "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail."
           }
         }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-09",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+          "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+          "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "page": 21,
+          "width_bp": 285.049,
+          "height_bp": 267.731,
+          "minimum_prose_font_pt": 8.97,
+          "semantic_typography_checks": 11
+        }
       ]
     },
     {
       "source": "book/assets/recovery-ordering-model.svg",
       "candidate": "book/tikz/figures/recovery-ordering-model.tex",
       "decision": "refined",
-      "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
-      "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
+      "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
+      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
       "evidence": [
         {
-          "source_text": "FALLBACK_STAGED",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "A state model for publishing",
+          "candidate_style": "italic",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "a recovered artifact.",
+          "candidate_style": "italic",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
           "candidate_text": "FALLBACK_STAGED",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "FALLBACK_STAGED",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "FALLBACK_UPLOADED",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "(artifact exists locally)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
           "candidate_text": "FALLBACK_UPLOADED",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "FALLBACK_UPLOADED",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "DB_UPDATED",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "(artifact durably stored)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
           "candidate_text": "DB_UPDATED",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "DB_UPDATED",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "upload succeeds",
-          "source_style": "weight normal; italic; source size 14",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "upload succeeds",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "upload succeeds",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "(database refers to artifact)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "durable state updated",
-          "source_style": "weight normal; italic; source size 14",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "durable state updated",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "durable state updated",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "absent transition",
-          "source_style": "weight 700; normal; source size 14",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Forbidden / absent transition",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Forbidden:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "absent transition",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "not part of",
-          "source_style": "weight normal; italic; source size 14",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Not part of the model",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "update DB",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "before",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "upload",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Permitted transition",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Prohibited transition",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "The artifact must be published",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/recovery-ordering-model.svg",
-            "element_text_path": "/svg/text[9]/text()",
-            "text_element_context": "not part of",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "(durably stored) before the database",
+          "candidate_style": "italic",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "may refer to it.",
+          "candidate_style": "italic",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         }
       ],
-      "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
+      "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
       "checks": [
+        {
+          "text": "A state model for publishing",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "a recovered artifact.",
+          "bold": false,
+          "italic": true
+        },
         {
           "text": "FALLBACK_STAGED",
           "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(artifact exists locally)",
+          "bold": false,
           "italic": false
         },
         {
@@ -7027,46 +7428,81 @@
           "italic": false
         },
         {
+          "text": "(artifact durably stored)",
+          "bold": false,
+          "italic": false
+        },
+        {
           "text": "DB_UPDATED",
           "bold": true,
           "italic": false
         },
         {
-          "text": "upload succeeds",
+          "text": "(database refers to artifact)",
           "bold": false,
-          "italic": true
+          "italic": false
         },
         {
-          "text": "durable state updated",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "forbidden / absent transition",
+          "text": "Forbidden:",
           "bold": true,
           "italic": false
         },
         {
-          "text": "not part of the model",
+          "text": "update DB",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "before",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "upload",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Permitted transition",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Prohibited transition",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "The artifact must be published",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "(durably stored) before the database",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "may refer to it.",
           "bold": false,
           "italic": true
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+        "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+        "page": 1,
+        "width_bp": 235.975,
+        "height_bp": 402.973,
+        "minimum_prose_font_pt": 10.262,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 22,
-        "width_bp": 229.716,
-        "height_bp": 201.973,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 7
+        "semantic_typography_checks": 17,
+        "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+        "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+        "status": "passed"
       },
       "revision_history": [
         {
@@ -7088,298 +7524,730 @@
             },
             "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden."
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "previous": {
+            "source": "book/assets/recovery-ordering-model.svg",
+            "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+            "decision": "refined",
+            "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
+            "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
+            "evidence": [
+              {
+                "source_text": "FALLBACK_STAGED",
+                "source_style": "weight 700; normal; source size 18",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "FALLBACK_STAGED",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[2]/text()",
+                  "text_element_context": "FALLBACK_STAGED",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "FALLBACK_UPLOADED",
+                "source_style": "weight 700; normal; source size 18",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "FALLBACK_UPLOADED",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[4]/text()",
+                  "text_element_context": "FALLBACK_UPLOADED",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "DB_UPDATED",
+                "source_style": "weight 700; normal; source size 18",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "DB_UPDATED",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[6]/text()",
+                  "text_element_context": "DB_UPDATED",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "upload succeeds",
+                "source_style": "weight normal; italic; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "upload succeeds",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[3]/text()",
+                  "text_element_context": "upload succeeds",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "durable state updated",
+                "source_style": "weight normal; italic; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "durable state updated",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[5]/text()",
+                  "text_element_context": "durable state updated",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "absent transition",
+                "source_style": "weight 700; normal; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "Forbidden / absent transition",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[8]/text()",
+                  "text_element_context": "absent transition",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "not part of",
+                "source_style": "weight normal; italic; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "Not part of the model",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/recovery-ordering-model.svg",
+                  "element_text_path": "/svg/text[9]/text()",
+                  "text_element_context": "not part of",
+                  "matching_fragment_count": 1
+                }
+              }
+            ],
+            "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
+            "checks": [
+              {
+                "text": "FALLBACK_STAGED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "FALLBACK_UPLOADED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "DB_UPDATED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "upload succeeds",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "durable state updated",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "forbidden / absent transition",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "not part of the model",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 22,
+              "width_bp": 229.716,
+              "height_bp": 201.973,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 7
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "previous": {
+            "source": "book/assets/recovery-ordering-model.svg",
+            "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+            "decision": "refined",
+            "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+            "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+            "evidence": [
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Recovery-Ordering Model",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "A state model for publishing",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "a recovered artifact.",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "FALLBACK_STAGED",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "(artifact exists locally)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "FALLBACK_UPLOADED",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "(artifact durably stored)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "DB_UPDATED",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "(database refers to artifact)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Forbidden:",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "update DB",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "before",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "upload",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Permitted transition",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Prohibited transition",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "The artifact must be published",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "(durably stored) before the database",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "may refer to it.",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              }
+            ],
+            "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+            "checks": [
+              {
+                "text": "Recovery-Ordering Model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "A state model for publishing",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "a recovered artifact.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "FALLBACK_STAGED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(artifact exists locally)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "FALLBACK_UPLOADED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(artifact durably stored)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "DB_UPDATED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(database refers to artifact)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Forbidden:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "update DB",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "before",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "upload",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Permitted transition",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Prohibited transition",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "The artifact must be published",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "(durably stored) before the database",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "may refer to it.",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+              "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+              "page": 1,
+              "width_bp": 235.975,
+              "height_bp": 422.973,
+              "minimum_prose_font_pt": 10.262,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 18,
+              "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+              "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+              "status": "passed"
+            }
+          }
         }
       ]
-    },
-    {
-      "source": "book/assets/behavioral-property-classes.svg",
-      "candidate": "book/tikz/figures/behavioral-property-classes.tex",
-      "decision": "refined",
-      "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
-      "candidate_sha256": "50bffe5b1802ebb698a297fa5778631457bb4cbdeba62b545246d9fce5e7aee2",
-      "evidence": [
-        {
-          "source_text": "BEHAVIORAL MODEL",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "BEHAVIORAL MODEL",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/behavioral-property-classes.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "BEHAVIORAL MODEL",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "LOCAL RULE",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "property family",
-          "candidate_text": "LOCAL RULE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/behavioral-property-classes.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "LOCAL RULE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "REACHABLE-STATE",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "property family",
-          "candidate_text": "REACHABLE-STATE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/behavioral-property-classes.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "REACHABLE-STATE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "TEMPORAL PROPERTY",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "property family",
-          "candidate_text": "TEMPORAL PROPERTY",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/behavioral-property-classes.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "TEMPORAL PROPERTY",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "EVIDENCE ABOUT BEHAVIOR",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "EVIDENCE ABOUT BEHAVIOR",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/behavioral-property-classes.svg",
-            "element_text_path": "/svg/text[12]/text()",
-            "text_element_context": "EVIDENCE ABOUT BEHAVIOR",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Restore formal property-family labels above regular checker examples; existing italic questions are retained.",
-      "checks": [
-        {
-          "text": "BEHAVIORAL MODEL",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "LOCAL RULE",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "REACHABLE-",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "TEMPORAL PROPERTY",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "EVIDENCE ABOUT BEHAVIOR",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Transition check",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 22,
-        "width_bp": 392.64,
-        "height_bp": 226.517,
-        "minimum_prose_font_pt": 9.5,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 6
-      }
     },
     {
       "source": "book/assets/in-flight-ownership-states.svg",
       "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
       "decision": "refined",
-      "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
-      "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
+      "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+      "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
       "evidence": [
         {
-          "source_text": "CLAIMED",
-          "source_style": "weight 700; normal; source size 19",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "CLAIMED",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "CLAIMED",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "RELEASED",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "RELEASED",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "RELEASED",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "RECLAIMABLE",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "RECLAIMABLE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[9]/text()",
-            "text_element_context": "RECLAIMABLE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "completion",
-          "source_style": "weight 700; normal; source size 14.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "completion",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "completion",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "expiry",
-          "source_style": "weight 700; normal; source size 14.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "expiry",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "expiry",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "owner · epoch · expires_at",
-          "source_style": "weight normal; italic; source size 14.5",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "owner · epoch · expires_at",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "A behavioral model for job ownership with generations.",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "owner · epoch · expires_at",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "claim ends cleanly",
-          "source_style": "weight normal; italic; source size 14.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Claim ends cleanly",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "claim ends cleanly",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Unowned",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         },
         {
-          "source_text": "lease lapsed / stale",
-          "source_style": "weight normal; italic; source size 14.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Lease lapsed / stale",
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Owned",
+          "candidate_style": "bold",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "(A, 7)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Owned",
+          "candidate_style": "bold",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "(B, 8)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Reclaimable",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "claim(A, 7)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "expire",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "claim(B, 8)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "release(A, 7) (rejected: stale generation)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "release(B, 8)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "State meaning",
+          "candidate_style": "bold",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Key transitions",
+          "candidate_style": "bold",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Unowned — no active claim",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Owned(w, g) — job held by worker w",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "with generation g",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "Reclaimable — previous claim",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "expired, job can be claimed",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "•",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "claim(w, g): acquire the job with",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "generation g",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "•",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "expire: previous claim",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "becomes invalid",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "•",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "release(w, g): release only if",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "the current claim matches (w, g)",
+          "candidate_style": "regular or mixed as in reference",
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Reference label or explanation",
+          "candidate_text": "A release may modify a job only if it still holds the current generation.",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/in-flight-ownership-states.svg",
-            "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "lease lapsed / stale",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
         }
       ],
-      "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
+      "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
       "checks": [
         {
-          "text": "CLAIMED",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "RELEASED",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "RECLAIMABLE",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "completion",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "expiry",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "owner · epoch · expires_at",
+          "text": "A behavioral model for job ownership with generations.",
           "bold": false,
           "italic": true
         },
         {
-          "text": "claim ends cleanly",
+          "text": "Unowned",
           "bold": false,
-          "italic": true
+          "italic": false
         },
         {
-          "text": "lease lapsed / stale",
+          "text": "Owned",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(A, 7)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Owned",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(B, 8)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Reclaimable",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "claim(A, 7)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "expire",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "claim(B, 8)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "release(A, 7) (rejected: stale generation)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "release(B, 8)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "State meaning",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Key transitions",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Unowned — no active claim"
+        },
+        {
+          "text": "Owned(w, g) — job held by worker w"
+        },
+        {
+          "text": "with generation g",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Reclaimable — previous claim"
+        },
+        {
+          "text": "expired, job can be claimed",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "•",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "claim(w, g): acquire the job with"
+        },
+        {
+          "text": "generation g",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "•",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "expire: previous claim"
+        },
+        {
+          "text": "becomes invalid",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "•",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "release(w, g): release only if"
+        },
+        {
+          "text": "the current claim matches (w, g)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "A release may modify a job only if it still holds the current generation.",
           "bold": false,
           "italic": true
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+        "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 397.973,
+        "minimum_prose_font_pt": 9.963,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 24,
-        "width_bp": 261.523,
-        "height_bp": 194.834,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 29,
+        "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+        "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+        "status": "passed"
       },
       "revision_history": [
         {
@@ -7401,267 +8269,546 @@
             },
             "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations."
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+          "previous": {
+            "source": "book/assets/in-flight-ownership-states.svg",
+            "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+            "decision": "refined",
+            "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
+            "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
+            "evidence": [
+              {
+                "source_text": "CLAIMED",
+                "source_style": "weight 700; normal; source size 19",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "CLAIMED",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[3]/text()",
+                  "text_element_context": "CLAIMED",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "RELEASED",
+                "source_style": "weight 700; normal; source size 18",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "RELEASED",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[7]/text()",
+                  "text_element_context": "RELEASED",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "RECLAIMABLE",
+                "source_style": "weight 700; normal; source size 18",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "RECLAIMABLE",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[9]/text()",
+                  "text_element_context": "RECLAIMABLE",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "completion",
+                "source_style": "weight 700; normal; source size 14.4",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "completion",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[5]/text()",
+                  "text_element_context": "completion",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "expiry",
+                "source_style": "weight 700; normal; source size 14.4",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "expiry",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[6]/text()",
+                  "text_element_context": "expiry",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "owner · epoch · expires_at",
+                "source_style": "weight normal; italic; source size 14.5",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "owner · epoch · expires_at",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[4]/text()",
+                  "text_element_context": "owner · epoch · expires_at",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "claim ends cleanly",
+                "source_style": "weight normal; italic; source size 14.4",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "Claim ends cleanly",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[8]/text()",
+                  "text_element_context": "claim ends cleanly",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "lease lapsed / stale",
+                "source_style": "weight normal; italic; source size 14.4",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "Lease lapsed / stale",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/in-flight-ownership-states.svg",
+                  "element_text_path": "/svg/text[10]/text()",
+                  "text_element_context": "lease lapsed / stale",
+                  "matching_fragment_count": 1
+                }
+              }
+            ],
+            "reason": "Bold legal states and distinct completion/expiry triggers; italic ownership fields and state explanations.",
+            "checks": [
+              {
+                "text": "CLAIMED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "RELEASED",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "RECLAIMABLE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "completion",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "expiry",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "owner · epoch · expires_at",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "claim ends cleanly",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "lease lapsed / stale",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 24,
+              "width_bp": 261.523,
+              "height_bp": 194.834,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 8
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "previous": {
+            "source": "book/assets/in-flight-ownership-states.svg",
+            "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+            "decision": "refined",
+            "source_sha256": "fed73b026806056588124f90621ba54cfd8d76b7145263e2c60dc9de67ba254b",
+            "candidate_sha256": "49df15db5b6554c82d4701c856b07d0c6a84bbe3c4ca2cfce36f1fcd3ca7b55f",
+            "evidence": [
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Ownership Under Contention",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "A behavioral model for job ownership with generations.",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Unowned",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Owned",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "(A, 7)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Owned",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "(B, 8)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Reclaimable",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "claim(A, 7)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "expire",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "claim(B, 8)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "release(A, 7) (rejected: stale generation)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "release(B, 8)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "State meaning",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Key transitions",
+                "candidate_style": "bold",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Unowned — no active claim",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Owned(w, g) — job held by worker w",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "with generation g",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "Reclaimable — previous claim",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "expired, job can be claimed",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "•",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "claim(w, g): acquire the job with",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "generation g",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "•",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "expire: previous claim",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "becomes invalid",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "•",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "release(w, g): release only if",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "the current claim matches (w, g)",
+                "candidate_style": "regular or mixed as in reference",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Reference label or explanation",
+                "candidate_text": "A release may modify a job only if it still holds the current generation.",
+                "candidate_style": "italic",
+                "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+              }
+            ],
+            "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+            "checks": [
+              {
+                "text": "Ownership Under Contention",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "A behavioral model for job ownership with generations.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Unowned",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Owned",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(A, 7)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Owned",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(B, 8)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Reclaimable",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "claim(A, 7)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "expire",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "claim(B, 8)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "release(A, 7) (rejected: stale generation)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "release(B, 8)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "State meaning",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Key transitions",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Unowned — no active claim"
+              },
+              {
+                "text": "Owned(w, g) — job held by worker w"
+              },
+              {
+                "text": "with generation g",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Reclaimable — previous claim"
+              },
+              {
+                "text": "expired, job can be claimed",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "•",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "claim(w, g): acquire the job with"
+              },
+              {
+                "text": "generation g",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "•",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "expire: previous claim"
+              },
+              {
+                "text": "becomes invalid",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "•",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "release(w, g): release only if"
+              },
+              {
+                "text": "the current claim matches (w, g)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "A release may modify a job only if it still holds the current generation.",
+                "bold": false,
+                "italic": true
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+              "proof_sha256": "001a1cef83ed6cbde07b3356f3af7c76a8b134f155f62436e70b53f40fd16f1f",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 417.973,
+              "minimum_prose_font_pt": 9.963,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 30,
+              "audit_sha256": "e76650bce173025afb7ab329723530f9ba0bb60b703aec4421bd836c1a5bfaa5",
+              "typography_audit_sha256": "25572ba3624bae22bab302f86bc699cd348b2e63f2187f0c43b88709f6f2b02e",
+              "status": "passed"
+            }
+          }
         }
       ]
     },
     {
-      "source": "book/assets/in-flight-lease-overlap.svg",
-      "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
-      "decision": "refined",
-      "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
-      "candidate_sha256": "17477066da395e24af8b200c187440f462f81806d7f2261db28ca23e0e221edf",
-      "evidence": [
-        {
-          "source_text": "SHARED LEASE STATE",
-          "source_style": "weight 700; normal; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "SHARED LEASE STATE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-lease-overlap.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "SHARED LEASE STATE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "OWNERSHIP",
-          "source_style": "weight 700; normal; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "OWNERSHIP",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-lease-overlap.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "OWNERSHIP",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "BEHAVIOR",
-          "source_style": "weight 700; normal; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "BEHAVIOR",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-lease-overlap.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "BEHAVIOR",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "MEASUREMENT",
-          "source_style": "weight 700; normal; source size 17",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "MEASUREMENT",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/in-flight-lease-overlap.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "MEASUREMENT",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "owner · epoch · lifetime",
-          "source_style": "weight normal; italic; source size 14.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "owner · epoch · lifetime",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/in-flight-lease-overlap.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "owner · epoch · lifetime",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "who owns?",
-          "source_style": "weight normal; italic; source size 14.5",
-          "semantic_role": "engineering question",
-          "candidate_text": "Who owns?",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/in-flight-lease-overlap.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "who owns?",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Bold uppercase model perspectives contrast with italic engineering questions and lease fields.",
-      "checks": [
-        {
-          "text": "SHARED LEASE STATE",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "OWNERSHIP",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "BEHAVIOR",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "MEASUREMENT",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "owner · epoch · lifetime",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Who owns?",
-          "bold": false,
-          "italic": true
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 24,
-        "width_bp": 376.338,
-        "height_bp": 141.164,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 6
-      }
-    },
-    {
-      "source": "book/assets/canonical-decision.svg",
-      "candidate": "book/tikz/figures/canonical-decision.tex",
-      "decision": "refined",
-      "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
-      "candidate_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
-      "evidence": [
-        {
-          "source_text": "DESCRIPTIVE",
-          "source_style": "weight 700; normal; source size 22",
-          "semantic_role": "fact-versus-rule category",
-          "candidate_text": "DESCRIPTIVE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-decision.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "DESCRIPTIVE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "a fact about what happens",
-          "source_style": "weight normal; italic; source size 19",
-          "semantic_role": "category definition",
-          "candidate_text": "a fact",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-decision.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "a fact about what happens",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "calls",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "modal relation",
-          "candidate_text": "calls",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-decision.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "calls",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "may call",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "modal relation",
-          "candidate_text": "may call",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-decision.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "may call",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Preserve descriptive/normative category capitals and separate italic definitions and modal edge labels.",
-      "checks": [
-        {
-          "text": "DESCRIPTIVE",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "a fact",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "calls",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "may call",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Service A",
-          "bold": false,
-          "italic": false
-        }
-      ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 25,
-        "width_bp": 374.568,
-        "height_bp": 164.97,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 5
-      }
-    },
-    {
       "source": "book/assets/service-flow-model.svg",
       "candidate": "book/tikz/figures/service-flow-model.tex",
-      "decision": "retained",
-      "source_sha256": "c9614044a4b480a001046579f23d7b8f3a6f3f1c682146da3dd01ae277eb320e",
-      "candidate_sha256": "a54f1cef427a2343716f7bd02eaee5fa9615aa24d6fd5312bcf3ad2d2e8474cd",
-      "evidence": [
-        {
-          "source_text": "OCR",
-          "source_style": "weight 700; normal; source size 15",
-          "semantic_role": "service acronym",
-          "candidate_text": "OCR",
-          "candidate_style": "regular",
-          "source_locator": {
-            "svg": "book/assets/service-flow-model.svg",
-            "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "OCR",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight.",
+      "decision": "refined",
+      "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+      "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+      "evidence": [],
+      "reason": "Bundled Source Sans 3 matches the book figure profile. Observed/declared panel headings are bold; all node labels are regular. No redundant internal caption is present.",
       "checks": [
         {
-          "text": "OCR",
+          "text": "Internet",
           "bold": false,
           "italic": false
         },
@@ -7669,23 +8816,63 @@
           "text": "web",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "worker",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "document",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "editor",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "others",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "generation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "render",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "OCR",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 27,
-        "width_bp": 262.523,
-        "height_bp": 207.087,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 2
+        "semantic_typography_checks": 9,
+        "status": "passed"
       },
       "revision_history": [
         {
@@ -7708,108 +8895,148 @@
             "reason": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight."
           }
         }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-09",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+          "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+          "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "page": 27,
+          "width_bp": 262.523,
+          "height_bp": 207.087,
+          "minimum_prose_font_pt": 8.97,
+          "semantic_typography_checks": 2
+        }
       ]
     },
     {
       "source": "book/assets/observed-vs-declared.svg",
       "candidate": "book/tikz/figures/observed-vs-declared.tex",
       "decision": "refined",
-      "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-      "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
+      "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+      "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
       "evidence": [
         {
-          "source_text": "“Does A call C?”",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "observed modality",
-          "candidate_text": "Does",
+          "source_text": "Observed calls",
+          "source_style": "font-size:21px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Observed calls",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/observed-vs-declared.svg",
+            "element_text_path": "/svg/text[1]/text()",
+            "text_element_context": "Observed calls",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "Declared permissions",
+          "source_style": "font-size:21px;font-weight:bold;",
+          "semantic_role": "annotation heading or model-summary emphasis",
+          "candidate_text": "Declared permissions",
           "candidate_style": "bold",
           "source_locator": {
             "svg": "book/assets/observed-vs-declared.svg",
             "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "“Does A call C?”",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "“May A call C?”",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "normative modality",
-          "candidate_text": "May",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/observed-vs-declared.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "“May A call C?”",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "declared",
-          "source_style": "weight normal; italic; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "declared",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/observed-vs-declared.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "declared",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "no edge",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "no edge",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/observed-vs-declared.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "no edge",
+            "text_element_context": "Declared permissions",
             "matching_fragment_count": 1
           }
         }
       ],
-      "reason": "Uppercase headings and bold modal words distinguish observed facts from permission; missing-edge status is emphasized.",
+      "reason": "Bundled Source Sans 3 matches the book figure profile. Observed/declared panel headings are bold; all node labels are regular. No redundant internal caption is present.",
       "checks": [
         {
-          "text": "Does",
+          "text": "Observed calls",
           "bold": true,
           "italic": false
         },
         {
-          "text": "May",
+          "text": "Declared permissions",
           "bold": true,
           "italic": false
         },
         {
-          "text": "declared",
+          "text": "web",
           "bold": false,
-          "italic": true
-        },
-        {
-          "text": "no edge",
-          "bold": true,
           "italic": false
         },
         {
-          "text": "Agreement establishes correspondence, not correctness.",
+          "text": "report",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "service",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "renderer",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "web",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "report",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "service",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "renderer",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 27,
-        "width_bp": 399.726,
-        "height_bp": 183.151,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 4,
+        "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 5
-      }
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 27,
+          "width_bp": 399.726,
+          "height_bp": 183.151,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 5
+        }
+      ]
     },
     {
       "source": "book/assets/entitlement-domain.svg",

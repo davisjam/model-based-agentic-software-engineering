@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="794" viewBox="0 0 230 397" role="img" aria-labelledby="title desc"><title id="title">Recovery-Ordering Model</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker></defs><rect width="230" height="397" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
+<text x="115" y="39" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">A state model for publishing</text>
+<text x="115" y="52" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">a recovered artifact.</text>
+<circle cx="77.5" cy="70" r="5.3" fill="#111111"/>
+<path d="M77.5,75.3 V90" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<rect x="5" y="91" width="145" height="42" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
+<text x="77.5" y="108" text-anchor="middle" style="font-size:10.5px;font-weight:bold;fill:#222222">FALLBACK_STAGED</text>
+<text x="77.5" y="122" text-anchor="middle" style="font-size:10.5px;fill:#222222">(artifact exists locally)</text>
+<rect x="5" y="174" width="145" height="42" rx="4" fill="#eeeeee" stroke="#444444" stroke-width="0.75"/>
+<text x="77.5" y="191" text-anchor="middle" style="font-size:10.5px;font-weight:bold;fill:#222222">FALLBACK_UPLOADED</text>
+<text x="77.5" y="205" text-anchor="middle" style="font-size:10.5px;fill:#222222">(artifact durably stored)</text>
+<rect x="5" y="257" width="145" height="42" rx="4" fill="#e9e9e9" stroke="#444444" stroke-width="0.75"/>
+<text x="77.5" y="274" text-anchor="middle" style="font-size:10.5px;font-weight:bold;fill:#222222">DB_UPDATED</text>
+<text x="77.5" y="288" text-anchor="middle" style="font-size:10.5px;fill:#222222">(database refers to artifact)</text>
+<path d="M77.5,133 V173" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M77.5,216 V256" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M150,112 C166,112 166,260 150,278" fill="none" stroke="#222222" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
+<path d="M158,190 L166,198 M158,198 L166,190" stroke="#222222" stroke-width="2.3"/>
+<text x="171" y="174" text-anchor="start" style="font-size:10.3px;font-weight:bold;fill:#222222">Forbidden:</text>
+<text x="171" y="187" text-anchor="start" style="font-size:10.3px;fill:#222222">update DB</text>
+<text x="171" y="200" text-anchor="start" style="font-size:10.3px;fill:#222222">before</text>
+<text x="171" y="213" text-anchor="start" style="font-size:10.3px;fill:#222222">upload</text>
+<path d="M26,325 H64" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<text x="73" y="328" text-anchor="start" style="font-size:10.5px;fill:#222222">Permitted transition</text>
+<path d="M26,346 H64" fill="none" stroke="#222222" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
+<path d="M43.8,342.8 L50.2,349.2 M43.8,349.2 L50.2,342.8" stroke="#222222" stroke-width="2.3"/>
+<text x="73" y="349" text-anchor="start" style="font-size:10.5px;fill:#222222">Prohibited transition</text>
+<text x="115" y="378" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">The artifact must be published</text>
+<text x="115" y="391" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">(durably stored) before the database</text>
+<text x="115" y="404" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">may refer to it.</text></g></svg>

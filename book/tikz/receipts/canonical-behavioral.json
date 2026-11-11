@@ -1,34 +1,59 @@
 {
   "source": "book/assets/canonical-behavioral.svg",
   "chapter": "2.3-behavioral",
-  "claim": "*The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits \u2014 here the skip from IDLE straight to DONE \u2014 is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.",
+  "claim": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties state bounded retry attempts, eventual Succeeded or Failed, and a single active worker.",
   "topology": {
-    "description": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+    "description": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties state bounded retry attempts, eventual Succeeded or Failed, and a single active worker.",
     "native_draw_commands": [
-      "\\draw[edge] (impl) -- node[lab,right] {reduce to} (run);",
-      "\\draw[edge] (idle) -- node[lab,above=10pt] {start} (run);",
-      "\\draw[edge] (run) -- node[lab,above=10pt] {finish} (done);",
-      "\\draw[edge] (run) -- node[lab,right] {fail} (fail);",
-      "\\draw[edge,dashed] (idle.west) -- (-6,0) -- (-6,-3) -- node[lab] {$\\times$} node[lab,below=5pt] {Forbidden: no skipping RUNNING} (6,-3) -- (6,0) -- (done.east);"
+      "\\path[fill=white] (0,70) rectangle (782,656);",
+      "\\path[fill=black!84,draw=black!93,line width=0.566bp] (56,249) circle[radius=5.094bp];",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (65,249) -- (104,249);",
+      "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (105,223) rectangle (232,275);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (232,249) -- (299,248);",
+      "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (300,222) rectangle (435,274);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (435,248) -- (522,249);",
+      "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (523,223) rectangle (673,277);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (367.5,274) -- (367.5,337);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (295,379) .. controls (265,360) and (266,307) .. (304,273);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (442,374) .. controls (482,354) and (466,303) .. (433,273);",
+      "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,339) rectangle (442,403);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (368.5,403) -- (368.5,450);",
+      "\\path[fill=white,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (295,452) rectangle (442,505);",
+      "\\path[draw=black!80,line width=0.4528bp] (361,178) -- (366,216);",
+      "\\path[draw=black!80,line width=0.4528bp] (619,164) .. controls (607.66667,176.66667) and (599.66667,194) .. (595,216);",
+      "\\path[draw=black!80,line width=0.4528bp] (517,344) -- (463,363);",
+      "\\path[draw=black!80,line width=0.4528bp] (517,457) -- (449,478);",
+      "\\path[draw=black!53,line width=0.4528bp] (48,536) -- (738,536);"
     ]
   },
   "required_terms": [
-    "Implementation",
-    "Handlers \u00b7 retries \u00b7 writes \u00b7 logging",
-    "IDLE RUNNING DONE",
-    "F AILED",
-    "reduce to",
-    "start finish",
-    "fail",
-    "\u00d7",
-    "Forbidden: no skipping RUNNING",
-    "Node = legal state; edge = permitted transition; path = admitted execution.",
-    "Analyze reachability, safety and liveness."
+    "A state model for a remediation job, including retries.",
+    "Pending",
+    "Running",
+    "Succeeded",
+    "Retrying",
+    "(attempt = n)",
+    "Failed",
+    "A worker executes the",
+    "next computation for the job.",
+    "Job completes",
+    "with a corrected",
+    "document.",
+    "On a repairable failure,",
+    "retry (up to a limit,",
+    "If retries are exhausted",
+    "or the error is not repairable,",
+    "the job fails.",
+    "e.g., n ≤3).",
+    "Key properties (examples)",
+    "• At most N retry attempts (e.g., N = 3).",
+    "• A job eventually reaches Succeeded or Failed.",
+    "• Only one worker actively executes the job at a time."
   ],
-  "bw_encoding": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics.",
-  "redesign": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "bw_encoding": "All five states are white with modest rounded corners and black directed transitions. The initial black disk is a state-machine marker, not an annotation leader. All annotation leaders are thin and have no endpoint disks. The property list needs no color legend.",
+  "redesign": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
   "questions": [],
-  "alt": "Rounded state boxes and directed transitions depict the behavioral model. A dashed prohibited transition bears a cross, with its explanation below the path.",
+  "alt": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties state bounded retry attempts, eventual Succeeded or Failed, and a single active worker.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -40,300 +65,491 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+    "outcome": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
     "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      10.0559,
-      9.445
-    ]
+      15.825,
+      11.9115
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+      "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 337.649,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.79,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 3,
+      "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+      "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 22,
+      "status": "passed"
+    }
   },
   "fidelity_review": {
     "stem": "canonical-behavioral",
     "source": "book/assets/canonical-behavioral.svg",
     "status": "corrected",
-    "evidence": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+    "evidence": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
     "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/canonical-behavioral.png",
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/canonical-behavioral.png",
-    "original_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
-    "native_sha256": "24692487b36cb3851f2c379e302fb6d46924fd2b5aaa11904ad352792826cd5a",
-    "page": 18,
+    "candidate_render": "/private/tmp/mage-figures-2-9-2-10-native-20261111/latex/build/reference-native-proof/canonical-behavioral.png",
+    "original_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+    "native_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
+    "page": 1,
     "dimensions_cm": [
       12.3515,
       7.9684
     ],
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+      "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 337.649,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.79,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 3,
+      "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+      "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 22,
+      "status": "passed"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "140c0edfa111c00180f2492c9f69500612602e284196eb78c04b906758fe1529",
-    "candidate_sha256": "29811cb7e256dcf136b451f6aed33fbf8e6cf29519617ce73bde84a219250d5f",
-    "fill": "Implementation and all state peers white; directed transitions and crossed forbidden path carry the semantics.",
-    "bold": "Source-derived emphasis includes IMPLEMENTATION; IDLE; RUNNING; DONE; FAILED. Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail.",
-    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+    "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
+    "fill": "All five states are white with modest rounded corners and black directed transitions. The initial black disk is a state-machine marker, not an annotation leader. All annotation leaders are thin and have no endpoint disks. The property list needs no color legend.",
+    "bold": "Bold labels identify computations and annotation headings; state labels remain regular except Retrying as in the supplied reference.",
+    "routing": "Initial marker enters Pending, then Running, then Succeeded. Running enters Retrying; both supplied retry return arcs lead back to Running. Retrying also leads to Failed. Annotations explain worker execution, corrected document, repairable retry and exhausted or unrepairable failure. Properties state bounded retry attempts, eventual Succeeded or Failed, and a single active worker.",
+    "shape": "House-scale corner radii; supplied semantic diamond/rectangle/state shapes remain.",
+    "visual_review": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+      "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 337.649,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.79,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 3,
+      "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+      "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 21,
-      "width_bp": 285.049,
-      "height_bp": 267.731,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 11
+      "semantic_typography_checks": 22,
+      "status": "passed"
     },
-    "book_references": []
+    "book_references": [],
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 20,
+        "width_bp": 350.12,
+        "height_bp": 225.916,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "7b74ff3cf3ac797db259c3c107cb24f64226220862c8aebe96002ddacb38f12d",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "a737bcde3c9d340a450e24103facc2467e5d109dec41cea8ff2d130749367aa9",
+        "typography_audit_sha256": "f9cdf5f975e0616dfa5643539a3cdc3fef98dc2a173eaf4605c119210a6a67fb",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 21,
+        "status": "passed"
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "140c0edfa111c00180f2492c9f69500612602e284196eb78c04b906758fe1529",
-    "candidate_sha256": "29811cb7e256dcf136b451f6aed33fbf8e6cf29519617ce73bde84a219250d5f",
-    "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail.",
+    "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+    "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
     "evidence": [
       {
-        "source_text": "IMPLEMENTATION",
-        "source_style": "weight 700; normal; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "IMPLEMENTATION",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "IMPLEMENTATION",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "IDLE",
-        "source_style": "weight 700; normal; source size 23",
-        "semantic_role": "legal state identifier",
-        "candidate_text": "IDLE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[6]/text()",
-          "text_element_context": "IDLE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "RUNNING",
-        "source_style": "weight 700; normal; source size 23",
-        "semantic_role": "legal state identifier",
-        "candidate_text": "RUNNING",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[7]/text()",
-          "text_element_context": "RUNNING",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "DONE",
-        "source_style": "weight 700; normal; source size 23",
-        "semantic_role": "legal state identifier",
-        "candidate_text": "DONE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[8]/text()",
-          "text_element_context": "DONE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "FAILED",
-        "source_style": "weight 700; normal; source size 23",
-        "semantic_role": "legal state identifier",
-        "candidate_text": "FAILED",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[9]/text()",
-          "text_element_context": "FAILED",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "reduce to",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "transition relation",
-        "candidate_text": "reduce to",
+        "source_text": "A state model for a remediation job, including retries.",
+        "source_style": "font-size:21.5px;font-style:italic;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "A state model for a remediation job, including retries.",
         "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/canonical-behavioral.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "A state model for a remediation job, including retries.",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Retrying",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Retrying",
+        "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/canonical-behavioral.svg",
           "element_text_path": "/svg/text[5]/text()",
-          "text_element_context": "reduce to",
+          "text_element_context": "Retrying",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "start",
-        "source_style": "weight normal; italic; source size 19",
-        "semantic_role": "transition relation",
-        "candidate_text": "start",
-        "candidate_style": "italic",
+        "source_text": "Key properties (examples)",
+        "source_style": "font-size:22px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Key properties (examples)",
+        "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[10]/text()",
-          "text_element_context": "start",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "finish",
-        "source_style": "weight normal; italic; source size 19",
-        "semantic_role": "transition relation",
-        "candidate_text": "finish",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[11]/text()",
-          "text_element_context": "finish",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "fail",
-        "source_style": "weight normal; italic; source size 19",
-        "semantic_role": "transition relation",
-        "candidate_text": "fail",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/canonical-behavioral.svg",
-          "element_text_path": "/svg/text[12]/text()",
-          "text_element_context": "fail",
+          "element_text_path": "/svg/text[19]/text()",
+          "text_element_context": "Key properties (examples)",
           "matching_fragment_count": 1
         }
       }
     ],
+    "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
     "checks": [
       {
-        "text": "IMPLEMENTATION",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "IDLE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "RUNNING",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "DONE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "FAILED",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "reduce to",
+        "text": "A state model for a remediation job, including retries.",
         "bold": false,
         "italic": true
       },
       {
-        "text": "start",
+        "text": "Pending",
         "bold": false,
-        "italic": true
+        "italic": false
       },
       {
-        "text": "finish",
+        "text": "Running",
         "bold": false,
-        "italic": true
+        "italic": false
       },
       {
-        "text": "fail",
+        "text": "Succeeded",
         "bold": false,
-        "italic": true
+        "italic": false
       },
       {
-        "text": "Handlers \u00b7 retries \u00b7 writes \u00b7 logging",
+        "text": "Retrying",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(attempt = n)"
+      },
+      {
+        "text": "Failed",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "A worker executes the",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "next computation for the job.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Job completes",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "with a corrected",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "document.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "On a repairable failure,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "retry (up to a limit,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "If retries are exhausted",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "or the error is not repairable,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "the job fails.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "e.g., n ≤3).",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Key properties (examples)",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "• At most N retry attempts (e.g., N = 3).",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "• A job eventually reaches Succeeded or Failed.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "• Only one worker actively executes the job at a time.",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+      "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 337.649,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.79,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 3,
+      "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+      "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 21,
-      "width_bp": 285.049,
-      "height_bp": 267.731,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 11
-    }
+      "semantic_typography_checks": 22,
+      "status": "passed"
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-09",
+        "review": {
+          "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+          "candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 20,
+            "width_bp": 350.12,
+            "height_bp": 225.916,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 10
+          },
+          "reason": "Legal-state symbols regain bold capitals; italic transition verbs remain distinct from implementation detail."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 21,
+        "width_bp": 285.049,
+        "height_bp": 267.731,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 11
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "7b74ff3cf3ac797db259c3c107cb24f64226220862c8aebe96002ddacb38f12d",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "a737bcde3c9d340a450e24103facc2467e5d109dec41cea8ff2d130749367aa9",
+        "typography_audit_sha256": "f9cdf5f975e0616dfa5643539a3cdc3fef98dc2a173eaf4605c119210a6a67fb",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 21,
+        "status": "passed"
+      }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "State boxes align and state-transition arrowheads have clear runs; the forbidden shortcut stays separate from legal transitions.",
-    "candidate_sha256": "29811cb7e256dcf136b451f6aed33fbf8e6cf29519617ce73bde84a219250d5f",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing canonical behavioral layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
-      "after_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
-      "before_dimensions_bp": [
-        350.1199951171875,
-        225.91600036621094
-      ],
-      "after_dimensions_bp": [
-        350.1199951171875,
-        225.91600036621094
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
+    "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+    "baseline_candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
+    "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
+    "decision": "refined",
+    "reason": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      350.1199951171875,
+      225.91600036621094
+    ],
+    "contracts": {},
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+      "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 337.649,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.79,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 3,
+      "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+      "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 21,
-      "width_bp": 285.049,
-      "height_bp": 267.731,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 11
+      "semantic_typography_checks": 22,
+      "status": "passed"
     },
-    "source_sha256": "140c0edfa111c00180f2492c9f69500612602e284196eb78c04b906758fe1529"
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
+      "reviewed_visually": true,
+      "full_width_required": true,
+      "half_width_minimum_font_pt": 5.09
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-09",
+        "review": {
+          "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
+          "candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 20,
+            "width_bp": 350.12,
+            "height_bp": 225.916
+          },
+          "reason": "State boxes align and state-transition arrowheads have clear runs; the forbidden shortcut stays separate from legal transitions."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 21,
+        "width_bp": 285.049,
+        "height_bp": 267.731,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 11
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "7b74ff3cf3ac797db259c3c107cb24f64226220862c8aebe96002ddacb38f12d",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "a737bcde3c9d340a450e24103facc2467e5d109dec41cea8ff2d130749367aa9",
+        "typography_audit_sha256": "f9cdf5f975e0616dfa5643539a3cdc3fef98dc2a173eaf4605c119210a6a67fb",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 21,
+        "status": "passed"
+      }
+    ]
   },
   "chapter2_layout_revision": {
     "date": "2026-11-09",
@@ -547,7 +763,7 @@
               "italic": true
             },
             {
-              "text": "Handlers \u00b7 retries \u00b7 writes \u00b7 logging",
+              "text": "Handlers · retries · writes · logging",
               "bold": false,
               "italic": false
             }

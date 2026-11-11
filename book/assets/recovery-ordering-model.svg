@@ -1,25 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 247.5 223" width="247.5" height="223" role="img" aria-labelledby="roTitle roDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><ns0:title xmlns:ns0="http://www.w3.org/2000/svg" id="roTitle">Recovery-ordering model: three legal states and one forbidden edge</ns0:title>
-  <ns0:desc xmlns:ns0="http://www.w3.org/2000/svg" id="roDesc">Three states in legal order. FALLBACK_STAGED transitions on upload success to
-    FALLBACK_UPLOADED, which transitions when durable state is updated to DB_UPDATED. The decisive fact
-    is a forbidden edge: FALLBACK_STAGED may not go directly to DB_UPDATED. Durable state may not name an
-    artifact recovery has not yet published.</ns0:desc>
-
-  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
-<text x="123.75" y="12.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">RECOVERY MODEL</text>
-<rect x="8" y="26" width="155" height="26" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="1.25"/>
-<text x="85.5" y="43.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">FALLBACK_STAGED</text>
-<rect x="8" y="83" width="155" height="26" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="1.25"/>
-<text x="85.5" y="100.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">FALLBACK_UPLOADED</text>
-<rect x="8" y="140" width="155" height="26" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="1.25"/>
-<text x="85.5" y="157.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">DB_UPDATED</text>
-<path d="M85.5,52 L85.5,82" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
-<text x="91" y="69.0" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">upload succeeds</text>
-<path d="M85.5,109 L85.5,139" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
-<text x="91" y="126.0" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">durable state updated</text>
-<path d="M163,39 L224,39 L224,153 L163,153" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2"/>
-<path d="M218 90L230 102M230 90L218 102" stroke="#ad420d" stroke-width="1.3"/>
-<text x="123.75" y="182.0" text-anchor="middle" font-size="9" fill="#ad420d" font-style="italic">forbidden / absent transition</text>
-<text x="123.75" y="192.8" text-anchor="middle" font-size="9" fill="#ad420d" font-style="italic">not part of the model</text>
-<text x="123.75" y="209.0" text-anchor="middle" font-size="9" fill="#ad420d" font-style="italic">The fallback artifact must become durable</text>
-<text x="123.75" y="219.8" text-anchor="middle" font-size="9" fill="#ad420d" font-style="italic">before database state may refer to it.</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="794" viewBox="0 0 230 397" role="img" aria-labelledby="title desc"><title id="title">Recovery-Ordering Model</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#a92020"/></marker></defs><rect width="230" height="397" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
+<text x="115" y="39" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">A state model for publishing</text>
+<text x="115" y="52" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">a recovered artifact.</text>
+<circle cx="77.5" cy="70" r="5.3" fill="#111111"/>
+<path d="M77.5,75.3 V90" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<rect x="5" y="91" width="145" height="42" rx="4" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<text x="77.5" y="108" text-anchor="middle" style="font-size:10.5px;font-weight:bold;fill:#222222">FALLBACK_STAGED</text>
+<text x="77.5" y="122" text-anchor="middle" style="font-size:10.5px;fill:#222222">(artifact exists locally)</text>
+<rect x="5" y="174" width="145" height="42" rx="4" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<text x="77.5" y="191" text-anchor="middle" style="font-size:10.5px;font-weight:bold;fill:#222222">FALLBACK_UPLOADED</text>
+<text x="77.5" y="205" text-anchor="middle" style="font-size:10.5px;fill:#222222">(artifact durably stored)</text>
+<rect x="5" y="257" width="145" height="42" rx="4" fill="#e2f3d5" stroke="#3e7134" stroke-width="0.75"/>
+<text x="77.5" y="274" text-anchor="middle" style="font-size:10.5px;font-weight:bold;fill:#222222">DB_UPDATED</text>
+<text x="77.5" y="288" text-anchor="middle" style="font-size:10.5px;fill:#222222">(database refers to artifact)</text>
+<path d="M77.5,133 V173" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M77.5,216 V256" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M150,112 C166,112 166,260 150,278" fill="none" stroke="#a92020" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
+<path d="M158,190 L166,198 M158,198 L166,190" stroke="#a92020" stroke-width="2.3"/>
+<text x="171" y="174" text-anchor="start" style="font-size:10.3px;font-weight:bold;fill:#a92020">Forbidden:</text>
+<text x="171" y="187" text-anchor="start" style="font-size:10.3px;fill:#a92020">update DB</text>
+<text x="171" y="200" text-anchor="start" style="font-size:10.3px;fill:#a92020">before</text>
+<text x="171" y="213" text-anchor="start" style="font-size:10.3px;fill:#a92020">upload</text>
+<path d="M26,325 H64" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<text x="73" y="328" text-anchor="start" style="font-size:10.5px;fill:#222222">Permitted transition</text>
+<path d="M26,346 H64" fill="none" stroke="#a92020" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
+<path d="M43.8,342.8 L50.2,349.2 M43.8,349.2 L50.2,342.8" stroke="#a92020" stroke-width="2.3"/>
+<text x="73" y="349" text-anchor="start" style="font-size:10.5px;fill:#222222">Prohibited transition</text>
+<text x="115" y="378" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">The artifact must be published</text>
+<text x="115" y="391" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">(durably stored) before the database</text>
+<text x="115" y="404" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">may refer to it.</text></g></svg>

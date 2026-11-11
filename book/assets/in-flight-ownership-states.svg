@@ -1,31 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 225" width="270" height="225" role="img" aria-labelledby="ioTitle ioDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><ns0:title xmlns:ns0="http://www.w3.org/2000/svg" id="ioTitle">In-flight ownership: CLAIMED releases on completion or becomes reclaimable on expiry</ns0:title>
-  <ns0:desc xmlns:ns0="http://www.w3.org/2000/svg" id="ioDesc">A claim opens the CLAIMED state, carrying owner, epoch, and expires_at. Two
-    transitions leave it. Completion releases the claim to a RELEASED outcome. Expiry moves it to RECLAIMABLE,
-    a lapsed state from which another actor may claim it again. The model distinguishes a live claim from a
-    stale one and states when the window has lapsed, without representing the storage machinery that
-    implements the lease.</ns0:desc>
-
-  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
-<text x="135" y="12.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">IN-FLIGHT OWNERSHIP</text>
-<text x="126" y="26.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">claim</text>
-<path d="M126,29 L126,40" fill="none" stroke="#2f5169" stroke-width=".8" marker-end="url(#a2f5169)"/>
-<rect x="50" y="41" width="152" height="41" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="1.25"/>
-<text x="126" y="58.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">CLAIMED</text>
-<text x="126" y="73.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">owner · epoch · expires_at</text>
-<path d="M94,82 L94,103 L64,103 L64,127" fill="none" stroke="#086438" stroke-width=".8" marker-end="url(#a086438)"/>
-<text x="64" y="98.0" text-anchor="middle" font-size="9" fill="#086438" font-weight="700">completion</text>
-<path d="M161,82 L161,103 L196,103 L196,127" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#a57534e)"/>
-<text x="196" y="98.0" text-anchor="middle" font-size="9" fill="#57534e" font-weight="700">expiry</text>
-<rect x="8" y="128" width="112" height="37" rx="4" fill="#e4efe8" stroke="#086438" stroke-width="0.8"/>
-<text x="64" y="143.0" text-anchor="middle" font-size="10" fill="#086438" font-weight="700">RELEASED</text>
-<text x="64" y="157.0" text-anchor="middle" font-size="9" fill="#086438" font-style="italic">claim ends cleanly</text>
-<rect x="140" y="128" width="112" height="37" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8"/>
-<text x="196" y="143.0" text-anchor="middle" font-size="10" fill="#57534e" font-weight="700">RECLAIMABLE</text>
-<text x="196" y="157.0" text-anchor="middle" font-size="9" fill="#57534e" font-style="italic">lease lapsed / stale</text>
-<path d="M252,146 L263,146 L263,61 L202,61" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#a57534e)"/>
-<text x="233" y="84.0" text-anchor="middle" font-size="9" fill="#57534e" font-style="italic">another actor</text>
-<text x="233" y="94.8" text-anchor="middle" font-size="9" fill="#57534e" font-style="italic">may claim</text>
-<text x="135" y="185.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Completion releases the claim; expiry makes it reclaimable.</text>
-<text x="135" y="195.8" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">A live claim is distinguishable from a stale one —</text>
-<text x="135" y="206.6" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">expiry is a state, not an accident.</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="784" viewBox="0 0 444 392" role="img" aria-labelledby="title desc"><title id="title">Ownership Under Contention</title><desc id="desc">Author-reference redraw with editable text, explicit states, and permitted and prohibited transitions.</desc><defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#222222"/></marker><marker id="forbidden-arrow" markerWidth="6" markerHeight="6" refX="5.4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#a92020"/></marker></defs><rect width="444" height="392" fill="white"/><style>text{font-family:'Source Sans 3','Arial',sans-serif;fill:#171717;}path,rect,circle{stroke-linejoin:round;}</style><g transform="translate(0,-20)">
+<text x="222" y="39" text-anchor="middle" style="font-size:11px;font-style:italic;fill:#222222">A behavioral model for job ownership with generations.</text>
+<rect x="15" y="90" width="69" height="38" rx="4" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<rect x="121" y="90" width="72" height="38" rx="4" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<rect x="235" y="90" width="78" height="38" rx="4" fill="#fff4cf" stroke="#b4871c" stroke-width="0.75"/>
+<rect x="361" y="90" width="72" height="38" rx="4" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<text x="49.5" y="113" text-anchor="middle" style="font-size:11px;fill:#222222">Unowned</text>
+<text x="157" y="105" text-anchor="middle" style="font-size:11px;font-weight:bold;fill:#222222">Owned</text>
+<text x="157" y="119" text-anchor="middle" style="font-size:11px;fill:#222222">(A, 7)</text>
+<text x="397" y="105" text-anchor="middle" style="font-size:11px;font-weight:bold;fill:#222222">Owned</text>
+<text x="397" y="119" text-anchor="middle" style="font-size:11px;fill:#222222">(B, 8)</text>
+<text x="274" y="113" text-anchor="middle" style="font-size:11px;fill:#222222">Reclaimable</text>
+<path d="M84,105 C96,100 109,100 120,104" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M193,104 C207,102 220,102 234,104" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<path d="M313,104 C329,102 345,102 360,104" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<text x="103" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">claim(A, 7)</text>
+<path d="M103,80 Q105,91 103,102" fill="none" stroke="#222222" stroke-width="0.65"/>
+<text x="214" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">expire</text>
+<path d="M214,80 Q216,91 214,102" fill="none" stroke="#222222" stroke-width="0.65"/>
+<text x="337" y="74" text-anchor="middle" style="font-size:11px;fill:#222222">claim(B, 8)</text>
+<path d="M337,80 Q339,91 337,102" fill="none" stroke="#222222" stroke-width="0.65"/>
+<path d="M157,128 C174,155 207,156 272,156 C327,156 358,149 375,129" fill="none" stroke="#a92020" stroke-width="1.15" stroke-dasharray="5 3" marker-end="url(#forbidden-arrow)"/>
+<path d="M184,147 L192,155 M184,155 L192,147" stroke="#a92020" stroke-width="2.3"/>
+<text x="258" y="174" text-anchor="middle" style="font-size:10.5px;fill:#a92020">release(A, 7) (rejected: stale generation)</text>
+<path d="M397,128 C397,242 49.5,242 49.5,129" fill="none" stroke="#222222" stroke-width="1.15" marker-end="url(#arrow)"/>
+<text x="226" y="230" text-anchor="middle" style="font-size:11px;fill:#222222">release(B, 8)</text>
+<rect x="10" y="250" width="424" height="132" rx="6" fill="#ffffff" stroke="#d1d1d1" stroke-width="0.75"/>
+<text x="21" y="267" text-anchor="start" style="font-size:11.5px;font-weight:bold;fill:#222222">State meaning</text>
+<text x="240" y="267" text-anchor="start" style="font-size:11.5px;font-weight:bold;fill:#222222">Key transitions</text>
+<path d="M226,265 V373" fill="none" stroke="#222222" stroke-width="0.65"/>
+<rect x="21" y="279" width="23" height="13" rx="3" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<text xml:space="preserve" x="52" y="289" style="font-size:10.5px"><tspan font-weight="bold">Unowned</tspan><tspan> — no active claim</tspan></text>
+<rect x="21" y="308" width="23" height="13" rx="3" fill="#d9eaf7" stroke="#315f83" stroke-width="0.75"/>
+<text xml:space="preserve" x="52" y="318" style="font-size:10px"><tspan font-weight="bold">Owned(w, g)</tspan><tspan> — job held by worker w</tspan></text>
+<text x="52" y="331" text-anchor="start" style="font-size:10.5px;fill:#222222">with generation g</text>
+<rect x="21" y="344" width="23" height="13" rx="3" fill="#fff4cf" stroke="#b4871c" stroke-width="0.75"/>
+<text xml:space="preserve" x="52" y="354" style="font-size:10px"><tspan font-weight="bold">Reclaimable</tspan><tspan> — previous claim</tspan></text>
+<text x="52" y="367" text-anchor="start" style="font-size:10.5px;fill:#222222">expired, job can be claimed</text>
+<text x="242" y="289" text-anchor="start" style="font-size:10.5px;fill:#222222">•</text>
+<text xml:space="preserve" x="252" y="289" style="font-size:10px"><tspan font-weight="bold">claim(w, g):</tspan><tspan> acquire the job with</tspan></text>
+<text x="252" y="302" text-anchor="start" style="font-size:10.5px;fill:#222222">generation g</text>
+<text x="242" y="323" text-anchor="start" style="font-size:10.5px;fill:#222222">•</text>
+<text xml:space="preserve" x="252" y="323" style="font-size:10px"><tspan font-weight="bold">expire:</tspan><tspan> previous claim</tspan></text>
+<text x="252" y="336" text-anchor="start" style="font-size:10.5px;fill:#222222">becomes invalid</text>
+<text x="242" y="354" text-anchor="start" style="font-size:10.5px;fill:#222222">•</text>
+<text xml:space="preserve" x="252" y="354" style="font-size:10px"><tspan font-weight="bold">release(w, g):</tspan><tspan> release only if</tspan></text>
+<text x="252" y="367" text-anchor="start" style="font-size:10.5px;fill:#222222">the current claim matches (w, g)</text>
+<text x="222" y="400" text-anchor="middle" style="font-size:10.5px;font-style:italic;fill:#222222">A release may modify a job only if it still holds the current generation.</text></g></svg>

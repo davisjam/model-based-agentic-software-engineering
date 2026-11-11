@@ -1,69 +1,44 @@
 {
   "source": "book/assets/service-flow-model.svg",
   "chapter": "2.4-decision",
-  "claim": "*Service-flow model.* A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate.",
+  "claim": "Selected declared relationships: Internet -> web; web -> document editor and grouped others (including lo-service, render-service and accessibility-conformance-service); worker -> generation, render and OCR. Worker asynchronous dispatch is outside this selected synchronous invocation view. The reduced drawing does not enumerate every permission, so omitted drawn edges do not imply missing permission in the complete model.",
   "topology": {
-    "description": "Declared permitted service relationships; absence does not declare a relation.",
-    "relations": [
-      [
-        "internet",
-        "web",
-        "",
-        ""
-      ],
-      [
-        "web",
-        "c0",
-        "",
-        ""
-      ],
-      [
-        "web",
-        "c1",
-        "",
-        ""
-      ],
-      [
-        "web",
-        "c2",
-        "",
-        ""
-      ],
-      [
-        "c0",
-        "s0",
-        "",
-        ""
-      ],
-      [
-        "c0",
-        "s1",
-        "",
-        ""
-      ],
-      [
-        "c0",
-        "s2",
-        "",
-        ""
-      ]
+    "description": "Selected declared relationships: Internet -> web; web -> document editor and grouped others (including lo-service, render-service and accessibility-conformance-service); worker -> generation, render and OCR. Worker asynchronous dispatch is outside this selected synchronous invocation view. The reduced drawing does not enumerate every permission, so omitted drawn edges do not imply missing permission in the complete model.",
+    "native_draw_commands": [
+      "\\path[fill=white] (0,0) rectangle (782,345);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (120,15) rectangle (260,70);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (120,120) rectangle (260,175);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (190,70) -- (190,120);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (515,120) rectangle (665,175);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (15,260) rectangle (175,324);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (215,260) rectangle (355,324);",
+      "\\path[draw=black!87,line width=0.6792bp] (190,175) -- (190,225) (95,225) -- (285,225);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (95,225) -- (95,260);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (285,225) -- (285,260);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (405,260) rectangle (550,324);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (575,260) rectangle (675,324);",
+      "\\path[fill=black!7,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (700,260) rectangle (770,324);",
+      "\\path[draw=black!87,line width=0.6792bp] (590,175) -- (590,225) (477.5,225) -- (735,225);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (477.5,225) -- (477.5,260);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (625,225) -- (625,260);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (735,225) -- (735,260);"
     ]
   },
   "required_terms": [
     "Internet",
     "web",
     "worker",
-    "document editor",
-    "other",
+    "document",
+    "editor",
+    "others",
     "generation",
     "render",
-    "OCR",
-    "Each arrow declares a permitted relationship."
+    "OCR"
   ],
-  "bw_encoding": "All service and external nodes white; permitted relationships are carried by directed edges.",
-  "redesign": "All service and external nodes white; permitted relationships are carried by directed edges. Two orthogonal fan-out rails; only worker feeds the specialist-service rail.",
+  "bw_encoding": "Uniform pale-gray house boxes, black stems and terminal-only arrowheads. The web and worker branches are spatially separate; there is no edge between them. No color coding or legend is needed.",
+  "redesign": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
   "questions": [],
-  "alt": "The declared service graph connects Internet to web; web to worker, document editor and other; worker to generation, render and OCR. Every directed edge is a declared permitted relationship. An absent edge declares no relationship.",
+  "alt": "Selected declared relationships: Internet -> web; web -> document editor and grouped others (including lo-service, render-service and accessibility-conformance-service); worker -> generation, render and OCR. Worker asynchronous dispatch is outside this selected synchronous invocation view. The reduced drawing does not enumerate every permission, so omitted drawn edges do not imply missing permission in the complete model.",
   "review": {
     "reference": "current authored SVG (not older D2 receipts)",
     "checks": [
@@ -73,66 +48,113 @@
       "gray-mode distinctions",
       "native-size visual layout"
     ],
-    "outcome": "Modeled services gray contrasted with external Internet; exact permitted edges retained.",
+    "outcome": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
     "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      9.2612,
-      7.3056
-    ]
+      15.825,
+      7.0995
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+      "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 201.245,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 6,
+      "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+      "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9,
+      "status": "passed"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "c9614044a4b480a001046579f23d7b8f3a6f3f1c682146da3dd01ae277eb320e",
-    "candidate_sha256": "a54f1cef427a2343716f7bd02eaee5fa9615aa24d6fd5312bcf3ad2d2e8474cd",
-    "fill": "All service and external nodes white; permitted relationships are carried by directed edges.",
-    "bold": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight.",
-    "routing": "Two orthogonal fan-out rails; only worker feeds the specialist-service rail.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+    "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+    "fill": "Uniform pale-gray house boxes, black stems and terminal-only arrowheads. The web and worker branches are spatially separate; there is no edge between them. No color coding or legend is needed.",
+    "bold": "Only comparison-panel headings are bold; service labels are regular.",
+    "routing": "Selected declared relationships: Internet -> web; web -> document editor and grouped others (including lo-service, render-service and accessibility-conformance-service); worker -> generation, render and OCR. Worker asynchronous dispatch is outside this selected synchronous invocation view. The reduced drawing does not enumerate every permission, so omitted drawn edges do not imply missing permission in the complete model.",
+    "shape": "Uniform house-scale rounded rectangles for services.",
+    "visual_review": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+      "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 201.245,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 6,
+      "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+      "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 27,
-      "width_bp": 262.523,
-      "height_bp": 207.087,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 2
+      "semantic_typography_checks": 9,
+      "status": "passed"
     },
-    "book_references": []
+    "book_references": [],
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 26,
+        "width_bp": 367.834,
+        "height_bp": 215.241,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 2
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9,
+        "status": "passed"
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "retained",
-    "source_sha256": "c9614044a4b480a001046579f23d7b8f3a6f3f1c682146da3dd01ae277eb320e",
-    "candidate_sha256": "a54f1cef427a2343716f7bd02eaee5fa9615aa24d6fd5312bcf3ad2d2e8474cd",
-    "reason": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight.",
-    "evidence": [
-      {
-        "source_text": "OCR",
-        "source_style": "weight 700; normal; source size 15",
-        "semantic_role": "service acronym",
-        "candidate_text": "OCR",
-        "candidate_style": "regular",
-        "source_locator": {
-          "svg": "book/assets/service-flow-model.svg",
-          "element_text_path": "/svg/text[10]/text()",
-          "text_element_context": "OCR",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
+    "decision": "refined",
+    "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+    "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+    "evidence": [],
+    "reason": "Bundled Source Sans 3 matches the book figure profile. Observed/declared panel headings are bold; all node labels are regular. No redundant internal caption is present.",
     "checks": [
       {
-        "text": "OCR",
+        "text": "Internet",
         "bold": false,
         "italic": false
       },
@@ -140,70 +162,234 @@
         "text": "web",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "worker",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "document",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "editor",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "others",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "generation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "render",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "OCR",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+      "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 201.245,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 6,
+      "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+      "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 27,
-      "width_bp": 262.523,
-      "height_bp": 207.087,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 2
-    }
+      "semantic_typography_checks": 9,
+      "status": "passed"
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-09",
+        "review": {
+          "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+          "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 26,
+            "width_bp": 367.834,
+            "height_bp": 215.241,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 2
+          },
+          "reason": "The source weights all service nodes alike; no rank or contrast is encoded by that decorative weight. Preserve exact service names, including OCR capitals, at regular weight."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 27,
+        "width_bp": 262.523,
+        "height_bp": 207.087,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 2
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9,
+        "status": "passed"
+      }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Application-service and worker-service peer rows already align; fan-out shafts are clear.",
-    "candidate_sha256": "a54f1cef427a2343716f7bd02eaee5fa9615aa24d6fd5312bcf3ad2d2e8474cd",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing service flow model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
-      "after_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
-      "before_dimensions_bp": [
-        367.8340148925781,
-        215.24099731445312
-      ],
-      "after_dimensions_bp": [
-        367.8340148925781,
-        215.24099731445312
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
+    "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+    "baseline_candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+    "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+    "decision": "refined",
+    "reason": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      367.8340148925781,
+      215.24099731445312
+    ],
+    "contracts": {},
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+      "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 201.245,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 6,
+      "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+      "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 27,
-      "width_bp": 262.523,
-      "height_bp": 207.087,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 2
+      "semantic_typography_checks": 9,
+      "status": "passed"
     },
-    "source_sha256": "c9614044a4b480a001046579f23d7b8f3a6f3f1c682146da3dd01ae277eb320e"
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
+      "reviewed_visually": true,
+      "full_width_required": true,
+      "half_width_minimum_font_pt": 5.36
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-09",
+        "review": {
+          "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
+          "candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 26,
+            "width_bp": 367.834,
+            "height_bp": 215.241
+          },
+          "reason": "Application-service and worker-service peer rows already align; fan-out shafts are clear."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 27,
+        "width_bp": 262.523,
+        "height_bp": 207.087,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 2
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9,
+        "status": "passed"
+      }
+    ]
   },
   "chapter2_layout_revision": {
     "date": "2026-11-09",
@@ -353,5 +539,47 @@
         }
       }
     }
-  ]
+  ],
+  "source_evidence": [
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/system-models/services/worker-component.yaml",
+      "sha256": "35c673ba27865016056764ada37a1ddfee6f0f51389398ab118f4984e3afe257",
+      "lines": "37-44",
+      "finding": "consumesApis includes genai-service-batch, ocr-service-ocr, render-service-render; the worker has other consumers omitted in this reduced view."
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/system-models/services/web-component.yaml",
+      "sha256": "4afc9e171954a1d18ed7796dcc991181d368d7d930f752a918064580eb44e11f",
+      "lines": "15-27",
+      "finding": "consumesApis includes lo-service-convert, render-service-render, accessibility-conformance-service-check, doc-edit-service-read; no synchronous web-to-worker API edge."
+    }
+  ],
+  "fidelity_review": {
+    "evidence": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
+    "original_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+    "native_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+    "page": 1,
+    "candidate_render": "/private/tmp/mage-figures-2-9-2-10-native-20261111/latex/build/reference-native-proof/service-flow-model.png",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+      "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 201.245,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 6,
+      "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+      "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9,
+      "status": "passed"
+    }
+  }
 }

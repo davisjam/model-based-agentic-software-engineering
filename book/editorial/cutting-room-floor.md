@@ -19356,3 +19356,230 @@ Each check supports a claim within a particular scope. The module restriction ex
 Making a check blocking does not broaden its evidence. A test gate requires the selected tests to pass; it does not establish that every untested execution is correct. The architectural model may also omit an important distinction, or the validator may check the wrong obligation. Within its stated scope and assumptions, a gate can make acceptance depend on a condition that the agent cannot simply disregard.
 \end{bookbox}
 ```
+
+## Chapter 2 figure review cuts — 11 November 2026
+- Source revision before this integration: `5d24950dc722406a27044eb3405572ebff67acf9`.
+- Removal date: 2026-11-11.
+- Status: retired from the manuscript by author instruction; figure assets and native sources remain available.
+- Review numbers 2.11, 2.14, and 2.15 identify the former snapshot; manuscript references remain symbolic.
+
+### Retired passage 1
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, original committed version (before the pending Figure 2.10 reconciliation).
+
+Reason: Original committed lifecycle paragraph, retained alongside the superseded working-copy variant.
+
+```latex
+A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{DONE} to pass through \texttt{RUNNING} can exclude premature completion, yet a job could remain in \texttt{RUNNING} indefinitely. To investigate eventual termination, include the ways processing can wait, retry, finish, or fail, and state the assumptions under which progress is expected. The question determines which of those details the model must preserve. \autoref{behavioral-property-classes} distinguishes transition legality, reachability, and eventual progress.
+```
+
+### Retired passage 2
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 37–37.
+
+Reason: Replace the job-lifecycle paragraph with the approved expanded explanation; this working copy included the earlier Figure 2.10 reconciliation.
+
+```latex
+A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{Succeeded} to pass through \texttt{Running} can exclude premature completion, yet a job could remain in \texttt{Running} indefinitely. The diagram includes retry and terminal states. Establishing the listed progress property also requires a retry bound and appropriate assumptions about execution and scheduling. The question determines which of those details the model must preserve. \autoref{behavioral-property-classes} distinguishes transition legality, reachability, and eventual progress.
+```
+
+### Retired passage 3
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 39–44.
+
+Reason: Retire manuscript occurrence of behavioral-property-classes; asset and native figure sources retained.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/behavioral-property-classes-94ecfb1606.pdf}
+\caption{\emph{Behavioral models expose different classes of properties.} A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.}
+\label{behavioral-property-classes}
+\end{figure}
+```
+
+### Retired passage 4
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 134–134.
+
+Reason: Replace recovery-ordering explanation with two approved paragraphs; consolidate the later ordering and progress qualifications.
+
+```latex
+The recovery lifecycle runs through several states, but the obligation lives in two of them. An artifact is first written locally (\texttt{FALLBACK\_STAGED}) and only later published to durable storage (\texttt{FALLBACK\_UPLOADED}). The record may advance to \texttt{DB\_UPDATED} only from the durable state. \autoref{recovery-ordering-model} draws the ordering, and the fact that matters is the edge that does \emph{not} exist: there is no direct \texttt{FALLBACK\_STAGED~→~DB\_UPDATED} transition. The model therefore excludes executions in which the record points at a merely staged artifact. A local file and a file in persistent storage are different states; the model keeps them distinct so that an update cannot refer to a file available only on the failed worker.
+```
+
+### Retired passage 5
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 139–139.
+
+Reason: Replace caption for the approved recovery-ordering redraw.
+
+```latex
+\caption{\emph{Recovery-ordering model.} The decisive fact is the absent transition from FALLBACK\_STAGED directly to DB\_UPDATED.}
+```
+
+### Retired passage 6
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 143–151.
+
+Reason: Remove the now-consolidated ordering check, intervening heading, and liveness explanation, including obsolete Figure 2.11 reference.
+
+```latex
+% <!-- point: the-model-exposes-the-ordering-a-transition-table-holds-it | Checking recovery order means searching modeled paths for a database update before the artifact is uploaded; in a larger lifecycle, an absent direct edge alone would not rule out an indirect bypass. -->
+
+To check the ordering, search for a path to \texttt{DB\_UPDATED} that does not pass through \texttt{FALLBACK\_UPLOADED}. Such a path would allow the record to refer to the recovered artifact before it is stored persistently. In a larger lifecycle, checking only for the direct \texttt{FALLBACK\_STAGED~→~DB\_UPDATED} edge would miss an indirect route through other states.
+
+\textbf{What does the ordering establish?}
+
+% <!-- point: not-every-behavioral-obligation-is-a-safety-property | Recovery can preserve publication order yet wait or retry forever; asking for eventual completion adds a liveness question and requires the relevant waiting, retry, and progress assumptions in the model. -->
+
+The recovery ordering rules out updating the record too early. It says nothing about whether the upload ever completes: a process could preserve the order while waiting or retrying forever. Requiring eventual completion adds a liveness question. To investigate it, the model must represent the ways recovery can wait or retry and state the assumptions under which progress is expected. \autoref{behavioral-property-classes} contrasts local transition checks, reachability questions, and temporal properties.
+```
+
+### Retired passage 7
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 201–201.
+
+Reason: Replace the brief figure pointer with the approved concrete contention sequence.
+
+```latex
+\autoref{in-flight-ownership-states} draws the claim and its lifetime; the generation is the small addition that separates a live claim from a stale one.
+```
+
+### Retired passage 8
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 206–206.
+
+Reason: Replace ownership caption for the approved generation-contention redraw.
+
+```latex
+\caption{\emph{In-flight ownership model.} A current claim records owner, epoch, and lifetime. Completion releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.}
+```
+
+### Retired passage 9
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 245–245.
+
+Reason: Replace lease-overlap prose so the explanation stands without the retired illustration.
+
+```latex
+A lease illustrates how one representation can answer several classes of question. Read it as an ownership model and it says who controls a job. Read the same claims as a behavioral model and they trace a lifecycle --- claimed, held, expired, reclaimed. Count the active leases and the same representation becomes a measurement: how much work is genuinely in flight right now. \autoref{in-flight-lease-overlap} sets the three readings side by side.
+```
+
+### Retired passage 10
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 247–252.
+
+Reason: Retire manuscript occurrence of in-flight-lease-overlap; asset and native figure sources retained.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/in-flight-lease-overlap-cec4258455.pdf}
+\caption{\emph{Model classes overlap.} The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.}
+\label{in-flight-lease-overlap}
+\end{figure}
+```
+
+### Retired passage 11
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`, working-copy lines 256–256.
+
+Reason: Replace closing overlap explanation with the approved forward reference.
+
+```latex
+The overlap follows from the distinction introduced at the opening of the chapter: model classes identify engineering questions, not mutually exclusive data structures. One purposeful representation can answer several when they share the same underlying facts. This is the observation the closing section builds on when it connects the models through shared identity.
+```
+
+### Retired passage 12
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, working-copy lines 25–25.
+
+Reason: Replace edge-semantics prose so its distinction stands without the retired canonical decision illustration.
+
+```latex
+The meaning of an edge therefore depends on the model\textquotesingle s purpose. In an observed call graph, \texttt{A~→~B} records that A calls B; in a policy graph, the same arrow can mean that A \emph{may} call B. These graphs let engineers compare what happens with what is permitted. For the models illustrated in \autoref{canonical-decision}, a missing edge means that no such call is recorded in the observed graph, or that no such call is permitted by the policy. This reading depends on the model\textquotesingle s declared scope and rules; the arrow\textquotesingle s shape alone does not supply it.
+```
+
+### Retired passage 13
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, working-copy lines 27–32.
+
+Reason: Retire manuscript occurrence of canonical-decision; asset and native figure sources retained.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/canonical-decision-47ef23e866.pdf}
+\caption{\emph{The same arrow can record observation or permission.} In the illustrated scope, a missing edge means no recorded call in the observed graph or no permitted call in the policy graph. The model's declared meaning determines which interpretation applies.}
+\label{canonical-decision}
+\end{figure}
+```
+
+Retired figure inventory and complete review records are preserved in `chapter-two-figure-retirements-20261111.json`. The original SVGs, native TikZ sources, and receipts remain in their existing repository paths.
+
+## Chapter 2 policy-comparison follow-ups — 11 November 2026
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, working copy based on `5d24950dc722406a27044eb3405572ebff67acf9`. Review Figure numbers 2.16 and 2.17 refer to the earlier snapshot.
+
+### Retired policy passage 1
+
+Source line: 33. Reason: Make the hypothetical comparison concrete and its policy violation explicit; this is not a report of a DocAble violation.
+
+```latex
+Suppose a report service may call a renderer, while the public web interface may call only the report service. A policy graph records those permitted pairs. An observed call from the web interface directly to the renderer would then be a candidate violation: the observation supplies the fact, and the policy supplies the rule. The comparison also depends on the observation\textquotesingle s coverage. A missing observed call does not prove that the call can never occur. \autoref{observed-vs-declared} separates the observed call from the policy used to judge it.
+```
+
+### Retired policy passage 2
+
+Source line: 42. Reason: Replace the comparison qualification; clarify that the illustrated mismatch does not establish correspondence.
+
+```latex
+A policy can agree with every observed call and still permit more than the design should allow. Correspondence asks whether the observations satisfy the declared policy. Choosing the policy asks whether those permissions meet the engineering requirements. Both questions matter, and neither representation answers the other automatically.
+```
+
+### Retired policy passage 3
+
+Source line: 38. Reason: Reconcile caption with the explicitly hypothetical named-service redraw.
+
+```latex
+\caption{\emph{Observation and intent answer different questions.} The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.}
+```
+
+### Retired policy passage 4
+
+Source line: 100. Reason: Explain the service-flow representation before its unchanged four-part worked-example presentation.
+
+```latex
+DocAble declares which of its services may communicate with which. The model is a graph whose edges carry the normative reading: an edge means the call is part of the sanctioned policy, and an absent edge means the policy does not permit it.
+```
+
+### Retired policy passage 5
+
+Source line: 135. Reason: Explain the model and deployment roles in the service-flow caption.
+
+```latex
+\caption{\emph{Service-flow model.} An absent edge excludes a service relationship from the declared policy. The public web tier alone faces the outside; enforcing the policy on running traffic requires separate mechanisms.}
+```
+
+### Retired policy passage 6
+
+Source line: 139. Reason: Consolidate the two post-figure paragraphs without repeating correspondence/correctness or deployment/runtime distinctions.
+
+```latex
+% <!-- point: observed-versus-declared-is-correspondence-not-correctness | The observed call graph reveals that A calls C; the decision model states whether A may call C; agreement is correspondence, not correctness — a faithfully-obeyed rule can still be the wrong rule. -->
+
+The declared graph supplies the policy against which an observed call graph could be checked.
+
+% <!-- point: docable-does-not-reconcile-observed-traffic-so-correspondence-is-the-open-question | DocAble generates config from the declared graph but does not reconcile observed traffic against it at runtime; whether the deployed services stay on the permitted edges, and what a departure should cost, is Alignment's question. -->
+
+Agreement between observation and policy would establish \emph{correspondence} --- the implementation matching the declared intent --- not \emph{correctness}: a faithfully-obeyed rule can still be the wrong rule. DocAble generates its deployment from the declared graph, but nothing at runtime reconciles observed traffic back against the declaration. Whether the deployed services stay on the declared edges, and what a departure should cost, is Alignment\textquotesingle s question in \magevalue{chapter:alignment}.
+```
+
+### Retired service-flow explanation
+
+Source: `book/latex/sources/part2/2.4-decision.tex`. Replaced with the approved explanation of selected permissions and deployment generation after verifying worker-to-generation/render/OCR declarations; no synchronous web-to-worker edge is asserted.
+
+```latex
+\autoref{service-flow-model} draws the permitted calls. One node is declared publicly reachable; every other edge is an authenticated internal call. The model is the single source of truth for those edges, and the deployment is generated from it rather than inferred from it --- so a completeness check can require every gated edge to be fully specified before the deployment is wired. That check is real and enforced, but it governs the \emph{declaration\textquotesingle s} internal consistency, not the running traffic: the model declares the topology; it is not a runtime firewall.
+```

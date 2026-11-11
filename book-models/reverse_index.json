@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 185,
       "concepts": 75,
-      "labels": 82,
-      "refs": 100,
+      "labels": 79,
+      "refs": 97,
       "chapters": 77,
       "parts": 9,
       "points": 562,
@@ -609,7 +609,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-19",
+          "element": "2.3-behavioral::block-18",
           "role": "paragraph-point"
         }
       ]
@@ -649,7 +649,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.4-decision::block-9",
+          "element": "2.4-decision::block-8",
           "role": "paragraph-point"
         }
       ]
@@ -2749,7 +2749,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.4-decision::block-20",
+          "element": "2.4-decision::block-19",
           "role": "paragraph-point"
         }
       ]
@@ -3649,7 +3649,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-37",
+          "element": "2.3-behavioral::block-35",
           "role": "paragraph-point"
         }
       ]
@@ -3669,7 +3669,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-14",
+          "element": "2.3-behavioral::block-13",
           "role": "paragraph-point"
         }
       ]
@@ -5319,7 +5319,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-34",
+          "element": "2.3-behavioral::block-33",
           "role": "paragraph-point"
         }
       ]
@@ -5329,7 +5329,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.3-behavioral::block-26",
+          "element": "2.3-behavioral::block-25",
           "role": "paragraph-point"
         }
       ]

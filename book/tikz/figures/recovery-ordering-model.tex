@@ -1,19 +1,35 @@
-% Geometry reflow; authored type sizes retained.
+% Author-reference redraw; geometry and labels generated with the SVG.
 \begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
-\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,26) rectangle (163,52);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (85.5,43.0) {FALLBACK\_STAGED};
-\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,83) rectangle (163,109);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (85.5,100.0) {FALLBACK\_UPLOADED};
-\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (8,140) rectangle (163,166);
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (85.5,157.0) {DB\_UPDATED};
-\draw[-Stealth,line width=.55pt] (85.5,52) -- (85.5,82);
-\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (91,69.0) {upload succeeds};
-\draw[-Stealth,line width=.55pt] (85.5,109) -- (85.5,139);
-\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (91,126.0) {durable state updated};
-\draw[line width=.55pt,dashed] (163,39) -- (224,39) -- (224,153) -- (163,153);
-\node[fill=white,inner sep=2pt,font=\fontsize{14}{16}\selectfont] at (224,96) {$\times$};
-\node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,182.0) {forbidden / absent transition};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (123.75,192.8) {not part of the model};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (123.75,209.0) {Durable state may not name an artifact};
-\node[anchor=base,align=center,inner sep=0pt,font={\fontsize{9}{10.799999999999999}\selectfont }] at (123.75,219.8) {recovery has not yet published.};
+\path[use as bounding box] (0,0) rectangle (230,397);
+\begin{scope}[yshift=20bp]
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{11}{13.2}\selectfont}] at (115,39) {A state model for publishing};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{11}{13.2}\selectfont}] at (115,52) {a recovered artifact.};
+\fill (77.5,70) circle (5.3bp);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (77.5,75.3) -- (77.5,90);
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (5,91) rectangle (150,133);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (77.5,108) {FALLBACK\_STAGED};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (77.5,122) {(artifact exists locally)};
+\draw[fill=black!7,draw=black!75,line width=.65pt,rounded corners=4bp] (5,174) rectangle (150,216);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (77.5,191) {FALLBACK\_UPLOADED};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (77.5,205) {(artifact durably stored)};
+\draw[fill=black!9,draw=black!75,line width=.65pt,rounded corners=4bp] (5,257) rectangle (150,299);
+\node[anchor=base,inner sep=0pt,font={\bfseries \fontsize{10.5}{12.6}\selectfont}] at (77.5,274) {DB\_UPDATED};
+\node[anchor=base,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (77.5,288) {(database refers to artifact)};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (77.5,133) -- (77.5,173);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (77.5,216) -- (77.5,256);
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]},dash pattern=on 5bp off 3bp] (150,112) .. controls (166,112) and (166,260) .. (150,278);
+\draw[line width=2.3bp] (158,190) -- (166,198) (158,198) -- (166,190);
+\node[anchor=base west,inner sep=0pt,font={\bfseries \fontsize{10.3}{12.36}\selectfont}] at (171,174) {Forbidden:};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.3}{12.36}\selectfont}] at (171,187) {update DB};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.3}{12.36}\selectfont}] at (171,200) {before};
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.3}{12.36}\selectfont}] at (171,213) {upload};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]}] (26,325) -- (64,325);
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (73,328) {Permitted transition};
+\draw[line width=1.15bp,-{Stealth[length=5.5bp,width=4.5bp]},dash pattern=on 5bp off 3bp] (26,346) -- (64,346);
+\draw[line width=2.3bp] (43.8,342.8) -- (50.2,349.2) (43.8,349.2) -- (50.2,342.8);
+\node[anchor=base west,inner sep=0pt,font={\fontsize{10.5}{12.6}\selectfont}] at (73,349) {Prohibited transition};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (115,378) {The artifact must be published};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (115,391) {(durably stored) before the database};
+\node[anchor=base,inner sep=0pt,font={\itshape \fontsize{10.5}{12.6}\selectfont}] at (115,404) {may refer to it.};
+\end{scope}
 \end{tikzpicture}

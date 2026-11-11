@@ -67,6 +67,27 @@ class TypographyTests(unittest.TestCase):
         self.add("1", 50, "tiro")
         self.assertEqual(check_figure_fonts(self.page, {"Helvetica"}), [])
 
+    def test_reviewed_math_words_keep_serif_without_relaxing_prose(self):
+        self.add("# errors", font="tiro")
+        labels = [{"text": "# errors", "font": "Times-Roman"}]
+        self.assertEqual(check_figure_fonts(self.page, {"Helvetica"}, labels), [])
+        self.add("Unrelated prose", 60, "tiro")
+        findings = check_figure_fonts(self.page, {"Helvetica"}, labels)
+        self.assertEqual([f["text"] for f in findings], ["Unrelated prose"])
+
+    def test_math_contract_detects_wrong_font_and_missing_quantity(self):
+        self.add("# errors", font="helv")
+        labels = [{"text": "# errors", "font": "Times-Roman"},
+                  {"text": "# requests", "font": "Times-Roman"}]
+        findings = check_figure_fonts(self.page, {"Helvetica"}, labels)
+        self.assertEqual({f["text"] for f in findings}, {"# errors", "# requests"})
+
+    def test_mathematical_labels_are_scoped_to_one_figure(self):
+        self.add("# errors", font="tiro")
+        self.assertEqual(check_figure_fonts(self.page, {"Helvetica"},
+                         [{"text": "# errors", "font": "Times-Roman"}]), [])
+        self.assertTrue(check_figure_fonts(self.page, {"Helvetica"}))
+
 
 if __name__ == "__main__":
     unittest.main()

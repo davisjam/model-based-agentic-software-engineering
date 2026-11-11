@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-11",
+  "reason": "Previous inventory metadata for the six author-requested Chapter 2 redraws. The active entries now name their current generators, native receipts, and revised captions.",
+  "previous_entries": [
+    {
+      "chapter": "2.2-structural",
+      "source": "assets/from-nodes-to-composition.svg",
+      "caption": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations — data-flow and cross-service — from control gates that a computation consults only to decide whether it runs.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": null,
+      "receipt": null,
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "From computations to composition",
+      "svg_description": "Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations — 125 computations are registered but only two relations were authored as seeds. Center: derive and type the relations. Right, composition made explicit: the projected relations split into two semantics — a payload-bearing group of thirty-three (thirty-two DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-four CONTROL_GATE relations. The transformation is two authored seeds to fifty-five projected, typed relations to thirty-three payload plus twenty-four control."
+    },
+    {
+      "chapter": "2.3-behavioral",
+      "source": "assets/canonical-behavioral.svg",
+      "caption": "*The behavioral move: states and transitions.* A model keeps the legal states and the permitted transitions and discards the code; the transition it omits — here the skip from IDLE straight to DONE — is the behavior it forbids. Its analyses search for a reachable bad state or a required event that never arrives.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": null,
+      "receipt": null,
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "Canonical behavioral model: reduce an implementation to states and transitions",
+      "svg_description": "A behavioral opener. A neutral implementation slab reduces to a state model: IDLE starts RUNNING, which finishes to DONE or fails to FAILED. A struck-through dashed arc marks the forbidden direct IDLE-to-DONE transition (no skipping RUNNING). Caption: Question, Semantics, Typical analysis. Blue ground marks the behavioral family."
+    },
+    {
+      "chapter": "2.3-behavioral",
+      "source": "assets/recovery-ordering-model.svg",
+      "caption": "*Recovery-ordering model.* The decisive fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/recovery-ordering-model.d2",
+      "receipt": "book/d2-pilot/recovery-ordering-model.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "Recovery-ordering model: three legal states and one forbidden edge",
+      "svg_description": "Three states in legal order. FALLBACK_STAGED transitions on upload success to\n    FALLBACK_UPLOADED, which transitions when durable state is updated to DB_UPDATED. The decisive fact\n    is a forbidden edge: FALLBACK_STAGED may not go directly to DB_UPDATED. Durable state may not name an\n    artifact recovery has not yet published."
+    },
+    {
+      "chapter": "2.3-behavioral",
+      "source": "assets/in-flight-ownership-states.svg",
+      "caption": "*In-flight ownership model.* A current claim records owner, epoch, and lifetime. Completion releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/in-flight-ownership-states.d2",
+      "receipt": "book/d2-pilot/in-flight-ownership-states.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "In-flight ownership: CLAIMED releases on completion or becomes reclaimable on expiry",
+      "svg_description": "A claim opens the CLAIMED state, carrying owner, epoch, and expires_at. Two\n    transitions leave it. Completion releases the claim to a RELEASED outcome. Expiry moves it to RECLAIMABLE,\n    a lapsed state from which another actor may claim it again. The model distinguishes a live claim from a\n    stale one and states when the window has lapsed, without representing the storage machinery that\n    implements the lease."
+    },
+    {
+      "chapter": "2.4-decision",
+      "source": "assets/service-flow-model.svg",
+      "caption": "*Service-flow model.* A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/service-flow-model.d2",
+      "receipt": "book/d2-pilot/service-flow-model.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "DocAble's service-flow model: which services may communicate",
+      "svg_description": "A declared directed graph. The Internet reaches the web service. Web reaches worker,\n    document editor, and other. Worker reaches generation, render, and OCR. Each edge is a declared,\n    permitted relationship; an absent edge means the model does not declare that relationship."
+    },
+    {
+      "chapter": "2.4-decision",
+      "source": "assets/observed-vs-declared.svg",
+      "caption": "*Observation and intent answer different questions.* The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/observed-vs-declared.d2",
+      "receipt": "book/d2-pilot/observed-vs-declared.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "Observed structure versus declared structure answer different questions",
+      "svg_description": "Two panels. On the left, the implementation, in gray: A calls B and A calls C, observed\n    facts, asking does A call C. On the right, the model, in blue: A to B is a declared edge, and between A\n    and C there is no edge, marked with a rust X, asking may A call C. Agreement between observed and\n    declared establishes correspondence, not correctness."
+    }
+  ]
+}

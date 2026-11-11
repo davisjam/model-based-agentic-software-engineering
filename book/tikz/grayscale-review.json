@@ -401,12 +401,12 @@
     "receipt": "book/tikz/receipts/modeling-repertoire.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes.",
+    "rationale": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+    "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+      "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.569,
@@ -418,15 +418,25 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+      "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 41,
+      "semantic_typography_checks": 42,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
       "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
       "native_serif_math": true,
       "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-      "status": "passed"
+      "status": "passed",
+      "reviewed_math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
+        }
+      ]
     },
     "validation_history": [
       {
@@ -492,6 +502,30 @@
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
         "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+        "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.569,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 41,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+        "native_serif_math": true,
+        "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
         "status": "passed"
       }
     ]
@@ -638,9 +672,74 @@
     "receipt": "book/tikz/receipts/from-nodes-to-composition.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Restored actual DATA_FLOW, CROSS_SERVICE and dashed CONTROL_GATE examples rather than count-only cards. Sparse inventory and two seed links shown; exact2+55=57=33+24 counts retained.",
-    "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
-    "candidate_sha256": "5dac3c985b7aeb416df3ada10e78312b0595a327e9c4d5b13a365dd4eedcb71b"
+    "rationale": "Classify and Apply patches use 13% gray, typed-patch diamonds 5%, Validate 25%. Shape and labels duplicate the distinctions so shade is not the only carrier. Solid arrows indicate data flow; dashed arrows indicate control gates. Thin unadorned leader lines connect explanatory annotations.",
+    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 430.472,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 46,
+      "status": "passed"
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      }
+    ]
   },
   {
     "source": "book/assets/canonical-behavioral.svg",
@@ -648,9 +747,53 @@
     "receipt": "book/tikz/receipts/canonical-behavioral.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "State gray contrasts with implementation. Restored explicit cross on forbidden skip arrow; legal transitions retained. Forbidden bypass rerouted outside legal transition region; start/finish/fail labels separated from node borders and strokes.",
-    "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
-    "candidate_sha256": "a1ac0d81498db5e58086f9113f1d5fdf04dbdb870875da349a8f0de6075a2266"
+    "rationale": "All five states are white with modest rounded corners and black directed transitions. The initial black disk is a state-machine marker, not an annotation leader. All annotation leaders are thin and have no endpoint disks. The property list needs no color legend.",
+    "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+    "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+      "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 337.649,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.79,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 3,
+      "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+      "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 22,
+      "status": "passed"
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "7b74ff3cf3ac797db259c3c107cb24f64226220862c8aebe96002ddacb38f12d",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "a737bcde3c9d340a450e24103facc2467e5d109dec41cea8ff2d130749367aa9",
+        "typography_audit_sha256": "f9cdf5f975e0616dfa5643539a3cdc3fef98dc2a173eaf4605c119210a6a67fb",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 21,
+        "status": "passed"
+      }
+    ]
   },
   {
     "source": "book/assets/recovery-ordering-model.svg",
@@ -658,19 +801,71 @@
     "receipt": "book/tikz/receipts/recovery-ordering-model.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
-    "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
-    "candidate_sha256": "17d980d702a2af0684eaea41f3f667de0441b6331a06ea84a780788fc67f9b47"
-  },
-  {
-    "source": "book/assets/behavioral-property-classes.svg",
-    "candidate": "book/tikz/figures/behavioral-property-classes.tex",
-    "receipt": "book/tikz/receipts/behavioral-property-classes.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Model and evidence use distinct gray roles; three peer property/checker questions retained.",
-    "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
-    "candidate_sha256": "8fd3884013255769e9873425baaf42b1fcf2f2f4bd3d3d94ebaf903f59af1a43"
+    "rationale": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+    "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
+    "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+        "previous": {
+          "source": "book/assets/recovery-ordering-model.svg",
+          "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+          "receipt": "book/tikz/receipts/recovery-ordering-model.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "State gray and explicit forbidden cross restored; legal upload-before-database order retained.",
+          "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+          "candidate_sha256": "17d980d702a2af0684eaea41f3f667de0441b6331a06ea84a780788fc67f9b47"
+        }
+      },
+      {
+        "date": "2026-11-11",
+        "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+        "previous": {
+          "source": "book/assets/recovery-ordering-model.svg",
+          "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+          "receipt": "book/tikz/receipts/recovery-ordering-model.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+          "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+            "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+            "page": 1,
+            "width_bp": 235.975,
+            "height_bp": 422.973,
+            "minimum_prose_font_pt": 10.262,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+            "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+            "status": "passed"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+      "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+      "page": 1,
+      "width_bp": 235.975,
+      "height_bp": 402.973,
+      "minimum_prose_font_pt": 10.262,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 17,
+      "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+      "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+      "status": "passed"
+    }
   },
   {
     "source": "book/assets/in-flight-ownership-states.svg",
@@ -678,29 +873,71 @@
     "receipt": "book/tikz/receipts/in-flight-ownership-states.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
-    "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
-    "candidate_sha256": "917251f11d5beab445b3dbaf1ebb5c7e09a4d109516104e2447be42154320e09"
-  },
-  {
-    "source": "book/assets/in-flight-lease-overlap.svg",
-    "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
-    "receipt": "book/tikz/receipts/in-flight-lease-overlap.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Common gray for three purpose views contrasted with represented lease state; peer status retained.",
-    "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
-    "candidate_sha256": "8fb79ddf9efb591e77b63754d3e363b75ce47e076604ffe41fc9d38de0c79c40"
-  },
-  {
-    "source": "book/assets/canonical-decision.svg",
-    "candidate": "book/tikz/figures/canonical-decision.tex",
-    "receipt": "book/tikz/receipts/canonical-decision.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Same gray nodes preserve same-topology comparison; headings and edge verbs distinguish fact from permission. Crossed absent-edge convention retained.",
-    "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
-    "candidate_sha256": "e945938c2635a35bdead008fe604352cf950f0043a9603482a4ba27d2c8fc3b8"
+    "rationale": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+    "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+    "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+        "previous": {
+          "source": "book/assets/in-flight-ownership-states.svg",
+          "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+          "receipt": "book/tikz/receipts/in-flight-ownership-states.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Restored dashed expiry and reclaim paths versus solid completion. Gray separates active, cleanly released and stale states.",
+          "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+          "candidate_sha256": "917251f11d5beab445b3dbaf1ebb5c7e09a4d109516104e2447be42154320e09"
+        }
+      },
+      {
+        "date": "2026-11-11",
+        "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+        "previous": {
+          "source": "book/assets/in-flight-ownership-states.svg",
+          "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+          "receipt": "book/tikz/receipts/in-flight-ownership-states.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+          "source_sha256": "fed73b026806056588124f90621ba54cfd8d76b7145263e2c60dc9de67ba254b",
+          "candidate_sha256": "49df15db5b6554c82d4701c856b07d0c6a84bbe3c4ca2cfce36f1fcd3ca7b55f",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+            "proof_sha256": "001a1cef83ed6cbde07b3356f3af7c76a8b134f155f62436e70b53f40fd16f1f",
+            "page": 1,
+            "width_bp": 449.972,
+            "height_bp": 417.973,
+            "minimum_prose_font_pt": 9.963,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 30,
+            "audit_sha256": "e76650bce173025afb7ab329723530f9ba0bb60b703aec4421bd836c1a5bfaa5",
+            "typography_audit_sha256": "25572ba3624bae22bab302f86bc699cd348b2e63f2187f0c43b88709f6f2b02e",
+            "status": "passed"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+      "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 397.973,
+      "minimum_prose_font_pt": 9.963,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 29,
+      "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+      "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+      "status": "passed"
+    }
   },
   {
     "source": "book/assets/service-flow-model.svg",
@@ -708,9 +945,53 @@
     "receipt": "book/tikz/receipts/service-flow-model.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Modeled services gray contrasted with external Internet; exact permitted edges retained.",
-    "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
-    "candidate_sha256": "a1ced7a0da28607be90841ae5eabcb02e34c1ff0f3ac63c45833055be5b4997e"
+    "rationale": "Uniform pale-gray house boxes, black stems and terminal-only arrowheads. The web and worker branches are spatially separate; there is no edge between them. No color coding or legend is needed.",
+    "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+    "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+      "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 201.245,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 6,
+      "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+      "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 9,
+      "status": "passed"
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9,
+        "status": "passed"
+      }
+    ]
   },
   {
     "source": "book/assets/observed-vs-declared.svg",
@@ -718,9 +999,53 @@
     "receipt": "book/tikz/receipts/observed-vs-declared.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Observed-system nodes light gray and declared-policy nodes darker gray preserve two modes. Missing declared edge remains crossed/absent.",
-    "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-    "candidate_sha256": "f9f85c0617674a56b45c5c44c42d145c550d21e1f334961eebc06d3a9f4458a9"
+    "rationale": "Uniform pale-gray house boxes and black solid edges. The unmatched observed edge is marked by a separate cross. No dashed edge in the policy graph could be mistaken for permission. Panel labels distinguish observation from permission.",
+    "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+    "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+      "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 184.265,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 11.36,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 4,
+      "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+      "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 10,
+      "status": "passed"
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "f905cf98471f0cc8b243c8a9710a8627ed1981685a88a0be5f9433eb2013de6a",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 5,
+        "geometry_audit_sha256": "12a91a32fc63c3c1bee1f26a7e752bd4954399c2a3a50585d10dab44ad0636a2",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      }
+    ]
   },
   {
     "source": "book/assets/entitlement-domain.svg",

@@ -56,12 +56,13 @@
     "Query LLM for description",
     "Mark decorative",
     "Error rate",
-    "E = errors; N = requests"
+    "# errors",
+    "# requests"
   ],
   "bw_encoding": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes.",
-  "redesign": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
+  "redesign": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
   "questions": [],
-  "alt": "Nine grouped model families with question subtitles and Properties/Analyses tables. Finite-state and control-flow branches use lower, aligned horizontal segments. DocAble control flow analyzes a figure and branches on informative: yes queries an LLM for a description, no marks decorative; the adjacent decision table separately preserves uncertain classifications. Quantitative modeling uses a native serif error-rate fraction r=E/N and requires r below one percent. No top notation sentence remains.",
+  "alt": "Nine grouped model families with question subtitles and Properties/Analyses tables. Finite-state and control-flow branches use lower, aligned horizontal segments. DocAble control flow analyzes a figure and branches on informative: yes queries an LLM for a description, no marks decorative; the adjacent decision table separately preserves uncertain classifications. Quantitative modeling uses a native serif error-rate fraction r=E/N and requires r below one percent. No top notation sentence remains. The serif fraction names error and request counts directly.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -73,7 +74,7 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
+    "outcome": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       15.8598,
@@ -81,7 +82,7 @@
     ],
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+      "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.569,
@@ -93,15 +94,25 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+      "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 41,
+      "semantic_typography_checks": 42,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
       "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
       "native_serif_math": true,
       "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-      "status": "passed"
+      "status": "passed",
+      "reviewed_math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
+        }
+      ]
     }
   },
   "fidelity_review": {
@@ -113,7 +124,7 @@
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-12.png",
     "candidate_render": "/private/tmp/mage-figure-2-6-review-20261111/latex/build/figure-2-6-proof/figure-2-6.png",
     "original_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "native_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+    "native_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
     "page": 1,
     "dimensions_cm": [
       15.8598,
@@ -124,7 +135,7 @@
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+      "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.569,
@@ -136,15 +147,25 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+      "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 41,
+      "semantic_typography_checks": 42,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
       "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
       "native_serif_math": true,
       "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-      "status": "passed"
+      "status": "passed",
+      "reviewed_math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
+        }
+      ]
     }
   },
   "style_review": {
@@ -152,7 +173,7 @@
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+    "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
     "fill": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes.",
     "bold": "Bold comparison rows, family titles, Properties/Analyses, decision-table headers and Required; plain question subtitles and examples; italic named relation readings.",
     "routing": "Finite-state horizontal branch lies midway between upper and lower nodes. Both DocAble branches share a lower horizontal rank with equal 11bp vertical legs. Provenance remains symmetric. All routes keep the required terminal clearance.",
@@ -160,7 +181,7 @@
     "visual_review": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+      "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.569,
@@ -172,15 +193,25 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+      "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 41,
+      "semantic_typography_checks": 42,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
       "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
       "native_serif_math": true,
       "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-      "status": "passed"
+      "status": "passed",
+      "reviewed_math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
+        }
+      ]
     },
     "book_references": [],
     "decision": "refined",
@@ -261,6 +292,30 @@
         "single_line_row_headings": 3,
         "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
         "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.569,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 41,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+        "native_serif_math": true,
+        "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
+        "status": "passed"
       }
     ]
   },
@@ -268,8 +323,8 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
-    "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N.",
+    "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
+    "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
     "evidence": [
       {
         "source_text": "COMPONENT / DEPENDENCY",
@@ -958,14 +1013,19 @@
         "italic": false
       },
       {
-        "text": "E = errors; N = requests",
+        "text": "# errors",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "# requests",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+      "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.569,
@@ -977,15 +1037,25 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+      "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 41,
+      "semantic_typography_checks": 42,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
       "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
       "native_serif_math": true,
       "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-      "status": "passed"
+      "status": "passed",
+      "reviewed_math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
+        }
+      ]
     },
     "validation_history": [
       {
@@ -1064,14 +1134,48 @@
         "single_line_row_headings": 3,
         "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
         "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.569,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 41,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+        "native_serif_math": true,
+        "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
+        "status": "passed"
+      }
+    ],
+    "math_labels": [
+      {
+        "text": "# errors",
+        "font": "SourceSerif4-Regular"
+      },
+      {
+        "text": "# requests",
+        "font": "SourceSerif4-Regular"
       }
     ]
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
-    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+    "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
+    "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
     "page_layout": {
       "decision": "refined",
       "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
@@ -1096,7 +1200,7 @@
     },
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+      "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.569,
@@ -1108,15 +1212,25 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+      "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 41,
+      "semantic_typography_checks": 42,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
       "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
       "native_serif_math": true,
       "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-      "status": "passed"
+      "status": "passed",
+      "reviewed_math_labels": [
+        {
+          "text": "# errors",
+          "font": "SourceSerif4-Regular"
+        },
+        {
+          "text": "# requests",
+          "font": "SourceSerif4-Regular"
+        }
+      ]
     },
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
     "baseline_candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
@@ -1209,6 +1323,30 @@
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
         "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+        "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.569,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 41,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+        "native_serif_math": true,
+        "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
         "status": "passed"
       }
     ]

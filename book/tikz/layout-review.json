@@ -1757,9 +1757,9 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
       "baseline_candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
-      "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
       "decision": "refined",
-      "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
+      "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         413.8110046386719,
@@ -1768,7 +1768,7 @@
       "contracts": {},
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
         "page": 1,
         "width_bp": 449.57,
         "height_bp": 558.569,
@@ -1780,15 +1780,25 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 41,
+        "semantic_typography_checks": 42,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
         "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
         "native_serif_math": true,
         "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-        "status": "passed"
+        "status": "passed",
+        "reviewed_math_labels": [
+          {
+            "text": "# errors",
+            "font": "SourceSerif4-Regular"
+          },
+          {
+            "text": "# requests",
+            "font": "SourceSerif4-Regular"
+          }
+        ]
       },
       "page_layout": {
         "decision": "refined",
@@ -1895,6 +1905,30 @@
           "single_line_family_headings": 9,
           "single_line_row_headings": 3,
           "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+          "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.569,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 41,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+          "native_serif_math": true,
+          "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
           "status": "passed"
         }
       ]
@@ -2414,11 +2448,11 @@
     {
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
-      "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
+      "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
       "baseline_candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-      "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-      "decision": "retained",
-      "reason": "Each typed composition example has matched peers with legible relation edges. The larger computation/composition panels deliberately contain different information density.",
+      "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+      "decision": "refined",
+      "reason": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         390.8389892578125,
@@ -2426,43 +2460,32 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 20,
-        "width_bp": 390.839,
-        "height_bp": 275.664,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 46,
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing from nodes to composition layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-        "after_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-        "before_dimensions_bp": [
-          390.8389892578125,
-          275.66400146484375
-        ],
-        "after_dimensions_bp": [
-          390.8389892578125,
-          275.66400146484375
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "decision": "refined",
+        "reason": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+        "reviewed_visually": true,
+        "full_width_required": true,
+        "half_width_minimum_font_pt": 4.71
       },
       "revision_history": [
         {
@@ -2492,16 +2515,34 @@
             "reason": "Each typed composition example has matched peers with legible relation edges. The larger computation/composition panels deliberately contain different information density."
           }
         }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-09",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+          "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+          "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "page": 20,
+          "width_bp": 390.839,
+          "height_bp": 275.664,
+          "minimum_prose_font_pt": 8.97,
+          "semantic_typography_checks": 8
+        }
       ]
     },
     {
       "source": "book/assets/canonical-behavioral.svg",
       "candidate": "book/tikz/figures/canonical-behavioral.tex",
-      "source_sha256": "140c0edfa111c00180f2492c9f69500612602e284196eb78c04b906758fe1529",
+      "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
       "baseline_candidate_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
-      "candidate_sha256": "29811cb7e256dcf136b451f6aed33fbf8e6cf29519617ce73bde84a219250d5f",
-      "decision": "retained",
-      "reason": "State boxes align and state-transition arrowheads have clear runs; the forbidden shortcut stays separate from legal transitions.",
+      "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
+      "decision": "refined",
+      "reason": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         350.1199951171875,
@@ -2509,43 +2550,32 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+        "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 21,
-        "width_bp": 285.049,
-        "height_bp": 267.731,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 11
+        "semantic_typography_checks": 22,
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing canonical behavioral layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
-        "after_sha256": "0d53ca9666ba93c58dd9ae4a0e51cc47e72430a1a55b16c58f897a848bf6cbce",
-        "before_dimensions_bp": [
-          350.1199951171875,
-          225.91600036621094
-        ],
-        "after_dimensions_bp": [
-          350.1199951171875,
-          225.91600036621094
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "decision": "refined",
+        "reason": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
+        "reviewed_visually": true,
+        "full_width_required": true,
+        "half_width_minimum_font_pt": 5.09
       },
       "revision_history": [
         {
@@ -2575,60 +2605,84 @@
             "reason": "State boxes align and state-transition arrowheads have clear runs; the forbidden shortcut stays separate from legal transitions."
           }
         }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-09",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+          "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+          "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "page": 21,
+          "width_bp": 285.049,
+          "height_bp": 267.731,
+          "minimum_prose_font_pt": 8.97,
+          "semantic_typography_checks": 11
+        }
       ]
     },
     {
       "source": "book/assets/recovery-ordering-model.svg",
       "candidate": "book/tikz/figures/recovery-ordering-model.tex",
-      "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
+      "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
       "baseline_candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
-      "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
-      "decision": "retained",
-      "reason": "The vertically ordered recovery states have consistent boxes and generous straight approaches; forbidden transition is explicitly separate.",
+      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+      "decision": "refined",
+      "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         357.2070007324219,
         186.77699279785156
       ],
-      "contracts": {},
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "recovery states",
+            "labels": [
+              "FALLBACK_STAGED",
+              "FALLBACK_UPLOADED",
+              "DB_UPDATED"
+            ],
+            "align": [
+              "left",
+              "right",
+              "center_x"
+            ],
+            "equal_width": true,
+            "equal_height": true,
+            "tolerance_pt": 1
+          }
+        ]
+      },
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+        "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+        "page": 1,
+        "width_bp": 235.975,
+        "height_bp": 402.973,
+        "minimum_prose_font_pt": 10.262,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 22,
-        "width_bp": 229.716,
-        "height_bp": 201.973,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 7
+        "semantic_typography_checks": 17,
+        "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+        "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing recovery ordering model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
-        "after_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
-        "before_dimensions_bp": [
-          357.2070007324219,
-          186.77699279785156
-        ],
+        "decision": "refined",
+        "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+        "after_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+        "reviewed_visually": true,
         "after_dimensions_bp": [
-          357.2070007324219,
-          186.77699279785156
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+          235.975,
+          402.973
+        ]
       },
       "revision_history": [
         {
@@ -2657,91 +2711,139 @@
             },
             "reason": "The vertically ordered recovery states have consistent boxes and generous straight approaches; forbidden transition is explicitly separate."
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "previous": {
+            "source": "book/assets/recovery-ordering-model.svg",
+            "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+            "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
+            "baseline_candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+            "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
+            "decision": "retained",
+            "reason": "The vertically ordered recovery states have consistent boxes and generous straight approaches; forbidden transition is explicitly separate.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              357.2070007324219,
+              186.77699279785156
+            ],
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 22,
+              "width_bp": 229.716,
+              "height_bp": 201.973,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 7
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Retain existing recovery ordering model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+              "before_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+              "after_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+              "before_dimensions_bp": [
+                357.2070007324219,
+                186.77699279785156
+              ],
+              "after_dimensions_bp": [
+                357.2070007324219,
+                186.77699279785156
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "previous": {
+            "source": "book/assets/recovery-ordering-model.svg",
+            "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+            "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+            "baseline_candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+            "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+            "decision": "refined",
+            "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              357.2070007324219,
+              186.77699279785156
+            ],
+            "contracts": {
+              "peer_groups": [
+                {
+                  "name": "recovery states",
+                  "labels": [
+                    "FALLBACK_STAGED",
+                    "FALLBACK_UPLOADED",
+                    "DB_UPDATED"
+                  ],
+                  "align": [
+                    "left",
+                    "right",
+                    "center_x"
+                  ],
+                  "equal_width": true,
+                  "equal_height": true,
+                  "tolerance_pt": 1
+                }
+              ]
+            },
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+              "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+              "page": 1,
+              "width_bp": 235.975,
+              "height_bp": 422.973,
+              "minimum_prose_font_pt": 10.262,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 18,
+              "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+              "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+              "status": "passed"
+            },
+            "page_layout": {
+              "decision": "refined",
+              "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+              "after_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+              "reviewed_visually": true,
+              "after_dimensions_bp": [
+                235.975,
+                422.973
+              ]
+            }
+          }
         }
       ]
     },
     {
-      "source": "book/assets/behavioral-property-classes.svg",
-      "candidate": "book/tikz/figures/behavioral-property-classes.tex",
-      "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
-      "baseline_candidate_sha256": "510de6b0822aae042fc9e1229cc97763a7c4327089be2c8bec7641b5da06f7ce",
-      "candidate_sha256": "50bffe5b1802ebb698a297fa5778631457bb4cbdeba62b545246d9fce5e7aee2",
-      "decision": "refined",
-      "reason": "Aligned the three checker choices despite the longer temporal-checking label.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        392.6400146484375,
-        226.51699829101562
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "checkers",
-            "labels": [
-              "Transition check",
-              "State-space search",
-              "Temporal model checking"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 22,
-        "width_bp": 392.64,
-        "height_bp": 226.517
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing behavioral property classes layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "50bffe5b1802ebb698a297fa5778631457bb4cbdeba62b545246d9fce5e7aee2",
-        "after_sha256": "50bffe5b1802ebb698a297fa5778631457bb4cbdeba62b545246d9fce5e7aee2",
-        "before_dimensions_bp": [
-          392.6400146484375,
-          226.51699829101562
-        ],
-        "after_dimensions_bp": [
-          392.6400146484375,
-          226.51699829101562
-        ],
-        "before_font_sizes_pt": [
-          9.5,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.5,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
       "source": "book/assets/in-flight-ownership-states.svg",
       "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
-      "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
+      "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
       "baseline_candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
-      "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
-      "decision": "retained",
-      "reason": "Released/reclaimable peers already align within the one-point tolerance and retain completion/expiry styling. The claimed state is a different rank.",
+      "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+      "decision": "refined",
+      "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         361.0220031738281,
@@ -2750,58 +2852,47 @@
       "contracts": {
         "peer_groups": [
           {
-            "name": "claim outcomes",
+            "name": "successive owned claims",
             "labels": [
-              "RELEASED",
-              "RECLAIMABLE"
+              "Owned (A, 7)",
+              "Owned (B, 8)"
             ],
             "align": [
               "top",
-              "bottom"
+              "bottom",
+              "center_y"
             ],
+            "equal_width": true,
             "equal_height": true,
             "tolerance_pt": 1
           }
         ]
       },
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+        "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 397.973,
+        "minimum_prose_font_pt": 9.963,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 24,
-        "width_bp": 261.523,
-        "height_bp": 194.834,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 8
+        "semantic_typography_checks": 29,
+        "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+        "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing in flight ownership states layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
-        "after_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
-        "before_dimensions_bp": [
-          361.0220031738281,
-          206.87899780273438
-        ],
+        "decision": "refined",
+        "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+        "after_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
+        "reviewed_visually": true,
         "after_dimensions_bp": [
-          361.0220031738281,
-          206.87899780273438
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+          449.972,
+          397.973
+        ]
       },
       "revision_history": [
         {
@@ -2830,223 +2921,187 @@
             },
             "reason": "Released/reclaimable peers already align within the one-point tolerance and retain completion/expiry styling. The claimed state is a different rank."
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+          "previous": {
+            "source": "book/assets/in-flight-ownership-states.svg",
+            "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+            "source_sha256": "ca65505fcad93f82f6f933ce341215b3413c259c4358c5a5e3c97c5ff4d9e2c2",
+            "baseline_candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+            "candidate_sha256": "743c37cd24281c91ac696ddc1e826bc056986f11fce386304347133e8c20cb2b",
+            "decision": "retained",
+            "reason": "Released/reclaimable peers already align within the one-point tolerance and retain completion/expiry styling. The claimed state is a different rank.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              361.0220031738281,
+              206.87899780273438
+            ],
+            "contracts": {
+              "peer_groups": [
+                {
+                  "name": "claim outcomes",
+                  "labels": [
+                    "RELEASED",
+                    "RECLAIMABLE"
+                  ],
+                  "align": [
+                    "top",
+                    "bottom"
+                  ],
+                  "equal_height": true,
+                  "tolerance_pt": 1
+                }
+              ]
+            },
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 24,
+              "width_bp": 261.523,
+              "height_bp": 194.834,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 8
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Retain existing in flight ownership states layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+              "before_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+              "after_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+              "before_dimensions_bp": [
+                361.0220031738281,
+                206.87899780273438
+              ],
+              "after_dimensions_bp": [
+                361.0220031738281,
+                206.87899780273438
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "previous": {
+            "source": "book/assets/in-flight-ownership-states.svg",
+            "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+            "source_sha256": "fed73b026806056588124f90621ba54cfd8d76b7145263e2c60dc9de67ba254b",
+            "baseline_candidate_sha256": "5f7ab0cc0fa0f6c321e3310bdf8608d8bac0e839900a0a049f5770ebae7944cb",
+            "candidate_sha256": "49df15db5b6554c82d4701c856b07d0c6a84bbe3c4ca2cfce36f1fcd3ca7b55f",
+            "decision": "refined",
+            "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              361.0220031738281,
+              206.87899780273438
+            ],
+            "contracts": {
+              "peer_groups": [
+                {
+                  "name": "successive owned claims",
+                  "labels": [
+                    "Owned (A, 7)",
+                    "Owned (B, 8)"
+                  ],
+                  "align": [
+                    "top",
+                    "bottom",
+                    "center_y"
+                  ],
+                  "equal_width": true,
+                  "equal_height": true,
+                  "tolerance_pt": 1
+                }
+              ]
+            },
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+              "proof_sha256": "001a1cef83ed6cbde07b3356f3af7c76a8b134f155f62436e70b53f40fd16f1f",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 417.973,
+              "minimum_prose_font_pt": 9.963,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 30,
+              "audit_sha256": "e76650bce173025afb7ab329723530f9ba0bb60b703aec4421bd836c1a5bfaa5",
+              "typography_audit_sha256": "25572ba3624bae22bab302f86bc699cd348b2e63f2187f0c43b88709f6f2b02e",
+              "status": "passed"
+            },
+            "page_layout": {
+              "decision": "refined",
+              "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+              "after_sha256": "49df15db5b6554c82d4701c856b07d0c6a84bbe3c4ca2cfce36f1fcd3ca7b55f",
+              "reviewed_visually": true,
+              "after_dimensions_bp": [
+                449.972,
+                417.973
+              ]
+            }
+          }
         }
       ]
     },
     {
-      "source": "book/assets/in-flight-lease-overlap.svg",
-      "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
-      "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
-      "baseline_candidate_sha256": "9eebfabb66ffdc1479beb045c83f9bcfbb01c98e709732458dd4fe1702c9c5fe",
-      "candidate_sha256": "17477066da395e24af8b200c187440f462f81806d7f2261db28ca23e0e221edf",
-      "decision": "refined",
-      "reason": "Equalized three conceptual views of the same lease state; removed the measured 1.97pt glyph-dependent height difference.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        376.3380126953125,
-        141.16400146484375
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "questions of lease state",
-            "labels": [
-              "OWNERSHIP",
-              "BEHAVIOR",
-              "MEASUREMENT"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 24,
-        "width_bp": 376.338,
-        "height_bp": 141.164
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing in flight lease overlap layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "17477066da395e24af8b200c187440f462f81806d7f2261db28ca23e0e221edf",
-        "after_sha256": "17477066da395e24af8b200c187440f462f81806d7f2261db28ca23e0e221edf",
-        "before_dimensions_bp": [
-          376.3380126953125,
-          141.16400146484375
-        ],
-        "after_dimensions_bp": [
-          376.3380126953125,
-          141.16400146484375
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
-      "source": "book/assets/canonical-decision.svg",
-      "candidate": "book/tikz/figures/canonical-decision.tex",
-      "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
-      "baseline_candidate_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
-      "candidate_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
-      "decision": "retained",
-      "reason": "Descriptive and normative examples already align and leave clear call/may-call shafts. Repeated labels are intentionally retained.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        374.5679931640625,
-        164.97000122070312
-      ],
-      "contracts": {},
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 25,
-        "width_bp": 374.568,
-        "height_bp": 164.97
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing canonical decision layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
-        "after_sha256": "d12723c12be9102bc7991867a71555f83c05ee7724f34f68db18bd7586f76ede",
-        "before_dimensions_bp": [
-          374.5679931640625,
-          164.97000122070312
-        ],
-        "after_dimensions_bp": [
-          374.5679931640625,
-          164.97000122070312
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
-    },
-    {
       "source": "book/assets/service-flow-model.svg",
       "candidate": "book/tikz/figures/service-flow-model.tex",
-      "source_sha256": "c9614044a4b480a001046579f23d7b8f3a6f3f1c682146da3dd01ae277eb320e",
+      "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
       "baseline_candidate_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
-      "candidate_sha256": "a54f1cef427a2343716f7bd02eaee5fa9615aa24d6fd5312bcf3ad2d2e8474cd",
-      "decision": "retained",
-      "reason": "Application-service and worker-service peer rows already align; fan-out shafts are clear.",
+      "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+      "decision": "refined",
+      "reason": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         367.8340148925781,
         215.24099731445312
       ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "application services",
-            "labels": [
-              "worker",
-              "document editor",
-              "other"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          },
-          {
-            "name": "worker services",
-            "labels": [
-              "generation",
-              "render",
-              "OCR"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
+      "contracts": {},
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 27,
-        "width_bp": 262.523,
-        "height_bp": 207.087,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 2
+        "semantic_typography_checks": 9,
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing service flow model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
-        "after_sha256": "d42e85c1ad4fed6d6994b7a15cce5c545e6671d64d2d41ed2dc46e1dc6b88253",
-        "before_dimensions_bp": [
-          367.8340148925781,
-          215.24099731445312
-        ],
-        "after_dimensions_bp": [
-          367.8340148925781,
-          215.24099731445312
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "decision": "refined",
+        "reason": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
+        "reviewed_visually": true,
+        "full_width_required": true,
+        "half_width_minimum_font_pt": 5.36
       },
       "revision_history": [
         {
@@ -3076,16 +3131,34 @@
             "reason": "Application-service and worker-service peer rows already align; fan-out shafts are clear."
           }
         }
+      ],
+      "validation_history": [
+        {
+          "date": "2026-11-09",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+          "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+          "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "page": 27,
+          "width_bp": 262.523,
+          "height_bp": 207.087,
+          "minimum_prose_font_pt": 8.97,
+          "semantic_typography_checks": 2
+        }
       ]
     },
     {
       "source": "book/assets/observed-vs-declared.svg",
       "candidate": "book/tikz/figures/observed-vs-declared.tex",
-      "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
+      "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
       "baseline_candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-      "candidate_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-      "decision": "retained",
-      "reason": "Circular state nodes are identical within each observed/declared graph; absent-edge semantics and spacious branches are retained.",
+      "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
+      "decision": "refined",
+      "reason": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         399.72601318359375,
@@ -3093,47 +3166,54 @@
       ],
       "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 27,
-        "width_bp": 399.726,
-        "height_bp": 183.151
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 4,
+        "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10,
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing observed vs declared layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-        "after_sha256": "7565500b5c2d7bbf7a3ed90c13e5c814b334fc930a0940b07344e1255af155b4",
-        "before_dimensions_bp": [
-          399.72601318359375,
-          183.1510009765625
-        ],
-        "after_dimensions_bp": [
-          399.72601318359375,
-          183.1510009765625
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
+        "decision": "refined",
+        "reason": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
+        "reviewed_visually": true,
+        "full_width_required": true,
+        "half_width_minimum_font_pt": 5.36
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 27,
+          "width_bp": 399.726,
+          "height_bp": 183.151
+        }
+      ]
     },
     {
       "source": "book/assets/entitlement-domain.svg",

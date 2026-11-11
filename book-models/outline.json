@@ -950,22 +950,22 @@
           "heading_text": "Ownership Under Contention",
           "topic_sentence": "When several workers can process the same job, *who owns this job?* depends on their claims.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 12,
           "points": [
             {
               "slug": "ownership-has-a-long-vocabulary-of-claims-and-leases",
               "text": "Concurrent workers can acquire, lose, and regain rights to a job; locks, leases, capabilities, and claims express different aspects of access and ownership, which the model selects according to the question.",
-              "block_index": 14
+              "block_index": 13
             },
             {
               "slug": "a-claim-carries-the-facts-that-make-contention-decidable",
               "text": "A claim binds a holder to a resource and carries which holder, which generation of claim, and when it expires — the generation being what tells a current claim from a superseded one — and because the hard failures live in interleavings, the characteristic analysis is state-space exploration with invariant checking.",
-              "block_index": 19
+              "block_index": 18
             },
             {
               "slug": "the-lease-model-omits-the-processing-topology",
               "text": "The model omits the processing topology: ownership, generation, lifetime, and reclamation are the consequential properties, and the implementation later changed how the job's work is partitioned without invalidating the model — the pointers to the code changed, not the model.",
-              "block_index": 26
+              "block_index": 25
             }
           ]
         },
@@ -975,17 +975,17 @@
           "heading_text": "One Representation, Several Questions",
           "topic_sentence": "A lease illustrates how one representation can answer several classes of question.",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 32,
           "points": [
             {
               "slug": "the-lease-answers-ownership-behavioral-and-measurement-questions-at-once",
               "text": "Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions.",
-              "block_index": 34
+              "block_index": 33
             },
             {
               "slug": "overlap-confirms-the-classes-sort-questions-not-data-structures",
               "text": "The overlap follows from the distinction introduced at the chapter's opening: model classes identify engineering questions, not mutually exclusive data structures — the observation the closing section builds on to connect the models.",
-              "block_index": 37
+              "block_index": 35
             }
           ]
         }
@@ -1017,7 +1017,7 @@
             {
               "slug": "a-declared-policy-turns-is-this-allowed-into-an-evaluation",
               "text": "Once permission is declared, the claims a policy designer wants become expressible — permitted/forbidden, mutual exclusion, prerequisites, consistency, completeness, least privilege — and \"is this allowed?\" becomes an evaluation rather than an argument.",
-              "block_index": 9
+              "block_index": 8
             }
           ]
         },
@@ -1025,9 +1025,9 @@
           "section_id": "compare-the-decision-with-the-facts",
           "level": 2,
           "heading_text": "Compare the Decision with the Facts",
-          "topic_sentence": "Suppose a report service may call a renderer, while the public web interface may call only the report service.",
+          "topic_sentence": "In a hypothetical system, a public web interface may call a report service, which may in turn call a renderer.",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 10,
           "points": []
         },
         {
@@ -1036,7 +1036,7 @@
           "heading_text": "Preserve the Cases a Decision Must Distinguish",
           "topic_sentence": "The input representation can make a decision wrong before any rule is evaluated.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 14,
           "points": []
         },
         {
@@ -1045,12 +1045,12 @@
           "heading_text": "When the Decision Depends on Context",
           "topic_sentence": "Some decisions cannot be made from the object alone.",
           "id_source": "derived",
-          "block_index": 19,
+          "block_index": 18,
           "points": [
             {
               "slug": "image-purpose-and-uncertainty-govern-the-decorative-decision",
               "text": "An image's informational role depends on context; DocAble uses a VLM classification with an explicit conservative policy that retains content when the classification is uncertain.",
-              "block_index": 20
+              "block_index": 19
             }
           ]
         }

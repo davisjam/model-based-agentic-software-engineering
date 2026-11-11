@@ -92,6 +92,11 @@
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved the revised black-and-white Figure 2.8 (LGTM), after reviewing the latest proof.",
       "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71"
+    },
+    "book/assets/modeling-repertoire.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the revised black-and-white Figure 2.6, including the final serif errors/requests quantity fraction.",
+      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31"
     }
   }
 }

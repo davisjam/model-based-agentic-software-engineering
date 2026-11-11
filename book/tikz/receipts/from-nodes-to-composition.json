@@ -1,47 +1,87 @@
 {
   "source": "book/assets/from-nodes-to-composition.svg",
   "chapter": "2.2-structural",
-  "claim": "*From computations to composition.* Typing the dependencies among registered computations separates payload-bearing relations \u2014 data-flow and cross-service \u2014 from control gates that a computation consults only to decide whether it runs.",
+  "claim": "Classify controls two repair computations with dashed arrows. Repair structure and Repair metadata produce typed patches, both flowing to Apply patches and then Validate. Rounded rectangles and diamonds retain the supplied mutation-type distinction; solid and dashed arrows distinguish payload data flow from conditional execution. Annotation leaders have no endpoints or arrowheads.",
   "topology": {
-    "description": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+    "description": "Classify controls two repair computations with dashed arrows. Repair structure and Repair metadata produce typed patches, both flowing to Apply patches and then Validate. Rounded rectangles and diamonds retain the supplied mutation-type distinction; solid and dashed arrows distinguish payload data flow from conditional execution. Annotation leaders have no endpoints or arrowheads.",
     "native_draw_commands": [
-      "\\draw[edge,line width=1pt] (seed1) -- (seed2);",
-      "\\draw[edge,line width=1pt] (seed2) -- (seed3);",
-      "\\draw[edge] (-2.7,-2) -- node[lab,above,text width=1.6cm] {derive +\\\\type} (-1,-2);",
-      "\\draw[edge,line width=1pt] (a) -- node[lab,above=11pt] {DATA\\_FLOW \u00d732} node[lab,below=11pt] {Produces $\\rightarrow$ Consumes} (b);",
-      "\\draw[edge,line width=.7pt] (b2) -- node[lab,above=11pt] {CROSS\\_SERVICE \u00d71} node[lab,below=11pt] {Cross-boundary payload} (svc);",
-      "\\draw[edge,dashed,line width=.9pt] (a2) -- node[lab,above=11pt] {CONTROL\\_GATE \u00d724} node[lab,below=11pt] {ConsumesForControl} (c);",
-      "\\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-3.6) -- (-.65,-.25);",
-      "\\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-6.1) -- (-.65,-5.1);"
+      "\\path[fill=white] (0,70) rectangle (782,820);",
+      "\\path[fill=black!13,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (289,126) rectangle (480,184);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp,dash pattern=on 5.094bp off 3.396bp] (386,184) -- (386,211) .. controls (386,219) and (382,223) .. (374,223) -- (286,223) .. controls (278,223) and (274,227.33333) .. (274,236) -- (274,252);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp,dash pattern=on 5.094bp off 3.396bp] (386,184) -- (386,211) .. controls (386,219) and (390,223) .. (398,223) -- (490,223) .. controls (498,223) and (502,227.33333) .. (502,236) -- (502,252);",
+      "\\path[fill=black!5,draw=black!80,line width=0.6792bp] (266,256) .. controls (271.33333,253.33333) and (276.66667,253.33333) .. (282,256) -- (361,298) .. controls (367.66667,303.33333) and (367.66667,308.66667) .. (361,314) -- (282,356) .. controls (276.66667,358.66667) and (271.33333,358.66667) .. (266,356) -- (187,314) .. controls (180.33333,308.66667) and (180.33333,303.33333) .. (187,298) -- cycle;",
+      "\\path[fill=black!5,draw=black!80,line width=0.6792bp] (494,256) .. controls (499.33333,253.33333) and (504.66667,253.33333) .. (510,256) -- (589,298) .. controls (595.66667,303.33333) and (595.66667,308.66667) .. (589,314) -- (510,356) .. controls (504.66667,358.66667) and (499.33333,358.66667) .. (494,356) -- (415,314) .. controls (408.33333,308.66667) and (408.33333,303.33333) .. (415,298) -- cycle;",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (274,358) -- (274,372) .. controls (274,380) and (278,384) .. (286,384) -- (331,384) .. controls (339,384) and (343,388) .. (343,396) -- (343,412);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (502,358) -- (502,372) .. controls (502,380) and (498,384) .. (490,384) -- (446,384) .. controls (438,384) and (434,388) .. (434,396) -- (434,412);",
+      "\\path[fill=black!13,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (281,414) rectangle (492,470);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (386.5,470) -- (386.5,507);",
+      "\\path[fill=black!25,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (281,509) rectangle (492,570);",
+      "\\path[draw=black!80,line width=0.4528bp] (204,173) -- (282,156);",
+      "\\path[draw=black!80,line width=0.4528bp] (566,182) .. controls (550,198) and (534,220.66667) .. (518,250);",
+      "\\path[draw=black!80,line width=0.4528bp] (184,398) -- (274,425);",
+      "\\path[draw=black!80,line width=0.4528bp] (579,382) -- (498,426);",
+      "\\path[draw=black!80,line width=0.4528bp] (579,499) -- (498,460);",
+      "\\path[fill=black!4,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (25,584) rectangle (759,716);",
+      "\\path[draw=black!26,line width=0.6792bp] (376,608) -- (376,683);",
+      "\\path[fill=black!13,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (47,623) rectangle (89,646);",
+      "\\path[fill=black!5,draw=black!80,line width=0.6792bp] (64.775,655.1125) .. controls (66.925,654.0375) and (69.075,654.0375) .. (71.225,655.1125) -- (86.275,665.775) .. controls (89.75833,667.925) and (89.75833,670.075) .. (86.275,672.225) -- (71.225,682.8875) .. controls (69.075,683.9625) and (66.925,683.9625) .. (64.775,682.8875) -- (49.725,672.225) .. controls (46.24167,670.075) and (46.24167,667.925) .. (49.725,665.775) -- cycle;",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (401,633) -- (445,633);",
+      "\\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp,dash pattern=on 5.094bp off 3.396bp] (401,668) -- (445,668);",
+      "\\path[fill=black!3,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (12,726) rectangle (770,811);"
     ]
   },
   "required_terms": [
-    "Computations",
-    "without composition Composition made explicit",
-    "125 computations",
-    "2 authored relations",
-    "derive +",
-    "type",
-    "Payload-bearing: 33",
-    "Pass A Pass B",
-    "DATA_FLOW \u00d732",
-    "Produces \u2192 Consumes",
-    "Pass B Service",
-    "CROSS_SER VICE \u00d71",
-    "Cross-boundary payload",
-    "Control: 24",
-    "Pass A Pass C",
-    "CONTROL_GATE \u00d724",
-    "ConsumesForControl",
-    "2 authored + 55 projected, typed relations",
-    "= 33 payload + 24 control"
+    "A typed structural model of DocAble’s remediation computations.",
+    "Classify",
+    "(format, needs)",
+    "Repair",
+    "structure",
+    "(typed patch)",
+    "Repair",
+    "metadata",
+    "(typed patch)",
+    "Apply patches",
+    "(apply seam)",
+    "Validate",
+    "(direct edit)",
+    "Computation:",
+    "a registered",
+    "remediation step",
+    "(e.g., classify, repair,",
+    "validate).",
+    "Control gate:",
+    "classification",
+    "Data flow:",
+    "produces",
+    "information",
+    "used by another",
+    "computation.",
+    "Mutation behavior:",
+    "typed patch —",
+    "produces a patch",
+    "direct edit —",
+    "mutates document",
+    "Apply seam:",
+    "where patches are",
+    "applied to the",
+    "Node (computation) type",
+    "Dependency (edge) type",
+    "= Direct edit (mutates document)",
+    "= Typed patch (produces a patch)",
+    "= Data flow (payload)",
+    "= Control gate",
+    "125 registered computations; 57 typed composition relations.",
+    "The model preserves computation identity, mutation behavior, apply seams, and",
+    "declared dependencies—not the code implementing each computation.",
+    "determines which",
+    "repairs run.",
+    "document.",
+    "(executes if condition holds)"
   ],
-  "bw_encoding": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
-  "redesign": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks. Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
-  "questions": [
-    "The source description says 55 projected, while 33 + 24 = 57; diagram preserves explicit SVG equation: 2 authored + 55 projected = 57 total."
-  ],
-  "alt": "Separate static and history frames contrast entities and their composition. Braces distinguish payload from control information; the derivation link connects the two views without merging their roles.",
+  "bw_encoding": "Classify and Apply patches use 13% gray, typed-patch diamonds 5%, Validate 25%. Shape and labels duplicate the distinctions so shade is not the only carrier. Solid arrows indicate data flow; dashed arrows indicate control gates. Thin unadorned leader lines connect explanatory annotations.",
+  "redesign": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+  "questions": [],
+  "alt": "Classify controls two repair computations with dashed arrows. Repair structure and Repair metadata produce typed patches, both flowing to Apply patches and then Validate. Rounded rectangles and diamonds retain the supplied mutation-type distinction; solid and dashed arrows distinguish payload data flow from conditional execution. Annotation leaders have no endpoints or arrowheads.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -53,277 +93,870 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+    "outcome": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
     "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
     "native_dimensions_cm": [
-      13.7879,
-      9.7248
-    ]
+      15.825,
+      15.1861
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 430.472,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 46,
+      "status": "passed"
+    }
   },
   "fidelity_review": {
     "stem": "from-nodes-to-composition",
     "source": "book/assets/from-nodes-to-composition.svg",
     "status": "corrected",
-    "evidence": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+    "evidence": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
     "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/from-nodes-to-composition.png",
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
-    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/from-nodes-to-composition.png",
-    "original_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
-    "native_sha256": "c808b79bc5067ff8a9799287bca56a937c80de73bf713b3905578a844b610a4d",
-    "page": 17,
+    "candidate_render": "/private/tmp/mage-figures-2-9-2-10-native-20261111/latex/build/reference-native-proof/from-nodes-to-composition.png",
+    "original_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+    "native_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "page": 1,
     "dimensions_cm": [
       13.7879,
       9.7173
     ],
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
-    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 430.472,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 46,
+      "status": "passed"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
-    "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-    "fill": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
-    "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW \u00d732; CROSS_SERVICE \u00d71; CONTROL_GATE \u00d724. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
-    "routing": "Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "fill": "Classify and Apply patches use 13% gray, typed-patch diamonds 5%, Validate 25%. Shape and labels duplicate the distinctions so shade is not the only carrier. Solid arrows indicate data flow; dashed arrows indicate control gates. Thin unadorned leader lines connect explanatory annotations.",
+    "bold": "Bold labels identify computations and annotation headings; state labels remain regular except Retrying as in the supplied reference.",
+    "routing": "Classify controls two repair computations with dashed arrows. Repair structure and Repair metadata produce typed patches, both flowing to Apply patches and then Validate. Rounded rectangles and diamonds retain the supplied mutation-type distinction; solid and dashed arrows distinguish payload data flow from conditional execution. Annotation leaders have no endpoints or arrowheads.",
+    "shape": "House-scale corner radii; supplied semantic diamond/rectangle/state shapes remain.",
+    "visual_review": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 430.472,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 20,
-      "width_bp": 390.839,
-      "height_bp": 275.664,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 8
+      "semantic_typography_checks": 46,
+      "status": "passed"
     },
-    "book_references": []
+    "book_references": [],
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+      "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+      "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 19,
+        "width_bp": 390.839,
+        "height_bp": 275.664,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 8
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145",
-    "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-    "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
+    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
     "evidence": [
       {
-        "source_text": "PAYLOAD-BEARING  \u00d733",
-        "source_style": "weight 700; normal; source size 14",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "PAYLOAD-BEARING: 33",
-        "candidate_style": "bold",
+        "source_text": "A typed structural model of DocAble’s remediation computations.",
+        "source_style": "font-size:21.5px;font-style:italic;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "A typed structural model of DocAble’s remediation computations.",
+        "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
-          "element_text_path": "/svg/text[6]/text()",
-          "text_element_context": "PAYLOAD-BEARING \u00d733",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "A typed structural model of DocAble’s remediation computations.",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "CONTROL  \u00d724",
-        "source_style": "weight 700; normal; source size 14",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "CONTROL: 24",
+        "source_text": "Classify",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Classify",
         "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
-          "element_text_path": "/svg/text[15]/text()",
-          "text_element_context": "CONTROL \u00d724",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "Classify",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "DATA_FLOW  \u00d732",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "DATA_FLOW \u00d732",
+        "source_text": "Repair",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Repair",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "Repair",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "structure",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "structure",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[5]/text()",
+          "text_element_context": "structure",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Repair",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Repair",
         "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
           "element_text_path": "/svg/text[7]/text()",
-          "text_element_context": "DATA_FLOW \u00d732",
+          "text_element_context": "Repair",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "CROSS_SERVICE  \u00d71",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "CROSS_SERVICE \u00d71",
+        "source_text": "metadata",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "metadata",
         "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
-          "element_text_path": "/svg/text[11]/text()",
-          "text_element_context": "CROSS_SERVICE \u00d71",
+          "element_text_path": "/svg/text[8]/text()",
+          "text_element_context": "metadata",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "CONTROL_GATE  \u00d724",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "CONTROL_GATE \u00d724",
+        "source_text": "Apply patches",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Apply patches",
         "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/from-nodes-to-composition.svg",
-          "element_text_path": "/svg/text[16]/text()",
-          "text_element_context": "CONTROL_GATE \u00d724",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "Produces \u2192 Consumes",
-        "source_style": "weight normal; italic; source size 13",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Produces \u2192 Consumes",
-        "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
           "element_text_path": "/svg/text[10]/text()",
-          "text_element_context": "Produces \u2192 Consumes",
+          "text_element_context": "Apply patches",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "cross-boundary payload",
-        "source_style": "weight normal; italic; source size 13",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Cross-boundary payload",
-        "candidate_style": "italic",
+        "source_text": "Validate",
+        "source_style": "font-size:20px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Validate",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[12]/text()",
+          "text_element_context": "Validate",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Computation:",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Computation:",
+        "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
           "element_text_path": "/svg/text[14]/text()",
-          "text_element_context": "cross-boundary payload",
+          "text_element_context": "Computation:",
           "matching_fragment_count": 1
         }
       },
       {
-        "source_text": "ConsumesForControl",
-        "source_style": "weight normal; italic; source size 13",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "ConsumesForControl",
-        "candidate_style": "italic",
+        "source_text": "Control gate:",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Control gate:",
+        "candidate_style": "bold",
         "source_locator": {
           "svg": "book/assets/from-nodes-to-composition.svg",
           "element_text_path": "/svg/text[19]/text()",
-          "text_element_context": "ConsumesForControl",
+          "text_element_context": "Control gate:",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Data flow:",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Data flow:",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[21]/text()",
+          "text_element_context": "Data flow:",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Mutation behavior:",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Mutation behavior:",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[26]/text()",
+          "text_element_context": "Mutation behavior:",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Apply seam:",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Apply seam:",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[31]/text()",
+          "text_element_context": "Apply seam:",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Node (computation) type",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Node (computation) type",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[34]/text()",
+          "text_element_context": "Node (computation) type",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Dependency (edge) type",
+        "source_style": "font-size:19px;font-weight:bold;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "Dependency (edge) type",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[35]/text()",
+          "text_element_context": "Dependency (edge) type",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "The model preserves computation identity, mutation behavior, apply seams, and",
+        "source_style": "font-size:20px;font-style:italic;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "The model preserves computation identity, mutation behavior, apply seams, and",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[41]/text()",
+          "text_element_context": "The model preserves computation identity, mutation behavior, apply seams, and",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "declared dependencies—not the code implementing each computation.",
+        "source_style": "font-size:20px;font-style:italic;",
+        "semantic_role": "annotation heading or model-summary emphasis",
+        "candidate_text": "declared dependencies—not the code implementing each computation.",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/from-nodes-to-composition.svg",
+          "element_text_path": "/svg/text[42]/text()",
+          "text_element_context": "declared dependencies—not the code implementing each computation.",
           "matching_fragment_count": 1
         }
       }
     ],
+    "reason": "Bundled Source Sans 3 matches the book figure profile; bold annotation headings, regular explanatory labels and italic summary text preserve the requested hierarchy.",
     "checks": [
       {
-        "text": "PAYLOAD-BEARING: 33",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "CONTROL: 24",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "DATA_FLOW \u00d732",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "CROSS_SERVICE \u00d71",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "CONTROL_GATE \u00d724",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Cross-boundary payload",
+        "text": "A typed structural model of DocAble’s remediation computations.",
         "bold": false,
         "italic": true
       },
       {
-        "text": "ConsumesForControl",
+        "text": "Classify",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(format, needs)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Repair",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "structure",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(typed patch)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Repair",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "metadata",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(typed patch)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Apply patches",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(apply seam)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Validate",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(direct edit)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Computation:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "a registered",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "remediation step",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(e.g., classify, repair,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "validate).",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Control gate:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "classification",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Data flow:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "produces",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "information",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "used by another",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "computation.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Mutation behavior:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "typed patch —",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "produces a patch",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "direct edit —",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "mutates document",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Apply seam:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "where patches are",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "applied to the",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Node (computation) type",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Dependency (edge) type",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "= Direct edit (mutates document)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "= Typed patch (produces a patch)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "= Data flow (payload)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "= Control gate",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "125 registered computations; 57 typed composition relations."
+      },
+      {
+        "text": "The model preserves computation identity, mutation behavior, apply seams, and",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Pass A",
+        "text": "declared dependencies—not the code implementing each computation.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "determines which",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "repairs run.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "document.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(executes if condition holds)",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 430.472,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 20,
-      "width_bp": 390.839,
-      "height_bp": 275.664,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 8
-    }
+      "semantic_typography_checks": 46,
+      "status": "passed"
+    },
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+      "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+      "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-09",
+        "review": {
+          "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+          "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 19,
+            "width_bp": 390.839,
+            "height_bp": 275.664,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 8
+          },
+          "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 20,
+        "width_bp": 390.839,
+        "height_bp": 275.664,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 8
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Each typed composition example has matched peers with legible relation edges. The larger computation/composition panels deliberately contain different information density.",
-    "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing from nodes to composition layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-      "after_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
-      "before_dimensions_bp": [
-        390.8389892578125,
-        275.66400146484375
-      ],
-      "after_dimensions_bp": [
-        390.8389892578125,
-        275.66400146484375
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
+    "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+    "baseline_candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+    "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
+    "decision": "refined",
+    "reason": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      390.8389892578125,
+      275.66400146484375
+    ],
+    "contracts": {},
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+      "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+      "page": 1,
+      "width_bp": 448.584,
+      "height_bp": 430.472,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+      "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 20,
-      "width_bp": 390.839,
-      "height_bp": 275.664,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 8
+      "semantic_typography_checks": 46,
+      "status": "passed"
     },
-    "source_sha256": "b0f4b7a3831e28117db22922a1f00fbddf819ad0774cd525a71f4a33518fe145"
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
+      "reviewed_visually": true,
+      "full_width_required": true,
+      "half_width_minimum_font_pt": 4.71
+    },
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-09",
+        "review": {
+          "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+          "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 19,
+            "width_bp": 390.839,
+            "height_bp": 275.664
+          },
+          "reason": "Each typed composition example has matched peers with legible relation edges. The larger computation/composition panels deliberately contain different information density."
+        }
+      }
+    ],
+    "validation_history": [
+      {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 20,
+        "width_bp": 390.839,
+        "height_bp": 275.664,
+        "minimum_prose_font_pt": 8.97,
+        "semantic_typography_checks": 8
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+        "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 45,
+        "status": "passed"
+      }
+    ]
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -344,7 +977,7 @@
           "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
           "candidate_sha256": "84254f2c43183451d30fd7d2976e96dbb4a543aa95c8a2ef27e512e797b4adb7",
           "fill": "All computation and service boxes white; payload versus control is encoded by braces, labels and solid/dashed lines. Small sparse-inventory points retain gray as non-text marks.",
-          "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW \u00d732; CROSS_SERVICE \u00d71; CONTROL_GATE \u00d724. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
+          "bold": "Source-derived emphasis includes PAYLOAD-BEARING: 33; CONTROL: 24; DATA_FLOW ×32; CROSS_SERVICE ×1; CONTROL_GATE ×24. Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
           "routing": "Payload and control routes horizontal. Exception: two diagonals in the literal sparse-graph sample depict graph structure among example points, not process sequencing.",
           "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
           "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
@@ -370,7 +1003,7 @@
           "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration.",
           "evidence": [
             {
-              "source_text": "PAYLOAD-BEARING  \u00d733",
+              "source_text": "PAYLOAD-BEARING  ×33",
               "source_style": "weight 700; normal; source size 14",
               "semantic_role": "named category versus explanatory text",
               "candidate_text": "PAYLOAD-BEARING: 33",
@@ -378,12 +1011,12 @@
               "source_locator": {
                 "svg": "book/assets/from-nodes-to-composition.svg",
                 "element_text_path": "/svg/text[6]/text()",
-                "text_element_context": "PAYLOAD-BEARING \u00d733",
+                "text_element_context": "PAYLOAD-BEARING ×33",
                 "matching_fragment_count": 1
               }
             },
             {
-              "source_text": "CONTROL  \u00d724",
+              "source_text": "CONTROL  ×24",
               "source_style": "weight 700; normal; source size 14",
               "semantic_role": "named category versus explanatory text",
               "candidate_text": "CONTROL: 24",
@@ -391,59 +1024,59 @@
               "source_locator": {
                 "svg": "book/assets/from-nodes-to-composition.svg",
                 "element_text_path": "/svg/text[15]/text()",
-                "text_element_context": "CONTROL \u00d724",
+                "text_element_context": "CONTROL ×24",
                 "matching_fragment_count": 1
               }
             },
             {
-              "source_text": "DATA_FLOW  \u00d732",
+              "source_text": "DATA_FLOW  ×32",
               "source_style": "weight 700; normal; source size 18",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "DATA_FLOW \u00d732",
+              "candidate_text": "DATA_FLOW ×32",
               "candidate_style": "bold",
               "source_locator": {
                 "svg": "book/assets/from-nodes-to-composition.svg",
                 "element_text_path": "/svg/text[7]/text()",
-                "text_element_context": "DATA_FLOW \u00d732",
+                "text_element_context": "DATA_FLOW ×32",
                 "matching_fragment_count": 1
               }
             },
             {
-              "source_text": "CROSS_SERVICE  \u00d71",
+              "source_text": "CROSS_SERVICE  ×1",
               "source_style": "weight 700; normal; source size 18",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "CROSS_SERVICE \u00d71",
+              "candidate_text": "CROSS_SERVICE ×1",
               "candidate_style": "bold",
               "source_locator": {
                 "svg": "book/assets/from-nodes-to-composition.svg",
                 "element_text_path": "/svg/text[11]/text()",
-                "text_element_context": "CROSS_SERVICE \u00d71",
+                "text_element_context": "CROSS_SERVICE ×1",
                 "matching_fragment_count": 1
               }
             },
             {
-              "source_text": "CONTROL_GATE  \u00d724",
+              "source_text": "CONTROL_GATE  ×24",
               "source_style": "weight 700; normal; source size 18",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "CONTROL_GATE \u00d724",
+              "candidate_text": "CONTROL_GATE ×24",
               "candidate_style": "bold",
               "source_locator": {
                 "svg": "book/assets/from-nodes-to-composition.svg",
                 "element_text_path": "/svg/text[16]/text()",
-                "text_element_context": "CONTROL_GATE \u00d724",
+                "text_element_context": "CONTROL_GATE ×24",
                 "matching_fragment_count": 1
               }
             },
             {
-              "source_text": "Produces \u2192 Consumes",
+              "source_text": "Produces → Consumes",
               "source_style": "weight normal; italic; source size 13",
               "semantic_role": "named category versus explanatory text",
-              "candidate_text": "Produces \u2192 Consumes",
+              "candidate_text": "Produces → Consumes",
               "candidate_style": "italic",
               "source_locator": {
                 "svg": "book/assets/from-nodes-to-composition.svg",
                 "element_text_path": "/svg/text[10]/text()",
-                "text_element_context": "Produces \u2192 Consumes",
+                "text_element_context": "Produces → Consumes",
                 "matching_fragment_count": 1
               }
             },
@@ -486,17 +1119,17 @@
               "italic": false
             },
             {
-              "text": "DATA_FLOW \u00d732",
+              "text": "DATA_FLOW ×32",
               "bold": true,
               "italic": false
             },
             {
-              "text": "CROSS_SERVICE \u00d71",
+              "text": "CROSS_SERVICE ×1",
               "bold": true,
               "italic": false
             },
             {
-              "text": "CONTROL_GATE \u00d724",
+              "text": "CONTROL_GATE ×24",
               "bold": true,
               "italic": false
             },

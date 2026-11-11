@@ -66,16 +66,33 @@ def reference_fonts(pdf):
                        if re.search(r"[A-Za-z]{2}", span["text"])})
 
 
-def check_figure_fonts(page, figure_fonts):
-    findings = []
+def check_figure_fonts(page, figure_fonts, math_labels=()):
+    # Quantity names inside a formula may use mathematical typography. The
+    # review names each complete rendered label and its exact expected font;
+    # this never permits a serif face for unrelated prose in the figure.
+    normalize = lambda text: " ".join(unicodedata.normalize("NFKC", text).split())
+    expected = {}
+    for label in math_labels:
+        text, font = normalize(label["text"]), label["font"]
+        if not text or not font or text in expected:
+            raise ValueError("Mathematical labels require unique text and an expected font")
+        expected[text] = font
+    seen, findings = set(), []
     for block in page.get_text("dict")["blocks"]:
         for line in block.get("lines", []):
             for span in line["spans"]:
+                text = normalize(span["text"])
+                if text in expected and span["font"] == expected[text]:
+                    seen.add(text)
+                    continue
                 # Isolated mathematical letters, operators and numbers retain
-                # math fonts. Prose words must use the declared figure faces.
+                # math fonts. Other words must use the declared figure faces.
                 if re.search(r"[A-Za-z]{2}", span["text"]) and span["font"] not in figure_fonts:
                     findings.append({"text": span["text"], "problem": "prose font differs from figure profile",
                                      "actual_font": span["font"], "expected_fonts": sorted(figure_fonts)})
+    for text in sorted(expected.keys() - seen):
+        findings.append({"text": text, "problem": "mathematical label missing or font changed",
+                         "expected_font": expected[text]})
     return findings
 
 
@@ -94,7 +111,7 @@ def audit_pdf(pdf, manifest, review, output=None, figure_fonts=None):
             for finding in check_page(document[page - 1], checks):
                 findings.append({"source": figure["source"], "page": page, **finding})
             if figure_fonts is not None:
-                for finding in check_figure_fonts(document[page - 1], figure_fonts):
+                for finding in check_figure_fonts(document[page - 1], figure_fonts, figure.get("math_labels", ())):
                     findings.append({"source": figure["source"], "page": page, **finding})
     report = {"pdf": str(pdf), "figures": len(figures), "checks": count, "findings": findings}
     if figure_fonts is not None:

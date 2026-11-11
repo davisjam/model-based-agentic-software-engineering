@@ -1,40 +1,72 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.72cm},
-state/.style={n,ellipse,rounded corners=0pt},
-strong/.style={n,line width=.65pt,fill=white},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9}{11}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10}{12}\selectfont},
-edge/.style={-Stealth,line width=.55pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9}{11}\selectfont}]
-
-\node[head,text width=4cm] (left) at (-4.6,1) {Computations\\without composition};
-\node[head,text width=7cm] (right) at (2.5,1) {Composition made explicit};
-% The sparse inventory is illustrative; the exact corpus count is stated below.
-\foreach \x/\y in {-6/0,-5/0,-4/0,-3/0,-6/-1,-3/-1,-6/-2,-5/-2,-4/-2,-3/-2,-6/-3,-5/-3,-4/-3,-3/-3}
- \fill[black!18] (\x,\y) circle (2pt);
-\node[circle,draw,line width=1pt,fill=white,inner sep=3pt] (seed1) at (-5.5,-.8) {};
-\node[circle,draw,line width=1pt,fill=white,inner sep=3pt] (seed2) at (-4.6,-1.6) {};
-\node[circle,draw,line width=1pt,fill=white,inner sep=3pt] (seed3) at (-3.5,-.8) {};
-\draw[edge,line width=1pt] (seed1) -- (seed2);
-\draw[edge,line width=1pt] (seed2) -- (seed3);
-\node[note,text width=4cm] (count) at (-4.6,-4) {125 computations\\2 authored relations};
-\draw[edge] (-2.7,-2) -- node[lab,above,text width=1.6cm] {derive +\\type} (-1,-2);
-\node[note,anchor=west] at (-.4,.45) {\textbf{PAYLOAD-BEARING: 33}};
-\node[n,fill=white,text width=1.6cm] (a) at (.5,-.8) {Pass A};
-\node[n,fill=white,text width=1.6cm] (b) at (4.8,-.8) {Pass B};
-\draw[edge,line width=1pt] (a) -- node[lab,above=11pt] {\textbf{DATA\_FLOW ×32}} node[lab,below=11pt] {\textit{Produces $\rightarrow$ Consumes}} (b);
-\node[n,fill=white,text width=1.6cm] (b2) at (.5,-3.0) {Pass B};
-\node[n,fill=white,text width=1.6cm] (svc) at (4.8,-3.0) {Service};
-\draw[edge,line width=.7pt] (b2) -- node[lab,above=11pt] {\textbf{CROSS\_SERVICE ×1}} node[lab,below=11pt] {\textit{Cross-boundary payload}} (svc);
-\node[note,anchor=west] at (-.4,-4.35) {\textbf{CONTROL: 24}};
-\node[n,fill=white,text width=1.6cm] (a2) at (.5,-5.6) {Pass A};
-\node[n,fill=white,text width=1.6cm] (c) at (4.8,-5.6) {Pass C};
-\draw[edge,dashed,line width=.9pt] (a2) -- node[lab,above=11pt] {\textbf{CONTROL\_GATE ×24}} node[lab,below=11pt] {\textit{ConsumesForControl}} (c);
-\node[note,font=\fontsize{10}{12}\selectfont,text width=12cm] (sum) at (0,-7.3) {2 authored + 55 projected, typed relations\\= 33 payload + 24 control};
-
-\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-3.6) -- (-.65,-.25);
-\draw[decorate,decoration={brace,amplitude=4pt},line width=.7pt] (-.65,-6.1) -- (-.65,-5.1);
-\begin{scope}[on background layer]
-\node[draw=black!35,rounded corners=3pt,fit=(left)(count)(seed1)(seed3),inner sep=9pt] {};
-\node[draw=black!35,rounded corners=3pt,fit=(right)(a)(b)(b2)(svc)(a2)(c),inner sep=14pt] {};
-\end{scope}
+% Book-style revision of author-supplied Figure 2.9 reference; editable native counterpart.
+\begin{tikzpicture}[x=.566bp,y=-.566bp,font=\magefigurefont\fontsize{10.8}{12}\selectfont,>=Latex]
+\path[fill=white] (0,70) rectangle (782,820);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\itshape\fontsize{12.21463}{14.04683}\selectfont}] at (34,95) {A typed structural model of DocAble’s remediation computations.};
+\path[fill=black!13,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (289,126) rectangle (480,184);
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (384.5,150) {Classify};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (384.5,172) {(format, needs)};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp,dash pattern=on 5.094bp off 3.396bp] (386,184) -- (386,211) .. controls (386,219) and (382,223) .. (374,223) -- (286,223) .. controls (278,223) and (274,227.33333) .. (274,236) -- (274,252);
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp,dash pattern=on 5.094bp off 3.396bp] (386,184) -- (386,211) .. controls (386,219) and (390,223) .. (398,223) -- (490,223) .. controls (498,223) and (502,227.33333) .. (502,236) -- (502,252);
+\path[fill=black!5,draw=black!80,line width=0.6792bp] (266,256) .. controls (271.33333,253.33333) and (276.66667,253.33333) .. (282,256) -- (361,298) .. controls (367.66667,303.33333) and (367.66667,308.66667) .. (361,314) -- (282,356) .. controls (276.66667,358.66667) and (271.33333,358.66667) .. (266,356) -- (187,314) .. controls (180.33333,308.66667) and (180.33333,303.33333) .. (187,298) -- cycle;
+\path[fill=black!5,draw=black!80,line width=0.6792bp] (494,256) .. controls (499.33333,253.33333) and (504.66667,253.33333) .. (510,256) -- (589,298) .. controls (595.66667,303.33333) and (595.66667,308.66667) .. (589,314) -- (510,356) .. controls (504.66667,358.66667) and (499.33333,358.66667) .. (494,356) -- (415,314) .. controls (408.33333,308.66667) and (408.33333,303.33333) .. (415,298) -- cycle;
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (274,286) {Repair};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (274,307) {structure};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{10.2262}{11.76014}\selectfont}] at (274,326) {(typed patch)};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (502,286) {Repair};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (502,307) {metadata};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{10.2262}{11.76014}\selectfont}] at (502,326) {(typed patch)};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (274,358) -- (274,372) .. controls (274,380) and (278,384) .. (286,384) -- (331,384) .. controls (339,384) and (343,388) .. (343,396) -- (343,412);
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (502,358) -- (502,372) .. controls (502,380) and (498,384) .. (490,384) -- (446,384) .. controls (438,384) and (434,388) .. (434,396) -- (434,412);
+\path[fill=black!13,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (281,414) rectangle (492,470);
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (386.5,438) {Apply patches};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (386.5,459) {(apply seam)};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (386.5,470) -- (386.5,507);
+\path[fill=black!25,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (281,509) rectangle (492,570);
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{11.36245}{13.06682}\selectfont}] at (386.5,535) {Validate};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{11.36245}{13.06682}\selectfont}] at (386.5,557) {(direct edit)};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (56,149) {Computation:};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (56,169) {a registered};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (56,189) {remediation step};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (56,209) {(e.g., classify, repair,};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (56,229) {validate).};
+\path[draw=black!80,line width=0.4528bp] (204,173) -- (282,156);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (578,168) {Control gate:};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (578,188) {classification};
+\path[draw=black!80,line width=0.4528bp] (566,182) .. controls (550,198) and (534,220.66667) .. (518,250);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (69,368) {Data flow:};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (69,389) {produces};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (69,409) {information};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (69,429) {used by another};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (69,449) {computation.};
+\path[draw=black!80,line width=0.4528bp] (184,398) -- (274,425);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (590,357) {Mutation behavior:};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,381) {typed patch —};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,401) {produces a patch};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,424) {direct edit —};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,444) {mutates document};
+\path[draw=black!80,line width=0.4528bp] (579,382) -- (498,426);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (590,480) {Apply seam:};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,501) {where patches are};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,521) {applied to the};
+\path[draw=black!80,line width=0.4528bp] (579,499) -- (498,460);
+\path[fill=black!4,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (25,584) rectangle (759,716);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (46,608) {Node (computation) type};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\bfseries\fontsize{10.79433}{12.41348}\selectfont}] at (400,608) {Dependency (edge) type};
+\path[draw=black!26,line width=0.6792bp] (376,608) -- (376,683);
+\path[fill=black!13,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (47,623) rectangle (89,646);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10}{11.5}\selectfont}] at (101,639) {= Direct edit (mutates document)};
+\path[fill=black!5,draw=black!80,line width=0.6792bp] (64.775,655.1125) .. controls (66.925,654.0375) and (69.075,654.0375) .. (71.225,655.1125) -- (86.275,665.775) .. controls (89.75833,667.925) and (89.75833,670.075) .. (86.275,672.225) -- (71.225,682.8875) .. controls (69.075,683.9625) and (66.925,683.9625) .. (64.775,682.8875) -- (49.725,672.225) .. controls (46.24167,670.075) and (46.24167,667.925) .. (49.725,665.775) -- cycle;
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10}{11.5}\selectfont}] at (101,674) {= Typed patch (produces a patch)};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp] (401,633) -- (445,633);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10}{11.5}\selectfont}] at (449,639) {= Data flow (payload)};
+\path[-{Latex[length=4.5bp,width=4bp]},draw=black!85,line width=0.6792bp,dash pattern=on 5.094bp off 3.396bp] (401,668) -- (445,668);
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10}{11.5}\selectfont}] at (449,674) {= Control gate};
+\path[fill=black!3,draw=black!80,line width=0.6792bp,rounded corners=2.264bp] (12,726) rectangle (770,811);
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\fontsize{12.49869}{14.3735}\selectfont}] at (390,752) {\textbf{125} registered computations; \textbf{57} typed composition relations.};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\itshape\fontsize{11.36245}{13.06682}\selectfont}] at (390,779) {The model preserves computation identity, mutation behavior, apply seams, and};
+\node[anchor=base,inner sep=0pt,font={\magefigurefont\itshape\fontsize{11.36245}{13.06682}\selectfont}] at (390,801) {declared dependencies—not the code implementing each computation.};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (578,208) {determines which};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (578,228) {repairs run.};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10.79433}{12.41348}\selectfont}] at (590,541) {document.};
+\node[anchor=base west,inner sep=0pt,font={\magefigurefont\fontsize{10}{11.5}\selectfont}] at (449,692) {(executes if condition holds)};
 \end{tikzpicture}

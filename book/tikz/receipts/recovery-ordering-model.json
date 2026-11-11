@@ -1,51 +1,81 @@
 {
   "source": "book/assets/recovery-ordering-model.svg",
   "chapter": "2.3-behavioral",
-  "claim": "*Recovery-ordering model.* The decisive fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.",
+  "claim": "Durable publication must precede updating the database reference; the direct staged-to-database bypass is forbidden.",
   "topology": {
-    "description": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
-    "native_draw_commands": [
-      "\\draw[edge] (n0) -- node[lab,right] {upload succeeds} (n1);",
-      "\\draw[edge] (n1) -- node[lab,right] {durable state updated} (n2);",
-      "\\draw[edge,dashed] (n0.west) -- ++(-1.3,0) |- (n2.west);"
+    "description": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+    "relations": [
+      [
+        "initial",
+        "FALLBACK_STAGED",
+        "permitted"
+      ],
+      [
+        "FALLBACK_STAGED",
+        "FALLBACK_UPLOADED",
+        "permitted"
+      ],
+      [
+        "FALLBACK_UPLOADED",
+        "DB_UPDATED",
+        "permitted"
+      ],
+      [
+        "FALLBACK_STAGED",
+        "DB_UPDATED",
+        "forbidden"
+      ]
     ]
   },
   "required_terms": [
-    "F ALLBACK_STAGED",
-    "F ALLBACK_UPLOADED",
-    "upload succeeds",
+    "A state model for publishing",
+    "a recovered artifact.",
+    "FALLBACK_STAGED",
+    "(artifact exists locally)",
+    "FALLBACK_UPLOADED",
+    "(artifact durably stored)",
     "DB_UPDATED",
-    "durable state updated",
-    "\u00d7",
-    "Forbidden /",
-    "absent",
-    "transition",
-    "Not part of",
-    "the model",
-    "Durable state may not name an arti-",
-    "fact recovery has not yet published."
+    "(database refers to artifact)",
+    "Forbidden:",
+    "update DB",
+    "before",
+    "upload",
+    "Permitted transition",
+    "Prohibited transition",
+    "The artifact must be published",
+    "(durably stored) before the database",
+    "may refer to it."
   ],
-  "bw_encoding": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
-  "redesign": "All ordered state peers white; the dashed forbidden/absent transition is preserved. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
+  "redesign": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
   "questions": [],
-  "alt": "Rounded state boxes show the required recovery ordering. A separate annotation explicitly marks what is not part of the model.",
+  "alt": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
   "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
+    "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
     "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
+      "state and generation identity",
+      "permitted and prohibited transitions",
+      "legend wording",
+      "default house typography",
+      "native print envelope"
     ],
-    "outcome": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
-    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
-    "native_dimensions_cm": [
-      8.1039,
-      7.1252
-    ]
+    "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+      "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+      "page": 1,
+      "width_bp": 235.975,
+      "height_bp": 402.973,
+      "minimum_prose_font_pt": 10.262,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 17,
+      "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+      "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+      "status": "passed"
+    }
   },
   "fidelity_review": {
     "stem": "recovery-ordering-model",
@@ -67,137 +97,168 @@
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
   },
   "style_review": {
+    "source": "book/assets/recovery-ordering-model.svg",
+    "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+    "receipt": "book/tikz/receipts/recovery-ordering-model.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
-    "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
-    "fill": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
-    "bold": "Source-derived emphasis includes FALLBACK_STAGED; FALLBACK_UPLOADED; DB_UPDATED; Forbidden / absent transition. Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
-    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
+    "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+    "fill": "Light gray state nodes and an unfilled ownership legend; no decorative title banner.",
+    "bold": "Bold state identifiers and legend headings; explanatory text remains regular; subtitle and final obligation italic.",
+    "routing": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "visual_review": "Final SVG and native proof inspected for state identity, cross markers, arrow directions, annotation clearance and readable default house typography. Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+      "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+      "page": 1,
+      "width_bp": 235.975,
+      "height_bp": 402.973,
+      "minimum_prose_font_pt": 10.262,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 22,
-      "width_bp": 229.716,
-      "height_bp": 201.973,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 7
+      "semantic_typography_checks": 17,
+      "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+      "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+      "status": "passed"
     },
     "book_references": []
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/recovery-ordering-model.svg",
+    "candidate": "book/tikz/figures/recovery-ordering-model.tex",
     "decision": "refined",
-    "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
-    "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
-    "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
+    "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
+    "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
     "evidence": [
       {
-        "source_text": "FALLBACK_STAGED",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "A state model for publishing",
+        "candidate_style": "italic",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "a recovered artifact.",
+        "candidate_style": "italic",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
         "candidate_text": "FALLBACK_STAGED",
         "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "FALLBACK_STAGED",
-          "matching_fragment_count": 1
-        }
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       },
       {
-        "source_text": "FALLBACK_UPLOADED",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "(artifact exists locally)",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
         "candidate_text": "FALLBACK_UPLOADED",
         "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[4]/text()",
-          "text_element_context": "FALLBACK_UPLOADED",
-          "matching_fragment_count": 1
-        }
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       },
       {
-        "source_text": "DB_UPDATED",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "(artifact durably stored)",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
         "candidate_text": "DB_UPDATED",
         "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[6]/text()",
-          "text_element_context": "DB_UPDATED",
-          "matching_fragment_count": 1
-        }
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       },
       {
-        "source_text": "upload succeeds",
-        "source_style": "weight normal; italic; source size 14",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "upload succeeds",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[3]/text()",
-          "text_element_context": "upload succeeds",
-          "matching_fragment_count": 1
-        }
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "(database refers to artifact)",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       },
       {
-        "source_text": "durable state updated",
-        "source_style": "weight normal; italic; source size 14",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "durable state updated",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[5]/text()",
-          "text_element_context": "durable state updated",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "absent transition",
-        "source_style": "weight 700; normal; source size 14",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Forbidden / absent transition",
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "Forbidden:",
         "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[8]/text()",
-          "text_element_context": "absent transition",
-          "matching_fragment_count": 1
-        }
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       },
       {
-        "source_text": "not part of",
-        "source_style": "weight normal; italic; source size 14",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Not part of the model",
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "update DB",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "before",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "upload",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "Permitted transition",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "Prohibited transition",
+        "candidate_style": "regular or mixed as in reference",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "The artifact must be published",
         "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/recovery-ordering-model.svg",
-          "element_text_path": "/svg/text[9]/text()",
-          "text_element_context": "not part of",
-          "matching_fragment_count": 1
-        }
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "(durably stored) before the database",
+        "candidate_style": "italic",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+      },
+      {
+        "semantic_role": "Reference label or explanation",
+        "candidate_text": "may refer to it.",
+        "candidate_style": "italic",
+        "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
       }
     ],
+    "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
     "checks": [
+      {
+        "text": "A state model for publishing",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "a recovered artifact.",
+        "bold": false,
+        "italic": true
+      },
       {
         "text": "FALLBACK_STAGED",
         "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(artifact exists locally)",
+        "bold": false,
         "italic": false
       },
       {
@@ -206,93 +267,142 @@
         "italic": false
       },
       {
+        "text": "(artifact durably stored)",
+        "bold": false,
+        "italic": false
+      },
+      {
         "text": "DB_UPDATED",
         "bold": true,
         "italic": false
       },
       {
-        "text": "upload succeeds",
+        "text": "(database refers to artifact)",
         "bold": false,
-        "italic": true
+        "italic": false
       },
       {
-        "text": "durable state updated",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "Forbidden / absent transition",
+        "text": "Forbidden:",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Not part of the model",
+        "text": "update DB",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "before",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "upload",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Permitted transition",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Prohibited transition",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "The artifact must be published",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "(durably stored) before the database",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "may refer to it.",
         "bold": false,
         "italic": true
       }
     ],
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+      "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+      "page": 1,
+      "width_bp": 235.975,
+      "height_bp": 402.973,
+      "minimum_prose_font_pt": 10.262,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 22,
-      "width_bp": 229.716,
-      "height_bp": 201.973,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 7
+      "semantic_typography_checks": 17,
+      "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+      "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+      "status": "passed"
     }
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The vertically ordered recovery states have consistent boxes and generous straight approaches; forbidden transition is explicitly separate.",
-    "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing recovery ordering model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
-      "after_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
-      "before_dimensions_bp": [
-        357.2070007324219,
-        186.77699279785156
-      ],
-      "after_dimensions_bp": [
-        357.2070007324219,
-        186.77699279785156
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
+    "source": "book/assets/recovery-ordering-model.svg",
+    "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+    "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
+    "baseline_candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+    "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+    "decision": "refined",
+    "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      357.2070007324219,
+      186.77699279785156
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "recovery states",
+          "labels": [
+            "FALLBACK_STAGED",
+            "FALLBACK_UPLOADED",
+            "DB_UPDATED"
+          ],
+          "align": [
+            "left",
+            "right",
+            "center_x"
+          ],
+          "equal_width": true,
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
     },
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-11",
+      "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+      "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+      "page": 1,
+      "width_bp": 235.975,
+      "height_bp": 402.973,
+      "minimum_prose_font_pt": 10.262,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 22,
-      "width_bp": 229.716,
-      "height_bp": 201.973,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 7
+      "semantic_typography_checks": 17,
+      "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+      "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+      "status": "passed"
     },
-    "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70"
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+      "after_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
+      "reviewed_visually": true,
+      "after_dimensions_bp": [
+        235.975,
+        402.973
+      ]
+    }
   },
   "chapter2_layout_revision": {
     "date": "2026-11-09",
@@ -542,6 +652,750 @@
             "width_bp": 357.207,
             "height_bp": 186.777
           }
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+      "previous": {
+        "source": "book/assets/recovery-ordering-model.svg",
+        "chapter": "2.3-behavioral",
+        "claim": "*Recovery-ordering model.* The decisive fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.",
+        "topology": {
+          "description": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+          "native_draw_commands": [
+            "\\draw[edge] (n0) -- node[lab,right] {upload succeeds} (n1);",
+            "\\draw[edge] (n1) -- node[lab,right] {durable state updated} (n2);",
+            "\\draw[edge,dashed] (n0.west) -- ++(-1.3,0) |- (n2.west);"
+          ]
+        },
+        "required_terms": [
+          "F ALLBACK_STAGED",
+          "F ALLBACK_UPLOADED",
+          "upload succeeds",
+          "DB_UPDATED",
+          "durable state updated",
+          "\u00d7",
+          "Forbidden /",
+          "absent",
+          "transition",
+          "Not part of",
+          "the model",
+          "Durable state may not name an arti-",
+          "fact recovery has not yet published."
+        ],
+        "bw_encoding": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
+        "redesign": "All ordered state peers white; the dashed forbidden/absent transition is preserved. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+        "questions": [],
+        "alt": "Rounded state boxes show the required recovery ordering. A separate annotation explicitly marks what is not part of the model.",
+        "review": {
+          "reference": "authored SVG raster and labels, not D2 or caption alone",
+          "checks": [
+            "expansion/detail links",
+            "icons and prohibited-path marks",
+            "external annotations versus node content",
+            "node shapes and containment",
+            "direction and dashed meanings",
+            "grayscale semantic modes",
+            "native font legibility"
+          ],
+          "outcome": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+          "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
+          "native_dimensions_cm": [
+            8.1039,
+            7.1252
+          ]
+        },
+        "fidelity_review": {
+          "stem": "recovery-ordering-model",
+          "source": "book/assets/recovery-ordering-model.svg",
+          "status": "corrected",
+          "evidence": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+          "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/recovery-ordering-model.png",
+          "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+          "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/recovery-ordering-model.png",
+          "original_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+          "native_sha256": "d63d6a7180b779b8fd5dab35eb09bb473b2dfa65658cdedb1fc3a508121f2cf0",
+          "page": 19,
+          "dimensions_cm": [
+            11.9514,
+            6.5837
+          ],
+          "diagnostics": [],
+          "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+          "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+        },
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
+          "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
+          "fill": "All ordered state peers white; the dashed forbidden/absent transition is preserved.",
+          "bold": "Source-derived emphasis includes FALLBACK_STAGED; FALLBACK_UPLOADED; DB_UPDATED; Forbidden / absent transition. Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
+          "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+            "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+            "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "page": 22,
+            "width_bp": 229.716,
+            "height_bp": 201.973,
+            "minimum_prose_font_pt": 8.97,
+            "semantic_typography_checks": 7
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70",
+          "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
+          "reason": "Recovery state identifiers and the forbidden transition regain hierarchy without bolding the explanation. Wider annotation prevents automatic hyphenation of Forbidden.",
+          "evidence": [
+            {
+              "source_text": "FALLBACK_STAGED",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "FALLBACK_STAGED",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[2]/text()",
+                "text_element_context": "FALLBACK_STAGED",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "FALLBACK_UPLOADED",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "FALLBACK_UPLOADED",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[4]/text()",
+                "text_element_context": "FALLBACK_UPLOADED",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "DB_UPDATED",
+              "source_style": "weight 700; normal; source size 18",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "DB_UPDATED",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[6]/text()",
+                "text_element_context": "DB_UPDATED",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "upload succeeds",
+              "source_style": "weight normal; italic; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "upload succeeds",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[3]/text()",
+                "text_element_context": "upload succeeds",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "durable state updated",
+              "source_style": "weight normal; italic; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "durable state updated",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[5]/text()",
+                "text_element_context": "durable state updated",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "absent transition",
+              "source_style": "weight 700; normal; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Forbidden / absent transition",
+              "candidate_style": "bold",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[8]/text()",
+                "text_element_context": "absent transition",
+                "matching_fragment_count": 1
+              }
+            },
+            {
+              "source_text": "not part of",
+              "source_style": "weight normal; italic; source size 14",
+              "semantic_role": "named category versus explanatory text",
+              "candidate_text": "Not part of the model",
+              "candidate_style": "italic",
+              "source_locator": {
+                "svg": "book/assets/recovery-ordering-model.svg",
+                "element_text_path": "/svg/text[9]/text()",
+                "text_element_context": "not part of",
+                "matching_fragment_count": 1
+              }
+            }
+          ],
+          "checks": [
+            {
+              "text": "FALLBACK_STAGED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "FALLBACK_UPLOADED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "DB_UPDATED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "upload succeeds",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "durable state updated",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "Forbidden / absent transition",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "Not part of the model",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+            "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+            "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "page": 22,
+            "width_bp": 229.716,
+            "height_bp": 201.973,
+            "minimum_prose_font_pt": 8.97,
+            "semantic_typography_checks": 7
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "retained",
+          "reason": "The vertically ordered recovery states have consistent boxes and generous straight approaches; forbidden transition is explicitly separate.",
+          "candidate_sha256": "58209870b96eb239e78d316217aa43a6449a407315d77b9bf2392a3f261eb7c2",
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Retain existing recovery ordering model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+            "before_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+            "after_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+            "before_dimensions_bp": [
+              357.2070007324219,
+              186.77699279785156
+            ],
+            "after_dimensions_bp": [
+              357.2070007324219,
+              186.77699279785156
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "date": "2026-11-09",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+            "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+            "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "status": "passed",
+            "page": 22,
+            "width_bp": 229.716,
+            "height_bp": 201.973,
+            "minimum_prose_font_pt": 8.97,
+            "semantic_typography_checks": 7
+          },
+          "source_sha256": "99127cc714de49842f993979ff55b78f5ef1a3710d43dad3535504a4243d1c70"
+        },
+        "chapter2_layout_revision": {
+          "date": "2026-11-09",
+          "source_sha256": "8e077a9dc97b335b5bd590569b734721cf7035dcdc64fd4f77c12dcd303eef46",
+          "prior_source_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+          "standalone_proof": "native-after.pdf",
+          "standalone_proof_page": 10,
+          "width_bp": 225.72999572753906,
+          "height_bp": 197.98800659179688,
+          "status": "geometry proof inspected; pending publication-pair review"
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+      "previous": {
+        "source": "book/assets/recovery-ordering-model.svg",
+        "chapter": "2.3-behavioral",
+        "claim": "Durable publication must precede updating the database reference; the direct staged-to-database bypass is forbidden.",
+        "topology": {
+          "description": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+          "relations": [
+            [
+              "initial",
+              "FALLBACK_STAGED",
+              "permitted"
+            ],
+            [
+              "FALLBACK_STAGED",
+              "FALLBACK_UPLOADED",
+              "permitted"
+            ],
+            [
+              "FALLBACK_UPLOADED",
+              "DB_UPDATED",
+              "permitted"
+            ],
+            [
+              "FALLBACK_STAGED",
+              "DB_UPDATED",
+              "forbidden"
+            ]
+          ]
+        },
+        "required_terms": [
+          "Recovery-Ordering Model",
+          "A state model for publishing",
+          "a recovered artifact.",
+          "FALLBACK_STAGED",
+          "(artifact exists locally)",
+          "FALLBACK_UPLOADED",
+          "(artifact durably stored)",
+          "DB_UPDATED",
+          "(database refers to artifact)",
+          "Forbidden:",
+          "update DB",
+          "before",
+          "upload",
+          "Permitted transition",
+          "Prohibited transition",
+          "The artifact must be published",
+          "(durably stored) before the database",
+          "may refer to it."
+        ],
+        "bw_encoding": "Rounded gray state boxes, solid permitted transitions, crossed dashed prohibited transition, and black text/labels. Shape and line style preserve meaning without color.",
+        "redesign": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+        "questions": [],
+        "alt": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+        "review": {
+          "reference": "Author-supplied recovery/ownership reference, 2026-11-11",
+          "checks": [
+            "state and generation identity",
+            "permitted and prohibited transitions",
+            "legend wording",
+            "default house typography",
+            "native print envelope"
+          ],
+          "outcome": "Requested changes implemented and SVG/native proofs visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+            "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+            "page": 1,
+            "width_bp": 235.975,
+            "height_bp": 422.973,
+            "minimum_prose_font_pt": 10.262,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+            "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+            "status": "passed"
+          }
+        },
+        "fidelity_review": {
+          "stem": "recovery-ordering-model",
+          "source": "book/assets/recovery-ordering-model.svg",
+          "status": "corrected",
+          "evidence": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+          "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/recovery-ordering-model.png",
+          "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-18.png",
+          "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/recovery-ordering-model.png",
+          "original_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+          "native_sha256": "d63d6a7180b779b8fd5dab35eb09bb473b2dfa65658cdedb1fc3a508121f2cf0",
+          "page": 19,
+          "dimensions_cm": [
+            11.9514,
+            6.5837
+          ],
+          "diagnostics": [],
+          "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+          "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+        },
+        "style_review": {
+          "source": "book/assets/recovery-ordering-model.svg",
+          "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+          "receipt": "book/tikz/receipts/recovery-ordering-model.json",
+          "decision": "refined",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+          "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+          "fill": "Light gray state nodes and an unfilled ownership legend; no decorative title banner.",
+          "bold": "Bold title, state identifiers and legend headings; explanatory text remains regular; subtitle and final obligation italic.",
+          "routing": "Initial state to FALLBACK_STAGED to FALLBACK_UPLOADED to DB_UPDATED; crossed dashed bypass from staged directly to updated.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Final SVG and native proof inspected for state identity, cross markers, arrow directions, annotation clearance and readable default house typography. Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+            "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+            "page": 1,
+            "width_bp": 235.975,
+            "height_bp": 422.973,
+            "minimum_prose_font_pt": 10.262,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+            "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+            "status": "passed"
+          },
+          "book_references": []
+        },
+        "typography_review": {
+          "source": "book/assets/recovery-ordering-model.svg",
+          "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+          "decision": "refined",
+          "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+          "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+          "evidence": [
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Recovery-Ordering Model",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "A state model for publishing",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "a recovered artifact.",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "FALLBACK_STAGED",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "(artifact exists locally)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "FALLBACK_UPLOADED",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "(artifact durably stored)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "DB_UPDATED",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "(database refers to artifact)",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Forbidden:",
+              "candidate_style": "bold",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "update DB",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "before",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "upload",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Permitted transition",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "Prohibited transition",
+              "candidate_style": "regular or mixed as in reference",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "The artifact must be published",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "(durably stored) before the database",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Reference label or explanation",
+              "candidate_text": "may refer to it.",
+              "candidate_style": "italic",
+              "authorization": "Author-requested recovery/ownership figure revision, 2026-11-11"
+            }
+          ],
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "checks": [
+            {
+              "text": "Recovery-Ordering Model",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "A state model for publishing",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "a recovered artifact.",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "FALLBACK_STAGED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(artifact exists locally)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "FALLBACK_UPLOADED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(artifact durably stored)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "DB_UPDATED",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "(database refers to artifact)",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Forbidden:",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "update DB",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "before",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "upload",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Permitted transition",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "Prohibited transition",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "The artifact must be published",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "(durably stored) before the database",
+              "bold": false,
+              "italic": true
+            },
+            {
+              "text": "may refer to it.",
+              "bold": false,
+              "italic": true
+            }
+          ],
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+            "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+            "page": 1,
+            "width_bp": 235.975,
+            "height_bp": 422.973,
+            "minimum_prose_font_pt": 10.262,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+            "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+            "status": "passed"
+          }
+        },
+        "layout_review": {
+          "source": "book/assets/recovery-ordering-model.svg",
+          "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+          "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+          "baseline_candidate_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+          "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+          "decision": "refined",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            357.2070007324219,
+            186.77699279785156
+          ],
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "recovery states",
+                "labels": [
+                  "FALLBACK_STAGED",
+                  "FALLBACK_UPLOADED",
+                  "DB_UPDATED"
+                ],
+                "align": [
+                  "left",
+                  "right",
+                  "center_x"
+                ],
+                "equal_width": true,
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+            "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+            "page": 1,
+            "width_bp": 235.975,
+            "height_bp": 422.973,
+            "minimum_prose_font_pt": 10.262,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 18,
+            "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+            "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+            "status": "passed"
+          },
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+            "after_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+            "reviewed_visually": true,
+            "after_dimensions_bp": [
+              235.975,
+              422.973
+            ]
+          }
+        },
+        "chapter2_layout_revision": {
+          "date": "2026-11-09",
+          "source_sha256": "8e077a9dc97b335b5bd590569b734721cf7035dcdc64fd4f77c12dcd303eef46",
+          "prior_source_sha256": "e8eb89578a771652a554070b2c1c14494db52615d98e4af304edc4d951cc5e53",
+          "standalone_proof": "native-after.pdf",
+          "standalone_proof_page": 10,
+          "width_bp": 225.72999572753906,
+          "height_bp": 197.98800659179688,
+          "status": "geometry proof inspected; pending publication-pair review"
         }
       }
     }

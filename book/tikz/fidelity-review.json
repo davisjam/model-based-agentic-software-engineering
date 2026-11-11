@@ -518,9 +518,9 @@
       "source": "book/assets/modeling-repertoire.svg",
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+      "candidate_sha256": "500904373b9ea5d29e6e874ce11ba339dbf5236908917c1b8d8ab9568461ef31",
       "decision": "refined",
-      "review": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
+      "review": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain. Author requested the serif fraction itself name its quantities: r = (# errors)/(# requests). Removed the separate E/N definitions; retained the required bound and all other panels. Exact quantity labels carry their reviewed serif fonts without permitting serif prose elsewhere.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         15.8598,
@@ -529,7 +529,7 @@
       "strict_compile_diagnostics": [],
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+        "proof_sha256": "9592c919a20516a387e7553986cf8914c266ead5760559875bdd269e25140d58",
         "page": 1,
         "width_bp": 449.57,
         "height_bp": 558.569,
@@ -541,15 +541,25 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+        "geometry_audit_sha256": "648a88c5b4e0cd4db315e8ca8ce2cc8db5d4d2c48e8c1297cbf1167c72cefe53",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 41,
+        "semantic_typography_checks": 42,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
         "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
         "native_serif_math": true,
         "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
-        "status": "passed"
+        "status": "passed",
+        "reviewed_math_labels": [
+          {
+            "text": "# errors",
+            "font": "SourceSerif4-Regular"
+          },
+          {
+            "text": "# requests",
+            "font": "SourceSerif4-Regular"
+          }
+        ]
       },
       "validation_history": [
         {
@@ -615,6 +625,30 @@
           "single_line_family_headings": 9,
           "single_line_row_headings": 3,
           "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+          "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.569,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 41,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+          "native_serif_math": true,
+          "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
           "status": "passed"
         }
       ]
@@ -778,128 +812,423 @@
     {
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
-      "source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
-      "candidate_sha256": "c808b79bc5067ff8a9799287bca56a937c80de73bf713b3905578a844b610a4d",
+      "source_sha256": "98038ad4260ec4ccf790ffd455d220d595ffc611650d9b0936a7a1e3e6c9ebbe",
+      "candidate_sha256": "25d753c794c16ce8725a8966d44f04c81a3ef5a6895958bdc446d421c3aba78b",
       "decision": "refined",
-      "review": "Restored payload/control braces and separate static/history frames around the two forms. Source edge types and derivation relation remain distinguishable.",
+      "review": "Author-requested house-style redraw of the supplied typed remediation model. Remove internal headline, use model wording, keep all computations, annotations and 125/57 counts; remove mutation-annotation icons and leader dots; retain distinct process, patch and validation shades and shape/line semantics.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        13.7879,
-        9.7173
+        15.825,
+        15.1861
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+        "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 430.472,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+        "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 46,
+        "status": "passed"
+      },
+      "validation_history": [
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+          "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+          "page": 1,
+          "width_bp": 448.584,
+          "height_bp": 430.472,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 0,
+          "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+          "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 45,
+          "status": "passed"
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+          "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+          "page": 1,
+          "width_bp": 448.584,
+          "height_bp": 430.472,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 0,
+          "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+          "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 45,
+          "status": "passed"
+        }
+      ]
     },
     {
       "source": "book/assets/canonical-behavioral.svg",
       "candidate": "book/tikz/figures/canonical-behavioral.tex",
-      "source_sha256": "17112be84f535ac580a9b5acc947c02a223b4ab703bf0498efe1fbd956f7bb62",
-      "candidate_sha256": "24692487b36cb3851f2c379e302fb6d46924fd2b5aaa11904ad352792826cd5a",
+      "source_sha256": "99e2aea5ed0cd8ff874501f6e4ab259954d73680a22450c1ee82a20d14bb8460",
+      "candidate_sha256": "fd884c098e39adfe47957a4827288e36e8bb2dc01979efb129cf96e8e61920c7",
       "decision": "refined",
-      "review": "Restored source rounded-rectangle state shapes and placed the forbidden cross directly on the forbidden dashed path with its annotation clear below.",
+      "review": "Author-requested house-style redraw of the supplied job state model. Remove internal headline, all state color/shade coding, leader dots, and the complete State meaning column; preserve the state/transition diagram and consolidate all three Key properties below it.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        12.3515,
-        7.9684
+        15.825,
+        11.9115
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+        "proof_sha256": "5428cc8af67eb95225dab7982af1da9744252b11058f9d7f792ecfea44e510aa",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 337.649,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.79,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 3,
+        "geometry_audit_sha256": "6c708036b6be0fa0479e7d2e958b2c48dd71d4dc7acc36f8bb7eac9edbd7a05c",
+        "typography_audit_sha256": "44729c634e0ad8981f9fa82a4e092b584fa9892fef121fa387879dd86409ac06",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 22,
+        "status": "passed"
+      },
+      "validation_history": [
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/reference-native-proof/canonical-behavioral.pdf",
+          "proof_sha256": "7b74ff3cf3ac797db259c3c107cb24f64226220862c8aebe96002ddacb38f12d",
+          "page": 1,
+          "width_bp": 448.584,
+          "height_bp": 337.649,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.79,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 3,
+          "geometry_audit_sha256": "a737bcde3c9d340a450e24103facc2467e5d109dec41cea8ff2d130749367aa9",
+          "typography_audit_sha256": "f9cdf5f975e0616dfa5643539a3cdc3fef98dc2a173eaf4605c119210a6a67fb",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 21,
+          "status": "passed"
+        }
+      ]
     },
     {
       "source": "book/assets/recovery-ordering-model.svg",
       "candidate": "book/tikz/figures/recovery-ordering-model.tex",
-      "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
-      "candidate_sha256": "d63d6a7180b779b8fd5dab35eb09bb473b2dfa65658cdedb1fc3a508121f2cf0",
+      "source_sha256": "bd6fe04b8adcb7f783d0407be04ef1db3df869a8e75f0be3037fa45b27c0323e",
+      "candidate_sha256": "3e5062125999ce5960ba378610e387cacaa4e5e072455d75a00f0d6937f0cc92",
       "decision": "refined",
-      "review": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+      "review": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        11.9514,
-        6.5837
+        8.3247,
+        14.216
       ],
-      "strict_compile_diagnostics": []
-    },
-    {
-      "source": "book/assets/behavioral-property-classes.svg",
-      "candidate": "book/tikz/figures/behavioral-property-classes.tex",
-      "source_sha256": "bcda1583afceefacc97c1e2db279f3728a7f7016936da33838586bb4575153a6",
-      "candidate_sha256": "d4e91d6f5c8ad895a206c4e74f5aacabb1127f9463f811f0768ebc8d9c78d9fb",
-      "decision": "refined",
-      "review": "Restored the separation between property-name boxes, external italic questions and checker boxes. Four property/checker branches converge on evidence; original questions remain legible outside nodes.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        13.8515,
-        7.9893
+      "strict_compile_diagnostics": [],
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+          "previous": {
+            "source": "book/assets/recovery-ordering-model.svg",
+            "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+            "source_sha256": "4aa9f01a2aafc1ff7dc9b73b4348579d23be91fdda5997764f26b6ba7e9f963d",
+            "candidate_sha256": "d63d6a7180b779b8fd5dab35eb09bb473b2dfa65658cdedb1fc3a508121f2cf0",
+            "decision": "refined",
+            "review": "Restored rounded source state boxes and the omitted Not part of the model annotation; retained recovery ordering and source exclusions.",
+            "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+            "dimensions_cm": [
+              11.9514,
+              6.5837
+            ],
+            "strict_compile_diagnostics": []
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "previous": {
+            "source": "book/assets/recovery-ordering-model.svg",
+            "candidate": "book/tikz/figures/recovery-ordering-model.tex",
+            "source_sha256": "2eebd1f56507e0fdb9eb2bc7bb0832a7494207ce2ea114ca7ce23deef4cde26f",
+            "candidate_sha256": "f4927b64953582087fe2d46dc9aed7c1f848d7e930a2d01a7a1cda0be79df6ba",
+            "decision": "refined",
+            "review": "Author-supplied recovery redraw: three vertically arranged states, explanatory state text, and a prominent crossed bypass. Reflowed narrowly in the default house sans profile; no embedded publication number.",
+            "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+            "dimensions_cm": [
+              8.3247,
+              14.9215
+            ],
+            "strict_compile_diagnostics": [],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+              "proof_sha256": "141e64aa65277dbb6084b80b658be928c4ff976d019ab5602421b90cdad55465",
+              "page": 1,
+              "width_bp": 235.975,
+              "height_bp": 422.973,
+              "minimum_prose_font_pt": 10.262,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 18,
+              "audit_sha256": "61871b2175bea12ad21d8e5ee0797dc672922587967a419c5dce188efa851256",
+              "typography_audit_sha256": "264166a2e61c7b684ef0f1dafd23d9bdedb2df30d8690630562db9f4077be24f",
+              "status": "passed"
+            }
+          }
+        }
       ],
-      "strict_compile_diagnostics": []
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/recovery-ownership-proof/recovery-ordering-model.pdf",
+        "proof_sha256": "43e4d98c4e180ab98494844c4e450c217f9f9e87f1e90074b16dde0ca12f3a3e",
+        "page": 1,
+        "width_bp": 235.975,
+        "height_bp": 402.973,
+        "minimum_prose_font_pt": 10.262,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 17,
+        "audit_sha256": "fa41147bdc9dea73a9d1e98665afb6265a03905406c0ed9320a04737263aa2cc",
+        "typography_audit_sha256": "50be852dbb401617032eba9546946a6820372fcb33245172636ad3fe61419c98",
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/in-flight-ownership-states.svg",
       "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
-      "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
-      "candidate_sha256": "0610ec587de6da821f739142b83a177745e3f542c74c45de3229ecdae69a5729",
+      "source_sha256": "7cd1d582dbe943d60d9df12fb2428017bb05872030c8765495ecf21709a96b54",
+      "candidate_sha256": "1d5b1d5315deda5b9696df033d1454fa5d6b5912de0d3e42810447caef086197",
       "decision": "refined",
-      "review": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+      "review": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        12.7361,
-        7.2935
+        15.874,
+        14.0396
       ],
-      "strict_compile_diagnostics": []
-    },
-    {
-      "source": "book/assets/in-flight-lease-overlap.svg",
-      "candidate": "book/tikz/figures/in-flight-lease-overlap.tex",
-      "source_sha256": "406d8628103a90fafc28819170454fbc23999bdde1f313900f13662d54473a9d",
-      "candidate_sha256": "97d545f68c346c447be21dcbd163884b960737aba59883d2730cce2e6916ab04",
-      "decision": "refined",
-      "review": "Restored bold purpose headings and italic questions to the source hierarchy; distinct state/history/evidence views remain.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        13.2764,
-        4.9874
+      "strict_compile_diagnostics": [],
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+          "previous": {
+            "source": "book/assets/in-flight-ownership-states.svg",
+            "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+            "source_sha256": "cf9119a6ad746a4891d1b01525c781914bb24c229646ae647e97d877ce439ff4",
+            "candidate_sha256": "0610ec587de6da821f739142b83a177745e3f542c74c45de3229ecdae69a5729",
+            "decision": "refined",
+            "review": "Restored rounded source state shapes and the full expiry-state-not-accident conclusion. Dashed expiry/recovery semantics and ownership progression retained.",
+            "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+            "dimensions_cm": [
+              12.7361,
+              7.2935
+            ],
+            "strict_compile_diagnostics": []
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no printed internal title or embedded publication number; the vacated title space is cropped.",
+          "previous": {
+            "source": "book/assets/in-flight-ownership-states.svg",
+            "candidate": "book/tikz/figures/in-flight-ownership-states.tex",
+            "source_sha256": "fed73b026806056588124f90621ba54cfd8d76b7145263e2c60dc9de67ba254b",
+            "candidate_sha256": "49df15db5b6554c82d4701c856b07d0c6a84bbe3c4ca2cfce36f1fcd3ca7b55f",
+            "decision": "refined",
+            "review": "Author-supplied ownership redraw: exact A/7-expiry-B/8 scenario, rejected stale A/7 release, valid B/8 release, and explanatory state/transition legend. Uses the default house sans profile with no embedded publication number.",
+            "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+            "dimensions_cm": [
+              15.874,
+              14.7452
+            ],
+            "strict_compile_diagnostics": [],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+              "proof_sha256": "001a1cef83ed6cbde07b3356f3af7c76a8b134f155f62436e70b53f40fd16f1f",
+              "page": 1,
+              "width_bp": 449.972,
+              "height_bp": 417.973,
+              "minimum_prose_font_pt": 9.963,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 30,
+              "audit_sha256": "e76650bce173025afb7ab329723530f9ba0bb60b703aec4421bd836c1a5bfaa5",
+              "typography_audit_sha256": "25572ba3624bae22bab302f86bc699cd348b2e63f2187f0c43b88709f6f2b02e",
+              "status": "passed"
+            }
+          }
+        }
       ],
-      "strict_compile_diagnostics": []
-    },
-    {
-      "source": "book/assets/canonical-decision.svg",
-      "candidate": "book/tikz/figures/canonical-decision.tex",
-      "source_sha256": "789dcbf1137f4ac8e39e634de8111695f67c259d4625b562a8d6543bde2b0514",
-      "candidate_sha256": "e945938c2635a35bdead008fe604352cf950f0043a9603482a4ba27d2c8fc3b8",
-      "decision": "retained",
-      "review": "Compared allowed pair topology and crossed absent edge. Negative permission cue and allowed route retained. No new change.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        13.2139,
-        5.8458
-      ],
-      "strict_compile_diagnostics": []
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/recovery-ownership-proof/in-flight-ownership-states.pdf",
+        "proof_sha256": "49b75204d91610502ad590bccf791c398f717827f3fd9e344c29ada033d5b895",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 397.973,
+        "minimum_prose_font_pt": 9.963,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 29,
+        "audit_sha256": "a61ff69561bfbabc667bce45fe74c0596b9e46c327ad8fac8282e57946c12519",
+        "typography_audit_sha256": "73a323a89279614879c2858a6bb27316904a6f39c333614b6ce6ef6660db88b6",
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/service-flow-model.svg",
       "candidate": "book/tikz/figures/service-flow-model.tex",
-      "source_sha256": "52317b429056ec5100ef17ed9e749cc4488ad8e8980455a8a8f1bbbead672172",
-      "candidate_sha256": "a1ced7a0da28607be90841ae5eabcb02e34c1ff0f3ac63c45833055be5b4997e",
-      "decision": "retained",
-      "review": "Compared every service node and directed edge against the SVG. Actual service graph retained, including branches and shared services. No new change.",
+      "source_sha256": "3193af86982f293fb5ffa80790673cedf5bb3455f8e17ad0c1048b6318353b21",
+      "candidate_sha256": "0a920cf1e89c140f399c38918541fd513210cfd738b3bb5040724c6bdafbc806",
+      "decision": "refined",
+      "review": "Author-requested house-style service-flow redraw, checked against the actual current model. Show two selected branches: Internet to web to document editor/others, and worker to generation/render/OCR. No declared synchronous web-to-worker edge is invented. Each branch has one unheaded common stem/bar and only terminal arrowheads; use plural others. Omit internal headline and redundant caption explanation.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        12.9764,
-        7.5886
+        15.825,
+        7.0995
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+        "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 201.245,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+        "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 9,
+        "status": "passed"
+      },
+      "validation_history": [
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/reference-native-proof/service-flow-model.pdf",
+          "proof_sha256": "8cb2aaa2e9cc0ce49daafbfa9ed381701944a72dffa2e4f665be6262ce8ff93f",
+          "page": 1,
+          "width_bp": 448.584,
+          "height_bp": 201.245,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 11.36,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 6,
+          "geometry_audit_sha256": "738a5657677a58d81c87519f717d0781ca2f24f489d385473f19c5c35c8f2521",
+          "typography_audit_sha256": "95a83d5ad19f53f15a2ba32a828e5e54570856f979dbfbcb9f2209577bb36de0",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 9,
+          "status": "passed"
+        }
+      ]
     },
     {
       "source": "book/assets/observed-vs-declared.svg",
       "candidate": "book/tikz/figures/observed-vs-declared.tex",
-      "source_sha256": "19d9a2021d5dc8f8bf67e1f86ddec23712f69227e2e033867f94291ea24c1f59",
-      "candidate_sha256": "a3697cc8c0067a5d49a6c75908a09644b1a00a0f92d1e20fbb4b2288e61b48e0",
+      "source_sha256": "cf61c5f3098e3dfa2dcb6e58a2688aa37dbd72a833e2a0407bcbeb2317c24843",
+      "candidate_sha256": "71b7a39c048d192ffff64ae98c1a701b6f50627c26b00e1b5731a5e6f0dc7679",
       "decision": "refined",
-      "review": "Restored circular source nodes, declared-edge annotation, and dashed crossed absent A-to-C path. Observation and declaration remain separate representations.",
+      "review": "Author-requested illustrative comparison using web, report service and renderer. Remove internal headline and redundant caption text. Observed web-to-renderer is a solid arrow marked with a nearby cross; the declared permission graph omits that edge entirely. Both panels include web-to-report-service; only declared policy shows report-service-to-renderer, as in the supplied reference.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
-        13.6015,
-        6.4653
+        15.825,
+        6.5005
       ],
-      "strict_compile_diagnostics": []
+      "strict_compile_diagnostics": [],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+        "proof_sha256": "987316370c38d22a370358b6fa7e386b1f1ad1bbed792cf1ea947effe0c4a216",
+        "page": 1,
+        "width_bp": 448.584,
+        "height_bp": 184.265,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 11.36,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 4,
+        "geometry_audit_sha256": "01a2598984b0a41a9e2c93b1d30ab4a03a9c3d2e3d6a9fd85d2fec435fb4f42f",
+        "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 10,
+        "status": "passed"
+      },
+      "validation_history": [
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/reference-native-proof/observed-vs-declared.pdf",
+          "proof_sha256": "f905cf98471f0cc8b243c8a9710a8627ed1981685a88a0be5f9433eb2013de6a",
+          "page": 1,
+          "width_bp": 448.584,
+          "height_bp": 184.265,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 11.36,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 5,
+          "geometry_audit_sha256": "12a91a32fc63c3c1bee1f26a7e752bd4954399c2a3a50585d10dab44ad0636a2",
+          "typography_audit_sha256": "a23a6ed64da41f7a87efc1f150c5aa2b16a655ba4cef9652daca575f85d6e1a1",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 10,
+          "status": "passed"
+        }
+      ]
     },
     {
       "source": "book/assets/entitlement-domain.svg",

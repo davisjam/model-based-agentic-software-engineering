@@ -140,12 +140,12 @@ The document-mutation model asked where one kind of change belongs. A second str
 
 % <!-- point: the-computation-model-distinguishes-data-flow-from-control-composition | DocAble's computation model represents registered computations as nodes and distinguishes a data-flow edge (information consumed to produce a result) from a control edge (information consulted only to decide whether to run). -->
 
-DocAble\textquotesingle s remediation-computation model represents registered computations as nodes and distinguishes two kinds of composition. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. Treating both as a generic dependency would obscure a consequential distinction: information that contributes to a result is different from information that controls whether the computation occurs. \autoref{from-nodes-to-composition} draws the resulting reduction.
+DocAble\textquotesingle s remediation-computation model represents registered computations as nodes and distinguishes two kinds of composition. A data-flow edge means one computation produces information another consumes in producing its result. A control edge means one computation produces information another consults only to decide whether it should run. Treating both as a generic dependency would obscure a consequential distinction: information that contributes to a result is different from information that controls whether the computation occurs. \autoref{from-nodes-to-composition} draws a small fragment of the graph. These relationships are visible without reconstructing them from type declarations and function bodies.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/from-nodes-to-composition-1d52db233f.pdf}
-\caption{\emph{From computations to composition.} Typing the dependencies among registered computations separates payload-bearing relations --- data-flow and cross-service --- from control gates that a computation consults only to decide whether it runs.}
+\caption{\emph{From computations to composition.} This small typed graph fragment distinguishes data flow (solid arrows) from control dependencies (dashed arrows). Diamonds identify typed patch producers; rounded boxes represent direct-edit computations. An annotation identifies the apply seam.}
 \label{from-nodes-to-composition}
 \end{figure}
 

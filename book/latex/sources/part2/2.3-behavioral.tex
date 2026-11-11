@@ -24,24 +24,17 @@ That reduction is what makes behavior checkable. A job-processing service descri
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/canonical-behavioral-c9de560202.pdf}
-\caption{\emph{The behavioral move: states and transitions.} This example specifies an allowed lifecycle: a job must pass through RUNNING before DONE, so the direct IDLE-to-DONE transition is forbidden. A behavioral model can instead describe possible behavior to be checked against a requirement. Its nodes and edges then represent what may happen, including behavior the check might reject.}
+\caption{\emph{The behavioral move: states and transitions.} This example specifies an allowed job lifecycle: a job passes through Running before Succeeded, with retry and failure transitions describing other possible paths. The legend lists example properties to investigate.}
 \label{canonical-behavioral}
 \end{figure}
 
 % <!-- point: semantics-are-states-and-permitted-transitions-and-the-omissions-are-the-obligations | A behavioral model represents states and transitions; it can specify allowed behavior or describe behavior to be checked against a requirement. Safety and liveness properties ask different questions over the admitted executions. -->
 
-Nodes represent states, and directed edges represent transitions. A path from an initial state describes an execution admitted by the model. The model's purpose tells us how to interpret that execution. A specification declares allowed behavior, as \autoref{canonical-behavioral} does: omitting a direct \texttt{IDLE~→~DONE} transition forbids that step. A model of an implementation can instead represent behavior we intend to investigate, including states or transitions that may violate a requirement. Representing a state therefore does not, by itself, declare it acceptable.
+Nodes represent states, and directed edges represent transitions. A path from an initial state describes an execution admitted by the model. The model's purpose tells us how to interpret that execution. A specification declares allowed behavior, as \autoref{canonical-behavioral} does: omitting a direct \texttt{Pending~→~Succeeded} transition forbids that step. A model of an implementation can instead represent behavior we intend to investigate, including states or transitions that may violate a requirement. Representing a state therefore does not, by itself, declare it acceptable.
 
-The required property tells us what to check over those executions. ``A job never reaches \texttt{DONE} before \texttt{RUNNING}'' is a \textbf{safety} property: any violation has a finite execution prefix that demonstrates it. ``Every started job eventually finishes or fails'' is a \textbf{liveness} property: observing a finite period of waiting does not establish that the wait will last forever. Reachability asks whether a state can occur; it serves a safety check when the state being sought violates a required invariant. The choice among transition validation, reachability search, invariant checking, and temporal model checking follows from the property we want to establish~\citep{baier-katoen2008}.
+The required property tells us what to check over those executions. ``A job never reaches \texttt{Succeeded} before \texttt{Running}'' is a \textbf{safety} property: any violation has a finite execution prefix that demonstrates it. ``Every started job eventually finishes or fails'' is a \textbf{liveness} property: observing a finite period of waiting does not establish that the wait will last forever. Reachability asks whether a state can occur; it serves a safety check when the state being sought violates a required invariant. The choice among transition validation, reachability search, invariant checking, and temporal model checking follows from the property we want to establish~\citep{baier-katoen2008}.
 
-A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{DONE} to pass through \texttt{RUNNING} can exclude premature completion, yet a job could remain in \texttt{RUNNING} indefinitely. To investigate eventual termination, include the ways processing can wait, retry, finish, or fail, and state the assumptions under which progress is expected. The question determines which of those details the model must preserve. \autoref{behavioral-property-classes} distinguishes transition legality, reachability, and eventual progress.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/behavioral-property-classes-94ecfb1606.pdf}
-\caption{\emph{Behavioral models expose different classes of properties.} A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.}
-\label{behavioral-property-classes}
-\end{figure}
+A simple job lifecycle also shows the limit of an ordering property. Requiring every path into \texttt{Succeeded} to pass through \texttt{Running} excludes premature completion, but a job could remain in \texttt{Running} indefinitely. These are different questions about the same behavioral model. A transition check asks whether a particular state change is permitted; reachability analysis asks whether some sequence of transitions can lead to an undesirable state; and a temporal property can require that every started job eventually finishes or fails. Investigating that last property requires representing the ways processing can wait or retry, together with assumptions under which progress is expected. The model may therefore need to change as the engineering question changes.
 
 \section{Ownership Under Contention}\label{heading:ownership-under-contention}
 
@@ -131,24 +124,16 @@ DocAble must preserve the ordering between publishing a recovered artifact and u
 
 % <!-- point: the-decisive-fact-is-an-absent-edge-between-staged-and-durable | The recovery obligation lives in the gap between local staging and durable publication: there is no direct FALLBACK_STAGED to DB_UPDATED edge, so the model excludes executions in which the record points at a not-yet-durable artifact. -->
 
-The recovery lifecycle runs through several states, but the obligation lives in two of them. An artifact is first written locally (\texttt{FALLBACK\_STAGED}) and only later published to durable storage (\texttt{FALLBACK\_UPLOADED}). The record may advance to \texttt{DB\_UPDATED} only from the durable state. \autoref{recovery-ordering-model} draws the ordering, and the fact that matters is the edge that does \emph{not} exist: there is no direct \texttt{FALLBACK\_STAGED~→~DB\_UPDATED} transition. The model therefore excludes executions in which the record points at a merely staged artifact. A local file and a file in persistent storage are different states; the model keeps them distinct so that an update cannot refer to a file available only on the failed worker.
+A worker recovering a document job may have a corrected artifact available locally before it has been uploaded to persistent storage. These are different conditions: a local artifact may disappear if the worker fails, while a published artifact remains available to the service. The database record must not refer to the recovered artifact until publication succeeds. \autoref{recovery-ordering-model} reduces this obligation to three states. In \texttt{FALLBACK\_STAGED}, the artifact exists locally; in \texttt{FALLBACK\_UPLOADED}, it has been published to durable storage; and in \texttt{DB\_UPDATED}, the database refers to it. The permitted path passes through all three states. The forbidden shortcut from \texttt{FALLBACK\_STAGED} to \texttt{DB\_UPDATED} captures the failure the model must exclude: a worker could update the database and then crash before uploading the artifact, leaving the record pointing to a result that other workers cannot retrieve.
+
+The model omits the storage API, retry machinery, and other recovery details because they do not determine this ordering requirement. To check the property, search for a path to \texttt{DB\_UPDATED} that does not pass through \texttt{FALLBACK\_UPLOADED}. In a larger lifecycle, checking only for the direct forbidden transition would miss an indirect route through other states. The model establishes publication order, not eventual completion: a worker could wait or retry indefinitely without violating the ordering constraint.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/recovery-ordering-model-70e2639fc3.pdf}
-\caption{\emph{Recovery-ordering model.} The decisive fact is the absent transition from FALLBACK\_STAGED directly to DB\_UPDATED.}
+\caption{\emph{Recovery-ordering model.} A recovered artifact must be published to durable storage before the database may refer to it. The prohibited transition from \texttt{FALLBACK\_STAGED} directly to \texttt{DB\_UPDATED} illustrates the ordering violation; the property also excludes indirect paths that bypass \texttt{FALLBACK\_UPLOADED}.}
 \label{recovery-ordering-model}
 \end{figure}
-
-% <!-- point: the-model-exposes-the-ordering-a-transition-table-holds-it | Checking recovery order means searching modeled paths for a database update before the artifact is uploaded; in a larger lifecycle, an absent direct edge alone would not rule out an indirect bypass. -->
-
-To check the ordering, search for a path to \texttt{DB\_UPDATED} that does not pass through \texttt{FALLBACK\_UPLOADED}. Such a path would allow the record to refer to the recovered artifact before it is stored persistently. In a larger lifecycle, checking only for the direct \texttt{FALLBACK\_STAGED~→~DB\_UPDATED} edge would miss an indirect route through other states.
-
-\textbf{What does the ordering establish?}
-
-% <!-- point: not-every-behavioral-obligation-is-a-safety-property | Recovery can preserve publication order yet wait or retry forever; asking for eventual completion adds a liveness question and requires the relevant waiting, retry, and progress assumptions in the model. -->
-
-The recovery ordering rules out updating the record too early. It says nothing about whether the upload ever completes: a process could preserve the order while waiting or retrying forever. Requiring eventual completion adds a liveness question. To investigate it, the model must represent the ways recovery can wait or retry and state the assumptions under which progress is expected. \autoref{behavioral-property-classes} contrasts local transition checks, reachability questions, and temporal properties.
 
 % <!-- point: the-recovery-ordering-is-a-slice-of-a-larger-lifecycle | The recovery model keeps the states needed to check publication order; a fuller job lifecycle can support broader workflow questions when it includes the relevant transitions. -->
 
@@ -198,12 +183,12 @@ Start with what the model \emph{means}. A job is leased exactly when it has an o
 
 The consequential invariant is about time and contention. Suppose worker A holds the claim at generation 7, appears to stall, and is reclaimed; the job is re-leased to worker B at generation 8. If A now wakes and tries to release using its generation-7 claim, that release must not clear B\textquotesingle s current generation-8 claim. The generation makes the distinction decidable: a release carrying an old generation names a claim that no longer owns, so it is inapplicable to the current one.
 
-\autoref{in-flight-ownership-states} draws the claim and its lifetime; the generation is the small addition that separates a live claim from a stale one.
+\autoref{in-flight-ownership-states} follows this sequence. Worker A initially holds generation 7. After its lease expires, the job becomes reclaimable, and worker B acquires generation 8. When A returns, its release request still names generation 7. The current claim belongs to B at generation 8, so the release must be rejected. The generation number distinguishes successive claims on the same job even when both workers believe they have authority to act. Without it, a delayed operation from A could clear B's valid claim. The model therefore preserves owner, generation, and lifetime while omitting the worker implementation and the machinery that stores the lease.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/in-flight-ownership-states-01b169485d.pdf}
-\caption{\emph{In-flight ownership model.} A current claim records owner, epoch, and lifetime. Completion releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.}
+\caption{\emph{Ownership under contention.} Worker A's generation-7 claim expires and worker B acquires generation 8. A later release from A cannot clear B's current claim. Recording the generation makes stale operations distinguishable from operations authorized by the current owner.}
 \label{in-flight-ownership-states}
 \end{figure}
 
@@ -242,17 +227,10 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
 
 % <!-- point: the-lease-answers-ownership-behavioral-and-measurement-questions-at-once | Read as ownership the lease says who controls a job; read as behavioral it traces a claimed-held-expired-reclaimed lifecycle; counted, it measures how much work is in flight — one representation, three questions. -->
 
-A lease illustrates how one representation can answer several classes of question. Read it as an ownership model and it says who controls a job. Read the same claims as a behavioral model and they trace a lifecycle --- claimed, held, expired, reclaimed. Count the active leases and the same representation becomes a measurement: how much work is genuinely in flight right now. \autoref{in-flight-lease-overlap} sets the three readings side by side.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/in-flight-lease-overlap-cec4258455.pdf}
-\caption{\emph{Model classes overlap.} The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.}
-\label{in-flight-lease-overlap}
-\end{figure}
+A lease illustrates how one representation can answer several classes of question. Its owner identifies who currently controls a job. Its generation and lifetime distinguish current claims from stale ones and support reasoning about expiry and reclamation. Counting the current claims across jobs gives a measurement of how much work is in flight. These questions concern ownership, behavior, and capacity, yet they draw on the same represented facts.
 
 % <!-- point: overlap-confirms-the-classes-sort-questions-not-data-structures | The overlap follows from the distinction introduced at the chapter's opening: model classes identify engineering questions, not mutually exclusive data structures — the observation the closing section builds on to connect the models. -->
 
-The overlap follows from the distinction introduced at the opening of the chapter: model classes identify engineering questions, not mutually exclusive data structures. One purposeful representation can answer several when they share the same underlying facts. This is the observation the closing section builds on when it connects the models through shared identity.
+The overlap follows from the distinction introduced at the opening of the chapter: model classes identify engineering questions, not mutually exclusive data structures. One representation can serve several questions when it preserves the facts each requires. \magevalue{sec:scenarios-and-the-joined-model} develops this idea further by connecting models through shared identities.
 
 Ownership introduced permission implicitly: a stale claimant \emph{may not} clear a current lease. The next section examines decisions directly, including permissions and how to choose what should happen next.
