@@ -157,6 +157,11 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved revised black-and-white review Figure4.7 after restoration of dependency arrows and frontier annotations; remove its color companion.",
       "candidate_sha256": "3dd2251c49e8f97ce9fd5e84a4945765da929e3e43889af5c4558f4debd5d8a0"
+    },
+    "book/assets/docable-reasoning-substitution.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved Figure 5.5 in the side-by-side review. Publish the native monochrome figure without a duplicate.",
+      "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5"
     }
   }
 }

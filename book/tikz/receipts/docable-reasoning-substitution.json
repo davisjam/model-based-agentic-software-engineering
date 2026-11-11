@@ -549,5 +549,10 @@
       "validation_scope": "Integrated production pool; source and native proof visually inspected."
     },
     "review": "book/tikz/typography-review.json"
+  },
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5",
+    "decision": "approved"
   }
 }

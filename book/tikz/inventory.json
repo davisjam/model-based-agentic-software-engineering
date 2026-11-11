@@ -503,20 +503,6 @@
     "svg_description": "Chapter 2, the model, names a quantity and a reference bound and compares them, answering\n    what quantity and bound matter. Chapter 3, the enforcement decision, takes the same model and chooses its\n    force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the\n    consequential decisions, in rust. Modeling and enforcement are separate moves over one shared model."
   },
   {
-    "chapter": "part-3-intro",
-    "source": "assets/part3-nav-arc.svg",
-    "caption": "*How intent becomes enforceable.* Enforcement begins by placing a mechanism at a boundary where the obligation can be evaluated or constrained. Mechanisms enforce selected obligations; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/part3-nav-arc.d2",
-    "receipt": "book/tikz/receipts/part3-nav-arc.json",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Alignment: how engineering intent becomes enforced, across the five chapters of Chapter 3",
-    "svg_description": "Five engineering moves descend a vertical spine, each a chapter of Chapter 3. Locate, 3.1, asks\n    where enforcement can act. Justify, 3.2, asks what it may legitimately enforce. Mechanize, 3.3, asks how a\n    mechanism enforces an obligation. Learn, 3.4, asks how the environment acquires new obligations and controls.\n    Govern, 3.5, asks how accumulated controls are governed as a system. The arc runs from locating where\n    enforcement can act down to governing the controls that result.",
-    "native_source": "book/tikz/figures/part3-nav-arc.tex"
-  },
-  {
     "chapter": "3.1-where-obligations-can-be-enforced",
     "source": "assets/intervention-boundaries.svg",
     "caption": "*Intervention boundaries.* Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.",

@@ -2297,46 +2297,6 @@
       ]
     },
     {
-      "source": "book/assets/part3-nav-arc.svg",
-      "candidate": "book/tikz/figures/part3-nav-arc.tex",
-      "receipt": "book/tikz/receipts/part3-nav-arc.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
-      "candidate_sha256": "321a074b9e0d12230e009d440aabd492577a793d5ab6c22e242593287d2e4121",
-      "fill": "All numbered station circles white and equal; position and titles convey sequence.",
-      "bold": "Source-derived emphasis includes LOCATE; Where can enforcement occur?. Navigation roles already retain uppercase bold; restore bold question prompts and station numbers, leaving linked section titles regular.",
-      "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 38,
-        "width_bp": 362.056,
-        "height_bp": 288.565,
-        "minimum_prose_font_pt": 9.5,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 3
-      },
-      "book_references": [
-        "chapter:3.1-where-obligations-can-be-enforced",
-        "chapter:3.1-where-obligations-can-be-enforced",
-        "chapter:3.2-models-and-the-semantic-gap",
-        "chapter:3.2-models-and-the-semantic-gap",
-        "chapter:3.3-constraints-sensors-validators-gates",
-        "chapter:3.3-constraints-sensors-validators-gates",
-        "chapter:3.4-governance-conversion",
-        "chapter:3.4-governance-conversion",
-        "chapter:3.5-when-guardrails-collide",
-        "chapter:3.5-when-guardrails-collide"
-      ]
-    },
-    {
       "source": "book/assets/intervention-boundaries.svg",
       "candidate": "book/tikz/figures/intervention-boundaries.tex",
       "receipt": "book/tikz/receipts/intervention-boundaries.json",

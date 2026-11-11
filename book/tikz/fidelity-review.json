@@ -1600,20 +1600,6 @@
       "strict_compile_diagnostics": []
     },
     {
-      "source": "book/assets/part3-nav-arc.svg",
-      "candidate": "book/tikz/figures/part3-nav-arc.tex",
-      "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
-      "candidate_sha256": "67cb6f7443adb4630ecf7a9a2c2438f328147d1ea700a1ef518ec71c2c4548c0",
-      "decision": "refined",
-      "review": "Restored source section subtitles beside the five numbered stations, retaining separate titles and questions and the vertical chapter sequence.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        12.7725,
-        10.1842
-      ],
-      "strict_compile_diagnostics": []
-    },
-    {
       "source": "book/assets/intervention-boundaries.svg",
       "candidate": "book/tikz/figures/intervention-boundaries.tex",
       "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",

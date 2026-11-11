@@ -19649,3 +19649,19 @@ Implementation eventually supplies measurements to compare with the model’s pr
 \label{interlude-modeling-cycle}
 \end{figure}
 ```
+
+
+## Chapter 3 navigation figure — 2026-11-11
+
+Retired at the author’s request: Figure3.1 and its introductory sentence. The surrounding paragraphs remain unchanged. Source artwork and native figure are retained; the exact removed text and registry records are archived in `retired-chapter-three-navigation-20261111.json`.
+
+```latex
+\autoref{part3-nav-arc} traces the progression from engineering intent to a governed environment.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/part3-nav-arc-4640c9b77f.pdf}
+\caption{\emph{How intent becomes enforceable.} Enforcement begins by placing a mechanism at a boundary where the obligation can be evaluated or constrained. Mechanisms enforce selected obligations; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own.}
+\label{part3-nav-arc}
+\end{figure}
+```

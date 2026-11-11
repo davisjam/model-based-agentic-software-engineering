@@ -1365,16 +1365,6 @@
     "candidate_sha256": "4ee2eb7ebd250f5f4e929f4022c2016031b62c08250e1cfd39ede01a63f17559"
   },
   {
-    "source": "book/assets/part3-nav-arc.svg",
-    "candidate": "book/tikz/figures/part3-nav-arc.tex",
-    "receipt": "book/tikz/receipts/part3-nav-arc.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Restored numbered-circle chapter spine and adjacent question labels instead of generic pipeline boxes. Five ordered moves retained.",
-    "source_sha256": "269c05921ac0e233509925a313a34f2435b576f787a269587e0f72aa3a2140a3",
-    "candidate_sha256": "69f469d67e20dd5b82612f5f08ff34a139885662d0cd76b0f894a762c0023eb1"
-  },
-  {
     "source": "book/assets/intervention-boundaries.svg",
     "candidate": "book/tikz/figures/intervention-boundaries.tex",
     "receipt": "book/tikz/receipts/intervention-boundaries.json",

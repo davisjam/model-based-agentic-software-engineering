@@ -22,9 +22,4 @@ Selected obligations can instead be encoded into the engineered environment. Som
 
 A direct constraint may be sufficient; other obligations require evidence and a gate that acts on it. Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. {{chapter:modeling}}'s tolerances and degrees of freedom also distinguish obligations from variation that engineers deliberately leave open. The sections ahead develop how to choose among these possibilities.
 
-[ref:part3-nav-arc] traces the progression from engineering intent to a governed environment.
-
-<!-- label: part3-nav-arc -->
-<!-- figure: assets/part3-nav-arc.svg | *How intent becomes enforceable.* Enforcement begins by placing a mechanism at a boundary where the obligation can be evaluated or constrained. Mechanisms enforce selected obligations; experience reveals additional opportunities for governance; accumulated controls eventually require governance of their own. -->
-
 Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. When those lessons become durable engineering structure, later work can inherit them as engineering capital. As the mechanisms accumulate, the control machinery itself becomes an engineering object.

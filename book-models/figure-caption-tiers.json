@@ -211,12 +211,6 @@
       "location": "part3",
       "rationale": "authority softest-to-hardest across four boundaries; the memorable takeaway replacing the model-internals tutorial — anchor with inlined accessible description"
     },
-    "assets/part3-nav-arc.svg": {
-      "tier": "B",
-      "kind": "navigation",
-      "location": "part3",
-      "rationale": "Part-III opener nav arc — five chapters as five questions on one descending arc"
-    },
     "assets/intervention-boundaries.svg": {
       "tier": "B",
       "kind": "framework",
@@ -1430,6 +1424,12 @@
       "kind": "cycle",
       "location": "part4",
       "rationale": "modeling as a loop — the non-linear problem→model→prediction/design→implementation/measurement cycle that continues while the questions justify the cost"
+    },
+    "assets/part3-nav-arc.svg": {
+      "tier": "B",
+      "kind": "navigation",
+      "location": "part3",
+      "rationale": "Part-III opener nav arc — five chapters as five questions on one descending arc"
     }
   }
 }
