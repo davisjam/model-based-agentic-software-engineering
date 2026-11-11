@@ -133,7 +133,7 @@
     "document-mutation-model": {
       "width_bp": 247.5,
       "placement": "centered",
-      "inset_placement": "inline"
+      "inset_placement": "flow"
     },
     "realization-space": {
       "width_bp": 337.5,
@@ -159,7 +159,7 @@
     "from-nodes-to-composition": {
       "width_bp": 450.0,
       "placement": "centered",
-      "inset_placement": "inline"
+      "inset_placement": "flow"
     },
     "two-reductions-static-realized": {
       "width_bp": 337.5,
