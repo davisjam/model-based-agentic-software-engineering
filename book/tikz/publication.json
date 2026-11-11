@@ -77,6 +77,11 @@
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved the revised black-and-white Figure 2.5 after reviewing the modeling, properties, and feedback changes in the sidebar.",
       "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b"
+    },
+    "book/assets/multiple-routes-to-engineering-models.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved the revised black-and-white Figure 2.4 (LGTM), including the matched Sources of models / Uses of models headings and narrowed central model box.",
+      "candidate_sha256": "bc8c67fa3115900a055b200b313095803fb9e1eb9ad8021565281a9dd70a38c7"
     }
   }
 }
