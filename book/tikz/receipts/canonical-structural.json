@@ -39,13 +39,13 @@
     "Analysis:",
     "Example: A read-through cache",
     "forbidden bypass",
-    "Direct dependency",
+    "Depends on",
     "Components and direct dependencies.",
     "Does every Web-to-Database path",
     "pass through the API?"
   ],
   "bw_encoding": "White component boxes, solid direct-dependency arrows, and a separately routed crossed dashed prohibited bypass.",
-  "redesign": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+  "redesign": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
   "questions": [],
   "alt": "Structural model. Example: A read-through cache. Solid arrows all mean direct dependency: WEB to API to CACHE to DATABASE. A crossed dashed arrow from WEB to DATABASE marks a forbidden bypass. The model represents components and their direct dependencies. Analysis asks whether every Web-to-Database path passes through the API. This is intended architecture, not an execution trace.",
   "review": {
@@ -61,16 +61,16 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-      "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+      "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
       "page": 1,
       "width_bp": 289.522,
-      "height_bp": 234.278,
+      "height_bp": 211.743,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 14,
-      "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+      "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
       "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
       "status": "passed"
     }
@@ -84,25 +84,25 @@
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
-    "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+    "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
     "fill": "White component peers; bold entity and field labels.",
     "bold": "Bold model title, components and field labels; italic subtitle and forbidden-bypass label; regular legend and explanation.",
     "routing": "Uniform horizontal direct-dependency chain WEB to API to CACHE to DATABASE; crossed dashed bypass routed below the chain.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Final standalone proof inspected on 2026-11-11: readable labels and full-size typography, no broken words or arrow collisions. Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+    "visual_review": "Final standalone proof inspected on 2026-11-11: compact paragraph spacing, a common body-column start and a hanging Analysis continuation, with unchanged typography and no arrow collisions. Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-      "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+      "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
       "page": 1,
       "width_bp": 289.522,
-      "height_bp": 234.278,
+      "height_bp": 211.743,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 14,
-      "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+      "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
       "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
       "status": "passed"
     },
@@ -120,7 +120,7 @@
     "candidate": "book/tikz/figures/canonical-structural.tex",
     "decision": "refined",
     "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
-    "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+    "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
     "evidence": [
       {
         "semantic_role": "Model title, entity or field label",
@@ -184,7 +184,7 @@
       },
       {
         "semantic_role": "Subtitle, relation or explanation",
-        "candidate_text": "Direct dependency",
+        "candidate_text": "Depends on",
         "candidate_style": "regular",
         "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
       },
@@ -207,7 +207,7 @@
         "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
       }
     ],
-    "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+    "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
     "checks": [
       {
         "text": "Structural model",
@@ -252,7 +252,7 @@
         "bold": false
       },
       {
-        "text": "Direct dependency",
+        "text": "Depends on",
         "bold": false
       },
       {
@@ -271,16 +271,16 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-      "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+      "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
       "page": 1,
       "width_bp": 289.522,
-      "height_bp": 234.278,
+      "height_bp": 211.743,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 14,
-      "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+      "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
       "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
       "status": "passed"
     },
@@ -297,9 +297,9 @@
     "candidate": "book/tikz/figures/canonical-structural.tex",
     "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
     "baseline_candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
-    "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+    "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
     "decision": "refined",
-    "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+    "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       322.12701416015625,
@@ -329,27 +329,27 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-      "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+      "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
       "page": 1,
       "width_bp": 289.522,
-      "height_bp": 234.278,
+      "height_bp": 211.743,
       "minimum_prose_font_pt": 10.959,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 14,
-      "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+      "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
       "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
       "status": "passed"
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
-      "after_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+      "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
+      "after_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
       "reviewed_visually": true,
       "after_dimensions_bp": [
         289.522,
-        234.278
+        211.743
       ]
     }
   },
@@ -1089,6 +1089,383 @@
             "semantic_typography_checks": 13
           },
           "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b"
+        },
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+          "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+          "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        },
+        "chapter2_layout_revision": {
+          "date": "2026-11-09",
+          "source_sha256": "a88a218669b290e5af273c9b3eed41076861eae512d15616dc4e560652c0acad",
+          "prior_source_sha256": "cba6d37bfe33b9c8fa1d8e0856277d8b1663520ff2473670536810bd84c24a62",
+          "standalone_proof": "native-after.pdf",
+          "standalone_proof_page": 4,
+          "width_bp": 285.5369873046875,
+          "height_bp": 216.05999755859375,
+          "status": "geometry proof inspected; pending publication-pair review"
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
+      "previous": {
+        "source": "book/assets/canonical-structural.svg",
+        "chapter": "2.2-structural",
+        "claim": "Structural models state entities and defined relations. In this intended architecture, all Web-to-Database dependency paths must pass through API.",
+        "topology": {
+          "description": "Intended direct-dependency chain, not measured execution; crossed dashed direct bypass forbidden.",
+          "relations": [
+            [
+              "web",
+              "api",
+              "direct dependency"
+            ],
+            [
+              "api",
+              "cache",
+              "direct dependency"
+            ],
+            [
+              "cache",
+              "db",
+              "direct dependency"
+            ],
+            [
+              "web",
+              "db",
+              "forbidden bypass",
+              "dashed crossed"
+            ]
+          ]
+        },
+        "required_terms": [
+          "Structural model",
+          "WEB",
+          "API",
+          "CACHE",
+          "DATABASE",
+          "Question:",
+          "Semantics:",
+          "Analysis:",
+          "Example: A read-through cache",
+          "forbidden bypass",
+          "Direct dependency",
+          "Components and direct dependencies.",
+          "Does every Web-to-Database path",
+          "pass through the API?"
+        ],
+        "bw_encoding": "White component boxes, solid direct-dependency arrows, and a separately routed crossed dashed prohibited bypass.",
+        "redesign": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+        "questions": [],
+        "alt": "Structural model. Example: A read-through cache. Solid arrows all mean direct dependency: WEB to API to CACHE to DATABASE. A crossed dashed arrow from WEB to DATABASE marks a forbidden bypass. The model represents components and their direct dependencies. Analysis asks whether every Web-to-Database path passes through the API. This is intended architecture, not an execution trace.",
+        "review": {
+          "reference": "Author Figure 2.7 feedback, 2026-11-11",
+          "checks": [
+            "uniform edge meaning",
+            "read-through dependency sequence",
+            "forbidden bypass",
+            "concrete semantics and path analysis",
+            "legible typography"
+          ],
+          "outcome": "Requested changes implemented and standalone proof visually inspected. Scoped compile, geometry, typography and monochrome checks passed. Pending author approval.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+            "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+            "page": 1,
+            "width_bp": 289.522,
+            "height_bp": 234.278,
+            "minimum_prose_font_pt": 10.959,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 14,
+            "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+            "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+            "status": "passed"
+          }
+        },
+        "style_review": {
+          "source": "book/assets/canonical-structural.svg",
+          "candidate": "book/tikz/figures/canonical-structural.tex",
+          "receipt": "book/tikz/receipts/canonical-structural.json",
+          "decision": "refined",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+          "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+          "fill": "White component peers; bold entity and field labels.",
+          "bold": "Bold model title, components and field labels; italic subtitle and forbidden-bypass label; regular legend and explanation.",
+          "routing": "Uniform horizontal direct-dependency chain WEB to API to CACHE to DATABASE; crossed dashed bypass routed below the chain.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Final standalone proof inspected on 2026-11-11: readable labels and full-size typography, no broken words or arrow collisions. Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+            "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+            "page": 1,
+            "width_bp": 289.522,
+            "height_bp": 234.278,
+            "minimum_prose_font_pt": 10.959,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 14,
+            "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+            "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+            "status": "passed"
+          },
+          "book_references": [],
+          "color_source_revision": {
+            "date": "2026-11-09",
+            "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+            "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+            "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+            "native_candidate_changed": false
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/canonical-structural.svg",
+          "candidate": "book/tikz/figures/canonical-structural.tex",
+          "decision": "refined",
+          "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+          "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+          "evidence": [
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "Structural model",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "WEB",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "API",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "CACHE",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "DATABASE",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "Question:",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "Semantics:",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Model title, entity or field label",
+              "candidate_text": "Analysis:",
+              "candidate_style": "bold",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Subtitle, relation or explanation",
+              "candidate_text": "Example: A read-through cache",
+              "candidate_style": "italic",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Subtitle, relation or explanation",
+              "candidate_text": "forbidden bypass",
+              "candidate_style": "italic",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Subtitle, relation or explanation",
+              "candidate_text": "Direct dependency",
+              "candidate_style": "regular",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Subtitle, relation or explanation",
+              "candidate_text": "Components and direct dependencies.",
+              "candidate_style": "regular",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Subtitle, relation or explanation",
+              "candidate_text": "Does every Web-to-Database path",
+              "candidate_style": "regular",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            },
+            {
+              "semantic_role": "Subtitle, relation or explanation",
+              "candidate_text": "pass through the API?",
+              "candidate_style": "regular",
+              "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+            }
+          ],
+          "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+          "checks": [
+            {
+              "text": "Structural model",
+              "bold": true
+            },
+            {
+              "text": "WEB",
+              "bold": true
+            },
+            {
+              "text": "API",
+              "bold": true
+            },
+            {
+              "text": "CACHE",
+              "bold": true
+            },
+            {
+              "text": "DATABASE",
+              "bold": true
+            },
+            {
+              "text": "Question:",
+              "bold": true
+            },
+            {
+              "text": "Semantics:",
+              "bold": true
+            },
+            {
+              "text": "Analysis:",
+              "bold": true
+            },
+            {
+              "text": "Example: A read-through cache",
+              "italic": true,
+              "bold": false
+            },
+            {
+              "text": "forbidden bypass",
+              "italic": true,
+              "bold": false
+            },
+            {
+              "text": "Direct dependency",
+              "bold": false
+            },
+            {
+              "text": "Components and direct dependencies.",
+              "bold": false
+            },
+            {
+              "text": "Does every Web-to-Database path",
+              "bold": false
+            },
+            {
+              "text": "pass through the API?",
+              "bold": false
+            }
+          ],
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+            "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+            "page": 1,
+            "width_bp": 289.522,
+            "height_bp": 234.278,
+            "minimum_prose_font_pt": 10.959,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 14,
+            "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+            "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+            "status": "passed"
+          },
+          "color_source_revision": {
+            "date": "2026-11-09",
+            "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+            "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+            "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+            "native_candidate_changed": false
+          }
+        },
+        "layout_review": {
+          "source": "book/assets/canonical-structural.svg",
+          "candidate": "book/tikz/figures/canonical-structural.tex",
+          "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+          "baseline_candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
+          "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+          "decision": "refined",
+          "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            322.12701416015625,
+            188.9429931640625
+          ],
+          "contracts": {
+            "peer_groups": [
+              {
+                "name": "linear read-through components",
+                "labels": [
+                  "WEB",
+                  "API",
+                  "CACHE",
+                  "DATABASE"
+                ],
+                "align": [
+                  "top",
+                  "bottom",
+                  "center_y"
+                ],
+                "equal_width": true,
+                "equal_height": true,
+                "tolerance_pt": 1
+              }
+            ]
+          },
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+            "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+            "page": 1,
+            "width_bp": 289.522,
+            "height_bp": 234.278,
+            "minimum_prose_font_pt": 10.959,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 14,
+            "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+            "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+            "status": "passed"
+          },
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+            "after_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+            "reviewed_visually": true,
+            "after_dimensions_bp": [
+              289.522,
+              234.278
+            ]
+          }
         },
         "color_source_revision": {
           "date": "2026-11-09",

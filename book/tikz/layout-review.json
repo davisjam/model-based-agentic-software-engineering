@@ -1757,9 +1757,9 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
       "baseline_candidate_sha256": "ca7c75353f2ac885b096ea2cd97bd25763fb79d1ba17f9296071d9828d9df49f",
-      "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
+      "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
       "decision": "refined",
-      "reason": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
+      "reason": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         413.8110046386719,
@@ -1768,10 +1768,10 @@
       "contracts": {},
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
+        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
         "page": 1,
         "width_bp": 449.57,
-        "height_bp": 558.364,
+        "height_bp": 557.364,
         "maximum_dimensions_bp": [
           450,
           560
@@ -1780,17 +1780,17 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
+        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 32,
+        "semantic_typography_checks": 39,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
-        "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
         "status": "passed"
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
+        "reason": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
         "reviewed_visually": true,
         "single_line_headings": [
           "Component/dependency",
@@ -1850,6 +1850,28 @@
           "single_line_family_headings": 9,
           "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
           "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.364,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 32,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+          "status": "passed"
         }
       ]
     },
@@ -1858,9 +1880,9 @@
       "candidate": "book/tikz/figures/canonical-structural.tex",
       "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
       "baseline_candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
-      "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+      "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
       "decision": "refined",
-      "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+      "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         322.12701416015625,
@@ -1890,27 +1912,27 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-        "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+        "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
         "page": 1,
         "width_bp": 289.522,
-        "height_bp": 234.278,
+        "height_bp": 211.743,
         "minimum_prose_font_pt": 10.959,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 14,
-        "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+        "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
         "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
         "status": "passed"
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
-        "after_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+        "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
+        "after_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
         "reviewed_visually": true,
         "after_dimensions_bp": [
           289.522,
-          234.278
+          211.743
         ]
       },
       "revision_history": [
@@ -2000,6 +2022,71 @@
               "reviewed_visually": true
             }
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
+          "previous": {
+            "source": "book/assets/canonical-structural.svg",
+            "candidate": "book/tikz/figures/canonical-structural.tex",
+            "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+            "baseline_candidate_sha256": "7a2855bd5b761a984787ddf9a5d44431210ec1e2e76e89248fbab7670811d125",
+            "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+            "decision": "refined",
+            "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              322.12701416015625,
+              188.9429931640625
+            ],
+            "contracts": {
+              "peer_groups": [
+                {
+                  "name": "linear read-through components",
+                  "labels": [
+                    "WEB",
+                    "API",
+                    "CACHE",
+                    "DATABASE"
+                  ],
+                  "align": [
+                    "top",
+                    "bottom",
+                    "center_y"
+                  ],
+                  "equal_width": true,
+                  "equal_height": true,
+                  "tolerance_pt": 1
+                }
+              ]
+            },
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+              "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+              "page": 1,
+              "width_bp": 289.522,
+              "height_bp": 234.278,
+              "minimum_prose_font_pt": 10.959,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 14,
+              "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+              "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+              "status": "passed"
+            },
+            "page_layout": {
+              "decision": "refined",
+              "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+              "after_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+              "reviewed_visually": true,
+              "after_dimensions_bp": [
+                289.522,
+                234.278
+              ]
+            }
+          }
         }
       ]
     },
@@ -2008,9 +2095,9 @@
       "candidate": "book/tikz/figures/document-mutation-model.tex",
       "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
       "baseline_candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
-      "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+      "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
       "decision": "refined",
-      "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+      "reason": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         336.65399169921875,
@@ -2038,31 +2125,31 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-        "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+        "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
         "page": 1,
         "width_bp": 248.523,
-        "height_bp": 204.923,
+        "height_bp": 162.524,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 11,
-        "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-        "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+        "semantic_typography_checks": 9,
+        "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+        "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
         "status": "passed",
-        "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+        "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
       },
       "page_layout": {
         "decision": "retained",
-        "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+        "reason": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
         "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
-        "after_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+        "after_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
         "before_dimensions_bp": [
           336.65399169921875,
           221.0489959716797
         ],
         "after_dimensions_bp": [
-          336.654,
-          221.049
+          248.523,
+          162.524
         ],
         "before_font_sizes_pt": [
           9.0,
@@ -2232,6 +2319,52 @@
               "reason": "Retain existing document mutation model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
               "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
               "after_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
+              "before_dimensions_bp": [
+                336.65399169921875,
+                221.0489959716797
+              ],
+              "after_dimensions_bp": [
+                336.654,
+                221.049
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+            "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+              "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+              "page": 1,
+              "width_bp": 248.523,
+              "height_bp": 204.923,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 11,
+              "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+              "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+              "status": "passed",
+              "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+              "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+              "after_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
               "before_dimensions_bp": [
                 336.65399169921875,
                 221.0489959716797

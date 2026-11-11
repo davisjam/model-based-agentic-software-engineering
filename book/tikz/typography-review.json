@@ -4595,7 +4595,7 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
+      "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
@@ -4779,57 +4779,6 @@
               "style": "normal",
               "x": "369",
               "y": "381"
-            }
-          ]
-        },
-        {
-          "source_text": "Q:",
-          "source_style": "bold",
-          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "Q:",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "Q:",
-              "element_text_path": "/svg/text[9]",
-              "weight": "700",
-              "style": "normal",
-              "x": "1",
-              "y": "142"
-            }
-          ]
-        },
-        {
-          "source_text": "P:",
-          "source_style": "bold",
-          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "P:",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "P:",
-              "element_text_path": "/svg/text[11]",
-              "weight": "700",
-              "style": "normal",
-              "x": "1",
-              "y": "156"
-            }
-          ]
-        },
-        {
-          "source_text": "A:",
-          "source_style": "bold",
-          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "A:",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "A:",
-              "element_text_path": "/svg/text[14]",
-              "weight": "700",
-              "style": "normal",
-              "x": "1",
-              "y": "182"
             }
           ]
         },
@@ -5082,9 +5031,79 @@
           "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
           "candidate_text": "error rate < 1%",
           "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Properties",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Analyses",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Entities and relations?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Who may control what?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "What may happen next?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Which path executes?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Where does data flow?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "Which action to choose?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "How much / what bound?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested question subtitles and Properties/Analyses tables",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Plain question subtitle or two-column comparison header",
+          "candidate_text": "What produced this?",
+          "candidate_style": "regular"
         }
       ],
-      "reason": "Three 11pt bold comparison-row labels, nine 10.5pt bold family headings, and unchanged 10pt content. Table headers, Required and Q/P/A labels are bold; named relation readings are italic; graph entities, table cases, and the quantitative ratio/bound are regular.",
+      "reason": "Three 11pt bold comparison-row labels, nine 10.5pt bold family headings, and 10pt plain question subtitles and content. Properties/Analyses, decision-table headers and Required are bold; named relation readings are italic. Multi-line table cells preserve type size and remain within their own columns.",
       "checks": [
         {
           "text": "Component/dependency",
@@ -5120,18 +5139,6 @@
         },
         {
           "text": "Control flow",
-          "bold": true
-        },
-        {
-          "text": "Q:",
-          "bold": true
-        },
-        {
-          "text": "P:",
-          "bold": true
-        },
-        {
-          "text": "A:",
           "bold": true
         },
         {
@@ -5225,14 +5232,64 @@
           "text": "error rate < 1%",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Properties",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Analyses",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Entities and relations?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Who may control what?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "What may happen next?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Which path executes?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Where does data flow?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Which action to choose?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "How much / what bound?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "What produced this?",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
+        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
         "page": 1,
         "width_bp": 449.57,
-        "height_bp": 558.364,
+        "height_bp": 557.364,
         "maximum_dimensions_bp": [
           450,
           560
@@ -5241,12 +5298,12 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
+        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 32,
+        "semantic_typography_checks": 39,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
-        "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
         "status": "passed"
       },
       "validation_history": [
@@ -5282,6 +5339,28 @@
           "single_line_family_headings": 9,
           "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
           "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.364,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 32,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+          "status": "passed"
         }
       ]
     },
@@ -5290,7 +5369,7 @@
       "candidate": "book/tikz/figures/canonical-structural.tex",
       "decision": "refined",
       "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
-      "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+      "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
       "evidence": [
         {
           "semantic_role": "Model title, entity or field label",
@@ -5354,7 +5433,7 @@
         },
         {
           "semantic_role": "Subtitle, relation or explanation",
-          "candidate_text": "Direct dependency",
+          "candidate_text": "Depends on",
           "candidate_style": "regular",
           "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
@@ -5377,7 +5456,7 @@
           "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         }
       ],
-      "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+      "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
       "checks": [
         {
           "text": "Structural model",
@@ -5422,7 +5501,7 @@
           "bold": false
         },
         {
-          "text": "Direct dependency",
+          "text": "Depends on",
           "bold": false
         },
         {
@@ -5441,16 +5520,16 @@
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-        "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+        "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
         "page": 1,
         "width_bp": 289.522,
-        "height_bp": 234.278,
+        "height_bp": 211.743,
         "minimum_prose_font_pt": 10.959,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 14,
-        "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+        "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
         "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
         "status": "passed"
       },
@@ -5754,6 +5833,187 @@
               "native_candidate_changed": false
             }
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
+          "previous": {
+            "source": "book/assets/canonical-structural.svg",
+            "candidate": "book/tikz/figures/canonical-structural.tex",
+            "decision": "refined",
+            "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+            "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+            "evidence": [
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "Structural model",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "WEB",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "API",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "CACHE",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "DATABASE",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "Question:",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "Semantics:",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Model title, entity or field label",
+                "candidate_text": "Analysis:",
+                "candidate_style": "bold",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Subtitle, relation or explanation",
+                "candidate_text": "Example: A read-through cache",
+                "candidate_style": "italic",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Subtitle, relation or explanation",
+                "candidate_text": "forbidden bypass",
+                "candidate_style": "italic",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Subtitle, relation or explanation",
+                "candidate_text": "Direct dependency",
+                "candidate_style": "regular",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Subtitle, relation or explanation",
+                "candidate_text": "Components and direct dependencies.",
+                "candidate_style": "regular",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Subtitle, relation or explanation",
+                "candidate_text": "Does every Web-to-Database path",
+                "candidate_style": "regular",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              },
+              {
+                "semantic_role": "Subtitle, relation or explanation",
+                "candidate_text": "pass through the API?",
+                "candidate_style": "regular",
+                "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+              }
+            ],
+            "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+            "checks": [
+              {
+                "text": "Structural model",
+                "bold": true
+              },
+              {
+                "text": "WEB",
+                "bold": true
+              },
+              {
+                "text": "API",
+                "bold": true
+              },
+              {
+                "text": "CACHE",
+                "bold": true
+              },
+              {
+                "text": "DATABASE",
+                "bold": true
+              },
+              {
+                "text": "Question:",
+                "bold": true
+              },
+              {
+                "text": "Semantics:",
+                "bold": true
+              },
+              {
+                "text": "Analysis:",
+                "bold": true
+              },
+              {
+                "text": "Example: A read-through cache",
+                "italic": true,
+                "bold": false
+              },
+              {
+                "text": "forbidden bypass",
+                "italic": true,
+                "bold": false
+              },
+              {
+                "text": "Direct dependency",
+                "bold": false
+              },
+              {
+                "text": "Components and direct dependencies.",
+                "bold": false
+              },
+              {
+                "text": "Does every Web-to-Database path",
+                "bold": false
+              },
+              {
+                "text": "pass through the API?",
+                "bold": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+              "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+              "page": 1,
+              "width_bp": 289.522,
+              "height_bp": 234.278,
+              "minimum_prose_font_pt": 10.959,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 14,
+              "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+              "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+              "status": "passed"
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+              "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
         }
       ]
     },
@@ -5762,7 +6022,7 @@
       "candidate": "book/tikz/figures/document-mutation-model.tex",
       "decision": "refined",
       "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
-      "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+      "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
       "evidence": [
         {
           "source_text": "remediation logic",
@@ -5830,7 +6090,7 @@
           }
         }
       ],
-      "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+      "reason": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
       "checks": [
         {
           "text": "remediation logic",
@@ -5876,33 +6136,23 @@
           "text": "PDF",
           "bold": false,
           "italic": false
-        },
-        {
-          "text": "Marks where mutation belongs;",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "does not itself prevent bypass.",
-          "bold": false,
-          "italic": true
         }
       ],
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-        "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+        "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
         "page": 1,
         "width_bp": 248.523,
-        "height_bp": 204.923,
+        "height_bp": 162.524,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 11,
-        "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-        "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+        "semantic_typography_checks": 9,
+        "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+        "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
         "status": "passed",
-        "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+        "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
       },
       "revision_history": [
         {
@@ -6184,6 +6434,29 @@
               "height_bp": 226.923,
               "minimum_prose_font_pt": 8.97,
               "semantic_typography_checks": 7
+            }
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+            "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+              "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+              "page": 1,
+              "width_bp": 248.523,
+              "height_bp": 204.923,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 11,
+              "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+              "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+              "status": "passed",
+              "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
             }
           }
         }

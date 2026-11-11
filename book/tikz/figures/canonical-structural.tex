@@ -2,8 +2,8 @@
 \begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
 \node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{14}{17}\selectfont }] at (146.25,14.0) {Structural model};
 \node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{11}{14}\selectfont }] at (146.25,29.0) {Example: A read-through cache};
-\draw[-Stealth,line width=.55pt] (87,47) -- (112,47);
-\node[anchor=west,inner sep=0pt,font=\fontsize{11}{14}\selectfont] at (120,47) {Direct dependency};
+\draw[-Stealth,line width=.55pt] (104,47) -- (129,47);
+\node[anchor=west,inner sep=0pt,font=\fontsize{11}{14}\selectfont] at (137,47) {Depends on};
 \draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (5,64) rectangle (66,91);
 \node[anchor=base,align=center,inner sep=0pt,font={\bfseries \fontsize{12}{15}\selectfont }] at (35.5,82.0) {WEB};
 \draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (79,64) rectangle (140,91);
@@ -18,7 +18,11 @@
 \draw[-Stealth,line width=.55pt,dashed] (35.5,91) -- (35.5,113) -- (257.5,113) -- (257.5,91);
 \node[fill=white,inner sep=1pt,font=\fontsize{14}{16}\selectfont] at (146,113) {$\times$};
 \node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{11}{14}\selectfont }] at (146.25,130.0) {forbidden bypass};
-\node[anchor=north west,align=left,inner sep=0pt,text width=282bp,font=\fontsize{11}{14}\selectfont] at (5,146) {\textbf{Question:} What exists, and what is connected to what?};
-\node[anchor=north west,align=left,inner sep=0pt,text width=282bp,font=\fontsize{11}{14}\selectfont] at (5,177) {\textbf{Semantics:} Components and direct dependencies.};
-\node[anchor=north west,align=left,inner sep=0pt,text width=282bp,font=\fontsize{11}{14}\selectfont] at (5,208) {\textbf{Analysis:} Does every Web-to-Database path\\pass through the API?};
+\node[anchor=north west,inner sep=0pt,font=\fontsize{11}{14}\selectfont] at (5,146) {%
+  \begin{tabular}{@{}p{62bp}@{}p{220bp}@{}}
+  \textbf{Question:} & \raggedright What exists, and what is connected to what?\tabularnewline[4bp]
+  \textbf{Semantics:} & \raggedright Components and direct dependencies.\tabularnewline[4bp]
+  \textbf{Analysis:} & \raggedright Does every Web-to-Database path\newline pass through the API?
+  \end{tabular}%
+};
 \end{tikzpicture}

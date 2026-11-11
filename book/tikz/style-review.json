@@ -906,18 +906,18 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
-      "fill": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles and Q/P/A labels organize the plate. Named relation readings are italic; the ownership panel retains a crossed dashed stale claim. Policy is a decision table, quantitative modeling uses an equation and bound, and control flow uses a labeled conditional branch.",
-      "bold": "Bold comparison rows, family titles, decision-table headers, Required and Q/P/A labels; regular examples; italic named relation readings.",
-      "routing": "Retained six miniature graph topologies; control flow now branches from valid? to persist or reject. Policy and quantitative panels replace redundant/ambiguous arrows with a decision table and explicit equation/bound.",
+      "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
+      "fill": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles precede plain question subtitles. Below each sketch, bold Properties / Analyses headers and light rules separate two columns of 10pt text. Named relation readings are italic. Graph, table, equation and conditional-branch semantics remain distinct; ownership retains a crossed dashed stale claim.",
+      "bold": "Bold comparison rows, family titles, Properties/Analyses, decision-table headers and Required; plain question subtitles and examples; italic named relation readings.",
+      "routing": "Retained all nine examples. Provenance paths now use symmetric source positions and entry ports, with equal 11bp vertical legs above and below the two horizontal segments. Other graphs retain their branches and semantics.",
       "shape": "Rounded entity/state boxes, a decision diamond for conditional control flow, a policy table and direct quantitative expressions.",
-      "visual_review": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
+      "visual_review": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
+        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
         "page": 1,
         "width_bp": 449.57,
-        "height_bp": 558.364,
+        "height_bp": 557.364,
         "maximum_dimensions_bp": [
           450,
           560
@@ -926,12 +926,12 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
+        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 32,
+        "semantic_typography_checks": 39,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
-        "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
         "status": "passed"
       },
       "book_references": [],
@@ -968,6 +968,28 @@
           "single_line_family_headings": 9,
           "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
           "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.364,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 32,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+          "status": "passed"
         }
       ]
     },
@@ -980,25 +1002,25 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
-      "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+      "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a",
       "fill": "White component peers; bold entity and field labels.",
       "bold": "Bold model title, components and field labels; italic subtitle and forbidden-bypass label; regular legend and explanation.",
       "routing": "Uniform horizontal direct-dependency chain WEB to API to CACHE to DATABASE; crossed dashed bypass routed below the chain.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Final standalone proof inspected on 2026-11-11: readable labels and full-size typography, no broken words or arrow collisions. Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+      "visual_review": "Final standalone proof inspected on 2026-11-11: compact paragraph spacing, a common body-column start and a hanging Analysis continuation, with unchanged typography and no arrow collisions. Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
-        "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+        "proof_sha256": "b8587730634e404d32027578e428cca73f735eb8b6a9bfa294b5eb576bcf5d51",
         "page": 1,
         "width_bp": 289.522,
-        "height_bp": 234.278,
+        "height_bp": 211.743,
         "minimum_prose_font_pt": 10.959,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 14,
-        "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+        "audit_sha256": "8cf0124b5f37a318964bdc47709d4a2ddb1d14df5a8277afd772776276895d36",
         "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
         "status": "passed"
       },
@@ -1050,6 +1072,50 @@
               "native_candidate_changed": false
             }
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author follow-up to Figure 2.7: the arrow legend now reads Depends on. A two-column label/body table reduces paragraph spacing and aligns the Analysis continuation with its body, preserving every other label and the read-through topology.",
+          "previous": {
+            "source": "book/assets/canonical-structural.svg",
+            "candidate": "book/tikz/figures/canonical-structural.tex",
+            "receipt": "book/tikz/receipts/canonical-structural.json",
+            "decision": "refined",
+            "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+            "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+            "status": "reviewed",
+            "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+            "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+            "fill": "White component peers; bold entity and field labels.",
+            "bold": "Bold model title, components and field labels; italic subtitle and forbidden-bypass label; regular legend and explanation.",
+            "routing": "Uniform horizontal direct-dependency chain WEB to API to CACHE to DATABASE; crossed dashed bypass routed below the chain.",
+            "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+            "visual_review": "Final standalone proof inspected on 2026-11-11: readable labels and full-size typography, no broken words or arrow collisions. Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+              "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+              "page": 1,
+              "width_bp": 289.522,
+              "height_bp": 234.278,
+              "minimum_prose_font_pt": 10.959,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 14,
+              "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+              "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+              "status": "passed"
+            },
+            "book_references": [],
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+              "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
         }
       ]
     },
@@ -1062,27 +1128,27 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
-      "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+      "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
       "fill": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
       "bold": "Source-derived emphasis includes Remediation logic; Structured document model. Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
       "routing": "Vertical chain and shared horizontal format fan-out rail.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Inspected the 2026-11-11 standalone proof at native size and enlarged. The shared-interface label fits. Five smaller aligned leaves include the additional-format ellipsis; direct implemented-by fanout preserves the architectural relation and limitation note.",
+      "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains.",
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-        "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+        "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
         "page": 1,
         "width_bp": 248.523,
-        "height_bp": 204.923,
+        "height_bp": 162.524,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 11,
-        "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-        "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+        "semantic_typography_checks": 9,
+        "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+        "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
         "status": "passed",
-        "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+        "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
       },
       "book_references": [],
       "revision_history": [
@@ -1152,6 +1218,28 @@
               "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
             },
             "book_references": []
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+              "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+              "page": 1,
+              "width_bp": 248.523,
+              "height_bp": 204.923,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 11,
+              "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+              "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+              "status": "passed",
+              "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+            }
           }
         }
       ]

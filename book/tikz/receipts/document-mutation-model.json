@@ -51,38 +51,37 @@
     "DOCX",
     "PPTX",
     "XLSX",
-    "PDF",
-    "Marks where mutation belongs; does not itself prevent bypass."
+    "PDF"
   ],
   "bw_encoding": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
-  "redesign": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+  "redesign": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
   "questions": [],
-  "alt": "Remediation logic operates through the structured document model, whose shared interfaces form the sanctioned seam. The model is implemented by DOCX, PPTX, XLSX, PDF and further format implementations. The seam marks where mutation belongs but does not itself prevent bypass.",
+  "alt": "Remediation logic operates through the structured document model, whose shared interfaces form the sanctioned seam. The model is implemented by DOCX, PPTX, XLSX, PDF and further format implementations.",
   "review": {
-    "reference": "Author Figure 2.8 structural simplification request, 2026-11-11",
+    "reference": "Author Figure 2.8 spacing and bottom-note edit, 2026-11-11",
     "checks": [
-      "amended labels",
-      "boundary relationships",
-      "native-size layout",
-      "monochrome pixels",
-      "semantic typography"
+      "label clearance",
+      "format peer alignment",
+      "terminal approaches",
+      "native-size typography",
+      "monochrome pixels"
     ],
-    "outcome": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved.",
+    "outcome": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains.",
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-      "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+      "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
       "page": 1,
       "width_bp": 248.523,
-      "height_bp": 204.923,
+      "height_bp": 162.524,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-      "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+      "semantic_typography_checks": 9,
+      "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+      "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
       "status": "passed",
-      "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+      "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
     }
   },
   "style_review": {
@@ -94,27 +93,27 @@
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
-    "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+    "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
     "fill": "Only the explicitly named sanctioned seam uses 8%; ordinary logic, implementation and format artifacts white.",
     "bold": "Source-derived emphasis includes Remediation logic; Structured document model. Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
     "routing": "Vertical chain and shared horizontal format fan-out rail.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Inspected the 2026-11-11 standalone proof at native size and enlarged. The shared-interface label fits. Five smaller aligned leaves include the additional-format ellipsis; direct implemented-by fanout preserves the architectural relation and limitation note.",
+    "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains.",
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-      "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+      "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
       "page": 1,
       "width_bp": 248.523,
-      "height_bp": 204.923,
+      "height_bp": 162.524,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-      "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+      "semantic_typography_checks": 9,
+      "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+      "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
       "status": "passed",
-      "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+      "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
     },
     "book_references": [],
     "revision_history": [
@@ -185,6 +184,28 @@
           },
           "book_references": []
         }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "review": {
+          "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+            "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+            "page": 1,
+            "width_bp": 248.523,
+            "height_bp": 204.923,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+            "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+            "status": "passed",
+            "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+          }
+        }
       }
     ]
   },
@@ -193,7 +214,7 @@
     "candidate": "book/tikz/figures/document-mutation-model.tex",
     "decision": "refined",
     "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
-    "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+    "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
     "evidence": [
       {
         "source_text": "remediation logic",
@@ -261,7 +282,7 @@
         }
       }
     ],
-    "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+    "reason": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
     "checks": [
       {
         "text": "remediation logic",
@@ -307,33 +328,23 @@
         "text": "PDF",
         "bold": false,
         "italic": false
-      },
-      {
-        "text": "Marks where mutation belongs;",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "does not itself prevent bypass.",
-        "bold": false,
-        "italic": true
       }
     ],
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-      "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+      "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
       "page": 1,
       "width_bp": 248.523,
-      "height_bp": 204.923,
+      "height_bp": 162.524,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-      "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+      "semantic_typography_checks": 9,
+      "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+      "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
       "status": "passed",
-      "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+      "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
     },
     "revision_history": [
       {
@@ -617,6 +628,29 @@
             "semantic_typography_checks": 7
           }
         }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "review": {
+          "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+          "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+            "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+            "page": 1,
+            "width_bp": 248.523,
+            "height_bp": 204.923,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+            "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+            "status": "passed",
+            "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+          }
+        }
       }
     ]
   },
@@ -625,9 +659,9 @@
     "candidate": "book/tikz/figures/document-mutation-model.tex",
     "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
     "baseline_candidate_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
-    "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+    "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
     "decision": "refined",
-    "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+    "reason": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       336.65399169921875,
@@ -655,31 +689,31 @@
     "validation": {
       "date": "2026-11-11",
       "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
-      "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+      "proof_sha256": "120004870a6d8437bbe2e5934d091f5c8b326bab242c5135e5ba233d96d0a073",
       "page": 1,
       "width_bp": 248.523,
-      "height_bp": 204.923,
+      "height_bp": 162.524,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
-      "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+      "semantic_typography_checks": 9,
+      "audit_sha256": "02f161d4623d014b54574e6b96edf79954f00b1441b3a0416e1aa673014e7f57",
+      "typography_audit_sha256": "2f837a16c1f6d9947cd76b821815aad986b52e3ebb3235e12028a90904c60dbf",
       "status": "passed",
-      "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+      "visual_review": "Inspected native-size proof: relation label clears the raised fanout rail, five format boxes remain aligned, arrow approaches are clear, and no bottom note remains."
     },
     "page_layout": {
       "decision": "retained",
-      "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+      "reason": "Author requested a tighter implemented-by relation and removal of the bottom aphorism. Raised the shared fanout rail by 10bp and format boxes by 14bp, retaining 18bp terminal arrow approaches. Removed both bottom-note lines. Shared interfaces, format ellipsis and 9/10pt typography preserved. Color source unchanged.",
       "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
-      "after_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+      "after_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71",
       "before_dimensions_bp": [
         336.65399169921875,
         221.0489959716797
       ],
       "after_dimensions_bp": [
-        336.654,
-        221.049
+        248.523,
+        162.524
       ],
       "before_font_sizes_pt": [
         9.0,
@@ -849,6 +883,52 @@
             "reason": "Retain existing document mutation model layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
             "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
             "after_sha256": "469ecad0dd5564d06db7c9cb235a0245f04612312ff7d726a5f882378a036ff6",
+            "before_dimensions_bp": [
+              336.65399169921875,
+              221.0489959716797
+            ],
+            "after_dimensions_bp": [
+              336.654,
+              221.049
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "reviewed_visually": true
+          }
+        }
+      },
+      {
+        "superseded_date": "2026-11-11",
+        "review": {
+          "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+          "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+            "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+            "page": 1,
+            "width_bp": 248.523,
+            "height_bp": 204.923,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+            "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+            "status": "passed",
+            "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+          },
+          "page_layout": {
+            "decision": "retained",
+            "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+            "before_sha256": "5b4dfdd5f6a0bcc21d62534825c260f6224ec8cfc058825e8c0e345302cd34c0",
+            "after_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
             "before_dimensions_bp": [
               336.65399169921875,
               221.0489959716797
@@ -1870,6 +1950,39 @@
           "width_bp": 236.03799438476562,
           "height_bp": 222.93800354003906,
           "status": "geometry proof inspected; pending publication-pair review"
+        }
+      }
+    },
+    {
+      "superseded_date": "2026-11-11",
+      "review": {
+        "redesign": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+        "review": {
+          "reference": "Author Figure 2.8 structural simplification request, 2026-11-11",
+          "checks": [
+            "amended labels",
+            "boundary relationships",
+            "native-size layout",
+            "monochrome pixels",
+            "semantic typography"
+          ],
+          "outcome": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+            "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+            "page": 1,
+            "width_bp": 248.523,
+            "height_bp": 204.923,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11,
+            "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+            "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+            "status": "passed",
+            "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+          }
         }
       }
     }
