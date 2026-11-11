@@ -19334,3 +19334,25 @@ Training on code, textbook-style explanations, and programming exercises can giv
 
 In the MAGE methodology, engineers decide when to make that knowledge explicit in the agent's environment. They can make the relevant repertoire---or an approved subset of it---available directly to agents. DocAble's self-governance skill describes the MAGE method, a modeling repertoire, and operations agents can perform through the environment. The agent can use that guidance to recognize a situation, choose a suitable Modeling or Alignment step, and examine the resulting evidence. Selecting the appropriate technique remains an engineering judgment, but the available techniques need not be rediscovered on every task.
 ```
+
+
+## 2026-11-11 — Deleted the “Enforcement Is Conditional” inset (Chapter 3)
+
+Source: `book/latex/sources/part3/3.3-constraints-sensors-validators-gates.tex`, “Gates: Evaluation and Enforcement,” revision `d85e9e2fb`, lines 178–189. Removed on 2026-11-11 at the author’s request — title and both paragraphs together. The surrounding prose needed no repair: it now runs from “Human judgment remains necessary to decide which obligations warrant this treatment.” straight into the release-check point.
+
+Note on provenance. An **earlier** draft of this inset, under the same title and the same `\label`, is already archived in this file — see “A mechanism can guarantee only the property it actually governs,” around line 5182. The text below is the later rewrite that was live in the manuscript at deletion, so the two entries are different prose, not a duplicate.
+
+```latex
+% <!-- box-family: inset -->
+
+% <!-- inset-domain: CAVEAT -->
+
+% mage-box-prefix: Inset —
+
+\begin{bookbox}{inset}{Enforcement Is Conditional}
+\label{inset-enforcement-conditional}
+Each check supports a claim within a particular scope. The module restriction excludes imports of the private connector, while the instrumented tests can expose other routes. A trace with no direct database connection establishes only that none was recorded in the observed executions. Other inputs, unobserved processes, or missing instrumentation may reveal different behavior.
+
+Making a check blocking does not broaden its evidence. A test gate requires the selected tests to pass; it does not establish that every untested execution is correct. The architectural model may also omit an important distinction, or the validator may check the wrong obligation. Within its stated scope and assumptions, a gate can make acceptance depend on a condition that the agent cannot simply disregard.
+\end{bookbox}
+```
