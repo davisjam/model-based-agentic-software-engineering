@@ -136,14 +136,14 @@
           "section_id": "consequential-choices-and-degrees-of-freedom",
           "level": 2,
           "heading_text": "Consequential Choices and Degrees of Freedom",
-          "topic_sentence": "When implementation is delegated, engineers must decide which properties to preserve and which choices to leave open.",
+          "topic_sentence": "Delegating implementation is useful only if we can avoid doing much of the implementation work ourselves.",
           "id_source": "derived",
           "block_index": 1,
           "points": [
             {
               "slug": "a-simple-specification-leaves-enormous-freedom",
               "text": "Even a simple software specification leaves enormous freedom — ten lines or ten thousand, a monolith or microservices — so engineers can specify the properties that matter and leave other decisions to the intelligence performing the work; which choices can safely remain open is itself an engineering decision.",
-              "block_index": 2
+              "block_index": 3
             }
           ]
         },
@@ -153,17 +153,17 @@
           "heading_text": "Engineering the Environment",
           "topic_sentence": "Engineers increasingly exercise those decisions through the environment in which agents work.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 8,
           "points": [
             {
               "slug": "leverage-moves-into-the-environment",
               "text": "As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work.",
-              "block_index": 8
+              "block_index": 9
             },
             {
               "slug": "mage-is-about-that-environment",
               "text": "A governed engineering environment carries engineering decisions forward by making consequential knowledge available, enforcing selected obligations, and preserving evidence for control.",
-              "block_index": 9
+              "block_index": 10
             }
           ]
         },
@@ -173,27 +173,27 @@
           "heading_text": "When Agents Produce the Wrong Result",
           "topic_sentence": "“’Tis a poor craftsman who blames his tools.” For an engineer, the aphorism directs attention to the work that precedes fabrication: representing the problem, choosing which properties must hold, and arranging how the result will be checked.",
           "id_source": "explicit",
-          "block_index": 14,
+          "block_index": 15,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "Before blaming productive machinery, examine the engineer’s work in representing the problem, choosing required properties, and arranging how the result will be checked.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "inferred-completion-is-not-explicit",
               "text": "Agent inference can fill gaps in the engineering supplied to it, hiding omissions; a completed artifact does not establish that the inferred choices satisfy the intended properties or acceptable tradeoffs.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "Inspect the instructions, problem representation, task boundary, tools, and required evidence before diagnosing a capability limit; failed output alone does not establish that limit.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 22
+              "block_index": 23
             }
           ]
         }
