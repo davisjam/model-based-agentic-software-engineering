@@ -175,19 +175,6 @@ Combining protections this way can provide \emph{defense in depth}: multiple saf
 
 A human reviewer may already know that billing owns its database, recognize a forbidden connection in a test trace, and stop a merge. Much of the context and evaluation can remain tacit. When agents carry out repeated changes, engineers must decide which obligations to make explicit, what evidence the environment will collect, and which findings must prevent the work from proceeding. For the reporting service, that means recording the permitted interaction and configuring the check and merge rule, so each new agent need not reconstruct the reviewer's reasoning. Human judgment remains necessary to decide which obligations warrant this treatment.
 
-% <!-- box-family: inset -->
-
-% <!-- inset-domain: CAVEAT -->
-
-% mage-box-prefix: Inset —
-
-\begin{bookbox}{inset}{Enforcement Is Conditional}
-\label{inset-enforcement-conditional}
-Each check supports a claim within a particular scope. The module restriction excludes imports of the private connector, while the instrumented tests can expose other routes. A trace with no direct database connection establishes only that none was recorded in the observed executions. Other inputs, unobserved processes, or missing instrumentation may reveal different behavior.
-
-Making a check blocking does not broaden its evidence. A test gate requires the selected tests to pass; it does not establish that every untested execution is correct. The architectural model may also omit an important distinction, or the validator may check the wrong obligation. Within its stated scope and assumptions, a gate can make acceptance depend on a condition that the agent cannot simply disregard.
-\end{bookbox}
-
 % <!-- point: cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing | A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs. | terms: validator, gate -->
 
 A release check can regenerate evidence from the candidate being shipped, rather than trust the producing agent's report or a result from an earlier revision.\mageaside{Repeating the check costs computation and time. Reusing or caching an earlier result can be sound when the system establishes that the relevant inputs have not changed.} This keeps the evidence tied to the artifact being admitted and lets the release check evaluate it independently of the agent that produced the change. The agent's claim that its work passed is not a substitute for that evaluation.
