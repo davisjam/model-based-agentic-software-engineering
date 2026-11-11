@@ -150,6 +150,10 @@ I began with PowerPoint, then generalized the system to Word and Excel and added
 \label{build-stages-timeline}
 \end{figure}
 
+One operational surprise came from Google Cloud. I had asked Claude to deploy DocAble, and it did. What I had not specified was the full deployment lifecycle, including how obsolete deployments should be retired. Eventually I noticed that the service was costing roughly \$40 per day when I expected something closer to \$5. I asked Claude to investigate. It reported approximately 2,000 obsolete deployments that had accumulated without being cleaned up. The cloud bill was about \$1,000.
+
+The repair was to complete the lifecycle model by adding a cleanup step for obsolete deployments. Claude had done what I asked---and had neglected what I had omitted.
+
 \subsection{The Build, Measured Weekly}\label{heading:the-build-measured-weekly}
 
 % <!-- point: four-traces-read-in-sequence | The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures. -->

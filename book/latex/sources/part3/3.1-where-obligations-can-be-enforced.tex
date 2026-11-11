@@ -26,6 +26,8 @@ Start with the distinction between guidance and enforcement. \textbf{Guidance in
 
 Recent agentic-security guidance draws a similar boundary. Once agents act before commit time, the repository is too late to be the security boundary: the tools, permissions, and execution environment that produce a change join the trusted base, so agentic security must secure the process that creates the artifact, not only the artifact\citep{snyk2026agenticlifecycle}.
 
+A correct result does not excuse an unacceptable process. An agent might produce working software while accessing data it was not authorized to read, modifying dependencies without approval, or deploying before the required checks completed. Testing the resulting artifact cannot establish that those actions were permissible. Some engineering obligations govern the product. Others govern how the product may be produced. The environment must be able to enforce both.
+
 % <!-- point: enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible | An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can enforce it. | terms: intervention-boundary -->
 
 An obligation can be enforced at several boundaries in the work. \textbf{Choose the boundary where the relevant obligation is visible and a mechanism can enforce it.} Four representative boundaries recur throughout the book --- reasoning input, agent action, the work unit, and the accepted artifact or runtime state. \autoref{intervention-boundaries} puts them on one line.

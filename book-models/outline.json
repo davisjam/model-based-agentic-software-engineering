@@ -1259,27 +1259,27 @@
           "heading_text": "Reasoning Input, Action, Work Unit, and Artifact/Runtime",
           "topic_sentence": "The first location is **reasoning input**: the context, representations, examples, and instructions put in front of the reasoner.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 13,
           "points": [
             {
               "slug": "the-first-boundary-is-reasoning-input",
               "text": "The first location is reasoning input: ordinarily guidance, not enforcement.",
-              "block_index": 14
+              "block_index": 15
             },
             {
               "slug": "the-second-boundary-is-the-action-one-attempted-side-effect",
               "text": "The first enforcement boundary is the action: one attempted side effect the harness can inspect or refuse.",
-              "block_index": 22
+              "block_index": 23
             },
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
               "text": "The second enforcement boundary is the work unit, where whole-work obligations become legible.",
-              "block_index": 28
+              "block_index": 29
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
               "text": "The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
-              "block_index": 31
+              "block_index": 32
             }
           ]
         },
@@ -1289,17 +1289,17 @@
           "heading_text": "Placement and Strength Are Different Decisions",
           "topic_sentence": "The four boundaries do not form a monotonic scale from weak to strong.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": [
             {
               "slug": "the-four-boundaries-do-not-form-a-monotonic-scale",
               "text": "The four boundaries do not form a monotonic weak-to-strong scale.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "substantial-enforcement-can-exist-without-rich-models",
               "text": "Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern.",
-              "block_index": 38
+              "block_index": 39
             }
           ]
         },
@@ -1309,22 +1309,22 @@
           "heading_text": "Return Evidence at the Earliest Useful Boundary",
           "topic_sentence": "The boundaries also determine what feedback can return and when.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 41,
           "points": [
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
               "text": "Boundary placement affects what feedback can return and when; timely evidence lets an agent use the reasoning and context already at hand, while delayed feedback may require reconstruction.",
-              "block_index": 42
+              "block_index": 43
             },
             {
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
-              "block_index": 46
+              "block_index": 47
             },
             {
               "slug": "the-alignment-principle-stated-whole",
               "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.",
-              "block_index": 48
+              "block_index": 49
             }
           ]
         }
@@ -1348,7 +1348,7 @@
         {
           "slug": "enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible",
           "text": "An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can enforce it.",
-          "block_index": 9
+          "block_index": 10
         }
       ]
     },
@@ -1510,32 +1510,32 @@
             {
               "slug": "a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it",
               "text": "An instruction is enforced only when a mechanism in the environment acts on it.",
-              "block_index": 18
+              "block_index": 19
             },
             {
               "slug": "a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration",
               "text": "A constraint excludes particular actions or representations within the scope of its language, interface, or runtime permissions; a closed type does not govern every possible behavior.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "selected-structure-can-be-generated-from-a-model",
               "text": "A generator can embody selected obligations in implementation structure; this requires a valid model, a property-preserving transformation, and protection against bypass.",
-              "block_index": 25
+              "block_index": 26
             },
             {
               "slug": "agents-can-construct-checking-and-enforcement-machinery",
               "text": "Agents can construct checkers or controls for explicit obligations; generating a checker does not establish the checked implementation's correctness.",
-              "block_index": 28
+              "block_index": 29
             },
             {
               "slug": "a-sensor-observes-and-produces-evidence-and-costs-iterations",
               "text": "A sensor produces evidence about artifacts, attempted actions, or observed executions; observability exposes the state or behavior that the environment must inspect.",
-              "block_index": 30
+              "block_index": 31
             },
             {
               "slug": "a-sensor-is-only-as-good-as-its-observability",
               "text": "Evidence must preserve the distinctions needed to judge the obligation, such as caller identity, destination, and architectural component.",
-              "block_index": 37
+              "block_index": 38
             }
           ]
         },
@@ -1545,37 +1545,37 @@
           "heading_text": "Gates: Evaluation and Enforcement",
           "topic_sentence": "A gate evaluates whether an action or result may proceed and enforces that decision at a boundary.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 40,
           "points": [
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
               "text": "A gate evaluates whether an action or result may proceed, locally or through a delegated check, and enforces the decision; a blocking check can reject both genuine violations and false positives.",
-              "block_index": 41
+              "block_index": 42
             },
             {
               "slug": "a-ci-suite-bundles-three-roles-without-collapsing-the-distinction",
               "text": "Instrumented tests produce observations, a checker compares them with the architectural model, and the merge gate requires the build and interaction checks to pass.",
-              "block_index": 44
+              "block_index": 45
             },
             {
               "slug": "a-validator-turns-evidence-into-a-judgment",
               "text": "The merge gate uses build and interaction check results to decide whether a candidate meets its admission conditions.",
-              "block_index": 45
+              "block_index": 46
             },
             {
               "slug": "two-roles-act-on-the-work-two-act-at-the-door",
               "text": "Defense in depth combines protections with different coverage; tests and the gate that enforces their results constitute one protection together.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "human-process-instantiates-the-same-roles-logging-senses-reviewer-validates-approver-gates",
               "text": "Human review can combine tacit context, evaluation, and approval; selected obligations in agentic work need explicit rules, evidence, and admission consequences.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
               "text": "A release check can regenerate evidence from the actual candidate and evaluate it independently of the producing agent; reuse requires unchanged relevant inputs.",
-              "block_index": 57
+              "block_index": 58
             }
           ]
         },
@@ -1585,12 +1585,12 @@
           "heading_text": "Constraining Document Changes",
           "topic_sentence": "DocAble’s PDF changeset interface provides an action boundary for document repair.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 60,
           "points": [
             {
               "slug": "typed-document-edits-separate-proposal-from-controlled-application",
               "text": "In DocAble's PDF changeset interface, a closed operation vocabulary constrains proposals, the applier refuses unsupported targets or missing evidence, and subsequent validation checks selected properties of the resulting document.",
-              "block_index": 60
+              "block_index": 61
             }
           ]
         },
@@ -1600,7 +1600,7 @@
           "heading_text": "Tests and Models Work Together",
           "topic_sentence": "The reporting-service boundary concerns relationships among components.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 65,
           "points": []
         },
         {
@@ -1609,42 +1609,42 @@
           "heading_text": "One Obligation, Several Ways to Hold It",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 74,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "Generation, runtime constraints, tests, and model checking supply different kinds of restriction or evidence and can be combined for the obligation at hand.",
-              "block_index": 75
+              "block_index": 76
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
               "text": "An atomic conditional update can prevent competing claimants from both acquiring the same claim; tests and analysis can examine the surrounding protocol.",
-              "block_index": 77
+              "block_index": 78
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Model checking explores the behavior admitted by an explicit model; model-based testing exercises an implementation against expected model behavior.",
-              "block_index": 79
+              "block_index": 80
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "A universal eventuality claim requires reasoning about modeled executions and stated scheduling or recovery assumptions; a finite passing test does not establish it.",
-              "block_index": 81
+              "block_index": 82
             },
             {
               "slug": "recovery-is-not-permission",
               "text": "In DocAble, a lease makes abandoned work recoverable, while a separate durable claim restricts who may perform the protected effect; recovery alone does not supply that permission.",
-              "block_index": 83
+              "block_index": 84
             },
             {
               "slug": "mechanisms-match-properties-not-an-adoption-sequence",
               "text": "Select and combine mechanisms according to the evidence or restriction they contribute and the cost of obtaining it.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-the-consequence-depends-on-the-environment",
               "text": "A check may remain advisory; a gate must act on the result when it is intended to control whether work may proceed.",
-              "block_index": 89
+              "block_index": 90
             }
           ]
         },
@@ -1654,22 +1654,22 @@
           "heading_text": "One Measurement, Different Enforcement Decisions",
           "topic_sentence": "The reporting service’s usage measurements can support several responses, depending on the policy attached to them.",
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 92,
           "points": [
             {
               "slug": "one-model-several-enforcement-decisions",
               "text": "One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity.",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "a-quantitative-tolerance-can-expose-margin",
               "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 96
+              "block_index": 97
             },
             {
               "slug": "margin-needs-a-meaningful-distance",
               "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 98
+              "block_index": 99
             }
           ]
         },
@@ -1679,12 +1679,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "The reporting-service rule forbids a particular access.",
           "id_source": "derived",
-          "block_index": 100,
+          "block_index": 101,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 102
+              "block_index": 103
             }
           ]
         },
@@ -1694,37 +1694,37 @@
           "heading_text": "Provenance-Carried Admission",
           "topic_sentence": "The reporting-service example concerns which components may interact.",
           "id_source": "derived",
-          "block_index": 105,
+          "block_index": 106,
           "points": [
             {
               "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact.",
-              "block_index": 107
+              "block_index": 108
             },
             {
               "slug": "restrict-a-recognizable-primitive-surface-directly",
               "text": "Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature.",
-              "block_index": 109
+              "block_index": 110
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
               "text": "Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path.",
-              "block_index": 111
+              "block_index": 112
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 113
+              "block_index": 114
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 119
+              "block_index": 120
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 121
+              "block_index": 122
             }
           ]
         },
@@ -1734,27 +1734,27 @@
           "heading_text": "The Freedom a Control Preserves",
           "topic_sentence": "Alignment should preserve the implementation freedom that Modeling deliberately leaves open.",
           "id_source": "derived",
-          "block_index": 124,
+          "block_index": 125,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 126
+              "block_index": 127
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 128
+              "block_index": 129
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 130
+              "block_index": 131
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 136
+              "block_index": 137
             }
           ]
         },
@@ -1764,27 +1764,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "**Policy**, **guidance**, and **governance mechanisms** contribute different things to engineering work.",
           "id_source": "derived",
-          "block_index": 138,
+          "block_index": 139,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 140
+              "block_index": 141
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions.",
-              "block_index": 142
+              "block_index": 143
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 144
+              "block_index": 145
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 149
+              "block_index": 150
             }
           ]
         }
@@ -2136,7 +2136,7 @@
           "section_id": "alignment-changes-the-system",
           "level": 2,
           "heading_text": "Alignment Changes the System",
-          "topic_sentence": "The Alignment side of [ref:engineer-agent-interaction] contains two distinct activities.",
+          "topic_sentence": "Alignment is where delegation meets validation.",
           "id_source": "derived",
           "block_index": 8,
           "points": []
@@ -2196,7 +2196,7 @@
           "heading_text": "Pages as the Unit of Scale",
           "topic_sentence": "DocAble's response was ChunkWorker, which divided a document into page ranges ([ref:interlude-execution-unit], panel b).",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 10,
           "points": []
         },
         {
@@ -2205,7 +2205,7 @@
           "heading_text": "A New Class of Input",
           "topic_sentence": "A 250 MB PowerPoint file does not imply that remediation needs 250 MB of document content resident in memory.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 17,
           "points": []
         },
         {
@@ -2214,7 +2214,7 @@
           "heading_text": "Remove Media from the Working Set",
           "topic_sentence": "The memory problem came from coupling document structure to media residency: total media size increased the worker's persistent working set even though most remediation operations needed only the document's structural skeleton.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 26,
           "points": []
         },
         {
@@ -2223,7 +2223,7 @@
           "heading_text": "Why One Level Deeper Matters",
           "topic_sentence": "An end-to-end measurement says whether the outcome moved.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 40,
           "points": []
         },
         {
@@ -2232,7 +2232,7 @@
           "heading_text": "Memory Did Not Stop Mattering",
           "topic_sentence": "Bringing memory under governance did not make memory disappear.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 44,
           "points": []
         },
         {
@@ -2241,7 +2241,7 @@
           "heading_text": "Why Are We Still Chunking?",
           "topic_sentence": "Page chunking had served two roles at once: it partitioned execution and bounded each worker's memory.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 47,
           "points": []
         },
         {
@@ -2250,7 +2250,7 @@
           "heading_text": "Analyze Before You Build",
           "topic_sentence": "Representing remediation as a dependency graph does more than provide an execution plan.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 56,
           "points": []
         },
         {
@@ -2259,7 +2259,7 @@
           "heading_text": "Dependencies can be redesigned",
           "topic_sentence": "The same analysis exposed a problem in contextual image description (panel c).",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 60,
           "points": []
         },
         {
@@ -2268,7 +2268,7 @@
           "heading_text": "The second resource model",
           "topic_sentence": "The critical-path model explained which dependencies could determine latency.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 63,
           "points": []
         },
         {
@@ -2277,7 +2277,7 @@
           "heading_text": "Predicting latency",
           "topic_sentence": "The same graph supports a first-order latency model.",
           "id_source": "derived",
-          "block_index": 69,
+          "block_index": 68,
           "points": []
         },
         {
@@ -2286,7 +2286,7 @@
           "heading_text": "Predicting the cost of a design change",
           "topic_sentence": "A proposed intermediate representation can be inserted into the dependency graph before it is implemented.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 72,
           "points": []
         },
         {
@@ -2295,7 +2295,7 @@
           "heading_text": "Use prediction error as evidence",
           "topic_sentence": "Implementation eventually supplies measurements to compare with the model’s predictions.",
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 74,
           "points": []
         },
         {
@@ -2304,7 +2304,7 @@
           "heading_text": "What Carries Forward",
           "topic_sentence": "DocAble did not turn observed wall-clock time into the durable control.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 78,
           "points": []
         },
         {
@@ -2313,7 +2313,7 @@
           "heading_text": "Models get falsified; the obligation survives",
           "topic_sentence": "A ratchet does not make the current model true forever.",
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 81,
           "points": []
         },
         {
@@ -2322,7 +2322,7 @@
           "heading_text": "The Resulting Model Family",
           "topic_sentence": "The large-file requirement produced a connected family of models, each answering a different engineering question.",
           "id_source": "derived",
-          "block_index": 89,
+          "block_index": 88,
           "points": []
         },
         {
@@ -2331,7 +2331,7 @@
           "heading_text": "Modeling Inside the Implementation Loop",
           "topic_sentence": "This sequence took about three days inside the existing governed engineering environment.",
           "id_source": "explicit",
-          "block_index": 94,
+          "block_index": 93,
           "points": []
         }
       ],
@@ -2430,7 +2430,7 @@
           "section_id": "when-validation-becomes-the-bottleneck",
           "level": 3,
           "heading_text": "When Validation Becomes the Bottleneck",
-          "topic_sentence": "DocAble’s agents eventually outpaced the infrastructure that checked their work.",
+          "topic_sentence": "Without sufficient controls, faster implementation can become faster production of defects.",
           "id_source": "derived",
           "block_index": 51,
           "points": []
@@ -2441,7 +2441,7 @@
           "heading_text": "Maintain the Machinery",
           "topic_sentence": "As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate.",
           "id_source": "explicit",
-          "block_index": 61,
+          "block_index": 62,
           "points": []
         },
         {
@@ -2450,7 +2450,7 @@
           "heading_text": "Summary",
           "topic_sentence": "The DocAble episodes illustrate engineering moves that apply beyond this particular system and the agent harnesses used to develop it.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 67,
           "points": []
         }
       ],
@@ -2693,27 +2693,27 @@
           "heading_text": "The Build, Measured Weekly",
           "topic_sentence": "The repository reconstruction covers 31 complete seven-day weeks from March 12 through October 14, 2026[cite: davis2026docable].",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 47,
           "points": [
             {
               "slug": "four-traces-read-in-sequence",
               "text": "The 31-week repository reconstruction preserves landed commits, model/check inventories, dispatches and documented Epic completions as distinct measures.",
-              "block_index": 46
+              "block_index": 48
             },
             {
               "slug": "the-control-count-is-evidence-of-investment",
               "text": "Models and registered verifier files accumulated; the inventories establish available structure rather than successful execution.",
-              "block_index": 50
+              "block_index": 52
             },
             {
               "slug": "week-eleven-records-a-practice-change",
               "text": "Week 11 field notes and commit topics support a transition toward durable deterministic checks; first surviving records do not date the origin of the practices.",
-              "block_index": 52
+              "block_index": 54
             },
             {
               "slug": "longitudinal-methods-bound-the-inference",
               "text": "Squash reconstruction, incomplete records, retrospective model identification and file inventories limit what the longitudinal series establish.",
-              "block_index": 54
+              "block_index": 56
             }
           ]
         },
@@ -2723,17 +2723,17 @@
           "heading_text": "The Support Ratio",
           "topic_sentence": "The source composition gives a different view of the investment ([ref:support-ratio-curve]).",
           "id_source": "explicit",
-          "block_index": 56,
+          "block_index": 58,
           "points": [
             {
               "slug": "the-environment-outgrew-the-product",
               "text": "Ten consistently categorized snapshots show the growing apparatus; support ratio measures investment rather than return.",
-              "block_index": 58
+              "block_index": 60
             },
             {
               "slug": "the-exhibits-measure-what-the-requirements-cost",
               "text": "The exhibits show accumulated implementation and structure, leaving project feasibility as an author’s engineering judgment.",
-              "block_index": 62
+              "block_index": 64
             }
           ]
         },
@@ -2743,12 +2743,12 @@
           "heading_text": "Inside the Factory",
           "topic_sentence": "As DocAble grew, source code alone stopped being an adequate engineering interface.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 68,
           "points": [
             {
               "slug": "source-code-stopped-being-an-adequate-interface",
               "text": "The growth in supporting source reflects investment in representations, derivations, and controls that answer system-level questions and govern later changes.",
-              "block_index": 68
+              "block_index": 70
             }
           ]
         },
@@ -2758,17 +2758,17 @@
           "heading_text": "What the Factory Knows",
           "topic_sentence": "The 31-week reconstruction identifies 143 model modules at the final snapshot.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 72,
           "points": [
             {
               "slug": "the-census-is-live-not-frozen",
               "text": "The 31-week reconstruction identifies 143 model modules; models remain maintained artifacts rather than a fixed inventory.",
-              "block_index": 71
+              "block_index": 73
             },
             {
               "slug": "specimens-show-why-representations-afford-supervision",
               "text": "Six specimens show the models' purpose: each representation answers an engineering question for a consumer, and its supervisory consequence is what the engineer no longer reconstructs from implementation.",
-              "block_index": 73
+              "block_index": 75
             }
           ]
         },
@@ -2778,27 +2778,27 @@
           "heading_text": "The Joins: What the Factory Can Derive and Enforce",
           "topic_sentence": "DocAble connects its representations so the environment can derive requirements and check relations among them.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 78,
           "points": [
             {
               "slug": "a-repository-of-documentation-is-not-a-supervisory-environment",
               "text": "The factory checks relations among representations and uses selected results to determine whether work may proceed.",
-              "block_index": 77
+              "block_index": 79
             },
             {
               "slug": "the-invariant-chain-derives-checker-obligations",
               "text": "The invariant chain: property facts on each invariant derive a verification tier, the tier mandates a checker class, and a check fails when the checker is missing — the model tells the factory what evidence it owes.",
-              "block_index": 79
+              "block_index": 81
             },
             {
               "slug": "the-iam-join-derives-grants",
               "text": "The IAM join: service relationships × deployment wiring × runtime identity derive the invoker-grant plan, and a coherence gate asserts the derived grants at deploy time.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "the-provenance-join-derives-the-changelog",
               "text": "The provenance join: every mutation stamps its verb and pass, the customer changelog is derived from the stamps, and a wiring validator catches mutating paths that fail to stamp.",
-              "block_index": 83
+              "block_index": 85
             }
           ]
         },
@@ -2808,17 +2808,17 @@
           "heading_text": "The Computation Graph: a Representation That Took Over Execution",
           "topic_sentence": "The remediation graph makes a further connection: its representation determines execution.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 89,
           "points": [
             {
               "slug": "the-representation-became-authoritative-for-execution",
               "text": "Typed pass declarations determine dependency order and remain connected to analytical views by correspondence checks.",
-              "block_index": 88
+              "block_index": 90
             },
             {
               "slug": "explicit-models-changed-what-was-checkable",
               "text": "Explicit lifecycle and ownership models made previously slippery properties checkable — exhaustive exploration of the ownership state space, temporal specifications checked mechanically — and created the correspondence obligation in return.",
-              "block_index": 91
+              "block_index": 93
             }
           ]
         },
@@ -2828,32 +2828,32 @@
           "heading_text": "Substituting the Reasoning Engine",
           "topic_sentence": "DocAble separates the reasoning that proposes a repair from the machinery that changes the document.",
           "id_source": "explicit",
-          "block_index": 93,
+          "block_index": 95,
           "points": [
             {
               "slug": "reasoning-substitution-reuses-engineered-operations",
               "text": "Task-level foundation-model selection and experimental agent orchestration change different parts of DocAble's reasoning while reusing supported document operations; the common PDF changeset interface does not cover every remediation pass.",
-              "block_index": 94
+              "block_index": 96
             },
             {
               "slug": "model-selection-was-an-engineering-decision",
               "text": "Selecting a foundation model was itself an engineering decision: frontier foundation models were reserved for judgments where their additional capability earned their additional cost — the cheapest-adequate-judge rule applied to the fabricator rather than to the validator.",
-              "block_index": 97
+              "block_index": 99
             },
             {
               "slug": "engineering-set-the-price-of-the-reasoning",
               "text": "Prepared representations can reduce what a foundation model reconstructs, but the reported scaffold and agent experiments used different fixtures.",
-              "block_index": 102
+              "block_index": 104
             },
             {
               "slug": "reasoning-substitution-cost-depends-on-context-and-quality",
               "text": "A September 2026 single-PDF cost comparison measured the structured pipeline at about $0.0419 and estimated the agent's execution share at $2.29; the cost-accounting and quality limits prevent a claim of equal-quality substitution.",
-              "block_index": 104
+              "block_index": 106
             },
             {
               "slug": "a-completed-coached-loop-did-not-improve-the-measured-documents",
               "text": "In a November 2026 two-PDF evaluation, a completed second coached pass closed no additional findings on the harder document and cost $3.57 versus $1.35 for one pass; the clean document stopped after one pass in both arms.",
-              "block_index": 106
+              "block_index": 108
             }
           ]
         },
@@ -2863,7 +2863,7 @@
           "heading_text": "The Factory in Operation",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 109,
+          "block_index": 111,
           "points": []
         },
         {
@@ -2872,22 +2872,22 @@
           "heading_text": "From a Priority to Completed Work",
           "topic_sentence": "How does one engineer keep several agents working without continually prompting each one?",
           "id_source": "derived",
-          "block_index": 111,
+          "block_index": 113,
           "points": [
             {
               "slug": "the-mature-production-flow",
               "text": "The November 3 workflow turns priorities into reviewed work orders, dependency-ordered phases, isolated implementation and independently audited completion.",
-              "block_index": 112
+              "block_index": 114
             },
             {
               "slug": "task-scoped-context-connects-models-to-dispatch",
               "text": "An agent's refined target files let Query Repo retrieve relevant models, invariants, tests, and analyses before implementation; a separate check requires that discovery occurred.",
-              "block_index": 115
+              "block_index": 117
             },
             {
               "slug": "repair-is-cheap-escalation-is-the-signal",
               "text": "Checks and the completion audit return deficient work for repair; unresolved decisions and defects in the environment reach the engineer.",
-              "block_index": 119
+              "block_index": 121
             }
           ]
         },
@@ -2897,47 +2897,47 @@
           "heading_text": "What Escalated Failures Became",
           "topic_sentence": "Where did this factory machinery come from?",
           "id_source": "derived",
-          "block_index": 121,
+          "block_index": 123,
           "points": [
             {
               "slug": "governance-conversion-is-an-empirical-claim-about-durable-structure",
               "text": "Six selected product and environment episodes show pressures, judgments and durable changes that later work inherited.",
-              "block_index": 122
+              "block_index": 124
             },
             {
               "slug": "destructive-library-behavior-became-a-typed-seam",
               "text": "A library operation that discarded accessibility structure led to typed mutation interfaces and checks rejecting raw access outside them.",
-              "block_index": 124
+              "block_index": 126
             },
             {
               "slug": "implicit-lifecycle-became-explicit-model",
               "text": "Slow dependencies and reflexive retry led to explicit lifecycle, ownership and progress evidence for recovery.",
-              "block_index": 127
+              "block_index": 129
             },
             {
               "slug": "prompt-properties-preserved-useful-freedom",
               "text": "Unsupported numerical prompt demands became evidence-grounding obligations and checks while wording remained open.",
-              "block_index": 130
+              "block_index": 132
             },
             {
               "slug": "a-timeout-spoke-only-after-the-budget-was-spent",
               "text": "A timeout produced a provisional cost/time model and reportable evidence; the bound remained too weakly calibrated to justify blocking.",
-              "block_index": 133
+              "block_index": 135
             },
             {
               "slug": "an-unmade-decision-is-where-the-agent-guesses-worst",
               "text": "Destructive merge conflict handling led to removal of the unsafe fallback and explicit resolution of ambiguous cases.",
-              "block_index": 137
+              "block_index": 139
             },
             {
               "slug": "interacting-hooks-required-explicit-order",
               "text": "Turn-end reflection and stranded-work inspection required an explicit ordering constraint and model/configuration correspondence checks.",
-              "block_index": 141
+              "block_index": 143
             },
             {
               "slug": "the-case-contains-both-routes-to-durable-structure",
               "text": "The selected conversions coexist with structures designed prospectively from known obligations.",
-              "block_index": 144
+              "block_index": 146
             }
           ]
         },
@@ -2947,22 +2947,22 @@
           "heading_text": "The Supervisor's Job",
           "topic_sentence": "What was I doing as the factory acquired these capabilities?",
           "id_source": "derived",
-          "block_index": 146,
+          "block_index": 148,
           "points": [
             {
               "slug": "the-preceding-subsections-recorded-substitutions",
               "text": "The Delegation Staircase names five stages in the author’s changing responsibilities; it is a chronology, not a maturity model.",
-              "block_index": 148
+              "block_index": 150
             },
             {
               "slug": "rungs-compressed",
               "text": "Inspection gave way to delegated evaluation, deterministic checks, local reasoning and system-level models as the environment developed.",
-              "block_index": 150
+              "block_index": 152
             },
             {
               "slug": "the-staircase-has-two-interacting-supports",
               "text": "Modeling supplied system views and Alignment enforced selected repeatable obligations; judgment and upkeep remained necessary.",
-              "block_index": 154
+              "block_index": 156
             }
           ]
         }

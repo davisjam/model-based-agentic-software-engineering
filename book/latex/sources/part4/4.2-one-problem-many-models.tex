@@ -43,9 +43,7 @@ DocAble originally treated an entire document as one unit of execution. A long-r
 
 The document therefore served as both the user\textquotesingle s artifact and the worker\textquotesingle s in-memory unit of computation. Media needed by GenAI operations was read from that resident representation and sent to the foundation model as needed.
 
-For the small presentations used to develop the system, this worked well. The architecture was simple, and the document was a natural boundary: a user submitted a document and expected a document back. Nothing in the observed workload justified another unit of execution.
-
-Real use eventually expanded the workload. Teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.
+I had specified how DocAble should process documents, but I had forgotten to tell Claude what memory consumption was acceptable. The resulting architecture worked on ordinary inputs. Larger documents exposed the omission. Teaching presentations carried more slides, images, and other media, and handling the whole document in one process began to put enough pressure on worker memory that the execution unit needed to shrink.
 
 \section{Pages as the Unit of Scale}\label{heading:pages-as-the-unit-of-scale}
 
