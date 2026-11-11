@@ -2872,26 +2872,53 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-      "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+      "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-      "bold": "Source-derived emphasis includes MODELING / COMMUNICATING; ALIGNMENT / EVALUATING. Current bold uppercase column headings already preserve the meaningful distinction. Uniform source weight on ordinary actor/tool nodes is decorative and remains regular.",
+      "bold": "Bare bold uppercase mode headings; original question subtitles in italics; ordinary node labels regular.",
       "routing": "10 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Communication/evaluation panel boundaries retained; implementation links enter opposing ports.",
+      "shape": "Rounded boxes for actors and channels only; mode headings and question annotations are unboxed.",
+      "visual_review": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 55,
+        "date": "2026-11-11",
+        "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+        "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+        "page": 1,
         "width_bp": 408.896,
-        "height_bp": 204.529,
-        "minimum_prose_font_pt": 10.0,
+        "height_bp": 218.702,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+        "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+        "semantic_typography_checks": 5,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 3
+        "status": "passed"
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+          "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 55,
+            "width_bp": 408.896,
+            "height_bp": 204.529,
+            "minimum_prose_font_pt": 10.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 3
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/active-passive-alignment.svg",
@@ -2932,26 +2959,71 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
-      "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-      "fill": "Only protected kernel is 5%; nested outlines identify later layers.",
+      "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+      "fill": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
       "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
-      "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+      "routing": "Three downward arrows connect the closely positioned numbered steps; concentric layer containment remains unchanged.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
-      "visual_review": "Nested M1\u2013M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+      "visual_review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 57,
-        "width_bp": 413.811,
-        "height_bp": 255.089,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+        "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+        "page": 1,
+        "width_bp": 252.573,
+        "height_bp": 212.506,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+        "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+        "semantic_typography_checks": 15,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7
+        "status": "passed",
+        "chapter_wrap_tested": false,
+        "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
       },
       "book_references": [],
-      "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors."
+      "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors.",
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 57,
+          "width_bp": 413.811,
+          "height_bp": 255.089,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 7
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+          "proof_sha256": "a63835ea0f6bb34dd8d6976aacba1fd68f87c591f409dfc7e6e55d90a0e75e1d",
+          "page": 1,
+          "width_bp": 183.574,
+          "height_bp": 376.418,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "4d3470a02c493a6851cd697a1b37e8a646517bb7ffaceef5309ded1525ce4722",
+          "typography_audit_sha256": "661c5d9682a290da7bc14dea34fbc0654eb4f9550d18c9b9f22364fdf99374bb",
+          "semantic_typography_checks": 11,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "chapter_wrap_tested": false
+        }
+      ]
     },
     {
       "source": "book/assets/agentic-engineering-cycle.svg",
@@ -3157,23 +3229,31 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
-      "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+      "candidate_sha256": "3dd2251c49e8f97ce9fd5e84a4945765da929e3e43889af5c4558f4debd5d8a0",
       "fill": "Equal 5% grounds identify execution partitions in both panels; shared context stays white.",
-      "bold": "Source-derived emphasis includes Build document context; PAGE 1; PAGE 2; PAGE 3; READY FRONTIER 1; READY FRONTIER 2; READY FRONTIER 3. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "routing": "8 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Equal pale partition grounds; PAGE and READY FRONTIER annotations remain outside action boxes.",
+      "bold": "Bold frontier/page labels and shared document-context operation; italic grouping phrases and result annotations.",
+      "routing": "Panel(a) intentionally retains original diagonal convergence and divergence; panel(b) uses single directed arrows between readiness bands.",
+      "shape": "Page columns and readiness bands retain their grouping roles; annotation text remains outside nodes.",
+      "visual_review": "Restore converging and diverging dependency arrows in panel(a), retain both grouping phrases on single lines, and restore the three italic result annotations in panel(b). Frontier labels move inside their bands so single annotated arrows connect successive readiness groups, as in the original. All prose10pt. Pending author review.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 60,
-        "width_bp": 449.009,
-        "height_bp": 264.086,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/interaction-proof/interlude-graph-two-partitions.pdf",
+        "proof_sha256": "cfacb23b11aec9fd37515e276eb7a11f72cd2867b12bffc6b3b9ef11276a154f",
+        "page": 1,
+        "width_bp": 404.137,
+        "height_bp": 263.555,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "e6e909f0b484fe08fb3685f33d45b63750d8ae529dc2432e0881aba057a47191",
+        "typography_audit_sha256": "d4ece4775400781276ca281d1b4b5422c5d0811a789880125d5c74e91ee94bf9",
+        "semantic_typography_checks": 13,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 10
+        "status": "passed"
       },
       "book_references": [],
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
@@ -3183,7 +3263,26 @@
         "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+          "change": "Restore converging and diverging dependency arrows in panel(a), retain both grouping phrases on single lines, and restore the three italic result annotations in panel(b). Frontier labels move inside their bands so single annotated arrows connect successive readiness groups, as in the original. All prose10pt. Pending author review.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 60,
+            "width_bp": 449.009,
+            "height_bp": 264.086,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 10
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-analysis-before-build.svg",
@@ -3448,23 +3547,31 @@
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
       "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
-      "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
+      "candidate_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
       "fill": "Only acceptable-region field is 5%; dashed production boundary carries grouping.",
-      "bold": "Source-derived emphasis includes Context; tools; routing; authority; sequencing; PRODUCTION PROCESS; ACCEPTABLE REGION; PROCESS DESIGN; Measurement; TOLERANCE. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-      "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Dashed production boundary and span bracket retained; tolerance field alone shaded.",
+      "bold": "Plain ALL-CAPS headings distinguish factory, process design, and tolerance; explanations stay regular below heading rules.",
+      "routing": "Existing production, measurement, and admission paths unchanged.",
+      "shape": "Remove boxes from SOFTWARE FACTORY and TOLERANCE headings; underline PROCESS DESIGN and TOLERANCE. Preserve process and outcome boxes.",
+      "visual_review": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 69,
+        "date": "2026-11-11",
+        "proof": "latex/build/interaction-proof/process-design-and-tolerance.pdf",
+        "proof_sha256": "0def747c7c1b90cb69cc7a91e31d8a180fbcb2f356bdb86626a125ffa7b6b93a",
+        "page": 1,
         "width_bp": 420.234,
-        "height_bp": 323.856,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 312.851,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "08b8fd1399e6d05f645ed4cc645c033ff893d29625a48a87022c6193c917ab7b",
+        "typography_audit_sha256": "3089a0aa2eda6ec29598f66d8ddd6072cf1a438c7aac106b6ab181e7c43b6d1f",
+        "semantic_typography_checks": 7,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7
+        "status": "passed"
       },
       "book_references": [],
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
@@ -3474,7 +3581,26 @@
         "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
         "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
+          "change": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 69,
+            "width_bp": 420.234,
+            "height_bp": 323.856,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 7
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/build-stages-timeline.svg",

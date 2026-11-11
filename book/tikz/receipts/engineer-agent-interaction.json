@@ -15,52 +15,100 @@
     "Analysis",
     "Agent",
     "Result",
-    "Implementation"
+    "Implementation",
+    "what do I know, intend, and need to make explicit?",
+    "what does the evidence justify believing or doing?"
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Light left communication group and darker right evaluation group restore the two original modes; shared implementation remains outside both.",
+  "bw_encoding": "White nodes and panels; bare bold mode headings and italic question annotations; no heading boxes.",
+  "redesign": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
   "questions": [],
   "alt": "Two panels over one shared implementation node. Left panel, Modeling / Communicating:\n    the engineer fans out through three parallel channels — natural language, specification, and models —\n    which converge on the agent; the agent produces the implementation. Right panel, Alignment /\n    Evaluating: the implementation yields a result, which fans out through three parallel channels —\n    review, testing, and analysis — that converge back on the engineer. The same engineer appears at both\n    upper ends; the single implementation node at the bottom is the hinge between communicating intent\n    and evaluating evidence.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 408.497,
-    "height_pt": 204.524,
+    "width_pt": 408.896,
+    "height_pt": 218.702,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Original and revised raster compared: exact question text restored, heading boxes removed, topology unchanged; all prose10pt.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+      "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+      "page": 1,
+      "width_bp": 408.896,
+      "height_bp": 218.702,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+      "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+      "semantic_typography_checks": 5,
+      "monochrome_pixels": true,
+      "status": "passed"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-    "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+    "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes MODELING / COMMUNICATING; ALIGNMENT / EVALUATING. Current bold uppercase column headings already preserve the meaningful distinction. Uniform source weight on ordinary actor/tool nodes is decorative and remains regular.",
+    "bold": "Bare bold uppercase mode headings; original question subtitles in italics; ordinary node labels regular.",
     "routing": "10 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Communication/evaluation panel boundaries retained; implementation links enter opposing ports.",
+    "shape": "Rounded boxes for actors and channels only; mode headings and question annotations are unboxed.",
+    "visual_review": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 55,
+      "date": "2026-11-11",
+      "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+      "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+      "page": 1,
       "width_bp": 408.896,
-      "height_bp": 204.529,
-      "minimum_prose_font_pt": 10.0,
+      "height_bp": 218.702,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+      "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+      "semantic_typography_checks": 5,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3
+      "status": "passed"
     },
     "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+        "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 55,
+          "width_bp": 408.896,
+          "height_bp": 204.529,
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 3
+        }
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "retained",
+    "decision": "refined",
     "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-    "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
-    "reason": "Current bold uppercase column headings already preserve the meaningful distinction. Uniform source weight on ordinary actor/tool nodes is decorative and remains regular.",
+    "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
     "evidence": [
       {
         "source_text": "MODELING / COMMUNICATING",
@@ -87,8 +135,35 @@
           "text_element_context": "ALIGNMENT / EVALUATING",
           "matching_fragment_count": 1
         }
+      },
+      {
+        "source_text": "what do I know, intend, and need to make explicit?",
+        "source_style": "italic subtitle",
+        "semantic_role": "question guiding the interaction mode",
+        "candidate_text": "what do I know, intend, and need to make explicit?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/engineer-agent-interaction.svg",
+          "element_text_path": "/svg/text[2]/text()",
+          "text_element_context": "what do I know, intend, and need to make explicit?",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "what does the evidence justify believing or doing?",
+        "source_style": "italic subtitle",
+        "semantic_role": "question guiding the interaction mode",
+        "candidate_text": "what does the evidence justify believing or doing?",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/engineer-agent-interaction.svg",
+          "element_text_path": "/svg/text[4]/text()",
+          "text_element_context": "what does the evidence justify believing or doing?",
+          "matching_fragment_count": 1
+        }
       }
     ],
+    "reason": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
     "checks": [
       {
         "text": "MODELING / COMMUNICATING",
@@ -101,80 +176,168 @@
         "italic": false
       },
       {
+        "text": "what do I know, intend, and need to make explicit?",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "what does the evidence justify believing or doing?",
+        "bold": false,
+        "italic": true
+      },
+      {
         "text": "Engineer",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 55,
+      "date": "2026-11-11",
+      "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+      "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+      "page": 1,
       "width_bp": 408.896,
-      "height_bp": 204.529,
-      "minimum_prose_font_pt": 10.0,
+      "height_bp": 218.702,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+      "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+      "semantic_typography_checks": 5,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 3,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "status": "passed"
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+        "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 55,
+          "width_bp": 408.896,
+          "height_bp": 204.529,
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 3
+        }
       }
-    }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
+    "baseline_candidate_sha256": "2af3cbd6cc19938c44fdd3496219a6c60f51bbb3b0e67a87cd7636e149b94ea2",
+    "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
     "decision": "refined",
-    "reason": "Equal-height tool peers; separate left/right convergence rails accommodate their opposing arrow directions with clear terminals.",
-    "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+    "reason": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      408.89599609375,
+      204.5290069580078
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "communication tools",
+          "labels": [
+            "Natural language",
+            "Specification",
+            "Models"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        },
+        {
+          "name": "evaluation tools",
+          "labels": [
+            "Review",
+            "Testing",
+            "Analysis"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+      "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+      "page": 1,
+      "width_bp": 408.896,
+      "height_bp": 218.702,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+      "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+      "semantic_typography_checks": 5,
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
     "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing engineer agent interaction layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
-      "after_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
-      "before_dimensions_bp": [
-        408.89599609375,
-        204.5290069580078
-      ],
+      "decision": "review candidate",
+      "reason": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+      "before_sha256": "2af3cbd6cc19938c44fdd3496219a6c60f51bbb3b0e67a87cd7636e149b94ea2",
+      "after_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
       "after_dimensions_bp": [
-        408.89599609375,
-        204.5290069580078
-      ],
-      "before_font_sizes_pt": [
-        10.0
+        408.896,
+        218.702
       ],
       "after_font_sizes_pt": [
         10.0
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 55,
-      "width_bp": 408.896,
-      "height_bp": 204.529
-    }
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+        "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 55,
+          "width_bp": 408.896,
+          "height_bp": 204.529
+        }
+      }
+    ]
+  },
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
+    "decision": "approved"
   }
 }

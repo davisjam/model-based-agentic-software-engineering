@@ -1,12 +1,15 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
  box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ head/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
+ note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont\itshape,inner sep=0pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
 \node[head,text width=6cm,fill=white] (mh) at (-3.7,0) {MODELING / COMMUNICATING};
 \node[head,text width=6cm,fill=white] (ah) at (3.7,0) {ALIGNMENT / EVALUATING};
+\node[note,text width=6.3cm,anchor=north] (mq) at (-3.7,-.42) {what do I know, intend, and need to make explicit?};
+\node[note,text width=6.3cm,anchor=north] (aq) at (3.7,-.42) {what does the evidence justify believing or doing?};
+\begin{scope}[yshift=-.5cm]
 \node[box,text width=2.3cm] (e1) at (-3.7,-1.5) {Engineer};
 \node[box,text width=2.3cm] (e2) at (3.7,-1.5) {Engineer};
 \node[box,text width=1.8cm,minimum height=1.2cm] (m0) at (-6.0,-3) {Natural\\language};
@@ -32,7 +35,8 @@
 \draw[edge,] (re.north) -- (3.700,-4.050) -- (6.000,-4.050) -- (a2.south);
 \draw[edge] (ag.south)--(-3.7,-6.2)--(im.west);
 \draw[edge] (im.east)--(3.7,-6.2)--(re.south);
+\end{scope}
 \begin{scope}[on background layer]
-\draw[draw=black!50,fill=white] (-7.1,.45) rectangle (-.3,-5.3);\draw[draw=black!50,fill=white] (.3,.45) rectangle (7.1,-5.3);
+\draw[draw=black!50,fill=white] (-7.1,.45) rectangle (-.3,-5.8);\draw[draw=black!50,fill=white] (.3,.45) rectangle (7.1,-5.8);
 \end{scope}
 \end{tikzpicture}

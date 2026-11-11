@@ -1,56 +1,132 @@
 {
   "source": "book/assets/alignment-kernel.svg",
   "claim": "*Incrementally extending the alignment kernel.* The kernel contains the modeled properties that must already be protected while active alignment changes the system. Additional models extend the governed surface, but each new alignment operates subject to the constraints established by the models already in the kernel. The layers are not different classes of model; they show models such as those introduced in Chapter 2 becoming governing constraints over time.",
-  "topology": "Four-step procedure beside concentric protected regions, preserving containment rather than changing it into a chain.",
+  "topology": "Four nested governing layers remain concentric, with initial kernel M_A at the center and M_B, M_C, M_D progressing outward. The numbered four-step sequence remains a separate action progression, now to the left of the circles: identify kernel, actively align, extend, repeat. The layers are not model classes and are not equated with the numbered steps.",
   "required_terms": [
-    "1. Identify the kernel\\ properties that must stay protected.",
-    "2. Actively align\\ the system until it satisfies the kernel.",
-    "3. Extend\\ models under established constraints.",
-    "4. Repeat\\ model narrows later change.",
-    "Kernel M_1",
-    "M_2",
-    "M_3",
-    "M_4",
-    "Governed surface grows over time",
-    "New models are admitted under constraints inside them. Active alignment operates within the protected region."
+    "Identify the kernel",
+    "Model properties that",
+    "must stay protected.",
+    "Actively align",
+    "Change the system until",
+    "it satisfies the kernel.",
+    "Extend",
+    "Add models under",
+    "established constraints.",
+    "Repeat",
+    "Each model narrows",
+    "later change.",
+    "Kernel",
+    "MA",
+    "MB",
+    "MC",
+    "MD",
+    "Governed surface grows over time"
   ],
-  "bw_encoding": "Only protected kernel is 5%; nested outlines identify later layers.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Nested protection layers regain progressively stronger gray toward the kernel, rather than identical ring fills. Fidelity pass: Restored ellipsis in expanding protection rings, preserving open-ended extension beyond the named models.",
+  "bw_encoding": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
+  "redesign": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
   "questions": [],
-  "alt": "Left, a numbered four-step procedure: 1 identify the kernel — model the properties that\n    must stay protected while the system changes; 2 actively align — use the models to change the system\n    until it satisfies the kernel; 3 extend — add the next models, subject to the constraints already\n    established; 4 repeat — each new model narrows what later change is allowed to do. Right, a flat\n    concentric diagram: the kernel M1 sits at the centre, with M2, M3, and M4 as successively larger nested\n    rings. An annotation notes that the governed surface grows over time; another that each new model is\n    admitted under the constraints of the models inside it; and a third that active alignment operates\n    within the protected region. Circular step-number markers run beside the procedure prose and are joined by downward arrows.",
+  "alt": "Four nested governing layers remain concentric, with initial kernel M_A at the center and M_B, M_C, M_D progressing outward. The numbered four-step sequence remains a separate action progression, now to the left of the circles: identify kernel, actively align, extend, repeat. The layers are not model classes and are not equated with the numbered steps.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 392.6719970703125,
-    "height_pt": 255.4929962158203,
+    "width_pt": 252.573,
+    "height_pt": 212.506,
     "monochrome": true,
-    "inspection": "Original source raster and native final PDF raster compared for icons, links, grouping, external annotations and font hierarchy; native 9–12pt prose; geometry sensor has zero findings."
+    "inspection": "Color source and native raster inspected; step wording and nested-layer relationships retained. Removed bottom annotation is redundant with unchanged caption and main text. Lettered model identifiers prevent confusion with action numbers. All prose10pt; geometry0 and semantic typography15/15.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+      "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+      "page": 1,
+      "width_bp": 252.573,
+      "height_bp": 212.506,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+      "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+      "semantic_typography_checks": 15,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "chapter_wrap_tested": false,
+      "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
-    "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-    "fill": "Only protected kernel is 5%; nested outlines identify later layers.",
+    "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+    "fill": "Concentric layers use 3%, 7%, 11% and 16% gray, lightest outside and darkest in the initial kernel, imitating the original’s single green family. Containment and M_A–M_D labels carry the meaning independently of tone. Step circles use 8% gray and remain numbered 1–4 with directed progression.",
     "bold": "Source-derived emphasis includes Identify the kernel; Actively align; Extend; Repeat; Kernel. Step names regain bold above their regular instructions; kernel label identifies the protected core.",
-    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "routing": "Three downward arrows connect the closely positioned numbered steps; concentric layer containment remains unchanged.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
-    "visual_review": "Nested M1–M4 rings and ellipsis retain expansion meaning; only kernel shaded. Restored circular step numbers joined by the sequence arrows, with adjacent left-aligned procedure prose; preserved nested kernel rings and ellipsis.",
+    "visual_review": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 57,
-      "width_bp": 413.811,
-      "height_bp": 255.089,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-11",
+      "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+      "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+      "page": 1,
+      "width_bp": 252.573,
+      "height_bp": 212.506,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+      "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+      "semantic_typography_checks": 15,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 7
+      "status": "passed",
+      "chapter_wrap_tested": false,
+      "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
     },
     "book_references": [],
-    "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors."
+    "routing_exceptions": "Concentric rings encode increasing governed surface; they are geometric regions, not process connectors.",
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 57,
+        "width_bp": 413.811,
+        "height_bp": 255.089,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 7
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+        "proof_sha256": "a63835ea0f6bb34dd8d6976aacba1fd68f87c591f409dfc7e6e55d90a0e75e1d",
+        "page": 1,
+        "width_bp": 183.574,
+        "height_bp": 376.418,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "4d3470a02c493a6851cd697a1b37e8a646517bb7ffaceef5309ded1525ce4722",
+        "typography_audit_sha256": "661c5d9682a290da7bc14dea34fbc0654eb4f9550d18c9b9f22364fdf99374bb",
+        "semantic_typography_checks": 11,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "chapter_wrap_tested": false
+      }
+    ]
   },
   "shape_review": {
     "index": 14,
@@ -69,11 +145,9 @@
     "geometry_findings": []
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
-    "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-    "reason": "Step names regain bold above their regular instructions; kernel label identifies the protected core.",
+    "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
     "evidence": [
       {
         "source_text": "Identify the kernel",
@@ -154,6 +228,7 @@
         }
       }
     ],
+    "reason": "Keep every prose label at10pt. Bold step headings and Kernel retain emphasis; top annotation remains italic. Lettered mathematical subscripts distinguish model identities from numbered actions.",
     "checks": [
       {
         "text": "Identify the kernel",
@@ -181,89 +256,205 @@
         "italic": false
       },
       {
-        "text": "Governed surface grows over time",
+        "text": "Governed surface",
         "bold": false,
         "italic": true
       },
       {
-        "text": "Model properties that",
+        "text": "grows over time",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Model properties",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "protected.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Change the system",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "the kernel.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Add models under",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "constraints.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Each model narrows",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "later change.",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 57,
-      "width_bp": 413.811,
-      "height_bp": 255.089,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 7,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
-  },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "A numbered method and concentric governed regions intentionally use different geometries. No comparable process-box peers require resizing.",
-    "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing alignment kernel layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-      "after_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
-      "before_dimensions_bp": [
-        413.8110046386719,
-        255.08900451660156
-      ],
-      "after_dimensions_bp": [
-        413.8110046386719,
-        255.08900451660156
-      ],
-      "before_font_sizes_pt": [
-        6.0,
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        6.0,
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "date": "2026-11-11",
+      "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+      "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+      "page": 1,
+      "width_bp": 252.573,
+      "height_bp": 212.506,
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+      "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+      "semantic_typography_checks": 15,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 57,
-      "width_bp": 413.811,
-      "height_bp": 255.089
-    }
+      "chapter_wrap_tested": false,
+      "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 57,
+        "width_bp": 413.811,
+        "height_bp": 255.089,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 7
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+        "proof_sha256": "a63835ea0f6bb34dd8d6976aacba1fd68f87c591f409dfc7e6e55d90a0e75e1d",
+        "page": 1,
+        "width_bp": 183.574,
+        "height_bp": 376.418,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "4d3470a02c493a6851cd697a1b37e8a646517bb7ffaceef5309ded1525ce4722",
+        "typography_audit_sha256": "661c5d9682a290da7bc14dea34fbc0654eb4f9550d18c9b9f22364fdf99374bb",
+        "semantic_typography_checks": 11,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "chapter_wrap_tested": false
+      }
+    ]
+  },
+  "layout_review": {
+    "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
+    "baseline_candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
+    "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+    "decision": "refined",
+    "reason": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      413.8110046386719,
+      255.08900451660156
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+      "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+      "page": 1,
+      "width_bp": 252.573,
+      "height_bp": 212.506,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+      "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+      "semantic_typography_checks": 15,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "chapter_wrap_tested": false,
+      "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+    },
+    "page_layout": {
+      "decision": "review candidate",
+      "reason": "Review candidate addressing author feedback: distinguish numbered actions 1–4 from models M_A–M_D; restore light, progressively darker inward shading; bring each number next to its action and place the compact action list to the left of the bullseye. Remove the poorly arranged bottom annotation because its protected-region and admission claims are already explained in the unchanged caption and adjacent kernel discussion. Preserve every existing step phrase, nested-circle meaning and 10pt prose. The ellipsis is removed. A separate contextual proof uses the actual section prose and caption in the house template, with the figure beside prose at 56.5% of the text width; final chapter integration remains untested.",
+      "native_dimensions_bp": [
+        252.573,
+        212.506
+      ],
+      "chapter_wrap_tested": false,
+      "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf",
+      "reviewed_visually": true
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 57,
+        "width_bp": 413.811,
+        "height_bp": 255.089
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+        "proof_sha256": "a63835ea0f6bb34dd8d6976aacba1fd68f87c591f409dfc7e6e55d90a0e75e1d",
+        "page": 1,
+        "width_bp": 183.574,
+        "height_bp": 376.418,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "4d3470a02c493a6851cd697a1b37e8a646517bb7ffaceef5309ded1525ce4722",
+        "typography_audit_sha256": "661c5d9682a290da7bc14dea34fbc0654eb4f9550d18c9b9f22364fdf99374bb",
+        "semantic_typography_checks": 11,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "chapter_wrap_tested": false
+      }
+    ]
+  },
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
+    "decision": "approved"
   }
 }

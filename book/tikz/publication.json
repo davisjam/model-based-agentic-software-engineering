@@ -142,6 +142,21 @@
       "approved_date": "2026-11-11",
       "reason": "Author explicitly approved the consolidated black-and-white review Figure 4.10; publish only this native artwork and remove the companion from the PDF.",
       "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023"
+    },
+    "book/assets/engineer-agent-interaction.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved revised black-and-white review Figure 4.1 in the sidebar; remove its color companion from the PDF.",
+      "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8"
+    },
+    "book/assets/alignment-kernel.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved revised black-and-white review Figure 4.3 in the sidebar; remove its color companion from the PDF.",
+      "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142"
+    },
+    "book/assets/interlude-graph-two-partitions.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved revised black-and-white review Figure4.7 after restoration of dependency arrows and frontier annotations; remove its color companion.",
+      "candidate_sha256": "3dd2251c49e8f97ce9fd5e84a4945765da929e3e43889af5c4558f4debd5d8a0"
     }
   }
 }

@@ -14179,9 +14179,9 @@
     {
       "source": "book/assets/engineer-agent-interaction.svg",
       "candidate": "book/tikz/figures/engineer-agent-interaction.tex",
-      "decision": "retained",
+      "decision": "refined",
       "source_sha256": "cc263a7dffe299a65896b2b7cebb7ef66c4fa4e2f4d98b75452edf4a2e1609c6",
-      "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+      "candidate_sha256": "0428e31c89502998c78ab5fe8fb0811ebf288cf8a43c6cfb7e6c119f229dd8c8",
       "evidence": [
         {
           "source_text": "MODELING / COMMUNICATING",
@@ -14208,9 +14208,35 @@
             "text_element_context": "ALIGNMENT / EVALUATING",
             "matching_fragment_count": 1
           }
+        },
+        {
+          "source_text": "what do I know, intend, and need to make explicit?",
+          "source_style": "italic subtitle",
+          "semantic_role": "question guiding the interaction mode",
+          "candidate_text": "what do I know, intend, and need to make explicit?",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/engineer-agent-interaction.svg",
+            "element_text_path": "/svg/text[2]/text()",
+            "text_element_context": "what do I know, intend, and need to make explicit?",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "what does the evidence justify believing or doing?",
+          "source_style": "italic subtitle",
+          "semantic_role": "question guiding the interaction mode",
+          "candidate_text": "what does the evidence justify believing or doing?",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/engineer-agent-interaction.svg",
+            "element_text_path": "/svg/text[4]/text()",
+            "text_element_context": "what does the evidence justify believing or doing?",
+            "matching_fragment_count": 1
+          }
         }
       ],
-      "reason": "Current bold uppercase column headings already preserve the meaningful distinction. Uniform source weight on ordinary actor/tool nodes is decorative and remains regular.",
+      "reason": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
       "checks": [
         {
           "text": "MODELING / COMMUNICATING",
@@ -14223,23 +14249,60 @@
           "italic": false
         },
         {
+          "text": "what do I know, intend, and need to make explicit?",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "what does the evidence justify believing or doing?",
+          "bold": false,
+          "italic": true
+        },
+        {
           "text": "Engineer",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 55,
+        "date": "2026-11-11",
+        "proof": "latex/build/interaction-proof/engineer-agent-interaction.pdf",
+        "proof_sha256": "8030dffe3440cf77d51d4432c3b7cd3ead8cac3c38d026abc08e27c7e042ae2f",
+        "page": 1,
         "width_bp": 408.896,
-        "height_bp": 204.529,
-        "minimum_prose_font_pt": 10.0,
+        "height_bp": 218.702,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "43e9feab0043693c885de02a184226d8134af229d89b278bc69f9999e91d5847",
+        "typography_audit_sha256": "892456f785d58ab0bf349ab6b8154b1d9e71c89e9f9a0db0c21a2e79b66f5833",
+        "semantic_typography_checks": 5,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 3
-      }
+        "status": "passed"
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "5d939fb081ac7949fab211aa9e490f1405f891f64604cc83e2a4c4bdcdda7039",
+          "change": "Restore both original italic question subtitles and use bare bold headings instead of boxed headings. Move the unchanged channel diagram down by 0.5cm to give the two-line subtitles clear space. Retain the panel boundaries, all nodes, directions, and shared implementation hinge. Pending author review.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 55,
+            "width_bp": 408.896,
+            "height_bp": 204.529,
+            "minimum_prose_font_pt": 10.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 3
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/active-passive-alignment.svg",
@@ -14347,7 +14410,7 @@
       "candidate": "book/tikz/figures/alignment-kernel.tex",
       "decision": "refined",
       "source_sha256": "d7a68818b3a2575c2a3ea2e8403e4ac8372229d09faa91aa63248ad4b12ad748",
-      "candidate_sha256": "2d324a4d6d9430e266e0635a7e41c895d1d2135cfbb1a4dd374a7b50768559df",
+      "candidate_sha256": "f5287474ed912abdcdd37d95a3b78ba1ff1425d4347d5cf59b8d5e18f54fb142",
       "evidence": [
         {
           "source_text": "Identify the kernel",
@@ -14428,7 +14491,7 @@
           }
         }
       ],
-      "reason": "Step names regain bold above their regular instructions; kernel label identifies the protected core.",
+      "reason": "Keep every prose label at10pt. Bold step headings and Kernel retain emphasis; top annotation remains italic. Lettered mathematical subscripts distinguish model identities from numbered actions.",
       "checks": [
         {
           "text": "Identify the kernel",
@@ -14456,28 +14519,113 @@
           "italic": false
         },
         {
-          "text": "Governed surface grows over time",
+          "text": "Governed surface",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Model properties that",
+          "text": "grows over time",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Model properties",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "protected.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Change the system",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "the kernel.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Add models under",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "constraints.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Each model narrows",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "later change.",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 57,
-        "width_bp": 413.811,
-        "height_bp": 255.089,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+        "proof_sha256": "6357971330b975846ab42d1c4bc5f302be15c5b37c36b601d155cf18a8068032",
+        "page": 1,
+        "width_bp": 252.573,
+        "height_bp": 212.506,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "55f923d644a96ece89fa3615d88856a22fa1a848d6fba0033eb64f2e1c3f489a",
+        "typography_audit_sha256": "d1594216d30e67100dbac7a0f94296d32a8192729ed7b243b4940014397cfffd",
+        "semantic_typography_checks": 15,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7
-      }
+        "status": "passed",
+        "chapter_wrap_tested": false,
+        "contextual_column_proof": "latex/build/kernel-proof/kernel-context.pdf"
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 57,
+          "width_bp": 413.811,
+          "height_bp": 255.089,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 7
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/kernel-proof/alignment-kernel.pdf",
+          "proof_sha256": "a63835ea0f6bb34dd8d6976aacba1fd68f87c591f409dfc7e6e55d90a0e75e1d",
+          "page": 1,
+          "width_bp": 183.574,
+          "height_bp": 376.418,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "4d3470a02c493a6851cd697a1b37e8a646517bb7ffaceef5309ded1525ce4722",
+          "typography_audit_sha256": "661c5d9682a290da7bc14dea34fbc0654eb4f9550d18c9b9f22364fdf99374bb",
+          "semantic_typography_checks": 11,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "chapter_wrap_tested": false
+        }
+      ]
     },
     {
       "source": "book/assets/agentic-engineering-cycle.svg",
@@ -15665,7 +15813,7 @@
       "candidate": "book/tikz/figures/interlude-graph-two-partitions.tex",
       "decision": "refined",
       "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
-      "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+      "candidate_sha256": "3dd2251c49e8f97ce9fd5e84a4945765da929e3e43889af5c4558f4debd5d8a0",
       "evidence": [
         {
           "source_text": "build document context",
@@ -15900,9 +16048,30 @@
               }
             }
           ]
+        },
+        {
+          "source_text": "page-analysis results",
+          "source_style": "italic result annotation",
+          "semantic_role": "information passed between ready frontiers",
+          "candidate_text": "page-analysis results",
+          "candidate_style": "italic"
+        },
+        {
+          "source_text": "document context",
+          "source_style": "italic result annotation",
+          "semantic_role": "information passed between ready frontiers",
+          "candidate_text": "document context",
+          "candidate_style": "italic"
+        },
+        {
+          "source_text": "alt-text results",
+          "source_style": "italic result annotation",
+          "semantic_role": "information passed between ready frontiers",
+          "candidate_text": "alt-text results",
+          "candidate_style": "italic"
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Restore converging and diverging dependency arrows in panel(a), retain both grouping phrases on single lines, and restore the three italic result annotations in panel(b). Frontier labels move inside their bands so single annotated arrows connect successive readiness groups, as in the original. All prose10pt. Pending author review.",
       "checks": [
         {
           "text": "Build document context",
@@ -15944,19 +16113,42 @@
           "text": "Analyze",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "page-analysis results",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "document context",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "alt-text results",
+          "bold": false,
+          "italic": true
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 60,
-        "width_bp": 449.009,
-        "height_bp": 264.086,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/interaction-proof/interlude-graph-two-partitions.pdf",
+        "proof_sha256": "cfacb23b11aec9fd37515e276eb7a11f72cd2867b12bffc6b3b9ef11276a154f",
+        "page": 1,
+        "width_bp": 404.137,
+        "height_bp": 263.555,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "e6e909f0b484fe08fb3685f33d45b63750d8ae529dc2432e0881aba057a47191",
+        "typography_audit_sha256": "d4ece4775400781276ca281d1b4b5422c5d0811a789880125d5c74e91ee94bf9",
+        "semantic_typography_checks": 13,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 10
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -15964,7 +16156,26 @@
         "source_sha256": "736fa2d6c4f1d5e38067c4f7ca9ac4892d4fcb81aefe26da629380579b2174e1",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "07098814e9684bcd28b406b800a26302d540fff43d7e1b462ef6954c8c9e4446",
+          "change": "Restore converging and diverging dependency arrows in panel(a), retain both grouping phrases on single lines, and restore the three italic result annotations in panel(b). Frontier labels move inside their bands so single annotated arrows connect successive readiness groups, as in the original. All prose10pt. Pending author review.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 60,
+            "width_bp": 449.009,
+            "height_bp": 264.086,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 10
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-analysis-before-build.svg",
@@ -16983,10 +17194,10 @@
       "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
       "decision": "refined",
       "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
-      "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
+      "candidate_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
       "evidence": [
         {
-          "source_text": "context \u00b7 tools \u00b7 routing \u00b7 authority \u00b7 sequencing",
+          "source_text": "context · tools · routing · authority · sequencing",
           "source_style": {
             "font-weight": "700",
             "font-style": "normal",
@@ -16997,7 +17208,7 @@
           "candidate_style": "bold",
           "source_fragments": [
             {
-              "text": "context \u00b7 tools \u00b7 routing \u00b7 authority \u00b7 sequencing",
+              "text": "context · tools · routing · authority · sequencing",
               "style": {
                 "font-weight": "700",
                 "font-style": "normal",
@@ -17142,7 +17353,7 @@
           ]
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
       "checks": [
         {
           "text": "Context; tools; routing; authority; sequencing",
@@ -17175,16 +17386,24 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 69,
+        "date": "2026-11-11",
+        "proof": "latex/build/interaction-proof/process-design-and-tolerance.pdf",
+        "proof_sha256": "0def747c7c1b90cb69cc7a91e31d8a180fbcb2f356bdb86626a125ffa7b6b93a",
+        "page": 1,
         "width_bp": 420.234,
-        "height_bp": 323.856,
-        "minimum_prose_font_pt": 9.0,
+        "height_bp": 312.851,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "08b8fd1399e6d05f645ed4cc645c033ff893d29625a48a87022c6193c917ab7b",
+        "typography_audit_sha256": "3089a0aa2eda6ec29598f66d8ddd6072cf1a438c7aac106b6ab181e7c43b6d1f",
+        "semantic_typography_checks": 7,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -17192,7 +17411,26 @@
         "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
         "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
+          "change": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 69,
+            "width_bp": 420.234,
+            "height_bp": 323.856,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 7
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/build-stages-timeline.svg",
