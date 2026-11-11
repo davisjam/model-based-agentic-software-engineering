@@ -6545,232 +6545,335 @@
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
       "decision": "refined",
-      "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
-      "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
+      "source_sha256": "ba53b312c980724d0382cdba7f1b9ddf463850dea67b67e5b5897f023e9721bf",
+      "candidate_sha256": "ef2ebe06249d7b93edf3c64a23456d0094c582967b0100ecbd28af3d500af05e",
       "evidence": [
         {
-          "source_text": "A typed structural model of DocAble’s remediation computations.",
-          "source_style": "font-size:21.5px;font-style:italic;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "A typed structural model of DocAble’s remediation computations.",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "A typed structural model of DocAble’s remediation computations.",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Classify",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Classify",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "Classify",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Repair",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(format, needs)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Repair",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "Repair",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "structure",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "structure",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "structure",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Repair",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(typed patch)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Repair",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "Repair",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "metadata",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "metadata",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "metadata",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Apply patches",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(typed patch)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Apply patches",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "Apply patches",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Validate",
-          "source_style": "font-size:20px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
-          "candidate_text": "Validate",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(direct edit)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "Check alt-text",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[12]/text()",
-            "text_element_context": "Validate",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Computation:",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(read-only)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Computation:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[14]/text()",
-            "text_element_context": "Computation:",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Control gate:",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "a registered",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "remediation step",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(e.g., classify, repair,",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "check).",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Control gate:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[19]/text()",
-            "text_element_context": "Control gate:",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Data flow:",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "classification",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Data flow:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[21]/text()",
-            "text_element_context": "Data flow:",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Mutation behavior:",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
-          "candidate_text": "Mutation behavior:",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[26]/text()",
-            "text_element_context": "Mutation behavior:",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "produces",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Apply seam:",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "information",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "used by another",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "computation.",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Apply seam:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[31]/text()",
-            "text_element_context": "Apply seam:",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Node (computation) type",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "where patches are",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "applied to the",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Node (computation) type",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[34]/text()",
-            "text_element_context": "Node (computation) type",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "Dependency (edge) type",
-          "source_style": "font-size:19px;font-weight:bold;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "Dependency (edge) type",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[35]/text()",
-            "text_element_context": "Dependency (edge) type",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "The model preserves computation identity, mutation behavior, apply seams, and",
-          "source_style": "font-size:20px;font-style:italic;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "= Direct edit (mutates document)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "= Typed patch (produces a patch)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "= Data flow (payload)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "= Control gate",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "125 registered computations; 57 typed composition relations.",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "The model preserves computation identity, mutation behavior, apply seams, and",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[41]/text()",
-            "text_element_context": "The model preserves computation identity, mutation behavior, apply seams, and",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         },
         {
-          "source_text": "declared dependencies—not the code implementing each computation.",
-          "source_style": "font-size:20px;font-style:italic;",
-          "semantic_role": "annotation heading or model-summary emphasis",
+          "semantic_role": "Computation label, relation, or explanatory annotation",
           "candidate_text": "declared dependencies—not the code implementing each computation.",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/from-nodes-to-composition.svg",
-            "element_text_path": "/svg/text[42]/text()",
-            "text_element_context": "declared dependencies—not the code implementing each computation.",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "determines which",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "repairs run.",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "document.",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "(executes if condition holds)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "Mutation behavior:",
+          "candidate_style": "bold",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "•",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "typed patch —",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "produces a patch",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "•",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "direct edit —",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "edits document",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "•",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "read-only —",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "no document edits",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "= Read-only (no document edits)",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "e.g.,",
+          "candidate_style": "italic",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Computation label, relation, or explanatory annotation",
+          "candidate_text": "classify, repair,",
+          "candidate_style": "regular or mixed as authored",
+          "authorization": "Author-requested mutation-category correction,2026-11-11"
         }
       ],
-      "reason": "Preserve the approved Source Sans 3 hierarchy; only e.g., in the Computation example becomes italic, while classify, repair, remains regular. Indented bullet entries remain regular.",
+      "reason": "Correct mutation semantics after author review: read-only Classify and report-only Check alt-text use ellipses; typed repair producers use diamonds; Apply patches is a direct-edit rounded box. Apply-seam annotation remains separate from mutation behavior. Three indented bullets and legend entries distinguish the behaviors. Preserve italic e.g., counts125/57, and the house font/arrow grammar. This is an illustrative subset, not a complete runtime path or all mutation categories.",
       "checks": [
         {
           "text": "A typed structural model of DocAble’s remediation computations.",
@@ -6823,17 +6926,17 @@
           "italic": false
         },
         {
-          "text": "(apply seam)",
+          "text": "(direct edit)",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Validate",
+          "text": "Check alt-text",
           "bold": true,
           "italic": false
         },
         {
-          "text": "(direct edit)",
+          "text": "(read-only)",
           "bold": false,
           "italic": false
         },
@@ -6856,7 +6959,7 @@
           "text": "(e.g., classify, repair,"
         },
         {
-          "text": "validate).",
+          "text": "check).",
           "bold": false,
           "italic": false
         },
@@ -6892,31 +6995,6 @@
         },
         {
           "text": "computation.",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "Mutation behavior:",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "typed patch —",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "produces a patch",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "direct edit —",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "mutates document",
           "bold": false,
           "italic": false
         },
@@ -6989,16 +7067,6 @@
           "italic": false
         },
         {
-          "text": "•",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "•",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "document.",
           "bold": false,
           "italic": false
@@ -7009,35 +7077,88 @@
           "italic": false
         },
         {
-          "text": "e.g.,",
+          "text": "Mutation behavior:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "•",
           "bold": false,
+          "italic": false
+        },
+        {
+          "text": "typed patch —",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "produces a patch",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "•",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "direct edit —",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "edits document",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "•",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "read-only —",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "no document edits",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "= Read-only (no document edits)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "e.g.,",
           "italic": true
         },
         {
           "text": "classify, repair,",
-          "bold": false,
           "italic": false
         }
       ],
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
+        "proof_sha256": "5059b14539ff7a4bac469f7b63f9b69e1019c8759581e35a83f5e30f538bb739",
         "page": 1,
         "width_bp": 448.584,
-        "height_bp": 430.472,
+        "height_bp": 450.848,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "minimum_prose_font_pt": 10.0,
+        "minimum_prose_font_pt": 9.963,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
-        "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 50,
+        "maximum_rgb_channel_delta": 1,
+        "semantic_typography_checks": 54,
+        "geometry_audit_sha256": "feda907ce43b99676b702748c25d1ab8aab3841a9af3f5f3600613bc52a3b3b9",
+        "typography_audit_sha256": "5217055f8d2c3f113d922593e8345339be39484fd30f34f76de77f1c88523aaa",
         "status": "passed"
       },
       "color_source_revision": {
@@ -7066,6 +7187,556 @@
               "semantic_typography_checks": 8
             },
             "reason": "Typed edge classes and relation identifiers carry the payload/control distinction; ordinary pass names stay regular. Category headings moved upward slightly to clear the edge-type labels after weight restoration."
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Correct mutation semantics after author review: read-only Classify and report-only Check alt-text use ellipses; typed repair producers use diamonds; Apply patches is a direct-edit rounded box. Apply-seam annotation remains separate from mutation behavior. Three indented bullets and legend entries distinguish the behaviors. Preserve italic e.g., counts125/57, and the house font/arrow grammar. This is an illustrative subset, not a complete runtime path or all mutation categories.",
+          "previous": {
+            "source": "book/assets/from-nodes-to-composition.svg",
+            "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
+            "decision": "refined",
+            "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
+            "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
+            "evidence": [
+              {
+                "source_text": "A typed structural model of DocAble’s remediation computations.",
+                "source_style": "font-size:21.5px;font-style:italic;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "A typed structural model of DocAble’s remediation computations.",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[1]/text()",
+                  "text_element_context": "A typed structural model of DocAble’s remediation computations.",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Classify",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Classify",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[2]/text()",
+                  "text_element_context": "Classify",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Repair",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Repair",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[4]/text()",
+                  "text_element_context": "Repair",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "structure",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "structure",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[5]/text()",
+                  "text_element_context": "structure",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Repair",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Repair",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[7]/text()",
+                  "text_element_context": "Repair",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "metadata",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "metadata",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[8]/text()",
+                  "text_element_context": "metadata",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Apply patches",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Apply patches",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[10]/text()",
+                  "text_element_context": "Apply patches",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Validate",
+                "source_style": "font-size:20px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Validate",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[12]/text()",
+                  "text_element_context": "Validate",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Computation:",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Computation:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[14]/text()",
+                  "text_element_context": "Computation:",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Control gate:",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Control gate:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[19]/text()",
+                  "text_element_context": "Control gate:",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Data flow:",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Data flow:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[21]/text()",
+                  "text_element_context": "Data flow:",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Mutation behavior:",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Mutation behavior:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[26]/text()",
+                  "text_element_context": "Mutation behavior:",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Apply seam:",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Apply seam:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[31]/text()",
+                  "text_element_context": "Apply seam:",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Node (computation) type",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Node (computation) type",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[34]/text()",
+                  "text_element_context": "Node (computation) type",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Dependency (edge) type",
+                "source_style": "font-size:19px;font-weight:bold;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "Dependency (edge) type",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[35]/text()",
+                  "text_element_context": "Dependency (edge) type",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "The model preserves computation identity, mutation behavior, apply seams, and",
+                "source_style": "font-size:20px;font-style:italic;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "The model preserves computation identity, mutation behavior, apply seams, and",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[41]/text()",
+                  "text_element_context": "The model preserves computation identity, mutation behavior, apply seams, and",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "declared dependencies—not the code implementing each computation.",
+                "source_style": "font-size:20px;font-style:italic;",
+                "semantic_role": "annotation heading or model-summary emphasis",
+                "candidate_text": "declared dependencies—not the code implementing each computation.",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/from-nodes-to-composition.svg",
+                  "element_text_path": "/svg/text[42]/text()",
+                  "text_element_context": "declared dependencies—not the code implementing each computation.",
+                  "matching_fragment_count": 1
+                }
+              }
+            ],
+            "reason": "Preserve the approved Source Sans 3 hierarchy; only e.g., in the Computation example becomes italic, while classify, repair, remains regular. Indented bullet entries remain regular.",
+            "checks": [
+              {
+                "text": "A typed structural model of DocAble’s remediation computations.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Classify",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(format, needs)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Repair",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "structure",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(typed patch)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Repair",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "metadata",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(typed patch)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Apply patches",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(apply seam)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Validate",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "(direct edit)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Computation:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "a registered",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "remediation step",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(e.g., classify, repair,"
+              },
+              {
+                "text": "validate).",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Control gate:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "classification",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Data flow:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "produces",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "information",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "used by another",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "computation.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Mutation behavior:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "typed patch —",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "produces a patch",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "direct edit —",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "mutates document",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Apply seam:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "where patches are",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "applied to the",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "Node (computation) type",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Dependency (edge) type",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "= Direct edit (mutates document)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "= Typed patch (produces a patch)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "= Data flow (payload)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "= Control gate",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "125 registered computations; 57 typed composition relations."
+              },
+              {
+                "text": "The model preserves computation identity, mutation behavior, apply seams, and",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "declared dependencies—not the code implementing each computation.",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "determines which",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "repairs run.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "•",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "•",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "document.",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(executes if condition holds)",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "e.g.,",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "classify, repair,",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+              "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
+              "page": 1,
+              "width_bp": 448.584,
+              "height_bp": 430.472,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 0,
+              "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+              "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 50,
+              "status": "passed"
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "f943b2b9a06e7548b18b521853c39acfe60d6dfa2804c49bd83bda66b7870ebe",
+              "source_sha256": "5173c750378c1a9d7a104f4534d11112c06082eddc3631eb465b3b0126447322",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            },
+            "validation_history": [
+              {
+                "date": "2026-11-09",
+                "proof": "latex/build/tikz/candidates.pdf",
+                "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+                "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+                "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "monochrome_pixels": true,
+                "status": "passed",
+                "page": 20,
+                "width_bp": 390.839,
+                "height_bp": 275.664,
+                "minimum_prose_font_pt": 8.97,
+                "semantic_typography_checks": 8
+              },
+              {
+                "date": "2026-11-11",
+                "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+                "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+                "page": 1,
+                "width_bp": 448.584,
+                "height_bp": 430.472,
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "minimum_prose_font_pt": 10.0,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "checked_terminal_approaches": 0,
+                "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+                "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+                "monochrome_pixels": true,
+                "semantic_typography_checks": 46,
+                "status": "passed"
+              }
+            ]
           }
         }
       ],

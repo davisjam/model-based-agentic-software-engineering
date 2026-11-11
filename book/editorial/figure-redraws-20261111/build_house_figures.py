@@ -19,6 +19,46 @@ def text(x,y,words,size=19,bold=False,italic=False):
     e.text=words
     return e
 
+
+def correct_mutation_categories(root, bw):
+    """Distinguish report-only computations from mutation; keep seam orthogonal.
+
+    Grounding: system-models/remediation_graph.py MutationKind.READ_ONLY and
+    PdfAltTextSpecificityCritiquePass (ReadOnly, report-only). This teaching
+    fragment shows three behaviors, not every registry category or runtime path.
+    """
+    for e in list(root):
+        tag=name(e);t=content(e)
+        if tag=='rect' and (e.get('x'),e.get('y')) in [('289','126'),('281','509')]:
+            x,y,w,h=[float(e.get(k)) for k in ('x','y','width','height')]
+            ellipse=ET.Element('{'+NS+'}ellipse',{'cx':str(x+w/2),'cy':str(y+h/2),'rx':str(w/2),'ry':str(h/2),'fill':'white','stroke':'#333','stroke-width':'1.2'})
+            root.insert(list(root).index(e),ellipse);root.remove(e);continue
+        if tag=='text' and t=='Validate':e.text='Check alt-text'
+        if tag=='text' and t=='(direct edit)':e.text='(read-only)'
+        if tag=='text' and t=='(apply seam)':e.text='(direct edit)'
+        if tag=='text' and t=='validate).':e.text='check).'
+        # Reflow the mutation annotation into three indented bullets.
+        if tag=='text' and (e.get('x') in ['590','606']) and 350<=float(e.get('y','0'))<=444:
+            root.remove(e);continue
+        if tag=='path' and e.get('d')=='M579,382 L498,426':root.remove(e);continue
+        if tag=='rect' and e.get('y')=='584':e.set('height','168')
+        if tag=='path' and e.get('d')=='M376,608 V683':e.set('d','M376,608 V735')
+        # Make room for the third legend entry, without shrinking type.
+        if tag in ['rect','text'] and float(e.get('y','0'))>=726:
+            e.set('y',str(float(e.get('y'))+36))
+    root.append(text(600,327,'Mutation behavior:',18.5,True))
+    for y,first,second in [(350,'typed patch —','produces a patch'),(392,'direct edit —','edits document'),(434,'read-only —','no document edits')]:
+        root.append(text(600,y,'•',18.5))
+        root.append(text(616,y,first,18.5))
+        root.append(text(616,y+20,second,18.5))
+    root.append(ET.Element('{'+NS+'}ellipse',{'cx':'68','cy':'710','rx':'21','ry':'11.5','fill':'white','stroke':'#333','stroke-width':'1.2'}))
+    root.append(text(101,715,'= Read-only (no document edits)',17.5))
+    root.set('height','786');root.set('viewBox','0 70 782 786')
+    for e in root:
+        if name(e)=='rect' and e.get('x')=='0' and e.get('y')=='70':e.set('height','786')
+    for e in root:
+        if name(e)=='desc':e.text='Illustrative remediation computations with read-only, typed-patch and direct-edit behaviors; solid data flow and dashed control dependencies. The apply seam is shown separately.'
+
 class HouseFigure(reference.Figure):
     def leader(self,d,x,y):
         self.add(f'<path d="{d}" class="leader"/>')
@@ -94,6 +134,7 @@ class HouseFigure(reference.Figure):
             root.append(text(48,590,'• At most N retry attempts (e.g., N = 3).',20))
             root.append(text(48,617,'• A job eventually reaches Succeeded or Failed.',20))
             root.append(text(48,644,'• Only one worker actively executes the job at a time.',20))
+        if not is_state:correct_mutation_categories(root,self.bw)
         p=OUT/f'figure-{number}-house-{"bw" if self.bw else "color"}.svg'
         p.write_bytes(ET.tostring(root,encoding='utf-8',xml_declaration=True))
         return p

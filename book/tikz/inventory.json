@@ -297,7 +297,7 @@
   {
     "chapter": "2.2-structural",
     "source": "assets/from-nodes-to-composition.svg",
-    "caption": "*From computations to composition.* This small typed graph fragment distinguishes data flow (solid arrows) from control dependencies (dashed arrows). Diamonds identify typed patch producers; rounded boxes represent direct-edit computations. An annotation identifies the apply seam.",
+    "caption": "*From computations to composition.* This illustrative fragment distinguishes data flow (solid arrows) from control dependencies (dashed arrows). Ellipses identify read-only computations, diamonds typed patch producers, and rounded boxes direct document edits. The apply seam is the boundary where patches are applied; the final alt-text check reports findings without changing the document.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/from-nodes-to-composition.json",
@@ -305,7 +305,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Figure 2.9: Remediation Graph (Typed)",
-    "svg_description": "Editable vector recreation of the author-supplied reference. A typed, structural view of DocAble’s remediation computations."
+    "svg_description": "Illustrative remediation computations with read-only, typed-patch and direct-edit behaviors; solid data flow and dashed control dependencies. The apply seam is shown separately."
   },
   {
     "chapter": "2.3-behavioral",

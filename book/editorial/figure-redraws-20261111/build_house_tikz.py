@@ -74,6 +74,7 @@ for number,stem in [('2-9','from-nodes-to-composition'),('2-10','canonical-behav
    x,y,w,h=map(float,[a.get('x','0'),a.get('y','0'),a['width'],a['height']]);rx=float(a.get('rx','0'))*S
    if rx:opt+=',rounded corners='+num(rx)+'bp'
    out.append(r'\path['+opt+'] '+point(x,y)+' rectangle '+point(x+w,y+h)+';\n')
+  elif tag=='ellipse':out.append(r'\path['+opt+'] '+point(a['cx'],a['cy'])+' ellipse[x radius='+num(float(a['rx'])*S)+'bp,y radius='+num(float(a['ry'])*S)+'bp];\n')
   elif tag=='circle':out.append(r'\path['+opt+'] '+point(a['cx'],a['cy'])+' circle[radius='+num(float(a['r'])*S)+'bp];\n')
   elif tag=='path':out.append(r'\path['+opt+'] '+pathdata(a['d'])+';\n')
   else:raise ValueError(tag)

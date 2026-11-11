@@ -812,35 +812,35 @@
     {
       "source": "book/assets/from-nodes-to-composition.svg",
       "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
-      "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
-      "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
+      "source_sha256": "ba53b312c980724d0382cdba7f1b9ddf463850dea67b67e5b5897f023e9721bf",
+      "candidate_sha256": "ef2ebe06249d7b93edf3c64a23456d0094c582967b0100ecbd28af3d500af05e",
       "decision": "refined",
-      "review": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
+      "review": "Correct mutation semantics after author review: read-only Classify and report-only Check alt-text use ellipses; typed repair producers use diamonds; Apply patches is a direct-edit rounded box. Apply-seam annotation remains separate from mutation behavior. Three indented bullets and legend entries distinguish the behaviors. Preserve italic e.g., counts125/57, and the house font/arrow grammar. This is an illustrative subset, not a complete runtime path or all mutation categories.",
       "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
       "dimensions_cm": [
         15.825,
-        15.1861
+        15.9049
       ],
       "strict_compile_diagnostics": [],
       "validation": {
         "date": "2026-11-11",
         "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
-        "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
+        "proof_sha256": "5059b14539ff7a4bac469f7b63f9b69e1019c8759581e35a83f5e30f538bb739",
         "page": 1,
         "width_bp": 448.584,
-        "height_bp": 430.472,
+        "height_bp": 450.848,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "minimum_prose_font_pt": 10.0,
+        "minimum_prose_font_pt": 9.963,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "checked_terminal_approaches": 0,
-        "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
-        "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 50,
+        "maximum_rgb_channel_delta": 1,
+        "semantic_typography_checks": 54,
+        "geometry_audit_sha256": "feda907ce43b99676b702748c25d1ab8aab3841a9af3f5f3600613bc52a3b3b9",
+        "typography_audit_sha256": "5217055f8d2c3f113d922593e8345339be39484fd30f34f76de77f1c88523aaa",
         "status": "passed"
       },
       "validation_history": [
@@ -906,6 +906,112 @@
           "monochrome_pixels": true,
           "semantic_typography_checks": 46,
           "status": "passed"
+        }
+      ],
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Correct mutation semantics after author review: read-only Classify and report-only Check alt-text use ellipses; typed repair producers use diamonds; Apply patches is a direct-edit rounded box. Apply-seam annotation remains separate from mutation behavior. Three indented bullets and legend entries distinguish the behaviors. Preserve italic e.g., counts125/57, and the house font/arrow grammar. This is an illustrative subset, not a complete runtime path or all mutation categories.",
+          "previous": {
+            "source": "book/assets/from-nodes-to-composition.svg",
+            "candidate": "book/tikz/figures/from-nodes-to-composition.tex",
+            "source_sha256": "abba4091dfba4fd64017f97228a6864f7d81e275aa5bd54633a4e984c6950ae5",
+            "candidate_sha256": "4548a8877ee66b7b24474a727c172df9e4237c9ea09ac5d2dced2eba041b7ff8",
+            "decision": "refined",
+            "review": "Implement the two exact conditions on the author-approved house-style figure: indent and bullet the typed-patch and direct-edit Mutation behavior entries; italicize only e.g., in the Computation example. All other layout, wording, topology and grayscale distinctions remain unchanged.",
+            "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+            "dimensions_cm": [
+              15.825,
+              15.1861
+            ],
+            "strict_compile_diagnostics": [],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+              "proof_sha256": "51373e464d16a89d56593b649d480c4b09c2805cf1db87b47e8f1f02fac76d27",
+              "page": 1,
+              "width_bp": 448.584,
+              "height_bp": 430.472,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "minimum_prose_font_pt": 10.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 0,
+              "geometry_audit_sha256": "a7a9adddf02e90098bb15be294a4f9beedc3d98d2197222e2644c1ff9b4716ae",
+              "typography_audit_sha256": "d8fb1d95553ccfec83e727ce9dd582d31f5e34432213d4044942cf369507136f",
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 50,
+              "status": "passed"
+            },
+            "validation_history": [
+              {
+                "date": "2026-11-11",
+                "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+                "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+                "page": 1,
+                "width_bp": 448.584,
+                "height_bp": 430.472,
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "minimum_prose_font_pt": 10.0,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "checked_terminal_approaches": 0,
+                "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+                "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+                "monochrome_pixels": true,
+                "semantic_typography_checks": 45,
+                "status": "passed"
+              },
+              {
+                "date": "2026-11-11",
+                "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+                "proof_sha256": "c23252188a0302e3d06b4769c9219920436954a38793d14a832f3ce8ba9fd368",
+                "page": 1,
+                "width_bp": 448.584,
+                "height_bp": 430.472,
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "minimum_prose_font_pt": 10.0,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "checked_terminal_approaches": 0,
+                "geometry_audit_sha256": "3490877ca12e7e398c32d16560f0921076908ca887b5044256041b679775f28e",
+                "typography_audit_sha256": "c514567570fff1d5d6d83583f35beb0c30ee79be0633db5b9bf39fe3d873526c",
+                "monochrome_pixels": true,
+                "semantic_typography_checks": 45,
+                "status": "passed"
+              },
+              {
+                "date": "2026-11-11",
+                "proof": "latex/build/reference-native-proof/from-nodes-to-composition.pdf",
+                "proof_sha256": "f4b4c113de8048d875f2cdb463c9d7c700408053888e996230b9244e28445e9f",
+                "page": 1,
+                "width_bp": 448.584,
+                "height_bp": 430.472,
+                "maximum_dimensions_bp": [
+                  450,
+                  560
+                ],
+                "minimum_prose_font_pt": 10.0,
+                "unapproved_compile_diagnostics": 0,
+                "geometry_findings": 0,
+                "checked_terminal_approaches": 0,
+                "geometry_audit_sha256": "ef65a78a4f3c12799f2110625babc5f55f6534df8bc812d2eec8b932852280db",
+                "typography_audit_sha256": "08d7fcb21229a8ea5393e528a4920efddeca44c8680c246a56542936ba225c51",
+                "monochrome_pixels": true,
+                "semantic_typography_checks": 46,
+                "status": "passed"
+              }
+            ]
+          }
         }
       ]
     },
