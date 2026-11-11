@@ -19583,3 +19583,14 @@ Source: `book/latex/sources/part2/2.4-decision.tex`. Replaced with the approved 
 ```latex
 \autoref{service-flow-model} draws the permitted calls. One node is declared publicly reachable; every other edge is an authenticated internal call. The model is the single source of truth for those edges, and the deployment is generated from it rather than inferred from it --- so a completeness check can require every gated edge to be fully specified before the deployment is wired. That check is real and enforced, but it governs the \emph{declaration\textquotesingle s} internal consistency, not the running traffic: the model declares the topology; it is not a runtime firewall.
 ```
+
+
+## 2026-11-11 — Consolidate the ownership-under-contention example
+
+Source: `book/latex/sources/part2/2.3-behavioral.tex`. The author replaced these two overlapping paragraphs with one paragraph that states the invariant and explains the generation-7/generation-8 sequence once.
+
+```latex
+The consequential invariant is about time and contention. Suppose worker A holds the claim at generation 7, appears to stall, and is reclaimed; the job is re-leased to worker B at generation 8. If A now wakes and tries to release using its generation-7 claim, that release must not clear B\textquotesingle s current generation-8 claim. The generation makes the distinction decidable: a release carrying an old generation names a claim that no longer owns, so it is inapplicable to the current one.
+
+\autoref{in-flight-ownership-states} follows this sequence. Worker A initially holds generation 7. After its lease expires, the job becomes reclaimable, and worker B acquires generation 8. When A returns, its release request still names generation 7. The current claim belongs to B at generation 8, so the release must be rejected. The generation number distinguishes successive claims on the same job even when both workers believe they have authority to act. Without it, a delayed operation from A could clear B's valid claim. The model therefore preserves owner, generation, and lifetime while omitting the worker implementation and the machinery that stores the lease.
+```

@@ -16,20 +16,20 @@
     {
       "source": "book/latex/sources/frontmatter/0.2-what-this-book-argues.tex",
       "projection": "book/frontmatter/0.2-what-this-book-argues.md",
-      "source_hash": "9232459a110ce74add1f443235580cdbdd22a87cb64ec12596b60b7bcb50e319",
-      "projection_hash": "ed59ba22684b88b59dca4b96784db2b6d38de50afce14dfe5521ef379424f370"
+      "source_hash": "b3d47d5305c080db23bfd11755bee06c7e3ae0cf31d1f7a955e7b084130ff978",
+      "projection_hash": "b37fdf71de0e55d2b298bccec27c94fbfddebc34ba70147a16ba3519c1958ff8"
     },
     {
       "source": "book/latex/sources/frontmatter/0.4-the-books-language.tex",
       "projection": "book/frontmatter/0.4-the-books-language.md",
-      "source_hash": "48f13898d854d5f438694d03b5ec788ae4afbd20847832e96351a8af86e249f2",
-      "projection_hash": "309d45f43b5656bafa8b959d9c5aecd0ec7ec3f8fa9c80725f6cc8cf42650ec3"
+      "source_hash": "0fb7f6ac1394eeaf16cdfd6fa45c412d7409728240c7416c8b1984033e588e82",
+      "projection_hash": "bd4b1e9f76c9a499909618fdb8de67267dd777ae5538488ec701837fd32a5963"
     },
     {
       "source": "book/latex/sources/frontmatter/0.5-preface.tex",
       "projection": "book/frontmatter/0.5-preface.md",
-      "source_hash": "e8cfb75452f5fefc8a244f6855fa67e06a362ccb714ff22af65089d0861370ae",
-      "projection_hash": "243ce7ad3dc15290de7fd0d1bc46c2876706645da3c36150d4a295a674c8f1c1"
+      "source_hash": "55a101ae6c4ffb80ca741e677b1b213ffdfe7a0df27f35ea498a0d16682e3e8e",
+      "projection_hash": "33060a5b0fefea3cd504db3127722da84ae2d2992537b58f0bdb5c842bc2006a"
     },
     {
       "source": "book/latex/sources/part1/00-part-intro.tex",
@@ -46,8 +46,8 @@
     {
       "source": "book/latex/sources/part1/1.2-the-engineering-object.tex",
       "projection": "book/part1/1.2-the-engineering-object.md",
-      "source_hash": "5bd9e6713ca59185cc825afd3fcbec1699b31992be9de3671e99259403fc3cdb",
-      "projection_hash": "d4eecef1557ad8dfdf5afc1b55b169d70f8ea59148cf3067ee40a99e51c28d9f"
+      "source_hash": "5c6eb800c1b6d25eb674cf92baf98394a27458d366b8abb9020270be8cfa117c",
+      "projection_hash": "5d70f7afd5ecb20d2ace702d43b94cdc3b8543f48496aac9f83b1fdaef1ee49a"
     },
     {
       "source": "book/latex/sources/part1/1.3-mage-by-example.tex",
@@ -84,20 +84,20 @@
     {
       "source": "book/latex/sources/part2/2.1-context-is-the-first-modeling-problem.tex",
       "projection": "book/part2/2.1-context-is-the-first-modeling-problem.md",
-      "source_hash": "558c81f2a28341e2410cb1ccc0d0a7a7103af9cc51d8729e72503e327bc916df",
-      "projection_hash": "d66b7a4f14dcf37138a9e66beaea0c2efbcbe3789ae93fbb9d21a5b3a2d5301b"
+      "source_hash": "8c4fd313edd114c889dc7391f4693e3517f7ea5b9d856beceb721247da738c7d",
+      "projection_hash": "0dcf75f7f3dd8971cb8ab5322dc46b0cd0901e00cf33da415db74416872990ba"
     },
     {
       "source": "book/latex/sources/part2/2.2-structural.tex",
       "projection": "book/part2/2.2-structural.md",
-      "source_hash": "2cef63d063c17cc49eea8c476654f1ac2e66c79cac4dc87987e31963da145ef3",
-      "projection_hash": "29b099984c86850ea29c623188feab1a096df23e3be50bc51f70f926acc9c94c"
+      "source_hash": "648d95f1b74009b63a275edd791979b4ab3b2846d7955d6cb6618b56617e5a18",
+      "projection_hash": "d085a224077216b5e478f6e4afca9dd11b8edfab8e41f0499fcada1ffa896b87"
     },
     {
       "source": "book/latex/sources/part2/2.3-behavioral.tex",
       "projection": "book/part2/2.3-behavioral.md",
-      "source_hash": "5b52343ce99a773f75d90e97217ef5a52271497b51ae9d49182e7a42ea0a7353",
-      "projection_hash": "440ae340b12f6df7a4d955e30b5defe56b33c9f4581534103ba2c4bdc2f02dd3"
+      "source_hash": "1998fff1a662344eb7d0285538acf436b7a615c872bd5b7fd24d2f88bffe489a",
+      "projection_hash": "b36f057dafd762bffe8f000443c4d9c77a37a47167338dd8ce66cb27ae3fe0d6"
     },
     {
       "source": "book/latex/sources/part2/2.4-decision.tex",
@@ -108,8 +108,8 @@
     {
       "source": "book/latex/sources/part2/2.5-system-knowledge.tex",
       "projection": "book/part2/2.5-system-knowledge.md",
-      "source_hash": "f635e0d019070e5dc648b1b821f83bb9635046574d22862e013d3998200723f0",
-      "projection_hash": "9c4d845dffa20900b63d4a22d1d0809acc835c37a364663bc2d84d3010c3291d"
+      "source_hash": "c1f964523485a95d66e65efb20898e4d0653f8c791e378e3a149268648510135",
+      "projection_hash": "870a56098adfb179baa53aeabc368a9400afa1ada9966da020948c5069f428fa"
     },
     {
       "source": "book/latex/sources/part2/2.6-modeling-summary.tex",
@@ -120,8 +120,8 @@
     {
       "source": "book/latex/sources/part3/00-part-intro.tex",
       "projection": "book/part3/00-part-intro.md",
-      "source_hash": "6b29baa5eb469a5cf5c5cde37bfaef651e398ecfe1b85643e66e0f3b7b4f23ce",
-      "projection_hash": "144b209be1e2d49bf93b19ad1409b84ef645c9cfbf457f9674c5102c18fc3a92"
+      "source_hash": "e6765b4f7e295777f9a2add1b110701f773ecc87fbd5f7d1a48376356ac3bc3a",
+      "projection_hash": "bc81f6d77de368f25ab12a1e295eeb73732b0459408d4512d17a580ce0d0269a"
     },
     {
       "source": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
@@ -144,8 +144,8 @@
     {
       "source": "book/latex/sources/part3/3.4-governance-conversion.tex",
       "projection": "book/part3/3.4-governance-conversion.md",
-      "source_hash": "384a7c4548d44c8ccba44f467b6adddce18542f3b1e4b7033e49b9c22ae76b8a",
-      "projection_hash": "910f07327256dd6fc33ef4e421bea33bdc4cf449ff911f630581ed5771d67d38"
+      "source_hash": "6abdc993c7efa3ab3829e5dae486f07d5a732c934f5ff97edaebbf7c3c40857b",
+      "projection_hash": "554f1662903b381002d97c3bc4aeebb6e04bd38ec9c04f734a66f94e69e2d945"
     },
     {
       "source": "book/latex/sources/part3/3.5-when-guardrails-collide.tex",
@@ -270,14 +270,14 @@
     {
       "source": "book/latex/sources/part7/7.1-reorganization-of-se.tex",
       "projection": "book/part7/7.1-reorganization-of-se.md",
-      "source_hash": "50074e1f35f000c14e563b2425dc32a5454de66b73de89ab24cb1627ca549f7a",
-      "projection_hash": "43f8d707f7baf04462771ca60596d79f8f14957446d3a8bb5f4ae50e20db3ce5"
+      "source_hash": "c3b506905e65f4bfb3890aede36cfc8ed72d6f9455a5b01edda14433a386fb1b",
+      "projection_hash": "8c250742a9103f6686b167bba677e20cfa5543959ca9cd38a3b4137bb5f67e26"
     },
     {
       "source": "book/latex/sources/part7/7.2-software-rejoins-engineering.tex",
       "projection": "book/part7/7.2-software-rejoins-engineering.md",
-      "source_hash": "7194aad8de0efb01c587305bd1d70ba49ca72b53605062869769b348d7d03060",
-      "projection_hash": "6b6c31a7380e739e71e815d61f7f9bf739f0bfef21b1bab7879f09899b38d22b"
+      "source_hash": "3fb39140cb599b40c690809d80daab74ee630b923f2874fa6d1b61be4b3ec364",
+      "projection_hash": "20bf92783423a51e68c50de9dcf1f6860e9739221a04de8d9cbd99b47b9912c3"
     },
     {
       "source": "book/latex/sources/part7/7.3-agentic-engineering-beyond-software.tex",

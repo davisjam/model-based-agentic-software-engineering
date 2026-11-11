@@ -153,6 +153,14 @@ that don't.
   artifact." Abstract nouns are useful when the abstraction itself is the subject. Do not turn them into
   actors when the actual actor or operation can be named. If the reader can ask *what actually happens?*,
   answer that question in the sentence.
+- **Name the people making engineering decisions.** Do not use *engineering* as a collective actor
+  meaning an engineer, team, or department. Write “engineers impose the obligation,” “the team decides,”
+  or “the engineer leaves this choice open.” Retain *engineering* when it means the discipline or
+  activity, including historical statements about its practices. This is an actor distinction, not a
+  mechanical ban on the word.
+- **Use “consequential” to make a distinction.** It distinguishes engineering-relevant information,
+  constraints, or choices from incidental details. Do not use it merely as an intensifier for a
+  property, invariant, requirement, or question.
 - **Economy of examples.** Prefer the smallest example that demonstrates the point. Across a chapter, vary
   the examples so the reader sees the abstraction recurring across different engineering domains rather than
   repeatedly through one implementation. This is the word-economy rule one level up: as the sentence rule
