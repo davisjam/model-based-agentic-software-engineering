@@ -5,7 +5,7 @@
   "approved_monochrome": {
     "book/assets/book-map.svg": {
       "approved_date": "2026-11-05",
-      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2–5 enclosure and the optional appendix branches removed."
+      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2\u20135 enclosure and the optional appendix branches removed."
     },
     "book/assets/mage-method.svg": {
       "approved_date": "2026-11-09",
@@ -132,6 +132,16 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved black-and-white Figure 2.22 with restoration of the original footer wording and improved two-line layout.",
       "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248"
+    },
+    "book/assets/interlude-execution-unit.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the consolidated black-and-white review Figure 4.5; publish only this native artwork and remove the companion from the PDF.",
+      "candidate_sha256": "d868d3c067b40154c02601a8164630e9092caa84f1df1b934dd6be46dae8da0e"
+    },
+    "book/assets/interlude-prediction-residual.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the consolidated black-and-white review Figure 4.10; publish only this native artwork and remove the companion from the PDF.",
+      "candidate_sha256": "0a731a691839757c6ca26072e19131636d7ee4222b2843ce61b273ab6872e023"
     }
   }
 }
