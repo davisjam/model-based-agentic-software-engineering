@@ -19,7 +19,7 @@ A component diagram names which services exist; a dependency graph names which m
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/canonical-structural-e9fe021e86.pdf}
-\caption{\emph{The structural move: entities and typed relations.} Nodes are the entities a question needs; edges are the declared relations between them, and the edge label carries the meaning. Its analyses are graph operations --- reachability, path, and cycle checks.}
+\caption{\emph{The structural move: entities and defined relations.} This model states an intended architecture, rather than recording an execution. Every solid arrow denotes a direct dependency; the crossed arrow marks a forbidden bypass. Checking paths makes the obligation precise: every path from Web to Database must pass through API.}
 \label{canonical-structural}
 \end{figure}
 

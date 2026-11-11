@@ -4595,7 +4595,7 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
+      "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
@@ -4761,7 +4761,7 @@
           "source_text": "CALL / CONTROL-FLOW",
           "source_style": "bold",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "Call/control flow",
+          "candidate_text": "Control flow",
           "candidate_style": "bold",
           "source_fragments": [
             {
@@ -4888,7 +4888,7 @@
           "source_text": "May call; dashed = prohibited",
           "source_style": "italic",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "May call; dashed = prohibited",
+          "candidate_text": "Only clearly decorative: omit",
           "candidate_style": "italic",
           "source_fragments": [
             {
@@ -4905,7 +4905,7 @@
           "source_text": "Compare error rate to bound",
           "source_style": "italic",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "Compare error rate to bound",
+          "candidate_text": "Measure; compare with bound",
           "candidate_style": "italic",
           "source_fragments": [
             {
@@ -4956,7 +4956,7 @@
           "source_text": "Calls",
           "source_style": "italic",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "Calls",
+          "candidate_text": "Branches on a condition",
           "candidate_style": "italic",
           "source_fragments": [
             {
@@ -5019,9 +5019,72 @@
               "y": "142"
             }
           ]
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Structure and relationships",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Behavior and flow",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Decisions and evidence",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Classification",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Description",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Required:",
+          "candidate_style": "bold"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "Uncertain/missing",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "error rate = errors / requests",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested differentiated examples and comparison rows",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+          "candidate_text": "error rate < 1%",
+          "candidate_style": "regular"
         }
       ],
-      "reason": "Bold single-line title-case family headings and Q/P/A labels; italic relation semantics; regular miniature entities and explanatory text. All existing 10–10.5pt type retained.",
+      "reason": "Three 11pt bold comparison-row labels, nine 10.5pt bold family headings, and unchanged 10pt content. Table headers, Required and Q/P/A labels are bold; named relation readings are italic; graph entities, table cases, and the quantitative ratio/bound are regular.",
       "checks": [
         {
           "text": "Component/dependency",
@@ -5056,7 +5119,7 @@
           "bold": true
         },
         {
-          "text": "Call/control flow",
+          "text": "Control flow",
           "bold": true
         },
         {
@@ -5084,11 +5147,11 @@
           "italic": true
         },
         {
-          "text": "May call; dashed = prohibited",
+          "text": "Only clearly decorative: omit",
           "italic": true
         },
         {
-          "text": "Compare error rate to bound",
+          "text": "Measure; compare with bound",
           "italic": true
         },
         {
@@ -5100,7 +5163,7 @@
           "italic": true
         },
         {
-          "text": "Calls",
+          "text": "Branches on a condition",
           "italic": true
         },
         {
@@ -5117,11 +5180,56 @@
           "text": "What depends on what?",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Structure and relationships",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Behavior and flow",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Decisions and evidence",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Classification",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Description",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Required:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Uncertain/missing",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "error rate = errors / requests",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "error rate < 1%",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
         "page": 1,
         "width_bp": 449.57,
         "height_bp": 558.364,
@@ -5132,12 +5240,13 @@
         "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "checked_terminal_approaches": 22,
-        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 23,
+        "semantic_typography_checks": 32,
         "single_line_family_headings": 9,
-        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
         "status": "passed"
       },
       "validation_history": [
@@ -5152,6 +5261,27 @@
           "geometry_findings": 0,
           "monochrome_pixels": true,
           "semantic_typography_checks": 23
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 558.364,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 22,
+          "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 23,
+          "single_line_family_headings": 9,
+          "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+          "status": "passed"
         }
       ]
     },
@@ -5160,261 +5290,169 @@
       "candidate": "book/tikz/figures/canonical-structural.tex",
       "decision": "refined",
       "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
-      "candidate_sha256": "db3ffed0c3e386ffbb704ac99b5e18a66082a6a74e605eee3cf6e60f3198efec",
+      "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
       "evidence": [
         {
-          "source_text": "WEB",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
+          "candidate_text": "Structural model",
+          "candidate_style": "bold",
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "WEB",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[3]/text[1]",
-            "text_element_context": "WEB",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "API",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "API",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[3]/text[2]",
-            "text_element_context": "API",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "CACHE",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "CACHE",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[3]/text[3]",
-            "text_element_context": "CACHE",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "DATABASE",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "DATABASE",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[3]/text[4]",
-            "text_element_context": "DATABASE",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "Question:",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "Question:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[7]/text[1]/tspan[1]",
-            "text_element_context": "Question:",
-            "matching_fragment_count": 2
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "Semantics:",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "Semantics:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[7]/text[2]/tspan[1]",
-            "text_element_context": "Semantics:",
-            "matching_fragment_count": 2
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "Analysis:",
-          "source_style": "bold",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Model title, entity or field label",
           "candidate_text": "Analysis:",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[7]/text[3]/tspan[1]",
-            "text_element_context": "Analysis:",
-            "matching_fragment_count": 2
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "Read-through cache example",
-          "source_style": "italic",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
-          "candidate_text": "Read-through cache example",
+          "semantic_role": "Subtitle, relation or explanation",
+          "candidate_text": "Example: A read-through cache",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[1]/text[2]",
-            "text_element_context": "Read-through cache example",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "depends on",
-          "source_style": "italic",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
-          "candidate_text": "depends on",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[5]/text[1]",
-            "text_element_context": "depends on",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "reads through",
-          "source_style": "italic",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
-          "candidate_text": "reads through",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[5]/text[2]",
-            "text_element_context": "reads through",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "loads from",
-          "source_style": "italic",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
-          "candidate_text": "loads from",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[5]/text[3]",
-            "text_element_context": "loads from",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "forbidden",
-          "source_style": "italic",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+          "semantic_role": "Subtitle, relation or explanation",
           "candidate_text": "forbidden bypass",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[6]/text[1]",
-            "text_element_context": "forbidden",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         },
         {
-          "source_text": "Entities and declared structural relations",
-          "source_style": "regular",
-          "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
-          "candidate_text": "Entities and declared structural relations",
+          "semantic_role": "Subtitle, relation or explanation",
+          "candidate_text": "Direct dependency",
           "candidate_style": "regular",
-          "source_locator": {
-            "svg": "book/assets/canonical-structural.svg",
-            "element_text_path": "/svg/g[7]/text[2]",
-            "text_element_context": "Semantics: Entities and declared structural relations",
-            "matching_fragment_count": 1
-          }
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Subtitle, relation or explanation",
+          "candidate_text": "Components and direct dependencies.",
+          "candidate_style": "regular",
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Subtitle, relation or explanation",
+          "candidate_text": "Does every Web-to-Database path",
+          "candidate_style": "regular",
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
+        },
+        {
+          "semantic_role": "Subtitle, relation or explanation",
+          "candidate_text": "pass through the API?",
+          "candidate_style": "regular",
+          "authorization": "Author-requested Figure 2.7 revision, 2026-11-11"
         }
       ],
-      "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
+      "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
       "checks": [
         {
+          "text": "Structural model",
+          "bold": true
+        },
+        {
           "text": "WEB",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
           "text": "API",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
           "text": "CACHE",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
           "text": "DATABASE",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
           "text": "Question:",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
           "text": "Semantics:",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
           "text": "Analysis:",
-          "bold": true,
-          "italic": false
+          "bold": true
         },
         {
-          "text": "Read-through cache example",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "depends on",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "reads through",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "loads from",
-          "bold": false,
-          "italic": true
+          "text": "Example: A read-through cache",
+          "italic": true,
+          "bold": false
         },
         {
           "text": "forbidden bypass",
-          "bold": false,
-          "italic": true
+          "italic": true,
+          "bold": false
         },
         {
-          "text": "Entities and declared structural relations",
-          "bold": false,
-          "italic": false
+          "text": "Direct dependency",
+          "bold": false
+        },
+        {
+          "text": "Components and direct dependencies.",
+          "bold": false
+        },
+        {
+          "text": "Does every Web-to-Database path",
+          "bold": false
+        },
+        {
+          "text": "pass through the API?",
+          "bold": false
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+        "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+        "page": 1,
+        "width_bp": 289.522,
+        "height_bp": 234.278,
+        "minimum_prose_font_pt": 10.959,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 18,
-        "width_bp": 289.522,
-        "height_bp": 220.166,
-        "minimum_prose_font_pt": 10.96,
-        "semantic_typography_checks": 13
+        "semantic_typography_checks": 14,
+        "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+        "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -5443,6 +5481,279 @@
             },
             "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology."
           }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+          "previous": {
+            "source": "book/assets/canonical-structural.svg",
+            "candidate": "book/tikz/figures/canonical-structural.tex",
+            "decision": "refined",
+            "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+            "candidate_sha256": "db3ffed0c3e386ffbb704ac99b5e18a66082a6a74e605eee3cf6e60f3198efec",
+            "evidence": [
+              {
+                "source_text": "WEB",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "WEB",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[3]/text[1]",
+                  "text_element_context": "WEB",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "API",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "API",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[3]/text[2]",
+                  "text_element_context": "API",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "CACHE",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "CACHE",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[3]/text[3]",
+                  "text_element_context": "CACHE",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "DATABASE",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "DATABASE",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[3]/text[4]",
+                  "text_element_context": "DATABASE",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Question:",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "Question:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[7]/text[1]/tspan[1]",
+                  "text_element_context": "Question:",
+                  "matching_fragment_count": 2
+                }
+              },
+              {
+                "source_text": "Semantics:",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "Semantics:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[7]/text[2]/tspan[1]",
+                  "text_element_context": "Semantics:",
+                  "matching_fragment_count": 2
+                }
+              },
+              {
+                "source_text": "Analysis:",
+                "source_style": "bold",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "Analysis:",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[7]/text[3]/tspan[1]",
+                  "text_element_context": "Analysis:",
+                  "matching_fragment_count": 2
+                }
+              },
+              {
+                "source_text": "Read-through cache example",
+                "source_style": "italic",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "Read-through cache example",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[1]/text[2]",
+                  "text_element_context": "Read-through cache example",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "depends on",
+                "source_style": "italic",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "depends on",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[5]/text[1]",
+                  "text_element_context": "depends on",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "reads through",
+                "source_style": "italic",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "reads through",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[5]/text[2]",
+                  "text_element_context": "reads through",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "loads from",
+                "source_style": "italic",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "loads from",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[5]/text[3]",
+                  "text_element_context": "loads from",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "forbidden",
+                "source_style": "italic",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "forbidden bypass",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[6]/text[1]",
+                  "text_element_context": "forbidden",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "Entities and declared structural relations",
+                "source_style": "regular",
+                "semantic_role": "entity, declared relation, or explanatory field in the read-through architecture example",
+                "candidate_text": "Entities and declared structural relations",
+                "candidate_style": "regular",
+                "source_locator": {
+                  "svg": "book/assets/canonical-structural.svg",
+                  "element_text_path": "/svg/g[7]/text[2]",
+                  "text_element_context": "Semantics: Entities and declared structural relations",
+                  "matching_fragment_count": 1
+                }
+              }
+            ],
+            "reason": "Explicit read-through architecture: bold entities and field labels; italic declared relations; regular analysis prose. Color and grayscale share the same linear topology.",
+            "checks": [
+              {
+                "text": "WEB",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "API",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "CACHE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "DATABASE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Question:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Semantics:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Analysis:",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "Read-through cache example",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "depends on",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "reads through",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "loads from",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "forbidden bypass",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "Entities and declared structural relations",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 18,
+              "width_bp": 289.522,
+              "height_bp": 220.166,
+              "minimum_prose_font_pt": 10.96,
+              "semantic_typography_checks": 13
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "7c4d452ebcb499b89799832adc0375a951a25866415d9f51292cbfa7112d9090",
+              "source_sha256": "5cf3f50b8acbde73825a30e699718f83422a9796abc39870c64ba1a68f0596c9",
+              "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
         }
       ]
     },
@@ -5451,7 +5762,7 @@
       "candidate": "book/tikz/figures/document-mutation-model.tex",
       "decision": "refined",
       "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
-      "candidate_sha256": "75a615f19d6b04c4bdffe214198c0130bdbc999e398f96de46c33cb9952c2f99",
+      "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
       "evidence": [
         {
           "source_text": "remediation logic",
@@ -5483,12 +5794,12 @@
           "source_text": "the sanctioned seam",
           "source_style": "weight normal; italic; source size 14",
           "semantic_role": "named category versus explanatory text",
-          "candidate_text": "The sanctioned seam",
+          "candidate_text": "shared interfaces · sanctioned seam",
           "candidate_style": "italic",
           "source_locator": {
             "svg": "book/assets/document-mutation-model.svg",
             "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "the sanctioned seam",
+            "text_element_context": "shared interfaces · sanctioned seam",
             "matching_fragment_count": 1
           }
         },
@@ -5519,7 +5830,7 @@
           }
         }
       ],
-      "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
+      "reason": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
       "checks": [
         {
           "text": "remediation logic",
@@ -5532,7 +5843,7 @@
           "italic": false
         },
         {
-          "text": "the sanctioned seam",
+          "text": "shared interfaces · sanctioned seam",
           "bold": false,
           "italic": true
         },
@@ -5547,31 +5858,51 @@
           "italic": true
         },
         {
-          "text": "format-specific implementation",
+          "text": "DOCX",
           "bold": false,
           "italic": false
         },
         {
-          "text": "DOCX",
+          "text": "PPTX",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "XLSX",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "PDF",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Marks where mutation belongs;",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "does not itself prevent bypass.",
+          "bold": false,
+          "italic": true
         }
       ],
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-11",
+        "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+        "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+        "page": 1,
+        "width_bp": 248.523,
+        "height_bp": 204.923,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
+        "semantic_typography_checks": 11,
+        "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+        "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
         "status": "passed",
-        "page": 19,
-        "width_bp": 240.023,
-        "height_bp": 226.923,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 7
+        "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
       },
       "revision_history": [
         {
@@ -5723,6 +6054,137 @@
               "visual_review": "Inspected native black-and-white proof and color SVG at legible size. The implemented-by relation is italic, fits the connector space and preserves its endpoints."
             },
             "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships."
+          }
+        },
+        {
+          "superseded_date": "2026-11-11",
+          "review": {
+            "source": "book/assets/document-mutation-model.svg",
+            "candidate": "book/tikz/figures/document-mutation-model.tex",
+            "decision": "refined",
+            "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
+            "candidate_sha256": "75a615f19d6b04c4bdffe214198c0130bdbc999e398f96de46c33cb9952c2f99",
+            "evidence": [
+              {
+                "source_text": "remediation logic",
+                "source_style": "weight 700; normal; source size 16.64",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "Remediation logic",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/document-mutation-model.svg",
+                  "element_text_path": "/svg/text[2]/text()",
+                  "text_element_context": "remediation logic",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "structured document model",
+                "source_style": "weight 700; normal; source size 16.64",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "Structured document model",
+                "candidate_style": "bold",
+                "source_locator": {
+                  "svg": "book/assets/document-mutation-model.svg",
+                  "element_text_path": "/svg/text[4]/text()",
+                  "text_element_context": "structured document model",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "the sanctioned seam",
+                "source_style": "weight normal; italic; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "The sanctioned seam",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/document-mutation-model.svg",
+                  "element_text_path": "/svg/text[5]/text()",
+                  "text_element_context": "the sanctioned seam",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "operates through",
+                "source_style": "weight normal; italic; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "operates through",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/document-mutation-model.svg",
+                  "element_text_path": "/svg/text[3]/text()",
+                  "text_element_context": "operates through",
+                  "matching_fragment_count": 1
+                }
+              },
+              {
+                "source_text": "implemented by",
+                "source_style": "weight normal; italic; source size 14",
+                "semantic_role": "named category versus explanatory text",
+                "candidate_text": "implemented by",
+                "candidate_style": "italic",
+                "source_locator": {
+                  "svg": "book/assets/document-mutation-model.svg",
+                  "element_text_path": "/svg/text[6]/text()",
+                  "text_element_context": "implemented by",
+                  "matching_fragment_count": 1
+                }
+              }
+            ],
+            "reason": "Emphasize the model seam and remediation role, not concrete file formats; italic qualifiers distinguish relationships.",
+            "checks": [
+              {
+                "text": "remediation logic",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "structured document model",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "the sanctioned seam",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "operates through",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "implemented by",
+                "bold": false,
+                "italic": true
+              },
+              {
+                "text": "format-specific implementation",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "DOCX",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 19,
+              "width_bp": 240.023,
+              "height_bp": 226.923,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 7
+            }
           }
         }
       ]

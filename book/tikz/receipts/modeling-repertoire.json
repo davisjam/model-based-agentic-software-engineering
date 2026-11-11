@@ -3,31 +3,26 @@
   "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
   "topology": {
-    "description": "Nine miniature model graphs retain their original nodes, directed relations, branches, quantitative bound and crossed dashed stale/prohibited paths. Grid rules and single-line title bands separate the families without altering graph semantics.",
+    "description": "Nine representations grouped into three informal comparison rows. Six graph examples retain their relation semantics; control flow now branches after validation to persist or reject. The decision/policy table maps clearly decorative images to omission and informational/uncertain/missing cases to a description, following Chapter 2.4. Quantitative modeling directly defines error rate and states its bound. Row labels aid comparison and do not replace the canonical model-class taxonomy.",
     "native_draw_commands": [
-      "\\draw[edge] (58.0,60) -- (81.0,60);",
-      "\\draw[edge] (107,70) -- (107,92);",
-      "\\draw[edge] (81.0,102) -- (58.0,102);",
-      "\\draw[edge] (207.0,60) -- (227.0,60);",
-      "\\draw[edge] (256,70) -- (256,92);",
-      "\\draw[edge] (256,70) -- (256,81) -- (181,81) -- (181,92);",
-      "\\draw[edge] (356.0,60) -- (379.0,60);",
-      "\\draw[edge] (405,70) -- (405,92);",
-      "\\draw[edge] (379.0,102) -- (356.0,102);",
-      "\\draw[edge] (58,234) -- (70,234) -- (70,251) -- (86,251);",
-      "\\draw[edge,dashed] (58,276) -- (70,276) -- (70,259) -- (86,259);",
-      "\\draw[edge] (202,255) -- (212,255) -- (212,234) -- (234,234);",
-      "\\draw[edge,dashed] (202,255) -- (212,255) -- (212,276) -- (234,276);",
-      "\\draw[edge] (328,244) -- (328,252) -- (330,252) -- (330,266);",
-      "\\draw[edge] (408,244) -- (408,252) -- (346,252) -- (346,266);",
-      "\\draw[edge] (368,276) -- (387,276);",
-      "\\draw[edge] (53,429) -- (63,429) -- (63,408) -- (79,408);",
-      "\\draw[edge] (53,429) -- (63,429) -- (63,450) -- (85,450);",
-      "\\draw[edge] (180,418) -- (180,429) -- (213,429) -- (213,440);",
-      "\\draw[edge] (257,418) -- (257,429) -- (229,429) -- (229,440);",
-      "\\draw[edge] (360.0,408) -- (375.0,408);",
-      "\\draw[edge] (405,418) -- (405,440);",
-      "\\draw[edge] (405,418) -- (405,429) -- (330,429) -- (330,440);"
+      "\\draw[edge] (58,40) -- (81,40);",
+      "\\draw[edge] (107,50) -- (107,64);",
+      "\\draw[edge] (81,74) -- (58,74);",
+      "\\draw[edge] (53,57) -- (63,57) -- (63,40) -- (79,40);",
+      "\\draw[edge] (53,57) -- (63,57) -- (63,74) -- (85,74);",
+      "\\draw[edge] (58,40) -- (70,40) -- (70,53) -- (86,53);",
+      "\\draw[edge,dashed] (58,74) -- (70,74) -- (70,61) -- (86,61);",
+      "\\draw[edge] (58,40) -- (78,40);",
+      "\\draw[edge] (107,50) -- (107,64);",
+      "\\draw[edge] (107,50) -- (107,52) -- (32,52) -- (32,64);",
+      "\\draw[edge] (63,36) -- (81,36);",
+      "\\draw[edge] (105,48) -- (105,66);",
+      "\\draw[edge] (105,48) -- (105,55) -- (34,55) -- (34,66);",
+      "\\draw[edge] (58,40) -- (81,40);",
+      "\\draw[edge] (107,50) -- (107,64);",
+      "\\draw[edge] (81,74) -- (58,74);",
+      "\\draw[edge] (31,50) -- (31,52) -- (64,52) -- (64,64);",
+      "\\draw[edge] (108,50) -- (108,52) -- (80,52) -- (80,64);"
     ]
   },
   "required_terms": [
@@ -39,26 +34,32 @@
     "Quantitative",
     "Entity/schema",
     "Provenance/derivation",
-    "Call/control flow",
+    "Control flow",
     "Q:",
     "P:",
     "A:",
     "Depends on; reaches",
     "May become",
     "Flows to",
-    "May call; dashed = prohibited",
-    "Compare error rate to bound",
+    "Only clearly decorative: omit",
+    "Measure; compare with bound",
     "owns / memberOf",
     "sourceOf / produced",
-    "Calls",
+    "Branches on a condition",
     "Owns; dashed = stale claim",
     "WEB",
-    "What depends on what?"
+    "What depends on what?",
+    "Classification",
+    "Description",
+    "Clearly decorative",
+    "Uncertain/missing",
+    "Required:",
+    "error rate"
   ],
-  "bw_encoding": "White content cells with 8% gray header bands, horizontal and vertical rules. Family titles and Q/P/A labels are bold; named arrow relations are italic. Dashed crossed stale claims and prohibited calls remain distinct from ordinary relations.",
-  "redesign": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
+  "bw_encoding": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles and Q/P/A labels organize the plate. Named relation readings are italic; the ownership panel retains a crossed dashed stale claim. Policy is a decision table, quantitative modeling uses an equation and bound, and control flow uses a labeled conditional branch.",
+  "redesign": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
   "questions": [],
-  "alt": "Nine model families in a ruled three-by-three grid with single-line family titles. Each cell shows a miniature graph, its named arrow relation, and Q/P/A fields for engineering question, properties, and analyses. A two-line legend explains how to read the cells; crossed dashed paths identify stale claims or prohibited calls.",
+  "alt": "Nine model families in a three-by-three grid grouped into Structure and relationships, Behavior and flow, and Decisions and evidence. Each cell gives an example, its interpretation, and Q/P/A fields. A decision table preserves descriptions for uncertain or missing image classifications; a quantitative formula defines errors per request and requires an error rate below one percent; a control-flow diagram branches on validity to persist or reject. Other miniature graphs illustrate dependency, entities, ownership, state transitions, data flow and provenance.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -70,7 +71,7 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
+    "outcome": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       15.8598,
@@ -78,7 +79,7 @@
     ],
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.364,
@@ -89,12 +90,13 @@
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 22,
-      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "checked_terminal_approaches": 17,
+      "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23,
+      "semantic_typography_checks": 32,
       "single_line_family_headings": 9,
-      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "single_line_row_headings": 3,
+      "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
       "status": "passed"
     }
   },
@@ -102,12 +104,12 @@
     "stem": "modeling-repertoire",
     "source": "book/assets/modeling-repertoire.svg",
     "status": "corrected",
-    "evidence": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
+    "evidence": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
     "original_render": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-figure-review/assets/modeling-repertoire-original.webp",
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-12.png",
     "candidate_render": "/private/tmp/mage-figure-2-6-review-20261111/latex/build/figure-2-6-proof/figure-2-6.png",
     "original_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "native_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
+    "native_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
     "page": 1,
     "dimensions_cm": [
       15.8598,
@@ -118,7 +120,7 @@
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.364,
@@ -129,12 +131,13 @@
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 22,
-      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "checked_terminal_approaches": 17,
+      "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23,
+      "semantic_typography_checks": 32,
       "single_line_family_headings": 9,
-      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "single_line_row_headings": 3,
+      "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
       "status": "passed"
     }
   },
@@ -143,15 +146,15 @@
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
-    "fill": "White content cells with 8% gray header bands, horizontal and vertical rules. Family titles and Q/P/A labels are bold; named arrow relations are italic. Dashed crossed stale claims and prohibited calls remain distinct from ordinary relations.",
-    "bold": "Single-line title-case family headings and Q/P/A prefixes; regular body and miniature labels; italic named relation semantics.",
-    "routing": "All miniature process/relation edges use aligned ports and short orthogonal branches; forbidden/stale crosses follow their dashed paths.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
+    "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
+    "fill": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles and Q/P/A labels organize the plate. Named relation readings are italic; the ownership panel retains a crossed dashed stale claim. Policy is a decision table, quantitative modeling uses an equation and bound, and control flow uses a labeled conditional branch.",
+    "bold": "Bold comparison rows, family titles, decision-table headers, Required and Q/P/A labels; regular examples; italic named relation readings.",
+    "routing": "Retained six miniature graph topologies; control flow now branches from valid? to persist or reject. Policy and quantitative panels replace redundant/ambiguous arrows with a decision table and explicit equation/bound.",
+    "shape": "Rounded entity/state boxes, a decision diamond for conditional control flow, a policy table and direct quantitative expressions.",
+    "visual_review": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.364,
@@ -162,12 +165,13 @@
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 22,
-      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "checked_terminal_approaches": 17,
+      "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23,
+      "semantic_typography_checks": 32,
       "single_line_family_headings": 9,
-      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "single_line_row_headings": 3,
+      "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
       "status": "passed"
     },
     "book_references": [],
@@ -184,6 +188,27 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 23
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
       }
     ]
   },
@@ -191,8 +216,8 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
-    "reason": "Bold single-line title-case family headings and Q/P/A labels; italic relation semantics; regular miniature entities and explanatory text. All existing 10–10.5pt type retained.",
+    "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
+    "reason": "Three 11pt bold comparison-row labels, nine 10.5pt bold family headings, and unchanged 10pt content. Table headers, Required and Q/P/A labels are bold; named relation readings are italic; graph entities, table cases, and the quantitative ratio/bound are regular.",
     "evidence": [
       {
         "source_text": "COMPONENT / DEPENDENCY",
@@ -358,7 +383,7 @@
         "source_text": "CALL / CONTROL-FLOW",
         "source_style": "bold",
         "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-        "candidate_text": "Call/control flow",
+        "candidate_text": "Control flow",
         "candidate_style": "bold",
         "source_fragments": [
           {
@@ -485,7 +510,7 @@
         "source_text": "May call; dashed = prohibited",
         "source_style": "italic",
         "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-        "candidate_text": "May call; dashed = prohibited",
+        "candidate_text": "Only clearly decorative: omit",
         "candidate_style": "italic",
         "source_fragments": [
           {
@@ -502,7 +527,7 @@
         "source_text": "Compare error rate to bound",
         "source_style": "italic",
         "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-        "candidate_text": "Compare error rate to bound",
+        "candidate_text": "Measure; compare with bound",
         "candidate_style": "italic",
         "source_fragments": [
           {
@@ -553,7 +578,7 @@
         "source_text": "Calls",
         "source_style": "italic",
         "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-        "candidate_text": "Calls",
+        "candidate_text": "Branches on a condition",
         "candidate_style": "italic",
         "source_fragments": [
           {
@@ -616,6 +641,69 @@
             "y": "142"
           }
         ]
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Structure and relationships",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Behavior and flow",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Decisions and evidence",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Classification",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Description",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Required:",
+        "candidate_style": "bold"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "Uncertain/missing",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "error rate = errors / requests",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested differentiated examples and comparison rows",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
+        "candidate_text": "error rate < 1%",
+        "candidate_style": "regular"
       }
     ],
     "checks": [
@@ -652,7 +740,7 @@
         "bold": true
       },
       {
-        "text": "Call/control flow",
+        "text": "Control flow",
         "bold": true
       },
       {
@@ -680,11 +768,11 @@
         "italic": true
       },
       {
-        "text": "May call; dashed = prohibited",
+        "text": "Only clearly decorative: omit",
         "italic": true
       },
       {
-        "text": "Compare error rate to bound",
+        "text": "Measure; compare with bound",
         "italic": true
       },
       {
@@ -696,7 +784,7 @@
         "italic": true
       },
       {
-        "text": "Calls",
+        "text": "Branches on a condition",
         "italic": true
       },
       {
@@ -713,11 +801,56 @@
         "text": "What depends on what?",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Structure and relationships",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Behavior and flow",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Decisions and evidence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Classification",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Description",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Required:",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Uncertain/missing",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "error rate = errors / requests",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "error rate < 1%",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.364,
@@ -728,12 +861,13 @@
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 22,
-      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "checked_terminal_approaches": 17,
+      "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23,
+      "semantic_typography_checks": 32,
       "single_line_family_headings": 9,
-      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "single_line_row_headings": 3,
+      "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
       "status": "passed"
     },
     "validation_history": [
@@ -748,34 +882,60 @@
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 23
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
       }
     ]
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
-    "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
+    "reason": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
+    "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested monochrome redesign: ruled 3-by-3 grid, 8% gray title bands, nine single-line title-case family headings at the existing 10.5pt, unchanged 10pt content, and a legend explaining Q/P/A plus family-specific arrow meanings. No taxonomy or miniature graph changed.",
+      "reason": "Author-requested comparison redesign: three labeled rows group similar representations; the decision/policy panel uses the Chapter 2.4 conservative image-description table; the quantitative panel states error rate = errors / requests and the explicit requirement error rate < 1%; control flow branches on validity to persist or reject. Nine single-line family headings and 10pt content remain; the color reference is unchanged.",
       "reviewed_visually": true,
       "single_line_headings": [
         "Component/dependency",
-        "Finite-state",
-        "Data flow",
+        "Entity/schema",
         "Ownership/resource",
+        "Finite-state",
+        "Control flow",
+        "Data flow",
         "Decision/policy",
         "Quantitative",
-        "Entity/schema",
-        "Provenance/derivation",
-        "Call/control flow"
+        "Provenance/derivation"
+      ],
+      "comparison_rows": [
+        "Structure and relationships",
+        "Behavior and flow",
+        "Decisions and evidence"
       ],
       "minimum_prose_font_pt": 10.0
     },
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.364,
@@ -786,12 +946,13 @@
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 22,
-      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "checked_terminal_approaches": 17,
+      "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23,
+      "semantic_typography_checks": 32,
       "single_line_family_headings": 9,
-      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "single_line_row_headings": 3,
+      "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
       "status": "passed"
     },
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
@@ -821,6 +982,27 @@
         "page": 16,
         "width_bp": 440.973,
         "height_bp": 546.264
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
       }
     ]
   }

@@ -401,12 +401,12 @@
     "receipt": "book/tikz/receipts/modeling-repertoire.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "White content cells with 8% gray header bands, horizontal and vertical rules. Family titles and Q/P/A labels are bold; named arrow relations are italic. Dashed crossed stale claims and prohibited calls remain distinct from ordinary relations.",
+    "rationale": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles and Q/P/A labels organize the plate. Named relation readings are italic; the ownership panel retains a crossed dashed stale claim. Policy is a decision table, quantitative modeling uses an equation and bound, and control flow uses a labeled conditional branch.",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "4648ad4d65beb4e7e77be948c10dd0d69251cf6ad11c12ae0b922e409ccbcdab",
+    "candidate_sha256": "be31866b91dcd7b12e323f1576cd2736f184f01af26cb4e976d75024562994e3",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+      "proof_sha256": "d9ab721d822634e5ba4141529a7916d5b15bc29b1148fca38601360503a1090a",
       "page": 1,
       "width_bp": 449.57,
       "height_bp": 558.364,
@@ -417,14 +417,38 @@
       "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 22,
-      "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+      "checked_terminal_approaches": 17,
+      "geometry_audit_sha256": "11ba43bdd530cc9e1dadee1366b63c538390ec514dcfbefb5b7a9b64ec3cb217",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 23,
+      "semantic_typography_checks": 32,
       "single_line_family_headings": 9,
-      "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+      "single_line_row_headings": 3,
+      "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
       "status": "passed"
-    }
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0b650300d50ef6b886bc3b749815c01fd2733cce9def0dee53ba21f8e4781314",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 558.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 22,
+        "geometry_audit_sha256": "33e4db6257bbc18027383d952c391f760a81bf8d413f6fb4c097a881bf6caa88",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "single_line_family_headings": 9,
+        "heading_audit_sha256": "5560516cdccadb1d18eb6bfdf8dd0178fd16e4c4af2fab25cc6f01ed1028b567",
+        "status": "passed"
+      }
+    ]
   },
   {
     "source": "book/assets/canonical-structural.svg",
@@ -432,9 +456,41 @@
     "receipt": "book/tikz/receipts/canonical-structural.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Common gray entities and crossed dashed bypass retained; directed dependency fork remains distinct from prohibition.",
-    "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
-    "candidate_sha256": "b9729953b0495f423a3d5cdbd2bba33766d9c35f103f28144123c7de121fd57c"
+    "rationale": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+    "source_sha256": "9197b6165265a5e2f6919895b100c68d45dcd3357280eb29f7bc047e20f34c9b",
+    "candidate_sha256": "ea80ac7ac93bdca692be040f7c07668dbe618a02497c6b7b3e1a9d35df9422dc",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "reason": "Author-requested Figure 2.7 revision: one explicit direct-dependency relation replaces three different edge meanings; concrete component semantics and a Web-to-Database path check replace abstract graph-analysis terms. The subtitle is Example: A read-through cache. The color original remains a comparison reference.",
+        "previous": {
+          "source": "book/assets/canonical-structural.svg",
+          "candidate": "book/tikz/figures/canonical-structural.tex",
+          "receipt": "book/tikz/receipts/canonical-structural.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Common gray entities and crossed dashed bypass retained; directed dependency fork remains distinct from prohibition.",
+          "source_sha256": "492274c6031a94879f2fa5070e78b687fd2961a91954216193ec77649ef57c5f",
+          "candidate_sha256": "b9729953b0495f423a3d5cdbd2bba33766d9c35f103f28144123c7de121fd57c"
+        }
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-7-proof/figure-2-7.pdf",
+      "proof_sha256": "39f0175eb25af87cbc3690593a27520135eb7bf90460e94732548d5c239ce3eb",
+      "page": 1,
+      "width_bp": 289.522,
+      "height_bp": 234.278,
+      "minimum_prose_font_pt": 10.959,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 14,
+      "audit_sha256": "24e296b2958f7296dc197bb0ccdaae2474f9b8c4ccd6fb14c339675e9f3eed23",
+      "typography_audit_sha256": "4b90e76d6355cc5ca369a64208dce2e205502204e94f3c7de3af6586204b22ee",
+      "status": "passed"
+    }
   },
   {
     "source": "book/assets/document-mutation-model.svg",
@@ -442,9 +498,40 @@
     "receipt": "book/tikz/receipts/document-mutation-model.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Model layer gray contrasts with format implementation and outputs. Sanctioned seam retains heavier border; no enforcement claim introduced.",
-    "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
-    "candidate_sha256": "d30b573aa2b49f98eadaa25170282e13e6de0ac4a25dfcdb0abb0f2f970c5a11"
+    "rationale": "Author-directed simplification: identify shared interfaces at the structured-document seam; remove redundant intermediate implementation category box; connect the seam directly to smaller format-specific implementation leaves with an ellipsis for additional formats. Preserve implemented-by relation, font sizes and limitation note. Color original unchanged for comparison.",
+    "source_sha256": "169e3157d660251d1507f0d874ca5cfa46e6cb2d53de524640fbaa91e15119fe",
+    "candidate_sha256": "01ecc04239f1383dd1b9cf083fbe3fc0f1326dedc52a56b593f5bb3ac7e90b42",
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-11",
+        "review": {
+          "source": "book/assets/document-mutation-model.svg",
+          "candidate": "book/tikz/figures/document-mutation-model.tex",
+          "receipt": "book/tikz/receipts/document-mutation-model.json",
+          "reviewed": true,
+          "decision": "refined",
+          "rationale": "Model layer gray contrasts with format implementation and outputs. Sanctioned seam retains heavier border; no enforcement claim introduced.",
+          "source_sha256": "bb260f38aa7838c6ef256c2c24595ba1124f8d263c449216b3db98bbe6673135",
+          "candidate_sha256": "d30b573aa2b49f98eadaa25170282e13e6de0ac4a25dfcdb0abb0f2f970c5a11"
+        }
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/figure-2-8-proof/figure-2-8.pdf",
+      "proof_sha256": "83a66cfd1ce96710b2b238b961426ef50520a076e54b8faffeac16692ae5098f",
+      "page": 1,
+      "width_bp": 248.523,
+      "height_bp": 204.923,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 11,
+      "audit_sha256": "f23e8b7410e36f232b5ca9b4c7a42cb49d8f9cfb21741adcd9f22a5cb2ef879d",
+      "typography_audit_sha256": "4179c3615481037694cb60ab21249c981b2767ed3e9efbd8828bd97455c13930",
+      "status": "passed",
+      "visual_review": "Inspected native proof: readable unchanged font sizes, shared-interface subtitle contained, five aligned smaller leaves, clear implemented-by fanout, bottom limitation preserved."
+    }
   },
   {
     "source": "book/assets/from-nodes-to-composition.svg",
