@@ -3,16 +3,15 @@
   box/.style={draw,rounded corners=2.5pt,fill=white,inner sep=0pt,align=center},
   txt/.style={inner sep=0pt,align=left}]
 \hyphenpenalty=10000
-\node[txt,anchor=base] at (220,4) {Read each sketch by its named relation; a crossed dashed link is excluded.};
 % Row labels aid comparison; they are not a replacement model-class taxonomy.
-\foreach \top/\bottom/\label in {14/30/{Structure and relationships},192/208/{Behavior and flow},370/386/{Decisions and evidence}} {
+\foreach \top/\bottom/\label in {14/30/{Structure and relationships},192/208/{Behavior and flow},388/404/{Decisions and evidence}} {
   \fill[black!8] (0,\top) rectangle (443,\bottom);
   \node[txt,anchor=base,font=\magefigurefont\bfseries\fontsize{11}{13}\selectfont] at (221,{\top+12}) {\label};
   \draw[black!60,line width=.6pt] (0,\top) -- (443,\top);
   \draw[black!45,line width=.4pt] (0,\bottom) -- (443,\bottom);
 }
-\draw[black!60,line width=.6pt] (0,14) rectangle (443,548);
-\foreach \top/\bottom in {30/192,208/370,386/548} {
+\draw[black!60,line width=.6pt] (0,14) rectangle (443,566);
+\foreach \top/\bottom in {30/192,208/388,404/566} {
   \foreach \x in {145.5,294.5} {\draw[black!60,line width=.6pt] (\x,\top) -- (\x,\bottom);}
   \draw[black!30,line width=.4pt] (0,{\top+32}) -- (443,{\top+32});
 }
@@ -96,49 +95,50 @@
 
 \node[box,minimum width=52bp,minimum height=20bp] at (32,40) {IDLE};
 \node[box,minimum width=58bp,minimum height=20bp] at (107,40) {RUNNING};
-\node[box,minimum width=52bp,minimum height=20bp] at (107,74) {DONE};
-\node[box,minimum width=52bp,minimum height=20bp] at (32,74) {FAILED};
+\node[box,minimum width=52bp,minimum height=20bp] at (107,92) {DONE};
+\node[box,minimum width=52bp,minimum height=20bp] at (32,92) {FAILED};
 \draw[edge] (58,40) -- (78,40);
-\draw[edge] (107,50) -- (107,64);
-\draw[edge] (107,50) -- (107,52) -- (32,52) -- (32,64);
+\draw[edge] (107,50) -- (107,82);
+\draw[edge] (107,50) -- (107,66) -- (32,66) -- (32,82);
 \end{scope}
-\node[txt,anchor=base,font=\magefigurefont\itshape] at (71,104) {May become};
-\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,118) {Properties};
-\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,118) {Analyses};
-\draw[black!40,line width=.4pt] (4,123) -- (140,123);
-\draw[black!30,line width=.4pt] (73,110) -- (73,159);
-\node[txt,anchor=base west] at (4,132) {Legal states,};
-\node[txt,anchor=base west] at (4,144) {safety,};
-\node[txt,anchor=base west] at (4,156) {liveness};
-\node[txt,anchor=base west] at (78,132) {Model};
-\node[txt,anchor=base west] at (78,144) {checking,};
-\node[txt,anchor=base west] at (78,156) {state search};
+\node[txt,anchor=base,font=\magefigurefont\itshape] at (71,122) {May become};
+\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,136) {Properties};
+\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,136) {Analyses};
+\draw[black!40,line width=.4pt] (4,141) -- (140,141);
+\draw[black!30,line width=.4pt] (73,128) -- (73,177);
+\node[txt,anchor=base west] at (4,150) {Legal states,};
+\node[txt,anchor=base west] at (4,162) {safety,};
+\node[txt,anchor=base west] at (4,174) {liveness};
+\node[txt,anchor=base west] at (78,150) {Model};
+\node[txt,anchor=base west] at (78,162) {checking,};
+\node[txt,anchor=base west] at (78,174) {state search};
 \end{scope}
 
 \begin{scope}[shift={(149,208)}]
 \node[txt,anchor=base,font=\magefigurefont\bfseries\fontsize{10.5}{12}\selectfont] at (71,13) {Control flow};
 \node[txt,anchor=base] at (71,27) {Which path executes?};
 
-\node[box,minimum width=58bp,minimum height=20bp] at (34,48) {validate};
-\draw[fill=white,line width=.6pt] (105,36) -- (129,48) -- (105,60) -- (81,48) -- cycle;
-\node[txt] at (105,48) {valid?};
-\node[box,minimum width=58bp,minimum height=20bp] at (34,82) {reject};
-\node[box,minimum width=58bp,minimum height=20bp] at (105,82) {persist};
-\draw[edge] (63,48) -- (81,48);
-\draw[edge] (105,60) -- (105,72);
-\draw[edge] (105,60) -- (105,61) -- (34,61) -- (34,72);
-\node[txt,anchor=base] at (72,58) {no};
-\node[txt,anchor=base west] at (111,69) {yes};
-\node[txt,anchor=base,font=\magefigurefont\itshape] at (71,104) {Branches on a condition};
-\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,118) {Properties};
-\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,118) {Analyses};
-\draw[black!40,line width=.4pt] (4,123) -- (140,123);
-\draw[black!30,line width=.4pt] (73,110) -- (73,159);
-\node[txt,anchor=base west] at (4,132) {Reachable};
-\node[txt,anchor=base west] at (4,144) {paths, branch};
-\node[txt,anchor=base west] at (4,156) {coverage};
-\node[txt,anchor=base west] at (78,132) {Path analysis,};
-\node[txt,anchor=base west] at (78,144) {coverage};
+% A binary illustrative classification: the adjacent policy table retains uncertainty.
+\node[box,minimum width=54bp,minimum height=28bp] at (29,54) {Analyze\\figure};
+\draw[fill=white,line width=.6pt] (104,34) -- (141,54) -- (104,74) -- (67,54) -- cycle;
+\node[txt] at (104,54) {Informative?};
+\node[box,minimum width=66bp,minimum height=28bp] at (35,110) {Query LLM\\for description};
+\node[box,minimum width=66bp,minimum height=28bp] at (110,110) {Mark\\decorative};
+\draw[edge] (56,54) -- (67,54);
+% Both branches turn at the same lower rank, midway between the decision and actions.
+\draw[edge] (104,74) -- (104,85) -- (35,85) -- (35,96);
+\draw[edge] (104,74) -- (104,85) -- (110,85) -- (110,96);
+\node[txt,anchor=base] at (65,82) {yes};
+\node[txt,anchor=base west] at (116,91) {no};
+\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,136) {Properties};
+\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,136) {Analyses};
+\draw[black!40,line width=.4pt] (4,141) -- (140,141);
+\draw[black!30,line width=.4pt] (73,128) -- (73,177);
+\node[txt,anchor=base west] at (4,150) {Reachable};
+\node[txt,anchor=base west] at (4,162) {paths, branch};
+\node[txt,anchor=base west] at (4,174) {coverage};
+\node[txt,anchor=base west] at (78,150) {Path analysis,};
+\node[txt,anchor=base west] at (78,162) {coverage};
 \end{scope}
 
 \begin{scope}[shift={(298,208)}]
@@ -148,25 +148,25 @@
 
 \node[box,minimum width=52bp,minimum height=20bp] at (32,40) {INPUT};
 \node[box,minimum width=52bp,minimum height=20bp] at (107,40) {PARSE};
-\node[box,minimum width=52bp,minimum height=20bp] at (107,74) {MODEL};
-\node[box,minimum width=52bp,minimum height=20bp] at (32,74) {OUTPUT};
+\node[box,minimum width=52bp,minimum height=20bp] at (107,92) {MODEL};
+\node[box,minimum width=52bp,minimum height=20bp] at (32,92) {OUTPUT};
 \draw[edge] (58,40) -- (81,40);
-\draw[edge] (107,50) -- (107,64);
-\draw[edge] (81,74) -- (58,74);
+\draw[edge] (107,50) -- (107,82);
+\draw[edge] (81,92) -- (58,92);
 \end{scope}
-\node[txt,anchor=base,font=\magefigurefont\itshape] at (71,104) {Flows to};
-\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,118) {Properties};
-\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,118) {Analyses};
-\draw[black!40,line width=.4pt] (4,123) -- (140,123);
-\draw[black!30,line width=.4pt] (73,110) -- (73,159);
-\node[txt,anchor=base west] at (4,132) {Sources, sinks,};
-\node[txt,anchor=base west] at (4,144) {paths,};
-\node[txt,anchor=base west] at (4,156) {transforms};
-\node[txt,anchor=base west] at (78,132) {Flow, taint,};
-\node[txt,anchor=base west] at (78,144) {dependencies};
+\node[txt,anchor=base,font=\magefigurefont\itshape] at (71,122) {Flows to};
+\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,136) {Properties};
+\node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,136) {Analyses};
+\draw[black!40,line width=.4pt] (4,141) -- (140,141);
+\draw[black!30,line width=.4pt] (73,128) -- (73,177);
+\node[txt,anchor=base west] at (4,150) {Sources, sinks,};
+\node[txt,anchor=base west] at (4,162) {paths,};
+\node[txt,anchor=base west] at (4,174) {transforms};
+\node[txt,anchor=base west] at (78,150) {Flow, taint,};
+\node[txt,anchor=base west] at (78,162) {dependencies};
 \end{scope}
 
-\begin{scope}[shift={(0,386)}]
+\begin{scope}[shift={(0,404)}]
 \node[txt,anchor=base,font=\magefigurefont\bfseries\fontsize{10.5}{12}\selectfont] at (71,13) {Decision/policy};
 \node[txt,anchor=base] at (71,27) {Which action to choose?};
 \begin{scope}[shift={(0,8)}]
@@ -194,16 +194,14 @@
 \node[txt,anchor=base west] at (78,156) {evaluation};
 \end{scope}
 
-\begin{scope}[shift={(149,386)}]
+\begin{scope}[shift={(149,404)}]
 \node[txt,anchor=base,font=\magefigurefont\bfseries\fontsize{10.5}{12}\selectfont] at (71,13) {Quantitative};
 \node[txt,anchor=base] at (71,27) {How much / what bound?};
-\begin{scope}[shift={(0,8)}]
-
-\node[txt,anchor=base] at (71,44) {error rate = errors / requests};
-\node[txt,anchor=base,font=\magefigurefont\bfseries] at (71,65) {Required:};
-\node[txt,anchor=base] at (71,81) {error rate \textless{} 1\%};
-\end{scope}
-\node[txt,anchor=base,font=\magefigurefont\itshape] at (71,104) {Measure; compare with bound};
+% Native display math stays serif; short symbols keep formula and prose roles distinct.
+\node[txt,anchor=base] at (71,42) {Error rate};
+\node[txt] at (71,61) {$\displaystyle r = \frac{E}{N}$};
+\node[txt,anchor=base] at (71,87) {E = errors; N = requests};
+\node[txt,anchor=base] at (71,104) {\textbf{Required:} $r < 1\%$};
 \node[txt,anchor=base west,font=\magefigurefont\bfseries] at (4,118) {Properties};
 \node[txt,anchor=base west,font=\magefigurefont\bfseries] at (78,118) {Analyses};
 \draw[black!40,line width=.4pt] (4,123) -- (140,123);
@@ -214,7 +212,7 @@
 \node[txt,anchor=base west] at (78,144) {optimization};
 \end{scope}
 
-\begin{scope}[shift={(298,386)}]
+\begin{scope}[shift={(298,404)}]
 \node[txt,anchor=base,font=\magefigurefont\bfseries\fontsize{10.5}{12}\selectfont] at (71,13) {Provenance/derivation};
 \node[txt,anchor=base] at (71,27) {What produced this?};
 

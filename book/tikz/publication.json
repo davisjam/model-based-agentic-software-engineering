@@ -5,7 +5,7 @@
   "approved_monochrome": {
     "book/assets/book-map.svg": {
       "approved_date": "2026-11-05",
-      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2\u20135 enclosure and the optional appendix branches removed."
+      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2–5 enclosure and the optional appendix branches removed."
     },
     "book/assets/mage-method.svg": {
       "approved_date": "2026-11-09",
@@ -82,6 +82,16 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved the revised black-and-white Figure 2.4 (LGTM), including the matched Sources of models / Uses of models headings and narrowed central model box.",
       "candidate_sha256": "bc8c67fa3115900a055b200b313095803fb9e1eb9ad8021565281a9dd70a38c7"
+    },
+    "book/assets/canonical-structural.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the revised black-and-white Figure 2.7 (LGTM), after reviewing the latest proof.",
+      "candidate_sha256": "a2aa9054ad401ec08c37f80448be6d2c1105f8f99cc4f948267a607bd1cd940a"
+    },
+    "book/assets/document-mutation-model.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author explicitly approved the revised black-and-white Figure 2.8 (LGTM), after reviewing the latest proof.",
+      "candidate_sha256": "fa0b80e80ebba4761c015f61e8f363e1bd3f49e32abeaf1cfdfbfcb011003d71"
     }
   }
 }

@@ -4595,7 +4595,7 @@
       "candidate": "book/tikz/figures/modeling-repertoire.tex",
       "decision": "refined",
       "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-      "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
+      "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
       "evidence": [
         {
           "source_text": "COMPONENT / DEPENDENCY",
@@ -4851,23 +4851,6 @@
           ]
         },
         {
-          "source_text": "Compare error rate to bound",
-          "source_style": "italic",
-          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "Measure; compare with bound",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "Compare error rate to bound",
-              "element_text_path": "/svg/text[72]",
-              "weight": "normal",
-              "style": "italic",
-              "x": "369",
-              "y": "300"
-            }
-          ]
-        },
-        {
           "source_text": "owns / memberOf",
           "source_style": "italic",
           "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
@@ -4897,23 +4880,6 @@
               "weight": "normal",
               "style": "italic",
               "x": "220",
-              "y": "474"
-            }
-          ]
-        },
-        {
-          "source_text": "Calls",
-          "source_style": "italic",
-          "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-          "candidate_text": "Branches on a condition",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "Calls",
-              "element_text_path": "/svg/text[111]",
-              "weight": "normal",
-              "style": "italic",
-              "x": "369",
               "y": "474"
             }
           ]
@@ -5019,20 +4985,6 @@
           "candidate_style": "regular"
         },
         {
-          "source_text": "Author-requested differentiated examples and comparison rows",
-          "source_style": "Editorial revision; color reference preserved",
-          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
-          "candidate_text": "error rate = errors / requests",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Author-requested differentiated examples and comparison rows",
-          "source_style": "Editorial revision; color reference preserved",
-          "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
-          "candidate_text": "error rate < 1%",
-          "candidate_style": "regular"
-        },
-        {
           "source_text": "Author-requested question subtitles and Properties/Analyses tables",
           "source_style": "Editorial revision; color reference preserved",
           "semantic_role": "Plain question subtitle or two-column comparison header",
@@ -5101,9 +5053,51 @@
           "semantic_role": "Plain question subtitle or two-column comparison header",
           "candidate_text": "What produced this?",
           "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested DocAble flow and native quantitative equation",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+          "candidate_text": "Analyze figure",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested DocAble flow and native quantitative equation",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+          "candidate_text": "Informative?",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested DocAble flow and native quantitative equation",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+          "candidate_text": "Query LLM for description",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested DocAble flow and native quantitative equation",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+          "candidate_text": "Mark decorative",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested DocAble flow and native quantitative equation",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+          "candidate_text": "Error rate",
+          "candidate_style": "regular"
+        },
+        {
+          "source_text": "Author-requested DocAble flow and native quantitative equation",
+          "source_style": "Editorial revision; color reference preserved",
+          "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+          "candidate_text": "E = errors; N = requests",
+          "candidate_style": "regular"
         }
       ],
-      "reason": "Three 11pt bold comparison-row labels, nine 10.5pt bold family headings, and 10pt plain question subtitles and content. Properties/Analyses, decision-table headers and Required are bold; named relation readings are italic. Multi-line table cells preserve type size and remain within their own columns.",
+      "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N.",
       "checks": [
         {
           "text": "Component/dependency",
@@ -5158,19 +5152,11 @@
           "italic": true
         },
         {
-          "text": "Measure; compare with bound",
-          "italic": true
-        },
-        {
           "text": "owns / memberOf",
           "italic": true
         },
         {
           "text": "sourceOf / produced",
-          "italic": true
-        },
-        {
-          "text": "Branches on a condition",
           "italic": true
         },
         {
@@ -5224,16 +5210,6 @@
           "italic": false
         },
         {
-          "text": "error rate = errors / requests",
-          "bold": false,
-          "italic": false
-        },
-        {
-          "text": "error rate < 1%",
-          "bold": false,
-          "italic": false
-        },
-        {
           "text": "Properties",
           "bold": true,
           "italic": false
@@ -5282,14 +5258,44 @@
           "text": "What produced this?",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Analyze figure",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Informative?",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Query LLM for description",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Mark decorative",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Error rate",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "E = errors; N = requests",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
         "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+        "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
         "page": 1,
         "width_bp": 449.57,
-        "height_bp": 557.364,
+        "height_bp": 558.569,
         "maximum_dimensions_bp": [
           450,
           560
@@ -5298,12 +5304,14 @@
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "checked_terminal_approaches": 17,
-        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+        "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
         "monochrome_pixels": true,
-        "semantic_typography_checks": 39,
+        "semantic_typography_checks": 41,
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
-        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+        "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+        "native_serif_math": true,
+        "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
         "status": "passed"
       },
       "validation_history": [
@@ -5360,6 +5368,28 @@
           "single_line_family_headings": 9,
           "single_line_row_headings": 3,
           "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+          "status": "passed"
+        },
+        {
+          "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+          "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+          "page": 1,
+          "width_bp": 449.57,
+          "height_bp": 557.364,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 17,
+          "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 39,
+          "single_line_family_headings": 9,
+          "single_line_row_headings": 3,
+          "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
           "status": "passed"
         }
       ]

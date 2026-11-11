@@ -3,7 +3,7 @@
   "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "*The engineering modeling repertoire.* Familiar representations preserve different relationships for different engineering questions. Similar graphical forms can carry different semantics: an arrow may represent a dependency, transition, flow, permission, ownership relation, or derivation.",
   "topology": {
-    "description": "Nine representations retain their differentiated examples and three informal comparison rows. Provenance source centers at 33/111 flank artifact center 72; symmetric entry ports at 64/80 use a common horizontal rank at 65 with equal 11bp vertical legs. Each panel is read as family, question, sketch and relation, then two-column Properties / Analyses. No modeling meaning or canonical class taxonomy changes.",
+    "description": "Nine grouped examples remain. Finite-state branching is centered vertically in the expanded gap. DocAble control flow analyzes a figure, asks whether it is informative, then queries an LLM for a description on yes or marks it decorative on no. This binary illustration does not change the adjacent decision table, which preserves uncertain or missing classifications. Both control-flow branches use the same lower rank and equal 11bp vertical legs. Provenance keeps its symmetric paths. The quantitative panel defines r=E/N, E as errors and N as requests, and requires r<1% using native serif mathematical notation.",
     "native_draw_commands": [
       "\\draw[edge] (58,40) -- (81,40);",
       "\\draw[edge] (107,50) -- (107,64);",
@@ -13,14 +13,14 @@
       "\\draw[edge] (58,40) -- (70,40) -- (70,53) -- (86,53);",
       "\\draw[edge,dashed] (58,74) -- (70,74) -- (70,61) -- (86,61);",
       "\\draw[edge] (58,40) -- (78,40);",
-      "\\draw[edge] (107,50) -- (107,64);",
-      "\\draw[edge] (107,50) -- (107,52) -- (32,52) -- (32,64);",
-      "\\draw[edge] (63,48) -- (81,48);",
-      "\\draw[edge] (105,60) -- (105,72);",
-      "\\draw[edge] (105,60) -- (105,61) -- (34,61) -- (34,72);",
+      "\\draw[edge] (107,50) -- (107,82);",
+      "\\draw[edge] (107,50) -- (107,66) -- (32,66) -- (32,82);",
+      "\\draw[edge] (56,54) -- (67,54);",
+      "\\draw[edge] (104,74) -- (104,85) -- (35,85) -- (35,96);",
+      "\\draw[edge] (104,74) -- (104,85) -- (110,85) -- (110,96);",
       "\\draw[edge] (58,40) -- (81,40);",
-      "\\draw[edge] (107,50) -- (107,64);",
-      "\\draw[edge] (81,74) -- (58,74);",
+      "\\draw[edge] (107,50) -- (107,82);",
+      "\\draw[edge] (81,92) -- (58,92);",
       "\\draw[edge] (33,54) -- (33,65) -- (64,65) -- (64,76);",
       "\\draw[edge] (111,54) -- (111,65) -- (80,65) -- (80,76);"
     ]
@@ -39,10 +39,8 @@
     "May become",
     "Flows to",
     "Only clearly decorative: omit",
-    "Measure; compare with bound",
     "owns / memberOf",
     "sourceOf / produced",
-    "Branches on a condition",
     "Owns; dashed = stale claim",
     "WEB",
     "What depends on what?",
@@ -51,14 +49,19 @@
     "Clearly decorative",
     "Uncertain/missing",
     "Required:",
-    "error rate",
     "Properties",
-    "Analyses"
+    "Analyses",
+    "Analyze figure",
+    "Informative?",
+    "Query LLM for description",
+    "Mark decorative",
+    "Error rate",
+    "E = errors; N = requests"
   ],
-  "bw_encoding": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles precede plain question subtitles. Below each sketch, bold Properties / Analyses headers and light rules separate two columns of 10pt text. Named relation readings are italic. Graph, table, equation and conditional-branch semantics remain distinct; ownership retains a crossed dashed stale claim.",
-  "redesign": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
+  "bw_encoding": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes.",
+  "redesign": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
   "questions": [],
-  "alt": "Nine model families in three grouped rows. Each cell places an engineering question below the family title, shows a graph, decision table or quantitative expression, then compares Properties and Analyses in two columns. The provenance paths descend symmetrically through equally spaced horizontal segments. All questions, model semantics and examples remain unchanged.",
+  "alt": "Nine grouped model families with question subtitles and Properties/Analyses tables. Finite-state and control-flow branches use lower, aligned horizontal segments. DocAble control flow analyzes a figure and branches on informative: yes queries an LLM for a description, no marks decorative; the adjacent decision table separately preserves uncertain classifications. Quantitative modeling uses a native serif error-rate fraction r=E/N and requires r below one percent. No top notation sentence remains.",
   "review": {
     "reference": "authored SVG raster and labels, not D2 or caption alone",
     "checks": [
@@ -70,18 +73,18 @@
       "grayscale semantic modes",
       "native font legibility"
     ],
-    "outcome": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
+    "outcome": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "native_dimensions_cm": [
       15.8598,
-      19.6626
+      19.7051
     ],
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
       "page": 1,
       "width_bp": 449.57,
-      "height_bp": 557.364,
+      "height_bp": 558.569,
       "maximum_dimensions_bp": [
         450,
         560
@@ -90,12 +93,14 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 39,
+      "semantic_typography_checks": 41,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
-      "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+      "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+      "native_serif_math": true,
+      "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
       "status": "passed"
     }
   },
@@ -103,26 +108,26 @@
     "stem": "modeling-repertoire",
     "source": "book/assets/modeling-repertoire.svg",
     "status": "corrected",
-    "evidence": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
+    "evidence": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
     "original_render": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-figure-review/assets/modeling-repertoire-original.webp",
     "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-12.png",
     "candidate_render": "/private/tmp/mage-figure-2-6-review-20261111/latex/build/figure-2-6-proof/figure-2-6.png",
     "original_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "native_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
+    "native_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
     "page": 1,
     "dimensions_cm": [
       15.8598,
-      19.6626
+      19.7051
     ],
     "diagnostics": [],
     "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
     "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
       "page": 1,
       "width_bp": 449.57,
-      "height_bp": 557.364,
+      "height_bp": 558.569,
       "maximum_dimensions_bp": [
         450,
         560
@@ -131,12 +136,14 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 39,
+      "semantic_typography_checks": 41,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
-      "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+      "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+      "native_serif_math": true,
+      "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
       "status": "passed"
     }
   },
@@ -145,18 +152,18 @@
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
-    "fill": "White grid cells with 8% gray comparison-row bands. Bold single-line row/family titles precede plain question subtitles. Below each sketch, bold Properties / Analyses headers and light rules separate two columns of 10pt text. Named relation readings are italic. Graph, table, equation and conditional-branch semantics remain distinct; ownership retains a crossed dashed stale claim.",
+    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+    "fill": "White grid cells and 8% gray comparison-row bands. Bold titles and table headers organize sans-serif prose; native serif math distinguishes the error-rate fraction and bound. Lower aligned branch bars express finite-state and DocAble control flow; provenance retains symmetric elbow paths. The ownership stale-claim path retains its cross and dashes.",
     "bold": "Bold comparison rows, family titles, Properties/Analyses, decision-table headers and Required; plain question subtitles and examples; italic named relation readings.",
-    "routing": "Retained all nine examples. Provenance paths now use symmetric source positions and entry ports, with equal 11bp vertical legs above and below the two horizontal segments. Other graphs retain their branches and semantics.",
+    "routing": "Finite-state horizontal branch lies midway between upper and lower nodes. Both DocAble branches share a lower horizontal rank with equal 11bp vertical legs. Provenance remains symmetric. All routes keep the required terminal clearance.",
     "shape": "Rounded entity/state boxes, a decision diamond for conditional control flow, a policy table and direct quantitative expressions.",
-    "visual_review": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
+    "visual_review": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
       "page": 1,
       "width_bp": 449.57,
-      "height_bp": 557.364,
+      "height_bp": 558.569,
       "maximum_dimensions_bp": [
         450,
         560
@@ -165,12 +172,14 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 39,
+      "semantic_typography_checks": 41,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
-      "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+      "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+      "native_serif_math": true,
+      "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
       "status": "passed"
     },
     "book_references": [],
@@ -230,6 +239,28 @@
         "single_line_row_headings": 3,
         "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
         "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 557.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 39,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+        "status": "passed"
       }
     ]
   },
@@ -237,8 +268,8 @@
     "review": "book/tikz/typography-review.json",
     "decision": "refined",
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
-    "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
-    "reason": "Three 11pt bold comparison-row labels, nine 10.5pt bold family headings, and 10pt plain question subtitles and content. Properties/Analyses, decision-table headers and Required are bold; named relation readings are italic. Multi-line table cells preserve type size and remain within their own columns.",
+    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
+    "reason": "Preserve 11pt row labels, 10.5pt family headings and 10pt prose. Questions and DocAble action labels use regular sans serif; table headers and Required are bold. Quantitative r=E/N and r<1% use native serif mathematical faces, with sans-serif definitions of E and N.",
     "evidence": [
       {
         "source_text": "COMPONENT / DEPENDENCY",
@@ -494,23 +525,6 @@
         ]
       },
       {
-        "source_text": "Compare error rate to bound",
-        "source_style": "italic",
-        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-        "candidate_text": "Measure; compare with bound",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "Compare error rate to bound",
-            "element_text_path": "/svg/text[72]",
-            "weight": "normal",
-            "style": "italic",
-            "x": "369",
-            "y": "300"
-          }
-        ]
-      },
-      {
         "source_text": "owns / memberOf",
         "source_style": "italic",
         "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
@@ -540,23 +554,6 @@
             "weight": "normal",
             "style": "italic",
             "x": "220",
-            "y": "474"
-          }
-        ]
-      },
-      {
-        "source_text": "Calls",
-        "source_style": "italic",
-        "semantic_role": "Model-family heading, Q/P/A field, miniature entity, or relation semantics",
-        "candidate_text": "Branches on a condition",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "Calls",
-            "element_text_path": "/svg/text[111]",
-            "weight": "normal",
-            "style": "italic",
-            "x": "369",
             "y": "474"
           }
         ]
@@ -662,20 +659,6 @@
         "candidate_style": "regular"
       },
       {
-        "source_text": "Author-requested differentiated examples and comparison rows",
-        "source_style": "Editorial revision; color reference preserved",
-        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
-        "candidate_text": "error rate = errors / requests",
-        "candidate_style": "regular"
-      },
-      {
-        "source_text": "Author-requested differentiated examples and comparison rows",
-        "source_style": "Editorial revision; color reference preserved",
-        "semantic_role": "Comparison row, decision-table label, or explicit quantitative requirement",
-        "candidate_text": "error rate < 1%",
-        "candidate_style": "regular"
-      },
-      {
         "source_text": "Author-requested question subtitles and Properties/Analyses tables",
         "source_style": "Editorial revision; color reference preserved",
         "semantic_role": "Plain question subtitle or two-column comparison header",
@@ -744,6 +727,48 @@
         "semantic_role": "Plain question subtitle or two-column comparison header",
         "candidate_text": "What produced this?",
         "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested DocAble flow and native quantitative equation",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+        "candidate_text": "Analyze figure",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested DocAble flow and native quantitative equation",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+        "candidate_text": "Informative?",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested DocAble flow and native quantitative equation",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+        "candidate_text": "Query LLM for description",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested DocAble flow and native quantitative equation",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+        "candidate_text": "Mark decorative",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested DocAble flow and native quantitative equation",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+        "candidate_text": "Error rate",
+        "candidate_style": "regular"
+      },
+      {
+        "source_text": "Author-requested DocAble flow and native quantitative equation",
+        "source_style": "Editorial revision; color reference preserved",
+        "semantic_role": "Control-flow action or definition accompanying native serif mathematics",
+        "candidate_text": "E = errors; N = requests",
+        "candidate_style": "regular"
       }
     ],
     "checks": [
@@ -800,19 +825,11 @@
         "italic": true
       },
       {
-        "text": "Measure; compare with bound",
-        "italic": true
-      },
-      {
         "text": "owns / memberOf",
         "italic": true
       },
       {
         "text": "sourceOf / produced",
-        "italic": true
-      },
-      {
-        "text": "Branches on a condition",
         "italic": true
       },
       {
@@ -866,16 +883,6 @@
         "italic": false
       },
       {
-        "text": "error rate = errors / requests",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "error rate < 1%",
-        "bold": false,
-        "italic": false
-      },
-      {
         "text": "Properties",
         "bold": true,
         "italic": false
@@ -924,14 +931,44 @@
         "text": "What produced this?",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Analyze figure",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Informative?",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Query LLM for description",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Mark decorative",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Error rate",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "E = errors; N = requests",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
       "page": 1,
       "width_bp": 449.57,
-      "height_bp": 557.364,
+      "height_bp": 558.569,
       "maximum_dimensions_bp": [
         450,
         560
@@ -940,12 +977,14 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 39,
+      "semantic_typography_checks": 41,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
-      "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+      "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+      "native_serif_math": true,
+      "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
       "status": "passed"
     },
     "validation_history": [
@@ -1003,17 +1042,39 @@
         "single_line_row_headings": 3,
         "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
         "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 557.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 39,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+        "status": "passed"
       }
     ]
   },
   "layout_review": {
     "review": "book/tikz/layout-review.json",
     "decision": "refined",
-    "reason": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
-    "candidate_sha256": "5879edd771edc7f67e9ee0169a43a7d0933d08aa2fedae918e5995741debbb00",
+    "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
+    "candidate_sha256": "aef0fd651ee9a821ca02887928abeabcb56667aca123ac032c58f89b0f1b5ca4",
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested reading-order revision: each family has its engineering question directly below the title, without a Q prefix. Below each sketch, a two-column Properties / Analyses table replaces the P/A list. The obsolete acronym legend is removed. Provenance has symmetric paths with equal 11bp vertical legs and lower horizontal segments. Grouped rows, nine differentiated examples, single-line headings and 10pt body type are preserved.",
+      "reason": "Author-requested follow-up: remove the entire top notation sentence; move finite-state and control-flow horizontal branch segments southward into balanced gaps; use DocAble image analysis, an informative decision, querying an LLM for a description or marking decorative; render the quantitative ratio and bound as native serif LaTeX mathematics. Question subtitles, Properties/Analyses tables, grouped rows, nine single-line headings and 10pt body text remain.",
       "reviewed_visually": true,
       "single_line_headings": [
         "Component/dependency",
@@ -1035,10 +1096,10 @@
     },
     "validation": {
       "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
-      "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+      "proof_sha256": "c5dcd80835018c9be01fcdf9f7b4280215886b28f3dc78aad6eda1ad135041e5",
       "page": 1,
       "width_bp": 449.57,
-      "height_bp": 557.364,
+      "height_bp": 558.569,
       "maximum_dimensions_bp": [
         450,
         560
@@ -1047,12 +1108,14 @@
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "checked_terminal_approaches": 17,
-      "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+      "geometry_audit_sha256": "f01dc45ae6f14247cdf95c281998e96f1aa5d70af4fc71d450037fb664609079",
       "monochrome_pixels": true,
-      "semantic_typography_checks": 39,
+      "semantic_typography_checks": 41,
       "single_line_family_headings": 9,
       "single_line_row_headings": 3,
-      "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
+      "heading_audit_sha256": "c8ae8354f0ca7624d6c19eeb73c3970f95492e1c2df6e70679e02d682e8bb0cb",
+      "native_serif_math": true,
+      "math_font_audit_sha256": "c18939ec560eb472af4fa55720ea8e00588edc93d92761c22ddb8f4663469aa6",
       "status": "passed"
     },
     "source_sha256": "60dc600317beebb557d6f85a9eaa0a3ae7bf9028aa247cf4023a379d4ca2d8ed",
@@ -1124,6 +1187,28 @@
         "single_line_family_headings": 9,
         "single_line_row_headings": 3,
         "heading_audit_sha256": "30b1b34bf39b876a230e35bb5c0e827b840467d88e0f454034773925d4d5a585",
+        "status": "passed"
+      },
+      {
+        "proof": "latex/build/figure-2-6-proof/figure-2-6.pdf",
+        "proof_sha256": "0bdf93d8f877af7bcb566b0da1f99bd403f93d807960fbe5f65a84ba39825264",
+        "page": 1,
+        "width_bp": 449.57,
+        "height_bp": 557.364,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 17,
+        "geometry_audit_sha256": "e95571230285f7d7b65e5be39898e499fa2d6deb55a104b31698a6ad3cc0fb4a",
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 39,
+        "single_line_family_headings": 9,
+        "single_line_row_headings": 3,
+        "heading_audit_sha256": "809e8960d26405e2cc46bd4e7349ad18e72d6b99709535d7aa63ba5f625818b3",
         "status": "passed"
       }
     ]
