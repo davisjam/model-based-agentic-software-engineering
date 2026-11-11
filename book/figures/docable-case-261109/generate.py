@@ -45,11 +45,11 @@ fig,axs=plt.subplots(2,2,figsize=(6.25,6.0));fig.subplots_adjust(left=.10,right=
 for ax in axs.flat:setup(ax)
 axs[0,0].bar(x,[int(r['work_commits']) for r in rows],width=.78,color='.3');axs[0,0].set_yticks([0,1500,3000]);axs[0,0].set_ylim(0,3700)
 axs[0,0].set_title('(a) Work commits',loc='left',fontsize=11,pad=10)
-series=[('model_modules','Models','-','.05'),('multi_model_consumers','Multi-model','--','.45'),('static_verifier_files','Static',':','.05'),('dynamic_verifier_files','Dynamic','-.','.45')]
+series=[('model_modules','Models','-','.05'),('multi_model_consumers','Consumers of ≥2 models','--','.45'),('static_verifier_files','Static',':','.05'),('dynamic_verifier_files','Dynamic','-.','.45')]
 for key,label,style,c in series:axs[0,1].plot(x,[int(r[key]) for r in rows],color=c,linestyle=style,lw=1.5,label=label)
-axs[0,1].set_ylim(0,400);axs[0,1].set_yticks([0,150,300]);axs[0,1].legend(loc='upper left',frameon=False,ncol=2,fontsize=10,columnspacing=.6,handlelength=1.5,handletextpad=.35);axs[0,1].set_title('(b) Models and checks',loc='left',fontsize=11,pad=10)
+axs[0,1].set_ylim(0,400);axs[0,1].set_yticks([0,150,300]);axs[0,1].legend(loc='upper left',frameon=False,ncol=1,fontsize=10,columnspacing=.6,handlelength=1.5,handletextpad=.35);axs[0,1].set_title('(b) Models and checks',loc='left',fontsize=11,pad=10)
 for ax,key,title,no,yt in [(axs[1,0],'retained_agent_starts','(c) Dispatches',11,[0,750,1500]),(axs[1,1],'epics_first_closed','(d) Epic completions',10,[0,20,40])]:
- ax.bar(x,[int(r[key]) for r in rows],width=.78,color='.3');ax.axvspan(.5,no+.5,color='.92',zorder=0);ax.text((no+1)/2,.55,'No recovered\nrecords',transform=ax.get_xaxis_transform(),ha='center',va='center',fontsize=10)
+ ax.bar(x,[int(r[key]) for r in rows],width=.78,color='.3');ax.axvspan(.5,no+.5,color='.92',zorder=0);ax.text((no+1)/2,.55,'No records',transform=ax.get_xaxis_transform(),ha='center',va='center',fontsize=10)
  ax.set_title(title,loc='left',fontsize=11,pad=10);ax.set_yticks(yt);ax.set_ylim(0,yt[-1]*1.2)
 save(fig,'docable-seip-longitudinal-261109','Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.')
 sizes=read('code_size_mapped.csv');groups=json.loads((D/'size_groups.json').read_text());sx=[int(r['project_week']) for r in sizes];rat=read('size_ratios.csv')
@@ -57,7 +57,10 @@ fig,axs=plt.subplots(2,1,figsize=(6.25,6.6));fig.subplots_adjust(left=.12,right=
 for ax,g,title in zip(axs,['production','apparatus'],['(a) Production implementation','(b) Engineering apparatus']):
  pairs=groups[g];bands=ax.stackplot(sx,*[[int(r[k]) for r in sizes] for k,l in pairs],colors=[str(.93-i*.10) for i in range(len(pairs))],edgecolor='.25',linewidth=.45,labels=[l for k,l in pairs]);
  for band,hatch in zip(bands,['','///','...','\\\\','xx','--','++']):band.set_hatch(hatch)
- setup(ax);ax.set_title(title,loc='left',fontsize=11,pad=10);ax.legend(loc='upper left',frameon=False,ncol=2,fontsize=10,columnspacing=1,handlelength=1.5)
+ setup(ax);ax.set_title(title,loc='left',fontsize=11,pad=10)
+ # Match the visible stack from its top band to its bottom band.
+ handles,labels=ax.get_legend_handles_labels()
+ ax.legend(handles[::-1],labels[::-1],loc='upper left',frameon=False,ncol=1,fontsize=10,handlelength=1.5)
  ax.set_ylim(0,1050000 if g=='production' else 4400000);ax.set_yticks([0,300000,600000] if g=='production' else [0,1000000,2000000])
 fig.text(.12,.025,'Apparatus / production:  Week 11 2.6×  ·  Week 21 3.6×  ·  Week 31 3.8×',fontsize=11)
 save(fig,'docable-seip-composition-261109','Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.')
@@ -87,17 +90,17 @@ def coords(xs,ys):return ' '.join(f'({a},{b})' for a,b in zip(xs,ys))
 base='mage plot,width=5.65cm,height=4.8cm,xmin=.4,xmax=31.6,xtick={1,11,21,31},xticklabels={Week 1,11,21,31},ymin=0,tick label style={font=\\magefigurefont\\fontsize{10}{12}\\selectfont},title style={font=\\magefigurefont\\fontsize{11}{13}\\selectfont,at={(0,1.08)},anchor=west},legend style={draw=none,font=\\magefigurefont\\fontsize{10}{12}\\selectfont},legend cell align=left'
 t='\\begin{tikzpicture}\n\\begin{groupplot}[group style={group size=2 by 2,horizontal sep=1.3cm,vertical sep=2cm},'+base+']\n'
 t+='\\nextgroupplot[title={(a) Work commits},ymax=3700,ytick={0,1500,3000},yticklabels={0,1.5K,3K}]\n\\addplot[ybar,bar width=3.4pt,draw=black!30,fill=black!65] coordinates {'+coords(x,[int(r['work_commits']) for r in rows])+'};\n'
-t+='\\nextgroupplot[title={(b) Models and checks},ymax=430,ytick={0,150,300},legend columns=2,legend pos=north west]\n'
+t+='\\nextgroupplot[title={(b) Models and checks},ymax=430,ytick={0,150,300},legend columns=1,legend pos=north west]\n'
 for (key,label,sty,c),style in zip(series,['solid','dashed','densely dotted','dashdotted']):t+='\\addplot[black,'+style+',line width=.8pt,no marks] coordinates {'+coords(x,[int(r[key]) for r in rows])+'};\\addlegendentry{'+label+'}\n'
 for key,title,n,ymax,yt,ytl in [('retained_agent_starts','(c) Dispatches',11,1800,'0,750,1500','0,750,1.5K'),('epics_first_closed','(d) Epic completions',10,48,'0,20,40','0,20,40')]:
  t+='\\nextgroupplot[title={'+title+'},ymax='+str(ymax)+',ytick={'+yt+'},yticklabels={'+ytl+'}]\n'
- t+='\\path[fill=black!8] (axis cs:.5,0) rectangle (axis cs:'+str(n+.5)+','+str(ymax)+');\n\\addplot[ybar,bar width=3.4pt,draw=black!30,fill=black!65] coordinates {'+coords(x,[int(r[key]) for r in rows])+'};\n\\node[align=center,font=\\magefigurefont\\fontsize{10}{12}\\selectfont] at (axis cs:'+str((n+1)/2)+','+str(ymax*.57)+') {No recovered\\\\records};\n'
+ t+='\\path[fill=black!8] (axis cs:.5,0) rectangle (axis cs:'+str(n+.5)+','+str(ymax)+');\n\\addplot[ybar,bar width=3.4pt,draw=black!30,fill=black!65] coordinates {'+coords(x,[int(r[key]) for r in rows])+'};\n\\node[align=center,font=\\magefigurefont\\fontsize{10}{12}\\selectfont] at (axis cs:'+str((n+1)/2)+','+str(ymax*.57)+') {No records};\n'
 t+='\\end{groupplot}\n\\end{tikzpicture}\n';(T/'docable-seip-longitudinal-261109.tex').write_text(t)
-# Stacked nativebands are explicit adjacentpolygons; labels use pairedlegends inwhite space.
+# Stacked native bands retain their data order; vertical legends reverse it to match top-to-bottom bands.
 t='\\begin{tikzpicture}\n';pat=['','north east lines','dots','north west lines','crosshatch','horizontal lines','grid']
 for group,y,title,ymax,ticks in [('production',0,'(a) Production implementation',1050000,'0,300000,600000'),('apparatus',-8.4,'(b) Engineering apparatus',4400000,'0,1000000,2000000')]:
  pairs=groups[group];cum=[0]*len(sx)
- t+='\\begin{axis}[mage plot,at={(0,'+str(y)+'cm)},anchor=north west,width=12.6cm,height=5.2cm,scale only axis,xmin=.4,xmax=31.6,ymin=0,ymax='+str(ymax)+',xtick={1,11,21,31},xticklabels={Week 1,11,21,31},ytick={'+ticks+'},yticklabels={'+('0,300K,600K' if group=='production' else '0,1M,2M')+'},title={'+title+'},title style={font=\\magefigurefont\\fontsize{11}{13}\\selectfont,at={(0,1.07)},anchor=west},legend columns=2,legend pos=north west,legend style={draw=none,column sep=.3cm,font=\\magefigurefont\\fontsize{10}{12}\\selectfont}]\n'
+ t+='\\begin{axis}[mage plot,at={(0,'+str(y)+'cm)},anchor=north west,width=12.6cm,height=5.2cm,scale only axis,xmin=.4,xmax=31.6,ymin=0,ymax='+str(ymax)+',xtick={1,11,21,31},xticklabels={Week 1,11,21,31},ytick={'+ticks+'},yticklabels={'+('0,300K,600K' if group=='production' else '0,1M,2M')+'},title={'+title+'},title style={font=\\magefigurefont\\fontsize{11}{13}\\selectfont,at={(0,1.07)},anchor=west},reverse legend,legend columns=1,legend pos=north west,legend style={draw=none,column sep=.3cm,font=\\magefigurefont\\fontsize{10}{12}\\selectfont}]\n'
  for j,(key,label) in enumerate(pairs):
   nxt=[v+int(row[key]) for v,row in zip(cum,sizes)];path=coords(sx,nxt)+' '+coords(sx[::-1],cum[::-1]);style='area legend,draw=black!60,fill=black!'+str(7+j*10)+',line width=.3pt'
   if pat[j]:style+=',postaction={pattern='+pat[j]+',pattern color=black!35}'

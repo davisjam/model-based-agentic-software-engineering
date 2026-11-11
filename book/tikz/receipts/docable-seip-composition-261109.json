@@ -1,14 +1,14 @@
 {
   "id": "docable-seip-composition-261109",
-  "date": "2026-11-09",
+  "date": "2026-11-11",
   "status": "ready_for_parent_integration",
   "source": "book/assets/docable-seip-composition-261109.svg",
   "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
   "chapter": "5.2-inside-docables-software-factory",
   "claim": "Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.",
   "alt": "Production and apparatus source at 10 snapshots. Composition bands remain separate from the apparatus/production ratio: 2.6 at week 11, 3.6 at week 21, 3.8 at week 31. Historical documentation excluded; interpolating lines are not measurements.",
-  "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
-  "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+  "source_sha256": "a532f390f0787b32051d87c339544962546020b3d09b8c112d658b5885d33314",
+  "candidate_sha256": "2b8ad4d1197b5c9dff05c24e91a665893393e7dea582d18f836b4c160acfcb69",
   "caption": "*The product and its supporting apparatus.* Production and apparatus composition at ten sampled revisions. The support ratio is apparatus divided by production: about 2.6× at week 11, 3.6× at week 21, and 3.8× at week 31. Lines between samples interpolate; they are not additional measurements. The apparatus’s size establishes investment, not its return. [short: Product and supporting apparatus]",
   "generator": "book/figures/docable-case-261109/generate.py",
   "data": "book/data/docable-case-261109",
@@ -18,48 +18,140 @@
     "(b) Engineering apparatus"
   ],
   "native_validation": {
-    "status": "standalone_passed",
-    "date": "2026-11-09",
-    "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
-    "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
-    "width_bp": 386.0299987792969,
-    "height_bp": 461.1679992675781,
-    "minimum_prose_font_bp": 9.962639808654785,
-    "minimum_authored_text_TeX_pt": 10,
+    "date": "2026-11-11",
+    "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+    "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+    "page": 1,
+    "width_bp": 392.008,
+    "height_bp": 467.146,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 13,
     "monochrome_pixels": true,
-    "compile_diagnostics": [],
-    "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    "status": "passed",
+    "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+    "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+    "legend_order": {
+      "production": [
+        "Shared/services",
+        "Frontend",
+        "Web processing",
+        "Core remediation"
+      ],
+      "apparatus": [
+        "Indexed docs",
+        "Models",
+        "Infra. as code",
+        "Agent infra.",
+        "Tools/helpers",
+        "Lints",
+        "Tests"
+      ]
+    },
+    "all_band_coordinates_unchanged": true
   },
   "layout_review": {
-    "source": "book/assets/docable-seip-composition-261109.svg",
-    "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
-    "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
-    "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+    "source_sha256": "a532f390f0787b32051d87c339544962546020b3d09b8c112d658b5885d33314",
+    "candidate_sha256": "2b8ad4d1197b5c9dff05c24e91a665893393e7dea582d18f836b4c160acfcb69",
     "baseline_candidate_sha256": null,
-    "decision": "new",
-    "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+    "decision": "refined",
+    "reason": "Author prefers the original monochrome Matplotlib design for publication. Preserve its composition, axes, gray fills, hatch patterns and all ten sampled data values. Change both original and native comparison legends to one vertical column, ordered from top stacked band to bottom stacked band. Keep 10pt legend text; no shrink or chart redesign needed. Original selected by parent through monochrome-originals.json, not by substituting the native remake.",
     "reviewed_visually": true,
     "contracts": {},
     "validation": {
-      "status": "standalone_passed",
-      "date": "2026-11-09",
-      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
-      "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
-      "width_bp": 386.0299987792969,
-      "height_bp": 461.1679992675781,
-      "minimum_prose_font_bp": 9.962639808654785,
-      "minimum_authored_text_TeX_pt": 10,
+      "date": "2026-11-11",
+      "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+      "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+      "page": 1,
+      "width_bp": 392.008,
+      "height_bp": 467.146,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 13,
       "monochrome_pixels": true,
-      "compile_diagnostics": [],
-      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      "status": "passed",
+      "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+      "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+      "legend_order": {
+        "production": [
+          "Shared/services",
+          "Frontend",
+          "Web processing",
+          "Core remediation"
+        ],
+        "apparatus": [
+          "Indexed docs",
+          "Models",
+          "Infra. as code",
+          "Agent infra.",
+          "Tools/helpers",
+          "Lints",
+          "Tests"
+        ]
+      },
+      "all_band_coordinates_unchanged": true
+    },
+    "validation_history": [
+      {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+        "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+        "width_bp": 386.0299987792969,
+        "height_bp": 461.1679992675781,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+        "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+        "page": 1,
+        "width_bp": 392.008,
+        "height_bp": 467.146,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 13,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+        "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+        "legend_order": {
+          "production": [
+            "Shared/services",
+            "Frontend",
+            "Web processing",
+            "Core remediation"
+          ],
+          "apparatus": [
+            "Indexed docs",
+            "Models",
+            "Infra. as code",
+            "Agent infra.",
+            "Tools/helpers",
+            "Lints",
+            "Tests"
+          ]
+        },
+        "all_band_coordinates_unchanged": true
+      }
+    ],
+    "page_layout": {
+      "decision": "retain original design",
+      "reason": "Author prefers the original monochrome Matplotlib design for publication. Preserve its composition, axes, gray fills, hatch patterns and all ten sampled data values. Change both original and native comparison legends to one vertical column, ordered from top stacked band to bottom stacked band. Keep 10pt legend text; no shrink or chart redesign needed. Original selected by parent through monochrome-originals.json, not by substituting the native remake.",
+      "reviewed_visually": true
     }
   },
   "typography_review": {
-    "source": "book/assets/docable-seip-composition-261109.svg",
-    "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
-    "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
-    "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
-    "decision": "new",
+    "source_sha256": "a532f390f0787b32051d87c339544962546020b3d09b8c112d658b5885d33314",
+    "candidate_sha256": "2b8ad4d1197b5c9dff05c24e91a665893393e7dea582d18f836b4c160acfcb69",
+    "decision": "refined",
     "evidence": [
       {
         "source_text": "(a) Production implementation",
@@ -84,21 +176,264 @@
         "text": "(b) Engineering apparatus",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Shared/services",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Frontend",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Web processing",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Core remediation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Indexed docs",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Models",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Infra. as code",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Agent infra.",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Tools/helpers",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Lints",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Tests",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
-      "status": "standalone_passed",
-      "date": "2026-11-09",
-      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
-      "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
-      "width_bp": 386.0299987792969,
-      "height_bp": 461.1679992675781,
-      "minimum_prose_font_bp": 9.962639808654785,
-      "minimum_authored_text_TeX_pt": 10,
+      "date": "2026-11-11",
+      "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+      "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+      "page": 1,
+      "width_bp": 392.008,
+      "height_bp": 467.146,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 13,
       "monochrome_pixels": true,
-      "compile_diagnostics": [],
-      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
-    }
+      "status": "passed",
+      "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+      "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+      "legend_order": {
+        "production": [
+          "Shared/services",
+          "Frontend",
+          "Web processing",
+          "Core remediation"
+        ],
+        "apparatus": [
+          "Indexed docs",
+          "Models",
+          "Infra. as code",
+          "Agent infra.",
+          "Tools/helpers",
+          "Lints",
+          "Tests"
+        ]
+      },
+      "all_band_coordinates_unchanged": true
+    },
+    "validation_history": [
+      {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+        "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+        "width_bp": 386.0299987792969,
+        "height_bp": 461.1679992675781,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+        "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+        "page": 1,
+        "width_bp": 392.008,
+        "height_bp": 467.146,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 13,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+        "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+        "legend_order": {
+          "production": [
+            "Shared/services",
+            "Frontend",
+            "Web processing",
+            "Core remediation"
+          ],
+          "apparatus": [
+            "Indexed docs",
+            "Models",
+            "Infra. as code",
+            "Agent infra.",
+            "Tools/helpers",
+            "Lints",
+            "Tests"
+          ]
+        },
+        "all_band_coordinates_unchanged": true
+      }
+    ],
+    "reason": "Preserve original and native typography, including 10pt legends. Only legend ordering and column count change."
   },
-  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults."
+  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults.",
+  "redesign": "Author prefers the original monochrome Matplotlib design for publication. Preserve its composition, axes, gray fills, hatch patterns and all ten sampled data values. Change both original and native comparison legends to one vertical column, ordered from top stacked band to bottom stacked band. Keep 10pt legend text; no shrink or chart redesign needed. Original selected by parent through monochrome-originals.json, not by substituting the native remake.",
+  "legend_order": {
+    "production": [
+      "Shared/services",
+      "Frontend",
+      "Web processing",
+      "Core remediation"
+    ],
+    "apparatus": [
+      "Indexed docs",
+      "Models",
+      "Infra. as code",
+      "Agent infra.",
+      "Tools/helpers",
+      "Lints",
+      "Tests"
+    ]
+  },
+  "publication_recommendation": {
+    "registry": "book/tikz/monochrome-originals.json",
+    "source": "book/assets/docable-seip-composition-261109.svg",
+    "reason": "Author selected the original monochrome Matplotlib design, with vertical legends matching top-to-bottom stack order.",
+    "generator": "book/figures/docable-case-261109/generate.py",
+    "provenance": "book/data/docable-case-261109/provenance.json"
+  },
+  "data_validation": {
+    "all_native_band_coordinates_unchanged": true,
+    "all_original_band_paths_unchanged": true,
+    "source_files": {
+      "code_size_mapped.csv": "e898133f255141c7b65710a58ec0cdb60a0c952ee09745886bb1ff89fef8d049",
+      "size_ratios.csv": "90a2d06a204680e27494a3315f26f30da2644735193b5f8a8fef73a6639978a4",
+      "size_groups.json": "1395158f9c3bb6ea384c2d1830019721e66980db48d6d9fc518fb21cdf85271c"
+    },
+    "legends_verified_against_stack_order_in_both_pdfs": true
+  },
+  "style_review": {
+    "decision": "refined",
+    "date": "2026-11-09",
+    "status": "reviewed",
+    "source_sha256": "a532f390f0787b32051d87c339544962546020b3d09b8c112d658b5885d33314",
+    "candidate_sha256": "2b8ad4d1197b5c9dff05c24e91a665893393e7dea582d18f836b4c160acfcb69",
+    "fill": "Restrained gray fills; patterns and line styles distinguish series.",
+    "bold": "Regular panel headings and data labels; no decorative emphasis.",
+    "routing": "No conceptual connectors; charts directly encode measured data.",
+    "shape": "Bars, lines, and stacked bands encode quantities.",
+    "visual_review": "Author prefers the original monochrome Matplotlib design for publication. Preserve its composition, axes, gray fills, hatch patterns and all ten sampled data values. Change both original and native comparison legends to one vertical column, ordered from top stacked band to bottom stacked band. Keep 10pt legend text; no shrink or chart redesign needed. Original selected by parent through monochrome-originals.json, not by substituting the native remake.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+      "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+      "page": 1,
+      "width_bp": 392.008,
+      "height_bp": 467.146,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 13,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+      "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+      "legend_order": {
+        "production": [
+          "Shared/services",
+          "Frontend",
+          "Web processing",
+          "Core remediation"
+        ],
+        "apparatus": [
+          "Indexed docs",
+          "Models",
+          "Infra. as code",
+          "Agent infra.",
+          "Tools/helpers",
+          "Lints",
+          "Tests"
+        ]
+      },
+      "all_band_coordinates_unchanged": true
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+        "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+        "page": 1,
+        "width_bp": 392.008,
+        "height_bp": 467.146,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 13,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+        "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+        "legend_order": {
+          "production": [
+            "Shared/services",
+            "Frontend",
+            "Web processing",
+            "Core remediation"
+          ],
+          "apparatus": [
+            "Indexed docs",
+            "Models",
+            "Infra. as code",
+            "Agent infra.",
+            "Tools/helpers",
+            "Lints",
+            "Tests"
+          ]
+        },
+        "all_band_coordinates_unchanged": true
+      }
+    ]
+  }
 }

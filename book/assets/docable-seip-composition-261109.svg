@@ -216,10 +216,10 @@ L 78 54.136312
 L 78 47.136312 
 L 63 47.136312 
 z
-" style="fill: #ededed; stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: url(#h554f4f54f5); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_9">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="54.136312" transform="rotate(-0 86 54.136312)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Core remediation</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="54.136312" transform="rotate(-0 86 54.136312)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Shared/services</text>
     </g>
     <g id="patch_4">
      <path d="M 63 68.306625 
@@ -227,32 +227,32 @@ L 78 68.306625
 L 78 61.306625 
 L 63 61.306625 
 z
-" style="fill: url(#h1dd8562326); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
-    </g>
-    <g id="text_10">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="68.306625" transform="rotate(-0 86 68.306625)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Web processing</text>
-    </g>
-    <g id="patch_5">
-     <path d="M 169.01875 54.136312 
-L 184.01875 54.136312 
-L 184.01875 47.136312 
-L 169.01875 47.136312 
-z
 " style="fill: url(#h6845cafefe); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
+    <g id="text_10">
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="68.306625" transform="rotate(-0 86 68.306625)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Frontend</text>
+    </g>
+    <g id="patch_5">
+     <path d="M 63 82.476937 
+L 78 82.476937 
+L 78 75.476937 
+L 63 75.476937 
+z
+" style="fill: url(#h1dd8562326); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+    </g>
     <g id="text_11">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="192.01875" y="54.136312" transform="rotate(-0 192.01875 54.136312)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Frontend</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="82.476937" transform="rotate(-0 86 82.476937)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Web processing</text>
     </g>
     <g id="patch_6">
-     <path d="M 169.01875 68.306625 
-L 184.01875 68.306625 
-L 184.01875 61.306625 
-L 169.01875 61.306625 
+     <path d="M 63 96.837875 
+L 78 96.837875 
+L 78 89.837875 
+L 63 89.837875 
 z
-" style="fill: url(#h554f4f54f5); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: #ededed; stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_12">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="192.01875" y="68.306625" transform="rotate(-0 192.01875 68.306625)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Shared/services</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="96.837875" transform="rotate(-0 86 96.837875)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Core remediation</text>
     </g>
    </g>
   </g>
@@ -518,10 +518,10 @@ L 78 300.950114
 L 78 293.950114 
 L 63 293.950114 
 z
-" style="fill: #ededed; stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: url(#hec54445c27); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_21">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="300.950114" transform="rotate(-0 86 300.950114)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Tests</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="300.950114" transform="rotate(-0 86 300.950114)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Indexed docs</text>
     </g>
     <g id="patch_9">
      <path d="M 63 315.120427 
@@ -529,10 +529,10 @@ L 78 315.120427
 L 78 308.120427 
 L 63 308.120427 
 z
-" style="fill: url(#h1dd8562326); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: url(#hcc2e875068); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_22">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="315.120427" transform="rotate(-0 86 315.120427)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Lints</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="315.120427" transform="rotate(-0 86 315.120427)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Models</text>
     </g>
     <g id="patch_10">
      <path d="M 63 329.290739 
@@ -540,10 +540,10 @@ L 78 329.290739
 L 78 322.290739 
 L 63 322.290739 
 z
-" style="fill: url(#h6845cafefe); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: url(#hfef226f402); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_23">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="329.290739" transform="rotate(-0 86 329.290739)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Tools/helpers</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="329.290739" transform="rotate(-0 86 329.290739)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Infra. as code</text>
     </g>
     <g id="patch_11">
      <path d="M 63 343.581364 
@@ -557,37 +557,37 @@ z
      <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="343.581364" transform="rotate(-0 86 343.581364)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Agent infra.</text>
     </g>
     <g id="patch_12">
-     <path d="M 153.560937 300.950114 
-L 168.560937 300.950114 
-L 168.560937 293.950114 
-L 153.560937 293.950114 
+     <path d="M 63 357.942302 
+L 78 357.942302 
+L 78 350.942302 
+L 63 350.942302 
 z
-" style="fill: url(#hfef226f402); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: url(#h6845cafefe); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_25">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="176.560937" y="300.950114" transform="rotate(-0 176.560937 300.950114)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Infra. as code</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="357.942302" transform="rotate(-0 86 357.942302)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Tools/helpers</text>
     </g>
     <g id="patch_13">
-     <path d="M 153.560937 315.120427 
-L 168.560937 315.120427 
-L 168.560937 308.120427 
-L 153.560937 308.120427 
+     <path d="M 63 372.112614 
+L 78 372.112614 
+L 78 365.112614 
+L 63 365.112614 
 z
-" style="fill: url(#hcc2e875068); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: url(#h1dd8562326); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_26">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="176.560937" y="315.120427" transform="rotate(-0 176.560937 315.120427)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Models</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="372.112614" transform="rotate(-0 86 372.112614)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Lints</text>
     </g>
     <g id="patch_14">
-     <path d="M 153.560937 329.290739 
-L 168.560937 329.290739 
-L 168.560937 322.290739 
-L 153.560937 322.290739 
+     <path d="M 63 386.282927 
+L 78 386.282927 
+L 78 379.282927 
+L 63 379.282927 
 z
-" style="fill: url(#hec54445c27); stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
+" style="fill: #ededed; stroke: #404040; stroke-width: 0.45; stroke-linejoin: miter"/>
     </g>
     <g id="text_27">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="176.560937" y="329.290739" transform="rotate(-0 176.560937 329.290739)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Indexed docs</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="86" y="386.282927" transform="rotate(-0 86 386.282927)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Tests</text>
     </g>
    </g>
   </g>

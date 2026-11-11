@@ -1,11 +1,11 @@
 {
   "source": "book/assets/build-stages-timeline.svg",
-  "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July\u2013September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+  "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–October period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
   "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
   "required_terms": [
-    "Stage / dates",
-    "Pressure",
-    "Consequence",
+    "STAGE / DATES",
+    "PRESSURE",
+    "CONSEQUENCE",
     "Feasibility\\",
     "Vision-language capability became usable",
     "The build began",
@@ -24,55 +24,74 @@
     "Hardening\\--June",
     "Time for structural work",
     "Models, tests, gates, provenance",
-    "Deployment / iteration / optimization\\--September",
+    "Deployment / iteration / optimization\\--October",
     "Production performance, cost, reliability, architecture limits",
-    "Measure, redesign, optimize, re-platform",
-    "Retrospective stages, not a preplanned roadmap."
+    "Measure, redesign, optimize, re-platform"
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Bare uppercase column headings and one rule replace the enclosing boxes. Black type, seven black stage markers and a black timeline spine carry the retrospective sequence.",
+  "redesign": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
   "questions": [],
-  "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to September: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
+  "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to October: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "compiler": "LuaLaTeX; no shell escape; shared mage-figures.sty",
     "warnings": [],
-    "width_pt": 390.258,
-    "height_pt": 386.227,
+    "width_pt": 394.922,
+    "height_pt": 412.369,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Final native proof and revised SVG inspected: footer removed; headings unboxed above one rule, date July–October, all seven rows preserved.10pt authored type retained."
   },
   "style_review": {
+    "source": "book/assets/build-stages-timeline.svg",
+    "candidate": "book/tikz/figures/build-stages-timeline.tex",
+    "receipt": "book/tikz/receipts/build-stages-timeline.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
-    "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
-    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes Deployment / iteration / optimization; Format expansion; Feasibility; PowerPoint; Standards; Hardening; SaaS. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Seven dates/stages and aligned pressure/consequence columns retained; markers not process arrows.",
+    "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
+    "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
+    "fill": "No header fills or enclosing boxes; column headings sit above one horizontal rule.",
+    "bold": "Column headings are uppercase bold; stage names retain bold emphasis; dates and explanations remain regular; retrospective footer removed.",
+    "routing": "Timeline spine and seven markers are unchanged; a single horizontal rule separates headings from the rows.",
+    "shape": "No visible boxes. Three text columns align the seven timeline rows.",
+    "visual_review": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 70,
-      "width_bp": 390.258,
-      "height_bp": 440.737,
-      "minimum_prose_font_pt": 10.0,
+      "date": "2026-11-11",
+      "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+      "proof_sha256": "75dda13f99f489abbb54fc4e6e30e341a4c711eb64d128c2b74a51796c51a585",
+      "page": 1,
+      "width_bp": 394.922,
+      "height_bp": 412.369,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "10bfb2a3e0dad4af2d07e2cc866c3ee61cbc2d12fcb9b71b806f3ca158d755a4",
+      "typography_audit_sha256": "a75b1e1dba3a366c249abbab8ab9fe1f7d384b97569641a0c3911f549ca832c3",
+      "status": "passed"
     },
     "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+      "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+      "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    }
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/build-stages-timeline.svg",
+    "candidate": "book/tikz/figures/build-stages-timeline.tex",
     "decision": "refined",
-    "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
-    "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
-    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
+    "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
     "evidence": [
       {
         "source_text": "Deployment, iteration,\nand optimization",
@@ -270,32 +289,31 @@
         ]
       },
       {
-        "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
-        "source_style": {
-          "font-weight": "400",
-          "font-style": "italic",
-          "font-size": "20"
-        },
-        "semantic_role": "explanatory annotation or feedback relation",
-        "candidate_text": "Retrospective stages, not a preplanned roadmap.",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "Stages are labels drawn afterward, not a plan followed at the time.",
-            "style": {
-              "font-weight": "400",
-              "font-style": "italic",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "60",
-              "y": "842",
-              "text_element": 65
-            }
-          }
-        ]
+        "semantic_role": "Author-requested header treatment/date range",
+        "candidate_text": "STAGE / DATES",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.2 correction,2026-11-11"
+      },
+      {
+        "semantic_role": "Author-requested header treatment/date range",
+        "candidate_text": "PRESSURE",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.2 correction,2026-11-11"
+      },
+      {
+        "semantic_role": "Author-requested header treatment/date range",
+        "candidate_text": "CONSEQUENCE",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.2 correction,2026-11-11"
+      },
+      {
+        "semantic_role": "Author-requested header treatment/date range",
+        "candidate_text": "July–October",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.2 correction,2026-11-11"
       }
     ],
+    "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
     "checks": [
       {
         "text": "Deployment / iteration / optimization",
@@ -326,85 +344,107 @@
         "bold": true
       },
       {
-        "text": "Retrospective stages, not a preplanned roadmap.",
-        "italic": true
+        "text": "Real users on real documents",
+        "bold": false,
+        "italic": false
       },
       {
-        "text": "Real users on real documents",
+        "text": "STAGE / DATES",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "PRESSURE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "CONSEQUENCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "July–October",
         "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 70,
-      "width_bp": 390.258,
-      "height_bp": 440.737,
-      "minimum_prose_font_pt": 10.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 9,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
-  },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "refined",
-    "reason": "The stage/pressure/consequence layout is a timeline/table; varying row content is intentional and there are no terminal process arrowheads. Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
-    "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
-    "page_layout": {
-      "decision": "refined",
-      "reason": "Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
-      "before_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
-      "after_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
-      "before_dimensions_bp": [
-        390.25799560546875,
-        385.84698486328125
-      ],
-      "after_dimensions_bp": [
-        390.25799560546875,
-        440.73699951171875
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "date": "2026-11-11",
+      "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+      "proof_sha256": "75dda13f99f489abbb54fc4e6e30e341a4c711eb64d128c2b74a51796c51a585",
+      "page": 1,
+      "width_bp": 394.922,
+      "height_bp": 412.369,
+      "minimum_prose_font_pt": 9.963,
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 70,
-      "width_bp": 390.258,
-      "height_bp": 440.737
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "10bfb2a3e0dad4af2d07e2cc866c3ee61cbc2d12fcb9b71b806f3ca158d755a4",
+      "typography_audit_sha256": "a75b1e1dba3a366c249abbab8ab9fe1f7d384b97569641a0c3911f549ca832c3",
+      "status": "passed"
+    },
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+      "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+      "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    }
+  },
+  "layout_review": {
+    "source": "book/assets/build-stages-timeline.svg",
+    "candidate": "book/tikz/figures/build-stages-timeline.tex",
+    "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
+    "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+    "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
+    "decision": "refined",
+    "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      390.25799560546875,
+      385.84698486328125
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+      "proof_sha256": "75dda13f99f489abbb54fc4e6e30e341a4c711eb64d128c2b74a51796c51a585",
+      "page": 1,
+      "width_bp": 394.922,
+      "height_bp": 412.369,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "10bfb2a3e0dad4af2d07e2cc866c3ee61cbc2d12fcb9b71b806f3ca158d755a4",
+      "typography_audit_sha256": "a75b1e1dba3a366c249abbab8ab9fe1f7d384b97569641a0c3911f549ca832c3",
+      "status": "passed"
+    },
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+      "after_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
+      "after_dimensions_bp": [
+        394.922,
+        412.369
+      ],
+      "after_font_sizes_pt": [
+        10
+      ],
+      "reviewed_visually": true
     }
   },
   "color_source_revision": {
@@ -413,5 +453,977 @@
     "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
     "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+      "previous": {
+        "source": "book/assets/build-stages-timeline.svg",
+        "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–September period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+        "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
+        "required_terms": [
+          "Stage / dates",
+          "Pressure",
+          "Consequence",
+          "Feasibility\\",
+          "Vision-language capability became usable",
+          "The build began",
+          "PowerPoint\\--April",
+          "Colleagues supplied their decks",
+          "First real remediation pipeline",
+          "Format expansion\\",
+          "Word, Excel, PDF broke uniform assumptions",
+          "Architecture differentiated",
+          "SaaS\\",
+          "Real users on real documents",
+          "Auth, quota, cost, security; fidelity limits",
+          "Standards\\--May",
+          "Need a defensible accessibility claim",
+          "Standards-grounded validation",
+          "Hardening\\--June",
+          "Time for structural work",
+          "Models, tests, gates, provenance",
+          "Deployment / iteration / optimization\\--September",
+          "Production performance, cost, reliability, architecture limits",
+          "Measure, redesign, optimize, re-platform",
+          "Retrospective stages, not a preplanned roadmap."
+        ],
+        "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+        "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+        "questions": [],
+        "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to September: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
+        "qa": {
+          "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+          "warnings": [],
+          "width_pt": 390.258,
+          "height_pt": 386.227,
+          "monochrome": true,
+          "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+        },
+        "style_review": {
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+          "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+          "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+          "bold": "Source-derived emphasis includes Deployment / iteration / optimization; Format expansion; Feasibility; PowerPoint; Standards; Hardening; SaaS. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+          "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+          "visual_review": "Seven dates/stages and aligned pressure/consequence columns retained; markers not process arrows.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 70,
+            "width_bp": 390.258,
+            "height_bp": 440.737,
+            "minimum_prose_font_pt": 10.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 9
+          },
+          "book_references": [],
+          "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+        },
+        "typography_review": {
+          "review": "book/tikz/typography-review.json",
+          "decision": "refined",
+          "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+          "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+          "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+          "evidence": [
+            {
+              "source_text": "Deployment, iteration,\nand optimization",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Deployment / iteration / optimization",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Deployment, iteration,",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "748",
+                    "text_element": 55
+                  }
+                },
+                {
+                  "text": "and optimization",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "769",
+                    "text_element": 56
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Format expansion",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Format expansion",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Format expansion",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "331",
+                    "text_element": 22
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Feasibility",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Feasibility",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Feasibility",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "119",
+                    "text_element": 5
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "PowerPoint",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "PowerPoint",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "PowerPoint",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "225",
+                    "text_element": 13
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Standards",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Standards",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Standards",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "543",
+                    "text_element": 39
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Hardening",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Hardening",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Hardening",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "649",
+                    "text_element": 47
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "SaaS",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "SaaS",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "SaaS",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "437",
+                    "text_element": 30
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
+              "source_style": {
+                "font-weight": "400",
+                "font-style": "italic",
+                "font-size": "20"
+              },
+              "semantic_role": "explanatory annotation or feedback relation",
+              "candidate_text": "Retrospective stages, not a preplanned roadmap.",
+              "candidate_style": "italic",
+              "source_fragments": [
+                {
+                  "text": "Stages are labels drawn afterward, not a plan followed at the time.",
+                  "style": {
+                    "font-weight": "400",
+                    "font-style": "italic",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "60",
+                    "y": "842",
+                    "text_element": 65
+                  }
+                }
+              ]
+            }
+          ],
+          "checks": [
+            {
+              "text": "Deployment / iteration / optimization",
+              "bold": true
+            },
+            {
+              "text": "Format expansion",
+              "bold": true
+            },
+            {
+              "text": "Feasibility",
+              "bold": true
+            },
+            {
+              "text": "PowerPoint",
+              "bold": true
+            },
+            {
+              "text": "Standards",
+              "bold": true
+            },
+            {
+              "text": "Hardening",
+              "bold": true
+            },
+            {
+              "text": "SaaS",
+              "bold": true
+            },
+            {
+              "text": "Retrospective stages, not a preplanned roadmap.",
+              "italic": true
+            },
+            {
+              "text": "Real users on real documents",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 70,
+            "width_bp": 390.258,
+            "height_bp": 440.737,
+            "minimum_prose_font_pt": 10.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 9,
+            "book_font_inheritance": {
+              "configuration": "latex/book-fonts.tex",
+              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+              "reference": "latex/build/tikz/body-font-reference.pdf",
+              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+              "body_faces": [
+                "SourceSans3-Bold",
+                "SourceSans3-BoldIt",
+                "SourceSans3-It",
+                "SourceSans3-Regular"
+              ]
+            }
+          }
+        },
+        "layout_review": {
+          "review": "book/tikz/layout-review.json",
+          "decision": "refined",
+          "reason": "The stage/pressure/consequence layout is a timeline/table; varying row content is intentional and there are no terminal process arrowheads. Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
+          "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
+            "before_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+            "after_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+            "before_dimensions_bp": [
+              390.25799560546875,
+              385.84698486328125
+            ],
+            "after_dimensions_bp": [
+              390.25799560546875,
+              440.73699951171875
+            ],
+            "before_font_sizes_pt": [
+              9.0,
+              10.0
+            ],
+            "after_font_sizes_pt": [
+              10.0
+            ],
+            "reviewed_visually": true
+          },
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 70,
+            "width_bp": 390.258,
+            "height_bp": 440.737
+          }
+        },
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+          "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+          "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+      "previous": {
+        "source": "book/assets/build-stages-timeline.svg",
+        "claim": "*The Seven Build Stages.* Retrospective sequence from the March feasibility probe to the July–October period of deployment, iteration, and optimization, giving the dates, the pressure, and the major engineering consequence at each stage. The serverless re-platforming is one episode inside that final period rather than a stage of its own.",
+        "topology": "Seven dated rows in temporal order; each aligns pressure with consequence without suggesting planned milestones.",
+        "required_terms": [
+          "STAGE / DATES",
+          "PRESSURE",
+          "CONSEQUENCE",
+          "Feasibility\\",
+          "Vision-language capability became usable",
+          "The build began",
+          "PowerPoint\\--April",
+          "Colleagues supplied their decks",
+          "First real remediation pipeline",
+          "Format expansion\\",
+          "Word, Excel, PDF broke uniform assumptions",
+          "Architecture differentiated",
+          "SaaS\\",
+          "Real users on real documents",
+          "Auth, quota, cost, security; fidelity limits",
+          "Standards\\--May",
+          "Need a defensible accessibility claim",
+          "Standards-grounded validation",
+          "Hardening\\--June",
+          "Time for structural work",
+          "Models, tests, gates, provenance",
+          "Deployment / iteration / optimization\\--October",
+          "Production performance, cost, reliability, architecture limits",
+          "Measure, redesign, optimize, re-platform",
+          "Retrospective stages, not a preplanned roadmap."
+        ],
+        "bw_encoding": "Bare uppercase column headings and one rule replace the enclosing boxes. Black type, seven black stage markers and a black timeline spine carry the retrospective sequence.",
+        "redesign": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+        "questions": [],
+        "alt": "A retrospective vertical timeline of seven build stages, each row naming the\n    stage, its dates, the pressure that forced it, and the major engineering consequence that\n    followed. Feasibility, March: vision-language capability became usable, so the build began.\n    PowerPoint, March to April: colleagues supplied their own decks, producing the first real\n    remediation pipeline. Format expansion, April: Word, Excel, and PDF broke one-size-fits-all\n    assumptions, so the architecture differentiated. SaaS, April: real users on real documents\n    forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to\n    May: the need for a defensible accessibility claim forced standards-grounded validation.\n    Hardening, May to June: time became available for structural work, producing models, tests,\n    gates, and provenance. Deployment, iteration, and optimization, July to October: operating\n    the production system exposed performance, cost, reliability, and architectural limits,\n    forcing repeated measurement, redesign, optimization, and re-platforming. The stages are\n    labels drawn afterward, not a preplanned roadmap.",
+        "qa": {
+          "compiler": "LuaLaTeX; no shell escape; shared mage-figures.sty",
+          "warnings": [],
+          "width_pt": 394.922,
+          "height_pt": 440.184,
+          "monochrome": true,
+          "inspection": "Final native proof and revised SVG inspected: headings unboxed above one rule, date July–October, all rows/labels preserved.10pt authored type retained."
+        },
+        "style_review": {
+          "source": "book/assets/build-stages-timeline.svg",
+          "candidate": "book/tikz/figures/build-stages-timeline.tex",
+          "receipt": "book/tikz/receipts/build-stages-timeline.json",
+          "decision": "refined",
+          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+          "status": "reviewed",
+          "source_sha256": "ac28ccf0de69c4448dd3e518487f68ce4315ed5a4950637fefd67ee49ac726dd",
+          "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+          "fill": "No header fills or enclosing boxes; column headings sit above one horizontal rule.",
+          "bold": "Column headings are uppercase bold; stage names retain bold emphasis; dates and explanations remain regular; retrospective note remains italic.",
+          "routing": "Timeline spine and seven markers are unchanged; a single horizontal rule separates headings from the rows.",
+          "shape": "No visible boxes. Three text columns align the seven timeline rows.",
+          "visual_review": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+            "proof_sha256": "9a8ade176166101f98de9483bfc1507a4c7c1de35466c33b2415e8f95e5bca75",
+            "page": 1,
+            "width_bp": 394.922,
+            "height_bp": 440.184,
+            "minimum_prose_font_pt": 9.963,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "maximum_rgb_channel_delta": 0,
+            "semantic_typography_checks": 13,
+            "geometry_audit_sha256": "26906f83f924e8d82916e01a44a81bc97f019ad7d631454bf0284ed08e723216",
+            "typography_audit_sha256": "3316c0ffbf00154a8694da59b78fcd38586900efdd6d7975522bed9492ffbd8f",
+            "status": "passed"
+          },
+          "book_references": [],
+          "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+          "color_source_revision": {
+            "date": "2026-11-09",
+            "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+            "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+            "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+            "native_candidate_changed": false
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/build-stages-timeline.svg",
+          "candidate": "book/tikz/figures/build-stages-timeline.tex",
+          "decision": "refined",
+          "source_sha256": "ac28ccf0de69c4448dd3e518487f68ce4315ed5a4950637fefd67ee49ac726dd",
+          "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+          "evidence": [
+            {
+              "source_text": "Deployment, iteration,\nand optimization",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Deployment / iteration / optimization",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Deployment, iteration,",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "748",
+                    "text_element": 55
+                  }
+                },
+                {
+                  "text": "and optimization",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "769",
+                    "text_element": 56
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Format expansion",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Format expansion",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Format expansion",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "331",
+                    "text_element": 22
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Feasibility",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Feasibility",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Feasibility",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "119",
+                    "text_element": 5
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "PowerPoint",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "PowerPoint",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "PowerPoint",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "225",
+                    "text_element": 13
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Standards",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Standards",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Standards",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "543",
+                    "text_element": 39
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Hardening",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "Hardening",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "Hardening",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "649",
+                    "text_element": 47
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "SaaS",
+              "source_style": {
+                "font-weight": "700",
+                "font-style": "normal",
+                "font-size": "20"
+              },
+              "semantic_role": "concept/category versus explanation",
+              "candidate_text": "SaaS",
+              "candidate_style": "bold",
+              "source_fragments": [
+                {
+                  "text": "SaaS",
+                  "style": {
+                    "font-weight": "700",
+                    "font-style": "normal",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "100",
+                    "y": "437",
+                    "text_element": 30
+                  }
+                }
+              ]
+            },
+            {
+              "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
+              "source_style": {
+                "font-weight": "400",
+                "font-style": "italic",
+                "font-size": "20"
+              },
+              "semantic_role": "explanatory annotation or feedback relation",
+              "candidate_text": "Retrospective stages, not a preplanned roadmap.",
+              "candidate_style": "italic",
+              "source_fragments": [
+                {
+                  "text": "Stages are labels drawn afterward, not a plan followed at the time.",
+                  "style": {
+                    "font-weight": "400",
+                    "font-style": "italic",
+                    "font-size": "20"
+                  },
+                  "location": {
+                    "x": "60",
+                    "y": "842",
+                    "text_element": 65
+                  }
+                }
+              ]
+            },
+            {
+              "semantic_role": "Author-requested header treatment/date range",
+              "candidate_text": "STAGE / DATES",
+              "candidate_style": "bold",
+              "authorization": "Author Figure5.2 correction,2026-11-11"
+            },
+            {
+              "semantic_role": "Author-requested header treatment/date range",
+              "candidate_text": "PRESSURE",
+              "candidate_style": "bold",
+              "authorization": "Author Figure5.2 correction,2026-11-11"
+            },
+            {
+              "semantic_role": "Author-requested header treatment/date range",
+              "candidate_text": "CONSEQUENCE",
+              "candidate_style": "bold",
+              "authorization": "Author Figure5.2 correction,2026-11-11"
+            },
+            {
+              "semantic_role": "Author-requested header treatment/date range",
+              "candidate_text": "July–October",
+              "candidate_style": "regular",
+              "authorization": "Author Figure5.2 correction,2026-11-11"
+            }
+          ],
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "checks": [
+            {
+              "text": "Deployment / iteration / optimization",
+              "bold": true
+            },
+            {
+              "text": "Format expansion",
+              "bold": true
+            },
+            {
+              "text": "Feasibility",
+              "bold": true
+            },
+            {
+              "text": "PowerPoint",
+              "bold": true
+            },
+            {
+              "text": "Standards",
+              "bold": true
+            },
+            {
+              "text": "Hardening",
+              "bold": true
+            },
+            {
+              "text": "SaaS",
+              "bold": true
+            },
+            {
+              "text": "Retrospective stages, not a preplanned roadmap.",
+              "italic": true
+            },
+            {
+              "text": "Real users on real documents",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "STAGE / DATES",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "PRESSURE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "CONSEQUENCE",
+              "bold": true,
+              "italic": false
+            },
+            {
+              "text": "July–October",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+            "proof_sha256": "9a8ade176166101f98de9483bfc1507a4c7c1de35466c33b2415e8f95e5bca75",
+            "page": 1,
+            "width_bp": 394.922,
+            "height_bp": 440.184,
+            "minimum_prose_font_pt": 9.963,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "maximum_rgb_channel_delta": 0,
+            "semantic_typography_checks": 13,
+            "geometry_audit_sha256": "26906f83f924e8d82916e01a44a81bc97f019ad7d631454bf0284ed08e723216",
+            "typography_audit_sha256": "3316c0ffbf00154a8694da59b78fcd38586900efdd6d7975522bed9492ffbd8f",
+            "status": "passed"
+          },
+          "color_source_revision": {
+            "date": "2026-11-09",
+            "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+            "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+            "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+            "native_candidate_changed": false
+          }
+        },
+        "layout_review": {
+          "source": "book/assets/build-stages-timeline.svg",
+          "candidate": "book/tikz/figures/build-stages-timeline.tex",
+          "source_sha256": "ac28ccf0de69c4448dd3e518487f68ce4315ed5a4950637fefd67ee49ac726dd",
+          "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+          "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+          "decision": "refined",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "reviewed_visually": true,
+          "baseline_dimensions_bp": [
+            390.25799560546875,
+            385.84698486328125
+          ],
+          "contracts": {},
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+            "proof_sha256": "9a8ade176166101f98de9483bfc1507a4c7c1de35466c33b2415e8f95e5bca75",
+            "page": 1,
+            "width_bp": 394.922,
+            "height_bp": 440.184,
+            "minimum_prose_font_pt": 9.963,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "maximum_rgb_channel_delta": 0,
+            "semantic_typography_checks": 13,
+            "geometry_audit_sha256": "26906f83f924e8d82916e01a44a81bc97f019ad7d631454bf0284ed08e723216",
+            "typography_audit_sha256": "3316c0ffbf00154a8694da59b78fcd38586900efdd6d7975522bed9492ffbd8f",
+            "status": "passed"
+          },
+          "page_layout": {
+            "decision": "refined",
+            "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+            "after_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+            "after_dimensions_bp": [
+              394.922,
+              440.184
+            ],
+            "after_font_sizes_pt": [
+              10
+            ],
+            "reviewed_visually": true
+          }
+        },
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+          "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+          "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        },
+        "review": {
+          "reference": "Author screenshot and direct Figure5.2 instruction,2026-11-11",
+          "outcome": "Requested changes implemented and visually inspected; scoped checks passed. Pending author review.",
+          "validation": {
+            "date": "2026-11-11",
+            "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+            "proof_sha256": "9a8ade176166101f98de9483bfc1507a4c7c1de35466c33b2415e8f95e5bca75",
+            "page": 1,
+            "width_bp": 394.922,
+            "height_bp": 440.184,
+            "minimum_prose_font_pt": 9.963,
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "maximum_rgb_channel_delta": 0,
+            "semantic_typography_checks": 13,
+            "geometry_audit_sha256": "26906f83f924e8d82916e01a44a81bc97f019ad7d631454bf0284ed08e723216",
+            "typography_audit_sha256": "3316c0ffbf00154a8694da59b78fcd38586900efdd6d7975522bed9492ffbd8f",
+            "status": "passed"
+          }
+        }
+      }
+    }
+  ],
+  "review": {
+    "reference": "Author screenshot and direct Figure5.2 instruction,2026-11-11",
+    "outcome": "Author-approved footer deletion implemented; scoped checks passed. Publication approval handled in integration.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+      "proof_sha256": "75dda13f99f489abbb54fc4e6e30e341a4c711eb64d128c2b74a51796c51a585",
+      "page": 1,
+      "width_bp": 394.922,
+      "height_bp": 412.369,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "10bfb2a3e0dad4af2d07e2cc866c3ee61cbc2d12fcb9b71b806f3ca158d755a4",
+      "typography_audit_sha256": "a75b1e1dba3a366c249abbab8ab9fe1f7d384b97569641a0c3911f549ca832c3",
+      "status": "passed"
+    }
+  },
+  "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
+  "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
+    "decision": "approved"
   }
 }

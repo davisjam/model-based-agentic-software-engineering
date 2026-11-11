@@ -21,6 +21,8 @@
 \draw[flow] (190,320) -- (190,343);
 \draw[flow] (190,387) -- (190,415);
 \draw[flow] (295,365) -- (371,365) -- (371,150) -- (295,150);
+% Unresolved problems can also return to the engineer; ordinary repair remains unchanged.
+\draw[flow,dash pattern=on .5pt off 2.5pt,line cap=round] (371,150) -- (371,25) -- (295,25);
 \node[box,minimum width=210bp,minimum height=42bp,fill=white] (engineer) at (190,25) {};
 \node[title] (engineer-title) at (190,19) {Engineer};
 \node[note] (engineer-detail) at (190,33) {Priorities and open decisions};
@@ -44,6 +46,7 @@
 \node[note] (audit-detail) at (190,373) {Check work order and evidence};
 \node[box,minimum width=210bp,minimum height=30bp,fill=white] (accepted) at (190,430) {};
 \node[title] (accepted-title) at (190,430) {Work order closed};
+\node[note] (escalation-label) at (333,81) {Escalate\\if needed};
 \node[note,anchor=center] (repair-label) at (333,351.5) {Repair work};
 \node[note,anchor=west] (accept-label) at (200,400.5) {Criteria met};
 \end{tikzpicture}

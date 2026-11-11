@@ -1077,12 +1077,12 @@
     "caption": "*From engineering intent to completed work.* The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions. [short: From engineering intent to completed work]",
     "native_context": "book/latex/sources/part5/5.2-inside-docables-software-factory.tex",
     "d2_source": null,
-    "receipt": null,
+    "receipt": "book/tikz/receipts/docable-work-order-flow.json",
     "generator": null,
     "data": [],
     "conversion": "Native TikZ diagram with matching source SVG, derived from the November 3 factory lecture",
     "svg_title": "From engineering intent to completed work",
-    "svg_description": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness."
+    "svg_description": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. An optional dotted branch also returns unresolved problems to the engineer. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness."
   },
   {
     "chapter": "6.1-toward-a-theory-of-mage",

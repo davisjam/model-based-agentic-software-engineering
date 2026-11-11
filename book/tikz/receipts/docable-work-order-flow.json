@@ -1,8 +1,8 @@
 {
   "source": "book/assets/docable-work-order-flow.svg",
   "candidate": "book/tikz/figures/docable-work-order-flow.tex",
-  "source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
-  "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
+  "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
+  "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
   "claim": "From engineering intent to completed work. The orchestrator schedules independent phases from a reviewed work order, then a separate agent audits their combined result against the completion criteria and returns missing or defective work for repair. Closing the work order and authorizing deployment are separate decisions.",
   "provenance": {
     "lecture": "course/lectures/act-2-delegation-and-control/05-building-with-agents/2-7-Inside-an-Agentic-Software-Factory.pptx",
@@ -26,7 +26,7 @@
   },
   "figure_job": "Show how a reviewed work order turns one engineering priority into parallel implementation followed by independent completion review.",
   "visual_proposition": "A single reviewed plan fans out to concurrent agents, reconverges for integration and audit, and closes only after its completion criteria are met.",
-  "topology": "Vertical plan and orchestration spine; two equal peer implementation branches; shared integration rail; completion audit with one outer return to orchestration for repair.",
+  "topology": "Vertical plan and orchestration spine; two equal peer implementation branches; shared integration rail; completion audit with an unchanged solid return to orchestration for repair and a dotted optional extension to the engineer.",
   "required_terms": [
     "Engineer",
     "Reviewed work order",
@@ -35,21 +35,23 @@
     "Agent B",
     "Integration and checks",
     "Independent completion audit",
-    "Work order closed"
+    "Work order closed",
+    "Escalate if needed"
   ],
   "forbidden_implications": [
     "The engineer must prompt every implementation phase.",
     "Worktree isolation establishes correctness.",
     "A completion audit constitutes a correctness proof.",
     "Closing the work order authorizes deployment.",
-    "This simplified flow specifies exactly when all validation tiers run."
+    "This simplified flow specifies exactly when all validation tiers run.",
+    "Every completion-audit failure must be escalated to the engineer."
   ],
   "bw_encoding": "All nodes have white interiors. Their labels and topology carry the roles; stage colors in the SVG are redundant. No grayscale role distinction is required.",
   "bold": "Node titles distinguish named actors, artifacts and lifecycle stages from regular explanatory details. Both parallel agent nodes receive equal treatment.",
-  "routing": "Orthogonal directed flow with >=14 bp terminal approach in the shortest branches. Shared rails preserve peer fan-out/convergence. The single outer return enters the orchestrator from the right without crossing nodes or labels.",
+  "routing": "Orthogonal directed flow with the original solid repair return preserved exactly. Its outer rail extends upward as a dotted optional branch, entering the engineer from the right with a 76bp terminal approach. The branch annotation sits in the clear right margin beside the reviewed work order; no nodes or labels are crossed.",
   "redesign": "Synthesis of the lecture workflow rather than slide reproduction. Detailed templates and hook behavior belong in prose/table; this drawing retains scheduling, isolation, integration, completion review and repair.",
   "d2_limitations": "Custom geometry keeps exact peer alignment and a single orthogonal outer return at fixed print width, while preserving matching native TikZ coordinates; the house d2 version does not expose equivalent orthogonal route control.",
-  "alt": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness.",
+  "alt": "An engineer sets priorities and resolves open decisions. A reviewed work order records the design, phases, and dependencies. The orchestrator schedules ready phases across isolated agent worktrees. Their changes converge through integration and checks. An independent completion audit checks the work order and evidence. Deficiencies return to the orchestrator for repair. An optional dotted branch also returns unresolved problems to the engineer. The work order closes only when its criteria are met. Deployment is a separate decision. Worktree isolation separates concurrent edits; it does not establish correctness.",
   "layout_contracts": {
     "peer_groups": [
       {
@@ -178,6 +180,17 @@
       "semantic_role": "explanatory annotation",
       "candidate_text": "Repair work",
       "candidate_style": "regular"
+    },
+    {
+      "source_text": "Escalate if needed",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "normal",
+        "font-size": "9.5"
+      },
+      "semantic_role": "optional escalation annotation",
+      "candidate_text": "Escalate if needed",
+      "candidate_style": "regular"
     }
   ],
   "typography_render_checks": [
@@ -230,29 +243,68 @@
       "text": "Repair work",
       "bold": false,
       "italic": false
+    },
+    {
+      "text": "Escalate if needed",
+      "bold": false,
+      "italic": false
     }
   ],
   "qa": {
-    "compiler": "XeLaTeX TeX Live 2025 using book/tikz/mage-figures.sty and inherited MAGE SourceSans3 font profile",
-    "warnings": [],
-    "width_bp": 401.99,
-    "height_bp": 449.99,
+    "date": "2026-11-11",
+    "proof": "/private/tmp/mage-work-order-feedback-proof-20261111/proof.pdf",
+    "proof_png": "/private/tmp/mage-work-order-feedback-proof-20261111/proof.png",
+    "proof_sha256": "8b480ee049a00ae3d5e6f7a06ba6e58439a37ce210876b837ef3a627634a5333",
+    "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
+    "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+    "width_bp": 405.9729919433594,
+    "height_bp": 455.97198486328125,
     "minimum_prose_font_pt": 9.5,
-    "measured_pdf_font_sizes_bp": [
-      9.4645,
-      10.4608
-    ],
-    "monochrome": true,
+    "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "checked_terminal_approaches": 8,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 11,
+    "typography_findings": 0,
     "reviewed_peer_groups": 1,
-    "svg_audit_findings": 0,
-    "inspection": "SVG and native TikZ proofs visually inspected. All text fits; no strokes through labels; source and grayscale topology agree. Equal parallel agent boxes; repair return clears the right branch. Native 400 \u00d7 450 bp authored canvas (standalone output 401.99 \u00d7 449.99 bp).",
-    "proof_pdf": "/private/tmp/factory-figure-draft/proof.pdf",
-    "proof_sha256": "92323f9e68dcf87b5874d2417d518a9e8f7ba388fd6d9cb45e43b6c681e9fb41"
+    "fonts": [
+      "SourceSans3-Bold",
+      "SourceSans3-Regular"
+    ],
+    "status": "passed",
+    "validation_scope": "This figure only; no whole-pool or assembled-book verdict asserted.",
+    "svg_sensor_counts_baseline": {
+      "overflow": 0,
+      "text_occlusion": 0,
+      "text_intrusion": 0,
+      "label_collision": 0,
+      "font_band": 17
+    },
+    "svg_sensor_counts_revised": {
+      "overflow": 0,
+      "text_occlusion": 0,
+      "text_intrusion": 0,
+      "label_collision": 0,
+      "font_band": 18
+    }
   },
   "questions": [],
-  "book_pool_validation": {
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
+    "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
+    "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  },
+  "revision_20261111": {
+    "reason": "Preserve the ordinary completion-audit repair return to the orchestrator and add a dotted optional extension to the engineer for unresolved problems.",
+    "baseline": {
+      "revision": "59a3e9bfe3fe1abea76add1d6b8c28681bafe34b",
+      "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
+      "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf"
+    },
+    "publication_status": "Pending author review; publication approval unchanged."
+  },
+  "previous_book_pool_validation": {
     "proof": "latex/build/tikz/candidates.pdf",
     "proof_sha256": "1a37e295049c64bf4da3d22c30a117aab9d9d0310bc717ce549cdbcccc1b825f",
     "page": 82,
@@ -263,12 +315,5 @@
     "monochrome_pixels": true,
     "semantic_typography_checks": 10,
     "status": "passed"
-  },
-  "color_source_revision": {
-    "date": "2026-11-09",
-    "previous_source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
-    "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
-    "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
-    "native_candidate_changed": false
   }
 }

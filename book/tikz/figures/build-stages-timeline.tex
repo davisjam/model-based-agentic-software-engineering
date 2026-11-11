@@ -1,13 +1,14 @@
 % Native black-and-white teaching figure; see matching receipt.
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
  box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
+ head/.style={align=center,inner sep=5pt,minimum height=.65cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries},
  note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
  edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
 \hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[head,text width=3cm] (h1) at (-4.7,0) {Stage / dates};
-\node[head,text width=4cm] (h2) at (0,0) {Pressure};
-\node[head,text width=4cm] (h3) at (4.7,0) {Consequence};
+\node[head,text width=3cm] (h1) at (-4.7,0) {STAGE / DATES};
+\node[head,text width=4cm] (h2) at (0,0) {PRESSURE};
+\node[head,text width=4cm] (h3) at (4.7,0) {CONSEQUENCE};
+\draw[black,line width=.6pt] (-6.8,-.48) -- (6.9,-.48);
 \node[note,text width=3cm] (a0) at (-4.7,-1.725) {\textbf{Feasibility}\\March};
 \node[note,text width=4cm] (b0) at (0,-1.725) {Vision-language capability became usable};
 \node[note,text width=4cm] (c0) at (4.7,-1.725) {The build began};
@@ -37,11 +38,10 @@
 \node[note,text width=4cm] (c5) at (4.7,-11.2125) {Models, tests, gates, provenance};
 \fill (-6.6,-11.2125) circle (2pt);
 \draw[edge,draw=none] (a4) -- (a5);
-\node[note,text width=3cm] (a6) at (-4.7,-13.11) {\textbf{Deployment / iteration / optimization}\\July--September};
+\node[note,text width=3cm] (a6) at (-4.7,-13.11) {\textbf{Deployment / iteration / optimization}\\July--October};
 \node[note,text width=4cm] (b6) at (0,-13.11) {Production performance, cost, reliability, architecture limits};
 \node[note,text width=4cm] (c6) at (4.7,-13.11) {Measure, redesign, optimize, re-platform};
 \fill (-6.6,-13.11) circle (2pt);
 \draw[edge,draw=none] (a5) -- (a6);
 \draw (-6.6,-1.725)--(-6.6,-13.11);
-\node[note,text width=12cm] (nt) at (0,-14.72) {\textit{Retrospective stages, not a preplanned roadmap.}};
 \end{tikzpicture}

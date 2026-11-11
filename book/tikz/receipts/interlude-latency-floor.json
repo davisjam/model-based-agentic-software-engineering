@@ -1,199 +1,411 @@
 {
   "source": "book/assets/interlude-latency-floor.svg",
-  "claim": "*The GenAI dependency chain and its latency floor.* A section summary feeds a document summary feeds alt text; because each level waits for the one before it, their per-call times add to an irreducible floor of about 7.7 s. The vision value is measured; the text-summary value is estimated.",
-  "topology": "Three dependent levels in series, then dotted arithmetic consequence; measured versus estimated values explicit.",
+  "claim": "The modeled GenAI dependency chain supplies a serial latency floor that added workers alone cannot remove; independent computations can overlap it.",
+  "topology": "Extract document fans out to the section-summary → document-summary → alt-text chain and two illustrative independent repair branches. Their results precede Apply changes. Section and document summaries are estimated at 1.777 seconds each; alt-text generation is measured at 4.1049 seconds. Summing the dependent levels gives approximately 7.7 seconds, not a measured end-to-end runtime.",
   "required_terms": [
-    "Section summary 1.777 s (estimated)",
-    "Document summary 1.777 s (estimated)",
-    "Alt text 4.1049 s (measured)",
-    "Latency floor 7.6589 s",
-    "Each level waits for its predecessor: the dependent times add."
+    "1.777 s",
+    "4.1049 s",
+    "Section",
+    "summary",
+    "Document",
+    "Generate",
+    "alt text",
+    "(estimated)",
+    "(measured)",
+    "Extract",
+    "document",
+    "Repair structure",
+    "(validators, rules, …)",
+    "Repair metadata",
+    "(types, properties, …)",
+    "Apply",
+    "changes",
+    "GenAI call",
+    "Must precede",
+    "GenAI critical path (dependent chain)",
+    "Other independent work (illustrative)",
+    "GenAI latency floor: 1.777 + 1.777 + 4.1049",
+    "7.7 s"
   ],
-  "bw_encoding": "Only derived latency floor is 5%, distinguishing result from measured inputs.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Dependent measured/estimated operations grouped apart from computed latency floor.",
+  "bw_encoding": "Heavy 1.3pt rounded outlines identify GenAI calls; ordinary computations use 0.6pt outlines. A 5% gray dashed enclosure groups the dependent chain. Thin black arrows mean must precede. Timing floor has pale gray emphasis. Meaning remains readable without color.",
+  "redesign": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
   "questions": [],
-  "alt": "Three dependent GenAI levels in series: a section summary at 1.777 seconds feeds a\n    document summary at 1.777 seconds, which feeds alt text at 4.1049 seconds. Because each level must\n    complete before the next begins, their times add to an irreducible floor of 7.6589 seconds. The vision\n    value is measured; the text-summary value is estimated.",
+  "alt": "Extract document fans out to the section-summary → document-summary → alt-text chain and two illustrative independent repair branches. Their results precede Apply changes. Section and document summaries are estimated at 1.777 seconds each; alt-text generation is measured at 4.1049 seconds. Summing the dependent levels gives approximately 7.7 seconds, not a measured end-to-end runtime.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
-    "width_pt": 393.546,
-    "height_pt": 86.266,
+    "width_pt": 445.57,
+    "height_pt": 262.921,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
-  },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
-    "candidate_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-    "fill": "Only derived latency floor is 5%, distinguishing result from measured inputs.",
-    "bold": "Source-derived emphasis includes 7.6589 s. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Exact estimated/measured times and dotted derivation arrow retained; result alone emphasized.",
+    "inspection": "Native PDF and SVG raster visually inspected. Three call durations and calibration statuses agree with the model readout. Illustrative branches are labeled, outline and arrow semantics explained, 10pt prose, geometry zero, semantic typography passes.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 62,
-      "width_bp": 406.302,
-      "height_bp": 85.843,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 3
-    },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
-  },
-  "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "refined",
-    "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
-    "candidate_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "evidence": [
-      {
-        "source_text": "each level waits for the one before it, so the times add",
-        "source_style": {
-          "font-weight": "400",
-          "font-style": "italic",
-          "font-size": "14.5"
-        },
-        "semantic_role": "explanatory annotation or feedback relation",
-        "candidate_text": "Each level waits for its predecessor: the dependent times add.",
-        "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "each level waits for the one before it, so the times add",
-            "style": {
-              "font-weight": "400",
-              "font-style": "italic",
-              "font-size": "14.5"
-            },
-            "location": {
-              "x": "460",
-              "y": "140",
-              "text_element": 9
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "7.6589 s",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "17"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "7.6589 s",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "7.6589 s",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "17"
-            },
-            "location": {
-              "x": "830",
-              "y": "102",
-              "text_element": 8
-            }
-          }
-        ]
-      }
-    ],
-    "checks": [
-      {
-        "text": "Each level waits for its predecessor: the dependent times add.",
-        "italic": true
-      },
-      {
-        "text": "7.6589 s",
-        "bold": true
-      },
-      {
-        "text": "Latency floor",
-        "bold": false,
-        "italic": false
-      }
-    ],
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 62,
-      "width_bp": 406.302,
-      "height_bp": 85.843,
-      "minimum_prose_font_pt": 9.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 3,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
-  },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "refined",
-    "reason": "Aligned latency-stage boxes and separated them to expose the arrow shafts.",
-    "candidate_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing interlude latency floor layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-      "after_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-      "before_dimensions_bp": [
-        406.302001953125,
-        85.84300231933594
-      ],
-      "after_dimensions_bp": [
-        406.302001953125,
-        85.84300231933594
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "date": "2026-11-11",
+      "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+      "proof_sha256": "dfb6dae1aef5509e5d086c77287471b2ce66a670fec1408d430bbbaf19585276",
+      "page": 1,
+      "width_bp": 445.57,
+      "height_bp": 262.921,
       "maximum_dimensions_bp": [
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "099f091cc7a4570f924f9e6105ddcd1f6255dac8a516823e9cbb13ac7cd9b922",
+      "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+      "semantic_typography_checks": 21,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 62,
-      "width_bp": 406.302,
-      "height_bp": 85.843
+      "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
     }
+  },
+  "style_review": {
+    "decision": "refined",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "7a7a669f35c03ca66fee605d2ebb73e51a00b81e6dfa53b76f6906c9d182e571",
+    "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+    "fill": "Heavy 1.3pt rounded outlines identify GenAI calls; ordinary computations use 0.6pt outlines. A 5% gray dashed enclosure groups the dependent chain. Thin black arrows mean must precede. Timing floor has pale gray emphasis. Meaning remains readable without color.",
+    "bold": "Source-derived emphasis includes 7.6589 s. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "routing": "Shared extraction fan-out, thin forward chain edges, and merged independent-work dependencies with terminal arrowheads only; no arrows cross labels.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+      "proof_sha256": "dfb6dae1aef5509e5d086c77287471b2ce66a670fec1408d430bbbaf19585276",
+      "page": 1,
+      "width_bp": 445.57,
+      "height_bp": 262.921,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "099f091cc7a4570f924f9e6105ddcd1f6255dac8a516823e9cbb13ac7cd9b922",
+      "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+      "semantic_typography_checks": 21,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "f1ab44bdde90eec9fe261714db870db0ba178781d3377e6c8dc3a29cd4dcfc7f",
+      "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
+      "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 62,
+        "width_bp": 406.302,
+        "height_bp": 85.843,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 3
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+        "proof_sha256": "ae4b90e98187df2aeacd4af0b91d837cc043702e2880c264f11fc8bc60c21540",
+        "page": 1,
+        "width_bp": 445.57,
+        "height_bp": 262.921,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "42bbdca7442a3eb8773ea42e859ad3744a1d0cf38a1172ea09855be071e3e2cd",
+        "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+        "semantic_typography_checks": 21,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+      }
+    ]
+  },
+  "typography_review": {
+    "decision": "refined",
+    "source_sha256": "7a7a669f35c03ca66fee605d2ebb73e51a00b81e6dfa53b76f6906c9d182e571",
+    "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+    "evidence": [],
+    "reason": "All prose is 10pt Source Sans 3; call durations are bold, the chain label bold italic, and the illustrative-work label italic.",
+    "checks": [
+      {
+        "text": "1.777 s",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "4.1049 s",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Section",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "summary",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Document",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Generate",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "alt text",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(estimated)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(measured)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Extract",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "document",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Repair structure",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(validators, rules, …)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Repair metadata",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "(types, properties, …)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Apply",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "changes",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "GenAI call",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Must precede",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "GenAI critical path (dependent chain)",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": "Other independent work (illustrative)",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+      "proof_sha256": "dfb6dae1aef5509e5d086c77287471b2ce66a670fec1408d430bbbaf19585276",
+      "page": 1,
+      "width_bp": 445.57,
+      "height_bp": 262.921,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "099f091cc7a4570f924f9e6105ddcd1f6255dac8a516823e9cbb13ac7cd9b922",
+      "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+      "semantic_typography_checks": 21,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+    },
+    "color_source_revision": {
+      "date": "2026-11-09",
+      "previous_source_sha256": "f1ab44bdde90eec9fe261714db870db0ba178781d3377e6c8dc3a29cd4dcfc7f",
+      "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
+      "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+      "native_candidate_changed": false
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 62,
+        "width_bp": 406.302,
+        "height_bp": 85.843,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 3
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+        "proof_sha256": "ae4b90e98187df2aeacd4af0b91d837cc043702e2880c264f11fc8bc60c21540",
+        "page": 1,
+        "width_bp": 445.57,
+        "height_bp": 262.921,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "42bbdca7442a3eb8773ea42e859ad3744a1d0cf38a1172ea09855be071e3e2cd",
+        "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+        "semantic_typography_checks": 21,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+      }
+    ]
+  },
+  "layout_review": {
+    "source_sha256": "7a7a669f35c03ca66fee605d2ebb73e51a00b81e6dfa53b76f6906c9d182e571",
+    "baseline_candidate_sha256": "07f08e4e3e677e92cf03d6045a0191ec383571dde892bf1fbef36ee8e2c522dd",
+    "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+    "decision": "refined",
+    "reason": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      393.5459899902344,
+      85.84300231933594
+    ],
+    "contracts": {},
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+      "proof_sha256": "dfb6dae1aef5509e5d086c77287471b2ce66a670fec1408d430bbbaf19585276",
+      "page": 1,
+      "width_bp": 445.57,
+      "height_bp": 262.921,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "099f091cc7a4570f924f9e6105ddcd1f6255dac8a516823e9cbb13ac7cd9b922",
+      "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+      "semantic_typography_checks": 21,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+      "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+    },
+    "page_layout": {
+      "decision": "review candidate",
+      "reason": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
+      "native_dimensions_bp": [
+        445.57,
+        262.921
+      ],
+      "reviewed_visually": true
+    },
+    "validation_history": [
+      {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 62,
+        "width_bp": 406.302,
+        "height_bp": 85.843
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+        "proof_sha256": "ae4b90e98187df2aeacd4af0b91d837cc043702e2880c264f11fc8bc60c21540",
+        "page": 1,
+        "width_bp": 445.57,
+        "height_bp": 262.921,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "42bbdca7442a3eb8773ea42e859ad3744a1d0cf38a1172ea09855be071e3e2cd",
+        "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+        "semantic_typography_checks": 21,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+      }
+    ]
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -201,5 +413,32 @@
     "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
     "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
     "native_candidate_changed": false
+  },
+  "author_reference": "/var/folders/l1/cnm7hcx94cz75djz3dd0ny_00000gs/T/codex-clipboard-2f2c20bd-7281-4da4-aa5c-bbe2ebf0c2d2.png",
+  "source_sha256": "7a7a669f35c03ca66fee605d2ebb73e51a00b81e6dfa53b76f6906c9d182e571",
+  "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+  "source_evidence": [
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/system-models/chunkless_critical_path_readout-260830.json",
+      "sha256": "d5b4b8238e00374bdacfb315092a2b45c046c0b07f26ab7be3fdea0f92a35d52"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/system-models/chunkless_critical_path_model.py",
+      "sha256": "a979cfe29e21eb2be2b210e43d445bfd8592788beb6efdb3cd04d64ac9e6d339"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/system-models/document_fact_catalogue.py",
+      "sha256": "9f3b9d7d60fac8f84ee97abe799280d095f34e463e140ea84c41dc24c7da753f"
+    },
+    {
+      "path": "/Users/davisjam/Projects/ada-tool/system-models/remediation_graph.py",
+      "sha256": "9ea7e73b98c5d510f41e19b09e0ee5a698661943eb852a9377f86d4c83751b8d"
+    }
+  ],
+  "evidence_notes": "Readout: floor 7.6589 s; crossover whole-pipeline prediction 11.4589 s; text_summary estimated 1.777 s; vision_alt_text measured 4.1049 s (51 samples). Model lines 237–240 and 629–680 distinguish the typed section-summary→doc-summary relation from the annotated runtime doc-summary→alt-text consumer relation absent from remediation_graph DATA_FLOW. Generic repair branches are illustrative; no exact policy edge is claimed.",
+  "author_approval": {
+    "date": "2026-11-11",
+    "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+    "decision": "approved"
   }
 }

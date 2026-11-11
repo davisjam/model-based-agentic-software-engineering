@@ -2,18 +2,18 @@
 \begin{groupplot}[group style={group size=2 by 2,horizontal sep=1.3cm,vertical sep=2cm},mage plot,width=5.65cm,height=4.8cm,xmin=.4,xmax=31.6,xtick={1,11,21,31},xticklabels={Week 1,11,21,31},ymin=0,tick label style={font=\magefigurefont\fontsize{10}{12}\selectfont},title style={font=\magefigurefont\fontsize{11}{13}\selectfont,at={(0,1.08)},anchor=west},legend style={draw=none,font=\magefigurefont\fontsize{10}{12}\selectfont},legend cell align=left]
 \nextgroupplot[title={(a) Work commits},ymax=3700,ytick={0,1500,3000},yticklabels={0,1.5K,3K}]
 \addplot[ybar,bar width=3.4pt,draw=black!30,fill=black!65] coordinates {(1,24) (2,0) (3,24) (4,410) (5,694) (6,743) (7,1006) (8,1011) (9,1708) (10,1346) (11,3329) (12,2552) (13,1122) (14,1294) (15,1969) (16,1379) (17,572) (18,1202) (19,1530) (20,1082) (21,1374) (22,1302) (23,984) (24,1469) (25,1959) (26,1181) (27,1708) (28,826) (29,592) (30,1239) (31,947)};
-\nextgroupplot[title={(b) Models and checks},ymax=430,ytick={0,150,300},legend columns=2,legend pos=north west]
+\nextgroupplot[title={(b) Models and checks},ymax=430,ytick={0,150,300},legend columns=1,legend pos=north west]
 \addplot[black,solid,line width=.8pt,no marks] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,1) (11,5) (12,9) (13,11) (14,13) (15,14) (16,16) (17,16) (18,16) (19,29) (20,40) (21,50) (22,59) (23,70) (24,80) (25,93) (26,99) (27,121) (28,129) (29,132) (30,133) (31,143)};\addlegendentry{Models}
-\addplot[black,dashed,line width=.8pt,no marks] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,0) (11,3) (12,4) (13,9) (14,9) (15,9) (16,9) (17,9) (18,9) (19,15) (20,23) (21,25) (22,25) (23,28) (24,32) (25,33) (26,33) (27,41) (28,44) (29,44) (30,44) (31,45)};\addlegendentry{Multi-model}
+\addplot[black,dashed,line width=.8pt,no marks] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,0) (11,3) (12,4) (13,9) (14,9) (15,9) (16,9) (17,9) (18,9) (19,15) (20,23) (21,25) (22,25) (23,28) (24,32) (25,33) (26,33) (27,41) (28,44) (29,44) (30,44) (31,45)};\addlegendentry{Consumers of ≥2 models}
 \addplot[black,densely dotted,line width=.8pt,no marks] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,0) (11,36) (12,49) (13,64) (14,73) (15,83) (16,95) (17,97) (18,99) (19,126) (20,137) (21,146) (22,153) (23,166) (24,173) (25,180) (26,195) (27,210) (28,220) (29,222) (30,223) (31,232)};\addlegendentry{Static}
 \addplot[black,dashdotted,line width=.8pt,no marks] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,0) (11,0) (12,0) (13,0) (14,0) (15,0) (16,0) (17,0) (18,0) (19,24) (20,87) (21,90) (22,95) (23,95) (24,98) (25,100) (26,119) (27,145) (28,147) (29,148) (30,150) (31,153)};\addlegendentry{Dynamic}
 \nextgroupplot[title={(c) Dispatches},ymax=1800,ytick={0,750,1500},yticklabels={0,750,1.5K}]
 \path[fill=black!8] (axis cs:.5,0) rectangle (axis cs:11.5,1800);
 \addplot[ybar,bar width=3.4pt,draw=black!30,fill=black!65] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,0) (11,0) (12,514) (13,114) (14,79) (15,743) (16,773) (17,244) (18,511) (19,1056) (20,578) (21,807) (22,1235) (23,963) (24,1416) (25,1306) (26,823) (27,927) (28,530) (29,368) (30,681) (31,724)};
-\node[align=center,font=\magefigurefont\fontsize{10}{12}\selectfont] at (axis cs:6.0,1026.0) {No recovered\\records};
+\node[align=center,font=\magefigurefont\fontsize{10}{12}\selectfont] at (axis cs:6.0,1026.0) {No records};
 \nextgroupplot[title={(d) Epic completions},ymax=48,ytick={0,20,40},yticklabels={0,20,40}]
 \path[fill=black!8] (axis cs:.5,0) rectangle (axis cs:10.5,48);
 \addplot[ybar,bar width=3.4pt,draw=black!30,fill=black!65] coordinates {(1,0) (2,0) (3,0) (4,0) (5,0) (6,0) (7,0) (8,0) (9,0) (10,0) (11,18) (12,37) (13,18) (14,10) (15,9) (16,15) (17,2) (18,16) (19,29) (20,28) (21,23) (22,34) (23,28) (24,25) (25,38) (26,4) (27,27) (28,12) (29,12) (30,26) (31,17)};
-\node[align=center,font=\magefigurefont\fontsize{10}{12}\selectfont] at (axis cs:5.5,27.36) {No recovered\\records};
+\node[align=center,font=\magefigurefont\fontsize{10}{12}\selectfont] at (axis cs:5.5,27.36) {No records};
 \end{groupplot}
 \end{tikzpicture}

@@ -16154,89 +16154,138 @@
       "source": "book/assets/interlude-latency-floor.svg",
       "candidate": "book/tikz/figures/interlude-latency-floor.tex",
       "decision": "refined",
-      "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
-      "candidate_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-      "evidence": [
-        {
-          "source_text": "each level waits for the one before it, so the times add",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "14.5"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Each level waits for its predecessor: the dependent times add.",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "each level waits for the one before it, so the times add",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "14.5"
-              },
-              "location": {
-                "x": "460",
-                "y": "140",
-                "text_element": 9
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "7.6589 s",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "17"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "7.6589 s",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "7.6589 s",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "17"
-              },
-              "location": {
-                "x": "830",
-                "y": "102",
-                "text_element": 8
-              }
-            }
-          ]
-        }
-      ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "source_sha256": "7a7a669f35c03ca66fee605d2ebb73e51a00b81e6dfa53b76f6906c9d182e571",
+      "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+      "evidence": [],
+      "reason": "All prose is 10pt Source Sans 3; call durations are bold, the chain label bold italic, and the illustrative-work label italic.",
       "checks": [
         {
-          "text": "Each level waits for its predecessor: the dependent times add.",
+          "text": "1.777 s",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "4.1049 s",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Section",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "summary",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Document",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Generate",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "alt text",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(estimated)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(measured)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Extract",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "document",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Repair structure",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(validators, rules, …)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Repair metadata",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(types, properties, …)",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Apply",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "changes",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "GenAI call",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Must precede",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "GenAI critical path (dependent chain)",
+          "bold": true,
           "italic": true
         },
         {
-          "text": "7.6589 s",
-          "bold": true
-        },
-        {
-          "text": "Latency floor",
+          "text": "Other independent work (illustrative)",
           "bold": false,
-          "italic": false
+          "italic": true
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 62,
-        "width_bp": 406.302,
-        "height_bp": 85.843,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+        "proof_sha256": "dfb6dae1aef5509e5d086c77287471b2ce66a670fec1408d430bbbaf19585276",
+        "page": 1,
+        "width_bp": 445.57,
+        "height_bp": 262.921,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "099f091cc7a4570f924f9e6105ddcd1f6255dac8a516823e9cbb13ac7cd9b922",
+        "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+        "semantic_typography_checks": 21,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 3
+        "status": "passed",
+        "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -16244,7 +16293,43 @@
         "source_sha256": "00a6fd303de80cb826af9e5916af16507bc0284773a78ad1d6022cf6d0071113",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 62,
+          "width_bp": 406.302,
+          "height_bp": 85.843,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 3
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+          "proof_sha256": "ae4b90e98187df2aeacd4af0b91d837cc043702e2880c264f11fc8bc60c21540",
+          "page": 1,
+          "width_bp": 445.57,
+          "height_bp": 262.921,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "42bbdca7442a3eb8773ea42e859ad3744a1d0cf38a1172ea09855be071e3e2cd",
+          "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+          "semantic_typography_checks": 21,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+          "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-prediction-residual.svg",
@@ -17343,8 +17428,8 @@
       "source": "book/assets/build-stages-timeline.svg",
       "candidate": "book/tikz/figures/build-stages-timeline.tex",
       "decision": "refined",
-      "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
-      "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+      "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
+      "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
       "evidence": [
         {
           "source_text": "Deployment, iteration,\nand optimization",
@@ -17542,33 +17627,31 @@
           ]
         },
         {
-          "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Retrospective stages, not a preplanned roadmap.",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "Stages are labels drawn afterward, not a plan followed at the time.",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "60",
-                "y": "842",
-                "text_element": 65
-              }
-            }
-          ]
+          "semantic_role": "Author-requested header treatment/date range",
+          "candidate_text": "STAGE / DATES",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.2 correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Author-requested header treatment/date range",
+          "candidate_text": "PRESSURE",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.2 correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Author-requested header treatment/date range",
+          "candidate_text": "CONSEQUENCE",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.2 correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Author-requested header treatment/date range",
+          "candidate_text": "July–October",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.2 correction,2026-11-11"
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
       "checks": [
         {
           "text": "Deployment / iteration / optimization",
@@ -17599,26 +17682,51 @@
           "bold": true
         },
         {
-          "text": "Retrospective stages, not a preplanned roadmap.",
-          "italic": true
+          "text": "Real users on real documents",
+          "bold": false,
+          "italic": false
         },
         {
-          "text": "Real users on real documents",
+          "text": "STAGE / DATES",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "PRESSURE",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "CONSEQUENCE",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "July–October",
           "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 70,
-        "width_bp": 390.258,
-        "height_bp": 440.737,
-        "minimum_prose_font_pt": 10.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+        "proof_sha256": "75dda13f99f489abbb54fc4e6e30e341a4c711eb64d128c2b74a51796c51a585",
+        "page": 1,
+        "width_bp": 394.922,
+        "height_bp": 412.369,
+        "minimum_prose_font_pt": 9.963,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 9
+        "maximum_rgb_channel_delta": 0,
+        "semantic_typography_checks": 12,
+        "geometry_audit_sha256": "10bfb2a3e0dad4af2d07e2cc866c3ee61cbc2d12fcb9b71b806f3ca158d755a4",
+        "typography_audit_sha256": "a75b1e1dba3a366c249abbab8ab9fe1f7d384b97569641a0c3911f549ca832c3",
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -17626,7 +17734,648 @@
         "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
         "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "previous": {
+            "source": "book/assets/build-stages-timeline.svg",
+            "candidate": "book/tikz/figures/build-stages-timeline.tex",
+            "decision": "refined",
+            "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+            "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+            "evidence": [
+              {
+                "source_text": "Deployment, iteration,\nand optimization",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Deployment / iteration / optimization",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Deployment, iteration,",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "748",
+                      "text_element": 55
+                    }
+                  },
+                  {
+                    "text": "and optimization",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "769",
+                      "text_element": 56
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Format expansion",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Format expansion",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Format expansion",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "331",
+                      "text_element": 22
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Feasibility",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Feasibility",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Feasibility",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "119",
+                      "text_element": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "PowerPoint",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "PowerPoint",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "PowerPoint",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "225",
+                      "text_element": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Standards",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Standards",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Standards",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "543",
+                      "text_element": 39
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Hardening",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Hardening",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Hardening",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "649",
+                      "text_element": 47
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "SaaS",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "SaaS",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "SaaS",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "437",
+                      "text_element": 30
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
+                "source_style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "20"
+                },
+                "semantic_role": "explanatory annotation or feedback relation",
+                "candidate_text": "Retrospective stages, not a preplanned roadmap.",
+                "candidate_style": "italic",
+                "source_fragments": [
+                  {
+                    "text": "Stages are labels drawn afterward, not a plan followed at the time.",
+                    "style": {
+                      "font-weight": "400",
+                      "font-style": "italic",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "60",
+                      "y": "842",
+                      "text_element": 65
+                    }
+                  }
+                ]
+              }
+            ],
+            "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+            "checks": [
+              {
+                "text": "Deployment / iteration / optimization",
+                "bold": true
+              },
+              {
+                "text": "Format expansion",
+                "bold": true
+              },
+              {
+                "text": "Feasibility",
+                "bold": true
+              },
+              {
+                "text": "PowerPoint",
+                "bold": true
+              },
+              {
+                "text": "Standards",
+                "bold": true
+              },
+              {
+                "text": "Hardening",
+                "bold": true
+              },
+              {
+                "text": "SaaS",
+                "bold": true
+              },
+              {
+                "text": "Retrospective stages, not a preplanned roadmap.",
+                "italic": true
+              },
+              {
+                "text": "Real users on real documents",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 70,
+              "width_bp": 390.258,
+              "height_bp": 440.737,
+              "minimum_prose_font_pt": 10.0,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 9
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+              "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+              "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+          "previous": {
+            "source": "book/assets/build-stages-timeline.svg",
+            "candidate": "book/tikz/figures/build-stages-timeline.tex",
+            "decision": "refined",
+            "source_sha256": "ac28ccf0de69c4448dd3e518487f68ce4315ed5a4950637fefd67ee49ac726dd",
+            "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+            "evidence": [
+              {
+                "source_text": "Deployment, iteration,\nand optimization",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Deployment / iteration / optimization",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Deployment, iteration,",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "748",
+                      "text_element": 55
+                    }
+                  },
+                  {
+                    "text": "and optimization",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "769",
+                      "text_element": 56
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Format expansion",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Format expansion",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Format expansion",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "331",
+                      "text_element": 22
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Feasibility",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Feasibility",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Feasibility",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "119",
+                      "text_element": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "PowerPoint",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "PowerPoint",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "PowerPoint",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "225",
+                      "text_element": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Standards",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Standards",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Standards",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "543",
+                      "text_element": 39
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Hardening",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "Hardening",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "Hardening",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "649",
+                      "text_element": 47
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "SaaS",
+                "source_style": {
+                  "font-weight": "700",
+                  "font-style": "normal",
+                  "font-size": "20"
+                },
+                "semantic_role": "concept/category versus explanation",
+                "candidate_text": "SaaS",
+                "candidate_style": "bold",
+                "source_fragments": [
+                  {
+                    "text": "SaaS",
+                    "style": {
+                      "font-weight": "700",
+                      "font-style": "normal",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "100",
+                      "y": "437",
+                      "text_element": 30
+                    }
+                  }
+                ]
+              },
+              {
+                "source_text": "Stages are labels drawn afterward, not a plan followed at the time.",
+                "source_style": {
+                  "font-weight": "400",
+                  "font-style": "italic",
+                  "font-size": "20"
+                },
+                "semantic_role": "explanatory annotation or feedback relation",
+                "candidate_text": "Retrospective stages, not a preplanned roadmap.",
+                "candidate_style": "italic",
+                "source_fragments": [
+                  {
+                    "text": "Stages are labels drawn afterward, not a plan followed at the time.",
+                    "style": {
+                      "font-weight": "400",
+                      "font-style": "italic",
+                      "font-size": "20"
+                    },
+                    "location": {
+                      "x": "60",
+                      "y": "842",
+                      "text_element": 65
+                    }
+                  }
+                ]
+              },
+              {
+                "semantic_role": "Author-requested header treatment/date range",
+                "candidate_text": "STAGE / DATES",
+                "candidate_style": "bold",
+                "authorization": "Author Figure5.2 correction,2026-11-11"
+              },
+              {
+                "semantic_role": "Author-requested header treatment/date range",
+                "candidate_text": "PRESSURE",
+                "candidate_style": "bold",
+                "authorization": "Author Figure5.2 correction,2026-11-11"
+              },
+              {
+                "semantic_role": "Author-requested header treatment/date range",
+                "candidate_text": "CONSEQUENCE",
+                "candidate_style": "bold",
+                "authorization": "Author Figure5.2 correction,2026-11-11"
+              },
+              {
+                "semantic_role": "Author-requested header treatment/date range",
+                "candidate_text": "July–October",
+                "candidate_style": "regular",
+                "authorization": "Author Figure5.2 correction,2026-11-11"
+              }
+            ],
+            "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+            "checks": [
+              {
+                "text": "Deployment / iteration / optimization",
+                "bold": true
+              },
+              {
+                "text": "Format expansion",
+                "bold": true
+              },
+              {
+                "text": "Feasibility",
+                "bold": true
+              },
+              {
+                "text": "PowerPoint",
+                "bold": true
+              },
+              {
+                "text": "Standards",
+                "bold": true
+              },
+              {
+                "text": "Hardening",
+                "bold": true
+              },
+              {
+                "text": "SaaS",
+                "bold": true
+              },
+              {
+                "text": "Retrospective stages, not a preplanned roadmap.",
+                "italic": true
+              },
+              {
+                "text": "Real users on real documents",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "STAGE / DATES",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "PRESSURE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "CONSEQUENCE",
+                "bold": true,
+                "italic": false
+              },
+              {
+                "text": "July–October",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+              "proof_sha256": "9a8ade176166101f98de9483bfc1507a4c7c1de35466c33b2415e8f95e5bca75",
+              "page": 1,
+              "width_bp": 394.922,
+              "height_bp": 440.184,
+              "minimum_prose_font_pt": 9.963,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "maximum_rgb_channel_delta": 0,
+              "semantic_typography_checks": 13,
+              "geometry_audit_sha256": "26906f83f924e8d82916e01a44a81bc97f019ad7d631454bf0284ed08e723216",
+              "typography_audit_sha256": "3316c0ffbf00154a8694da59b78fcd38586900efdd6d7975522bed9492ffbd8f",
+              "status": "passed"
+            },
+            "color_source_revision": {
+              "date": "2026-11-09",
+              "previous_source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+              "source_sha256": "7de33c3dbb22dffd5717aac8c02918544b0868eac925ac531bb85a190b2ad3b2",
+              "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+              "native_candidate_changed": false
+            }
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/f1_realization_over_time.svg",
@@ -27192,122 +27941,11 @@
     {
       "source": "book/assets/docable-work-order-flow.svg",
       "candidate": "book/tikz/figures/docable-work-order-flow.tex",
-      "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
-      "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
-      "decision": "new",
-      "reason": "Named stages and actors use bold titles; annotations remain regular at native print size.",
-      "evidence": [
-        {
-          "source_text": "Engineer",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Engineer",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Reviewed work order",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Reviewed work order",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Orchestrator",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Orchestrator",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Agent A",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Agent A",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Agent B",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Agent B",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Integration and checks",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Integration and checks",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Independent completion audit",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Independent completion audit",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Work order closed",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "10.5"
-          },
-          "semantic_role": "stage or actor title",
-          "candidate_text": "Work order closed",
-          "candidate_style": "bold"
-        },
-        {
-          "source_text": "Schedules ready phases",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "normal",
-            "font-size": "9.5"
-          },
-          "semantic_role": "explanatory annotation",
-          "candidate_text": "Schedules ready phases",
-          "candidate_style": "regular"
-        },
-        {
-          "source_text": "Repair work",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "normal",
-            "font-size": "9.5"
-          },
-          "semantic_role": "explanatory annotation",
-          "candidate_text": "Repair work",
-          "candidate_style": "regular"
-        }
-      ],
+      "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
+      "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+      "decision": "refined",
+      "revision_date": "2026-11-11",
+      "reason": "Original semantic typography retained; the optional escalation annotation uses the existing 9.5pt regular note style.",
       "checks": [
         {
           "text": "Engineer",
@@ -27358,26 +27996,49 @@
           "text": "Repair work",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Escalate if needed",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "291ba0056fbec89e19c1bd00c7b2c4281f9e71e7a735eaab7544bfe85b2673f0",
-        "page": 83,
-        "width_bp": 405.973,
-        "height_bp": 455.972,
-        "geometry_findings": 0,
+        "date": "2026-11-11",
+        "proof": "/private/tmp/mage-work-order-feedback-proof-20261111/proof.pdf",
+        "proof_png": "/private/tmp/mage-work-order-feedback-proof-20261111/proof.png",
+        "proof_sha256": "8b480ee049a00ae3d5e6f7a06ba6e58439a37ce210876b837ef3a627634a5333",
+        "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
+        "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+        "width_bp": 405.9729919433594,
+        "height_bp": 455.97198486328125,
+        "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 10,
-        "status": "passed"
-      },
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "c1f8bf97d6f3f87155e91db8f7a194cf32ee4686aefcb8a3506282f3d1ff7c81",
-        "source_sha256": "5ef819aae6bd7646cf0de9763fd930d05163fb3a063f9dc09c76d6d087e735c4",
-        "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
+        "semantic_typography_checks": 11,
+        "typography_findings": 0,
+        "reviewed_peer_groups": 1,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "validation_scope": "This figure only; no whole-pool or assembled-book verdict asserted.",
+        "svg_sensor_counts_baseline": {
+          "overflow": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "label_collision": 0,
+          "font_band": 17
+        },
+        "svg_sensor_counts_revised": {
+          "overflow": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "label_collision": 0,
+          "font_band": 18
+        }
       }
     },
     {
@@ -27981,9 +28642,9 @@
     {
       "source": "book/assets/docable-seip-longitudinal-261109.svg",
       "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
-      "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
-      "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
-      "decision": "new",
+      "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
+      "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+      "decision": "refined",
       "evidence": [
         {
           "source_text": "(a) Work commits",
@@ -28008,6 +28669,18 @@
           "candidate_text": "(d) Epic completions",
           "semantic_role": "Panel heading",
           "candidate_style": "regular"
+        },
+        {
+          "semantic_role": "Author-requested chart labels",
+          "candidate_text": "Consumers of ≥2 models",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.3 correction,2026-11-11"
+        },
+        {
+          "semantic_role": "Author-requested chart labels",
+          "candidate_text": "No records",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.3 correction,2026-11-11"
         }
       ],
       "checks": [
@@ -28030,28 +28703,121 @@
           "text": "(d) Epic completions",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Consumers of ≥2 models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "No records",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
-        "status": "standalone_passed",
-        "date": "2026-11-09",
-        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
-        "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
-        "width_bp": 387.34600830078125,
-        "height_bp": 368.0270080566406,
-        "minimum_prose_font_bp": 9.962639808654785,
-        "minimum_authored_text_TeX_pt": 10,
+        "date": "2026-11-11",
+        "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+        "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+        "page": 1,
+        "width_bp": 393.323,
+        "height_bp": 374.005,
+        "minimum_prose_font_pt": 9.963,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
         "monochrome_pixels": true,
-        "compile_diagnostics": [],
-        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
-      }
+        "maximum_rgb_channel_delta": 1,
+        "semantic_typography_checks": 6,
+        "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+        "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+        "status": "passed"
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+          "previous": {
+            "source": "book/assets/docable-seip-longitudinal-261109.svg",
+            "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+            "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
+            "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+            "decision": "new",
+            "evidence": [
+              {
+                "source_text": "(a) Work commits",
+                "candidate_text": "(a) Work commits",
+                "semantic_role": "Panel heading",
+                "candidate_style": "regular"
+              },
+              {
+                "source_text": "(b) Models and checks",
+                "candidate_text": "(b) Models and checks",
+                "semantic_role": "Panel heading",
+                "candidate_style": "regular"
+              },
+              {
+                "source_text": "(c) Dispatches",
+                "candidate_text": "(c) Dispatches",
+                "semantic_role": "Panel heading",
+                "candidate_style": "regular"
+              },
+              {
+                "source_text": "(d) Epic completions",
+                "candidate_text": "(d) Epic completions",
+                "semantic_role": "Panel heading",
+                "candidate_style": "regular"
+              }
+            ],
+            "checks": [
+              {
+                "text": "(a) Work commits",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(b) Models and checks",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(c) Dispatches",
+                "bold": false,
+                "italic": false
+              },
+              {
+                "text": "(d) Epic completions",
+                "bold": false,
+                "italic": false
+              }
+            ],
+            "validation": {
+              "status": "standalone_passed",
+              "date": "2026-11-09",
+              "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
+              "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
+              "width_bp": 387.34600830078125,
+              "height_bp": 368.0270080566406,
+              "minimum_prose_font_bp": 9.962639808654785,
+              "minimum_authored_text_TeX_pt": 10,
+              "monochrome_pixels": true,
+              "compile_diagnostics": [],
+              "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+            }
+          }
+        }
+      ],
+      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review."
     },
     {
       "source": "book/assets/docable-seip-composition-261109.svg",
       "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
-      "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
-      "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
-      "decision": "new",
+      "source_sha256": "a532f390f0787b32051d87c339544962546020b3d09b8c112d658b5885d33314",
+      "candidate_sha256": "2b8ad4d1197b5c9dff05c24e91a665893393e7dea582d18f836b4c160acfcb69",
+      "decision": "refined",
       "evidence": [
         {
           "source_text": "(a) Production implementation",
@@ -28076,21 +28842,147 @@
           "text": "(b) Engineering apparatus",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Shared/services",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Frontend",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Web processing",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Core remediation",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Indexed docs",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Infra. as code",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Agent infra.",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Tools/helpers",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Lints",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Tests",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
-        "status": "standalone_passed",
-        "date": "2026-11-09",
-        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
-        "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
-        "width_bp": 386.0299987792969,
-        "height_bp": 461.1679992675781,
-        "minimum_prose_font_bp": 9.962639808654785,
-        "minimum_authored_text_TeX_pt": 10,
+        "date": "2026-11-11",
+        "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+        "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+        "page": 1,
+        "width_bp": 392.008,
+        "height_bp": 467.146,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 13,
         "monochrome_pixels": true,
-        "compile_diagnostics": [],
-        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
-      }
+        "status": "passed",
+        "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+        "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+        "legend_order": {
+          "production": [
+            "Shared/services",
+            "Frontend",
+            "Web processing",
+            "Core remediation"
+          ],
+          "apparatus": [
+            "Indexed docs",
+            "Models",
+            "Infra. as code",
+            "Agent infra.",
+            "Tools/helpers",
+            "Lints",
+            "Tests"
+          ]
+        },
+        "all_band_coordinates_unchanged": true
+      },
+      "validation_history": [
+        {
+          "status": "standalone_passed",
+          "date": "2026-11-09",
+          "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+          "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+          "width_bp": 386.0299987792969,
+          "height_bp": 461.1679992675781,
+          "minimum_prose_font_bp": 9.962639808654785,
+          "minimum_authored_text_TeX_pt": 10,
+          "monochrome_pixels": true,
+          "compile_diagnostics": [],
+          "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+          "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+          "page": 1,
+          "width_bp": 392.008,
+          "height_bp": 467.146,
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 13,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+          "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+          "legend_order": {
+            "production": [
+              "Shared/services",
+              "Frontend",
+              "Web processing",
+              "Core remediation"
+            ],
+            "apparatus": [
+              "Indexed docs",
+              "Models",
+              "Infra. as code",
+              "Agent infra.",
+              "Tools/helpers",
+              "Lints",
+              "Tests"
+            ]
+          },
+          "all_band_coordinates_unchanged": true
+        }
+      ],
+      "reason": "Preserve original and native typography, including 10pt legends. Only legend ordering and column count change."
     },
     {
       "source": "book/assets/docable-human-evaluation-261109.svg",

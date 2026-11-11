@@ -6108,77 +6108,91 @@
     {
       "source": "book/assets/interlude-latency-floor.svg",
       "candidate": "book/tikz/figures/interlude-latency-floor.tex",
-      "source_sha256": "f1ab44bdde90eec9fe261714db870db0ba178781d3377e6c8dc3a29cd4dcfc7f",
+      "source_sha256": "7a7a669f35c03ca66fee605d2ebb73e51a00b81e6dfa53b76f6906c9d182e571",
       "baseline_candidate_sha256": "07f08e4e3e677e92cf03d6045a0191ec383571dde892bf1fbef36ee8e2c522dd",
-      "candidate_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
+      "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
       "decision": "refined",
-      "reason": "Aligned latency-stage boxes and separated them to expose the arrow shafts.",
+      "reason": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         393.5459899902344,
         85.84300231933594
       ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "serial timing contributions",
-            "labels": [
-              "Section summary",
-              "Document summary",
-              "Alt text",
-              "Latency floor"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
+      "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "date": "2026-11-11",
+        "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+        "proof_sha256": "dfb6dae1aef5509e5d086c77287471b2ce66a670fec1408d430bbbaf19585276",
+        "page": 1,
+        "width_bp": 445.57,
+        "height_bp": 262.921,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "099f091cc7a4570f924f9e6105ddcd1f6255dac8a516823e9cbb13ac7cd9b922",
+        "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+        "semantic_typography_checks": 21,
+        "monochrome_pixels": true,
         "status": "passed",
-        "page": 62,
-        "width_bp": 406.302,
-        "height_bp": 85.843
+        "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+        "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing interlude latency floor layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-        "after_sha256": "8bc3cefd930186b513dbdc18722950c36e23e03bcb3b27602633b935c2d7e485",
-        "before_dimensions_bp": [
-          406.302001953125,
-          85.84300231933594
-        ],
-        "after_dimensions_bp": [
-          406.302001953125,
-          85.84300231933594
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
+        "decision": "review candidate",
+        "reason": "Author-requested schematic graph context for the GenAI latency floor. Three heavy-outline call nodes preserve the calibrated dependent chain, while ordinary-outline repair branches are explicitly illustrative independent work rather than asserted registered dependencies. A light enclosure marks the chain and a compact visual key explains the edge and outline semantics. One editable generator produces SVG and native TikZ; all prose is 10pt. No overall internal headline or embedded caption. The 7.6589-second chain floor remains distinct from the 11.4589-second whole-pipeline prediction including overhead.",
+        "native_dimensions_bp": [
+          445.57,
+          262.921
         ],
         "reviewed_visually": true
-      }
+      },
+      "validation_history": [
+        {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 62,
+          "width_bp": 406.302,
+          "height_bp": 85.843
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/latency-graph-proof/interlude-latency-floor.pdf",
+          "proof_sha256": "ae4b90e98187df2aeacd4af0b91d837cc043702e2880c264f11fc8bc60c21540",
+          "page": 1,
+          "width_bp": 445.57,
+          "height_bp": 262.921,
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "geometry_audit_sha256": "42bbdca7442a3eb8773ea42e859ad3744a1d0cf38a1172ea09855be071e3e2cd",
+          "typography_audit_sha256": "aa63e101d7f1b911bc36791344f758ed6e6308decd3f1517864dc38da9fbabe1",
+          "semantic_typography_checks": 21,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "svg_proof": "latex/build/latency-graph-proof/interlude-latency-floor-svg.png",
+          "generator": "book/editorial/figure-redraws-20261111/build_latency_graph.py"
+        }
+      ]
     },
     {
       "source": "book/assets/interlude-prediction-residual.svg",
@@ -6548,11 +6562,11 @@
     {
       "source": "book/assets/build-stages-timeline.svg",
       "candidate": "book/tikz/figures/build-stages-timeline.tex",
-      "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+      "source_sha256": "6a8f3151fddbfbf5c96ed1bc47859dc0fdfe8fc6bad1bc9e4daaeade787c24f2",
       "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
-      "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+      "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
       "decision": "refined",
-      "reason": "The stage/pressure/consequence layout is a timeline/table; varying row content is intentional and there are no terminal process arrowheads. Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
+      "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         390.25799560546875,
@@ -6560,46 +6574,154 @@
       ],
       "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "date": "2026-11-11",
+        "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+        "proof_sha256": "75dda13f99f489abbb54fc4e6e30e341a4c711eb64d128c2b74a51796c51a585",
+        "page": 1,
+        "width_bp": 394.922,
+        "height_bp": 412.369,
+        "minimum_prose_font_pt": 9.963,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 70,
-        "width_bp": 390.258,
-        "height_bp": 440.737
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "maximum_rgb_channel_delta": 0,
+        "semantic_typography_checks": 12,
+        "geometry_audit_sha256": "10bfb2a3e0dad4af2d07e2cc866c3ee61cbc2d12fcb9b71b806f3ca158d755a4",
+        "typography_audit_sha256": "a75b1e1dba3a366c249abbab8ab9fe1f7d384b97569641a0c3911f549ca832c3",
+        "status": "passed"
       },
       "page_layout": {
         "decision": "refined",
-        "reason": "Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
-        "before_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
-        "after_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
-        "before_dimensions_bp": [
-          390.25799560546875,
-          385.84698486328125
-        ],
+        "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+        "after_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16",
         "after_dimensions_bp": [
-          390.25799560546875,
-          440.73699951171875
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
+          394.922,
+          412.369
         ],
         "after_font_sizes_pt": [
-          10.0
+          10
         ],
         "reviewed_visually": true
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+          "previous": {
+            "source": "book/assets/build-stages-timeline.svg",
+            "candidate": "book/tikz/figures/build-stages-timeline.tex",
+            "source_sha256": "59d20b292fb697937c87829c8eb328d46db5bd41255277cfaf4f4705fc8658e0",
+            "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+            "candidate_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+            "decision": "refined",
+            "reason": "The stage/pressure/consequence layout is a timeline/table; varying row content is intentional and there are no terminal process arrowheads. Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              390.25799560546875,
+              385.84698486328125
+            ],
+            "contracts": {},
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 633,
+              "reviewed_peer_groups": 81,
+              "semantic_typography_checks": 875,
+              "unapproved_compile_diagnostics": 0,
+              "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+              "status": "passed",
+              "page": 70,
+              "width_bp": 390.258,
+              "height_bp": 440.737
+            },
+            "page_layout": {
+              "decision": "refined",
+              "reason": "Raise substantive timeline prose from9to10pt, with larger row separation for multi-line stage descriptions.",
+              "before_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+              "after_sha256": "7f346c9ff924a70623cb23d65950980cd14c520f18154c49d97c4b35f92a909a",
+              "before_dimensions_bp": [
+                390.25799560546875,
+                385.84698486328125
+              ],
+              "after_dimensions_bp": [
+                390.25799560546875,
+                440.73699951171875
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                10.0
+              ],
+              "reviewed_visually": true
+            }
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "reason": "Author approved Figure5.2 with removal of the retrospective footer. Remove that line in both native and original SVG, crop the unused SVG footer space, and preserve the approved bare uppercase headings, July–October final row, all other wording, fonts, rows, and timeline topology. Publication approval is recorded separately by the integrating agent.",
+          "previous": {
+            "source": "book/assets/build-stages-timeline.svg",
+            "candidate": "book/tikz/figures/build-stages-timeline.tex",
+            "source_sha256": "ac28ccf0de69c4448dd3e518487f68ce4315ed5a4950637fefd67ee49ac726dd",
+            "baseline_candidate_sha256": "2512b4bc19460c5c99b2ac5eea5b7bfe78c172ffde6014b6e6a79caab432cebd",
+            "candidate_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+            "decision": "refined",
+            "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+            "reviewed_visually": true,
+            "baseline_dimensions_bp": [
+              390.25799560546875,
+              385.84698486328125
+            ],
+            "contracts": {},
+            "validation": {
+              "date": "2026-11-11",
+              "proof": "latex/build/stage-headings-proof/build-stages-timeline.pdf",
+              "proof_sha256": "9a8ade176166101f98de9483bfc1507a4c7c1de35466c33b2415e8f95e5bca75",
+              "page": 1,
+              "width_bp": 394.922,
+              "height_bp": 440.184,
+              "minimum_prose_font_pt": 9.963,
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "maximum_rgb_channel_delta": 0,
+              "semantic_typography_checks": 13,
+              "geometry_audit_sha256": "26906f83f924e8d82916e01a44a81bc97f019ad7d631454bf0284ed08e723216",
+              "typography_audit_sha256": "3316c0ffbf00154a8694da59b78fcd38586900efdd6d7975522bed9492ffbd8f",
+              "status": "passed"
+            },
+            "page_layout": {
+              "decision": "refined",
+              "reason": "Author-requested Figure5.2 revision: replace boxed column headings with bare ALL-CAPS STAGE / DATES, PRESSURE, and CONSEQUENCE above one horizontal rule; extend the final row from July–September to July–October. All other words, row positions, emphasis, and timeline topology are unchanged. SVG is hand-authored with no generator; its visible date and accessible description are updated. Pending author review.",
+              "after_sha256": "7cfe102b4e0b7744a823b902d06d028234736a87af80c6cd54c4d78893bdf224",
+              "after_dimensions_bp": [
+                394.922,
+                440.184
+              ],
+              "after_font_sizes_pt": [
+                10
+              ],
+              "reviewed_visually": true
+            }
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/f1_realization_over_time.svg",
@@ -11537,15 +11659,16 @@
     {
       "source": "book/assets/docable-work-order-flow.svg",
       "candidate": "book/tikz/figures/docable-work-order-flow.tex",
-      "source_sha256": "b36b4966187f5871c672c2276f3faea5e219a9d2cf853128541ea8d487b65fd1",
-      "candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
+      "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
+      "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+      "decision": "refined",
+      "revision_date": "2026-11-11",
       "baseline_candidate_sha256": "3c0bb6d22283d44855048bbd4a01b14e01ff108c6b0cc9d3b1bef8c1f01153cf",
-      "decision": "new",
-      "reason": "Reviewed work-order flow derived from the lecture, with matched parallel branches and a clear outer repair return.",
+      "reason": "Preserve the ordinary completion-audit repair return to the orchestrator and add a dotted optional extension to the engineer for unresolved problems.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
-        401.99,
-        449.99
+        405.973,
+        455.972
       ],
       "contracts": {
         "peer_groups": [
@@ -11566,16 +11689,41 @@
         ]
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "291ba0056fbec89e19c1bd00c7b2c4281f9e71e7a735eaab7544bfe85b2673f0",
-        "page": 83,
-        "width_bp": 405.973,
-        "height_bp": 455.972,
-        "geometry_findings": 0,
+        "date": "2026-11-11",
+        "proof": "/private/tmp/mage-work-order-feedback-proof-20261111/proof.pdf",
+        "proof_png": "/private/tmp/mage-work-order-feedback-proof-20261111/proof.png",
+        "proof_sha256": "8b480ee049a00ae3d5e6f7a06ba6e58439a37ce210876b837ef3a627634a5333",
+        "source_sha256": "e1778755cc9e3f417577cf22f96735baaa440086aa8d0953839219fa8ffe7500",
+        "candidate_sha256": "4cf0e0df4cca5986d797c2028a5fb4710db37c5e4b8ca88d00c0e93eff6bb4ad",
+        "width_bp": 405.9729919433594,
+        "height_bp": 455.97198486328125,
+        "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 10,
-        "status": "passed"
+        "semantic_typography_checks": 11,
+        "typography_findings": 0,
+        "reviewed_peer_groups": 1,
+        "fonts": [
+          "SourceSans3-Bold",
+          "SourceSans3-Regular"
+        ],
+        "status": "passed",
+        "validation_scope": "This figure only; no whole-pool or assembled-book verdict asserted.",
+        "svg_sensor_counts_baseline": {
+          "overflow": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "label_collision": 0,
+          "font_band": 17
+        },
+        "svg_sensor_counts_revised": {
+          "overflow": 0,
+          "text_occlusion": 0,
+          "text_intrusion": 0,
+          "label_collision": 0,
+          "font_band": 18
+        }
       }
     },
     {
@@ -11794,49 +11942,176 @@
     {
       "source": "book/assets/docable-seip-longitudinal-261109.svg",
       "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
-      "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
-      "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+      "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
+      "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
       "baseline_candidate_sha256": null,
-      "decision": "new",
-      "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+      "decision": "refined",
+      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
       "reviewed_visually": true,
       "contracts": {},
       "validation": {
-        "status": "standalone_passed",
-        "date": "2026-11-09",
-        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
-        "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
-        "width_bp": 387.34600830078125,
-        "height_bp": 368.0270080566406,
-        "minimum_prose_font_bp": 9.962639808654785,
-        "minimum_authored_text_TeX_pt": 10,
+        "date": "2026-11-11",
+        "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+        "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+        "page": 1,
+        "width_bp": 393.323,
+        "height_bp": 374.005,
+        "minimum_prose_font_pt": 9.963,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
         "monochrome_pixels": true,
-        "compile_diagnostics": [],
-        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+        "maximum_rgb_channel_delta": 1,
+        "semantic_typography_checks": 6,
+        "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+        "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+        "status": "passed"
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+          "previous": {
+            "source": "book/assets/docable-seip-longitudinal-261109.svg",
+            "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+            "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
+            "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+            "baseline_candidate_sha256": null,
+            "decision": "new",
+            "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+            "reviewed_visually": true,
+            "contracts": {},
+            "validation": {
+              "status": "standalone_passed",
+              "date": "2026-11-09",
+              "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
+              "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
+              "width_bp": 387.34600830078125,
+              "height_bp": 368.0270080566406,
+              "minimum_prose_font_bp": 9.962639808654785,
+              "minimum_authored_text_TeX_pt": 10,
+              "monochrome_pixels": true,
+              "compile_diagnostics": [],
+              "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+            }
+          }
+        }
+      ],
+      "page_layout": {
+        "decision": "refined",
+        "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of ≥2 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+        "after_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+        "after_dimensions_bp": [
+          393.323,
+          374.005
+        ],
+        "after_font_sizes_pt": [
+          10,
+          11
+        ],
+        "reviewed_visually": true
       }
     },
     {
       "source": "book/assets/docable-seip-composition-261109.svg",
       "candidate": "book/tikz/figures/docable-seip-composition-261109.tex",
-      "source_sha256": "373d03bc45a1b026ed8c2a41b082b50597e94c34ffc1aee061a73ca6909ea981",
-      "candidate_sha256": "9294991e63257b5c0a4803df4aa8d28ef7814eac2f6ce2fc1959227e46554f6f",
+      "source_sha256": "a532f390f0787b32051d87c339544962546020b3d09b8c112d658b5885d33314",
+      "candidate_sha256": "2b8ad4d1197b5c9dff05c24e91a665893393e7dea582d18f836b4c160acfcb69",
       "baseline_candidate_sha256": null,
-      "decision": "new",
-      "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+      "decision": "refined",
+      "reason": "Author prefers the original monochrome Matplotlib design for publication. Preserve its composition, axes, gray fills, hatch patterns and all ten sampled data values. Change both original and native comparison legends to one vertical column, ordered from top stacked band to bottom stacked band. Keep 10pt legend text; no shrink or chart redesign needed. Original selected by parent through monochrome-originals.json, not by substituting the native remake.",
       "reviewed_visually": true,
       "contracts": {},
       "validation": {
-        "status": "standalone_passed",
-        "date": "2026-11-09",
-        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
-        "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
-        "width_bp": 386.0299987792969,
-        "height_bp": 461.1679992675781,
-        "minimum_prose_font_bp": 9.962639808654785,
-        "minimum_authored_text_TeX_pt": 10,
+        "date": "2026-11-11",
+        "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+        "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+        "page": 1,
+        "width_bp": 392.008,
+        "height_bp": 467.146,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 13,
         "monochrome_pixels": true,
-        "compile_diagnostics": [],
-        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+        "status": "passed",
+        "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+        "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+        "legend_order": {
+          "production": [
+            "Shared/services",
+            "Frontend",
+            "Web processing",
+            "Core remediation"
+          ],
+          "apparatus": [
+            "Indexed docs",
+            "Models",
+            "Infra. as code",
+            "Agent infra.",
+            "Tools/helpers",
+            "Lints",
+            "Tests"
+          ]
+        },
+        "all_band_coordinates_unchanged": true
+      },
+      "validation_history": [
+        {
+          "status": "standalone_passed",
+          "date": "2026-11-09",
+          "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-composition-261109.pdf",
+          "proof_sha256": "13409603631e3c4af4e8cc6aad50600a2b7ae171e444744119eb21c8fbabf3a2",
+          "width_bp": 386.0299987792969,
+          "height_bp": 461.1679992675781,
+          "minimum_prose_font_bp": 9.962639808654785,
+          "minimum_authored_text_TeX_pt": 10,
+          "monochrome_pixels": true,
+          "compile_diagnostics": [],
+          "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/composition-proof/docable-seip-composition-261109.pdf",
+          "proof_sha256": "d465640b4f48692333fc0f56499b13f455170580303c3dd314e5f0b2f830a59f",
+          "page": 1,
+          "width_bp": 392.008,
+          "height_bp": 467.146,
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 13,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "original_proof": "latex/build/composition-proof/proofs/docable-seip-composition-261109.png",
+          "original_pdf_sha256": "d8e2d1f4d1a5c377887bc60609fa207793e0dca5af88ac1c17e1cc9fb98858c4",
+          "legend_order": {
+            "production": [
+              "Shared/services",
+              "Frontend",
+              "Web processing",
+              "Core remediation"
+            ],
+            "apparatus": [
+              "Indexed docs",
+              "Models",
+              "Infra. as code",
+              "Agent infra.",
+              "Tools/helpers",
+              "Lints",
+              "Tests"
+            ]
+          },
+          "all_band_coordinates_unchanged": true
+        }
+      ],
+      "page_layout": {
+        "decision": "retain original design",
+        "reason": "Author prefers the original monochrome Matplotlib design for publication. Preserve its composition, axes, gray fills, hatch patterns and all ten sampled data values. Change both original and native comparison legends to one vertical column, ordered from top stacked band to bottom stacked band. Keep 10pt legend text; no shrink or chart redesign needed. Original selected by parent through monochrome-originals.json, not by substituting the native remake.",
+        "reviewed_visually": true
       }
     },
     {

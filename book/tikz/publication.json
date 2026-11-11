@@ -162,6 +162,16 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved Figure 5.5 in the side-by-side review. Publish the native monochrome figure without a duplicate.",
       "candidate_sha256": "81910fc3436068a29ce9c20823db5edb6b4082acbba507c233d8c3e59359b5c5"
+    },
+    "book/assets/interlude-latency-floor.svg": {
+      "approved_date": "2026-11-11",
+      "candidate_sha256": "46db5a29ae01f3ab69863e3f15498acde77e8dd63251f5d0dde1372a9ffd7962",
+      "reason": "Author approved the revised Figure 4.9 dependency-graph draft in the sidebar."
+    },
+    "book/assets/build-stages-timeline.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July\u2013October dates retained.",
+      "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16"
     }
   }
 }

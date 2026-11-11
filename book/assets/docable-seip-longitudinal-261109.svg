@@ -580,25 +580,25 @@ L 294.310345 52.710625
 " style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #737373; stroke-width: 1.5"/>
     </g>
     <g id="text_18">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.810345" y="56.210625" transform="rotate(-0 297.810345 56.210625)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Multi-model</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.810345" y="56.210625" transform="rotate(-0 297.810345 56.210625)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Consumers of ≥2 models</text>
     </g>
     <g id="line2d_27">
-     <path d="M 354.790032 38.540313 
-L 362.290032 38.540313 
-L 369.790032 38.540313 
+     <path d="M 279.310345 66.880938 
+L 286.810345 66.880938 
+L 294.310345 66.880938 
 " style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #0d0d0d; stroke-width: 1.5"/>
     </g>
     <g id="text_19">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="373.290032" y="42.040313" transform="rotate(-0 373.290032 42.040313)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Static</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.810345" y="70.380938" transform="rotate(-0 297.810345 70.380938)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Static</text>
     </g>
     <g id="line2d_28">
-     <path d="M 354.790032 52.710625 
-L 362.290032 52.710625 
-L 369.790032 52.710625 
+     <path d="M 279.310345 81.05125 
+L 286.810345 81.05125 
+L 294.310345 81.05125 
 " style="fill: none; stroke-dasharray: 9.6,2.4,1.5,2.4; stroke-dashoffset: 0; stroke: #737373; stroke-width: 1.5"/>
     </g>
     <g id="text_20">
-     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="373.290032" y="56.210625" transform="rotate(-0 373.290032 56.210625)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Dynamic</text>
+     <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: start" x="297.810345" y="84.55125" transform="rotate(-0 297.810345 84.55125)" font-size="10px" font-family="'Source Sans 3'" text-anchor="start">Dynamic</text>
     </g>
    </g>
   </g>
@@ -929,8 +929,7 @@ z
 " clip-path="url(#pb286d8528e)" style="fill: #4c4c4c"/>
    </g>
    <g id="text_28">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(47.681917 314.625724)" font-size="10px" font-family="'Source Sans 3'">No recovered</text>
-    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(59.826449 325.220099)" font-size="10px" font-family="'Source Sans 3'">records</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: middle" x="75.636605" y="319.922911" transform="rotate(-0 75.636605 319.922911)" font-size="10px" font-family="'Source Sans 3'" text-anchor="middle">No records</text>
    </g>
    <g id="text_29">
     <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="45" y="238.355918" transform="rotate(-0 45 238.355918)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(c) Dispatches</text>
@@ -1263,8 +1262,7 @@ z
 " clip-path="url(#pc64d67acc8)" style="fill: #4c4c4c"/>
    </g>
    <g id="text_37">
-    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(270.256851 314.625724)" font-size="10px" font-family="'Source Sans 3'">No recovered</text>
-    <text style="font-size: 10px; font-family: 'Source Sans 3'" transform="translate(282.401382 325.220099)" font-size="10px" font-family="'Source Sans 3'">records</text>
+    <text style="font-size: 10px; font-family: 'Source Sans 3'; text-anchor: middle" x="298.211538" y="319.922911" transform="rotate(-0 298.211538 319.922911)" font-size="10px" font-family="'Source Sans 3'" text-anchor="middle">No records</text>
    </g>
    <g id="text_38">
     <text style="font-size: 11px; font-family: 'Source Sans 3'; text-anchor: start" x="270.310345" y="238.355918" transform="rotate(-0 270.310345 238.355918)" font-size="11px" font-family="'Source Sans 3'" text-anchor="start">(d) Epic completions</text>

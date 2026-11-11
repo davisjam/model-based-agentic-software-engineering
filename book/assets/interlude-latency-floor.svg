@@ -1,37 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: interlude-latency-floor). The three-level GenAI dependency chain for the
-     representative workload and its irreducible latency floor: section summary, then document summary, then
-     alt text, summing to the floor. viewBox 920 for the figure font band. -->
-<!-- semantic-families: modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 145" width="920" height="145" role="group" aria-labelledby="lfTitle lfDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="lfTitle">The GenAI dependency chain and its irreducible latency floor</title>
-  <desc id="lfDesc">Three dependent GenAI levels in series: a section summary at 1.777 seconds feeds a
-    document summary at 1.777 seconds, which feeds alt text at 4.1049 seconds. Because each level must
-    complete before the next begins, their times add to an irreducible floor of 7.6589 seconds. The vision
-    value is measured; the text-summary value is estimated.</desc>
-<!-- Print refinement: retain the source geometry semantics and text; reflow labels at 450 bp publication width. -->
-<defs>
-<marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker>
-<marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
-<marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/></marker>
-<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
-<marker id="arrow-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
-</defs>
-<rect x="0" y="0" width="920" height="145" rx="0" fill="#fdfcf9" stroke="#fdfcf9" stroke-width="0"/>
-<rect x="20" y="18" width="192" height="74" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="116.0" y="49.6" font-size="20" text-anchor="middle" fill="#1c1917">section summary</text>
-<text x="116.0" y="73.6" font-size="20" text-anchor="middle" fill="#1c1917">1.777 s</text>
-<rect x="255" y="18" width="205" height="74" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="357.5" y="49.6" font-size="20" text-anchor="middle" fill="#1c1917">document summary</text>
-<text x="357.5" y="73.6" font-size="20" text-anchor="middle" fill="#1c1917">1.777 s</text>
-<rect x="502" y="18" width="215" height="74" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="609.5" y="49.6" font-size="20" text-anchor="middle" fill="#1c1917">alt text</text>
-<text x="609.5" y="73.6" font-size="20" text-anchor="middle" fill="#1c1917">4.1049 s (measured)</text>
-<rect x="760" y="18" width="140" height="74" rx="7" fill="#f3efe7" stroke="#1c1917" stroke-width="2"/>
-<text x="830.0" y="49.6" font-size="20" text-anchor="middle" fill="#1c1917">floor</text>
-<text x="830.0" y="73.6" font-size="20" text-anchor="middle" fill="#1c1917" font-weight="700">7.6589 s</text>
-<line x1="212" y1="55" x2="255" y2="55" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<line x1="460" y1="55" x2="502" y2="55" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)"/>
-<line x1="717" y1="55" x2="760" y2="55" stroke="#1c1917" stroke-width="2" marker-end="url(#arrow-ink)" stroke-dasharray="4 4"/>
-<text x="460" y="126" font-size="20" text-anchor="middle" fill="#57534e" font-style="italic">each level waits for the one before it, so the times add</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="892" height="524" viewBox="-1 -1 446 262" role="img" aria-labelledby="title desc">
+<title id="title">The GenAI dependency chain in a schematic remediation graph</title>
+<desc id="desc">Section summary feeds document summary and then alt text, alongside illustrative independent work. The three call durations sum to about 7.7 seconds.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L7,3.5 L0,7 Z" fill="black"/></marker></defs>
+<rect width="444" height="260" fill="white"/>
+<rect x="72" y="0" width="288" height="100" rx="6" fill="#f2f2f2" stroke="#666" stroke-width=".6" stroke-dasharray="3,2"/>
+<text x="220" y="16.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="italic">GenAI critical path (dependent chain)</text>
+<rect x="85.0" y="28.0" width="80" height="62" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="125" y="62.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal"></text>
+<rect x="85" y="28" width="80" height="62" rx="3" fill="none" stroke="black" stroke-width="1.3"/>
+<text x="125" y="40.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Section</text>
+<text x="125" y="52.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">summary</text>
+<text x="125" y="69.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">1.777 s</text>
+<text x="125" y="83.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(estimated)</text>
+<rect x="180.0" y="28.0" width="80" height="62" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="220" y="62.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal"></text>
+<rect x="180" y="28" width="80" height="62" rx="3" fill="none" stroke="black" stroke-width="1.3"/>
+<text x="220" y="40.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Document</text>
+<text x="220" y="52.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">summary</text>
+<text x="220" y="69.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">1.777 s</text>
+<text x="220" y="83.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(estimated)</text>
+<rect x="275.0" y="28.0" width="80" height="62" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="315" y="62.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal"></text>
+<rect x="275" y="28" width="80" height="62" rx="3" fill="none" stroke="black" stroke-width="1.3"/>
+<text x="315" y="40.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Generate</text>
+<text x="315" y="52.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">alt text</text>
+<text x="315" y="69.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="700" font-style="normal">4.1049 s</text>
+<text x="315" y="83.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(measured)</text>
+<path d="M165,59 L180,59" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M260,59 L275,59" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="0.5" y="128.0" width="59" height="36" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="30" y="143.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Extract</text>
+<text x="30" y="155.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">document</text>
+<text x="225" y="117.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="italic">Other independent work (illustrative)</text>
+<rect x="120.0" y="123.0" width="180" height="30" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="210" y="135.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Repair structure</text>
+<text x="210" y="147.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(validators, rules, …)</text>
+<rect x="120.0" y="165.0" width="180" height="30" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="210" y="177.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Repair metadata</text>
+<text x="210" y="189.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">(types, properties, …)</text>
+<rect x="380.5" y="141.0" width="59" height="36" rx="3" fill="rgb(255,255,255)" stroke="black" stroke-width=".6"/>
+<text x="410" y="156.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Apply</text>
+<text x="410" y="168.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">changes</text>
+<path d="M59.5,146 L65,146" fill="none" stroke="black" stroke-width=".65"/>
+<path d="M65,59 L65,180" fill="none" stroke="black" stroke-width=".65"/>
+<path d="M65,59 L85,59" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M65,138 L120,138" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M65,180 L120,180" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M355,59 L410,59 L410,141" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M300,138 L370,138 L370,180 L300,180" fill="none" stroke="black" stroke-width=".65"/>
+<path d="M370,159 L380.5,159" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<rect x="80.5" y="206.0" width="359" height="28" rx="3" fill="rgb(242,242,242)" stroke="black" stroke-width=".6"/>
+<text x="260" y="223.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">GenAI latency floor: 1.777 + 1.777 + 4.1049 ≈ 7.7 s</text>
+<rect x="93" y="244" width="18" height="12" rx="3" fill="white" stroke="black" stroke-width="1.3"/>
+<text x="153" y="253.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">GenAI call</text>
+<path d="M223,250 L241,250" fill="none" stroke="black" stroke-width=".65" marker-end="url(#arrow)"/>
+<text x="300" y="253.3" text-anchor="middle" font-family="&quot;Source Sans 3&quot;, sans-serif" font-size="10" font-weight="400" font-style="normal">Must precede</text>
 </svg>

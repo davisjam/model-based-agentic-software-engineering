@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored Chapter 5 print composition: source geometry and readable type, not blind shrinking. Original title/description and native monochrome partner retained. -->
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" width="900" height="680" role="img" aria-labelledby="bsTitle bsDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640" role="img" aria-labelledby="bsTitle bsDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
 <title id="bsTitle">The seven build stages as a dated timeline of pressure and consequence</title>
 <desc id="bsDesc">A retrospective vertical timeline of seven build stages, each row naming the
     stage, its dates, the pressure that forced it, and the major engineering consequence that
@@ -12,7 +12,7 @@
     forced authentication, quota, cost, security, and exposed fidelity limits. Standards, April to
     May: the need for a defensible accessibility claim forced standards-grounded validation.
     Hardening, May to June: time became available for structural work, producing models, tests,
-    gates, and provenance. Deployment, iteration, and optimization, July to September: operating
+    gates, and provenance. Deployment, iteration, and optimization, July to October: operating
     the production system exposed performance, cost, reliability, and architectural limits,
     forcing repeated measurement, redesign, optimization, and re-platforming. The stages are
     labels drawn afterward, not a preplanned roadmap.</desc>
@@ -83,7 +83,7 @@
 <text x="24" y="597" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">7</text>
 <text x="58" y="557" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">Deployment, iteration,</text>
 <text x="58" y="579" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">and optimization</text>
-<text x="58" y="601" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">July–September</text>
+<text x="58" y="601" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">July–October</text>
 <text x="58" y="623" text-anchor="start" font-size="20" fill="#57534e">operating what shipped</text>
 <text x="307" y="568" text-anchor="start" font-size="20" fill="#1c1917">Production operation exposed</text>
 <text x="307" y="590" text-anchor="start" font-size="20" fill="#1c1917">limits on performance, cost,</text>
@@ -92,5 +92,4 @@
 <text x="609" y="568" text-anchor="start" font-size="20" fill="#1c1917">repeated measurement,</text>
 <text x="609" y="590" text-anchor="start" font-size="20" fill="#1c1917">redesign, optimization,</text>
 <text x="609" y="612" text-anchor="start" font-size="20" fill="#1c1917">and re-platforming</text>
-<text x="14" y="667" text-anchor="start" font-size="20" fill="#57534e" font-style="italic">Stages are labels drawn afterward, not a plan followed at the time.</text>
 </svg>

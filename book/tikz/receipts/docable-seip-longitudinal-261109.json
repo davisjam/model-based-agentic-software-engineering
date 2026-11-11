@@ -7,9 +7,9 @@
   "chapter": "5.2-inside-docables-software-factory",
   "claim": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
   "alt": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
-  "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
-  "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
-  "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory’s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
+  "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
+  "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+  "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory\u2019s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
   "generator": "book/figures/docable-case-261109/generate.py",
   "data": "book/data/docable-case-261109",
   "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
@@ -17,51 +17,83 @@
     "(a) Work commits",
     "(b) Models and checks",
     "(c) Dispatches",
-    "(d) Epic completions"
+    "(d) Epic completions",
+    "Consumers of \u22652 models",
+    "No records"
   ],
   "native_validation": {
-    "status": "standalone_passed",
-    "date": "2026-11-09",
-    "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
-    "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
-    "width_bp": 387.34600830078125,
-    "height_bp": 368.0270080566406,
-    "minimum_prose_font_bp": 9.962639808654785,
-    "minimum_authored_text_TeX_pt": 10,
+    "date": "2026-11-11",
+    "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+    "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+    "page": 1,
+    "width_bp": 393.323,
+    "height_bp": 374.005,
+    "minimum_prose_font_pt": 9.963,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
     "monochrome_pixels": true,
-    "compile_diagnostics": [],
-    "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    "maximum_rgb_channel_delta": 1,
+    "semantic_typography_checks": 6,
+    "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+    "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+    "status": "passed"
   },
   "layout_review": {
     "source": "book/assets/docable-seip-longitudinal-261109.svg",
     "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
-    "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
-    "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+    "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
+    "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
     "baseline_candidate_sha256": null,
-    "decision": "new",
-    "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+    "decision": "refined",
+    "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
     "reviewed_visually": true,
     "contracts": {},
     "validation": {
-      "status": "standalone_passed",
-      "date": "2026-11-09",
-      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
-      "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
-      "width_bp": 387.34600830078125,
-      "height_bp": 368.0270080566406,
-      "minimum_prose_font_bp": 9.962639808654785,
-      "minimum_authored_text_TeX_pt": 10,
+      "date": "2026-11-11",
+      "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+      "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+      "page": 1,
+      "width_bp": 393.323,
+      "height_bp": 374.005,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
       "monochrome_pixels": true,
-      "compile_diagnostics": [],
-      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      "maximum_rgb_channel_delta": 1,
+      "semantic_typography_checks": 6,
+      "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+      "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+      "status": "passed"
+    },
+    "page_layout": {
+      "decision": "refined",
+      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+      "after_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+      "after_dimensions_bp": [
+        393.323,
+        374.005
+      ],
+      "after_font_sizes_pt": [
+        10,
+        11
+      ],
+      "reviewed_visually": true
     }
   },
   "typography_review": {
     "source": "book/assets/docable-seip-longitudinal-261109.svg",
     "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
-    "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
-    "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
-    "decision": "new",
+    "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
+    "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+    "decision": "refined",
     "evidence": [
       {
         "source_text": "(a) Work commits",
@@ -86,6 +118,18 @@
         "candidate_text": "(d) Epic completions",
         "semantic_role": "Panel heading",
         "candidate_style": "regular"
+      },
+      {
+        "semantic_role": "Author-requested chart labels",
+        "candidate_text": "Consumers of \u22652 models",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.3 correction,2026-11-11"
+      },
+      {
+        "semantic_role": "Author-requested chart labels",
+        "candidate_text": "No records",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.3 correction,2026-11-11"
       }
     ],
     "checks": [
@@ -108,21 +152,236 @@
         "text": "(d) Epic completions",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Consumers of \u22652 models",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "No records",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
-      "status": "standalone_passed",
-      "date": "2026-11-09",
-      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
-      "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
-      "width_bp": 387.34600830078125,
-      "height_bp": 368.0270080566406,
-      "minimum_prose_font_bp": 9.962639808654785,
-      "minimum_authored_text_TeX_pt": 10,
+      "date": "2026-11-11",
+      "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+      "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+      "page": 1,
+      "width_bp": 393.323,
+      "height_bp": 374.005,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
       "monochrome_pixels": true,
-      "compile_diagnostics": [],
-      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      "maximum_rgb_channel_delta": 1,
+      "semantic_typography_checks": 6,
+      "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+      "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+      "status": "passed"
+    },
+    "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review."
+  },
+  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults.",
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "reason": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+      "previous": {
+        "id": "docable-seip-longitudinal-261109",
+        "date": "2026-11-09",
+        "status": "ready_for_parent_integration",
+        "source": "book/assets/docable-seip-longitudinal-261109.svg",
+        "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+        "chapter": "5.2-inside-docables-software-factory",
+        "claim": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
+        "alt": "Four measures over 31 complete project weeks: work commits, models and checks, recovered dispatches, and documented Epic completions. Early shading denotes missing records, not zero activity. Counts do not measure productivity.",
+        "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
+        "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+        "caption": "*Development activity and engineering structure over 31 weeks.* (a) Reconstructed landed work commits; (b) declared models, consumers of multiple models, and registered static and dynamic verifier files; (c) recovered dispatches; (d) documented Epic completions. Shaded intervals lack retained records and do not establish zero activity. Activity and inventory counts describe the factory\u2019s growth, not the value or correctness of its output. [short: Development activity and engineering structure]",
+        "generator": "book/figures/docable-case-261109/generate.py",
+        "data": "book/data/docable-case-261109",
+        "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
+        "required_terms": [
+          "(a) Work commits",
+          "(b) Models and checks",
+          "(c) Dispatches",
+          "(d) Epic completions"
+        ],
+        "native_validation": {
+          "status": "standalone_passed",
+          "date": "2026-11-09",
+          "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
+          "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
+          "width_bp": 387.34600830078125,
+          "height_bp": 368.0270080566406,
+          "minimum_prose_font_bp": 9.962639808654785,
+          "minimum_authored_text_TeX_pt": 10,
+          "monochrome_pixels": true,
+          "compile_diagnostics": [],
+          "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+        },
+        "layout_review": {
+          "source": "book/assets/docable-seip-longitudinal-261109.svg",
+          "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+          "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
+          "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+          "baseline_candidate_sha256": null,
+          "decision": "new",
+          "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+          "reviewed_visually": true,
+          "contracts": {},
+          "validation": {
+            "status": "standalone_passed",
+            "date": "2026-11-09",
+            "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
+            "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
+            "width_bp": 387.34600830078125,
+            "height_bp": 368.0270080566406,
+            "minimum_prose_font_bp": 9.962639808654785,
+            "minimum_authored_text_TeX_pt": 10,
+            "monochrome_pixels": true,
+            "compile_diagnostics": [],
+            "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+          }
+        },
+        "typography_review": {
+          "source": "book/assets/docable-seip-longitudinal-261109.svg",
+          "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+          "source_sha256": "52c3eb998847e705492e93be5cb401f1a5c0648bca6f0712071348d49243b243",
+          "candidate_sha256": "3824f322c1e9dd0066482cef23009a1706e2bcb705e3c2a8612b7df73ba77081",
+          "decision": "new",
+          "evidence": [
+            {
+              "source_text": "(a) Work commits",
+              "candidate_text": "(a) Work commits",
+              "semantic_role": "Panel heading",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "(b) Models and checks",
+              "candidate_text": "(b) Models and checks",
+              "semantic_role": "Panel heading",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "(c) Dispatches",
+              "candidate_text": "(c) Dispatches",
+              "semantic_role": "Panel heading",
+              "candidate_style": "regular"
+            },
+            {
+              "source_text": "(d) Epic completions",
+              "candidate_text": "(d) Epic completions",
+              "semantic_role": "Panel heading",
+              "candidate_style": "regular"
+            }
+          ],
+          "checks": [
+            {
+              "text": "(a) Work commits",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(b) Models and checks",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(c) Dispatches",
+              "bold": false,
+              "italic": false
+            },
+            {
+              "text": "(d) Epic completions",
+              "bold": false,
+              "italic": false
+            }
+          ],
+          "validation": {
+            "status": "standalone_passed",
+            "date": "2026-11-09",
+            "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-seip-longitudinal-261109.pdf",
+            "proof_sha256": "1d362338135ece09be9da1ecda60ed13c2e169a5b0c97a1ee4a5ce9cce02017a",
+            "width_bp": 387.34600830078125,
+            "height_bp": 368.0270080566406,
+            "minimum_prose_font_bp": 9.962639808654785,
+            "minimum_authored_text_TeX_pt": 10,
+            "monochrome_pixels": true,
+            "compile_diagnostics": [],
+            "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+          }
+        },
+        "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults."
+      }
+    }
+  ],
+  "redesign": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+  "review": {
+    "reference": "Author Figure5.3 correction,2026-11-11",
+    "outcome": "Requested labels implemented; one-column legend inspected; all data and plotted coordinates unchanged. Pending author review.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+      "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+      "page": 1,
+      "width_bp": 393.323,
+      "height_bp": 374.005,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 1,
+      "semantic_typography_checks": 6,
+      "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+      "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+      "status": "passed"
     }
   },
-  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults."
+  "style_review": {
+    "source": "book/assets/docable-seip-longitudinal-261109.svg",
+    "candidate": "book/tikz/figures/docable-seip-longitudinal-261109.tex",
+    "receipt": "book/tikz/receipts/docable-seip-longitudinal-261109.json",
+    "decision": "refined",
+    "date": "2026-11-09",
+    "status": "reviewed",
+    "source_sha256": "6648fa9d422ddba556bec8e2140e97fffe0c1334aa2ffa2189020183cff204ae",
+    "candidate_sha256": "02fa9340bc2d58880ff9a8a0b595aeb624e13cababe3cfb40b7343b5f161966b",
+    "fill": "Restrained gray fills; patterns and line styles distinguish series.",
+    "bold": "Regular panel headings and data labels; no decorative emphasis.",
+    "routing": "No conceptual connectors; charts directly encode measured data.",
+    "shape": "Bars, lines, and stacked bands encode quantities.",
+    "visual_review": "Author-requested Figure5.3 clarification: both shaded periods now say No records; Multi-model becomes Consumers of \u22652 models. The four-item legend uses one column so the longer label fits at the existing 10pt size. The evidence-ledger definition confirms distinct registered consumers of at least two models. All coordinates, data, line styles, and panel geometry are unchanged. Pending author review.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/legend-clarity-proof/docable-seip-longitudinal-261109.pdf",
+      "proof_sha256": "a3f963a56eee6ccc388d14697b6664cad2347047d4c138e3962084fa127649fc",
+      "page": 1,
+      "width_bp": 393.323,
+      "height_bp": 374.005,
+      "minimum_prose_font_pt": 9.963,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 1,
+      "semantic_typography_checks": 6,
+      "geometry_audit_sha256": "233e9cf95204a5ff10fbe16bd2e66e790fc06a9d3489c999670501af89736adc",
+      "typography_audit_sha256": "786a079b071528e44a32dacf9cbf9c15c8d5f48f8535358907c2ae401c99c3a3",
+      "status": "passed"
+    }
+  }
 }
