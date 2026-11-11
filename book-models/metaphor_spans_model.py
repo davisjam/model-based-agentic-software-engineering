@@ -53,7 +53,7 @@ _DECLARED = os.path.join(_HERE, "metaphor-spans.json")
 #: LOCAL dropped 6 -> 5 when the 5.2.1 DOJ rewrite retired 'doj-ramp' (its anchor paragraph — the
 #: former ada-context burden-shift table — no longer exists in the chapter).
 EXPECT_CORE = 9
-EXPECT_LOCAL = 5
+EXPECT_LOCAL = 4
 EXPECT_OVERLAPS = 0
 #: The ratified slogan split (by scope): invoke-by-name canonicals / commandments / used-once lines.
 #: 7 after the one-model-class-per-chapter reconstruction retired the 'one-trunk-five-views' (4+1) slogan,

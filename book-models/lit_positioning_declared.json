@@ -230,15 +230,15 @@
       "id": "incident-learning-governance",
       "section": "§8",
       "title": "Incident learning / governance conversion",
-      "x": "Mature engineering converts failures into durable controls — resilience engineering, blameless postmortems, poka-yoke (Hollnagel/Woods/Leveson; Google SRE Ch.15; Shingo).",
-      "y": "Agentic velocity surfaces novel, unforeseeable failures faster than any playbook anticipates.",
-      "z": "MAGE names the promotion rule: a failure in use -> human classification -> recurring obligation -> up-front environmental control.",
+      "x": "Postmortems support organizational learning, but lessons can remain local to a project or depend on someone remembering a prior failure.",
+      "y": "Agents can help construct models and controls, and more changes can benefit from the same engineering investment.",
+      "z": "Governance conversion makes selected lessons part of the environment that subsequent work inherits.",
       "target_locations": [
         "governance-conversion"
       ],
       "citations": [
         {
-          "key": "hollnagel2006resilience",
+          "key": "dingsoyr2005postmortem",
           "backs_claims": [
             "failures-become-machinery"
           ],
@@ -246,7 +246,7 @@
           "illustrates_pattern": "self-governance"
         },
         {
-          "key": "beyer2016sre",
+          "key": "dingsoyr2007organizational",
           "backs_claims": [
             "failures-become-machinery"
           ],
@@ -254,7 +254,7 @@
           "illustrates_pattern": "self-governance"
         },
         {
-          "key": "shingo1986zqc",
+          "key": "anandayuvaraj2026failures",
           "backs_claims": [
             "failures-become-machinery"
           ],
@@ -267,7 +267,7 @@
       ],
       "status": "landed",
       "fold_target": "",
-      "notes": "SMALL standalone wave — LANDED (LPP-PROSE) in 2.3-the-governed-environment, the governance-conversion beat: a one-paragraph lineage (manufacturing / resilience engineering / SRE blameless postmortems / Shingo poka-yoke) placed between the failure-seen-twice sentence and the 'either way, a mechanism takes one of two forms' transition, then MAGE's promotion rule and the velocity ingredient. Anchors the manuscript's existing Toyota/poka-yoke/jidoka/SRE mentions to primary sources (Shingo for poka-yoke, not a secondary summary). All three VERIFIED-ESTAB (ISBN). target_locations trimmed to 2.3 (the actual landing). illustrates_pattern=self-governance on all three (§8 prior-art double-duty: convert-a-recurring-failure-into-a-control)."
+      "notes": "The postmortem discussion follows the governance-conversion definition in §3.4. The 2005 review situates the practice, the 2007 study addresses organizational use across projects, and the 2026 case study documents difficulty applying lessons in subsequent work."
     },
     {
       "id": "fallible-oracles-swebench",
