@@ -1,0 +1,9 @@
+Suppose one repository check requires a task's changes to be squashed into one commit, while another rejects a commit whose diff exceeds a prescribed scope. A task may satisfy the first rule only by violating the second. Inspecting either check alone will not reveal how their requirements interact. \autoref{collision-edge} draws the shared commit set on which both act. The engineer must examine that relation to decide whether the obligations conflict or the mechanisms need a different arrangement.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/collision-edge-fe5071601b.pdf}
+\caption{\emph{The conflict is the edge.} Two controls may be individually valid yet impose incompatible demands on the same resource. The interaction belongs to the relation among the controls and shared resource, not necessarily to either control\textquotesingle s implementation.}
+\label{collision-edge}
+\end{figure}
+

@@ -1,0 +1,1 @@
+Archived from 495c927642cb703f7c36b403f971bfb6c6579ce6 on 2026-11-11. Superseded by the author-requested two-example conceptual governance graph. Stable collision-edge figure identity retained. Earlier artwork conflated shared-resource access with incompatible demands.

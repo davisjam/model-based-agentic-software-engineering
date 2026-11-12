@@ -649,15 +649,15 @@
   {
     "chapter": "3.5-when-guardrails-collide",
     "source": "assets/collision-edge.svg",
-    "caption": "*The conflict is the edge.* Two controls may be individually valid yet impose incompatible demands on the same resource. The interaction belongs to the relation among the controls and shared resource, not necessarily to either control's implementation.",
+    "caption": "*Structure of a governance graph.* Controls are connected to the obligations that justify them and the resources they access. Shared resources expose potential interactions; declared ordering constraints record how selected interactions are resolved. The examples illustrate two distinct problems: incompatible obligations and mechanisms that require a particular execution order.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/collision-edge.d2",
     "receipt": "book/d2-pilot/collision-edge.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The conflict is the edge — two valid controls impose incompatible demands on one shared resource",
-    "svg_description": "Two control nodes — Control A, which requires a squashed commit, and Control B, which\n    rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared\n    resource, the commit set, that they act on. Below the commit set, a rust node marks the incompatible\n    demands: the conflict belongs to the relation among the two controls and the resource they share, not to\n    either control's own implementation."
+    "svg_title": "Structure of a governance graph",
+    "svg_description": "Two governance-graph examples have obligations above controls and a shared resource below. The squash rule is justified by atomic delivery and the diff-size guard by bounded change scope; both read the commit set, with no automatic conflict edge between them. The formatter is justified by formatting consistency and writes source files; the lint check is justified by code quality and reads those files. A dashed arrow declares that the formatter precedes the lint check."
   },
   {
     "chapter": "3.5-when-guardrails-collide",

@@ -13347,139 +13347,239 @@
     {
       "source": "book/assets/collision-edge.svg",
       "candidate": "book/tikz/figures/collision-edge.tex",
+      "source_sha256": "e65ea309cadb374b348403fb1c107a5ba0b7a001ef8c3035ed34f0630aa7b084",
+      "candidate_sha256": "f9759253eb9d1ffbb5af6521f109f10121e322125b91946bd1602900e35b557f",
       "decision": "refined",
-      "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
-      "candidate_sha256": "79f418072d6b834367a6e56781f4219b70216225f057f8b1046c2b5de5eadb11",
-      "evidence": [
-        {
-          "source_text": "Control A",
-          "source_style": "weight 700; normal; source size 24",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Control A",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/collision-edge.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "Control A",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "Control B",
-          "source_style": "weight 700; normal; source size 24",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Control B",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/collision-edge.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "Control B",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "COMMIT SET",
-          "source_style": "weight 700; normal; source size 23",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "COMMIT SET",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/collision-edge.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "COMMIT SET",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "incompatible demands",
-          "source_style": "weight 700; normal; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Incompatible demands",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/collision-edge.svg",
-            "element_text_path": "/svg/text[9]/text()",
-            "text_element_context": "incompatible demands",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "shared resource",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "shared resource",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/collision-edge.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "shared resource",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "the conflict lives in this relation, not in either control",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "the conflict lives in the relation, not either control",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/collision-edge.svg",
-            "element_text_path": "/svg/text[10]/text()",
-            "text_element_context": "the conflict lives in this relation, not in either control",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Bold control and shared-resource names contrast with their demands; the conflict explanation is italic, not another control.",
-      "checks": [
-        {
-          "text": "Control A",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Control B",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "COMMIT SET",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "Incompatible demands",
-          "bold": true,
-          "italic": false
-        },
-        {
-          "text": "shared resource",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "the conflict lives in the relation, not either control",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "requires a squashed commit",
-          "bold": false,
-          "italic": false
-        }
-      ],
+      "reviewed_visually": true,
+      "reason": "Author-requested replacement of the collision-only picture with two conceptual governance-graph examples. Obligations, controls, resource access and declared order are separate relations; the figure does not claim to be a literal rendering of DocAble's implemented conflict graph.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 52,
-        "width_bp": 362.365,
-        "height_bp": 156.091,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/collision-edge-20261111/candidates.pdf",
+        "proof_sha256": "2bf5714435c48fc0f80cf0fb794033487e6739fd19b922eed64f90d6f4bda07f",
+        "page": 1,
+        "width_bp": 442.571,
+        "height_bp": 230.573,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 9,
+        "reviewed_peer_groups": 3,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7
-      }
+        "semantic_typography_checks": 17,
+        "audit_sha256": "1e946eac428206c0d84a19c8485f7887a8a92ba57ef713d5c82dd4af93606e3b",
+        "typography_audit_sha256": "e01975928fb46939176787578070c3dd8beae769344cd8a0a77d9f4b94525add",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261111/collision-edge-before/typography-review.json",
+      "checks": [
+        {
+          "text": "OBLIGATION",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "CONTROL",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "RESOURCE",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Atomic delivery",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Bounded change scope",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Squash rule",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Diff-size guard",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Commit set",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Formatting consistency",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Code quality",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Formatter",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Lint check",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Source files",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "justified by",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "reads",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "writes",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "precedes",
+          "bold": false,
+          "italic": true
+        }
+      ],
+      "evidence": [
+        {
+          "source_text": "OBLIGATION",
+          "source_style": "20 SVG units, bold",
+          "candidate_text": "OBLIGATION",
+          "candidate_style": "bold",
+          "semantic_role": "abstract type"
+        },
+        {
+          "source_text": "CONTROL",
+          "source_style": "20 SVG units, bold",
+          "candidate_text": "CONTROL",
+          "candidate_style": "bold",
+          "semantic_role": "abstract type"
+        },
+        {
+          "source_text": "RESOURCE",
+          "source_style": "20 SVG units, bold",
+          "candidate_text": "RESOURCE",
+          "candidate_style": "bold",
+          "semantic_role": "abstract type"
+        },
+        {
+          "source_text": "Atomic delivery",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Atomic delivery",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Bounded change scope",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Bounded change scope",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Squash rule",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Squash rule",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Diff-size guard",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Diff-size guard",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Commit set",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Commit set",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Formatting consistency",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Formatting consistency",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Code quality",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Code quality",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Formatter",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Formatter",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Lint check",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Lint check",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "Source files",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "Source files",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "justified by",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "justified by",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "reads",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "reads",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "writes",
+          "source_style": "20 SVG units, regular",
+          "candidate_text": "writes",
+          "candidate_style": "regular",
+          "semantic_role": "concrete example or relation label"
+        },
+        {
+          "source_text": "precedes",
+          "source_style": "20 SVG units, italic",
+          "candidate_text": "precedes",
+          "candidate_style": "italic",
+          "semantic_role": "ordering relation"
+        }
+      ]
     },
     {
       "source": "book/assets/turn-end-ordering.svg",

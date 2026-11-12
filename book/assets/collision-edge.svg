@@ -1,60 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Figure 3.5-1 "The Conflict Is the Edge" (v7 draft; folds to book/assets/collision-edge.svg).
-     v7 edit (3.5-1): make the SHARED RESOURCE an EXPLICIT NODE (the commit set), not merely an annotated
-     invisible edge. Two individually-valid controls both act on the same commit set; the incompatibility
-     hangs off that shared-resource node — the interaction belongs to the relation among the controls and
-     the resource they share, not to either control's implementation. Grammar: blue #2f5169 = the controls
-     (models of policy); gray/ink #1c1917 = the shared resource (territory acted on); rust #b23b3b = the
-     conflict. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440"
-     role="img" aria-labelledby="ceTitle ceDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ceTitle">The conflict is the edge — two valid controls impose incompatible demands on one shared resource</title>
-  <desc id="ceDesc">Two control nodes — Control A, which requires a squashed commit, and Control B, which
-    rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared
-    resource, the commit set, that they act on. Below the commit set, a rust node marks the incompatible
-    demands: the conflict belongs to the relation among the two controls and the resource they share, not to
-    either control's own implementation.</desc>
-
-  <defs>
-    <marker id="ce-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="ce-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
-    </marker>
-  </defs>
-
-  <!-- A acts on the shared resource -->
-  <!-- edge: control-a -> commit-set -->
-  <path d="M300,132 C350,168 408,182 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
-  <text x="318" y="188" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">acts on</text>
-
-  <!-- B acts on the shared resource -->
-  <!-- edge: control-b -> commit-set -->
-  <path d="M660,132 C610,168 552,182 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
-  <text x="642" y="188" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">acts on</text>
-
-  <!-- incompatibility hangs off the shared-resource node -->
-  <!-- edge: commit-set -> incompatible -->
-  <line x1="480" y1="294" x2="480" y2="334" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
-
-  <!-- Control A (top-left) -->
-  <rect id="control-a" x="60" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="225" y="82" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Control A</text>
-  <text x="225" y="112" text-anchor="middle" font-size="19.2" fill="#57534e">requires a squashed commit &#10003;</text>
-
-  <!-- Control B (top-right) -->
-  <rect id="control-b" x="570" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="735" y="82" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Control B</text>
-  <text x="735" y="112" text-anchor="middle" font-size="19.2" fill="#57534e">rejects a broad diff &#10003;</text>
-
-  <!-- the shared resource, an explicit node both controls act on -->
-  <rect id="commit-set" x="380" y="214" width="200" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="480" y="204" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">shared resource</text>
-  <text x="480" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">COMMIT SET</text>
-
-  <rect id="incompatible" x="235.44" y="336" width="489.13" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
-  <text x="480" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">incompatible demands</text>
-  <text x="480" y="391" text-anchor="middle" font-size="19.2" font-style="italic" fill="#b23b3b">the conflict lives in this relation, not in either control</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" width="880" height="460" role="img" aria-labelledby="ceTitle ceDesc" font-family="'Source Sans 3', sans-serif">
+<title id="ceTitle">Structure of a governance graph</title>
+<desc id="ceDesc">Two governance-graph examples have obligations above controls and a shared resource below. The squash rule is justified by atomic delivery and the diff-size guard by bounded change scope; both read the commit set, with no automatic conflict edge between them. The formatter is justified by formatting consistency and writes source files; the lint check is justified by code quality and reads those files. A dashed arrow declares that the formatter precedes the lint check.</desc>
+<defs><marker id="ce-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0.0 L10,5.0 L0,10.0 z" fill="#1c1917"/></marker></defs>
+<rect x="4.0" y="2.0" width="188" height="96" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="98" y="44.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">OBLIGATION</text>
+<text x="98" y="68.0" text-anchor="middle" font-size="20" fill="#1c1917">Atomic delivery</text>
+<rect x="232.0" y="2.0" width="188" height="96" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="326" y="32.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">OBLIGATION</text>
+<text x="326" y="56.0" text-anchor="middle" font-size="20" fill="#1c1917">Bounded change</text>
+<text x="326" y="80.0" text-anchor="middle" font-size="20" fill="#1c1917">scope</text>
+<rect x="4.0" y="208.0" width="188" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="98" y="242.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">CONTROL</text>
+<text x="98" y="266.0" text-anchor="middle" font-size="20" fill="#1c1917">Squash rule</text>
+<rect x="232.0" y="208.0" width="188" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="326" y="242.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">CONTROL</text>
+<text x="326" y="266.0" text-anchor="middle" font-size="20" fill="#1c1917">Diff-size guard</text>
+<rect x="94.0" y="370.0" width="236" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="212" y="404.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">RESOURCE</text>
+<text x="212" y="428.0" text-anchor="middle" font-size="20" fill="#1c1917">Commit set</text>
+<path d="M98,208.0 L98,98.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<text x="110" y="158" text-anchor="start" font-size="20" fill="#1c1917">justified by</text>
+<path d="M326,208.0 L326,98.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<text x="314" y="158" text-anchor="end" font-size="20" fill="#1c1917">justified by</text>
+<path d="M98,288.0 L98,340.0 L160,340.0 L160,370.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<path d="M326,288.0 L326,340.0 L264,340.0 L264,370.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<text x="110" y="322.0" text-anchor="start" font-size="20" fill="#1c1917">reads</text>
+<text x="338" y="322.0" text-anchor="start" font-size="20" fill="#1c1917">reads</text>
+<rect x="460.0" y="2.0" width="188" height="96" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="554" y="32.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">OBLIGATION</text>
+<text x="554" y="56.0" text-anchor="middle" font-size="20" fill="#1c1917">Formatting</text>
+<text x="554" y="80.0" text-anchor="middle" font-size="20" fill="#1c1917">consistency</text>
+<rect x="688.0" y="2.0" width="188" height="96" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="782" y="44.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">OBLIGATION</text>
+<text x="782" y="68.0" text-anchor="middle" font-size="20" fill="#1c1917">Code quality</text>
+<rect x="460.0" y="208.0" width="188" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="554" y="242.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">CONTROL</text>
+<text x="554" y="266.0" text-anchor="middle" font-size="20" fill="#1c1917">Formatter</text>
+<rect x="688.0" y="208.0" width="188" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="782" y="242.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">CONTROL</text>
+<text x="782" y="266.0" text-anchor="middle" font-size="20" fill="#1c1917">Lint check</text>
+<rect x="550.0" y="370.0" width="236" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1.2"/>
+<text x="668" y="404.0" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">RESOURCE</text>
+<text x="668" y="428.0" text-anchor="middle" font-size="20" fill="#1c1917">Source files</text>
+<path d="M554,208.0 L554,98.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<text x="566" y="158" text-anchor="start" font-size="20" fill="#1c1917">justified by</text>
+<path d="M782,208.0 L782,98.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<text x="770" y="158" text-anchor="end" font-size="20" fill="#1c1917">justified by</text>
+<path d="M554,288.0 L554,340.0 L616,340.0 L616,370.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<path d="M782,288.0 L782,340.0 L720,340.0 L720,370.0" fill="none" stroke="#1c1917" stroke-width="1.4" marker-end="url(#ce-arrow)"/>
+<text x="566" y="322.0" text-anchor="start" font-size="20" fill="#1c1917">writes</text>
+<text x="794" y="322.0" text-anchor="start" font-size="20" fill="#1c1917">reads</text>
+<path d="M648,248.0 L688,248.0" fill="none" stroke="#1c1917" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#ce-arrow)"/>
+<text x="668" y="194.0" text-anchor="middle" font-size="20" fill="#1c1917" font-style="italic">precedes</text>
 </svg>

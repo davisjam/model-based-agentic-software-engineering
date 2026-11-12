@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/collision-edge.svg",
+  "candidate": "book/tikz/figures/collision-edge.tex",
+  "receipt": "book/tikz/receipts/collision-edge.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Paired controls distinguished from shared resource and dashed conflict region.",
+  "source_sha256": "e96b56bb0fecd4d58a568ea6ce3ff84b80f887d504a50bfa8a879e4033894554",
+  "candidate_sha256": "a46b4968d220be4ed5834fc93d98ba731341b549ac16658d3aa63878dece8610"
+}
