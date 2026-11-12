@@ -364,14 +364,35 @@ For a fixed control configuration and decision context, let \(C_j \subseteq \mat
 \text{underconstraint: } \mathcal P \setminus \mathcal A \qquad \text{overconstraint: } \mathcal A \setminus \mathcal P
 \]
 
-Underconstraint leaves unacceptable realizations permitted; it threatens correctness. Overconstraint excludes acceptable realizations; it sacrifices useful engineering freedom. \autoref{permitted-vs-acceptable} draws both regions and their mismatch.
+Underconstraint leaves unacceptable realizations permitted; it threatens correctness. Overconstraint excludes acceptable realizations; it sacrifices useful engineering freedom. \autoref{acceptability-versus-permission} classifies realizations by acceptability and permission.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/permitted-vs-acceptable-fc09428d74.pdf}
-\caption{\emph{Obligations and permitted realizations.} The obligations jointly admit an acceptable region; the enforcing controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through --- underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded --- overconstraint.}
-\label{permitted-vs-acceptable}
-\end{figure}
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{8em}>{\raggedright\arraybackslash}p{9em}>{\raggedright\arraybackslash}p{9em}@{}}
+\caption[Acceptability versus permission]{\emph{Acceptability versus permission.} Obligations determine acceptability; enforcing controls determine permission. Underconstraint permits unacceptable realizations, while overconstraint excludes acceptable alternatives.}\label{acceptability-versus-permission}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+~
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Permitted}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Excluded}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+~
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Permitted}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Excluded}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Acceptable} & Preserved freedom & Overconstraint \\
+\textbf{Unacceptable} & Underconstraint & Correct exclusion \\
+\end{longtable}
 
 % <!-- point: matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified | Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence. | terms: constraint -->
 

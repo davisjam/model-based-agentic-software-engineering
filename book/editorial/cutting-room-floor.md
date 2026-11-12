@@ -19681,3 +19681,19 @@ Retired at the author’s request because the shared-identities figure and exist
 \label{substrate-traversal}
 \end{figure}
 ```
+
+
+## Acceptability and permission figure — 2026-11-11
+
+Replaced at the author’s request by a compact classification table. Mathematical definitions and surrounding prose remain intact. The original and native artwork remain available; exact removed text and registry records are in `retired-permission-figure-20261111.json`.
+
+```latex
+\autoref{permitted-vs-acceptable} draws both regions and their mismatch.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/permitted-vs-acceptable-fc09428d74.pdf}
+\caption{\emph{Obligations and permitted realizations.} The obligations jointly admit an acceptable region; the enforcing controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through --- underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded --- overconstraint.}
+\label{permitted-vs-acceptable}
+\end{figure}
+```

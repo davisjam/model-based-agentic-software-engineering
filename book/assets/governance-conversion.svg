@@ -3,8 +3,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
 <title id="figure-title">Governance conversion: a failure is diagnosed for what was missing, and the missing
     piece is encoded as durable structure that future work benefits from inheriting as engineering capital</title>
-<desc id="figure-description">A failure or surprise flows down into one question — what was missing — which fans
-    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
+<desc id="figure-description">A failure or surprise flows down into one question — what was missing — with five possible answers: missing representation/semantics, obligation, evidence, evaluation, or consequence.
     Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
     gate. The five converge into durable engineering structure, which future work benefits from inheriting,
     accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another
@@ -15,11 +14,6 @@
 <path d="M400 48 L400 66" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
 <rect id="diagnosis" x="260" y="68" width="280" height="42" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
 <text x="400" y="96" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">What was missing?</text>
-<path d="M400 110 V127 H76 V148" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
-<path d="M400 127 H238 V148" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
-<path d="M400 127 L400 148" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
-<path d="M400 127 H562 V148" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
-<path d="M400 127 H724 V148" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
 <text x="76" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">representation</text>
 <path d="M76 179 L76 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
 <rect x="4" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -48,9 +42,9 @@
 <path d="M724 244 V263 H400 V282" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
 <rect id="durable" x="165" y="284" width="470" height="42" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
 <text x="400" y="312" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">DURABLE ENGINEERING STRUCTURE</text>
-<path d="M400 326 L400 343" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
-<text x="400" y="365" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">Future work benefits from inheriting it</text>
-<path d="M400 372 L400 387" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#green-arrow)"/>
+<path d="M400 326 L400 387" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<text x="420" y="350" font-size="20" fill="#1f7a4d">Future work benefits</text>
+<text x="420" y="374" font-size="20" fill="#1f7a4d">from inheriting it</text>
 <rect id="capital" x="230" y="389" width="340" height="44" rx="7" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="2"/>
 <text x="400" y="418" text-anchor="middle" font-size="21" fill="#ffffff" font-weight="700">ENGINEERING CAPITAL</text>
 <text x="400" y="462" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">A failure is not a request for another gate —</text>

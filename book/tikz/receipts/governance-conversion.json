@@ -20,49 +20,95 @@
     "Engineering capital"
   ],
   "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Failure, diagnostic question, durable mechanisms, inheritance, and accumulated capital recover distinct stages without treating the five mechanisms as ranks.",
+  "redesign": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
   "questions": [],
   "alt": "A failure or surprise flows down into one question — what was missing — which fans\n    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate — you diagnose what the environment lacked and encode that.",
   "qa": {
     "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
     "warnings": [],
     "width_pt": 404.884,
-    "height_pt": 255.669,
+    "height_pt": 268.883,
     "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "inspection": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+      "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+      "page": 1,
+      "width_bp": 404.884,
+      "height_bp": 268.883,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+      "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+      "semantic_typography_checks": 11,
+      "monochrome_pixels": true,
+      "status": "passed"
+    }
   },
   "style_review": {
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
-    "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+    "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+    "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes FAILURE / SURPRISE; Representation; Obligation; Evidence; Evaluation; Enforcement; What was missing?; DURABLE ENGINEERING STRUCTURE. Missing-capability labels are bold while their concrete engineering artifacts remain regular; capital and durable structure are emphasized outcomes.",
     "routing": "8 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Five diagnostic branches converge on one shared rail into durable structure.",
+    "visual_review": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 49,
+      "date": "2026-11-11",
+      "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+      "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+      "page": 1,
       "width_bp": 404.884,
       "height_bp": 268.883,
-      "minimum_prose_font_pt": 9.0,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+      "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+      "semantic_typography_checks": 11,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11
+      "status": "passed"
     },
     "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+        "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 49,
+          "width_bp": 404.884,
+          "height_bp": 268.883,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 11
+        }
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
     "decision": "refined",
-    "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
-    "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
-    "reason": "Missing-capability labels are bold while their concrete engineering artifacts remain regular; capital and durable structure are emphasized outcomes.",
+    "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+    "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
     "evidence": [
       {
         "source_text": "FAILURE / SURPRISE",
@@ -182,6 +228,7 @@
         }
       }
     ],
+    "reason": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
     "checks": [
       {
         "text": "FAILURE / SURPRISE",
@@ -240,51 +287,103 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 49,
+      "date": "2026-11-11",
+      "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+      "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+      "page": 1,
       "width_bp": 404.884,
       "height_bp": 268.883,
-      "minimum_prose_font_pt": 9.0,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
+      "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+      "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
       "semantic_typography_checks": 11,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+        "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 49,
+          "width_bp": 404.884,
+          "height_bp": 268.883,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 11
+        }
       }
-    }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+    "baseline_candidate_sha256": "458487600d5cc47c03a86ffc5244c9135e10abb72045a13f126770f1153e445d",
+    "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
     "decision": "refined",
-    "reason": "Aligned the five generated engineering artifacts and enlarged annotation-to-node approaches.",
-    "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+    "reason": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      404.8840026855469,
+      254.70899963378906
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "durable artifact kinds",
+          "labels": [
+            "Model",
+            "Invariant",
+            "Sensor",
+            "Validator",
+            "Constraint / gate"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+      "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+      "page": 1,
+      "width_bp": 404.884,
+      "height_bp": 268.883,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+      "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+      "semantic_typography_checks": 11,
+      "monochrome_pixels": true,
+      "status": "passed"
+    },
     "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing governance conversion layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
-      "after_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
-      "before_dimensions_bp": [
-        404.8840026855469,
-        268.88299560546875
-      ],
+      "decision": "review candidate",
+      "reason": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+      "after_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
       "after_dimensions_bp": [
-        404.8840026855469,
-        268.88299560546875
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
+        404.884,
+        268.883
       ],
       "after_font_sizes_pt": [
         9.0,
@@ -292,24 +391,31 @@
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-      "status": "passed",
-      "page": 49,
-      "width_bp": 404.884,
-      "height_bp": 268.883
-    }
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+        "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 49,
+          "width_bp": 404.884,
+          "height_bp": 268.883
+        }
+      }
+    ]
   }
 }

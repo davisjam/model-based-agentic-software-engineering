@@ -1332,6 +1332,12 @@
       "kind": "process-diagram",
       "location": "part4",
       "rationale": "Three recurring activities with governance conversion spanning the cycle; supports the distinction between engineering work, Alignment throughout, and durable lessons."
+    },
+    "constraints-sensors-validators-gates::Acceptability versus permission": {
+      "tier": "B",
+      "kind": "classification-table",
+      "location": "part3",
+      "rationale": "Names the two independent criteria and explains their two mismatch classes; supports the immediately preceding set definitions."
     }
   },
   "historical_tiers": {

@@ -4842,72 +4842,13 @@
       }
     },
     {
-      "source": "book/assets/permitted-vs-acceptable.svg",
-      "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
-      "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
-      "baseline_candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-      "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
-      "decision": "refined",
-      "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk.",
-      "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        403.22601318359375,
-        179.44000244140625
-      ],
-      "contracts": {},
-      "validation": {
-        "date": "2026-11-11",
-        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-        "page": 1,
-        "width_bp": 411.83,
-        "height_bp": 194.421,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 8,
-        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-        "status": "passed",
-        "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
-      },
-      "validation_history": [
-        {
-          "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-          "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 48,
-            "width_bp": 403.226,
-            "height_bp": 179.44
-          }
-        }
-      ],
-      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
-    },
-    {
       "source": "book/assets/governance-conversion.svg",
       "candidate": "book/tikz/figures/governance-conversion.tex",
-      "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
+      "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
       "baseline_candidate_sha256": "458487600d5cc47c03a86ffc5244c9135e10abb72045a13f126770f1153e445d",
-      "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+      "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
       "decision": "refined",
-      "reason": "Aligned the five generated engineering artifacts and enlarged annotation-to-node approaches.",
+      "reason": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         404.8840026855469,
@@ -4934,47 +4875,65 @@
         ]
       },
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
-        "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "date": "2026-11-11",
+        "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+        "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+        "page": 1,
+        "width_bp": 404.884,
+        "height_bp": 268.883,
         "maximum_dimensions_bp": [
           450,
           560
         ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-        "status": "passed",
-        "page": 49,
-        "width_bp": 404.884,
-        "height_bp": 268.883
+        "minimum_prose_font_pt": 9,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+        "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+        "semantic_typography_checks": 11,
+        "monochrome_pixels": true,
+        "status": "passed"
       },
       "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing governance conversion layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
-        "after_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
-        "before_dimensions_bp": [
-          404.8840026855469,
-          268.88299560546875
-        ],
+        "decision": "review candidate",
+        "reason": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+        "after_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
         "after_dimensions_bp": [
-          404.8840026855469,
-          268.88299560546875
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
+          404.884,
+          268.883
         ],
         "after_font_sizes_pt": [
           9.0,
           10.0
         ],
         "reviewed_visually": true
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+          "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "geometry_findings": 0,
+            "checked_terminal_approaches": 633,
+            "reviewed_peer_groups": 81,
+            "semantic_typography_checks": 875,
+            "unapproved_compile_diagnostics": 0,
+            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+            "maximum_dimensions_bp": [
+              450,
+              560
+            ],
+            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+            "status": "passed",
+            "page": 49,
+            "width_bp": 404.884,
+            "height_bp": 268.883
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/judgment-without-consequence.svg",

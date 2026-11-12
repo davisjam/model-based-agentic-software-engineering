@@ -1445,50 +1445,42 @@
     "candidate_sha256": "4e7f546daf1109495a2de03468f0ea6703ccfcb7dd905997d937e393b9c604f6"
   },
   {
-    "source": "book/assets/permitted-vs-acceptable.svg",
-    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
-    "receipt": "book/tikz/receipts/permitted-vs-acceptable.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Unfilled sets; continuous outlines and labels carry membership without a tonal or hatch proxy. Solid acceptable set A and dashed permitted set P overlap inside the realization-space boundary.",
-    "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
-    "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
-    "validation_history": [
-      {
-        "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-        "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040"
-      }
-    ],
-    "reviewed_visually": true,
-    "validation": {
-      "date": "2026-11-11",
-      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-      "page": 1,
-      "width_bp": 411.83,
-      "height_bp": 194.421,
-      "minimum_prose_font_pt": 10.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 8,
-      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-      "status": "passed",
-      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
-    },
-    "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk."
-  },
-  {
     "source": "book/assets/governance-conversion.svg",
     "candidate": "book/tikz/figures/governance-conversion.tex",
     "receipt": "book/tikz/receipts/governance-conversion.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Failure, diagnostic question, durable mechanisms, inheritance, and accumulated capital recover distinct stages without treating the five mechanisms as ranks.",
-    "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
-    "candidate_sha256": "7eb4225b342bcefc33f79831602ec256711a0af3cb9588cfcbd04203c1b3cb61"
+    "rationale": "Dark labels on white; no color-dependent distinction.",
+    "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+    "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
+    "revision_history": [
+      {
+        "date": "2026-11-11",
+        "candidate_sha256": "7eb4225b342bcefc33f79831602ec256711a0af3cb9588cfcbd04203c1b3cb61",
+        "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+        "validation": {}
+      }
+    ],
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+      "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+      "page": 1,
+      "width_bp": 404.884,
+      "height_bp": 268.883,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+      "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+      "semantic_typography_checks": 11,
+      "monochrome_pixels": true,
+      "status": "passed"
+    }
   },
   {
     "source": "book/assets/judgment-without-consequence.svg",

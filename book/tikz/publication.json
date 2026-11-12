@@ -192,6 +192,11 @@
       "approved_date": "2026-11-11",
       "reason": "Author approved black-and-white Figure 2.16 using the current book numbering in the review pane.",
       "candidate_sha256": "d819a1d37dc16e1526ea628046455a1ae585933660b8ecb0edd28e3f8656ca9c"
+    },
+    "book/assets/governance-conversion.svg": {
+      "approved_date": "2026-11-11",
+      "reason": "Author accepted the black-and-white governance-conversion figure for publication after removing the annotation box, using one direct structure-to-capital arrow with the condition beside it, and removing incoming arrows to the five diagnostic labels. Existing unshaded outlines retained.",
+      "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b"
     }
   }
 }

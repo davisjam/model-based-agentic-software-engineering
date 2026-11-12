@@ -2534,62 +2534,6 @@
       "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
     },
     {
-      "source": "book/assets/permitted-vs-acceptable.svg",
-      "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
-      "receipt": "book/tikz/receipts/permitted-vs-acceptable.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
-      "status": "reviewed",
-      "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
-      "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
-      "fill": "Unfilled sets; continuous outlines and labels carry membership without a tonal or hatch proxy.",
-      "bold": "Set names and the three region names are bold; their explanations are regular. The correctness-risk annotation remains italic.",
-      "routing": "No process edges. Elliptical boundaries are set geometry, not flow.",
-      "shape": "Solid acceptable set A and dashed permitted set P overlap inside the realization-space boundary.",
-      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width.",
-      "validation": {
-        "date": "2026-11-11",
-        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-        "page": 1,
-        "width_bp": 411.83,
-        "height_bp": 194.421,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 8,
-        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-        "status": "passed",
-        "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
-      },
-      "book_references": [],
-      "routing_exceptions": "Set boundaries carry membership; there are no process edges.",
-      "validation_history": [
-        {
-          "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-          "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 48,
-            "width_bp": 403.226,
-            "height_bp": 179.44,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 5
-          }
-        }
-      ],
-      "reviewed_visually": true,
-      "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk."
-    },
-    {
       "source": "book/assets/governance-conversion.svg",
       "candidate": "book/tikz/figures/governance-conversion.tex",
       "receipt": "book/tikz/receipts/governance-conversion.json",
@@ -2597,27 +2541,54 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "3ceec49ae9267348e4621cddb102b1a8873ef95a57b85eb4eb21914094867f8b",
-      "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+      "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+      "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes FAILURE / SURPRISE; Representation; Obligation; Evidence; Evaluation; Enforcement; What was missing?; DURABLE ENGINEERING STRUCTURE. Missing-capability labels are bold while their concrete engineering artifacts remain regular; capital and durable structure are emphasized outcomes.",
       "routing": "8 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Five diagnostic branches converge on one shared rail into durable structure.",
+      "visual_review": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 49,
+        "date": "2026-11-11",
+        "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+        "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+        "page": 1,
         "width_bp": 404.884,
         "height_bp": 268.883,
-        "minimum_prose_font_pt": 9.0,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+        "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+        "semantic_typography_checks": 11,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 11
+        "status": "passed"
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+          "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 49,
+            "width_bp": 404.884,
+            "height_bp": 268.883,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 11
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/judgment-without-consequence.svg",

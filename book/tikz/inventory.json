@@ -608,19 +608,6 @@
     "svg_description": "A left-to-right flow. Implementation logic derives a needed operation through a sanctioned\n    abstraction — the sanctioned source of the operation — which attaches provenance to the resulting operation. The\n    operation, carrying its provenance, reaches a consequence boundary that requires that provenance before permitting\n    the operation to take effect. Alternative implementation paths are not drawn, because the boundary does not\n    enumerate them; it admits only operations that carry the sanctioned provenance."
   },
   {
-    "chapter": "3.3-constraints-sensors-validators-gates",
-    "source": "assets/permitted-vs-acceptable.svg",
-    "caption": "*Obligations and permitted realizations.* The obligations jointly admit an acceptable region; the controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through — underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded — overconstraint.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Obligations and permitted realizations — underconstraint and overconstraint as the two mismatches",
-    "svg_description": "Two overlapping outlined sets within the software realization space. A, acceptable realizations, has a solid outline. P, realizations permitted by controls, has a dashed outline. The acceptable-only region is overconstraint: acceptable alternatives excluded. The overlap is preserved freedom: acceptable and permitted. The permitted-only region is underconstraint: unacceptable yet permitted, a correctness risk."
-  },
-  {
     "chapter": "3.4-governance-conversion",
     "source": "assets/governance-conversion.svg",
     "caption": "*Governance conversion.* When a failure exposes a recurring failure mode rooted in missing representation, obligation, evidence, evaluation, or enforcement, encode the missing structure at the appropriate layer. Future work inherits the result as engineering capital when that durable structure continues to lower future cost or uncertainty.",
@@ -631,7 +618,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Governance conversion: a failure is diagnosed for what was missing, and the missing\n    piece is encoded as durable structure that future work benefits from inheriting as engineering capital",
-    "svg_description": "A failure or surprise flows down into one question — what was missing — which fans\n    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate — you diagnose what the environment lacked and encode that."
+    "svg_description": "A failure or surprise flows down into one question — what was missing — with five possible answers: missing representation/semantics, obligation, evidence, evaluation, or consequence.\n    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or\n    gate. The five converge into durable engineering structure, which future work benefits from inheriting,\n    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another\n    gate — you diagnose what the environment lacked and encode that."
   },
   {
     "chapter": "3.4-governance-conversion",
