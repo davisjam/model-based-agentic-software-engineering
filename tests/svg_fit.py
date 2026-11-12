@@ -333,7 +333,14 @@ _FIGURE_MARKER_RE = re.compile(r"<!--\s*figure:\s*assets/([^\s|]+)\s*\|\s*(.*?)-
 def _figure_print_context() -> tuple[dict[str, str], dict[str, str]]:
     """Map each `assets/<name>.svg` basename to its caption and adjacent authored label,
     harvested from every `<!-- figure: -->`
-    marker in the shipped book markdown (drafts under `_design/` are excluded — they never render). The
+    marker in the shipped book markdown. Drafts under `_design/` and LaTeX build output under
+    `build/` are both excluded, on the same ground: neither renders, so neither ships a figure.
+    Keeping `build/` in scope let STALE artifacts decide a live gate — a figure cut from its chapter
+    still appeared in an old `book/latex/build/<run>/` copy of that chapter, so the gate width-checked
+    a figure the book no longer places. It then had no `figure-print-layout` entry of its own and
+    inherited an ADJACENT figure's full-width print size, failing page-fit on a page it never appears
+    on (261112: `docable-seip-capital-261028.svg` at 9.41in against a 9in page, via
+    `support-ratio-curve`). The live chapter carries zero references to it. The
     caption is the join key the page-fit gate needs: the SVG file alone cannot know how much prose rides
     below it on the page."""
     captions: dict[str, str] = {}
@@ -347,7 +354,7 @@ def _figure_print_context() -> tuple[dict[str, str], dict[str, str]]:
     # load-bearing here — the map keys on an asset basename and lets the LAST writer win — and the
     # prune does not reorder what survives it.
     for md in pruned_walk.walk_files(book_dir, (".md",),
-                                     discard=pruned_walk.named("_design", "node_modules"),
+                                     discard=pruned_walk.named("_design", "build", "node_modules"),
                                      skip_hidden=False):
         try:
             with open(md, encoding="utf-8") as stream:
