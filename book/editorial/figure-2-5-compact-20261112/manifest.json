@@ -1,0 +1,34 @@
+{
+  "base_commit": "11f29c7d4",
+  "before": {
+    "typography-review.json": "1e1df2d062ce7856dcce56f7d617f77a4edb9eafaea391d47202d8da9ac7dc15",
+    "question-to-consequence-progression.svg": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+    "layout-review.json": "adbd975dcaaae2813f23b3da1cd57f8c983dd7a59263a37036a270274dc8f0d6",
+    "question-to-consequence-progression.tex": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+    "fidelity-review.json": "23c542c122fac45ed146aede4c3593561df0ef6e5f8686fd02957d602a92a070",
+    "question-to-consequence-progression.json": "3dc261d8c8648f0aced3e3801a7f932a661bc83c0ebe94405946f351a6790109",
+    "grayscale-review.json": "075ef5781d3d98ce7934a2af0ea464f3e7c84a6d53346339f2a4a5723848e291",
+    "inventory.json": "bb64387d45adc1f4b9ee19ec99639a3cc1f16cd62cb2f8191db8ac34aba465ce",
+    "style-review.json": "353099ba44aa34914e14d287da172c17e63f703b01f201fe80045ca03bdef4e7"
+  },
+  "generated_sources": [
+    "book/assets/question-to-consequence-progression.svg",
+    "book/tikz/figures/question-to-consequence-progression.tex"
+  ],
+  "generator": "book/figures/question-to-consequence/generate.py",
+  "preserved": "Five stages, all representation/property/analysis examples, separate evidence interpretation, feedback loop.",
+  "removed": "Final selected-obligations to Alignment footer only.",
+  "dimensions_bp": {
+    "before_native": [
+      343.851,
+      302.839
+    ],
+    "after_native": [
+      314.996,
+      227.997
+    ]
+  },
+  "authored_font_pt": 10,
+  "proofs": "latex/build/compact-question-proof/",
+  "publication_approval": "Handled separately by parent; this change does not modify publication or print-layout registries."
+}

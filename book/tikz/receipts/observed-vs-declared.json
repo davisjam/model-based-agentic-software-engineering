@@ -1,7 +1,7 @@
 {
   "source": "book/assets/observed-vs-declared.svg",
   "chapter": "2.4-decision",
-  "claim": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
+  "claim": "*Observation compared with declared permission.* The observed web-to-renderer call violates the declared policy.",
   "topology": {
     "description": "Observed: web -> report service and a direct web -> renderer call marked as violating the illustrated policy. There is no observed report-service-to-renderer edge; lack of observation does not establish that a call never occurs. Declared: web -> report service -> renderer only. This is an illustrative example, not a measured DocAble violation. Each solid arrow has a single terminal head.",
     "native_draw_commands": [

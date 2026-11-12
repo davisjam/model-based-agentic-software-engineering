@@ -1,0 +1,86 @@
+{
+  "source": "book/assets/question-to-consequence-progression.svg",
+  "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+  "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+  "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+  "fill": "White nodes; emphasis comes from bold step headings.",
+  "bold": "Bold step headings distinguish reasoning activities; examples, decisions, and feedback label are regular.",
+  "routing": "Vertical sequence plus external orthogonal feedback from engineering decisions to the model step; no alternative-outcome fork.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Standalone proof inspected on 2026-11-11 for arrows, legibility, and model/property introduction. Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
+    "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+    "page": 1,
+    "width_bp": 349.829,
+    "height_bp": 308.817,
+    "minimum_prose_font_pt": 10.959,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 11,
+    "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
+    "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+    "status": "passed"
+  },
+  "book_references": [
+    "part:3"
+  ],
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+    "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+      "previous": {
+        "source": "book/assets/question-to-consequence-progression.svg",
+        "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+        "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
+        "decision": "refined",
+        "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+        "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+        "status": "reviewed",
+        "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+        "candidate_sha256": "01ea7c351d1989e21e5c46b11f31473a492e593c8c32d1b6ffe2991cf609f0a3",
+        "fill": "All stages and both consequence alternatives white; no darker alternative implies priority.",
+        "bold": "Source-derived emphasis includes Engineering question; Choose representation; Choose analysis appropriate to the property; Interpret evidence; Inform architecture / design; Decide what deserves enforcement. Restore the source typography that distinguishes named concepts, headings and explanatory text.",
+        "routing": "Vertical stages and orthogonal shared-rail consequence fork.",
+        "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+        "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 15,
+          "width_bp": 396.181,
+          "height_bp": 310.754,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 8
+        },
+        "book_references": [
+          "part:3"
+        ],
+        "color_source_revision": {
+          "date": "2026-11-09",
+          "previous_source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+          "source_sha256": "686435b4b5fdcc13fe170e3fc3e9672e6e0bf57ecbf51fedfa6b554c5bcffc8e",
+          "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+          "native_candidate_changed": false
+        }
+      }
+    }
+  ]
+}

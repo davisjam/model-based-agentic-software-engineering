@@ -1,0 +1,1 @@
+Prior Figure 2.18 artwork and review records, preserved before the author-requested traversal example. The replacement retains seven representations and makes the path through shared identities explicit.

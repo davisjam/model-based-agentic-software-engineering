@@ -19806,3 +19806,22 @@ The previous editable drawing, receipt, and approval context are preserved in `b
 Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, revision `65326f6bf`, Figure 1.3 caption. Removed from the compact figure and caption at the author’s request; the main text retains the discussion of training and fine-tuning as alternative means of influence. The engineer in the diagram now develops and maintains the GEE only.
 
 > Engineers develop and maintain the environment, and may sometimes improve the model through additional training or fine-tuning.
+
+
+## Figure 2.18 task-driven traversal — 2026-11-12
+
+Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, revision `11f29c7d4`, worked example “Connecting the views of a document service”. Replaced introduction and caption with author-supplied text explaining the highlighted service/deployment/measurement traversal. Surrounding prose retained.
+
+```latex
+\autoref{modeling-substrate} shows how shared identities connect these representations.
+
+\emph{Heterogeneous models over shared identities.} DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.
+```
+
+## Figure 2.13 short wrapfigure caption — 2026-11-12
+
+Source: `book/latex/sources/part2/2.4-decision.tex`, revision `11f29c7d4`, “Compare the Decision with the Facts”. Shortened at the author’s request because the adjacent prose already explains the example and its evidentiary limits; all body prose retained.
+
+```latex
+\emph{Observation compared with declared permission.} In this hypothetical example, the observed web-to-renderer call has no corresponding permission in the declared policy. The comparison identifies a violation of that policy; it does not establish that the policy itself is correct.
+```

@@ -315,9 +315,9 @@
     "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
-    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
-    "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+    "rationale": "Black outlines, white boxes, bold headings, and directed feedback/forward edges carry all meaning without color.",
+    "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
+    "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
     "revision_history": [
       {
         "date": "2026-11-11",
@@ -332,22 +332,30 @@
           "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
           "candidate_sha256": "a1847fc7852a9b0a50f2d6567537a8aadf541ec6bd655c3c8a08e9a7de8993f8"
         }
+      },
+      {
+        "date": "2026-11-12",
+        "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+        "previous_source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+        "previous_candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+        "archive": "book/editorial/figure-2-5-compact-20261112/before/grayscale-review.json"
       }
     ],
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
-      "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+      "date": "2026-11-12",
+      "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+      "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
       "page": 1,
-      "width_bp": 349.829,
-      "height_bp": 308.817,
-      "minimum_prose_font_pt": 10.959,
+      "width_bp": 314.996,
+      "height_bp": 227.997,
+      "minimum_prose_font_pt": 9.963,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
-      "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+      "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
       "status": "passed"
     }
   },
@@ -1213,42 +1221,28 @@
     "source": "book/assets/modeling-substrate.svg",
     "candidate": "book/tikz/figures/modeling-substrate.tex",
     "receipt": "book/tikz/receipts/modeling-substrate.json",
-    "reviewed": true,
+    "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+    "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
     "decision": "refined",
-    "rationale": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
-    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
-    "revision_history": [
-      {
-        "superseded_date": "2026-11-11",
-        "review": {
-          "source": "book/assets/modeling-substrate.svg",
-          "candidate": "book/tikz/figures/modeling-substrate.tex",
-          "receipt": "book/tikz/receipts/modeling-substrate.json",
-          "reviewed": true,
-          "decision": "refined",
-          "rationale": "Common model gray distinguishes seven peer representations from shared identities. Radial undirected joins retained.",
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "99b2abc9cd5fa6a67d662ff8dbfbe87f829c76d6edf0697799cca81f027d8d71"
-        }
-      }
-    ],
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
-      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
-      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
-      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
+      "date": "2026-11-12",
+      "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+      "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
+      "page": 1,
+      "width_bp": 443.62,
+      "height_bp": 304.622,
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "semantic_typography_checks": 12,
       "monochrome_pixels": true,
       "status": "passed",
-      "page": 1,
-      "width_bp": 292.522,
-      "height_bp": 237.411,
-      "minimum_prose_font_pt": 9.963,
-      "semantic_typography_checks": 4
-    }
+      "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+      "author_approval": "pending"
+    },
+    "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
+    "reviewed": true,
+    "rationale": "White model boxes and one light 7% gray identity hub; heavy directional arrows distinguish the example traversal from thin undirected availability spokes. Bold marks selected model labels, not a new model class."
   },
   {
     "source": "book/assets/two-reductions-static-realized.svg",

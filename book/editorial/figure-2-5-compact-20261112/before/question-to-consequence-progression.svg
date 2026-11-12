@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 326" width="315" height="326" role="img" aria-labelledby="qapTitle qapDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><title id="qapTitle">From engineering question to engineering consequence</title>
+  <desc id="qapDesc">A vertical progression. An engineering question leads to choosing a representation, whose
+    representative forms include a closed state or action space, a finite transition system, or temporal
+    behavior. The representation determines which analysis is appropriate — constraint solving, state
+    exploration, model checking, simulation, and static analysis are examples, none prescribed by the
+    representation alone. The path interprets the resulting evidence, then branches: the evidence can inform
+    architecture and design — comparing alternatives, revising boundaries, changing dependencies, allocating
+    resources — or it can expose a property whose obligation deserves enforcement, which hands off to Alignment
+    in Chapter 3, or both.</desc>
+<defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169" /></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e" /></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438" /></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917" /></marker></defs>
+<rect x="73" y="3" width="169" height="24" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="157.5" y="19.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">engineering question</text>
+<path d="M157.5,27 L157.5,39" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<rect x="73" y="40" width="169" height="25" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<text x="157.5" y="56.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">choose the representation</text>
+<path d="M157.5,65 L157.5,77" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<rect x="22" y="78" width="271" height="45" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8" />
+<text x="157.5" y="93.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">representative forms</text>
+<text x="157.5" y="106.0" text-anchor="middle" font-size="9" fill="#1c1917">closed state / action space · finite transition system ·</text>
+<text x="157.5" y="116.8" text-anchor="middle" font-size="9" fill="#1c1917">temporal behavior · …</text>
+<path d="M157.5,123 L157.5,135" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<rect x="4" y="136" width="307" height="46" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="157.5" y="152.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">choose an analysis appropriate to the property</text>
+<text x="157.5" y="165.0" text-anchor="middle" font-size="9" fill="#1c1917">constraint solving · state exploration · model checking ·</text>
+<text x="157.5" y="175.8" text-anchor="middle" font-size="9" fill="#1c1917">simulation · static analysis · …</text>
+<path d="M157.5,182 L157.5,194" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<rect x="73" y="195" width="169" height="25" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="157.5" y="211.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">interpret the evidence</text>
+<path d="M157.5,220 L157.5,233 L79,233 L79,245" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<path d="M157.5,220 L157.5,233 L237,233 L237,245" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<rect x="3" y="246" width="152" height="73" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="0.8" />
+<text x="79" y="260.0" text-anchor="middle" font-size="10" fill="#ad420d" font-weight="700">inform architecture / design</text>
+<text x="79" y="274.0" text-anchor="middle" font-size="9" fill="#1c1917">compare alternatives ·</text>
+<text x="79" y="284.8" text-anchor="middle" font-size="9" fill="#1c1917">revise boundaries ·</text>
+<text x="79" y="295.6" text-anchor="middle" font-size="9" fill="#1c1917">change dependencies ·</text>
+<text x="79" y="306.4" text-anchor="middle" font-size="9" fill="#1c1917">allocate resources</text>
+<rect x="165" y="246" width="147" height="73" rx="4" fill="#e4efe8" stroke="#086438" stroke-width="0.8" />
+<text x="238.5" y="259.0" text-anchor="middle" font-size="10" fill="#086438" font-weight="700">decide what deserves</text>
+<text x="238.5" y="271.0" text-anchor="middle" font-size="10" fill="#086438" font-weight="700">enforcement</text>
+<path d="M238.5,278 L238.5,290" fill="none" stroke="#57534e" stroke-width=".8" marker-end="url(#a57534e)" />
+<text x="238.5" y="301.0" text-anchor="middle" font-size="9" fill="#086438" font-style="italic">→ Alignment (Chapter 3)</text>
+</svg>

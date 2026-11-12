@@ -1,0 +1,13 @@
+{
+  "chapter": "2.5-system-knowledge",
+  "source": "assets/modeling-substrate.svg",
+  "caption": "*Heterogeneous models over shared identities.* DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.",
+  "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+  "d2_source": "book/d2-pilot/modeling-substrate.d2",
+  "receipt": "book/d2-pilot/modeling-substrate.receipt.yaml",
+  "generator": null,
+  "data": [],
+  "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+  "svg_title": "DocAble's heterogeneous representations as peers around shared system identities",
+  "svg_description": "A radial arrangement. At the center sit shared system identities. Seven DocAble\n    representations — service registry, deployment topology, state machines, entitlement policy,\n    computation graph, provenance records, and measurements — are peers around the center, each joined\n    to it. No representation sits above another. Traceability, derivation, and query surfaces surround\n    them in a footer band, not inside the identity hub. The unity is semantic, not a hierarchy."
+}

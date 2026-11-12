@@ -1,0 +1,13 @@
+{
+  "chapter": "2.1-context-is-the-first-modeling-problem",
+  "source": "assets/question-to-consequence-progression.svg",
+  "caption": "*From engineering question to engineering consequence.* Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.",
+  "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+  "d2_source": null,
+  "receipt": null,
+  "generator": null,
+  "data": [],
+  "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+  "svg_title": "From engineering question to engineering consequence",
+  "svg_description": "A vertical progression. An engineering question leads to choosing a representation, whose\n    representative forms include a closed state or action space, a finite transition system, or temporal\n    behavior. The representation determines which analysis is appropriate \u2014 constraint solving, state\n    exploration, model checking, simulation, and static analysis are examples, none prescribed by the\n    representation alone. The path interprets the resulting evidence, then branches: the evidence can inform\n    architecture and design \u2014 comparing alternatives, revising boundaries, changing dependencies, allocating\n    resources \u2014 or it can expose a property whose obligation deserves enforcement, which hands off to Alignment\n    in Chapter 3, or both."
+}

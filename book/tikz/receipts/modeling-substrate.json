@@ -1,651 +1,296 @@
 {
   "source": "book/assets/modeling-substrate.svg",
+  "candidate": "book/tikz/figures/modeling-substrate.tex",
   "chapter": "2.5-system-knowledge",
-  "claim": "*Heterogeneous models over shared identities.* DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.",
+  "date": "2026-11-12",
+  "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+  "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
+  "claim": "*Heterogeneous models over shared identities.* An engineering question selects a path through the available representations. The highlighted traversal follows a service from its registry entry through deployment topology to performance measurements, using shared identities to connect the models. Other models remain available for different questions.",
   "topology": {
-    "description": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
-    "native_draw_commands": [
-      "\\draw[edge,-] (hub) -- (r0);",
-      "\\draw[edge,-] (hub) -- (r1);",
-      "\\draw[edge,-] (hub) -- (r2);",
-      "\\draw[edge,-] (hub) -- (r3);",
-      "\\draw[edge,-] (hub) -- (r4);",
-      "\\draw[edge,-] (hub) -- (r5);",
-      "\\draw[edge,-] (hub) -- (r6);"
+    "description": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
+    "highlighted_edges": [
+      [
+        "service registry",
+        "hub"
+      ],
+      [
+        "hub",
+        "deployment topology"
+      ],
+      [
+        "deployment topology",
+        "hub"
+      ],
+      [
+        "hub",
+        "measurements"
+      ]
+    ],
+    "other_connections": [
+      [
+        "hub",
+        "provenance records"
+      ],
+      [
+        "hub",
+        "computation graph"
+      ],
+      [
+        "hub",
+        "entitlement policy"
+      ],
+      [
+        "hub",
+        "state machines"
+      ]
     ]
   },
   "required_terms": [
-    "SHARED SYSTEM",
-    "IDENTITIES",
-    "service registry",
-    "measurements",
-    "deployment",
-    "topology",
-    "provenance",
-    "records",
-    "state machines",
-    "computation",
-    "graph",
-    "entitlement policy",
-    "traceability · derivation · query surfaces",
-    "Several representations of one system,",
-    "joined where a question crosses them."
+    "Traverse via shared identities",
+    "Service registry",
+    "Deployment topology",
+    "Measurements",
+    "(identify service)",
+    "(where it runs)",
+    "(how it performs)",
+    "Provenance records",
+    "Computation graph",
+    "Entitlement policy",
+    "State machines",
+    "e.g., investigate a service’s performance"
   ],
-  "bw_encoding": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
-  "redesign": "Only the shared-identity hub uses 8%; all surrounding representation peers white. Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
+  "bw_encoding": "White model boxes and one light 7% gray identity hub; heavy directional arrows distinguish the example traversal from thin undirected availability spokes. Bold marks selected model labels, not a new model class.",
+  "redesign": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
+  "alt": "Seven representations surround shared identities. The heavy path goes from service registry through the hub to deployment topology, returns to the hub, and continues to measurements. Thin spokes connect provenance records, computation graph, entitlement policy, and state machines.",
   "questions": [],
-  "alt": "An elliptical central substrate hub connects the surrounding modeling entities and relations. A separate footer explains the role of the shared substrate.",
-  "review": {
-    "reference": "authored SVG raster and labels, not D2 or caption alone",
-    "checks": [
-      "expansion/detail links",
-      "icons and prohibited-path marks",
-      "external annotations versus node content",
-      "node shapes and containment",
-      "direction and dashed meanings",
-      "grayscale semantic modes",
-      "native font legibility"
-    ],
-    "outcome": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
-    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
-    "native_dimensions_cm": [
-      10.3195,
-      8.1099
-    ]
+  "prior_art_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate",
+  "native_validation": {
+    "date": "2026-11-12",
+    "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+    "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
+    "page": 1,
+    "width_bp": 443.62,
+    "height_bp": 304.622,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 12,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+    "author_approval": "pending"
   },
+  "author_approval": "pending",
   "fidelity_review": {
     "source": "book/assets/modeling-substrate.svg",
     "candidate": "book/tikz/figures/modeling-substrate.tex",
-    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
+    "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+    "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
     "decision": "refined",
-    "review": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
-    "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-    "dimensions_cm": [
-      13.1164,
-      10.4856
-    ],
-    "strict_compile_diagnostics": [],
-    "revision_history": [
-      {
-        "superseded_date": "2026-11-11",
-        "review": {
-          "source": "book/assets/modeling-substrate.svg",
-          "candidate": "book/tikz/figures/modeling-substrate.tex",
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "5a57691aa8512f3f92204c58f96c4e185fc874db4c6f9e49a955a26bb832d8f9",
-          "decision": "refined",
-          "review": "Restored the source ellipse hub and footer treatment; retained model entity relationships and central substrate hierarchy.",
-          "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-          "dimensions_cm": [
-            13.1164,
-            10.4856
-          ],
-          "strict_compile_diagnostics": []
-        }
-      }
-    ],
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
-      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
-      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
-      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
+      "date": "2026-11-12",
+      "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+      "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
+      "page": 1,
+      "width_bp": 443.62,
+      "height_bp": 304.622,
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "semantic_typography_checks": 12,
       "monochrome_pixels": true,
       "status": "passed",
+      "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+      "author_approval": "pending"
+    },
+    "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
+    "review": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
+    "checks": "Reference topology with explicit subsequent user correction; native and SVG renders inspected; all seven labels and semantic type checked.",
+    "strict_compile_diagnostics": [],
+    "dimensions_cm": [
+      15.6499,
+      10.7464
+    ]
+  },
+  "grayscale_review": {
+    "source": "book/assets/modeling-substrate.svg",
+    "candidate": "book/tikz/figures/modeling-substrate.tex",
+    "receipt": "book/tikz/receipts/modeling-substrate.json",
+    "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+    "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
+    "decision": "refined",
+    "validation": {
+      "date": "2026-11-12",
+      "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+      "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
       "page": 1,
-      "width_bp": 292.522,
-      "height_bp": 237.411,
-      "minimum_prose_font_pt": 9.963,
-      "semantic_typography_checks": 4
+      "width_bp": 443.62,
+      "height_bp": 304.622,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 12,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+      "author_approval": "pending"
+    },
+    "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
+    "reviewed": true,
+    "rationale": "White model boxes and one light 7% gray identity hub; heavy directional arrows distinguish the example traversal from thin undirected availability spokes. Bold marks selected model labels, not a new model class."
+  },
+  "layout_review": {
+    "source": "book/assets/modeling-substrate.svg",
+    "candidate": "book/tikz/figures/modeling-substrate.tex",
+    "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+    "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
+    "decision": "refined",
+    "validation": {
+      "date": "2026-11-12",
+      "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+      "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
+      "page": 1,
+      "width_bp": 443.62,
+      "height_bp": 304.622,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 12,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+      "author_approval": "pending"
+    },
+    "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
+    "reason": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
+    "reviewed_visually": true,
+    "contracts": {},
+    "page_layout": {
+      "decision": "review candidate",
+      "reason": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type.",
+      "reviewed_visually": true
     }
   },
   "style_review": {
     "source": "book/assets/modeling-substrate.svg",
     "candidate": "book/tikz/figures/modeling-substrate.tex",
     "receipt": "book/tikz/receipts/modeling-substrate.json",
-    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
-    "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
-    "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
-    "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "book_references": [],
+    "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+    "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
+    "decision": "refined",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
-      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
-      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
-      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
+      "date": "2026-11-12",
+      "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+      "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
+      "page": 1,
+      "width_bp": 443.62,
+      "height_bp": 304.622,
+      "minimum_prose_font_pt": 10,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "semantic_typography_checks": 12,
       "monochrome_pixels": true,
       "status": "passed",
-      "page": 1,
-      "width_bp": 292.522,
-      "height_bp": 237.411,
-      "minimum_prose_font_pt": 9.963,
-      "semantic_typography_checks": 4
+      "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+      "author_approval": "pending"
     },
-    "book_references": [],
-    "revision_history": [
-      {
-        "superseded_date": "2026-11-11",
-        "review": {
-          "source": "book/assets/modeling-substrate.svg",
-          "candidate": "book/tikz/figures/modeling-substrate.tex",
-          "receipt": "book/tikz/receipts/modeling-substrate.json",
-          "decision": "refined",
-          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-          "status": "reviewed",
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
-          "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
-          "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
-          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 30,
-            "width_bp": 371.803,
-            "height_bp": 297.395,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 2
-          },
-          "book_references": []
-        }
-      }
-    ],
-    "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained."
+    "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
+    "fill": "White model boxes and one light 7% gray identity hub; heavy directional arrows distinguish the example traversal from thin undirected availability spokes. Bold marks selected model labels, not a new model class.",
+    "bold": "Bold identifies the three selected models and the semantic hub; ordinary model labels remain regular.",
+    "routing": "Radial association topology retained. Outward and return deployment curves are visibly separate, and every highlighted transition passes through the shared-identity hub.",
+    "shape": "Modest rounded model boxes and a central semantic-join ellipse.",
+    "visual_review": "Author-requested service-performance traversal. Seven representations remain around a shared-identity ellipse. A heavy numbered path goes Service registry → hub → Deployment topology → hub → Measurements. Separate outward and return curves at deployment preserve the explicit shared-identity join; no deployment-to-measurement bypass exists. Thin spokes retain the four other available representations. Selected-path model names are bold; the performance question is italic. Omit the prior footer and the reference bottom legend as requested. All labels use 10pt house type."
   },
   "typography_review": {
     "source": "book/assets/modeling-substrate.svg",
     "candidate": "book/tikz/figures/modeling-substrate.tex",
+    "source_sha256": "18d59035dcc905064b88599f621fbcc2be93202b734c476786c730f7aee8cfdd",
+    "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096",
     "decision": "refined",
-    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
-    "evidence": [
-      {
-        "source_text": "SHARED SYSTEM",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "SHARED SYSTEM IDENTITIES",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/modeling-substrate.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "SHARED SYSTEM",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
-    "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
+    "validation": {
+      "date": "2026-11-12",
+      "proof": "latex/build/substrate-traversal-proof/modeling-substrate.pdf",
+      "proof_sha256": "d6860c1189d7cbec79ccbe931f0c61ec61ee1d4fdce8da2dafdea6dd1aab8d26",
+      "page": 1,
+      "width_bp": 443.62,
+      "height_bp": 304.622,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 12,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "svg_proof": "latex/build/substrate-traversal-proof/modeling-substrate-svg.png",
+      "author_approval": "pending"
+    },
+    "previous_review_archive": "book/editorial/cutting-room-floor/20261112-modeling-substrate/review-rows.json",
+    "reason": "Selected model labels and the shared-identity hub are bold; the example question is italic; all other labels remain regular.",
     "checks": [
       {
-        "text": "SHARED SYSTEM IDENTITIES",
+        "text": "Traverse via shared identities",
         "bold": true,
         "italic": false
       },
       {
-        "text": "service registry",
+        "text": "Service registry",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Deployment topology",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Measurements",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(identify service)",
         "bold": false,
         "italic": false
       },
       {
-        "text": "traceability · derivation · query surfaces",
-        "bold": true,
+        "text": "(where it runs)",
+        "bold": false,
         "italic": false
       },
       {
-        "text": "Several representations of one system, joined where a question crosses them.",
+        "text": "(how it performs)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Provenance records",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Computation graph",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Entitlement policy",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "State machines",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "e.g., investigate a service’s performance",
         "bold": false,
         "italic": true
       }
     ],
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
-      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
-      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
-      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "page": 1,
-      "width_bp": 292.522,
-      "height_bp": 237.411,
-      "minimum_prose_font_pt": 9.963,
-      "semantic_typography_checks": 4
-    },
-    "revision_history": [
-      {
-        "superseded_date": "2026-11-09",
-        "review": {
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 30,
-            "width_bp": 371.803,
-            "height_bp": 297.395,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 2
-          },
-          "reason": "Shared identities are the semantic hub, not just another representation; peer representation names remain regular."
-        }
-      },
-      {
-        "superseded_date": "2026-11-11",
-        "review": {
-          "source": "book/assets/modeling-substrate.svg",
-          "candidate": "book/tikz/figures/modeling-substrate.tex",
-          "decision": "refined",
-          "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-          "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
-          "evidence": [
-            {
-              "source_text": "SHARED SYSTEM",
-              "source_style": "weight 700; normal; source size 18",
-              "semantic_role": "named category versus explanatory text",
-              "candidate_text": "SHARED SYSTEM IDENTITIES",
-              "candidate_style": "bold",
-              "source_locator": {
-                "svg": "book/assets/modeling-substrate.svg",
-                "element_text_path": "/svg/text[2]/text()",
-                "text_element_context": "SHARED SYSTEM",
-                "matching_fragment_count": 1
-              }
-            }
-          ],
-          "reason": "Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
-          "checks": [
-            {
-              "text": "SHARED SYSTEM IDENTITIES",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "service registry",
-              "bold": false,
-              "italic": false
-            },
-            {
-              "text": "traceability · derivation · query surfaces",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "Several representations of one system, joined where a question crosses them.",
-              "bold": false,
-              "italic": true
-            }
-          ],
-          "validation": {
-            "date": "2026-11-09",
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-            "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-            "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "status": "passed",
-            "page": 31,
-            "width_bp": 292.522,
-            "height_bp": 229.887,
-            "minimum_prose_font_pt": 8.97,
-            "semantic_typography_checks": 2
-          }
-        }
-      }
-    ]
-  },
-  "layout_review": {
-    "source": "book/assets/modeling-substrate.svg",
-    "candidate": "book/tikz/figures/modeling-substrate.tex",
-    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-    "baseline_candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
-    "decision": "refined",
-    "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
-    "reviewed_visually": true,
-    "baseline_dimensions_bp": [
-      371.8030090332031,
-      297.3949890136719
-    ],
-    "contracts": {},
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
-      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
-      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
-      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "page": 1,
-      "width_bp": 292.522,
-      "height_bp": 237.411,
-      "minimum_prose_font_pt": 9.963,
-      "semantic_typography_checks": 4
-    },
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing modeling substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-      "after_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-      "before_dimensions_bp": [
-        371.8030090332031,
-        297.3949890136719
-      ],
-      "after_dimensions_bp": [
-        371.8030090332031,
-        297.3949890136719
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "revision_history": [
-      {
-        "superseded_date": "2026-11-09",
-        "review": {
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 30,
-            "width_bp": 371.803,
-            "height_bp": 297.395
-          },
-          "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row."
-        }
-      },
-      {
-        "superseded_date": "2026-11-11",
-        "review": {
-          "source": "book/assets/modeling-substrate.svg",
-          "candidate": "book/tikz/figures/modeling-substrate.tex",
-          "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-          "baseline_candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "candidate_sha256": "50c9ac67251da74bacce67ecc4ee0572fb5dac644575e394eead96edf7864b68",
-          "decision": "retained",
-          "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row.",
-          "reviewed_visually": true,
-          "baseline_dimensions_bp": [
-            371.8030090332031,
-            297.3949890136719
-          ],
-          "contracts": {},
-          "validation": {
-            "date": "2026-11-09",
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-            "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-            "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "status": "passed",
-            "page": 31,
-            "width_bp": 292.522,
-            "height_bp": 229.887,
-            "minimum_prose_font_pt": 8.97,
-            "semantic_typography_checks": 2
-          },
-          "page_layout": {
-            "decision": "retained",
-            "reason": "Retain existing modeling substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-            "before_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-            "after_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-            "before_dimensions_bp": [
-              371.8030090332031,
-              297.3949890136719
-            ],
-            "after_dimensions_bp": [
-              371.8030090332031,
-              297.3949890136719
-            ],
-            "before_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "after_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "reviewed_visually": true
-          }
-        }
-      }
-    ]
-  },
-  "chapter2_layout_revision": {
-    "date": "2026-11-09",
-    "source_sha256": "3f0887b0ab48f81c999b5238f3a816b5fe0333364ad9fec6696857910413f2e0",
-    "prior_source_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-    "standalone_proof": "native-after.pdf",
-    "standalone_proof_page": 1,
-    "width_bp": 288.5369873046875,
-    "height_bp": 225.90199279785156,
-    "status": "geometry proof inspected; pending publication-pair review"
-  },
-  "revision_history": [
-    {
-      "date": "2026-11-09",
-      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
-      "previous_reviews": {
-        "style_review": {
-          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-          "status": "reviewed",
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "fill": "Only the shared-identity hub uses 8%; all surrounding representation peers white.",
-          "bold": "Source-derived emphasis includes SHARED SYSTEM IDENTITIES. Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
-          "routing": "Exception: literal radial shared-identity relationships have no process order; direct spokes preserve the hub topology.",
-          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 30,
-            "width_bp": 371.803,
-            "height_bp": 297.395,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 2
-          },
-          "book_references": []
-        },
-        "typography_review": {
-          "review": "book/tikz/typography-review.json",
-          "decision": "refined",
-          "source_sha256": "45ccd64a609bbac157c5d979d3728ad7ef01db681f74afdff8a11bd35c617629",
-          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "reason": "Shared identities are the semantic hub, not just another representation; peer representation names remain regular.",
-          "evidence": [
-            {
-              "source_text": "SHARED SYSTEM",
-              "source_style": "weight 700; normal; source size 18",
-              "semantic_role": "named category versus explanatory text",
-              "candidate_text": "SHARED SYSTEM IDENTITIES",
-              "candidate_style": "bold",
-              "source_locator": {
-                "svg": "book/assets/modeling-substrate.svg",
-                "element_text_path": "/svg/text[2]/text()",
-                "text_element_context": "SHARED SYSTEM",
-                "matching_fragment_count": 1
-              }
-            }
-          ],
-          "checks": [
-            {
-              "text": "SHARED SYSTEM IDENTITIES",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "Service registry",
-              "bold": false,
-              "italic": false
-            }
-          ],
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 30,
-            "width_bp": 371.803,
-            "height_bp": 297.395,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 2,
-            "book_font_inheritance": {
-              "configuration": "latex/book-fonts.tex",
-              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-              "reference": "latex/build/tikz/body-font-reference.pdf",
-              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-              "body_faces": [
-                "SourceSans3-Bold",
-                "SourceSans3-BoldIt",
-                "SourceSans3-It",
-                "SourceSans3-Regular"
-              ]
-            }
-          }
-        },
-        "layout_review": {
-          "review": "book/tikz/layout-review.json",
-          "decision": "retained",
-          "reason": "A radial system-identity map has differently located representation kinds, not a single process rank. Spokes remain unambiguous; do not force their outer nodes into a row.",
-          "candidate_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-          "page_layout": {
-            "decision": "retained",
-            "reason": "Retain existing modeling substrate layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-            "before_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-            "after_sha256": "0dbd3d633ba92cf5d8764047189666927dbfca5ac06b88501b0e68cfa83e9b0d",
-            "before_dimensions_bp": [
-              371.8030090332031,
-              297.3949890136719
-            ],
-            "after_dimensions_bp": [
-              371.8030090332031,
-              297.3949890136719
-            ],
-            "before_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "after_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "reviewed_visually": true
-          },
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 30,
-            "width_bp": 371.803,
-            "height_bp": 297.395
-          }
-        }
-      }
-    },
-    {
-      "date": "2026-11-11",
-      "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
-      "previous_required_terms": [
-        "Shared system",
-        "identities",
-        "Service registry",
-        "Deployment",
-        "topology",
-        "State machines",
-        "Entitle-",
-        "ment policy",
-        "Computa-",
-        "tion graph",
-        "Provenance",
-        "records",
-        "Measurements",
-        "Traceability · derivation · query surfaces",
-        "Join representations where an engineering question crosses them."
-      ]
-    }
-  ],
-  "footer_revision": {
-    "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained.",
-    "source_sha256": "f097796424ecada8129e2bb74dce1615da58de5b5bca10d15e16ae0886d9a101",
-    "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248",
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/modeling-substrate-proof/modeling-substrate.pdf",
-      "proof_sha256": "6971d91850f6232ef123b965783ab2651aac438597c9f31a17b85101c8af904c",
-      "audit_sha256": "6ead49abb3e940085075c258ea538db5ce41e79d4b56ec02d7051db9462b0610",
-      "typography_audit_sha256": "9602634dac55cee476e7a9feda9d1208751b92151a451c4a7a4b76a6c7aa5ea3",
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "page": 1,
-      "width_bp": 292.522,
-      "height_bp": 237.411,
-      "minimum_prose_font_pt": 9.963,
-      "semantic_typography_checks": 4
-    }
+    "evidence": []
   }
 }

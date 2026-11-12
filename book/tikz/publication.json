@@ -5,7 +5,7 @@
   "approved_monochrome": {
     "book/assets/book-map.svg": {
       "approved_date": "2026-11-05",
-      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2\u20135 enclosure and the optional appendix branches removed."
+      "reason": "Author approved Figure 1 for black-and-white-only PDF output, with a shaded Chapters 2–5 enclosure and the optional appendix branches removed."
     },
     "book/assets/mage-method.svg": {
       "approved_date": "2026-11-09",
@@ -70,9 +70,9 @@
       "candidate_sha256": "8cca127731df0ce22713cfbd5bbee01c23bcce0ca9d5fe36eab12c57ab9e6763"
     },
     "book/assets/question-to-consequence-progression.svg": {
-      "approved_date": "2026-11-11",
-      "reason": "Author explicitly approved the revised black-and-white Figure 2.5 after reviewing the modeling, properties, and feedback changes in the sidebar.",
-      "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b"
+      "approved_date": "2026-11-12",
+      "reason": "Author approved compact Figure 2.5 after checking its 315 by 228 point native layout: 10pt text and all five stages, sharing a typeset page with prose.",
+      "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365"
     },
     "book/assets/multiple-routes-to-engineering-models.svg": {
       "approved_date": "2026-11-11",
@@ -125,9 +125,9 @@
       "candidate_sha256": "4cc812a03c83eb105d371763f5ea1f9517b6f28133917f1efe5eb4c2e733a955"
     },
     "book/assets/modeling-substrate.svg": {
-      "approved_date": "2026-11-11",
-      "reason": "Author approved black-and-white Figure 2.22 with restoration of the original footer wording and improved two-line layout.",
-      "candidate_sha256": "47fd6c7b6ac587813ea27f7085276adbc66cbcc3a1cfbe8f443dcfb594d14248"
+      "approved_date": "2026-11-12",
+      "reason": "Author approved the revised Figure 2.18: task-driven traversal through shared identities, including the return from deployment topology through the hub to measurements.",
+      "candidate_sha256": "bfc168da0672a523681899a943c61a95a170a733032dbcff1951f7fe32bd0096"
     },
     "book/assets/interlude-execution-unit.svg": {
       "approved_date": "2026-11-11",
@@ -166,7 +166,7 @@
     },
     "book/assets/build-stages-timeline.svg": {
       "approved_date": "2026-11-11",
-      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July\u2013October dates retained.",
+      "reason": "Author approved Figure 5.2 after removing the retrospective-stages footer. Plain headings and July–October dates retained.",
       "candidate_sha256": "d66e73899666fd61657c222e06a879b4128cd23c10604f357135af4a58561a16"
     },
     "book/assets/docable-seip-longitudinal-261109.svg": {

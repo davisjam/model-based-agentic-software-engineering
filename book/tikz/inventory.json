@@ -248,12 +248,12 @@
     "caption": "*From engineering question to engineering consequence.* Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
-    "receipt": null,
-    "generator": null,
+    "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
+    "generator": "book/figures/question-to-consequence/generate.py",
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "From engineering question to engineering consequence",
-    "svg_description": "A vertical progression. An engineering question leads to choosing a representation, whose\n    representative forms include a closed state or action space, a finite transition system, or temporal\n    behavior. The representation determines which analysis is appropriate — constraint solving, state\n    exploration, model checking, simulation, and static analysis are examples, none prescribed by the\n    representation alone. The path interprets the resulting evidence, then branches: the evidence can inform\n    architecture and design — comparing alternatives, revising boundaries, changing dependencies, allocating\n    resources — or it can expose a property whose obligation deserves enforcement, which hands off to Alignment\n    in Chapter 3, or both."
+    "svg_description": "Five stages lead from engineering question through modeling, analysis, interpretation, and engineering decisions. Examples define representation forms and properties before analysis. Decisions refine design and choose obligations for enforcement; a feedback arrow revises the model and properties."
   },
   {
     "chapter": "2.1-context-is-the-first-modeling-problem",
@@ -362,7 +362,7 @@
   {
     "chapter": "2.4-decision",
     "source": "assets/observed-vs-declared.svg",
-    "caption": "*Observation compared with declared permission.* In this hypothetical example, the observed web-to-renderer call has no corresponding permission in the declared policy. The comparison identifies a violation of that policy; it does not establish that the policy itself is correct.",
+    "caption": "*Observation compared with declared permission.* The observed web-to-renderer call violates the declared policy.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/observed-vs-declared.json",
@@ -401,15 +401,15 @@
   {
     "chapter": "2.5-system-knowledge",
     "source": "assets/modeling-substrate.svg",
-    "caption": "*Heterogeneous models over shared identities.* DocAble maintains several representations for different engineering questions. Stable identities and explicit correspondence allow those representations to be joined when a question crosses them without requiring one universal model of the system.",
+    "caption": "*Heterogeneous models over shared identities.* An engineering question selects a path through the available representations. The highlighted traversal follows a service from its registry entry through deployment topology to performance measurements, using shared identities to connect the models. Other models remain available for different questions.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/modeling-substrate.d2",
     "receipt": "book/d2-pilot/modeling-substrate.receipt.yaml",
-    "generator": null,
+    "generator": "book/editorial/figure-redraws-20261112/build_modeling_substrate.py",
     "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "DocAble's heterogeneous representations as peers around shared system identities",
-    "svg_description": "A radial arrangement. At the center sit shared system identities. Seven DocAble\n    representations — service registry, deployment topology, state machines, entitlement policy,\n    computation graph, provenance records, and measurements — are peers around the center, each joined\n    to it. No representation sits above another. Traceability, derivation, and query surfaces surround\n    them in a footer band, not inside the identity hub. The unity is semantic, not a hierarchy."
+    "conversion": "Author-requested SVG and native TikZ traversal; generated together from explicit ports",
+    "svg_title": "Heterogeneous models over shared identities",
+    "svg_description": "Seven representations surround shared identities. The heavy path goes from service registry through the hub to deployment topology, returns to the hub, and continues to measurements. Thin spokes connect provenance records, computation graph, entitlement policy, and state machines."
   },
   {
     "chapter": "2.5-system-knowledge",

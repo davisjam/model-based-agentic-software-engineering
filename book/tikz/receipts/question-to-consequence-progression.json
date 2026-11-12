@@ -3,7 +3,7 @@
   "chapter": "2.1-context-is-the-first-modeling-problem",
   "claim": "Engineering questions guide models and explicit properties; analysis supplies evidence for design decisions and selected enforcement, while feedback revises the model.",
   "topology": {
-    "description": "Question \u2192 model and define properties \u2192 analysis \u2192 evidence \u2192 engineering decisions; decisions feed back to model and properties. Selected obligations proceed to Alignment.",
+    "description": "Question → model and define properties → analysis → evidence → engineering decisions; decisions feed back to model and properties. Design refinement and enforcement selection share the final stage.",
     "relations": [
       [
         "question",
@@ -34,40 +34,36 @@
     "Analyze the modeled properties",
     "Interpret the evidence",
     "Make engineering decisions",
-    "Representations: state machines",
-    "Properties: legal transitions",
+    "Representations: state machines · dependency graphs",
+    "Properties: legal transitions · permitted dependencies",
+    "State exploration · model checking · simulation",
+    "Constraint solving · static analysis",
     "Refine architecture and design",
     "Choose which obligations warrant enforcement",
-    "Selected obligations",
     "Revise model and properties"
   ],
   "bw_encoding": "White boxes, bold headings, and directed orthogonal edges. The feedback edge is external to the forward sequence.",
-  "redesign": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+  "redesign": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
   "questions": [],
-  "alt": "An engineering question leads to modeling and explicit properties. State machines and dependency graphs illustrate representations; legal transitions and permitted dependencies illustrate their properties. Analysis produces evidence for engineering decisions: refining architecture and design and choosing which obligations warrant enforcement. Selected obligations connect to Alignment in Chapter 3. A feedback arrow returns from decisions to revise the model and properties.",
+  "alt": "Five stages lead from engineering question through modeling, analysis, interpretation, and engineering decisions. Examples define representation forms and properties before analysis. Decisions refine design and choose obligations for enforcement; a feedback arrow revises the model and properties.",
   "review": {
-    "reference": "Author Figure 2.5 feedback, 2026-11-11",
-    "checks": [
-      "property introduction",
-      "complementary design and enforcement decisions",
-      "feedback route",
-      "native print layout"
-    ],
-    "outcome": "Requested structure implemented and standalone proof visually inspected. Scoped compile, geometry, typography and monochrome checks passed.",
+    "reference": "Author compact-layout instruction,2026-11-12",
+    "outcome": "All five stages and examples preserved; native and SVG proofs inspected at315bp. Geometry/typography/compile passed. Pending author review.",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
-      "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+      "date": "2026-11-12",
+      "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+      "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
       "page": 1,
-      "width_bp": 349.829,
-      "height_bp": 308.817,
-      "minimum_prose_font_pt": 10.959,
+      "width_bp": 314.996,
+      "height_bp": 227.997,
+      "minimum_prose_font_pt": 9.963,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
-      "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+      "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
       "status": "passed"
     }
   },
@@ -79,32 +75,31 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
-    "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
-    "fill": "White nodes; emphasis comes from bold step headings.",
-    "bold": "Bold step headings distinguish reasoning activities; examples, decisions, and feedback label are regular.",
-    "routing": "Vertical sequence plus external orthogonal feedback from engineering decisions to the model step; no alternative-outcome fork.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Standalone proof inspected on 2026-11-11 for arrows, legibility, and model/property introduction. Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+    "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
+    "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
+    "fill": "Native white stage boxes; original uses muted blue for modeling and neutral fills elsewhere.",
+    "bold": "All five stage headings bold; examples and feedback label regular.",
+    "routing": "Four short vertical forward arrows; an external orthogonal feedback arrow returns from decisions to modeling.",
+    "shape": "Five compact rounded stage boxes, with narrower question and interpretation stages.",
+    "visual_review": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
-      "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+      "date": "2026-11-12",
+      "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+      "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
       "page": 1,
-      "width_bp": 349.829,
-      "height_bp": 308.817,
-      "minimum_prose_font_pt": 10.959,
+      "width_bp": 314.996,
+      "height_bp": 227.997,
+      "minimum_prose_font_pt": 9.963,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
-      "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+      "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
       "status": "passed"
     },
-    "book_references": [
-      "part:3"
-    ],
+    "book_references": [],
     "color_source_revision": {
       "date": "2026-11-09",
       "previous_source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
@@ -117,137 +112,160 @@
     "source": "book/assets/question-to-consequence-progression.svg",
     "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
     "decision": "refined",
-    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
-    "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+    "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
+    "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
     "evidence": [
       {
-        "semantic_role": "Step heading",
+        "semantic_role": "Stage heading",
         "candidate_text": "Engineering question",
         "candidate_style": "bold",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Step heading",
+        "semantic_role": "Stage heading",
         "candidate_text": "Model and define properties",
         "candidate_style": "bold",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Step heading",
+        "semantic_role": "Stage heading",
         "candidate_text": "Analyze the modeled properties",
         "candidate_style": "bold",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Step heading",
+        "semantic_role": "Stage heading",
         "candidate_text": "Interpret the evidence",
         "candidate_style": "bold",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Step heading",
+        "semantic_role": "Stage heading",
         "candidate_text": "Make engineering decisions",
         "candidate_style": "bold",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Example, outcome or feedback",
-        "candidate_text": "Representations: state machines",
+        "semantic_role": "Preserved example or feedback label",
+        "candidate_text": "Representations: state machines · dependency graphs",
         "candidate_style": "regular",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Example, outcome or feedback",
-        "candidate_text": "Properties: legal transitions",
+        "semantic_role": "Preserved example or feedback label",
+        "candidate_text": "Properties: legal transitions · permitted dependencies",
         "candidate_style": "regular",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Example, outcome or feedback",
+        "semantic_role": "Preserved example or feedback label",
+        "candidate_text": "State exploration · model checking · simulation",
+        "candidate_style": "regular",
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
+      },
+      {
+        "semantic_role": "Preserved example or feedback label",
+        "candidate_text": "Constraint solving · static analysis",
+        "candidate_style": "regular",
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
+      },
+      {
+        "semantic_role": "Preserved example or feedback label",
         "candidate_text": "Refine architecture and design",
         "candidate_style": "regular",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Example, outcome or feedback",
+        "semantic_role": "Preserved example or feedback label",
         "candidate_text": "Choose which obligations warrant enforcement",
         "candidate_style": "regular",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       },
       {
-        "semantic_role": "Example, outcome or feedback",
-        "candidate_text": "Selected obligations",
-        "candidate_style": "regular",
-        "authorization": "Author-requested structural revision, 2026-11-11"
-      },
-      {
-        "semantic_role": "Example, outcome or feedback",
+        "semantic_role": "Preserved example or feedback label",
         "candidate_text": "Revise model and properties",
         "candidate_style": "regular",
-        "authorization": "Author-requested structural revision, 2026-11-11"
+        "authorization": "Author Figure2.5 compaction,2026-11-12"
       }
     ],
-    "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+    "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
     "checks": [
       {
         "text": "Engineering question",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
         "text": "Model and define properties",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
         "text": "Analyze the modeled properties",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
         "text": "Interpret the evidence",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
         "text": "Make engineering decisions",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "Representations: state machines",
-        "bold": false
+        "text": "Representations: state machines · dependency graphs",
+        "bold": false,
+        "italic": false
       },
       {
-        "text": "Properties: legal transitions",
-        "bold": false
+        "text": "Properties: legal transitions · permitted dependencies",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "State exploration · model checking · simulation",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Constraint solving · static analysis",
+        "bold": false,
+        "italic": false
       },
       {
         "text": "Refine architecture and design",
-        "bold": false
+        "bold": false,
+        "italic": false
       },
       {
         "text": "Choose which obligations warrant enforcement",
-        "bold": false
-      },
-      {
-        "text": "Selected obligations",
-        "bold": false
+        "bold": false,
+        "italic": false
       },
       {
         "text": "Revise model and properties",
-        "bold": false
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
-      "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+      "date": "2026-11-12",
+      "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+      "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
       "page": 1,
-      "width_bp": 349.829,
-      "height_bp": 308.817,
-      "minimum_prose_font_pt": 10.959,
+      "width_bp": 314.996,
+      "height_bp": 227.997,
+      "minimum_prose_font_pt": 9.963,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
-      "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+      "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
       "status": "passed"
     },
     "color_source_revision": {
@@ -261,44 +279,46 @@
   "layout_review": {
     "source": "book/assets/question-to-consequence-progression.svg",
     "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
-    "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+    "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
     "baseline_candidate_sha256": "cf9df3963225b8ef5ad9da45833fb9ffe4b537798e9ddb76e82b690b61b6b10b",
-    "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+    "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
     "decision": "refined",
-    "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+    "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       396.1809997558594,
       296.5799865722656
     ],
-    "contracts": {
-      "peer_groups": []
-    },
+    "contracts": {},
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
-      "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+      "date": "2026-11-12",
+      "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+      "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
       "page": 1,
-      "width_bp": 349.829,
-      "height_bp": 308.817,
-      "minimum_prose_font_pt": 10.959,
+      "width_bp": 314.996,
+      "height_bp": 227.997,
+      "minimum_prose_font_pt": 9.963,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 11,
-      "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
-      "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+      "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
       "status": "passed"
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
-      "after_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
-      "reviewed_visually": true,
+      "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+      "after_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
       "after_dimensions_bp": [
-        349.829,
-        308.817
-      ]
+        314.996,
+        227.997
+      ],
+      "after_font_sizes_pt": [
+        10
+      ],
+      "reviewed_visually": true
     }
   },
   "color_source_revision": {
@@ -587,7 +607,7 @@
         "chapter": "2.1-context-is-the-first-modeling-problem",
         "claim": "*From engineering question to engineering consequence.* Hold the system fixed and change the question, and the useful representation changes with it. The representation determines which analyses become tractable; analysis produces evidence that can inform architecture and design, expose a property for checking, or both. Chapter 3 takes up the separate question of which obligations should be enforced.",
         "topology": {
-          "description": "Question\u2192representation\u2192analysis\u2192evidence; evidence informs design, enforcement, or both.",
+          "description": "Question→representation→analysis→evidence; evidence informs design, enforcement, or both.",
           "relations": [
             [
               "n0",
@@ -623,10 +643,10 @@
         },
         "required_terms": [
           "Engineering question",
-          "Choose representation Closed state/action space \u00b7 finite transition system \u00b7 temporal behavior",
-          "Choose analysis appropriate to the property Constraint solving \u00b7 state exploration \u00b7 model checking \u00b7 simulation \u00b7 static analysis",
+          "Choose representation Closed state/action space · finite transition system · temporal behavior",
+          "Choose analysis appropriate to the property Constraint solving · state exploration · model checking · simulation · static analysis",
           "Interpret evidence",
-          "Inform architecture / design Compare alternatives \u00b7 revise boundaries Change dependencies \u00b7 allocate resources",
+          "Inform architecture / design Compare alternatives · revise boundaries Change dependencies · allocate resources",
           "Decide what deserves enforcement Alignment (Chapter 3)",
           "Either or both"
         ],
@@ -916,6 +936,95 @@
           "status": "geometry proof inspected; pending publication-pair review"
         }
       }
+    },
+    {
+      "date": "2026-11-12",
+      "archive": "book/editorial/figure-2-5-compact-20261112/before/question-to-consequence-progression.json",
+      "reason": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root."
     }
-  ]
+  ],
+  "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
+  "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
+  "generator": "book/figures/question-to-consequence/generate.py",
+  "qa": {
+    "date": "2026-11-12",
+    "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+    "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
+    "page": 1,
+    "width_bp": 314.996,
+    "height_bp": 227.997,
+    "minimum_prose_font_pt": 9.963,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "maximum_rgb_channel_delta": 0,
+    "semantic_typography_checks": 12,
+    "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+    "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
+    "status": "passed"
+  },
+  "validation": {
+    "date": "2026-11-12",
+    "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+    "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
+    "page": 1,
+    "width_bp": 314.996,
+    "height_bp": 227.997,
+    "minimum_prose_font_pt": 9.963,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "maximum_rgb_channel_delta": 0,
+    "semantic_typography_checks": 12,
+    "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+    "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
+    "status": "passed"
+  },
+  "fidelity_review": {
+    "source": "book/assets/question-to-consequence-progression.svg",
+    "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+    "source_sha256": "7599e35f8b4b53f2a717a113b90036f0c3eb1f8c02f791ebd68f4061fbbdf0e1",
+    "candidate_sha256": "2eb4bcf9d585d77f9610bb46ad37fbb40cc7ab89a06bea7102b199b0f5beb365",
+    "decision": "refined",
+    "review": "Author-requested Figure2.5 compact layout: 315×228bp at authored10pt, five retained stages with every representation/property/analysis example, a separate interpretation step, and the external feedback loop. Only the final Selected obligations → Alignment (Chapter3) footer is removed; the adjacent prose/caption supplies that transition. Smaller padding and10bp interstage gaps replace the tall layout. Original SVG is synchronized with the already-approved five-stage native semantics, replacing its superseded choose-representation/forms split and alternative-branches topology. Pending author review; placement and approval handled by root.",
+    "checks": {
+      "icons_and_symbols": "Five stages and external feedback preserved. Only footer transition removed as authorized.",
+      "links_and_groups": "One forward chain and decisions-to-model feedback; engineering decisions retain both design and enforcement selection.",
+      "annotation_placement": "All representation, property, and analysis examples remain within their respective stages."
+    },
+    "dimensions_cm": [
+      12.3412,
+      10.8944
+    ],
+    "strict_compile_diagnostics": [],
+    "validation": {
+      "date": "2026-11-12",
+      "proof": "/private/tmp/mage-figure-2-5-compact-20261112/latex/build/compact-question-proof/after.pdf",
+      "proof_sha256": "7d69d8be904810aaa3a8ed9355b4979b70db0218484efa4dd4b30b31a0cac18a",
+      "page": 1,
+      "width_bp": 314.996,
+      "height_bp": 227.997,
+      "minimum_prose_font_pt": 9.963,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 12,
+      "geometry_audit_sha256": "11c554ab03a3f5e78491bfbe459a3d121dbe0d1939201000cf5cc6b593369afe",
+      "typography_audit_sha256": "007d94f1315b1aeb78367fdc047f53eeee2a7f672c6b4c45a3b251bc3162d892",
+      "status": "passed"
+    },
+    "width_bp": 314.996,
+    "height_bp": 227.997,
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "monochrome": true,
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        10
+      ],
+      "minimum": 10,
+      "final_size_no_scaling": true
+    }
+  }
 }

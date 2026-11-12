@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 292.5 258" width="292.5" height="258" role="img" aria-labelledby="mbTitle mbDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><ns0:title xmlns:ns0="http://www.w3.org/2000/svg" id="mbTitle">DocAble's heterogeneous representations as peers around shared system identities</ns0:title>
+  <ns0:desc xmlns:ns0="http://www.w3.org/2000/svg" id="mbDesc">A radial arrangement. At the center sit shared system identities. Seven DocAble
+    representations — service registry, deployment topology, state machines, entitlement policy,
+    computation graph, provenance records, and measurements — are peers around the center, each joined
+    to it. No representation sits above another. Traceability, derivation, and query surfaces surround
+    them in a footer band, not inside the identity hub. The unity is semantic, not a hierarchy.</ns0:desc>
+
+  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
+<text x="146.25" y="12.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">DOCABLE MODELING SUBSTRATE</text>
+<path d="M146.25,121 L146.25,43" fill="none" stroke="#57534e" stroke-width=".8"/>
+<path d="M146.25,121 L60,88" fill="none" stroke="#57534e" stroke-width=".8"/>
+<path d="M146.25,121 L232.5,88" fill="none" stroke="#57534e" stroke-width=".8"/>
+<path d="M146.25,121 L57,152" fill="none" stroke="#57534e" stroke-width=".8"/>
+<path d="M146.25,121 L235.5,152" fill="none" stroke="#57534e" stroke-width=".8"/>
+<path d="M146.25,121 L80,195" fill="none" stroke="#57534e" stroke-width=".8"/>
+<path d="M146.25,121 L212.5,195" fill="none" stroke="#57534e" stroke-width=".8"/>
+<ellipse cx="146.25" cy="120.5" rx="52.25" ry="24.5" fill="#f6f4ef" stroke="#57534e" stroke-width="1.25"/>
+<text x="146.25" y="117.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">SHARED SYSTEM</text>
+<text x="146.25" y="127.8" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">IDENTITIES</text>
+<rect x="102.25" y="29" width="88" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="146.25" y="48.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">service registry</text>
+<rect x="5" y="74" width="110" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="60.0" y="93.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">measurements</text>
+<rect x="177.5" y="74" width="110" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="232.5" y="86.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">deployment</text>
+<text x="232.5" y="96.8" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">topology</text>
+<rect x="3" y="140" width="108" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="57.0" y="152.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">provenance</text>
+<text x="57.0" y="162.8" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">records</text>
+<rect x="183" y="140" width="106" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="236.0" y="159.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">state machines</text>
+<rect x="26" y="183" width="108" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="80.0" y="195.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">computation</text>
+<text x="80.0" y="205.8" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">graph</text>
+<rect x="160" y="183" width="105" height="29" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="212.5" y="202.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">entitlement policy</text>
+<text x="146.25" y="226.0" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">traceability · derivation · query surfaces</text>
+<text x="146.25" y="240.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Several representations of one system,</text>
+<text x="146.25" y="250.8" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">joined where a question crosses them.</text>
+</svg>

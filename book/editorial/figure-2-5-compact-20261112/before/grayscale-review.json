@@ -1,0 +1,42 @@
+{
+  "source": "book/assets/question-to-consequence-progression.svg",
+  "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+  "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+  "source_sha256": "7b67cdb78da9e361e027bbf718c7843500061857e9cd11c45508de915427844e",
+  "candidate_sha256": "38c325476a50e13b537961b32a459af617502803e6acfc80fe2bd7592b041a9b",
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "reason": "Author-requested revision: representation examples and explicit properties share one modeling step; a single engineering-decisions box joins design and selected enforcement; feedback returns to modeling. The preserved color original is the comparison baseline, not the authority for superseded labels or fork topology.",
+      "previous": {
+        "source": "book/assets/question-to-consequence-progression.svg",
+        "candidate": "book/tikz/figures/question-to-consequence-progression.tex",
+        "receipt": "book/tikz/receipts/question-to-consequence-progression.json",
+        "reviewed": true,
+        "decision": "refined",
+        "rationale": "Representation, design and enforcement distinguished by gray roles; evidence can inform either or both.",
+        "source_sha256": "14d91249880a6c302b32912543bca46481a5e67c4e643b825077f43b954c2272",
+        "candidate_sha256": "a1847fc7852a9b0a50f2d6567537a8aadf541ec6bd655c3c8a08e9a7de8993f8"
+      }
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/figure-2-5-proof/figure-2-5.pdf",
+    "proof_sha256": "2a8582f180b0cd2c18accbe85c7b19c419d20a1ce758b7298cf66a2812d94e7c",
+    "page": 1,
+    "width_bp": 349.829,
+    "height_bp": 308.817,
+    "minimum_prose_font_pt": 10.959,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 11,
+    "audit_sha256": "517d7f17da3ef6a35cfb29cf977e7bb9cc9638f68225a2cb4482d40230283396",
+    "typography_audit_sha256": "d52de17fad4a9b3bf5de500a98d1b8143d0a9c9d990f7d8aa482373794355c8d",
+    "status": "passed"
+  }
+}

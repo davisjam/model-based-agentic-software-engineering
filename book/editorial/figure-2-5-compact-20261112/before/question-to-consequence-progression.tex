@@ -1,0 +1,24 @@
+% Author revision: one modeling step defines representations and their properties;
+% engineering decisions jointly inform design and selected enforcement, with feedback.
+\begin{tikzpicture}[font=\fontsize{11}{13}\selectfont,>=Stealth,
+ stage/.style={draw,rounded corners=3pt,fill=white,align=center,inner sep=7pt,text width=10.2cm},
+ edge/.style={-Stealth,line width=.65pt}]
+\node[stage,text width=5.8cm] (question) at (0,0) {\textbf{Engineering question}};
+\node[stage] (model) at (0,-2.0) {\textbf{Model and define properties}\\[5pt]
+ Representations: state machines · dependency graphs\\[3pt]
+ Properties: legal transitions · permitted dependencies};
+\node[stage] (analysis) at (0,-4.6) {\textbf{Analyze the modeled properties}\\[5pt]
+ State exploration · model checking · simulation\\[3pt]
+ Constraint solving · static analysis};
+\node[stage,text width=7.3cm] (evidence) at (0,-6.7) {\textbf{Interpret the evidence}};
+\node[stage] (decisions) at (0,-8.9) {\textbf{Make engineering decisions}\\[5pt]
+ Refine architecture and design\\[3pt]
+ Choose which obligations warrant enforcement\\[5pt]
+ Selected obligations $\rightarrow$ Alignment (\magebookref{part:3}{Chapter 3})};
+\draw[edge] (question.south) -- (model.north);
+\draw[edge] (model.south) -- (analysis.north);
+\draw[edge] (analysis.south) -- (evidence.north);
+\draw[edge] (evidence.south) -- (decisions.north);
+\draw[edge] (decisions.west) -- (-6.2,-8.9) -- (-6.2,-2.0) -- (model.west);
+\node[rotate=90,align=center,inner sep=0pt] at (-6.6,-5.45) {Revise model and properties};
+\end{tikzpicture}
