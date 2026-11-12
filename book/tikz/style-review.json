@@ -6214,47 +6214,6 @@
       }
     },
     {
-      "source": "book/assets/docable-execution-analysis.svg",
-      "candidate": "book/tikz/figures/docable-execution-analysis.tex",
-      "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
-      "candidate_sha256": "29e52c2b47470fa9f5199181d2ccdd59dcf87c80709da8cd1b36f3868e7bf0c0",
-      "receipt": "book/tikz/receipts/docable-execution-analysis.json",
-      "decision": "retained",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
-      "status": "reviewed",
-      "fill": "White nodes and container; the container boundary groups the two declarations. No tonal categories are needed.",
-      "bold": "The registry heading is bold to identify the shared source. Node and relation text is regular: the color drawing uses inherited D2 node/edge classes uniformly, without a contrasting weight-based category. Labels, containment, and solid versus dashed relations preserve the distinctions.",
-      "routing": "Vertical orthogonal edges; solid producer-before-consumer and scheduling use; dashed analytical projection. No diagonal exception.",
-      "shape": "Modestly rounded computation and consumer boxes; a thin rounded container groups registry facts.",
-      "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection.",
-      "validation": {
-        "date": "2026-11-05",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-        "page": 139,
-        "width_bp": 392.504,
-        "height_bp": 236.736,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 12,
-        "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-        "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-        "status": "passed",
-        "visual_review": "Color and native proofs inspected: registry computation order feeds aligned execution and analysis consumers, with a distinct dashed analytical projection."
-      },
-      "book_references": [],
-      "reviewed_visually": true,
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "1ac009c1329ffa31af3071d43f90d003e8f50a52f9160c73cbc8937719114e09",
-        "source_sha256": "65330b87bf29b24447420fc00d292acdf2f49adef1325e0749a2f68527bbcd94",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
-      }
-    },
-    {
       "source": "book/assets/deliver-context-two-layer.svg",
       "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
       "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",

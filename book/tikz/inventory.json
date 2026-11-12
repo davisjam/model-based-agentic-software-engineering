@@ -1779,19 +1779,6 @@
     "conversion": "Keep photograph; grayscale raster comparison, not meaningful TikZ geometry"
   },
   {
-    "chapter": "2.5-system-knowledge",
-    "source": "assets/docable-execution-analysis.svg",
-    "caption": "*One declared dependency, two uses.* In the DOCX pipeline, with table-header repair enabled, the registry's read/write declarations supply the repair-before-check dependency to scheduling and to an analytical projection. The figure shows one Office resource dependency; other ordering constraints are omitted. PDF uses parallel declarations with blocking correspondence checks, as explained below.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/assets/docable-execution-analysis.d2",
-    "receipt": "book/assets/docable-execution-analysis.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; DOCX resource dependency supplies execution and analytical projection.",
-    "svg_title": "One declared DOCX dependency, two uses",
-    "svg_description": "The DOCX registry declares that table-header repair writes table headers and the table-structure check reads them, so repair precedes the check. The registry supplies this dependency to execution machinery through a solid arrow and to a Python analytical graph through a dashed projection arrow. Both uses share the declarations; PDF is outside the diagram."
-  },
-  {
     "chapter": "3.1-where-obligations-can-be-enforced",
     "source": "assets/deliver-context-two-layer.svg",
     "caption": "*Selecting context for the work.* Standing instructions and a retrieved task slice supply the agent’s context. DocAble repeats selection after planning, when the anticipated files are clearer. This information path supports reasoning; the separate extraction gate checks that the required discovery event occurred.",

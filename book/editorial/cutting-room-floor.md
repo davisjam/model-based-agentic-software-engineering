@@ -19697,3 +19697,19 @@ Replaced at the author’s request by a compact classification table. Mathematic
 \label{permitted-vs-acceptable}
 \end{figure}
 ```
+
+
+## Execution and analysis dependency figure — 2026-11-12
+
+Retired at the author’s request: the prose already explains the two consumers of the shared declaration. The complete example and Office/PDF contrast remain unchanged. Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, revision `db81e1bb93ad3f08da534e91657a526cef54a8b8`, figure lines [138, 143]. Original artwork remains available; registry records are preserved in `retired-execution-analysis-20261112.json`.
+
+```latex
+\autoref{docable-execution-analysis} follows this one Office-format dependency to its two consumers.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-execution-analysis-6a9c67363c.pdf}
+\caption{\emph{One declared dependency, two uses.} In the DOCX pipeline, with table-header repair enabled, the registry\textquotesingle s read/write declarations supply the repair-before-check dependency to scheduling and to an analytical projection. The figure shows one Office resource dependency; other ordering constraints are omitted. PDF uses parallel declarations with blocking correspondence checks, as explained below.}
+\label{docable-execution-analysis}
+\end{figure}
+```

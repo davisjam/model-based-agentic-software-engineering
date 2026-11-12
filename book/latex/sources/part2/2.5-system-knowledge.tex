@@ -133,14 +133,7 @@ The models are represented as data rather than importing the implementation they
 
 DocAble\textquotesingle s remediation subsystem illustrates how one set of declarations can support both execution and analysis. For a DOCX job with table-header repair enabled, one pass marks table headers and another checks the table\textquotesingle s structure. The registry declares that the repair pass writes table-header information and that the structure check reads it.
 
-Matching that write to that read gives a dependency: repair must precede the check. The scheduler uses the dependency to order the work, so the check examines the table after the header pass has run. \autoref{docable-execution-analysis} follows this one Office-format dependency to its two consumers.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/docable-execution-analysis-6a9c67363c.pdf}
-\caption{\emph{One declared dependency, two uses.} In the DOCX pipeline, with table-header repair enabled, the registry\textquotesingle s read/write declarations supply the repair-before-check dependency to scheduling and to an analytical projection. The figure shows one Office resource dependency; other ordering constraints are omitted. PDF uses parallel declarations with blocking correspondence checks, as explained below.}
-\label{docable-execution-analysis}
-\end{figure}
+Matching that write to that read gives a dependency: repair must precede the check. The scheduler uses the dependency to order the work, so the check examines the table after the header pass has run.
 
 % <!-- point: a-separate-python-view-projects-the-model-for-analysis | The Office analytical graph projects resource edges from the same registry read/write metadata used by scheduling; the PDF projection uses parallel typed declarations held in correspondence by blocking checks. -->
 
