@@ -110,7 +110,7 @@ In both, the engineer decides which workloads and failures matter, what behavior
 
 ## Structure of this unit
 
-**Lecture 1, Performance Engineering.** We build workload and capacity models for the service, define latency, throughput, and utilization, then use measurements and simple quantitative models to locate bottlenecks and compare interventions. To practice this, see {exercise:improve-reservation-performance}.
+**Lecture 1, Performance Engineering.** We model how requests move through queues and processors, characterize the workload, and use measurements to identify bottlenecks. We then compare configuration changes and architectural optimizations, considering their costs and constraints, before establishing whether an improvement worked. To practice this, see {exercise:improve-reservation-performance}.
 
 **Lecture 2, Reliability Engineering.** We analyze what can fail using failure mode and effects analysis, decompose one unacceptable outcome with a fault tree, specify recovery behavior as a state machine, and only then select mitigations and the evidence justifying them. To practice this, see {exercise:fault-tree-gates} and {exercise:reservation-may-already-exist}.
 
@@ -118,7 +118,7 @@ Both follow the Act III method: identify the problem, model what matters, exerci
 
 ## Performance engineering
 
-A reservation service passes its functional tests. Students can search for rooms, make reservations, and retrieve them after a restart. Then registration begins, requests arrive at forty times the usual rate, and students start receiving timeouts. The software has not changed. What has?
+Registration begins, requests arrive at forty times their usual rate, and students start receiving timeouts. The software has not changed. What has?
 
 Performance engineering examines how a system behaves under a workload. Before changing the implementation, we need to know what work is arriving, what the system does with that work, and what performance we require. We also need to distinguish a service that responds too slowly from one that may eventually exhaust its resources and stop responding altogether.
 
@@ -132,7 +132,7 @@ This model distinguishes waiting time from processing time. A request waiting fo
 
 ![Two columns run down the figure, aligned row by row. The left column, headed REQUEST PATH, begins with an HTTP REQUEST pill and flows down through three stages: an HTTP HANDLER that validates the input, BOOKING LOGIC that evaluates the reservation rules, and a DATABASE that reads and writes the shared reservation state; a final arrow reaches a RESPONSE pill. The right column, headed RESOURCE DEMANDED, names what each stage consumes, row for row. Beside the HTTP handler: application CPU, for parsing and validation. Beside the booking logic: application CPU, for rule evaluation. Beside the database, drawn in the qualifying color: database CPU and disk input/output, plus waiting for a connection from the pool, for row locks, and for queries already queued ahead of this one. A footer reads that adding application CPU cannot reduce the time a request spends waiting on the database, and that the engineer measures where the time goes before choosing where to add capacity. A closing italic note reads that waiting is not computing: a saturated connection pool consumes elapsed time without consuming CPU.](figures/request-path-and-resource-demand.svg)
 
-Queues also explain how performance problems can become failures. Suppose 120 requests arrive each second while a processor completes only 100. If those rates persist and no work is rejected, the backlog grows by approximately twenty requests per second. A bounded queue eventually rejects additional work; an unbounded queue may continue consuming memory until the system exhausts its resources. Rejection is not successful service, but it may protect the system from a more extensive failure.
+Queues also explain how performance problems can become failures. Suppose 120 requests arrive each second while a processor completes only 100. If those rates persist and no work is rejected, the backlog grows by approximately twenty requests per second. A bounded queue eventually rejects additional work. An unbounded in-memory queue can continue consuming memory until the system exhausts its resources. Rejection is not successful service, but it may protect the system from a more extensive failure.
 
 The engineer must therefore understand not only which components exist, but where work can accumulate, what limits each resource, and what happens when those limits are reached.
 
@@ -190,7 +190,7 @@ Other optimizations change the work itself. **Caching** avoids repeated computat
 
 Each technique has conditions under which it helps. A cache consumes memory and introduces consistency concerns. Parallelism may exploit idle cores, but can introduce synchronization and contention. Streaming can reduce memory consumption while increasing remote access or coordination.
 
-Some optimizations are effectively free lunches within the relevant operating conditions. Eliminating redundant work may improve performance without materially increasing another runtime cost. Using an idle core may improve latency without purchasing additional hardware. Neither improvement is necessarily free in every environment, and implementing and validating the change still requires engineering effort.
+Some optimizations are effectively free lunches within the relevant operating conditions. Eliminating redundant work may improve performance without materially increasing another runtime cost. Using an idle core may reduce latency without additional hardware, although synchronization, memory, and power costs still matter. Even an optimization with no consequential runtime downside requires engineering effort to implement and validate.
 
 The operating environment changes the judgment. Embedded systems may be constrained by fixed memory, deadlines, energy, and thermal budgets. Cloud services may have elastic capacity but incur costs for memory, computation, storage, and communication. The same optimization can be attractive in one environment and inappropriate in another.
 
@@ -203,8 +203,6 @@ A media-heavy PowerPoint presentation of roughly 250 MB exceeded the memory avai
 The eventual solution changed the representation. Skeletonization separated document structure from large media objects, leaving references in the worker and streaming media when needed. This reduced the dependence of resident worker memory on aggregate media size, subject to explicit assumptions about structural size, streaming buffers, and active working state.
 
 The change illustrates **active alignment**. A memory model states the required property; measurements identify where the implementation violates it; implementation changes are made and evaluated against the model. Once acceptable behavior is established, appropriate checks can preserve the property during later changes. This is **passive alignment**.
-
-The important result is not that one large document stopped crashing. It is that an observed failure produced a model explaining the resource relationship, and that model could guide and constrain subsequent engineering.
 
 ## Establishing that an improvement worked
 
