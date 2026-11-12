@@ -5,11 +5,25 @@ sessions:
   - "Reliability Engineering"
 readings:
   groups:
-    - heading: Reasoning about capacity before measuring it
+    - heading: Modeling and improving a real system
       items:
-        - cite: lazowska1984
-          locator: 'chapters 1, 3, and 5'
-          annotation: 'Lazowska, Zahorjan, Graham and Sevcik, [*Quantitative System Performance: Computer System Analysis Using Queueing Network Models*](https://homes.cs.washington.edu/~lazowska/qsp/) (Prentice-Hall, 1984; the authors hold the copyright and make the full text freely available). Read chapter 1 for the overview, chapter 3 on the fundamental laws, and chapter 5 on bounds. The remaining chapters are reference material and are not assigned. Chapter 3 derives Little''s Law and the utilization law from quantities you can actually measure, and that derivation is the point to carry away: these are consistency relationships among measured averages, not predictions of how response time will rise with load. Chapter 5 then shows how a single saturated resource bounds the throughput of the whole system before any detailed model is built. The notation is heavier than this unit requires and the hardware examples date from the 1980s; read for the reasoning rather than the arithmetic.'
+        - cite: davis2026mage
+          locator: 'chap. 4, §§4.1–4.2'
+          annotation: '{mage:4.1} and {mage:4.2} Davis, 2026. Read the DocAble performance episode. The chapter follows an observed memory failure through changes in representation, execution, and resource models. The idea to carry away is that a performance improvement should be justified by an explanation of the relevant resource cost, not merely by a better benchmark result. Active alignment changes the implementation to satisfy a model; passive alignment preserves the established obligation during later changes.'
+    - heading: Understanding queues and overload
+      items:
+        - cite: yanacek_backlogs
+          annotation: 'Yanacek, ["Avoiding Insurmountable Queue Backlogs"](https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/), Amazon Builders'' Library. Read it for its account of how queues accumulate work, why long backlogs are dangerous, and how services can limit overload. Connect the examples to the lecture''s model of queues and processors. The purpose is practical reasoning about capacity, not queueing-theory derivations.'
+    - heading: Measuring where time and resources go
+      items:
+        - cite: gregg_use_method
+          annotation: 'Gregg, ["The USE Method"](https://www.brendangregg.com/usemethod.html). Read the method and its examples of resource utilization, saturation, and errors. Apply the distinction to the reservation service: database CPU may be available while the connection pool is saturated. The important question is which resource is limiting useful work, and the method applies to thread pools and file descriptors, not only to CPUs and disks.'
+        - cite: opentelemetry_traces
+          annotation: 'OpenTelemetry, ["Traces"](https://opentelemetry.io/docs/concepts/signals/traces/). Read the introduction and the explanations of spans and context propagation. A trace correlates operations across components, which is what lets an engineer distinguish processing time from waiting time and locate the source of end-to-end latency. This is the concrete form of the queue-and-processor model once it is instrumented.'
+    - heading: Further reading
+      items:
+        - cite: ousterhout2018
+          annotation: 'Ousterhout, "Always Measure One Level Deeper" (2018). Recommended rather than required. An aggregate performance measurement is often insufficient to identify the mechanism worth changing: end-to-end latency says something is slow, a trace says where the time is spent, and a deeper investigation explains why that operation is expensive. In DocAble, peak memory was the observed problem and media residency was the mechanism.'
     - heading: What a service should do when asked for more than it can deliver
       items:
         - cite: beyer2016sre
@@ -101,13 +115,29 @@ Both follow the Act III method: identify the problem, model what matters, exerci
 
 ## Performance engineering
 
-Three measurements organize the subject. **Latency** is the elapsed time to complete one operation. **Throughput** is completed work per unit time. **Utilization** is the fraction of a resource's capacity that is occupied.
+A reservation service passes its functional tests. Students can search for rooms, make reservations, and retrieve them after a restart. Then registration begins, requests arrive at forty times the usual rate, and students start receiving timeouts. The software has not changed. What has?
 
-None substitutes for another. A service can complete many requests per second while a tenth of its users wait unacceptably long, because an average conceals its distribution.
+Performance engineering examines how a system behaves under a workload. Before changing the implementation, we need to know what work is arriving, what the system does with that work, and what performance we require. We also need to distinguish a service that responds too slowly from one that may eventually exhaust its resources and stop responding altogether.
 
-## Characterizing workload and capacity
+Three measurements recur throughout the analysis. **Latency** is the elapsed time required to complete an operation. **Throughput** is completed work per unit time. **Utilization** is the fraction of a resource's capacity being used. None substitutes for the others. A service may complete many requests per second while some users wait unacceptably long, and low CPU utilization does not establish that other resources have available capacity.
 
-A performance requirement is meaningful only relative to a workload. The reservation service may be adequate when ten students browse rooms on an ordinary afternoon and unusable when four hundred try to book in the first minutes of registration.
+## Modeling the system
+
+A useful first model represents the system as a network of queues and processors. Requests arrive, wait for resources, undergo processing, and eventually complete. A reservation request might wait for an application worker, execute booking logic, wait for a database connection, execute a query, and wait for a row lock. Each stage contributes to the elapsed response time.
+
+This model distinguishes waiting time from processing time. A request waiting for a database connection consumes elapsed time without necessarily consuming application CPU. Adding application workers will not remove that wait if the database connection pool remains the limiting resource. The figure traces one reservation request through those stages and names the resource each one demands.
+
+![Two columns run down the figure, aligned row by row. The left column, headed REQUEST PATH, begins with an HTTP REQUEST pill and flows down through three stages: an HTTP HANDLER that validates the input, BOOKING LOGIC that evaluates the reservation rules, and a DATABASE that reads and writes the shared reservation state; a final arrow reaches a RESPONSE pill. The right column, headed RESOURCE DEMANDED, names what each stage consumes, row for row. Beside the HTTP handler: application CPU, for parsing and validation. Beside the booking logic: application CPU, for rule evaluation. Beside the database, drawn in the qualifying color: database CPU and disk input/output, plus waiting for a connection from the pool, for row locks, and for queries already queued ahead of this one. A footer reads that adding application CPU cannot reduce the time a request spends waiting on the database, and that the engineer measures where the time goes before choosing where to add capacity. A closing italic note reads that waiting is not computing: a saturated connection pool consumes elapsed time without consuming CPU.](figures/request-path-and-resource-demand.svg)
+
+Queues also explain how performance problems can become failures. Suppose 120 requests arrive each second while a processor completes only 100. If those rates persist and no work is rejected, the backlog grows by approximately twenty requests per second. A bounded queue eventually rejects additional work; an unbounded queue may continue consuming memory until the system exhausts its resources. Rejection is not successful service, but it may protect the system from a more extensive failure.
+
+The engineer must therefore understand not only which components exist, but where work can accumulate, what limits each resource, and what happens when those limits are reached.
+
+## Characterizing the workload
+
+A system model describes how work is processed. A workload model describes the work arriving.
+
+For the reservation service, the workload includes request rate, operation mix, concurrency, resource demand, and variation over time. Searches and bookings may arrive at the same rate but place very different demands on the database. Registration can produce bursts that are absent during ordinary use.
 
 | Workload property | Engineering question | Reservation example |
 |---|---|---|
@@ -117,25 +147,75 @@ A performance requirement is meaningful only relative to a workload. The reserva
 | Service demand | What does each operation consume? | Database queries, CPU time |
 | Variation | How does demand change over time? | Registration bursts |
 
-A workload model is a purposeful reduction, not a transcript of user behavior. A workload made mostly of searches demands different database work than one made mostly of writes, so equal request rates can produce very different response times.
+A performance requirement is meaningful only against a stated workload. A service that satisfies a one-second latency requirement during an ordinary afternoon may fail it during registration.
 
-**Little's Law** relates three of these quantities. For a stable system, over a period in which arrivals and completions balance, `L = λW`: the average number of requests in the system equals the average completion rate multiplied by the average time each spends there. At 100 requests per second and a mean response time of 0.2 seconds, 20 requests are in the system. It holds under remarkably general conditions, which makes it a useful consistency check on measurements. It is not a capacity model: it neither identifies the bottleneck nor predicts response time from capacity, because `W` is a measured input rather than something it derives.
+Latency is also a distribution. The median describes the experience of the middle request; p95 and p99 expose increasingly slow portions of the workload. A requirement that 95% of requests complete within one second cannot be evaluated from mean latency alone.
 
-**The M/M/1 model** predicts what Little's Law cannot, under assumptions that deserve equal prominence with its results: one server, Poisson arrivals, exponentially distributed service times, and a stable queue with arrival rate λ below service rate μ. Mean time in the system is then `W = 1/(μ − λ)`, or `(1/μ)/(1 − ρ)` at utilization `ρ = λ/μ`. At 50% utilization that is twice the unloaded service time; at 90%, ten times; at 99%, one hundred times.
+## Relating workload, concurrency, and capacity
 
-The result to carry away is not the formula but what it demonstrates: a resource can have ample average capacity while having almost none left to absorb variation. Random bursts create queues even when average arrivals stay below capacity, and higher utilization means longer drains. Strictly, the curve has no mathematically distinguished knee. Response time diverges as utilization approaches 100%, and the engineer picks an operational threshold from the latency requirement and the workload's variability. Real systems need not satisfy the four assumptions, and a model applied outside them predicts confidently and wrongly.
+**Little's Law** relates three measured averages for a stable system: `L = λW`. Here `L` is the average number of requests in the system, `λ` is average throughput, and `W` is average time in the system. At 100 completed requests per second and 0.2 seconds per request, approximately twenty requests are outstanding on average.
 
-To practice this, see {lab:performance-knee}.
+This relationship is useful for estimating average concurrency and checking measurements. It does not identify where requests are waiting, determine maximum concurrency, or independently predict latency from throughput.
 
-## Finding bottlenecks
+To predict how waiting changes with load, we need additional assumptions about the system. A simple single-server queueing model illustrates the result: as utilization approaches capacity, response time can increase sharply. Real systems may not satisfy that model's assumptions, but the phenomenon matters. Engineers must leave enough capacity to accommodate variation rather than sizing a system solely for its average workload.
 
-Several components do work to satisfy one reservation request. An HTTP handler validates the input, application logic evaluates the booking rules, and the database reads and writes shared state.
+To explore the effect, see {lab:performance-knee}.
 
-![Two columns run down the figure, aligned row by row. The left column, headed REQUEST PATH, begins with an HTTP REQUEST pill and flows down through three stages: an HTTP HANDLER that validates the input, BOOKING LOGIC that evaluates the reservation rules, and a DATABASE that reads and writes the shared reservation state; a final arrow reaches a RESPONSE pill. The right column, headed RESOURCE DEMANDED, names what each stage consumes, row for row. Beside the HTTP handler: application CPU, for parsing and validation. Beside the booking logic: application CPU, for rule evaluation. Beside the database, drawn in the qualifying color: database CPU and disk input/output, plus waiting for a connection from the pool, for row locks, and for queries already queued ahead of this one. A footer reads that adding application CPU cannot reduce the time a request spends waiting on the database, and that the engineer measures where the time goes before choosing where to add capacity. A closing italic note reads that waiting is not computing: a saturated connection pool consumes elapsed time without consuming CPU.](figures/request-path-and-resource-demand.svg)
+## Measuring and diagnosing performance
 
-Adding application replicas will not reduce response time if requests spend most of their elapsed time waiting for the database. Adding database capacity may accomplish little if an inefficient access pattern issues unnecessary queries. So the engineer measures where the time goes before choosing where to spend. Profiling attributes time inside one process; traces attribute it across components; execution plans expose the work a query performs.
+A system model tells us where waiting could occur. Instrumentation tells us where it actually occurs.
 
-A bottleneck is not simply the busiest resource. It is the constraint whose relief would do most to raise useful throughput, or bring response times back within bounds, for the workload under consideration. Relieving it usually moves the constraint elsewhere, so every intervention earns a fresh measurement.
+A trace records the operations involved in servicing a request. Recording when work enters and leaves queues, and when processing begins and ends, lets engineers distinguish waiting from computation. Correlated spans reconstruct the request's path across components.
+
+Different measurements answer different questions. CPU profiling identifies where processor time is consumed. Tracing exposes elapsed time across operations, including time spent waiting. Resource metrics reveal utilization, saturation, and errors. Database execution plans explain the work performed by individual queries.
+
+A bottleneck is the constraint whose relief would improve useful throughput or bring response times within the required bounds. It is not necessarily the component with the highest CPU utilization.
+
+Suppose application CPU utilization is modest, but every database connection is occupied. Adding application replicas may increase the number of requests waiting for connections without materially improving throughput. The next measurement should establish why connections remain occupied: slow queries, lock waits, long transactions, or connections retained unnecessarily.
+
+Relieving one bottleneck often exposes another. Performance improvement is therefore iterative: measure, change, and measure again.
+
+## Improving performance
+
+Once the limiting cost is understood, several kinds of intervention are available.
+
+**Configuration tuning** changes how existing components operate. Examples include adjusting worker concurrency, connection-pool size, queue limits, cache capacity, and timeouts. These parameters interact. Increasing concurrency can improve throughput until another shared resource becomes saturated. Shortening timeouts can reduce waiting while increasing the number of failed requests.
+
+The tuning problem can be expressed as choosing a configuration that balances objectives such as latency and cost while satisfying constraints on errors, memory, connections, or other resources. A configuration that works for today's workload may not work after demand changes. Engineers may transfer settings from similar systems, search parameter combinations, or automate experiments, but every candidate requires evaluation against a representative workload.
+
+Other optimizations change the work itself. **Caching** avoids repeated computation or retrieval. **Batching** amortizes fixed overhead. **Better algorithms and data structures** reduce work per operation. **Parallelism** executes independent work concurrently. **Changing the placement** of data or computation can reduce communication. **Streaming** reduces the amount of input that must remain resident in memory.
+
+Each technique has conditions under which it helps. A cache consumes memory and introduces consistency concerns. Parallelism may exploit idle cores, but can introduce synchronization and contention. Streaming can reduce memory consumption while increasing remote access or coordination.
+
+Some optimizations are effectively free lunches within the relevant operating conditions. Eliminating redundant work may improve performance without materially increasing another runtime cost. Using an idle core may improve latency without purchasing additional hardware. Neither improvement is necessarily free in every environment, and implementing and validating the change still requires engineering effort.
+
+The operating environment changes the judgment. Embedded systems may be constrained by fixed memory, deadlines, energy, and thermal budgets. Cloud services may have elastic capacity but incur costs for memory, computation, storage, and communication. The same optimization can be attractive in one environment and inappropriate in another.
+
+## A case study: DocAble
+
+Chapter 4 of *Model-Based Agentic Engineering* follows a performance problem in DocAble, a document-accessibility remediation system.
+
+A media-heavy PowerPoint presentation of roughly 250 MB exceeded the memory available to a worker. The initial architecture retained document structure and media together. Dividing documents into page chunks reduced the working set, but each chunk still retained its media.
+
+The eventual solution changed the representation. Skeletonization separated document structure from large media objects, leaving references in the worker and streaming media when needed. This reduced the dependence of resident worker memory on aggregate media size, subject to explicit assumptions about structural size, streaming buffers, and active working state.
+
+The change illustrates **active alignment**. A memory model states the required property; measurements identify where the implementation violates it; implementation changes are made and evaluated against the model. Once acceptable behavior is established, appropriate checks can preserve the property during later changes. This is **passive alignment**.
+
+The important result is not that one large document stopped crashing. It is that an observed failure produced a model explaining the resource relationship, and that model could guide and constrain subsequent engineering.
+
+## Establishing that an improvement worked
+
+An optimization is not complete when a benchmark improves once.
+
+Before evaluating a change, establish acceptance conditions. For the reservation service, these might include p95 latency at or below one second during registration, sufficient completed throughput, bounded connection-pool waiting, and controlled behavior when offered load exceeds capacity.
+
+The test workload must reproduce the relevant operation mix, concurrency, bursts, data size, and cache state. Repeated measurements help distinguish a genuine improvement from variation.
+
+An improvement may also move the bottleneck. After shortening database connection holds, the application CPU or a row lock may become the limiting resource. The engineer must measure the resulting system rather than assume that removing the original bottleneck completes the work.
+
+To practice this reasoning, see {exercise:improve-reservation-performance}.
+
+Performance and reliability meet at overload. Bounded queues, admission control, and timeouts can protect resources, but may reject work or leave clients uncertain about outcomes. Retrying failed requests can increase the load on an already saturated service. The next lecture examines what the system must do when components fail and how to establish that its recovery behavior is acceptable.
 
 ## Reliability engineering
 
