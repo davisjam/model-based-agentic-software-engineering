@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/intervention-boundaries.svg",
+  "candidate": "book/tikz/figures/intervention-boundaries.tex",
+  "receipt": "book/tikz/receipts/intervention-boundaries.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
+  "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+  "candidate_sha256": "345ad2d9f5ef4c774d8bb95f30accd7ebd5746418b0ac45454f283a1e12a735c"
+}

@@ -11376,67 +11376,263 @@
     {
       "source": "book/assets/intervention-boundaries.svg",
       "candidate": "book/tikz/figures/intervention-boundaries.tex",
+      "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+      "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
       "decision": "refined",
-      "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
-      "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
-      "evidence": [
+      "reviewed_visually": true,
+      "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+      "validation": {
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+        "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+        "page": 1,
+        "width_bp": 447.302,
+        "height_bp": 274.739,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 19,
+        "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+        "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/typography-review.json",
+      "checks": [
         {
-          "source_text": "action",
-          "source_style": "weight 600; normal; source size 20",
-          "semantic_role": "boundary category",
-          "candidate_text": "Action",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/intervention-boundaries.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "action",
-            "matching_fragment_count": 1
-          }
+          "text": "GUIDANCE",
+          "bold": true,
+          "italic": false
         },
         {
-          "source_text": "enforced only through",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Enforced only through a consuming mechanism",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/intervention-boundaries.svg",
-            "element_text_path": "/svg/text[16]/text()",
-            "text_element_context": "enforced only through",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
-      "checks": [
+          "text": "ENFORCEMENT BOUNDARIES",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Reasoning input",
+          "bold": true,
+          "italic": false
+        },
         {
           "text": "Action",
           "bold": true,
           "italic": false
         },
         {
-          "text": "Enforced only through a consuming mechanism",
+          "text": "Work unit",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Artifact / runtime",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Boundary",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Permissions",
+          "text": "Scope",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Examples",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Context supplied to the reasoner",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "One proposed action",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Composed body of work",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Resulting artifact or running state",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Instructions models examples",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Permissions hooks tool restrictions",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Task-completion checks merge gates deployment gates",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "API boundaries schemas runtime permissions",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Increasing scope of work considered",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "More context for evaluating obligations",
+          "bold": false,
+          "italic": true
         }
       ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 39,
-        "width_bp": 396.046,
-        "height_bp": 244.205,
-        "minimum_prose_font_pt": 9.5,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 3
-      }
+      "evidence": [
+        {
+          "source_text": "GUIDANCE",
+          "source_style": "11 SVG units; bold",
+          "candidate_text": "GUIDANCE",
+          "candidate_style": "bold",
+          "semantic_role": "group or boundary name"
+        },
+        {
+          "source_text": "ENFORCEMENT BOUNDARIES",
+          "source_style": "11 SVG units; bold",
+          "candidate_text": "ENFORCEMENT BOUNDARIES",
+          "candidate_style": "bold",
+          "semantic_role": "group or boundary name"
+        },
+        {
+          "source_text": "Reasoning input",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Reasoning input",
+          "candidate_style": "bold",
+          "semantic_role": "group or boundary name"
+        },
+        {
+          "source_text": "Action",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Action",
+          "candidate_style": "bold",
+          "semantic_role": "group or boundary name"
+        },
+        {
+          "source_text": "Work unit",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Work unit",
+          "candidate_style": "bold",
+          "semantic_role": "group or boundary name"
+        },
+        {
+          "source_text": "Artifact / runtime",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Artifact / runtime",
+          "candidate_style": "bold",
+          "semantic_role": "group or boundary name"
+        },
+        {
+          "source_text": "Boundary",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "Boundary",
+          "candidate_style": "italic",
+          "semantic_role": "row label or scope annotation"
+        },
+        {
+          "source_text": "Scope",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "Scope",
+          "candidate_style": "italic",
+          "semantic_role": "row label or scope annotation"
+        },
+        {
+          "source_text": "Examples",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "Examples",
+          "candidate_style": "italic",
+          "semantic_role": "row label or scope annotation"
+        },
+        {
+          "source_text": "Context supplied to the reasoner",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Context supplied to the reasoner",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "One proposed action",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "One proposed action",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "Composed body of work",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Composed body of work",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "Resulting artifact or running state",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Resulting artifact or running state",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "Instructions models examples",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Instructions models examples",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "Permissions hooks tool restrictions",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Permissions hooks tool restrictions",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "Task-completion checks merge gates deployment gates",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Task-completion checks merge gates deployment gates",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "API boundaries schemas runtime permissions",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "API boundaries schemas runtime permissions",
+          "candidate_style": "regular",
+          "semantic_role": "scope description or concrete examples"
+        },
+        {
+          "source_text": "Increasing scope of work considered",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "Increasing scope of work considered",
+          "candidate_style": "italic",
+          "semantic_role": "row label or scope annotation"
+        },
+        {
+          "source_text": "More context for evaluating obligations",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "More context for evaluating obligations",
+          "candidate_style": "italic",
+          "semantic_role": "row label or scope annotation"
+        }
+      ]
     },
     {
       "source": "book/assets/three-relations.svg",

@@ -1,0 +1,226 @@
+{
+  "source": "book/assets/intervention-boundaries.svg",
+  "chapter": "3.1-where-obligations-can-be-enforced",
+  "claim": "*Intervention boundaries.* Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.",
+  "topology": {
+    "description": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+    "native_draw_commands": [
+      "\\draw[edge] (-6.6,-4.7) -- node[lab,above] {Increasing semantic grain (not enforcement strength)} (6.6,-4.7);"
+    ]
+  },
+  "required_terms": [
+    "GUIDANCE",
+    "ENFORCEMENT CAN OCCUR HERE",
+    "Reasoning",
+    "input Action W ork unit Artifact/ runtime",
+    "Prompts · briefs",
+    "Models · examples",
+    "Permissions",
+    "Hooks · tools",
+    "Task · PR · build",
+    "Deployment",
+    "candidate",
+    "Types ·",
+    "API seams",
+    "Admission ·",
+    "runtime policy",
+    "Enforced",
+    "only through",
+    "a consuming",
+    "mechanism",
+    "Increasing semantic grain (not enforcement strength)",
+    "One attempted side effect The resulting system / state",
+    "Choose the earliest boundary where the obligation is legible",
+    "and the consequence can be affected."
+  ],
+  "bw_encoding": "Only the named enforcement territory uses 5%; guidance and all child boundary boxes remain white.",
+  "redesign": "Only the named enforcement territory uses 5%; guidance and all child boundary boxes remain white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "questions": [],
+  "alt": "Four boundary-name boxes span reasoning input, action, work unit and artifact or runtime. Their examples sit outside the boxes. Dashed enclosing regions distinguish Guidance from where Enforcement can occur; a horizontal semantic-grain arrow runs from one attempted side effect to the resulting system or state.",
+  "review": {
+    "reference": "authored SVG raster and labels, not D2 or caption alone",
+    "checks": [
+      "expansion/detail links",
+      "icons and prohibited-path marks",
+      "external annotations versus node content",
+      "node shapes and containment",
+      "direction and dashed meanings",
+      "grayscale semantic modes",
+      "native font legibility"
+    ],
+    "outcome": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "native_dimensions_cm": [
+      13.9716,
+      8.4979
+    ]
+  },
+  "fidelity_review": {
+    "stem": "intervention-boundaries",
+    "source": "book/assets/intervention-boundaries.svg",
+    "status": "corrected",
+    "evidence": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
+    "original_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/originals/intervention-boundaries.png",
+    "side_by_side_sheet": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/compare-36.png",
+    "candidate_render": "/private/tmp/mage-tikz-figures-1/tmp/tikz-qa/intervention-boundaries.png",
+    "original_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+    "native_sha256": "8ceb05ee560ff049a048b6287f9779dba3a5175a782fb30b691a559ecd2eee8c",
+    "page": 37,
+    "dimensions_cm": [
+      13.9716,
+      8.4979
+    ],
+    "diagnostics": [],
+    "strict_compile": "zero warnings/errors, overfull boxes or missing glyphs",
+    "manual_visual_comparison": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes"
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+    "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+    "fill": "Only the named enforcement territory uses 5%; guidance and all child boundary boxes remain white.",
+    "bold": "Source-derived emphasis includes Action. Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
+    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 39,
+      "width_bp": 396.046,
+      "height_bp": 244.205,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3
+    },
+    "book_references": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+    "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+    "reason": "Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
+    "evidence": [
+      {
+        "source_text": "action",
+        "source_style": "weight 600; normal; source size 20",
+        "semantic_role": "boundary category",
+        "candidate_text": "Action",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/intervention-boundaries.svg",
+          "element_text_path": "/svg/text[6]/text()",
+          "text_element_context": "action",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "enforced only through",
+        "source_style": "weight normal; italic; source size 20",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "Enforced only through a consuming mechanism",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/intervention-boundaries.svg",
+          "element_text_path": "/svg/text[16]/text()",
+          "text_element_context": "enforced only through",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "Action",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Enforced only through a consuming mechanism",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Permissions",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 39,
+      "width_bp": 396.046,
+      "height_bp": 244.205,
+      "minimum_prose_font_pt": 9.5,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 3,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Aligned the four intervention-boundary peers; retained intentionally distinct guidance/enforcement grouping panels.",
+    "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing intervention boundaries layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+      "after_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+      "before_dimensions_bp": [
+        396.0459899902344,
+        244.2050018310547
+      ],
+      "after_dimensions_bp": [
+        396.0459899902344,
+        244.2050018310547
+      ],
+      "before_font_sizes_pt": [
+        9.5,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        9.5,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 39,
+      "width_bp": 396.046,
+      "height_bp": 244.205
+    }
+  }
+}

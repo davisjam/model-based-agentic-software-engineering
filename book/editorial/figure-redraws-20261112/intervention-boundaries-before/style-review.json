@@ -1,0 +1,29 @@
+{
+  "source": "book/assets/intervention-boundaries.svg",
+  "candidate": "book/tikz/figures/intervention-boundaries.tex",
+  "receipt": "book/tikz/receipts/intervention-boundaries.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+  "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+  "fill": "Only the named enforcement territory uses 5%; guidance and all child boundary boxes remain white.",
+  "bold": "Source-derived emphasis includes Action. Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
+  "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 39,
+    "width_bp": 396.046,
+    "height_bp": 244.205,
+    "minimum_prose_font_pt": 9.5,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 3
+  },
+  "book_references": []
+}

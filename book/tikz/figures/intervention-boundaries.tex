@@ -1,23 +1,54 @@
-\begin{tikzpicture}[font=\fontsize{10}{12}\selectfont,>=Stealth,
-n/.style={draw=black!75,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
-note/.style={align=center,inner sep=2pt,font=\fontsize{9.5}{11.5}\selectfont},
-head/.style={note,font=\bfseries\fontsize{10.5}{12.5}\selectfont},
-edge/.style={-Stealth,line width=.65pt},lab/.style={fill=white,inner sep=2pt,align=center,font=\fontsize{9.5}{11.5}\selectfont}]
-
-\foreach \i/\x/\title/\shade in {0/-5.1/{Reasoning\\input}/20,1/-1.7/Action/30,2/1.7/{Work unit}/30,3/5.1/{Artifact / runtime}/30} {
- \node[n,fill=white,text width=2.6cm,minimum height=1.2cm] (n\i) at (\x,0) {\textbf{\title}};}
-\node[note,text width=2.9cm] (a0) at (-5.1,-1.7) {Prompts · briefs\\Models · examples};
-\node[note,text width=2.9cm] (a1) at (-1.7,-1.7) {Permissions\\Hooks · tools};
-\node[note,text width=2.9cm] (a2) at (1.7,-1.7) {Task · PR · build\\Deployment candidate};
-\node[note,text width=2.9cm] (a3) at (5.1,-1.7) {Types · API seams\\Admission · runtime policy};
-\node[note,text width=2.9cm] (only) at (-5.1,-3.2) {\textit{Enforced only through}\\\textit{a consuming mechanism}};
-\begin{scope}[on background layer]
-\node[draw,dashed,fill=white,fit=(n0)(a0)(only),inner sep=7pt,label={[font=\bfseries\fontsize{10}{12}\selectfont]above:GUIDANCE}] {};
-\node[draw,dashed,fill=black!5,fit=(n1)(n2)(n3)(a1)(a2)(a3),minimum height=4.3cm,inner sep=7pt,label={[font=\bfseries\fontsize{10}{12}\selectfont]above:ENFORCEMENT CAN OCCUR HERE}] {};
-\end{scope}
-\draw[edge] (-6.6,-4.7) -- node[lab,above] {Increasing semantic grain (not enforcement strength)} (6.6,-4.7);
-\node[note,anchor=north west] at (-6.6,-5) {One attempted side effect};
-\node[note,anchor=north east] at (6.6,-5) {The resulting system / state};
-\node[note,text width=13cm] at (0,-6.2) {Choose the earliest boundary where the obligation is legible\\and the consequence can be affected.};
-
+% Author-requested four-column comparison; guidance separated from enforcement.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont]
+\hyphenpenalty=10000
+\draw[draw=black,fill=black!5,line width=.6pt,rounded corners=3pt] (148,4) rectangle (444,222);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (93,25) {GUIDANCE};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (296,25) {ENFORCEMENT BOUNDARIES};
+\draw[line width=.4pt] (142,10) -- (142,216);
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (50,44) rectangle (136,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (93.0,68) {Reasoning input};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (93.0,108) {Context supplied};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (93.0,120) {to the reasoner};
+\draw[line width=.4pt] (56,83) -- (130,83);
+\draw[line width=.4pt] (56,139) -- (130,139);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (93.0,167) {Instructions};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (93.0,179) {models};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (93.0,191) {examples};
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (154,44) rectangle (236,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (195.0,68) {Action};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (195.0,108) {One proposed};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (195.0,120) {action};
+\draw[line width=.4pt] (160,83) -- (230,83);
+\draw[line width=.4pt] (160,139) -- (230,139);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (195.0,167) {Permissions};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (195.0,179) {hooks};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (195.0,191) {tool restrictions};
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (244,44) rectangle (342,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (293.0,68) {Work unit};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (293.0,108) {Composed body};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (293.0,120) {of work};
+\draw[line width=.4pt] (250,83) -- (336,83);
+\draw[line width=.4pt] (250,139) -- (336,139);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (293.0,161) {Task-completion};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (293.0,173) {checks};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (293.0,185) {merge gates};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (293.0,197) {deployment gates};
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (350,44) rectangle (438,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (394.0,68) {Artifact / runtime};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (394.0,108) {Resulting artifact};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (394.0,120) {or running state};
+\draw[line width=.4pt] (356,83) -- (432,83);
+\draw[line width=.4pt] (356,139) -- (432,139);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (394.0,161) {API boundaries};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (394.0,173) {schemas};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (394.0,185) {runtime};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (394.0,197) {permissions};
+\node[anchor=base east,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (43,68) {Boundary};
+\node[anchor=base east,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (43,114) {Scope};
+\node[anchor=base east,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (43,181) {Examples};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (146,243) {Increasing scope of};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (146,255) {work considered};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (342,243) {More context for};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (342,255) {evaluating obligations};
+\draw[->,line width=.8pt] (50,270) -- (440,270);
 \end{tikzpicture}

@@ -19755,3 +19755,14 @@ Retired at the author’s request without relocation: the eight-worker example a
 % Superseded transition:
 A measurement can supply evidence without being a hard limit. Engineers must also decide who chooses the reference value, how the quantity is collected, and what action follows from the comparison. \magevalue{chapter:alignment} examines when and how to enforce such bounds.
 ```
+
+
+## Intervention boundaries — caption revision, 2026-11-12
+
+Replaced with the author’s supplied caption, distinguishing increasing scope from enforcement strength. Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex` at `2942b3293a3a440ee6debcf6800a770031e62345`.
+
+```latex
+\emph{Intervention boundaries.} Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.
+```
+
+The superseded intervention-boundaries artwork and its review records are preserved in `figure-redraws-20261112/intervention-boundaries-before/`. The new drawing separates guidance from enforcement and identifies Boundary, Scope, and Examples as aligned rows.

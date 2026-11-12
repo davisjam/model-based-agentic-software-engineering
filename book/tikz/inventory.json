@@ -466,15 +466,15 @@
   {
     "chapter": "3.1-where-obligations-can-be-enforced",
     "source": "assets/intervention-boundaries.svg",
-    "caption": "*Intervention boundaries.* Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.",
+    "caption": "*Intervention boundaries.* Guidance influences the reasoner; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates, but later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Four intervention boundaries: a guidance zone set apart from where enforcement can occur",
-    "svg_description": "Four boundaries sit in a row, ordered left to right by increasing semantic grain, not by\n    increasing strength of enforcement. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,\n    drawn agent-blue: prompts, briefs, engineering models, and examples shape reasoning input, and are enforced\n    only through a consuming mechanism. The other three — action, work unit, and artifact or runtime — sit\n    together in a zone labeled ENFORCEMENT CAN OCCUR HERE, drawn governance-rust: at the action boundary through\n    permissions, hooks, and tools; at the work-unit boundary through a task, a pull request, a build, a\n    deployment candidate; at the artifact or runtime boundary through types, API seams, admission, and\n    runtime policy. Place a mechanism at the earliest boundary where the obligation is legible and the\n    consequence can be affected."
+    "svg_title": "Intervention boundaries: guidance, actions, work, and artifacts",
+    "svg_description": "Four columns compare intervention boundaries. Reasoning input is guidance: context supplied to the reasoner, with instructions, models and examples. The three enforcement boundaries are action, covering one proposed action with permissions, hooks and tool restrictions; work unit, covering a composed body of work with task-completion checks, merge gates and deployment gates; and artifact or runtime, covering the resulting artifact or running state with API boundaries, schemas and runtime permissions. Rows identify Boundary, Scope and Examples. A rightward arrow indicates increasing scope of work considered and more context for evaluating obligations, not increasing enforcement strength."
   },
   {
     "chapter": "3.2-models-and-the-semantic-gap",

@@ -1638,16 +1638,51 @@
     {
       "source": "book/assets/intervention-boundaries.svg",
       "candidate": "book/tikz/figures/intervention-boundaries.tex",
-      "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
-      "candidate_sha256": "8ceb05ee560ff049a048b6287f9779dba3a5175a782fb30b691a559ecd2eee8c",
+      "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+      "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
       "decision": "refined",
-      "review": "Moved source annotations outside the four boundary-name boxes; restored guidance/enforcement enclosures, consuming-mechanism note and both semantic-grain endpoint labels. Gray fills distinguish guidance and enforcement positions.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        13.9716,
-        8.4979
-      ],
-      "strict_compile_diagnostics": []
+      "reviewed_visually": true,
+      "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+      "validation": {
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+        "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+        "page": 1,
+        "width_bp": 447.302,
+        "height_bp": 274.739,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 19,
+        "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+        "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/fidelity-review.json",
+      "checks": {
+        "icons_and_symbols": "The scope-axis arrow is retained, with both requested italic annotations. No implied enforcement-strength scale.",
+        "links_and_groups": "The only arrow is the straight rightward scope axis below the cards. It denotes increasing scope and additional evaluation context, not enforcement strength. A vertical divider and a separate enclosure distinguish guidance from enforcement.",
+        "annotation_placement": "Boundary/Scope/Examples labels are left of the guidance card, not inside it. Scope annotations sit above the bottom arrow.",
+        "line_breaks": "Whole-word line breaks keep all examples and scope descriptions at 10 pt."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0,
+          11.0
+        ],
+        "minimum": 10.0,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "monochrome": true,
+      "review": "Native and SVG proofs inspected at actual print width and 2×. Three row labels remain outside the first card. The horizontal separators, titles, scope rows and card top/bottom edges align. All supplied scope/example words are retained; line-separated examples replace the reference’s inline dot separators to fit without shrinking type. No internal headline or number. No clipping or overlap."
     },
     {
       "source": "book/assets/three-relations.svg",

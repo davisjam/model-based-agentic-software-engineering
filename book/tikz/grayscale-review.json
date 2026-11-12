@@ -1390,12 +1390,34 @@
   {
     "source": "book/assets/intervention-boundaries.svg",
     "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+    "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+      "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+      "page": 1,
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+      "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/grayscale-review.json",
     "receipt": "book/tikz/receipts/intervention-boundaries.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Guidance and enforcement-capable nodes use distinct gray roles inside separately labeled regions. Semantic-grain arrow does not rank enforcement strength.",
-    "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
-    "candidate_sha256": "345ad2d9f5ef4c774d8bb95f30accd7ebd5746418b0ac45454f283a1e12a735c"
+    "rationale": "Only the enforcement-boundaries enclosure uses light 5% gray. All four cards remain white; no tone implies increasing enforcement strength. Group headings are bold 11 pt; boundary names are bold 10 pt. Row labels and scope-arrow annotations are plain italic 10 pt. Scope descriptions and examples are regular 10 pt."
   },
   {
     "source": "book/assets/three-relations.svg",

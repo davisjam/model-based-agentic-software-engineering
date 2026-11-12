@@ -1,0 +1,1 @@
+Archived from 7985d43d29689602ddb311f36a4ad4a943ed1739 on 2026-11-12. Replaced by the author-requested four-column intervention-boundary drawing, with aligned Boundary, Scope and Examples rows and guidance separated from enforcement.

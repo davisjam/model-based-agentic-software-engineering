@@ -1,0 +1,65 @@
+{
+  "source": "book/assets/intervention-boundaries.svg",
+  "candidate": "book/tikz/figures/intervention-boundaries.tex",
+  "decision": "refined",
+  "source_sha256": "efa0ff945ee93333cfb530c22aba035424fdb8de922b8a9adeb1deb02295a253",
+  "candidate_sha256": "349a0a1073f4a494fd6754c01a44e5f2e70e8a4c3b160c6f70a5d489444a4121",
+  "evidence": [
+    {
+      "source_text": "action",
+      "source_style": "weight 600; normal; source size 20",
+      "semantic_role": "boundary category",
+      "candidate_text": "Action",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/intervention-boundaries.svg",
+        "element_text_path": "/svg/text[6]/text()",
+        "text_element_context": "action",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "enforced only through",
+      "source_style": "weight normal; italic; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Enforced only through a consuming mechanism",
+      "candidate_style": "italic",
+      "source_locator": {
+        "svg": "book/assets/intervention-boundaries.svg",
+        "element_text_path": "/svg/text[16]/text()",
+        "text_element_context": "enforced only through",
+        "matching_fragment_count": 1
+      }
+    }
+  ],
+  "reason": "Boundary category labels regain semibold-equivalent emphasis above regular examples; the consumer qualification is italic.",
+  "checks": [
+    {
+      "text": "Action",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Enforced only through a consuming mechanism",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Permissions",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 39,
+    "width_bp": 396.046,
+    "height_bp": 244.205,
+    "minimum_prose_font_pt": 9.5,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 3
+  }
+}
