@@ -40,7 +40,7 @@ const PUPPETEER = join(REPO, 'book', 'node_modules', 'puppeteer', 'lib', 'esm', 
   'puppeteer.js');
 
 /** The exercises, in the order the publishing workflow's matrix lists them. */
-const EXERCISES = ['performance-knee', 'n-plus-one', 'redos', 'release-factory', 'storage-cost',
+const EXERCISES = ['performance-lab', 'n-plus-one', 'redos', 'release-factory', 'storage-cost',
   'architecture-workbench'];
 
 const requested = process.argv.slice(2).filter((a) => !a.startsWith('-'));

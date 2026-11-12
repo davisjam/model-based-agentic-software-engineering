@@ -41,7 +41,7 @@ INTERACTIVE = HERE.parent
 
 #: The exercises, in the order the publishing workflow's matrix lists them.
 EXERCISES = (
-    "performance-knee",
+    "performance-lab",
     "n-plus-one",
     "redos",
     "release-factory",

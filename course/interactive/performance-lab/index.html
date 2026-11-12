@@ -120,6 +120,14 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px}
 .pred-right{color:var(--green);font-weight:700;font-size:13px}
 .pred-wrong{color:var(--brown);font-size:13px}
 .trace-table td{font-variant-numeric:tabular-nums}
+.exp{border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:10px 0}
+.exp h4{margin:0 0 4px;color:var(--brown);font-size:15px}
+.exp .q{font-weight:700;margin:0 0 6px}
+.exp dl{margin:6px 0 0;display:grid;grid-template-columns:132px 1fr;gap:4px 10px;font-size:13px}
+.exp dt{color:var(--gold);font-weight:700}
+.exp dd{margin:0}
+.exp .establishes{background:var(--cream);border-left:3px solid var(--gold);padding:7px 10px;
+  margin-top:9px;font-size:13px}
 </style>
 </head>
 <body>
@@ -174,6 +182,7 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px}
     <button class="tab active" role="tab" aria-selected="true" data-panel="results">Results</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="compare-panel">Compare</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="trace-panel">Request trace</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="exp-panel">Guided experiments</button>
   </div>
   <div class="panel" id="results">
     <p id="stale-note" hidden>The model changed since this run. Simulate again.</p>
@@ -188,6 +197,11 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px}
   </div>
   <div class="panel" id="compare-panel" hidden><div id="compare"></div></div>
   <div class="panel" id="trace-panel" hidden><div id="trace"></div></div>
+  <div class="panel" id="exp-panel" hidden>
+    <p class="small">Four experiments, in order. Each sets the laboratory up for you; the point is the
+       reasoning, not the clicking. Predict before you run — the prediction is the experiment.</p>
+    <div id="experiments"></div>
+  </div>
 
   <details>
     <summary>Model assumptions</summary>
@@ -1011,6 +1025,104 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px}
     sel.value = keep;
   }
 
+  // Four experiments following the lecture's arc: diagnose, quantify, then two
+  // DIFFERENT KINDS of intervention — add capacity, and reduce demand — because
+  // confusing those two is the mistake the whole unit exists to prevent.
+  const EXPERIMENTS = [
+    {
+      title: '1 · Where does the time actually go?',
+      question: 'The service is slow at registration peak. Which resource is limiting it?',
+      setup: { system: 'login', workload: 'peak' },
+      doThis: 'Predict which resource saturates, then run.',
+      lookAt: 'Resource utilization, and the queueing figures beneath it.',
+      expect: 'The login workers sit near 45% while the database runs near 75% and holds almost all '
+            + 'the waiting. Low utilization at one station does not mean the system has spare capacity.',
+      establishes: 'A bottleneck is found by measurement, not by intuition. Most people guess wrong, '
+                 + 'which is why the trace exists.',
+    },
+    {
+      title: '2 · Does Little’s Law hold?',
+      question: 'How much work is outstanding on average, and can we check our measurements agree?',
+      setup: { system: 'login', workload: 'normal' },
+      doThis: 'Run, read λ × W against the measured L, then change the arrival rate and run again.',
+      lookAt: 'The Little’s Law panel.',
+      expect: 'λ × W matches the measured average occupancy on every stable run, at any arrival rate.',
+      establishes: 'Little’s Law is a consistency relationship among measured averages. It does not '
+                 + 'say WHERE requests wait, what the maximum is, or why latency rose.',
+    },
+    {
+      title: '3 · Relieve the bottleneck: add capacity',
+      question: 'We know the database is limiting. What happens if we give it more connections?',
+      setup: { system: 'login', workload: 'peak', patch: function (st) { st[1].servers = 4; } },
+      doThis: 'Run the baseline first, then raise Auth database servers from 2 to 4 and run again. '
+            + 'Open Compare.',
+      lookAt: 'The Compare table, and the bottleneck line after the second run.',
+      expect: 'Latency falls — and the bottleneck MOVES to the login workers. There is always a '
+            + 'slowest resource.',
+      establishes: 'Relieving one constraint exposes the next. Performance work is iterative, so '
+                 + 'every intervention earns a fresh measurement.',
+    },
+    {
+      title: '4 · A different kind of intervention: reduce demand',
+      question: 'Can we improve latency without buying any capacity at all?',
+      setup: { system: 'login-cache', workload: 'peak' },
+      doThis: 'Return the database to 2 connections, run the no-cache preset as the baseline, then '
+            + 'switch to the token-cache preset and run again.',
+      lookAt: 'Compare, and the database utilization in the diagram.',
+      expect: 'Database demand drops by roughly the hit rate and latency improves — with no extra '
+            + 'hardware. The bottleneck moves again.',
+      establishes: 'Adding capacity and reducing demand are different moves against the same '
+                 + 'constraint. The model shows the benefit; it does NOT show the cache’s costs — '
+                 + 'memory, staleness and invalidation are real and invisible here.',
+    },
+    {
+      title: '5 · Optional: what overload looks like',
+      question: 'What if demand simply exceeds capacity, and stays there?',
+      setup: { system: 'login', workload: 'overload' },
+      doThis: 'Run, then watch the queue figures and the Little’s Law check.',
+      lookAt: 'Queueing, latency over time, and whether Little’s Law still agrees.',
+      expect: 'The queue grows without settling and latency climbs through the run. The system never '
+            + 'reaches a steady state, so the averages describe a transient, not a stable condition.',
+      establishes: 'A model’s conclusions depend on its assumptions holding. Little’s Law needs a '
+                 + 'stable system; under sustained overload the question changes from "how slow?" to '
+                 + '"what do we refuse, and how?"',
+    },
+  ];
+
+  function renderExperiments() {
+    const host = $('experiments'); host.innerHTML = '';
+    EXPERIMENTS.forEach(function (x) {
+      const card = el('div', 'exp');
+      card.appendChild(el('h4', null, x.title));
+      card.appendChild(el('p', 'q', x.question));
+      const dl = el('dl');
+      [['Do this', x.doThis], ['Look at', x.lookAt], ['Expect', x.expect]].forEach(function (p) {
+        dl.appendChild(el('dt', null, p[0]));
+        dl.appendChild(el('dd', null, p[1]));
+      });
+      card.appendChild(dl);
+      const est = el('div', 'establishes');
+      est.appendChild(el('strong', null, 'What it establishes: '));
+      est.appendChild(document.createTextNode(x.establishes));
+      card.appendChild(est);
+      const btn = el('button', null, 'Set up this experiment');
+      btn.addEventListener('click', function () {
+        loadSystem(x.setup.system); loadWorkload(x.setup.workload);
+        if (x.setup.patch) x.setup.patch(state.stations);
+        state.baseline = null; state.last = null;
+        $('system-preset').value = state.systemPreset;
+        $('workload-preset').value = state.workloadPreset;
+        renderSystemForm(); renderWorkloadForm(); renderDiagram(); fillPredictOptions();
+        renderCompare(); markStale();
+        document.querySelector('.tab[data-panel="results"]').click();
+        $('run-status').textContent = 'Set up for: ' + x.title + '. Predict, then run.';
+        $('predict-bottleneck').focus();
+      });
+      card.appendChild(btn);
+      host.appendChild(card);
+    });
+  }
+
   function init() {
     const sp = $('system-preset');
     Object.keys(SYSTEM_PRESETS).forEach(function (k) {
@@ -1024,6 +1136,7 @@ details ul{margin:8px 0 0;padding-left:18px;font-size:13px}
     loadSystem('login'); loadWorkload('peak');
     sp.value = state.systemPreset; wp.value = state.workloadPreset;
     renderSystemForm(); renderWorkloadForm(); renderDiagram(); fillPredictOptions(); renderCompare();
+    renderExperiments();
 
     sp.addEventListener('change', function () {
       loadSystem(sp.value); renderSystemForm(); renderDiagram(); fillPredictOptions(); markStale();

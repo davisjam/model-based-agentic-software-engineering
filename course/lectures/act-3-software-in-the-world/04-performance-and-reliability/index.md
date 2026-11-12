@@ -88,13 +88,16 @@ materials:
   - title: "Lecture 2 slides — Performance and Reliability: Reliability Engineering"
     src: 3-4-Performance-and-Reliability-2-Reliability-Engineering.pptx
 labs:
-  - title: The Performance Knee
-    slug: performance-knee
+  - title: Performance Engineering Laboratory
+    slug: performance-lab
     about: >
-      Vary the arrival rate, the service capacity, and the service-time variability, then compare the
-      measured queue against the M/M/1 and M/D/1 predictions. Utilization is the control to push: the
-      queue grows long before the resource runs out of average capacity, and the two predictions
-      separate as the variability changes.
+      Model the reservation service as a network of queues and service stations, choose a workload,
+      predict which resource will saturate, then simulate and read the evidence. Five guided
+      experiments move from diagnosis to intervention: find the bottleneck by measurement rather
+      than intuition, check Little's Law against the run, relieve the constraint by adding capacity
+      and watch the bottleneck migrate, then reduce demand with a token cache and compare the two
+      kinds of intervention. A final optional experiment shows what sustained overload does to a
+      model whose assumptions require stability.
 ---
 
 **Premise.** *Functional correctness does not establish that a system will behave acceptably under load or preserve its obligations when components fail. Engineers must model the workloads and failures the system will meet, decide what behavior is acceptable, and obtain evidence that the implementation delivers it.*
@@ -159,7 +162,7 @@ This relationship is useful for estimating average concurrency and checking meas
 
 To predict how waiting changes with load, we need additional assumptions about the system. A simple single-server queueing model illustrates the result: as utilization approaches capacity, response time can increase sharply. Real systems may not satisfy that model's assumptions, but the phenomenon matters. Engineers must leave enough capacity to accommodate variation rather than sizing a system solely for its average workload.
 
-To explore the effect, see {lab:performance-knee}.
+To explore the effect, see {lab:performance-lab}.
 
 ## Measuring and diagnosing performance
 
@@ -173,7 +176,7 @@ A bottleneck is the constraint whose relief would improve useful throughput or b
 
 Suppose application CPU utilization is modest, but every database connection is occupied. Adding application replicas may increase the number of requests waiting for connections without materially improving throughput. The next measurement should establish why connections remain occupied: slow queries, lock waits, long transactions, or connections retained unnecessarily.
 
-Relieving one bottleneck often exposes another. Performance improvement is therefore iterative: measure, change, and measure again.
+Relieving one bottleneck often exposes another. Performance improvement is therefore iterative: measure, change, and measure again. To practise diagnosing a bottleneck and watching it move, see {lab:performance-lab}.
 
 ## Improving performance
 

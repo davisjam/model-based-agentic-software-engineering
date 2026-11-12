@@ -331,7 +331,7 @@ test('key-value storage is absent, as the specification decided', () => {
 
 test('the page models no latency, no throughput, and no infrastructure cost', () => {
   /* This exercise replaced a time-oriented design on purpose: query performance belongs to the
-     sibling N+1 instrument and capacity to the performance-knee one. A reading of this page in
+     sibling N+1 instrument and capacity to the performance-lab one. A reading of this page in
      milliseconds or dollars would be a reading of the wrong exercise. */
   for (const term of ['latency', 'throughput', 'milliseconds', ' ms ', 'requests per second',
     'queries per second', 'infrastructure cost', 'dollars', 'per month']) {

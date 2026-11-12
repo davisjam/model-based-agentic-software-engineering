@@ -307,7 +307,7 @@ jobs:
       fail-fast: false      # one broken instrument must not mask the state of the other five
       matrix:
         exercise:
-          - performance-knee
+          - performance-lab
           - n-plus-one
           - redos
           - release-factory
