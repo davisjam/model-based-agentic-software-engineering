@@ -19790,3 +19790,12 @@ Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, revision `652d
 
 Research on external representations has long shown that how information is organized affects the work needed to reason with it~\citep{larkin1987diagram}~\citep{zhang1994representations}. Better representations may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
 ```
+
+
+## Figure 1.3 caption before compact redraw — 2026-11-12
+
+Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, revision `7555a2b35`, caption under “Where Commodity Intelligence Comes From”. Superseded by the author’s caption accompanying the compact redraw.
+
+Commodity intelligence and the governed engineering environment. Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.
+
+The previous editable drawing, receipt, and approval context are preserved in `book/editorial/figure-redraws-20261112/agentic-substrate-before/`. The compact redraw is pending author review.

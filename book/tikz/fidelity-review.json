@@ -167,130 +167,57 @@
     {
       "source": "book/assets/agentic-substrate.svg",
       "candidate": "book/tikz/figures/agentic-substrate.tex",
-      "source_sha256": "e06b03f325a0d9a4baec26888e5f20d3f5206a21aaccbf143d200146d9f251c5",
-      "candidate_sha256": "411a5d810366bab400086ff3c0875af17cd5d6bc52bc37e0420323838e869bcf",
+      "source_sha256": "a26b0522701a29cbd4c52de4b660ffeed4783f067802ab23d88b56050693a491",
+      "candidate_sha256": "4b7e3d1d8ea9886e9e5c6bdba17cea578e7ff43040761f92d03a85bcf5b25c6d",
       "decision": "refined",
-      "revision_date": "2026-11-10",
+      "reviewed_visually": true,
+      "reason": "Author-reference redraw replaces the tall stacked diagram with a compact three-column acting system, a small model-development inlet, and an engineer strip. Four property/implication pairs and four harness facilities remain, with the existing system and engineering structure visibly separate inside the GEE. The caption is external.",
+      "validation": {
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+        "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
+        "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+        "page": 1,
+        "width_bp": 448.57,
+        "height_bp": 262.523,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          9.5,
+          10.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 6,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 58,
+        "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
+        "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-before/fidelity-review.json",
       "checks": {
-        "icons_and_symbols": "Perpendicular control mark now intersects Actions and changes; the optional dashed route enters the training process.",
-        "links_and_groups": "Guidance alone is an upward input to the reasoner. Governance acts at the action boundary. Three original regions, all inner contents, and all four property rows are preserved.",
-        "annotation_placement": "Training/fine-tuning annotation remains outside the three regions; governance and guidance use separate channels and no crossing.",
-        "line_breaks": "Original property, implication, harness, and environment contents preserve their line breaks."
+        "icons_and_symbols": "The optional dashed training route, four opposing exchange arrows, guidance and governance links, and development flow preserve the author reference. Decorative icons are omitted to retain readable type in the compact footprint.",
+        "links_and_groups": "Foundation model and harness exchange outputs/context; harness and GEE exchange actions/results. The trained model enters the harness. Guidance and governance rise from the engineer strip toward their corresponding acting-system columns. A dashed left route returns from the engineer to model development, explicitly qualified by the engineer strip as optional training or fine-tuning.",
+        "annotation_placement": "Exchange labels sit in the channels between columns. Optional training is qualified in the engineer strip. Guidance and governance labels sit beside their upward links.",
+        "line_breaks": "Short phrases replace explanatory clauses. The four engineering implications, four facilities and both GEE inventories remain; existing-system examples wrap to three lines."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
+          9.0,
           9.5,
-          10,
-          10.2,
-          10.5,
-          10.8,
-          11.5
+          10.0
         ],
-        "minimum": 9.5,
+        "minimum": 9.0,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 446.843994140625,
-      "height_bp": 557.6439819335938,
+      "width_bp": 448.57,
+      "height_bp": 262.523,
       "monochrome": true,
-      "review": "Revised native and live-text SVG proofs visually compared with the previous drawing. Requested connector semantics corrected without changing the three-region composition.",
-      "validation": {
-        "proof": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.pdf",
-        "proof_png": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.png",
-        "proof_sha256": "cf89f8e137bb272f7cab2be1c29e6e2e41d4801d94cd653abf692eaf6c5b57bf",
-        "candidate_sha256": "411a5d810366bab400086ff3c0875af17cd5d6bc52bc37e0420323838e869bcf",
-        "source_sha256": "e06b03f325a0d9a4baec26888e5f20d3f5206a21aaccbf143d200146d9f251c5",
-        "width_bp": 446.843994140625,
-        "height_bp": 557.6439819335938,
-        "authored_type_sizes_pt": [
-          9.5,
-          10,
-          10.2,
-          10.5,
-          10.8,
-          11.5
-        ],
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "reviewed_peer_groups": 2,
-        "semantic_typography_checks": 35,
-        "typography_findings": 0,
-        "fonts": [
-          "SourceSans3-Bold",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ],
-        "monochrome_pixels": true,
-        "reviewed_visually": true,
-        "shared_svg_sensors": {
-          "overflow": 0,
-          "text_occlusion": 0,
-          "text_intrusion": 0,
-          "label_collision": 0,
-          "font_band": 0
-        },
-        "shared_svg_sensors_report": "/private/tmp/mage-ch1-followup-20261110/machinery/shared-svg-sensors.json",
-        "date": "2026-11-10",
-        "page": 1,
-        "status": "passed",
-        "validation_scope": "Targeted agentic-substrate revision only; native and live-text SVG proofs inspected.",
-        "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/machinery/geometry-audit.json",
-        "typography_audit": "/private/tmp/mage-ch1-followup-20261110/machinery/typography-audit.json",
-        "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
-        "web_projection": {
-          "scale_from_native_drawing_coordinates": 2.25,
-          "width_css_px": 1003.5,
-          "height_css_px": 1253.25,
-          "viewBox": "-6.75 -6.75 1003.5 1253.25",
-          "authored_text_sizes_css_px": [
-            21.375,
-            22.5,
-            22.95,
-            23.625,
-            24.3,
-            25.875
-          ],
-          "rendered_text_sizes_at_832px_column": [
-            17.722,
-            18.655,
-            19.028,
-            19.587,
-            20.147,
-            21.453
-          ],
-          "svg_text_strings_unchanged": true,
-          "native_tikz_bytes_unchanged_by_web_projection": true,
-          "proof_832px": "/private/tmp/mage-ch1-followup-20261110/machinery/web-832px.png",
-          "sizing_reason": "Natural SVG dimensions must support readable browser labels before max-width clamps to the article column. All geometric coordinates and text sizes scale together; conceptual geometry and native print artwork are unchanged."
-        }
-      },
-      "web_projection": {
-        "scale_from_native_drawing_coordinates": 2.25,
-        "width_css_px": 1003.5,
-        "height_css_px": 1253.25,
-        "viewBox": "-6.75 -6.75 1003.5 1253.25",
-        "authored_text_sizes_css_px": [
-          21.375,
-          22.5,
-          22.95,
-          23.625,
-          24.3,
-          25.875
-        ],
-        "rendered_text_sizes_at_832px_column": [
-          17.722,
-          18.655,
-          19.028,
-          19.587,
-          20.147,
-          21.453
-        ],
-        "svg_text_strings_unchanged": true,
-        "native_tikz_bytes_unchanged_by_web_projection": true,
-        "proof_832px": "/private/tmp/mage-ch1-followup-20261110/machinery/web-832px.png",
-        "sizing_reason": "Natural SVG dimensions must support readable browser labels before max-width clamps to the article column. All geometric coordinates and text sizes scale together; conceptual geometry and native print artwork are unchanged."
-      }
+      "review": "Both native and live-text SVG proofs inspected at print width and 2×. No clipped or overlapping text. Exchange labels occupy separate channels. All four property/implication rows remain legible at 9 pt without scaling. Existing-system examples are reflowed into three lines to preserve architecture, design, documentation, configuration, tests and operational state. The dashed optional-training route is visually secondary. Native proof height falls from 557.644 to 262.523 bp (52.9% reduction); no embedded figure number or caption."
     },
     {
       "source": "book/assets/reasoning-horizon.svg",

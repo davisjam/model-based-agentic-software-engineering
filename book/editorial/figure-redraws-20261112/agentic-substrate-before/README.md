@@ -1,0 +1,1 @@
+Archived from 7555a2b35fcb5bbf8290d9c4b1a75af61d52e5ac on 2026-11-12. Author-requested compact three-column acting-system redraw. These are the published source and native partner before the review-only replacement; no publication approval is changed.

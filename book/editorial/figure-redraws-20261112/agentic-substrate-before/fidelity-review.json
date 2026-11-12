@@ -1,0 +1,128 @@
+{
+  "source": "book/assets/agentic-substrate.svg",
+  "candidate": "book/tikz/figures/agentic-substrate.tex",
+  "source_sha256": "e06b03f325a0d9a4baec26888e5f20d3f5206a21aaccbf143d200146d9f251c5",
+  "candidate_sha256": "411a5d810366bab400086ff3c0875af17cd5d6bc52bc37e0420323838e869bcf",
+  "decision": "refined",
+  "revision_date": "2026-11-10",
+  "checks": {
+    "icons_and_symbols": "Perpendicular control mark now intersects Actions and changes; the optional dashed route enters the training process.",
+    "links_and_groups": "Guidance alone is an upward input to the reasoner. Governance acts at the action boundary. Three original regions, all inner contents, and all four property rows are preserved.",
+    "annotation_placement": "Training/fine-tuning annotation remains outside the three regions; governance and guidance use separate channels and no crossing.",
+    "line_breaks": "Original property, implication, harness, and environment contents preserve their line breaks."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.5,
+      10,
+      10.2,
+      10.5,
+      10.8,
+      11.5
+    ],
+    "minimum": 9.5,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 446.843994140625,
+  "height_bp": 557.6439819335938,
+  "monochrome": true,
+  "review": "Revised native and live-text SVG proofs visually compared with the previous drawing. Requested connector semantics corrected without changing the three-region composition.",
+  "validation": {
+    "proof": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.pdf",
+    "proof_png": "/private/tmp/mage-ch1-followup-20261110/machinery/proof.png",
+    "proof_sha256": "cf89f8e137bb272f7cab2be1c29e6e2e41d4801d94cd653abf692eaf6c5b57bf",
+    "candidate_sha256": "411a5d810366bab400086ff3c0875af17cd5d6bc52bc37e0420323838e869bcf",
+    "source_sha256": "e06b03f325a0d9a4baec26888e5f20d3f5206a21aaccbf143d200146d9f251c5",
+    "width_bp": 446.843994140625,
+    "height_bp": 557.6439819335938,
+    "authored_type_sizes_pt": [
+      9.5,
+      10,
+      10.2,
+      10.5,
+      10.8,
+      11.5
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "reviewed_peer_groups": 2,
+    "semantic_typography_checks": 35,
+    "typography_findings": 0,
+    "fonts": [
+      "SourceSans3-Bold",
+      "SourceSans3-It",
+      "SourceSans3-Regular"
+    ],
+    "monochrome_pixels": true,
+    "reviewed_visually": true,
+    "shared_svg_sensors": {
+      "overflow": 0,
+      "text_occlusion": 0,
+      "text_intrusion": 0,
+      "label_collision": 0,
+      "font_band": 0
+    },
+    "shared_svg_sensors_report": "/private/tmp/mage-ch1-followup-20261110/machinery/shared-svg-sensors.json",
+    "date": "2026-11-10",
+    "page": 1,
+    "status": "passed",
+    "validation_scope": "Targeted agentic-substrate revision only; native and live-text SVG proofs inspected.",
+    "geometry_audit": "/private/tmp/mage-ch1-followup-20261110/machinery/geometry-audit.json",
+    "typography_audit": "/private/tmp/mage-ch1-followup-20261110/machinery/typography-audit.json",
+    "shared_tikz_style_sha256": "e2dcd64b2cd8fcd0d5a903d737387957215615b19af2bdbe67653a7ee9363b6a",
+    "web_projection": {
+      "scale_from_native_drawing_coordinates": 2.25,
+      "width_css_px": 1003.5,
+      "height_css_px": 1253.25,
+      "viewBox": "-6.75 -6.75 1003.5 1253.25",
+      "authored_text_sizes_css_px": [
+        21.375,
+        22.5,
+        22.95,
+        23.625,
+        24.3,
+        25.875
+      ],
+      "rendered_text_sizes_at_832px_column": [
+        17.722,
+        18.655,
+        19.028,
+        19.587,
+        20.147,
+        21.453
+      ],
+      "svg_text_strings_unchanged": true,
+      "native_tikz_bytes_unchanged_by_web_projection": true,
+      "proof_832px": "/private/tmp/mage-ch1-followup-20261110/machinery/web-832px.png",
+      "sizing_reason": "Natural SVG dimensions must support readable browser labels before max-width clamps to the article column. All geometric coordinates and text sizes scale together; conceptual geometry and native print artwork are unchanged."
+    }
+  },
+  "web_projection": {
+    "scale_from_native_drawing_coordinates": 2.25,
+    "width_css_px": 1003.5,
+    "height_css_px": 1253.25,
+    "viewBox": "-6.75 -6.75 1003.5 1253.25",
+    "authored_text_sizes_css_px": [
+      21.375,
+      22.5,
+      22.95,
+      23.625,
+      24.3,
+      25.875
+    ],
+    "rendered_text_sizes_at_832px_column": [
+      17.722,
+      18.655,
+      19.028,
+      19.587,
+      20.147,
+      21.453
+    ],
+    "svg_text_strings_unchanged": true,
+    "native_tikz_bytes_unchanged_by_web_projection": true,
+    "proof_832px": "/private/tmp/mage-ch1-followup-20261110/machinery/web-832px.png",
+    "sizing_reason": "Natural SVG dimensions must support readable browser labels before max-width clamps to the article column. All geometric coordinates and text sizes scale together; conceptual geometry and native print artwork are unchanged."
+  }
+}

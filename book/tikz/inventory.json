@@ -134,15 +134,15 @@
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/agentic-substrate.svg",
-    "caption": "*Commodity intelligence and the governed engineering environment.* Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.",
+    "caption": "*Commodity intelligence in a governed engineering environment.* General capabilities from a foundation model become useful engineering machinery when connected to an agentic harness and a governed engineering environment. The environment contains both the existing system and the engineering structure used to guide and govern work. Engineers develop and maintain the environment, and may sometimes improve the model through additional training or fine-tuning.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/agentic-substrate.json",
     "generator": null,
     "data": [],
     "conversion": "Native editable TikZ and live-text SVG reauthored together from the author specification.",
-    "svg_title": "Commodity intelligence and its engineered environment",
-    "svg_description": "Training data leads through pretraining and post-training to trained foundation-model weights. A deployed model provides four properties, each paired with an engineering implication, while the harness supplies tool action, context management, interposition and parallel execution. The agent changes an existing system. Guidance supplies system knowledge to the agent. Governance connects to the actions-and-changes boundary, constraining actions and controlling acceptance of selected results. The Governed Engineering Environment (GEE) contains the existing system and engineering structure. The engineer maintains this environment; an optional dashed training or fine-tuning route enters the pretraining and post-training process.",
+    "svg_title": "Commodity intelligence in a governed engineering environment",
+    "svg_description": "Model development transforms training data through training into a foundation model. In the acting system, the foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and results with the governed engineering environment. Four model properties lead to engineering implications: broad reasoning enables delegated implementation; probabilistic output requires assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated automated work. The harness supplies tools and integrations, context management, interposition and checks, and parallel or staged execution. The environment includes both the existing system and engineering structure: models, obligations, instructions, procedures, tools, permissions, evidence and controls. The engineer develops and maintains the environment to supply guidance and governance, and may also improve the model through training or fine-tuning.",
     "native_dimensions_bp": [
       446.843994140625,
       557.6439819335938
