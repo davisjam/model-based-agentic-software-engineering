@@ -19766,3 +19766,16 @@ Replaced with the author’s supplied caption, distinguishing increasing scope f
 ```
 
 The superseded intervention-boundaries artwork and its review records are preserved in `figure-redraws-20261112/intervention-boundaries-before/`. The new drawing separates guidance from enforcement and identifies Boundary, Scope, and Examples as aligned rows.
+
+
+## Intervention-boundary introduction and scope clarification — 2026-11-12
+
+Localized author-requested replacement in `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex` at `9104fd8d1994d0b183cafbf8844f0688f468f8e9`. The walkthrough and placement-versus-strength argument remain, with “These locations” replacing “The four boundaries.”
+
+```latex
+An obligation can be enforced at several boundaries in the work. \textbf{Choose the boundary where the relevant obligation is visible and a mechanism can enforce it.} Four representative boundaries recur throughout the book --- reasoning input, agent action, the work unit, and the accepted artifact or runtime state. \autoref{intervention-boundaries} puts them on one line.
+
+These boundaries matter because different obligations become legible at different grains of work.
+
+\emph{Intervention boundaries.} Guidance influences the reasoner; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates, but later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.
+```

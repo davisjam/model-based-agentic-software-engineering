@@ -1,6 +1,6 @@
 {
   "source": "book/assets/intervention-boundaries.svg",
-  "claim": "*Intervention boundaries.* Guidance influences the reasoner; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates, but later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.",
+  "claim": "*Intervention boundaries.* Guidance influences reasoning; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates. Later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.",
   "topology": "The only arrow is the straight rightward scope axis below the cards. It denotes increasing scope and additional evaluation context, not enforcement strength. A vertical divider and a separate enclosure distinguish guidance from enforcement.",
   "required_terms": [
     "GUIDANCE",

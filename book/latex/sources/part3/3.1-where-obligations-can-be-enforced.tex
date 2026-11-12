@@ -30,12 +30,12 @@ A correct result does not excuse an unacceptable process. An agent might produce
 
 % <!-- point: enforcement-can-act-at-several-boundaries-choose-where-the-obligation-is-visible | An obligation can be enforced at several boundaries; choose where it is visible and a mechanism can enforce it. | terms: intervention-boundary -->
 
-An obligation can be enforced at several boundaries in the work. \textbf{Choose the boundary where the relevant obligation is visible and a mechanism can enforce it.} Four representative boundaries recur throughout the book --- reasoning input, agent action, the work unit, and the accepted artifact or runtime state. \autoref{intervention-boundaries} puts them on one line.
+Where the environment intervenes determines what it can examine and control. \autoref{intervention-boundaries} distinguishes reasoning input, where guidance ordinarily operates, from three enforcement boundaries: individual actions, composed units of work, and the resulting artifact or runtime state. Moving toward larger units of work can make additional obligations legible because more context and evidence are available. The appropriate boundary is the earliest one where the environment can evaluate and enforce the obligation.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/intervention-boundaries-1ac2c40a9b.pdf}
-\caption{\emph{Intervention boundaries.} Guidance influences the reasoner; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates, but later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.}
+\caption{\emph{Intervention boundaries.} Guidance influences reasoning; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates. Later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.}
 \label{intervention-boundaries}
 \end{figure}
 
@@ -102,7 +102,7 @@ We can understand these facilities by separating \emph{where} an intervention oc
 
 % <!-- index-def: work-unit-boundary -->
 
-The second enforcement boundary is the \textbf{work-unit boundary}, where many actions compose into a meaningful unit: a completed task, pull request, build, migration step, or deployment candidate. Obligations that no single action can express become legible here: that the model and the implementation agree at task completion, that a change carries all its required evidence, that "done" actually holds. A pre-commit check can reject a local defect; a task-completion audit can weigh the whole body of work; a deployment gate can refuse a candidate whose accumulated evidence is inadequate. These boundaries matter because different obligations become legible at different grains of work.
+The second enforcement boundary is the \textbf{work-unit boundary}, where many actions compose into a meaningful unit: a completed task, pull request, build, migration step, or deployment candidate. Obligations that no single action can express become legible here: that the model and the implementation agree at task completion, that a change carries all its required evidence, that "done" actually holds. A pre-commit check can reject a local defect; a task-completion audit can weigh the whole body of work; a deployment gate can refuse a candidate whose accumulated evidence is inadequate. The larger scope makes obligations involving several actions available for evaluation, even when no individual action provides enough evidence.
 
 % <!-- point: the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible | The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept. | terms: artifact-runtime-boundary, intervention-boundary, ban-lint -->
 
@@ -116,7 +116,7 @@ The third enforcement boundary is the \textbf{artifact or runtime boundary}: the
 
 % <!-- point: the-four-boundaries-do-not-form-a-monotonic-scale | The four boundaries do not form a monotonic weak-to-strong scale. | terms: intervention-boundary, guidance-vs-enforcement -->
 
-The four boundaries do not form a monotonic scale from weak to strong. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
+These locations do not form a monotonic scale from weak to strong. A narrowly scoped API permission may enforce its obligation more strictly than a late CI check; a type may rule out one state completely while saying nothing about a system-level obligation a task-completion gate can weigh. \textbf{Where a mechanism acts and how strongly it enforces an obligation are different design decisions.}
 
 % <!-- point: substantial-enforcement-can-exist-without-rich-models | Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern. | terms: guidance-vs-enforcement, modeling-principle -->
 
