@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<!--
+  Performance Engineering Laboratory — model a service, predict its behavior, investigate an intervention.
+  Teach with MAGE · ECE 30861 · Act III · Performance & Reliability.
+
+  Replaces the single-queue Performance Knee lab. That lab asked students to discover a phenomenon
+  the lecture already explains; this one asks them to construct and evaluate a model, diagnose a
+  bottleneck from measurements, and judge an intervention.
+
+  HAND-AUTHORED. Not emitted by `catalog.py build`. Self-contained and published verbatim by the
+  MkDocs teach-site step, served at /teach/interactive/performance-lab/ and equally openable from a
+  file:// URL. No framework, no charting library, no CDN, no webfont, no backend, no network request
+  of any kind — the favicon is an inline data URI precisely so the page issues zero requests.
+
+  Structure of the two <script> blocks:
+    #perf-lab-engine — pure model: seeded PRNG, distributions, a discrete-event queueing NETWORK,
+                       time-weighted statistics, Little's Law. No DOM reference anywhere. Publishes
+                       window.PerfLab. The node suite in ./tests/ EXTRACTS this element and evaluates
+                       it, so tests and page run one implementation rather than two.
+    #perf-lab-ui     — presets, rendering, controls. Observes the model; never determines it.
+
+  An intervention is a CHANGE TO THE SYSTEM MODEL, not a third kind of model, so "with cache" is a
+  system preset and comparison is the generic Compare mechanism — it works for adding a worker or
+  raising the arrival rate just as well as for enabling a cache.
+
+  Licence: CC BY 4.0, © James C. Davis. See the course LICENSE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance Engineering Laboratory · ECE 30861</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%238E6F3E'/%3E%3C/svg%3E">
+<style>
+:root{--brown:#5C4826;--gold:#8E6F3E;--cream:#F5F1E8;--blue:#C9DCEC;--blueink:#1F3D57;
+      --ink:#2D2D2D;--red:#C01B1B;--green:#2F7D4A;--line:#cfc7b6;--bg:#fbfaf7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+     font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Calibri,sans-serif}
+header{background:#fff;border-bottom:2px solid var(--gold);padding:14px 20px}
+header h1{margin:0;font-size:22px;color:var(--brown)}
+header p{margin:2px 0 0;color:#6b6256;font-size:13px}
+main{max-width:1500px;margin:0 auto;padding:16px 20px 48px}
+.grid{display:grid;grid-template-columns:300px 1fr 300px;gap:14px;align-items:start}
+@media(max-width:1100px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.card h2{margin:0 0 10px;font-size:15px;color:var(--brown);text-transform:uppercase;letter-spacing:.03em}
+.card h2 small{text-transform:none;letter-spacing:0;color:#857c6e;font-weight:400}
+.field{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0}
+.field-label{font-size:13px;color:#4a443b}
+.field input,.field select,select.wide{font:inherit;padding:4px 6px;border:1px solid var(--line);
+  border-radius:4px;background:#fff;min-width:88px}
+select.wide{width:100%;margin-bottom:8px}
+.field-group{border-top:1px solid #eee;padding-top:8px;margin-top:8px}
+.field-group:first-child{border-top:0;margin-top:0}
+.field-group-name{font-weight:700;font-size:13px;color:var(--gold)}
+.note,.small{font-size:12px;color:#6b6256}
+.note{margin:10px 0 0}
+.flow{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;justify-content:center}
+.station{border:2px solid var(--gold);border-radius:8px;padding:8px 10px;min-width:132px;background:#fff}
+.station.queue{background:var(--blue);color:var(--blueink)}
+.station-title{font-weight:700;font-size:12px}
+.station-sub{font-size:11px;opacity:.85;margin-top:1px}
+.station-util{font-size:11px;margin-top:4px;font-weight:700;color:var(--gold)}
+.station-util.hot{color:var(--red)}
+.chips{display:flex;gap:3px;margin-top:6px;flex-wrap:wrap}
+.chip{width:14px;height:18px;border:1px solid var(--blueink);background:#fff;border-radius:2px}
+.chip-more{font-size:12px;color:var(--blueink)}
+.slot{width:14px;height:18px;border:1px solid var(--gold);background:#fff;border-radius:2px}
+.slot.busy{background:var(--gold)}
+.arrow{align-self:center;color:var(--gold);font-weight:700}
+.terminal{align-self:center;text-align:center;padding:6px 8px}
+.terminal-label{font-weight:700;font-size:12px;color:var(--brown)}
+.terminal-sub{font-size:11px;color:#6b6256}
+.diagram-note{font-size:12px;color:#6b6256;text-align:center;margin:10px 0 0}
+.runbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+button{font:inherit;padding:7px 14px;border-radius:6px;border:1px solid var(--gold);
+  background:#fff;color:var(--brown);cursor:pointer}
+button.primary{background:var(--gold);color:#fff;font-weight:700}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #2f6fa8;outline-offset:2px}
+.tabs{display:flex;gap:4px;margin:16px 0 0}
+.tab{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.tab.active{background:var(--cream);font-weight:700}
+.panel{background:#fff;border:1px solid var(--line);border-radius:8px;border-top-left-radius:0;padding:14px}
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.metric{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px solid #f0ece3}
+.metric-name{color:#4a443b;font-size:13px}
+.metric-value{font-weight:700;font-variant-numeric:tabular-nums}
+.bar-row{display:grid;grid-template-columns:120px 1fr 48px;gap:8px;align-items:center;margin:5px 0}
+.bar-label{font-size:13px}
+.bar-track{background:#eee;border-radius:4px;height:14px;overflow:hidden}
+.bar-fill{background:#2f6fa8;height:100%}
+.bar-fill.hot{background:var(--red)}
+.bar-value{font-size:12px;text-align:right;font-variant-numeric:tabular-nums}
+.little{background:var(--cream);border-radius:6px;padding:8px 10px}
+.little-eq{font-variant-numeric:tabular-nums}
+.little-check{font-weight:700;color:var(--green);margin-top:3px}
+.little-check.warn{color:var(--red)}
+.chart h4{margin:0 0 4px;font-size:13px;color:var(--brown)}
+.chart svg{width:100%;height:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid #f0ece3}
+th{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+td.mod{background:var(--cream)}
+td.delta{font-weight:700;font-variant-numeric:tabular-nums}
+td.delta.good{color:var(--green)}
+td.delta.bad{color:var(--red)}
+td.delta.nil{color:#8a8279}
+.compare-what{font-size:13px;margin:10px 0 4px}
+.caveat{font-size:12px;color:#4a443b;background:var(--cream);border-left:3px solid var(--gold);
+  padding:8px 10px;margin:8px 0 0}
+.insight{background:var(--cream);border-left:3px solid var(--gold);padding:10px 12px;margin-top:12px}
+.stale{opacity:.55}
+#stale-note{font-size:12px;color:var(--red);font-weight:700;margin:6px 0 0}
+details{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+summary{cursor:pointer;font-weight:700;color:var(--brown)}
+details ul{margin:8px 0 0;padding-left:18px;font-size:13px}
+.standing{margin:14px 0 0;padding:10px 12px;background:#fff;border:1px dashed var(--gold);
+  border-radius:8px;font-size:13px}
+.pred-right{color:var(--green);font-weight:700;font-size:13px}
+.pred-wrong{color:var(--brown);font-size:13px}
+.trace-table td{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<header>
+  <h1>Performance Engineering Laboratory</h1>
+  <p>Model a service · Predict its behavior · Investigate an intervention</p>
+</header>
+<main>
+  <div class="grid">
+    <section class="card">
+      <h2>System model <small>(the service)</small></h2>
+      <label class="field-label" for="system-preset">Preset</label>
+      <select id="system-preset" class="wide"></select>
+      <div id="system-fields"></div>
+      <p class="note" id="system-note"></p>
+    </section>
+
+    <section class="card">
+      <h2>System diagram <small>(queueing network)</small></h2>
+      <div id="diagram"></div>
+      <div class="runbar">
+        <label class="field-label" for="predict-bottleneck">Predict first — which resource saturates?</label>
+        <select id="predict-bottleneck"></select>
+      </div>
+      <div class="runbar">
+        <button class="primary" id="run">Run simulation</button>
+        <button id="set-baseline">Run as new baseline</button>
+        <button id="reset">Reset</button>
+      </div>
+      <p class="note" id="run-status"></p>
+      <div id="prediction-feedback"></div>
+    </section>
+
+    <section class="card">
+      <h2>Workload model <small>(the demand)</small></h2>
+      <label class="field-label" for="workload-preset">Preset</label>
+      <select id="workload-preset" class="wide"></select>
+      <label class="field"><span class="field-label">Arrival rate (req/s)</span>
+        <input type="number" id="wl-rate" min="1" max="1000"></label>
+      <label class="field"><span class="field-label">Arrival pattern</span>
+        <select id="wl-pattern"><option value="poisson">Poisson</option>
+        <option value="constant">Constant</option></select></label>
+      <label class="field"><span class="field-label">Duration (s)</span>
+        <input type="number" id="wl-duration" min="10" max="600"></label>
+      <label class="field"><span class="field-label">Random seed</span>
+        <input type="number" id="wl-seed" min="1" max="999999"></label>
+      <p class="note">A performance requirement is meaningful only against a stated workload.</p>
+    </section>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true" data-panel="results">Results</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="compare-panel">Compare</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="trace-panel">Request trace</button>
+  </div>
+  <div class="panel" id="results">
+    <p id="stale-note" hidden>The model changed since this run. Simulate again.</p>
+    <div class="dash">
+      <div><h4>Summary</h4><div id="summary"></div>
+        <h4 style="margin-top:12px">Little&rsquo;s Law</h4><div class="little" id="little"></div></div>
+      <div><h4>Resource utilization</h4><div id="utilization"></div>
+        <h4 style="margin-top:12px">Queueing</h4><div id="queues"></div></div>
+      <div id="charts"></div>
+    </div>
+    <div class="insight" id="insight"></div>
+  </div>
+  <div class="panel" id="compare-panel" hidden><div id="compare"></div></div>
+  <div class="panel" id="trace-panel" hidden><div id="trace"></div></div>
+
+  <details>
+    <summary>Model assumptions</summary>
+    <ul>
+      <li>Arrivals are stochastic (Poisson) or exactly spaced (constant), as selected.</li>
+      <li>Service times are exponential unless a preset states otherwise; stations draw independently.</li>
+      <li>Requests follow a fixed route through the stations; there is no conditional routing.</li>
+      <li>Queues are unbounded unless a capacity is given. A full queue refuses work rather than growing.</li>
+      <li>Timeouts, retries and cancellation are <strong>not</strong> modeled. Retry amplification therefore
+          cannot appear here, though it is real.</li>
+      <li>A resource is released when its station completes; nothing is held across downstream calls.</li>
+      <li>The first 10 seconds are discarded as warm-up. Reported figures are measurements of the
+          remaining window, not steady-state limits.</li>
+      <li>A cache hit is modeled probabilistically as a route that skips the database. No cache
+          memory, freshness or invalidation cost is represented.</li>
+    </ul>
+  </details>
+  <p class="standing">Simulation results describe the model you specified, not necessarily the
+     deployed system.</p>
+</main>
+<script id="perf-lab-engine">
+/* #perf-lab-engine — pure model. No DOM reference anywhere in this block.
+ *
+ * Replaces the single-queue Performance Knee engine with a queueing NETWORK: a
+ * request walks a route of stations, and at each one it may wait before a
+ * server takes it. Waiting and processing are measured separately because the
+ * lecture's whole diagnostic move depends on telling them apart.
+ *
+ * The models are kept independent of the simulator, as the brief requires:
+ * `simulate(system, workload, options)` knows nothing about presets, caches or
+ * the UI. A cache is not a feature of the engine — it is a request class whose
+ * route happens to skip the database (§3, "the simulator may model a cache hit
+ * probabilistically, without implementing a real cache").
+ */
+(function (root) {
+  'use strict';
+
+  // ── Seeded PRNG ────────────────────────────────────────────────────────────
+  // mulberry32: small, fast, and reproducible across engines. Determinism is a
+  // tested property, not an aspiration — the compare feature is only honest if
+  // two runs at one seed differ solely by the parameter the student changed.
+  function makeRng(seed) {
+    let a = (seed >>> 0) || 1;
+    return function next() {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function sample(dist, rng) {
+    if (dist.kind === 'constant') return dist.meanMs;
+    if (dist.kind === 'exponential') {
+      // Guard the tail: Math.log(0) is -Infinity and would poison every later time.
+      let u = rng();
+      if (u <= 0) u = Number.EPSILON;
+      return -Math.log(u) * dist.meanMs;
+    }
+    throw new Error('unsupported distribution: ' + dist.kind);
+  }
+
+  // ── Binary min-heap over event time ────────────────────────────────────────
+  // A sorted array would be O(n) per insert; at 120 s x 120 req/s x several
+  // stations that is the difference between instant and sluggish in a lab.
+  function Heap() { this.a = []; }
+  Heap.prototype.push = function (ev) {
+    const a = this.a; a.push(ev);
+    let i = a.length - 1;
+    while (i > 0) {
+      const p = (i - 1) >> 1;
+      if (a[p].t <= a[i].t) break;
+      const tmp = a[p]; a[p] = a[i]; a[i] = tmp; i = p;
+    }
+  };
+  Heap.prototype.pop = function () {
+    const a = this.a, top = a[0], last = a.pop();
+    if (a.length) {
+      a[0] = last;
+      let i = 0;
+      for (;;) {
+        const l = 2 * i + 1, r = l + 1; let s = i;
+        if (l < a.length && a[l].t < a[s].t) s = l;
+        if (r < a.length && a[r].t < a[s].t) s = r;
+        if (s === i) break;
+        const tmp = a[s]; a[s] = a[i]; a[i] = tmp; i = s;
+      }
+    }
+    return top;
+  };
+  Object.defineProperty(Heap.prototype, 'size', { get: function () { return this.a.length; } });
+
+  // ── Time-weighted accumulator ─────────────────────────────────────────────
+  // Average queue length and utilization are averages over TIME, not over
+  // samples. Averaging observations instead would silently over-weight busy
+  // moments, which is exactly the error the lab teaches students to avoid.
+  function Area() { this.area = 0; this.last = 0; this.value = 0; this.max = 0; }
+  Area.prototype.set = function (t, v) {
+    this.area += this.value * (t - this.last);
+    this.last = t; this.value = v;
+    if (v > this.max) this.max = v;
+  };
+  Area.prototype.close = function (t) { this.area += this.value * (t - this.last); this.last = t; };
+  Area.prototype.mean = function (span) { return span > 0 ? this.area / span : 0; };
+
+  function quantile(sorted, q) {
+    if (!sorted.length) return 0;
+    const i = Math.min(sorted.length - 1, Math.max(0, Math.ceil(q * sorted.length) - 1));
+    return sorted[i];
+  }
+
+  function pickClass(classes, rng) {
+    const u = rng(); let acc = 0;
+    for (const c of classes) { acc += c.probability; if (u < acc) return c; }
+    return classes[classes.length - 1];
+  }
+
+  /**
+   * Discrete-event simulation of a queueing network.
+   *
+   * Returns measurements for the WARM period only: statistics reset at
+   * `warmupSeconds` so a cold, empty system does not flatter the averages.
+   * Requests still in the system at the end are counted as incomplete rather
+   * than discarded, so nothing vanishes from the accounting (a tested invariant).
+   */
+  function simulate(system, workload, options) {
+    const opts = options || {};
+    const warmupMs = (opts.warmupSeconds != null ? opts.warmupSeconds : 10) * 1000;
+    const endMs = warmupMs + workload.durationSeconds * 1000;
+    const rng = makeRng(workload.seed);
+
+    const stations = {};
+    for (const st of system.stations) {
+      stations[st.id] = {
+        def: st, queue: [], busy: 0,
+        qArea: new Area(), uArea: new Area(),
+        completed: 0, rejected: 0, busyMs: 0, waitMs: 0, serviceMs: 0,
+      };
+    }
+    const order = system.stations.map(function (s) { return s.id; });
+
+    const events = new Heap();
+    const trace = [];
+    const latencies = [];
+    const perClass = {};
+    for (const c of workload.requestClasses) perClass[c.id] = { n: 0, sum: 0, name: c.name };
+
+    // Bucketed series for the over-time charts: one bucket per second of the
+    // measured span, so the chart has a fixed, seed-independent shape.
+    const buckets = [];
+    function bucketAt(t) {
+      const i = Math.max(0, Math.floor((t - statsFrom) / 1000));
+      while (buckets.length <= i) {
+        buckets.push({ n: 0, sum: 0, lat: [], qSum: {}, qN: 0 });
+      }
+      return buckets[i];
+    }
+
+    let nextId = 1, admitted = 0, completed = 0, rejected = 0, arrivals = 0;
+    let inSystem = 0;
+    const sysArea = new Area();
+    let statsFrom = 0;
+    let lastEventT = 0;
+
+    function interArrivalMs() {
+      const mean = 1000 / workload.arrivalRatePerSecond;
+      return workload.arrivalPattern === 'poisson'
+        ? sample({ kind: 'exponential', meanMs: mean }, rng)
+        : mean;
+    }
+
+    function resetStats(t) {
+      statsFrom = t;
+      for (const id of order) {
+        const s = stations[id];
+        s.qArea = new Area(); s.qArea.last = t; s.qArea.value = s.queue.length;
+        s.uArea = new Area(); s.uArea.last = t; s.uArea.value = s.busy;
+        s.completed = 0; s.rejected = 0; s.busyMs = 0; s.waitMs = 0; s.serviceMs = 0;
+      }
+      sysArea.area = 0; sysArea.last = t; sysArea.value = inSystem; sysArea.max = inSystem;
+      latencies.length = 0; completed = 0; rejected = 0; admitted = 0; arrivals = 0;
+      for (const k in perClass) { perClass[k].n = 0; perClass[k].sum = 0; }
+    }
+
+    function startService(s, req, t) {
+      s.busy += 1;
+      s.uArea.set(t, s.busy);
+      const ms = sample(s.def.serviceTime, rng);
+      s.serviceMs += ms;
+      req.serviceMs += ms;
+      events.push({ t: t + ms, kind: 'depart', stationId: s.def.id, req: req });
+    }
+
+    function arriveAt(s, req, t) {
+      // Finite capacity refuses rather than grows: queue length can never exceed
+      // the configured bound, which the property tests assert directly.
+      const cap = s.def.queueCapacity;
+      if (s.busy >= s.def.servers && cap != null && s.queue.length >= cap) {
+        s.rejected += 1; rejected += 1;
+        inSystem -= 1; sysArea.set(t, inSystem);
+        req.rejected = true;
+        return;
+      }
+      if (s.busy < s.def.servers) {
+        req.waitStart = t; req.waitAt[s.def.id] = 0;
+        startService(s, req, t);
+      } else {
+        req.waitStart = t;
+        s.queue.push(req);
+        s.qArea.set(t, s.queue.length);
+      }
+    }
+
+    function advance(req, t) {
+      req.step += 1;
+      if (req.step >= req.route.length) {
+        completed += 1;
+        inSystem -= 1; sysArea.set(t, inSystem);
+        const latency = t - req.arrivedAt;
+        latencies.push(latency);
+        const pc = perClass[req.classId];
+        if (pc) { pc.n += 1; pc.sum += latency; }
+        if (statsFrom > 0 || warmupMs === 0) {
+          const b = bucketAt(t); b.n += 1; b.sum += latency; b.lat.push(latency);
+        }
+        if (trace.length < 40) {
+          trace.push({ id: req.id, cls: req.className, arrivedAt: req.arrivedAt,
+                       latency: latency, waitMs: req.waitMs, serviceMs: req.serviceMs,
+                       waitAt: Object.assign({}, req.waitAt) });
+        }
+        return;
+      }
+      arriveAt(stations[req.route[req.step]], req, t);
+    }
+
+    // Prime the first arrival.
+    events.push({ t: interArrivalMs(), kind: 'arrive' });
+
+    while (events.size) {
+      const ev = events.pop();
+      if (ev.t > endMs) break;
+      // Event times are nondecreasing: a tested invariant, and the thing that
+      // would silently corrupt every time-weighted average if it ever failed.
+      if (ev.t < lastEventT) throw new Error('event time went backwards');
+      lastEventT = ev.t;
+      const t = ev.t;
+
+      if (warmupMs > 0 && statsFrom === 0 && t >= warmupMs) resetStats(warmupMs);
+
+      if (ev.kind === 'arrive') {
+        arrivals += 1;
+        const cls = pickClass(workload.requestClasses, rng);
+        const req = {
+          id: nextId++, classId: cls.id, className: cls.name,
+          route: cls.route.map(function (r) { return r.stationId; }),
+          step: 0, arrivedAt: t, waitMs: 0, serviceMs: 0, waitAt: {}, rejected: false,
+        };
+        admitted += 1;
+        inSystem += 1; sysArea.set(t, inSystem);
+        arriveAt(stations[req.route[0]], req, t);
+        events.push({ t: t + interArrivalMs(), kind: 'arrive' });
+      } else {
+        const s = stations[ev.stationId];
+        const req = ev.req;
+        s.busy -= 1; s.uArea.set(t, s.busy);
+        s.completed += 1;
+        if (s.queue.length) {
+          const nxt = s.queue.shift();
+          s.qArea.set(t, s.queue.length);
+          const waited = t - nxt.waitStart;
+          nxt.waitMs += waited; nxt.waitAt[s.def.id] = waited; s.waitMs += waited;
+          startService(s, nxt, t);
+        }
+        advance(req, t);
+      }
+    }
+
+    // Queue depth sampled per bucket from the running time-average, so the
+    // chart and the reported average cannot disagree.
+    const endT = Math.min(endMs, Math.max(lastEventT, warmupMs));
+    const spanMs = Math.max(1, endT - statsFrom);
+    sysArea.close(endT);
+
+    const stationOut = system.stations.map(function (def) {
+      const s = stations[def.id];
+      s.qArea.close(endT); s.uArea.close(endT);
+      const capacity = def.servers;
+      return {
+        id: def.id, name: def.name, servers: def.servers,
+        utilization: Math.min(1, s.uArea.mean(spanMs) / capacity),
+        avgQueue: s.qArea.mean(spanMs),
+        maxQueue: s.qArea.max,
+        completed: s.completed, rejected: s.rejected,
+        meanWaitMs: s.completed ? s.waitMs / s.completed : 0,
+        meanServiceMs: s.completed ? s.serviceMs / s.completed : 0,
+      };
+    });
+
+    const sorted = latencies.slice().sort(function (a, b) { return a - b; });
+    const spanS = spanMs / 1000;
+    const throughput = completed / spanS;
+    const meanLatency = sorted.length ? sorted.reduce(function (a, b) { return a + b; }, 0) / sorted.length : 0;
+    const avgInSystem = sysArea.mean(spanMs);
+    const little = throughput * (meanLatency / 1000);
+
+    return {
+      spanSeconds: spanS,
+      throughput: throughput,
+      meanLatencyMs: meanLatency,
+      p95LatencyMs: quantile(sorted, 0.95),
+      p99LatencyMs: quantile(sorted, 0.99),
+      completed: completed,
+      rejected: rejected,
+      rejectedFraction: (completed + rejected) ? rejected / (completed + rejected) : 0,
+      inSystemAtEnd: inSystem,
+      avgInSystem: avgInSystem,
+      little: { lambdaW: little, measuredL: avgInSystem,
+                agrees: Math.abs(little - avgInSystem) <= 0.05 * Math.max(1, avgInSystem) },
+      stations: stationOut,
+      bottleneck: stationOut.reduce(function (a, b) { return b.utilization > a.utilization ? b : a; }, stationOut[0]),
+      perClass: perClass,
+      trace: trace,
+      series: buckets.map(function (b, i) {
+        const sorted = b.lat.slice().sort(function (x, y) { return x - y; });
+        return {
+          second: i,
+          mean: b.n ? b.sum / b.n : 0,
+          p95: quantile(sorted, 0.95),
+          completed: b.n,
+        };
+      }),
+    };
+  }
+
+  // ── Analytical references, used by the tests and the assumptions panel ─────
+  function mm1MeanResponseMs(lambdaPerS, serviceMs) {
+    const mu = 1000 / serviceMs;
+    if (lambdaPerS >= mu) return Infinity;
+    return 1000 / (mu - lambdaPerS);
+  }
+
+  root.PerfLab = {
+    makeRng: makeRng,
+    sample: sample,
+    simulate: simulate,
+    mm1MeanResponseMs: mm1MeanResponseMs,
+  };
+}(typeof window !== 'undefined' ? window : this));
+</script>
+<script id="perf-lab-ui">
+/* #perf-lab-ui — rendering and controls. Observes the model; never determines it.
+ *
+ * Presets live HERE, not in the engine, so the simulator stays ignorant of
+ * caches and login services (brief §14: "avoid encoding preset behavior
+ * directly into the simulator").
+ */
+(function () {
+  'use strict';
+  const E = window.PerfLab;
+  const $ = function (id) { return document.getElementById(id); };
+  const el = function (tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  };
+
+  // ── Presets ───────────────────────────────────────────────────────────────
+  // "With cache" is a SYSTEM PRESET, not a separate intervention mode: an
+  // intervention is a change to the system model, not a third kind of model.
+  // The cache is expressed as a second request class whose route skips the
+  // database — no cache machinery in the engine.
+  const SYSTEM_PRESETS = {
+    'single': {
+      label: 'Single server (one station)',
+      stations: [{ id: 'srv', name: 'Server', servers: 1, queueCapacity: null,
+                   serviceTime: { kind: 'exponential', meanMs: 12 } }],
+      note: 'The simplest model: one queue, one server. Use it to see Little’s Law and the knee.',
+    },
+    'login': {
+      label: 'Login service (no cache)',
+      stations: [
+        { id: 'web', name: 'Login workers', servers: 4, queueCapacity: null,
+          serviceTime: { kind: 'exponential', meanMs: 15 } },
+        { id: 'db', name: 'Auth database', servers: 2, queueCapacity: null,
+          serviceTime: { kind: 'exponential', meanMs: 12 } },
+      ],
+      note: 'Every request reaches the database. Low worker utilization does not mean spare capacity.',
+    },
+    'login-cache': {
+      label: 'Login service (token cache, 40% hit)',
+      stations: [
+        { id: 'web', name: 'Login workers', servers: 4, queueCapacity: null,
+          serviceTime: { kind: 'exponential', meanMs: 15 } },
+        { id: 'db', name: 'Auth database', servers: 2, queueCapacity: null,
+          serviceTime: { kind: 'exponential', meanMs: 12 } },
+      ],
+      cacheHitRate: 0.4,
+      note: 'A cache hit skips the database entirely. The hit rate changes how much demand reaches it.',
+    },
+    'reservation': {
+      label: 'Reservation service (pool + lock)',
+      stations: [
+        { id: 'web', name: 'App workers', servers: 6, queueCapacity: null,
+          serviceTime: { kind: 'exponential', meanMs: 10 } },
+        { id: 'pool', name: 'Connection pool', servers: 3, queueCapacity: 200,
+          serviceTime: { kind: 'exponential', meanMs: 14 } },
+        { id: 'lock', name: 'Row lock', servers: 1, queueCapacity: 200,
+          serviceTime: { kind: 'exponential', meanMs: 6 } },
+      ],
+      note: 'Three capacity constraints in series. Relieving one usually exposes the next.',
+    },
+  };
+
+  const WORKLOAD_PRESETS = {
+    normal: { label: 'Normal traffic', arrivalRatePerSecond: 80, arrivalPattern: 'poisson',
+              durationSeconds: 120, seed: 42, mix: 70 },
+    peak: { label: 'Registration peak', arrivalRatePerSecond: 120, arrivalPattern: 'poisson',
+            durationSeconds: 120, seed: 42, mix: 70 },
+    steady: { label: 'Steady (no variability)', arrivalRatePerSecond: 80, arrivalPattern: 'constant',
+              durationSeconds: 120, seed: 42, mix: 70 },
+    overload: { label: 'Sustained overload', arrivalRatePerSecond: 200, arrivalPattern: 'poisson',
+                durationSeconds: 120, seed: 42, mix: 70 },
+  };
+
+  // ── Live state ────────────────────────────────────────────────────────────
+  const state = {
+    systemPreset: 'login',
+    workloadPreset: 'peak',
+    stations: null,
+    cacheHitRate: 0,
+    workload: null,
+    baseline: null,       // the run we compare against
+    baselineDesc: null,
+    last: null,
+    lastDesc: null,
+  };
+
+  function loadSystem(key) {
+    const p = SYSTEM_PRESETS[key];
+    state.systemPreset = key;
+    state.stations = JSON.parse(JSON.stringify(p.stations));
+    state.cacheHitRate = p.cacheHitRate || 0;
+  }
+  function loadWorkload(key) {
+    const p = WORKLOAD_PRESETS[key];
+    state.workloadPreset = key;
+    state.workload = { arrivalRatePerSecond: p.arrivalRatePerSecond, arrivalPattern: p.arrivalPattern,
+                       durationSeconds: p.durationSeconds, seed: p.seed, mix: p.mix };
+  }
+
+  /** The workload model the engine consumes: request classes with routes. */
+  function buildWorkload() {
+    const w = state.workload;
+    const ids = state.stations.map(function (s) { return s.id; });
+    const full = ids.map(function (id) { return { stationId: id }; });
+    const classes = [];
+    if (state.cacheHitRate > 0 && ids.length > 1) {
+      // A hit is served without reaching the last station.
+      const hit = ids.slice(0, ids.length - 1).map(function (id) { return { stationId: id }; });
+      classes.push({ id: 'hit', name: 'Cache hit', probability: state.cacheHitRate, route: hit });
+      classes.push({ id: 'miss', name: 'Cache miss', probability: 1 - state.cacheHitRate, route: full });
+    } else {
+      classes.push({ id: 'req', name: 'Request', probability: 1, route: full });
+    }
+    return { arrivalRatePerSecond: w.arrivalRatePerSecond, arrivalPattern: w.arrivalPattern,
+             requestClasses: classes, durationSeconds: w.durationSeconds, seed: w.seed };
+  }
+
+  /** A human description of the configuration, used to say WHAT CHANGED. */
+  function describe() {
+    const w = state.workload;
+    const parts = state.stations.map(function (s) {
+      return s.name + ' ' + s.servers + '×' + Math.round(s.serviceTime.meanMs) + 'ms';
+    });
+    parts.push('λ=' + w.arrivalRatePerSecond + '/s');
+    parts.push(w.arrivalPattern);
+    if (state.cacheHitRate > 0) parts.push('cache ' + Math.round(state.cacheHitRate * 100) + '%');
+    return { parts: parts, seed: w.seed };
+  }
+
+  function diffDescriptions(a, b) {
+    const out = [];
+    const n = Math.max(a.parts.length, b.parts.length);
+    for (let i = 0; i < n; i++) {
+      if (a.parts[i] !== b.parts[i]) out.push((a.parts[i] || '—') + ' → ' + (b.parts[i] || '—'));
+    }
+    return out;
+  }
+
+  // ── Rendering ─────────────────────────────────────────────────────────────
+  function renderSystemForm() {
+    const host = $('system-fields'); host.innerHTML = '';
+    state.stations.forEach(function (st, i) {
+      const row = el('div', 'field-group');
+      row.appendChild(el('div', 'field-group-name', st.name));
+      [['Servers', 'servers', 1, 64, 1], ['Service time (ms)', 'ms', 1, 500, 1]].forEach(function (f) {
+        const wrap = el('label', 'field');
+        wrap.appendChild(el('span', 'field-label', f[0]));
+        const inp = document.createElement('input');
+        inp.type = 'number'; inp.min = f[2]; inp.max = f[3]; inp.step = f[4];
+        inp.value = f[1] === 'servers' ? st.servers : Math.round(st.serviceTime.meanMs);
+        inp.setAttribute('aria-label', st.name + ' ' + f[0]);
+        inp.addEventListener('change', function () {
+          const v = Math.max(f[2], Math.min(f[3], Number(inp.value) || f[2]));
+          inp.value = v;
+          if (f[1] === 'servers') state.stations[i].servers = v;
+          else state.stations[i].serviceTime.meanMs = v;
+          renderDiagram(); markStale();
+        });
+        wrap.appendChild(inp); row.appendChild(wrap);
+      });
+      host.appendChild(row);
+    });
+    if (state.cacheHitRate > 0) {
+      const wrap = el('label', 'field');
+      wrap.appendChild(el('span', 'field-label', 'Cache hit rate (%)'));
+      const inp = document.createElement('input');
+      inp.type = 'number'; inp.min = 0; inp.max = 95; inp.step = 5;
+      inp.value = Math.round(state.cacheHitRate * 100);
+      inp.setAttribute('aria-label', 'Cache hit rate percent');
+      inp.addEventListener('change', function () {
+        state.cacheHitRate = Math.max(0, Math.min(95, Number(inp.value) || 0)) / 100;
+        inp.value = Math.round(state.cacheHitRate * 100);
+        renderDiagram(); markStale();
+      });
+      wrap.appendChild(inp); host.appendChild(wrap);
+    }
+    $('system-note').textContent = SYSTEM_PRESETS[state.systemPreset].note;
+  }
+
+  function renderWorkloadForm() {
+    const w = state.workload;
+    $('wl-rate').value = w.arrivalRatePerSecond;
+    $('wl-pattern').value = w.arrivalPattern;
+    $('wl-duration').value = w.durationSeconds;
+    $('wl-seed').value = w.seed;
+  }
+
+  /** The diagram: queues are CONTAINERS holding pending requests (brief §2). */
+  function renderDiagram(result) {
+    const host = $('diagram'); host.innerHTML = '';
+    const flow = el('div', 'flow');
+    flow.appendChild((function () {
+      const n = el('div', 'terminal');
+      n.appendChild(el('div', 'terminal-label', 'Requests'));
+      n.appendChild(el('div', 'terminal-sub', 'λ = ' + state.workload.arrivalRatePerSecond + ' req/s'));
+      return n;
+    }()));
+
+    state.stations.forEach(function (st, i) {
+      const stat = result ? result.stations[i] : null;
+      flow.appendChild(el('div', 'arrow', '→'));
+
+      const q = el('div', 'station queue');
+      q.appendChild(el('div', 'station-title', st.name + ' queue'));
+      const depth = stat ? Math.round(stat.avgQueue) : 0;
+      q.appendChild(el('div', 'station-sub', stat ? depth + ' waiting (avg)' : 'waiting'));
+      const chips = el('div', 'chips');
+      const show = Math.min(5, Math.max(stat ? Math.min(depth, 5) : 3, 0));
+      for (let k = 0; k < show; k++) chips.appendChild(el('span', 'chip', ''));
+      if (stat && depth > 5) chips.appendChild(el('span', 'chip-more', '…'));
+      q.appendChild(chips);
+      flow.appendChild(q);
+
+      flow.appendChild(el('div', 'arrow', '→'));
+      const p = el('div', 'station server');
+      p.appendChild(el('div', 'station-title', st.name));
+      p.appendChild(el('div', 'station-sub', st.servers + (st.servers === 1 ? ' server' : ' servers') +
+                                             ' · ' + Math.round(st.serviceTime.meanMs) + ' ms'));
+      const slots = el('div', 'chips');
+      const busy = stat ? Math.round(stat.utilization * st.servers) : 0;
+      for (let k = 0; k < Math.min(st.servers, 6); k++) {
+        slots.appendChild(el('span', k < busy ? 'slot busy' : 'slot', ''));
+      }
+      p.appendChild(slots);
+      if (stat) {
+        const u = el('div', 'station-util', Math.round(stat.utilization * 100) + '% utilized');
+        if (stat.utilization > 0.85) u.classList.add('hot');
+        p.appendChild(u);
+      }
+      flow.appendChild(p);
+    });
+
+    flow.appendChild(el('div', 'arrow', '→'));
+    const r = el('div', 'terminal');
+    r.appendChild(el('div', 'terminal-label', 'Response'));
+    flow.appendChild(r);
+    host.appendChild(flow);
+
+    if (state.cacheHitRate > 0) {
+      host.appendChild(el('p', 'diagram-note',
+        'A cache hit (' + Math.round(state.cacheHitRate * 100) +
+        '% of requests) returns after ' + state.stations[0].name.toLowerCase() +
+        ' and never reaches ' + state.stations[state.stations.length - 1].name.toLowerCase() + '.'));
+    }
+  }
+
+  function markStale() {
+    $('results').classList.add('stale');
+    $('stale-note').hidden = false;
+  }
+
+  function fmt(n, d) { return Number(n).toFixed(d == null ? 0 : d); }
+
+  function bar(label, frac, text, hot) {
+    const row = el('div', 'bar-row');
+    row.appendChild(el('div', 'bar-label', label));
+    const track = el('div', 'bar-track');
+    const fill = el('div', 'bar-fill');
+    fill.style.width = Math.min(100, frac * 100) + '%';
+    if (hot) fill.classList.add('hot');
+    track.appendChild(fill);
+    row.appendChild(track);
+    row.appendChild(el('div', 'bar-value', text));
+    return row;
+  }
+
+  /** Tiny inline chart. Also emits a text equivalent (brief §15, UI tests). */
+  function sparkline(series, key, color, label) {
+    const w = 440, h = 120, pad = 22;
+    const vals = series.map(function (p) { return p[key]; });
+    const max = Math.max(1, Math.max.apply(null, vals));
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', label + ': starts near ' + fmt(vals[0]) +
+      ' ms, ends near ' + fmt(vals[vals.length - 1]) + ' ms, peak ' + fmt(max) + ' ms.');
+    const pts = vals.map(function (v, i) {
+      const x = pad + (i / Math.max(1, vals.length - 1)) * (w - pad - 8);
+      const y = h - pad - (v / max) * (h - pad - 10);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+    const axis = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    axis.setAttribute('d', 'M' + pad + ',' + (h - pad) + ' L' + (w - 6) + ',' + (h - pad));
+    axis.setAttribute('stroke', '#cfc7b6'); axis.setAttribute('fill', 'none');
+    svg.appendChild(axis);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+    line.setAttribute('points', pts); line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', color); line.setAttribute('stroke-width', '2');
+    svg.appendChild(line);
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    t.setAttribute('x', 2); t.setAttribute('y', 12); t.setAttribute('font-size', '11');
+    t.setAttribute('fill', '#6b6256'); t.textContent = fmt(max) + ' ms';
+    svg.appendChild(t);
+    return svg;
+  }
+
+  function renderResults(res, desc) {
+    $('results').classList.remove('stale');
+    $('stale-note').hidden = true;
+
+    const sum = $('summary'); sum.innerHTML = '';
+    [['Throughput', fmt(res.throughput, 1) + ' req/s'],
+     ['Mean latency', fmt(res.meanLatencyMs) + ' ms'],
+     ['p95 latency', fmt(res.p95LatencyMs) + ' ms'],
+     ['p99 latency', fmt(res.p99LatencyMs) + ' ms'],
+     ['Avg in system (L)', fmt(res.avgInSystem, 1) + ' req'],
+     ['Rejected', res.rejected + ' (' + fmt(res.rejectedFraction * 100, 1) + '%)'],
+     ['Still in flight at end', String(res.inSystemAtEnd)],
+    ].forEach(function (row) {
+      const r = el('div', 'metric');
+      r.appendChild(el('span', 'metric-name', row[0]));
+      r.appendChild(el('span', 'metric-value', row[1]));
+      sum.appendChild(r);
+    });
+
+    const ll = $('little'); ll.innerHTML = '';
+    ll.appendChild(el('div', 'little-eq', 'λ × W = ' + fmt(res.throughput, 1) + ' × ' +
+      fmt(res.meanLatencyMs / 1000, 3) + ' = ' + fmt(res.little.lambdaW, 1)));
+    const chk = el('div', 'little-check', 'Measured L = ' + fmt(res.little.measuredL, 1) +
+      (res.little.agrees ? '  ✓ agrees' : '  — differs; the run may not be stable'));
+    if (!res.little.agrees) chk.classList.add('warn');
+    ll.appendChild(chk);
+
+    const util = $('utilization'); util.innerHTML = '';
+    res.stations.forEach(function (s) {
+      util.appendChild(bar(s.name, s.utilization, Math.round(s.utilization * 100) + '%',
+                           s.utilization > 0.85));
+    });
+
+    const ql = $('queues'); ql.innerHTML = '';
+    res.stations.forEach(function (s) {
+      const r = el('div', 'metric');
+      r.appendChild(el('span', 'metric-name', s.name));
+      r.appendChild(el('span', 'metric-value', fmt(s.avgQueue, 1) + ' req  ·  wait ' +
+        fmt(s.meanWaitMs) + ' ms'));
+      ql.appendChild(r);
+    });
+
+    const ch = $('charts'); ch.innerHTML = '';
+    const c1 = el('div', 'chart');
+    c1.appendChild(el('h4', null, 'Latency over time'));
+    c1.appendChild(sparkline(res.series, 'p95', '#7b3fa0', 'p95 latency over time'));
+    ch.appendChild(c1);
+    const c2 = el('div', 'chart');
+    c2.appendChild(el('h4', null, 'Mean latency over time'));
+    c2.appendChild(sparkline(res.series, 'mean', '#2f6fa8', 'Mean latency over time'));
+    ch.appendChild(c2);
+
+    const bn = $('insight');
+    bn.innerHTML = '';
+    bn.appendChild(el('strong', null, 'Bottleneck: ' + res.bottleneck.name));
+    bn.appendChild(el('span', null, ' at ' + Math.round(res.bottleneck.utilization * 100) +
+      '% utilization. Adding capacity elsewhere cannot remove the time requests spend waiting for it.'));
+
+    renderDiagram(res);
+    renderTrace(res);
+  }
+
+  function renderTrace(res) {
+    const host = $('trace'); host.innerHTML = '';
+    const tbl = el('table', 'trace-table');
+    const head = el('tr');
+    ['Request', 'Class', 'Waiting', 'Processing', 'Total'].forEach(function (h) {
+      head.appendChild(el('th', null, h));
+    });
+    tbl.appendChild(head);
+    res.trace.slice(0, 12).forEach(function (t) {
+      const tr = el('tr');
+      [String(t.id), t.cls, fmt(t.waitMs) + ' ms', fmt(t.serviceMs) + ' ms', fmt(t.latency) + ' ms']
+        .forEach(function (v) { tr.appendChild(el('td', null, v)); });
+      tbl.appendChild(tr);
+    });
+    host.appendChild(tbl);
+    host.appendChild(el('p', 'small',
+      'Waiting and processing are recorded separately at every station, then summed along the route. ' +
+      'A trace says where the time went; it does not say what to change.'));
+  }
+
+  /** Compare: the seed is HELD so the difference is attributable to the change. */
+  function renderCompare() {
+    const host = $('compare'); host.innerHTML = '';
+    if (!state.baseline || !state.last || state.baseline === state.last) {
+      host.appendChild(el('p', 'small',
+        'Run once, change one parameter, then run again. The baseline is kept so the two runs ' +
+        'can be compared.'));
+      return;
+    }
+    const a = state.baseline, b = state.last;
+    const rows = [
+      ['Throughput', a.throughput, b.throughput, 1, ' req/s', true],
+      ['Mean latency', a.meanLatencyMs, b.meanLatencyMs, 0, ' ms', false],
+      ['p95 latency', a.p95LatencyMs, b.p95LatencyMs, 0, ' ms', false],
+      ['Avg in system (L)', a.avgInSystem, b.avgInSystem, 1, ' req', false],
+      ['Rejected', a.rejected, b.rejected, 0, '', false],
+    ];
+    const tbl = el('table', 'compare-table');
+    const head = el('tr');
+    ['Metric', 'Baseline', 'Modified', 'Change'].forEach(function (h) { head.appendChild(el('th', null, h)); });
+    tbl.appendChild(head);
+    rows.forEach(function (r) {
+      const tr = el('tr');
+      tr.appendChild(el('td', null, r[0]));
+      tr.appendChild(el('td', null, fmt(r[1], r[3]) + r[4]));
+      tr.appendChild(el('td', 'mod', fmt(r[2], r[3]) + r[4]));
+      const d = r[2] - r[1];
+      const cell = el('td', 'delta', (d > 0 ? '+' : '') + fmt(d, r[3]) + r[4]);
+      // Colour only when the change is larger than run-to-run noise would explain.
+      const rel = Math.abs(d) / Math.max(1e-9, Math.abs(r[1]));
+      if (rel >= 0.05) cell.classList.add((r[5] ? d > 0 : d < 0) ? 'good' : 'bad');
+      else cell.classList.add('nil');
+      tr.appendChild(cell);
+      tbl.appendChild(tr);
+    });
+    host.appendChild(tbl);
+
+    const changed = diffDescriptions(state.baselineDesc, state.lastDesc);
+    const what = el('p', 'compare-what');
+    what.appendChild(el('strong', null, changed.length ? 'What changed: ' : 'Nothing changed: '));
+    what.appendChild(document.createTextNode(changed.length ? changed.join('; ')
+      : 'the two runs use the same model.'));
+    host.appendChild(what);
+
+    // The caveat the brief asks for, and the reason the greys exist above.
+    const caveat = el('p', 'caveat');
+    caveat.appendChild(el('strong', null, 'One run is not evidence. '));
+    caveat.appendChild(document.createTextNode(
+      'Both runs use seed ' + state.lastDesc.seed + ', so the difference is attributable to the ' +
+      'change rather than to luck — but a single pair of runs still cannot separate a small ' +
+      'improvement from stochastic variation. Changes under 5% are shown in grey for that reason. ' +
+      'Vary the seed and look for a difference that survives.'));
+    host.appendChild(caveat);
+  }
+
+  // ── Prediction, run, wiring ───────────────────────────────────────────────
+  function checkPrediction(res) {
+    const host = $('prediction-feedback'); host.innerHTML = '';
+    const guessed = $('predict-bottleneck').value;
+    if (!guessed) return;
+    const actual = res.bottleneck.id;
+    const right = guessed === actual;
+    const p = el('p', right ? 'pred-right' : 'pred-wrong');
+    p.textContent = right
+      ? 'Your prediction matched: ' + res.bottleneck.name + ' is the most utilized resource.'
+      : 'The most utilized resource is ' + res.bottleneck.name + '. Guessing bottlenecks is '
+        + 'unreliable even for experienced engineers — which is why we measure.';
+    host.appendChild(p);
+  }
+
+  function run(makeBaseline) {
+    const system = { stations: state.stations };
+    const workload = buildWorkload();
+    const res = E.simulate(system, workload, { warmupSeconds: 10 });
+    const desc = describe();
+    if (makeBaseline || !state.baseline) { state.baseline = res; state.baselineDesc = desc; }
+    state.last = res; state.lastDesc = desc;
+    renderResults(res, desc);
+    renderCompare();
+    checkPrediction(res);
+    $('run-status').textContent = 'Simulated ' + state.workload.durationSeconds +
+      ' s (10 s warm-up discarded) at seed ' + state.workload.seed + '.';
+  }
+
+  function fillPredictOptions() {
+    const sel = $('predict-bottleneck');
+    const keep = sel.value;
+    sel.innerHTML = '';
+    sel.appendChild(new Option('— choose before running —', ''));
+    state.stations.forEach(function (s) { sel.appendChild(new Option(s.name, s.id)); });
+    sel.value = keep;
+  }
+
+  function init() {
+    const sp = $('system-preset');
+    Object.keys(SYSTEM_PRESETS).forEach(function (k) {
+      sp.appendChild(new Option(SYSTEM_PRESETS[k].label, k));
+    });
+    const wp = $('workload-preset');
+    Object.keys(WORKLOAD_PRESETS).forEach(function (k) {
+      wp.appendChild(new Option(WORKLOAD_PRESETS[k].label, k));
+    });
+
+    loadSystem('login'); loadWorkload('peak');
+    sp.value = state.systemPreset; wp.value = state.workloadPreset;
+    renderSystemForm(); renderWorkloadForm(); renderDiagram(); fillPredictOptions(); renderCompare();
+
+    sp.addEventListener('change', function () {
+      loadSystem(sp.value); renderSystemForm(); renderDiagram(); fillPredictOptions(); markStale();
+    });
+    wp.addEventListener('change', function () {
+      loadWorkload(wp.value); renderWorkloadForm(); renderDiagram(); markStale();
+    });
+    [['wl-rate', 'arrivalRatePerSecond', 1, 1000], ['wl-duration', 'durationSeconds', 10, 600],
+     ['wl-seed', 'seed', 1, 999999]].forEach(function (f) {
+      $(f[0]).addEventListener('change', function () {
+        const v = Math.max(f[2], Math.min(f[3], Number($(f[0]).value) || f[2]));
+        $(f[0]).value = v; state.workload[f[1]] = v; renderDiagram(); markStale();
+      });
+    });
+    $('wl-pattern').addEventListener('change', function () {
+      state.workload.arrivalPattern = $('wl-pattern').value; markStale();
+    });
+
+    $('run').addEventListener('click', function () { run(false); });
+    $('set-baseline').addEventListener('click', function () { run(true); });
+    $('reset').addEventListener('click', function () {
+      loadSystem(state.systemPreset); loadWorkload(state.workloadPreset);
+      state.baseline = null; state.last = null;
+      renderSystemForm(); renderWorkloadForm(); renderDiagram(); renderCompare();
+      $('results').classList.add('stale');
+      $('run-status').textContent = 'Reset to the preset. Nothing simulated yet.';
+    });
+
+    document.querySelectorAll('.tab').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.tab').forEach(function (b) {
+          b.classList.remove('active'); b.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.panel').forEach(function (p) { p.hidden = true; });
+        btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+        $(btn.dataset.panel).hidden = false;
+      });
+    });
+    run(true);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+}());
+</script>
+</body>
+</html>
