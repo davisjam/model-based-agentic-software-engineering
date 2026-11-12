@@ -1,23 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 214" width="315" height="214" role="img" aria-labelledby="msTitle msDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><title xmlns="http://www.w3.org/2000/svg" id="msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>
-  <desc xmlns="http://www.w3.org/2000/svg" id="msDesc">Two surfaces. The modeled surface splits into decidable claims, which get a mechanical
-    check, and semantic claims, which need judgment. The unmodeled surface has no model-based coverage. A
-    small arrow notes that a recurring miss should refine the representation or a control.</desc>
-
-  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
-<text x="157.5" y="12.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Coverage of model correspondence</text>
-<rect x="5" y="24" width="305" height="88" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="1.25"/>
-<text x="17" y="39.0" text-anchor="start" font-size="9" fill="#1c1917" font-weight="700">MODELED SURFACE</text>
-<rect x="15" y="48" width="285" height="25" rx="4" fill="#e4efe8" stroke="#086438" stroke-width="0.8"/>
-<text x="24" y="64.0" text-anchor="start" font-size="10" fill="#086438" font-weight="700">decidable claims</text>
-<text x="292" y="64.0" text-anchor="end" font-size="10" fill="#086438" font-weight="700">→  mechanical check</text>
-<rect x="15" y="79" width="285" height="25" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
-<text x="24" y="95.0" text-anchor="start" font-size="10" fill="#2f5169" font-weight="700">semantic claims</text>
-<text x="292" y="95.0" text-anchor="end" font-size="10" fill="#2f5169" font-weight="700">→  judgment</text>
-<rect x="5" y="145" width="305" height="37" rx="4" fill="#faf0e5" stroke="#ad420d" stroke-width=".8" stroke-dasharray="3 2"/>
-<text x="17" y="159.0" text-anchor="start" font-size="10" fill="#ad420d" font-weight="700">UNMODELED SURFACE</text>
-<text x="17" y="173.0" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">no model-based coverage</text>
-<path d="M304,145 L304,113" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#a57534e)"/>
-<text x="152" y="131.0" text-anchor="middle" font-size="9" fill="#ad420d" font-style="italic">recurring miss → refine representation / control</text>
-<text x="157.5" y="198.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Mechanical checks reach only what the representation makes decidable;</text>
-<text x="157.5" y="208.8" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">semantic claims need judgment, and unmodeled properties have no coverage.</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 226" width="440" height="226" role="img" aria-labelledby="msTitle msDesc" font-family="'Source Sans 3', sans-serif">
+<title id="msTitle">Dynamic coverage of model correspondence</title>
+<desc id="msDesc">The modeled surface contains two regions: decidable claims checked mechanically, exemplified by no two owners for the same job, and semantic claims requiring judgment, exemplified by a meaningful result. Outside the modeled surface, unmodeled properties have no model-based coverage. An arrow from outside to the outer modeled boundary represents a newly consequential property; the opposing arrow removes an unnecessary distinction. Both changes apply to the modeled surface as a whole.</desc>
+<defs><marker id="ms-arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker></defs>
+<rect x="2" y="2" width="240" height="222" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".6"/>
+<rect x="310" y="2" width="128" height="222" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".6" stroke-dasharray="4 3"/>
+<text x="122" y="26" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Modeled surface</text>
+<text x="374" y="18" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Outside the</text>
+<text x="374" y="31" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">modeled surface</text>
+<rect x="10" y="46" width="110" height="168" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".6"/>
+<text x="65.0" y="65" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Decidable claims</text>
+<text x="65.0" y="82" text-anchor="middle" font-size="10" fill="#1c1917">mechanical</text>
+<text x="65.0" y="94" text-anchor="middle" font-size="10" fill="#1c1917">checks</text>
+<path d="M18,108 L112,108" fill="none" stroke="#1c1917" stroke-width=".4"/>
+<text x="65.0" y="126" text-anchor="middle" font-size="10" fill="#1c1917">Expressed in model</text>
+<text x="65.0" y="140" text-anchor="middle" font-size="10" fill="#1c1917">Checked automatically</text>
+<text x="65.0" y="164" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Example:</text>
+<text x="65.0" y="180" text-anchor="middle" font-size="10" fill="#1c1917">No two owners</text>
+<text x="65.0" y="192" text-anchor="middle" font-size="10" fill="#1c1917">for the same job</text>
+<rect x="128" y="46" width="106" height="168" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".6"/>
+<text x="181.0" y="65" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Semantic claims</text>
+<text x="181.0" y="82" text-anchor="middle" font-size="10" fill="#1c1917">judgment</text>
+<text x="181.0" y="94" text-anchor="middle" font-size="10" fill="#1c1917">required</text>
+<path d="M136,108 L226,108" fill="none" stroke="#1c1917" stroke-width=".4"/>
+<text x="181.0" y="126" text-anchor="middle" font-size="10" fill="#1c1917">Expressed in model</text>
+<text x="181.0" y="140" text-anchor="middle" font-size="10" fill="#1c1917">Judgment required</text>
+<text x="181.0" y="164" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Example:</text>
+<text x="181.0" y="180" text-anchor="middle" font-size="10" fill="#1c1917">A meaningful result</text>
+<rect x="318" y="46" width="112" height="168" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".6"/>
+<text x="374.0" y="65" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Unmodeled properties</text>
+<text x="374.0" y="82" text-anchor="middle" font-size="10" fill="#1c1917">no model-based</text>
+<text x="374.0" y="94" text-anchor="middle" font-size="10" fill="#1c1917">coverage</text>
+<path d="M326,108 L422,108" fill="none" stroke="#1c1917" stroke-width=".4"/>
+<text x="374.0" y="126" text-anchor="middle" font-size="10" fill="#1c1917">Not represented</text>
+<text x="374.0" y="164" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">Example:</text>
+<text x="374.0" y="180" text-anchor="middle" font-size="10" fill="#1c1917">A failure mode</text>
+<text x="374.0" y="192" text-anchor="middle" font-size="10" fill="#1c1917">outside the model</text>
+<path d="M242,92 L310,92" fill="none" stroke="#1c1917" stroke-width=".8" marker-end="url(#ms-arrow)"/>
+<path d="M310,145 L242,145" fill="none" stroke="#1c1917" stroke-width=".8" marker-end="url(#ms-arrow)"/>
+<text x="276" y="49" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">remove an</text>
+<text x="276" y="61" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">unnecessary</text>
+<text x="276" y="73" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">distinction</text>
+<text x="276" y="166" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">represent a</text>
+<text x="276" y="178" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">newly</text>
+<text x="276" y="190" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">consequential</text>
+<text x="276" y="202" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">property</text>
 </svg>

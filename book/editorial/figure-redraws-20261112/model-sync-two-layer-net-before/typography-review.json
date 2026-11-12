@@ -1,0 +1,145 @@
+{
+  "source": "book/assets/model-sync-two-layer-net.svg",
+  "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+  "decision": "refined",
+  "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266",
+  "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
+  "evidence": [
+    {
+      "source_text": "decidable claims",
+      "source_style": "weight 700; normal; source size 18",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Decidable claims",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/model-sync-two-layer-net.svg",
+        "element_text_path": "/svg/text[3]/text()",
+        "text_element_context": "decidable claims",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "semantic claims",
+      "source_style": "weight 700; normal; source size 18",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Semantic claims",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/model-sync-two-layer-net.svg",
+        "element_text_path": "/svg/text[5]/text()",
+        "text_element_context": "semantic claims",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "MODELED SURFACE",
+      "source_style": "weight 700; normal; source size 18",
+      "semantic_role": "coverage domain",
+      "candidate_text": "MODELED SURFACE",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/model-sync-two-layer-net.svg",
+        "element_text_path": "/svg/text[2]/text()",
+        "text_element_context": "MODELED SURFACE",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "UNMODELED SURFACE",
+      "source_style": "weight 700; normal; source size 18",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "UNMODELED SURFACE",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/model-sync-two-layer-net.svg",
+        "element_text_path": "/svg/text[7]/text()",
+        "text_element_context": "UNMODELED SURFACE",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "no model-based coverage",
+      "source_style": "weight normal; italic; source size 18",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "No model-based coverage",
+      "candidate_style": "italic",
+      "source_locator": {
+        "svg": "book/assets/model-sync-two-layer-net.svg",
+        "element_text_path": "/svg/text[8]/text()",
+        "text_element_context": "no model-based coverage",
+        "matching_fragment_count": 1
+      }
+    }
+  ],
+  "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
+  "checks": [
+    {
+      "text": "decidable claims",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "semantic claims",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "MODELED SURFACE",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "UNMODELED SURFACE",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "no model-based coverage",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "mechanical check",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "validation": {
+    "date": "2026-11-09",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+    "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+    "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "page": 36,
+    "width_bp": 311.622,
+    "height_bp": 193.072,
+    "minimum_prose_font_pt": 8.97,
+    "semantic_typography_checks": 6
+  },
+  "revision_history": [
+    {
+      "superseded_date": "2026-11-09",
+      "review": {
+        "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+        "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 35,
+          "width_bp": 418.161,
+          "height_bp": 160.043,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 6
+        },
+        "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes."
+      }
+    }
+  ]
+}

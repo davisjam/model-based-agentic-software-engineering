@@ -1,18 +1,46 @@
-% Geometry reflow; authored type sizes retained.
-\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
-\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (5,24) rectangle (310,112);
-\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (17,39.0) {MODELED SURFACE};
-\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (15,48) rectangle (300,73);
-\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (24,64.0) {decidable claims};
-\node[anchor=base east,align=left,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (292,64.0) {$\rightarrow$  mechanical check};
-\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (15,79) rectangle (300,104);
-\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (24,95.0) {semantic claims};
-\node[anchor=base east,align=left,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (292,95.0) {$\rightarrow$  judgment};
-\draw[dashed,rounded corners=3pt,line width=.55pt] (5,145) rectangle (310,182);
-\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (17,159.0) {UNMODELED SURFACE};
-\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{10}{12}\selectfont }] at (17,173.0) {no model-based coverage};
-\draw[-Stealth,line width=.55pt,dashed] (304,145) -- (304,113);
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (152,131.0) {recurring miss $\rightarrow$ refine representation / control};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (157.5,198.0) {Mechanical checks reach only what the representation makes decidable;};
-\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (157.5,208.8) {semantic claims need judgment, and unmodeled properties have no coverage.};
+% Author-requested dynamic coverage; modeled surface may expand or contract.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont]
+\hyphenpenalty=10000
+\draw[draw=black,fill=black!5,line width=.6pt,rounded corners=3pt] (2,2) rectangle (242,224);
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt,dashed] (310,2) rectangle (438,224);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (122,26) {Modeled surface};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (374,18) {Outside the};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (374,31) {modeled surface};
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (10,46) rectangle (120,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (65.0,65) {Decidable claims};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (65.0,82) {mechanical};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (65.0,94) {checks};
+\draw[line width=.4pt] (18,108) -- (112,108);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (65.0,126) {Expressed in model};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (65.0,140) {Checked automatically};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (65.0,164) {Example:};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (65.0,180) {No two owners};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (65.0,192) {for the same job};
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (128,46) rectangle (234,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (181.0,65) {Semantic claims};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (181.0,82) {judgment};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (181.0,94) {required};
+\draw[line width=.4pt] (136,108) -- (226,108);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (181.0,126) {Expressed in model};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (181.0,140) {Judgment required};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (181.0,164) {Example:};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (181.0,180) {A meaningful result};
+\draw[draw=black,fill=white,line width=.6pt,rounded corners=3pt] (318,46) rectangle (430,214);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\bfseries] at (374.0,65) {Unmodeled properties};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (374.0,82) {no model-based};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (374.0,94) {coverage};
+\draw[line width=.4pt] (326,108) -- (422,108);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (374.0,126) {Not represented};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (374.0,164) {Example:};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (374.0,180) {A failure mode};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont] at (374.0,192) {outside the model};
+\draw[->,line width=.8pt] (242,92) -- (310,92);
+\draw[->,line width=.8pt] (310,145) -- (242,145);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,49) {remove an};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,61) {unnecessary};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,73) {distinction};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,166) {represent a};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,178) {newly};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,190) {consequential};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{12.0}\selectfont\itshape] at (276,202) {property};
 \end{tikzpicture}

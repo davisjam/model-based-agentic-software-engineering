@@ -19734,3 +19734,5 @@ Mechanical checks can determine whether an anchor resolves, an observed dependen
 
 \emph{Coverage of model correspondence.} Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.
 ```
+
+The superseded coverage artwork and its review records are preserved in `figure-redraws-20261112/model-sync-two-layer-net-before/`. The replacement makes both expansion and contraction visible while retaining the three coverage regions.

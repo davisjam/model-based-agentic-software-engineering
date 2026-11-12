@@ -440,15 +440,15 @@
   {
     "chapter": "2.5-system-knowledge",
     "source": "assets/model-sync-two-layer-net.svg",
-    "caption": "*Coverage of model correspondence.* Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.",
+    "caption": "*Coverage of model correspondence.* The modeled surface contains claims that can be checked mechanically and claims that require semantic judgment. Properties outside it have no model-based coverage. Engineering experience can move this boundary in either direction as newly important properties are represented or unnecessary distinctions are removed.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/model-sync-two-layer-net.d2",
     "receipt": "book/d2-pilot/model-sync-two-layer-net.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Coverage of model correspondence: modeled surface and unmodeled surface",
-    "svg_description": "Two surfaces. The modeled surface splits into decidable claims, which get a mechanical\n    check, and semantic claims, which need judgment. The unmodeled surface has no model-based coverage. A\n    small arrow notes that a recurring miss should refine the representation or a control."
+    "svg_title": "Dynamic coverage of model correspondence",
+    "svg_description": "The modeled surface contains two regions: decidable claims checked mechanically, exemplified by no two owners for the same job, and semantic claims requiring judgment, exemplified by a meaningful result. Outside the modeled surface, unmodeled properties have no model-based coverage. An arrow from outside to the outer modeled boundary represents a newly consequential property; the opposing arrow removes an unnecessary distinction. Both changes apply to the modeled surface as a whole."
   },
   {
     "chapter": "2.5-system-knowledge",

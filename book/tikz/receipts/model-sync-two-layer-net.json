@@ -1,146 +1,136 @@
 {
   "source": "book/assets/model-sync-two-layer-net.svg",
-  "chapter": "2.5-system-knowledge",
-  "claim": "*Coverage of model correspondence.* Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.",
-  "topology": {
-    "description": "Modeled surface contains decidable and semantic claims; unmodeled region outside; recurring miss feedback dashed.",
-    "relations": [
-      [
-        "un.east",
-        "dec.east",
-        "Recurring miss:\nrefine representation / control",
-        "dashed"
-      ]
-    ]
-  },
+  "claim": "*Coverage of model correspondence.* The modeled surface contains claims that can be checked mechanically and claims that require semantic judgment. Properties outside it have no model-based coverage. Engineering experience can move this boundary in either direction as newly important properties are represented or unnecessary distinctions are removed.",
+  "topology": "Two separate horizontal arrows cross the gap between the outer modeled boundary and the outer unmodeled boundary. Removing an unnecessary distinction points outward; representing a newly consequential property points inward. Neither arrow is attached to the semantic-claims child region.",
   "required_terms": [
-    "Decidable claims \u2192 mechanical check",
-    "Semantic claims \u2192 judgment",
-    "Unmodeled surface No model-based coverage"
+    "Modeled surface",
+    "Outside the modeled surface",
+    "Decidable claims",
+    "Semantic claims",
+    "Unmodeled properties",
+    "mechanical checks",
+    "judgment required",
+    "no model-based coverage",
+    "Expressed in model",
+    "Checked automatically",
+    "Not represented",
+    "No two owners for the same job",
+    "A meaningful result",
+    "A failure mode outside the model",
+    "remove an unnecessary distinction",
+    "represent a newly consequential property"
   ],
-  "bw_encoding": "Only the named modeled-surface territory uses 5%; its child claims and the unmodeled node remain white.",
-  "redesign": "Only the named modeled-surface territory uses 5%; its child claims and the unmodeled node remain white. Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "bw_encoding": "Only the modeled territory receives a light 5% gray fill; the two claim regions and outside region stay white. Bold region names separate categories from regular descriptions and examples. Territory headings are 11 pt; all other text is 10 pt. Arrow labels and Example are italic.",
+  "redesign": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
   "questions": [],
-  "alt": "A modeled surface contains two regions: decidable claims receive mechanical checks and semantic claims require judgment. A separate unmodeled region has no model-based coverage. Dashed recurring-miss feedback calls for refining the representation or control.",
-  "review": {
-    "reference": "current authored SVG (not older D2 receipts)",
-    "checks": [
-      "semantic roles and group containment",
-      "edge endpoints/direction",
-      "source dashed meanings",
-      "gray-mode distinctions",
-      "native-size visual layout"
-    ],
-    "outcome": "Distinct gray for mechanically decidable and judgment claims. Dashed unmodeled boundary and recurring-miss feedback retained.",
-    "strict_compile": "zero unapproved diagnostics; underfull boxes permitted by the production compiler",
-    "native_dimensions_cm": [
-      10.9933,
-      6.8112
-    ]
+  "alt": "The modeled surface contains two regions: decidable claims checked mechanically, exemplified by no two owners for the same job, and semantic claims requiring judgment, exemplified by a meaningful result. Outside the modeled surface, unmodeled properties have no model-based coverage. An arrow from outside to the outer modeled boundary represents a newly consequential property; the opposing arrow removes an unnecessary distinction. Both changes apply to the modeled surface as a whole.",
+  "qa": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+    "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+    "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+    "page": 1,
+    "width_bp": 442.57,
+    "height_bp": 228.573,
+    "minimum_prose_font_pt": 10.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 0,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 16,
+    "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+    "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+    "status": "passed"
   },
-  "style_review": {
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266",
-    "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
-    "fill": "Only the named modeled-surface territory uses 5%; its child claims and the unmodeled node remain white.",
-    "bold": "Source-derived emphasis includes Decidable claims; Semantic claims; MODELED SURFACE; UNMODELED SURFACE. Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
-    "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+  "historical_receipt": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/model-sync-two-layer-net.json",
+  "layout_review": {
+    "source": "book/assets/model-sync-two-layer-net.svg",
+    "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+    "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+    "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
     "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+      "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+      "page": 1,
+      "width_bp": 442.57,
+      "height_bp": 228.573,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "status": "passed",
-      "page": 36,
-      "width_bp": 311.622,
-      "height_bp": 193.072,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 6
+      "semantic_typography_checks": 16,
+      "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+      "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+      "status": "passed"
     },
-    "book_references": []
+    "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/layout-review.json",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "coverage claim regions",
+          "labels": [
+            "Decidable claims",
+            "Semantic claims",
+            "Unmodeled properties"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "visual_review": "Compared the user reference, editable SVG and unscaled native PDF. Three readable regions retained at 10–11 pt. Arrows terminate on the outer modeled territory, with separate directions and labels. No headline, figure number or caption-duplicating bottom sentence. No clipping, overlap, unintended gray role or below-floor type."
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/model-sync-two-layer-net.svg",
+    "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+    "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+    "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
     "decision": "refined",
-    "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266",
-    "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
-    "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
-    "evidence": [
-      {
-        "source_text": "decidable claims",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Decidable claims",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/model-sync-two-layer-net.svg",
-          "element_text_path": "/svg/text[3]/text()",
-          "text_element_context": "decidable claims",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "semantic claims",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Semantic claims",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/model-sync-two-layer-net.svg",
-          "element_text_path": "/svg/text[5]/text()",
-          "text_element_context": "semantic claims",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "MODELED SURFACE",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "coverage domain",
-        "candidate_text": "MODELED SURFACE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/model-sync-two-layer-net.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "MODELED SURFACE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "UNMODELED SURFACE",
-        "source_style": "weight 700; normal; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "UNMODELED SURFACE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/model-sync-two-layer-net.svg",
-          "element_text_path": "/svg/text[7]/text()",
-          "text_element_context": "UNMODELED SURFACE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "no model-based coverage",
-        "source_style": "weight normal; italic; source size 18",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "No model-based coverage",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/model-sync-two-layer-net.svg",
-          "element_text_path": "/svg/text[8]/text()",
-          "text_element_context": "no model-based coverage",
-          "matching_fragment_count": 1
-        }
-      }
-    ],
+    "reviewed_visually": true,
+    "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+      "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+      "page": 1,
+      "width_bp": 442.57,
+      "height_bp": 228.573,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+      "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/typography-review.json",
     "checks": [
+      {
+        "text": "Modeled surface",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Outside the modeled surface",
+        "bold": true,
+        "italic": false
+      },
       {
         "text": "Decidable claims",
         "bold": true,
@@ -152,308 +142,317 @@
         "italic": false
       },
       {
-        "text": "MODELED SURFACE",
+        "text": "Unmodeled properties",
         "bold": true,
         "italic": false
       },
       {
-        "text": "UNMODELED SURFACE",
-        "bold": true,
+        "text": "mechanical checks",
+        "bold": false,
         "italic": false
       },
       {
-        "text": "No model-based coverage",
+        "text": "judgment required",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "no model-based coverage",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Expressed in model",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Checked automatically",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Not represented",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "No two owners for the same job",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "A meaningful result",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "A failure mode outside the model",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "remove an unnecessary distinction",
         "bold": false,
         "italic": true
       },
       {
-        "text": "mechanical check",
+        "text": "represent a newly consequential property",
         "bold": false,
-        "italic": false
+        "italic": true
       }
     ],
-    "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "page": 36,
-      "width_bp": 311.622,
-      "height_bp": 193.072,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 6
-    }
-  },
-  "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "refined",
-    "reason": "Decidable/semantic claim peers already align. The unmodeled surface is a distinct explanatory role and stays differently sized. Increased modeled-surface frame padding to clear the returning arrowhead.",
-    "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing model sync two layer net layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-      "after_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-      "before_dimensions_bp": [
-        418.1610107421875,
-        160.04299926757812
-      ],
-      "after_dimensions_bp": [
-        418.1610107421875,
-        160.04299926757812
-      ],
-      "before_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
-    },
-    "validation": {
-      "date": "2026-11-09",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-      "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-      "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "status": "passed",
-      "page": 36,
-      "width_bp": 311.622,
-      "height_bp": 193.072,
-      "minimum_prose_font_pt": 8.97,
-      "semantic_typography_checks": 6
-    },
-    "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266"
-  },
-  "chapter2_layout_revision": {
-    "date": "2026-11-09",
-    "source_sha256": "038d9274cbaa78ba743739f9ce7e98c997b836d7057bd80192dd5a08e4831bf3",
-    "prior_source_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-    "standalone_proof": "native-after.pdf",
-    "standalone_proof_page": 14,
-    "width_bp": 307.6369934082031,
-    "height_bp": 189.08700561523438,
-    "status": "geometry proof inspected; pending publication-pair review"
-  },
-  "revision_history": [
-    {
-      "date": "2026-11-09",
-      "reason": "Compact Chapter 2 layout and broaden the decision-model question; preserve semantic typography and native authored type sizes.",
-      "previous_reviews": {
-        "style_review": {
-          "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-          "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-          "status": "reviewed",
-          "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-          "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-          "fill": "Only the named modeled-surface territory uses 5%; its child claims and the unmodeled node remain white.",
-          "bold": "Source-derived emphasis includes Decidable claims; Semantic claims; MODELED SURFACE; UNMODELED SURFACE. Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
-          "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-          "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-          "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 35,
-            "width_bp": 418.161,
-            "height_bp": 160.043,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 6
-          },
-          "book_references": []
-        },
-        "typography_review": {
-          "review": "book/tikz/typography-review.json",
-          "decision": "refined",
-          "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-          "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-          "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
-          "evidence": [
-            {
-              "source_text": "decidable claims",
-              "source_style": "weight 700; normal; source size 18",
-              "semantic_role": "named category versus explanatory text",
-              "candidate_text": "Decidable claims",
-              "candidate_style": "bold",
-              "source_locator": {
-                "svg": "book/assets/model-sync-two-layer-net.svg",
-                "element_text_path": "/svg/text[3]/text()",
-                "text_element_context": "decidable claims",
-                "matching_fragment_count": 1
-              }
-            },
-            {
-              "source_text": "semantic claims",
-              "source_style": "weight 700; normal; source size 18",
-              "semantic_role": "named category versus explanatory text",
-              "candidate_text": "Semantic claims",
-              "candidate_style": "bold",
-              "source_locator": {
-                "svg": "book/assets/model-sync-two-layer-net.svg",
-                "element_text_path": "/svg/text[5]/text()",
-                "text_element_context": "semantic claims",
-                "matching_fragment_count": 1
-              }
-            },
-            {
-              "source_text": "MODELED SURFACE",
-              "source_style": "weight 700; normal; source size 18",
-              "semantic_role": "coverage domain",
-              "candidate_text": "MODELED SURFACE",
-              "candidate_style": "bold",
-              "source_locator": {
-                "svg": "book/assets/model-sync-two-layer-net.svg",
-                "element_text_path": "/svg/text[2]/text()",
-                "text_element_context": "MODELED SURFACE",
-                "matching_fragment_count": 1
-              }
-            },
-            {
-              "source_text": "UNMODELED SURFACE",
-              "source_style": "weight 700; normal; source size 18",
-              "semantic_role": "named category versus explanatory text",
-              "candidate_text": "UNMODELED SURFACE",
-              "candidate_style": "bold",
-              "source_locator": {
-                "svg": "book/assets/model-sync-two-layer-net.svg",
-                "element_text_path": "/svg/text[7]/text()",
-                "text_element_context": "UNMODELED SURFACE",
-                "matching_fragment_count": 1
-              }
-            },
-            {
-              "source_text": "no model-based coverage",
-              "source_style": "weight normal; italic; source size 18",
-              "semantic_role": "named category versus explanatory text",
-              "candidate_text": "No model-based coverage",
-              "candidate_style": "italic",
-              "source_locator": {
-                "svg": "book/assets/model-sync-two-layer-net.svg",
-                "element_text_path": "/svg/text[8]/text()",
-                "text_element_context": "no model-based coverage",
-                "matching_fragment_count": 1
-              }
-            }
-          ],
-          "checks": [
-            {
-              "text": "Decidable claims",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "Semantic claims",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "MODELED SURFACE",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "UNMODELED SURFACE",
-              "bold": true,
-              "italic": false
-            },
-            {
-              "text": "No model-based coverage",
-              "bold": false,
-              "italic": true
-            },
-            {
-              "text": "mechanical check",
-              "bold": false,
-              "italic": false
-            }
-          ],
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 35,
-            "width_bp": 418.161,
-            "height_bp": 160.043,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 6,
-            "book_font_inheritance": {
-              "configuration": "latex/book-fonts.tex",
-              "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-              "reference": "latex/build/tikz/body-font-reference.pdf",
-              "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-              "body_faces": [
-                "SourceSans3-Bold",
-                "SourceSans3-BoldIt",
-                "SourceSans3-It",
-                "SourceSans3-Regular"
-              ]
-            }
-          }
-        },
-        "layout_review": {
-          "review": "book/tikz/layout-review.json",
-          "decision": "refined",
-          "reason": "Decidable/semantic claim peers already align. The unmodeled surface is a distinct explanatory role and stays differently sized. Increased modeled-surface frame padding to clear the returning arrowhead.",
-          "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-          "page_layout": {
-            "decision": "retained",
-            "reason": "Retain existing model sync two layer net layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-            "before_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-            "after_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-            "before_dimensions_bp": [
-              418.1610107421875,
-              160.04299926757812
-            ],
-            "after_dimensions_bp": [
-              418.1610107421875,
-              160.04299926757812
-            ],
-            "before_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "after_font_sizes_pt": [
-              9.0,
-              10.0
-            ],
-            "reviewed_visually": true
-          },
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 35,
-            "width_bp": 418.161,
-            "height_bp": 160.043
-          }
-        }
+    "evidence": [
+      {
+        "source_text": "Modeled surface",
+        "source_style": "11 SVG units; bold",
+        "candidate_text": "Modeled surface",
+        "candidate_style": "bold",
+        "semantic_role": "region name"
+      },
+      {
+        "source_text": "Outside the modeled surface",
+        "source_style": "11 SVG units; bold",
+        "candidate_text": "Outside the modeled surface",
+        "candidate_style": "bold",
+        "semantic_role": "region name"
+      },
+      {
+        "source_text": "Decidable claims",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Decidable claims",
+        "candidate_style": "bold",
+        "semantic_role": "region name"
+      },
+      {
+        "source_text": "Semantic claims",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Semantic claims",
+        "candidate_style": "bold",
+        "semantic_role": "region name"
+      },
+      {
+        "source_text": "Unmodeled properties",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Unmodeled properties",
+        "candidate_style": "bold",
+        "semantic_role": "region name"
+      },
+      {
+        "source_text": "mechanical checks",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "mechanical checks",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "judgment required",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "judgment required",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "no model-based coverage",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "no model-based coverage",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "Expressed in model",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Expressed in model",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "Checked automatically",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Checked automatically",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "Not represented",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Not represented",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "No two owners for the same job",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "No two owners for the same job",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "A meaningful result",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "A meaningful result",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "A failure mode outside the model",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "A failure mode outside the model",
+        "candidate_style": "regular",
+        "semantic_role": "coverage description or example"
+      },
+      {
+        "source_text": "remove an unnecessary distinction",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "remove an unnecessary distinction",
+        "candidate_style": "italic",
+        "semantic_role": "direction of boundary change"
+      },
+      {
+        "source_text": "represent a newly consequential property",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "represent a newly consequential property",
+        "candidate_style": "italic",
+        "semantic_role": "direction of boundary change"
       }
-    }
-  ]
+    ]
+  },
+  "style_review": {
+    "source": "book/assets/model-sync-two-layer-net.svg",
+    "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+    "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+    "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+      "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+      "page": 1,
+      "width_bp": 442.57,
+      "height_bp": 228.573,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+      "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/style-review.json",
+    "receipt": "book/tikz/receipts/model-sync-two-layer-net.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only the modeled territory receives a light 5% gray fill; the two claim regions and outside region stay white.",
+    "bold": "Bold region names separate categories from regular descriptions and examples. Territory headings are 11 pt; all other text is 10 pt. Arrow labels and Example are italic.",
+    "routing": "Two separate horizontal arrows cross the gap between the outer modeled boundary and the outer unmodeled boundary. Removing an unnecessary distinction points outward; representing a newly consequential property points inward. Neither arrow is attached to the semantic-claims child region.",
+    "shape": "A single modeled territory encloses two aligned white claim panels; a dashed outside territory encloses the third. All child panels have aligned top/bottom edges.",
+    "visual_review": "Compared the user reference, editable SVG and unscaled native PDF. Three readable regions retained at 10–11 pt. Arrows terminate on the outer modeled territory, with separate directions and labels. No headline, figure number or caption-duplicating bottom sentence. No clipping, overlap, unintended gray role or below-floor type.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/model-sync-two-layer-net.svg",
+    "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+    "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+    "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+      "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+      "page": 1,
+      "width_bp": 442.57,
+      "height_bp": 228.573,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+      "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/fidelity-review.json",
+    "checks": {
+      "icons_and_symbols": "Opposing arrowheads encode expansion and contraction. Dashed outside boundary contrasts with the continuous modeled boundary.",
+      "links_and_groups": "Two separate horizontal arrows cross the gap between the outer modeled boundary and the outer unmodeled boundary. Removing an unnecessary distinction points outward; representing a newly consequential property points inward. Neither arrow is attached to the semantic-claims child region.",
+      "annotation_placement": "Directional labels lie above the outward arrow and below the inward arrow in the inter-territory gap.",
+      "line_breaks": "Phrase-level lines preserve 10 pt labels, examples and edge annotations at full print width."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        10.0,
+        11.0
+      ],
+      "minimum": 10.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 442.57,
+    "height_bp": 228.573,
+    "monochrome": true,
+    "review": "Compared the user reference, editable SVG and unscaled native PDF. Three readable regions retained at 10–11 pt. Arrows terminate on the outer modeled territory, with separate directions and labels. No headline, figure number or caption-duplicating bottom sentence. No clipping, overlap, unintended gray role or below-floor type."
+  },
+  "grayscale_review": {
+    "source": "book/assets/model-sync-two-layer-net.svg",
+    "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+    "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+    "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+      "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+      "page": 1,
+      "width_bp": 442.57,
+      "height_bp": 228.573,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 16,
+      "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+      "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/grayscale-review.json",
+    "receipt": "book/tikz/receipts/model-sync-two-layer-net.json",
+    "reviewed": true,
+    "rationale": "Only the modeled territory receives a light 5% gray fill; the two claim regions and outside region stay white. Bold region names separate categories from regular descriptions and examples. Territory headings are 11 pt; all other text is 10 pt. Arrow labels and Example are italic."
+  },
+  "svg_qa": {
+    "overflow_findings": 0,
+    "strain_findings": [
+      {
+        "text": "Checked automatically",
+        "ratio": 0.9315533980582524,
+        "verdict": "strain"
+      },
+      {
+        "text": "Unmodeled properties",
+        "ratio": 0.9478095238095238,
+        "verdict": "strain"
+      }
+    ],
+    "visual_resolution": "Both labels fit with visible interior padding at the intended 450 bp SVG width. Native and SVG proofs independently inspected; keep the readable 10 pt type and approved layout.",
+    "terminal_audit_scope": "No ordinary-node terminal targets recognized for containing territory frames; the 68 bp horizontal approaches and the outer-boundary endpoints were inspected visually."
+  }
 }

@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/model-sync-two-layer-net.svg",
+  "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+  "receipt": "book/tikz/receipts/model-sync-two-layer-net.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Distinct gray for mechanically decidable and judgment claims. Dashed unmodeled boundary and recurring-miss feedback retained.",
+  "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+  "candidate_sha256": "a45e03f10aefb912214f86454a3110d89fee80322b267ddebae8e92a1a60b27f"
+}

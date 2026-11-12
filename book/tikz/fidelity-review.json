@@ -1532,16 +1532,51 @@
     {
       "source": "book/assets/model-sync-two-layer-net.svg",
       "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
-      "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-      "candidate_sha256": "a45e03f10aefb912214f86454a3110d89fee80322b267ddebae8e92a1a60b27f",
-      "decision": "retained",
-      "review": "Compared modeled-claims enclosures, unmodeled boundary and miss-feedback path. Explicit outside-model region and feedback retained. No new change.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        14.848,
-        5.4594
-      ],
-      "strict_compile_diagnostics": []
+      "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+      "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
+      "validation": {
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+        "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+        "page": 1,
+        "width_bp": 442.57,
+        "height_bp": 228.573,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 16,
+        "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+        "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/fidelity-review.json",
+      "checks": {
+        "icons_and_symbols": "Opposing arrowheads encode expansion and contraction. Dashed outside boundary contrasts with the continuous modeled boundary.",
+        "links_and_groups": "Two separate horizontal arrows cross the gap between the outer modeled boundary and the outer unmodeled boundary. Removing an unnecessary distinction points outward; representing a newly consequential property points inward. Neither arrow is attached to the semantic-claims child region.",
+        "annotation_placement": "Directional labels lie above the outward arrow and below the inward arrow in the inter-territory gap.",
+        "line_breaks": "Phrase-level lines preserve 10 pt labels, examples and edge annotations at full print width."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0,
+          11.0
+        ],
+        "minimum": 10.0,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 442.57,
+      "height_bp": 228.573,
+      "monochrome": true,
+      "review": "Compared the user reference, editable SVG and unscaled native PDF. Three readable regions retained at 10–11 pt. Arrows terminate on the outer modeled territory, with separate directions and labels. No headline, figure number or caption-duplicating bottom sentence. No clipping, overlap, unintended gray role or below-floor type."
     },
     {
       "source": "book/assets/coherence-triangle.svg",

@@ -1,0 +1,1 @@
+Archived from a8fcce40fed28df6ee2679a206d22ef4a06565e9 on 2026-11-12. Replaced by the author-requested dynamic coverage diagram: mechanically decidable and judgment-dependent claims lie within the modeled surface; properties can enter or leave that surface as engineering concerns change.

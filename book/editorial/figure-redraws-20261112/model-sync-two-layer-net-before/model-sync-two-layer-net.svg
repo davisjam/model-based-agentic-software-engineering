@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 214" width="315" height="214" role="img" aria-labelledby="msTitle msDesc" font-family="&quot;Source Sans 3&quot;, sans-serif"><title xmlns="http://www.w3.org/2000/svg" id="msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>
+  <desc xmlns="http://www.w3.org/2000/svg" id="msDesc">Two surfaces. The modeled surface splits into decidable claims, which get a mechanical
+    check, and semantic claims, which need judgment. The unmodeled surface has no model-based coverage. A
+    small arrow notes that a recurring miss should refine the representation or a control.</desc>
+
+  <defs><marker id="a2f5169" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#2f5169"/></marker><marker id="a57534e" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#57534e"/></marker><marker id="a086438" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#086438"/></marker><marker id="a1c1917" viewBox="0 0 6 6" refX="5.6" refY="3" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6Z" fill="#1c1917"/></marker></defs>
+<text x="157.5" y="12.0" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Coverage of model correspondence</text>
+<rect x="5" y="24" width="305" height="88" rx="4" fill="#f6f4ef" stroke="#57534e" stroke-width="1.25"/>
+<text x="17" y="39.0" text-anchor="start" font-size="9" fill="#1c1917" font-weight="700">MODELED SURFACE</text>
+<rect x="15" y="48" width="285" height="25" rx="4" fill="#e4efe8" stroke="#086438" stroke-width="0.8"/>
+<text x="24" y="64.0" text-anchor="start" font-size="10" fill="#086438" font-weight="700">decidable claims</text>
+<text x="292" y="64.0" text-anchor="end" font-size="10" fill="#086438" font-weight="700">→  mechanical check</text>
+<rect x="15" y="79" width="285" height="25" rx="4" fill="#e7edf3" stroke="#2f5169" stroke-width="0.8"/>
+<text x="24" y="95.0" text-anchor="start" font-size="10" fill="#2f5169" font-weight="700">semantic claims</text>
+<text x="292" y="95.0" text-anchor="end" font-size="10" fill="#2f5169" font-weight="700">→  judgment</text>
+<rect x="5" y="145" width="305" height="37" rx="4" fill="#faf0e5" stroke="#ad420d" stroke-width=".8" stroke-dasharray="3 2"/>
+<text x="17" y="159.0" text-anchor="start" font-size="10" fill="#ad420d" font-weight="700">UNMODELED SURFACE</text>
+<text x="17" y="173.0" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">no model-based coverage</text>
+<path d="M304,145 L304,113" fill="none" stroke="#57534e" stroke-width=".8" stroke-dasharray="3 2" marker-end="url(#a57534e)"/>
+<text x="152" y="131.0" text-anchor="middle" font-size="9" fill="#ad420d" font-style="italic">recurring miss → refine representation / control</text>
+<text x="157.5" y="198.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Mechanical checks reach only what the representation makes decidable;</text>
+<text x="157.5" y="208.8" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">semantic claims need judgment, and unmodeled properties have no coverage.</text>
+</svg>

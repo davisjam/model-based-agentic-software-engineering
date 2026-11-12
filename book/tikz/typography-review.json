@@ -10985,145 +10985,225 @@
     {
       "source": "book/assets/model-sync-two-layer-net.svg",
       "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+      "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+      "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
       "decision": "refined",
-      "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266",
-      "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
-      "evidence": [
-        {
-          "source_text": "decidable claims",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Decidable claims",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/model-sync-two-layer-net.svg",
-            "element_text_path": "/svg/text[3]/text()",
-            "text_element_context": "decidable claims",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "semantic claims",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Semantic claims",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/model-sync-two-layer-net.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "semantic claims",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "MODELED SURFACE",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "coverage domain",
-          "candidate_text": "MODELED SURFACE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/model-sync-two-layer-net.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "MODELED SURFACE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "UNMODELED SURFACE",
-          "source_style": "weight 700; normal; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "UNMODELED SURFACE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/model-sync-two-layer-net.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "UNMODELED SURFACE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "no model-based coverage",
-          "source_style": "weight normal; italic; source size 18",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "No model-based coverage",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/model-sync-two-layer-net.svg",
-            "element_text_path": "/svg/text[8]/text()",
-            "text_element_context": "no model-based coverage",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
+      "reviewed_visually": true,
+      "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
+      "validation": {
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+        "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+        "page": 1,
+        "width_bp": 442.57,
+        "height_bp": 228.573,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 16,
+        "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+        "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/typography-review.json",
       "checks": [
         {
-          "text": "decidable claims",
+          "text": "Modeled surface",
           "bold": true,
           "italic": false
         },
         {
-          "text": "semantic claims",
+          "text": "Outside the modeled surface",
           "bold": true,
           "italic": false
         },
         {
-          "text": "MODELED SURFACE",
+          "text": "Decidable claims",
           "bold": true,
           "italic": false
         },
         {
-          "text": "UNMODELED SURFACE",
+          "text": "Semantic claims",
           "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Unmodeled properties",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "mechanical checks",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "judgment required",
+          "bold": false,
           "italic": false
         },
         {
           "text": "no model-based coverage",
           "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Expressed in model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Checked automatically",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Not represented",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "No two owners for the same job",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "A meaningful result",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "A failure mode outside the model",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "remove an unnecessary distinction",
+          "bold": false,
           "italic": true
         },
         {
-          "text": "mechanical check",
+          "text": "represent a newly consequential property",
           "bold": false,
-          "italic": false
+          "italic": true
         }
       ],
-      "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "status": "passed",
-        "page": 36,
-        "width_bp": 311.622,
-        "height_bp": 193.072,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 6
-      },
-      "revision_history": [
+      "evidence": [
         {
-          "superseded_date": "2026-11-09",
-          "review": {
-            "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-            "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-            "validation": {
-              "proof": "latex/build/tikz/candidates.pdf",
-              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-              "page": 35,
-              "width_bp": 418.161,
-              "height_bp": 160.043,
-              "minimum_prose_font_pt": 9.0,
-              "unapproved_compile_diagnostics": 0,
-              "geometry_findings": 0,
-              "monochrome_pixels": true,
-              "semantic_typography_checks": 6
-            },
-            "reason": "Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes."
-          }
+          "source_text": "Modeled surface",
+          "source_style": "11 SVG units; bold",
+          "candidate_text": "Modeled surface",
+          "candidate_style": "bold",
+          "semantic_role": "region name"
+        },
+        {
+          "source_text": "Outside the modeled surface",
+          "source_style": "11 SVG units; bold",
+          "candidate_text": "Outside the modeled surface",
+          "candidate_style": "bold",
+          "semantic_role": "region name"
+        },
+        {
+          "source_text": "Decidable claims",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Decidable claims",
+          "candidate_style": "bold",
+          "semantic_role": "region name"
+        },
+        {
+          "source_text": "Semantic claims",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Semantic claims",
+          "candidate_style": "bold",
+          "semantic_role": "region name"
+        },
+        {
+          "source_text": "Unmodeled properties",
+          "source_style": "10 SVG units; bold",
+          "candidate_text": "Unmodeled properties",
+          "candidate_style": "bold",
+          "semantic_role": "region name"
+        },
+        {
+          "source_text": "mechanical checks",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "mechanical checks",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "judgment required",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "judgment required",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "no model-based coverage",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "no model-based coverage",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "Expressed in model",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Expressed in model",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "Checked automatically",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Checked automatically",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "Not represented",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "Not represented",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "No two owners for the same job",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "No two owners for the same job",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "A meaningful result",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "A meaningful result",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "A failure mode outside the model",
+          "source_style": "10 SVG units; regular",
+          "candidate_text": "A failure mode outside the model",
+          "candidate_style": "regular",
+          "semantic_role": "coverage description or example"
+        },
+        {
+          "source_text": "remove an unnecessary distinction",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "remove an unnecessary distinction",
+          "candidate_style": "italic",
+          "semantic_role": "direction of boundary change"
+        },
+        {
+          "source_text": "represent a newly consequential property",
+          "source_style": "10 SVG units; italic",
+          "candidate_text": "represent a newly consequential property",
+          "candidate_style": "italic",
+          "semantic_role": "direction of boundary change"
         }
       ]
     },

@@ -3940,85 +3940,50 @@
     {
       "source": "book/assets/model-sync-two-layer-net.svg",
       "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
-      "source_sha256": "56dc2109a2cb0b09acbf930d90a630b8a777113fefdb03a6dec004b7619a6266",
-      "baseline_candidate_sha256": "d3c92f54a6ed6cb2d2b40763919b098af2c539ac9c6a90f5bdf06cc4d0e289b1",
-      "candidate_sha256": "945ed72c7d9f44b0aa6657656412d778595ac99d6fa4b31113cfdcfa19bddc8b",
+      "source_sha256": "dc81ced9d35d16db547d48a1292d6b5500753a9426b8bd90facb9a34b4357463",
+      "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623",
       "decision": "refined",
-      "reason": "Decidable/semantic claim peers already align. The unmodeled surface is a distinct explanatory role and stays differently sized. Increased modeled-surface frame padding to clear the returning arrowhead.",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        412.1830139160156,
-        154.06500244140625
-      ],
-      "contracts": {},
+      "reason": "Follow the author-supplied dynamic coverage reference: the modeled territory includes both mechanically decidable and judgment-dependent claims. Two opposing arrows expand or contract that territory. The outside label includes both never-modeled and retired distinctions.",
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/model-coverage-20261112/candidates.pdf",
+        "proof_sha256": "68ed038eadf423296d642be01f63619f2cb9311f03cc59b7d45b90a1883abad6",
+        "page": 1,
+        "width_bp": 442.57,
+        "height_bp": 228.573,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 0,
+        "reviewed_peer_groups": 1,
         "monochrome_pixels": true,
-        "status": "passed",
-        "page": 36,
-        "width_bp": 311.622,
-        "height_bp": 193.072,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 6
+        "semantic_typography_checks": 16,
+        "audit_sha256": "f8223b22844c473389f35a4ff46e9be2d4cf58d9e20fd469877546e04d8626b0",
+        "typography_audit_sha256": "482a2c1d9a0d90e89a37eb0b2e9241d3b807e5d69e7a6a989cda4eadc5345545",
+        "status": "passed"
       },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing model sync two layer net layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-        "after_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-        "before_dimensions_bp": [
-          418.1610107421875,
-          160.04299926757812
-        ],
-        "after_dimensions_bp": [
-          418.1610107421875,
-          160.04299926757812
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      },
-      "revision_history": [
-        {
-          "superseded_date": "2026-11-09",
-          "review": {
-            "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
-            "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
-            "validation": {
-              "proof": "latex/build/tikz/candidates.pdf",
-              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-              "geometry_findings": 0,
-              "checked_terminal_approaches": 633,
-              "reviewed_peer_groups": 81,
-              "semantic_typography_checks": 875,
-              "unapproved_compile_diagnostics": 0,
-              "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-              "maximum_dimensions_bp": [
-                450,
-                560
-              ],
-              "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-              "status": "passed",
-              "page": 35,
-              "width_bp": 418.161,
-              "height_bp": 160.043
-            },
-            "reason": "Decidable/semantic claim peers already align. The unmodeled surface is a distinct explanatory role and stays differently sized. Increased modeled-surface frame padding to clear the returning arrowhead."
+      "previous_review": "book/editorial/figure-redraws-20261112/model-sync-two-layer-net-before/layout-review.json",
+      "contracts": {
+        "peer_groups": [
+          {
+            "name": "coverage claim regions",
+            "labels": [
+              "Decidable claims",
+              "Semantic claims",
+              "Unmodeled properties"
+            ],
+            "align": [
+              "top",
+              "bottom"
+            ],
+            "equal_height": true,
+            "tolerance_pt": 1
           }
-        }
-      ]
+        ]
+      },
+      "visual_review": "Compared the user reference, editable SVG and unscaled native PDF. Three readable regions retained at 10–11 pt. Arrows terminate on the outer modeled territory, with separate directions and labels. No headline, figure number or caption-duplicating bottom sentence. No clipping, overlap, unintended gray role or below-floor type."
     },
     {
       "source": "book/assets/coherence-triangle.svg",

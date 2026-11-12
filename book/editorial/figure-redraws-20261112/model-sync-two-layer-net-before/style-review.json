@@ -1,0 +1,29 @@
+{
+  "source": "book/assets/model-sync-two-layer-net.svg",
+  "candidate": "book/tikz/figures/model-sync-two-layer-net.tex",
+  "receipt": "book/tikz/receipts/model-sync-two-layer-net.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "401efa172ffaa5c626574608d86102f15b12705a8b6b6e8d1682fe179152bece",
+  "candidate_sha256": "e0a50971c6babf5e9cb5101e75cca58fe0f2a01de20db2d7d605f1124d1f0341",
+  "fill": "Only the named modeled-surface territory uses 5%; its child claims and the unmodeled node remain white.",
+  "bold": "Source-derived emphasis includes Decidable claims; Semantic claims; MODELED SURFACE; UNMODELED SURFACE. Bold claim kinds contrast with regular evaluation mechanisms; uppercase coverage domains are not interchangeable with explanatory notes.",
+  "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 35,
+    "width_bp": 418.161,
+    "height_bp": 160.043,
+    "minimum_prose_font_pt": 9.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 6
+  },
+  "book_references": []
+}

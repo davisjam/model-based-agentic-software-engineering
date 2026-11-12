@@ -1,0 +1,18 @@
+% Geometry reflow; authored type sizes retained.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Stealth]
+\draw[draw,fill=black!8,line width=.65pt,rounded corners=3pt] (5,24) rectangle (310,112);
+\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{9}{10.799999999999999}\selectfont }] at (17,39.0) {MODELED SURFACE};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (15,48) rectangle (300,73);
+\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (24,64.0) {decidable claims};
+\node[anchor=base east,align=left,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (292,64.0) {$\rightarrow$  mechanical check};
+\draw[draw,fill=white,line width=.55pt,rounded corners=3pt] (15,79) rectangle (300,104);
+\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (24,95.0) {semantic claims};
+\node[anchor=base east,align=left,inner sep=0pt,font={\fontsize{10}{12.0}\selectfont }] at (292,95.0) {$\rightarrow$  judgment};
+\draw[dashed,rounded corners=3pt,line width=.55pt] (5,145) rectangle (310,182);
+\node[anchor=base west,align=left,inner sep=0pt,font={\bfseries \fontsize{10}{12.0}\selectfont }] at (17,159.0) {UNMODELED SURFACE};
+\node[anchor=base west,align=left,inner sep=0pt,font={\itshape \fontsize{10}{12}\selectfont }] at (17,173.0) {no model-based coverage};
+\draw[-Stealth,line width=.55pt,dashed] (304,145) -- (304,113);
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (152,131.0) {recurring miss $\rightarrow$ refine representation / control};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (157.5,198.0) {Mechanical checks reach only what the representation makes decidable;};
+\node[anchor=base,align=center,inner sep=0pt,font={\itshape \fontsize{9}{10.799999999999999}\selectfont }] at (157.5,208.8) {semantic claims need judgment, and unmodeled properties have no coverage.};
+\end{tikzpicture}
