@@ -464,19 +464,6 @@
     "svg_description": "A linear pipeline. A structured model of records, edges, and states supports predicates\n    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for\n    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift\n    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or\n    refined invariant. This is one executable-model pattern, not the definition of executability."
   },
   {
-    "chapter": "2.5-system-knowledge",
-    "source": "assets/modeling-perp-enforcement.svg",
-    "caption": "*Modeling and enforcement are separate decisions.* The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": null,
-    "receipt": null,
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "One measurement, different enforcement decisions",
-    "svg_description": "Chapter 2, the model, names a quantity and a reference bound and compares them, answering\n    what quantity and bound matter. Chapter 3, the enforcement decision, takes the same model and chooses its\n    force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the\n    consequential decisions, in rust. Modeling and enforcement are separate moves over one shared model."
-  },
-  {
     "chapter": "3.1-where-obligations-can-be-enforced",
     "source": "assets/intervention-boundaries.svg",
     "caption": "*Intervention boundaries.* Guidance shapes reasoning input; mechanisms can constrain actions or determine whether completed work, artifacts, or runtime states are accepted. Place the mechanism at the earliest boundary where the obligation is legible and enforceable.",

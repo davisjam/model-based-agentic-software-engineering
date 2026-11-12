@@ -1,0 +1,283 @@
+{
+  "date": "2026-11-12",
+  "source": "book/latex/sources/part2/2.5-system-knowledge.tex",
+  "source_revision": "18b6b8d6cbd1ad0863cfb7de5a957d51ddd60163",
+  "source_lines": [
+    245,
+    250
+  ],
+  "reason": "Author retired the Modeling/Alignment response diagram without relocation, preserving the eight-worker example and subsequent model-analysis argument. Transition revised as requested.",
+  "retired_sentence": "\\autoref{modeling-perp-enforcement} draws that separation.",
+  "retired_tex": "\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{book/latex/assets/modeling-perp-enforcement-e698f185ed.pdf}\n\\caption{\\emph{Modeling and enforcement are separate decisions.} The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.}\n\\label{modeling-perp-enforcement}\n\\end{figure}\n",
+  "superseded_transition": "A measurement can supply evidence without being a hard limit. Engineers must also decide who chooses the reference value, how the quantity is collected, and what action follows from the comparison. \\magevalue{chapter:alignment} examines when and how to enforce such bounds.",
+  "registry_rows": {
+    "inventory": {
+      "chapter": "2.5-system-knowledge",
+      "source": "assets/modeling-perp-enforcement.svg",
+      "caption": "*Modeling and enforcement are separate decisions.* The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": null,
+      "receipt": null,
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "One measurement, different enforcement decisions",
+      "svg_description": "Chapter 2, the model, names a quantity and a reference bound and compares them, answering\n    what quantity and bound matter. Chapter 3, the enforcement decision, takes the same model and chooses its\n    force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the\n    consequential decisions, in rust. Modeling and enforcement are separate moves over one shared model."
+    },
+    "fidelity-review": {
+      "source": "book/assets/modeling-perp-enforcement.svg",
+      "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+      "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+      "candidate_sha256": "963fc26198c1711561718feb10421b320ed2ed01de215ea0a51bf4f9a95d34c0",
+      "decision": "refined",
+      "review": "Restored separate Quantity and Bound nodes feeding Comparison, contrasted with one Same model branching to Observe, Adapt, Degrade and Gate. Questions remain outside their model/decision panels.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        14.6683,
+        6.6724
+      ],
+      "strict_compile_diagnostics": []
+    },
+    "grayscale-review": {
+      "source": "book/assets/modeling-perp-enforcement.svg",
+      "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+      "receipt": "book/tikz/receipts/modeling-perp-enforcement.json",
+      "reviewed": true,
+      "decision": "refined",
+      "rationale": "Model gray repeated across the handoff. Degrade/gate use stronger gray than observe/adapt to retain consequential-action distinction.",
+      "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+      "candidate_sha256": "4ee2eb7ebd250f5f4e929f4022c2016031b62c08250e1cfd39ede01a63f17559"
+    },
+    "layout-review": {
+      "source": "book/assets/modeling-perp-enforcement.svg",
+      "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+      "source_sha256": "77419ed8d64c1be3922bc8bbc44fe004eaad7adc71f97aebcdeb6981e8e76167",
+      "baseline_candidate_sha256": "c31b039a82641be160c35333b9fd43d0b2695890573a6fa916f72280a8ddc504",
+      "candidate_sha256": "4d9293386493be518bcecbec793756ec953bc56c46541c5ebbc04a0878ddda17",
+      "decision": "refined",
+      "reason": "Moved the quantity/bound inputs and their convergence rail left, yielding a visible horizontal terminal into Comparison.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        415.7950134277344,
+        189.3300018310547
+      ],
+      "contracts": {},
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 38,
+        "width_bp": 335.522,
+        "height_bp": 181.804,
+        "minimum_prose_font_pt": 9.46,
+        "semantic_typography_checks": 5
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing modeling perp enforcement layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "before_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+        "after_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+        "before_dimensions_bp": [
+          417.69000244140625,
+          189.3300018310547
+        ],
+        "after_dimensions_bp": [
+          417.69000244140625,
+          189.3300018310547
+        ],
+        "before_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "after_font_sizes_pt": [
+          9.5,
+          10.0,
+          10.5
+        ],
+        "reviewed_visually": true
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+            "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "geometry_findings": 0,
+              "checked_terminal_approaches": 633,
+              "reviewed_peer_groups": 81,
+              "semantic_typography_checks": 875,
+              "unapproved_compile_diagnostics": 0,
+              "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+              "maximum_dimensions_bp": [
+                450,
+                560
+              ],
+              "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+              "status": "passed",
+              "page": 37,
+              "width_bp": 417.69,
+              "height_bp": 189.33
+            },
+            "reason": "Moved the quantity/bound inputs and their convergence rail left, yielding a visible horizontal terminal into Comparison."
+          }
+        }
+      ]
+    },
+    "style-review": {
+      "source": "book/assets/modeling-perp-enforcement.svg",
+      "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+      "receipt": "book/tikz/receipts/modeling-perp-enforcement.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+      "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+      "fill": "All model nodes and four enforcement options white; different choices are named, not ranked by tone.",
+      "bold": "Source-derived emphasis includes Same model. Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
+      "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 37,
+        "width_bp": 417.69,
+        "height_bp": 189.33,
+        "minimum_prose_font_pt": 9.5,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 5
+      },
+      "book_references": [
+        "part:2",
+        "part:3"
+      ]
+    },
+    "typography-review": {
+      "source": "book/assets/modeling-perp-enforcement.svg",
+      "candidate": "book/tikz/figures/modeling-perp-enforcement.tex",
+      "decision": "refined",
+      "source_sha256": "77419ed8d64c1be3922bc8bbc44fe004eaad7adc71f97aebcdeb6981e8e76167",
+      "candidate_sha256": "4d9293386493be518bcecbec793756ec953bc56c46541c5ebbc04a0878ddda17",
+      "evidence": [
+        {
+          "source_text": "same model",
+          "source_style": "weight 700; normal; source size 19.2",
+          "semantic_role": "named category versus explanatory text",
+          "candidate_text": "Same model",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/modeling-perp-enforcement.svg",
+            "element_text_path": "/svg/text[5]/text()",
+            "text_element_context": "same model",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "\u201cWhat quantity and bound matter?\u201d",
+          "source_style": "weight normal; italic; source size 19.2",
+          "semantic_role": "named category versus explanatory text",
+          "candidate_text": "What quantity and bound matter?",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/modeling-perp-enforcement.svg",
+            "element_text_path": "/svg/text[3]/text()",
+            "text_element_context": "\u201cWhat quantity and bound matter?\u201d",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "\u201cWhat enforcement is justified?\u201d",
+          "source_style": "weight normal; italic; source size 19.2",
+          "semantic_role": "named category versus explanatory text",
+          "candidate_text": "What enforcement is justified?",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/modeling-perp-enforcement.svg",
+            "element_text_path": "/svg/text[6]/text()",
+            "text_element_context": "\u201cWhat enforcement is justified?\u201d",
+            "matching_fragment_count": 1
+          }
+        }
+      ],
+      "reason": "Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold.",
+      "checks": [
+        {
+          "text": "same model",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "What quantity and bound matter?",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "What enforcement is justified?",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "quantity",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "observe",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "validation": {
+        "date": "2026-11-09",
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "page": 38,
+        "width_bp": 335.522,
+        "height_bp": 181.804,
+        "minimum_prose_font_pt": 9.46,
+        "semantic_typography_checks": 5
+      },
+      "revision_history": [
+        {
+          "superseded_date": "2026-11-09",
+          "review": {
+            "source_sha256": "79df9a792c728de35ea1b1d18925b7c48370aff7bd67a5d9a09500e0a879f449",
+            "candidate_sha256": "07ffa9d937ff130d27ddb04ab08166281c6aae2f223c968f25c88c7be254f1b8",
+            "validation": {
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+              "page": 37,
+              "width_bp": 417.69,
+              "height_bp": 189.33,
+              "minimum_prose_font_pt": 9.5,
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "semantic_typography_checks": 5
+            },
+            "reason": "Retain linked chapter headings; emphasize the unchanged model and italic decision questions, without turning every process option bold."
+          }
+        }
+      ]
+    }
+  }
+}

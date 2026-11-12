@@ -197,6 +197,11 @@
       "approved_date": "2026-11-11",
       "reason": "Author accepted the black-and-white governance-conversion figure for publication after removing the annotation box, using one direct structure-to-capital arrow with the condition beside it, and removing incoming arrows to the five diagnostic labels. Existing unshaded outlines retained.",
       "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b"
+    },
+    "book/assets/model-sync-two-layer-net.svg": {
+      "approved_date": "2026-11-12",
+      "reason": "Author approved the revised coverage-of-model-correspondence figure in the sidebar, showing both expansion and contraction of the modeled surface.",
+      "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623"
     }
   }
 }

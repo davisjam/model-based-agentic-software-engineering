@@ -240,18 +240,13 @@ Derive views from the implementation when it supplies the facts. When the model 
 
 % <!-- point: a-model-does-not-govern-by-existing-it-makes-a-property-explicit | A worker-pool model makes quantities and capacity comparisons explicit; engineers still choose whether to use them for planning, admission tuning, or a hard refusal. | terms: modeling-principle, alignment-principle -->
 
-Modeling makes a property explicit; engineers decide how to use it. To illustrate this, let's return to the eight-worker pool from earlier in the chapter. Suppose its model records the number of running jobs and the capacity available to execute them. The comparison may help an operator plan a larger pool, help the system tune admission, or supply a hard rule that refuses work above the bound. Those uses require different mechanisms. The quantities and their units make the comparison meaningful; they do not decide what crossing the bound should do. \autoref{modeling-perp-enforcement} draws that separation.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/modeling-perp-enforcement-e698f185ed.pdf}
-\caption{\emph{Modeling and enforcement are separate decisions.} The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.}
-\label{modeling-perp-enforcement}
-\end{figure}
+Modeling makes a property explicit; engineers decide how to use it. To illustrate this, let's return to the eight-worker pool from earlier in the chapter. Suppose its model records the number of running jobs and the capacity available to execute them. The comparison may help an operator plan a larger pool, help the system tune admission, or supply a hard rule that refuses work above the bound. Those uses require different mechanisms. The quantities and their units make the comparison meaningful; they do not decide what crossing the bound should do.
 
 % <!-- point: measurement-boundary-modeling-and-enforcement-are-separate | A measurement model defines quantities and their reference bounds; observation, adaptation, and enforcement require separate decisions and mechanisms, and model analysis also guides design. -->
 
-A measurement can supply evidence without being a hard limit. Engineers must also decide who chooses the reference value, how the quantity is collected, and what action follows from the comparison. \magevalue{chapter:alignment} examines when and how to enforce such bounds. Model analysis can guide design decisions before implementation. A dependency graph may reveal that an execution boundary is artificial; a behavioral model may expose a recovery protocol that should change; a quantitative model may show that an otherwise plausible decomposition cannot meet its resource envelope. In each case, analysis of the model can change the architecture before implementation commits to the choice.
+A measurement can supply evidence without being a hard limit. Engineers must decide how the quantity is collected, who sets its reference value, and whether the result should merely inform decisions or constrain subsequent work. \magevalue{chapter:alignment} examines how selected obligations become enforceable.
+
+Model analysis can guide design decisions before implementation. A dependency graph may reveal that an execution boundary is artificial; a behavioral model may expose a recovery protocol that should change; a quantitative model may show that an otherwise plausible decomposition cannot meet its resource envelope. In each case, analysis of the model can change the architecture before implementation commits to the choice.
 
 % <!-- box-family: inset -->
 

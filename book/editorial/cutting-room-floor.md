@@ -19736,3 +19736,22 @@ Mechanical checks can determine whether an anchor resolves, an observed dependen
 ```
 
 The superseded coverage artwork and its review records are preserved in `figure-redraws-20261112/model-sync-two-layer-net-before/`. The replacement makes both expansion and contraction visible while retaining the three coverage regions.
+
+
+## Modeling and enforcement response diagram — 2026-11-12
+
+Retired at the author’s request without relocation: the eight-worker example and the transition to Alignment carry this distinction. Source: `book/latex/sources/part2/2.5-system-knowledge.tex` at `18b6b8d6cbd1ad0863cfb7de5a957d51ddd60163`, figure lines [245, 250]. Artwork remains on disk; review rows are archived in `retired-modeling-enforcement-20261112.json`.
+
+```latex
+\autoref{modeling-perp-enforcement} draws that separation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/modeling-perp-enforcement-e698f185ed.pdf}
+\caption{\emph{Modeling and enforcement are separate decisions.} The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, used to trigger graceful degradation, or enforced by a gate.}
+\label{modeling-perp-enforcement}
+\end{figure}
+
+% Superseded transition:
+A measurement can supply evidence without being a hard limit. Engineers must also decide who chooses the reference value, how the quantity is collected, and what action follows from the comparison. \magevalue{chapter:alignment} examines when and how to enforce such bounds.
+```
