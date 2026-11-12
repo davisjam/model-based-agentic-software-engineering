@@ -444,6 +444,14 @@ re-deriving these, so they live here:**
     seed the worktree with the same derived state before trusting a clean. The general
     rule is the one above about search scope, aimed at TIME rather than PATH: a
     complete check of a thinner tree reads exactly like a complete check.
+    **Same class, third axis — a check that SKIPS its subject reports nothing, and
+    nothing reads as pass.** Measured the same day: the course lander word-band gate
+    returned no finding for a lander that is roughly double its band, because the check
+    opens with `if status != "ready": continue` and that lander is `draft`. "Not flagged"
+    meant "not examined". So before reporting a check as clean for ONE subject, confirm
+    the subject was in scope — read the check's own predicate, or assert the subject
+    appears in whatever the check enumerated. A gate that silently skips is reporting on
+    a set you did not choose.
   - **A premise taken from a DESIGN DOC is a claim about the past, and the step above cannot catch a
     stale one.** Re-reading a cited line confirms the doc says it; it does not confirm the doc is
     still true of the code. Three briefs on 261005 stated a load-bearing premise accurately quoted
