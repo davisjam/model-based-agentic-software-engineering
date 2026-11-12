@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), per the self-communicate drawing escape hatch. The MEANING is
+     that a queue HOLDS work: each queue is a container with individually outlined pending requests
+     inside it, and each service station holds the one request currently being served. A flowchart
+     auto-layout draws boxes joined by arrows, which is exactly the reading this figure exists to
+     correct — labelled queues that look like pipeline stages let a student believe a request moves
+     straight through, so neither waiting nor admission is visible.
+
+     Deliberately the SAME diagram as lecture slide 5, in the same vocabulary, so a student meets one
+     model across the lander, the slides and the laboratory rather than three drawings of one idea.
+
+     Blue container = a place work waits. Outlined box = a service station performing work.
+     Admission is drawn at each boundary, because that is where waiting time comes from. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 470" width="700" height="470"
+     role="img" aria-labelledby="qTitle qDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="qTitle">A reservation request through a network of queues and service stations</title>
+<desc id="qDesc">A request arrives and joins the HTTP request queue, drawn as a pale blue container
+  holding four waiting requests labelled R4 through R1. When a handler is free the request is admitted
+  to the application station, which is serving R0. It then joins the database connection queue, a
+  second container holding R7, R6 and R5, and is admitted to the database station when a connection is
+  free; that station is serving R8. The response then returns. Each queue holds work that has arrived
+  and cannot yet be served; each station performs the work. Response time is waiting time plus
+  processing time along this sequential path.</desc>
+
+<rect x="0" y="0" width="700" height="470" fill="#fdfcf9"/>
+
+<!-- arrival -->
+<text x="350" y="26" font-size="15" font-weight="700" fill="#5c4826" text-anchor="middle">REQUESTS ARRIVE</text>
+<path d="M350,34 L350,52" stroke="#8e6f3e" stroke-width="2.5" marker-end="url(#qa)"/>
+<defs>
+  <marker id="qa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5"
+          orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8e6f3e"/></marker>
+</defs>
+
+<!-- HTTP request queue: a container holding pending work -->
+<rect x="60" y="58" width="580" height="62" rx="8" fill="#c9dcec" stroke="#8e6f3e" stroke-width="2"/>
+<text x="76" y="80" font-size="14" font-weight="700" fill="#1f3d57">HTTP REQUEST QUEUE</text>
+<text x="76" y="100" font-size="12" fill="#1f3d57">requests that have arrived and cannot yet be served</text>
+<g fill="#ffffff" stroke="#8e6f3e" stroke-width="1.5">
+  <rect x="432" y="73" width="44" height="32" rx="3"/><rect x="484" y="73" width="44" height="32" rx="3"/>
+  <rect x="536" y="73" width="44" height="32" rx="3"/><rect x="588" y="73" width="44" height="32" rx="3"/>
+</g>
+<g font-size="12" font-weight="700" fill="#1c1917" text-anchor="middle">
+  <text x="454" y="94">R4</text><text x="506" y="94">R3</text>
+  <text x="558" y="94">R2</text><text x="610" y="94">R1</text>
+</g>
+
+<path d="M350,120 L350,142" stroke="#8e6f3e" stroke-width="2.5" marker-end="url(#qa)"/>
+<text x="362" y="136" font-size="12" fill="#4a443b">admitted when a handler is free</text>
+
+<!-- application station -->
+<rect x="170" y="146" width="360" height="56" rx="8" fill="#ffffff" stroke="#8e6f3e" stroke-width="2"/>
+<text x="188" y="170" font-size="14" font-weight="700" fill="#8e6f3e">APPLICATION</text>
+<text x="188" y="190" font-size="12" fill="#4a443b">evaluating the booking rules</text>
+<rect x="462" y="158" width="52" height="32" rx="3" fill="#f6f4ef" stroke="#8e6f3e" stroke-width="1.5"/>
+<text x="488" y="179" font-size="12" font-weight="700" fill="#1c1917" text-anchor="middle">R0</text>
+
+<path d="M350,202 L350,224" stroke="#8e6f3e" stroke-width="2.5" marker-end="url(#qa)"/>
+
+<!-- database connection queue -->
+<rect x="60" y="228" width="580" height="62" rx="8" fill="#c9dcec" stroke="#8e6f3e" stroke-width="2"/>
+<text x="76" y="250" font-size="14" font-weight="700" fill="#1f3d57">DATABASE CONNECTION QUEUE</text>
+<text x="76" y="270" font-size="12" fill="#1f3d57">waiting for a connection, consuming elapsed time but no application CPU</text>
+<g fill="#ffffff" stroke="#8e6f3e" stroke-width="1.5">
+  <rect x="484" y="243" width="44" height="32" rx="3"/><rect x="536" y="243" width="44" height="32" rx="3"/>
+  <rect x="588" y="243" width="44" height="32" rx="3"/>
+</g>
+<g font-size="12" font-weight="700" fill="#1c1917" text-anchor="middle">
+  <text x="506" y="264">R7</text><text x="558" y="264">R6</text><text x="610" y="264">R5</text>
+</g>
+
+<path d="M350,290 L350,312" stroke="#8e6f3e" stroke-width="2.5" marker-end="url(#qa)"/>
+<text x="362" y="306" font-size="12" fill="#4a443b">admitted when a connection is free</text>
+
+<!-- database station -->
+<rect x="170" y="316" width="360" height="56" rx="8" fill="#ffffff" stroke="#8e6f3e" stroke-width="2"/>
+<text x="188" y="340" font-size="14" font-weight="700" fill="#8e6f3e">DATABASE</text>
+<text x="188" y="360" font-size="12" fill="#4a443b">running the query; lock waits live inside this station</text>
+<rect x="462" y="328" width="52" height="32" rx="3" fill="#f6f4ef" stroke="#8e6f3e" stroke-width="1.5"/>
+<text x="488" y="349" font-size="12" font-weight="700" fill="#1c1917" text-anchor="middle">R8</text>
+
+<path d="M350,372 L350,392" stroke="#8e6f3e" stroke-width="2.5" marker-end="url(#qa)"/>
+<text x="350" y="410" font-size="15" font-weight="700" fill="#5c4826" text-anchor="middle">RESPONSE</text>
+
+<!-- legend: the distinction the figure exists to carry -->
+<rect x="60" y="428" width="24" height="20" rx="3" fill="#c9dcec" stroke="#8e6f3e" stroke-width="1.5"/>
+<text x="92" y="443" font-size="12.5" fill="#2d2d2d">queue — work waiting for capacity</text>
+<rect x="340" y="428" width="24" height="20" rx="3" fill="#ffffff" stroke="#8e6f3e" stroke-width="1.5"/>
+<text x="372" y="443" font-size="12.5" fill="#2d2d2d">service station — work being performed</text>
+</svg>
