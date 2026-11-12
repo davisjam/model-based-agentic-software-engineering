@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 638,
+    "total_sites": 637,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 302,
+      "book-web": 301,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -989,7 +989,7 @@
           },
           {
             "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/web/docs/4.3-brownfield-engineering.md",
@@ -997,7 +997,7 @@
           },
           {
             "file": "book/web/docs/4.4-engineering-the-environment.md",
-            "occ": 40
+            "occ": 39
           },
           {
             "file": "book/web/docs/5.1-software-factory.md",
@@ -2202,10 +2202,6 @@
             "occ": 8
           },
           {
-            "file": "book/web/docs/4.2-one-problem-many-models.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
             "occ": 1
           },
@@ -2229,7 +2225,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 9
+            "occ": 8
           }
         ]
       },
