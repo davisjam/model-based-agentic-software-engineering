@@ -19779,3 +19779,14 @@ These boundaries matter because different obligations become legible at differen
 
 \emph{Intervention boundaries.} Guidance influences the reasoner; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates, but later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.
 ```
+
+
+## Chapter 1 figure introductions — 2026-11-12
+
+Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, revision `652d0f2685118386108ecb296bd25b7e4ce50183`, sections “Where Commodity Intelligence Comes From” and “The Reasoning Horizon”. Replaced at the author’s request to clarify capability/control and reconstruction costs; arguments and citation targets retained.
+
+```latex
+\autoref{agentic-substrate} distinguishes the sources of the foundation model's capabilities from the existing system knowledge and engineering mechanisms surrounding its use.
+
+Research on external representations has long shown that how information is organized affects the work needed to reason with it~\citep{larkin1987diagram}~\citep{zhang1994representations}. Better representations may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+```

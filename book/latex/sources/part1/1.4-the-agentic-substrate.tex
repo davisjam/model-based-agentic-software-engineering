@@ -48,7 +48,7 @@ For large, evolving systems, a seemingly local change may depend on an architect
 
 Engineers can influence a language-based agent in two broad ways. They can change the foundation model through training or fine-tuning that modifies its weights. They can also change what the agent receives and the environment in which it operates: instructions, system knowledge, tools, permissions, and feedback. Training a frontier foundation model requires resources far beyond those available to an ordinary software engineering project. Fine-tuning is more accessible, especially with techniques that update only a small fraction of its parameters~\citep{hu2022lora}. It still requires suitable training data, evaluation, and maintenance, and may not be supported for the particular foundation model an engineer wishes to use. By contrast, engineers can often configure instructions, supply relevant project knowledge, expose tools, and establish checks without modifying the underlying weights.
 
-This distinction establishes the principal locus of control in MAGE. The engineer acquires general-purpose intelligence as a service or software component, then engineers the environment in which that intelligence performs consequential work. \autoref{agentic-substrate} distinguishes the sources of the foundation model's capabilities from the existing system knowledge and engineering mechanisms surrounding its use.
+This distinction establishes the principal locus of control in MAGE. The engineer acquires general-purpose intelligence as a service or software component, then engineers the environment in which that intelligence performs consequential work. \autoref{agentic-substrate} places these two sources of engineering capability and control in one system: the foundation model supplies general reasoning capabilities, while the harness and governed engineering environment connect those capabilities to the particular system being developed.
 
 \begin{figure}[htbp]
 \centering
@@ -170,7 +170,7 @@ The generation of commodity intelligence that motivated this book is built aroun
 
 % <!-- print-columns-start: reasoning-horizon-fig -->
 
-Research on external representations has long shown that how information is organized affects the work needed to reason with it~\citep{larkin1987diagram}~\citep{zhang1994representations}. Better representations may also make work cheaper without extending the range of tasks the system can handle. \autoref{reasoning-horizon-fig} illustrates how purposeful abstraction reduces reconstruction.
+Research on external representations has long shown that how information is organized affects the work needed to reason with it~\citep{larkin1987diagram, zhang1994representations}. A useful engineering model preserves relationships that would otherwise have to be reconstructed from implementation. \autoref{reasoning-horizon-fig} illustrates how this can reduce repeated reconstruction effort. Better representations may therefore make engineering work cheaper without necessarily extending the range of tasks the system can handle.
 
 \begin{figure}[htbp]
 \centering
