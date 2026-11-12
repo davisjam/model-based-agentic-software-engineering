@@ -1190,16 +1190,16 @@
           "points": [
             {
               "slug": "two-layers-cover-the-relationship-mechanical-and-judgment",
-              "text": "Mechanical correspondence has a declared surface: some claims are decidable, others remain semantic and require judgment, unmodeled properties have no model-based coverage, and a recurring miss is a candidate for refining the representation or adding a control.",
+              "text": "Model coverage has a revisable boundary: some claims are mechanically decidable, others require semantic judgment, and unmodeled properties have no model-based coverage; experience may justify representing a new property or removing an unnecessary distinction.",
               "block_index": 53
             }
           ]
         },
         {
-          "section_id": "some-correspondence-remains-semantic",
+          "section_id": "the-limits-of-model-coverage",
           "level": 3,
-          "heading_text": "Some correspondence remains semantic",
-          "topic_sentence": "Mechanical checks can determine whether an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current.",
+          "heading_text": "The Limits of Model Coverage",
+          "topic_sentence": "The boundary of what engineers choose to model can change with experience.",
           "id_source": "derived",
           "block_index": 54,
           "points": [

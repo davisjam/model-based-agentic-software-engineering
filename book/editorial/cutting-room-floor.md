@@ -19713,3 +19713,24 @@ Retired at the author’s request: the prose already explains the two consumers 
 \label{docable-execution-analysis}
 \end{figure}
 ```
+
+
+## Attribution figure and superseded coverage wording — 2026-11-12
+
+The author retired the attribution figure while preserving its worked example, and replaced the coverage discussion with the two-way revision of the modeled surface. Source: `book/latex/sources/part2/2.5-system-knowledge.tex` at `a8fcce40fed28df6ee2679a206d22ef4a06565e9`, attribution figure lines [154, 159]. Artwork remains on disk. Exact former wording and registry rows are preserved in `coverage-boundary-and-attribution-20261112.json`.
+
+```latex
+\autoref{attribution-model} shows the information retained for each operation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/attribution-model-7a93d46093.pdf}
+\caption{\emph{Attribution provenance model.} Recording the responsible pass and evidence for each edit makes the work traceable after execution. Audit and explanation can use the same history.}
+\label{attribution-model}
+\end{figure}
+
+% Superseded heading: Some correspondence remains semantic
+Mechanical checks can determine whether an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Semantic claims may still require judgment, and properties left out of the model receive no model-based coverage. When a failure recurs, engineers can ask whether to refine the representation or add a control (\autoref{model-sync-two-layer-net}).
+
+\emph{Coverage of model correspondence.} Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.
+```

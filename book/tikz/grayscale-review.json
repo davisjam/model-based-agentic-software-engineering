@@ -1295,16 +1295,6 @@
     }
   },
   {
-    "source": "book/assets/attribution-model.svg",
-    "candidate": "book/tikz/figures/attribution-model.tex",
-    "receipt": "book/tikz/receipts/attribution-model.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Restored operation-record enclosure containing its four fields; removed field spokes and external detour. Run-to-record and record-to-derived-views remain directed.",
-    "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
-    "candidate_sha256": "55565f2115f9ec643654b6960ec78e6a66093298f270d151da352c44563bac22"
-  },
-  {
     "source": "book/assets/two-reductions-static-realized.svg",
     "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
     "receipt": "book/tikz/receipts/two-reductions-static-realized.json",

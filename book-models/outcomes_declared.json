@@ -257,7 +257,7 @@
       "obj": "what the running system promises and the record it must leave behind",
       "statement": "After this chapter, the reader can model an operating envelope — naming measured quantities and the bounds that drive admission or merely report — and derive an audit-grade changelog from a provenance record the code writes as it acts.",
       "provenance": "declared",
-      "anchor": "The 'Modeling Makes Properties Available to Engineering' cost-and-capacity passage (docable-attaches-no-hard-invariant-to-either-quantity) + the 'What Happened, and What Evidence Records It' subsection (attribution-model, record-once-derive-the-explanations)."
+      "anchor": "The 'Modeling Makes Properties Available to Engineering' cost-and-capacity passage (docable-attaches-no-hard-invariant-to-either-quantity) + the 'What one document run changed' passage (event-grain-is-part-of-the-provenance-model, a-typed-edit-record-replays-deterministically)."
     },
     {
       "granularity": "chapter",

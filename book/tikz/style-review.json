@@ -2046,35 +2046,6 @@
       "reason": "Restored the exact original two-line italic footer, with 10pt text and balanced line spacing below the unchanged bold traceability line; graph and other labels retained."
     },
     {
-      "source": "book/assets/attribution-model.svg",
-      "candidate": "book/tikz/figures/attribution-model.tex",
-      "receipt": "book/tikz/receipts/attribution-model.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
-      "candidate_sha256": "45cbffb726b70da43ac4f00a52d2f61223c4a5f034a063092feb57185d23c673",
-      "fill": "Run, record territory, fields, evidence and derived outputs white; record containment supplies grouping.",
-      "bold": "Source-derived emphasis includes RUN; OPERATION*; Target; Mutation; Responsible pass; Retained evidence. Formal record names and schema fields regain label hierarchy; derived-view heading is italic, not another record type.",
-      "routing": "Existing horizontal/vertical paths retained; no diagonal process-routing exception.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 31,
-        "width_bp": 363.145,
-        "height_bp": 188.108,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 8
-      },
-      "book_references": []
-    },
-    {
       "source": "book/assets/two-reductions-static-realized.svg",
       "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
       "receipt": "book/tikz/receipts/two-reductions-static-realized.json",

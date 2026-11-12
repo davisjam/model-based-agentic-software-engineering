@@ -15,7 +15,7 @@
       "section_ids": 185,
       "concepts": 75,
       "labels": 75,
-      "refs": 92,
+      "refs": 91,
       "chapters": 77,
       "parts": 9,
       "points": 562,
@@ -7369,16 +7369,6 @@
         }
       ]
     },
-    "section-id:some-correspondence-remains-semantic": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::some-correspondence-remains-semantic",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:spotify": {
       "kind": "section-id",
       "dependents": [
@@ -7635,6 +7625,16 @@
         {
           "view": "outline",
           "element": "7.4-the-engineer::the-judgment-frontier",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:the-limits-of-model-coverage": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::the-limits-of-model-coverage",
           "role": "section-anchor"
         }
       ]

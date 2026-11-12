@@ -1502,20 +1502,6 @@
       }
     },
     {
-      "source": "book/assets/attribution-model.svg",
-      "candidate": "book/tikz/figures/attribution-model.tex",
-      "source_sha256": "15879e15a48ab357c068adde338f78218ff2d71dbc0c34da24ff4916e16cf93b",
-      "candidate_sha256": "55565f2115f9ec643654b6960ec78e6a66093298f270d151da352c44563bac22",
-      "decision": "retained",
-      "review": "Compared record containment, attribution fields and directed evidence relations. Earlier record-container restoration retained. No new change.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        12.8109,
-        6.6297
-      ],
-      "strict_compile_diagnostics": []
-    },
-    {
       "source": "book/assets/two-reductions-static-realized.svg",
       "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
       "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",

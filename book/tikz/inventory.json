@@ -413,19 +413,6 @@
   },
   {
     "chapter": "2.5-system-knowledge",
-    "source": "assets/attribution-model.svg",
-    "caption": "*Attribution provenance model.* A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/attribution-model.d2",
-    "receipt": "book/d2-pilot/attribution-model.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "DocAble's attribution provenance model: a run of operations, each with recorded fields",
-    "svg_description": "A run contains operations. Each operation records its target, mutation, responsible\n    pass, and retained evidence. This structured record carries the provenance model. A small secondary line shows the uses\n    derived from it: audit, debugging, and changelog. The model is primary; the derived uses are secondary."
-  },
-  {
-    "chapter": "2.5-system-knowledge",
     "source": "assets/two-reductions-static-realized.svg",
     "caption": "*Computation structure versus recorded history.* The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions; a shared computation identity can join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
