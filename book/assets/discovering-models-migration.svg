@@ -141,8 +141,8 @@
   <!-- next pass: transparent anchor over the label so the dashed edge plugs into a named node -->
   <rect id="next-pass" x="770" y="812" width="70" height="18" fill="none" stroke="none"/>
   <!-- edge: stronger-substrate .. next-pass -->
-  <line x1="645" y1="821" x2="768" y2="821" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#dm-n)"/>
-  <text x="774" y="825" font-size="19.2" font-style="italic" fill="#57534e">next pass</text>
+  <path d="M645,821 H940 V153 H637" fill="none" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#dm-n)"/>
+  <text x="774" y="810" font-size="19.2" font-style="italic" fill="#57534e">next pass</text>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="866" x2="920" y2="866" stroke="#e7e2da" stroke-width="1.4"/>

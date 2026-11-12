@@ -18,7 +18,8 @@ every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyph
 \draw[line width=.6pt] (standing.south |- join)--(slice.south |- join);
 \draw[edge] (join)--(context.north);
 \draw[edge] (context.south)--(work.north);
-\draw[edge,dashed] (work.east)--(6.9,-6)--(6.9,-2.4)--(slice.east);
-\node[rotate=90,fill=white,inner sep=3pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (7.4,-4.2) {lifecycle event re-surfaces what matters now};
+% Label feedback horizontally inside the external return, clear of forward flow.
+\draw[edge,dashed,line width=.9pt] (work.east)--(6.9,-6)--(6.9,-2.4)--(slice.east);
+\node[align=center,text width=3.7cm,inner sep=3pt,font=\magefigurefont\fontsize{10}{12}\selectfont\itshape] at (4.7,-4.7) {lifecycle event\\re-surfaces what\\matters now};
 \node[align=center,text width=12.5cm,font=\magefigurefont\fontsize{10}{12}\selectfont\itshape] at (0,-7.2) {Keep standing context small enough to stay standing — retrieve the rest per task.};
 \end{tikzpicture}

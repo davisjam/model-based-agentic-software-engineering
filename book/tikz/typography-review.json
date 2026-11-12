@@ -12916,63 +12916,67 @@
       "source": "book/assets/permitted-vs-acceptable.svg",
       "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
       "decision": "refined",
-      "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-      "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
+      "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+      "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
       "evidence": [
         {
           "source_text": "SOFTWARE REALIZATION SPACE",
-          "source_style": "weight 700; normal; source size 22",
-          "semantic_role": "named category versus explanatory text",
+          "source_style": "Source Sans 3, 20 SVG units; bold",
           "candidate_text": "SOFTWARE REALIZATION SPACE",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/permitted-vs-acceptable.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "SOFTWARE REALIZATION SPACE",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "set or region name"
         },
         {
-          "source_text": "acceptable",
-          "source_style": "weight 700; normal; source size 21",
-          "semantic_role": "named category versus explanatory text",
+          "source_text": "A: acceptable",
+          "source_style": "Source Sans 3, 20 SVG units; bold",
           "candidate_text": "Acceptable",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/permitted-vs-acceptable.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "acceptable",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "set or region name"
         },
         {
-          "source_text": "permitted",
-          "source_style": "weight 700; normal; source size 21",
-          "semantic_role": "named category versus explanatory text",
+          "source_text": "P: permitted",
+          "source_style": "Source Sans 3, 20 SVG units; bold",
           "candidate_text": "Permitted",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/permitted-vs-acceptable.svg",
-            "element_text_path": "/svg/text[5]/text()",
-            "text_element_context": "permitted",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "set or region name"
         },
         {
-          "source_text": "a correctness risk",
-          "source_style": "weight normal; italic; source size 20",
-          "semantic_role": "named category versus explanatory text",
+          "source_text": "overconstraint",
+          "source_style": "Source Sans 3, 20 SVG units; bold",
+          "candidate_text": "Overconstraint",
+          "candidate_style": "bold",
+          "semantic_role": "set or region name"
+        },
+        {
+          "source_text": "preserved freedom",
+          "source_style": "Source Sans 3, 20 SVG units; bold",
+          "candidate_text": "Preserved freedom",
+          "candidate_style": "bold",
+          "semantic_role": "set or region name"
+        },
+        {
+          "source_text": "underconstraint",
+          "source_style": "Source Sans 3, 20 SVG units; bold",
+          "candidate_text": "Underconstraint",
+          "candidate_style": "bold",
+          "semantic_role": "set or region name"
+        },
+        {
+          "source_text": "correctness risk",
+          "source_style": "Source Sans 3, 20 SVG units; italic",
           "candidate_text": "correctness risk",
           "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/permitted-vs-acceptable.svg",
-            "element_text_path": "/svg/text[16]/text()",
-            "text_element_context": "a correctness risk",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "explanation or risk annotation"
+        },
+        {
+          "source_text": "satisfies all obligations",
+          "source_style": "Source Sans 3, 20 SVG units; regular",
+          "candidate_text": "satisfies all obligations",
+          "candidate_style": "regular",
+          "semantic_role": "explanation or risk annotation"
         }
       ],
-      "reason": "Existing overlap categories stay bold; acceptable/permitted prefixes regain partial emphasis and risk annotation is italic.",
+      "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk.",
       "checks": [
         {
           "text": "SOFTWARE REALIZATION SPACE",
@@ -12990,6 +12994,21 @@
           "italic": false
         },
         {
+          "text": "Overconstraint",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Preserved freedom",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Underconstraint",
+          "bold": true,
+          "italic": false
+        },
+        {
           "text": "correctness risk",
           "bold": false,
           "italic": true
@@ -13001,17 +13020,42 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 48,
-        "width_bp": 403.226,
-        "height_bp": 179.44,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+        "page": 1,
+        "width_bp": 411.83,
+        "height_bp": 194.421,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 5
-      }
+        "semantic_typography_checks": 8,
+        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+        "status": "passed",
+        "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+      },
+      "validation_history": [
+        {
+          "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+          "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 48,
+            "width_bp": 403.226,
+            "height_bp": 179.44,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 5
+          }
+        }
+      ],
+      "reviewed_visually": true
     },
     {
       "source": "book/assets/governance-conversion.svg",
@@ -16551,8 +16595,8 @@
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
       "decision": "refined",
-      "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
-      "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
+      "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
+      "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
       "evidence": [
         {
           "source_text": "STRONGER MODEL SUBSTRATE",
@@ -16867,7 +16911,7 @@
           ]
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
       "checks": [
         {
           "text": "STRONGER MODEL SUBSTRATE",
@@ -16924,17 +16968,44 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 65,
-        "width_bp": 423.31,
+        "date": "2026-11-11",
+        "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
+        "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+        "page": 1,
+        "width_bp": 426.857,
         "height_bp": 346.733,
-        "minimum_prose_font_pt": 9.0,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
+        "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
+        "semantic_typography_checks": 13,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 13
-      }
+        "status": "passed"
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
+          "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 65,
+            "width_bp": 423.31,
+            "height_bp": 346.733,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 13
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/squash-zero-promote.svg",
@@ -18999,128 +19070,297 @@
       "source": "book/assets/mage-staircase.svg",
       "candidate": "book/tikz/figures/mage-staircase.tex",
       "decision": "refined",
-      "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
-      "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
+      "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+      "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
       "evidence": [
         {
-          "source_text": "delegated \u2014 code generation",
-          "source_style": {
-            "font-weight": "600",
-            "font-style": "normal",
-            "font-size": "27"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Delegated:",
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "ENVIRONMENT ACCUMULATES",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "delegated \u2014 code generation",
-              "style": {
-                "font-weight": "600",
-                "font-style": "normal",
-                "font-size": "27"
-              },
-              "location": {
-                "x": "64",
-                "y": "695",
-                "text_element": 28
-              }
-            }
-          ]
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "HUMAN RESPONSIBILITY",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "5. ARCHITECT",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "4. TECH LEAD",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "3. REVIEW LEAD",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "2. QA",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Stage or column heading",
+          "candidate_text": "1. CO-CODER",
+          "candidate_style": "bold",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Representation + enforcement",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "System models, traceability,",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "and controls",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Named zones and",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "boundary rules",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Deterministic checks;",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "specialized review",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Advisory agent review",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Ordinary repository",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Residual judgments",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "and strategy",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "System map",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Unresolved",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "semantic review",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Adjudicate findings",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "Read, judge, and",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
+        },
+        {
+          "semantic_role": "Capability or human responsibility",
+          "candidate_text": "admit changes",
+          "candidate_style": "regular",
+          "authorization": "Author Figure5.8 simplification,2026-11-11"
         }
       ],
-      "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+      "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
       "checks": [
         {
-          "text": "1. CO-CODER",
-          "bold": true
+          "text": "ENVIRONMENT ACCUMULATES",
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "2. QA",
-          "bold": true
-        },
-        {
-          "text": "3. REVIEW LEAD",
-          "bold": true
-        },
-        {
-          "text": "4. TECH LEAD",
-          "bold": true
+          "text": "HUMAN RESPONSIBILITY",
+          "bold": true,
+          "italic": false
         },
         {
           "text": "5. ARCHITECT",
-          "bold": true
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "Delegated:",
-          "bold": true
+          "text": "4. TECH LEAD",
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "Environment:",
-          "bold": true
+          "text": "3. REVIEW LEAD",
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "HUMAN FOCUS",
-          "bold": true
+          "text": "2. QA",
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "ENVIRONMENT ACCUMULATES",
-          "bold": true
+          "text": "1. CO-CODER",
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "Explicit models carry system-level knowledge",
-          "italic": true,
-          "bold": false
-        },
-        {
-          "text": "Representation makes reasoning local",
-          "italic": true,
-          "bold": false
-        },
-        {
-          "text": "Semantic review after deterministic checks",
-          "italic": true,
-          "bold": false
-        },
-        {
-          "text": "Evaluation delegated before enforcement",
-          "italic": true,
-          "bold": false
-        },
-        {
-          "text": "Direct human inspection carries everything",
-          "italic": true,
-          "bold": false
-        },
-        {
-          "text": "Code generation",
+          "text": "Representation + enforcement",
           "bold": false,
           "italic": false
         },
         {
-          "text": "Residual semantics",
-          "bold": true,
+          "text": "System models, traceability,",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "and controls",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Named zones and",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "boundary rules",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Deterministic checks;",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "specialized review",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Advisory agent review",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Ordinary repository",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Residual judgments",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "and strategy",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "System map",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Unresolved",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "semantic review",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Adjudicate findings",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Read, judge, and",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "admit changes",
+          "bold": false,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-        "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-        "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+        "date": "2026-11-11",
+        "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+        "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
         "page": 1,
-        "width_bp": 432.9779968261719,
-        "height_bp": 487.3789978027344,
-        "font_sizes_pt": [
-          10.5,
-          11.0
+        "width_bp": 439.995,
+        "height_bp": 356.996,
+        "minimum_prose_font_pt": 10.461,
+        "maximum_dimensions_bp": [
+          450,
+          560
         ],
-        "minimum_prose_font_pt": 10.5,
-        "monochrome_pixels": true,
-        "geometry_findings": 0,
-        "semantic_typography_checks": 16,
-        "reviewed_peer_groups": 1,
         "unapproved_compile_diagnostics": 0,
-        "reviewed_visually": true
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "maximum_rgb_channel_delta": 0,
+        "semantic_typography_checks": 24,
+        "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+        "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -19129,7 +19369,15 @@
         "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
       },
-      "revision_date": "2026-11-10"
+      "revision_date": "2026-11-10",
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
+          "previous_source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+          "previous_candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b"
+        }
+      ]
     },
     {
       "source": "book/assets/f19_delegation_over_time.svg",
@@ -20556,7 +20804,7 @@
       "candidate": "book/tikz/figures/return-governability.tex",
       "decision": "refined",
       "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
-      "candidate_sha256": "cb851790484135f97c9b16c6e2a440b2e5ad25465ec4a7fbd5564752f3eee751",
+      "candidate_sha256": "bd30a00b5205c8991acd5cd989592591795bbf8d2bcf7dc68881f266f6d4dd9f",
       "evidence": [
         {
           "source_text": "VALUE OF EXPLICIT ENGINEERING",
@@ -20611,7 +20859,7 @@
           ]
         },
         {
-          "source_text": "High value \u00b7 Low feasible governability",
+          "source_text": "High value · Low feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -20622,7 +20870,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "High value \u00b7 Low feasible governability",
+              "text": "High value · Low feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -20637,7 +20885,7 @@
           ]
         },
         {
-          "source_text": "High value \u00b7 High feasible governability",
+          "source_text": "High value · High feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -20648,7 +20896,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "High value \u00b7 High feasible governability",
+              "text": "High value · High feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -20663,7 +20911,7 @@
           ]
         },
         {
-          "source_text": "Low value \u00b7 Low feasible governability",
+          "source_text": "Low value · Low feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -20674,7 +20922,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Low value \u00b7 Low feasible governability",
+              "text": "Low value · Low feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -20689,7 +20937,7 @@
           ]
         },
         {
-          "source_text": "Low value \u00b7 High feasible governability",
+          "source_text": "Low value · High feasible governability",
           "source_style": {
             "font-weight": "400",
             "font-style": "italic",
@@ -20700,7 +20948,7 @@
           "candidate_style": "italic",
           "source_fragments": [
             {
-              "text": "Low value \u00b7 High feasible governability",
+              "text": "Low value · High feasible governability",
               "style": {
                 "font-weight": "400",
                 "font-style": "italic",
@@ -20715,7 +20963,7 @@
           ]
         }
       ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reason": "Enlarge quadrant prose and labels from 9pt to 10pt, and axis descriptions to 11pt. Preserve the four quadrants, recommendations, axes, and explanatory wording.",
       "checks": [
         {
           "text": "Value of explicit engineering",
@@ -20748,16 +20996,24 @@
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 86,
-        "width_bp": 387.65,
-        "height_bp": 350.8,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-11",
+        "proof": "latex/build/bw-review-followups/return-governability.pdf",
+        "proof_sha256": "72948f63bc7c8ab007f4bba52067cb35241f3c5d9e5f50fb0a83fb3b1b1c865e",
+        "page": 1,
+        "width_bp": 388.581,
+        "height_bp": 351.73,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "3205f1e193af26623f6706aa668a413a8a3271404b6b818c34b59059d3cd650c",
+        "typography_audit_sha256": "301a15b10374262a18cb400223b4f96637a8a7cf3184d94d06f4de88c6a52506",
+        "semantic_typography_checks": 7,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 7
+        "status": "passed"
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -20765,7 +21021,26 @@
         "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
         "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
         "native_candidate_changed": false
-      }
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "cb851790484135f97c9b16c6e2a440b2e5ad25465ec4a7fbd5564752f3eee751",
+          "change": "Enlarge quadrant prose and labels from 9pt to 10pt, and axis descriptions to 11pt. Preserve the four quadrants, recommendations, axes, and explanatory wording.",
+          "validation": {
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+            "page": 86,
+            "width_bp": 387.65,
+            "height_bp": 350.8,
+            "minimum_prose_font_pt": 9.0,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 7
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/where-effort-moves.svg",
@@ -28421,9 +28696,9 @@
     {
       "source": "book/assets/deliver-context-two-layer.svg",
       "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-      "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-      "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-      "decision": "retained",
+      "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+      "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+      "decision": "refined",
       "evidence": [
         {
           "source_text": "ENGINEERING KNOWLEDGE",
@@ -28437,15 +28712,15 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "models \u00b7 rules \u00b7 procedures",
+          "source_text": "models · rules · procedures",
           "source_style": {
             "font-weight": "normal",
-            "font-style": "italic",
+            "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "models \u00b7 rules \u00b7 procedures",
+          "candidate_text": "models · rules · procedures",
           "candidate_style": "italic",
-          "semantic_role": "description or feedback annotation"
+          "semantic_role": "Native italic secondary description retained; source text is regular."
         },
         {
           "source_text": "STANDING CONTEXT",
@@ -28459,13 +28734,13 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "mission \u00b7 compact method",
+          "source_text": "mission · compact method",
           "source_style": {
             "font-weight": "normal",
             "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "mission \u00b7 compact method",
+          "candidate_text": "mission · compact method",
           "candidate_style": "regular",
           "semantic_role": "description or feedback annotation"
         },
@@ -28503,15 +28778,15 @@
           "semantic_role": "description or feedback annotation"
         },
         {
-          "source_text": "examples \u2014 retrieved when needed",
+          "source_text": "examples as needed",
           "source_style": {
             "font-weight": "normal",
             "font-style": "normal",
             "font-size": "20"
           },
-          "candidate_text": "examples \u2014 retrieved when needed",
+          "candidate_text": "examples — retrieved when needed",
           "candidate_style": "regular",
-          "semantic_role": "description or feedback annotation"
+          "semantic_role": "Same retrieval meaning; native wording retained."
         },
         {
           "source_text": "AGENT CONTEXT",
@@ -28536,7 +28811,7 @@
           "semantic_role": "named layer"
         },
         {
-          "source_text": "lifecycle event re-surfaces what matters now",
+          "source_text": "lifecycle event re-surfaces context",
           "source_style": {
             "font-weight": "normal",
             "font-style": "italic",
@@ -28544,16 +28819,16 @@
           },
           "candidate_text": "lifecycle event re-surfaces what matters now",
           "candidate_style": "italic",
-          "semantic_role": "description or feedback annotation"
+          "semantic_role": "Named feedback annotation; equivalent native wording retained and reflowed horizontally."
         },
         {
-          "source_text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
+          "source_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
           "source_style": {
             "font-weight": "normal",
             "font-style": "italic",
             "font-size": "20"
           },
-          "candidate_text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
+          "candidate_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
           "candidate_style": "italic",
           "semantic_role": "description or feedback annotation"
         }
@@ -28565,7 +28840,7 @@
           "italic": false
         },
         {
-          "text": "models \u00b7 rules \u00b7 procedures",
+          "text": "models · rules · procedures",
           "bold": false,
           "italic": true
         },
@@ -28575,7 +28850,7 @@
           "italic": false
         },
         {
-          "text": "mission \u00b7 compact method",
+          "text": "mission · compact method",
           "bold": false,
           "italic": false
         },
@@ -28595,7 +28870,7 @@
           "italic": false
         },
         {
-          "text": "examples \u2014 retrieved when needed",
+          "text": "examples — retrieved when needed",
           "bold": false,
           "italic": false
         },
@@ -28615,29 +28890,53 @@
           "italic": true
         },
         {
-          "text": "Keep standing context small enough to stay standing \u2014 retrieve the rest per task.",
+          "text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
           "bold": false,
           "italic": true
         }
       ],
-      "reason": "Retain source headings, capitals, explanatory italics and exact labels.",
+      "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
       "validation": {
-        "date": "2026-11-05",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-        "page": 140,
-        "width_bp": 403.399,
+        "date": "2026-11-11",
+        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+        "page": 2,
+        "width_bp": 382.502,
         "height_bp": 233.522,
+        "minimum_prose_font_pt": 10.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "monochrome_pixels": true,
         "semantic_typography_checks": 12,
-        "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-        "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
         "status": "passed",
-        "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+        "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
       },
-      "reviewed_visually": true
+      "reviewed_visually": true,
+      "validation_history": [
+        {
+          "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+          "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+          "validation": {
+            "date": "2026-11-05",
+            "proof": "latex/build/tikz/candidates.pdf",
+            "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+            "page": 140,
+            "width_bp": 403.399,
+            "height_bp": 233.522,
+            "unapproved_compile_diagnostics": 0,
+            "geometry_findings": 0,
+            "monochrome_pixels": true,
+            "semantic_typography_checks": 12,
+            "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+            "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+            "status": "passed",
+            "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+          }
+        }
+      ]
     },
     {
       "source": "book/assets/docable-seip-longitudinal-261109.svg",
@@ -28987,9 +29286,9 @@
     {
       "source": "book/assets/docable-human-evaluation-261109.svg",
       "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
-      "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
-      "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
-      "decision": "new",
+      "source_sha256": "f9d579b2bf8040b180ea2241a3d8de43c3a976146ae67ed87c3ffac997e458b4",
+      "candidate_sha256": "77c948b5433f11442e1016ced8c8fad6ad8038aa53e98773f7fee2eb6134868e",
+      "decision": "refined",
       "evidence": [
         {
           "source_text": "(a) Checker reduction",
@@ -29036,21 +29335,137 @@
           "text": "(d) Semantic changes",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "H 60.7",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D 94.1",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "H 0/10",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D 0/10",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "H 1/22",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D 1/22",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Undefined",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "H +29",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D +32",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "H +2",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D +2",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "H 0",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D +1",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "H +20",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "D +43",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
-        "status": "standalone_passed",
-        "date": "2026-11-09",
-        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
-        "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
-        "width_bp": 411.6960144042969,
-        "height_bp": 439.9909973144531,
-        "minimum_prose_font_bp": 9.962639808654785,
-        "minimum_authored_text_TeX_pt": 10,
+        "date": "2026-11-11",
+        "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+        "page": 1,
+        "width_bp": 417.677,
+        "height_bp": 468.492,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 19,
         "monochrome_pixels": true,
-        "compile_diagnostics": [],
-        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
-      }
+        "status": "passed",
+        "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+        "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+        "all_quantitative_bar_endpoints_unchanged": true,
+        "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+        "direct_labels_checked_against_frozen_data": true
+      },
+      "validation_history": [
+        {
+          "status": "standalone_passed",
+          "date": "2026-11-09",
+          "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+          "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+          "width_bp": 411.6960144042969,
+          "height_bp": 439.9909973144531,
+          "minimum_prose_font_bp": 9.962639808654785,
+          "minimum_authored_text_TeX_pt": 10,
+          "monochrome_pixels": true,
+          "compile_diagnostics": [],
+          "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+        },
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+          "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+          "page": 1,
+          "width_bp": 417.677,
+          "height_bp": 468.492,
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 19,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+          "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+          "all_quantitative_bar_endpoints_unchanged": true,
+          "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+          "direct_labels_checked_against_frozen_data": true
+        }
+      ],
+      "reason": "All comparison labels remain 10pt; panel headings and existing semantic counts retain 11pt emphasis. Direct H/D labels remain regular."
     },
     {
       "source": "book/assets/docable-reasoning-substitution.svg",

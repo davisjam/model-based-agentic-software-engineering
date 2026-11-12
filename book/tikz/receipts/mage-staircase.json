@@ -1,47 +1,57 @@
 {
   "source": "book/assets/mage-staircase.svg",
-  "claim": "*The Delegation Staircase.* As explicit representation and environmental enforcement accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; enforcement moved repeatable admission decisions out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or enforcement could move work back down the staircase.",
-  "topology": "Five ascending stages with a common right edge, growing environment region at left and a nonzero taper beside the human-focus column.",
+  "claim": "DocAble\u2019s five observed supervisory roles progressed as the environment accumulated representations and controls; human responsibility shifted toward unresolved judgments and strategy.",
+  "topology": "Five open staircase shelves rise from Co-coder to Architect, with a shared right edge, a pale stepped accumulation region, and aligned human responsibilities. No measured taper or enclosed cards.",
   "required_terms": [
-    "1. CO-CODER",
-    "2. QA",
-    "3. REVIEW LEAD",
-    "4. TECH LEAD",
-    "5. ARCHITECT",
-    "Delegated:",
-    "Environment:",
-    "HUMAN FOCUS",
     "ENVIRONMENT ACCUMULATES",
-    "Explicit models carry system-level knowledge",
-    "Representation makes reasoning local",
-    "Semantic review after deterministic checks",
-    "Evaluation delegated before enforcement",
-    "Direct human inspection carries everything",
-    "Code generation",
-    "Residual semantics"
+    "HUMAN RESPONSIBILITY",
+    "5. ARCHITECT",
+    "4. TECH LEAD",
+    "3. REVIEW LEAD",
+    "2. QA",
+    "1. CO-CODER",
+    "Representation + enforcement",
+    "System models, traceability,",
+    "and controls",
+    "Named zones and",
+    "boundary rules",
+    "Deterministic checks;",
+    "specialized review",
+    "Advisory agent review",
+    "Ordinary repository",
+    "Residual judgments",
+    "and strategy",
+    "System map",
+    "Unresolved",
+    "semantic review",
+    "Adjudicate findings",
+    "Read, judge, and",
+    "admit changes"
   ],
-  "bw_encoding": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
-  "redesign": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+  "bw_encoding": "Stage numbering, thin open shelves, pale stepped fill, and aligned responsibilities preserve the progression without color; heavy gauge and taper removed.",
+  "redesign": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
   "questions": [],
-  "alt": "Five white stage cards rise from Co-coder through QA, Review lead, Tech lead and Architect. Each names the delegated work and the engineering environment, with a short italic explanation. A pale stepped region at left grows toward the upper stages, representing accumulating representations and enforcement. Outside the cards, a black taper narrows from the bottom stage to a nonzero width at the top; aligned bold labels describe the remaining human work: reading every diff and admitting changes; adjudicating findings; residual semantic review; system map and strategy; residual semantics and strategy. The trajectories are qualitative. Failure in representation or enforcement can move work down.",
+  "alt": "Five open shelves ascend from Co-coder, QA, Review lead, and Tech lead to Architect. Each shelf pairs an accumulated environment capability with aligned human responsibility. Pale stepped shading is qualitative, not a measured quantity or maturity prescription.",
   "qa": {
-    "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-    "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-    "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+    "date": "2026-11-11",
+    "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+    "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
     "page": 1,
-    "width_bp": 432.9779968261719,
-    "height_bp": 487.3789978027344,
-    "font_sizes_pt": [
-      10.5,
-      11.0
+    "width_bp": 439.995,
+    "height_bp": 356.996,
+    "minimum_prose_font_pt": 10.461,
+    "maximum_dimensions_bp": [
+      450,
+      560
     ],
-    "minimum_prose_font_pt": 10.5,
-    "monochrome_pixels": true,
-    "geometry_findings": 0,
-    "semantic_typography_checks": 16,
-    "reviewed_peer_groups": 1,
     "unapproved_compile_diagnostics": 0,
-    "reviewed_visually": true
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "maximum_rgb_channel_delta": 0,
+    "semantic_typography_checks": 24,
+    "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+    "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+    "status": "passed"
   },
   "style_review": {
     "source": "book/assets/mage-staircase.svg",
@@ -51,31 +61,33 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
-    "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
-    "fill": "White cards; one 8%-black stepped region groups accumulated representation/enforcement. Solid black taper never reaches zero.",
-    "bold": "Stage names, Delegated/Environment labels, and residual-human roles are bold. Stage explanations retain the source italics; ordinary body text is regular.",
-    "routing": "No process arrows. The stepped contour and taper are qualitative geometry, not routes or measured quantities.",
-    "shape": "Five modestly rounded cards with an aligned right edge and ascending left boundary.",
-    "visual_review": "Native-size proof inspected: all stage/human descriptions read at 10.5pt; labels at 11pt. No centered paragraphs or floating disconnected step outlines.",
+    "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+    "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
+    "fill": "Pale qualitative accumulation region only; white stage bodies, no enclosed cards.",
+    "bold": "Column headings and five role names are bold; all capabilities and responsibilities are regular.",
+    "routing": "A vertical column separator aligns responsibilities with stages; no causal arrows or measured quantities are implied.",
+    "shape": "Open step shelves replace five dense rounded cards; no weight-varying gauge or taper.",
+    "visual_review": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
     "validation": {
-      "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-      "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-      "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+      "date": "2026-11-11",
+      "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+      "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
       "page": 1,
-      "width_bp": 432.9779968261719,
-      "height_bp": 487.3789978027344,
-      "font_sizes_pt": [
-        10.5,
-        11.0
+      "width_bp": 439.995,
+      "height_bp": 356.996,
+      "minimum_prose_font_pt": 10.461,
+      "maximum_dimensions_bp": [
+        450,
+        560
       ],
-      "minimum_prose_font_pt": 10.5,
-      "monochrome_pixels": true,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 16,
-      "reviewed_peer_groups": 1,
       "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 24,
+      "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+      "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+      "status": "passed"
     },
     "book_references": [],
     "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes.",
@@ -92,128 +104,297 @@
     "source": "book/assets/mage-staircase.svg",
     "candidate": "book/tikz/figures/mage-staircase.tex",
     "decision": "refined",
-    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
-    "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
+    "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+    "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
     "evidence": [
       {
-        "source_text": "delegated — code generation",
-        "source_style": {
-          "font-weight": "600",
-          "font-style": "normal",
-          "font-size": "27"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Delegated:",
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "ENVIRONMENT ACCUMULATES",
         "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "delegated — code generation",
-            "style": {
-              "font-weight": "600",
-              "font-style": "normal",
-              "font-size": "27"
-            },
-            "location": {
-              "x": "64",
-              "y": "695",
-              "text_element": 28
-            }
-          }
-        ]
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "HUMAN RESPONSIBILITY",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "5. ARCHITECT",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "4. TECH LEAD",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "3. REVIEW LEAD",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "2. QA",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Stage or column heading",
+        "candidate_text": "1. CO-CODER",
+        "candidate_style": "bold",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Representation + enforcement",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "System models, traceability,",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "and controls",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Named zones and",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "boundary rules",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Deterministic checks;",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "specialized review",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Advisory agent review",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Ordinary repository",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Residual judgments",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "and strategy",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "System map",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Unresolved",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "semantic review",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Adjudicate findings",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "Read, judge, and",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
+      },
+      {
+        "semantic_role": "Capability or human responsibility",
+        "candidate_text": "admit changes",
+        "candidate_style": "regular",
+        "authorization": "Author Figure5.8 simplification,2026-11-11"
       }
     ],
-    "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+    "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
     "checks": [
       {
-        "text": "1. CO-CODER",
-        "bold": true
+        "text": "ENVIRONMENT ACCUMULATES",
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "2. QA",
-        "bold": true
-      },
-      {
-        "text": "3. REVIEW LEAD",
-        "bold": true
-      },
-      {
-        "text": "4. TECH LEAD",
-        "bold": true
+        "text": "HUMAN RESPONSIBILITY",
+        "bold": true,
+        "italic": false
       },
       {
         "text": "5. ARCHITECT",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "Delegated:",
-        "bold": true
+        "text": "4. TECH LEAD",
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "Environment:",
-        "bold": true
+        "text": "3. REVIEW LEAD",
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "HUMAN FOCUS",
-        "bold": true
+        "text": "2. QA",
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "ENVIRONMENT ACCUMULATES",
-        "bold": true
+        "text": "1. CO-CODER",
+        "bold": true,
+        "italic": false
       },
       {
-        "text": "Explicit models carry system-level knowledge",
-        "italic": true,
-        "bold": false
-      },
-      {
-        "text": "Representation makes reasoning local",
-        "italic": true,
-        "bold": false
-      },
-      {
-        "text": "Semantic review after deterministic checks",
-        "italic": true,
-        "bold": false
-      },
-      {
-        "text": "Evaluation delegated before enforcement",
-        "italic": true,
-        "bold": false
-      },
-      {
-        "text": "Direct human inspection carries everything",
-        "italic": true,
-        "bold": false
-      },
-      {
-        "text": "Code generation",
+        "text": "Representation + enforcement",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Residual semantics",
-        "bold": true,
+        "text": "System models, traceability,",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and controls",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Named zones and",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "boundary rules",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Deterministic checks;",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "specialized review",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Advisory agent review",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Ordinary repository",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Residual judgments",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and strategy",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "System map",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Unresolved",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "semantic review",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Adjudicate findings",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Read, judge, and",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "admit changes",
+        "bold": false,
         "italic": false
       }
     ],
     "validation": {
-      "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-      "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-      "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+      "date": "2026-11-11",
+      "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+      "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
       "page": 1,
-      "width_bp": 432.9779968261719,
-      "height_bp": 487.3789978027344,
-      "font_sizes_pt": [
-        10.5,
-        11.0
+      "width_bp": 439.995,
+      "height_bp": 356.996,
+      "minimum_prose_font_pt": 10.461,
+      "maximum_dimensions_bp": [
+        450,
+        560
       ],
-      "minimum_prose_font_pt": 10.5,
-      "monochrome_pixels": true,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 16,
-      "reviewed_peer_groups": 1,
       "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 24,
+      "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+      "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+      "status": "passed"
     },
     "color_source_revision": {
       "date": "2026-11-09",
@@ -227,70 +408,49 @@
   "layout_review": {
     "source": "book/assets/mage-staircase.svg",
     "candidate": "book/tikz/figures/mage-staircase.tex",
-    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+    "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
     "baseline_candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
-    "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
+    "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
     "decision": "refined",
-    "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+    "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       426.68798828125,
       412.2179870605469
     ],
-    "contracts": {
-      "peer_groups": [
-        {
-          "name": "stage cards share the right edge",
-          "labels": [
-            "1. CO-CODER",
-            "2. QA",
-            "3. REVIEW LEAD",
-            "4. TECH LEAD",
-            "5. ARCHITECT"
-          ],
-          "align": [
-            "right"
-          ],
-          "tolerance_pt": 1
-        }
-      ],
-      "terminal_exceptions": []
-    },
+    "contracts": {},
     "validation": {
-      "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-      "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-      "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+      "date": "2026-11-11",
+      "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+      "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
       "page": 1,
-      "width_bp": 432.9779968261719,
-      "height_bp": 487.3789978027344,
-      "font_sizes_pt": [
-        10.5,
-        11.0
+      "width_bp": 439.995,
+      "height_bp": 356.996,
+      "minimum_prose_font_pt": 10.461,
+      "maximum_dimensions_bp": [
+        450,
+        560
       ],
-      "minimum_prose_font_pt": 10.5,
-      "monochrome_pixels": true,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 16,
-      "reviewed_peer_groups": 1,
       "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 24,
+      "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+      "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+      "status": "passed"
     },
     "page_layout": {
       "decision": "refined",
-      "reason": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
-      "before_sha256": "924d28f92c5a85d9a7a873341d0168e481fab60157314c33763bc6852845d5fc",
-      "after_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
-      "before_dimensions_bp": [
-        426.688,
-        493.064
-      ],
+      "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
+      "after_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
       "after_dimensions_bp": [
-        432.9779968261719,
-        487.3789978027344
+        439.995,
+        356.996
       ],
       "after_font_sizes_pt": [
         10.5,
-        11.0
+        11
       ],
       "reviewed_visually": true
     },
@@ -304,68 +464,108 @@
     "native_candidate_changed": false
   },
   "validation": {
-    "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-    "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-    "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+    "date": "2026-11-11",
+    "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+    "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
     "page": 1,
-    "width_bp": 432.9779968261719,
-    "height_bp": 487.3789978027344,
-    "font_sizes_pt": [
-      10.5,
-      11.0
+    "width_bp": 439.995,
+    "height_bp": 356.996,
+    "minimum_prose_font_pt": 10.461,
+    "maximum_dimensions_bp": [
+      450,
+      560
     ],
-    "minimum_prose_font_pt": 10.5,
-    "monochrome_pixels": true,
-    "geometry_findings": 0,
-    "semantic_typography_checks": 16,
-    "reviewed_peer_groups": 1,
     "unapproved_compile_diagnostics": 0,
-    "reviewed_visually": true
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "maximum_rgb_channel_delta": 0,
+    "semantic_typography_checks": 24,
+    "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+    "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+    "status": "passed"
   },
   "fidelity_review": {
     "source": "book/assets/mage-staircase.svg",
     "candidate": "book/tikz/figures/mage-staircase.tex",
     "checks": {
-      "icons_and_symbols": "Five ascending stages and both qualitative trajectories retained; the human taper remains nonzero.",
-      "links_and_groups": "Stage cards share a right edge; outside human roles align with each stage.",
-      "annotation_placement": "Explanatory italics from the existing color drawing are restored inside each native card; human roles remain outside."
+      "icons_and_symbols": "All five numbered roles retained; pale widening stepped region qualitatively shows accumulated capability. Heavy gauges and taper removed.",
+      "links_and_groups": "Five thin open shelves share a right edge; responsibilities align in one outside column.",
+      "annotation_placement": "Each role carries one concise capability and one human responsibility; explanatory paragraphs remain in the surrounding prose."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
         10.5,
-        11.0
+        11
       ],
       "minimum": 10.5,
       "final_size_no_scaling": true
     },
     "geometry_findings": [],
     "compiler_diagnostics": [],
-    "width_bp": 432.9779968261719,
-    "height_bp": 487.3789978027344,
+    "width_bp": 439.995,
+    "height_bp": 356.996,
     "monochrome": true,
-    "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
-    "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
-    "review": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+    "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+    "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
+    "review": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
     "decision": "refined",
-    "revision_date": "2026-11-10",
+    "revision_date": "2026-11-11",
     "validation": {
-      "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-      "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-      "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+      "date": "2026-11-11",
+      "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+      "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
       "page": 1,
-      "width_bp": 432.9779968261719,
-      "height_bp": 487.3789978027344,
-      "font_sizes_pt": [
-        10.5,
-        11.0
+      "width_bp": 439.995,
+      "height_bp": 356.996,
+      "minimum_prose_font_pt": 10.461,
+      "maximum_dimensions_bp": [
+        450,
+        560
       ],
-      "minimum_prose_font_pt": 10.5,
-      "monochrome_pixels": true,
-      "geometry_findings": 0,
-      "semantic_typography_checks": 16,
-      "reviewed_peer_groups": 1,
       "unapproved_compile_diagnostics": 0,
-      "reviewed_visually": true
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 24,
+      "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+      "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+      "status": "passed"
+    }
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
+      "previous_source_sha256": null,
+      "previous_candidate_sha256": null
+    }
+  ],
+  "candidate": "book/tikz/figures/mage-staircase.tex",
+  "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+  "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
+  "generator": "book/figures/delegation-staircase/generate.py",
+  "review": {
+    "outcome": "Scoped proof visually inspected at print size; typography and geometry passed. Pending author review.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+      "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
+      "page": 1,
+      "width_bp": 439.995,
+      "height_bp": 356.996,
+      "minimum_prose_font_pt": 10.461,
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "maximum_rgb_channel_delta": 0,
+      "semantic_typography_checks": 24,
+      "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+      "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+      "status": "passed"
     }
   }
 }

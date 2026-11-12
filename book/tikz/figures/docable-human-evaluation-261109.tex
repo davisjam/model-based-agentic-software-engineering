@@ -1,65 +1,80 @@
 \begin{tikzpicture}
-\begin{axis}[mage plot,at={(0.0cm,0cm)},anchor=north west,width=5.1cm,height=4.7cm,xmin=0,xmax=118,ymin=-.6,ymax=3.6,y dir=reverse,axis lines*=left,xmajorgrids,ymajorgrids=false,ytick={0,1,2,3},yticklabels={\shortstack{PDF\\(n=10)},\shortstack{DOCX\\(n=25)},\shortstack{PPTX\\(n=21)},\shortstack{XLSX\\(n=0)}},xtick={0,50,100},xticklabels={0\%,50\%,100\%},title={(a) Checker reduction},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,-0.31000000000000005) rectangle (axis cs:60.74322468238683,-0.03);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:61.24322468238683,-0.17) {60.7};
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,0.69) rectangle (axis cs:66.66666666666667,0.97);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:67.16666666666667,0.83) {66.7};
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,1.69) rectangle (axis cs:84.78260869565217,1.9700000000000002);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:85.28260869565217,1.83) {84.8};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,0.03) rectangle (axis cs:94.09946421704518,0.31000000000000005);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:94.59946421704518,0.17) {94.1};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,1.0299999999999998) rectangle (axis cs:75.0,1.31);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:75.5,1.17) {75.0};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,2.03) rectangle (axis cs:34.285714285714285,2.31);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:34.785714285714285,2.17) {34.3};
+\begin{axis}[mage plot,at={(0.0cm,0cm)},anchor=north west,width=5.1cm,height=4.7cm,xmin=0,xmax=140,ymin=-.6,ymax=3.6,y dir=reverse,axis lines*=left,xmajorgrids,ymajorgrids=false,ytick={0,1,2,3},yticklabels={\shortstack{PDF\\(n=10)},\shortstack{DOCX\\(n=25)},\shortstack{PPTX\\(n=21)},\shortstack{XLSX\\(n=0)}},xtick={0,50,100},xticklabels={0\%,50\%,100\%},title={(a) Checker reduction},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,-0.39) rectangle (axis cs:60.74322468238683,-0.03);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:61.24322468238683,-0.21) {H 60.7};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,0.6100000000000001) rectangle (axis cs:66.66666666666667,0.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:67.16666666666667,0.79) {H 66.7};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,1.61) rectangle (axis cs:84.78260869565217,1.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:85.28260869565217,1.79) {H 84.8};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,0.03) rectangle (axis cs:94.09946421704518,0.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:94.59946421704518,0.21) {D 94.1};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,1.03) rectangle (axis cs:75.0,1.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:75.5,1.21) {D 75.0};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,2.03) rectangle (axis cs:34.285714285714285,2.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:34.785714285714285,2.21) {D 34.3};
 \node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont] at (axis cs:0,3) {Undefined};
 \end{axis}
-\begin{axis}[mage plot,at={(7.4cm,0cm)},anchor=north west,width=5.1cm,height=4.7cm,xmin=0,xmax=7,ymin=-.6,ymax=3.6,y dir=reverse,axis lines*=left,xmajorgrids,ymajorgrids=false,ytick={0,1,2,3},yticklabels={PDF,DOCX,PPTX,XLSX},xtick={0,3,6},xticklabels={0\%,3\%,6\%},title={(b) Increased findings},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,-0.31000000000000005) rectangle (axis cs:0.0,-0.03);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,-0.17) {0/10};
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,0.69) rectangle (axis cs:0.0,0.97);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,0.83) {0/29};
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,1.69) rectangle (axis cs:4.545454545454546,1.9700000000000002);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:4.585454545454546,1.83) {1/22};
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,2.69) rectangle (axis cs:0.0,2.97);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,2.83) {0/1};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,0.03) rectangle (axis cs:0.0,0.31000000000000005);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,0.17) {0/10};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,1.0299999999999998) rectangle (axis cs:0.0,1.31);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,1.17) {0/29};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,2.03) rectangle (axis cs:4.545454545454546,2.31);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:4.585454545454546,2.17) {1/22};
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,3.03) rectangle (axis cs:0.0,3.31);
-\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,3.17) {0/1};
+\begin{axis}[mage plot,at={(7.4cm,0cm)},anchor=north west,width=5.1cm,height=4.7cm,xmin=0,xmax=9,ymin=-.6,ymax=3.6,y dir=reverse,axis lines*=left,xmajorgrids,ymajorgrids=false,ytick={0,1,2,3},yticklabels={PDF,DOCX,PPTX,XLSX},xtick={0,3,6},xticklabels={0\%,3\%,6\%},title={(b) Increased findings},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,-0.39) rectangle (axis cs:0.0,-0.03);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,-0.21) {H 0/10};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,0.6100000000000001) rectangle (axis cs:0.0,0.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,0.79) {H 0/29};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,1.61) rectangle (axis cs:4.545454545454546,1.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:4.585454545454546,1.79) {H 1/22};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,2.61) rectangle (axis cs:0.0,2.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,2.79) {H 0/1};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,0.03) rectangle (axis cs:0.0,0.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,0.21) {D 0/10};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,1.03) rectangle (axis cs:0.0,1.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,1.21) {D 0/29};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,2.03) rectangle (axis cs:4.545454545454546,2.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:4.585454545454546,2.21) {D 1/22};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,3.03) rectangle (axis cs:0.0,3.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:0.04,3.21) {D 0/1};
 \end{axis}
-\node[anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont] at (0,1.7) {Human: hatched \quad DocAble: solid gray};
+\node[anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont] at (0,1.7) {Human (H): hatched \quad DocAble (D): solid};
 \begin{axis}[mage plot,at={(0cm,-7.3cm)},anchor=north west,width=5.1cm,height=4.7cm,xmin=0,xmax=62,ymin=-.6,ymax=2.6,y dir=reverse,xmajorgrids,ymajorgrids=false,ytick={0,1,2},yticklabels={Better,Within band,Worse},xtick={0,31,62},title={(c) Semantic comparison},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
 \path[draw=black,fill=black!65] (axis cs:0,-0.25) rectangle (axis cs:20,0.25);\node[anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont] at (axis cs:20,0) {20};
 \path[draw=black,fill=black!25] (axis cs:0,0.75) rectangle (axis cs:41,1.25);\node[anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont] at (axis cs:41,1) {41};
 \path[draw=black,fill=black!0] (axis cs:0,1.75) rectangle (axis cs:1,2.25);\node[anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont] at (axis cs:1,2) {1};
 \end{axis}
 \node[anchor=north west,font=\magefigurefont\fontsize{10}{12}\selectfont] at (0,-12.6) {62 outputs; $\pm1$ point parity};
-\begin{axis}[mage plot,at={(7.4cm,-7.3cm)},anchor=north west,width=5.1cm,height=4.7cm,xmin=-5,xmax=50,ymin=-.6,ymax=4.6,y dir=reverse,xmajorgrids,ymajorgrids=false,ytick={0,1,2,3,4},yticklabels={Alt text,\shortstack{Complex\\images},\shortstack{Reading\\order},Headings,Other},xtick={0,20,40},title={(d) Semantic changes},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,-0.31000000000000005) rectangle (axis cs:0,-0.03);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,-0.31000000000000005) rectangle (axis cs:29,-0.03);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,0.69) rectangle (axis cs:0,0.97);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,0.69) rectangle (axis cs:17,0.97);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,1.69) rectangle (axis cs:-3,1.9700000000000002);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,1.69) rectangle (axis cs:2,1.9700000000000002);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,2.69) rectangle (axis cs:0,2.97);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,2.69) rectangle (axis cs:0,2.97);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,3.69) rectangle (axis cs:-2,3.97);
-\path[draw=black,line width=.3pt,fill=white,postaction={pattern=north east lines}] (axis cs:0,3.69) rectangle (axis cs:20,3.97);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,0.03) rectangle (axis cs:0,0.31000000000000005);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,0.03) rectangle (axis cs:32,0.31000000000000005);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,1.0299999999999998) rectangle (axis cs:0,1.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,1.0299999999999998) rectangle (axis cs:38,1.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,2.03) rectangle (axis cs:-1,2.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,2.03) rectangle (axis cs:2,2.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,3.03) rectangle (axis cs:-2,3.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,3.03) rectangle (axis cs:1,3.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,4.03) rectangle (axis cs:0,4.31);
-\path[draw=black,line width=.3pt,fill=black!65] (axis cs:0,4.03) rectangle (axis cs:43,4.31);
+\begin{axis}[mage plot,at={(7.4cm,-7.3cm)},anchor=north west,width=5.1cm,height=5.4cm,xmin=-12,xmax=60,ymin=-.6,ymax=4.6,y dir=reverse,xmajorgrids,ymajorgrids=false,ytick={0,1,2,3,4},yticklabels={Alt text,\shortstack{Complex\\images},\shortstack{Reading\\order},Headings,Other},xtick={-10,0,20,40},title={(d) Semantic changes},title style={at={(0,1.1)},anchor=west,font=\magefigurefont\fontsize{11}{13}\selectfont}]
+\draw[black,line width=1.1pt] (axis cs:0,-.6)--(axis cs:0,4.6);
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,-0.39) rectangle (axis cs:0,-0.03);
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,-0.39) rectangle (axis cs:29,-0.03);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:30,-0.21) {H +29};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,0.6100000000000001) rectangle (axis cs:0,0.97);
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,0.6100000000000001) rectangle (axis cs:17,0.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:18,0.79) {H +17};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,1.61) rectangle (axis cs:-3,1.97);
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,1.61) rectangle (axis cs:2,1.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:3,1.79) {H +2};
+\node[anchor=east,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:-4,1.79) {$-3$};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,2.61) rectangle (axis cs:0,2.97);
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,2.61) rectangle (axis cs:0,2.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:1,2.79) {H 0};
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,3.61) rectangle (axis cs:-2,3.97);
+\path[draw=black,line width=.7pt,fill=white,postaction={pattern=north east lines,pattern color=black}] (axis cs:0,3.61) rectangle (axis cs:20,3.97);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:21,3.79) {H +20};
+\node[anchor=east,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:-3,3.79) {$-2$};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,0.03) rectangle (axis cs:0,0.39);
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,0.03) rectangle (axis cs:32,0.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:33,0.21) {D +32};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,1.03) rectangle (axis cs:0,1.39);
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,1.03) rectangle (axis cs:38,1.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:39,1.21) {D +38};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,2.03) rectangle (axis cs:-1,2.39);
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,2.03) rectangle (axis cs:2,2.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:3,2.21) {D +2};
+\node[anchor=east,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:-2,2.21) {$-1$};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,3.03) rectangle (axis cs:-2,3.39);
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,3.03) rectangle (axis cs:1,3.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:2,3.21) {D +1};
+\node[anchor=east,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:-3,3.21) {$-2$};
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,4.03) rectangle (axis cs:0,4.39);
+\path[draw=black,line width=.7pt,fill=black!80] (axis cs:0,4.03) rectangle (axis cs:43,4.39);
+\node[anchor=west,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=1pt] at (axis cs:44,4.21) {D +43};
 \end{axis}
-\node[anchor=north west,font=\magefigurefont\fontsize{10}{12}\selectfont] at (7.4,-12.6) {\shortstack[l]{Document-criterion changes\\Losses $\leftarrow 0 \rightarrow$ Gains}};
+\node[anchor=north west,font=\magefigurefont\fontsize{10}{12}\selectfont] at (7.4,-13.4) {\shortstack[l]{Losses $\leftarrow 0 \rightarrow$ Gains\\Document--criterion changes}};
 \end{tikzpicture}

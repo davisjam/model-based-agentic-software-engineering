@@ -631,7 +631,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Obligations and permitted realizations — underconstraint and overconstraint as the two mismatches",
-    "svg_description": "A bounding panel holds the software realization space. Inside it, two overlapping\n    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a\n    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —\n    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable\n    alternatives excluded. The permitted-only region at right is underconstraint:\n    unacceptable, yet permitted — a correctness risk."
+    "svg_description": "Two overlapping outlined sets within the software realization space. A, acceptable realizations, has a solid outline. P, realizations permitted by controls, has a dashed outline. The acceptable-only region is overconstraint: acceptable alternatives excluded. The overlap is preserved freedom: acceptable and permitted. The permitted-only region is underconstraint: unacceptable yet permitted, a correctness risk."
   },
   {
     "chapter": "3.4-governance-conversion",
@@ -1029,7 +1029,7 @@
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/mage-staircase.json",
-    "generator": null,
+    "generator": "book/figures/delegation-staircase/generate.py",
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes",
@@ -1041,7 +1041,8 @@
     "authored_font_sizes_pt": [
       10.5,
       11.0
-    ]
+    ],
+    "description": "Five delegation stages with accumulated environmental capability on the left and residual human responsibility aligned on the right."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",

@@ -1791,26 +1791,52 @@
       "source": "book/assets/permitted-vs-acceptable.svg",
       "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
       "checks": {
-        "icons_and_symbols": "No pictograms; overlap uses hatching.",
-        "links_and_groups": "Solid acceptable and dashed permitted outlines distinguish overlap and exclusions.",
-        "annotation_placement": "Over/underconstraint labels reside in their own regions, without boundary occlusion."
+        "icons_and_symbols": "A and P name the two sets; solid/dashed outlines distinguish their membership.",
+        "links_and_groups": "Solid acceptable set A and dashed permitted set P overlap inside the realization-space boundary.",
+        "annotation_placement": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0
+          10.0
         ],
-        "minimum": 9,
+        "minimum": 10.0,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 403.22601318359375,
-      "height_bp": 180.84800720214844,
+      "width_bp": 411.83,
+      "height_bp": 194.421,
       "monochrome": true,
-      "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-      "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
+      "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+      "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
+      "review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width.",
+      "decision": "refined",
+      "validation_history": [
+        {
+          "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+          "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040"
+        }
+      ],
+      "reviewed_visually": true,
+      "validation": {
+        "date": "2026-11-11",
+        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+        "page": 1,
+        "width_bp": 411.83,
+        "height_bp": 194.421,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 8,
+        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+        "status": "passed",
+        "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+      },
+      "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk."
     },
     {
       "source": "book/assets/governance-conversion.svg",
@@ -2539,21 +2565,48 @@
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0,
           10.0
         ],
-        "minimum": 9,
+        "minimum": 10,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 416.2229919433594,
-      "height_bp": 340.9469909667969,
+      "width_bp": 426.857,
+      "height_bp": 346.733,
       "monochrome": true,
-      "source_sha256": "0e776f131de09294ecd25727c5b753454db4b70a71719d0edb18ea4edf97eaff",
-      "candidate_sha256": "e0ab785ecfb716675ad8f26d8df72cc31be9e63336a2b1131d768b8b23417035",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
+      "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
+      "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
+      "review": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+      "decision": "refined",
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "e0ab785ecfb716675ad8f26d8df72cc31be9e63336a2b1131d768b8b23417035",
+          "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+          "validation": {}
+        }
+      ],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
+        "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+        "page": 1,
+        "width_bp": 426.857,
+        "height_bp": 346.733,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
+        "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
+        "semantic_typography_checks": 13,
+        "monochrome_pixels": true,
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/squash-zero-promote.svg",
@@ -2975,47 +3028,57 @@
       "source": "book/assets/mage-staircase.svg",
       "candidate": "book/tikz/figures/mage-staircase.tex",
       "checks": {
-        "icons_and_symbols": "Five ascending stages and both qualitative trajectories retained; the human taper remains nonzero.",
-        "links_and_groups": "Stage cards share a right edge; outside human roles align with each stage.",
-        "annotation_placement": "Explanatory italics from the existing color drawing are restored inside each native card; human roles remain outside."
+        "icons_and_symbols": "All five numbered roles retained; pale widening stepped region qualitatively shows accumulated capability. Heavy gauges and taper removed.",
+        "links_and_groups": "Five thin open shelves share a right edge; responsibilities align in one outside column.",
+        "annotation_placement": "Each role carries one concise capability and one human responsibility; explanatory paragraphs remain in the surrounding prose."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
           10.5,
-          11.0
+          11
         ],
         "minimum": 10.5,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 432.9779968261719,
-      "height_bp": 487.3789978027344,
+      "width_bp": 439.995,
+      "height_bp": 356.996,
       "monochrome": true,
-      "source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
-      "candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b",
-      "review": "Author-requested monochrome legibility pass: left-aligned 10.5pt stage text, right-aligned stepped cards, restored explanatory italics from the color source, clear Delegated/Environment labels, and bold residual-human roles. A single pale stepped region depicts accumulated engineering structure; a continuous nonzero black taper depicts the qualitative reduction of tactical human burden.",
+      "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+      "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
+      "review": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
       "decision": "refined",
-      "revision_date": "2026-11-10",
+      "revision_date": "2026-11-11",
       "validation": {
-        "proof": "/private/tmp/mage-ch5-placement-20261110/proof.pdf",
-        "proof_sha256": "3a75426951fff8593f47c429e30cbae595a71a8f33ac3f020e22681fd5f0ea10",
-        "validation_scope": "Revised monochrome Delegation Staircase only; whole-pool verification follows.",
+        "date": "2026-11-11",
+        "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
+        "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
         "page": 1,
-        "width_bp": 432.9779968261719,
-        "height_bp": 487.3789978027344,
-        "font_sizes_pt": [
-          10.5,
-          11.0
+        "width_bp": 439.995,
+        "height_bp": 356.996,
+        "minimum_prose_font_pt": 10.461,
+        "maximum_dimensions_bp": [
+          450,
+          560
         ],
-        "minimum_prose_font_pt": 10.5,
-        "monochrome_pixels": true,
-        "geometry_findings": 0,
-        "semantic_typography_checks": 16,
-        "reviewed_peer_groups": 1,
         "unapproved_compile_diagnostics": 0,
-        "reviewed_visually": true
-      }
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "maximum_rgb_channel_delta": 0,
+        "semantic_typography_checks": 24,
+        "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
+        "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
+        "status": "passed"
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
+          "previous_source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
+          "previous_candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b"
+        }
+      ]
     },
     {
       "source": "book/assets/f19_delegation_over_time.svg",
@@ -3188,20 +3251,49 @@
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0
+          10.0,
+          11.0
         ],
-        "minimum": 9,
+        "minimum": 10,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 387.9010009765625,
-      "height_bp": 351.0509948730469,
+      "width_bp": 388.581,
+      "height_bp": 351.73,
       "monochrome": true,
-      "source_sha256": "3a3f4f27e84a8abac8211f8e817a03ef1a459f60527e3ab1ee8fdd19e8f6a8d8",
-      "candidate_sha256": "13b60eae3c043c107c6eef91096e685e0c56f85c6e918dcf2f39dffa8d80585c",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
+      "source_sha256": "4ede75be68eafc46eff5e705d41c5e5e24d9b17ac23aae6de0cec0004900b1b0",
+      "candidate_sha256": "bd30a00b5205c8991acd5cd989592591795bbf8d2bcf7dc68881f266f6d4dd9f",
+      "review": "Enlarge quadrant prose and labels from 9pt to 10pt, and axis descriptions to 11pt. Preserve the four quadrants, recommendations, axes, and explanatory wording.",
+      "decision": "refined",
+      "revision_history": [
+        {
+          "date": "2026-11-11",
+          "candidate_sha256": "13b60eae3c043c107c6eef91096e685e0c56f85c6e918dcf2f39dffa8d80585c",
+          "change": "Enlarge quadrant prose and labels from 9pt to 10pt, and axis descriptions to 11pt. Preserve the four quadrants, recommendations, axes, and explanatory wording.",
+          "validation": {}
+        }
+      ],
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/bw-review-followups/return-governability.pdf",
+        "proof_sha256": "72948f63bc7c8ab007f4bba52067cb35241f3c5d9e5f50fb0a83fb3b1b1c865e",
+        "page": 1,
+        "width_bp": 388.581,
+        "height_bp": 351.73,
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "3205f1e193af26623f6706aa668a413a8a3271404b6b818c34b59059d3cd650c",
+        "typography_audit_sha256": "301a15b10374262a18cb400223b4f96637a8a7cf3184d94d06f4de88c6a52506",
+        "semantic_typography_checks": 7,
+        "monochrome_pixels": true,
+        "status": "passed"
+      }
     },
     {
       "source": "book/assets/where-effort-moves.svg",
@@ -4508,6 +4600,101 @@
           "font_band": 18
         }
       }
+    },
+    {
+      "source": "book/assets/docable-human-evaluation-261109.svg",
+      "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
+      "receipt": "book/tikz/receipts/docable-human-evaluation-261109.json",
+      "source_sha256": "f9d579b2bf8040b180ea2241a3d8de43c3a976146ae67ed87c3ffac997e458b4",
+      "candidate_sha256": "77c948b5433f11442e1016ced8c8fad6ad8038aa53e98773f7fee2eb6134868e",
+      "decision": "refined",
+      "validation": {
+        "date": "2026-11-11",
+        "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+        "page": 1,
+        "width_bp": 417.677,
+        "height_bp": 468.492,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 19,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+        "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+        "all_quantitative_bar_endpoints_unchanged": true,
+        "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+        "direct_labels_checked_against_frozen_data": true
+      },
+      "review": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
+      "strict_compile_diagnostics": [],
+      "validation_history": [
+        {
+          "date": "2026-11-11",
+          "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+          "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+          "page": 1,
+          "width_bp": 417.677,
+          "height_bp": 468.492,
+          "minimum_prose_font_pt": 10,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "semantic_typography_checks": 19,
+          "monochrome_pixels": true,
+          "status": "passed",
+          "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+          "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+          "all_quantitative_bar_endpoints_unchanged": true,
+          "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+          "direct_labels_checked_against_frozen_data": true
+        }
+      ]
+    },
+    {
+      "source": "book/assets/deliver-context-two-layer.svg",
+      "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+      "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+      "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "validation": {
+        "date": "2026-11-11",
+        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+        "page": 2,
+        "width_bp": 382.502,
+        "height_bp": 233.522,
+        "minimum_prose_font_pt": 10.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 12,
+        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+        "status": "passed",
+        "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      },
+      "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+      "checks": {
+        "icons_and_symbols": "No pictograms; source headings and feedback relation preserved.",
+        "links_and_groups": "Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed.",
+        "annotation_placement": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          10.0
+        ],
+        "minimum": 10.0,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 382.502,
+      "height_bp": 233.522,
+      "monochrome": true,
+      "review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
     }
   ],
   "last_revised_date": "2026-11-10"

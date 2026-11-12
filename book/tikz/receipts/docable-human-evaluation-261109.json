@@ -1,18 +1,18 @@
 {
   "id": "docable-human-evaluation-261109",
-  "date": "2026-11-09",
+  "date": "2026-11-11",
   "status": "ready_for_parent_integration",
   "source": "book/assets/docable-human-evaluation-261109.svg",
   "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
   "chapter": "5.3-evaluating-docable",
   "claim": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.",
   "alt": "Human and DocAble comparison: per-document median checker reductions; increased-finding counts; semantic 20 better, 41 parity, 1 worse of 62; document-criterion gains and regressions. Undefined XLSX percentage preserved; parity is not accessibility equivalence.",
-  "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
-  "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
+  "source_sha256": "f9d579b2bf8040b180ea2241a3d8de43c3a976146ae67ed87c3ffac997e458b4",
+  "candidate_sha256": "77c948b5433f11442e1016ced8c8fad6ad8038aa53e98773f7fee2eb6134868e",
   "caption": "*Remediation compared with the human reference.* (a) Median reduction in checker findings from the original; (b) frequency of increased findings; (c) semantic comparison of DocAble and human outputs under the project rubric; (d) criterion-level gains and regressions relative to the original. DocAble led on PDF and DOCX checker reductions and image-description gains; the human workflow led on PPTX checker reductions. Parity denotes similar measured improvement, not equivalent accessibility. [short: Human-reference remediation results]",
   "generator": "book/figures/docable-case-261109/generate.py",
   "data": "book/data/docable-case-261109",
-  "bw_encoding": "Gray fills plus hatching or dash patterns, with labels and counts; color carries no information.",
+  "bw_encoding": "Human: outlined white bars with black diagonal hatching. DocAble: dark solid bars. H/D direct labels identify every paired result independently of fill, including zeros. Panel (d) uses position relative to a strong zero line and signed counts for gains/losses; the semantic comparison panel retains category labels and exact counts.",
   "required_terms": [
     "(a) Checker reduction",
     "(b) Increased findings",
@@ -20,48 +20,95 @@
     "(d) Semantic changes"
   ],
   "native_validation": {
-    "status": "standalone_passed",
-    "date": "2026-11-09",
-    "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
-    "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
-    "width_bp": 411.6960144042969,
-    "height_bp": 439.9909973144531,
-    "minimum_prose_font_bp": 9.962639808654785,
-    "minimum_authored_text_TeX_pt": 10,
+    "date": "2026-11-11",
+    "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+    "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+    "page": 1,
+    "width_bp": 417.677,
+    "height_bp": 468.492,
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "semantic_typography_checks": 19,
     "monochrome_pixels": true,
-    "compile_diagnostics": [],
-    "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+    "status": "passed",
+    "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+    "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+    "all_quantitative_bar_endpoints_unchanged": true,
+    "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+    "direct_labels_checked_against_frozen_data": true
   },
   "layout_review": {
-    "source": "book/assets/docable-human-evaluation-261109.svg",
-    "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
-    "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
-    "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
+    "source_sha256": "f9d579b2bf8040b180ea2241a3d8de43c3a976146ae67ed87c3ffac997e458b4",
+    "candidate_sha256": "77c948b5433f11442e1016ced8c8fad6ad8038aa53e98773f7fee2eb6134868e",
     "baseline_candidate_sha256": null,
-    "decision": "new",
-    "reason": "User-requested composition of primary study data; direct native source, print-size panels.",
+    "decision": "refined",
+    "reason": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
     "reviewed_visually": true,
     "contracts": {},
     "validation": {
-      "status": "standalone_passed",
-      "date": "2026-11-09",
-      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
-      "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
-      "width_bp": 411.6960144042969,
-      "height_bp": 439.9909973144531,
-      "minimum_prose_font_bp": 9.962639808654785,
-      "minimum_authored_text_TeX_pt": 10,
+      "date": "2026-11-11",
+      "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+      "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+      "page": 1,
+      "width_bp": 417.677,
+      "height_bp": 468.492,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 19,
       "monochrome_pixels": true,
-      "compile_diagnostics": [],
-      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      "status": "passed",
+      "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+      "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+      "all_quantitative_bar_endpoints_unchanged": true,
+      "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+      "direct_labels_checked_against_frozen_data": true
+    },
+    "validation_history": [
+      {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+        "width_bp": 411.6960144042969,
+        "height_bp": 439.9909973144531,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+        "page": 1,
+        "width_bp": 417.677,
+        "height_bp": 468.492,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 19,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+        "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+        "all_quantitative_bar_endpoints_unchanged": true,
+        "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+        "direct_labels_checked_against_frozen_data": true
+      }
+    ],
+    "page_layout": {
+      "decision": "review candidate",
+      "reason": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
+      "reviewed_visually": true
     }
   },
   "typography_review": {
-    "source": "book/assets/docable-human-evaluation-261109.svg",
-    "candidate": "book/tikz/figures/docable-human-evaluation-261109.tex",
-    "source_sha256": "766006b061c1a80b9362057c6e3921c85ece02da7bbc5e89319b5cf867c53cb7",
-    "candidate_sha256": "f0e4f6f472b54c79a79ab86acd799a863c53877413569ac3a4354f036df25a7e",
-    "decision": "new",
+    "source_sha256": "f9d579b2bf8040b180ea2241a3d8de43c3a976146ae67ed87c3ffac997e458b4",
+    "candidate_sha256": "77c948b5433f11442e1016ced8c8fad6ad8038aa53e98773f7fee2eb6134868e",
+    "decision": "refined",
     "evidence": [
       {
         "source_text": "(a) Checker reduction",
@@ -108,21 +155,199 @@
         "text": "(d) Semantic changes",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "H 60.7",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D 94.1",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "H 0/10",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D 0/10",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "H 1/22",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D 1/22",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Undefined",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "H +29",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D +32",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "H +2",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D +2",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "H 0",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D +1",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "H +20",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "D +43",
+        "bold": false,
+        "italic": false
       }
     ],
     "validation": {
-      "status": "standalone_passed",
-      "date": "2026-11-09",
-      "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
-      "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
-      "width_bp": 411.6960144042969,
-      "height_bp": 439.9909973144531,
-      "minimum_prose_font_bp": 9.962639808654785,
-      "minimum_authored_text_TeX_pt": 10,
+      "date": "2026-11-11",
+      "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+      "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+      "page": 1,
+      "width_bp": 417.677,
+      "height_bp": 468.492,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 19,
       "monochrome_pixels": true,
-      "compile_diagnostics": [],
-      "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
-    }
+      "status": "passed",
+      "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+      "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+      "all_quantitative_bar_endpoints_unchanged": true,
+      "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+      "direct_labels_checked_against_frozen_data": true
+    },
+    "validation_history": [
+      {
+        "status": "standalone_passed",
+        "date": "2026-11-09",
+        "proof": "/private/tmp/ch5-52-final-20261109/native-proofs/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "e0fe8896d7a3b5ecb2a7fbe9fb8f026e8d77c80e4f664027a26c4bf98f7dedd7",
+        "width_bp": 411.6960144042969,
+        "height_bp": 439.9909973144531,
+        "minimum_prose_font_bp": 9.962639808654785,
+        "minimum_authored_text_TeX_pt": 10,
+        "monochrome_pixels": true,
+        "compile_diagnostics": [],
+        "visual_review": "Standalone native proof inspected: readable text, no clipping or overlap; patterns and line styles distinguish series. Counts, no-record shading, and cohort distinctions retained. Full pool gate remains parent integration check."
+      },
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+        "page": 1,
+        "width_bp": 417.677,
+        "height_bp": 468.492,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 19,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+        "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+        "all_quantitative_bar_endpoints_unchanged": true,
+        "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+        "direct_labels_checked_against_frozen_data": true
+      }
+    ],
+    "reason": "All comparison labels remain 10pt; panel headings and existing semantic counts retain 11pt emphasis. Direct H/D labels remain regular."
   },
-  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults."
+  "style_scope": "Source Sans 3 follows the book-native font profile; panel headings distinguish the explicitly requested multi-panel chart. These local requirements override the generic serif/no-title chart defaults.",
+  "redesign": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
+  "data_validation": {
+    "all_quantitative_bar_endpoints_unchanged": true,
+    "frozen_effectiveness_json_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+    "both_pdf_direct_labels_match_data": true,
+    "four_panels_retained": true,
+    "zero_is_not_missing": true,
+    "undefined_xlsx_preserved": true,
+    "semantic_parity_band_unchanged": true
+  },
+  "style_review": {
+    "decision": "refined",
+    "date": "2026-11-09",
+    "status": "reviewed",
+    "source_sha256": "f9d579b2bf8040b180ea2241a3d8de43c3a976146ae67ed87c3ffac997e458b4",
+    "candidate_sha256": "77c948b5433f11442e1016ced8c8fad6ad8038aa53e98773f7fee2eb6134868e",
+    "fill": "Human: outlined white bars with black diagonal hatching. DocAble: dark solid bars. H/D direct labels identify every paired result independently of fill, including zeros. Panel (d) uses position relative to a strong zero line and signed counts for gains/losses; the semantic comparison panel retains category labels and exact counts.",
+    "bold": "Regular panel headings and data labels; no decorative emphasis.",
+    "routing": "No conceptual connectors; charts directly encode measured data.",
+    "shape": "Bars, lines, and stacked bands encode quantities.",
+    "visual_review": "Improve the four-panel comparison at printed size without changing the data or estimands. Increase paired-bar thickness and border weight; give Human bars black hatching and DocAble bars dark solid fill. Prefix every comparison value with H or D so zero-length bars remain attributable. Panel (d) has a strong zero divider, signed gain labels and nonzero loss counts, with explicit Losses ← 0 → Gains directions. Preserve undefined XLSX reduction, unequal checker denominators, semantic counts 20/41/1, the ±1 parity band, and document–criterion rather than unique-defect counts. Retain all four panels and original/native comparison versions.",
+    "validation": {
+      "date": "2026-11-11",
+      "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+      "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+      "page": 1,
+      "width_bp": 417.677,
+      "height_bp": 468.492,
+      "minimum_prose_font_pt": 10,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 19,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+      "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+      "all_quantitative_bar_endpoints_unchanged": true,
+      "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+      "direct_labels_checked_against_frozen_data": true
+    },
+    "validation_history": [
+      {
+        "date": "2026-11-11",
+        "proof": "latex/build/evaluation-proof/docable-human-evaluation-261109.pdf",
+        "proof_sha256": "1029434ffb72ccea70b1ba58260c82d8a0de163bd0575eaa0a24563c3c90aebb",
+        "page": 1,
+        "width_bp": 417.677,
+        "height_bp": 468.492,
+        "minimum_prose_font_pt": 10,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 19,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "original_proof": "latex/build/evaluation-proof/proofs/docable-human-evaluation-261109.png",
+        "print_size_proof": "latex/build/evaluation-proof/print-size-comparison.pdf",
+        "all_quantitative_bar_endpoints_unchanged": true,
+        "frozen_data_sha256": "4301c15db2ac12da4c3aa948bb5cd88cb0eea665848730e666e069d3107403c9",
+        "direct_labels_checked_against_frozen_data": true
+      }
+    ]
+  }
 }

@@ -20,43 +20,69 @@
   "style_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-    "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-    "decision": "retained",
+    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "decision": "refined",
     "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
-    "fill": "White boxes; the named layers, solid/dashed borders and feedback arrow carry the categories.",
-    "bold": "Preserve bold layer headings and italic explanations/feedback.",
-    "routing": "Orthogonal shared split and join rails; the dashed lifecycle feedback uses an external right-hand return.",
-    "shape": "Modestly rounded boxes with equal standing and task-slice dimensions.",
+    "fill": "White boxes; solid/dashed outlines retain the two context-source roles.",
+    "bold": "Layer headings stay bold; secondary knowledge and feedback annotations remain italic.",
+    "routing": "Forward flow uses the existing orthogonal split/join rails. A dashed 0.9 pt external return runs from WORK to the task-relevant slice; its horizontal annotation stays clear of the forward path.",
+    "shape": "Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed.",
     "validation": {
-      "date": "2026-11-05",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-      "page": 140,
-      "width_bp": 403.399,
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 2,
+      "width_bp": 382.502,
       "height_bp": 233.522,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
       "status": "passed",
-      "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
     },
     "reviewed_visually": true,
-    "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+    "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged.",
+    "validation_history": [
+      {
+        "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+        "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+        "validation": {
+          "date": "2026-11-05",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+          "page": 140,
+          "width_bp": 403.399,
+          "height_bp": 233.522,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 12,
+          "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+          "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+          "status": "passed",
+          "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+        }
+      }
+    ],
+    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "routing_exceptions": "None."
   },
   "layout_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-    "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-    "decision": "retained",
-    "reason": "Two parallel context sources feed one agent context; lifecycle feedback returns from work to task retrieval.",
+    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "decision": "refined",
+    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
     "contracts": {
       "peer_groups": [
         {
@@ -76,29 +102,54 @@
       ]
     },
     "validation": {
-      "date": "2026-11-05",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-      "page": 140,
-      "width_bp": 403.399,
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 2,
+      "width_bp": 382.502,
       "height_bp": 233.522,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
       "semantic_typography_checks": 12,
-      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
       "status": "passed",
-      "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
     },
-    "reviewed_visually": true
+    "reviewed_visually": true,
+    "validation_history": [
+      {
+        "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+        "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+        "validation": {
+          "date": "2026-11-05",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+          "page": 140,
+          "width_bp": 403.399,
+          "height_bp": 233.522,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 12,
+          "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+          "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+          "status": "passed",
+          "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+        }
+      }
+    ],
+    "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
   },
   "typography_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-    "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-    "decision": "retained",
+    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "decision": "refined",
     "evidence": [
       {
         "source_text": "ENGINEERING KNOWLEDGE",
@@ -115,12 +166,12 @@
         "source_text": "models · rules · procedures",
         "source_style": {
           "font-weight": "normal",
-          "font-style": "italic",
+          "font-style": "normal",
           "font-size": "20"
         },
         "candidate_text": "models · rules · procedures",
         "candidate_style": "italic",
-        "semantic_role": "description or feedback annotation"
+        "semantic_role": "Native italic secondary description retained; source text is regular."
       },
       {
         "source_text": "STANDING CONTEXT",
@@ -178,7 +229,7 @@
         "semantic_role": "description or feedback annotation"
       },
       {
-        "source_text": "examples — retrieved when needed",
+        "source_text": "examples as needed",
         "source_style": {
           "font-weight": "normal",
           "font-style": "normal",
@@ -186,7 +237,7 @@
         },
         "candidate_text": "examples — retrieved when needed",
         "candidate_style": "regular",
-        "semantic_role": "description or feedback annotation"
+        "semantic_role": "Same retrieval meaning; native wording retained."
       },
       {
         "source_text": "AGENT CONTEXT",
@@ -211,7 +262,7 @@
         "semantic_role": "named layer"
       },
       {
-        "source_text": "lifecycle event re-surfaces what matters now",
+        "source_text": "lifecycle event re-surfaces context",
         "source_style": {
           "font-weight": "normal",
           "font-style": "italic",
@@ -219,7 +270,7 @@
         },
         "candidate_text": "lifecycle event re-surfaces what matters now",
         "candidate_style": "italic",
-        "semantic_role": "description or feedback annotation"
+        "semantic_role": "Named feedback annotation; equivalent native wording retained and reflowed horizontally."
       },
       {
         "source_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
@@ -295,8 +346,51 @@
         "italic": true
       }
     ],
-    "reason": "Retain source headings, capitals, explanatory italics and exact labels.",
+    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
     "validation": {
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 2,
+      "width_bp": 382.502,
+      "height_bp": 233.522,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+    },
+    "reviewed_visually": true,
+    "validation_history": [
+      {
+        "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
+        "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
+        "validation": {
+          "date": "2026-11-05",
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
+          "page": 140,
+          "width_bp": 403.399,
+          "height_bp": 233.522,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 12,
+          "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
+          "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
+          "status": "passed",
+          "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+        }
+      }
+    ]
+  },
+  "historical_validation": {
+    "full_pool_validation": {
       "date": "2026-11-05",
       "proof": "latex/build/tikz/candidates.pdf",
       "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
@@ -311,23 +405,81 @@
       "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
       "status": "passed",
       "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
-    },
-    "reviewed_visually": true
+    }
   },
-  "full_pool_validation": {
-    "date": "2026-11-05",
-    "proof": "latex/build/tikz/candidates.pdf",
-    "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-    "page": 140,
-    "width_bp": 403.399,
+  "fidelity_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 2,
+      "width_bp": 382.502,
+      "height_bp": 233.522,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+    },
+    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "checks": {
+      "icons_and_symbols": "No pictograms; source headings and feedback relation preserved.",
+      "links_and_groups": "Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed.",
+      "annotation_placement": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        10.0
+      ],
+      "minimum": 10.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 382.502,
     "height_bp": 233.522,
-    "unapproved_compile_diagnostics": 0,
-    "geometry_findings": 0,
-    "monochrome_pixels": true,
-    "semantic_typography_checks": 12,
-    "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-    "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-    "status": "passed",
-    "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
+    "monochrome": true,
+    "review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+  },
+  "grayscale_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
+    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 2,
+      "width_bp": 382.502,
+      "height_bp": 233.522,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+    },
+    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "reviewed": true,
+    "rationale": "White boxes; solid/dashed outlines retain the two context-source roles. Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed."
   }
 }

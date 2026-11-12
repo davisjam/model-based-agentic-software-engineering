@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact teaching geometry; print width is declared by stable figure label in book/data/figure-print-layout.json. Text remains at 9–10 pt in the PDF. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" width="600" height="280" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<!-- Overlapping-set geometry; outlined membership preserves all three control regions. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
 <title id="figure-title">Obligations and permitted realizations — underconstraint and overconstraint as the two mismatches</title>
-<desc id="figure-description">A bounding panel holds the software realization space. Inside it, two overlapping
-    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a
-    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —
-    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable
-    alternatives excluded. The permitted-only region at right is underconstraint:
-    unacceptable, yet permitted — a correctness risk.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker></defs>
-<text x="190" y="27" text-anchor="middle" font-size="21" fill="#9a3f12" font-weight="700">A: acceptable</text>
-<text x="190" y="51" text-anchor="middle" font-size="20" fill="#57534e">satisfies the obligations</text>
-<text x="425" y="75" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">P: permitted by controls</text>
-<rect x="16" y="91" width="568" height="175" rx="7" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="2"/>
-<rect x="28" y="98" width="192" height="156" fill="#faf1e6"/>
-<rect x="220" y="98" width="150" height="156" fill="#9a3f12" fill-opacity="0.16"/>
-<rect x="370" y="98" width="202" height="156" fill="#b23b3b" fill-opacity="0.08"/>
-<rect id="acceptable-region" x="28" y="98" width="342" height="156" rx="7" fill="none" stroke="#9a3f12" stroke-width="2"/>
-<rect id="permitted-region" x="220" y="98" width="352" height="156" rx="7" fill="none" stroke="#1c1917" stroke-width="2" stroke-dasharray="7 5"/>
-<text x="124" y="145" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">overconstraint</text>
-<text x="124" y="178" text-anchor="middle" font-size="20" fill="#1c1917">acceptable</text>
-<text x="124" y="203" text-anchor="middle" font-size="20" fill="#1c1917">but excluded</text>
-<text x="295" y="145" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">preserved</text>
-<text x="295" y="169" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">freedom</text>
-<text x="295" y="202" text-anchor="middle" font-size="20" fill="#1c1917">acceptable</text>
-<text x="295" y="226" text-anchor="middle" font-size="20" fill="#1c1917">and permitted</text>
-<text x="471" y="145" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">underconstraint</text>
-<text x="471" y="178" text-anchor="middle" font-size="20" fill="#b23b3b">unacceptable</text>
-<text x="471" y="203" text-anchor="middle" font-size="20" fill="#b23b3b">but permitted</text>
-<text x="471" y="237" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">correctness risk</text>
+<desc id="figure-description">Two overlapping outlined sets within the software realization space. A, acceptable realizations, has a solid outline. P, realizations permitted by controls, has a dashed outline. The acceptable-only region is overconstraint: acceptable alternatives excluded. The overlap is preserved freedom: acceptable and permitted. The permitted-only region is underconstraint: unacceptable yet permitted, a correctness risk.</desc>
+<text x="300" y="22" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">SOFTWARE REALIZATION SPACE</text>
+<rect x="7" y="35" width="586" height="258" fill="none" stroke="#e4e0d8" stroke-width="2"/>
+<text x="155" y="60" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">A: acceptable</text>
+<text x="155" y="84" text-anchor="middle" font-size="20" fill="#57534e">satisfies all obligations</text>
+<text x="445" y="60" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">P: permitted</text>
+<text x="445" y="84" text-anchor="middle" font-size="20" fill="#57534e">controls allow it</text>
+<ellipse id="acceptable-region" cx="205" cy="188" rx="190" ry="92" fill="none" stroke="#9a3f12" stroke-width="2"/>
+<ellipse id="permitted-region" cx="395" cy="188" rx="190" ry="92" fill="none" stroke="#1c1917" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="111" y="166" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">overconstraint</text>
+<text x="111" y="191" text-anchor="middle" font-size="20" fill="#1c1917">acceptable</text>
+<text x="111" y="216" text-anchor="middle" font-size="20" fill="#1c1917">but excluded</text>
+<text x="300" y="153" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">preserved</text>
+<text x="300" y="177" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">freedom</text>
+<text x="300" y="205" text-anchor="middle" font-size="20" fill="#1c1917">acceptable</text>
+<text x="300" y="230" text-anchor="middle" font-size="20" fill="#1c1917">and permitted</text>
+<text x="489" y="151" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">underconstraint</text>
+<text x="489" y="177" text-anchor="middle" font-size="20" fill="#b23b3b">unacceptable</text>
+<text x="489" y="202" text-anchor="middle" font-size="20" fill="#b23b3b">but permitted</text>
+<text x="489" y="231" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">correctness risk</text>
 </svg>

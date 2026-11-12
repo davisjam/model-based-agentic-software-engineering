@@ -1,16 +1,16 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\draw[black!50] (-.5,-.6) rectangle (13.5,-5.9);
-\node[note,text width=12cm] (h) at (6.5,0) {\textbf{SOFTWARE REALIZATION SPACE}};
-\fill[black!4] (0,-1.4) rectangle (8,-5.4);\fill[pattern=north east lines,pattern color=black!18] (4.5,-1.4) rectangle (8,-5.4);\draw[line width=.8pt] (0,-1.4) rectangle (8,-5.4);\draw[dashed,line width=.8pt] (4.5,-1.4) rectangle (13,-5.4);
-\node[note,text width=5cm] (aa) at (3,-1) {\textbf{Acceptable}: satisfies all obligations};
-\node[note,text width=5cm] (pp) at (10.2,-1) {\textbf{Permitted}: controls allow it};
-\node[note,text width=3.5cm] (o) at (2.2,-3.4) {\textbf{Overconstraint}\\acceptable alternatives excluded};
-\node[note,text width=2.9cm] (f) at (6.25,-3.4) {\textbf{Preserved freedom}\\acceptable and permitted};
-\node[note,text width=3.6cm] (u) at (10.5,-3.4) {\textbf{Underconstraint}\\unacceptable, yet permitted\\\textit{correctness risk}};
+% Two overlapping sets: outlines encode membership, not adjacent-panel proxies.
+\begin{tikzpicture}[x=1cm,y=1cm,
+ font=\magefigurefont\fontsize{10}{12}\selectfont,
+ every node/.style={align=center,inner sep=2pt,text=black,
+ execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries]
+ at (7.05,.9) {SOFTWARE REALIZATION SPACE};
+\draw[black!45,line width=.5pt] (-.1,.45) rectangle (14.2,-5.55);
+\node[anchor=south] at (3.2,-.65) {$\mathcal A$: \textbf{Acceptable}\\satisfies all obligations};
+\node[anchor=south] at (10.9,-.65) {$\mathcal P$: \textbf{Permitted}\\controls allow it};
+\draw[line width=.8pt] (4.8,-3.1) ellipse [x radius=4.65cm,y radius=2.15cm];
+\draw[dashed,line width=.8pt] (9.3,-3.1) ellipse [x radius=4.65cm,y radius=2.15cm];
+\node[text width=3.1cm] at (2.4,-3.1) {\textbf{Overconstraint}\\acceptable alternatives\\excluded};
+\node[text width=3cm] at (7.05,-3.1) {\textbf{Preserved freedom}\\acceptable\\and permitted};
+\node[text width=3.3cm] at (11.7,-3.1) {\textbf{Underconstraint}\\unacceptable, yet\\permitted\\\textit{correctness risk}};
 \end{tikzpicture}

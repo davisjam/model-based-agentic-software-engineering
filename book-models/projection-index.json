@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 639,
+    "total_sites": 638,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 303,
+      "book-web": 302,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -97,7 +97,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 38
+            "occ": 37
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
@@ -189,7 +189,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 60
+            "occ": 59
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -830,10 +830,6 @@
             "occ": 1
           },
           {
-            "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 3
-          },
-          {
             "file": "book/web/docs/6.5-what-the-theory-claims.md",
             "occ": 1
           },
@@ -843,7 +839,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 8
+            "occ": 5
           },
           {
             "file": "book/web/docs/part-3-intro.md",
@@ -853,7 +849,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },
@@ -1549,7 +1545,7 @@
           },
           {
             "file": "book/web/docs/5.2-inside-docables-software-factory.md",
-            "occ": 57
+            "occ": 58
           },
           {
             "file": "book/web/docs/5.3-evaluating-docable.md",
@@ -1645,7 +1641,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 162
+            "occ": 163
           },
           {
             "file": "book/web/docs/index.md",

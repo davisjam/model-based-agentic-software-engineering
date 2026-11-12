@@ -1,113 +1,146 @@
 {
   "source": "book/assets/permitted-vs-acceptable.svg",
   "claim": "*Obligations and permitted realizations.* The obligations jointly admit an acceptable region; the controls jointly permit another. Where permitted exceeds acceptable, unacceptable realizations slip through — underconstraint; where acceptable exceeds permitted, acceptable alternatives are excluded — overconstraint.",
-  "topology": "Two overlapping sets; acceptable-only, intersection, permitted-only retain left/center/right spatial meaning.",
+  "topology": "Two overlapping outlined sets A (acceptable) and P (permitted), with acceptable-only, common, and permitted-only regions.",
   "required_terms": [
-    "Software realization space",
-    "Acceptable: satisfies all obligations",
-    "Permitted: controls allow it",
-    "Overconstraint\\ alternatives excluded",
-    "Preserved freedom\\ and permitted",
-    "Underconstraint\\, yet permitted\\ risk"
+    "SOFTWARE REALIZATION SPACE",
+    "Acceptable",
+    "satisfies all obligations",
+    "Permitted",
+    "controls allow it",
+    "Overconstraint",
+    "acceptable alternatives excluded",
+    "Preserved freedom",
+    "acceptable and permitted",
+    "Underconstraint",
+    "unacceptable, yet permitted",
+    "correctness risk"
   ],
-  "bw_encoding": "Acceptable region remains 4% with hatched overlap; geometry itself is the claim.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Unfilled sets; continuous outlines and labels carry membership without a tonal or hatch proxy.",
+  "redesign": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk.",
   "questions": [],
-  "alt": "A bounding panel holds the software realization space. Inside it, two overlapping\n    rectangles: a solid one for the acceptable realizations, those satisfying every obligation, and a\n    dashed one for the realizations the controls permit. Their overlap is the preserved freedom —\n    acceptable and permitted. The acceptable-only region at left is overconstraint: acceptable\n    alternatives excluded. The permitted-only region at right is underconstraint:\n    unacceptable, yet permitted — a correctness risk.",
-  "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 403.226,
-    "height_pt": 180.848,
-    "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
-  },
+  "alt": "Two overlapping outlined sets within the software realization space. A, acceptable realizations, has a solid outline. P, realizations permitted by controls, has a dashed outline. The acceptable-only region is overconstraint: acceptable alternatives excluded. The overlap is preserved freedom: acceptable and permitted. The permitted-only region is underconstraint: unacceptable yet permitted, a correctness risk.",
   "style_review": {
+    "source": "book/assets/permitted-vs-acceptable.svg",
+    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+    "receipt": "book/tikz/receipts/permitted-vs-acceptable.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
-    "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-    "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-    "fill": "Acceptable region remains 4% with hatched overlap; geometry itself is the claim.",
-    "bold": "Source-derived emphasis includes SOFTWARE REALIZATION SPACE; Acceptable; Permitted. Existing overlap categories stay bold; acceptable/permitted prefixes regain partial emphasis and risk annotation is italic.",
-    "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Solid acceptable, dashed permitted and hatched intersection retain region semantics.",
+    "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+    "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
+    "fill": "Unfilled sets; continuous outlines and labels carry membership without a tonal or hatch proxy.",
+    "bold": "Set names and the three region names are bold; their explanations are regular. The correctness-risk annotation remains italic.",
+    "routing": "No process edges. Elliptical boundaries are set geometry, not flow.",
+    "shape": "Solid acceptable set A and dashed permitted set P overlap inside the realization-space boundary.",
+    "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 48,
-      "width_bp": 403.226,
-      "height_bp": 179.44,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 1,
+      "width_bp": 411.83,
+      "height_bp": 194.421,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5
+      "semantic_typography_checks": 8,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
     },
     "book_references": [],
-    "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
-  },
-  "typography_review": {
-    "review": "book/tikz/typography-review.json",
-    "decision": "refined",
-    "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
-    "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-    "reason": "Existing overlap categories stay bold; acceptable/permitted prefixes regain partial emphasis and risk annotation is italic.",
-    "evidence": [
+    "routing_exceptions": "Set boundaries carry membership; there are no process edges.",
+    "validation_history": [
       {
-        "source_text": "SOFTWARE REALIZATION SPACE",
-        "source_style": "weight 700; normal; source size 22",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "SOFTWARE REALIZATION SPACE",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/permitted-vs-acceptable.svg",
-          "element_text_path": "/svg/text[1]/text()",
-          "text_element_context": "SOFTWARE REALIZATION SPACE",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "acceptable",
-        "source_style": "weight 700; normal; source size 21",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Acceptable",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/permitted-vs-acceptable.svg",
-          "element_text_path": "/svg/text[2]/text()",
-          "text_element_context": "acceptable",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "permitted",
-        "source_style": "weight 700; normal; source size 21",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "Permitted",
-        "candidate_style": "bold",
-        "source_locator": {
-          "svg": "book/assets/permitted-vs-acceptable.svg",
-          "element_text_path": "/svg/text[5]/text()",
-          "text_element_context": "permitted",
-          "matching_fragment_count": 1
-        }
-      },
-      {
-        "source_text": "a correctness risk",
-        "source_style": "weight normal; italic; source size 20",
-        "semantic_role": "named category versus explanatory text",
-        "candidate_text": "correctness risk",
-        "candidate_style": "italic",
-        "source_locator": {
-          "svg": "book/assets/permitted-vs-acceptable.svg",
-          "element_text_path": "/svg/text[16]/text()",
-          "text_element_context": "a correctness risk",
-          "matching_fragment_count": 1
+        "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+        "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 48,
+          "width_bp": 403.226,
+          "height_bp": 179.44,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 5
         }
       }
     ],
+    "reviewed_visually": true,
+    "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk."
+  },
+  "typography_review": {
+    "source": "book/assets/permitted-vs-acceptable.svg",
+    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+    "decision": "refined",
+    "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+    "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
+    "evidence": [
+      {
+        "source_text": "SOFTWARE REALIZATION SPACE",
+        "source_style": "Source Sans 3, 20 SVG units; bold",
+        "candidate_text": "SOFTWARE REALIZATION SPACE",
+        "candidate_style": "bold",
+        "semantic_role": "set or region name"
+      },
+      {
+        "source_text": "A: acceptable",
+        "source_style": "Source Sans 3, 20 SVG units; bold",
+        "candidate_text": "Acceptable",
+        "candidate_style": "bold",
+        "semantic_role": "set or region name"
+      },
+      {
+        "source_text": "P: permitted",
+        "source_style": "Source Sans 3, 20 SVG units; bold",
+        "candidate_text": "Permitted",
+        "candidate_style": "bold",
+        "semantic_role": "set or region name"
+      },
+      {
+        "source_text": "overconstraint",
+        "source_style": "Source Sans 3, 20 SVG units; bold",
+        "candidate_text": "Overconstraint",
+        "candidate_style": "bold",
+        "semantic_role": "set or region name"
+      },
+      {
+        "source_text": "preserved freedom",
+        "source_style": "Source Sans 3, 20 SVG units; bold",
+        "candidate_text": "Preserved freedom",
+        "candidate_style": "bold",
+        "semantic_role": "set or region name"
+      },
+      {
+        "source_text": "underconstraint",
+        "source_style": "Source Sans 3, 20 SVG units; bold",
+        "candidate_text": "Underconstraint",
+        "candidate_style": "bold",
+        "semantic_role": "set or region name"
+      },
+      {
+        "source_text": "correctness risk",
+        "source_style": "Source Sans 3, 20 SVG units; italic",
+        "candidate_text": "correctness risk",
+        "candidate_style": "italic",
+        "semantic_role": "explanation or risk annotation"
+      },
+      {
+        "source_text": "satisfies all obligations",
+        "source_style": "Source Sans 3, 20 SVG units; regular",
+        "candidate_text": "satisfies all obligations",
+        "candidate_style": "regular",
+        "semantic_role": "explanation or risk annotation"
+      }
+    ],
+    "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk.",
     "checks": [
       {
         "text": "SOFTWARE REALIZATION SPACE",
@@ -125,6 +158,21 @@
         "italic": false
       },
       {
+        "text": "Overconstraint",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Preserved freedom",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Underconstraint",
+        "bold": true,
+        "italic": false
+      },
+      {
         "text": "correctness risk",
         "bold": false,
         "italic": true
@@ -136,74 +184,197 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 48,
-      "width_bp": 403.226,
-      "height_bp": 179.44,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 1,
+      "width_bp": 411.83,
+      "height_bp": 194.421,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 5,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "semantic_typography_checks": 8,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+    },
+    "validation_history": [
+      {
+        "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+        "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "page": 48,
+          "width_bp": 403.226,
+          "height_bp": 179.44,
+          "minimum_prose_font_pt": 9.0,
+          "unapproved_compile_diagnostics": 0,
+          "geometry_findings": 0,
+          "monochrome_pixels": true,
+          "semantic_typography_checks": 5
+        }
       }
-    }
+    ],
+    "reviewed_visually": true
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "Overlapping acceptance/permission regions encode set membership and preserved freedom. Equalizing these as node boxes would destroy the semantic geometry.",
-    "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain spatial region/comparison layout: region geometry carries meaning and all explanations remain legible without making the spatial relations taller.",
-      "before_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-      "after_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
-      "before_dimensions_bp": [
-        403.22601318359375,
-        179.44000244140625
-      ],
-      "after_dimensions_bp": [
-        403.22601318359375,
-        179.44000244140625
-      ],
-      "before_font_sizes_pt": [
-        9.0
-      ],
-      "after_font_sizes_pt": [
-        9.0
-      ],
-      "reviewed_visually": true
-    },
+    "source": "book/assets/permitted-vs-acceptable.svg",
+    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+    "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+    "baseline_candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
+    "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
+    "decision": "refined",
+    "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      403.22601318359375,
+      179.44000244140625
+    ],
+    "contracts": {},
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 1,
+      "width_bp": 411.83,
+      "height_bp": 194.421,
+      "minimum_prose_font_pt": 10.0,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
       "status": "passed",
-      "page": 48,
-      "width_bp": 403.226,
-      "height_bp": 179.44
+      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+    },
+    "validation_history": [
+      {
+        "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+        "candidate_sha256": "43dac494f14202bb01422064940f87893912c265b14dcb324c87e281fa748401",
+        "validation": {
+          "proof": "latex/build/tikz/candidates.pdf",
+          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+          "geometry_findings": 0,
+          "checked_terminal_approaches": 633,
+          "reviewed_peer_groups": 81,
+          "semantic_typography_checks": 875,
+          "unapproved_compile_diagnostics": 0,
+          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+          "maximum_dimensions_bp": [
+            450,
+            560
+          ],
+          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+          "status": "passed",
+          "page": 48,
+          "width_bp": 403.226,
+          "height_bp": 179.44
+        }
+      }
+    ],
+    "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+  },
+  "historical_validation": {
+    "qa": {
+      "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+      "warnings": [],
+      "width_pt": 403.226,
+      "height_pt": 180.848,
+      "monochrome": true,
+      "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
     }
+  },
+  "fidelity_review": {
+    "source": "book/assets/permitted-vs-acceptable.svg",
+    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+    "checks": {
+      "icons_and_symbols": "A and P name the two sets; solid/dashed outlines distinguish their membership.",
+      "links_and_groups": "Solid acceptable set A and dashed permitted set P overlap inside the realization-space boundary.",
+      "annotation_placement": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        10.0
+      ],
+      "minimum": 10.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 411.83,
+    "height_bp": 194.421,
+    "monochrome": true,
+    "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+    "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
+    "review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width.",
+    "decision": "refined",
+    "validation_history": [
+      {
+        "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+        "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040"
+      }
+    ],
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 1,
+      "width_bp": 411.83,
+      "height_bp": 194.421,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+    },
+    "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk."
+  },
+  "grayscale_review": {
+    "source": "book/assets/permitted-vs-acceptable.svg",
+    "candidate": "book/tikz/figures/permitted-vs-acceptable.tex",
+    "receipt": "book/tikz/receipts/permitted-vs-acceptable.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Unfilled sets; continuous outlines and labels carry membership without a tonal or hatch proxy. Solid acceptable set A and dashed permitted set P overlap inside the realization-space boundary.",
+    "source_sha256": "cf0bc275faf04f43d779f9d3017f57ae1a8bcc723e0184517a57be41b6b75891",
+    "candidate_sha256": "804b8b834f460e4a83887f7477c2970dbe48899981f6b979117d0757e449c5e2",
+    "validation_history": [
+      {
+        "source_sha256": "65f9136127e8d917be5e4e5499c2953302a410bc020e32eeab88b35ee6916bed",
+        "candidate_sha256": "4f22f28cf4e506b8742077a113765ccc168ae5f975911d2db2636d2a9997c040"
+      }
+    ],
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-11",
+      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
+      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
+      "page": 1,
+      "width_bp": 411.83,
+      "height_bp": 194.421,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
+      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
+      "status": "passed",
+      "visual_review": "Native 411.83 × 194.42 bp proof and color artwork at the declared 300 bp width inspected. Both continuous outlines and both intersections are visible. Region text remains inside its own area, with no clipping or overlap. Native labels are 10 pt; original color labels are 10 pt at print width."
+    },
+    "reason": "Replace the three-strip appearance with two continuous overlapping elliptical outlines. The acceptable-only, common, and permitted-only regions preserve overconstraint, legitimate freedom, and correctness risk."
   }
 }
