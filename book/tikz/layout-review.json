@@ -11317,70 +11317,70 @@
     {
       "source": "book/assets/deliver-context-two-layer.svg",
       "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-      "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-      "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+      "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+      "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
       "decision": "refined",
-      "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+      "reviewed_visually": true,
+      "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
+      "validation": {
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+        "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+        "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+        "page": 1,
+        "width_bp": 445.047,
+        "height_bp": 305.572,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          9.5,
+          10.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 8,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 38,
+        "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+        "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/layout-review.json",
       "contracts": {
         "peer_groups": [
           {
-            "name": "context sources",
+            "name": "Work-sequence stages",
             "labels": [
-              "STANDING CONTEXT",
-              "TASK-RELEVANT SLICE"
+              "Initial agent context",
+              "Planning Refine scope",
+              "Refined agent context",
+              "Implementation"
             ],
             "align": [
               "top",
               "bottom"
             ],
-            "equal_width": true,
             "equal_height": true,
             "tolerance_pt": 1
           }
         ]
       },
-      "validation": {
-        "date": "2026-11-11",
-        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-        "page": 2,
-        "width_bp": 382.502,
-        "height_bp": 233.522,
-        "minimum_prose_font_pt": 10.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 12,
-        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-        "status": "passed",
-        "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
-      },
-      "reviewed_visually": true,
-      "validation_history": [
-        {
-          "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-          "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-          "validation": {
-            "date": "2026-11-05",
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-            "page": 140,
-            "width_bp": 403.399,
-            "height_bp": 233.522,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 12,
-            "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-            "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-            "status": "passed",
-            "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
-          }
-        }
-      ],
-      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      "visual_review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow.",
+      "page_layout": {
+        "after_dimensions_bp": [
+          445.047,
+          305.572
+        ],
+        "after_font_sizes_pt": [
+          9,
+          9.5,
+          10
+        ],
+        "decision": "recomposed",
+        "reason": "Four same-height work/context stages share their top and bottom coordinates; their explicit peer contract passes. The distinct diamond admission gate precedes implementation. Two dynamic-selection boxes align in the middle row, and the two shared resources occupy the shaded bottom row.",
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/docable-seip-longitudinal-261109.svg",

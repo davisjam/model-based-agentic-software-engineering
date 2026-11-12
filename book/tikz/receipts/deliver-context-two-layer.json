@@ -1,485 +1,725 @@
 {
   "source": "book/assets/deliver-context-two-layer.svg",
-  "chapter": "3.1-where-obligations-can-be-enforced",
-  "claim": "*Selecting context for the work.* Standing instructions and a retrieved task slice supply the agent’s context. DocAble repeats selection after planning, when the anticipated files are clearer. This information path supports reasoning; the separate extraction gate checks that the required discovery event occurred.",
-  "alt": "Engineering knowledge supplies a small standing context and a task-relevant slice retrieved as needed. Both feed agent context, which directs work. A dashed lifecycle-event feedback arrow returns from work to the task-relevant slice.",
+  "claim": "*Dynamic context injection and enforcement.* A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A Git precommit gate requires evidence of the second selection for the initial commit that permits implementation to begin.",
+  "topology": "Workflow: initial agent context → planning → refined agent context → Git precommit gate → implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
   "required_terms": [
-    "ENGINEERING KNOWLEDGE",
-    "models · rules · procedures",
-    "STANDING CONTEXT",
-    "mission · compact method",
-    "compact policy",
-    "TASK-RELEVANT SLICE",
-    "richer models, procedures,",
-    "examples — retrieved when needed",
-    "AGENT CONTEXT",
-    "WORK",
-    "lifecycle event re-surfaces what matters now",
-    "Keep standing context small enough to stay standing — retrieve the rest per task."
+    "Agent",
+    "workflow",
+    "Context",
+    "selection",
+    "Engineering",
+    "knowledge",
+    "(actor)",
+    "(dynamic)",
+    "(resource)",
+    "Initial agent",
+    "context",
+    "standing +",
+    "initial",
+    "Refined agent",
+    "refined",
+    "Planning",
+    "Refine",
+    "scope",
+    "Implementation",
+    "Gate",
+    "Git precommit",
+    "Evidence of",
+    "refined selection",
+    "Dispatch hook",
+    "At start of task",
+    "Initial selection",
+    "Anticipated files",
+    "and components",
+    "Refined selection",
+    "After planning",
+    "Refined files",
+    "and dependencies",
+    "May add or remove",
+    "Refined scope",
+    "Engineering knowledge repository",
+    "models · rules · procedures · examples",
+    "Standing instructions — available throughout",
+    "mission · compact method · compact policy"
   ],
-  "style_review": {
-    "source": "book/assets/deliver-context-two-layer.svg",
-    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
-    "decision": "refined",
-    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
-    "status": "reviewed",
-    "fill": "White boxes; solid/dashed outlines retain the two context-source roles.",
-    "bold": "Layer headings stay bold; secondary knowledge and feedback annotations remain italic.",
-    "routing": "Forward flow uses the existing orthogonal split/join rails. A dashed 0.9 pt external return runs from WORK to the task-relevant slice; its horizontal annotation stays clear of the forward path.",
-    "shape": "Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed.",
-    "validation": {
-      "date": "2026-11-11",
-      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-      "page": 2,
-      "width_bp": 382.502,
-      "height_bp": 233.522,
-      "minimum_prose_font_pt": 10.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 12,
-      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-      "status": "passed",
-      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
-    },
-    "reviewed_visually": true,
-    "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged.",
-    "validation_history": [
+  "bw_encoding": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down.",
+  "redesign": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
+  "questions": [],
+  "alt": "Three rows distinguish agent workflow, dynamic context selection, and engineering knowledge as a resource. The workflow is initial agent context, planning to refine scope, refined agent context, a Git precommit gate, then implementation. The gate requires evidence of refined selection for the initial commit that permits implementation to begin. At task dispatch a hook selects initial knowledge from anticipated files and components. Planning passes refined scope to a second selection using refined files and dependencies; that selection may add or remove knowledge. Each selection feeds its corresponding agent context. Both draw from the same engineering knowledge repository of models, rules, procedures and examples. Standing instructions remain available throughout. Context retrieval supplies guidance; the distinct precommit gate enforces completion of the second selection.",
+  "qa": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+    "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+    "page": 1,
+    "width_bp": 445.047,
+    "height_bp": 305.572,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 8,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 38,
+    "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+    "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+    "status": "passed"
+  },
+  "svg_qa": {
+    "overflow_findings": 0,
+    "palette_font_findings": 0,
+    "strain_findings": [
       {
-        "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-        "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-        "validation": {
-          "date": "2026-11-05",
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-          "page": 140,
-          "width_bp": 403.399,
-          "height_bp": 233.522,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "monochrome_pixels": true,
-          "semantic_typography_checks": 12,
-          "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-          "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-          "status": "passed",
-          "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
-        }
+        "text": "Initial agent",
+        "ratio": 0.9535613870665417,
+        "verdict": "strain"
+      },
+      {
+        "text": "Refined agent",
+        "ratio": 0.9836141533277168,
+        "verdict": "strain"
+      },
+      {
+        "text": "Planning",
+        "ratio": 0.9040507859733978,
+        "verdict": "strain"
+      },
+      {
+        "text": "Implementation",
+        "ratio": 0.9832876712328767,
+        "verdict": "strain"
       }
     ],
-    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
-    "routing_exceptions": "None."
+    "visual_resolution": "Conservative strain annotations for compact workflow titles were inspected at print size. Their boxes retain visible padding with no clipping or overlap; labels remain at 9–9.5 pt."
   },
+  "historical_receipt": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/deliver-context-two-layer.json",
+  "reference_image_sha256": "f1e8a2de15f14b686eeb8a6bd4919bdba7080ee7010aa579ca7f8d256cd55915",
   "layout_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+    "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
     "decision": "refined",
-    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+      "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+      "page": 1,
+      "width_bp": 445.047,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 38,
+      "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+      "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/layout-review.json",
     "contracts": {
       "peer_groups": [
         {
-          "name": "context sources",
+          "name": "Work-sequence stages",
           "labels": [
-            "STANDING CONTEXT",
-            "TASK-RELEVANT SLICE"
+            "Initial agent context",
+            "Planning Refine scope",
+            "Refined agent context",
+            "Implementation"
           ],
           "align": [
             "top",
             "bottom"
           ],
-          "equal_width": true,
           "equal_height": true,
           "tolerance_pt": 1
         }
       ]
     },
-    "validation": {
-      "date": "2026-11-11",
-      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-      "page": 2,
-      "width_bp": 382.502,
-      "height_bp": 233.522,
-      "minimum_prose_font_pt": 10.0,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "monochrome_pixels": true,
-      "semantic_typography_checks": 12,
-      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-      "status": "passed",
-      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
-    },
-    "reviewed_visually": true,
-    "validation_history": [
-      {
-        "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-        "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-        "validation": {
-          "date": "2026-11-05",
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-          "page": 140,
-          "width_bp": 403.399,
-          "height_bp": 233.522,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "monochrome_pixels": true,
-          "semantic_typography_checks": 12,
-          "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-          "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-          "status": "passed",
-          "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
-        }
-      }
-    ],
-    "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+    "visual_review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        445.047,
+        305.572
+      ],
+      "after_font_sizes_pt": [
+        9,
+        9.5,
+        10
+      ],
+      "decision": "recomposed",
+      "reason": "Four same-height work/context stages share their top and bottom coordinates; their explicit peer contract passes. The distinct diamond admission gate precedes implementation. Two dynamic-selection boxes align in the middle row, and the two shared resources occupy the shaded bottom row.",
+      "reviewed_visually": true
+    }
   },
   "typography_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+    "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
     "decision": "refined",
-    "evidence": [
-      {
-        "source_text": "ENGINEERING KNOWLEDGE",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "ENGINEERING KNOWLEDGE",
-        "candidate_style": "bold",
-        "semantic_role": "named layer"
-      },
-      {
-        "source_text": "models · rules · procedures",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "models · rules · procedures",
-        "candidate_style": "italic",
-        "semantic_role": "Native italic secondary description retained; source text is regular."
-      },
-      {
-        "source_text": "STANDING CONTEXT",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "STANDING CONTEXT",
-        "candidate_style": "bold",
-        "semantic_role": "named layer"
-      },
-      {
-        "source_text": "mission · compact method",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "mission · compact method",
-        "candidate_style": "regular",
-        "semantic_role": "description or feedback annotation"
-      },
-      {
-        "source_text": "compact policy",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "compact policy",
-        "candidate_style": "regular",
-        "semantic_role": "description or feedback annotation"
-      },
-      {
-        "source_text": "TASK-RELEVANT SLICE",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "TASK-RELEVANT SLICE",
-        "candidate_style": "bold",
-        "semantic_role": "named layer"
-      },
-      {
-        "source_text": "richer models, procedures,",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "richer models, procedures,",
-        "candidate_style": "regular",
-        "semantic_role": "description or feedback annotation"
-      },
-      {
-        "source_text": "examples as needed",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "examples — retrieved when needed",
-        "candidate_style": "regular",
-        "semantic_role": "Same retrieval meaning; native wording retained."
-      },
-      {
-        "source_text": "AGENT CONTEXT",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "AGENT CONTEXT",
-        "candidate_style": "bold",
-        "semantic_role": "named layer"
-      },
-      {
-        "source_text": "WORK",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "20"
-        },
-        "candidate_text": "WORK",
-        "candidate_style": "bold",
-        "semantic_role": "named layer"
-      },
-      {
-        "source_text": "lifecycle event re-surfaces context",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "italic",
-          "font-size": "20"
-        },
-        "candidate_text": "lifecycle event re-surfaces what matters now",
-        "candidate_style": "italic",
-        "semantic_role": "Named feedback annotation; equivalent native wording retained and reflowed horizontally."
-      },
-      {
-        "source_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
-        "source_style": {
-          "font-weight": "normal",
-          "font-style": "italic",
-          "font-size": "20"
-        },
-        "candidate_text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
-        "candidate_style": "italic",
-        "semantic_role": "description or feedback annotation"
-      }
-    ],
-    "checks": [
-      {
-        "text": "ENGINEERING KNOWLEDGE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "models · rules · procedures",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "STANDING CONTEXT",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "mission · compact method",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "compact policy",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "TASK-RELEVANT SLICE",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "richer models, procedures,",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "examples — retrieved when needed",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "AGENT CONTEXT",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "WORK",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "lifecycle event re-surfaces what matters now",
-        "bold": false,
-        "italic": true
-      },
-      {
-        "text": "Keep standing context small enough to stay standing — retrieve the rest per task.",
-        "bold": false,
-        "italic": true
-      }
-    ],
-    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "reviewed_visually": true,
+    "reason": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down. Native fonts are authored at these sizes; no post-render scaling.",
     "validation": {
-      "date": "2026-11-11",
-      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-      "page": 2,
-      "width_bp": 382.502,
-      "height_bp": 233.522,
-      "minimum_prose_font_pt": 10.0,
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+      "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+      "page": 1,
+      "width_bp": 445.047,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 12,
-      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-      "status": "passed",
-      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      "semantic_typography_checks": 38,
+      "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+      "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+      "status": "passed"
     },
-    "reviewed_visually": true,
-    "validation_history": [
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/typography-review.json",
+    "checks": [
       {
-        "source_sha256": "3e088f43b0d510337479fe1d15d40be05ec9f210c8c43fdf00b66698f1db0517",
-        "candidate_sha256": "08adcf2d8e031a5a62f0f6d11ea2aca2b05b55a523e5d207d880ab549c5d2baa",
-        "validation": {
-          "date": "2026-11-05",
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-          "page": 140,
-          "width_bp": 403.399,
-          "height_bp": 233.522,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "monochrome_pixels": true,
-          "semantic_typography_checks": 12,
-          "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-          "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-          "status": "passed",
-          "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
-        }
+        "text": "Agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "workflow",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Context",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Engineering",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "knowledge",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(actor)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "(dynamic)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "(resource)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Initial agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "context",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "standing +",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "initial",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Refined agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "refined",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Planning",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Refine",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "scope",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Gate",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Git precommit",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Evidence of",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "refined selection",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Dispatch hook",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "At start of task",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Initial selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Anticipated files",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and components",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Refined selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "After planning",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Refined files",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and dependencies",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "May add or remove",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Refined scope",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Engineering knowledge repository",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "models · rules · procedures · examples",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Standing instructions — available throughout",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "mission · compact method · compact policy",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "evidence": [
+      {
+        "candidate_text": "Agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "workflow",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Context",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Engineering",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "knowledge",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "(actor)",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "(dynamic)",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "(resource)",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Initial agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "context",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "standing +",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "initial",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Refined agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "refined",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Planning",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Refine",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "scope",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Implementation",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Gate",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Git precommit",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Evidence of",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "refined selection",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Dispatch hook",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "At start of task",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Initial selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Anticipated files",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "and components",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Refined selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "After planning",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Refined files",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "and dependencies",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "May add or remove",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Refined scope",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Engineering knowledge repository",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "models · rules · procedures · examples",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Standing instructions — available throughout",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "mission · compact method · compact policy",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
       }
     ]
   },
-  "historical_validation": {
-    "full_pool_validation": {
-      "date": "2026-11-05",
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "b55af66a02b6a138609705e7c6cb14c9a1c0200ec5974c7aa3eab6e2aa8cbad3",
-      "page": 140,
-      "width_bp": 403.399,
-      "height_bp": 233.522,
+  "style_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+    "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+      "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+      "page": 1,
+      "width_bp": 445.047,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 12,
-      "audit_sha256": "81daeeec50995f337bb4fe3086cb02689f606f6843f88139eabbc13ec66706f3",
-      "typography_audit_sha256": "b3afbc184ee707978550e63b9f373a6b44fff92c7337894d32e3d7227a577d19",
-      "status": "passed",
-      "visual_review": "Native proof inspected at 2x: equal context-source boxes, orthogonal split/join, dashed feedback with external italic label, all type legible. Color original remains unchanged."
-    }
+      "semantic_typography_checks": 38,
+      "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+      "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/style-review.json",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color.",
+    "bold": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down.",
+    "routing": "Workflow: initial agent context → planning → refined agent context → Git precommit gate → implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+    "shape": "Rounded rectangles represent context, work and selection stages. A diamond distinguishes the Git precommit admission decision. The subtle gray resource container holds repository and standing-instruction boxes.",
+    "visual_review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow.",
+    "book_references": [],
+    "routing_exceptions": "None."
   },
   "fidelity_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+    "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
     "decision": "refined",
     "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
     "validation": {
-      "date": "2026-11-11",
-      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-      "page": 2,
-      "width_bp": 382.502,
-      "height_bp": 233.522,
-      "minimum_prose_font_pt": 10.0,
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+      "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+      "page": 1,
+      "width_bp": 445.047,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 12,
-      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-      "status": "passed",
-      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      "semantic_typography_checks": 38,
+      "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+      "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+      "status": "passed"
     },
-    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/fidelity-review.json",
     "checks": {
-      "icons_and_symbols": "No pictograms; source headings and feedback relation preserved.",
-      "links_and_groups": "Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed.",
-      "annotation_placement": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      "icons_and_symbols": "The diamond gate precedes implementation and requires evidence of refined selection for the initial commit. The only dashed edge carries refined scope from planning to selection; it is not a lifecycle feedback loop.",
+      "links_and_groups": "Workflow: initial agent context → planning → refined agent context → Git precommit gate → implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+      "annotation_placement": "The left margin identifies actor, dynamic selection, and resource rows. At start of task and After planning qualify selection timing; Refined scope labels the dashed planning-to-selection edge. Gate text names Git precommit and evidence of refined selection. Standing instructions are explicitly available throughout.",
+      "line_breaks": "Whole-word line breaks keep the top workflow legible. The gate diamond uses four short lines at authored 9–10 pt. The incorrect final Commit allowed annotation is removed. No label is silently truncated."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
+        9.0,
+        9.5,
         10.0
       ],
-      "minimum": 10.0,
+      "minimum": 9.0,
       "final_size_no_scaling": true
     },
     "geometry_findings": [],
     "compiler_diagnostics": [],
-    "width_bp": 382.502,
-    "height_bp": 233.522,
+    "width_bp": 445.047,
+    "height_bp": 305.572,
     "monochrome": true,
-    "review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+    "review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow."
   },
   "grayscale_review": {
     "source": "book/assets/deliver-context-two-layer.svg",
     "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-    "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-    "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+    "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+    "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
     "decision": "refined",
     "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
     "validation": {
-      "date": "2026-11-11",
-      "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-      "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-      "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-      "page": 2,
-      "width_bp": 382.502,
-      "height_bp": 233.522,
-      "minimum_prose_font_pt": 10.0,
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+      "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+      "page": 1,
+      "width_bp": 445.047,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 12,
-      "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-      "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-      "status": "passed",
-      "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      "semantic_typography_checks": 38,
+      "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+      "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+      "status": "passed"
     },
-    "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
     "reviewed": true,
-    "rationale": "White boxes; solid/dashed outlines retain the two context-source roles. Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed."
+    "rationale": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down."
   }
 }

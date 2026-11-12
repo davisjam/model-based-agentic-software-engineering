@@ -213,6 +213,11 @@
       "approved_date": "2026-11-12",
       "reason": "Author approved the compact Figure 1.3 after correcting training-to-model routing, limiting the engineer to GEE maintenance, separating harness facilities from installed mechanisms, and clarifying GEE guidance and governance.",
       "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378"
+    },
+    "book/assets/deliver-context-two-layer.svg": {
+      "approved_date": "2026-11-12",
+      "reason": "Author approved Figure 3.2 with three rows and the Git precommit gate before implementation, requiring an initial discovery commit.",
+      "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3"
     }
   }
 }

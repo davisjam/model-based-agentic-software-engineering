@@ -1,0 +1,25 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\magefigurefont\fontsize{10}{12}\selectfont,
+box/.style={draw=black,fill=white,rounded corners=3pt,align=center,inner sep=5pt},
+edge/.style={-{Stealth[length=2mm]},line width=.6pt},
+every node/.style={text=black,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+\node[box,text width=6cm] (knowledge) at (0,0) {\textbf{ENGINEERING KNOWLEDGE}\\\textit{models · rules · procedures}};
+\node[box,text width=5.3cm,minimum height=1.9cm] (standing) at (-3.2,-2.4) {\textbf{STANDING CONTEXT}\\mission · compact method\\compact policy};
+\node[box,dashed,text width=5.3cm,minimum height=1.9cm] (slice) at (3.2,-2.4) {\textbf{TASK-RELEVANT SLICE}\\richer models, procedures,\\examples — retrieved when needed};
+\node[box,text width=4cm] (context) at (0,-4.7) {\textbf{AGENT CONTEXT}};
+\node[box,text width=3cm] (work) at (0,-6) {\textbf{WORK}};
+\coordinate (split) at (0,-1.05);
+\draw[line width=.6pt] (knowledge.south)--(split);
+\draw[line width=.6pt] (standing.north |- split)--(slice.north |- split);
+\draw[edge] (standing.north |- split)--(standing.north);
+\draw[edge] (slice.north |- split)--(slice.north);
+\coordinate (join) at (0,-3.8);
+\draw[line width=.6pt] (standing.south)--(standing.south |- join);
+\draw[line width=.6pt] (slice.south)--(slice.south |- join);
+\draw[line width=.6pt] (standing.south |- join)--(slice.south |- join);
+\draw[edge] (join)--(context.north);
+\draw[edge] (context.south)--(work.north);
+% Label feedback horizontally inside the external return, clear of forward flow.
+\draw[edge,dashed,line width=.9pt] (work.east)--(6.9,-6)--(6.9,-2.4)--(slice.east);
+\node[align=center,text width=3.7cm,inner sep=3pt,font=\magefigurefont\fontsize{10}{12}\selectfont\itshape] at (4.7,-4.7) {lifecycle event\\re-surfaces what\\matters now};
+\node[align=center,text width=12.5cm,font=\magefigurefont\fontsize{10}{12}\selectfont\itshape] at (0,-7.2) {Keep standing context small enough to stay standing — retrieve the rest per task.};
+\end{tikzpicture}

@@ -1,0 +1,57 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+  "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+  "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Author-requested chronology redraw makes initial context, agent planning, refined context and implementation the explicit work sequence. Two selections use the same engineering knowledge. Planning supplies refined scope to the second selection, which may add or remove knowledge. Standing instructions remain available throughout; the previous lifecycle return edge is removed.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+    "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+    "page": 1,
+    "width_bp": 444.52,
+    "height_bp": 275.522,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0,
+      10.5
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 12,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 21,
+    "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+    "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/fidelity-review.json",
+  "checks": {
+    "icons_and_symbols": "Forward arrows show the work sequence. Both selections are fed by the same knowledge branch. Persistent guidance uses a separate source bus. The obsolete dashed lifecycle return is removed.",
+    "links_and_groups": "The main row runs initial agent context \u2192 agent planning \u2192 refined agent context \u2192 implementation. Engineering knowledge branches into both selections. Initial selection feeds initial context; planning supplies refined scope to refined selection, which feeds refined context. Standing instructions feed each work stage from a separate bottom bus. There is no lifecycle backedge, no planning before initial context, and no assertion that a refined slice is a superset.",
+    "annotation_placement": "At dispatch and After planning qualify the two selections. Refined scope labels the planning-to-selection edge. May add or remove selected knowledge is inside the second selection. Available throughout labels the standing-instructions source.",
+    "line_breaks": "Short whole-word line breaks keep initial/refined agent context and agent planning legible. The implementation box is widened rather than reducing text below 9.5 pt."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      9.5,
+      10.0,
+      10.5
+    ],
+    "minimum": 9.0,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 444.52,
+  "height_bp": 275.522,
+  "monochrome": true,
+  "review": "Both native and live-text SVG proofs inspected at print width and 2\u00d7. The central chronology reads left to right, with selection inputs above and persistent standing guidance below. The Implementation box was widened to preserve label padding without changing total figure width. All labels are legible at authored 9\u201310.5 pt sizes; no scaling, clipping, overlap or confusing crossings. The refined-scope edge is clearly sourced at planning. No embedded figure number, caption or lifecycle-loop annotation."
+}

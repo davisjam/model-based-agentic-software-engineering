@@ -19825,3 +19825,30 @@ Source: `book/latex/sources/part2/2.4-decision.tex`, revision `11f29c7d4`, “Co
 ```latex
 \emph{Observation compared with declared permission.} In this hypothetical example, the observed web-to-renderer call has no corresponding permission in the declared policy. The comparison identifies a violation of that policy; it does not establish that the policy itself is correct.
 ```
+
+
+## Figure 3.2 context-selection introduction and caption — 2026-11-12
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, revision `11f29c7d4`, §3.1. Replaced with the author’s explicit dispatch/planning/refinement account. The figure and general introduction now precede the DocAble inset; its detailed extraction and gate paragraphs remain intact.
+
+```latex
+\autoref{docable-context-selection} shows how a task-specific slice supplements the standing instructions.
+
+\emph{Selecting context for the work.} Standing instructions and a retrieved task slice supply the agent's context. DocAble repeats selection after planning, when the anticipated files are clearer. This information path supports reasoning; the separate extraction gate checks that the required discovery event occurred.
+```
+
+## 2026-11-12 — Context-selection inset refinement
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, DocAble context inset, based on `11f29c7d4` plus the first context-selection review. Author requested dispatch versus agent-triggered selection and separate precommit enforcement; the figure returns to this worked inset. Retired paragraphs:
+
+DocAble selects context twice. At dispatch, the environment matches the work order's anticipated files against file-scoped constraint declarations and the models' file-to-component mappings. It includes the resulting knowledge in the work order. After planning, the agent triggers a second extraction using its refined file set. That pass can surface obligations missed by the initial brief as the proposed change becomes more concrete~\citep{davis2026docable}. This is \emph{dynamic context injection}: properties of the work determine which engineering knowledge enters the agent's context.
+
+A Git pre-commit gate rejects the final agent-worktree commit when the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
+
+## 2026-11-12 — Initial-commit gate clarification
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, review commit `c5efe6383`. The author clarified that discovery is required for the initial commit before implementation, not for a final implementation commit. The earlier inference put the gate on the wrong side of implementation. Superseded prose and caption:
+
+A separate gate, implemented as a Git pre-commit hook, requires evidence that the second extraction occurred. It rejects the final agent-worktree commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
+
+\emph{Dynamic context injection and enforcement.} A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A separate Git precommit gate requires evidence of the second selection before the changes can be committed.

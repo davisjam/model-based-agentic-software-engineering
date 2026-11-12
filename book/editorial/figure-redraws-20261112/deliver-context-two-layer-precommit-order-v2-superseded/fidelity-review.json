@@ -1,0 +1,55 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+  "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+  "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+    "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+    "page": 1,
+    "width_bp": 448.097,
+    "height_bp": 305.572,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 8,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 39,
+    "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+    "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/fidelity-review.json",
+  "checks": {
+    "icons_and_symbols": "The diamond gate follows implementation and produces Commit allowed only after evidence of refined selection. The only dashed edge carries refined scope from planning to selection; it is not a lifecycle feedback loop.",
+    "links_and_groups": "Workflow: initial agent context \u2192 planning \u2192 refined agent context \u2192 implementation \u2192 Git precommit gate \u2192 commit allowed. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+    "annotation_placement": "The left margin identifies actor, dynamic selection, and resource rows. At start of task and After planning qualify selection timing; Refined scope labels the dashed planning-to-selection edge. Gate text names Git precommit and evidence of refined selection. Standing instructions are explicitly available throughout.",
+    "line_breaks": "Whole-word line breaks keep the top workflow legible. The gate diamond uses four short lines at authored 9\u201310 pt, with Commit allowed outside. No label is silently truncated."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "minimum": 9.0,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 448.097,
+  "height_bp": 305.572,
+  "monochrome": true,
+  "review": "Both native and live-text SVG proofs inspected at print size and 2\u00d7. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond after implementation, with Commit allowed as its output. Gate text remains at 9\u201310 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded, and no flow implies that the precommit gate precedes implementation."
+}

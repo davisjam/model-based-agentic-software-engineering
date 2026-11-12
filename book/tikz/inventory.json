@@ -1755,15 +1755,15 @@
   {
     "chapter": "3.1-where-obligations-can-be-enforced",
     "source": "assets/deliver-context-two-layer.svg",
-    "caption": "*Selecting context for the work.* Standing instructions and a retrieved task slice supply the agent’s context. DocAble repeats selection after planning, when the anticipated files are clearer. This information path supports reasoning; the separate extraction gate checks that the required discovery event occurred.",
+    "caption": "*Dynamic context injection and enforcement.* A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A Git precommit gate requires evidence of the second selection for the initial commit that permits implementation to begin.",
     "native_context": "book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex",
     "d2_source": null,
     "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
     "generator": null,
     "data": [],
     "conversion": "Native TikZ companion to the current authored color SVG",
-    "svg_title": "Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.",
-    "svg_description": "A green engineering-knowledge box holds models, rules, and procedures. It splits into two\n    layers: a solid green standing-context box (mission, compact method, compact policy) and a dashed green\n    task-relevant-slice box (retrieved when needed). Both feed into a blue agent-context box, which flows down\n    into a dark work box. A dashed rust lifecycle-event arrow loops from the work back up to the task-relevant\n    slice, re-surfacing what matters now. The point: keep standing context small enough to genuinely remain\n    standing, and retrieve richer slices per task rather than loading everything at once."
+    "svg_title": "Dynamic context injection and enforcement",
+    "svg_description": "Three rows distinguish agent workflow, dynamic context selection, and engineering knowledge as a resource. The workflow is initial agent context, planning to refine scope, refined agent context, a Git precommit gate, then implementation. The gate requires evidence of refined selection for the initial commit that permits implementation to begin. At task dispatch a hook selects initial knowledge from anticipated files and components. Planning passes refined scope to a second selection using refined files and dependencies; that selection may add or remove knowledge. Each selection feeds its corresponding agent context. Both draw from the same engineering knowledge repository of models, rules, procedures and examples. Standing instructions remain available throughout. Context retrieval supplies guidance; the distinct precommit gate enforces completion of the second selection."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",

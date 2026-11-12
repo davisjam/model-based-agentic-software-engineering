@@ -1,0 +1,428 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+  "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+  "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5\u201310 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down. Native fonts are authored at these sizes; no post-render scaling.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+    "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+    "page": 1,
+    "width_bp": 448.097,
+    "height_bp": 305.572,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 8,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 39,
+    "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+    "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/typography-review.json",
+  "checks": [
+    {
+      "text": "Agent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "workflow",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Context",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "selection",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Engineering",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "knowledge",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "(actor)",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "(dynamic)",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "(resource)",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Initial agent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "context",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "standing +",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "initial",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Refined agent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "refined",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Planning",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Refine",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "scope",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Implementation",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Gate",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Git precommit",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Evidence of",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "refined selection",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Commit allowed",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Dispatch hook",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "At start of task",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Initial selection",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Anticipated files",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "and components",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Refined selection",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "After planning",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Refined files",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "and dependencies",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "May add or remove",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Refined scope",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Engineering knowledge repository",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "models \u00b7 rules \u00b7 procedures \u00b7 examples",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Standing instructions \u2014 available throughout",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "mission \u00b7 compact method \u00b7 compact policy",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "candidate_text": "Agent",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "workflow",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Context",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "selection",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Engineering",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "knowledge",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "(actor)",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "(dynamic)",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "(resource)",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Initial agent",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "context",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "standing +",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "initial",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Refined agent",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "refined",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Planning",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Refine",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "scope",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Implementation",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Gate",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Git precommit",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Evidence of",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "refined selection",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Commit allowed",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Dispatch hook",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "At start of task",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Initial selection",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Anticipated files",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "and components",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Refined selection",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "After planning",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Refined files",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "and dependencies",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "May add or remove",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Refined scope",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Engineering knowledge repository",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "models \u00b7 rules \u00b7 procedures \u00b7 examples",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Standing instructions \u2014 available throughout",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "mission \u00b7 compact method \u00b7 compact policy",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    }
+  ]
+}

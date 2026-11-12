@@ -1,37 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 415" width="600" height="415" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="figure-title">Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.</title>
-<desc id="figure-description">A green engineering-knowledge box holds models, rules, and procedures. It splits into two
-    layers: a solid green standing-context box (mission, compact method, compact policy) and a dashed green
-    task-relevant-slice box (retrieved when needed). Both feed into a blue agent-context box, which flows down
-    into a dark work box. A dashed rust lifecycle-event arrow loops from the work back up to the task-relevant
-    slice, re-surfacing what matters now. The point: keep standing context small enough to genuinely remain
-    standing, and retrieve richer slices per task rather than loading everything at once.</desc>
-<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
-<rect id="eng-knowledge" x="140" y="8" width="320" height="58" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="300" y="32" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">ENGINEERING KNOWLEDGE</text>
-<text x="300" y="55" text-anchor="middle" font-size="20" fill="#1c1917">models · rules · procedures</text>
-<path d="M220 66 V82 H135 V96" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<path d="M380 66 V82 H430 V96" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<rect id="standing-context" x="3" y="98" width="264" height="86" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-<text x="135" y="123" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">STANDING CONTEXT</text>
-<text x="135" y="148" text-anchor="middle" font-size="20" fill="#1c1917">mission · compact method</text>
-<text x="135" y="173" text-anchor="middle" font-size="20" fill="#1c1917">compact policy</text>
-<rect id="task-slice" x="294" y="98" width="272" height="86" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="7 5"/>
-<text x="430" y="123" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">TASK-RELEVANT SLICE</text>
-<text x="430" y="148" text-anchor="middle" font-size="20" fill="#1c1917">richer models, procedures,</text>
-<text x="430" y="173" text-anchor="middle" font-size="20" fill="#1c1917">examples as needed</text>
-<path d="M135 184 V201 H250 V216" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<path d="M430 184 V201 H350 V216" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<rect id="agent-context" x="190" y="218" width="220" height="42" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="300" y="245" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">AGENT CONTEXT</text>
-<path d="M300 260 L300 283" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<rect id="work" x="245" y="285" width="110" height="40" rx="7" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-<text x="300" y="312" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">WORK</text>
-<path d="M355 305 H580 V141 H568" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#rust-arrow)" stroke-dasharray="6 4"/>
-<text x="481" y="329" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">lifecycle event</text>
-<text x="481" y="351" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">re-surfaces context</text>
-<text x="300" y="380" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">Keep standing context small enough to stay standing —</text>
-<text x="300" y="402" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">retrieve the rest per task.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -13 450 307" width="1012.5" height="690.75" role="img" aria-labelledby="asTitle asDesc" font-family="'Source Sans 3', sans-serif">
+<title id="asTitle">Dynamic context injection and enforcement</title>
+<desc id="asDesc">Three rows distinguish agent workflow, dynamic context selection, and engineering knowledge as a resource. The workflow is initial agent context, planning to refine scope, refined agent context, a Git precommit gate, then implementation. The gate requires evidence of refined selection for the initial commit that permits implementation to begin. At task dispatch a hook selects initial knowledge from anticipated files and components. Planning passes refined scope to a second selection using refined files and dependencies; that selection may add or remove knowledge. Each selection feeds its corresponding agent context. Both draw from the same engineering knowledge repository of models, rules, procedures and examples. Standing instructions remain available throughout. Context retrieval supplies guidance; the distinct precommit gate enforces completion of the second selection.</desc>
+<defs><marker id="as-arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker></defs>
+<text x="4" y="35" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">Agent</text>
+<text x="4" y="47" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">workflow</text>
+<text x="4" y="140" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">Context</text>
+<text x="4" y="152" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">selection</text>
+<text x="4" y="240" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">Engineering</text>
+<text x="4" y="252" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">knowledge</text>
+<text x="4" y="61" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">(actor)</text>
+<text x="4" y="166" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">(dynamic)</text>
+<text x="4" y="266" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">(resource)</text>
+<rect x="62" y="14" width="60" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="136" y="14" width="48" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="197" y="14" width="66" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="371" y="14" width="72" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="92" y="30" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Initial agent</text>
+<text x="92" y="42" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">context</text>
+<text x="92" y="59" text-anchor="middle" font-size="9" fill="#1c1917">standing +</text>
+<text x="92" y="70" text-anchor="middle" font-size="9" fill="#1c1917">initial</text>
+<text x="230" y="30" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Refined agent</text>
+<text x="230" y="42" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">context</text>
+<text x="230" y="59" text-anchor="middle" font-size="9" fill="#1c1917">standing +</text>
+<text x="230" y="70" text-anchor="middle" font-size="9" fill="#1c1917">refined</text>
+<text x="160" y="38" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Planning</text>
+<text x="160" y="54" text-anchor="middle" font-size="9" fill="#1c1917">Refine</text>
+<text x="160" y="65" text-anchor="middle" font-size="9" fill="#1c1917">scope</text>
+<text x="407" y="49" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Implementation</text>
+<polygon points="316,-9 359,46 316,101 273,46" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="316" y="21" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Gate</text>
+<text x="316" y="35" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Git precommit</text>
+<text x="316" y="46" text-anchor="middle" font-size="9" fill="#1c1917">Evidence of</text>
+<text x="316" y="57" text-anchor="middle" font-size="9" fill="#1c1917">refined selection</text>
+<path d="M122,46 L136,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M184,46 L197,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M263,46 L273,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M359,46 L371,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<rect x="62" y="119" width="110" height="66" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="198" y="119" width="116" height="66" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="117" y="132" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Dispatch hook</text>
+<text x="117" y="144" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">At start of task</text>
+<text x="117" y="157" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Initial selection</text>
+<text x="117" y="169" text-anchor="middle" font-size="9" fill="#1c1917">Anticipated files</text>
+<text x="117" y="180" text-anchor="middle" font-size="9" fill="#1c1917">and components</text>
+<text x="256" y="132" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Refined selection</text>
+<text x="256" y="144" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">After planning</text>
+<text x="256" y="157" text-anchor="middle" font-size="9" fill="#1c1917">Refined files</text>
+<text x="256" y="168" text-anchor="middle" font-size="9" fill="#1c1917">and dependencies</text>
+<text x="256" y="180" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">May add or remove</text>
+<path d="M92,119 L92,78" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M250,119 L250,78" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M160,78 L160,100 L186,100 L186,153 L198,153" fill="none" stroke="#1c1917" stroke-width=".65" stroke-dasharray="3 2" marker-end="url(#as-arrow)"/>
+<text x="206" y="94" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Refined scope</text>
+<rect x="62" y="215" width="380" height="75" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".55"/>
+<rect x="70" y="223" width="364" height="30" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="252" y="236" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Engineering knowledge repository</text>
+<text x="252" y="248" text-anchor="middle" font-size="9.5" fill="#1c1917" font-style="italic">models · rules · procedures · examples</text>
+<rect x="70" y="259" width="364" height="25" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="252" y="270" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Standing instructions — available throughout</text>
+<text x="252" y="281" text-anchor="middle" font-size="9" fill="#1c1917">mission · compact method · compact policy</text>
+<path d="M246,223 L246,200" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M117,200 L256,200" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M117,200 L117,185" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M256,200 L256,185" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
 </svg>

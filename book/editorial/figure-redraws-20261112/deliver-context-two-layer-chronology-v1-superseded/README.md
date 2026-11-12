@@ -1,0 +1,1 @@
+Chronology-v1 candidate archived from 2f93a000c1b0081259cb22597b754a2fd6ddd512 on 2026-11-12. Superseded by the three-row context-selection/enforcement drawing. Prior proof preserved in /private/tmp/mage-docable-context-sequence-v2-proof-20261112/v1-before/. No publication approval changed.

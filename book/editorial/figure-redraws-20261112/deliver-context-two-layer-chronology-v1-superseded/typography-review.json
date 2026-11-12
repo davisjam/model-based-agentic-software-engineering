@@ -1,0 +1,249 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+  "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+  "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Engineering knowledge is bold 10.5 pt; stage and selection headings and standing-instruction heading are bold 10 pt, with Implementation bold 9.5 pt. Dispatch/planning qualifiers, refined-scope relation, and knowledge inventory are italic. Ordinary labels remain 9\u20139.5 pt. Native fonts are authored at these sizes; no post-render scaling.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+    "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+    "page": 1,
+    "width_bp": 444.52,
+    "height_bp": 275.522,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0,
+      10.5
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 12,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 21,
+    "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+    "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/typography-review.json",
+  "checks": [
+    {
+      "text": "Engineering knowledge",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "models \u00b7 rules \u00b7 procedures \u00b7 examples",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Initial selection",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "At dispatch",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Anticipated files",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "and components",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Refined selection",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "After planning",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "May add or remove",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "selected knowledge",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Initial agent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "context",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Standing + coarse slice",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Agent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "planning",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Refined agent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Standing + refined slice",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Implementation",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Refined scope",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "text": "Standing instructions \u2014 available throughout",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "mission \u00b7 compact method \u00b7 compact policy",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "evidence": [
+    {
+      "candidate_text": "Engineering knowledge",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "models \u00b7 rules \u00b7 procedures \u00b7 examples",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Initial selection",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "At dispatch",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Anticipated files",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "and components",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Refined selection",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "After planning",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "May add or remove",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "selected knowledge",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Initial agent",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "context",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Standing + coarse slice",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Agent",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "planning",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Refined agent",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Standing + refined slice",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    },
+    {
+      "candidate_text": "Implementation",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "Refined scope",
+      "candidate_style": "italic",
+      "semantic_role": "explanatory subtitle"
+    },
+    {
+      "candidate_text": "Standing instructions \u2014 available throughout",
+      "candidate_style": "bold",
+      "semantic_role": "region/component/property or control relation"
+    },
+    {
+      "candidate_text": "mission \u00b7 compact method \u00b7 compact policy",
+      "candidate_style": "regular",
+      "semantic_role": "facility, implication, example or exchange label"
+    }
+  ]
+}

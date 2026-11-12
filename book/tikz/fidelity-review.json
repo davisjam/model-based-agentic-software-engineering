@@ -4656,47 +4656,57 @@
     {
       "source": "book/assets/deliver-context-two-layer.svg",
       "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
-      "source_sha256": "9deb4c57b75499e73f8a218c88066e946468481d57e78fc9da3aeca2eecae7c5",
-      "candidate_sha256": "87f6a53cb4dabb2e5c4d20f2ef390489ab151d52518396278be8bb42e3311bf7",
+      "source_sha256": "af529e7bc66d5b15cec967058315d1cb1afcdc4c2a3f72ba4f0f0ba80037fafe",
+      "candidate_sha256": "9e16def8f970cd14b951ae70c9abcc4b0afa204ab8760b4bc441b59898b03ef3",
       "decision": "refined",
       "reviewed_visually": true,
+      "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate before implementation. The author describes a bootstrap workflow: the gate requires evidence of refined selection for the initial commit that permits implementation to begin.",
       "validation": {
-        "date": "2026-11-11",
-        "scope": "Isolated two-figure production-pipeline proof; not a full-book render.",
-        "proof": "latex/build/tikz/ch3-refinement-20261111/candidates.pdf",
-        "proof_sha256": "7f2958b0f95e4e5ab8c5fb2bfea653ab854107eec01c4e91102a50b2517917e8",
-        "page": 2,
-        "width_bp": 382.502,
-        "height_bp": 233.522,
-        "minimum_prose_font_pt": 10.0,
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+        "proof": "latex/build/tikz/docable-context-bootstrap-20261112/candidates.pdf",
+        "proof_sha256": "8153b5bb920cf22dd252b4412cd04d6e0c37a425cfe432bbc8b0536c18b8a662",
+        "page": 1,
+        "width_bp": 445.047,
+        "height_bp": 305.572,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          9.5,
+          10.0
+        ],
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 8,
+        "reviewed_peer_groups": 1,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 12,
-        "audit_sha256": "053fa268282aa3810a7184f3bf5e74d6f4dd891e6aa387ea26393229bc08b524",
-        "typography_audit_sha256": "fe69efd6ab8e3a2b70ac41ac7a50bd813effcc69686ff10a2075754847dca7c1",
-        "status": "passed",
-        "visual_review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+        "semantic_typography_checks": 38,
+        "audit_sha256": "df9b8149693b25f3d2c71d2ac545c18e84a37d3196dc4bc0f4c92b805235e78c",
+        "typography_audit_sha256": "1b47dcbccfdd13480182e444caf7c3373b6d4f771d4a98332bb1b99a839c4b1e",
+        "status": "passed"
       },
-      "reason": "Move the feedback label from a rotated external annotation to horizontal lines beside the external return; raise it from 9 to 10 pt and give the named feedback path a slightly stronger stroke.",
+      "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-precommit-order-v2-superseded/fidelity-review.json",
       "checks": {
-        "icons_and_symbols": "No pictograms; source headings and feedback relation preserved.",
-        "links_and_groups": "Equal standing-context and task-slice boxes retained. No nodes, relations, or labels removed.",
-        "annotation_placement": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+        "icons_and_symbols": "The diamond gate precedes implementation and requires evidence of refined selection for the initial commit. The only dashed edge carries refined scope from planning to selection; it is not a lifecycle feedback loop.",
+        "links_and_groups": "Workflow: initial agent context → planning → refined agent context → Git precommit gate → implementation. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+        "annotation_placement": "The left margin identifies actor, dynamic selection, and resource rows. At start of task and After planning qualify selection timing; Refined scope labels the dashed planning-to-selection edge. Gate text names Git precommit and evidence of refined selection. Standing instructions are explicitly available throughout.",
+        "line_breaks": "Whole-word line breaks keep the top workflow legible. The gate diamond uses four short lines at authored 9–10 pt. The incorrect final Commit allowed annotation is removed. No label is silently truncated."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
+          9.0,
+          9.5,
           10.0
         ],
-        "minimum": 10.0,
+        "minimum": 9.0,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 382.502,
-      "height_bp": 233.522,
+      "width_bp": 445.047,
+      "height_bp": 305.572,
       "monochrome": true,
-      "review": "Native 382.50 × 233.52 bp proof inspected at print scale and 2×. The feedback reads horizontally beside the right-hand return, whose final approach remains clear. All native prose is 10 pt. The color source already has a horizontal feedback annotation and remains unchanged."
+      "review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow."
     }
   ],
   "last_revised_date": "2026-11-10"

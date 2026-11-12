@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -13 450 307" width="1012.5" height="690.75" role="img" aria-labelledby="asTitle asDesc" font-family="'Source Sans 3', sans-serif">
+<title id="asTitle">Dynamic context injection and enforcement</title>
+<desc id="asDesc">Three rows distinguish agent workflow, dynamic context selection, and engineering knowledge as a resource. The workflow is initial agent context, planning to refine scope, refined agent context, implementation, then a separate Git precommit gate. The gate requires evidence of refined selection before commit is allowed. At task dispatch a hook selects initial knowledge from anticipated files and components. Planning passes refined scope to a second selection using refined files and dependencies; that selection may add or remove knowledge. Each selection feeds its corresponding agent context. Both draw from the same engineering knowledge repository of models, rules, procedures and examples. Standing instructions remain available throughout. Context retrieval supplies guidance; the distinct precommit gate enforces completion of the second selection.</desc>
+<defs><marker id="as-arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker></defs>
+<text x="4" y="35" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">Agent</text>
+<text x="4" y="47" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">workflow</text>
+<text x="4" y="140" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">Context</text>
+<text x="4" y="152" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">selection</text>
+<text x="4" y="240" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">Engineering</text>
+<text x="4" y="252" text-anchor="start" font-size="9.5" fill="#1c1917" font-weight="700">knowledge</text>
+<text x="4" y="61" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">(actor)</text>
+<text x="4" y="166" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">(dynamic)</text>
+<text x="4" y="266" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">(resource)</text>
+<rect x="62" y="14" width="60" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="136" y="14" width="48" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="197" y="14" width="66" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="276" y="14" width="72" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="92" y="30" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Initial agent</text>
+<text x="92" y="42" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">context</text>
+<text x="92" y="59" text-anchor="middle" font-size="9" fill="#1c1917">standing +</text>
+<text x="92" y="70" text-anchor="middle" font-size="9" fill="#1c1917">initial</text>
+<text x="230" y="30" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Refined agent</text>
+<text x="230" y="42" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">context</text>
+<text x="230" y="59" text-anchor="middle" font-size="9" fill="#1c1917">standing +</text>
+<text x="230" y="70" text-anchor="middle" font-size="9" fill="#1c1917">refined</text>
+<text x="160" y="38" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Planning</text>
+<text x="160" y="54" text-anchor="middle" font-size="9" fill="#1c1917">Refine</text>
+<text x="160" y="65" text-anchor="middle" font-size="9" fill="#1c1917">scope</text>
+<text x="313" y="49" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Implementation</text>
+<polygon points="403,-9 446,46 403,101 360,46" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="403" y="21" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Gate</text>
+<text x="403" y="35" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Git precommit</text>
+<text x="403" y="46" text-anchor="middle" font-size="9" fill="#1c1917">Evidence of</text>
+<text x="403" y="57" text-anchor="middle" font-size="9" fill="#1c1917">refined selection</text>
+<path d="M122,46 L136,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M184,46 L197,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M263,46 L276,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M348,46 L360,46" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M403,101 L403,116" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<text x="403" y="129" text-anchor="middle" font-size="9" fill="#1c1917">Commit allowed</text>
+<rect x="62" y="119" width="110" height="66" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="198" y="119" width="116" height="66" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="117" y="132" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Dispatch hook</text>
+<text x="117" y="144" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">At start of task</text>
+<text x="117" y="157" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Initial selection</text>
+<text x="117" y="169" text-anchor="middle" font-size="9" fill="#1c1917">Anticipated files</text>
+<text x="117" y="180" text-anchor="middle" font-size="9" fill="#1c1917">and components</text>
+<text x="256" y="132" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Refined selection</text>
+<text x="256" y="144" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">After planning</text>
+<text x="256" y="157" text-anchor="middle" font-size="9" fill="#1c1917">Refined files</text>
+<text x="256" y="168" text-anchor="middle" font-size="9" fill="#1c1917">and dependencies</text>
+<text x="256" y="180" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">May add or remove</text>
+<path d="M92,119 L92,78" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M250,119 L250,78" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M160,78 L160,100 L186,100 L186,153 L198,153" fill="none" stroke="#1c1917" stroke-width=".65" stroke-dasharray="3 2" marker-end="url(#as-arrow)"/>
+<text x="206" y="94" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Refined scope</text>
+<rect x="62" y="215" width="380" height="75" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".55"/>
+<rect x="70" y="223" width="364" height="30" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="252" y="236" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Engineering knowledge repository</text>
+<text x="252" y="248" text-anchor="middle" font-size="9.5" fill="#1c1917" font-style="italic">models · rules · procedures · examples</text>
+<rect x="70" y="259" width="364" height="25" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="252" y="270" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Standing instructions — available throughout</text>
+<text x="252" y="281" text-anchor="middle" font-size="9" fill="#1c1917">mission · compact method · compact policy</text>
+<path d="M246,223 L246,200" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M117,200 L256,200" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M117,200 L117,185" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M256,200 L256,185" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+</svg>

@@ -1,0 +1,736 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "claim": "*Dynamic context injection and enforcement.* A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A separate Git precommit gate requires evidence of the second selection before the changes can be committed.",
+  "topology": "Workflow: initial agent context → planning → refined agent context → implementation → Git precommit gate → commit allowed. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+  "required_terms": [
+    "Agent",
+    "workflow",
+    "Context",
+    "selection",
+    "Engineering",
+    "knowledge",
+    "(actor)",
+    "(dynamic)",
+    "(resource)",
+    "Initial agent",
+    "context",
+    "standing +",
+    "initial",
+    "Refined agent",
+    "refined",
+    "Planning",
+    "Refine",
+    "scope",
+    "Implementation",
+    "Gate",
+    "Git precommit",
+    "Evidence of",
+    "refined selection",
+    "Commit allowed",
+    "Dispatch hook",
+    "At start of task",
+    "Initial selection",
+    "Anticipated files",
+    "and components",
+    "Refined selection",
+    "After planning",
+    "Refined files",
+    "and dependencies",
+    "May add or remove",
+    "Refined scope",
+    "Engineering knowledge repository",
+    "models · rules · procedures · examples",
+    "Standing instructions — available throughout",
+    "mission · compact method · compact policy"
+  ],
+  "bw_encoding": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down.",
+  "redesign": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+  "questions": [],
+  "alt": "Three rows distinguish agent workflow, dynamic context selection, and engineering knowledge as a resource. The workflow is initial agent context, planning to refine scope, refined agent context, implementation, then a separate Git precommit gate. The gate requires evidence of refined selection before commit is allowed. At task dispatch a hook selects initial knowledge from anticipated files and components. Planning passes refined scope to a second selection using refined files and dependencies; that selection may add or remove knowledge. Each selection feeds its corresponding agent context. Both draw from the same engineering knowledge repository of models, rules, procedures and examples. Standing instructions remain available throughout. Context retrieval supplies guidance; the distinct precommit gate enforces completion of the second selection.",
+  "qa": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+    "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+    "page": 1,
+    "width_bp": 448.097,
+    "height_bp": 305.572,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 8,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 39,
+    "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+    "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+    "status": "passed"
+  },
+  "svg_qa": {
+    "overflow_findings": 0,
+    "palette_font_findings": 0,
+    "strain_findings": [
+      {
+        "text": "Initial agent",
+        "ratio": 0.9535613870665417,
+        "verdict": "strain"
+      },
+      {
+        "text": "Refined agent",
+        "ratio": 0.9836141533277168,
+        "verdict": "strain"
+      },
+      {
+        "text": "Planning",
+        "ratio": 0.9040507859733978,
+        "verdict": "strain"
+      },
+      {
+        "text": "Implementation",
+        "ratio": 0.9832876712328767,
+        "verdict": "strain"
+      }
+    ],
+    "visual_resolution": "Conservative strain annotations for compact workflow titles were inspected at print size. Their boxes retain visible padding with no clipping or overlap; labels remain at 9–9.5 pt."
+  },
+  "historical_receipt": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/deliver-context-two-layer.json",
+  "reference_image_sha256": "f1e8a2de15f14b686eeb8a6bd4919bdba7080ee7010aa579ca7f8d256cd55915",
+  "layout_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+    "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+      "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+      "page": 1,
+      "width_bp": 448.097,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 39,
+      "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+      "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/layout-review.json",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "Work-sequence stages",
+          "labels": [
+            "Initial agent context",
+            "Planning Refine scope",
+            "Refined agent context",
+            "Implementation"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "visual_review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond after implementation, with Commit allowed as its output. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded, and no flow implies that the precommit gate precedes implementation.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        448.097,
+        305.572
+      ],
+      "after_font_sizes_pt": [
+        9,
+        9.5,
+        10
+      ],
+      "decision": "recomposed",
+      "reason": "Four same-height work/context stages share their top and bottom coordinates; their explicit peer contract passes. The distinct diamond admission gate follows implementation. Two dynamic-selection boxes align in the middle row, and the two shared resources occupy the shaded bottom row.",
+      "reviewed_visually": true
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+    "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down. Native fonts are authored at these sizes; no post-render scaling.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+      "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+      "page": 1,
+      "width_bp": 448.097,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 39,
+      "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+      "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/typography-review.json",
+    "checks": [
+      {
+        "text": "Agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "workflow",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Context",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Engineering",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "knowledge",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(actor)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "(dynamic)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "(resource)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Initial agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "context",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "standing +",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "initial",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Refined agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "refined",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Planning",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Refine",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "scope",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Gate",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Git precommit",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Evidence of",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "refined selection",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Commit allowed",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Dispatch hook",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "At start of task",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Initial selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Anticipated files",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and components",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Refined selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "After planning",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Refined files",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and dependencies",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "May add or remove",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Refined scope",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Engineering knowledge repository",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "models · rules · procedures · examples",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Standing instructions — available throughout",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "mission · compact method · compact policy",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "evidence": [
+      {
+        "candidate_text": "Agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "workflow",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Context",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Engineering",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "knowledge",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "(actor)",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "(dynamic)",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "(resource)",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Initial agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "context",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "standing +",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "initial",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Refined agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "refined",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Planning",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Refine",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "scope",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Implementation",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Gate",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Git precommit",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Evidence of",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "refined selection",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Commit allowed",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Dispatch hook",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "At start of task",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Initial selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Anticipated files",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "and components",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Refined selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "After planning",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Refined files",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "and dependencies",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "May add or remove",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Refined scope",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Engineering knowledge repository",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "models · rules · procedures · examples",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Standing instructions — available throughout",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "mission · compact method · compact policy",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      }
+    ]
+  },
+  "style_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+    "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+      "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+      "page": 1,
+      "width_bp": 448.097,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 39,
+      "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+      "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/style-review.json",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color.",
+    "bold": "Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down.",
+    "routing": "Workflow: initial agent context → planning → refined agent context → implementation → Git precommit gate → commit allowed. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+    "shape": "Rounded rectangles represent context, work and selection stages. A diamond distinguishes the Git precommit admission decision. The subtle gray resource container holds repository and standing-instruction boxes.",
+    "visual_review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond after implementation, with Commit allowed as its output. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded, and no flow implies that the precommit gate precedes implementation.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+    "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+      "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+      "page": 1,
+      "width_bp": 448.097,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 39,
+      "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+      "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/fidelity-review.json",
+    "checks": {
+      "icons_and_symbols": "The diamond gate follows implementation and produces Commit allowed only after evidence of refined selection. The only dashed edge carries refined scope from planning to selection; it is not a lifecycle feedback loop.",
+      "links_and_groups": "Workflow: initial agent context → planning → refined agent context → implementation → Git precommit gate → commit allowed. A dispatch hook provides initial selection from anticipated files/components; planning sends a dashed refined-scope edge to the second selection, which uses refined files/dependencies and may add or remove context. Each selection feeds its corresponding context. The same engineering-knowledge repository feeds both selections. Standing instructions remain explicitly available throughout. No lifecycle return edge exists.",
+      "annotation_placement": "The left margin identifies actor, dynamic selection, and resource rows. At start of task and After planning qualify selection timing; Refined scope labels the dashed planning-to-selection edge. Gate text names Git precommit and evidence of refined selection. Standing instructions are explicitly available throughout.",
+      "line_breaks": "Whole-word line breaks keep the top workflow legible. The gate diamond uses four short lines at authored 9–10 pt, with Commit allowed outside. No label is silently truncated."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "minimum": 9.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 448.097,
+    "height_bp": 305.572,
+    "monochrome": true,
+    "review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond after implementation, with Commit allowed as its output. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded, and no flow implies that the precommit gate precedes implementation."
+  },
+  "grayscale_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+    "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+      "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+      "page": 1,
+      "width_bp": 448.097,
+      "height_bp": 305.572,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 8,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 39,
+      "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+      "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/grayscale-review.json",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "reviewed": true,
+    "rationale": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5–10 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down."
+  }
+}

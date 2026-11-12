@@ -1,0 +1,37 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+  "source_sha256": "38e85dcc9e6987ba9df3ec575f9fb750f8007c5f3e5741b1580f1ea585cc98a2",
+  "candidate_sha256": "b09583ec2678018989d866b303e4c404584b1b8289fbaa1182a061ea1f56f74a",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Author-requested three-row diagram separates agent workflow, dynamic context selection, and engineering knowledge as a resource. The top workflow retains initial context before planning and places the Git precommit admission gate after implementation. The gate requires evidence of refined selection before commit is allowed.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-v2-20261112/candidates.pdf",
+    "proof_sha256": "baf0adad7830098a08829d68115cb04322fc9a1b8a923e5429faeaf9e1b7ca41",
+    "page": 1,
+    "width_bp": 448.097,
+    "height_bp": 305.572,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 8,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 39,
+    "audit_sha256": "baa47027605cbf1b8c77098edf7153ca1f338934d1494ef8798dc32c68b13097",
+    "typography_audit_sha256": "bcca23d68820b6869b3cab941de79d246681b752a91bd63f565ce904589bd9d8",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-chronology-v1-superseded/grayscale-review.json",
+  "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+  "reviewed": true,
+  "rationale": "Only the shared engineering-knowledge resource container has light 5% gray. Its standing-instructions and repository boxes remain white, as do workflow and selection nodes. Enforcement is distinguished by a diamond gate rather than a color. Row labels are bold 9.5 pt with italic 9 pt role annotations. Node titles are bold 9.5\u201310 pt, with Implementation bold 9 pt. Scope/phase qualifiers and inventories are italic. Body text remains 9 pt; no text is scaled down."
+}

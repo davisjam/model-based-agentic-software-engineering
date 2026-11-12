@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 415" width="600" height="415" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.</title>
+<desc id="figure-description">A green engineering-knowledge box holds models, rules, and procedures. It splits into two
+    layers: a solid green standing-context box (mission, compact method, compact policy) and a dashed green
+    task-relevant-slice box (retrieved when needed). Both feed into a blue agent-context box, which flows down
+    into a dark work box. A dashed rust lifecycle-event arrow loops from the work back up to the task-relevant
+    slice, re-surfacing what matters now. The point: keep standing context small enough to genuinely remain
+    standing, and retrieve richer slices per task rather than loading everything at once.</desc>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
+<rect id="eng-knowledge" x="140" y="8" width="320" height="58" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="300" y="32" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">ENGINEERING KNOWLEDGE</text>
+<text x="300" y="55" text-anchor="middle" font-size="20" fill="#1c1917">models · rules · procedures</text>
+<path d="M220 66 V82 H135 V96" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<path d="M380 66 V82 H430 V96" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect id="standing-context" x="3" y="98" width="264" height="86" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="135" y="123" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">STANDING CONTEXT</text>
+<text x="135" y="148" text-anchor="middle" font-size="20" fill="#1c1917">mission · compact method</text>
+<text x="135" y="173" text-anchor="middle" font-size="20" fill="#1c1917">compact policy</text>
+<rect id="task-slice" x="294" y="98" width="272" height="86" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="430" y="123" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">TASK-RELEVANT SLICE</text>
+<text x="430" y="148" text-anchor="middle" font-size="20" fill="#1c1917">richer models, procedures,</text>
+<text x="430" y="173" text-anchor="middle" font-size="20" fill="#1c1917">examples as needed</text>
+<path d="M135 184 V201 H250 V216" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<path d="M430 184 V201 H350 V216" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect id="agent-context" x="190" y="218" width="220" height="42" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="300" y="245" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">AGENT CONTEXT</text>
+<path d="M300 260 L300 283" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
+<rect id="work" x="245" y="285" width="110" height="40" rx="7" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+<text x="300" y="312" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">WORK</text>
+<path d="M355 305 H580 V141 H568" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#rust-arrow)" stroke-dasharray="6 4"/>
+<text x="481" y="329" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">lifecycle event</text>
+<text x="481" y="351" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">re-surfaces context</text>
+<text x="300" y="380" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">Keep standing context small enough to stay standing —</text>
+<text x="300" y="402" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">retrieve the rest per task.</text>
+</svg>

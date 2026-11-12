@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 275" width="1003.5" height="618.75" role="img" aria-labelledby="asTitle asDesc" font-family="'Source Sans 3', sans-serif">
+<title id="asTitle">Selecting context for the work</title>
+<desc id="asDesc">The work sequence runs from initial agent context to agent planning, refined agent context, and implementation. At dispatch, an initial selection from engineering knowledge uses anticipated files and components to supply a coarse slice. After planning, the refined scope drives a second selection from the same engineering knowledge; this selection may add or remove knowledge. Engineering knowledge contains models, rules, procedures and examples. Standing instructions, consisting of mission, compact method and compact policy, remain available throughout planning and implementation. There is no lifecycle feedback loop and no implication that retrieved guidance enforces obligations.</desc>
+<defs><marker id="as-arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker></defs>
+<rect x="72" y="2" width="302" height="37" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".55"/>
+<text x="223" y="17" text-anchor="middle" font-size="10.5" fill="#1c1917" font-weight="700">Engineering knowledge</text>
+<text x="223" y="30" text-anchor="middle" font-size="10" fill="#1c1917" font-style="italic">models · rules · procedures · examples</text>
+<path d="M223,39 L223,50" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M59,50 L291,50" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M59,50 L59,69" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M291,50 L291,69" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<rect x="4" y="69" width="110" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="236" y="69" width="110" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="59" y="83" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Initial selection</text>
+<text x="59" y="96" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">At dispatch</text>
+<text x="59" y="111" text-anchor="middle" font-size="9" fill="#1c1917">Anticipated files</text>
+<text x="59" y="123" text-anchor="middle" font-size="9" fill="#1c1917">and components</text>
+<text x="291" y="83" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Refined selection</text>
+<text x="291" y="96" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">After planning</text>
+<text x="291" y="111" text-anchor="middle" font-size="9" fill="#1c1917">May add or remove</text>
+<text x="291" y="123" text-anchor="middle" font-size="9" fill="#1c1917">selected knowledge</text>
+<rect x="4" y="156" width="110" height="52" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="140" y="156" width="70" height="52" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="236" y="156" width="110" height="52" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="362" y="156" width="80" height="52" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="59" y="172" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Initial agent</text>
+<text x="59" y="184" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">context</text>
+<text x="59" y="199" text-anchor="middle" font-size="9" fill="#1c1917">Standing + coarse slice</text>
+<text x="175" y="178" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Agent</text>
+<text x="175" y="190" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">planning</text>
+<text x="291" y="172" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Refined agent</text>
+<text x="291" y="184" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">context</text>
+<text x="291" y="199" text-anchor="middle" font-size="9" fill="#1c1917">Standing + refined slice</text>
+<text x="402" y="186" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Implementation</text>
+<path d="M114,182 L140,182" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M210,182 L236,182" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M346,182 L362,182" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M59,133 L59,156" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M291,133 L291,156" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M175,156 L175,111 L236,111" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<text x="205" y="104" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Refined scope</text>
+<rect x="4" y="239" width="438" height="32" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".55"/>
+<text x="223" y="252" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Standing instructions — available throughout</text>
+<text x="223" y="265" text-anchor="middle" font-size="9.5" fill="#1c1917">mission · compact method · compact policy</text>
+<path d="M223,239 L223,222" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M59,222 L402,222" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M59,222 L59,208" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M175,222 L175,208" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M291,222 L291,208" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M402,222 L402,208" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+</svg>

@@ -1269,17 +1269,17 @@
             {
               "slug": "the-second-boundary-is-the-action-one-attempted-side-effect",
               "text": "The first enforcement boundary is the action: one attempted side effect the harness can inspect or refuse.",
-              "block_index": 23
+              "block_index": 24
             },
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
               "text": "The second enforcement boundary is the work unit, where whole-work obligations become legible.",
-              "block_index": 29
+              "block_index": 30
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
               "text": "The third enforcement boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
-              "block_index": 32
+              "block_index": 33
             }
           ]
         },
@@ -1289,17 +1289,17 @@
           "heading_text": "Placement and Strength Are Different Decisions",
           "topic_sentence": "These locations do not form a monotonic scale from weak to strong.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 36,
           "points": [
             {
               "slug": "the-four-boundaries-do-not-form-a-monotonic-scale",
               "text": "The four boundaries do not form a monotonic weak-to-strong scale.",
-              "block_index": 37
+              "block_index": 38
             },
             {
               "slug": "substantial-enforcement-can-exist-without-rich-models",
               "text": "Substantial enforcement can exist without rich models; richer models expand the properties the environment can state and govern.",
-              "block_index": 39
+              "block_index": 40
             }
           ]
         },
@@ -1309,22 +1309,22 @@
           "heading_text": "Return Evidence at the Earliest Useful Boundary",
           "topic_sentence": "The boundaries also determine what feedback can return and when.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 42,
           "points": [
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
               "text": "Boundary placement affects what feedback can return and when; timely evidence lets an agent use the reasoning and context already at hand, while delayed feedback may require reconstruction.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "the-alignment-principle-stated-whole",
               "text": "The Alignment Principle, stated whole: make engineering obligations enforceable by encoding them into mechanisms — constrain, sense, evaluate, admit — that can enforce them; in other words, once an obligation is entrusted to the engineering environment, satisfying it should not depend solely on each future agent remembering it.",
-              "block_index": 49
+              "block_index": 50
             }
           ]
         }

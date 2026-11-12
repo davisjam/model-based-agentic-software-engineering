@@ -1,0 +1,1 @@
+Archived from bed05145 on 2026-11-12 before the author-requested context-selection chronology redraw. Published source/native and previous own-row review records retained; no publication approval changed.

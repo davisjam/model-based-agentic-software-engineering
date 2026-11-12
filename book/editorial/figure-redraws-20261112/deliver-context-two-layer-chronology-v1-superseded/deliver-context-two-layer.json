@@ -1,0 +1,531 @@
+{
+  "source": "book/assets/deliver-context-two-layer.svg",
+  "claim": "*Selecting context for the work.* Standing instructions provide compact, persistent guidance. Dynamic context injection selects an initial slice of engineering knowledge at dispatch and refines that selection after planning, using a more precise account of the work. Retrieval makes relevant obligations available to the agent; separate controls are needed to enforce them.",
+  "topology": "The main row runs initial agent context → agent planning → refined agent context → implementation. Engineering knowledge branches into both selections. Initial selection feeds initial context; planning supplies refined scope to refined selection, which feeds refined context. Standing instructions feed each work stage from a separate bottom bus. There is no lifecycle backedge, no planning before initial context, and no assertion that a refined slice is a superset.",
+  "required_terms": [
+    "Engineering knowledge",
+    "models · rules · procedures · examples",
+    "Initial selection",
+    "At dispatch",
+    "Anticipated files",
+    "and components",
+    "Refined selection",
+    "After planning",
+    "May add or remove",
+    "selected knowledge",
+    "Initial agent",
+    "context",
+    "Standing + coarse slice",
+    "Agent",
+    "planning",
+    "Refined agent",
+    "Standing + refined slice",
+    "Implementation",
+    "Refined scope",
+    "Standing instructions — available throughout",
+    "mission · compact method · compact policy"
+  ],
+  "bw_encoding": "Only the engineering-knowledge source and standing-instructions source use light 5% gray. Selections and work-sequence stages remain white; no color implies enforcement. Engineering knowledge is bold 10.5 pt; stage and selection headings and standing-instruction heading are bold 10 pt, with Implementation bold 9.5 pt. Dispatch/planning qualifiers, refined-scope relation, and knowledge inventory are italic. Ordinary labels remain 9–9.5 pt.",
+  "redesign": "Author-requested chronology redraw makes initial context, agent planning, refined context and implementation the explicit work sequence. Two selections use the same engineering knowledge. Planning supplies refined scope to the second selection, which may add or remove knowledge. Standing instructions remain available throughout; the previous lifecycle return edge is removed.",
+  "questions": [],
+  "alt": "The work sequence runs from initial agent context to agent planning, refined agent context, and implementation. At dispatch, an initial selection from engineering knowledge uses anticipated files and components to supply a coarse slice. After planning, the refined scope drives a second selection from the same engineering knowledge; this selection may add or remove knowledge. Engineering knowledge contains models, rules, procedures and examples. Standing instructions, consisting of mission, compact method and compact policy, remain available throughout planning and implementation. There is no lifecycle feedback loop and no implication that retrieved guidance enforces obligations.",
+  "qa": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+    "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+    "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+    "page": 1,
+    "width_bp": 444.52,
+    "height_bp": 275.522,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0,
+      10.5
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 12,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 21,
+    "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+    "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+    "status": "passed"
+  },
+  "svg_qa": {
+    "overflow_findings": 0,
+    "palette_font_findings": 0,
+    "strain_findings": [
+      {
+        "text": "Implementation",
+        "ratio": 0.9296659850034085,
+        "verdict": "strain"
+      }
+    ],
+    "visual_resolution": "The single conservative Implementation strain annotation was inspected at print size after widening its box. It retains visible padding and 9.5 pt text, with no clipping or overlap."
+  },
+  "historical_receipt": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/deliver-context-two-layer.json",
+  "reference_image_sha256": "fc2838e72498956f5fdb8ad0d610b02380d68c9b5774163cedf05f27f6e5dc40",
+  "layout_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+    "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested chronology redraw makes initial context, agent planning, refined context and implementation the explicit work sequence. Two selections use the same engineering knowledge. Planning supplies refined scope to the second selection, which may add or remove knowledge. Standing instructions remain available throughout; the previous lifecycle return edge is removed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+      "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+      "page": 1,
+      "width_bp": 444.52,
+      "height_bp": 275.522,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0,
+        10.5
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 12,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 21,
+      "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+      "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/layout-review.json",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "Work-sequence stages",
+          "labels": [
+            "Initial agent context",
+            "Agent planning",
+            "Refined agent context",
+            "Implementation"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "visual_review": "Both native and live-text SVG proofs inspected at print width and 2×. The central chronology reads left to right, with selection inputs above and persistent standing guidance below. The Implementation box was widened to preserve label padding without changing total figure width. All labels are legible at authored 9–10.5 pt sizes; no scaling, clipping, overlap or confusing crossings. The refined-scope edge is clearly sourced at planning. No embedded figure number, caption or lifecycle-loop annotation.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        444.52,
+        275.522
+      ],
+      "after_font_sizes_pt": [
+        9,
+        9.5,
+        10,
+        10.5
+      ],
+      "decision": "recomposed",
+      "reason": "Four same-height work stages share top and bottom coordinates. Their explicit peer contract passes. Two selection boxes are visually aligned above the corresponding context stages; the implementation stage is slightly wider for text padding.",
+      "reviewed_visually": true
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+    "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Engineering knowledge is bold 10.5 pt; stage and selection headings and standing-instruction heading are bold 10 pt, with Implementation bold 9.5 pt. Dispatch/planning qualifiers, refined-scope relation, and knowledge inventory are italic. Ordinary labels remain 9–9.5 pt. Native fonts are authored at these sizes; no post-render scaling.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+      "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+      "page": 1,
+      "width_bp": 444.52,
+      "height_bp": 275.522,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0,
+        10.5
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 12,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 21,
+      "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+      "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/typography-review.json",
+    "checks": [
+      {
+        "text": "Engineering knowledge",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "models · rules · procedures · examples",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Initial selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "At dispatch",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Anticipated files",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and components",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Refined selection",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "After planning",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "May add or remove",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "selected knowledge",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Initial agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "context",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Standing + coarse slice",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "planning",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Refined agent",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Standing + refined slice",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Implementation",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Refined scope",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Standing instructions — available throughout",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "mission · compact method · compact policy",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "evidence": [
+      {
+        "candidate_text": "Engineering knowledge",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "models · rules · procedures · examples",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Initial selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "At dispatch",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Anticipated files",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "and components",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Refined selection",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "After planning",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "May add or remove",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "selected knowledge",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Initial agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "context",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Standing + coarse slice",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "planning",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Refined agent",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Standing + refined slice",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Implementation",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Refined scope",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "Standing instructions — available throughout",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "mission · compact method · compact policy",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      }
+    ]
+  },
+  "style_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+    "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested chronology redraw makes initial context, agent planning, refined context and implementation the explicit work sequence. Two selections use the same engineering knowledge. Planning supplies refined scope to the second selection, which may add or remove knowledge. Standing instructions remain available throughout; the previous lifecycle return edge is removed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+      "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+      "page": 1,
+      "width_bp": 444.52,
+      "height_bp": 275.522,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0,
+        10.5
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 12,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 21,
+      "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+      "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/style-review.json",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only the engineering-knowledge source and standing-instructions source use light 5% gray. Selections and work-sequence stages remain white; no color implies enforcement.",
+    "bold": "Engineering knowledge is bold 10.5 pt; stage and selection headings and standing-instruction heading are bold 10 pt, with Implementation bold 9.5 pt. Dispatch/planning qualifiers, refined-scope relation, and knowledge inventory are italic. Ordinary labels remain 9–9.5 pt.",
+    "routing": "The main row runs initial agent context → agent planning → refined agent context → implementation. Engineering knowledge branches into both selections. Initial selection feeds initial context; planning supplies refined scope to refined selection, which feeds refined context. Standing instructions feed each work stage from a separate bottom bus. There is no lifecycle backedge, no planning before initial context, and no assertion that a refined slice is a superset.",
+    "shape": "Rounded containers distinguish the common knowledge source, two selections, four work stages and persistent standing instructions. The same-height work-stage row establishes chronology.",
+    "visual_review": "Both native and live-text SVG proofs inspected at print width and 2×. The central chronology reads left to right, with selection inputs above and persistent standing guidance below. The Implementation box was widened to preserve label padding without changing total figure width. All labels are legible at authored 9–10.5 pt sizes; no scaling, clipping, overlap or confusing crossings. The refined-scope edge is clearly sourced at planning. No embedded figure number, caption or lifecycle-loop annotation.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+    "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested chronology redraw makes initial context, agent planning, refined context and implementation the explicit work sequence. Two selections use the same engineering knowledge. Planning supplies refined scope to the second selection, which may add or remove knowledge. Standing instructions remain available throughout; the previous lifecycle return edge is removed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+      "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+      "page": 1,
+      "width_bp": 444.52,
+      "height_bp": 275.522,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0,
+        10.5
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 12,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 21,
+      "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+      "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/fidelity-review.json",
+    "checks": {
+      "icons_and_symbols": "Forward arrows show the work sequence. Both selections are fed by the same knowledge branch. Persistent guidance uses a separate source bus. The obsolete dashed lifecycle return is removed.",
+      "links_and_groups": "The main row runs initial agent context → agent planning → refined agent context → implementation. Engineering knowledge branches into both selections. Initial selection feeds initial context; planning supplies refined scope to refined selection, which feeds refined context. Standing instructions feed each work stage from a separate bottom bus. There is no lifecycle backedge, no planning before initial context, and no assertion that a refined slice is a superset.",
+      "annotation_placement": "At dispatch and After planning qualify the two selections. Refined scope labels the planning-to-selection edge. May add or remove selected knowledge is inside the second selection. Available throughout labels the standing-instructions source.",
+      "line_breaks": "Short whole-word line breaks keep initial/refined agent context and agent planning legible. The implementation box is widened rather than reducing text below 9.5 pt."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9.0,
+        9.5,
+        10.0,
+        10.5
+      ],
+      "minimum": 9.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 444.52,
+    "height_bp": 275.522,
+    "monochrome": true,
+    "review": "Both native and live-text SVG proofs inspected at print width and 2×. The central chronology reads left to right, with selection inputs above and persistent standing guidance below. The Implementation box was widened to preserve label padding without changing total figure width. All labels are legible at authored 9–10.5 pt sizes; no scaling, clipping, overlap or confusing crossings. The refined-scope edge is clearly sourced at planning. No embedded figure number, caption or lifecycle-loop annotation."
+  },
+  "grayscale_review": {
+    "source": "book/assets/deliver-context-two-layer.svg",
+    "candidate": "book/tikz/figures/deliver-context-two-layer.tex",
+    "source_sha256": "556d52601bd2af0c8c970fe1b3da282e40643815c7e130bb86b09a34fb38b288",
+    "candidate_sha256": "02fb3e953114748034e177ce89b57fda979ec7d0c906fb79d46f71c716a7ef03",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested chronology redraw makes initial context, agent planning, refined context and implementation the explicit work sequence. Two selections use the same engineering knowledge. Planning supplies refined scope to the second selection, which may add or remove knowledge. Standing instructions remain available throughout; the previous lifecycle return edge is removed.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
+      "proof": "latex/build/tikz/docable-context-sequence-20261112/candidates.pdf",
+      "proof_sha256": "3b75e5d4999304d35ecd6859ea3ff71dcaea40bf2756dfe5271e461307e820f8",
+      "page": 1,
+      "width_bp": 444.52,
+      "height_bp": 275.522,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0,
+        10.5
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 12,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 21,
+      "audit_sha256": "607bd3a94c4b26885a710efd3de5c419460cb65c007d157daf516939b056eb15",
+      "typography_audit_sha256": "e43db264e3e2217ad189f01f9320a4b8c0c76ca2e236b739ac986b2755d75005",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/deliver-context-two-layer-before/grayscale-review.json",
+    "receipt": "book/tikz/receipts/deliver-context-two-layer.json",
+    "reviewed": true,
+    "rationale": "Only the engineering-knowledge source and standing-instructions source use light 5% gray. Selections and work-sequence stages remain white; no color implies enforcement. Engineering knowledge is bold 10.5 pt; stage and selection headings and standing-instruction heading are bold 10 pt, with Implementation bold 9.5 pt. Dispatch/planning qualifiers, refined-scope relation, and knowledge inventory are italic. Ordinary labels remain 9–9.5 pt."
+  }
+}
