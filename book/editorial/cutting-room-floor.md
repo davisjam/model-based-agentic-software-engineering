@@ -19665,3 +19665,19 @@ Retired at the author’s request: Figure3.1 and its introductory sentence. The 
 \label{part3-nav-arc}
 \end{figure}
 ```
+
+
+## Task-driven traversal figure — 2026-11-11
+
+Retired at the author’s request because the shared-identities figure and existing prose convey the useful relationships. All surrounding explanations are preserved. Source artwork remains available; exact removed text and registry entries are in `retired-task-driven-traversal-20261111.json`.
+
+```latex
+\autoref{substrate-traversal} draws that outward walk.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/substrate-traversal-9c4cec4bf3.pdf}
+\caption{\emph{Task-driven traversal.} A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.}
+\label{substrate-traversal}
+\end{figure}
+```

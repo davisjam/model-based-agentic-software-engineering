@@ -439,19 +439,6 @@
   },
   {
     "chapter": "2.5-system-knowledge",
-    "source": "assets/substrate-traversal.svg",
-    "caption": "*Task-driven traversal.* A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.",
-    "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
-    "d2_source": "book/d2-pilot/substrate-traversal.d2",
-    "receipt": "book/d2-pilot/substrate-traversal.receipt.yaml",
-    "generator": null,
-    "data": [],
-    "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Task-driven traversal: enter at a named entity, follow only the relations needed",
-    "svg_description": "A task enters the modeling substrate through a named system entity, shown by an\n    arrow into the entity. From the entity, represented relationships fan outward as peers: the service\n    registry, the flow model, the lifecycle, policy, provenance, and measurements. The task retrieves\n    only the relations its engineering question requires."
-  },
-  {
-    "chapter": "2.5-system-knowledge",
     "source": "assets/derive-generate-trace.svg",
     "caption": "*Three correspondence patterns.* Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",

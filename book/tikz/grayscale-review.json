@@ -1315,16 +1315,6 @@
     "candidate_sha256": "a920dcac85665d233cb94e9f9fbd1fee5218b26597d72da7bca8f1cc34c6a7b7"
   },
   {
-    "source": "book/assets/substrate-traversal.svg",
-    "candidate": "book/tikz/figures/substrate-traversal.tex",
-    "receipt": "book/tikz/receipts/substrate-traversal.json",
-    "reviewed": true,
-    "decision": "refined",
-    "rationale": "Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
-    "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
-    "candidate_sha256": "b6dabfaf8904dedb25ad39d9cdd6f600874da254e374b002fba126ab8c098dff"
-  },
-  {
     "source": "book/assets/derive-generate-trace.svg",
     "candidate": "book/tikz/figures/derive-generate-trace.tex",
     "receipt": "book/tikz/receipts/derive-generate-trace.json",

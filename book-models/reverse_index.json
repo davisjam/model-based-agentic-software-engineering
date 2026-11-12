@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 185,
       "concepts": 75,
-      "labels": 76,
-      "refs": 94,
+      "labels": 75,
+      "refs": 93,
       "chapters": 77,
       "parts": 9,
       "points": 562,
@@ -689,7 +689,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-28",
+          "element": "2.5-system-knowledge::block-27",
           "role": "paragraph-point"
         }
       ]
@@ -759,7 +759,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-66",
+          "element": "2.5-system-knowledge::block-65",
           "role": "paragraph-point"
         }
       ]
@@ -1169,7 +1169,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-58",
+          "element": "2.5-system-knowledge::block-57",
           "role": "paragraph-point"
         }
       ]
@@ -1919,7 +1919,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-48",
+          "element": "2.5-system-knowledge::block-47",
           "role": "paragraph-point"
         }
       ]
@@ -3189,7 +3189,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-69",
+          "element": "2.5-system-knowledge::block-68",
           "role": "paragraph-point"
         }
       ]
@@ -3389,7 +3389,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-31",
+          "element": "2.5-system-knowledge::block-30",
           "role": "paragraph-point"
         }
       ]
@@ -3469,7 +3469,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-60",
+          "element": "2.5-system-knowledge::block-59",
           "role": "paragraph-point"
         }
       ]
@@ -5039,7 +5039,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-41",
+          "element": "2.5-system-knowledge::block-40",
           "role": "paragraph-point"
         }
       ]
@@ -5399,7 +5399,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-63",
+          "element": "2.5-system-knowledge::block-62",
           "role": "paragraph-point"
         }
       ]
@@ -5939,7 +5939,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-54",
+          "element": "2.5-system-knowledge::block-53",
           "role": "paragraph-point"
         }
       ]
@@ -6169,7 +6169,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-50",
+          "element": "2.5-system-knowledge::block-49",
           "role": "paragraph-point"
         }
       ]
@@ -8314,17 +8314,17 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-48",
+          "element": "2.5-system-knowledge::block-47",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-63",
+          "element": "2.5-system-knowledge::block-62",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-66",
+          "element": "2.5-system-knowledge::block-65",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -8954,7 +8954,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-31",
+          "element": "2.5-system-knowledge::block-30",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -8979,7 +8979,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-41",
+          "element": "2.5-system-knowledge::block-40",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -9054,32 +9054,32 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-28",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-50",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-54",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-58",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-60",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
           "element": "2.5-system-knowledge::block-27",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-49",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-53",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-57",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-59",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-26",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10309,42 +10309,42 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-28",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-41",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-48",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-50",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-54",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-60",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.5-system-knowledge::block-63",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
           "element": "2.5-system-knowledge::block-27",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-40",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-47",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-49",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-53",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-59",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-62",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.5-system-knowledge::block-26",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10474,7 +10474,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-54",
+          "element": "2.5-system-knowledge::block-53",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10494,7 +10494,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-31",
+          "element": "2.5-system-knowledge::block-30",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -10504,7 +10504,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-31",
+          "element": "2.5-system-knowledge::block-30",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -10704,22 +10704,22 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-58",
+          "element": "2.5-system-knowledge::block-57",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-60",
+          "element": "2.5-system-knowledge::block-59",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-63",
+          "element": "2.5-system-knowledge::block-62",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-66",
+          "element": "2.5-system-knowledge::block-65",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -11724,7 +11724,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-50",
+          "element": "2.5-system-knowledge::block-49",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -11744,7 +11744,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-system-knowledge::block-27",
+          "element": "2.5-system-knowledge::block-26",
           "role": "section-term[tier-1]"
         }
       ]

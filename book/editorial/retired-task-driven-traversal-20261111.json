@@ -1,0 +1,214 @@
+{
+  "date": "2026-11-11",
+  "reason": "Author requested deletion of Task-driven traversal and its single prose reference; shared-identities figure and surrounding explanation retained.",
+  "retired_sentence": "\\autoref{substrate-traversal} draws that outward walk.",
+  "retired_tex": "\\begin{figure}[htbp]\n\\centering\n\\includegraphics[width=\\linewidth]{book/latex/assets/substrate-traversal-9c4cec4bf3.pdf}\n\\caption{\\emph{Task-driven traversal.} A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.}\n\\label{substrate-traversal}\n\\end{figure}\n",
+  "registry_rows": {
+    "inventory": {
+      "chapter": "2.5-system-knowledge",
+      "source": "assets/substrate-traversal.svg",
+      "caption": "*Task-driven traversal.* A task enters the modeling substrate through a named system entity and follows only the represented relationships required by its engineering question.",
+      "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
+      "d2_source": "book/d2-pilot/substrate-traversal.d2",
+      "receipt": "book/d2-pilot/substrate-traversal.receipt.yaml",
+      "generator": null,
+      "data": [],
+      "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
+      "svg_title": "Task-driven traversal: enter at a named entity, follow only the relations needed",
+      "svg_description": "A task enters the modeling substrate through a named system entity, shown by an\n    arrow into the entity. From the entity, represented relationships fan outward as peers: the service\n    registry, the flow model, the lifecycle, policy, provenance, and measurements. The task retrieves\n    only the relations its engineering question requires."
+    },
+    "fidelity-review": {
+      "source": "book/assets/substrate-traversal.svg",
+      "candidate": "book/tikz/figures/substrate-traversal.tex",
+      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+      "candidate_sha256": "b6dabfaf8904dedb25ad39d9cdd6f600874da254e374b002fba126ab8c098dff",
+      "decision": "retained",
+      "review": "Compared named entity peers and relation traversal graph; all source peers and directed relationships remain. No new change.",
+      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
+      "dimensions_cm": [
+        12.5764,
+        9.1837
+      ],
+      "strict_compile_diagnostics": []
+    },
+    "grayscale-review": {
+      "source": "book/assets/substrate-traversal.svg",
+      "candidate": "book/tikz/figures/substrate-traversal.tex",
+      "receipt": "book/tikz/receipts/substrate-traversal.json",
+      "reviewed": true,
+      "decision": "refined",
+      "rationale": "Common gray relation peers contrast with task and entity. Selective traversal relations retained without imposing order.",
+      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+      "candidate_sha256": "b6dabfaf8904dedb25ad39d9cdd6f600874da254e374b002fba126ab8c098dff"
+    },
+    "style-review": {
+      "source": "book/assets/substrate-traversal.svg",
+      "candidate": "book/tikz/figures/substrate-traversal.tex",
+      "receipt": "book/tikz/receipts/substrate-traversal.json",
+      "decision": "refined",
+      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+      "status": "reviewed",
+      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+      "candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+      "fill": "Only the named entry entity uses 8%; six relation surfaces remain white and equal.",
+      "bold": "Source-derived emphasis includes TASK; Named ENTITY. Named ENTITY is the query entry identity; its example is an italic qualifier, not a second entity.",
+      "routing": "Exception: radial entity-to-relation spokes show no prescribed traversal order, as the source footer explicitly states.",
+      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+      "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 33,
+        "width_bp": 356.496,
+        "height_bp": 260.459,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4
+      },
+      "book_references": []
+    },
+    "typography-review": {
+      "source": "book/assets/substrate-traversal.svg",
+      "candidate": "book/tikz/figures/substrate-traversal.tex",
+      "decision": "refined",
+      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+      "candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+      "evidence": [
+        {
+          "source_text": "TASK",
+          "source_style": "weight 700; normal; source size 16.4",
+          "semantic_role": "query entry",
+          "candidate_text": "TASK",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/substrate-traversal.svg",
+            "element_text_path": "/svg/text[1]/text()",
+            "text_element_context": "TASK",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "named ENTITY",
+          "source_style": "weight 700; normal; source size 16.5",
+          "semantic_role": "named category versus explanatory text",
+          "candidate_text": "Named ENTITY",
+          "candidate_style": "bold",
+          "source_locator": {
+            "svg": "book/assets/substrate-traversal.svg",
+            "element_text_path": "/svg/text[3]/text()",
+            "text_element_context": "named ENTITY",
+            "matching_fragment_count": 1
+          }
+        },
+        {
+          "source_text": "e.g. a job, a service",
+          "source_style": "weight normal; italic; source size 16.4",
+          "semantic_role": "named category versus explanatory text",
+          "candidate_text": "A job or a service",
+          "candidate_style": "italic",
+          "source_locator": {
+            "svg": "book/assets/substrate-traversal.svg",
+            "element_text_path": "/svg/text[4]/text()",
+            "text_element_context": "e.g. a job, a service",
+            "matching_fragment_count": 1
+          }
+        }
+      ],
+      "reason": "Named ENTITY is the query entry identity; its example is an italic qualifier, not a second entity.",
+      "checks": [
+        {
+          "text": "TASK",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Named ENTITY",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "A job or a service",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Service registry",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 33,
+        "width_bp": 356.496,
+        "height_bp": 260.459,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 4
+      }
+    },
+    "layout-review": {
+      "source": "book/assets/substrate-traversal.svg",
+      "candidate": "book/tikz/figures/substrate-traversal.tex",
+      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
+      "baseline_candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+      "candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+      "decision": "retained",
+      "reason": "Representation nodes form a radial query map. Their spokes and non-prescribed traversal order should not become an orthogonal process sequence.",
+      "reviewed_visually": true,
+      "baseline_dimensions_bp": [
+        356.4960021972656,
+        260.4590148925781
+      ],
+      "contracts": {},
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "geometry_findings": 0,
+        "checked_terminal_approaches": 633,
+        "reviewed_peer_groups": 81,
+        "semantic_typography_checks": 875,
+        "unapproved_compile_diagnostics": 0,
+        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+        "maximum_dimensions_bp": [
+          450,
+          560
+        ],
+        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "status": "passed",
+        "page": 33,
+        "width_bp": 356.496,
+        "height_bp": 260.459
+      },
+      "page_layout": {
+        "decision": "retained",
+        "reason": "Retain existing substrate traversal layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+        "before_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+        "after_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
+        "before_dimensions_bp": [
+          356.4960021972656,
+          260.4590148925781
+        ],
+        "after_dimensions_bp": [
+          356.4960021972656,
+          260.4590148925781
+        ],
+        "before_font_sizes_pt": [
+          9.0,
+          10.0
+        ],
+        "after_font_sizes_pt": [
+          9.0,
+          10.0
+        ],
+        "reviewed_visually": true
+      }
+    }
+  }
+}

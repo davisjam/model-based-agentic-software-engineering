@@ -2142,35 +2142,6 @@
       ]
     },
     {
-      "source": "book/assets/substrate-traversal.svg",
-      "candidate": "book/tikz/figures/substrate-traversal.tex",
-      "receipt": "book/tikz/receipts/substrate-traversal.json",
-      "decision": "refined",
-      "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-      "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-      "status": "reviewed",
-      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
-      "candidate_sha256": "854cd21dd18eddd201acc428a0dd8a42e25e9f4ee67db4e6231890e824f10fb3",
-      "fill": "Only the named entry entity uses 8%; six relation surfaces remain white and equal.",
-      "bold": "Source-derived emphasis includes TASK; Named ENTITY. Named ENTITY is the query entry identity; its example is an italic qualifier, not a second entity.",
-      "routing": "Exception: radial entity-to-relation spokes show no prescribed traversal order, as the source footer explicitly states.",
-      "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-      "visual_review": "Original source and candidate semantics compared; final-size native render inspected for fill, hierarchy, routes and legibility.",
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 33,
-        "width_bp": 356.496,
-        "height_bp": 260.459,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 4
-      },
-      "book_references": []
-    },
-    {
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
       "receipt": "book/tikz/receipts/derive-generate-trace.json",

@@ -1530,20 +1530,6 @@
       "strict_compile_diagnostics": []
     },
     {
-      "source": "book/assets/substrate-traversal.svg",
-      "candidate": "book/tikz/figures/substrate-traversal.tex",
-      "source_sha256": "a6e35d98e8791750b4dd5c71bf0e60204087d41cd8a18d913d0aa6dd9d1b1855",
-      "candidate_sha256": "b6dabfaf8904dedb25ad39d9cdd6f600874da254e374b002fba126ab8c098dff",
-      "decision": "retained",
-      "review": "Compared named entity peers and relation traversal graph; all source peers and directed relationships remain. No new change.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        12.5764,
-        9.1837
-      ],
-      "strict_compile_diagnostics": []
-    },
-    {
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
       "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
