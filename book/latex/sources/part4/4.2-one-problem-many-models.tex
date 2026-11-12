@@ -28,8 +28,6 @@ Several familiar techniques were available: reduce the working set, separate str
 
 The initial problem was memory exhaustion. Later changes raised questions about latency, throughput, and execution cost. I did not begin with a plan to construct a family of models. Each model emerged because an observed failure or a proposed improvement exposed a relationship worth understanding.
 
-The sequence begins with the architecture that failed.
-
 \section{One Document, One Worker}\label{heading:one-document-one-worker}
 
 DocAble originally treated an entire document as one unit of execution. A long-running Kubernetes worker opened the document, held the state needed for remediation in memory, modified it, and produced the result. \autoref{interlude-execution-unit} traces the architectural progression from whole-document execution through page chunking to skeletonized residency.
