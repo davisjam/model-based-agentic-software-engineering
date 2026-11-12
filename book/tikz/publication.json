@@ -207,6 +207,11 @@
       "approved_date": "2026-11-12",
       "reason": "Author approved after removing the bottom summary and restoring static structure and recorded history labels inside the two boxes, as in the original.",
       "candidate_sha256": "6c56c587c6161ec6707ec35bbec40e05e77b713c0b7b426790f1ac02c055d265"
+    },
+    "book/assets/intervention-boundaries.svg": {
+      "approved_date": "2026-11-12",
+      "reason": "Author approved the redrawn Figure 3.1 with separate guidance/enforcement grouping and italic Boundary, Scope, and Examples row labels.",
+      "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e"
     }
   }
 }
