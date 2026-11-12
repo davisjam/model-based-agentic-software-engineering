@@ -47,11 +47,11 @@ Some recurring judgments should remain qualitative. Others contain narrower obli
 
 A skill can range from a compact procedure to a substantial body of domain knowledge and tools. It needs the representations used to reason about the work, the recurring decisions that matter, and a procedure for making them. What matters is what a fresh agent can use, not the package's length or file format.
 
-Prose, examples, models, and decision procedures make satisfactory judgments more likely. A skill can also invoke enforcing mechanisms or carry the models and correctness conditions they consume. Where an obligation requires independent enforcement, a constraint or gate must control the relevant action or admission decision; a checker may supply the evaluation used by that gate. The skill thus supports the reasoner\textquotesingle s judgment while connecting selected obligations to the mechanisms that enforce them.
+Prose, examples, models, and decision procedures make satisfactory judgments more likely. A skill can also invoke enforcing mechanisms or carry the models and correctness conditions they consume. Where an obligation requires independent enforcement, a constraint or gate must control the relevant action or admission decision; a checker may supply the evaluation used by that gate.
 
 % <!-- index-def: standing-context -->
 
-Delivering the packaged knowledge is its own engineering problem. Loading everything all the time is the obvious solution, and often a bad one: every rule, model, example, and failure lesson competes for attention, so a larger context can make navigation harder rather than easier. Separate the small standing context that must remain continuously salient from the richer slices retrieved when the task makes them relevant, and treat the delivery as an intervention whose effect can be measured. \textbf{Context delivery changes what the reasoner can see; by itself, it does not change what the environment permits.} A relevant set of rules helps the reasoner choose an acceptable action. A constraint can prevent a forbidden action; a check can expose a violation, and a gate can use that result to reject the work.
+Delivering the packaged knowledge is its own engineering problem. Loading everything all the time is the obvious solution, and often a bad one: every rule, model, example, and failure lesson competes for attention, so a larger context can make navigation harder rather than easier. Separate the small standing context that must remain continuously salient from the richer slices retrieved when the task makes them relevant, and treat the delivery as an intervention whose effect can be measured. \textbf{Context delivery changes what the reasoner can see; by itself, it does not change what the environment permits.}
 
 \section{Evaluate the Work}\label{heading:validate-the-change-not-the-producers-story}
 
@@ -61,7 +61,7 @@ Validation begins with an obligation. If the obligation is settled, evidence can
 
 The obligation determines what must be represented; the representation determines which judgments are feasible. Start with the obligation and ask what representation makes it tractable, then use the cheapest judge adequate to the representation and the decision at hand. Representation can change that allocation: a judgment that initially requires expensive interpretation may become mechanically decidable once the relevant states, relations, or invariants are explicit. The converse failure also exists. A cheap judge can be perfectly reliable over an inadequate representation and still answer the wrong engineering question. In DocAble, pixel variance was easy to measure but could not decide whether a low-variance image carried semantic content; the representation had discarded the distinction the obligation required. Tightening the pixel-variance threshold would not recover the missing semantic distinction. DocAble instead routed that question to a judge capable of evaluating semantic content.
 
-\textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.} Then decide, separately, whether the resulting judgment warrants enforcement. A deterministic check may remain advisory; a probabilistic evaluator may sometimes be reliable enough to support enforcement. Adequacy of judgment and whether the judgment should be enforced are separate engineering decisions.
+\textbf{Use the weakest representation that preserves the distinction the obligation requires, and the cheapest judge adequate to decide it.} Then decide, separately, whether the resulting judgment warrants enforcement. A deterministic check may remain advisory; a probabilistic evaluator may sometimes be reliable enough to support enforcement.
 
 For a settled obligation, the producer\textquotesingle s own report is rarely enough. A human says the change is correct; an agent says the tests pass; a tool announces completion. Each claim may be useful, but the strongest assurance comes from evidence generated independently of the judgment seeking admission. \textbf{For consequential changes, prefer evidence that can challenge the producer\textquotesingle s own claim rather than relying on self-report alone. Where the consequence warrants it, place admission control outside the producer\textquotesingle s ability to redefine success.}
 
@@ -218,7 +218,7 @@ Audit models, mechanisms, procedures, and evidence pipelines together:
   \textbf{Should it be repaired, replaced, or retired?} Preserve useful knowledge while removing machinery whose original purpose no longer warrants its upkeep.
 \end{itemize}
 
-Retirement belongs to the same discipline as governance conversion. Experience can justify adding a control, but can also show that its assumption no longer holds or its cost exceeds its value. \magevalue{sec:brownfield-engineering} applies the same test when deciding what inherited structure to recover.
+Retirement belongs to the same discipline as governance conversion. \magevalue{sec:brownfield-engineering} applies the same test when deciding what inherited structure to recover.
 
 \section{Summary}\label{heading:portable-moves}
 
