@@ -202,6 +202,11 @@
       "approved_date": "2026-11-12",
       "reason": "Author approved the revised coverage-of-model-correspondence figure in the sidebar, showing both expansion and contraction of the modeled surface.",
       "candidate_sha256": "87d22e0a2a038af9386b848eaa3fb25383fd8ffd6f2d9f841431f9781cff0623"
+    },
+    "book/assets/two-reductions-static-realized.svg": {
+      "approved_date": "2026-11-12",
+      "reason": "Author approved after removing the bottom summary and restoring static structure and recorded history labels inside the two boxes, as in the original.",
+      "candidate_sha256": "6c56c587c6161ec6707ec35bbec40e05e77b713c0b7b426790f1ac02c055d265"
     }
   }
 }

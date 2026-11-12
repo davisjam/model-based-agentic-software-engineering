@@ -3745,9 +3745,9 @@
       "candidate": "book/tikz/figures/two-reductions-static-realized.tex",
       "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650",
       "baseline_candidate_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
-      "candidate_sha256": "8bc30187d6f015ff158d1af5d6056a8a148353684f6f60fba2b5137194390568",
-      "decision": "retained",
-      "reason": "Static computation and realized edit record have different node counts and roles. Their separate sequences and not-joined-today annotation have adequate separation.",
+      "candidate_sha256": "6c56c587c6161ec6707ec35bbec40e05e77b713c0b7b426790f1ac02c055d265",
+      "decision": "refined",
+      "reason": "Restore the original SVG’s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         403.5950012207031,
@@ -3755,43 +3755,24 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
-        "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
-        "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+        "date": "2026-11-12",
+        "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+        "proof": "latex/build/tikz/two-reductions-labels-20261112/candidates.pdf",
+        "proof_sha256": "ee98ea4b07e32938a93361aa9b8c18ea20765ac7718b5365eed4ce118400e817",
+        "page": 1,
+        "width_bp": 338.022,
+        "height_bp": 235.006,
+        "minimum_prose_font_pt": 9.0,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "checked_terminal_approaches": 5,
+        "reviewed_peer_groups": 0,
         "monochrome_pixels": true,
+        "semantic_typography_checks": 8,
+        "audit_sha256": "a9a3fc3129ef5ebf15779a06f4293339f38ce204c5943c369edc15fd516e28e0",
+        "typography_audit_sha256": "c8a31dbc2c0806fe931b62932d33dbf2bcf2c5c6593e7cf4e7ed0af87a4297f2",
         "status": "passed",
-        "page": 33,
-        "width_bp": 338.022,
-        "height_bp": 264.994,
-        "minimum_prose_font_pt": 8.97,
-        "semantic_typography_checks": 6
-      },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing two reductions static realized layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
-        "after_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
-        "before_dimensions_bp": [
-          403.5950012207031,
-          247.51699829101562
-        ],
-        "after_dimensions_bp": [
-          403.595,
-          247.517
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "visual_review": "Native proof inspected at print size beside the unchanged color SVG. Bold 9 pt static structure and recorded history labels sit inside their respective outer frames at y=204; the bottom prose is removed. Existing titles, nodes, arrows and dashed not joined today annotation are unchanged and clear."
       },
       "revision_history": [
         {
@@ -3877,8 +3858,55 @@
             },
             "reason": "Static computation and realized edit record have different node counts and roles. Their separate sequences and not-joined-today annotation have adequate separation."
           }
+        },
+        {
+          "superseded_date": "2026-11-12",
+          "review": {
+            "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650",
+            "candidate_sha256": "8bc30187d6f015ff158d1af5d6056a8a148353684f6f60fba2b5137194390568",
+            "validation": {
+              "date": "2026-11-09",
+              "proof": "latex/build/tikz/candidates.pdf",
+              "proof_sha256": "27079c03c9e6032c37b4662cb870976115fe80322874b9c0f6297b3807849bcb",
+              "audit_sha256": "c2b7f35d892f0750994d5e482e946cd6e60fd44d47b3bc06ac6b8d97985e95cd",
+              "typography_audit_sha256": "e41521af8948000a2e7ca2dd358b9aaf436af9dea5d5d6f05802ba6bef03dfda",
+              "unapproved_compile_diagnostics": 0,
+              "geometry_findings": 0,
+              "monochrome_pixels": true,
+              "status": "passed",
+              "page": 33,
+              "width_bp": 338.022,
+              "height_bp": 264.994,
+              "minimum_prose_font_pt": 8.97,
+              "semantic_typography_checks": 6
+            },
+            "page_layout": {
+              "decision": "retained",
+              "reason": "Retain existing two reductions static realized layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+              "before_sha256": "b0a482bd2dc1a1d771b40cac04531dfb5e076f80b06b064c542b955ef2d12c47",
+              "after_sha256": "1fed3d0df722779c3a0ffe74c8abda4b0c086b5cd9c86af128c99142816bde66",
+              "before_dimensions_bp": [
+                403.5950012207031,
+                247.51699829101562
+              ],
+              "after_dimensions_bp": [
+                403.595,
+                247.517
+              ],
+              "before_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "after_font_sizes_pt": [
+                9.0,
+                10.0
+              ],
+              "reviewed_visually": true
+            }
+          }
         }
-      ]
+      ],
+      "visual_review": "Native proof inspected at print size beside the unchanged color SVG. Bold 9 pt static structure and recorded history labels sit inside their respective outer frames at y=204; the bottom prose is removed. Existing titles, nodes, arrows and dashed not joined today annotation are unchanged and clear."
     },
     {
       "source": "book/assets/derive-generate-trace.svg",

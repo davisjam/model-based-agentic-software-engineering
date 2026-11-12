@@ -1300,9 +1300,40 @@
     "receipt": "book/tikz/receipts/two-reductions-static-realized.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Gray modes distinguish static composition from realized history. Restored dashed CONTROL_GATE versus solid DATA_FLOW; dashed not-joined-today bridge retained.",
-    "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
-    "candidate_sha256": "a920dcac85665d233cb94e9f9fbd1fee5218b26597d72da7bca8f1cc34c6a7b7"
+    "rationale": "White panels and nodes remain distinct through boundaries and labels. Solid DATA_FLOW and dashed CONTROL_GATE are retained; the dashed not joined today relation remains. Both short panel labels are now present in native black-and-white.",
+    "source_sha256": "8aaabef79443a1d32cf4e89a6d61f5b669e4adfa954ab5daf0fb2a24c86ef650",
+    "candidate_sha256": "6c56c587c6161ec6707ec35bbec40e05e77b713c0b7b426790f1ac02c055d265",
+    "revision_history": [
+      {
+        "superseded_date": "2026-11-12",
+        "review": {
+          "source_sha256": "a71e48b87bd2376e1afb0885d902c5509a0129e94bd99e167c2753dc5ce1ac91",
+          "candidate_sha256": "a920dcac85665d233cb94e9f9fbd1fee5218b26597d72da7bca8f1cc34c6a7b7"
+        }
+      }
+    ],
+    "reviewed_visually": true,
+    "reason": "Restore the original SVG’s two short panel labels in the native drawing and remove the redundant two-line closing prose, exactly as requested.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/two-reductions-labels-20261112/candidates.pdf",
+      "proof_sha256": "ee98ea4b07e32938a93361aa9b8c18ea20765ac7718b5365eed4ce118400e817",
+      "page": 1,
+      "width_bp": 338.022,
+      "height_bp": 235.006,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 5,
+      "reviewed_peer_groups": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 8,
+      "audit_sha256": "a9a3fc3129ef5ebf15779a06f4293339f38ce204c5943c369edc15fd516e28e0",
+      "typography_audit_sha256": "c8a31dbc2c0806fe931b62932d33dbf2bcf2c5c6593e7cf4e7ed0af87a4297f2",
+      "status": "passed",
+      "visual_review": "Native proof inspected at print size beside the unchanged color SVG. Bold 9 pt static structure and recorded history labels sit inside their respective outer frames at y=204; the bottom prose is removed. Existing titles, nodes, arrows and dashed not joined today annotation are unchanged and clear."
+    }
   },
   {
     "source": "book/assets/derive-generate-trace.svg",
