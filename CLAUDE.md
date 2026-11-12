@@ -429,6 +429,21 @@ re-deriving these, so they live here:**
     final numbers**; verify after the return, not during. Related trap the same day: two slides write
     `TIMING: 1.0 minute.` (singular), so a regex requiring `minutes` under-reports the total by 2.0
     and reports those slides as untimed.
+  - **A fresh worktree is NOT a clean baseline for a check that reads derived or
+    gitignored state — it answers a different question and the answer looks identical.**
+    The costume this wears is "let me verify at the pre-change commit": `git worktree add
+    <tmp> <sha>` reproduces only what git TRACKS, so any check whose inputs include
+    build output, emitted trees or ignored assets runs against a thinner world and
+    reports CLEAN. Measured 261112 on the BLOCKING svg page-fit gate: the real tree
+    failed, the fresh worktree at the identical commit passed, and that false clean was
+    read as proof a merge had caused the failure. It had not — the cause was stale
+    `book/latex/build/**` output that no worktree would ever contain. Acting on it cost
+    a `git reset --hard` on main and a re-merge, both unnecessary.
+    **So: to test whether a commit is the cause, revert IN PLACE and re-run there**
+    (the reset is what finally proved it — the red survived the merge's removal), or
+    seed the worktree with the same derived state before trusting a clean. The general
+    rule is the one above about search scope, aimed at TIME rather than PATH: a
+    complete check of a thinner tree reads exactly like a complete check.
   - **A premise taken from a DESIGN DOC is a claim about the past, and the step above cannot catch a
     stale one.** Re-reading a cited line confirms the doc says it; it does not confirm the doc is
     still true of the code. Three briefs on 261005 stated a load-bearing premise accurately quoted
