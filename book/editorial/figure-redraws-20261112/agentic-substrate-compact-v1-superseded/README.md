@@ -1,0 +1,1 @@
+Superseded first compact draft from 65326f6bf1ca6ab4391f2010e061a9b10813554c, archived 2026-11-12. These assets were review-only and were not approved for publication. The original published artwork remains in the separate agentic-substrate-before archive.

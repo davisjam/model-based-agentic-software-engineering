@@ -19799,3 +19799,10 @@ Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, revision `7555
 Commodity intelligence and the governed engineering environment. Training develops general-purpose capabilities; the harness turns reasoning into action. The engineer maintains the system knowledge and mechanisms that guide the agent, constrain its actions, and evaluate whether selected results may be accepted. Training data need not all be public.
 
 The previous editable drawing, receipt, and approval context are preserved in `book/editorial/figure-redraws-20261112/agentic-substrate-before/`. The compact redraw is pending author review.
+
+
+## Figure 1.3 optional training qualification — 2026-11-12
+
+Source: `book/latex/sources/part1/1.4-the-agentic-substrate.tex`, revision `65326f6bf`, Figure 1.3 caption. Removed from the compact figure and caption at the author’s request; the main text retains the discussion of training and fine-tuning as alternative means of influence. The engineer in the diagram now develops and maintains the GEE only.
+
+> Engineers develop and maintain the environment, and may sometimes improve the model through additional training or fine-tuning.

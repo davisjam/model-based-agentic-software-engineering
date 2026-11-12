@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -2 450 264" width="1012.5" height="594" role="img" aria-labelledby="asTitle asDesc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 444 284" width="999" height="639" role="img" aria-labelledby="asTitle asDesc" font-family="'Source Sans 3', sans-serif">
 <title id="asTitle">Commodity intelligence in a governed engineering environment</title>
-<desc id="asDesc">Model development transforms training data through training into a foundation model. In the acting system, the foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and results with the governed engineering environment. Four model properties lead to engineering implications: broad reasoning enables delegated implementation; probabilistic output requires assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated automated work. The harness supplies tools and integrations, context management, interposition and checks, and parallel or staged execution. The environment includes both the existing system and engineering structure: models, obligations, instructions, procedures, tools, permissions, evidence and controls. The engineer develops and maintains the environment to supply guidance and governance, and may also improve the model through training or fine-tuning.</desc>
+<desc id="asDesc">Model development transforms training data through training into a trained foundation model, which supplies the foundation model within the agentic engineering system. The foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and tool results or evidence with the governed engineering environment. Four model properties have engineering implications: broad reasoning enables delegated implementation; probabilistic output requires independent assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated exploration and revision. Harness facilities are tools and integrations, context management, interposition or hooks, and parallel or staged execution. The GEE contains the existing system and engineering structure. Guidance originates in the GEE and supplies knowledge to influence reasoning; governance originates in the GEE and constrains actions and controls acceptance. The engineer develops and maintains the GEE.</desc>
 <defs><marker id="as-arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="5" markerHeight="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/></marker></defs>
 <rect x="6" y="2" width="250" height="44" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
 <text x="14" y="14" text-anchor="start" font-size="10" fill="#1c1917" font-weight="700">Model development</text>
-<text x="250" y="14" text-anchor="end" font-size="9" fill="#1c1917" font-style="italic">General capability</text>
+<text x="250" y="14" text-anchor="end" font-size="9" fill="#1c1917" font-style="italic">General-purpose capabilities</text>
 <rect x="12" y="23" width="68" height="18" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
 <text x="46.0" y="35" text-anchor="middle" font-size="9" fill="#1c1917">Training data</text>
 <rect x="97" y="23" width="54" height="18" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
@@ -14,80 +14,84 @@
 <text x="209.0" y="35" text-anchor="middle" font-size="9" fill="#1c1917">Foundation model</text>
 <path d="M80,32 L97,32" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
 <path d="M151,32 L168,32" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<rect x="2" y="55" width="436" height="147" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".55"/>
-<text x="12" y="68" text-anchor="start" font-size="10" fill="#1c1917" font-weight="700">Acting system</text>
-<text x="78" y="68" text-anchor="start" font-size="9" fill="#1c1917" font-style="italic">Commodity intelligence in use</text>
-<rect x="8" y="77" width="156" height="121" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
-<rect x="194" y="77" width="98" height="121" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
-<rect x="322" y="77" width="110" height="121" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
-<text x="86" y="89" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Foundation model</text>
-<text x="86" y="101" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Property → implication</text>
-<text x="243" y="89" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Agentic harness</text>
-<text x="243" y="101" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Outputs become actions</text>
+<rect x="2" y="55" width="436" height="195" rx="3" fill="#f6f4ef" stroke="#1c1917" stroke-width=".55"/>
+<text x="12" y="68" text-anchor="start" font-size="10" fill="#1c1917" font-weight="700">Agentic engineering system</text>
+<rect x="8" y="77" width="148" height="133" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="186" y="77" width="92" height="133" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<rect x="322" y="77" width="110" height="133" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="82" y="89" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Foundation model</text>
+<text x="82" y="99" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Properties and</text>
+<text x="82" y="108" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">engineering implications</text>
+<text x="232" y="89" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Agentic harness</text>
+<text x="232" y="100" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Outputs become</text>
+<text x="232" y="109" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">actions</text>
 <text x="377" y="88" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Governed engineering</text>
 <text x="377" y="99" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">environment (GEE)</text>
-<path d="M209,41 L209,50 L243,50 L243,77" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<path d="M13,106 L159,106" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M13,128 L159,128" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M13,150 L159,150" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M13,177 L159,177" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M79,106 L79,195" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<text x="45" y="116" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Broad</text>
-<text x="45" y="125" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">reasoning</text>
-<text x="120" y="116" text-anchor="middle" font-size="9" fill="#1c1917">Delegated</text>
-<text x="120" y="125" text-anchor="middle" font-size="9" fill="#1c1917">implementation</text>
-<text x="45" y="138" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Probabilistic</text>
-<text x="45" y="147" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">output</text>
-<text x="120" y="138" text-anchor="middle" font-size="9" fill="#1c1917">Independent</text>
-<text x="120" y="147" text-anchor="middle" font-size="9" fill="#1c1917">assurance</text>
-<text x="45" y="160" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Finite working</text>
-<text x="45" y="169" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">state</text>
-<text x="120" y="158" text-anchor="middle" font-size="9" fill="#1c1917">External</text>
-<text x="120" y="167" text-anchor="middle" font-size="9" fill="#1c1917">representations</text>
-<text x="120" y="176" text-anchor="middle" font-size="9" fill="#1c1917">and retrieval</text>
-<text x="45" y="187" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Inexpensive</text>
-<text x="45" y="196" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">inference</text>
-<text x="120" y="187" text-anchor="middle" font-size="9" fill="#1c1917">Repeated</text>
-<text x="120" y="196" text-anchor="middle" font-size="9" fill="#1c1917">automated work</text>
-<path d="M199,106 L287,106" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M199,128 L287,128" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M199,150 L287,150" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<path d="M199,177 L287,177" fill="none" stroke="#1c1917" stroke-width=".35"/>
-<text x="243" y="116" text-anchor="middle" font-size="9" fill="#1c1917">Tools and integrations</text>
-<text x="243" y="137" text-anchor="middle" font-size="9" fill="#1c1917">Context management</text>
-<text x="243" y="147" text-anchor="middle" font-size="9" fill="#1c1917">retrieval · workspace</text>
-<text x="243" y="160" text-anchor="middle" font-size="9" fill="#1c1917">Interposition · checks</text>
-<text x="243" y="170" text-anchor="middle" font-size="9" fill="#1c1917">validation · policy</text>
-<text x="243" y="186" text-anchor="middle" font-size="9" fill="#1c1917">Parallel and staged</text>
-<text x="243" y="196" text-anchor="middle" font-size="9" fill="#1c1917">execution</text>
-<rect x="326" y="105" width="102" height="40" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<path d="M209,41 L209,50 L150,50 L150,77" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M13,112 L151,112" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M13,132 L151,132" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M13,152 L151,152" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M13,181 L151,181" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M75,112 L75,207" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<text x="41" y="120" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Broad</text>
+<text x="41" y="129" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">reasoning</text>
+<text x="113" y="120" text-anchor="middle" font-size="9" fill="#1c1917">Delegated</text>
+<text x="113" y="129" text-anchor="middle" font-size="9" fill="#1c1917">implementation</text>
+<text x="41" y="140" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Probabilistic</text>
+<text x="41" y="149" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">output</text>
+<text x="113" y="140" text-anchor="middle" font-size="9" fill="#1c1917">Independent</text>
+<text x="113" y="149" text-anchor="middle" font-size="9" fill="#1c1917">assurance</text>
+<text x="41" y="164" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Finite working</text>
+<text x="41" y="173" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">state</text>
+<text x="113" y="160" text-anchor="middle" font-size="9" fill="#1c1917">External</text>
+<text x="113" y="169" text-anchor="middle" font-size="9" fill="#1c1917">representations</text>
+<text x="113" y="178" text-anchor="middle" font-size="9" fill="#1c1917">and retrieval</text>
+<text x="41" y="192" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Inexpensive</text>
+<text x="41" y="201" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">inference</text>
+<text x="113" y="189" text-anchor="middle" font-size="9" fill="#1c1917">Repeated</text>
+<text x="113" y="198" text-anchor="middle" font-size="9" fill="#1c1917">exploration</text>
+<text x="113" y="207" text-anchor="middle" font-size="9" fill="#1c1917">and revision</text>
+<path d="M191,112 L273,112" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M191,132 L273,132" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M191,152 L273,152" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M191,181 L273,181" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<text x="232" y="123" text-anchor="middle" font-size="9" fill="#1c1917">Tools and integrations</text>
+<text x="232" y="140" text-anchor="middle" font-size="9" fill="#1c1917">Context management</text>
+<text x="232" y="149" text-anchor="middle" font-size="9" fill="#1c1917">retrieval · workspace</text>
+<text x="232" y="166" text-anchor="middle" font-size="9" fill="#1c1917">Interposition / hooks</text>
+<text x="232" y="194" text-anchor="middle" font-size="9" fill="#1c1917">Parallel and staged</text>
+<text x="232" y="203" text-anchor="middle" font-size="9" fill="#1c1917">execution</text>
+<rect x="326" y="105" width="102" height="43" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
 <text x="377" y="115" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Existing system</text>
-<text x="377" y="124" text-anchor="middle" font-size="9" fill="#1c1917">Code · architecture</text>
-<text x="377" y="133" text-anchor="middle" font-size="9" fill="#1c1917">Design · docs · config</text>
-<text x="377" y="142" text-anchor="middle" font-size="9" fill="#1c1917">Tests · operational state</text>
-<rect x="326" y="149" width="102" height="49" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
-<text x="377" y="158" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Engineering structure</text>
-<text x="377" y="168" text-anchor="middle" font-size="9" fill="#1c1917">Models · obligations</text>
-<text x="377" y="177" text-anchor="middle" font-size="9" fill="#1c1917">Instructions · procedures</text>
-<text x="377" y="186" text-anchor="middle" font-size="9" fill="#1c1917">Tools · permissions</text>
-<text x="377" y="195" text-anchor="middle" font-size="9" fill="#1c1917">Evidence · controls</text>
-<text x="179.0" y="122" text-anchor="middle" font-size="9" fill="#1c1917">Outputs</text>
-<path d="M164,128 L194,128" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<text x="179.0" y="163" text-anchor="middle" font-size="9" fill="#1c1917">Context</text>
-<path d="M194,169 L164,169" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<text x="307.0" y="122" text-anchor="middle" font-size="9" fill="#1c1917">Actions</text>
-<path d="M292,128 L322,128" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<text x="307.0" y="163" text-anchor="middle" font-size="9" fill="#1c1917">Results</text>
-<path d="M322,169 L292,169" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<rect x="6" y="232" width="430" height="26" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
-<text x="35" y="248" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Engineer</text>
-<text x="79" y="242" text-anchor="start" font-size="9" fill="#1c1917">Develops and maintains the GEE to guide and govern work.</text>
-<text x="79" y="252" text-anchor="start" font-size="9" fill="#1c1917">May also improve the foundation model through training or fine-tuning.</text>
-<path d="M243,232 L243,202" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<path d="M377,232 L377,202" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
-<text x="184" y="215" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Guidance</text>
-<text x="184" y="226" text-anchor="middle" font-size="9" fill="#1c1917">Knowledge · reasoning</text>
-<text x="322" y="215" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Governance</text>
-<text x="322" y="226" text-anchor="middle" font-size="9" fill="#1c1917">Actions · acceptance</text>
-<path d="M6,245 L-4,245 L-4,14 L6,14" fill="none" stroke="#1c1917" stroke-width=".65" stroke-dasharray="3 2" marker-end="url(#as-arrow)"/>
+<text x="377" y="126" text-anchor="middle" font-size="9" fill="#1c1917">Code · architecture</text>
+<text x="377" y="136" text-anchor="middle" font-size="9" fill="#1c1917">Configuration · tests</text>
+<text x="377" y="145" text-anchor="middle" font-size="9" fill="#1c1917">Operational state</text>
+<rect x="326" y="152" width="102" height="54" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="377" y="163" text-anchor="middle" font-size="9.5" fill="#1c1917" font-weight="700">Engineering structure</text>
+<text x="377" y="174" text-anchor="middle" font-size="9" fill="#1c1917">Models · obligations</text>
+<text x="377" y="183" text-anchor="middle" font-size="9" fill="#1c1917">Instructions · procedures</text>
+<text x="377" y="192" text-anchor="middle" font-size="9" fill="#1c1917">Tools · permissions</text>
+<text x="377" y="201" text-anchor="middle" font-size="9" fill="#1c1917">Evidence · controls</text>
+<text x="171.0" y="122" text-anchor="middle" font-size="9" fill="#1c1917">Outputs</text>
+<path d="M156,128 L186,128" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<text x="171.0" y="169" text-anchor="middle" font-size="9" fill="#1c1917">Context</text>
+<path d="M186,175 L156,175" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M278,128 L322,128" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<text x="300" y="144" text-anchor="middle" font-size="9" fill="#1c1917">Actions</text>
+<text x="300" y="165" text-anchor="middle" font-size="9" fill="#1c1917">Tool results</text>
+<text x="300" y="176" text-anchor="middle" font-size="9" fill="#1c1917">/ evidence</text>
+<path d="M322,184 L278,184" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<text x="355" y="13" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Governance</text>
+<text x="355" y="25" text-anchor="middle" font-size="9" fill="#1c1917">Constrains actions;</text>
+<text x="355" y="36" text-anchor="middle" font-size="9" fill="#1c1917">controls acceptance</text>
+<path d="M417,77 L417,44 L300,44 L300,121" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<path d="M294,121 L306,121" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M300,121 L300,135" fill="none" stroke="#1c1917" stroke-width=".35"/>
+<path d="M350,210 L350,242 L82,242 L82,210" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
+<text x="214" y="223" text-anchor="middle" font-size="9" fill="#1c1917" font-weight="700">Guidance</text>
+<text x="214" y="235" text-anchor="middle" font-size="9" fill="#1c1917">Supplies knowledge; influences reasoning</text>
+<rect x="104" y="260" width="326" height="20" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".55"/>
+<text x="141" y="273" text-anchor="middle" font-size="10" fill="#1c1917" font-weight="700">Engineer</text>
+<text x="177" y="273" text-anchor="start" font-size="9" fill="#1c1917">— Develops and maintains the GEE</text>
+<path d="M400,260 L400,210" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#as-arrow)"/>
 </svg>

@@ -134,7 +134,7 @@
   {
     "chapter": "1.4-the-agentic-substrate",
     "source": "assets/agentic-substrate.svg",
-    "caption": "*Commodity intelligence in a governed engineering environment.* General capabilities from a foundation model become useful engineering machinery when connected to an agentic harness and a governed engineering environment. The environment contains both the existing system and the engineering structure used to guide and govern work. Engineers develop and maintain the environment, and may sometimes improve the model through additional training or fine-tuning.",
+    "caption": "*Commodity intelligence in a governed engineering environment.* General capabilities from a foundation model become useful engineering machinery when connected to an agentic harness and a governed engineering environment. The environment contains both the existing system and the engineering structure used to guide and govern work. Engineers develop and maintain this environment.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": "book/tikz/receipts/agentic-substrate.json",
@@ -142,7 +142,7 @@
     "data": [],
     "conversion": "Native editable TikZ and live-text SVG reauthored together from the author specification.",
     "svg_title": "Commodity intelligence in a governed engineering environment",
-    "svg_description": "Model development transforms training data through training into a foundation model. In the acting system, the foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and results with the governed engineering environment. Four model properties lead to engineering implications: broad reasoning enables delegated implementation; probabilistic output requires assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated automated work. The harness supplies tools and integrations, context management, interposition and checks, and parallel or staged execution. The environment includes both the existing system and engineering structure: models, obligations, instructions, procedures, tools, permissions, evidence and controls. The engineer develops and maintains the environment to supply guidance and governance, and may also improve the model through training or fine-tuning.",
+    "svg_description": "Model development transforms training data through training into a trained foundation model, which supplies the foundation model within the agentic engineering system. The foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and tool results or evidence with the governed engineering environment. Four model properties have engineering implications: broad reasoning enables delegated implementation; probabilistic output requires independent assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated exploration and revision. Harness facilities are tools and integrations, context management, interposition or hooks, and parallel or staged execution. The GEE contains the existing system and engineering structure. Guidance originates in the GEE and supplies knowledge to influence reasoning; governance originates in the GEE and constrains actions and controls acceptance. The engineer develops and maintains the GEE.",
     "native_dimensions_bp": [
       446.843994140625,
       557.6439819335938

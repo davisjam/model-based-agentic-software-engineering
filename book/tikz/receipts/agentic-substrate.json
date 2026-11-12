@@ -1,18 +1,20 @@
 {
   "source": "book/assets/agentic-substrate.svg",
-  "claim": "*Commodity intelligence in a governed engineering environment.* General capabilities from a foundation model become useful engineering machinery when connected to an agentic harness and a governed engineering environment. The environment contains both the existing system and the engineering structure used to guide and govern work. Engineers develop and maintain the environment, and may sometimes improve the model through additional training or fine-tuning.",
-  "topology": "Foundation model and harness exchange outputs/context; harness and GEE exchange actions/results. The trained model enters the harness. Guidance and governance rise from the engineer strip toward their corresponding acting-system columns. A dashed left route returns from the engineer to model development, explicitly qualified by the engineer strip as optional training or fine-tuning.",
+  "claim": "*Commodity intelligence in a governed engineering environment.* General capabilities from a foundation model become useful engineering machinery when connected to an agentic harness and a governed engineering environment. The environment contains both the existing system and the engineering structure used to guide and govern work. Engineers develop and maintain this environment.",
+  "topology": "The trained foundation model feeds the model inside the engineering system. Outputs/context connect the model and harness; actions/tool-results-or-evidence connect harness and GEE. Guidance originates at GEE, runs below the columns, and enters the foundation model. Governance originates at GEE, follows a separate top route, and terminates at a boundary marker crossing the Actions shaft. The sole engineer arrow enters GEE. No engineer-to-model, engineer-to-harness or training/fine-tuning route remains.",
   "required_terms": [
     "Model development",
-    "General capability",
+    "General-purpose capabilities",
     "Training data",
     "Training",
     "Foundation model",
-    "Acting system",
-    "Commodity intelligence in use",
+    "Agentic engineering system",
     "Foundation model",
+    "Properties and",
+    "engineering implications",
     "Agentic harness",
-    "Outputs become actions",
+    "Outputs become",
+    "actions",
     "Governed engineering",
     "environment (GEE)",
     "Broad",
@@ -31,18 +33,18 @@
     "Inexpensive",
     "inference",
     "Repeated",
-    "automated work",
+    "exploration",
+    "and revision",
     "Tools and integrations",
     "Context management",
     "retrieval · workspace",
-    "Interposition · checks",
-    "validation · policy",
+    "Interposition / hooks",
     "Parallel and staged",
     "execution",
     "Existing system",
     "Code · architecture",
-    "Design · docs · config",
-    "Tests · operational state",
+    "Configuration · tests",
+    "Operational state",
     "Engineering structure",
     "Models · obligations",
     "Instructions · procedures",
@@ -51,29 +53,28 @@
     "Outputs",
     "Context",
     "Actions",
-    "Results",
-    "Engineer",
-    "Develops and maintains the GEE to guide and govern work.",
-    "May also improve the foundation model through training or fine-tuning.",
-    "Guidance",
-    "Knowledge · reasoning",
+    "Tool results",
+    "/ evidence",
     "Governance",
-    "Actions · acceptance",
-    "Property",
-    "implication"
+    "Constrains actions;",
+    "controls acceptance",
+    "Guidance",
+    "Supplies knowledge; influences reasoning",
+    "Engineer",
+    "— Develops and maintains the GEE"
   ],
-  "bw_encoding": "The acting-system enclosure alone has light 5% gray. Its three functional columns and all nested boxes remain white; grouping is encoded by outlines rather than color. Region and component headings are bold 9.5–10 pt. Four model properties and guidance/governance relation names are bold 9 pt. Subtitles and the property/implication lead-in are italic 9 pt; body, examples and exchange labels are regular 9 pt.",
-  "redesign": "Author-reference redraw replaces the tall stacked diagram with a compact three-column acting system, a small model-development inlet, and an engineer strip. Four property/implication pairs and four harness facilities remain, with the existing system and engineering structure visibly separate inside the GEE. The caption is external.",
+  "bw_encoding": "Only the agentic-engineering-system enclosure has light 5% gray. Its three functional columns and nested GEE components remain white; grouping is encoded by outlines rather than color. Component and enclosure headings are bold 9.5–10 pt. Model properties and guidance/governance relation names are bold 9 pt. Explanatory subtitles are italic 9 pt; implications, facilities, examples and exchange labels are regular 9 pt.",
+  "redesign": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
   "questions": [],
-  "alt": "Model development transforms training data through training into a foundation model. In the acting system, the foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and results with the governed engineering environment. Four model properties lead to engineering implications: broad reasoning enables delegated implementation; probabilistic output requires assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated automated work. The harness supplies tools and integrations, context management, interposition and checks, and parallel or staged execution. The environment includes both the existing system and engineering structure: models, obligations, instructions, procedures, tools, permissions, evidence and controls. The engineer develops and maintains the environment to supply guidance and governance, and may also improve the model through training or fine-tuning.",
+  "alt": "Model development transforms training data through training into a trained foundation model, which supplies the foundation model within the agentic engineering system. The foundation model exchanges outputs and context with an agentic harness; the harness exchanges actions and tool results or evidence with the governed engineering environment. Four model properties have engineering implications: broad reasoning enables delegated implementation; probabilistic output requires independent assurance; finite working state motivates external representations and retrieval; inexpensive inference enables repeated exploration and revision. Harness facilities are tools and integrations, context management, interposition or hooks, and parallel or staged execution. The GEE contains the existing system and engineering structure. Guidance originates in the GEE and supplies knowledge to influence reasoning; governance originates in the GEE and constrains actions and controls acceptance. The engineer develops and maintains the GEE.",
   "qa": {
     "date": "2026-11-12",
     "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-    "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
-    "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+    "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+    "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
     "page": 1,
-    "width_bp": 448.57,
-    "height_bp": 262.523,
+    "width_bp": 442.52,
+    "height_bp": 284.522,
     "minimum_prose_font_pt": 9.0,
     "authored_type_sizes_pt": [
       9.0,
@@ -82,12 +83,12 @@
     ],
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "checked_terminal_approaches": 6,
+    "checked_terminal_approaches": 7,
     "reviewed_peer_groups": 1,
     "monochrome_pixels": true,
-    "semantic_typography_checks": 58,
-    "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
-    "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+    "semantic_typography_checks": 59,
+    "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+    "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
     "status": "passed"
   },
   "svg_qa": {
@@ -100,18 +101,23 @@
         "verdict": "strain"
       },
       {
-        "text": "Outputs become actions",
-        "ratio": 0.9699781897491822,
-        "verdict": "strain"
-      },
-      {
         "text": "Tools and integrations",
-        "ratio": 0.9200218102508179,
+        "ratio": 0.9844340723453908,
         "verdict": "strain"
       },
       {
-        "text": "Tests · operational state",
-        "ratio": 0.9430721003134797,
+        "text": "Context management",
+        "ratio": 0.9527187864644108,
+        "verdict": "strain"
+      },
+      {
+        "text": "retrieval · workspace",
+        "ratio": 0.9113418903150525,
+        "verdict": "strain"
+      },
+      {
+        "text": "Interposition / hooks",
+        "ratio": 0.9155425904317386,
         "verdict": "strain"
       },
       {
@@ -125,26 +131,26 @@
         "verdict": "strain"
       }
     ],
-    "visual_resolution": "Six conservative strain annotations were inspected at print size. Each label retains visible padding, no overlap or clipping, and 9–9.5 pt text. No font reduction."
+    "visual_resolution": "Seven conservative strain annotations were inspected at print size. Each label retains visible padding, no overlap or clipping, and 9–9.5 pt text. No font reduction."
   },
-  "historical_receipt": "book/editorial/figure-redraws-20261112/agentic-substrate-before/agentic-substrate.json",
+  "historical_receipt": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/agentic-substrate.json",
   "reference_image_sha256": "746bc15b875e73afea02a2afed0044780f59196d5ad6631eb250a1e0571fdc4b",
   "layout_review": {
     "source": "book/assets/agentic-substrate.svg",
     "candidate": "book/tikz/figures/agentic-substrate.tex",
-    "source_sha256": "a26b0522701a29cbd4c52de4b660ffeed4783f067802ab23d88b56050693a491",
-    "candidate_sha256": "4b7e3d1d8ea9886e9e5c6bdba17cea578e7ff43040761f92d03a85bcf5b25c6d",
+    "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
+    "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw replaces the tall stacked diagram with a compact three-column acting system, a small model-development inlet, and an engineer strip. Four property/implication pairs and four harness facilities remain, with the existing system and engineering structure visibly separate inside the GEE. The caption is external.",
+    "reason": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
     "validation": {
       "date": "2026-11-12",
       "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-      "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
-      "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+      "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+      "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
       "page": 1,
-      "width_bp": 448.57,
-      "height_bp": 262.523,
+      "width_bp": 442.52,
+      "height_bp": 284.522,
       "minimum_prose_font_pt": 9.0,
       "authored_type_sizes_pt": [
         9.0,
@@ -153,15 +159,15 @@
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 6,
+      "checked_terminal_approaches": 7,
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 58,
-      "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
-      "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+      "semantic_typography_checks": 59,
+      "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+      "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
       "status": "passed"
     },
-    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-before/layout-review.json",
+    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/layout-review.json",
     "contracts": {
       "peer_groups": [
         {
@@ -179,15 +185,15 @@
         }
       ]
     },
-    "visual_review": "Both native and live-text SVG proofs inspected at print width and 2×. No clipped or overlapping text. Exchange labels occupy separate channels. All four property/implication rows remain legible at 9 pt without scaling. Existing-system examples are reflowed into three lines to preserve architecture, design, documentation, configuration, tests and operational state. The dashed optional-training route is visually secondary. Native proof height falls from 557.644 to 262.523 bp (52.9% reduction); no embedded figure number or caption.",
+    "visual_review": "Native and live-text SVG proofs inspected at print size and 2×. The northern model route clears the enclosure heading; the governance boundary marker intersects the action edge; table rules have room around the text. All words remain legible at authored 9–10 pt sizes without scaling. This conceptually corrected candidate measures 442.52 × 284.522 bp, a modest height increase over the superseded 262.523 bp compact draft and 49.0% shorter than the original 557.644 bp artwork. No embedded figure number or caption.",
     "page_layout": {
       "before_dimensions_bp": [
-        446.844,
-        557.644
-      ],
-      "after_dimensions_bp": [
         448.57,
         262.523
+      ],
+      "after_dimensions_bp": [
+        442.52,
+        284.522
       ],
       "after_font_sizes_pt": [
         9,
@@ -202,19 +208,19 @@
   "typography_review": {
     "source": "book/assets/agentic-substrate.svg",
     "candidate": "book/tikz/figures/agentic-substrate.tex",
-    "source_sha256": "a26b0522701a29cbd4c52de4b660ffeed4783f067802ab23d88b56050693a491",
-    "candidate_sha256": "4b7e3d1d8ea9886e9e5c6bdba17cea578e7ff43040761f92d03a85bcf5b25c6d",
+    "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
+    "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Region and component headings are bold 9.5–10 pt. Four model properties and guidance/governance relation names are bold 9 pt. Subtitles and the property/implication lead-in are italic 9 pt; body, examples and exchange labels are regular 9 pt. Native fonts are authored at these sizes; no post-render scaling.",
+    "reason": "Component and enclosure headings are bold 9.5–10 pt. Model properties and guidance/governance relation names are bold 9 pt. Explanatory subtitles are italic 9 pt; implications, facilities, examples and exchange labels are regular 9 pt. Native fonts are authored at these sizes; no post-render scaling.",
     "validation": {
       "date": "2026-11-12",
       "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-      "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
-      "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+      "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+      "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
       "page": 1,
-      "width_bp": 448.57,
-      "height_bp": 262.523,
+      "width_bp": 442.52,
+      "height_bp": 284.522,
       "minimum_prose_font_pt": 9.0,
       "authored_type_sizes_pt": [
         9.0,
@@ -223,15 +229,15 @@
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 6,
+      "checked_terminal_approaches": 7,
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 58,
-      "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
-      "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+      "semantic_typography_checks": 59,
+      "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+      "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
       "status": "passed"
     },
-    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-before/typography-review.json",
+    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/typography-review.json",
     "checks": [
       {
         "text": "Model development",
@@ -239,7 +245,7 @@
         "italic": false
       },
       {
-        "text": "General capability",
+        "text": "General-purpose capabilities",
         "bold": false,
         "italic": true
       },
@@ -259,14 +265,9 @@
         "italic": false
       },
       {
-        "text": "Acting system",
+        "text": "Agentic engineering system",
         "bold": true,
         "italic": false
-      },
-      {
-        "text": "Commodity intelligence in use",
-        "bold": false,
-        "italic": true
       },
       {
         "text": "Foundation model",
@@ -274,12 +275,27 @@
         "italic": false
       },
       {
+        "text": "Properties and",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "engineering implications",
+        "bold": false,
+        "italic": true
+      },
+      {
         "text": "Agentic harness",
         "bold": true,
         "italic": false
       },
       {
-        "text": "Outputs become actions",
+        "text": "Outputs become",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "actions",
         "bold": false,
         "italic": true
       },
@@ -374,7 +390,12 @@
         "italic": false
       },
       {
-        "text": "automated work",
+        "text": "exploration",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "and revision",
         "bold": false,
         "italic": false
       },
@@ -394,12 +415,7 @@
         "italic": false
       },
       {
-        "text": "Interposition · checks",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "validation · policy",
+        "text": "Interposition / hooks",
         "bold": false,
         "italic": false
       },
@@ -424,12 +440,12 @@
         "italic": false
       },
       {
-        "text": "Design · docs · config",
+        "text": "Configuration · tests",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Tests · operational state",
+        "text": "Operational state",
         "bold": false,
         "italic": false
       },
@@ -474,32 +490,12 @@
         "italic": false
       },
       {
-        "text": "Results",
+        "text": "Tool results",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Engineer",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Develops and maintains the GEE to guide and govern work.",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "May also improve the foundation model through training or fine-tuning.",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "Guidance",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "Knowledge · reasoning",
+        "text": "/ evidence",
         "bold": false,
         "italic": false
       },
@@ -509,19 +505,34 @@
         "italic": false
       },
       {
-        "text": "Actions · acceptance",
+        "text": "Constrains actions;",
         "bold": false,
         "italic": false
       },
       {
-        "text": "Property",
+        "text": "controls acceptance",
         "bold": false,
-        "italic": true
+        "italic": false
       },
       {
-        "text": "implication",
+        "text": "Guidance",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Supplies knowledge; influences reasoning",
         "bold": false,
-        "italic": true
+        "italic": false
+      },
+      {
+        "text": "Engineer",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "— Develops and maintains the GEE",
+        "bold": false,
+        "italic": false
       }
     ],
     "evidence": [
@@ -531,7 +542,7 @@
         "semantic_role": "region/component/property or control relation"
       },
       {
-        "candidate_text": "General capability",
+        "candidate_text": "General-purpose capabilities",
         "candidate_style": "italic",
         "semantic_role": "explanatory subtitle"
       },
@@ -551,14 +562,9 @@
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Acting system",
+        "candidate_text": "Agentic engineering system",
         "candidate_style": "bold",
         "semantic_role": "region/component/property or control relation"
-      },
-      {
-        "candidate_text": "Commodity intelligence in use",
-        "candidate_style": "italic",
-        "semantic_role": "explanatory subtitle"
       },
       {
         "candidate_text": "Foundation model",
@@ -566,12 +572,27 @@
         "semantic_role": "region/component/property or control relation"
       },
       {
+        "candidate_text": "Properties and",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "engineering implications",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
         "candidate_text": "Agentic harness",
         "candidate_style": "bold",
         "semantic_role": "region/component/property or control relation"
       },
       {
-        "candidate_text": "Outputs become actions",
+        "candidate_text": "Outputs become",
+        "candidate_style": "italic",
+        "semantic_role": "explanatory subtitle"
+      },
+      {
+        "candidate_text": "actions",
         "candidate_style": "italic",
         "semantic_role": "explanatory subtitle"
       },
@@ -666,7 +687,12 @@
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "automated work",
+        "candidate_text": "exploration",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "and revision",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
@@ -686,12 +712,7 @@
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Interposition · checks",
-        "candidate_style": "regular",
-        "semantic_role": "facility, implication, example or exchange label"
-      },
-      {
-        "candidate_text": "validation · policy",
+        "candidate_text": "Interposition / hooks",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
@@ -716,12 +737,12 @@
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Design · docs · config",
+        "candidate_text": "Configuration · tests",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Tests · operational state",
+        "candidate_text": "Operational state",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
@@ -766,32 +787,12 @@
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Results",
+        "candidate_text": "Tool results",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Engineer",
-        "candidate_style": "bold",
-        "semantic_role": "region/component/property or control relation"
-      },
-      {
-        "candidate_text": "Develops and maintains the GEE to guide and govern work.",
-        "candidate_style": "regular",
-        "semantic_role": "facility, implication, example or exchange label"
-      },
-      {
-        "candidate_text": "May also improve the foundation model through training or fine-tuning.",
-        "candidate_style": "regular",
-        "semantic_role": "facility, implication, example or exchange label"
-      },
-      {
-        "candidate_text": "Guidance",
-        "candidate_style": "bold",
-        "semantic_role": "region/component/property or control relation"
-      },
-      {
-        "candidate_text": "Knowledge · reasoning",
+        "candidate_text": "/ evidence",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
@@ -801,38 +802,53 @@
         "semantic_role": "region/component/property or control relation"
       },
       {
-        "candidate_text": "Actions · acceptance",
+        "candidate_text": "Constrains actions;",
         "candidate_style": "regular",
         "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "Property",
-        "candidate_style": "italic",
-        "semantic_role": "explanatory subtitle"
+        "candidate_text": "controls acceptance",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
       },
       {
-        "candidate_text": "implication",
-        "candidate_style": "italic",
-        "semantic_role": "explanatory subtitle"
+        "candidate_text": "Guidance",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "Supplies knowledge; influences reasoning",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
+      },
+      {
+        "candidate_text": "Engineer",
+        "candidate_style": "bold",
+        "semantic_role": "region/component/property or control relation"
+      },
+      {
+        "candidate_text": "— Develops and maintains the GEE",
+        "candidate_style": "regular",
+        "semantic_role": "facility, implication, example or exchange label"
       }
     ]
   },
   "style_review": {
     "source": "book/assets/agentic-substrate.svg",
     "candidate": "book/tikz/figures/agentic-substrate.tex",
-    "source_sha256": "a26b0522701a29cbd4c52de4b660ffeed4783f067802ab23d88b56050693a491",
-    "candidate_sha256": "4b7e3d1d8ea9886e9e5c6bdba17cea578e7ff43040761f92d03a85bcf5b25c6d",
+    "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
+    "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw replaces the tall stacked diagram with a compact three-column acting system, a small model-development inlet, and an engineer strip. Four property/implication pairs and four harness facilities remain, with the existing system and engineering structure visibly separate inside the GEE. The caption is external.",
+    "reason": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
     "validation": {
       "date": "2026-11-12",
       "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-      "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
-      "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+      "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+      "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
       "page": 1,
-      "width_bp": 448.57,
-      "height_bp": 262.523,
+      "width_bp": 442.52,
+      "height_bp": 284.522,
       "minimum_prose_font_pt": 9.0,
       "authored_type_sizes_pt": [
         9.0,
@@ -841,43 +857,43 @@
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 6,
+      "checked_terminal_approaches": 7,
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 58,
-      "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
-      "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+      "semantic_typography_checks": 59,
+      "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+      "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
       "status": "passed"
     },
-    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-before/style-review.json",
+    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/style-review.json",
     "receipt": "book/tikz/receipts/agentic-substrate.json",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
     "status": "reviewed",
-    "fill": "The acting-system enclosure alone has light 5% gray. Its three functional columns and all nested boxes remain white; grouping is encoded by outlines rather than color.",
-    "bold": "Region and component headings are bold 9.5–10 pt. Four model properties and guidance/governance relation names are bold 9 pt. Subtitles and the property/implication lead-in are italic 9 pt; body, examples and exchange labels are regular 9 pt.",
-    "routing": "Foundation model and harness exchange outputs/context; harness and GEE exchange actions/results. The trained model enters the harness. Guidance and governance rise from the engineer strip toward their corresponding acting-system columns. A dashed left route returns from the engineer to model development, explicitly qualified by the engineer strip as optional training or fine-tuning.",
+    "fill": "Only the agentic-engineering-system enclosure has light 5% gray. Its three functional columns and nested GEE components remain white; grouping is encoded by outlines rather than color.",
+    "bold": "Component and enclosure headings are bold 9.5–10 pt. Model properties and guidance/governance relation names are bold 9 pt. Explanatory subtitles are italic 9 pt; implications, facilities, examples and exchange labels are regular 9 pt.",
+    "routing": "The trained foundation model feeds the model inside the engineering system. Outputs/context connect the model and harness; actions/tool-results-or-evidence connect harness and GEE. Guidance originates at GEE, runs below the columns, and enters the foundation model. Governance originates at GEE, follows a separate top route, and terminates at a boundary marker crossing the Actions shaft. The sole engineer arrow enters GEE. No engineer-to-model, engineer-to-harness or training/fine-tuning route remains.",
     "shape": "Rounded containers distinguish development, acting system, its three columns and two GEE components, and the engineer. Horizontal row rules align the four model properties with their implications and organize the harness facilities.",
-    "visual_review": "Both native and live-text SVG proofs inspected at print width and 2×. No clipped or overlapping text. Exchange labels occupy separate channels. All four property/implication rows remain legible at 9 pt without scaling. Existing-system examples are reflowed into three lines to preserve architecture, design, documentation, configuration, tests and operational state. The dashed optional-training route is visually secondary. Native proof height falls from 557.644 to 262.523 bp (52.9% reduction); no embedded figure number or caption.",
+    "visual_review": "Native and live-text SVG proofs inspected at print size and 2×. The northern model route clears the enclosure heading; the governance boundary marker intersects the action edge; table rules have room around the text. All words remain legible at authored 9–10 pt sizes without scaling. This conceptually corrected candidate measures 442.52 × 284.522 bp, a modest height increase over the superseded 262.523 bp compact draft and 49.0% shorter than the original 557.644 bp artwork. No embedded figure number or caption.",
     "book_references": [],
     "routing_exceptions": "None."
   },
   "fidelity_review": {
     "source": "book/assets/agentic-substrate.svg",
     "candidate": "book/tikz/figures/agentic-substrate.tex",
-    "source_sha256": "a26b0522701a29cbd4c52de4b660ffeed4783f067802ab23d88b56050693a491",
-    "candidate_sha256": "4b7e3d1d8ea9886e9e5c6bdba17cea578e7ff43040761f92d03a85bcf5b25c6d",
+    "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
+    "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw replaces the tall stacked diagram with a compact three-column acting system, a small model-development inlet, and an engineer strip. Four property/implication pairs and four harness facilities remain, with the existing system and engineering structure visibly separate inside the GEE. The caption is external.",
+    "reason": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
     "validation": {
       "date": "2026-11-12",
       "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-      "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
-      "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+      "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+      "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
       "page": 1,
-      "width_bp": 448.57,
-      "height_bp": 262.523,
+      "width_bp": 442.52,
+      "height_bp": 284.522,
       "minimum_prose_font_pt": 9.0,
       "authored_type_sizes_pt": [
         9.0,
@@ -886,20 +902,20 @@
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 6,
+      "checked_terminal_approaches": 7,
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 58,
-      "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
-      "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+      "semantic_typography_checks": 59,
+      "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+      "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
       "status": "passed"
     },
-    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-before/fidelity-review.json",
+    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/fidelity-review.json",
     "checks": {
-      "icons_and_symbols": "The optional dashed training route, four opposing exchange arrows, guidance and governance links, and development flow preserve the author reference. Decorative icons are omitted to retain readable type in the compact footprint.",
-      "links_and_groups": "Foundation model and harness exchange outputs/context; harness and GEE exchange actions/results. The trained model enters the harness. Guidance and governance rise from the engineer strip toward their corresponding acting-system columns. A dashed left route returns from the engineer to model development, explicitly qualified by the engineer strip as optional training or fine-tuning.",
-      "annotation_placement": "Exchange labels sit in the channels between columns. Optional training is qualified in the engineer strip. Guidance and governance labels sit beside their upward links.",
-      "line_breaks": "Short phrases replace explanatory clauses. The four engineering implications, four facilities and both GEE inventories remain; existing-system examples wrap to three lines."
+      "icons_and_symbols": "The trained-model destination is corrected. The governance boundary marker actually intersects the Actions shaft. Optional training is removed; guidance and governance originate in GEE rather than the engineer.",
+      "links_and_groups": "The trained foundation model feeds the model inside the engineering system. Outputs/context connect the model and harness; actions/tool-results-or-evidence connect harness and GEE. Guidance originates at GEE, runs below the columns, and enters the foundation model. Governance originates at GEE, follows a separate top route, and terminates at a boundary marker crossing the Actions shaft. The sole engineer arrow enters GEE. No engineer-to-model, engineer-to-harness or training/fine-tuning route remains.",
+      "annotation_placement": "Exchange labels occupy dedicated channels. The full guidance label sits above the lower GEE-to-model route; the full governance label sits above its upper GEE-to-action-boundary route. Engineer maintenance is a separate arrow and is not labeled guidance or governance.",
+      "line_breaks": "Properties and engineering implications spans two italic lines. Repeated exploration and revision spans three body lines. Harness interposition/hooks carries no project-policy or checking examples. The existing-system inventory is limited to the author’s specified code, architecture, configuration, tests and operational state."
     },
     "font_qa": {
       "rendered_prose_sizes_tex_pt": [
@@ -912,27 +928,27 @@
     },
     "geometry_findings": [],
     "compiler_diagnostics": [],
-    "width_bp": 448.57,
-    "height_bp": 262.523,
+    "width_bp": 442.52,
+    "height_bp": 284.522,
     "monochrome": true,
-    "review": "Both native and live-text SVG proofs inspected at print width and 2×. No clipped or overlapping text. Exchange labels occupy separate channels. All four property/implication rows remain legible at 9 pt without scaling. Existing-system examples are reflowed into three lines to preserve architecture, design, documentation, configuration, tests and operational state. The dashed optional-training route is visually secondary. Native proof height falls from 557.644 to 262.523 bp (52.9% reduction); no embedded figure number or caption."
+    "review": "Native and live-text SVG proofs inspected at print size and 2×. The northern model route clears the enclosure heading; the governance boundary marker intersects the action edge; table rules have room around the text. All words remain legible at authored 9–10 pt sizes without scaling. This conceptually corrected candidate measures 442.52 × 284.522 bp, a modest height increase over the superseded 262.523 bp compact draft and 49.0% shorter than the original 557.644 bp artwork. No embedded figure number or caption."
   },
   "grayscale_review": {
     "source": "book/assets/agentic-substrate.svg",
     "candidate": "book/tikz/figures/agentic-substrate.tex",
-    "source_sha256": "a26b0522701a29cbd4c52de4b660ffeed4783f067802ab23d88b56050693a491",
-    "candidate_sha256": "4b7e3d1d8ea9886e9e5c6bdba17cea578e7ff43040761f92d03a85bcf5b25c6d",
+    "source_sha256": "5456d3e0002d9ad50eb441ea07ee818ef20ebfdcaf0e2695cec8a3c598da3f25",
+    "candidate_sha256": "3ec16dfe5df8a735089a6609277e8f7fb187d80be753ecee141d7085651d7378",
     "decision": "refined",
     "reviewed_visually": true,
-    "reason": "Author-reference redraw replaces the tall stacked diagram with a compact three-column acting system, a small model-development inlet, and an engineer strip. Four property/implication pairs and four harness facilities remain, with the existing system and engineering structure visibly separate inside the GEE. The caption is external.",
+    "reason": "Author corrections to the compact review draft distinguish the foundation model, harness facilities, project-specific GEE structure, and the sources and targets of guidance and governance. The engineer only develops and maintains the GEE. The northern trained model feeds the foundation model inside the agentic engineering system.",
     "validation": {
       "date": "2026-11-12",
       "scope": "Isolated one-figure production-pipeline proof; not a full-book render. Review-only candidate; existing publication decision is untouched.",
-      "proof": "latex/build/tikz/compact-agentic-substrate-20261112/candidates.pdf",
-      "proof_sha256": "a974950731c9ecd2cf1f9c360bd3c411ed14f3296991a0ea8abd4ebf788b7320",
+      "proof": "latex/build/tikz/compact-agentic-substrate-v2-20261112/candidates.pdf",
+      "proof_sha256": "8617d882e03a0867c7d74984b2e91421135f4597521862868fddd7152944287c",
       "page": 1,
-      "width_bp": 448.57,
-      "height_bp": 262.523,
+      "width_bp": 442.52,
+      "height_bp": 284.522,
       "minimum_prose_font_pt": 9.0,
       "authored_type_sizes_pt": [
         9.0,
@@ -941,22 +957,17 @@
       ],
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "checked_terminal_approaches": 6,
+      "checked_terminal_approaches": 7,
       "reviewed_peer_groups": 1,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 58,
-      "audit_sha256": "e718f7f62b2fe520f681c3e640fd725bf3d92bbd162db7ffa7294003933a8181",
-      "typography_audit_sha256": "fdccc11611509f5f5c6d5deda12b9f8f71159ce9e9198ad4b585f7247b9d1d47",
+      "semantic_typography_checks": 59,
+      "audit_sha256": "e3fc8f350d9c5b1a6ba3cb5bad93d490e88a32e9633d5dfb7f0a99fcc32caee4",
+      "typography_audit_sha256": "69a86d65a82f49b87f96740e46f22f61dcc31e7c9f62097fac1b727c4229a0db",
       "status": "passed"
     },
-    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-before/grayscale-review.json",
+    "previous_review": "book/editorial/figure-redraws-20261112/agentic-substrate-compact-v1-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/agentic-substrate.json",
     "reviewed": true,
-    "rationale": "The acting-system enclosure alone has light 5% gray. Its three functional columns and all nested boxes remain white; grouping is encoded by outlines rather than color. Region and component headings are bold 9.5–10 pt. Four model properties and guidance/governance relation names are bold 9 pt. Subtitles and the property/implication lead-in are italic 9 pt; body, examples and exchange labels are regular 9 pt."
-  },
-  "previous_publication_approval": {
-    "approved_date": "2026-11-09",
-    "reason": "Author approved black-and-white-only publication on 2026-11-09; the 2026-11-10 revision implements the requested model-development, acting-agent, and engineered-environment specification. The color companion remains retired."
-  },
-  "author_review_status": "Compact redraw pending author review; prior approval applied to the archived tall drawing."
+    "rationale": "Only the agentic-engineering-system enclosure has light 5% gray. Its three functional columns and nested GEE components remain white; grouping is encoded by outlines rather than color. Component and enclosure headings are bold 9.5–10 pt. Model properties and guidance/governance relation names are bold 9 pt. Explanatory subtitles are italic 9 pt; implications, facilities, examples and exchange labels are regular 9 pt."
+  }
 }
