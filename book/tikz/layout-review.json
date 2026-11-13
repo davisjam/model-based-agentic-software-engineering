@@ -4040,8 +4040,8 @@
     {
       "source": "book/assets/semantic-gap-levels.svg",
       "candidate": "book/tikz/figures/semantic-gap-levels.tex",
-      "source_sha256": "46a4d05511bd34384f7a3746e5715906a091ccd6646962a47abd057bec787109",
-      "candidate_sha256": "2dd14c58699971afb0050b9bec4ffd231b4967f39e0d5d7cf910ff332afa0559",
+      "source_sha256": "a656e1976beb15f960694d823d7736107450bab7a3e24ddb1eed6ee97677d4e2",
+      "candidate_sha256": "02dd7597102e853a23609a80868cb4d0ae73ae6d36fd5bc6abee998521e32d28",
       "decision": "refined",
       "reviewed_visually": true,
       "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
@@ -4051,8 +4051,8 @@
           {
             "name": "obligations",
             "labels": [
-              "X: Model",
-              "Y: Rendered-page correctness"
+              "Model",
+              "Rendered-page correctness"
             ],
             "align": [
               "top",
@@ -4083,21 +4083,25 @@
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
-        "proof_sha256": "86aa5cf912d128a6f02820938f481947ef7c160582056f4e66b2343b3713bfce",
+        "proof_sha256": "bd95bd4c272a42bfd178b0bc667aa8453a677f9f93be58ce7189248365b5bddc",
         "page": 1,
         "width_bp": 449.62,
         "height_bp": 209.272,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "b8b91dd7c2cad49446ba83c8e02c92686ba3e53e174051350cacbadd4afa7dc5",
+        "geometry_audit_sha256": "55afc49427226891a58e2287631478e2811f15f0fcf32824d02d843a62fa49dc",
         "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
         "semantic_typography_checks": 17,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+        "scope": "Isolated native figure proof, visually inspected after the author-requested prefix removal."
       },
-      "visual_review": "Native and SVG proofs inspected. Two independent obligations sit above a six-event timeline. Commit 3 connects directly to correspondence at task completion; the browser run connects directly to rendered-page correctness. No redundant intermediate boxes. The commit brace permits intermediate model disagreement; the earlier-check brace spans build and deploy, excluding browser execution. Named obligations are bold11pt, events regular10pt, and explanatory text italic9pt. No embedded title or caption."
+      "visual_review": "Native and SVG proofs inspected. Two independent obligations sit above a six-event timeline. Commit 3 connects directly to correspondence at task completion; the browser run connects directly to rendered-page correctness. No redundant intermediate boxes. The commit brace permits intermediate model disagreement; the earlier-check brace spans build and deploy, excluding browser execution. Named obligations are bold11pt, events regular10pt, and explanatory text italic9pt. No embedded title or caption.",
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "condition_completed": "Removed X and Y prefixes from both obligation boxes."
+      }
     },
     {
       "source": "book/assets/governance-proposed-change.svg",
