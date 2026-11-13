@@ -1439,7 +1439,12 @@
       "semantic_typography_checks": 19,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
     }
   },
   {
@@ -3289,27 +3294,27 @@
   {
     "source": "book/assets/alignment-overview.svg",
     "candidate": "book/tikz/figures/alignment-overview.tex",
-    "source_sha256": "0bfec14acef1b904bb1062980550003957596afd9a01da8514f40a7c32d4c708",
-    "candidate_sha256": "bcf11a6bb33daefd24ae0ac82fc74a1bc7c40ae7643543c15b0799c409c6e923",
+    "source_sha256": "c5f901c6a145361d25ea3fc81de66871608afc6ebefc9a13a57efc1442c01f37",
+    "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b",
     "decision": "new author-requested overview",
     "reviewed_visually": true,
-    "reason": "New chapter-opening overview; obligations feed direct constraints and evaluation rules, sensors supply evidence, and gates control admission. No internal caption, title, or legend.",
+    "reason": "Restore the reference legend and its light-gray encoding of constraints, sensors, and gates; narrow boxes and shorten vertical spacing without shrinking the type. Evaluation rules remain white as modeled predicates, not a fourth Alignment function.",
     "receipt": "book/tikz/receipts/alignment-overview.json",
     "reviewed": true,
-    "rationale": "White boxes and black connectors; no legend needed.",
+    "rationale": "Restore the reference legend and its light-gray encoding of constraints, sensors, and gates; narrow boxes and shorten vertical spacing without shrinking the type. Evaluation rules remain white as modeled predicates, not a fourth Alignment function.",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/alignment-overview-20261113/candidates.pdf",
-      "proof_sha256": "6fa8bc37661279f257bbd61dcb6506e59c6857ee4af75fdb4bad6f1d407486ed",
+      "proof_sha256": "74d274100bbb21d1b0d45207f7be04a9b42dc4a62f1915d4467a2f95677b4c56",
       "page": 1,
-      "width_bp": 447.62,
-      "height_bp": 400.621,
+      "width_bp": 446.62,
+      "height_bp": 355.621,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "fff9fb575826879bbad940d2e3eff664a3fd42306fbd05cd82524a91fee7afa9",
-      "typography_audit_sha256": "607826defe704010c0945fb2182fa20065e671932961d13071220c41075ef4a1",
-      "semantic_typography_checks": 23,
+      "geometry_audit_sha256": "5abc4855c5d30948c39984589f321ccd186f3d01a8a664eba55f77dbda5f7a2d",
+      "typography_audit_sha256": "6ee51fd1bb9bd017b947584d10e1d9ed07283fe63342a0a4786200b1b9ffcea0",
+      "semantic_typography_checks": 27,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."

@@ -12285,19 +12285,24 @@
         "semantic_typography_checks": 19,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+        "scope": "Verified current native proof; author approved for publication."
+      },
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+        "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
       }
     },
     {
       "source": "book/assets/governance-proposed-change.svg",
       "candidate": "book/tikz/figures/governance-proposed-change.tex",
-      "source_sha256": "ec7c51aa416b92a62e3319a49a656890afd5596d0ac23c40b012ed1d72f67b4f",
-      "candidate_sha256": "99c9440c7a28df8bf22697b3dfd048aefb03fb08f1b8d90963b369f96e79a708",
+      "source_sha256": "f10511605675569244c21cf6116a88dd0cf2bc91d8dc6376a5bda88a9ed2875e",
+      "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e",
       "decision": "accepted",
       "review_date": "2026-11-08",
       "reviewed_visually": true,
       "proof_manifest": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json",
-      "reason": "Bold capitals name the candidate, three governance functions, architectural model, and outcomes. Italics distinguish questions from explanations. Scope and enforcement caveats remain regular prose.",
+      "reason": "Author approved after making every connector solid and removing the dashed/solid convention footer.",
       "evidence": [
         {
           "source_text": "PROPOSED REPORTING CHANGE",
@@ -12396,13 +12401,6 @@
           "semantic_role": "Question or explanatory scope",
           "candidate_style": "regular",
           "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
-        },
-        {
-          "source_text": "Passing covers only the selected checks.",
-          "candidate_text": "Passing covers only the selected checks.",
-          "semantic_role": "Question or explanatory scope",
-          "candidate_style": "regular",
-          "source_evidence": "/Users/davisjam/.codex/visualizations/2026/10/17/01a14a1a-c9bd-72b0-b08d-eb1ffc7a0b53/mage-introduction-review/figure-proofs/three-governance-roles/governance-proposed-change/manifest.json"
         }
       ],
       "checks": [
@@ -12475,27 +12473,26 @@
           "text": "missing evidence.",
           "bold": false,
           "italic": false
-        },
-        {
-          "text": "Passing covers only the selected checks.",
-          "bold": false,
-          "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "31ce933a4929bb167d065c9865417250a2b64784f28c4b9bbce1a5855e8489a7",
-        "geometry_findings": 0,
-        "unapproved_compile_diagnostics": 0,
-        "status": "passed",
-        "date": "2026-11-08",
-        "page": 44,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/governance-proposed-change-20261113/candidates.pdf",
+        "proof_sha256": "365e52298479dad214d2c1bff4cad0d7227401079cd46cd8556bc30f1a28bac0",
+        "page": 1,
         "width_bp": 415.006,
-        "height_bp": 475.276,
-        "minimum_prose_font_bp": 9.4645,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 15,
-        "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+        "height_bp": 453.692,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "semantic_typography_checks": 14,
+        "status": "passed",
+        "visual_review": "Native proof inspected: all three decision-input arrows are solid; footer deleted; remaining geometry, text and role shading retained.",
+        "scope": "Verified current native proof; author approved for publication."
+      },
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "reason": "Author approved after making all arrows solid and removing the convention footer.",
+        "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
       }
     },
     {
@@ -30879,11 +30876,11 @@
     {
       "source": "book/assets/alignment-overview.svg",
       "candidate": "book/tikz/figures/alignment-overview.tex",
-      "source_sha256": "0bfec14acef1b904bb1062980550003957596afd9a01da8514f40a7c32d4c708",
-      "candidate_sha256": "bcf11a6bb33daefd24ae0ac82fc74a1bc7c40ae7643543c15b0799c409c6e923",
+      "source_sha256": "c5f901c6a145361d25ea3fc81de66871608afc6ebefc9a13a57efc1442c01f37",
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b",
       "decision": "new author-requested overview",
       "reviewed_visually": true,
-      "reason": "New chapter-opening overview; obligations feed direct constraints and evaluation rules, sensors supply evidence, and gates control admission. No internal caption, title, or legend.",
+      "reason": "Restore the reference legend and its light-gray encoding of constraints, sensors, and gates; narrow boxes and shorten vertical spacing without shrinking the type. Evaluation rules remain white as modeled predicates, not a fourth Alignment function.",
       "checks": [
         {
           "text": "Engineering Models",
@@ -30997,6 +30994,26 @@
         },
         {
           "text": "Constraint / check result",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Alignment functions",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "(constraints, sensors,",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "gates)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Models, work, decisions",
           "bold": false,
           "italic": true
         }
@@ -31116,21 +31133,41 @@
           "candidate_text": "Constraint / check result",
           "candidate_style": "italic",
           "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Alignment functions",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "(constraints, sensors,",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "gates)",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Models, work, decisions",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
         }
       ],
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/alignment-overview-20261113/candidates.pdf",
-        "proof_sha256": "6fa8bc37661279f257bbd61dcb6506e59c6857ee4af75fdb4bad6f1d407486ed",
+        "proof_sha256": "74d274100bbb21d1b0d45207f7be04a9b42dc4a62f1915d4467a2f95677b4c56",
         "page": 1,
-        "width_bp": 447.62,
-        "height_bp": 400.621,
+        "width_bp": 446.62,
+        "height_bp": 355.621,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "fff9fb575826879bbad940d2e3eff664a3fd42306fbd05cd82524a91fee7afa9",
-        "typography_audit_sha256": "607826defe704010c0945fb2182fa20065e671932961d13071220c41075ef4a1",
-        "semantic_typography_checks": 23,
+        "geometry_audit_sha256": "5abc4855c5d30948c39984589f321ccd186f3d01a8a664eba55f77dbda5f7a2d",
+        "typography_audit_sha256": "6ee51fd1bb9bd017b947584d10e1d9ed07283fe63342a0a4786200b1b9ffcea0",
+        "semantic_typography_checks": 27,
         "monochrome_pixels": true,
         "status": "passed",
         "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."

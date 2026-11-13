@@ -5,7 +5,6 @@
  box/.style={draw=black,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=6pt},
  role/.style={box,fill=black!6},
  edge/.style={->,line width=.65pt},
- evidence/.style={edge,dash pattern=on 3pt off 2pt},
  label/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont}]
 \hyphenpenalty=10000
 \node[box,minimum width=6.16cm,minimum height=1.33cm,text width=5.8cm] (proposed) at (550,72.5)
@@ -31,14 +30,13 @@
 \draw[edge] (550,120) -- (550,675);
 \draw[edge] (450,120) -- (450,170) -- (240,170) -- (240,220);
 \draw[edge] (650,120) -- (650,170) -- (860,170) -- (860,220);
-\draw[evidence] (240,570) -- (240,630) -- (490,630) -- (490,675);
-\draw[evidence] (860,570) -- (860,675);
-\draw[evidence] (380,780) -- (440,780);
+\draw[edge] (240,570) -- (240,630) -- (490,630) -- (490,675);
+\draw[edge] (860,570) -- (860,675);
+\draw[edge] (380,780) -- (440,780);
 \draw[edge] (495,965) -- (495,1075);
 \draw[edge] (905,965) -- (905,1075);
 \node[label,anchor=south] at (355,613) {build-check result};
 \node[label,anchor=west,align=left] at (879,627) {recorded\\interactions};
 \node[label,anchor=east] at (478,1023) {checks pass};
 \node[label,anchor=east,align=right] at (888,1028) {required failure or\\missing evidence};
-\node[label] at (550,1195) {Dashed arrows: decision inputs. Passing covers only the selected checks.};
 \end{tikzpicture}

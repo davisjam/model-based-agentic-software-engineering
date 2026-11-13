@@ -387,7 +387,13 @@
       "minimum_prose_font_bp": 9.4645,
       "monochrome_pixels": true,
       "semantic_typography_checks": 15,
-      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions."
+      "visual_review": "Current native pool page inspected for readable labels, clear connectors, preserved emphasis, and function distinctions.",
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved after making all arrows solid and removing the convention footer.",
+      "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
     }
   },
   "layout_review": {
@@ -432,7 +438,36 @@
         450,
         560
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab"
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved after making all arrows solid and removing the convention footer.",
+      "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
     }
+  },
+  "revision_20261113": {
+    "request": "Make every arrow solid and remove the dashed/solid footer.",
+    "source_sha256": "f10511605675569244c21cf6116a88dd0cf2bc91d8dc6376a5bda88a9ed2875e",
+    "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e",
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/governance-proposed-change-20261113/candidates.pdf",
+      "proof_sha256": "365e52298479dad214d2c1bff4cad0d7227401079cd46cd8556bc30f1a28bac0",
+      "page": 1,
+      "width_bp": 415.006,
+      "height_bp": 453.692,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "semantic_typography_checks": 14,
+      "status": "passed",
+      "visual_review": "Native proof inspected: all three decision-input arrows are solid; footer deleted; remaining geometry, text and role shading retained."
+    }
+  },
+  "author_review": {
+    "approved_date": "2026-11-13",
+    "reason": "Author approved after making all arrows solid and removing the convention footer.",
+    "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
   }
 }

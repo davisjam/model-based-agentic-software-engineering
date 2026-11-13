@@ -225,6 +225,16 @@
       "approved_date": "2026-11-13",
       "reason": "Author approved the revised Figure 2.17 with three correspondence patterns, selective implementation bands, and separate trace/check curves.",
       "candidate_sha256": "d5795001f9a6f544c1483eeed74553e052ebc483f4dcce5940ac69a67c97cbe7"
+    },
+    "book/assets/semantic-gap-levels.svg": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
+    },
+    "book/assets/governance-proposed-change.svg": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved after making all arrows solid and removing the convention footer.",
+      "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
     }
   }
 }

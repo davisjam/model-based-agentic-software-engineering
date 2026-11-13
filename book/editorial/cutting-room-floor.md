@@ -19989,3 +19989,15 @@ The same gap appears inside a single task. Take a concrete obligation: \emph{if 
 % <!-- gloss: Definition of done (DoD) | The explicit list of conditions a unit of work must meet to count as finished — tests present, docs updated, the model in sync — checked at the end rather than assumed. -->
 
 ```
+
+
+## Recovered-model correspondence revision — 13 November 2026
+
+- Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex`, §4.3, line 76.
+- Source revision: `8119f7692425e2438c00a7e690d57a7a7a72a152`.
+- Reason: Author supplied a revised paragraph focused on maintaining correspondence, placed after the types/validators/lints discussion.
+- Status: superseded; retained for reference.
+
+```latex
+Migration should also establish how subsequent changes will be checked against the recovered model. Where practical, associate model elements with resolvable code references and runtime trace identities. Static checks can detect when an implementation element disappears or a model reference becomes stale. Runtime traces provide complementary evidence about which modeled operations execute and whether observed operations can be associated with the model. Deriving these relationships from the current implementation and model avoids maintaining separate inventories that can silently diverge. The result is not a guarantee of semantic correspondence, but a way to expose changes that would otherwise leave the model stale.
+```

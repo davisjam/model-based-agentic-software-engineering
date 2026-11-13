@@ -43,7 +43,7 @@
     "semantic_typography_checks": 19,
     "monochrome_pixels": true,
     "status": "passed",
-    "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+    "scope": "Verified current native proof; author approved for publication."
   },
   "reference_image_sha256": "e02d3b1bbe5f6001255f2430f12214dabf51408e47d660ebaad92e7d32d883c6",
   "layout_review": {
@@ -104,9 +104,14 @@
       "semantic_typography_checks": 19,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
-    "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption."
+    "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
+    }
   },
   "typography_review": {
     "source": "book/assets/semantic-gap-levels.svg",
@@ -326,7 +331,12 @@
       "semantic_typography_checks": 19,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
     }
   },
   "style_review": {
@@ -361,11 +371,16 @@
       "semantic_typography_checks": 19,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
     "visual_review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
     "book_references": [],
-    "routing_exceptions": "None."
+    "routing_exceptions": "None.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
+    }
   },
   "fidelity_review": {
     "source": "book/assets/semantic-gap-levels.svg",
@@ -396,7 +411,7 @@
       "semantic_typography_checks": 19,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
     "font_qa": {
       "minimum": 9.5,
@@ -415,7 +430,12 @@
     "width_bp": 449.62,
     "height_bp": 207.491,
     "monochrome": true,
-    "review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption."
+    "review": "Native and SVG proofs inspected. The author requested closer fidelity to the reference after the simplified rendering. Two obligation boxes sit above compact, explicitly named task-completion and integrated-execution boundaries and a six-event timeline. Short vertical arrows connect the checking events through those boundaries. Obligation titles are 12.5–13pt, timeline labels 11pt, and annotations 10pt. Narrower boxes and shorter gaps retain the reference hierarchy without adding height. X and Y are removed. The earlier-check brace excludes browser execution. No embedded title or caption.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
+    }
   },
   "grayscale_review": {
     "source": "book/assets/semantic-gap-levels.svg",
@@ -444,7 +464,17 @@
       "semantic_typography_checks": 19,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
     }
+  },
+  "author_review": {
+    "approved_date": "2026-11-13",
+    "reason": "Author approved the closer reference rendering with two named boundaries, larger labels, tighter spacing, and no X/Y prefixes.",
+    "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253"
   }
 }
