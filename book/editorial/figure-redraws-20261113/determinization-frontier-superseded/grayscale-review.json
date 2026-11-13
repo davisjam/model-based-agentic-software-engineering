@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/determinization-frontier.svg",
+  "candidate": "book/tikz/figures/determinization-frontier.tex",
+  "receipt": "book/tikz/receipts/determinization-frontier.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Alignment route darker, modeling route lighter; convergence into consequential repeatable decision emphasized.",
+  "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+  "candidate_sha256": "c7c8897a9584c6f226cf698e38bdbb9f8c5727b8bc689c978e212232e5d20a6d"
+}

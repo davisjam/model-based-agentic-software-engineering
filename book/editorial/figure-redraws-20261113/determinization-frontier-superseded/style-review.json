@@ -1,0 +1,37 @@
+{
+  "source": "book/assets/determinization-frontier.svg",
+  "candidate": "book/tikz/figures/determinization-frontier.tex",
+  "receipt": "book/tikz/receipts/determinization-frontier.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
+  "candidate_sha256": "e67fdee4705294497b03baa8f40eaec3a248e78a1c4aebadd952941203bb15ee",
+  "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+  "bold": "Source-derived emphasis includes Test / validator / constraint / gate; Structured relation; REPEATABLE DECISION; REPEATED JUDGMENT. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+  "routing": "4 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Alignment/modeling branch headings remain equal bold; conditions above orthogonal fork.",
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 85,
+    "width_bp": 373.703,
+    "height_bp": 249.499,
+    "minimum_prose_font_pt": 9.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 10
+  },
+  "book_references": [],
+  "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+    "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "source": "book/assets/determinization-frontier.svg",
+  "candidate": "book/tikz/figures/determinization-frontier.tex",
+  "decision": "refined",
+  "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
+  "candidate_sha256": "e67fdee4705294497b03baa8f40eaec3a248e78a1c4aebadd952941203bb15ee",
+  "evidence": [
+    {
+      "source_text": "test / validator\nconstraint / gate",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "20"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Test / validator / constraint / gate",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "test / validator",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "250",
+            "y": "370",
+            "text_element": 12
+          }
+        },
+        {
+          "text": "constraint / gate",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "250",
+            "y": "390",
+            "text_element": 13
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "structured relation",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "20"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Structured relation",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "structured relation",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "750",
+            "y": "380",
+            "text_element": 14
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "REPEATABLE DECISION",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "20"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "REPEATABLE DECISION",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "REPEATABLE DECISION",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "500",
+            "y": "542",
+            "text_element": 17
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "REPEATED JUDGMENT",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "20"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "REPEATED JUDGMENT",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "REPEATED JUDGMENT",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "500",
+            "y": "117",
+            "text_element": 3
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "encode predicate",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "italic",
+        "font-size": "20"
+      },
+      "semantic_role": "explanatory annotation or feedback relation",
+      "candidate_text": "Encode predicate",
+      "candidate_style": "italic",
+      "source_fragments": [
+        {
+          "text": "encode predicate",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "250",
+            "y": "302",
+            "text_element": 9
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "change representation",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "italic",
+        "font-size": "20"
+      },
+      "semantic_role": "explanatory annotation or feedback relation",
+      "candidate_text": "Change representation",
+      "candidate_style": "italic",
+      "source_fragments": [
+        {
+          "text": "change representation",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "750",
+            "y": "302",
+            "text_element": 11
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "property already\ndecidable",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "italic",
+        "font-size": "20"
+      },
+      "semantic_role": "explanatory annotation or feedback relation",
+      "candidate_text": "already decidable",
+      "candidate_style": "italic",
+      "source_fragments": [
+        {
+          "text": "property already",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "250",
+            "y": "207",
+            "text_element": 4
+          }
+        },
+        {
+          "text": "decidable",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "250",
+            "y": "223",
+            "text_element": 5
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "property requires\nreconstruction",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "italic",
+        "font-size": "20"
+      },
+      "semantic_role": "explanatory annotation or feedback relation",
+      "candidate_text": "requires reconstruction",
+      "candidate_style": "italic",
+      "source_fragments": [
+        {
+          "text": "property requires",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "750",
+            "y": "207",
+            "text_element": 6
+          }
+        },
+        {
+          "text": "reconstruction",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "750",
+            "y": "223",
+            "text_element": 7
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "predicate\nover model",
+      "source_style": {
+        "font-weight": "400",
+        "font-style": "italic",
+        "font-size": "20"
+      },
+      "semantic_role": "explanatory annotation or feedback relation",
+      "candidate_text": "Predicate over model",
+      "candidate_style": "italic",
+      "source_fragments": [
+        {
+          "text": "predicate",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "500",
+            "y": "454",
+            "text_element": 15
+          }
+        },
+        {
+          "text": "over model",
+          "style": {
+            "font-weight": "400",
+            "font-style": "italic",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "500",
+            "y": "470",
+            "text_element": 16
+          }
+        }
+      ]
+    }
+  ],
+  "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+  "checks": [
+    {
+      "text": "Test / validator / constraint / gate",
+      "bold": true
+    },
+    {
+      "text": "Structured relation",
+      "bold": true
+    },
+    {
+      "text": "REPEATABLE DECISION",
+      "bold": true
+    },
+    {
+      "text": "REPEATED JUDGMENT",
+      "bold": true
+    },
+    {
+      "text": "Encode predicate",
+      "italic": true
+    },
+    {
+      "text": "Change representation",
+      "italic": true
+    },
+    {
+      "text": "already decidable",
+      "italic": true
+    },
+    {
+      "text": "requires reconstruction",
+      "italic": true
+    },
+    {
+      "text": "Predicate over model",
+      "italic": true
+    },
+    {
+      "text": "The determinization frontier:",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "validation": {
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+    "page": 85,
+    "width_bp": 373.703,
+    "height_bp": 249.499,
+    "minimum_prose_font_pt": 9.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 10
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+    "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
+}

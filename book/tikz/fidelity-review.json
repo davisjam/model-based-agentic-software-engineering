@@ -3286,28 +3286,56 @@
     {
       "source": "book/assets/determinization-frontier.svg",
       "candidate": "book/tikz/figures/determinization-frontier.tex",
+      "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
+      "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+      "validation": {
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
+        "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+        "page": 1,
+        "width_bp": 409.973,
+        "height_bp": 352.974,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          10.0,
+          11.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 12,
+        "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
+        "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/fidelity-review.json",
       "checks": {
-        "icons_and_symbols": "No status icons.",
-        "links_and_groups": "Distinct alignment/modeling routes converge on predicate and decision.",
-        "annotation_placement": "Decidability/reconstruction annotations sit on branches; frontier statement below."
+        "icons_and_symbols": "The key distinction is topological: the already-decidable bypass joins the Modeling route before Alignment. Gate follows Test/validator and never produces the predicate.",
+        "links_and_groups": "Repeated judgment branches into property requires reconstruction and property already decidable. The first route reaches Modeling(Change representation), then Decidable property(predicate over model). The second bypasses Modeling. Their paths join BEFORE Alignment(Encode and evaluate the predicate), then proceed through Test/validator, Gate, and Repeatable decision. No path goes from a gate back to a predicate, and no separate Modeling route bypasses Alignment.",
+        "annotation_placement": "Italic route-premise labels sit above their corresponding branches. Modeling/Alignment explanations sit inside those activity boxes; the frontier explanation is a side annotation without connectors.",
+        "line_breaks": "Route premises and decidable-property explanation use two short lines. Activity names, test/validator, gate, and repeated/repeatable labels remain on one line."
       },
       "font_qa": {
         "rendered_prose_sizes_tex_pt": [
-          9.0,
-          10.0
+          9,
+          10,
+          11
         ],
         "minimum": 9,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 373.7030029296875,
-      "height_bp": 250.26800537109375,
+      "width_bp": 409.973,
+      "height_bp": 352.974,
       "monochrome": true,
-      "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
-      "candidate_sha256": "c7c8897a9584c6f226cf698e38bdbb9f8c5727b8bc689c978e212232e5d20a6d",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
+      "review": "Native and SVG proofs inspected at print size and2×. The route requiring reconstruction is shown on the left; the already-decidable route bypasses Modeling on the right. Both enter a common Alignment stage before the vertical test/gate/result sequence. The side annotation explains the frontier without decorative arrows. Removed old parallel-rank contracts, which encoded the topology being corrected, and checked new left/right alignment and equal dimensions of Test/validator and Gate. No clipped or overlapping text."
     },
     {
       "source": "book/assets/return-governability.svg",

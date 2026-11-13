@@ -1,0 +1,1 @@
+Superseded determinization-frontier sources and review rows from 4237fa108, preserved on 2026-11-13. New drawing corrects the route topology: both paths join before Alignment; test/validator precedes Gate. No internal headline/caption. Author approval remains pending.

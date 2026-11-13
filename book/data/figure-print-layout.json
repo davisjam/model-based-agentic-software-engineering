@@ -65,8 +65,9 @@
       "placement": "centered"
     },
     "determinization-frontier": {
-      "width_bp": 270,
-      "placement": "centered"
+      "width_bp": 410,
+      "placement": "centered",
+      "float_placement": "!htb"
     },
     "return-governability": {
       "width_bp": 360,

@@ -19894,3 +19894,16 @@ Explicit tolerances help engineers state the intended property and make it avail
 
 \caption[Probability in the software factory --- encoding and realization, with the encoded property also supplying the tolerance]{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two factors condition on representation R, omitted here for legibility. Interpretation is a mechanism within realization. The encoded property also supplies an independently evaluable tolerance, so evidence and admission can govern it even when production fails.}
 ```
+
+## Chapter 6 determinization frontier — 13 November 2026
+
+- Source: `book/latex/sources/part6/6.2-what-the-theory-predicts.tex`, P2: Representation-Enabled Enforcement, lines 119–132 at `fe5ee36ce`.
+- Reason: Author-requested local copyedits distinguish making a property decidable from evaluating and enforcing it. The final P2 challenge sentence remains unchanged.
+
+```latex
+The \textbf{determinization frontier} separates judgments that must be supplied per instance from judgments the environment can carry repeatably. Alignment can mechanize an obligation that is already decidable. Modeling can move the frontier by changing the representation until a previously reconstructed property becomes decidable (\autoref{determinization-frontier}). Read in factory terms, that separation is partly economic. On one side sit the judgments a factory continues to buy probabilistically through its production process; on the other, the properties it has chosen to represent explicitly and carry as durable tolerances.
+
+DocAble illustrates both sides of the frontier. Determining what a figure means and writing an adequate description require semantic judgment. Once a description has been attached to the intended object in a document model, checking the presence and placement of that metadata can be mechanical. The second operation does not prove that the description is good. Modeling has made a narrower obligation observable, and Alignment can carry that obligation without repeatedly buying the original semantic judgment.
+
+The frontier therefore does not promise to eliminate judgment. Better representation may improve a human or agent's evaluation even when no definitive predicate becomes available. Where a property does become mechanically decidable, the relevant question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.
+```

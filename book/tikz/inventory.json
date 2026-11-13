@@ -1069,8 +1069,8 @@
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "The determinization frontier: two routes by which repeated judgment becomes machinery",
-    "svg_description": "A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:\n    when a property is already decidable over the current artifact, Alignment encodes the predicate directly\n    into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,\n    Modeling changes the representation first, producing a structured relation. Both routes converge on a\n    shared step, a predicate evaluated over a model — Alignment's test is a predicate over the artifact taken\n    as its own trivial model, Modeling's check is a predicate over the externalized structured relation — and\n    both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the\n    two sides the determinization frontier."
+    "svg_title": "The Determinization Frontier",
+    "svg_description": "Repeated judgment takes one of two routes. If a property requires reconstruction, Modeling changes the representation to expose a decidable property, a predicate over the model. If the property is already decidable, it bypasses that modeling step. Both paths join before Alignment, which encodes and evaluates the predicate. The sequence then proceeds through a test or validator, a gate, and a repeatable decision. A side annotation states that the determinization frontier changes what is decidable through Modeling, then binds the decision through Alignment."
   },
   {
     "chapter": "6.3-scope-conditions",

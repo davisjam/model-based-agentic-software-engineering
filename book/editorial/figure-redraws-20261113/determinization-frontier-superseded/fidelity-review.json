@@ -1,0 +1,26 @@
+{
+  "source": "book/assets/determinization-frontier.svg",
+  "candidate": "book/tikz/figures/determinization-frontier.tex",
+  "checks": {
+    "icons_and_symbols": "No status icons.",
+    "links_and_groups": "Distinct alignment/modeling routes converge on predicate and decision.",
+    "annotation_placement": "Decidability/reconstruction annotations sit on branches; frontier statement below."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 373.7030029296875,
+  "height_bp": 250.26800537109375,
+  "monochrome": true,
+  "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
+  "candidate_sha256": "c7c8897a9584c6f226cf698e38bdbb9f8c5727b8bc689c978e212232e5d20a6d",
+  "review": "Reviewed and retained.",
+  "decision": "retained"
+}

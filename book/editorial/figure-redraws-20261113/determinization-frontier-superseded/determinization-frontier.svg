@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Chapter 6 print composition: authored geometry and readable type. Original title/description and native monochrome partner retained. Width declared by stable figure label. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 438" width="600" height="438" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">The determinization frontier: two routes by which repeated judgment becomes machinery</title>
+<desc id="figure-description">A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:
+    when a property is already decidable over the current artifact, Alignment encodes the predicate directly
+    into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,
+    Modeling changes the representation first, producing a structured relation. Both routes converge on a
+    shared step, a predicate evaluated over a model — Alignment's test is a predicate over the artifact taken
+    as its own trivial model, Modeling's check is a predicate over the externalized structured relation — and
+    both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the
+    two sides the determinization frontier.</desc>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker><marker id="purple-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#7c6bb0"/></marker></defs>
+<rect id="repeated-judgment" x="166" y="8" width="268" height="44" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+<text x="300" y="37" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">REPEATED JUDGMENT</text>
+<path d="M233 52 V68 H150 V79" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#muted-arrow)"/>
+<path d="M367 52 V68 H450 V79" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#muted-arrow)"/>
+<text x="150" y="98" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">property already</text>
+<text x="150" y="121" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">decidable</text>
+<text x="450" y="98" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">property requires</text>
+<text x="450" y="121" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">reconstruction</text>
+<path d="M150 127 L150 142" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<path d="M450 127 L450 142" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#green-arrow)"/>
+<rect id="alignment" x="27" y="144" width="246" height="58" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="150" y="168" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">ALIGNMENT</text>
+<text x="150" y="192" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">encode predicate</text>
+<rect id="modeling" x="327" y="144" width="246" height="58" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="450" y="168" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">MODELING</text>
+<text x="450" y="192" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">change representation</text>
+<path d="M150 202 L150 219" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<path d="M450 202 L450 219" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#green-arrow)"/>
+<rect id="align-terminal" x="27" y="221" width="246" height="54" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="150" y="244" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">test / validator</text>
+<text x="150" y="267" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">constraint / gate</text>
+<rect id="model-terminal" x="327" y="221" width="246" height="54" rx="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+<text x="450" y="254" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">structured relation</text>
+<path d="M150 275 V291 H285 V305" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<path d="M450 275 V291 H315 V305" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#green-arrow)"/>
+<text x="300" y="327" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">predicate over model</text>
+<path d="M300 335 L300 351" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<rect id="repeatable-decision" x="140" y="353" width="320" height="44" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="300" y="382" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">REPEATABLE DECISION</text>
+<text x="300" y="425" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700" font-style="italic">← determinization frontier →</text>
+</svg>

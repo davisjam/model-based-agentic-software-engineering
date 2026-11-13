@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 636,
+    "total_sites": 635,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 300,
+      "book-web": 299,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -1557,7 +1557,7 @@
           },
           {
             "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 30
+            "occ": 28
           },
           {
             "file": "book/web/docs/6.3-scope-conditions.md",
@@ -1637,7 +1637,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 150
+            "occ": 148
           },
           {
             "file": "book/web/docs/index.md",
@@ -2506,10 +2506,6 @@
             "occ": 2
           },
           {
-            "file": "book/web/docs/6.2-what-the-theory-predicts.md",
-            "occ": 3
-          },
-          {
             "file": "book/web/docs/6.3-scope-conditions.md",
             "occ": 1
           },
@@ -2551,7 +2547,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 18
+            "occ": 15
           },
           {
             "file": "book/web/docs/part-2-intro.md",
@@ -2561,7 +2557,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 21
+            "occ": 20
           }
         ]
       },

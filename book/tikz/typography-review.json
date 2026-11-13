@@ -20377,360 +20377,159 @@
     {
       "source": "book/assets/determinization-frontier.svg",
       "candidate": "book/tikz/figures/determinization-frontier.tex",
+      "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
+      "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
       "decision": "refined",
-      "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
-      "candidate_sha256": "e67fdee4705294497b03baa8f40eaec3a248e78a1c4aebadd952941203bb15ee",
-      "evidence": [
-        {
-          "source_text": "test / validator\nconstraint / gate",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "20"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Test / validator / constraint / gate",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "test / validator",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "250",
-                "y": "370",
-                "text_element": 12
-              }
-            },
-            {
-              "text": "constraint / gate",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "250",
-                "y": "390",
-                "text_element": 13
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "structured relation",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "20"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Structured relation",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "structured relation",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "750",
-                "y": "380",
-                "text_element": 14
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "REPEATABLE DECISION",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "20"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "REPEATABLE DECISION",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "REPEATABLE DECISION",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "500",
-                "y": "542",
-                "text_element": 17
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "REPEATED JUDGMENT",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "20"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "REPEATED JUDGMENT",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "REPEATED JUDGMENT",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "500",
-                "y": "117",
-                "text_element": 3
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "encode predicate",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Encode predicate",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "encode predicate",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "250",
-                "y": "302",
-                "text_element": 9
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "change representation",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Change representation",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "change representation",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "750",
-                "y": "302",
-                "text_element": 11
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "property already\ndecidable",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "already decidable",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "property already",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "250",
-                "y": "207",
-                "text_element": 4
-              }
-            },
-            {
-              "text": "decidable",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "250",
-                "y": "223",
-                "text_element": 5
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "property requires\nreconstruction",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "requires reconstruction",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "property requires",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "750",
-                "y": "207",
-                "text_element": 6
-              }
-            },
-            {
-              "text": "reconstruction",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "750",
-                "y": "223",
-                "text_element": 7
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "predicate\nover model",
-          "source_style": {
-            "font-weight": "400",
-            "font-style": "italic",
-            "font-size": "20"
-          },
-          "semantic_role": "explanatory annotation or feedback relation",
-          "candidate_text": "Predicate over model",
-          "candidate_style": "italic",
-          "source_fragments": [
-            {
-              "text": "predicate",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "500",
-                "y": "454",
-                "text_element": 15
-              }
-            },
-            {
-              "text": "over model",
-              "style": {
-                "font-weight": "400",
-                "font-style": "italic",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "500",
-                "y": "470",
-                "text_element": 16
-              }
-            }
-          ]
-        }
-      ],
-      "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+      "reviewed_visually": true,
+      "reason": "Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Test/validator/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling.",
+      "validation": {
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
+        "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+        "page": 1,
+        "width_bp": 409.973,
+        "height_bp": 352.974,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          10.0,
+          11.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "reviewed_peer_groups": 1,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 12,
+        "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
+        "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/typography-review.json",
       "checks": [
         {
-          "text": "Test / validator / constraint / gate",
-          "bold": true
-        },
-        {
-          "text": "Structured relation",
-          "bold": true
-        },
-        {
-          "text": "REPEATABLE DECISION",
-          "bold": true
-        },
-        {
           "text": "REPEATED JUDGMENT",
-          "bold": true
+          "bold": true,
+          "italic": false
         },
         {
-          "text": "Encode predicate",
+          "text": "property requires reconstruction",
+          "bold": false,
           "italic": true
+        },
+        {
+          "text": "property already decidable",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "MODELING",
+          "bold": true,
+          "italic": false
         },
         {
           "text": "Change representation",
-          "italic": true
-        },
-        {
-          "text": "already decidable",
-          "italic": true
-        },
-        {
-          "text": "requires reconstruction",
-          "italic": true
-        },
-        {
-          "text": "Predicate over model",
-          "italic": true
-        },
-        {
-          "text": "The determinization frontier:",
           "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Decidable property (predicate over model)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "ALIGNMENT",
+          "bold": true,
           "italic": false
+        },
+        {
+          "text": "Encode and evaluate the predicate",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Test / validator",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Gate",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "REPEATABLE DECISION",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "The determinization frontier: change what is decidable (Modeling), then bind the decision (Alignment).",
+          "bold": false,
+          "italic": true
         }
       ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 85,
-        "width_bp": 373.703,
-        "height_bp": 249.499,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 10
-      },
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
-        "source_sha256": "f7b221fa227bded866f43ba9ba0bd537bab23128fb68b49529849ff36d6a77f4",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
-      }
+      "evidence": [
+        {
+          "candidate_text": "REPEATED JUDGMENT",
+          "candidate_style": "bold",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "property requires reconstruction",
+          "candidate_style": "italic",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "property already decidable",
+          "candidate_style": "italic",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "MODELING",
+          "candidate_style": "bold",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "Change representation",
+          "candidate_style": "italic",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "Decidable property (predicate over model)",
+          "candidate_style": "italic",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "ALIGNMENT",
+          "candidate_style": "bold",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "Encode and evaluate the predicate",
+          "candidate_style": "italic",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "Test / validator",
+          "candidate_style": "bold",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "Gate",
+          "candidate_style": "bold",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "REPEATABLE DECISION",
+          "candidate_style": "bold",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        },
+        {
+          "candidate_text": "The determinization frontier: change what is decidable (Modeling), then bind the decision (Alignment).",
+          "candidate_style": "italic",
+          "semantic_role": "reasoning premise, MAGE activity, check/gate stage, or frontier annotation"
+        }
+      ]
     },
     {
       "source": "book/assets/return-governability.svg",

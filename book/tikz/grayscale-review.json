@@ -2401,12 +2401,38 @@
   {
     "source": "book/assets/determinization-frontier.svg",
     "candidate": "book/tikz/figures/determinization-frontier.tex",
+    "source_sha256": "ced23414c6f2188173ef08c85a8077e2a438c20d606f381fdbddfe0a03b89a3a",
+    "candidate_sha256": "aea618f77ba5bcebb0630ef0a1cc702c5b3ff9f318260098ad10a4067080e8f2",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-reference redraw corrects the former parallel branch topology. The reconstruction route passes through Modeling to a decidable property, while an already-decidable property bypasses that step. Both routes join before Alignment, followed by Test/validator, Gate, and Repeatable decision. The gate does not produce the predicate. The ambiguous Constraint/gate alternative is narrowed to Gate for this evidence-to-consequence sequence. Decorative bottom frontier arrows and internal headline are removed.",
+    "validation": {
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/determinization-frontier-20261113/candidates.pdf",
+      "proof_sha256": "484fa9579044106273d82a0c499e8c75123d81287200c016c96db1c2ae4d5d39",
+      "page": 1,
+      "width_bp": 409.973,
+      "height_bp": 352.974,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        10.0,
+        11.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 12,
+      "audit_sha256": "fa5b10979a670dabbaf59090cbdc9203390c3b1c7b78e8e3fb22c48258bccf22",
+      "typography_audit_sha256": "73796a47390bfdf5f516901e82b1efe1720413b352121d007d500cca88486b5e",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261113/determinization-frontier-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/determinization-frontier.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Alignment route darker, modeling route lighter; convergence into consequential repeatable decision emphasized.",
-    "source_sha256": "c117bc50fd9e5b11910eee9227a716a4fbadac11adb903a22e892642940610f8",
-    "candidate_sha256": "c7c8897a9584c6f226cf698e38bdbb9f8c5727b8bc689c978e212232e5d20a6d"
+    "rationale": "Light gray identifies the two named MAGE activities, Modeling and Alignment. Property/result artifacts and the test/validator and gate remain white. No ornamental enclosing region or additional gray role is used. Repeated judgment and repeatable decision are bold11pt; named Modeling/Alignment activities and Test/validator/Gate stages are bold10pt. Route premises, action descriptions, decidable-property explanation, and side annotation use italic9pt. No post-render scaling."
   },
   {
     "source": "book/assets/return-governability.svg",
