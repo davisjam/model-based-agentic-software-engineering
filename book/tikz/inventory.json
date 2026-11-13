@@ -464,6 +464,20 @@
     "svg_description": "A linear pipeline. A structured model of records, edges, and states supports predicates\n    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for\n    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift\n    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or\n    refined invariant. This is one executable-model pattern, not the definition of executability."
   },
   {
+    "chapter": "part3/00-part-intro",
+    "source": "assets/alignment-overview.svg",
+    "caption": "Alignment from models to enforcement. Engineering models express obligations that the environment can enforce through constraints on actions or states, and through evidence evaluated at gates. Sensors obtain evidence from artifacts and executions, including through static and dynamic analysis. Gates can also require results from constraint checks. These functions may be combined in one mechanism; each governs only the obligations and evidence within its scope.",
+    "native_context": "book/latex/sources/part3/00-part-intro.tex",
+    "d2_source": null,
+    "receipt": "book/tikz/receipts/alignment-overview.json",
+    "generator": null,
+    "data": [],
+    "conversion": "Author-reference native TikZ and matching SVG overview",
+    "svg_title": "Alignment from models to enforcement",
+    "svg_description": "Engineering models supply selected obligations. One branch restricts agentic work through constraints; another supplies evaluation rules derived from modeled obligations. Sensors obtain evidence from the work. Gates use evidence, evaluation rules, and optional constraint-check results to admit work or refuse it for revision. Constraints can also enforce directly without a gate.",
+    "native_source": "book/tikz/figures/alignment-overview.tex"
+  },
+  {
     "chapter": "3.1-where-obligations-can-be-enforced",
     "source": "assets/intervention-boundaries.svg",
     "caption": "*Intervention boundaries.* Guidance influences reasoning; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates. Later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.",

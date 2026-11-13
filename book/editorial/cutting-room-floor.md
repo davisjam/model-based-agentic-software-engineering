@@ -19907,3 +19907,46 @@ DocAble illustrates both sides of the frontier. Determining what a figure means 
 
 The frontier therefore does not promise to eliminate judgment. Better representation may improve a human or agent's evaluation even when no definitive predicate becomes available. Where a property does become mechanically decidable, the relevant question is whether the resulting evidence and enforcement are trustworthy enough for the consequence attached to them. P2 would be challenged if the proposed representation fails to make the important property checkable, or if apparent assurance gains disappear once coverage, false rejection, correct throughput, and cost are compared fairly.
 ```
+
+
+## Chapter 3 introduction replaced by Alignment overview (13 November 2026)
+
+Source: `book/latex/sources/part3/00-part-intro.tex`, lines 7–36, revision `4f39658c8`. Reason: the author requested a concrete account of constraints, evidence, and admission before the chapter develops each mechanism. The historical opening and canonical Alignment Principle box are retained. The remaining displaced prose is preserved here for possible reuse.
+
+```latex
+MAGE calls this move Alignment and treats it as the companion to Modeling.
+In \magevalue{chapter:modeling}, an architectural relation specified which components may communicate, while a state machine specified how a job should respond to events.
+Their defined meanings make selected engineering decisions explicit.
+Alignment connects those decisions to mechanisms in the engineered environment.
+Constraints restrict actions or states; sensors supply evidence; and gates evaluate evidence and control whether work may proceed.
+An obligation with no such mechanism may still matter greatly, but satisfying it continues to depend on human or agent judgment at the point of use.
+
+Commodity intelligence makes this longstanding problem newly important. A generative implementer---an agent---can produce plausible realizations rapidly and explore degrees of freedom that human implementers might never have considered. Instructions alone do not determine which realization will appear. If an architectural relation, behavioral invariant, ownership rule, measurement requirement, or policy matters to the system, relying on the agent to preserve it leaves that obligation on the system\textquotesingle s \textbf{probabilistic surface}.
+
+Selected obligations can instead be encoded into the engineered environment. Some can be enforced directly through interfaces, permissions, types, or other constraints; others require evidence produced as work proceeds and evaluated before the result is accepted. The appropriate mechanism depends on the obligation and on where the evidence needed to evaluate it becomes available.
+
+% <!-- principlebox -->
+
+% <!-- box-family: canonical -->
+
+% <!-- index-def: alignment-principle -->
+
+\begin{quote}
+\mbox{}%
+\subsection{Key Ideas}\label{heading:alignment-principle}
+
+\textbf{Alignment Principle.} Make selected engineering obligations enforceable through constraints that restrict actions or states, sensors that produce evidence, and gates that evaluate evidence and control whether work may proceed.
+\end{quote}
+
+A direct constraint may be sufficient; other obligations require evidence and a gate that acts on it. Not every preference warrants mechanical enforcement, and not every important property can support it. Some obligations remain dependent on expert judgment; others would cost more to mechanize than doing so is worth. \magevalue{chapter:modeling}\textquotesingle s tolerances and degrees of freedom also distinguish obligations from variation that engineers deliberately leave open. The sections ahead develop how to choose among these possibilities.
+
+Some mechanisms can be designed before work begins. Others emerge when a failure exposes something the environment did not represent, observe, evaluate, or control. When those lessons become durable engineering structure, later work can inherit them as engineering capital. As the mechanisms accumulate, the control machinery itself becomes an engineering object.
+```
+
+### Adjacent guidance paragraph
+
+Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, paragraph beginning “Start with the distinction,” revision `4f39658c8`. Shortened to avoid repeating the new overview.
+
+```latex
+Start with the distinction between guidance and enforcement. \textbf{Guidance influences behavior; enforcement determines what the environment will permit or accept.} A prompt, brief, example, or playbook can make one action more likely than another, and that influence can be strong. A permission boundary can forbid an action; a validator and gate can refuse a result. Feedback can then return the evidence or explanation to the reasoner---a failing test, an observed call, a measured latency, or a validator\textquotesingle s explanation---so that subsequent work can respond. MAGE uses all of these mechanisms, but counts an obligation as enforced only when the engineered environment constrains the relevant action or determines whether the resulting work is accepted rather than merely advising the reasoner.
+```

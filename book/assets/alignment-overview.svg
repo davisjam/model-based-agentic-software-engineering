@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 400" width="450" height="400" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<title id="title">Alignment from models to enforcement</title>
+<desc id="desc">Engineering models supply selected obligations. One branch restricts agentic work through constraints; another supplies evaluation rules derived from modeled obligations. Sensors obtain evidence from the work. Gates use evidence, evaluation rules, and optional constraint-check results to admit work or refuse it for revision. Constraints can also enforce directly without a gate.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker></defs>
+<rect x="107.5" y="2.0" width="235" height="40" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="225" y="20.5" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Engineering Models</text>
+<text x="225" y="33.5" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Architecture · Behavior · Policy</text>
+<rect x="107.5" y="56.0" width="235" height="40" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="225" y="74.5" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Selected Obligations</text>
+<text x="225" y="87.5" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Properties · Bounds · Rules</text>
+<rect x="4.0" y="112.0" width="160" height="54" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="84" y="132.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Constraints</text>
+<text x="84" y="145.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Restrict actions or states</text>
+<text x="84" y="156.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">(types, permissions, interfaces)</text>
+<rect x="255.0" y="112.0" width="190" height="54" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="350" y="132.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Evaluation Rules</text>
+<text x="350" y="145.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Predicates derived from</text>
+<text x="350" y="156.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">modeled obligations</text>
+<rect x="105.0" y="178.0" width="240" height="40" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="225" y="191.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Agentic Work</text>
+<text x="225" y="204.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Proposed actions · Implementation</text>
+<text x="225" y="215.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Runtime behavior</text>
+<rect x="110.0" y="230.0" width="230" height="48" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="225" y="247.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Sensors</text>
+<text x="225" y="260.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Obtain evidence from the work</text>
+<text x="225" y="271.0" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">(SAST, DAST, instrumentation)</text>
+<rect x="100.0" y="294.0" width="250" height="54" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="225" y="308.5" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Gates</text>
+<text x="225" y="321.5" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">Use evaluation results to control</text>
+<text x="225" y="332.5" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">whether work may proceed</text>
+<text x="225" y="343.5" text-anchor="middle" font-size="9" fill="#1c1917" font-style="italic">(merge, deployment, authorization)</text>
+<rect x="106.0" y="372.0" width="104" height="24" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="158" y="388.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Admit</text>
+<rect x="236.0" y="372.0" width="128" height="24" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="300" y="388.0" text-anchor="middle" font-size="11" fill="#1c1917" font-weight="700">Refuse / Revise</text>
+<path d="M225 42 L225 56" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M225 96 V100 H84" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<path d="M84 100 L84 112" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M225 100 L350 100 L350 112" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M84 166 L84 198 L105 198" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M225 218 L225 230" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M225 278 L225 294" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M350 166 L400 166 L400 321 L350 321" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M40 166 L40 321 L100 321" fill="none" stroke="#1c1917" stroke-width=".65" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="4" y="253" width="72" height="28" fill="#ffffff"/>
+<text x="40" y="264" text-anchor="middle" font-size="9" font-style="italic" fill="#1c1917">Constraint /</text><text x="40" y="275" text-anchor="middle" font-size="9" font-style="italic" fill="#1c1917">check result</text>
+<path d="M225 348 V356" fill="none" stroke="#1c1917" stroke-width=".65"/>
+<path d="M225 356 L158 356 L158 372" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M225 356 L300 356 L300 372" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+</svg>

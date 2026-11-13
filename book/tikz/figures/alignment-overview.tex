@@ -1,0 +1,48 @@
+% New chapter overview; supplied author reference, caption outside artwork.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont]
+\hyphenpenalty=10000
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (107.5,2.0) rectangle (342.5,42.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (225,20.5) {Engineering Models};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,33.5) {Architecture \textperiodcentered{} Behavior \textperiodcentered{} Policy};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (107.5,56.0) rectangle (342.5,96.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (225,74.5) {Selected Obligations};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,87.5) {Properties \textperiodcentered{} Bounds \textperiodcentered{} Rules};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (4.0,112.0) rectangle (164.0,166.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (84,132.0) {Constraints};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (84,145.0) {Restrict actions or states};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (84,156.0) {(types, permissions, interfaces)};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (255.0,112.0) rectangle (445.0,166.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (350,132.0) {Evaluation Rules};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (350,145.0) {Predicates derived from};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (350,156.0) {modeled obligations};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (105.0,178.0) rectangle (345.0,218.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (225,191.0) {Agentic Work};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,204.0) {Proposed actions \textperiodcentered{} Implementation};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,215.0) {Runtime behavior};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (110.0,230.0) rectangle (340.0,278.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (225,247.0) {Sensors};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,260.0) {Obtain evidence from the work};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,271.0) {(SAST, DAST, instrumentation)};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (100.0,294.0) rectangle (350.0,348.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (225,308.5) {Gates};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,321.5) {Use evaluation results to control};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,332.5) {whether work may proceed};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{10.799999999999999}\selectfont\itshape] at (225,343.5) {(merge, deployment, authorization)};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (106.0,372.0) rectangle (210.0,396.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (158,388.0) {Admit};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (236.0,372.0) rectangle (364.0,396.0);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{13.2}\selectfont\bfseries] at (300,388.0) {Refuse / Revise};
+\draw[->,line width=.65pt] (225,42) -- (225,56);
+\draw[line width=.65pt] (225,96) -- (225,100) -- (84,100);
+\draw[->,line width=.65pt] (84,100) -- (84,112);
+\draw[->,line width=.65pt] (225,100) -- (350,100) -- (350,112);
+\draw[->,line width=.65pt] (84,166) -- (84,198) -- (105,198);
+\draw[->,line width=.65pt] (225,218) -- (225,230);
+\draw[->,line width=.65pt] (225,278) -- (225,294);
+\draw[->,line width=.65pt] (350,166) -- (400,166) -- (400,321) -- (350,321);
+\draw[->,line width=.65pt,dashed] (40,166) -- (40,321) -- (100,321);
+\node[fill=white,inner sep=3pt,align=center,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (40,267) {Constraint /\\check result};
+\draw[line width=.65pt] (225,348) -- (225,356);
+\draw[->,line width=.65pt] (225,356) -- (158,356) -- (158,372);
+\draw[->,line width=.65pt] (225,356) -- (300,356) -- (300,372);
+\end{tikzpicture}

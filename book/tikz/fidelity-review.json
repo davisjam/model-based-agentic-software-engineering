@@ -4799,6 +4799,51 @@
       "height_bp": 305.572,
       "monochrome": true,
       "review": "Both native and live-text SVG proofs inspected at print size and 2×. Three left-hand row labels organize the workflow, context-selection mechanisms, and resource container. The admission gate is a diamond before implementation, admitting the discovery-evidence initial commit. Gate text remains at 9–10 pt without scaling; the taller diamond fits in otherwise empty space. The refined-context box was widened slightly to retain label padding. No caption or figure number is embedded. The gate explicitly precedes implementation, as specified by the author’s bootstrap workflow."
+    },
+    {
+      "source": "book/assets/alignment-overview.svg",
+      "candidate": "book/tikz/figures/alignment-overview.tex",
+      "source_sha256": "0bfec14acef1b904bb1062980550003957596afd9a01da8514f40a7c32d4c708",
+      "candidate_sha256": "bcf11a6bb33daefd24ae0ac82fc74a1bc7c40ae7643543c15b0799c409c6e923",
+      "decision": "new author-requested overview",
+      "reviewed_visually": true,
+      "reason": "New chapter-opening overview; obligations feed direct constraints and evaluation rules, sensors supply evidence, and gates control admission. No internal caption, title, or legend.",
+      "checks": {
+        "relationships": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. No embedded title, caption, or legend.",
+        "annotation_placement": "Dashed optional constraint-check result is labeled beside the route. All other relationships use direct orthogonal arrows.",
+        "source_adaptations": "Corrected evaluation-rule subtitle per attached prose; Gates uses the user-selected wording; removed headline and legend."
+      },
+      "validation": {
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/alignment-overview-20261113/candidates.pdf",
+        "proof_sha256": "6fa8bc37661279f257bbd61dcb6506e59c6857ee4af75fdb4bad6f1d407486ed",
+        "page": 1,
+        "width_bp": 447.62,
+        "height_bp": 400.621,
+        "minimum_prose_font_pt": 9,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "fff9fb575826879bbad940d2e3eff664a3fd42306fbd05cd82524a91fee7afa9",
+        "typography_audit_sha256": "607826defe704010c0945fb2182fa20065e671932961d13071220c41075ef4a1",
+        "semantic_typography_checks": 23,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      },
+      "font_qa": {
+        "minimum": 9,
+        "rendered_prose_sizes_tex_pt": [
+          9,
+          11
+        ],
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 447.62,
+      "height_bp": 400.621,
+      "monochrome": true,
+      "review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. No embedded title, caption, or legend."
     }
   ],
   "last_revised_date": "2026-11-10"

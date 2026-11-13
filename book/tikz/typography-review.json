@@ -30755,6 +30755,266 @@
         "status": "passed",
         "validation_scope": "Isolated four-figure production-style native proof only; full candidate-pool integration belongs to the parent."
       }
+    },
+    {
+      "source": "book/assets/alignment-overview.svg",
+      "candidate": "book/tikz/figures/alignment-overview.tex",
+      "source_sha256": "0bfec14acef1b904bb1062980550003957596afd9a01da8514f40a7c32d4c708",
+      "candidate_sha256": "bcf11a6bb33daefd24ae0ac82fc74a1bc7c40ae7643543c15b0799c409c6e923",
+      "decision": "new author-requested overview",
+      "reviewed_visually": true,
+      "reason": "New chapter-opening overview; obligations feed direct constraints and evaluation rules, sensors supply evidence, and gates control admission. No internal caption, title, or legend.",
+      "checks": [
+        {
+          "text": "Engineering Models",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Architecture · Behavior · Policy",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Selected Obligations",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Properties · Bounds · Rules",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Constraints",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Restrict actions or states",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "(types, permissions, interfaces)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Evaluation Rules",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Predicates derived from",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "modeled obligations",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Agentic Work",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Proposed actions · Implementation",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Runtime behavior",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Sensors",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Obtain evidence from the work",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "(SAST, DAST, instrumentation)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Gates",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Use evaluation results to control",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "whether work may proceed",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "(merge, deployment, authorization)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Admit",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Refuse / Revise",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Constraint / check result",
+          "bold": false,
+          "italic": true
+        }
+      ],
+      "evidence": [
+        {
+          "candidate_text": "Engineering Models",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Architecture · Behavior · Policy",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Selected Obligations",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Properties · Bounds · Rules",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Constraints",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Restrict actions or states",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "(types, permissions, interfaces)",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Evaluation Rules",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Predicates derived from",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "modeled obligations",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Agentic Work",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Proposed actions · Implementation",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Runtime behavior",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Sensors",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Obtain evidence from the work",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "(SAST, DAST, instrumentation)",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Gates",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Use evaluation results to control",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "whether work may proceed",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "(merge, deployment, authorization)",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Admit",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Refuse / Revise",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "Constraint / check result",
+          "candidate_style": "italic",
+          "semantic_role": "Named mechanism or its explanatory role"
+        }
+      ],
+      "validation": {
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/alignment-overview-20261113/candidates.pdf",
+        "proof_sha256": "6fa8bc37661279f257bbd61dcb6506e59c6857ee4af75fdb4bad6f1d407486ed",
+        "page": 1,
+        "width_bp": 447.62,
+        "height_bp": 400.621,
+        "minimum_prose_font_pt": 9,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "fff9fb575826879bbad940d2e3eff664a3fd42306fbd05cd82524a91fee7afa9",
+        "typography_audit_sha256": "607826defe704010c0945fb2182fa20065e671932961d13071220c41075ef4a1",
+        "semantic_typography_checks": 23,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      }
     }
   ],
   "historical_figures": [

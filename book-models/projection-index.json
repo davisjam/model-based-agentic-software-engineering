@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 635,
+    "total_sites": 633,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 299,
+      "book-web": 297,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -205,7 +205,7 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/web/docs/part-4-intro.md",
@@ -814,10 +814,6 @@
             "occ": 3
           },
           {
-            "file": "book/web/docs/3.1-where-obligations-can-be-enforced.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/3.3-constraints-sensors-validators-gates.md",
             "occ": 2
           },
@@ -843,13 +839,13 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 3
+            "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -1121,7 +1117,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 179
+            "occ": 182
           },
           {
             "file": "book/web/docs/index.md",
@@ -1141,7 +1137,7 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 25
+            "occ": 28
           },
           {
             "file": "book/web/docs/part-4-intro.md",
@@ -1350,10 +1346,6 @@
             "occ": 13
           },
           {
-            "file": "book/web/docs/part-3-intro.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/part-6-intro.md",
             "occ": 1
           }
@@ -1361,7 +1353,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 21
+            "occ": 20
           }
         ]
       },
@@ -1657,7 +1649,7 @@
           },
           {
             "file": "book/web/docs/part-3-intro.md",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "book/web/docs/part-4-intro.md",
