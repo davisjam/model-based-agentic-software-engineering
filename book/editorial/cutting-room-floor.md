@@ -20310,3 +20310,12 @@ These episodes show the factory acquiring three different forms of machinery: a 
 
 
 ```
+
+
+## 2026-11-13 — Autonomy and proactivity: closing observation
+
+Source: `a55837663`, `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, closing paragraph of What Escalated Failures Became. Replaced by author-supplied copy distinguishing the DocAble observation from Bui and Evangelopoulos's conceptual distinction.
+
+```latex
+These episodes also reflect a recurring experience I had with coding agents. They were capable of diagnosing failures and implementing repairs, but seldom proposed the larger changes to models, architecture, or controls that would prevent a class of failures from recurring. A lost PDF tag tree suggested replacing a library call, not establishing a controlled mutation boundary. Fabricated descriptions suggested revising a prompt, not modeling which instructions were appropriate to different semantic tasks. A broken merge suggested repairing the integration script, not reconsidering which conflicts the factory should resolve automatically. I generally had to identify and direct these larger changes, although agents could implement the resulting machinery. Once a decision was represented explicitly, agents could also perform work that the new structure made identifiable and delegable, as with unresolved merge conflicts. This is an observation about my development experience, not a claim that AI cannot make such decisions. It suggests that the ability to implement an engineering change and the initiative to recognize that the change is needed are distinct capabilities.
+```
