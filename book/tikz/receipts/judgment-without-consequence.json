@@ -18,16 +18,16 @@
   "qa": {
     "date": "2026-11-13",
     "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-    "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+    "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
     "page": 1,
-    "width_bp": 278.672,
-    "height_bp": 344.671,
+    "width_bp": 330.671,
+    "height_bp": 287.672,
     "minimum_prose_font_pt": 9,
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-    "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-    "semantic_typography_checks": 15,
+    "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+    "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+    "semantic_typography_checks": 14,
     "monochrome_pixels": true,
     "status": "passed",
     "scope": "Native and SVG proofs inspected."
@@ -40,21 +40,21 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
-    "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+    "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
+    "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-      "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+      "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
       "page": 1,
-      "width_bp": 278.672,
-      "height_bp": 344.671,
+      "width_bp": 330.671,
+      "height_bp": 287.672,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-      "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-      "semantic_typography_checks": 15,
+      "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+      "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+      "semantic_typography_checks": 14,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs inspected."
@@ -65,6 +65,10 @@
     "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
     "revision_date": "2026-11-13",
     "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+      },
       {
         "date": "2026-11-13",
         "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
@@ -80,8 +84,8 @@
     "source": "book/assets/judgment-without-consequence.svg",
     "candidate": "book/tikz/figures/judgment-without-consequence.tex",
     "decision": "refined",
-    "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
-    "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+    "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
+    "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
     "evidence": [
       {
         "candidate_text": "UNSAFE FALLBACK AVAILABLE",
@@ -144,17 +148,12 @@
         "semantic_role": "Role, capability, responsibility, or qualitative axis label."
       },
       {
-        "candidate_text": "Remove -X theirs retry;",
+        "candidate_text": "Remove -X theirs retry; require escalation",
         "candidate_style": "regular",
         "semantic_role": "Role, capability, responsibility, or qualitative axis label."
       },
       {
-        "candidate_text": "require escalation on conflicts",
-        "candidate_style": "regular",
-        "semantic_role": "Role, capability, responsibility, or qualitative axis label."
-      },
-      {
-        "candidate_text": "without a sanctioned resolution",
+        "candidate_text": "on conflicts without a sanctioned resolution",
         "candidate_style": "regular",
         "semantic_role": "Role, capability, responsibility, or qualitative axis label."
       }
@@ -222,17 +221,12 @@
         "italic": false
       },
       {
-        "text": "Remove -X theirs retry;",
+        "text": "Remove -X theirs retry; require escalation",
         "bold": false,
         "italic": false
       },
       {
-        "text": "require escalation on conflicts",
-        "bold": false,
-        "italic": false
-      },
-      {
-        "text": "without a sanctioned resolution",
+        "text": "on conflicts without a sanctioned resolution",
         "bold": false,
         "italic": false
       }
@@ -240,16 +234,16 @@
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-      "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+      "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
       "page": 1,
-      "width_bp": 278.672,
-      "height_bp": 344.671,
+      "width_bp": 330.671,
+      "height_bp": 287.672,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-      "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-      "semantic_typography_checks": 15,
+      "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+      "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+      "semantic_typography_checks": 14,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs inspected."
@@ -260,15 +254,19 @@
       {
         "date": "2026-11-13",
         "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
       }
     ]
   },
   "layout_review": {
     "source": "book/assets/judgment-without-consequence.svg",
     "candidate": "book/tikz/figures/judgment-without-consequence.tex",
-    "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
+    "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
     "baseline_candidate_sha256": "ddb04cff00316b6d1861644b590533789140846845c4c624dbe1d2344c6f4907",
-    "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+    "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
     "decision": "refined",
     "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
     "reviewed_visually": true,
@@ -280,22 +278,26 @@
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-      "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+      "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
       "page": 1,
-      "width_bp": 278.672,
-      "height_bp": 344.671,
+      "width_bp": 330.671,
+      "height_bp": 287.672,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-      "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-      "semantic_typography_checks": 15,
+      "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+      "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+      "semantic_typography_checks": 14,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs inspected."
     },
     "revision_date": "2026-11-13",
     "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+      },
       {
         "date": "2026-11-13",
         "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
@@ -306,37 +308,37 @@
   "validation": {
     "date": "2026-11-13",
     "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-    "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+    "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
     "page": 1,
-    "width_bp": 278.672,
-    "height_bp": 344.671,
+    "width_bp": 330.671,
+    "height_bp": 287.672,
     "minimum_prose_font_pt": 9,
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-    "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-    "semantic_typography_checks": 15,
+    "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+    "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+    "semantic_typography_checks": 14,
     "monochrome_pixels": true,
     "status": "passed",
     "scope": "Native and SVG proofs inspected."
   },
-  "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
-  "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+  "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
+  "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
   "review": {
     "outcome": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-      "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+      "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
       "page": 1,
-      "width_bp": 278.672,
-      "height_bp": 344.671,
+      "width_bp": 330.671,
+      "height_bp": 287.672,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-      "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-      "semantic_typography_checks": 15,
+      "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+      "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+      "semantic_typography_checks": 14,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs inspected."
@@ -347,26 +349,26 @@
     "candidate": "book/tikz/figures/judgment-without-consequence.tex",
     "geometry_findings": [],
     "compiler_diagnostics": [],
-    "width_bp": 278.672,
-    "height_bp": 344.671,
+    "width_bp": 330.671,
+    "height_bp": 287.672,
     "monochrome": true,
-    "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
-    "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+    "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
+    "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
     "decision": "refined",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-      "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+      "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
       "page": 1,
-      "width_bp": 278.672,
-      "height_bp": 344.671,
+      "width_bp": 330.671,
+      "height_bp": 287.672,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-      "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-      "semantic_typography_checks": 15,
+      "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+      "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+      "semantic_typography_checks": 14,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs inspected."
@@ -374,6 +376,10 @@
     "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
     "revision_date": "2026-11-13",
     "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+      },
       {
         "date": "2026-11-13",
         "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
@@ -396,22 +402,22 @@
     "receipt": "book/tikz/receipts/judgment-without-consequence.json",
     "reviewed": true,
     "decision": "refined",
-    "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
-    "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+    "source_sha256": "8d37e741d6b04037fd678cf3656e089f7e8f5ce5722ef4bdafe0f14226d579dd",
+    "candidate_sha256": "7a4b9951cab1a22347ba34839bdbacfade19e05a34e8795a1577d224557db426",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
-      "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+      "proof_sha256": "b4ccccbfb84ed73fb1e8ab865bf01640d886da14840038877e16afcfe4005b36",
       "page": 1,
-      "width_bp": 278.672,
-      "height_bp": 344.671,
+      "width_bp": 330.671,
+      "height_bp": 287.672,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
-      "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
-      "semantic_typography_checks": 15,
+      "geometry_audit_sha256": "8bbac13db3287bd5f5bd2ebe1daaefd877201590fa58ee7e1cdbcefc144b80a0",
+      "typography_audit_sha256": "c42089be315d6332bbf1aa1e63bf74e4cea4a2b2f6a15a3e65007c41c60b9d39",
+      "semantic_typography_checks": 14,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs inspected."
@@ -422,11 +428,19 @@
       {
         "date": "2026-11-13",
         "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
       }
     ],
     "rationale": "Dashed warning and solid repair boundaries distinguish the control gap without color."
   },
   "revision_history": [
+    {
+      "date": "2026-11-13",
+      "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+    },
     {
       "date": "2026-11-13",
       "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."

@@ -1,33 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 342" width="284" height="342" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 285" width="336" height="285" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">A warning did not prevent unsafe integration</title>
 <desc id="desc">Control-gap reconstruction, not an execution trace. The integration fallback retries a rebase conflict with -X theirs. An audit detects the dangerous automatic resolution and evaluates it as unsafe, but only warns and leaves the fallback available. Observed incompatible edits made merge automation fail to load. The durable repair removed the retry and requires escalation for conflicts without a sanctioned resolution.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
-<rect x="6" y="2" width="272" height="37" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="16" text-anchor="middle" font-size="9" font-weight="700">UNSAFE FALLBACK AVAILABLE</text>
-<text x="142" y="28" text-anchor="middle" font-size="9">Rebase conflict: retry with -X theirs</text>
-<path d="M142 39V51" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
-<rect x="6" y="51" width="272" height="37" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="65" text-anchor="middle" font-size="9" font-weight="700">AUDIT / SENSOR</text>
-<text x="142" y="77" text-anchor="middle" font-size="9">Detects dangerous automatic resolution</text>
-<path d="M142 88V100" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
-<rect x="6" y="100" width="272" height="26" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="114" text-anchor="middle" font-size="9" font-weight="700">VERDICT: UNSAFE</text>
-<path d="M142 126V138" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
-<rect x="6" y="138" width="272" height="37" rx="3" fill="white" stroke="#111" stroke-width=".7" stroke-dasharray="4 3"/>
-<text x="142" y="152" text-anchor="middle" font-size="9" font-weight="700">WARNING ONLY</text>
-<text x="142" y="164" text-anchor="middle" font-size="9">Does not prevent operation</text>
-<path d="M142 175V187" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
-<rect x="6" y="187" width="272" height="26" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="201" text-anchor="middle" font-size="9" font-weight="700">UNSAFE FALLBACK REMAINS</text>
-<path d="M142 213V225" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
-<rect x="6" y="225" width="272" height="48" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="239" text-anchor="middle" font-size="9" font-weight="700">OBSERVED FAILURE</text>
-<text x="142" y="251" text-anchor="middle" font-size="9">Incompatible edits combined;</text>
-<text x="142" y="262" text-anchor="middle" font-size="9">merge automation fails to load</text>
-<path d="M142 273V285" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
-<rect x="6" y="285" width="272" height="55" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
-<text x="142" y="299" text-anchor="middle" font-size="9" font-weight="700">DURABLE REPAIR</text>
-<text x="142" y="311" text-anchor="middle" font-size="9">Remove -X theirs retry;</text>
-<text x="142" y="322" text-anchor="middle" font-size="9">require escalation on conflicts</text>
-<text x="142" y="333" text-anchor="middle" font-size="9">without a sanctioned resolution</text>
+<rect x="6" y="2" width="324" height="29" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="168" y="14" text-anchor="middle" font-size="9" font-weight="700">UNSAFE FALLBACK AVAILABLE</text>
+<text x="168" y="25" text-anchor="middle" font-size="9">Rebase conflict: retry with -X theirs</text>
+<path d="M168 31V43" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="43" width="324" height="29" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="168" y="55" text-anchor="middle" font-size="9" font-weight="700">AUDIT / SENSOR</text>
+<text x="168" y="66" text-anchor="middle" font-size="9">Detects dangerous automatic resolution</text>
+<path d="M168 72V84" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="84" width="324" height="21" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="168" y="96" text-anchor="middle" font-size="9" font-weight="700">VERDICT: UNSAFE</text>
+<path d="M168 105V117" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="117" width="324" height="29" rx="3" fill="white" stroke="#111" stroke-width=".7" stroke-dasharray="4 3"/>
+<text x="168" y="129" text-anchor="middle" font-size="9" font-weight="700">WARNING ONLY</text>
+<text x="168" y="140" text-anchor="middle" font-size="9">Does not prevent operation</text>
+<path d="M168 146V158" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="158" width="324" height="21" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="168" y="170" text-anchor="middle" font-size="9" font-weight="700">UNSAFE FALLBACK REMAINS</text>
+<path d="M168 179V191" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="191" width="324" height="40" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="168" y="203" text-anchor="middle" font-size="9" font-weight="700">OBSERVED FAILURE</text>
+<text x="168" y="214" text-anchor="middle" font-size="9">Incompatible edits combined;</text>
+<text x="168" y="225" text-anchor="middle" font-size="9">merge automation fails to load</text>
+<path d="M168 231V243" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="243" width="324" height="40" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="168" y="255" text-anchor="middle" font-size="9" font-weight="700">DURABLE REPAIR</text>
+<text x="168" y="266" text-anchor="middle" font-size="9">Remove -X theirs retry; require escalation</text>
+<text x="168" y="277" text-anchor="middle" font-size="9">on conflicts without a sanctioned resolution</text>
 </svg>
