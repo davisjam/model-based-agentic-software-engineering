@@ -1,0 +1,1 @@
+Superseded Figure 2.17 sources and review rows from 4237fa108, preserved on 2026-11-13. New three-column comparison uses the author-supplied reference with the repeated footer and internal caption removed. Author approval remains pending.

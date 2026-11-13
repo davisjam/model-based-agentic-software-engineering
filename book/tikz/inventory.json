@@ -427,15 +427,15 @@
   {
     "chapter": "2.5-system-knowledge",
     "source": "assets/derive-generate-trace.svg",
-    "caption": "*Three correspondence patterns.* Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable.",
+    "caption": "*Three correspondence patterns.* Derivation extracts models from implementation; generation produces implementation artifacts from models; traceability connects representations maintained independently. Each relationship covers selected properties or artifacts rather than necessarily determining the entire implementation.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/derive-generate-trace.d2",
     "receipt": "book/d2-pilot/derive-generate-trace.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Three correspondence patterns: derive, generate, trace and check",
-    "svg_description": "Three panels. Derive: implementation in gray flows up to a model in blue, when the\n    implementation is the source of truth. Generate: a model in blue projects down to implementation or config in\n    gray, when the model is the source of truth. Trace and check: a model and system are linked two ways with a\n    rust check, when neither fully determines the other; only the decidable correspondences are checked."
+    "svg_title": "Three correspondence patterns",
+    "svg_description": "Three columns distinguish correspondence patterns. Derive: implementation is authoritative and an upward arrow extracts selected models from implementation; the implementation is shown without a represented-portion division. Generate: models are authoritative and a downward arrow produces a generated portion of implementation, leaving other decisions open. Trace and check: neither fully determines the other; one curved arrow traces related elements and the opposing arrow checks correspondence where decidable. A shaded corresponding portion is maintained and checked while other implementation decisions remain separate. Each model box shows the same small graph and state/response table."
   },
   {
     "chapter": "2.5-system-knowledge",

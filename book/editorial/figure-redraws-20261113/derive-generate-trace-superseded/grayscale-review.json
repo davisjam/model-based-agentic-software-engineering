@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/derive-generate-trace.svg",
+  "candidate": "book/tikz/figures/derive-generate-trace.tex",
+  "receipt": "book/tikz/receipts/derive-generate-trace.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Gray model tier contrasts with implementation/system tier; upward, downward and bidirectional relations retained.",
+  "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
+  "candidate_sha256": "d9753cb987434ad85a69cec8b3c03e141fb7bfb4366c324be80063d9afc62641"
+}

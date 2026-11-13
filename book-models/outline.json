@@ -1130,7 +1130,7 @@
           "section_id": "maintain-explicit-correspondence",
           "level": 2,
           "heading_text": "Maintain Explicit Correspondence",
-          "topic_sentence": "Multiple models create a correspondence problem: represented facts can diverge from the system or from one another.",
+          "topic_sentence": "Models and implementations can fall out of correspondence as a system changes.",
           "id_source": "derived",
           "block_index": 25,
           "points": [
@@ -1152,7 +1152,7 @@
           "heading_text": "Derive when implementation owns the truth",
           "topic_sentence": "The model is a projection of the implementation.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 37,
           "points": []
         },
         {
@@ -1161,22 +1161,22 @@
           "heading_text": "When the model is the source of truth",
           "topic_sentence": "**Generation** produces an artifact from a model: code, configuration, or documentation.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 39,
           "points": [
             {
               "slug": "the-computation-model-is-the-generate-case-execution-follows-it",
               "text": "A runner can read a task model to determine dependency order and readiness without generating a separate artifact.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "derivation-solves-correspondence-not-architecture-quality",
               "text": "A derived analytical graph still omits implementation detail, and derivation preserves only its declared correspondence rather than establishing architecture quality.",
-              "block_index": 47
+              "block_index": 49
             },
             {
               "slug": "where-neither-is-fully-derivable-maintain-traceability-and-check-decidable-predicates",
               "text": "Where neither model nor implementation fully determines the other, traceability records a defined relationship between model elements and current implementation targets so engineers and agents can inspect correspondence and assess the impact of changes.",
-              "block_index": 49
+              "block_index": 51
             }
           ]
         },
@@ -1186,12 +1186,12 @@
           "heading_text": "Trace and check where neither owns the truth",
           "topic_sentence": "Where neither side can be fully derived from the other, **traceability** records their relationship explicitly.",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 53,
           "points": [
             {
               "slug": "two-layers-cover-the-relationship-mechanical-and-judgment",
               "text": "Model coverage has a revisable boundary: some claims are mechanically decidable, others require semantic judgment, and unmodeled properties have no model-based coverage; experience may justify representing a new property or removing an unnecessary distinction.",
-              "block_index": 53
+              "block_index": 55
             }
           ]
         },
@@ -1201,22 +1201,22 @@
           "heading_text": "The Limits of Model Coverage",
           "topic_sentence": "The boundary of what engineers choose to model can change with experience.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 56,
           "points": [
             {
               "slug": "an-executable-model-is-its-schema-plus-its-checked-predicates",
               "text": "A structured schema plus checked predicates is one executable-model pattern; generation, simulation, transformation, and analysis are others, and correspondence to a changing system still requires checks or derivations.",
-              "block_index": 57
+              "block_index": 59
             },
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
               "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
-              "block_index": 59
+              "block_index": 61
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
               "text": "Correspondence follows the source of truth: derive an implementation view, generate an artifact or interpret an authoritative model, and trace and check where neither representation fully determines the other.",
-              "block_index": 62
+              "block_index": 64
             }
           ]
         },
@@ -1226,17 +1226,17 @@
           "heading_text": "Modeling Makes Properties Available to Engineering",
           "topic_sentence": "Modeling makes a property explicit; engineers decide how to use it.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 66,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
               "text": "A worker-pool model makes quantities and capacity comparisons explicit; engineers still choose whether to use them for planning, admission tuning, or a hard refusal.",
-              "block_index": 65
+              "block_index": 67
             },
             {
               "slug": "measurement-boundary-modeling-and-enforcement-are-separate",
               "text": "A measurement model defines quantities and their reference bounds; observation, adaptation, and enforcement require separate decisions and mechanisms, and model analysis also guides design.",
-              "block_index": 67
+              "block_index": 69
             }
           ]
         }

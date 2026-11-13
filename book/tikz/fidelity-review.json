@@ -1494,16 +1494,55 @@
     {
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
-      "source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
-      "candidate_sha256": "d9753cb987434ad85a69cec8b3c03e141fb7bfb4366c324be80063d9afc62641",
-      "decision": "retained",
-      "review": "Compared three ordered tiers and up/down/bidirectional relation semantics. Tier labels and directionality retained. No new change.",
-      "checks": "original SVG raster plus native final-size render; icons, edges, external annotations, containment, hierarchy and grayscale modes",
-      "dimensions_cm": [
-        13.7515,
-        6.3032
-      ],
-      "strict_compile_diagnostics": []
+      "source_sha256": "678d5a8fcb55d95e090e216bbf63ed2cc1f9af522e5bbe016cc5d2f8a9332855",
+      "candidate_sha256": "d5795001f9a6f544c1483eeed74553e052ebc483f4dcce5940ac69a67c97cbe7",
+      "decision": "refined",
+      "reviewed_visually": true,
+      "reason": "Author-requested three-column redraw distinguishes authority, correspondence direction, and the limited implementation surface governed by generation or maintained correspondence. The derivation implementation is not artificially divided. Separate curved trace and check arrows distinguish binding related elements from evaluating decidable correspondence. Repeated panel footer prose and internal figure title are omitted.",
+      "validation": {
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/correspondence-patterns-20261113/candidates.pdf",
+        "proof_sha256": "17aa6c003fc80b5bf040d02a38bbf83602786cac9a9f158d95df9111c0c695db",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 323.974,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          10.0,
+          11.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 14,
+        "audit_sha256": "9bf817763e0faf0b9b60d1500307a5aff4dd9b643ca506a527e81f46adc8c60d",
+        "typography_audit_sha256": "6c2bd369213be6985263eaabb1e565ca0ad149cb89ef86688650d81f83ea8050",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261113/derive-generate-trace-superseded/fidelity-review.json",
+      "checks": {
+        "icons_and_symbols": "Identical graph and state/response table in every model box. Code/document and gear symbols distinguish implementation portions.",
+        "links_and_groups": "Derive points upward from implementation to models. Generate points downward from models to generated implementation artifacts. Trace curves downward to bind related elements; check curves upward to evaluate correspondence where decidable. Thin vertical rules separate peer modes; internal graph examples have undirected structural edges.",
+        "annotation_placement": "Authority subtitles above models; derive/generate/trace/check explanations next to their own arrows. Generated and corresponding portions are shaded inside implementation boxes.",
+        "line_breaks": "Only whole-word breaks. The model-authority subtitle is one line; longer peer subtitles occupy two lines. Explanations remain in the relevant column."
+      },
+      "font_qa": {
+        "rendered_prose_sizes_tex_pt": [
+          9,
+          10,
+          11
+        ],
+        "minimum": 9,
+        "final_size_no_scaling": true
+      },
+      "geometry_findings": [],
+      "compiler_diagnostics": [],
+      "width_bp": 449.972,
+      "height_bp": 323.974,
+      "monochrome": true,
+      "review": "Inspected native print and SVG rendered proofs at 2× and verified font faces. No text overlaps or clipping. Light implementation bands explain generated/maintained portions and do not appear on the derivation implementation. Identical graph/table model icons separate model content from authority relation. Footer repetition and embedded caption/number removed. Both sources preserve the same labels, partitioning, and curve directions."
     },
     {
       "source": "book/assets/model-sync-two-layer-net.svg",

@@ -19852,3 +19852,21 @@ Source: `book/latex/sources/part3/3.1-where-obligations-can-be-enforced.tex`, re
 A separate gate, implemented as a Git pre-commit hook, requires evidence that the second extraction occurred. It rejects the final agent-worktree commit if the dispatch has no recorded second-extraction event. Its condition is deliberately narrower than ``the agent followed the rules.'' It does not compare the extraction's file set with the committed files, or establish that the selected constraints were complete, correct, read, or followed. The gate requires a discovery event; correspondence checks and implementation gates must evaluate the obligations that discovery exposes.
 
 \emph{Dynamic context injection and enforcement.} A dispatch hook selects initial engineering knowledge from anticipated files and components. After planning, the agent selects context again using its refined scope. Standing instructions remain available throughout. A separate Git precommit gate requires evidence of the second selection before the changes can be committed.
+
+## Chapter 2 correspondence introduction — 13 November 2026
+
+- Source: `book/latex/sources/part2/2.5-system-knowledge.tex`, Maintain Explicit Correspondence, original lines 73–81 and caption at 97.
+- Source revision: `4237fa108`.
+- Reason: Author-requested three-pattern comparison makes selective coverage and authority explicit without anticipating Chapter 3. Subsequent technical explanations remain. Original QVT citation retained here for possible reuse.
+
+```latex
+Multiple models create a correspondence problem: represented facts can diverge from the system or from one another. Engineer the relationship between map and territory so divergence is caught rather than assumed away. Which machinery you reach for depends on which side is the source of truth.
+
+% <!-- point: name-the-direction-of-derivation-up-front | Maintain correspondence according to the source of truth: derive a view from implementation, generate an artifact from a model or read the model during execution, or maintain traceability where neither side fully determines the other. | terms: derivation-direction, model-from-code, model-to-code -->
+
+% <!-- index-def: derivation-direction -->
+
+Make the direction of correspondence explicit. Where the implementation is the source of truth, derive the model. Where the model is the source of truth, a generator can produce the downstream artifact, or a runner can read the model directly during execution. Where neither fully determines the other, maintain traceability and check the mechanically decidable correspondences. Model-transformation languages make such relationships executable: OMG\textquotesingle s Query/View/Transformation (QVT) standard can check a declared relation between models or update a target model to satisfy it~\citep{omg2016qvt}. \autoref{derive-generate-trace} shows derivation, generation, and traceability; direct interpretation is another way to use an authoritative model.
+
+\caption{\emph{Three correspondence patterns.} Derivation produces a view from implementation; generation produces an artifact from a model; traceability relates representations neither of which fully determines the other. A runtime can also interpret a model directly, as the build example below illustrates.}
+```

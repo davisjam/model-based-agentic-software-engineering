@@ -11017,129 +11017,34 @@
     {
       "source": "book/assets/derive-generate-trace.svg",
       "candidate": "book/tikz/figures/derive-generate-trace.tex",
+      "source_sha256": "678d5a8fcb55d95e090e216bbf63ed2cc1f9af522e5bbe016cc5d2f8a9332855",
+      "candidate_sha256": "d5795001f9a6f544c1483eeed74553e052ebc483f4dcce5940ac69a67c97cbe7",
       "decision": "refined",
-      "source_sha256": "d97e33c2055ac2305997f1c8811588d6b1ce431a58d8d18a67d1b8828e02af11",
-      "candidate_sha256": "1f82ec31c5811b59fa3f182b9eb487a82770e60203ca5d2d42084165f2d8253c",
-      "evidence": [
-        {
-          "source_text": "DERIVE",
-          "source_style": "weight 700; normal; source size 19.2",
-          "semantic_role": "alternative derivation mode",
-          "candidate_text": "DERIVE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "DERIVE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "GENERATE",
-          "source_style": "weight 700; normal; source size 19.2",
-          "semantic_role": "alternative derivation mode",
-          "candidate_text": "GENERATE",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[6]/text()",
-            "text_element_context": "GENERATE",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "TRACE + CHECK",
-          "source_style": "weight 700; normal; source size 19.2",
-          "semantic_role": "alternative derivation mode",
-          "candidate_text": "TRACE + CHECK",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[11]/text()",
-            "text_element_context": "TRACE + CHECK",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "derive",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "relation",
-          "candidate_text": "derive",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[4]/text()",
-            "text_element_context": "derive",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "generate",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "relation",
-          "candidate_text": "generate",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[9]/text()",
-            "text_element_context": "generate",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "implementation is source of truth",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Implementation is source of truth",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[2]/text()",
-            "text_element_context": "implementation is source of truth",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "model is source of truth",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Model is source of truth",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[7]/text()",
-            "text_element_context": "model is source of truth",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "neither fully determines the other",
-          "source_style": "weight normal; italic; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "Neither fully determines the other",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[12]/text()",
-            "text_element_context": "neither fully determines the other",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "check (decidable)",
-          "source_style": "weight 700; normal; source size 19.2",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "check (decidable)",
-          "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/derive-generate-trace.svg",
-            "element_text_path": "/svg/text[14]/text()",
-            "text_element_context": "check (decidable)",
-            "matching_fragment_count": 1
-          }
-        }
-      ],
-      "reason": "Restore uppercase alternative-mode headings; italic truth-source annotations and bold decidable check identify different authority relationships.",
+      "reviewed_visually": true,
+      "reason": "Uppercase mode titles are bold 11 pt. Model and implementation titles are bold 10 pt, state/response headers bold 9 pt. Authority subtitles and explanatory arrow labels are italic; trace and check are bold italic. Body prose stays at 9 pt. All three model icons/tables have identical style.",
+      "validation": {
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/correspondence-patterns-20261113/candidates.pdf",
+        "proof_sha256": "17aa6c003fc80b5bf040d02a38bbf83602786cac9a9f158d95df9111c0c695db",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 323.974,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          10.0,
+          11.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 14,
+        "audit_sha256": "9bf817763e0faf0b9b60d1500307a5aff4dd9b643ca506a527e81f46adc8c60d",
+        "typography_audit_sha256": "6c2bd369213be6985263eaabb1e565ca0ad149cb89ef86688650d81f83ea8050",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261113/derive-generate-trace-superseded/typography-review.json",
       "checks": [
         {
           "text": "DERIVE",
@@ -11147,9 +11052,19 @@
           "italic": false
         },
         {
+          "text": "Implementation is authoritative",
+          "bold": false,
+          "italic": true
+        },
+        {
           "text": "GENERATE",
           "bold": true,
           "italic": false
+        },
+        {
+          "text": "Model is authoritative",
+          "bold": false,
+          "italic": true
         },
         {
           "text": "TRACE + CHECK",
@@ -11157,7 +11072,17 @@
           "italic": false
         },
         {
+          "text": "Neither fully determines the other",
+          "bold": false,
+          "italic": true
+        },
+        {
           "text": "derive",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "(extract model from implementation)",
           "bold": false,
           "italic": true
         },
@@ -11167,50 +11092,103 @@
           "italic": true
         },
         {
-          "text": "Implementation is source of truth",
+          "text": "(produce implementation artifacts from model)",
           "bold": false,
           "italic": true
         },
         {
-          "text": "Model is source of truth",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Neither fully determines the other",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "check (decidable)",
+          "text": "trace",
           "bold": true,
-          "italic": false
+          "italic": true
         },
         {
-          "text": "Model",
+          "text": "(bind related elements)",
           "bold": false,
-          "italic": false
+          "italic": true
+        },
+        {
+          "text": "check",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "text": "(evaluate where decidable)",
+          "bold": false,
+          "italic": true
         }
       ],
-      "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 34,
-        "width_bp": 389.805,
-        "height_bp": 178.015,
-        "minimum_prose_font_pt": 9.0,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "monochrome_pixels": true,
-        "semantic_typography_checks": 10
-      },
-      "color_source_revision": {
-        "date": "2026-11-09",
-        "previous_source_sha256": "e10a901030ae8d0a8f6b364793757e0d9522fea3fe936f1bd60147d55d86993a",
-        "source_sha256": "d97e33c2055ac2305997f1c8811588d6b1ce431a58d8d18a67d1b8828e02af11",
-        "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
-        "native_candidate_changed": false
-      }
+      "evidence": [
+        {
+          "candidate_text": "DERIVE",
+          "candidate_style": "bold",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "Implementation is authoritative",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "GENERATE",
+          "candidate_style": "bold",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "Model is authoritative",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "TRACE + CHECK",
+          "candidate_style": "bold",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "Neither fully determines the other",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "derive",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "(extract model from implementation)",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "generate",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "(produce implementation artifacts from model)",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "trace",
+          "candidate_style": "bold italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "(bind related elements)",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "check",
+          "candidate_style": "bold italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        },
+        {
+          "candidate_text": "(evaluate where decidable)",
+          "candidate_style": "italic",
+          "semantic_role": "mode, authority, or correspondence relation"
+        }
+      ]
     },
     {
       "source": "book/assets/model-sync-two-layer-net.svg",

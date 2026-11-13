@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 24,
-    "total_sites": 637,
+    "total_sites": 636,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 301,
+      "book-web": 300,
       "website-catalogue": 219,
       "website-industry-cases": 44,
       "website-landing": 14,
@@ -53,7 +53,7 @@
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -189,7 +189,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 61
+            "occ": 62
           },
           {
             "file": "book/web/docs/list-of-figures.md",
@@ -953,7 +953,7 @@
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -1436,10 +1436,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 1
-          },
-          {
             "file": "book/web/docs/book-index.md",
             "occ": 1
           }
@@ -1447,7 +1443,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       }
@@ -1501,7 +1497,7 @@
           },
           {
             "file": "book/web/docs/2.5-system-knowledge.md",
-            "occ": 67
+            "occ": 65
           },
           {
             "file": "book/web/docs/2.6-modeling-summary.md",
@@ -1641,7 +1637,7 @@
           },
           {
             "file": "book/web/docs/figures.md",
-            "occ": 158
+            "occ": 156
           },
           {
             "file": "book/web/docs/index.md",
