@@ -1550,31 +1550,35 @@
     "decision": "refined",
     "rationale": "Dark labels on white; no color-dependent distinction.",
     "source_sha256": "c1545d04612e1e37028e23a30845de5223c96a370e8526c94d5379c59619c6ec",
-    "candidate_sha256": "26f4712e305a1470ab9ffdcf1be8b18401db827bfd5391e33bb49e228cce3ecb",
+    "candidate_sha256": "bcd2dc01d8301091a5cb9c131c82b8c4976ec5297bd6251e37b21af957a9f497",
     "revision_history": [
       {
         "date": "2026-11-11",
         "candidate_sha256": "7eb4225b342bcefc33f79831602ec256711a0af3cb9588cfcbd04203c1b3cb61",
         "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
         "validation": {}
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Reduced the vertical gap from Durable Engineering Structure to Engineering Capital. Kept the inheritance condition beside the single direct connector; all other labels, branches, unshaded boxes, and typography retained."
       }
     ],
     "validation": {
       "date": "2026-11-13",
-      "proof": "latex/build/tikz/compact-branches-20261113/candidates.pdf",
-      "proof_sha256": "bbcecad1a834be9bddc21e6210dd54beda4abcdc16a1c028af5d59dae6bae4f0",
-      "page": 2,
+      "proof": "latex/build/tikz/governance-conversion-20261113/candidates.pdf",
+      "proof_sha256": "59f4a1b7dd9bfaba8545993cbfcfe8b47e64a94668af6075b1e21534f0824d21",
+      "page": 1,
       "width_bp": 404.884,
-      "height_bp": 268.883,
+      "height_bp": 234.866,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "67cb7e1758cafba2920931cfee0cbd4c6d6c9535ff8e4ad5c999cbd2ed455134",
-      "typography_audit_sha256": "523806e65cbfcf7dd7c8c79bde551f8bb2ea95fa3f2d373172adf76365e34b13",
-      "semantic_typography_checks": 30,
-      "scope": "Two-figure native proof. Both pages visually inspected; zero geometry or typography findings.",
+      "geometry_audit_sha256": "5b825389295811e836c7e04492eef928af3dd7d621cda10ed0b6c4fb59421d01",
+      "typography_audit_sha256": "638895952c1168a4e749c7c2c6dbddf729e6ea5d1dd334bf76f008511906bec9",
+      "semantic_typography_checks": 11,
       "monochrome_pixels": true,
-      "status": "passed"
+      "status": "passed",
+      "scope": "Isolated native proof visually inspected; spacing-only refinement approved by author. The structure-to-capital center spacing is reduced from 2.6 cm to 1.4 cm, with annotation centered beside the shortened connector."
     },
     "reason": "Restore a shared right-angle branch from What was missing? to all five diagnostic labels. These incoming branches are plain lines without arrowheads; the outgoing label-to-artifact arrows remain unchanged. Preserve all text, unshaded boxes, and the single structure-to-capital arrow with its adjacent condition.",
     "previous_review": "book/editorial/figure-redraws-20261113/governance-conversion-before-compact-branches/grayscale-review.json",
