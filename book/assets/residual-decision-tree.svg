@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Figure 3.4-3 "Where Enforcement Stops" (v7 draft; folds to book/assets/residual-decision-tree.svg;
-     label kept stable: honest-gaps ref -> this asset).
-     v7 THEORY-CARRYING edit (3.4-3):
-       - leaf "OBSERVED ONLY" -> "EVALUATED ONLY": the state produces AND evaluates evidence — more than
-         observation; only the binding consequence is absent.
-       - decision criterion Q2 drops "mechanically": "Can it be mechanically evaluated adequately?" ->
-         "Can it be evaluated adequately?" The text allows deterministic, probabilistic, OR human
-         validators; what matters is the ADEQUACY of the available evaluator, not that it is mechanical.
-     These are design CHOICES, not maturity levels (footer protects MAGE from "everything becomes a gate"). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480"
      role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="hgTitle">Where enforcement stops: three questions place any obligation in one of four states —
@@ -18,8 +9,7 @@
     environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
     does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
-    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
-    obligations stop in different places.</desc>
+    not enforced. Yes leads to GOVERNED. These classify current dispositions, not equally desirable outcomes.</desc>
 
   <defs>
     <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -73,7 +63,7 @@
   <text x="410" y="356" text-anchor="middle" font-size="20" font-style="italic" fill="#7a5c12">no</text>
   <rect id="evaluated" x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="360" y="425" text-anchor="middle" font-size="20" font-weight="800" fill="#7a5c12">EVALUATED ONLY</text>
-  <text x="360" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
+  <text x="360" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated, not enforced</text>
 
   <!-- Q3 yes -> GOVERNED -->
   <!-- edge: q3 -> governed -->
@@ -83,5 +73,4 @@
   <text x="675" y="425" text-anchor="middle" font-size="20" font-weight="800" fill="#2f5137">GOVERNED</text>
   <text x="675" y="447" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">mechanically enforced</text>
 
-  <text x="500" y="512" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">design choices, not maturity levels — different obligations stop in different places</text>
 </svg>

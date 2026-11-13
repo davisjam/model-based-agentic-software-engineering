@@ -624,7 +624,7 @@
   {
     "chapter": "3.4-governance-conversion",
     "source": "assets/residual-decision-tree.svg",
-    "caption": "*Where enforcement stops.* A concern may remain unrepresented, require judgment, be evaluated without enforcement, or be governed. These are design choices; different obligations should stop at different points.",
+    "caption": "\\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/residual-decision-tree.d2",
     "receipt": "book/d2-pilot/residual-decision-tree.receipt.yaml",
@@ -632,7 +632,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Where enforcement stops: three questions place any obligation in one of four states —\n    residual, judgment required, evaluated only, or governed",
-    "svg_description": "A staircase of three questions. First: is the obligation explicit in a form the\n    environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the\n    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:\n    does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but\n    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different\n    obligations stop in different places."
+    "svg_description": "Three questions classify an obligation as unrepresented, requiring judgment, evaluated without enforcement, or governed. These describe current dispositions rather than equally desirable design choices."
   },
   {
     "chapter": "3.5-when-guardrails-collide",

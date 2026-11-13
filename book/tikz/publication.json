@@ -249,6 +249,10 @@
     "book/assets/cost-enforcement-gradient.svg": {
       "approved_date": "2026-11-13",
       "reason": "Author approved Figure 3.9 with removal of the measured-margin footer. Footer removed; the qualification remains in caption and prose."
+    },
+    "book/assets/residual-decision-tree.svg": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved B&W Figure 3.13 with footer removed and evaluated, not enforced subtitle. Retain the decision tree and existing outlines."
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "source": "book/assets/residual-decision-tree.svg",
-  "claim": "*Where enforcement stops.* A concern may remain unrepresented, require judgment, be evaluated without enforcement, or be governed. These are design choices; different obligations should stop at different points.",
+  "claim": "\\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.",
   "topology": "Staircase of three binary decisions produces four possible stopping states.",
   "required_terms": [
     "Is the obligation explicit in a form the environment can use?",
@@ -9,53 +9,71 @@
     "JUDGMENT REQUIRED\\ adequate evaluator",
     "Does the environment enforce the result?",
     "EVALUATED ONLY\\, yet ungated",
-    "GOVERNED\\ enforced",
-    "Design choices, not maturity levels: different obligations stop in different places."
+    "GOVERNED\\ enforced"
   ],
   "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Residual reconstruction, unresolved judgment/evaluated-only, and governed outcomes regain distinct tones; textual yes/no paths remain authoritative.",
+  "redesign": "Author approved existing B&W layout with two small edits: remove the footer and change the EVALUATED ONLY subtitle to evaluated, not enforced.",
   "questions": [],
-  "alt": "A staircase of three questions. First: is the obligation explicit in a form the\n    environment can use? No leads to RESIDUAL — a reasoner must reconstruct it. Yes leads to the\n    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:\n    does the environment enforce the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but\n    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different\n    obligations stop in different places.",
+  "alt": "Three questions classify an obligation as unrepresented, requiring judgment, evaluated without enforcement, or governed. These describe current dispositions rather than equally desirable design choices.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 371.412,
-    "height_pt": 246.726,
-    "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "date": "2026-11-13",
+    "proof": "latex/build/tikz/residual-decision-tree-20261113/candidates.pdf",
+    "proof_sha256": "74752dda39162ea29924a0c8585ac2c99cae00506055388c034c160d009eb7b2",
+    "page": 1,
+    "width_bp": 366.617,
+    "height_bp": 236.574,
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "f39c820615a53f035533aca187a7fb0c1871625318fd69443145e0a19d7cccaf",
+    "typography_audit_sha256": "9d9a0b181ec177e4f9e8e20eca6850d9bf386ec51dca92d061c88affbf8ed730",
+    "semantic_typography_checks": 9,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
   },
   "style_review": {
+    "source": "book/assets/residual-decision-tree.svg",
+    "candidate": "book/tikz/figures/residual-decision-tree.tex",
+    "receipt": "book/tikz/receipts/residual-decision-tree.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "3212524d4dfa0171bff0d95d11eaef9bd299fd51aa94eac16e4694a304bdbd04",
-    "candidate_sha256": "3f3248a3963e347879da7e355518e6f9c8ac6398f0e82c8bcc9e3d0f8b06e109",
+    "source_sha256": "c4f5e7350fead0297d2faf53aa0865d72d816d5fa3367cc2c697702c6690d6c6",
+    "candidate_sha256": "b7e74b724f1a19d0868c42c0a6616c6df01ba3b0709e496be24c96935064b670",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes RESIDUAL; JUDGMENT REQUIRED; EVALUATED ONLY; GOVERNED. Outcome category headings regain bold capitals over italic explanatory meanings; ordinary branch questions remain readable regular text.",
     "routing": "6 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Three yes/no questions and four outcomes retained; no labels cover arrowheads.",
+    "visual_review": "Retained all questions, yes/no routes, four outcome boxes, typography, and unshaded outlines. Removed the external footer and changed only the EVALUATED ONLY subtitle to evaluated, not enforced. The revised wording fits within the existing box; no layout redesign.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 51,
-      "width_bp": 371.412,
-      "height_bp": 260.521,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/residual-decision-tree-20261113/candidates.pdf",
+      "proof_sha256": "74752dda39162ea29924a0c8585ac2c99cae00506055388c034c160d009eb7b2",
+      "page": 1,
+      "width_bp": 366.617,
+      "height_bp": 236.574,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "f39c820615a53f035533aca187a7fb0c1871625318fd69443145e0a19d7cccaf",
+      "typography_audit_sha256": "9d9a0b181ec177e4f9e8e20eca6850d9bf386ec51dca92d061c88affbf8ed730",
+      "semantic_typography_checks": 9,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 9
+      "status": "passed",
+      "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
     },
     "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+    "reviewed_visually": true
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/residual-decision-tree.svg",
+    "candidate": "book/tikz/figures/residual-decision-tree.tex",
     "decision": "refined",
-    "source_sha256": "3212524d4dfa0171bff0d95d11eaef9bd299fd51aa94eac16e4694a304bdbd04",
-    "candidate_sha256": "3f3248a3963e347879da7e355518e6f9c8ac6398f0e82c8bcc9e3d0f8b06e109",
-    "reason": "Outcome category headings regain bold capitals over italic explanatory meanings; ordinary branch questions remain readable regular text.",
+    "source_sha256": "c4f5e7350fead0297d2faf53aa0865d72d816d5fa3367cc2c697702c6690d6c6",
+    "candidate_sha256": "b7e74b724f1a19d0868c42c0a6616c6df01ba3b0709e496be24c96935064b670",
     "evidence": [
       {
         "source_text": "RESIDUAL",
@@ -136,15 +154,15 @@
         }
       },
       {
-        "source_text": "evaluated, yet un-gated",
+        "source_text": "evaluated, not enforced",
         "source_style": "weight normal; italic; source size 20",
         "semantic_role": "named category versus explanatory text",
-        "candidate_text": "evaluated, yet ungated",
+        "candidate_text": "evaluated, not enforced",
         "candidate_style": "italic",
         "source_locator": {
           "svg": "book/assets/residual-decision-tree.svg",
           "element_text_path": "/svg/text[16]/text()",
-          "text_element_context": "evaluated, yet un-gated",
+          "text_element_context": "evaluated, not enforced",
           "matching_fragment_count": 1
         }
       },
@@ -162,6 +180,7 @@
         }
       }
     ],
+    "reason": "Outcome category headings regain bold capitals over italic explanatory meanings; ordinary branch questions remain readable regular text.",
     "checks": [
       {
         "text": "RESIDUAL",
@@ -194,7 +213,7 @@
         "italic": true
       },
       {
-        "text": "evaluated, yet ungated",
+        "text": "evaluated, not enforced",
         "bold": false,
         "italic": true
       },
@@ -210,35 +229,71 @@
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 51,
-      "width_bp": 371.412,
-      "height_bp": 260.521,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/residual-decision-tree-20261113/candidates.pdf",
+      "proof_sha256": "74752dda39162ea29924a0c8585ac2c99cae00506055388c034c160d009eb7b2",
+      "page": 1,
+      "width_bp": 366.617,
+      "height_bp": 236.574,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "monochrome_pixels": true,
+      "geometry_audit_sha256": "f39c820615a53f035533aca187a7fb0c1871625318fd69443145e0a19d7cccaf",
+      "typography_audit_sha256": "9d9a0b181ec177e4f9e8e20eca6850d9bf386ec51dca92d061c88affbf8ed730",
       "semantic_typography_checks": 9,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
-      }
-    }
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
+    },
+    "reviewed_visually": true
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
+    "source": "book/assets/residual-decision-tree.svg",
+    "candidate": "book/tikz/figures/residual-decision-tree.tex",
+    "source_sha256": "c4f5e7350fead0297d2faf53aa0865d72d816d5fa3367cc2c697702c6690d6c6",
+    "baseline_candidate_sha256": "e7bf4ec44c7844773fc77c89386be78ec44115cfe33112592356c665f6f81d44",
+    "candidate_sha256": "b7e74b724f1a19d0868c42c0a6616c6df01ba3b0709e496be24c96935064b670",
     "decision": "refined",
     "reason": "Equal-height sibling final outcomes; retained unequal levels for genuinely different branch depths.",
-    "candidate_sha256": "3f3248a3963e347879da7e355518e6f9c8ac6398f0e82c8bcc9e3d0f8b06e109",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      371.4119873046875,
+      246.34800720214844
+    ],
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "final enforcement outcomes",
+          "labels": [
+            "EVALUATED ONLY",
+            "GOVERNED"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/residual-decision-tree-20261113/candidates.pdf",
+      "proof_sha256": "74752dda39162ea29924a0c8585ac2c99cae00506055388c034c160d009eb7b2",
+      "page": 1,
+      "width_bp": 366.617,
+      "height_bp": 236.574,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "f39c820615a53f035533aca187a7fb0c1871625318fd69443145e0a19d7cccaf",
+      "typography_audit_sha256": "9d9a0b181ec177e4f9e8e20eca6850d9bf386ec51dca92d061c88affbf8ed730",
+      "semantic_typography_checks": 9,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
+    },
     "page_layout": {
       "decision": "retained",
       "reason": "Retain existing residual decision tree layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
@@ -262,24 +317,78 @@
       ],
       "reviewed_visually": true
     },
-    "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
-      "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
+    "visual_review": "Retained all questions, yes/no routes, four outcome boxes, typography, and unshaded outlines. Removed the external footer and changed only the EVALUATED ONLY subtitle to evaluated, not enforced. The revised wording fits within the existing box; no layout redesign."
+  },
+  "fidelity_review": {
+    "source": "book/assets/residual-decision-tree.svg",
+    "candidate": "book/tikz/figures/residual-decision-tree.tex",
+    "checks": {
+      "icons_and_symbols": "No separate pictograms; four outcomes named explicitly.",
+      "links_and_groups": "All three yes/no questions retained with outcome tones; no invented maturity order.",
+      "annotation_placement": "Outcome explanations stay within their original boxes. Footer removed at author request."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9.0,
+        10.0
       ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "minimum": 9,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 366.617,
+    "height_bp": 236.574,
+    "monochrome": true,
+    "source_sha256": "c4f5e7350fead0297d2faf53aa0865d72d816d5fa3367cc2c697702c6690d6c6",
+    "candidate_sha256": "b7e74b724f1a19d0868c42c0a6616c6df01ba3b0709e496be24c96935064b670",
+    "review": "Retained all questions, yes/no routes, four outcome boxes, typography, and unshaded outlines. Removed the external footer and changed only the EVALUATED ONLY subtitle to evaluated, not enforced. The revised wording fits within the existing box; no layout redesign.",
+    "decision": "retained",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/residual-decision-tree-20261113/candidates.pdf",
+      "proof_sha256": "74752dda39162ea29924a0c8585ac2c99cae00506055388c034c160d009eb7b2",
+      "page": 1,
+      "width_bp": 366.617,
+      "height_bp": 236.574,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "f39c820615a53f035533aca187a7fb0c1871625318fd69443145e0a19d7cccaf",
+      "typography_audit_sha256": "9d9a0b181ec177e4f9e8e20eca6850d9bf386ec51dca92d061c88affbf8ed730",
+      "semantic_typography_checks": 9,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 51,
-      "width_bp": 371.412,
-      "height_bp": 260.521
+      "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
+    }
+  },
+  "grayscale_review": {
+    "source": "book/assets/residual-decision-tree.svg",
+    "candidate": "book/tikz/figures/residual-decision-tree.tex",
+    "receipt": "book/tikz/receipts/residual-decision-tree.json",
+    "reviewed": true,
+    "decision": "refined",
+    "rationale": "Existing white boxes and black outlines retained as approved; no shading introduced.",
+    "source_sha256": "c4f5e7350fead0297d2faf53aa0865d72d816d5fa3367cc2c697702c6690d6c6",
+    "candidate_sha256": "b7e74b724f1a19d0868c42c0a6616c6df01ba3b0709e496be24c96935064b670",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/residual-decision-tree-20261113/candidates.pdf",
+      "proof_sha256": "74752dda39162ea29924a0c8585ac2c99cae00506055388c034c160d009eb7b2",
+      "page": 1,
+      "width_bp": 366.617,
+      "height_bp": 236.574,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "f39c820615a53f035533aca187a7fb0c1871625318fd69443145e0a19d7cccaf",
+      "typography_audit_sha256": "9d9a0b181ec177e4f9e8e20eca6850d9bf386ec51dca92d061c88affbf8ed730",
+      "semantic_typography_checks": 9,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Author approved existing B&W tree with footer removal and revised EVALUATED ONLY subtitle. Both edits verified in the isolated native proof."
     }
   }
 }

@@ -20060,3 +20060,48 @@ A quantitative tolerance can also expose margin. If a value remains inside its a
 That calculation is easy only when the model supplies a meaningful distance to the boundary. Quantitative obligations often do: latency, memory use, throughput, or cost can be compared directly with a declared bound. Many software obligations are qualitative instead. A dependency may cross a forbidden architectural boundary or remain within the permitted graph; a transition may be legal or illegal. Some such obligations admit useful notions of distance from failure, while others do not. Margin is useful where the model provides a meaningful measure; qualitative obligations may need a different way to assess risk.
 
 ```
+
+
+## Where enforcement stops — 13 November 2026
+
+Source: Chapter 3 §3.4 at `3e3a59922`. Local author copyedits clarify current dispositions without endorsing gaps in representation, and connect tolerance to measured margin. Superseded passage:
+
+```latex
+\section{Where Enforcement Stops}\label{heading:where-enforcement-stops}
+
+% <!-- section-terms: residual, constraints-and-sensors -->
+
+% <!-- point: where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form | Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use. | terms: residual, constraints-and-sensors -->
+
+Not every quality goal should end in enforcement. A consequential concern may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. \autoref{honest-gaps} shows the four possible stopping points.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/residual-decision-tree-478c6933ab.pdf}
+\caption{\emph{Where enforcement stops.} A concern may remain unrepresented, require judgment, be evaluated without enforcement, or be governed. These are design choices; different obligations should stop at different points.}
+\label{honest-gaps}
+\end{figure}
+
+% <!-- point: the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use | The residual is an obligation nobody made explicit enough for the environment to use. | terms: residual, judgment-is-the-scarce-resource -->
+
+% <!-- index-def: residual -->
+
+\textbf{Residual.} The obligation is not explicit enough for the environment to use, so an engineer or agent must reconstruct the missing meaning.
+
+% <!-- point: an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation | An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment. | terms: residual, constraints-and-sensors -->
+
+\textbf{Judgment required.} The obligation is explicit, but available mechanisms cannot evaluate it adequately. Architecture may be represented while a design trade-off still requires expert judgment.
+
+% <!-- point: observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment | Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment. | terms: residual, constraints-and-sensors -->
+
+\textbf{Evaluated only.} The environment can produce and evaluate relevant evidence, but does not enforce the resulting judgment.
+
+% <!-- point: a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk | A governed obligation is enforced in a form appropriate to the engineering decision. | terms: residual, constraints-and-sensors -->
+
+\textbf{Governed.} The environment enforces the obligation in a form appropriate to the engineering decision: an action may be constrained, a violation refused, or admission made dependent on the verdict.
+
+% <!-- point: stronger-alignment-is-not-narrower-tolerance | Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set. | terms: residual, tolerance -->
+
+The same restraint applies to tolerance. Making an acceptable boundary explicit does not imply that the environment should tighten it, or even enforce it mechanically. A broad tolerance may be the correct engineering decision, and variation inside it remains legitimate realization freedom. Stronger Alignment means more dependable enforcement of the obligation engineers actually chose, not progressively narrowing the acceptable realization space.
+
+```

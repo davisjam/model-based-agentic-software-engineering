@@ -162,12 +162,12 @@ Debt makes future work pay again for today\textquotesingle s expedience; capital
 
 % <!-- point: where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form | Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use. | terms: residual, constraints-and-sensors -->
 
-Not every quality goal should end in enforcement. A consequential concern may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. \autoref{honest-gaps} shows the four possible stopping points.
+Not every engineering obligation should be enforced mechanically. An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. \autoref{honest-gaps} shows these four possible stopping points.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/residual-decision-tree-478c6933ab.pdf}
-\caption{\emph{Where enforcement stops.} A concern may remain unrepresented, require judgment, be evaluated without enforcement, or be governed. These are design choices; different obligations should stop at different points.}
+\caption{\emph{Where enforcement stops.} An obligation may remain unrepresented, require expert judgment, be evaluated without enforcement, or be governed. These are possible dispositions, not equally desirable outcomes.}
 \label{honest-gaps}
 \end{figure}
 
@@ -175,23 +175,23 @@ Not every quality goal should end in enforcement. A consequential concern may re
 
 % <!-- index-def: residual -->
 
-\textbf{Residual.} The obligation is not explicit enough for the environment to use, so an engineer or agent must reconstruct the missing meaning.
+\textbf{Residual.} The obligation is not explicit in a form the environment can use. An engineer or agent must reconstruct the relevant meaning when the decision arises.
 
 % <!-- point: an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation | An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment. | terms: residual, constraints-and-sensors -->
 
-\textbf{Judgment required.} The obligation is explicit, but available mechanisms cannot evaluate it adequately. Architecture may be represented while a design trade-off still requires expert judgment.
+\textbf{Judgment required.} The obligation is explicit, but available mechanisms cannot evaluate it adequately. The decision still requires human judgment.
 
-% <!-- point: observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment | Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment. | terms: residual, constraints-and-sensors -->
+% <!-- point: observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment | Evaluated only: explicit and evaluated, but the result does not control whether work may proceed. | terms: residual, constraints-and-sensors -->
 
-\textbf{Evaluated only.} The environment can produce and evaluate relevant evidence, but does not enforce the resulting judgment.
+\textbf{Evaluated only.} The environment can evaluate the obligation, but the result does not control whether work may proceed.
 
 % <!-- point: a-governed-obligation-carries-a-binding-consequence-appropriate-to-its-risk | A governed obligation is enforced in a form appropriate to the engineering decision. | terms: residual, constraints-and-sensors -->
 
-\textbf{Governed.} The environment enforces the obligation in a form appropriate to the engineering decision: an action may be constrained, a violation refused, or admission made dependent on the verdict.
+\textbf{Governed.} The environment enforces the obligation through a constraint on available actions or states, or through a gate that makes an action or admission depend on the evaluation.
 
 % <!-- point: stronger-alignment-is-not-narrower-tolerance | Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable enforcement of the obligation engineers chose, not a narrower acceptable set. | terms: residual, tolerance -->
 
-The same restraint applies to tolerance. Making an acceptable boundary explicit does not imply that the environment should tighten it, or even enforce it mechanically. A broad tolerance may be the correct engineering decision, and variation inside it remains legitimate realization freedom. Stronger Alignment means more dependable enforcement of the obligation engineers actually chose, not progressively narrowing the acceptable realization space.
+The same restraint applies to tolerance. Making an acceptable boundary explicit does not require tightening it or enforcing it mechanically. As \autoref{cost-enforcement-gradient} illustrated, measurements can reveal how much margin remains within a quantitative tolerance, even when the environment does not use those measurements to block work. A broad tolerance may be the correct engineering decision, and variation within it remains legitimate implementation freedom. Stronger Alignment means more dependable adherence to the obligations engineers actually chose, not progressively narrowing the acceptable realization space.
 
 % <!-- point: three-different-reasons-non-enforcement-is-sometimes-the-engineered-result | An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result. | terms: residual, governance-conversion -->
 
