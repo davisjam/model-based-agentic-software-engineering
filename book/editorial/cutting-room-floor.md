@@ -20319,3 +20319,10 @@ Source: `a55837663`, `book/latex/sources/part5/5.2-inside-docables-software-fact
 ```latex
 These episodes also reflect a recurring experience I had with coding agents. They were capable of diagnosing failures and implementing repairs, but seldom proposed the larger changes to models, architecture, or controls that would prevent a class of failures from recurring. A lost PDF tag tree suggested replacing a library call, not establishing a controlled mutation boundary. Fabricated descriptions suggested revising a prompt, not modeling which instructions were appropriate to different semantic tasks. A broken merge suggested repairing the integration script, not reconsidering which conflicts the factory should resolve automatically. I generally had to identify and direct these larger changes, although agents could implement the resulting machinery. Once a decision was represented explicitly, agents could also perform work that the new structure made identifiable and delegable, as with unresolved merge conflicts. This is an observation about my development experience, not a claim that AI cannot make such decisions. It suggests that the ability to implement an engineering change and the initiative to recognize that the change is needed are distinct capabilities.
 ```
+
+
+## 2026-11-13 — Name the agent proposing the local repairs
+
+Source: `191bff8b5`, Chapter 5 closing paragraph of What Escalated Failures Became. Author-directed subject correction: explicitly name Claude's suggestions rather than describing the failures as prompting repairs.
+
+A lost PDF tag tree prompted a replacement library call, not a controlled mutation boundary. Fabricated descriptions prompted revisions to a prompt, not a model of which instructions were appropriate to different semantic tasks. A broken merge prompted repairs to the integration script, not a reconsideration of which conflicts the factory should resolve automatically.
