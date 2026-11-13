@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="figure-title">Governance conversion: a failure is diagnosed for what was missing, and the missing
+    piece is encoded as durable structure that future work benefits from inheriting as engineering capital</title>
+<desc id="figure-description">A failure or surprise flows down into one question — what was missing — with five possible answers: missing representation/semantics, obligation, evidence, evaluation, or consequence.
+    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
+    gate. The five converge into durable engineering structure, which future work benefits from inheriting,
+    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another
+    gate — you diagnose what the environment lacked and encode that.</desc>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
+<rect id="failure" x="282" y="6" width="236" height="42" rx="7" fill="#faf1e6" stroke="#b23b3b" stroke-width="2"/>
+<text x="400" y="34" text-anchor="middle" font-size="20" fill="#b23b3b" font-weight="700">FAILURE / SURPRISE</text>
+<path d="M400 48 L400 66" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect id="diagnosis" x="260" y="68" width="280" height="42" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="400" y="96" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">What was missing?</text>
+<text x="76" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">representation</text>
+<path d="M76 179 L76 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect x="4" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="76" y="225" text-anchor="middle" font-size="20" fill="#1c1917">model</text>
+<path d="M76 244 V263 H400 V282" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<text x="238" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">obligation</text>
+<path d="M238 179 L238 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect x="166" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="238" y="225" text-anchor="middle" font-size="20" fill="#1c1917">invariant</text>
+<path d="M238 244 V263 H400 V282" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<text x="400" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">evidence</text>
+<path d="M400 179 L400 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect x="328" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="400" y="225" text-anchor="middle" font-size="20" fill="#1c1917">sensor</text>
+<path d="M400 244 V263 H400 V282" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<text x="562" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">evaluation</text>
+<path d="M562 179 L562 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect x="490" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="562" y="225" text-anchor="middle" font-size="20" fill="#1c1917">validator</text>
+<path d="M562 244 V263 H400 V282" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<text x="724" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">enforcement</text>
+<path d="M724 179 L724 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect x="652" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="724" y="218" text-anchor="middle" font-size="20" fill="#1c1917">constraint /</text>
+<text x="724" y="240" text-anchor="middle" font-size="20" fill="#1c1917">gate</text>
+<path d="M724 244 V263 H400 V282" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<rect id="durable" x="165" y="284" width="470" height="42" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+<text x="400" y="312" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">DURABLE ENGINEERING STRUCTURE</text>
+<path d="M400 326 L400 387" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
+<text x="420" y="350" font-size="20" fill="#1f7a4d">Future work benefits</text>
+<text x="420" y="374" font-size="20" fill="#1f7a4d">from inheriting it</text>
+<rect id="capital" x="230" y="389" width="340" height="44" rx="7" fill="#1f7a4d" stroke="#1f7a4d" stroke-width="2"/>
+<text x="400" y="418" text-anchor="middle" font-size="21" fill="#ffffff" font-weight="700">ENGINEERING CAPITAL</text>
+<text x="400" y="462" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">A failure is not a request for another gate —</text>
+<text x="400" y="485" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">diagnose what was missing, then encode it.</text>
+</svg>

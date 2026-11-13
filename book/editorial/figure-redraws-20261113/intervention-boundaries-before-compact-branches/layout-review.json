@@ -1,0 +1,49 @@
+{
+  "source": "book/assets/intervention-boundaries.svg",
+  "candidate": "book/tikz/figures/intervention-boundaries.tex",
+  "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+  "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+  "decision": "refined",
+  "reviewed_visually": true,
+  "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+  "validation": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+    "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+    "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+    "page": 1,
+    "width_bp": 447.302,
+    "height_bp": 274.739,
+    "minimum_prose_font_pt": 10.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 0,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 19,
+    "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+    "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+    "status": "passed"
+  },
+  "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/layout-review.json",
+  "contracts": {
+    "peer_groups": [
+      {
+        "name": "intervention boundary columns",
+        "labels": [
+          "Reasoning input",
+          "Action",
+          "Work unit",
+          "Artifact / runtime"
+        ],
+        "align": [
+          "top",
+          "bottom"
+        ],
+        "equal_height": true,
+        "tolerance_pt": 1
+      }
+    ]
+  },
+  "visual_review": "Native and SVG proofs inspected at actual print width and 2\u00d7. Three row labels remain outside the first card. The horizontal separators, titles, scope rows and card top/bottom edges align. All supplied scope/example words are retained; line-separated examples replace the reference\u2019s inline dot separators to fit without shrinking type. No internal headline or number. No clipping or overlap."
+}

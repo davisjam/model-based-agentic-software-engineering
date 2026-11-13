@@ -192,7 +192,8 @@
     "book/assets/governance-conversion.svg": {
       "approved_date": "2026-11-11",
       "reason": "Author accepted the black-and-white governance-conversion figure for publication after removing the annotation box, using one direct structure-to-capital arrow with the condition beside it, and removing incoming arrows to the five diagnostic labels. Existing unshaded outlines retained.",
-      "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b"
+      "candidate_sha256": "26f4712e305a1470ab9ffdcf1be8b18401db827bfd5391e33bb49e228cce3ecb",
+      "requested_followup": "Author-requested follow-up on 2026-11-13 restores plain orthogonal branches to the five categories without incoming arrowheads."
     },
     "book/assets/model-sync-two-layer-net.svg": {
       "approved_date": "2026-11-12",
@@ -207,7 +208,8 @@
     "book/assets/intervention-boundaries.svg": {
       "approved_date": "2026-11-12",
       "reason": "Author approved the redrawn Figure 3.1 with separate guidance/enforcement grouping and italic Boundary, Scope, and Examples row labels.",
-      "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e"
+      "candidate_sha256": "80560be3766dcc967720147d9cccac7103b16281d669fb5ce9cc26cffbfead1e",
+      "requested_followup": "Author-requested follow-up on 2026-11-13 compresses padding and vertical gaps to fit the figure and caption within one-third of a page, preserving all text and type sizes."
     },
     "book/assets/agentic-substrate.svg": {
       "approved_date": "2026-11-12",

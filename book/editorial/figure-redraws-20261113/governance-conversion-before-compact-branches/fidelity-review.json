@@ -1,0 +1,54 @@
+{
+  "source": "book/assets/governance-conversion.svg",
+  "candidate": "book/tikz/figures/governance-conversion.tex",
+  "checks": {
+    "icons_and_symbols": "No special icons in source.",
+    "links_and_groups": "Five diagnostic branches converge on durable structure; inheritance/capital chain preserved.",
+    "annotation_placement": "Branch names are outside mechanism boxes; source diagnostic question remains its own node."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 404.884,
+  "height_bp": 268.883,
+  "monochrome": true,
+  "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+  "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
+  "review": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+  "decision": "refined",
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "7eb4225b342bcefc33f79831602ec256711a0af3cb9588cfcbd04203c1b3cb61",
+      "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+      "validation": {}
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+    "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+    "page": 1,
+    "width_bp": 404.884,
+    "height_bp": 268.883,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+    "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+    "semantic_typography_checks": 11,
+    "monochrome_pixels": true,
+    "status": "passed"
+  }
+}

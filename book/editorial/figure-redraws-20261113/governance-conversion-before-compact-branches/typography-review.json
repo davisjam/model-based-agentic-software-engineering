@@ -1,0 +1,223 @@
+{
+  "source": "book/assets/governance-conversion.svg",
+  "candidate": "book/tikz/figures/governance-conversion.tex",
+  "decision": "refined",
+  "source_sha256": "f4e9da3f559696db0ce57abfc2797402e824b35eb61cf8f234e823375a70dabf",
+  "candidate_sha256": "3a92a2674ed10fcdaa9dead5fa0c36e16d06bf0c7f5b983a7e91bd92bc1bf22b",
+  "evidence": [
+    {
+      "source_text": "FAILURE / SURPRISE",
+      "source_style": "weight 700; normal; source size 21",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "FAILURE / SURPRISE",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/text[1]/text()",
+        "text_element_context": "FAILURE / SURPRISE",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "representation",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Representation",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/g[3]/text[1]/text()",
+        "text_element_context": "representation",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "obligation",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Obligation",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/g[3]/text[2]/text()",
+        "text_element_context": "obligation",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "evidence",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Evidence",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/g[3]/text[3]/text()",
+        "text_element_context": "evidence",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "evaluation",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Evaluation",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/g[3]/text[4]/text()",
+        "text_element_context": "evaluation",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "enforcement",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "Enforcement",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/g[3]/text[5]/text()",
+        "text_element_context": "enforcement",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "What was missing?",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "What was missing?",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/text[2]/text()",
+        "text_element_context": "What was missing?",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "DURABLE ENGINEERING STRUCTURE",
+      "source_style": "weight 700; normal; source size 20",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "DURABLE ENGINEERING STRUCTURE",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/text[3]/text()",
+        "text_element_context": "DURABLE ENGINEERING STRUCTURE",
+        "matching_fragment_count": 1
+      }
+    },
+    {
+      "source_text": "ENGINEERING CAPITAL",
+      "source_style": "weight 800; normal; source size 21",
+      "semantic_role": "named category versus explanatory text",
+      "candidate_text": "ENGINEERING CAPITAL",
+      "candidate_style": "bold",
+      "source_locator": {
+        "svg": "book/assets/governance-conversion.svg",
+        "element_text_path": "/svg/text[5]/text()",
+        "text_element_context": "ENGINEERING CAPITAL",
+        "matching_fragment_count": 1
+      }
+    }
+  ],
+  "reason": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+  "checks": [
+    {
+      "text": "FAILURE / SURPRISE",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Representation",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Obligation",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Evidence",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Evaluation",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Enforcement",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "What was missing?",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "DURABLE ENGINEERING STRUCTURE",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "ENGINEERING CAPITAL",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "text": "Model",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "text": "Invariant",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/bw-review-followups/governance-conversion.pdf",
+    "proof_sha256": "aac3b4be02c3e932281d1853a13cbf188014e4acacdc8434259075e3042dfbab",
+    "page": 1,
+    "width_bp": 404.884,
+    "height_bp": 268.883,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "ed8ee285bcbc92fd554c67c0c98d208d13744bfac8089c59aed8d82bcd29e188",
+    "typography_audit_sha256": "63451df98ef34c2b72a80e3130a69f584f8e888a567555ce439fa411b7040542",
+    "semantic_typography_checks": 11,
+    "monochrome_pixels": true,
+    "status": "passed"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "a30a466ecdc910ff74be2900fae9481420178060ad0a7abc90a7b770e974a77f",
+      "change": "Remove incoming arrows to the five diagnostic labels. Keep their outgoing arrows to durable structures. Replace the inheritance annotation box and two arrows with plain text beside one direct arrow from durable engineering structure to engineering capital. Preserve existing outlines without shading.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 49,
+        "width_bp": 404.884,
+        "height_bp": 268.883,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 11
+      }
+    }
+  ]
+}

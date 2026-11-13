@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
+<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; diagnostic branches match the monochrome partner. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
 <title id="figure-title">Governance conversion: a failure is diagnosed for what was missing, and the missing
     piece is encoded as durable structure that future work benefits from inheriting as engineering capital</title>
@@ -14,6 +14,7 @@
 <path d="M400 48 L400 66" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
 <rect id="diagnosis" x="260" y="68" width="280" height="42" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
 <text x="400" y="96" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">What was missing?</text>
+<path d="M400 110 V134 M76 148 V134 H724 V148 M238 134 V148 M400 134 V148 M562 134 V148" fill="none" stroke="#2f5169" stroke-width="2"/>
 <text x="76" y="171" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">representation</text>
 <path d="M76 179 L76 194" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#blue-arrow)"/>
 <rect x="4" y="196" width="144" height="48" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

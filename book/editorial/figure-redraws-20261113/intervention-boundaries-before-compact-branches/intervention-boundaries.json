@@ -1,0 +1,499 @@
+{
+  "source": "book/assets/intervention-boundaries.svg",
+  "claim": "*Intervention boundaries.* Guidance influences reasoning; enforcement constrains actions or determines whether work and artifacts are accepted. Moving from individual actions to larger units of work can make additional obligations legible as evidence accumulates. Later boundaries are not necessarily stronger. Choose the earliest boundary where the obligation can be evaluated and enforced.",
+  "topology": "The only arrow is the straight rightward scope axis below the cards. It denotes increasing scope and additional evaluation context, not enforcement strength. A vertical divider and a separate enclosure distinguish guidance from enforcement.",
+  "required_terms": [
+    "GUIDANCE",
+    "ENFORCEMENT BOUNDARIES",
+    "Reasoning input",
+    "Action",
+    "Work unit",
+    "Artifact / runtime",
+    "Boundary",
+    "Scope",
+    "Examples",
+    "Context supplied to the reasoner",
+    "One proposed action",
+    "Composed body of work",
+    "Resulting artifact or running state",
+    "Instructions models examples",
+    "Permissions hooks tool restrictions",
+    "Task-completion checks merge gates deployment gates",
+    "API boundaries schemas runtime permissions",
+    "Increasing scope of work considered",
+    "More context for evaluating obligations"
+  ],
+  "bw_encoding": "Only the enforcement-boundaries enclosure uses light 5% gray. All four cards remain white; no tone implies increasing enforcement strength. Group headings are bold 11 pt; boundary names are bold 10 pt. Row labels and scope-arrow annotations are plain italic 10 pt. Scope descriptions and examples are regular 10 pt.",
+  "redesign": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+  "questions": [],
+  "alt": "Four columns compare intervention boundaries. Reasoning input is guidance: context supplied to the reasoner, with instructions, models and examples. The three enforcement boundaries are action, covering one proposed action with permissions, hooks and tool restrictions; work unit, covering a composed body of work with task-completion checks, merge gates and deployment gates; and artifact or runtime, covering the resulting artifact or running state with API boundaries, schemas and runtime permissions. Rows identify Boundary, Scope and Examples. A rightward arrow indicates increasing scope of work considered and more context for evaluating obligations, not increasing enforcement strength.",
+  "qa": {
+    "date": "2026-11-12",
+    "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+    "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+    "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+    "page": 1,
+    "width_bp": 447.302,
+    "height_bp": 274.739,
+    "minimum_prose_font_pt": 10.0,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "checked_terminal_approaches": 0,
+    "reviewed_peer_groups": 1,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 19,
+    "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+    "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+    "status": "passed"
+  },
+  "svg_qa": {
+    "overflow_findings": 0,
+    "palette_font_findings": 0,
+    "strain_findings": [
+      {
+        "text": "Reasoning input",
+        "ratio": 0.909113924050633,
+        "verdict": "strain"
+      },
+      {
+        "text": "Artifact / runtime",
+        "ratio": 0.9455555555555556,
+        "verdict": "strain"
+      }
+    ],
+    "visual_resolution": "The two compact bold card headings have visible interior padding at 450 bp output width; visually clear at 10 pt. No font reduction."
+  },
+  "historical_receipt": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/intervention-boundaries.json",
+  "reference_image_sha256": "48584ad51a8fc1b5a32b6909081c78120b723f5b1673d5574cfcb1f90ce84a2a",
+  "layout_review": {
+    "source": "book/assets/intervention-boundaries.svg",
+    "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+    "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+      "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+      "page": 1,
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+      "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/layout-review.json",
+    "contracts": {
+      "peer_groups": [
+        {
+          "name": "intervention boundary columns",
+          "labels": [
+            "Reasoning input",
+            "Action",
+            "Work unit",
+            "Artifact / runtime"
+          ],
+          "align": [
+            "top",
+            "bottom"
+          ],
+          "equal_height": true,
+          "tolerance_pt": 1
+        }
+      ]
+    },
+    "visual_review": "Native and SVG proofs inspected at actual print width and 2×. Three row labels remain outside the first card. The horizontal separators, titles, scope rows and card top/bottom edges align. All supplied scope/example words are retained; line-separated examples replace the reference’s inline dot separators to fit without shrinking type. No internal headline or number. No clipping or overlap."
+  },
+  "typography_review": {
+    "source": "book/assets/intervention-boundaries.svg",
+    "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+    "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+      "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+      "page": 1,
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+      "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/typography-review.json",
+    "checks": [
+      {
+        "text": "GUIDANCE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "ENFORCEMENT BOUNDARIES",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Reasoning input",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Action",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Work unit",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Artifact / runtime",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Boundary",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Scope",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Examples",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Context supplied to the reasoner",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "One proposed action",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Composed body of work",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Resulting artifact or running state",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Instructions models examples",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Permissions hooks tool restrictions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Task-completion checks merge gates deployment gates",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "API boundaries schemas runtime permissions",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Increasing scope of work considered",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "More context for evaluating obligations",
+        "bold": false,
+        "italic": true
+      }
+    ],
+    "evidence": [
+      {
+        "source_text": "GUIDANCE",
+        "source_style": "11 SVG units; bold",
+        "candidate_text": "GUIDANCE",
+        "candidate_style": "bold",
+        "semantic_role": "group or boundary name"
+      },
+      {
+        "source_text": "ENFORCEMENT BOUNDARIES",
+        "source_style": "11 SVG units; bold",
+        "candidate_text": "ENFORCEMENT BOUNDARIES",
+        "candidate_style": "bold",
+        "semantic_role": "group or boundary name"
+      },
+      {
+        "source_text": "Reasoning input",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Reasoning input",
+        "candidate_style": "bold",
+        "semantic_role": "group or boundary name"
+      },
+      {
+        "source_text": "Action",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Action",
+        "candidate_style": "bold",
+        "semantic_role": "group or boundary name"
+      },
+      {
+        "source_text": "Work unit",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Work unit",
+        "candidate_style": "bold",
+        "semantic_role": "group or boundary name"
+      },
+      {
+        "source_text": "Artifact / runtime",
+        "source_style": "10 SVG units; bold",
+        "candidate_text": "Artifact / runtime",
+        "candidate_style": "bold",
+        "semantic_role": "group or boundary name"
+      },
+      {
+        "source_text": "Boundary",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "Boundary",
+        "candidate_style": "italic",
+        "semantic_role": "row label or scope annotation"
+      },
+      {
+        "source_text": "Scope",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "Scope",
+        "candidate_style": "italic",
+        "semantic_role": "row label or scope annotation"
+      },
+      {
+        "source_text": "Examples",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "Examples",
+        "candidate_style": "italic",
+        "semantic_role": "row label or scope annotation"
+      },
+      {
+        "source_text": "Context supplied to the reasoner",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Context supplied to the reasoner",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "One proposed action",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "One proposed action",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "Composed body of work",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Composed body of work",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "Resulting artifact or running state",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Resulting artifact or running state",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "Instructions models examples",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Instructions models examples",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "Permissions hooks tool restrictions",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Permissions hooks tool restrictions",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "Task-completion checks merge gates deployment gates",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "Task-completion checks merge gates deployment gates",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "API boundaries schemas runtime permissions",
+        "source_style": "10 SVG units; regular",
+        "candidate_text": "API boundaries schemas runtime permissions",
+        "candidate_style": "regular",
+        "semantic_role": "scope description or concrete examples"
+      },
+      {
+        "source_text": "Increasing scope of work considered",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "Increasing scope of work considered",
+        "candidate_style": "italic",
+        "semantic_role": "row label or scope annotation"
+      },
+      {
+        "source_text": "More context for evaluating obligations",
+        "source_style": "10 SVG units; italic",
+        "candidate_text": "More context for evaluating obligations",
+        "candidate_style": "italic",
+        "semantic_role": "row label or scope annotation"
+      }
+    ]
+  },
+  "style_review": {
+    "source": "book/assets/intervention-boundaries.svg",
+    "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+    "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+      "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+      "page": 1,
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+      "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/style-review.json",
+    "receipt": "book/tikz/receipts/intervention-boundaries.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only the enforcement-boundaries enclosure uses light 5% gray. All four cards remain white; no tone implies increasing enforcement strength.",
+    "bold": "Group headings are bold 11 pt; boundary names are bold 10 pt. Row labels and scope-arrow annotations are plain italic 10 pt. Scope descriptions and examples are regular 10 pt.",
+    "routing": "The only arrow is the straight rightward scope axis below the cards. It denotes increasing scope and additional evaluation context, not enforcement strength. A vertical divider and a separate enclosure distinguish guidance from enforcement.",
+    "shape": "Four aligned rounded cards with common horizontal row rules. The last three share an enforcement-boundaries enclosure; guidance has its own heading and separator.",
+    "visual_review": "Native and SVG proofs inspected at actual print width and 2×. Three row labels remain outside the first card. The horizontal separators, titles, scope rows and card top/bottom edges align. All supplied scope/example words are retained; line-separated examples replace the reference’s inline dot separators to fit without shrinking type. No internal headline or number. No clipping or overlap.",
+    "book_references": [],
+    "routing_exceptions": "None."
+  },
+  "fidelity_review": {
+    "source": "book/assets/intervention-boundaries.svg",
+    "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+    "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+      "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+      "page": 1,
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+      "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/fidelity-review.json",
+    "checks": {
+      "icons_and_symbols": "The scope-axis arrow is retained, with both requested italic annotations. No implied enforcement-strength scale.",
+      "links_and_groups": "The only arrow is the straight rightward scope axis below the cards. It denotes increasing scope and additional evaluation context, not enforcement strength. A vertical divider and a separate enclosure distinguish guidance from enforcement.",
+      "annotation_placement": "Boundary/Scope/Examples labels are left of the guidance card, not inside it. Scope annotations sit above the bottom arrow.",
+      "line_breaks": "Whole-word line breaks keep all examples and scope descriptions at 10 pt."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        10.0,
+        11.0
+      ],
+      "minimum": 10.0,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 447.302,
+    "height_bp": 274.739,
+    "monochrome": true,
+    "review": "Native and SVG proofs inspected at actual print width and 2×. Three row labels remain outside the first card. The horizontal separators, titles, scope rows and card top/bottom edges align. All supplied scope/example words are retained; line-separated examples replace the reference’s inline dot separators to fit without shrinking type. No internal headline or number. No clipping or overlap."
+  },
+  "grayscale_review": {
+    "source": "book/assets/intervention-boundaries.svg",
+    "candidate": "book/tikz/figures/intervention-boundaries.tex",
+    "source_sha256": "cd4dd9fa0086c810f3ca3f513799cd0f6948ce146205682530b43e497dd6570b",
+    "candidate_sha256": "ef129a5d88e8e93f9985d7752f2b1a5bc387d8b927651fb443a02f5c8f3bd15e",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested four-column comparison of reasoning input, action, work unit and artifact/runtime. Boundary, Scope and Examples become aligned rows; reasoning input remains guidance outside the enforcement enclosure.",
+    "validation": {
+      "date": "2026-11-12",
+      "scope": "Isolated one-figure production-pipeline proof; not a full-book render.",
+      "proof": "latex/build/tikz/intervention-boundaries-20261112/candidates.pdf",
+      "proof_sha256": "43e8dabda42ccfe4fd180438b20497eada08a3519ddc20f358b995e657f5c53f",
+      "page": 1,
+      "width_bp": 447.302,
+      "height_bp": 274.739,
+      "minimum_prose_font_pt": 10.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 0,
+      "reviewed_peer_groups": 1,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 19,
+      "audit_sha256": "6b19eee597a78acdb6b3b7daf0dbc057486db578ec7045c45c2696c0aad7fe26",
+      "typography_audit_sha256": "5c54742e1a2e92999f62ca26d3e0f12107f299da9a3c2310abc551f778ffb8b6",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261112/intervention-boundaries-before/grayscale-review.json",
+    "receipt": "book/tikz/receipts/intervention-boundaries.json",
+    "reviewed": true,
+    "rationale": "Only the enforcement-boundaries enclosure uses light 5% gray. All four cards remain white; no tone implies increasing enforcement strength. Group headings are bold 11 pt; boundary names are bold 10 pt. Row labels and scope-arrow annotations are plain italic 10 pt. Scope descriptions and examples are regular 10 pt."
+  }
+}
