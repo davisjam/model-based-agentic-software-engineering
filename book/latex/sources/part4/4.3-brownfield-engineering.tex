@@ -144,14 +144,9 @@ Even a correct rule may be unsuitable for immediate enforcement. A legacy codeba
 \end{itemize}
 \end{quote}
 
-Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enable enforcement once the codebase is clean~\citep{reimann2026codex}. \autoref{audit-drain-promote-beats} draws the three stages as one lint is worn into a legacy tree.
+Cloudflare reports a similar practice: introduce policy checks in advisory mode, repair existing violations, and enforce them once the codebase is clean~\citep{reimann2026codex}.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{book/latex/assets/squash-zero-promote-09051baa58.pdf}
-\caption{\emph{Audit, Drain, Promote.} A new lint lands audit-only --- every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism\textquotesingle s declared detection surface are refused at that boundary.}
-\label{audit-drain-promote-beats}
-\end{figure}
+
 
 The check used to discover a problem is not always suitable for enforcement. In DocAble, primitive density helped identify code worth examining, but primitive-heavy code was not necessarily wrong. Investigation revealed more specific problems that could be prevented with types, constraints, or lints. The primitive-density detector remained advisory; the narrower checks enforced the actual obligations.
 

@@ -689,7 +689,7 @@
   {
     "chapter": "4.1-the-dynamics-of-mage",
     "source": "assets/active-passive-alignment.svg",
-    "caption": "*Active and passive alignment.* Active alignment uses a model and its alignment mechanisms to transform a realization until the modeled obligations are satisfied. Once correspondence has been established, those models and mechanisms remain in the governed engineering environment as passive alignment: subsequent changes are evaluated against the established obligations so that correspondence is preserved.",
+    "caption": "*Active and passive alignment.* Active alignment brings an implementation into conformance with modeled obligations, including newly introduced obligations that deliberately differ from the current system. Once established, those obligations and their alignment mechanisms are retained. Passive alignment uses them to evaluate subsequent changes and preserve the properties already brought under governance.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
@@ -697,7 +697,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Active alignment converges the system; passive alignment preserves the correspondence",
-    "svg_description": "Two stacked panels. Top, active alignment (convergence): models M feed a pipeline of\n    compare (detect gaps), modify (with agents), and evaluate (check alignment), producing the aligned\n    system S-prime; a loop-back arrow labelled repeat until correspondence returns from evaluate to\n    compare. A handoff arrow labelled once active alignment succeeds leads to the bottom panel, passive\n    alignment (preservation): a proposed change delta-S enters evaluate (check against models), with the\n    retained models M feeding in from above; the outcome is admit or reject, yielding the updated system\n    S-prime, with a loop labelled continue protecting correspondence returning to the next proposed\n    change. A closing note: the models, mechanisms, and governance remain in the governed engineering\n    environment as engineering capital."
+    "svg_description": "Two stacked shaded panels. Active alignment uses models with new obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until correspondence and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to protect correspondence. The retained models, mechanisms, and governance are engineering capital for subsequent changes."
   },
   {
     "chapter": "4.1-the-dynamics-of-mage",
@@ -849,7 +849,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Process design organizes production around the fabricator; tolerance bounds the\n    product",
-    "svg_description": "One large frame labelled SOFTWARE FACTORY holds two engineering concerns of equal\n    standing, each introduced by a heading over a coloured rule. Across the top, under the heading\n    PROCESS DESIGN — how production proceeds, a dashed band labelled PRODUCTION PROCESS carries a\n    left-to-right path from engineering intent, through context and work, through a box labelled\n    Fabricator, and out to a realization. All four boxes are drawn at the same firm weight: the\n    fabricator is one station among them, not the centre of the picture. A bracket spans the whole path\n    from the first box to the last, and beneath it, set larger than any label on the path, an annotation\n    names what the process design determines: context, tools, routing, authority, sequencing. Below the\n    band, under the heading TOLERANCE — what variation in the product is acceptable, a wide bounded\n    region drawn in the governance colour is labelled ACCEPTABLE REGION. Dots inside it mark distinct\n    acceptable realizations the fabricator may choose among. A measurement arrow drops from the\n    realization to the top of that region, annotated with the mechanisms that establish where a\n    realization falls: tests, property-based testing, analysis, simulation, human judgment. From the\n    region two arrows of equal weight lead out, one labelled within tolerance to admitted change and one\n    labelled outside to revise or reject."
+    "svg_description": "Process design organizes engineering intent, context and work, the fabricator, and realization. Measurement evaluates possible realizations against tolerance. The acceptable region contains permitted variation; an inside point leads to admitted change and an outside point to revision or rejection. Its structure matches the probability-in-the-factory figure."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",

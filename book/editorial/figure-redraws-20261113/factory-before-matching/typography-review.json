@@ -1,0 +1,243 @@
+{
+  "source": "book/assets/process-design-and-tolerance.svg",
+  "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
+  "decision": "refined",
+  "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
+  "candidate_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
+  "evidence": [
+    {
+      "source_text": "context · tools · routing · authority · sequencing",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "24"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Context; tools; routing; authority; sequencing",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "context · tools · routing · authority · sequencing",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "24"
+          },
+          "location": {
+            "x": "500",
+            "y": "322",
+            "text_element": 10
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "PRODUCTION PROCESS",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "PRODUCTION PROCESS",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "PRODUCTION PROCESS",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19"
+          },
+          "location": {
+            "x": "70",
+            "y": "180",
+            "text_element": 4
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "ACCEPTABLE REGION",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "22"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "ACCEPTABLE REGION",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "ACCEPTABLE REGION",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "22"
+          },
+          "location": {
+            "x": "662",
+            "y": "490",
+            "text_element": 17
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "PROCESS DESIGN",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "27"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "PROCESS DESIGN",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "PROCESS DESIGN",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "27"
+          },
+          "location": {
+            "x": "52",
+            "y": "104",
+            "text_element": 2
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "measurement",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "20"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Measurement",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "measurement",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "20"
+          },
+          "location": {
+            "x": "856",
+            "y": "418",
+            "text_element": 12
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "TOLERANCE",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "27"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "TOLERANCE",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "TOLERANCE",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "27"
+          },
+          "location": {
+            "x": "52",
+            "y": "490",
+            "text_element": 14
+          }
+        }
+      ]
+    }
+  ],
+  "reason": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+  "checks": [
+    {
+      "text": "Context; tools; routing; authority; sequencing",
+      "bold": true
+    },
+    {
+      "text": "PRODUCTION PROCESS",
+      "bold": true
+    },
+    {
+      "text": "ACCEPTABLE REGION",
+      "bold": true
+    },
+    {
+      "text": "PROCESS DESIGN",
+      "bold": true
+    },
+    {
+      "text": "Measurement",
+      "bold": true
+    },
+    {
+      "text": "TOLERANCE",
+      "bold": true
+    },
+    {
+      "text": "Fabricator",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/interaction-proof/process-design-and-tolerance.pdf",
+    "proof_sha256": "0def747c7c1b90cb69cc7a91e31d8a180fbcb2f356bdb86626a125ffa7b6b93a",
+    "page": 1,
+    "width_bp": 420.234,
+    "height_bp": 312.851,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "08b8fd1399e6d05f645ed4cc645c033ff893d29625a48a87022c6193c917ab7b",
+    "typography_audit_sha256": "3089a0aa2eda6ec29598f66d8ddd6072cf1a438c7aac106b6ab181e7c43b6d1f",
+    "semantic_typography_checks": 7,
+    "monochrome_pixels": true,
+    "status": "passed"
+  },
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
+    "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
+    "reason": "Chapter 5 compact figure composition; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "fbf89eb1481b864043c6658c66a4749170d94b461bccdfadabd12bf7e1b097d8",
+      "change": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 69,
+        "width_bp": 420.234,
+        "height_bp": 323.856,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 7
+      }
+    }
+  ]
+}

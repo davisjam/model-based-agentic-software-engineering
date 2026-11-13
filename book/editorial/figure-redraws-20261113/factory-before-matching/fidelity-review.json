@@ -1,0 +1,55 @@
+{
+  "source": "book/assets/process-design-and-tolerance.svg",
+  "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
+  "checks": {
+    "icons_and_symbols": "Four permissible realization dots retained.",
+    "links_and_groups": "Restored full production span bracket; dashed production container distinct from acceptable region.",
+    "annotation_placement": "Process label on group edge; measurement outside region; design dimensions below bracket.",
+    "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 420.234,
+  "height_bp": 312.851,
+  "monochrome": true,
+  "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
+  "candidate_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
+  "review": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+  "decision": "refined",
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "e523a639bf2b5a9bfab75685fb40ed2cd01ec33f04dc7a96773fd8db8ed80107",
+      "change": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+      "validation": {}
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/interaction-proof/process-design-and-tolerance.pdf",
+    "proof_sha256": "0def747c7c1b90cb69cc7a91e31d8a180fbcb2f356bdb86626a125ffa7b6b93a",
+    "page": 1,
+    "width_bp": 420.234,
+    "height_bp": 312.851,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "08b8fd1399e6d05f645ed4cc645c033ff893d29625a48a87022c6193c917ab7b",
+    "typography_audit_sha256": "3089a0aa2eda6ec29598f66d8ddd6072cf1a438c7aac106b6ab181e7c43b6d1f",
+    "semantic_typography_checks": 7,
+    "monochrome_pixels": true,
+    "status": "passed"
+  }
+}

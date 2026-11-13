@@ -20105,3 +20105,29 @@ Not every quality goal should end in enforcement. A consequential concern may re
 The same restraint applies to tolerance. Making an acceptable boundary explicit does not imply that the environment should tighten it, or even enforce it mechanically. A broad tolerance may be the correct engineering decision, and variation inside it remains legitimate realization freedom. Stronger Alignment means more dependable enforcement of the obligation engineers actually chose, not progressively narrowing the acceptable realization space.
 
 ```
+
+
+## Active/passive alignment and Audit–Drain–Promote figure — 13 November 2026
+
+Source: Chapter 4, §4.1 at `d7b17bff2`, paragraphs preceding and following Figure 4.2. Replaced with author-supplied deliberate-mismatch explanation and a shorter engineering-capital application.
+
+```latex
+Alignment is where delegation meets validation. Agents can perform the implementation, and the engineering environment establishes whether the resulting work satisfies the obligations that matter. It can also constrain actions before they occur. Active alignment changes the realization to establish correspondence with a model. Passive alignment checks that subsequent changes preserve that correspondence. \autoref{active-passive-alignment} shows the two modes and the handoff between them.
+
+In active alignment, the current implementation may not satisfy a newly introduced model. The environment can expose the disagreement, agents can modify the implementation, and the result can be evaluated again. That loop continues until the realization satisfies the modeled obligations.
+
+In passive alignment, a proposed change is evaluated against governing models and their obligations. The environment may reject the change, require evidence, constrain what an agent can do, or otherwise prevent the realization from drifting outside the modeled region.
+
+Once active alignment establishes correspondence, the model and its checks remain available for later changes. That reusable structure is engineering capital: subsequent work inherits an obligation and machinery for evaluating it.
+```
+
+Source: Chapter 4, §4.3 at `d7b17bff2`. Figure 4.11 removed at author request: inset already explains the three stages. All adjacent prose retained except the introductory reference and requested verb correction.
+
+```latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/squash-zero-promote-09051baa58.pdf}
+\caption{\emph{Audit, Drain, Promote.} A new lint lands audit-only --- every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so future violations within the mechanism\textquotesingle s declared detection surface are refused at that boundary.}
+\label{audit-drain-promote-beats}
+\end{figure}
+```

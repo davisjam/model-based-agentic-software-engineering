@@ -1,0 +1,26 @@
+{
+  "source": "book/assets/active-passive-alignment.svg",
+  "candidate": "book/tikz/figures/active-passive-alignment.tex",
+  "checks": {
+    "icons_and_symbols": "Models are labeled plural; source stacked-card decoration is simplified to labeled model nodes, not a lost dependency.",
+    "links_and_groups": "Active repeat and passive preservation loops plus handoff arrow retained.",
+    "annotation_placement": "Handoff and loop captions remain outside nodes; capital note below panels."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 402.8280029296875,
+  "height_bp": 281.0889892578125,
+  "monochrome": true,
+  "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+  "candidate_sha256": "4f4ddacd1b3037c929a3507c2c3b1fef75e6534658947acd86d7bb400f2ad324",
+  "review": "Reviewed and retained.",
+  "decision": "retained"
+}

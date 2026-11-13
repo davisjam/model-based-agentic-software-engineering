@@ -1,0 +1,236 @@
+{
+  "source": "book/assets/active-passive-alignment.svg",
+  "claim": "*Active and passive alignment.* Active alignment uses a model and its alignment mechanisms to transform a realization until the modeled obligations are satisfied. Once correspondence has been established, those models and mechanisms remain in the governed engineering environment as passive alignment: subsequent changes are evaluated against the established obligations so that correspondence is preserved.",
+  "topology": "Two sequential panels; active compare/modify/evaluate feedback then passive change/evaluate feedback with retained models.",
+  "required_terms": [
+    "Active alignment: convergence",
+    "Models M",
+    "Compare\\ gaps",
+    "Modify\\ agents",
+    "Evaluate\\ alignment",
+    "Aligned\\ S' ",
+    "Passive alignment: preservation",
+    "Once active alignment succeeds, retain the models and mechanisms.",
+    "Proposed change  S",
+    "Models M",
+    "Evaluate against models",
+    "Updated system S'",
+    "Models, mechanisms, and governance remain as engineering capital for every change."
+  ],
+  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames. Grayscale refinement: Models and aligned states share light gray; evaluation nodes darker; active and passive panels recover their distinct enclosing shades.",
+  "questions": [],
+  "alt": "Two stacked panels. Top, active alignment (convergence): models M feed a pipeline of\n    compare (detect gaps), modify (with agents), and evaluate (check alignment), producing the aligned\n    system S-prime; a loop-back arrow labelled repeat until correspondence returns from evaluate to\n    compare. A handoff arrow labelled once active alignment succeeds leads to the bottom panel, passive\n    alignment (preservation): a proposed change delta-S enters evaluate (check against models), with the\n    retained models M feeding in from above; the outcome is admit or reject, yielding the updated system\n    S-prime, with a loop labelled continue protecting correspondence returning to the next proposed\n    change. A closing note: the models, mechanisms, and governance remain in the governed engineering\n    environment as engineering capital. Both Models M nodes are drawn as stacked cards, indicating retained model collections.",
+  "qa": {
+    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
+    "warnings": [],
+    "width_pt": 402.828,
+    "height_pt": 281.089,
+    "monochrome": true,
+    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+  },
+  "style_review": {
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+    "status": "reviewed",
+    "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+    "candidate_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+    "bold": "Source-derived emphasis includes Active alignment: convergence. Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
+    "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
+    "visual_review": "Active repeat loop, handoff and passive return loop retained; change enters evaluation side port. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 56,
+      "width_bp": 403.226,
+      "height_bp": 275.62,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5
+    },
+    "book_references": [],
+    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+  },
+  "shape_review": {
+    "index": 13,
+    "candidate": "book/tikz/figures/active-passive-alignment.tex",
+    "change": "Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
+    "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+    "candidate_sha256": "3b7a63dabcebf0f950b5ae4f406799761f5f2c7823c26915631bf05b9483af93",
+    "pdf_sha256": "ceaff779a86fb8675073e339aff42d607df4c26814d895d3ab3fd025973d8033",
+    "width_bp": 403.22601318359375,
+    "height_bp": 281.2879943847656,
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "compiler_diagnostics": [],
+    "geometry_findings": []
+  },
+  "typography_review": {
+    "review": "book/tikz/typography-review.json",
+    "decision": "refined",
+    "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+    "candidate_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+    "reason": "Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
+    "evidence": [
+      {
+        "source_text": "repeat until correspondence",
+        "source_style": "weight normal; italic; source size 18.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "repeat until correspondence",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[14]/text()",
+          "text_element_context": "repeat until correspondence",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "admit or reject",
+        "source_style": "weight normal; italic; source size 18.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "admit / reject",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[27]/text()",
+          "text_element_context": "admit or reject",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "continue protecting correspondence",
+        "source_style": "weight normal; italic; source size 18.4",
+        "semantic_role": "named category versus explanatory text",
+        "candidate_text": "continue protecting correspondence",
+        "candidate_style": "italic",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[28]/text()",
+          "text_element_context": "continue protecting correspondence",
+          "matching_fragment_count": 1
+        }
+      },
+      {
+        "source_text": "Active alignment (convergence)",
+        "source_style": "weight 700; normal; source size 21.5",
+        "semantic_role": "alignment mode",
+        "candidate_text": "Active alignment: convergence",
+        "candidate_style": "bold",
+        "source_locator": {
+          "svg": "book/assets/active-passive-alignment.svg",
+          "element_text_path": "/svg/text[1]/text()",
+          "text_element_context": "Active alignment (convergence)",
+          "matching_fragment_count": 1
+        }
+      }
+    ],
+    "checks": [
+      {
+        "text": "repeat until correspondence",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "admit / reject",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "continue protecting correspondence",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Active alignment: convergence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "detect gaps",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "page": 56,
+      "width_bp": 403.226,
+      "height_bp": 275.62,
+      "minimum_prose_font_pt": 9.0,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 5,
+      "book_font_inheritance": {
+        "configuration": "latex/book-fonts.tex",
+        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
+        "reference": "latex/build/tikz/body-font-reference.pdf",
+        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
+        "body_faces": [
+          "SourceSans3-Bold",
+          "SourceSans3-BoldIt",
+          "SourceSans3-It",
+          "SourceSans3-Regular"
+        ]
+      }
+    }
+  },
+  "layout_review": {
+    "review": "book/tikz/layout-review.json",
+    "decision": "refined",
+    "reason": "Aligned the Compare/Modify/Evaluate process peers; retained the different model/result roles.",
+    "candidate_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+    "page_layout": {
+      "decision": "retained",
+      "reason": "Retain existing active passive alignment layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
+      "before_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+      "after_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+      "before_dimensions_bp": [
+        403.22601318359375,
+        275.6199951171875
+      ],
+      "after_dimensions_bp": [
+        403.22601318359375,
+        275.6199951171875
+      ],
+      "before_font_sizes_pt": [
+        7.0,
+        9.0,
+        10.0
+      ],
+      "after_font_sizes_pt": [
+        7.0,
+        9.0,
+        10.0
+      ],
+      "reviewed_visually": true
+    },
+    "validation": {
+      "proof": "latex/build/tikz/candidates.pdf",
+      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+      "geometry_findings": 0,
+      "checked_terminal_approaches": 633,
+      "reviewed_peer_groups": 81,
+      "semantic_typography_checks": 875,
+      "unapproved_compile_diagnostics": 0,
+      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
+      "maximum_dimensions_bp": [
+        450,
+        560
+      ],
+      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "status": "passed",
+      "page": 56,
+      "width_bp": 403.226,
+      "height_bp": 275.62
+    }
+  }
+}

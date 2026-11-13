@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored Chapter 5 print composition: source geometry and readable type, not blind shrinking. Original title/description and native monochrome partner retained. -->
+<!-- semantic-families: governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 635" width="900" height="635" role="img" aria-labelledby="pdtTitle pdtDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<title id="pdtTitle">Process design organizes production around the fabricator; tolerance bounds the
+    product</title>
+<desc id="pdtDesc">One large frame labelled SOFTWARE FACTORY holds two engineering concerns of equal
+    standing, each introduced by a heading over a coloured rule. Across the top, under the heading
+    PROCESS DESIGN — how production proceeds, a dashed band labelled PRODUCTION PROCESS carries a
+    left-to-right path from engineering intent, through context and work, through a box labelled
+    Fabricator, and out to a realization. All four boxes are drawn at the same firm weight: the
+    fabricator is one station among them, not the centre of the picture. A bracket spans the whole path
+    from the first box to the last, and beneath it, set larger than any label on the path, an annotation
+    names what the process design determines: context, tools, routing, authority, sequencing. Below the
+    band, under the heading TOLERANCE — what variation in the product is acceptable, a wide bounded
+    region drawn in the governance colour is labelled ACCEPTABLE REGION. Dots inside it mark distinct
+    acceptable realizations the fabricator may choose among. A measurement arrow drops from the
+    realization to the top of that region, annotated with the mechanisms that establish where a
+    realization falls: tests, property-based testing, analysis, simulation, human judgment. From the
+    region two arrows of equal weight lead out, one labelled within tolerance to admitted change and one
+    labelled outside to revise or reject.</desc>
+<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
+<text x="450" y="26" text-anchor="middle" font-size="22" fill="#57534e" font-weight="700">SOFTWARE FACTORY</text>
+<rect x="10" y="39" width="880" height="584" rx="7" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+<text x="34" y="71" text-anchor="start" font-size="25" fill="#1c1917" font-weight="700">PROCESS DESIGN</text>
+<path d="M34 80 L215 80" fill="none" stroke="#1c1917" stroke-width="2.2"/>
+<text x="34" y="102" text-anchor="start" font-size="20" fill="#57534e">how production proceeds</text>
+<rect x="26" y="115" width="848" height="191" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="43" y="143" text-anchor="start" font-size="20" fill="#57534e" font-weight="700">PRODUCTION PROCESS</text>
+<rect id="n-intent" x="48" y="158" width="160" height="59" rx="7" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="128" y="182" text-anchor="middle" font-size="22" fill="#1c1917">Engineering</text>
+<text x="128" y="207" text-anchor="middle" font-size="22" fill="#1c1917">intent</text>
+<path d="M208 187.5 L254 187.5" fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#ink-arrow)"/>
+<rect id="n-work" x="256" y="158" width="160" height="59" rx="7" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="336" y="195" text-anchor="middle" font-size="22" fill="#1c1917">Context / work</text>
+<path d="M416 187.5 L462 187.5" fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#ink-arrow)"/>
+<rect id="n-fabricator" x="464" y="158" width="160" height="59" rx="7" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="544" y="195" text-anchor="middle" font-size="22" fill="#1c1917">Fabricator</text>
+<path d="M624 187.5 L670 187.5" fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#ink-arrow)"/>
+<rect id="n-realization" x="672" y="158" width="160" height="59" rx="7" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="752" y="195" text-anchor="middle" font-size="22" fill="#1c1917">Realization</text>
+<path d="M128 227 V239 H752 V227" fill="none" stroke="#1c1917" stroke-width="2.2"/>
+<text x="450" y="268" text-anchor="middle" font-size="23" fill="#1c1917" font-weight="700">context · tools · routing · authority · sequencing</text>
+<text x="450" y="293" text-anchor="middle" font-size="20" fill="#57534e">what process design determines</text>
+<path d="M810 217 L810 378" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#rust-arrow)"/>
+<text x="790" y="337" text-anchor="end" font-size="21" fill="#9a3f12" font-weight="700">measurement</text>
+<text x="790" y="363" text-anchor="end" font-size="20" fill="#9a3f12">tests · PBT · analysis · simulation · human judgment</text>
+<text x="34" y="413" text-anchor="start" font-size="25" fill="#1c1917" font-weight="700">TOLERANCE</text>
+<path d="M34 422 L215 422" fill="none" stroke="#9a3f12" stroke-width="2.2"/>
+<text x="34" y="449" text-anchor="start" font-size="20" fill="#57534e">what variation in the product</text>
+<text x="34" y="474" text-anchor="start" font-size="20" fill="#57534e">is acceptable</text>
+<rect id="n-region" x="340" y="380" width="520" height="133" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+<text x="600" y="413" text-anchor="middle" font-size="23" fill="#9a3f12" font-weight="700">ACCEPTABLE REGION</text>
+<circle cx="415" cy="455" r="5" fill="#1c1917"/>
+<circle cx="495" cy="445" r="5" fill="#1c1917"/>
+<circle cx="575" cy="459" r="5" fill="#1c1917"/>
+<circle cx="655" cy="446" r="5" fill="#1c1917"/>
+<circle cx="735" cy="457" r="5" fill="#1c1917"/>
+<text x="600" y="496" text-anchor="middle" font-size="20" fill="#57534e">the fabricator may choose among these</text>
+<path d="M460 513 L460 562" fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#ink-arrow)"/>
+<path d="M740 513 L740 562" fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#ink-arrow)"/>
+<text x="448" y="545" text-anchor="end" font-size="20" fill="#57534e">outside</text>
+<text x="754" y="535" text-anchor="start" font-size="20" fill="#57534e">within</text>
+<text x="754" y="557" text-anchor="start" font-size="20" fill="#57534e">tolerance</text>
+<rect id="n-revise" x="365" y="564" width="190" height="44" rx="7" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="460" y="593" text-anchor="middle" font-size="22" fill="#1c1917">Revise / reject</text>
+<rect id="n-admitted" x="635" y="564" width="210" height="44" rx="7" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+<text x="740" y="593" text-anchor="middle" font-size="22" fill="#1c1917">Admitted change</text>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/active-passive-alignment.svg",
+  "candidate": "book/tikz/figures/active-passive-alignment.tex",
+  "receipt": "book/tikz/receipts/active-passive-alignment.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Models and aligned states share light gray; evaluation nodes darker; active and passive panels recover their distinct enclosing shades.",
+  "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
+  "candidate_sha256": "4f4ddacd1b3037c929a3507c2c3b1fef75e6534658947acd86d7bb400f2ad324"
+}

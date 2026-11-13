@@ -14694,102 +14694,387 @@
       "source": "book/assets/active-passive-alignment.svg",
       "candidate": "book/tikz/figures/active-passive-alignment.tex",
       "decision": "refined",
-      "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
-      "candidate_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+      "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
+      "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
       "evidence": [
         {
-          "source_text": "repeat until correspondence",
-          "source_style": "weight normal; italic; source size 18.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "repeat until correspondence",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/active-passive-alignment.svg",
-            "element_text_path": "/svg/text[14]/text()",
-            "text_element_context": "repeat until correspondence",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "admit or reject",
-          "source_style": "weight normal; italic; source size 18.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "admit / reject",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/active-passive-alignment.svg",
-            "element_text_path": "/svg/text[27]/text()",
-            "text_element_context": "admit or reject",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "continue protecting correspondence",
-          "source_style": "weight normal; italic; source size 18.4",
-          "semantic_role": "named category versus explanatory text",
-          "candidate_text": "continue protecting correspondence",
-          "candidate_style": "italic",
-          "source_locator": {
-            "svg": "book/assets/active-passive-alignment.svg",
-            "element_text_path": "/svg/text[28]/text()",
-            "text_element_context": "continue protecting correspondence",
-            "matching_fragment_count": 1
-          }
-        },
-        {
-          "source_text": "Active alignment (convergence)",
-          "source_style": "weight 700; normal; source size 21.5",
-          "semantic_role": "alignment mode",
-          "candidate_text": "Active alignment: convergence",
+          "candidate_text": "Active Alignment",
           "candidate_style": "bold",
-          "source_locator": {
-            "svg": "book/assets/active-passive-alignment.svg",
-            "element_text_path": "/svg/text[1]/text()",
-            "text_element_context": "Active alignment (convergence)",
-            "matching_fragment_count": 1
-          }
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "(convergence)",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Use the models to",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "change the system until",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "it satisfies them.",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Passive Alignment",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "(preservation)",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "The same models and",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "mechanisms keep the",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "system aligned.",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "New obligations",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Compare",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "and detect",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "gaps",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Modify",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "the system",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "(with agents)",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Evaluate",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "and check",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "alignment",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Aligned",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "system",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Repeat until correspondence",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Once active alignment succeeds,",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "retain the models and mechanisms.",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Known obligations",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Proposed",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Evaluate the",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "change against",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "the models",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Updated",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Admit or reject",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Continue protecting correspondence",
+          "candidate_style": "italic",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Models, mechanisms, and governance remain",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "as engineering capital for every change.",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
         }
       ],
-      "reason": "Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
+      "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
       "checks": [
         {
-          "text": "repeat until correspondence",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "admit / reject",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "continue protecting correspondence",
-          "bold": false,
-          "italic": true
-        },
-        {
-          "text": "Active alignment: convergence",
+          "text": "Active Alignment",
           "bold": true,
           "italic": false
         },
         {
-          "text": "detect gaps",
+          "text": "(convergence)",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Use the models to",
           "bold": false,
+          "italic": true
+        },
+        {
+          "text": "change the system until",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "it satisfies them.",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Passive Alignment",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(preservation)",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "The same models and",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "mechanisms keep the",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "system aligned.",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "New obligations",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Compare",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "and detect",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "gaps",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Modify",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "the system",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "(with agents)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Evaluate",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "and check",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "alignment",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Aligned",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "system",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Repeat until correspondence",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Once active alignment succeeds,",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "retain the models and mechanisms.",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Known obligations",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Proposed",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Evaluate the",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "change against",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "the models",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Updated",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Admit or reject",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Continue protecting correspondence",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Models, mechanisms, and governance remain",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "as engineering capital for every change.",
+          "bold": true,
           "italic": false
         }
       ],
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 56,
-        "width_bp": 403.226,
-        "height_bp": 275.62,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+        "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+        "page": 1,
+        "width_bp": 448.421,
+        "height_bp": 275.423,
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
+        "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
+        "semantic_typography_checks": 35,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 5
-      }
+        "status": "passed",
+        "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      },
+      "reviewed_visually": true,
+      "revision_history": [
+        {
+          "date": "2026-11-13",
+          "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+        }
+      ]
     },
     {
       "source": "book/assets/alignment-kernel.svg",
@@ -17511,217 +17796,199 @@
       "source": "book/assets/process-design-and-tolerance.svg",
       "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
       "decision": "refined",
-      "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
-      "candidate_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
+      "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
+      "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
       "evidence": [
         {
-          "source_text": "context · tools · routing · authority · sequencing",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "24"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Context; tools; routing; authority; sequencing",
+          "candidate_text": "SOFTWARE FACTORY",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "context · tools · routing · authority · sequencing",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "24"
-              },
-              "location": {
-                "x": "500",
-                "y": "322",
-                "text_element": 10
-              }
-            }
-          ]
+          "semantic_role": "Heading, explanatory label, or process annotation."
         },
         {
-          "source_text": "PRODUCTION PROCESS",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19"
-          },
-          "semantic_role": "concept/category versus explanation",
+          "candidate_text": "PROCESS DESIGN:",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "how production proceeds",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
           "candidate_text": "PRODUCTION PROCESS",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "PRODUCTION PROCESS",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19"
-              },
-              "location": {
-                "x": "70",
-                "y": "180",
-                "text_element": 4
-              }
-            }
-          ]
+          "semantic_role": "Heading, explanatory label, or process annotation."
         },
         {
-          "source_text": "ACCEPTABLE REGION",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "22"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "ACCEPTABLE REGION",
+          "candidate_text": "Fabricator",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Realization",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Measurement:",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "ACCEPTABLE REGION",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "22"
-              },
-              "location": {
-                "x": "662",
-                "y": "490",
-                "text_element": 17
-              }
-            }
-          ]
+          "semantic_role": "Heading, explanatory label, or process annotation."
         },
         {
-          "source_text": "PROCESS DESIGN",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "27"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "PROCESS DESIGN",
+          "candidate_text": "POSSIBLE REALIZATIONS",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "PROCESS DESIGN",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "27"
-              },
-              "location": {
-                "x": "52",
-                "y": "104",
-                "text_element": 2
-              }
-            }
-          ]
+          "semantic_role": "Heading, explanatory label, or process annotation."
         },
         {
-          "source_text": "measurement",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "20"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Measurement",
+          "candidate_text": "Acceptable region",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "measurement",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "20"
-              },
-              "location": {
-                "x": "856",
-                "y": "418",
-                "text_element": 12
-              }
-            }
-          ]
+          "semantic_role": "Heading, explanatory label, or process annotation."
         },
         {
-          "source_text": "TOLERANCE",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "27"
-          },
-          "semantic_role": "concept/category versus explanation",
           "candidate_text": "TOLERANCE",
           "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "TOLERANCE",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "27"
-              },
-              "location": {
-                "x": "52",
-                "y": "490",
-                "text_element": 14
-              }
-            }
-          ]
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "within tolerance",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "outside tolerance",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Admitted change",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Revise / reject",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Context / work",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "Context; tools; routing; authority; sequencing",
+          "candidate_style": "bold",
+          "semantic_role": "Heading, explanatory label, or process annotation."
+        },
+        {
+          "candidate_text": "what process design determines",
+          "candidate_style": "regular",
+          "semantic_role": "Heading, explanatory label, or process annotation."
         }
       ],
-      "reason": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+      "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
       "checks": [
         {
-          "text": "Context; tools; routing; authority; sequencing",
-          "bold": true
+          "text": "SOFTWARE FACTORY",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "PROCESS DESIGN:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "how production proceeds",
+          "bold": false,
+          "italic": false
         },
         {
           "text": "PRODUCTION PROCESS",
-          "bold": true
-        },
-        {
-          "text": "ACCEPTABLE REGION",
-          "bold": true
-        },
-        {
-          "text": "PROCESS DESIGN",
-          "bold": true
-        },
-        {
-          "text": "Measurement",
-          "bold": true
-        },
-        {
-          "text": "TOLERANCE",
-          "bold": true
+          "bold": true,
+          "italic": false
         },
         {
           "text": "Fabricator",
           "bold": false,
           "italic": false
+        },
+        {
+          "text": "Realization",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Measurement:",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "POSSIBLE REALIZATIONS",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Acceptable region",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "TOLERANCE",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "within tolerance",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "outside tolerance",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Admitted change",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Revise / reject",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Context / work",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Context; tools; routing; authority; sequencing",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "what process design determines",
+          "bold": false,
+          "italic": false
         }
       ],
       "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/interaction-proof/process-design-and-tolerance.pdf",
-        "proof_sha256": "0def747c7c1b90cb69cc7a91e31d8a180fbcb2f356bdb86626a125ffa7b6b93a",
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
+        "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
         "page": 1,
-        "width_bp": 420.234,
-        "height_bp": 312.851,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
+        "width_bp": 449.972,
+        "height_bp": 363.973,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "08b8fd1399e6d05f645ed4cc645c033ff893d29625a48a87022c6193c917ab7b",
-        "typography_audit_sha256": "3089a0aa2eda6ec29598f66d8ddd6072cf1a438c7aac106b6ab181e7c43b6d1f",
-        "semantic_typography_checks": 7,
+        "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
+        "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+        "semantic_typography_checks": 17,
         "monochrome_pixels": true,
-        "status": "passed"
+        "status": "passed",
+        "scope": "Native figure and SVG visually inspected; revised proof available for author review."
       },
       "color_source_revision": {
         "date": "2026-11-09",
@@ -17747,8 +18014,13 @@
             "monochrome_pixels": true,
             "semantic_typography_checks": 7
           }
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
         }
-      ]
+      ],
+      "reviewed_visually": true
     },
     {
       "source": "book/assets/build-stages-timeline.svg",

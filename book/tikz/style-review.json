@@ -2834,27 +2834,40 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "093448ae0b5610687858be0b786e77240d424b9bb66685b95825f5c81d006fc7",
-      "candidate_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
+      "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
+      "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
       "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
       "bold": "Source-derived emphasis includes Active alignment: convergence. Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
       "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
       "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
-      "visual_review": "Active repeat loop, handoff and passive return loop retained; change enters evaluation side port. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
+      "visual_review": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "page": 56,
-        "width_bp": 403.226,
-        "height_bp": 275.62,
-        "minimum_prose_font_pt": 9.0,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
+        "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+        "page": 1,
+        "width_bp": 448.421,
+        "height_bp": 275.423,
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
+        "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
+        "semantic_typography_checks": 35,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 5
+        "status": "passed",
+        "scope": "Native figure and SVG visually inspected; revised proof available for author review."
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow."
+      "routing_exceptions": "Short orthogonal feedback paths reproduce the reference.",
+      "reviewed_visually": true,
+      "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+      "revision_history": [
+        {
+          "date": "2026-11-13",
+          "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+        }
+      ]
     },
     {
       "source": "book/assets/alignment-kernel.svg",
@@ -3511,35 +3524,32 @@
       "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
       "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
       "status": "reviewed",
-      "source_sha256": "8a9d547a0b553223056b6a3ba3da6d256c6ff44f21bae992d515d6fa88e77417",
-      "candidate_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
+      "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
+      "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
       "fill": "Only acceptable-region field is 5%; dashed production boundary carries grouping.",
       "bold": "Plain ALL-CAPS headings distinguish factory, process design, and tolerance; explanations stay regular below heading rules.",
       "routing": "Existing production, measurement, and admission paths unchanged.",
       "shape": "Remove boxes from SOFTWARE FACTORY and TOLERANCE headings; underline PROCESS DESIGN and TOLERANCE. Preserve process and outcome boxes.",
-      "visual_review": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
+      "visual_review": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
       "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/interaction-proof/process-design-and-tolerance.pdf",
-        "proof_sha256": "0def747c7c1b90cb69cc7a91e31d8a180fbcb2f356bdb86626a125ffa7b6b93a",
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
+        "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
         "page": 1,
-        "width_bp": 420.234,
-        "height_bp": 312.851,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
+        "width_bp": 449.972,
+        "height_bp": 363.973,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "08b8fd1399e6d05f645ed4cc645c033ff893d29625a48a87022c6193c917ab7b",
-        "typography_audit_sha256": "3089a0aa2eda6ec29598f66d8ddd6072cf1a438c7aac106b6ab181e7c43b6d1f",
-        "semantic_typography_checks": 7,
+        "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
+        "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+        "semantic_typography_checks": 17,
         "monochrome_pixels": true,
-        "status": "passed"
+        "status": "passed",
+        "scope": "Native figure and SVG visually inspected; revised proof available for author review."
       },
       "book_references": [],
-      "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+      "routing_exceptions": "Geometry reused from the companion probability figure.",
       "color_source_revision": {
         "date": "2026-11-09",
         "previous_source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
@@ -3564,8 +3574,14 @@
             "monochrome_pixels": true,
             "semantic_typography_checks": 7
           }
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
         }
-      ]
+      ],
+      "reviewed_visually": true,
+      "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
     },
     {
       "source": "book/assets/build-stages-timeline.svg",
