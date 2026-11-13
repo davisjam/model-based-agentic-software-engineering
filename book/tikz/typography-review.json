@@ -12070,11 +12070,11 @@
     {
       "source": "book/assets/semantic-gap-levels.svg",
       "candidate": "book/tikz/figures/semantic-gap-levels.tex",
-      "source_sha256": "a656e1976beb15f960694d823d7736107450bab7a3e24ddb1eed6ee97677d4e2",
-      "candidate_sha256": "02dd7597102e853a23609a80868cb4d0ae73ae6d36fd5bc6abee998521e32d28",
+      "source_sha256": "3b614b21646633bca22f32982b815c09012322b9135583619610859b4dbf603f",
+      "candidate_sha256": "a33c0a5279e293fca0e801d74128320a0d64b7595d803d2cf22ac54c1ff87253",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Remove redundant intermediate boxes. The earlier-check bracket excludes browser execution.",
+      "reason": "Replace the generic boundary schematic with two independent obligations over an illustrative development sequence. Restore the named boundary boxes from the reference, enlarge the type, and reduce the whitespace within boxes and between levels. The earlier-check bracket excludes browser execution.",
       "previous_review": "book/editorial/figure-redraws-20261113/semantic-gap-levels-before-two-obligations/typography-review.json",
       "checks": [
         {
@@ -12106,6 +12106,16 @@
           "text": "(e.g., browser)",
           "bold": false,
           "italic": true
+        },
+        {
+          "text": "TASK COMPLETION",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "INTEGRATED EXECUTION",
+          "bold": true,
+          "italic": false
         },
         {
           "text": "commit 1",
@@ -12195,6 +12205,16 @@
           "semantic_role": "Named mechanism or its explanatory role"
         },
         {
+          "candidate_text": "TASK COMPLETION",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
+          "candidate_text": "INTEGRATED EXECUTION",
+          "candidate_style": "bold",
+          "semantic_role": "Named mechanism or its explanatory role"
+        },
+        {
           "candidate_text": "commit 1",
           "candidate_style": "regular",
           "semantic_role": "Named mechanism or its explanatory role"
@@ -12253,23 +12273,19 @@
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/semantic-gap-levels-20261113/candidates.pdf",
-        "proof_sha256": "bd95bd4c272a42bfd178b0bc667aa8453a677f9f93be58ce7189248365b5bddc",
+        "proof_sha256": "8368c9287309dfc86965a8ce98c1f17b5a406d431a10c737f1ce50afd19fbe16",
         "page": 1,
         "width_bp": 449.62,
-        "height_bp": 209.272,
-        "minimum_prose_font_pt": 9,
+        "height_bp": 207.491,
+        "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "55afc49427226891a58e2287631478e2811f15f0fcf32824d02d843a62fa49dc",
-        "typography_audit_sha256": "cd7f158384c3fe06696a35d98cf5a0cdcdc001efb586c9898f3ba05c5cf1aa40",
-        "semantic_typography_checks": 17,
+        "geometry_audit_sha256": "d2e33aeb8db949f78ed5df4acd4a785cb374ec087bf7e95c92f64208c16b5bf1",
+        "typography_audit_sha256": "9cfdfbb4f3ca48aee62bcdfee4ec221ec95d66b2bc1e99e6e4586cea78433cb3",
+        "semantic_typography_checks": 19,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof, visually inspected after the author-requested prefix removal."
-      },
-      "author_review": {
-        "approved_date": "2026-11-13",
-        "condition_completed": "Removed X and Y prefixes from both obligation boxes."
+        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
       }
     },
     {
