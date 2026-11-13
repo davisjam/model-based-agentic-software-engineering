@@ -216,6 +216,16 @@
     "observed-vs-declared": {
       "width_bp": 210.867,
       "placement": "centered"
+    },
+    "derive-generate-trace": {
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
+    },
+    "discovering-latent-models": {
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
     }
   }
 }

@@ -19870,3 +19870,14 @@ Make the direction of correspondence explicit. Where the implementation is the s
 
 \caption{\emph{Three correspondence patterns.} Derivation produces a view from implementation; generation produces an artifact from a model; traceability relates representations neither of which fully determines the other. A runtime can also interpret a model directly, as the build example below illustrates.}
 ```
+
+## Chapter 4 latent-model recovery — 13 November 2026
+
+- Source: `book/latex/sources/part4/4.3-brownfield-engineering.tex`, Recover Latent Models, lines 72–77 at `4237fa108`.
+- Reason: Author replaces the process summary with a concrete shared-state-machine recovery and migration example, accompanying the revised Figure 4.10. Surrounding DocAble evidence is retained.
+
+```latex
+This gives a practical route from weak implementation signals to explicit models. Surface repeated structure; partition findings by architectural role and likely cause; compare related instances for shared meaning; name a concept only when that meaning earns a representation; then migrate consumers and enforce whatever narrower relationships the new model makes decidable. \autoref{discovering-latent-models} summarizes that process. The schematic is intentionally simpler than the judgment that produces it: detection narrows the search space, while engineering interpretation decides whether there is a model to recover.
+
+\caption[Discovering latent models --- weak signals → partition \{legitimate shape · mechanical debt · latent concept\} → name the model → migrate consumers → narrower enforcement → stronger substrate]{\emph{Discovering models in a brownfield system.} Weak signals --- primitive density, repeated shapes, the component and boundary view --- identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate.}
+```

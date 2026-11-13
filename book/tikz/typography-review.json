@@ -16682,416 +16682,236 @@
     {
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
+      "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+      "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
       "decision": "refined",
-      "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
-      "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
-      "evidence": [
-        {
-          "source_text": "STRONGER MODEL SUBSTRATE",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "STRONGER MODEL SUBSTRATE",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "STRONGER MODEL SUBSTRATE",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "826",
-                "text_element": 28
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "NARROWER ENFORCEMENT",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "NARROWER ENFORCEMENT",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "NARROWER ENFORCEMENT",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "734",
-                "text_element": 26
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "PARTITION FINDINGS",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "PARTITION FINDINGS",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "PARTITION FINDINGS",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "256",
-                "text_element": 7
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "explicit relations",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Explicit relations",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "explicit relations",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "640",
-                "y": "540",
-                "text_element": 22
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "EXISTING CODEBASE",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "EXISTING CODEBASE",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "EXISTING CODEBASE",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "58",
-                "text_element": 1
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "MIGRATE CONSUMERS",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "MIGRATE CONSUMERS",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "MIGRATE CONSUMERS",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "650",
-                "text_element": 24
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "LEGITIMATE SHAPE",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "LEGITIMATE SHAPE",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "LEGITIMATE SHAPE",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "160",
-                "y": "332",
-                "text_element": 8
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "typed vocabulary",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Typed vocabulary",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "typed vocabulary",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "300",
-                "y": "540",
-                "text_element": 20
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "MECHANICAL DEBT",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "MECHANICAL DEBT",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "MECHANICAL DEBT",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "332",
-                "text_element": 10
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "LATENT CONCEPT",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "LATENT CONCEPT",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "LATENT CONCEPT",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "780",
-                "y": "332",
-                "text_element": 12
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "NAME THE MODEL",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "NAME THE MODEL",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "NAME THE MODEL",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "780",
-                "y": "411",
-                "text_element": 18
-              }
-            }
-          ]
-        },
-        {
-          "source_text": "weak discovery signals",
-          "source_style": {
-            "font-weight": "700",
-            "font-style": "normal",
-            "font-size": "19.2"
-          },
-          "semantic_role": "concept/category versus explanation",
-          "candidate_text": "Weak signals:",
-          "candidate_style": "bold",
-          "source_fragments": [
-            {
-              "text": "weak discovery signals",
-              "style": {
-                "font-weight": "700",
-                "font-style": "normal",
-                "font-size": "19.2"
-              },
-              "location": {
-                "x": "480",
-                "y": "128",
-                "text_element": 3
-              }
-            }
-          ]
-        }
-      ],
-      "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+      "reviewed_visually": true,
+      "reason": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+      "validation": {
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+        "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 379.973,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          9.5,
+          10.0
+        ],
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 20,
+        "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+        "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+        "status": "passed"
+      },
+      "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
       "checks": [
         {
-          "text": "STRONGER MODEL SUBSTRATE",
-          "bold": true
-        },
-        {
-          "text": "NARROWER ENFORCEMENT",
-          "bold": true
-        },
-        {
-          "text": "PARTITION FINDINGS",
-          "bold": true
-        },
-        {
-          "text": "Explicit relations",
-          "bold": true
-        },
-        {
           "text": "EXISTING CODEBASE",
-          "bold": true
-        },
-        {
-          "text": "MIGRATE CONSUMERS",
-          "bold": true
-        },
-        {
-          "text": "LEGITIMATE SHAPE",
-          "bold": true
-        },
-        {
-          "text": "Typed vocabulary",
-          "bold": true
-        },
-        {
-          "text": "MECHANICAL DEBT",
-          "bold": true
-        },
-        {
-          "text": "LATENT CONCEPT",
-          "bold": true
-        },
-        {
-          "text": "NAME THE MODEL",
-          "bold": true
+          "bold": true,
+          "italic": false
         },
         {
           "text": "Weak signals:",
-          "bold": true
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "primitive density · repeated shapes component / boundary view",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "PARTITION FINDINGS",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Weak signals locate potential work.",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "LEGITIMATE SHAPE",
+          "bold": true,
+          "italic": false
         },
         {
           "text": "Accept / exempt",
           "bold": false,
+          "italic": true
+        },
+        {
+          "text": "LATENT CONCEPT",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "NAME THE MODEL",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "MECHANICAL DEBT",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Codemod",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "Typed vocabulary Explicit relations",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "MIGRATE CONSUMERS",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "NARROWER ENFORCEMENT",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "(types; lints; drift guard)",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "STRONGER MODEL SUBSTRATE",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "next pass",
+          "bold": false,
+          "italic": true
+        },
+        {
+          "text": "KEY",
+          "bold": true,
+          "italic": false
+        },
+        {
+          "text": "Step or artifact",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "text": "Model concept or substrate",
+          "bold": false,
           "italic": false
         }
       ],
-      "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
-        "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
-        "page": 1,
-        "width_bp": 426.857,
-        "height_bp": 346.733,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
-        "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
-        "semantic_typography_checks": 13,
-        "monochrome_pixels": true,
-        "status": "passed"
-      },
-      "revision_history": [
+      "evidence": [
         {
-          "date": "2026-11-11",
-          "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
-          "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "page": 65,
-            "width_bp": 423.31,
-            "height_bp": 346.733,
-            "minimum_prose_font_pt": 9.0,
-            "unapproved_compile_diagnostics": 0,
-            "geometry_findings": 0,
-            "monochrome_pixels": true,
-            "semantic_typography_checks": 13
-          }
+          "candidate_text": "EXISTING CODEBASE",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Weak signals:",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "primitive density · repeated shapes component / boundary view",
+          "candidate_style": "regular",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "PARTITION FINDINGS",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Weak signals locate potential work.",
+          "candidate_style": "italic",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "LEGITIMATE SHAPE",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Accept / exempt",
+          "candidate_style": "italic",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "LATENT CONCEPT",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "NAME THE MODEL",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "MECHANICAL DEBT",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Codemod",
+          "candidate_style": "italic",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Typed vocabulary Explicit relations",
+          "candidate_style": "regular",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "MIGRATE CONSUMERS",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "NARROWER ENFORCEMENT",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "(types; lints; drift guard)",
+          "candidate_style": "italic",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "STRONGER MODEL SUBSTRATE",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "next pass",
+          "candidate_style": "italic",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "KEY",
+          "candidate_style": "bold",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Step or artifact",
+          "candidate_style": "regular",
+          "semantic_role": "recovery stage, artifact, or process annotation"
+        },
+        {
+          "candidate_text": "Model concept or substrate",
+          "candidate_style": "regular",
+          "semantic_role": "recovery stage, artifact, or process annotation"
         }
       ]
     },

@@ -1,594 +1,479 @@
 {
   "source": "book/assets/discovering-models-migration.svg",
-  "claim": "*Discovering models in a brownfield system.* Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate. [short: Discovering latent models — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate]",
-  "topology": "Discovery partitions into accepted shape, mechanical fix, or named concept; only concept branch develops typed relations and enforcement.",
+  "claim": "*Discovering latent models in an existing system.* Weak signals identify candidate locations, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.",
+  "topology": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
   "required_terms": [
-    "Existing codebase",
-    "Weak signals: primitive density, repeated shapes, component / boundary view",
-    "Partition findings",
-    "Legitimate shape",
+    "EXISTING CODEBASE",
+    "Weak signals:",
+    "primitive density · repeated shapes component / boundary view",
+    "PARTITION FINDINGS",
+    "Weak signals locate potential work.",
+    "LEGITIMATE SHAPE",
     "Accept / exempt",
-    "Mechanical debt",
+    "LATENT CONCEPT",
+    "NAME THE MODEL",
+    "MECHANICAL DEBT",
     "Codemod",
-    "Latent concept",
-    "Name the model",
-    "Typed vocabulary",
-    "Explicit relations",
-    "Migrate consumers",
-    "Narrower enforcement\\; lints; drift guard",
-    "Stronger model substrate",
-    "Weak signals locate the work; they do not dictate the remedy."
+    "Typed vocabulary Explicit relations",
+    "MIGRATE CONSUMERS",
+    "NARROWER ENFORCEMENT",
+    "(types; lints; drift guard)",
+    "STRONGER MODEL SUBSTRATE",
+    "next pass",
+    "KEY",
+    "Step or artifact",
+    "Model concept or substrate"
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+  "bw_encoding": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role.",
+  "redesign": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
   "questions": [],
-  "alt": "A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy.",
+  "alt": "Weak signals from an existing codebase—primitive density, repeated shapes, component/boundary view—locate potential work. Findings are partitioned into three paths: legitimate shape is accepted or exempted; mechanical debt is handled by codemod; latent concept leads to naming a model, defining typed vocabulary and explicit relations, migrating consumers, and narrower enforcement using types, lints, and a drift guard. A stronger model substrate then feeds the next pass over the existing codebase. Only latent concept and stronger model substrate are shaded.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 426.857,
-    "height_pt": 346.733,
-    "monochrome": true,
-    "inspection": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
-      "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
-      "page": 1,
-      "width_bp": 426.857,
-      "height_bp": 346.733,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
-      "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
-      "semantic_typography_checks": 13,
-      "monochrome_pixels": true,
-      "status": "passed"
-    }
+    "date": "2026-11-13",
+    "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+    "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+    "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
+    "page": 1,
+    "width_bp": 449.972,
+    "height_bp": 379.973,
+    "minimum_prose_font_pt": 9.0,
+    "authored_type_sizes_pt": [
+      9.0,
+      9.5,
+      10.0
+    ],
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "monochrome_pixels": true,
+    "semantic_typography_checks": 20,
+    "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+    "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+    "status": "passed"
   },
-  "style_review": {
-    "decision": "refined",
-    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
-    "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
-    "status": "reviewed",
-    "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
-    "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
-    "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-    "bold": "Source-derived emphasis includes STRONGER MODEL SUBSTRATE; NARROWER ENFORCEMENT; PARTITION FINDINGS; Explicit relations; EXISTING CODEBASE; MIGRATE CONSUMERS; LEGITIMATE SHAPE; Typed vocabulary. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
-    "routing": "6 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
-    "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
-      "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
-      "page": 1,
-      "width_bp": 426.857,
-      "height_bp": 346.733,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
-      "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
-      "semantic_typography_checks": 13,
-      "monochrome_pixels": true,
-      "status": "passed"
-    },
-    "book_references": [],
-    "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
-    "revision_history": [
-      {
-        "date": "2026-11-11",
-        "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
-        "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-        "validation": {
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-          "page": 65,
-          "width_bp": 423.31,
-          "height_bp": 346.733,
-          "minimum_prose_font_pt": 9.0,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "monochrome_pixels": true,
-          "semantic_typography_checks": 13
-        }
-      }
+  "svg_qa": {
+    "overflow_findings": 0,
+    "palette_font_findings": 0,
+    "source_font_faces": [
+      "SourceSans3-Bold",
+      "SourceSans3-It",
+      "SourceSans3-Regular"
     ]
   },
-  "typography_review": {
+  "historical_receipt": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/discovering-models-migration.json",
+  "reference_image_sha256": "597e7d4f8e7a469e8bed661bb5adf7ae2d317222d9794d9af35fa563285480cb",
+  "layout_review": {
+    "source": "book/assets/discovering-models-migration.svg",
+    "candidate": "book/tikz/figures/discovering-models-migration.tex",
+    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
     "decision": "refined",
-    "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
-    "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
-    "evidence": [
-      {
-        "source_text": "STRONGER MODEL SUBSTRATE",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "STRONGER MODEL SUBSTRATE",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "STRONGER MODEL SUBSTRATE",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "826",
-              "text_element": 28
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "NARROWER ENFORCEMENT",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "NARROWER ENFORCEMENT",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "NARROWER ENFORCEMENT",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "734",
-              "text_element": 26
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "PARTITION FINDINGS",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "PARTITION FINDINGS",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "PARTITION FINDINGS",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "256",
-              "text_element": 7
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "explicit relations",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Explicit relations",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "explicit relations",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "640",
-              "y": "540",
-              "text_element": 22
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "EXISTING CODEBASE",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "EXISTING CODEBASE",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "EXISTING CODEBASE",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "58",
-              "text_element": 1
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "MIGRATE CONSUMERS",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "MIGRATE CONSUMERS",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "MIGRATE CONSUMERS",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "650",
-              "text_element": 24
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "LEGITIMATE SHAPE",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "LEGITIMATE SHAPE",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "LEGITIMATE SHAPE",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "160",
-              "y": "332",
-              "text_element": 8
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "typed vocabulary",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Typed vocabulary",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "typed vocabulary",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "300",
-              "y": "540",
-              "text_element": 20
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "MECHANICAL DEBT",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "MECHANICAL DEBT",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "MECHANICAL DEBT",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "332",
-              "text_element": 10
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "LATENT CONCEPT",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "LATENT CONCEPT",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "LATENT CONCEPT",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "780",
-              "y": "332",
-              "text_element": 12
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "NAME THE MODEL",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "NAME THE MODEL",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "NAME THE MODEL",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "780",
-              "y": "411",
-              "text_element": 18
-            }
-          }
-        ]
-      },
-      {
-        "source_text": "weak discovery signals",
-        "source_style": {
-          "font-weight": "700",
-          "font-style": "normal",
-          "font-size": "19.2"
-        },
-        "semantic_role": "concept/category versus explanation",
-        "candidate_text": "Weak signals:",
-        "candidate_style": "bold",
-        "source_fragments": [
-          {
-            "text": "weak discovery signals",
-            "style": {
-              "font-weight": "700",
-              "font-style": "normal",
-              "font-size": "19.2"
-            },
-            "location": {
-              "x": "480",
-              "y": "128",
-              "text_element": 3
-            }
-          }
-        ]
-      }
-    ],
-    "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+    "reviewed_visually": true,
+    "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+    "validation": {
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 379.973,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20,
+      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
+    "contracts": {},
+    "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+    "page_layout": {
+      "after_dimensions_bp": [
+        449.972,
+        379.973
+      ],
+      "after_font_sizes_pt": [
+        9,
+        9.5,
+        10
+      ],
+      "decision": "recomposed",
+      "reason": "Three partition branches align horizontally; the central recovery sequence descends through consistently spaced nodes. A smooth right-hand loop returns to the codebase.",
+      "reviewed_visually": true
+    }
+  },
+  "typography_review": {
+    "source": "book/assets/discovering-models-migration.svg",
+    "candidate": "book/tikz/figures/discovering-models-migration.tex",
+    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "validation": {
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 379.973,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20,
+      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/typography-review.json",
     "checks": [
       {
-        "text": "STRONGER MODEL SUBSTRATE",
-        "bold": true
-      },
-      {
-        "text": "NARROWER ENFORCEMENT",
-        "bold": true
-      },
-      {
-        "text": "PARTITION FINDINGS",
-        "bold": true
-      },
-      {
-        "text": "Explicit relations",
-        "bold": true
-      },
-      {
         "text": "EXISTING CODEBASE",
-        "bold": true
-      },
-      {
-        "text": "MIGRATE CONSUMERS",
-        "bold": true
-      },
-      {
-        "text": "LEGITIMATE SHAPE",
-        "bold": true
-      },
-      {
-        "text": "Typed vocabulary",
-        "bold": true
-      },
-      {
-        "text": "MECHANICAL DEBT",
-        "bold": true
-      },
-      {
-        "text": "LATENT CONCEPT",
-        "bold": true
-      },
-      {
-        "text": "NAME THE MODEL",
-        "bold": true
+        "bold": true,
+        "italic": false
       },
       {
         "text": "Weak signals:",
-        "bold": true
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "primitive density · repeated shapes component / boundary view",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "PARTITION FINDINGS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Weak signals locate potential work.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "LEGITIMATE SHAPE",
+        "bold": true,
+        "italic": false
       },
       {
         "text": "Accept / exempt",
         "bold": false,
+        "italic": true
+      },
+      {
+        "text": "LATENT CONCEPT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "NAME THE MODEL",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "MECHANICAL DEBT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Codemod",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Typed vocabulary Explicit relations",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "MIGRATE CONSUMERS",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "NARROWER ENFORCEMENT",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(types; lints; drift guard)",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "STRONGER MODEL SUBSTRATE",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "next pass",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "KEY",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Step or artifact",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Model concept or substrate",
+        "bold": false,
         "italic": false
       }
     ],
-    "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
-      "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
-      "page": 1,
-      "width_bp": 426.857,
-      "height_bp": 346.733,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
-      "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
-      "semantic_typography_checks": 13,
-      "monochrome_pixels": true,
-      "status": "passed"
-    },
-    "revision_history": [
+    "evidence": [
       {
-        "date": "2026-11-11",
-        "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
-        "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-        "validation": {
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-          "page": 65,
-          "width_bp": 423.31,
-          "height_bp": 346.733,
-          "minimum_prose_font_pt": 9.0,
-          "unapproved_compile_diagnostics": 0,
-          "geometry_findings": 0,
-          "monochrome_pixels": true,
-          "semantic_typography_checks": 13
-        }
+        "candidate_text": "EXISTING CODEBASE",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Weak signals:",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "primitive density · repeated shapes component / boundary view",
+        "candidate_style": "regular",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "PARTITION FINDINGS",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Weak signals locate potential work.",
+        "candidate_style": "italic",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "LEGITIMATE SHAPE",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Accept / exempt",
+        "candidate_style": "italic",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "LATENT CONCEPT",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "NAME THE MODEL",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "MECHANICAL DEBT",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Codemod",
+        "candidate_style": "italic",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Typed vocabulary Explicit relations",
+        "candidate_style": "regular",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "MIGRATE CONSUMERS",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "NARROWER ENFORCEMENT",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "(types; lints; drift guard)",
+        "candidate_style": "italic",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "STRONGER MODEL SUBSTRATE",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "next pass",
+        "candidate_style": "italic",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "KEY",
+        "candidate_style": "bold",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Step or artifact",
+        "candidate_style": "regular",
+        "semantic_role": "recovery stage, artifact, or process annotation"
+      },
+      {
+        "candidate_text": "Model concept or substrate",
+        "candidate_style": "regular",
+        "semantic_role": "recovery stage, artifact, or process annotation"
       }
     ]
   },
-  "layout_review": {
-    "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
-    "baseline_candidate_sha256": "c411e7168d868c85b5df0069c58ae38119c1eb92983f9e00dc75b932e7384dd8",
-    "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
+  "style_review": {
+    "source": "book/assets/discovering-models-migration.svg",
+    "candidate": "book/tikz/figures/discovering-models-migration.tex",
+    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
     "decision": "refined",
-    "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
     "reviewed_visually": true,
-    "baseline_dimensions_bp": [
-      416.2229919433594,
-      339.64599609375
-    ],
-    "contracts": {},
+    "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
     "validation": {
-      "date": "2026-11-11",
-      "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
-      "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
       "page": 1,
-      "width_bp": 426.857,
-      "height_bp": 346.733,
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "minimum_prose_font_pt": 10,
-      "unapproved_compile_diagnostics": 0,
-      "geometry_findings": 0,
-      "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
-      "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
-      "semantic_typography_checks": 13,
-      "monochrome_pixels": true,
-      "status": "passed"
-    },
-    "page_layout": {
-      "decision": "review candidate",
-      "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-      "after_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
-      "after_dimensions_bp": [
-        426.857,
-        346.733
-      ],
-      "after_font_sizes_pt": [
+      "width_bp": 449.972,
+      "height_bp": 379.973,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
         10.0
       ],
-      "reviewed_visually": true
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20,
+      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+      "status": "passed"
     },
-    "revision_history": [
-      {
-        "date": "2026-11-11",
-        "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
-        "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-        "validation": {
-          "proof": "latex/build/tikz/candidates.pdf",
-          "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-          "geometry_findings": 0,
-          "checked_terminal_approaches": 633,
-          "reviewed_peer_groups": 81,
-          "semantic_typography_checks": 875,
-          "unapproved_compile_diagnostics": 0,
-          "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-          "maximum_dimensions_bp": [
-            450,
-            560
-          ],
-          "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-          "status": "passed",
-          "page": 65,
-          "width_bp": 423.31,
-          "height_bp": 346.733
-        }
-      }
-    ]
+    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/style-review.json",
+    "receipt": "book/tikz/receipts/discovering-models-migration.json",
+    "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+    "guidelines_sha256": "b550647e84038a0dec6c6143e732b0bf52b2c7dfa7a46ce352e8be48ecb4ba48",
+    "status": "reviewed",
+    "fill": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role.",
+    "bold": "Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling.",
+    "routing": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
+    "shape": "Modestly rounded rectangles denote findings, steps, and artifacts; consistent gray fill identifies the discovered concept and reinforced model substrate.",
+    "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+    "book_references": [],
+    "routing_exceptions": "A curved perimeter return deliberately denotes iterative recovery without implying a second process branch."
+  },
+  "fidelity_review": {
+    "source": "book/assets/discovering-models-migration.svg",
+    "candidate": "book/tikz/figures/discovering-models-migration.tex",
+    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+    "validation": {
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 379.973,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20,
+      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/fidelity-review.json",
+    "checks": {
+      "icons_and_symbols": "Three-way partition is explicit. Gray role is explained by a small unboxed key; no ornamental symbols added.",
+      "links_and_groups": "Existing codebase flows through weak signals to Partition findings. Three branches lead to Legitimate shape then Accept/exempt; Latent concept then Name the model, Typed vocabulary/Explicit relations, Migrate consumers, Narrower enforcement, and Stronger model substrate; Mechanical debt then Codemod. A smooth next-pass return connects stronger substrate to existing codebase. It does not return to the weak-signal detector.",
+      "annotation_placement": "Weak signals locate potential work sits beside the detection/partition step; next pass labels the perimeter return. Enforcement examples stay inside the enforcement node.",
+      "line_breaks": "Weak-signal examples and typed vocabulary/explicit relations use two lines; category and process headings remain on one line at9.5–10pt."
+    },
+    "font_qa": {
+      "rendered_prose_sizes_tex_pt": [
+        9,
+        9.5,
+        10
+      ],
+      "minimum": 9,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 449.972,
+    "height_bp": 379.973,
+    "monochrome": true,
+    "review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists."
+  },
+  "grayscale_review": {
+    "source": "book/assets/discovering-models-migration.svg",
+    "candidate": "book/tikz/figures/discovering-models-migration.tex",
+    "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+    "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
+    "validation": {
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+      "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 379.973,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        9.5,
+        10.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 20,
+      "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+      "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/grayscale-review.json",
+    "receipt": "book/tikz/receipts/discovering-models-migration.json",
+    "reviewed": true,
+    "rationale": "Only Latent concept and Stronger model substrate use light gray, identifying a model concept discovered and the substrate reinforced. All other nodes remain white. The unboxed key explains this role. Stage/artifact labels use bold 9.5–10 pt; Weak signals is bold while its examples are regular 9 pt. Accept/exempt, Codemod, next pass, the enforcement examples, and the side annotation are italic. Typed vocabulary and Explicit relations are regular10pt descriptions. No post-render scaling."
   }
 }

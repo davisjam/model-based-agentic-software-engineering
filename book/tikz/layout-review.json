@@ -5783,76 +5783,50 @@
     {
       "source": "book/assets/discovering-models-migration.svg",
       "candidate": "book/tikz/figures/discovering-models-migration.tex",
-      "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
-      "baseline_candidate_sha256": "c411e7168d868c85b5df0069c58ae38119c1eb92983f9e00dc75b932e7384dd8",
-      "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
+      "source_sha256": "de9c122cbaebb899795e58e4ba6d7367d0c15288a65002e4f9009df40421e8d1",
+      "candidate_sha256": "8593092eeee88fa1c572cceff4cb5d2e08743de7706a8701003ad7f71c241138",
       "decision": "refined",
-      "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        416.2229919433594,
-        339.64599609375
-      ],
-      "contracts": {},
+      "reason": "Author-requested redraw moves the latent-concept branch to the center and connects the full recovery sequence to a curved next-pass loop returning to the existing codebase. Weak-signal findings are partitioned into legitimate shapes, latent concepts, and mechanical debt. A small unboxed key explains the two gray model-related nodes. Internal heading and caption are omitted.",
       "validation": {
-        "date": "2026-11-11",
-        "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
-        "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/latent-model-recovery-20261113/candidates.pdf",
+        "proof_sha256": "db78f94cff41a7fdc4512c09a7f51bd1100561b67c4b268e46f259d2be60fefd",
         "page": 1,
-        "width_bp": 426.857,
-        "height_bp": 346.733,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "minimum_prose_font_pt": 10,
-        "unapproved_compile_diagnostics": 0,
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
-        "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
-        "semantic_typography_checks": 13,
-        "monochrome_pixels": true,
-        "status": "passed"
-      },
-      "page_layout": {
-        "decision": "review candidate",
-        "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-        "after_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
-        "after_dimensions_bp": [
-          426.857,
-          346.733
-        ],
-        "after_font_sizes_pt": [
+        "width_bp": 449.972,
+        "height_bp": 379.973,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          9.5,
           10.0
         ],
-        "reviewed_visually": true
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 20,
+        "audit_sha256": "8886e30704707bee5b5b6868fd67047544103fb0254aad76bbeff552b4e49d65",
+        "typography_audit_sha256": "a000e66623277f39199c8a69fd0d1247095fdccdcd4bda7c92380a9de3f9faed",
+        "status": "passed"
       },
-      "revision_history": [
-        {
-          "date": "2026-11-11",
-          "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
-          "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 65,
-            "width_bp": 423.31,
-            "height_bp": 346.733
-          }
-        }
-      ]
+      "previous_review": "book/editorial/figure-redraws-20261113/discovering-models-migration-superseded/layout-review.json",
+      "contracts": {},
+      "visual_review": "Native and SVG proofs inspected at print size and2×. Three partition branches have equal container widths and aligned rows; the latent concept is central. Light gray encodes only recovered model concept and stronger substrate. The loop occupies the right perimeter without crossing nodes or the small key. Whole-word labels retain9–10pt size. No internal figure heading/caption or unused connector exists.",
+      "page_layout": {
+        "after_dimensions_bp": [
+          449.972,
+          379.973
+        ],
+        "after_font_sizes_pt": [
+          9,
+          9.5,
+          10
+        ],
+        "decision": "recomposed",
+        "reason": "Three partition branches align horizontally; the central recovery sequence descends through consistently spaced nodes. A smooth right-hand loop returns to the codebase.",
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/squash-zero-promote.svg",

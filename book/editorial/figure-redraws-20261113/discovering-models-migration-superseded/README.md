@@ -1,0 +1,1 @@
+Superseded discovering-models-migration sources and review rows from 4237fa108, preserved on 2026-11-13. New recovery-flow drawing follows the author-supplied reference without an internal headline/caption. Author approval remains pending.

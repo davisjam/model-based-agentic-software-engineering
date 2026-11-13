@@ -1,0 +1,416 @@
+{
+  "source": "book/assets/discovering-models-migration.svg",
+  "candidate": "book/tikz/figures/discovering-models-migration.tex",
+  "decision": "refined",
+  "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
+  "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
+  "evidence": [
+    {
+      "source_text": "STRONGER MODEL SUBSTRATE",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "STRONGER MODEL SUBSTRATE",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "STRONGER MODEL SUBSTRATE",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "826",
+            "text_element": 28
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "NARROWER ENFORCEMENT",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "NARROWER ENFORCEMENT",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "NARROWER ENFORCEMENT",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "734",
+            "text_element": 26
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "PARTITION FINDINGS",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "PARTITION FINDINGS",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "PARTITION FINDINGS",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "256",
+            "text_element": 7
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "explicit relations",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Explicit relations",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "explicit relations",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "640",
+            "y": "540",
+            "text_element": 22
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "EXISTING CODEBASE",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "EXISTING CODEBASE",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "EXISTING CODEBASE",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "58",
+            "text_element": 1
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "MIGRATE CONSUMERS",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "MIGRATE CONSUMERS",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "MIGRATE CONSUMERS",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "650",
+            "text_element": 24
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "LEGITIMATE SHAPE",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "LEGITIMATE SHAPE",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "LEGITIMATE SHAPE",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "160",
+            "y": "332",
+            "text_element": 8
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "typed vocabulary",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Typed vocabulary",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "typed vocabulary",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "300",
+            "y": "540",
+            "text_element": 20
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "MECHANICAL DEBT",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "MECHANICAL DEBT",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "MECHANICAL DEBT",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "332",
+            "text_element": 10
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "LATENT CONCEPT",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "LATENT CONCEPT",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "LATENT CONCEPT",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "780",
+            "y": "332",
+            "text_element": 12
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "NAME THE MODEL",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "NAME THE MODEL",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "NAME THE MODEL",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "780",
+            "y": "411",
+            "text_element": 18
+          }
+        }
+      ]
+    },
+    {
+      "source_text": "weak discovery signals",
+      "source_style": {
+        "font-weight": "700",
+        "font-style": "normal",
+        "font-size": "19.2"
+      },
+      "semantic_role": "concept/category versus explanation",
+      "candidate_text": "Weak signals:",
+      "candidate_style": "bold",
+      "source_fragments": [
+        {
+          "text": "weak discovery signals",
+          "style": {
+            "font-weight": "700",
+            "font-style": "normal",
+            "font-size": "19.2"
+          },
+          "location": {
+            "x": "480",
+            "y": "128",
+            "text_element": 3
+          }
+        }
+      ]
+    }
+  ],
+  "reason": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+  "checks": [
+    {
+      "text": "STRONGER MODEL SUBSTRATE",
+      "bold": true
+    },
+    {
+      "text": "NARROWER ENFORCEMENT",
+      "bold": true
+    },
+    {
+      "text": "PARTITION FINDINGS",
+      "bold": true
+    },
+    {
+      "text": "Explicit relations",
+      "bold": true
+    },
+    {
+      "text": "EXISTING CODEBASE",
+      "bold": true
+    },
+    {
+      "text": "MIGRATE CONSUMERS",
+      "bold": true
+    },
+    {
+      "text": "LEGITIMATE SHAPE",
+      "bold": true
+    },
+    {
+      "text": "Typed vocabulary",
+      "bold": true
+    },
+    {
+      "text": "MECHANICAL DEBT",
+      "bold": true
+    },
+    {
+      "text": "LATENT CONCEPT",
+      "bold": true
+    },
+    {
+      "text": "NAME THE MODEL",
+      "bold": true
+    },
+    {
+      "text": "Weak signals:",
+      "bold": true
+    },
+    {
+      "text": "Accept / exempt",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
+    "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+    "page": 1,
+    "width_bp": 426.857,
+    "height_bp": 346.733,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
+    "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
+    "semantic_typography_checks": 13,
+    "monochrome_pixels": true,
+    "status": "passed"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
+      "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 65,
+        "width_bp": 423.31,
+        "height_bp": 346.733,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 13
+      }
+    }
+  ]
+}

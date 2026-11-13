@@ -1,0 +1,53 @@
+{
+  "source": "book/assets/discovering-models-migration.svg",
+  "candidate": "book/tikz/figures/discovering-models-migration.tex",
+  "checks": {
+    "icons_and_symbols": "No icons; latent-concept model branch distinguished by shade.",
+    "links_and_groups": "Three findings classes; typed vocabulary/relations fork; dashed next-pass continuation retained.",
+    "annotation_placement": "Weak-signals caveat outside model/enforcement chain."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      10.0
+    ],
+    "minimum": 10,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 426.857,
+  "height_bp": 346.733,
+  "monochrome": true,
+  "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
+  "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
+  "review": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+  "decision": "refined",
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "e0ab785ecfb716675ad8f26d8df72cc31be9e63336a2b1131d768b8b23417035",
+      "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+      "validation": {}
+    }
+  ],
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
+    "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+    "page": 1,
+    "width_bp": 426.857,
+    "height_bp": 346.733,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
+    "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
+    "semantic_typography_checks": 13,
+    "monochrome_pixels": true,
+    "status": "passed"
+  }
+}

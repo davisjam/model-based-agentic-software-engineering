@@ -1,35 +1,57 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{10}{12}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\node[box,text width=5cm] (c) at (0,0) {\textbf{EXISTING CODEBASE}};
-\node[box,text width=6cm] (s) at (0,-1.65) {\textbf{Weak signals:} primitive density, repeated shapes, component / boundary view};
-\node[align=center,inner sep=5pt,text width=5cm] (p) at (0,-3.15) {\textbf{PARTITION FINDINGS}};
-\draw[edge,] (c) -- (s);
-\draw[edge,] (s) -- (p);
-\node[align=center,inner sep=5pt,text width=3.8cm] (a0) at (-4.6,-4.55) {\textbf{LEGITIMATE SHAPE}};
-\node[box,text width=3.8cm] (b0) at (-4.6,-5.85) {Accept / exempt};
-\draw[edge,] (p.south) -- (0.000,-3.85) -- (-4.600,-3.85) -- (a0.north);
-\draw[edge,] (a0) -- (b0);
-\node[align=center,inner sep=5pt,text width=3.8cm] (a1) at (0,-4.55) {\textbf{MECHANICAL DEBT}};
-\node[box,text width=3.8cm] (b1) at (0,-5.85) {Codemod};
-\draw[edge,] (p) -- (a1);
-\draw[edge,] (a1) -- (b1);
-\node[align=center,inner sep=5pt,text width=3.8cm] (a2) at (4.6,-4.55) {\textbf{LATENT CONCEPT}};
-\node[box,text width=3.8cm,fill=white] (b2) at (4.6,-5.85) {\textbf{NAME THE MODEL}};
-\draw[edge,] (p.south) -- (0.000,-3.85) -- (4.600,-3.85) -- (a2.north);
-\draw[edge,] (a2) -- (b2);
-\node[box,text width=5cm] (v) at (4.6,-7.35) {\textbf{Typed vocabulary}\\\textbf{Explicit relations}};
-\draw[edge] (b2) -- (v);
-\node[box,text width=5cm] (mi) at (4.6,-8.75) {\textbf{MIGRATE CONSUMERS}};
-\draw[edge] (v) -- (mi);
-\node[head,text width=5cm,fill=white] (en) at (4.6,-10.05) {\textbf{NARROWER ENFORCEMENT}\\types; lints; drift guard};
-\node[box,text width=5cm,fill=white] (st) at (4.6,-11.35) {\textbf{STRONGER MODEL SUBSTRATE}};
-\draw[edge,] (mi) -- (en);
-\draw[edge,] (en) -- (st);
-\draw[opt] (st.east)--(8.15,-11.35)--(8.15,-1.65)--node[note,above] {next pass}(s.east);
-\node[note,text width=3.5cm] (nt) at (-3.5,-8.35) {Weak signals locate the work; they do not dictate the remedy.};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\fontsize{9}{11}\selectfont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,374);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (143,5) rectangle (299,28);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (221,17) {EXISTING CODEBASE};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (116,42) rectangle (326,82);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (221,52) {Weak signals:};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (221,64) {primitive density · repeated shapes};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (221,75) {component / boundary view};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,29) -- (221,40);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (143,95) rectangle (299,118);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (221,107) {PARTITION FINDINGS};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,83) -- (221,93);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (57,96) {Weak signals locate};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (57,107) {potential work.};
+\draw[line width=0.7bp,draw=black!85] (221,119) -- (221,127);
+\draw[line width=0.7bp,draw=black!85] (74,127) -- (368,127);
+\draw[-Stealth,line width=0.7bp,draw=black!85] (74,127) -- (74,140);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (7,142) rectangle (141,165);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\bfseries] at (74,154) {LEGITIMATE SHAPE};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (74,166) -- (74,178);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (11,180) rectangle (137,203);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\itshape] at (74,192) {Accept / exempt};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,127) -- (221,140);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (154,142) rectangle (288,165);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\bfseries] at (221,154) {LATENT CONCEPT};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,166) -- (221,178);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (158,180) rectangle (284,203);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (221,192) {NAME THE MODEL};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (368,127) -- (368,140);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (301,142) rectangle (435,165);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\bfseries] at (368,154) {MECHANICAL DEBT};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (368,166) -- (368,178);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (305,180) rectangle (431,203);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\itshape] at (368,192) {Codemod};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,204) -- (221,216);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (157,218) rectangle (285,250);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (221,228) {Typed vocabulary};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (221,239) {Explicit relations};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,251) -- (221,263);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (149,265) rectangle (293,288);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (221,277) {MIGRATE CONSUMERS};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,289) -- (221,301);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (137,303) rectangle (305,336);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9.5}{11}\selectfont\bfseries] at (221,313) {NARROWER ENFORCEMENT};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (221,326) {(types; lints; drift guard)};
+\draw[-Stealth,line width=0.7bp,draw=black!85] (221,337) -- (221,346);
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (123,348) rectangle (319,371);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (221,360) {STRONGER MODEL SUBSTRATE};
+\draw[-Stealth,line width=.9bp] (320,359) .. controls (442,359) and (442,270) .. (442,190) .. controls (442,80) and (442,16) .. (301,16);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\itshape] at (378,7) {next pass};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (372,264) {KEY};
+\draw[fill=white,draw=black!85,line width=0.55bp,rounded corners=2bp] (325,278) rectangle (340,288);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (345,283) {Step or artifact};
+\draw[fill=black!8,draw=black!85,line width=0.55bp,rounded corners=2bp] (325,300) rectangle (340,310);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (345,303) {Model concept};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (345,314) {or substrate};
 \end{tikzpicture}

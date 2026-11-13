@@ -1,0 +1,57 @@
+{
+  "source": "book/assets/discovering-models-migration.svg",
+  "candidate": "book/tikz/figures/discovering-models-migration.tex",
+  "receipt": "book/tikz/receipts/discovering-models-migration.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "d2f1496093a770c7d91996e743678d0295168e0a14a9d5ac88c68d978d4a1cf3",
+  "candidate_sha256": "02ef497b9167928becb365f798a84630b81cf59cff680f9d1a9770a974407335",
+  "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
+  "bold": "Source-derived emphasis includes STRONGER MODEL SUBSTRATE; NARROWER ENFORCEMENT; PARTITION FINDINGS; Explicit relations; EXISTING CODEBASE; MIGRATE CONSUMERS; LEGITIMATE SHAPE; Typed vocabulary. Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+  "routing": "6 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+  "validation": {
+    "date": "2026-11-11",
+    "proof": "latex/build/bw-review-followups/discovering-models-migration.pdf",
+    "proof_sha256": "545d52a45625a3be36f089719e791f378ff483b5add1d1a424d9114ab084c054",
+    "page": 1,
+    "width_bp": 426.857,
+    "height_bp": 346.733,
+    "maximum_dimensions_bp": [
+      450,
+      560
+    ],
+    "minimum_prose_font_pt": 10,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "555e30b94f7cd5c8f8357ef467ebe228051f50644c59126bcbf7f9ecbffa8b3b",
+    "typography_audit_sha256": "355b668edccdf347d10eefda0596e3a0c5e1b560f0805d68fff8dca0ffaaa8ac",
+    "semantic_typography_checks": 13,
+    "monochrome_pixels": true,
+    "status": "passed"
+  },
+  "book_references": [],
+  "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "candidate_sha256": "b315d62ddaae669c613917f10148aad089f46b07210329ebb0f8eb9ef828b0e6",
+      "change": "Reduce crowding while preserving all three finding classes: use bare classification headings and one model box containing typed vocabulary and explicit relations. The dashed next-pass path now returns clearly to weak discovery signals. Preserve all downstream steps and the warning that signals do not determine the remedy.",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 65,
+        "width_bp": 423.31,
+        "height_bp": 346.733,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 13
+      }
+    }
+  ]
+}

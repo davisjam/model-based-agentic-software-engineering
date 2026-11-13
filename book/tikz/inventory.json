@@ -788,15 +788,15 @@
   {
     "chapter": "4.3-brownfield-engineering",
     "source": "assets/discovering-models-migration.svg",
-    "caption": "*Discovering models in a brownfield system.* Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate. [short: Discovering latent models — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate]",
+    "caption": "*Discovering latent models in an existing system.* Weak signals identify candidate locations, not prescribed remedies. Repeated concepts worth modeling gain explicit representations; consumers migrate to them, and narrower checks can enforce selected obligations. Each pass leaves a stronger basis for subsequent recovery.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": "book/d2-pilot/discovering-models-migration.d2",
     "receipt": "book/d2-pilot/discovering-models-migration.receipt.yaml",
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "Discovering models during a brownfield migration: weak signals locate work, partitioning separates it, and only repeated shape that earns a name becomes a model",
-    "svg_description": "A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,\n    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate\n    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a\n    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which\n    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a\n    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy."
+    "svg_title": "Discovering latent models",
+    "svg_description": "Weak signals from an existing codebase—primitive density, repeated shapes, component/boundary view—locate potential work. Findings are partitioned into three paths: legitimate shape is accepted or exempted; mechanical debt is handled by codemod; latent concept leads to naming a model, defining typed vocabulary and explicit relations, migrating consumers, and narrower enforcement using types, lints, and a drift guard. A stronger model substrate then feeds the next pass over the existing codebase. Only latent concept and stronger model substrate are shaded."
   },
   {
     "chapter": "4.3-brownfield-engineering",
