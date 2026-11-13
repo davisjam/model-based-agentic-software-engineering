@@ -32,6 +32,481 @@
 <title>Performance Engineering Laboratory · ECE 30861</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%238E6F3E'/%3E%3C/svg%3E">
 <style>
+/* ===== GENERATED from course/interactive/_shared/instrument-core.css by sync_css.py — do not edit
+   here; edit the source and re-run the sync. A parity test in tests/test-packaging.mjs holds
+   this copy byte-equal to the source. ===== */
+/* instrument-core.css — the styling the six interactive laboratories share, held in one place.
+ *
+ * A rule belongs here when it is byte-identical in all six shipped pages. Everything else stays in
+ * the exercise's own style element, which the sync places AFTER this one, so a local rule wins a
+ * tie against a core rule at equal specificity. The rules keep the relative order they held in all
+ * six pages before extraction, which is what makes a change here a styling change and not a cascade
+ * reshuffle. Authoring discipline, and what deliberately stayed local: _shared/README.md.
+ *
+ * Licence: CC BY 4.0, (c) James C. Davis. See the course LICENSE.
+ */
+
+/* --- design tokens ---------------------------------------------------------------------------
+   The MAGE family token set (book-models/design-tokens.json): warm paper ground, near-black ink,
+   burnt-umber accent, Purdue-gold rule under the header. Colour never carries meaning alone in
+   these pages — every state also carries a word and a glyph.
+
+   `--warn` IS here now, and the measurement is why. The family set has no amber, so the six pages
+   each declared their own, and five of them used #9a6500 while redos darkened it to #8a5a00 for
+   contrast. #9a6500 as text on `--warn-fill` measures 4.46:1 — axe-core fails it, and the shared
+   handout's required honesty statement is exactly that pairing, so landing the statement on five
+   pages would have landed the violation on five pages. #8a5a00 measures 5.33:1 on `--warn-fill`
+   and 5.39:1 on `--panel`. Taking redos's value everywhere both fixes the contrast and removes the
+   divergence that kept the token local, so the token comes in. Dark mode never diverged.
+
+   The general rule still holds for what remains outside: a token that is not identical in all six,
+   in BOTH colour schemes, stays entirely local in both — `--model` is declared by the five
+   simulators and not the workbench, so it stays local. See _shared/README.md on why a half-override
+   leaks across schemes.
+   -------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #1c1917;
+  --paper: #fdfcf9;
+  --panel: #f6f4ef;
+  --panel-2: #efece4;
+  --rule: #e4e0d8;
+  --muted: #57534e;
+  --accent: #9a3f12;
+  --gold: #ceb888;
+  --ok: #15803d;
+  --ok-fill: #eef7ee;
+  --warn: #8a5a00;
+  --warn-fill: #fbf2e0;
+  --bad: #b23b3b;
+  --bad-fill: #fbeaea;
+  --grid: #ddd8cf;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Source Serif 4", Charter, "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece7df;
+    --paper: #17130f;
+    --panel: #211a13;
+    --panel-2: #2a2219;
+    --rule: #3a3128;
+    --muted: #a69c8f;
+    --accent: #d98a5c;
+    --ok: #52b183;
+    --ok-fill: #14231b;
+    --warn: #d2a24a;
+    --warn-fill: #2a2012;
+    --bad: #e08080;
+    --bad-fill: #2a1616;
+    --grid: #3a3128;
+  }
+}
+
+/* --- document --------------------------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+/* Subscripts and superscripts inherit `font-size: smaller`, which lands a q or a 2 at 12.1-12.7px
+   inside a table or a list — and the notation is text a student has to read, so it gets the same
+   floor as everything else. `max()` only ever raises: a sub inside large display type keeps its
+   0.8em. Performance Knee authored this, N+1 needed it, so it comes in here rather than twice. */
+sub, sup { font-size: max(13px, 0.8em); }
+
+/* --- header ----------------------------------------------------------------------------------- */
+.head {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+  align-items: flex-end; justify-content: space-between;
+  padding: 1.1rem 1.5rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--rule);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em;
+  margin: 0; line-height: 1.1;
+}
+.head .sub { margin: 0.2rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.head .tag {
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: right;
+}
+.gold-rule { height: 4px; background: var(--gold); }
+/* A wide LABORATORY layout, not a wide article layout: these pages carry a model diagram, a
+   parameter table and charts side by side, and they get the desktop width to put them in. The cap
+   only stops the line length running away on a 2560px monitor — below it the page is full width.
+   It was 1680px, which left 240px unused at 1920x1080, the size the course projects at. */
+main { padding: 1.25rem 1.5rem 3rem; max-width: 1920px; margin: 0 auto; }
+
+/* --- panels and the two-column grid ----------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0 0 1.1rem;
+}
+.panel h3 {
+  font-family: var(--font-body); font-size: 1.02rem; font-weight: 600;
+  margin: 1rem 0 0.35rem;
+}
+.panel p { margin: 0.5rem 0; }
+.note {
+  font-size: 0.9rem; color: var(--muted);
+  border-left: 3px solid var(--rule); padding-left: 0.7rem; margin: 0.7rem 0 0;
+}
+.grid2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+/* The column TEMPLATE at this breakpoint differs per exercise and stays local. Only the panel's
+   margin reset is shared. */
+@media (min-width: 1100px) {
+  .grid2 > .panel { margin-bottom: 0; }
+}
+
+/* --- controls and buttons --------------------------------------------------------------------- */
+/* `.seg`, `.seg button`, `.ctl`, `.ctl-row` and `.btn-row` differ between exercises and stay local.
+   These four do not, and each outranks its local base rule on specificity, so the split changes
+   nothing about which declaration wins. */
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--paper); font-weight: 600; }
+button.act.primary { background: var(--ink); color: var(--paper); }
+button.act.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+/* --- links, footer, and the screen-reader-only utility ----------------------------------------- */
+a { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--rule); padding: 1rem 1.5rem 2rem;
+  color: var(--muted); font-size: 0.88rem; max-width: 1920px; margin: 0 auto;
+}
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.selftest-out { font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; margin-top: 0.6rem; }
+
+/* --- reduced motion ---------------------------------------------------------------------------
+   `!important` carries this regardless of where it lands in the cascade, which is why moving it
+   ahead of every local rule is safe. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* =================================================================================================
+   ===== BEGIN LAB SHELL ===========================================================================
+   The laboratory-handout vocabulary the six exercises share: the engineering question, the
+   system-model figure, the model assumptions, the parameter table, the Predict/Run/Explain block,
+   and the interpretation region. A student arriving from the course site reads this band before
+   touching a control, so it answers three questions on its own — what system am I studying, what
+   does the model assume, and what decision am I investigating.
+
+   It lives here rather than six times over because the opening is a SHARED design requirement, not
+   six introductions. Only `--warn` among the tokens it uses is declared locally (see the note at
+   the top of this file); everything else it reads is a core token.
+
+   THE FIRST-SCREEN BUDGET IS WITHDRAWN. Do not restore it, and do not re-derive the layout it
+   produced. This band was sized to finish inside roughly 350-450 vertical pixels at 1920x1080 —
+   "what fits above a projector's fold" — so that a student met the model, the controls and the
+   primary results without scrolling. The course author proposed that constraint and then reversed
+   it: the laboratories are handouts with an embedded apparatus, not dashboards, and the
+   instructional material precedes the apparatus by design. In his words, the progression is "a
+   deliberate instructional sequence, not an unfortunate amount of scrolling." The handout house
+   style carries the reversal in full; read it before changing anything here.
+
+   That reversal matters in this file because the height budget, not any max-width, is what was
+   starving the opening figure. The chain ran: cap the figure's height so it cannot grow -> observe
+   that widening its column therefore only letterboxes it -> conclude the figure should take the
+   band's SMALLEST column. The first link was the withdrawn budget, so the conclusion no longer
+   follows. The height ceilings are gone; the figure now scales with its column.
+
+   THE TYPE SCALE WENT WITH IT. The band's sizes were how the 350-450px ceiling was met: fifteen
+   rules in this shell sat between 10.9px and 14.4px, and the house style forbids that outright —
+   "avoid using 10-11 px text to fit more material. If the material does not fit, remove or
+   relocate it." The relocation has happened in all six pages, so the type that stayed is sized to
+   the house style's table instead of to a ceiling that no longer exists: body 15-17px, control
+   labels 16-18, section headings 18-20, chart labels and footnotes at least 13-14. Every rule
+   below takes the LOW end of its band, so this is a readability floor rather than a redesign.
+   Four of the six pages had already made this correction locally and reported it upward; the
+   corrections agreed, so they belong here once rather than six times over.
+
+   Two mappings are judgment calls, recorded so nobody re-derives them:
+
+     - the uppercase mono MICRO-LABELS (`.k`, `.step`, `.fignum`, the table caption) have no row in
+       the house table. They take the footnote band's floor, 13.1px, and must stay below the text
+       they label.
+     - the BLOCK TITLES (`.lab-assumptions > h2/h3`, `.lab-block-title`, the experiment's `h2`) are
+       markup headings but they are the lowest heading rank on the page, under the per-lab section
+       headings at ~18.4px. Sizing them to the section-heading row would make a block label the
+       same size as the section containing it, so they take 16px — the control-label floor — and
+       the hierarchy stays monotone: 33.6 title > 20 question > 16 block title > 15.2 body >
+       13.6 caption > 13.1 micro-label.
+
+   What remains measured and still true:
+
+     - the parameter table's height is set by its WIDTH, steeply. Five rows of five columns stand
+       182px tall across the full page, 274px at half width and 437px at an equal third. The
+       unequal band exists to keep that table short. The house style moves the full parameter table
+       out of the opening entirely, which is what frees the row for the figure.
+     - a figure's labels are judged on what they RENDER at, not on the authored unit. An SVG with a
+       viewBox draws its text through a scale set by the column, so the `svg.fig` sizes below are
+       deliberately NOT raised to the 13-14px floor: measured across all six figures at 1280 / 1440
+       / 1920, the smallest label renders at 14.5px to 24px wherever the figure holds its authored
+       share of the row. Raising the classes by the 37% that would clear the floor as authored puts
+       secondary mono labels past 20px on a projector and perturbs figures drawn around the current
+       metrics. What DOES fall under the floor is a figure squeezed into a narrow column — at a
+       1024px CSS viewport (1280 at 125% zoom) a figure held to 78% renders 9.5px labels at 10.9px.
+       That is a WIDTH defect with a width fix, and it belongs in each page's figure-share rule.
+     - the question, the frame and the gaps cost about 92px between them.
+
+   Below 1280px the band falls back to two columns and then to a stack.
+
+   A second figure goes in this band only where it is small and explains the headline relationship.
+   Where it is large it belongs beside the panel it explains, further down the page, and where one
+   comparison figure serves better it merges into Figure 1.
+   ================================================================================================= */
+.lab-intro { margin: 0 0 1.1rem; }
+
+.lab-question {
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 600; line-height: 1.22;
+  margin: 0 0 0.3rem;
+}
+.lab-question .k {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.15rem;
+}
+.lab-frame { margin: 0 0 0.5rem; font-size: 0.95rem; line-height: 1.42; max-width: 120ch; }
+
+/* The intro grid. `min-width: 0` on every track is load-bearing, not tidiness: a grid child's
+   min-width defaults to auto, so a wide table or a long monospace line inside one column widens
+   the whole track and the page then scrolls sideways on a phone. */
+.lab-twoup { display: grid; gap: 0.75rem; grid-template-columns: 1fr; margin: 0 0 0.75rem; }
+.lab-twoup > * { min-width: 0; }
+@media (min-width: 880px) {
+  .lab-twoup { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* Three across once there is room: a figure spends width rather than height, and three narrow
+   columns beat three stacked blocks for a reader scanning the opening. The parameter table is
+   deliberately NOT in this row — see the measurements in the header comment. */
+@media (min-width: 1200px) {
+  .lab-twoup.trio { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* The figure wants less width than the prose beside it, and giving the prose the surplus is what
+   lets a four-bullet assumptions list stay one line per bullet. */
+@media (min-width: 1200px) {
+  .lab-twoup.fig-left { grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr); }
+}
+
+/* `.band` is the UNEQUAL three-up the opening uses where it still carries a parameter table beside
+   the figure, and the reason it is not an equal three-up is the table's width sensitivity: five
+   rows of five columns stand 182px tall across the full page, 274px at half and 437px at an equal
+   third, so an equal split triples the table's height to buy the figure a third of a row.
+
+   READ THIS BEFORE COPYING THE RATIO. The original justification was the withdrawn height budget,
+   and it also leaned on a figure ceiling that no longer exists ("the figure is capped at 168px, so
+   a wider column only letterboxes it"). Both links are gone. A page whose opening keeps the full
+   parameter table in the row is the shape the house style moves AWAY from — §5 sends the parameter
+   encyclopedia to a collapsed reference, which frees the whole row for the figure. So prefer the
+   figure's own row over tuning this ratio.
+
+   Below 1280px the band falls back to two columns with the table spanning both, and below 880px it
+   stacks. */
+@media (min-width: 880px) {
+  .lab-twoup.band { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lab-twoup.band > .lab-parameters-block { grid-column: 1 / -1; }
+}
+@media (min-width: 1280px) {
+  .lab-twoup.band { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1fr) minmax(0, 1.52fr); }
+  .lab-twoup.band > .lab-parameters-block { grid-column: auto; }
+}
+/* An exercise whose band carries a `.lab-figstack` gives the figure column more of the row: two
+   stacked diagrams render their labels at well under half scale in the narrow default, which is
+   the render-scale defect the header comment describes. */
+@media (min-width: 1280px) {
+  .lab-twoup.band.wide-fig { grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr) minmax(0, 1.36fr); }
+}
+.lab-parameters-block { margin: 0 0 0.75rem; }
+/* Inside the band the grid gap already separates it. */
+.lab-twoup > .lab-parameters-block { margin: 0; }
+
+/* Two figures in ONE band column, which is how an exercise keeps a small mechanism figure in the
+   opening without spending a fourth column. Both figures still carry `.flat` as an authoring
+   marker; it no longer sets a height ceiling (see the figure rule below). */
+.lab-figstack { display: grid; gap: 0.55rem; align-content: start; min-width: 0; }
+
+/* A short note under the parameter table — a pointer to the settings the table deliberately omits.
+   It is prose, so it is not styled as a block title: an uppercase mono line reads as a heading and
+   a reader then looks for the section it introduces. */
+.lab-tablenote { margin: 0.35rem 0 0; font-size: 0.85rem; line-height: 1.38; color: var(--muted); }
+
+/* The parameter table scrolls sideways inside its own block rather than widening the page. The six
+   pages each grew a differently-named wrapper for this — `.table-scroll` in one, `.scroll-x` in two
+   — so the handout brings its own and the band never pushes a phone into a horizontal scroll. */
+.lab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.lab-figure {
+  margin: 0; padding: 0.4rem 0.5rem 0.5rem; min-width: 0;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.lab-figure > figcaption {
+  font-size: 0.85rem; color: var(--muted); line-height: 1.38; margin-top: 0.35rem;
+}
+.lab-figure > figcaption .fignum {
+  font-family: var(--font-mono); font-weight: 600; color: var(--ink);
+  text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.82rem;
+}
+/* The figure scales with its column. It carried `max-height: 168px` (124px on `.flat`) to hold the
+   withdrawn first-screen budget, and that ceiling was the width defect rather than a height
+   economy: `preserveAspectRatio` defaults to `meet`, so a clamped height letterboxes the drawing
+   inside a box far wider than the art and every pixel of column width past the ceiling is spent on
+   empty margin. Measured at 1440px before removal — release-factory's pipeline figure drew 487px
+   of art inside a 1337px box, at 0.45 scale. Do not reintroduce a fixed pixel ceiling here; bound a
+   figure by its column, which `width: 100%` already does. */
+.lab-figure svg { display: block; width: 100%; height: auto; }
+.lab-figure svg text { font-family: var(--font-body); fill: var(--ink); }
+
+.lab-assumptions {
+  padding: 0.45rem 0.6rem 0.5rem; min-width: 0;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.lab-assumptions > h2, .lab-assumptions > h3, .lab-block-title {
+  font-family: var(--font-mono);
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 0.4rem;
+}
+.lab-assumptions ul { margin: 0; padding-left: 1.1rem; font-size: 0.95rem; line-height: 1.42; }
+.lab-assumptions li { margin-bottom: 0.25rem; }
+.lab-assumptions li:last-child { margin-bottom: 0; }
+/* More than four assumptions do not fit the band one-per-line. Two columns of short bullets do,
+   and only once the column is wide enough that a bullet still takes one line. */
+@media (min-width: 1500px) {
+  .lab-assumptions.cols2 ul { columns: 2; column-gap: 1.3rem; }
+  .lab-assumptions.cols2 li { break-inside: avoid; }
+}
+
+/* The required honesty statement. Visible, never inside an accordion. */
+.lab-disclaimer {
+  margin: 0.4rem 0 0; padding: 0.35rem 0.5rem;
+  font-size: 0.85rem; line-height: 1.38;
+  border: 1px solid var(--warn); border-left-width: 3px; border-radius: var(--radius);
+  background: var(--warn-fill); color: var(--warn);
+}
+.lab-disclaimer strong { color: var(--warn); }
+
+/* The parameter table. It WAS compact by design — 12.2px cells with 2px of vertical padding,
+   because every 2px of padding cost 12px of a band that had 60px of slack. The band has no ceiling
+   now, and a table a student reads parameter definitions out of is body text, so the cells take
+   the body band's floor. The table still scrolls inside `.lab-scroll` rather than widening the
+   page, which is what keeps the wider cells off the page's horizontal axis. */
+table.lab-parameters { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+table.lab-parameters caption {
+  caption-side: top; text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); padding-bottom: 0.3rem;
+}
+table.lab-parameters th, table.lab-parameters td {
+  border: 1px solid var(--rule); padding: 0.28rem 0.45rem; text-align: left; vertical-align: top;
+  line-height: 1.32;
+}
+table.lab-parameters thead th { background: var(--panel-2); font-weight: 600; }
+table.lab-parameters tbody th { font-weight: 600; }
+table.lab-parameters td.unit, table.lab-parameters td.default { font-family: var(--font-mono); }
+
+/* Predict / Run / Explain. It belongs to the exercise rather than the handout — the student
+   predicts, runs and explains WITH the controls — so it ships as the controls panel's lead-in and
+   the band's budget does not pay for it. `.lab-experiment` nested inside a `.panel` drops the
+   second border and the duplicated padding. */
+.lab-experiment {
+  margin: 0 0 0.9rem; padding: 0.5rem 0.7rem 0.6rem;
+  background: var(--panel); border: 1px solid var(--ink); border-left-width: 4px;
+  border-radius: var(--radius);
+}
+.panel > .lab-experiment {
+  margin: 0 0 0.85rem; padding: 0.4rem 0 0.5rem 0.65rem;
+  background: none; border: 0; border-left: 4px solid var(--ink); border-radius: 0;
+}
+.lab-experiment > h2 {
+  font-family: var(--font-mono);
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); margin: 0 0 0.4rem;
+}
+ol.lab-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+ol.lab-steps > li { min-width: 0; }
+@media (min-width: 1000px) { ol.lab-steps { grid-template-columns: repeat(3, 1fr); gap: 0.9rem; } }
+ol.lab-steps > li { font-size: 0.95rem; line-height: 1.42; }
+ol.lab-steps > li > .step {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.1rem;
+}
+
+.lab-controls { margin: 0 0 1.1rem; }
+.lab-measurements { margin: 0 0 1.1rem; }
+.lab-interpretation { margin: 0 0 1.1rem; }
+
+/* --- the hand-authored introductory figures ---------------------------------------------------
+   Hand-authored SVG rather than a rendering of the model, for three reasons: the handout must
+   print, it must be readable with scripting unavailable, and a figure illustrates one fixed
+   scenario rather than following the controls.
+
+   Custom properties do NOT resolve in SVG presentation attributes — `fill="var(--ink)"` fails
+   silently — so every painted element takes a class from this vocabulary and never a `fill=` or
+   `stroke=` attribute. Structure is drawn in the muted ink, model-derived annotation in the
+   exercise's own `--model` where it declares one, failure states in `--bad`. Colour never carries
+   meaning alone: each state also carries a word. */
+svg.fig text { font-family: var(--font-body); fill: var(--ink); }
+svg.fig .t { font-size: 11.5px; font-weight: 600; }
+svg.fig .ts { font-size: 9.5px; fill: var(--muted); font-family: var(--font-mono); letter-spacing: 0.03em; }
+svg.fig .th {
+  font-size: 9.5px; font-weight: 600; font-family: var(--font-mono);
+  letter-spacing: 0.08em; text-transform: uppercase; fill: var(--muted);
+}
+svg.fig .bx { fill: var(--paper); stroke: var(--muted); stroke-width: 1.4px; }
+svg.fig .bx.strong { fill: var(--panel-2); stroke: var(--ink); stroke-width: 1.8px; }
+svg.fig .bx.bad { fill: var(--bad-fill); stroke: var(--bad); stroke-width: 1.8px; }
+svg.fig .bx.ghost { fill: none; stroke: var(--muted); stroke-width: 1.2px; stroke-dasharray: 4 3; }
+svg.fig .ln { stroke: var(--muted); stroke-width: 1.5px; fill: none; }
+svg.fig .ln.bad { stroke: var(--bad); stroke-width: 2px; }
+svg.fig .ln.ghost { stroke: var(--muted); stroke-width: 1.2px; stroke-dasharray: 4 3; }
+svg.fig .ah { fill: var(--muted); }
+svg.fig .ah-bad { fill: var(--bad); }
+svg.fig .panelbg { fill: var(--panel-2); stroke: var(--rule); stroke-width: 1px; }
+svg.fig .boundary { fill: none; stroke: var(--ink); stroke-width: 1.2px; stroke-dasharray: 5 4; opacity: 0.75; }
+svg.fig .curve { fill: none; stroke: var(--accent); stroke-width: 2px; }
+svg.fig .axis { stroke: var(--muted); stroke-width: 1.1px; fill: none; }
+svg.fig .eq { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink); }
+
+/* Printing: the handout must come out legibly, and a student must be able to read the model and the
+   parameter definitions without running anything. So the introduction prints, the chrome does not. */
+@media print {
+  body { font-size: 11pt; background: #fff; color: #000; }
+  .gold-rule { background: #000; height: 2px; }
+  main { padding: 0; max-width: none; }
+  .lab-twoup { grid-template-columns: 1fr 1fr; }
+  .lab-figure, .lab-assumptions, .lab-experiment, .panel { break-inside: avoid; background: #fff; }
+  table.lab-parameters { break-inside: avoid; }
+  .lab-disclaimer { border-color: #000; color: #000; background: #fff; }
+  details.disclose { display: none; }
+  .btn-row, button.act, a.act { display: none !important; }
+  textarea.answer { border: 1px solid #000; min-height: 4rem; }
+}
+/* ===== END LAB SHELL ============================================================================
+   Everything after this marker in a shipped page is specific to that exercise.
+   ================================================================================================= */
+/* ===== end generated core ===== */
+</style>
+
+<style>
 :root{--brown:#5C4826;--gold:#8E6F3E;--cream:#F5F1E8;--blue:#C9DCEC;--blueink:#1F3D57;
       --ink:#2D2D2D;--red:#C01B1B;--green:#2F7D4A;--line:#cfc7b6;--bg:#fbfaf7}
 *{box-sizing:border-box}

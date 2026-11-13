@@ -14,6 +14,10 @@
  * Stdlib only: `node tests/run-all.mjs`, no install step.
  */
 import { loadEngine, readIndex, ok, near, summary, station, workload } from './harness.mjs';
+import { existsSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const E = loadEngine();
 const sys = (stations) => ({ stations });
@@ -113,6 +117,26 @@ console.log('\nPACKAGING');
      html.includes('describe the model you specified'));
   ok('model assumptions are disclosed', /<summary>Model assumptions<\/summary>/.test(html));
   ok('assumptions admit what is NOT modeled', /Timeouts, retries and cancellation are/.test(html));
+}
+
+/* The shared-core parity check lives in its own file, because the generated block's provenance
+ * notice names that file by path. `node --test` ignores a missing path and still exits 0, so the
+ * file's EXISTENCE is asserted here before it is spawned — otherwise deleting it would turn the
+ * parity gate green rather than red. */
+console.log('\nSHARED CORE STYLESHEET');
+{
+  const here = dirname(fileURLToPath(import.meta.url));
+  const packaging = join(here, 'test-packaging.mjs');
+  ok('tests/test-packaging.mjs is present, as the generated block claims', existsSync(packaging));
+  /* Pin the reporter: node's DEFAULT varies by version and by whether stdout is a TTY, so parsing
+     it is reading a shape nobody promised. Asking for TAP makes `# pass N` a contract. */
+  const r = spawnSync(process.execPath, ['--test', '--test-reporter=tap', packaging],
+                      { encoding: 'utf8' });
+  const passed = (r.stdout.match(/^# pass (\d+)$/m) || [])[1];
+  ok('the inlined core is in parity with _shared/instrument-core.css',
+     r.status === 0 && Number(passed) > 0, `${passed || 0} parity checks`);
+  if (r.status !== 0) console.log(r.stdout.split('\n').filter((l) => /not ok|Error/.test(l))
+    .slice(0, 6).map((l) => '      ' + l).join('\n'));
 }
 
 process.exit(summary('performance-lab') ? 1 : 0);
