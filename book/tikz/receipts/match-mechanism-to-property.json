@@ -41,7 +41,7 @@
     "semantic_typography_checks": 18,
     "monochrome_pixels": true,
     "status": "passed",
-    "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+    "scope": "Verified current native proof; author approved for publication."
   },
   "reference_image_sha256": "c75458b92900ccbf9cfec9c5b26990ccd022f8361d4f0c424329200c089fe456",
   "layout_review": {
@@ -98,9 +98,14 @@
       "semantic_typography_checks": 18,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
-    "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption."
+    "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+      "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
+    }
   },
   "typography_review": {
     "source": "book/assets/match-mechanism-to-property.svg",
@@ -310,7 +315,12 @@
       "semantic_typography_checks": 18,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+      "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
     }
   },
   "style_review": {
@@ -345,11 +355,16 @@
       "semantic_typography_checks": 18,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
     "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption.",
     "book_references": [],
-    "routing_exceptions": "The state-graph icon preserves the directed triangular arrangement in the reference; workflow edges are orthogonal."
+    "routing_exceptions": "The state-graph icon preserves the directed triangular arrangement in the reference; workflow edges are orthogonal.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+      "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
+    }
   },
   "fidelity_review": {
     "source": "book/assets/match-mechanism-to-property.svg",
@@ -380,7 +395,7 @@
       "semantic_typography_checks": 18,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
     "font_qa": {
       "minimum": 9.5,
@@ -397,7 +412,12 @@
     "width_bp": 449.769,
     "height_bp": 240.772,
     "monochrome": true,
-    "review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption."
+    "review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+      "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
+    }
   },
   "grayscale_review": {
     "source": "book/assets/match-mechanism-to-property.svg",
@@ -426,7 +446,17 @@
       "semantic_typography_checks": 18,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+      "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
     }
+  },
+  "author_review": {
+    "approved_date": "2026-11-13",
+    "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+    "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
   }
 }

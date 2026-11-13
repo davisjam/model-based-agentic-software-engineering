@@ -2382,11 +2382,16 @@
         "semantic_typography_checks": 18,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+        "scope": "Verified current native proof; author approved for publication."
       },
       "visual_review": "Native and SVG proofs inspected against the author reference. The protocol root branches to two aligned obligations, then mechanism panels with storage-and-padlock and three-state-graph icons, then two light-gray protection boxes. All labels, italic explanations, divider lines, and arrow relationships are preserved. The left wording is corrected to a protected-effect claim per the attached editorial instruction. The drawing contains no external headline or caption.",
       "book_references": [],
-      "routing_exceptions": "The state-graph icon preserves the directed triangular arrangement in the reference; workflow edges are orthogonal."
+      "routing_exceptions": "The state-graph icon preserves the directed triangular arrangement in the reference; workflow edges are orthogonal.",
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+        "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
+      }
     },
     {
       "source": "book/assets/cost-enforcement-gradient.svg",
@@ -6634,11 +6639,16 @@
         "semantic_typography_checks": 27,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+        "scope": "Verified current native proof; author approved for publication."
       },
       "visual_review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. The restored two-swatch legend identifies light-gray Alignment functions and white models, work, and decisions. Narrower boxes and tighter vertical spacing reduce the overall height from 398 to about 352bp without reducing type sizes. No embedded title or caption.",
       "book_references": [],
-      "routing_exceptions": "None."
+      "routing_exceptions": "None.",
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+        "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
+      }
     }
   ],
   "semantic_typography_review": "book/tikz/typography-review.json",

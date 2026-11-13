@@ -12703,7 +12703,12 @@
         "semantic_typography_checks": 18,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Revised artwork awaiting author review."
+        "scope": "Verified current native proof; author approved for publication."
+      },
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "reason": "Author approved the reference-faithful two-protection drawing, including its icons and corrected protected-effect claim wording.",
+        "candidate_sha256": "6e28ee224bad4037d678933c4e92b187e0228e624d79e8ba4b3d433ab4d65fa9"
       }
     },
     {
@@ -31226,7 +31231,12 @@
         "semantic_typography_checks": 27,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+        "scope": "Verified current native proof; author approved for publication."
+      },
+      "author_review": {
+        "approved_date": "2026-11-13",
+        "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+        "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
       }
     }
   ],

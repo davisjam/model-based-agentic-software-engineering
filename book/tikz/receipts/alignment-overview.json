@@ -50,7 +50,7 @@
     "semantic_typography_checks": 27,
     "monochrome_pixels": true,
     "status": "passed",
-    "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+    "scope": "Verified current native proof; author approved for publication."
   },
   "reference_image_sha256": "00150c7216adc90c50739d229da9132a4f849876eb7cf0a240d19f1fd8d58110",
   "layout_review": {
@@ -93,9 +93,14 @@
       "semantic_typography_checks": 27,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
-    "visual_review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. The restored two-swatch legend identifies light-gray Alignment functions and white models, work, and decisions. Narrower boxes and tighter vertical spacing reduce the overall height from 398 to about 352bp without reducing type sizes. No embedded title or caption."
+    "visual_review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. The restored two-swatch legend identifies light-gray Alignment functions and white models, work, and decisions. Narrower boxes and tighter vertical spacing reduce the overall height from 398 to about 352bp without reducing type sizes. No embedded title or caption.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
+    }
   },
   "typography_review": {
     "source": "book/assets/alignment-overview.svg",
@@ -394,7 +399,12 @@
       "semantic_typography_checks": 27,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
     }
   },
   "style_review": {
@@ -428,11 +438,16 @@
       "semantic_typography_checks": 27,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
     "visual_review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. The restored two-swatch legend identifies light-gray Alignment functions and white models, work, and decisions. Narrower boxes and tighter vertical spacing reduce the overall height from 398 to about 352bp without reducing type sizes. No embedded title or caption.",
     "book_references": [],
-    "routing_exceptions": "None."
+    "routing_exceptions": "None.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
+    }
   },
   "fidelity_review": {
     "source": "book/assets/alignment-overview.svg",
@@ -462,7 +477,7 @@
       "semantic_typography_checks": 27,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
     },
     "font_qa": {
       "minimum": 9,
@@ -477,7 +492,12 @@
     "width_bp": 446.62,
     "height_bp": 355.621,
     "monochrome": true,
-    "review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. The restored two-swatch legend identifies light-gray Alignment functions and white models, work, and decisions. Narrower boxes and tighter vertical spacing reduce the overall height from 398 to about 352bp without reducing type sizes. No embedded title or caption."
+    "review": "Inspected native and SVG renders. The obligation branch reaches constraints and evaluation rules. Constraints govern work directly and may also provide a check result to gates. Work flows to sensors, then gates. Evaluation rules reach gates independently; gates admit or refuse/revise. All terminal approaches clear the nine-point minimum. Named concepts use bold11pt, supporting descriptions italic9pt. The restored two-swatch legend identifies light-gray Alignment functions and white models, work, and decisions. Narrower boxes and tighter vertical spacing reduce the overall height from 398 to about 352bp without reducing type sizes. No embedded title or caption.",
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
+    }
   },
   "grayscale_review": {
     "source": "book/assets/alignment-overview.svg",
@@ -505,7 +525,17 @@
       "semantic_typography_checks": 27,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Isolated native figure proof; SVG and TikZ visually inspected. New artwork awaiting author review."
+      "scope": "Verified current native proof; author approved for publication."
+    },
+    "author_review": {
+      "approved_date": "2026-11-13",
+      "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+      "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
     }
+  },
+  "author_review": {
+    "approved_date": "2026-11-13",
+    "reason": "Author approved the compact overview with the restored boxed legend and semantic gray shading.",
+    "candidate_sha256": "ac3b27c405f3023a47fb2eaf043e64161ea14a691b1cd9c5117e5e3fdb108f5b"
   }
 }
