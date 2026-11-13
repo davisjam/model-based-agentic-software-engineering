@@ -20150,3 +20150,32 @@ Evidence also ages. \magevalue{chapter:alignment} gave the placement rule: evalu
 The second check need not repeat every earlier check; re-establish only the evidence whose freshness matters to admission. A test result recorded hours ago describes the revision that produced it. A review verdict describes the change that was reviewed. If relevant state can change before admission, the evidence can cease to describe the artifact now crossing the boundary. \textbf{Done is a claim, not a stored fact.} At a consequential boundary, ensure that the evidence still justifies the consequence; where freshness cannot otherwise be established cheaply, re-derive the relevant evidence rather than trusting a stale green checkmark. The gain compounds with velocity: the more often a system ships, the more a cheap re-check at the last safe boundary is worth.
 
 ```
+
+
+## Validation scheduling copyedit — 13 November 2026
+
+Source: `book/latex/sources/part4/4.4-engineering-the-environment.tex`, lines 154–174 at `fc62ec15d`. Replaced with the author-supplied distinction between selecting evaluations and scheduling them, preserving the DocAble episode.
+
+```latex
+Without sufficient controls, faster implementation can become faster production of defects. With excessive controls, verification can consume the very advantage that made agentic implementation attractive. The engineering problem is to obtain sufficient assurance without making the machinery of assurance prohibitively expensive.
+
+DocAble's agents eventually outpaced the infrastructure that checked their work. Before a November 2026 redesign, completed changes arrived in batches roughly every ten minutes, while the full test suite took about thirty minutes. The validation queue grew even though implementation was progressing well. I therefore asked which checks had to pass before each merge and which could examine several changes together.
+
+An initial asynchronous arrangement launched expensive checks in the background after each merge. That removed the wait before the next merge, but each merge still started another expensive run. A burst of merges therefore launched a burst of validation workers and overloaded the host.
+
+The redesign separated the schedule for broad validation from the arrival of completed work, as \autoref{docable-validation-scheduling} shows. Inexpensive checks still ran before each merge. Broad repository checks ran on a thirty-minute timer against the main branch, in an isolated worktree, with a lock allowing only one sweep at a time. Several merges could therefore share a run. A blocking failure raised an alert, and a gate stopped new dispatch until the orchestrator acknowledged or handled it. Acknowledgment let work resume while repair was tracked separately. Before deployment, the full validation suite ran again against the candidate being shipped.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/docable-validation-scheduling.pdf}
+\caption[Separating integration from broad validation]{\emph{Separating integration from broad validation.} The redesign lets several merges share a scheduled run of broad checks, reducing repeated work while delaying defect detection. Full validation still precedes deployment.}
+\label{docable-validation-scheduling}
+\end{figure}
+
+This arrangement reduced repeated checking at the cost of slower detection and harder diagnosis. A defect could remain on the main branch until a sweep found it. If several changes had merged since the last successful check, the failure had to be traced to one of them. The choice therefore depended on how long the project could tolerate a broken main branch and how effectively the factory could diagnose and repair it. The same bottleneck reasoning used for document processing in \magevalue{sec:interlude-one-problem-many-models} applied to the agents' infrastructure: measure where work accumulates, examine how much work each new item causes, and account for the consequences of changing the schedule.
+
+```
+
+Original impact-analysis opening at the same revision, revised to distinguish evidence selection from scheduling:
+
+As agents produce changes faster than engineers can evaluate them, validation can become a bottleneck. The models and traceability relationships developed through MAGE offer a way to direct that effort: identify which engineering obligations a proposed change might affect, then determine what evidence is needed to establish that they still hold. Rather than evaluating every property after every change, the environment can use explicit relationships among models, implementation elements, and obligations to guide the selection of tests, analyses, and measurements.

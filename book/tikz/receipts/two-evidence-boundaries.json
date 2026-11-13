@@ -1,7 +1,7 @@
 {
   "source": "book/assets/two-evidence-boundaries.svg",
   "claim": "Explicit relationships among changes, models, obligations, and evidence guide validation effort; incomplete relationships can require broader checks.",
-  "topology": "Two distinct landmarks on one timeline: early honest evidence and last safe recheck; hollow/solid diamond separates roles.",
+  "topology": "Three horizontal bands group models, obligations, and evidence; single central arrows connect proposed change, bands, and admission.",
   "required_terms": [
     "Proposed change",
     "Execution model",
@@ -12,21 +12,21 @@
     "Latency budget",
     "Admission decision"
   ],
-  "bw_encoding": "Light gray identifies model and obligation boxes.",
-  "redesign": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+  "bw_encoding": "Light gray identifies the three grouped bands.",
+  "redesign": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
   "questions": [],
-  "alt": "A proposed increase in worker concurrency leads through execution, memory, and latency models to legal ordering, peak-memory, and latency obligations. Correctness tests, memory analysis or measurement, and performance tests supply evidence for admission. The model and obligation boxes are shaded; all split and join rails share a central vertical spine.",
+  "alt": "A proposed increase in worker concurrency leads through execution, memory, and latency models to legal ordering, peak-memory, and latency obligations. Correctness tests, memory analysis or measurement, and performance tests supply evidence for admission. Models, obligations, and evidence form three shaded bands connected by single downward arrows on a central spine.",
   "qa": {
     "date": "2026-11-13",
     "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-    "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+    "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
     "page": 1,
     "width_bp": 446.122,
-    "height_bp": 377.671,
+    "height_bp": 310.671,
     "minimum_prose_font_pt": 9,
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+    "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
     "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
     "semantic_typography_checks": 33,
     "monochrome_pixels": true,
@@ -41,24 +41,24 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
-    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+    "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
       "page": 1,
       "width_bp": 446.122,
-      "height_bp": 377.671,
+      "height_bp": 310.671,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
       "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
       "semantic_typography_checks": 33,
       "monochrome_pixels": true,
@@ -68,11 +68,15 @@
     "book_references": [],
     "routing_exceptions": "Orthogonal process paths with aligned central spine and split/join rails.",
     "reviewed_visually": true,
-    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
       }
     ]
   },
@@ -80,8 +84,8 @@
     "source": "book/assets/two-evidence-boundaries.svg",
     "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
     "decision": "refined",
-    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
-    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+    "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
     "evidence": [
       {
         "candidate_text": "Proposed change",
@@ -249,7 +253,7 @@
         "semantic_role": "Heading, explanatory label, or process annotation."
       }
     ],
-    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "checks": [
       {
         "text": "Proposed change",
@@ -420,14 +424,14 @@
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
       "page": 1,
       "width_bp": 446.122,
-      "height_bp": 377.671,
+      "height_bp": 310.671,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
       "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
       "semantic_typography_checks": 33,
       "monochrome_pixels": true,
@@ -439,17 +443,21 @@
       {
         "date": "2026-11-13",
         "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
       }
     ]
   },
   "layout_review": {
     "source": "book/assets/two-evidence-boundaries.svg",
     "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
-    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+    "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
     "baseline_candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
     "decision": "redrawn",
-    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       394.6319885253906,
@@ -459,14 +467,14 @@
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
       "page": 1,
       "width_bp": 446.122,
-      "height_bp": 377.671,
+      "height_bp": 310.671,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
       "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
       "semantic_typography_checks": 33,
       "monochrome_pixels": true,
@@ -477,16 +485,20 @@
       {
         "date": "2026-11-13",
         "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
       }
     ],
-    "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+    "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
   },
   "fidelity_review": {
     "source": "book/assets/two-evidence-boundaries.svg",
     "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
     "checks": {
-      "relationships": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
-      "annotation_placement": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+      "relationships": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
+      "annotation_placement": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
       "source_adaptations": "Native typography and compact line breaks; external caption retained."
     },
     "font_qa": {
@@ -496,35 +508,39 @@
     "geometry_findings": [],
     "compiler_diagnostics": [],
     "width_bp": 446.122,
-    "height_bp": 377.671,
+    "height_bp": 310.671,
     "monochrome": true,
-    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
-    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
-    "review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+    "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
+    "review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "decision": "retained",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
       "page": 1,
       "width_bp": 446.122,
-      "height_bp": 377.671,
+      "height_bp": 310.671,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
       "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
       "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs visually inspected."
     },
-    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
       }
     ]
   },
@@ -534,34 +550,40 @@
     "receipt": "book/tikz/receipts/two-evidence-boundaries.json",
     "reviewed": true,
     "decision": "retained",
-    "rationale": "Light-gray boxes distinguish models and obligations from the proposed change, evidence, and decision.",
-    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
-    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "rationale": "Light-gray bands group models, obligations, and evidence; white boxes identify the elements within each band.",
+    "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+    "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
       "page": 1,
       "width_bp": 446.122,
-      "height_bp": 377.671,
+      "height_bp": 310.671,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
       "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
       "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
       "scope": "Native and SVG proofs visually inspected."
     },
-    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
       }
     ]
   },
-  "reference_image_sha256": "6385e718c757d89ffaef6714ac1a73e8751756ec4392e097fb957f01ce265b22"
+  "reference_image_sha256": "66a827eb71c2fc9dcd0947f51edcd9cf00a639856db209443a7acf688dfbf0c3",
+  "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
+  "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59"
 }

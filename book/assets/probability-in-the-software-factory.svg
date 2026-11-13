@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="592" height="477.333" viewBox="0 0 444 358" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="592" height="458.667" viewBox="0 0 444 344" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">Probability in the software factory</title>
 <desc id="desc">Engineering intent is encoded as a property and fulfilled through a fabricator to produce a realization. The encoded property also supplies tolerance for possible realizations; independent measurement informs admission or rejection.</desc>
 <defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1c1917"/></marker></defs>
@@ -34,37 +34,36 @@
 <text x="278" y="129" text-anchor="middle" font-size="12" font-style="italic" font-family="'serif', 'Source Sans 3'">P(F | E)</text>
 <text x="278" y="144" font-size="9" text-anchor="middle">fulfill encoded obligations</text>
 <text x="88" y="172" font-size="9" text-anchor="middle" font-weight="700">Engineers authorize intent.</text>
-<text x="283" y="172" font-size="9" text-anchor="middle">Agents interpret, implement,</text>
-<text x="283" y="183" font-size="9" text-anchor="middle">and correct.</text>
-<path d="M166,105 L166,232" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
-<text x="178" y="204" font-size="9" text-anchor="start">Supplies</text>
-<text x="178" y="215" font-size="9" text-anchor="start">the tolerance</text>
-<path d="M390,105 L390,232" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
-<text x="314" y="196" font-size="9" text-anchor="middle" font-weight="700">Measurement:</text>
-<text x="314" y="208" font-size="9" text-anchor="middle">tests, PBT, analysis,</text>
-<text x="314" y="219" font-size="9" text-anchor="middle">simulation, human judgment</text>
-<rect x="127" y="234" width="303" height="67" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
-<text x="278.5" y="248" font-size="10" text-anchor="middle" font-weight="700">POSSIBLE REALIZATIONS</text>
-<rect x="151" y="258" width="180" height="34" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
-<text x="241" y="270" font-size="10" text-anchor="middle" font-weight="700">Acceptable region</text>
-<circle cx="185" cy="282" r="1.8" fill="#1c1917"/>
-<circle cx="226" cy="285" r="1.8" fill="#1c1917"/>
-<circle cx="267" cy="281" r="1.8" fill="#1c1917"/>
-<circle cx="309" cy="284" r="1.8" fill="#1c1917"/>
-<circle cx="377" cy="278" r="1.8" fill="#1c1917"/>
-<text x="10" y="255" font-size="10" text-anchor="start" font-weight="700">TOLERANCE</text>
-<path d="M10,262 L106,262" fill="none" stroke="#1c1917" stroke-width="0.65"/>
-<text x="10" y="277" font-size="9" text-anchor="start">acceptable product</text>
-<text x="10" y="288" font-size="9" text-anchor="start">variation</text>
-<path d="M185,293 L185,307" fill="none" stroke="#1c1917" stroke-width="0.8"/>
-<text x="185" y="320" font-size="9" text-anchor="middle">within tolerance</text>
-<path d="M185,324 L185,332" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
-<path d="M377,283 L377,307" fill="none" stroke="#1c1917" stroke-width="0.8"/>
-<text x="377" y="320" font-size="9" text-anchor="middle">outside tolerance</text>
-<path d="M377,324 L377,332" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
-<rect x="128" y="334" width="114" height="23" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
-<text x="185" y="349" font-size="10" text-anchor="middle">Admitted change</text>
-<rect x="320" y="334" width="114" height="23" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
-<text x="377" y="349" font-size="10" text-anchor="middle">Revise / reject</text>
+<text x="283" y="172" font-size="9" text-anchor="middle">Agents interpret, implement, and correct.</text>
+<path d="M166,105 L166,218" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="178" y="190" font-size="9" text-anchor="start">Supplies</text>
+<text x="178" y="201" font-size="9" text-anchor="start">the tolerance</text>
+<path d="M390,105 L390,218" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
+<text x="314" y="182" font-size="9" text-anchor="middle" font-weight="700">Measurement:</text>
+<text x="314" y="194" font-size="9" text-anchor="middle">tests, PBT, analysis,</text>
+<text x="314" y="205" font-size="9" text-anchor="middle">simulation, human judgment</text>
+<rect x="127" y="220" width="303" height="67" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="278.5" y="234" font-size="10" text-anchor="middle" font-weight="700">POSSIBLE REALIZATIONS</text>
+<rect x="151" y="244" width="180" height="34" rx="4" fill="#f6f4ef" stroke="#1c1917" stroke-width="0.7"/>
+<text x="241" y="256" font-size="10" text-anchor="middle" font-weight="700">Acceptable region</text>
+<circle cx="185" cy="268" r="1.8" fill="#1c1917"/>
+<circle cx="226" cy="271" r="1.8" fill="#1c1917"/>
+<circle cx="267" cy="267" r="1.8" fill="#1c1917"/>
+<circle cx="309" cy="270" r="1.8" fill="#1c1917"/>
+<circle cx="377" cy="264" r="1.8" fill="#1c1917"/>
+<text x="10" y="241" font-size="10" text-anchor="start" font-weight="700">TOLERANCE</text>
+<path d="M10,248 L106,248" fill="none" stroke="#1c1917" stroke-width="0.65"/>
+<text x="10" y="263" font-size="9" text-anchor="start">acceptable product</text>
+<text x="10" y="274" font-size="9" text-anchor="start">variation</text>
+<path d="M185,279 L185,293" fill="none" stroke="#1c1917" stroke-width="0.8"/>
+<text x="185" y="306" font-size="9" text-anchor="middle">within tolerance</text>
+<path d="M185,310 L185,318" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
+<path d="M377,269 L377,293" fill="none" stroke="#1c1917" stroke-width="0.8"/>
+<text x="377" y="306" font-size="9" text-anchor="middle">outside tolerance</text>
+<path d="M377,310 L377,318" fill="none" stroke="#1c1917" stroke-width="0.8" marker-end="url(#arrow)"/>
+<rect x="128" y="320" width="114" height="23" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="185" y="335" font-size="10" text-anchor="middle">Admitted change</text>
+<rect x="320" y="320" width="114" height="23" rx="4" fill="white" stroke="#1c1917" stroke-width="0.7"/>
+<text x="377" y="335" font-size="10" text-anchor="middle">Revise / reject</text>
 </g>
 </svg>

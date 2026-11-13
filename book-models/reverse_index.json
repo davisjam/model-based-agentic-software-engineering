@@ -7279,6 +7279,16 @@
         }
       ]
     },
+    "section-id:scheduling-validation": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.4-engineering-the-environment::scheduling-validation",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:science-as-the-harder-case": {
       "kind": "section-id",
       "dependents": [
@@ -7995,16 +8005,6 @@
         {
           "view": "outline",
           "element": "2.5-system-knowledge::when-the-model-is-the-source-of-truth",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:when-validation-becomes-the-bottleneck": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.4-engineering-the-environment::when-validation-becomes-the-bottleneck",
           "role": "section-anchor"
         }
       ]

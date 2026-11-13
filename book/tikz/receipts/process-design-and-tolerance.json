@@ -17,25 +17,25 @@
     "Admitted change"
   ],
   "bw_encoding": "A light-gray acceptable region sits inside the white space of possible realizations; points and labeled branches distinguish acceptance and rejection.",
-  "redesign": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
+  "redesign": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
   "questions": [],
   "alt": "Process design organizes engineering intent, context and work, the fabricator, and realization. Measurement evaluates possible realizations against tolerance. The acceptable region contains permitted variation; an inside point leads to admitted change and an outside point to revision or rejection. Its structure matches the probability-in-the-factory figure.",
   "qa": {
     "date": "2026-11-13",
     "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-    "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+    "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
     "page": 1,
     "width_bp": 449.972,
-    "height_bp": 363.973,
+    "height_bp": 349.974,
     "minimum_prose_font_pt": 9,
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-    "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+    "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+    "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
     "semantic_typography_checks": 17,
     "monochrome_pixels": true,
     "status": "passed",
-    "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+    "scope": "Native and SVG proofs inspected."
   },
   "style_review": {
     "source": "book/assets/process-design-and-tolerance.svg",
@@ -45,32 +45,32 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
-    "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
+    "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
+    "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98",
     "fill": "Only acceptable-region field is 5%; dashed production boundary carries grouping.",
     "bold": "Plain ALL-CAPS headings distinguish factory, process design, and tolerance; explanations stay regular below heading rules.",
     "routing": "Existing production, measurement, and admission paths unchanged.",
     "shape": "Remove boxes from SOFTWARE FACTORY and TOLERANCE headings; underline PROCESS DESIGN and TOLERANCE. Preserve process and outcome boxes.",
-    "visual_review": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
+    "visual_review": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-      "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+      "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 363.973,
+      "height_bp": 349.974,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-      "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+      "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+      "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
       "semantic_typography_checks": 17,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs inspected."
     },
     "book_references": [],
-    "routing_exceptions": "Geometry reused from the companion probability figure.",
+    "routing_exceptions": "Matching base structure across Chapters 5 and 6.",
     "color_source_revision": {
       "date": "2026-11-09",
       "previous_source_sha256": "a091605cd04fccc993d98fe154508d703c29e63871caa1b788b459a23037e535",
@@ -99,17 +99,21 @@
       {
         "date": "2026-11-13",
         "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
       }
     ],
     "reviewed_visually": true,
-    "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+    "reason": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
   },
   "typography_review": {
     "source": "book/assets/process-design-and-tolerance.svg",
     "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
     "decision": "refined",
-    "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
-    "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
+    "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
+    "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98",
     "evidence": [
       {
         "candidate_text": "SOFTWARE FACTORY",
@@ -197,7 +201,7 @@
         "semantic_role": "Heading, explanatory label, or process annotation."
       }
     ],
-    "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
+    "reason": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
     "checks": [
       {
         "text": "SOFTWARE FACTORY",
@@ -288,19 +292,19 @@
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-      "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+      "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 363.973,
+      "height_bp": 349.974,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-      "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+      "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+      "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
       "semantic_typography_checks": 17,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs inspected."
     },
     "color_source_revision": {
       "date": "2026-11-09",
@@ -330,6 +334,10 @@
       {
         "date": "2026-11-13",
         "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
       }
     ],
     "reviewed_visually": true
@@ -337,11 +345,11 @@
   "layout_review": {
     "source": "book/assets/process-design-and-tolerance.svg",
     "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
-    "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
+    "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
     "baseline_candidate_sha256": "04b6aa0b88cb2cf72e558c39bf6c5dfcc1f85d30fc2d9a5080a9af32b1bf9d72",
-    "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
+    "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98",
     "decision": "refined",
-    "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
+    "reason": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       420.2340087890625,
@@ -351,34 +359,19 @@
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-      "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+      "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 363.973,
+      "height_bp": 349.974,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-      "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+      "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+      "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
       "semantic_typography_checks": 17,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
-    },
-    "page_layout": {
-      "decision": "review candidate",
-      "reason": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
-      "before_sha256": "04b6aa0b88cb2cf72e558c39bf6c5dfcc1f85d30fc2d9a5080a9af32b1bf9d72",
-      "after_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
-      "after_dimensions_bp": [
-        420.234,
-        312.851
-      ],
-      "after_font_sizes_pt": [
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
+      "scope": "Native and SVG proofs inspected."
     },
     "revision_history": [
       {
@@ -408,9 +401,13 @@
       {
         "date": "2026-11-13",
         "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
       }
     ],
-    "visual_review": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+    "visual_review": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
   },
   "color_source_revision": {
     "date": "2026-11-09",
@@ -423,9 +420,9 @@
     "source": "book/assets/process-design-and-tolerance.svg",
     "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
     "checks": {
-      "relationships": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
-      "annotation_placement": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
-      "source_adaptations": "Native typography and compact line breaks; external caption retained."
+      "relationships": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
+      "annotation_placement": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
+      "source_adaptations": "Native typography, compact line breaks, external caption."
     },
     "font_qa": {
       "minimum": 9,
@@ -434,11 +431,11 @@
     "geometry_findings": [],
     "compiler_diagnostics": [],
     "width_bp": 449.972,
-    "height_bp": 363.973,
+    "height_bp": 349.974,
     "monochrome": true,
-    "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
-    "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
-    "review": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
+    "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
+    "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98",
+    "review": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
     "decision": "refined",
     "revision_history": [
       {
@@ -450,27 +447,31 @@
       {
         "date": "2026-11-13",
         "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
       }
     ],
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-      "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+      "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 363.973,
+      "height_bp": 349.974,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-      "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+      "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+      "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
       "semantic_typography_checks": 17,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs inspected."
     },
     "reviewed_visually": true,
-    "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+    "reason": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
   },
   "grayscale_review": {
     "source": "book/assets/process-design-and-tolerance.svg",
@@ -478,9 +479,9 @@
     "receipt": "book/tikz/receipts/process-design-and-tolerance.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Light gray identifies the acceptable region inside possible realizations.",
-    "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
-    "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
+    "rationale": "Light-gray acceptable region inside possible realizations.",
+    "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
+    "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98",
     "revision_history": [
       {
         "date": "2026-11-11",
@@ -491,26 +492,32 @@
       {
         "date": "2026-11-13",
         "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
       }
     ],
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-      "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+      "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
       "page": 1,
       "width_bp": 449.972,
-      "height_bp": 363.973,
+      "height_bp": 349.974,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-      "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+      "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+      "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
       "semantic_typography_checks": 17,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs inspected."
     },
     "reviewed_visually": true,
-    "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
-  }
+    "reason": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
+  },
+  "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
+  "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98"
 }

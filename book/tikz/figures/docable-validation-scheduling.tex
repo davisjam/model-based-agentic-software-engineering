@@ -1,61 +1,53 @@
-% Teaching adaptation of DocAble factory lecture slide 27 (2026-11-03).
-% Trigger separation clarified from fast-land-async-ci-design-261103.md.
-% Before combines merge/validation to preserve coupling without a disputed micro-order.
-\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,
-  font=\magefigurefont\fontsize{10.5}{12.5}\selectfont,
-  box/.style={draw=black,line width=.65pt,rounded corners=2.5pt,fill=white,inner sep=0pt,outer sep=0pt},
-  flow/.style={line width=.75pt,-{Latex[length=4.5pt,width=3.4pt]}},
-  primary/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10.5}{12.5}\selectfont\bfseries},
-  note/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{10}{12}\selectfont},
-  heading/.style={align=left,inner sep=0pt,font=\magefigurefont\fontsize{11}{13}\selectfont\bfseries}]
-\path[use as bounding box] (10,0) rectangle (450,405);
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{9}{11}\selectfont]
 \hyphenpenalty=10000
-\draw[black!35,line width=.5pt] (20,97) -- (440,97);
-\draw[flow] (106,49) -- (139,49);
-\draw[flow] (311,49) -- (345,49);
-\draw[flow] (94,171) -- (112,171);
-\draw[flow] (222,171) -- (244,171);
-\draw[flow] (318,171) -- (356,171);
-\draw[flow] (104,264) -- (124,264);
-\draw[flow] (294,264) -- (342,264);
-\draw[flow] (104,365) -- (124,365);
-\draw[flow] (294,365) -- (342,365);
-\node[box,minimum width=86bp,minimum height=40bp] (before-agent) at (63,49) {};
-\node[primary] (before-agent-text-0) at (63,49) {Agent};
-\node[box,minimum width=172bp,minimum height=40bp] (before-validation) at (225,49) {};
-\node[primary] (before-validation-text-0) at (225,49) {Merge and full validation};
-\node[box,minimum width=86bp,minimum height=40bp] (before-next) at (388,49) {};
-\node[primary] (before-next-text-0) at (388,49) {Next work};
-\node[box,minimum width=74bp,minimum height=40bp] (after-agent) at (57,171) {};
-\node[primary] (after-agent-text-0) at (57,171) {Agent};
-\node[box,minimum width=110bp,minimum height=40bp] (cheap) at (167,171) {};
-\node[primary] (cheap-text-0) at (167,171) {Cheap checks};
-\node[box,minimum width=74bp,minimum height=40bp] (merge) at (281,171) {};
-\node[primary] (merge-text-0) at (281,171) {Merge};
-\node[box,minimum width=74bp,minimum height=40bp] (next) at (393,171) {};
-\node[primary] (next-text-0) at (393,171) {Next work};
-\node[box,minimum width=84bp,minimum height=52bp] (clock) at (62,264) {};
-\node[primary] (clock-text-0) at (62,264) {Timer};
-\node[box,minimum width=170bp,minimum height=52bp] (sweep) at (209,264) {};
-\node[primary] (sweep-text-0) at (209,257) {Broad checks of main};
-\node[note] (sweep-text-1) at (209,271) {One sweep at a time};
-\node[box,minimum width=98bp,minimum height=52bp] (repair) at (391,264) {};
-\node[primary] (repair-text-0) at (391,257) {Pause dispatch};
-\node[note] (repair-text-1) at (391,271) {Diagnose; repair};
-\node[box,minimum width=84bp,minimum height=44bp] (deploy-request) at (62,365) {};
-\node[primary] (deploy-request-text-0) at (62,358) {Deployment};
-\node[primary] (deploy-request-text-1) at (62,372) {request};
-\node[box,minimum width=170bp,minimum height=44bp] (deploy-validation) at (209,365) {};
-\node[primary] (deploy-validation-text-0) at (209,365) {Full validation};
-\node[box,minimum width=98bp,minimum height=44bp] (deploy) at (391,365) {};
-\node[primary] (deploy-text-0) at (391,365) {Deploy};
-\node[heading,anchor=west] (before-heading) at (20,12.5) {Before: integration and validation coupled};
-\node[note,anchor=center] (before-wait) at (225,81.5) {Next work waits for full validation.};
-\node[heading,anchor=west] (after-heading) at (20,111.5) {After: separate triggers for different checks};
-\node[note,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,anchor=west] (each-change-heading) at (20,134.5) {For each change};
-\node[note,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,anchor=west] (periodic-heading) at (20,221.5) {Every 30 minutes};
-\node[note,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,anchor=west] (deploy-heading) at (20,322.5) {For deployment};
-\node[note,anchor=center] (failure-label-1) at (318,238.5) {blocking};
-\node[note,anchor=center] (failure-label-2) at (318,250.5) {failure};
-\node[note,anchor=center] (pass-label) at (318,349.5) {passes};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{11}{11}\selectfont\bfseries] at (4,13) {Before: integration and validation coupled};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (18,25) rectangle (94,52);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (130,25) rectangle (304,52);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (345,25) rectangle (425,52);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (56,43) {Agent};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (217,43) {Merge and full validation};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (385,43) {Next work};
+\draw[->,line width=0.7pt] (94,39) -- (130,39);
+\draw[->,line width=0.7pt] (304,39) -- (345,39);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\itshape] at (217,65) {Next work waits for full validation.};
+\draw[line width=0.45pt] (4,78) -- (442,78);
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{11}{11}\selectfont\bfseries] at (4,94) {After: separate triggers for different checks};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (4,111) {For each change};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (18,120) rectangle (88,147);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (53.0,138) {Agent};
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (108,120) rectangle (208,147);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (158.0,138) {Cheap checks};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (231,120) rectangle (309,147);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (270.0,138) {Merge};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (345,120) rectangle (425,147);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (385.0,138) {Next work};
+\draw[->,line width=0.7pt] (88,134) -- (108,134);
+\draw[->,line width=0.7pt] (208,134) -- (231,134);
+\draw[->,line width=0.7pt] (309,134) -- (345,134);
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (4,168) {Every 30 minutes};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (18,179) rectangle (88,211);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (108,179) rectangle (278,211);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (341,179) rectangle (438,211);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (53,199) {Timer};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (193,192) {Broad checks of main};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont] at (193,204) {One sweep at a time};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (389.5,192) {Pause dispatch};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont] at (389.5,204) {Diagnose; repair};
+\draw[->,line width=0.7pt] (88,195) -- (108,195);
+\draw[->,line width=0.7pt] (278,195) -- (341,195);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (309,177) {blocking};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (309,188) {failure};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (4,232) {For deployment};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (18,242) rectangle (94,272);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (120,242) rectangle (278,272);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (341,242) rectangle (438,272);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (56,255) {Deployment};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (56,267) {request};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (199,261) {Full validation};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (389.5,261) {Deploy};
+\draw[->,line width=0.7pt] (94,257) -- (120,257);
+\draw[->,line width=0.7pt] (278,257) -- (341,257);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (309,248) {passes};
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=2pt] (8,287) rectangle (35,299);
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (41,296) {= validation is running (tests, analyses, or measurements)};
 \end{tikzpicture}

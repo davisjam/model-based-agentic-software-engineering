@@ -836,7 +836,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Two evidence boundaries — earliest legible, and last safe before consequence.",
-    "svg_description": "A proposed increase in worker concurrency leads through execution, memory, and latency models to legal ordering, peak-memory, and latency obligations. Correctness tests, memory analysis or measurement, and performance tests supply evidence for admission. The model and obligation boxes are shaded; all split and join rails share a central vertical spine."
+    "svg_description": "A proposed increase in worker concurrency leads through execution, memory, and latency models to legal ordering, peak-memory, and latency obligations. Correctness tests, memory analysis or measurement, and performance tests supply evidence for admission. Models, obligations, and evidence form three shaded bands connected by single downward arrows on a central spine."
   },
   {
     "chapter": "5.1-software-factory",
@@ -1024,7 +1024,7 @@
   {
     "chapter": "4.4-engineering-the-environment",
     "source": "assets/docable-validation-scheduling.svg",
-    "caption": "Separating integration from broad validation. The redesign lets several merges share a scheduled run of broad checks, reducing repeated work while delaying defect detection. Full validation still precedes deployment.",
+    "caption": "*Separating integration from broad validation.* Shaded boxes identify validation work; initially, full validation delayed subsequent changes. The redesigned pipeline runs inexpensive checks before each merge, broad checks periodically against accumulated changes, and full validation before deployment. Separating these schedules reduces repeated computation and blocking latency, but delays detection of failures that escape the per-merge checks.",
     "native_context": "book/latex/sources/part4/4.4-engineering-the-environment.tex",
     "d2_source": null,
     "receipt": null,
@@ -1032,7 +1032,7 @@
     "data": [],
     "conversion": "Native TikZ diagram with matching source SVG, adapted from the November 3 factory lecture",
     "svg_title": "Separating integration from broad validation",
-    "svg_description": "Before, integration and full validation were coupled, so subsequent work waited for the broad suite. After, three paths have distinct triggers. For each change, the agent runs cheap checks, merges, and moves to the next work. Independently, a timer schedules broad checks of main every 30 minutes, with at most one sweep running. A blocking failure pauses dispatch and prompts diagnosis and repair. A deployment request still requires full validation to pass before deployment. The timer, rather than each merge, triggers the broad sweep. The cadence is the nominal schedule, not a bound on detection latency."
+    "svg_description": "Before, an agent merges with full validation before the next work. After, each change passes cheap checks and merges before next work; a thirty-minute timer triggers one broad check of main at a time, and blocking failure pauses dispatch for diagnosis and repair. Deployment requests require full validation to pass before deployment. Shading identifies validation work."
   },
   {
     "chapter": "5.2-inside-docables-software-factory",
@@ -1071,7 +1071,7 @@
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
     "svg_title": "Probability in the software factory",
-    "svg_description": "A software factory production process goes from engineering intent to encoded property to fabricator to realization. P(E) denotes correct encoding, and P(F|E) denotes fulfillment of encoded obligations. Engineers authorize intent; agents interpret, implement, and correct. The encoded property also supplies tolerance, while tests, property-based testing, analysis, simulation, and human judgment measure the realization. The lower Possible realizations space contains a smaller Acceptable region with several points and one point outside. Within-tolerance realizations lead to admitted change; outside-tolerance realizations lead to revise or reject."
+    "svg_description": "Engineering intent is encoded as a property and fulfilled through a fabricator to produce a realization. The encoded property also supplies tolerance for possible realizations; independent measurement informs admission or rejection."
   },
   {
     "chapter": "6.2-what-the-theory-predicts",

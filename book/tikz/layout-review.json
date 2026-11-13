@@ -5791,11 +5791,11 @@
     {
       "source": "book/assets/two-evidence-boundaries.svg",
       "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
-      "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+      "source_sha256": "0482e9a0a46aa71b0921c725a2ba66c8714904d709f9b90577d318fa1183ff2e",
       "baseline_candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-      "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+      "candidate_sha256": "eed25139d1248ca523caf3b378b0452ed3f1cfe7f18ece54192d6aa11768aa59",
       "decision": "redrawn",
-      "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+      "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         394.6319885253906,
@@ -5805,14 +5805,14 @@
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
-        "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+        "proof_sha256": "dd6a2a0febfba914011a76b0bfafdee880ed15632818c074a3f1702d20779331",
         "page": 1,
         "width_bp": 446.122,
-        "height_bp": 377.671,
+        "height_bp": 310.671,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+        "geometry_audit_sha256": "b513a3359db4eaf124dde664fa075227900db734264af4345ba0cd745ab8aa7c",
         "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
         "semantic_typography_checks": 33,
         "monochrome_pixels": true,
@@ -5823,18 +5823,22 @@
         {
           "date": "2026-11-13",
           "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
         }
       ],
-      "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Three shaded horizontal bands group models, obligations, and evidence. Single vertical arrows connect the bands on one spine; no individual split rails or legend. The later validation-bottleneck episode is retained."
     },
     {
       "source": "book/assets/process-design-and-tolerance.svg",
       "candidate": "book/tikz/figures/process-design-and-tolerance.tex",
-      "source_sha256": "0ec584380cc09f4526fb058c344b69aeab97578a2bcc1d8c96676d98ad3d9710",
+      "source_sha256": "bbf0cf96e846fc5592ff068fa6201734633258ec66e8d5f50852b4e87de26e5f",
       "baseline_candidate_sha256": "04b6aa0b88cb2cf72e558c39bf6c5dfcc1f85d30fc2d9a5080a9af32b1bf9d72",
-      "candidate_sha256": "d27da4d5f4fa96c453d5107497e6e0d54b31998d58098d2301422ca9c91343e6",
+      "candidate_sha256": "a3d3216957384de9be21cc5fcdb540422af8f4b1c5ea77bd1637ad12886aad98",
       "decision": "refined",
-      "reason": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged.",
+      "reason": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         420.2340087890625,
@@ -5844,34 +5848,19 @@
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/process-design-and-tolerance-20261113/candidates.pdf",
-        "proof_sha256": "7e303cc864aa65ffab86e9c0bd1218cc20d30d70ee6b565cfccd922ca81da138",
+        "proof_sha256": "6cd791dc72bb9cff00991740a2cc304417d09b842af8a6427a63b581762e291e",
         "page": 1,
         "width_bp": 449.972,
-        "height_bp": 363.973,
+        "height_bp": 349.974,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "994b9453e733979d05c40ef08f6bee6eea7a04a087c7e2c27e0289bece252aaa",
-        "typography_audit_sha256": "930d160798241107dad0e2394db0080b8d295f40653be668fa950d305f4dee30",
+        "geometry_audit_sha256": "a344189b71e444d7858d07fe61bc0e9373f51cd4a74982b13c7faa25b2c0789f",
+        "typography_audit_sha256": "c8de44c592d121acff97fa3dcdcd41fbff74147684d2c1dbf2bff1f07f483635",
         "semantic_typography_checks": 17,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Native figure and SVG visually inspected; revised proof available for author review."
-      },
-      "page_layout": {
-        "decision": "review candidate",
-        "reason": "Restore the original heading hierarchy: bare SOFTWARE FACTORY title, left-aligned ALL-CAPS PROCESS DESIGN and TOLERANCE headings with thin rules underneath, and explanations below those rules. Remove floating title/tolerance boxes. Keep the production and measurement flows unchanged. Pending author review.",
-        "before_sha256": "04b6aa0b88cb2cf72e558c39bf6c5dfcc1f85d30fc2d9a5080a9af32b1bf9d72",
-        "after_sha256": "19e149ecf010949353356411a57c1866277d033d64cd3d71854b739eb55fa6f8",
-        "after_dimensions_bp": [
-          420.234,
-          312.851
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
+        "scope": "Native and SVG proofs inspected."
       },
       "revision_history": [
         {
@@ -5901,9 +5890,13 @@
         {
           "date": "2026-11-13",
           "change": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
         }
       ],
-      "visual_review": "Matched the base structure of Figure 6.1 exactly, including possible realizations, nested acceptable region, four interior points and one exterior point, tolerance label, and admitted/revise branches. Retained Chapter 5 context/work and process-design annotations; omitted Chapter 6 probability and encoded-property annotations. Figure 6.1 is unchanged."
+      "visual_review": "Reduced the production-to-tolerance gap by the same 14 bp as Figure 6.1, preserving the matching factory base structure and all Chapter 5 labels."
     },
     {
       "source": "book/assets/build-stages-timeline.svg",
@@ -6770,52 +6763,37 @@
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-      "source_sha256": "75c3c3cf1317a4e21d4ef7ec189b36e83f491c0f020e97c96a8aad0094a4d67a",
-      "candidate_sha256": "7e48e8e80232f2a2e065912e6dc81a1a517afc7081d205621255447f8c99763a",
+      "source_sha256": "2971c4abdba51886cf7e3bedcb207f34d5ee2f1047f718945b006f060efcd407",
+      "candidate_sha256": "69489bbb5429d3d06fe2b86dab27fe83d0bfc083cebb7a3628656b15903a3dac",
       "decision": "refined",
       "reviewed_visually": true,
-      "reason": "Author-reference redraw separates correct encoding from fulfillment of encoded obligations while showing the encoded property also supplying the tolerance used to evaluate realizations. The lower region is correctly named Possible realizations, not a single proposed change. Its acceptable subset contains several possible realizations; one outside point illustrates revision/rejection. Bare hierarchy labels retain the established book style.",
+      "reason": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
       "validation": {
         "date": "2026-11-13",
-        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
-        "proof": "latex/build/tikz/factory-probability-20261113/candidates.pdf",
-        "proof_sha256": "e63457711c2d6c749bf292b4e7be024bf8fea14d56a10c082a49c961287aee81",
+        "proof": "latex/build/tikz/probability-in-the-software-factory-20261113/candidates.pdf",
+        "proof_sha256": "cab867dad877b7297e3319cfc0637c2c8b6a66a4dec33954bc1cf81288974a33",
         "page": 1,
         "width_bp": 449.972,
-        "height_bp": 363.973,
-        "minimum_prose_font_pt": 9.0,
-        "authored_type_sizes_pt": [
-          9.0,
-          10.0,
-          11.0,
-          12.0
-        ],
+        "height_bp": 349.974,
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "monochrome_pixels": true,
+        "geometry_audit_sha256": "25adee41f45b115c26fdac551b32b25ba51d1f1da6e2ca2d021a2fce50a7d304",
+        "typography_audit_sha256": "9747ee76b31e2e39a489ef96699443d6bec97a635a62af20f37df7f4d4d41b55",
         "semantic_typography_checks": 23,
-        "audit_sha256": "95beb87a49bac8c2c1a0fdb2aae25a6f2868474d80ed2234b74863f9be2bc6bd",
-        "typography_audit_sha256": "7f8bea75c7e870a9ef53a8e617593404fb8897c6107c991efc0dfb79c023dbec",
-        "status": "passed"
+        "monochrome_pixels": true,
+        "status": "passed",
+        "scope": "Native and SVG proofs inspected."
       },
       "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/layout-review.json",
       "contracts": {},
-      "visual_review": "Native and SVG proofs inspected at print size and2×. Four production nodes align in a dashed region. Encoding and fulfillment brackets remain distinct where the tolerance arrow descends. Bare Process Design and Tolerance labels avoid floating header boxes. The lower Possible realizations container correctly represents a space with an acceptable subset and an outside point. Evidence includes tests,PBT,analysis,simulation,and human judgment. No embedded overall figure headline or caption.",
-      "page_layout": {
-        "after_dimensions_bp": [
-          449.972,
-          363.973
-        ],
-        "after_font_sizes_pt": [
-          9,
-          10,
-          11,
-          12
-        ],
-        "decision": "recomposed",
-        "reason": "Four aligned production nodes and separate conditional-probability brackets above; nested possibility/acceptability regions and two distinct outcomes below.",
-        "reviewed_visually": true
-      }
+      "visual_review": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1.",
+      "revision_history": [
+        {
+          "date": "2026-11-13",
+          "change": "Author approved; compressed the production-to-tolerance gap by 14 bp and joined the agent-role annotation into one line. Kept all labels and the factory structure, matching Figure 5.1."
+        }
+      ]
     },
     {
       "source": "book/assets/determinization-frontier.svg",
@@ -11007,60 +10985,45 @@
     {
       "source": "book/assets/docable-validation-scheduling.svg",
       "candidate": "book/tikz/figures/docable-validation-scheduling.tex",
-      "source_sha256": "706e5b7120fcb5babe326ae6dd175e25dec6e7b77b7bcb8c6150c847b394bba4",
-      "candidate_sha256": "f42cb5537ebe3c2da1ce1c8330a86492076f22068c07f00ee5f1073af946070e",
+      "source_sha256": "a9e229b8fb20f6ef800b31a5eed175fa22b99811a9040c8029238ed1b9fc952d",
+      "candidate_sha256": "37d948c01665dbfba237e6ca1500b8ab62cef9d4838b64c83c890fdb644dab2b",
       "baseline_candidate_sha256": "f42cb5537ebe3c2da1ce1c8330a86492076f22068c07f00ee5f1073af946070e",
-      "decision": "new",
-      "reason": "Slide-derived comparison with distinct integration, periodic-validation, and deployment triggers; peer rows and arrow approaches checked at native print size.",
+      "decision": "refined",
+      "reason": "Matched the author reference: coupled integration and full validation above, then separate per-change, thirty-minute, and deployment schedules. Shading identifies validation work. Blocking broad-check failures pause dispatch; full validation must pass before deployment. No embedded figure number.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         441.99,
         405.0
       ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "Periodic-check path",
-            "labels": [
-              "Timer",
-              "Broad checks of main",
-              "Pause dispatch"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          },
-          {
-            "name": "Deployment path",
-            "labels": [
-              "Deployment request",
-              "Full validation",
-              "Deploy"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
+      "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "291ba0056fbec89e19c1bd00c7b2c4281f9e71e7a735eaab7544bfe85b2673f0",
-        "page": 82,
-        "width_bp": 445.973,
-        "height_bp": 410.973,
-        "geometry_findings": 0,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/docable-validation-scheduling-20261113/candidates.pdf",
+        "proof_sha256": "a8d552e3759a5dab515891790a319053704969902586068a5fa7f724cec58ca5",
+        "page": 1,
+        "width_bp": 444.421,
+        "height_bp": 300.246,
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e60f7bc1e711f3185b1b0f702658716fdd270db7095dacd8613d26b29ebbe7e4",
+        "typography_audit_sha256": "bd04c0f1cba7c6942d163f7a7676a5b4e84f47e08ec9ae12240770797e580b68",
+        "semantic_typography_checks": 26,
         "monochrome_pixels": true,
-        "semantic_typography_checks": 9,
-        "status": "passed"
-      }
+        "status": "passed",
+        "scope": "Native and SVG proofs inspected."
+      },
+      "revision_history": [
+        {
+          "date": "2026-11-13",
+          "change": "Matched the author reference: coupled integration and full validation above, then separate per-change, thirty-minute, and deployment schedules. Shading identifies validation work. Blocking broad-check failures pause dispatch; full validation must pass before deployment. No embedded figure number."
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Matched the author reference: coupled integration and full validation above, then separate per-change, thirty-minute, and deployment schedules. Shading identifies validation work. Blocking broad-check failures pause dispatch; full validation must pass before deployment. No embedded figure number."
+        }
+      ],
+      "visual_review": "Matched the author reference: coupled integration and full validation above, then separate per-change, thirty-minute, and deployment schedules. Shading identifies validation work. Blocking broad-check failures pause dispatch; full validation must pass before deployment. No embedded figure number."
     },
     {
       "source": "book/assets/deliver-context-two-layer.svg",

@@ -2415,10 +2415,10 @@
           ]
         },
         {
-          "section_id": "when-validation-becomes-the-bottleneck",
+          "section_id": "scheduling-validation",
           "level": 3,
-          "heading_text": "When Validation Becomes the Bottleneck",
-          "topic_sentence": "Without sufficient controls, faster implementation can become faster production of defects.",
+          "heading_text": "Scheduling Validation",
+          "topic_sentence": "Model-aware change-impact analysis addresses which evaluations a change requires.",
           "id_source": "derived",
           "block_index": 55,
           "points": []
@@ -2429,7 +2429,7 @@
           "heading_text": "Maintain the Machinery",
           "topic_sentence": "As engineers develop the governed environment, they create reusable models, controls, procedures, and evidence pipelines that make subsequent work easier to direct and evaluate.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 67,
           "points": []
         },
         {
@@ -2438,7 +2438,7 @@
           "heading_text": "Summary",
           "topic_sentence": "The DocAble episodes illustrate engineering moves that apply beyond this particular system and the agent harnesses used to develop it.",
           "id_source": "explicit",
-          "block_index": 71,
+          "block_index": 72,
           "points": []
         }
       ],
