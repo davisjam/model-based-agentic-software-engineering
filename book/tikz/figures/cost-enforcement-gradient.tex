@@ -1,21 +1,63 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
-\node[box,text width=5cm,fill=white] (m) at (0,0) {\textbf{COST / USAGE MODEL}\\\textit{related measured quantities}};
-\node[head,text width=5cm,fill=white] (p) at (0,-1.4) {\textbf{Policy attached to the value}};
-\draw[edge,] (m) -- (p);
-\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a0) at (-4.5,-3.4) {\textbf{OBSERVE}\\\textit{report evidence only}};
-\draw[edge,] (p.south) -- (0.000,-2.250) -- (-4.500,-2.250) -- (a0.north);
-\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a1) at (0,-3.4) {\textbf{ADAPT}\\\textit{change load}};
-\draw[edge,] (p) -- (a1);
-\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a2) at (4.5,-3.4) {\textbf{GATE}\\\textit{block admission}};
-\draw[edge,] (p.south) -- (0.000,-2.250) -- (4.500,-2.250) -- (a2.north);
-\node[box,text width=4cm] (soft) at (0,-5.0) {Throttle; soft completion};
-\draw[edge,] (a1) -- (soft);
-\node[note,text width=12cm] (nt) at (0,-6.1) {Response follows the obligation attached to the quantity.};
-\node[note,text width=3.2cm] at (4.7,-4.45) {\textit{Dormant unless}\\\textit{configured}};
+% Author reference: quantitative margin feeds engineering decisions.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont]
+\hyphenpenalty=10000
+\draw[draw=black,fill=white,line width=.8pt,rounded corners=5pt] (103,2) rectangle (329,70);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{12}{11.5}\selectfont\bfseries] at (216,16) {MODELING};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\itshape] at (216,29) {Tolerance and degrees of freedom};
+\draw[draw=black,fill=black!6,line width=.8pt,rounded corners=5pt] (115,36) rectangle (317,63);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (216,47) {Quantitative obligation (example)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{11}{11.5}\selectfont\bfseries] at (216,59) {Response time $\leq$ 200 ms};
+\draw[->,line width=1pt] (216,70) -- (216,87);
+\draw[draw=none,fill=black!6,line width=.8pt,rounded corners=5pt] (38,91) rectangle (380,168);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\itshape] at (132,106) {Acceptable region};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\itshape] at (132,118) {(within tolerance)};
+\draw[line width=1.3pt] (54,135) -- (355,135);
+\draw[line width=1pt] (54,130) -- (54,140);
+\draw[draw=black,fill=black,line width=.9pt] (216,135) circle (3.2bp);
+\draw[draw=black,fill=black,line width=.9pt] (320,135) circle (3.2bp);
+\draw[draw=black,fill=white,line width=.9pt] (355,135) circle (3.2bp);
+\draw[line width=0.8pt] (216,103) -- (216,127);
+\draw[line width=0.8pt] (355,103) -- (355,127);
+\draw[<->,line width=0.8pt] (216,107) -- (355,107);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (285.5,101) {80 ms};
+\draw[line width=0.8pt] (320,115) -- (320,127);
+\draw[<->,line width=0.8pt] (320,120) -- (355,120);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont] at (337.5,115) {5 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (54,152) {0 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (216,151) {120 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (216,163) {(A)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (316,151) {195 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (316,163) {(B)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (361,151) {200 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\itshape] at (361,163) {(limit)};
+\draw[line width=0.9pt] (216,169) -- (216,180) -- (320,180) -- (320,169);
+\draw[line width=0.9pt] (268,180) -- (268,192);
+\draw[draw=black,fill=white,line width=.8pt,rounded corners=5pt] (103,192) rectangle (329,258);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{12}{11.5}\selectfont\bfseries] at (216,207) {ALIGNMENT};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\itshape] at (216,220) {Measure implementation behavior};
+\draw[draw=black,fill=black!6,line width=.8pt,rounded corners=5pt] (116,228) rectangle (212,253);
+\draw[draw=black,fill=black!6,line width=.8pt,rounded corners=5pt] (220,228) rectangle (316,253);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\bfseries] at (164,239) {A: 120 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (164,250) {(margin 80 ms)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont\bfseries] at (268,239) {B: 195 ms};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (268,250) {(margin 5 ms)};
+\draw[->,line width=0.9pt] (154,258) -- (154,267) -- (126,267) -- (126,279);
+\draw[->,line width=0.9pt] (274,258) -- (274,267) -- (310,267) -- (310,279);
+\draw[draw=black,fill=white,line width=.8pt,rounded corners=5pt] (40,279) rectangle (210,312);
+\draw[draw=black,fill=white,line width=.8pt,rounded corners=5pt] (230,279) rectangle (404,312);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (125,293) {\textbf{Agent:} explore alternatives};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (125,305) {within available headroom.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (317,293) {\textbf{Engineer:} reassess design or};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11.5}\selectfont] at (317,305) {controls as margin shrinks.};
+\draw[->,line width=1.2pt,rounded corners=9pt] (329,228) -- (386,228) -- (386,30) -- (331,30);
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,70) {Measured};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,81) {evidence};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,92) {informs};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,103) {engineering};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,114) {decisions};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,125) {(e.g., adjust};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,136) {tolerance,};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,147) {redesign,};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,158) {or add};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont\itshape] at (394,169) {controls)};
 \end{tikzpicture}

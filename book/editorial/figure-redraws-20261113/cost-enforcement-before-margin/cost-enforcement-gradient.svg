@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Chapter 3 3.3.3 figure — cost-enforcement-gradient.svg (draft; folds to book/assets/).
+     One measurement, different enforcement decisions. A single COST / USAGE MODEL (blue #2f5169 — it is a
+     model) is read through a POLICY attached to the value (rust — the obligation), and that policy selects
+     one response: OBSERVE (report evidence, neutral gray), ADAPT (change load -> throttle / soft
+     completion), or GATE (block admission -> rust). The appropriate response follows from the obligation
+     attached to the measurement, not from a maturity sequence.
+     v7 (part3-v7-260814): inserted the "policy attached to the value" node; branches renamed to
+     OBSERVE / ADAPT / GATE; the hard gate's dormant-unless-configured status is now a small annotation
+     on the GATE branch, not two extra armed/dormant nodes; the in-figure "four roles are not stages of
+     maturity" sentence removed (it stays as body prose). Grammar: gray = sensor/report; blue = the
+     model; rust = obligation/admission. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470"
+     role="img" aria-labelledby="cgTitle cgDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="cgTitle">One measurement, different enforcement decisions: a policy attached to the value selects observe, adapt, or gate</title>
+  <desc id="cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
+    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
+    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant
+    unless configured. The appropriate response follows from the obligation attached to the measurement, not
+    from a maturity sequence.</desc>
+
+  <defs>
+    <marker id="cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="cg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- Edges drawn before the nodes they enter so the node fills cap the ends. -->
+
+  <!-- edge: model -> policy -->
+  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cg-r)"/>
+
+  <!-- fan-out edges to the three responses (one path per branch) -->
+  <g fill="none" stroke-width="2.4">
+    <!-- edge: policy -> observe -->
+    <path d="M356,170 L356,192 L304,192 L304,214" stroke="#57534e" marker-end="url(#cg-n)"/>
+    <!-- edge: policy -> adapt -->
+    <path d="M480,170 L480,214" stroke="#2f5169" marker-end="url(#cg-b)"/>
+    <!-- edge: policy -> gate -->
+    <path d="M604,170 L604,192 L656,192 L656,214" stroke="#9a3f12" marker-end="url(#cg-r)"/>
+  </g>
+
+  <!-- edge: adapt -> throttle -->
+  <line x1="480" y1="280" x2="480" y2="314" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
+
+  <!-- source model -->
+  <rect id="model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
+  <text x="480" y="81" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">related measured quantities</text>
+
+  <!-- the policy that attaches the obligation to the value -->
+  <rect id="policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="150" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">policy attached to the value</text>
+
+  <!-- RESPONSE: observe -->
+  <rect id="observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="195" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">OBSERVE</text>
+  <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence only</text>
+
+  <!-- RESPONSE: adapt -> throttle / soft completion -->
+  <rect id="adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">ADAPT</text>
+  <text x="480" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">change load</text>
+
+  <rect id="throttle" x="347.45" y="316" width="265.1" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="347" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">throttle · soft completion</text>
+
+  <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
+  <rect id="gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="765" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">GATE</text>
+  <text x="765" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">block admission</text>
+  <text x="765" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">dormant unless configured</text>
+
+  <!-- footer: protect the point -->
+  <line x1="40" y1="404" x2="920" y2="404" stroke="#57534e" stroke-width="1.4"/>
+  <text x="480" y="434" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement —</text>
+  <text x="480" y="458" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">not from a maturity sequence.</text>
+</svg>

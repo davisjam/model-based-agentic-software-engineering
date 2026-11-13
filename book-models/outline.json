@@ -7,7 +7,7 @@
     "derived_ids": 157,
     "missing_topic_sentence": 2,
     "sections_drained": 130,
-    "paragraph_points": 556
+    "paragraph_points": 554
   },
   "chapters": [
     {
@@ -1644,27 +1644,17 @@
           ]
         },
         {
-          "section_id": "one-measurement-different-enforcement-decisions",
+          "section_id": "margin-and-engineering-freedom",
           "level": 2,
-          "heading_text": "One Measurement, Different Enforcement Decisions",
-          "topic_sentence": "The reporting service’s usage measurements can support several responses, depending on the policy attached to them.",
+          "heading_text": "Margin and Engineering Freedom",
+          "topic_sentence": "Alignment can do more than determine whether an implementation satisfies an obligation.",
           "id_source": "derived",
           "block_index": 81,
           "points": [
             {
-              "slug": "one-model-several-enforcement-decisions",
-              "text": "One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity.",
-              "block_index": 83
-            },
-            {
               "slug": "a-quantitative-tolerance-can-expose-margin",
-              "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
-              "block_index": 86
-            },
-            {
-              "slug": "margin-needs-a-meaningful-distance",
-              "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
-              "block_index": 88
+              "text": "Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible.",
+              "block_index": 83
             }
           ]
         },
@@ -1674,12 +1664,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "The reporting-service rule forbids a particular access.",
           "id_source": "derived",
-          "block_index": 90,
+          "block_index": 91,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 92
+              "block_index": 93
             }
           ]
         },
@@ -1689,37 +1679,37 @@
           "heading_text": "Provenance-Carried Admission",
           "topic_sentence": "The reporting-service example concerns which components may interact.",
           "id_source": "derived",
-          "block_index": 95,
+          "block_index": 96,
           "points": [
             {
               "slug": "provenance-carried-admission-is-the-derivation-path-case-of-conformance",
               "text": "Provenance is useful for a particular architectural-conformance problem: the required relation is the path through which a protected operation was derived, not merely which components interact.",
-              "block_index": 97
+              "block_index": 98
             },
             {
               "slug": "restrict-a-recognizable-primitive-surface-directly",
               "text": "Where a consequential effect passes through a recognizable primitive, restrict that surface directly — the prohibited interaction has a tractable signature.",
-              "block_index": 99
+              "block_index": 100
             },
             {
               "slug": "some-obligations-have-no-single-forbidden-call",
               "text": "Some obligations have no single forbidden call; a protected operation is reachable by composing otherwise legitimate APIs into a new path.",
-              "block_index": 101
+              "block_index": 102
             },
             {
               "slug": "provenance-reverses-the-enforcement-problem",
               "text": "Provenance reverses enforcement: require the protected operation to carry evidence that it passed through the sanctioned abstraction.",
-              "block_index": 103
+              "block_index": 104
             },
             {
               "slug": "choose-provenance-when-derivation-paths-are-numerous-or-compositional",
               "text": "Restrict a small recognizable surface directly; reach for provenance when the obligation concerns how an ordinary operation was derived and its paths are numerous or compositional.",
-              "block_index": 109
+              "block_index": 110
             },
             {
               "slug": "provenance-makes-a-derivation-path-sanctioned",
               "text": "Provenance here is not attribution; it makes a derivation path the sanctioned route to admission — producer-side rules check known emitters, the consumer boundary refuses unknown routes.",
-              "block_index": 111
+              "block_index": 112
             }
           ]
         },
@@ -1729,27 +1719,27 @@
           "heading_text": "The Freedom a Control Preserves",
           "topic_sentence": "Alignment should preserve the implementation freedom that Modeling deliberately leaves open.",
           "id_source": "derived",
-          "block_index": 114,
+          "block_index": 115,
           "points": [
             {
               "slug": "preserving-freedom-has-positive-value",
               "text": "Controls can exclude alternatives that satisfy the stated obligations; cheap implementation makes more of those alternatives worth exploring.",
-              "block_index": 116
+              "block_index": 117
             },
             {
               "slug": "defer-consequential-commitments-until-the-last-responsible-moment",
               "text": "Defer consequential commitments until the last responsible moment; cheap implementation changes the economics of waiting, and enforcement makes the deferral safer.",
-              "block_index": 118
+              "block_index": 119
             },
             {
               "slug": "realization-space-underconstraint-vs-overconstraint",
               "text": "Obligations accept the region A, controls permit the region P; underconstraint is P minus A, overconstraint is A minus P.",
-              "block_index": 120
+              "block_index": 121
             },
             {
               "slug": "matching-permitted-to-acceptable-is-an-idealization-restriction-must-be-justified",
               "text": "Making the permitted region coincide with the acceptable one is an idealization; a deliberate restriction is legitimate — the point is a justified decision, not an accidental consequence.",
-              "block_index": 126
+              "block_index": 127
             }
           ]
         },
@@ -1759,27 +1749,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "**Policy**, **guidance**, and **governance mechanisms** contribute different things to engineering work.",
           "id_source": "derived",
-          "block_index": 128,
+          "block_index": 129,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; enforcement begins when something acts.",
-              "block_index": 130
+              "block_index": 131
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "One modeled policy can guide reasoning, support checking and admission, and generate runtime permissions.",
-              "block_index": 132
+              "block_index": 133
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "A governance package can combine models, sensors, constraints, and gates with the checks used to evaluate evidence.",
-              "block_index": 134
+              "block_index": 135
             },
             {
               "slug": "represented-intent-becomes-enforceable-through-one-of-four-roles",
               "text": "Constraints restrict possibilities; sensors supply evidence; gates evaluate whether actions or results may proceed and enforce decisions. The next question is where these mechanisms come from.",
-              "block_index": 139
+              "block_index": 140
             }
           ]
         }
@@ -2455,62 +2445,62 @@
           "heading_text": "What Does a Software Factory Produce?",
           "topic_sentence": "The analogy requires one adjustment before we apply it to software.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 17,
           "points": [
             {
               "slug": "software-does-not-repeatedly-produce-instances",
               "text": "The analogy needs one adjustment: a physical factory commonly produces many instances of a product, while a software service may be one continuously evolving system and another copy of a program costs almost nothing.",
-              "block_index": 17
+              "block_index": 18
             },
             {
               "slug": "the-output-is-the-next-working-realization",
               "text": "The output of a software factory is not another copy of the product but the next working realization of it: each production cycle begins with a working software system and attempts to produce a changed system that still works.",
-              "block_index": 19
+              "block_index": 20
             },
             {
               "slug": "a-software-factory-is-a-production-system-for-controlled-change",
               "text": "A software factory organizes controlled change while preserving control over consequential properties and consequences.",
-              "block_index": 21
+              "block_index": 22
             },
             {
               "slug": "a-factory-contains-more-than-its-fabricators",
               "text": "A software factory includes a GEE of reusable representations, tools, procedures, and controls, together with its people, agents, production activities, and organizational authority.",
-              "block_index": 24
+              "block_index": 25
             },
             {
               "slug": "the-two-problems-specialize-to-changes-not-copies",
               "text": "The difference respecializes the two problems of factory engineering: process design organizes the production of changes, and tolerance constrains how much freedom the fabricator may exercise while the changed product remains acceptable, so the factory produces new realizations of an evolving artifact rather than copies of the same one.",
-              "block_index": 27
+              "block_index": 28
             },
             {
               "slug": "representations-of-software-carry-a-carrying-cost",
               "text": "Realizing controlled change carries a cost physical manufacturing can amortize differently: a drawing stays useful across thousands of instances of a part, while a representation of a software system describes a target that is itself being changed, so engineering artifacts incur a carrying cost.",
-              "block_index": 29
+              "block_index": 30
             },
             {
               "slug": "organizations-judge-the-carrying-cost-differently",
               "text": "Software organizations have made different economic judgments about that cost — some find durable value in explicit representations, others find it cheaper to keep skilled engineers close to implementation — and the tradeoff turns on how much reusable knowledge a representation carries and how expensive it is to keep accurate.",
-              "block_index": 31
+              "block_index": 32
             },
             {
               "slug": "agile-is-intelligible-when-the-product-is-change",
               "text": "The Agile movement placed substantially greater weight on keeping knowledgeable humans close to implementation, which makes particular sense when the object of engineering is controlled change: a representation that does not change with the software can cease to describe the thing it is meant to govern.",
-              "block_index": 33
+              "block_index": 34
             },
             {
               "slug": "earlier-separation-attempts-met-the-same-tradeoff",
               "text": "Earlier attempts to separate engineering judgment from implementation met the same tradeoff from the other direction: moving decisions upstream let less experienced programmers implement, but only if costly representations carried the judgment they would otherwise supply.",
-              "block_index": 35
+              "block_index": 36
             },
             {
               "slug": "the-question-was-where-judgment-is-carried-most-economically",
               "text": "The economic question was never whether software should use models but where engineering judgment could be carried most economically without losing control: craft production stays economical when transferring judgment out of fabrication costs as much as leaving it there, and factory production becomes economical when reusable structures carry it more cheaply.",
-              "block_index": 37
+              "block_index": 38
             },
             {
               "slug": "commodity-intelligence-changes-the-tradeoff",
               "text": "Inexpensive capable agents can resolve ordinary implementation choices while the production system preserves selected consequential judgments and acceptance evidence.",
-              "block_index": 39
+              "block_index": 40
             }
           ]
         },
@@ -2520,22 +2510,22 @@
           "heading_text": "Walking Through a Software Factory",
           "topic_sentence": "Four questions orient a walkthrough without prescribing how the factory should be organized:",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 42,
           "points": [
             {
               "slug": "four-questions-orient-a-walkthrough",
               "text": "Four questions guide comparison: what the factory produces, what people do, how production is organized, and which product tolerances must be satisfied.",
-              "block_index": 42
+              "block_index": 43
             },
             {
               "slug": "software-tolerances-take-more-forms-than-a-dimension",
               "text": "Software tolerances include quantitative bounds and qualitative obligations, some requiring human judgment.",
-              "block_index": 48
+              "block_index": 49
             },
             {
               "slug": "the-four-questions-are-broader-than-mage",
               "text": "A longitudinal case explains development and mechanisms, while public industrial accounts expose variation in the allocation of work, authority, and control.",
-              "block_index": 50
+              "block_index": 51
             }
           ]
         }
@@ -2564,7 +2554,7 @@
         {
           "slug": "a-better-production-system-made-a-different-artifact-practical",
           "text": "Watt's engine needed cylinders more accurately bored than ordinary production could manage; Wilkinson's machinery made the design practical, connecting production capability to product tolerance.",
-          "block_index": 14
+          "block_index": 15
         }
       ]
     },

@@ -4222,76 +4222,31 @@
     {
       "source": "book/assets/cost-enforcement-gradient.svg",
       "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
-      "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
-      "baseline_candidate_sha256": "8f2d63ed3b69b588c912a54e09231bbac2379bc24a004bb195bb32182a5a54a9",
-      "candidate_sha256": "7806a671242304189740d413edcd8e0d88257925b3d11d3d91751262140d5f9c",
-      "decision": "refined",
-      "reason": "Aligned policy alternatives and lowered their row for clear fork arrowheads.",
+      "source_sha256": "4c6bf425a45e9f738c629ad0b4df494402a8a40cb96ddd4f62ee93315545d073",
+      "candidate_sha256": "619282c80e147bbfdd43df6a197d304a3e4a828979c889a6f5769543598d7986",
+      "decision": "author-reference redraw",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        379.37298583984375,
-        193.44200134277344
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "policy alternatives",
-            "labels": [
-              "OBSERVE",
-              "ADAPT",
-              "GATE"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ]
-      },
+      "reason": "Match the author reference: Modeling above a shaded acceptable-region axis, Alignment measurements below, two engineering responses, and rounded feedback to Modeling. Correct the 80 ms dimension to run from 120 ms to the 200 ms limit; offset the 5 ms dimension vertically for legibility.",
+      "previous_review": "book/editorial/figure-redraws-20261113/cost-enforcement-before-margin/layout-review.json",
+      "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/cost-enforcement-gradient-20261113/candidates.pdf",
+        "proof_sha256": "415f8e51f5474a7cbc6c233c27ece78d9e9694037d71464431eb187f84c308df",
+        "page": 1,
+        "width_bp": 408.483,
+        "height_bp": 316.771,
+        "minimum_prose_font_pt": 9.5,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "e425fd3461f4308273826f45ec823a9e8976a73f013cf1953ca65c4b1932d711",
+        "typography_audit_sha256": "ea6aae181aa6ed14b966a13bc610077e72f386ce90767c45a754b8cdb492b9a7",
+        "semantic_typography_checks": 34,
+        "monochrome_pixels": true,
         "status": "passed",
-        "page": 45,
-        "width_bp": 379.373,
-        "height_bp": 201.946
+        "scope": "Isolated native figure proof; SVG and TikZ visually inspected. Author approved on 13 November 2026, conditional on removal of the footer; footer removed."
       },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing cost enforcement gradient layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "7806a671242304189740d413edcd8e0d88257925b3d11d3d91751262140d5f9c",
-        "after_sha256": "7806a671242304189740d413edcd8e0d88257925b3d11d3d91751262140d5f9c",
-        "before_dimensions_bp": [
-          379.37298583984375,
-          201.9459991455078
-        ],
-        "after_dimensions_bp": [
-          379.37298583984375,
-          201.9459991455078
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
+      "visual_review": "Reference arrangement preserved: Modeling and quantitative bound above a shaded acceptable region, Alignment and two measured margins below, actor responses at the bottom, right-hand rounded feedback, and no footer, per final approval. The dimension arrows correctly terminate at the 200 ms limit; the 5 ms arrow is offset below the 80 ms arrow. The quantitative axis is schematic, like the author reference. Inline Agent/Engineer emphasis and italic annotations retained. No embedded external figure heading or caption."
     },
     {
       "source": "book/assets/positive-negative-obligation.svg",

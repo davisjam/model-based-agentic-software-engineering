@@ -559,15 +559,15 @@
   {
     "chapter": "3.3-constraints-sensors-validators-gates",
     "source": "assets/cost-enforcement-gradient.svg",
-    "caption": "*One Measurement, Different Enforcement Decisions.* The same measured quantity may be observed without enforcement, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement.",
+    "caption": "\\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent’s exploration of implementation alternatives and inform the engineer’s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.",
     "native_context": "book/latex/sources (resolve chapter via native-sources.json)",
     "d2_source": null,
     "receipt": null,
     "generator": null,
     "data": [],
     "conversion": "TikZ diagram; inspect SVG and chapter/receipt",
-    "svg_title": "One measurement, different enforcement decisions: a policy attached to the value selects observe, adapt, or gate",
-    "svg_description": "A single cost and usage model is read through a policy attached to the value. That policy\n    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and\n    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant\n    unless configured. The appropriate response follows from the obligation attached to the measurement, not\n    from a maturity sequence."
+    "svg_title": "Margin and engineering freedom",
+    "svg_description": "Modeling defines a response-time obligation of at most 200 milliseconds. A schematic acceptable-region axis locates implementation A at 120 milliseconds with 80 milliseconds of margin and B at 195 milliseconds with 5 milliseconds of margin. Alignment measures the behavior; agents can explore alternatives within headroom and engineers reassess design or controls as margin shrinks. A feedback arrow returns measured evidence to Modeling. Measured margin is evidence, not a guarantee."
   },
   {
     "chapter": "3.3-constraints-sensors-validators-gates",

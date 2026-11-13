@@ -3,7 +3,7 @@
 % mage-auto-heading: constraining-document-changes
 % mage-auto-heading: tests-and-models-work-together
 % mage-auto-heading: one-obligation-several-ways-to-hold-it
-% mage-auto-heading: one-measurement-different-enforcement-decisions
+% mage-auto-heading: margin-and-engineering-freedom
 % mage-auto-heading: positive-and-negative-constraints
 % mage-auto-heading: provenance-carried-admission
 % mage-auto-heading: the-freedom-a-control-preserves
@@ -255,28 +255,30 @@ A further obligation concerns eventual completion. The system's state and recove
 
 A check may inform an engineer without controlling the work. When its result is meant to control whether work may proceed, a gate must use it to permit or refuse the action or artifact.
 
-\section{One Measurement, Different Enforcement Decisions}\label{heading:one-measurement-different-enforcement-decisions}
+\section{Margin and Engineering Freedom}\label{heading:margin-and-engineering-freedom}
 
-% <!-- section-terms: constraint, sensor, gate -->
+% <!-- section-terms: tolerance, sensor, model -->
 
-% <!-- point: one-model-several-enforcement-decisions | One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity. | terms: constraint, sensor, gate -->
+% <!-- point: a-quantitative-tolerance-can-expose-margin | Quantitative models define bounds; Alignment measures conformance and the remaining margin, making implementation freedom visible. | terms: tolerance, sensor -->
 
-The reporting service's usage measurements can support several responses, depending on the policy attached to them. An engineer may first record API cost for accounting. The service may reduce optional report detail as a job approaches its budget, or refuse new reports when a configured daily ceiling would be exceeded. These are different decisions about what the environment should permit, even when they draw on related measurements. \autoref{cost-enforcement-gradient} shows observation, adaptation, and admission control as alternative responses. The appropriate response follows from the obligation, rather than from the mere availability of a measurement.
+Alignment can do more than determine whether an implementation satisfies an obligation. For quantitative properties, it can also measure how much room remains within the tolerance established by the model. This gives engineers a reason to model non-functional properties explicitly, rather than concentrate only on architecture and behavior. A latency budget, memory bound, or cost ceiling can define an acceptable region within which implementation choices remain open. \magevalue{chapter:modeling} introduced tolerances as bounds on acceptable variation and degrees of freedom as choices left open to implementation. Once the environment can measure an implementation against those bounds, engineers can examine not only whether it conforms, but also how close it is to violating them.
+
+\autoref{cost-enforcement-gradient} illustrates this relationship using a response-time obligation of 200 milliseconds. Two implementations complete the same operation in 120 ms and 195 ms, respectively. Both satisfy the requirement, but the first has 80 ms of measured margin while the second has only 5 ms. The model establishes the acceptable region; Alignment supplies the measurements needed to locate each implementation within it. A binary conformance check would accept both and discard this additional information.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/cost-enforcement-gradient-4e2626b031.pdf}
-\caption{\emph{One measurement, different enforcement decisions.} A measured quantity may be observed without enforcement, used to adapt behavior, or used to control admission. Adaptation can include throttling or graceful degradation. The appropriate response follows from the obligation attached to the measurement.}
+\caption{\emph{Margin and engineering freedom.} A quantitative model establishes a response-time tolerance of 200 ms. Alignment measures two implementations against that bound: A has 80 ms of margin, while B has 5 ms. Both conform, but their remaining headroom differs. The measurements can guide an agent’s exploration of implementation alternatives and inform the engineer’s subsequent design and governance decisions. Measured margin is evidence about available freedom, not a guarantee.}
 \label{cost-enforcement-gradient}
 \end{figure}
 
-% <!-- point: a-quantitative-tolerance-can-expose-margin | A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep. | terms: tolerance, sensor -->
+Margin can inform subsequent implementation work. An agent considering a more expensive algorithm or additional processing may have considerable room to explore when measured latency is well below the limit. Near the boundary, the same change may require optimization elsewhere or a different design. The margin does not prescribe which implementation to choose, nor does it guarantee that a proposed change will remain acceptable. It provides evidence that can guide exploration, with the resulting implementation evaluated again against the obligation.
 
-A quantitative tolerance can also expose margin. If a value remains inside its acceptable bound, margin describes the room between the realized value and that boundary. A reporting request completing in 120 ms against a 200 ms ceiling has 80 ms of margin. That information can matter before conformance fails: two realizations may both satisfy the same obligation while one operates much closer to its boundary and therefore has less room to absorb variation or future change.
+The evidence also informs the engineer. Shrinking margin may indicate that the current design has little capacity to absorb additional work or operating variation. The engineer can investigate the cause, reconsider the architecture, allocate a more specific performance budget, or introduce an earlier warning threshold. The appropriate response is not necessarily to tighten the tolerance. The original bound may remain correct even when the implementation approaches it. In this way, Alignment returns information to Modeling: measurements obtained from one implementation can improve the representations and decisions governing the next engineering task.
 
-% <!-- point: margin-needs-a-meaningful-distance | Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none. | terms: tolerance -->
+This reasoning applies where the model defines a meaningful quantitative boundary and the environment can measure the relevant behavior. Latency, memory consumption, cost, and capacity are familiar examples. The measured margin also depends on the workload and conditions under which it was obtained; headroom observed in one setting is not a guarantee under another. Many software obligations are discrete instead. A dependency is permitted or forbidden, and a state transition is legal or illegal. Such properties may admit measures of risk, but they do not necessarily have a useful distance to failure. For them, conformance may be the appropriate evaluation.
 
-That calculation is easy only when the model supplies a meaningful distance to the boundary. Quantitative obligations often do: latency, memory use, throughput, or cost can be compared directly with a declared bound. Many software obligations are qualitative instead. A dependency may cross a forbidden architectural boundary or remain within the permitted graph; a transition may be legal or illegal. Some such obligations admit useful notions of distance from failure, while others do not. Margin is useful where the model provides a meaningful measure; qualitative obligations may need a different way to assess risk.
+The broader point is that Modeling and Alignment inform one another. Modeling establishes which variation is acceptable. Alignment evaluates actual behavior against that model and, where the property permits, measures the remaining margin. This makes quantitative models particularly useful: they can guide implementation choices even when no obligation has been violated. Engineers have reason to model such properties not only to reject unacceptable implementations, but also to make the remaining freedom visible. Measurements from one implementation can then inform the models and decisions governing the next engineering task.
 
 \section{Positive and Negative Constraints}\label{heading:positive-and-negative-constraints}
 

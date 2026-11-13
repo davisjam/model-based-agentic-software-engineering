@@ -1,0 +1,21 @@
+% Native black-and-white teaching figure; see matching receipt.
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
+ box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
+ head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
+ note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
+ edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
+\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
+\node[box,text width=5cm,fill=white] (m) at (0,0) {\textbf{COST / USAGE MODEL}\\\textit{related measured quantities}};
+\node[head,text width=5cm,fill=white] (p) at (0,-1.4) {\textbf{Policy attached to the value}};
+\draw[edge,] (m) -- (p);
+\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a0) at (-4.5,-3.4) {\textbf{OBSERVE}\\\textit{report evidence only}};
+\draw[edge,] (p.south) -- (0.000,-2.250) -- (-4.500,-2.250) -- (a0.north);
+\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a1) at (0,-3.4) {\textbf{ADAPT}\\\textit{change load}};
+\draw[edge,] (p) -- (a1);
+\node[box,text width=3.8cm,fill=white,minimum height=1.2cm] (a2) at (4.5,-3.4) {\textbf{GATE}\\\textit{block admission}};
+\draw[edge,] (p.south) -- (0.000,-2.250) -- (4.500,-2.250) -- (a2.north);
+\node[box,text width=4cm] (soft) at (0,-5.0) {Throttle; soft completion};
+\draw[edge,] (a1) -- (soft);
+\node[note,text width=12cm] (nt) at (0,-6.1) {Response follows the obligation attached to the quantity.};
+\node[note,text width=3.2cm] at (4.7,-4.45) {\textit{Dormant unless}\\\textit{configured}};
+\end{tikzpicture}

@@ -20029,3 +20029,34 @@ A different analysis addresses eventual completion. The system's state and recov
 
 Choose each mechanism for the evidence or restriction it contributes and the cost of obtaining it.
 ```
+
+
+## Margin and engineering freedom — 13 November 2026
+
+Source: Chapter 3, §3.3 at `a229de4b6`. Replaced the measurement-response subsection with the author-supplied margin argument and illustration. Superseded prose retained here.
+
+```latex
+\section{One Measurement, Different Enforcement Decisions}\label{heading:one-measurement-different-enforcement-decisions}
+
+% <!-- section-terms: constraint, sensor, gate -->
+
+% <!-- point: one-model-several-enforcement-decisions | One quantitative model can support observation, adaptation, graceful degradation, or hard admission control; the appropriate response depends on the obligation attached to the quantity. | terms: constraint, sensor, gate -->
+
+The reporting service's usage measurements can support several responses, depending on the policy attached to them. An engineer may first record API cost for accounting. The service may reduce optional report detail as a job approaches its budget, or refuse new reports when a configured daily ceiling would be exceeded. These are different decisions about what the environment should permit, even when they draw on related measurements. \autoref{cost-enforcement-gradient} shows observation, adaptation, and admission control as alternative responses. The appropriate response follows from the obligation, rather than from the mere availability of a measurement.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/cost-enforcement-gradient-4e2626b031.pdf}
+\caption{\emph{One measurement, different enforcement decisions.} A measured quantity may be observed without enforcement, used to adapt behavior, or used to control admission. Adaptation can include throttling or graceful degradation. The appropriate response follows from the obligation attached to the measurement.}
+\label{cost-enforcement-gradient}
+\end{figure}
+
+% <!-- point: a-quantitative-tolerance-can-expose-margin | A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep. | terms: tolerance, sensor -->
+
+A quantitative tolerance can also expose margin. If a value remains inside its acceptable bound, margin describes the room between the realized value and that boundary. A reporting request completing in 120 ms against a 200 ms ceiling has 80 ms of margin. That information can matter before conformance fails: two realizations may both satisfy the same obligation while one operates much closer to its boundary and therefore has less room to absorb variation or future change.
+
+% <!-- point: margin-needs-a-meaningful-distance | Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none. | terms: tolerance -->
+
+That calculation is easy only when the model supplies a meaningful distance to the boundary. Quantitative obligations often do: latency, memory use, throughput, or cost can be compared directly with a declared bound. Many software obligations are qualitative instead. A dependency may cross a forbidden architectural boundary or remain within the permitted graph; a transition may be legal or illegal. Some such obligations admit useful notions of distance from failure, while others do not. Margin is useful where the model provides a meaningful measure; qualitative obligations may need a different way to assess risk.
+
+```

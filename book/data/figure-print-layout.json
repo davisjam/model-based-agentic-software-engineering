@@ -244,6 +244,11 @@
       "width_bp": 378,
       "placement": "centered",
       "float_placement": "!htb"
+    },
+    "cost-enforcement-gradient": {
+      "width_bp": 450,
+      "placement": "centered",
+      "float_placement": "!htb"
     }
   }
 }

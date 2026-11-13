@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/cost-enforcement-gradient.svg",
+  "candidate": "book/tikz/figures/cost-enforcement-gradient.tex",
+  "receipt": "book/tikz/receipts/cost-enforcement-gradient.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Observe remains white, adaptation light gray, admission gate dark gray: three policy modes restored.",
+  "source_sha256": "77f67980ee7009bb8b42eff535c477485ff054a82b471742af0c5702bd922310",
+  "candidate_sha256": "bf72fc787086f0085a04b52f9d65edb27234e3cf544561cf4ec7af6f8b61324a"
+}
