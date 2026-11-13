@@ -80,12 +80,14 @@ DocAble's implemented interaction analysis is narrower than the conceptual graph
 \label{inset-docable-control-system}
 Controls become software that must itself be understood and maintained. DocAble's development environment assigns work to agents in separate Git worktrees, merges their changes, and runs checks around the agents' work. That automation creates obligations of its own: preserve contributions during integration, recognize unfinished work, and avoid having one automation prevent another from doing its job. Two episodes show why evaluating each script in isolation was insufficient.
 
-In the first, merge automation processed a backlog of worktrees. A convenience option resolved conflicts by automatically taking one side. An audit correctly identified conflicts affecting the engineering environment as unsafe, but only logged a warning. Oops—the merge proceeded and lost content. The repair removed the unsafe fallback and sent ambiguous merges to a human. \autoref{judgment-without-consequence} shows the missing connection between the correct judgment and the permitted operation.
+In the first episode, DocAble's merge automation integrated changes produced concurrently in separate Git worktrees. When an ordinary rebase encountered a conflict, the automation could retry using Git's \texttt{-X theirs} option, favoring one side of each conflicting hunk. This operation could combine incompatible portions of two changes without establishing that the result preserved their intended effects. In June 2026, concurrent modifications to the integration machinery itself produced such a hybrid. The resulting Python code failed to load, disabling scheduled integration.
+
+An audit mechanism recognized the danger of automatically resolving conflicts involving the engineering environment, but its warning did not prevent the unsafe fallback from remaining available. The repair removed that fallback. The integration procedure could still accept clean rebases and narrowly defined safe resolutions, but other conflicts required escalation rather than an automatic choice between competing edits. \autoref{judgment-without-consequence} distinguishes the audit's finding from the mechanism that ultimately restricted what integration could do.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/judgment-without-consequence-6c9128b4cf.pdf}
-\caption{\emph{A correct warning did not prevent loss.} The merge audit detected the dangerous conflict, but no mechanism acted on its verdict. The repair removed automatic resolution for ambiguous merges and required human involvement.}
+\caption{\emph{A warning did not prevent unsafe integration.} DocAble's merge automation retained a fallback that resolved conflicting hunks by favoring one side. An audit recognized this class of operation as unsafe, but did not prevent its use. Concurrent changes subsequently produced an incompatible hybrid that disabled the integration machinery. The durable repair removed the unsafe fallback and required escalation when no sanctioned automatic resolution was available. The sequence reconstructs the control gap; it is not a verified execution trace.}
 \label{judgment-without-consequence}
 \end{figure}
 

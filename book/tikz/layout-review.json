@@ -4462,11 +4462,11 @@
     {
       "source": "book/assets/judgment-without-consequence.svg",
       "candidate": "book/tikz/figures/judgment-without-consequence.tex",
-      "source_sha256": "bc8c83f4b400812bd10cf37f4780ced4bc91703348a5661366c77672825cbc1b",
+      "source_sha256": "437c4ca16fc73f23e94eb333e47168716b0947d24a523ffb625637aa5c0bf7e6",
       "baseline_candidate_sha256": "ddb04cff00316b6d1861644b590533789140846845c4c624dbe1d2344c6f4907",
-      "candidate_sha256": "ddb04cff00316b6d1861644b590533789140846845c4c624dbe1d2344c6f4907",
-      "decision": "retained",
-      "reason": "The warning-only side box and the main unsafe-operation chain have different roles. Broken consequence symbols and gaps are intentional semantics.",
+      "candidate_sha256": "617b37770d6da80c5c46bbd9151bac2f4f4c6ccfb736096639dac5653647236a",
+      "decision": "refined",
+      "reason": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         326.0580139160156,
@@ -4474,47 +4474,30 @@
       ],
       "contracts": {},
       "validation": {
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-        "geometry_findings": 0,
-        "checked_terminal_approaches": 633,
-        "reviewed_peer_groups": 81,
-        "semantic_typography_checks": 875,
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/judgment-without-consequence-20261113/candidates.pdf",
+        "proof_sha256": "b87f8122e2b9d434415e200cbc355ff9e5ffbc3f53a70613af7feeda4f99b204",
+        "page": 1,
+        "width_bp": 278.672,
+        "height_bp": 344.671,
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
-        "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
-        "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "8a46bb11950ab25fb0869f71c4488cd8498da1ac1cbeb1647df68c04e527d4b5",
+        "typography_audit_sha256": "b439a8e8535d1df18c7323fe79eda473c37fe2eef86b21fb5ef816d19fbd47cc",
+        "semantic_typography_checks": 15,
+        "monochrome_pixels": true,
         "status": "passed",
-        "page": 50,
-        "width_bp": 326.058,
-        "height_bp": 271.67
+        "scope": "Native and SVG proofs inspected."
       },
-      "page_layout": {
-        "decision": "retained",
-        "reason": "Retain existing judgment without consequence layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-        "before_sha256": "ddb04cff00316b6d1861644b590533789140846845c4c624dbe1d2344c6f4907",
-        "after_sha256": "ddb04cff00316b6d1861644b590533789140846845c4c624dbe1d2344c6f4907",
-        "before_dimensions_bp": [
-          326.0580139160156,
-          271.6700134277344
-        ],
-        "after_dimensions_bp": [
-          326.0580139160156,
-          271.6700134277344
-        ],
-        "before_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "after_font_sizes_pt": [
-          9.0,
-          10.0
-        ],
-        "reviewed_visually": true
-      }
+      "revision_date": "2026-11-13",
+      "revision_history": [
+        {
+          "date": "2026-11-13",
+          "change": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
+        }
+      ],
+      "visual_review": "Corrected the integration outcome: incompatible edits disabled merge automation. Seven compact vertical stages distinguish warning-only evaluation from the durable removal of the unsafe fallback. Caption identifies a control-gap reconstruction rather than a verified execution trace. Native and SVG proofs visually inspected; pending author approval."
     },
     {
       "source": "book/assets/residual-decision-tree.svg",
@@ -6535,11 +6518,11 @@
     {
       "source": "book/assets/mage-staircase.svg",
       "candidate": "book/tikz/figures/mage-staircase.tex",
-      "source_sha256": "a94bf1db925dfa64c1d0fc013225c18a384fedb4a427f1debd70c9889f978c89",
+      "source_sha256": "258e8179c2e47d93684e507209a0768c2b41eb8e23d476b710665e6b3282d643",
       "baseline_candidate_sha256": "3fea810ea7acd42eb4ed2092e7c9d90bf14a417a6f3714dbce20016b923a5a33",
-      "candidate_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
+      "candidate_sha256": "9d8531a3506294b8f4831ce190333ff2dd6282fcb23ea3d6d715afb6c51cf04d",
       "decision": "refined",
-      "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
+      "reason": "Matched the author reference with three open staircase shelves, accumulated GEE capability at left, aligned responsibilities at right, and MY ROLE centered over both. Qualitative light shading, no embedded figure number. Native and SVG proofs visually inspected; pending author approval.",
       "reviewed_visually": true,
       "baseline_dimensions_bp": [
         426.68798828125,
@@ -6547,49 +6530,36 @@
       ],
       "contracts": {},
       "validation": {
-        "date": "2026-11-11",
-        "proof": "/private/tmp/mage-figure-5-8-staircase-simplify-20261111/latex/build/staircase-proof/mage-staircase.pdf",
-        "proof_sha256": "0e5ba26be313d36d1606e9e95bd2646641aa3350fe999a9ad9a60e633a69c067",
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/mage-staircase-20261113/candidates.pdf",
+        "proof_sha256": "63b16466aee370a77f57621806f77df10641cb1e9b728061a696c9a8b057391f",
         "page": 1,
-        "width_bp": 439.995,
-        "height_bp": 356.996,
-        "minimum_prose_font_pt": 10.461,
-        "maximum_dimensions_bp": [
-          450,
-          560
-        ],
+        "width_bp": 435.075,
+        "height_bp": 243.073,
+        "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
+        "geometry_audit_sha256": "86cc014fd3f5170b6ccbe9034ff2cd6316381039a3dcfcd5a3540c153a5af1a0",
+        "typography_audit_sha256": "f5d76fbbe597a9d7f108700805a8a5ce4eb970938a46c6465732224a3934b687",
+        "semantic_typography_checks": 22,
         "monochrome_pixels": true,
-        "maximum_rgb_channel_delta": 0,
-        "semantic_typography_checks": 24,
-        "geometry_audit_sha256": "1b0b84a4be93838483cc92a9c7035005d960b929dcbf37dea9495b69ccad715a",
-        "typography_audit_sha256": "a24e39718f82d1a14e95d8294fef60aa830d0f5b1195fbcb0d5d0a45f9bc2703",
-        "status": "passed"
+        "status": "passed",
+        "scope": "Native and SVG proofs inspected."
       },
-      "page_layout": {
-        "decision": "refined",
-        "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
-        "after_sha256": "cd2ce47a982109c14ebd6724d53371ef77b4fc5334666454ff97fc30b56f111c",
-        "after_dimensions_bp": [
-          439.995,
-          356.996
-        ],
-        "after_font_sizes_pt": [
-          10.5,
-          11
-        ],
-        "reviewed_visually": true
-      },
-      "revision_date": "2026-11-10",
+      "revision_date": "2026-11-13",
       "revision_history": [
         {
           "date": "2026-11-11",
           "reason": "Author-requested Figure5.8 simplification: five open staircase shelves replace dense enclosed cards and heavy gauges. Each role has one concise accumulated capability and one aligned human responsibility. The surrounding prose/caption supplies delegated-work details and the return-to-inspection condition. All five observed roles remain; stage geometry is qualitative. Native and editable SVG share one deterministic generator. Pending author review.",
           "previous_source_sha256": "5e576719d300bfb678ba1246d9a4b4ccc4c8a3180d98fc894fe08d2dc2c89689",
           "previous_candidate_sha256": "f63d834fe0801076421251f43a50e5dc16a61b12493940b3e01fb1591da9f87b"
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Matched the author reference with three open staircase shelves, accumulated GEE capability at left, aligned responsibilities at right, and MY ROLE centered over both. Qualitative light shading, no embedded figure number. Native and SVG proofs visually inspected; pending author approval."
         }
-      ]
+      ],
+      "visual_review": "Matched the author reference with three open staircase shelves, accumulated GEE capability at left, aligned responsibilities at right, and MY ROLE centered over both. Qualitative light shading, no embedded figure number. Native and SVG proofs visually inspected; pending author approval."
     },
     {
       "source": "book/assets/f19_delegation_over_time.svg",

@@ -20179,3 +20179,134 @@ This arrangement reduced repeated checking at the cost of slower detection and h
 Original impact-analysis opening at the same revision, revised to distinguish evidence selection from scheduling:
 
 As agents produce changes faster than engineers can evaluate them, validation can become a bottleneck. The models and traceability relationships developed through MAGE offer a way to direct that effort: identify which engineering obligations a proposed change might affect, then determine what evidence is needed to establish that they still hold. Rather than evaluating every property after every change, the environment can use explicit relationships among models, implementation elements, and obligations to guide the selection of tests, analyses, and measurements.
+
+
+## Chapter 5 episodes and supervisor progression — 13 November 2026
+
+Source: `book/latex/sources/part5/5.2-inside-docables-software-factory.tex`, lines 381–461 at `2e2c44846`. Author replaced the six episodes with three concrete two-paragraph episodes, removed the measurement-without-enforcement figure, and replaced five supervisory roles with three stages tied to accumulated GEE capability.
+
+```latex
+\subsection{What Escalated Failures Became}\label{heading:what-escalated-failures-became}
+
+% <!-- point: governance-conversion-is-an-empirical-claim-about-durable-structure | Six selected product and environment episodes show pressures, judgments and durable changes that later work inherited. | terms: governance-conversion -->
+
+Where did this factory machinery come from? The aggregate record shows accumulation; particular incidents explain the engineering decisions behind it. Four product episodes and two episodes in the development environment show different ways an observed problem became durable structure. The useful question in each is why that response addressed the failure and what future work could inherit.
+
+% <!-- point: destructive-library-behavior-became-a-typed-seam | A library operation that discarded accessibility structure led to typed mutation interfaces and checks rejecting raw access outside them. | terms: governance-conversion -->
+
+\textbf{Preservation required a controlled mutation boundary.} An early document operation produced a visually plausible result while discarding the tag structure that carried existing accessibility information. A convenient library call was therefore not an adequate interface for an operation whose obligation included preserving semantics.
+
+The response combined product architecture and development control. A canonical library policy and typed format model concentrated mutations behind an explicit interface; a build-time check rejected raw library access outside it. Later, a stale repository root caused that check to report green despite real findings, so the enforcement machinery needed repair too. The typed boundary narrowed how agents could change the document, while the check protected the boundary as the implementation evolved. Neither made the checking machinery immune to defects.
+
+% <!-- point: implicit-lifecycle-became-explicit-model | Slow dependencies and reflexive retry led to explicit lifecycle, ownership and progress evidence for recovery. | terms: governance-conversion -->
+
+\textbf{Recovery required a model of state and ownership.} Slow generation calls exposed a lifecycle whose status was written from scattered places and whose ordinary recovery reflex was to requeue. Under a slow dependency, that response amplified the load: each attempt timed out, another began, and every attempt incurred cost without a useful distinction between initial work and retry.
+
+I replaced that implicit behavior with named states and legal transitions, atomic claiming, and a rule against automatic requeue on ordinary failure. A later stale-owner sweep exposed another distinction: a slow worker is not necessarily a dead worker. Progress evidence became part of the recovery decision. The durable change was not simply a different timeout; it was a representation of when work could proceed, who could act, and what evidence justified recovery.
+
+% <!-- point: prompt-properties-preserved-useful-freedom | Unsupported numerical prompt demands became evidence-grounding obligations and checks while wording remained open. -->
+
+\textbf{Semantic judgment required an evidential obligation.} Agents writing prompts for DocAble's remediation models introduced numerical demands, such as a minimum number of facts in an image description. A source image might not contain enough evidence to support that many facts. The requirement then encouraged the model to supply content the image did not justify.
+
+Replacing one arbitrary count with another would retain the mistake. I instead modeled consequential prompt properties by kind and added checks, requiring descriptions to be grounded in source evidence. The agents could still choose the wording and organization. This converted an imprecise objective into an obligation appropriate to the semantic task, without requiring me to author every prompt or pretending that a check eliminated all hallucination~\citep{davis2026docable}.
+
+% <!-- point: a-timeout-spoke-only-after-the-budget-was-spent | A timeout produced a provisional cost/time model and reportable evidence; the bound remained too weakly calibrated to justify blocking. | terms: governance-conversion -->
+
+\textbf{A performance model needed evidence before enforcement.} A document repair stalled in silence until the job timeout killed its subprocess after roughly eight minutes. The customer's progress bar remained at thirty-eight percent, and the budget was already spent. The incident led to a provisional per-chunk worst-case model against the job budget, with its seed retained as a timestamped observation rather than a permanent code constant.
+
+Instrumentation could report a would-be breach, but I did not make the model a production gate. Its bound was not calibrated strongly enough to justify rejecting jobs, and a false refusal could cost more than continued observation. \autoref{measurement-no-gate} shows this deliberate stopping point. The model made a risk inspectable and supplied a basis for further measurement; enforcement required an additional judgment about the evidence.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/measurement-no-gate-300b62ff05.pdf}
+\caption[Measurement before enforcement]{\emph{Modeled and observed, not yet binding:} a timeout produced a provisional model and reportable evidence. Production admission does not depend on that model because its bound is not calibrated strongly enough to justify blocking. Observation can be useful before enforcement is warranted.}
+\label{measurement-no-gate}
+\end{figure}
+
+% <!-- point: an-unmade-decision-is-where-the-agent-guesses-worst | Destructive merge conflict handling led to removal of the unsafe fallback and explicit resolution of ambiguous cases. | terms: optionality-is-poison, governance-conversion -->
+
+\textbf{Merge automation needed explicit preservation semantics.} An automation kept stalling when agents edited the same file. A convenience option resolved conflicts by taking one side and dropping the other. That local remedy silently discarded real work. An audit could identify a dangerous conflict yet still fail to protect the repository if it only logged a warning.
+
+The repair removed the unsafe fallback and required human involvement for ambiguous merges. The consequential question was what information the integration process was permitted to discard. Leaving that decision implicit gave an autonomous actor a locally expedient choice with a destructive system-level effect. The environment had to make its diagnosis affect whether the merge could proceed; \magevalue{sec:when-guardrails-collide} develops the interaction.
+
+% <!-- index-def: optionality-is-poison -->
+
+% <!-- point: interacting-hooks-required-explicit-order | Turn-end reflection and stranded-work inspection required an explicit ordering constraint and model/configuration correspondence checks. | terms: governance-graph, governance-conversion -->
+
+\textbf{Useful controls needed an order when combined.} Two turn-end hooks exposed a different environment problem. One prompted reflection on notable or recurring failures that might warrant durable governance. The other prompted inspection for stranded work. That inspection could consume the remaining context before reflection completed. Each hook served a purpose; their composition could prevent one purpose from being served.
+
+The governance model therefore required reflection before stranded-work inspection. Its graph recorded the ordering constraint, topological sorting computed an order or reported a cycle, and a separate check compared modeled mechanisms with the configuration. The full example in \magevalue{sec:when-guardrails-collide} shows why engineering the environment includes relations among controls as well as their individual behavior.
+
+% <!-- point: the-case-contains-both-routes-to-durable-structure | The selected conversions coexist with structures designed prospectively from known obligations. | terms: governance-conversion -->
+
+These episodes were not the source of every useful structure. Some interfaces and architectural boundaries were designed from known obligations and later proved useful under change. Those are evidence of a design holding, not failures to be reconstructed after the fact. The factory accumulated through both prospective design and conversion of observed problems into decisions later work could reuse.
+
+\section{The Supervisor\textquotesingle s Job}\label{heading:the-supervisors-job}
+
+% <!-- section-terms: governance-conversion, governed-engineering-environment -->
+
+% <!-- point: the-preceding-subsections-recorded-substitutions | The Delegation Staircase names five stages in the author’s changing responsibilities; it is a chronology, not a maturity model. | terms: governance-conversion -->
+
+What was I doing as the factory acquired these capabilities? \autoref{mage-staircase} names five stages in my work: co-coder, QA, review lead, tech lead, and architect. The progression describes what this environment had become able to carry, not a prescribed maturity model for other teams.
+
+% <!-- point: rungs-compressed | Inspection gave way to delegated evaluation, deterministic checks, local reasoning and system-level models as the environment developed. | terms: governance-conversion -->
+
+Initially I read, judged, and merged the agent's changes. When generation exceeded my attention, a second agent took on some evaluation. Its recurring decidable findings identified work better performed by deterministic checks. Reviewers then specialized, while named zones gave agents enough ownership and boundary information to reason locally. Explicit architectural, behavioral, and ownership models eventually supplied system views for planning and review, and I rarely needed to inspect implementation directly.
+
+At that stage, a cross-format migration touching \magevalue{refactor_files} files and rewriting \magevalue{refactor_lines} lines took about \magevalue{refactor_hours} hours of agent time over a dinner break. The consequential engineering decision was that those files should change; the agents performed the migration. Model drift still required correspondence checks, and a failed representation or check could return work to direct inspection.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/mage-staircase-ad5d286bc2.pdf}
+\caption[DocAble's delegation staircase]{\emph{The Delegation Staircase:} in DocAble's observed development, stronger representations and environmental enforcement supported delegation of larger units of work. Human attention shifted toward system-level decisions and unresolved judgments. A failure in either representation or enforcement could return work to direct inspection.}
+\label{mage-staircase}
+\end{figure}
+
+% <!-- point: the-staircase-has-two-interacting-supports | Modeling supplied system views and Alignment enforced selected repeatable obligations; judgment and upkeep remained necessary. | terms: alignment-principle, modeling-principle -->
+
+Two changes supported the progression. \textbf{Modeling} supplied views of the system that agents and I could use without reconstructing the implementation. \textbf{Alignment} made selected repeatable obligations enforceable, so a maintained check could evaluate further changes without an additional human inspection of each one.
+
+My attention moved toward deciding what should change, which properties mattered enough to represent or enforce, and what anomalous evidence meant. Ambiguous tradeoffs and failures in the factory still required judgment. The environment reduced the implementation I had to read; it did not settle those decisions or eliminate its own maintenance.
+```
+
+
+## 2026-11-13 — Integration evidence correction and expanded Chapter 5 episodes
+
+Source: `2e2c44846`, Chapter 3 §3.5 (lines 83–91), and the uncommitted author-directed Chapter 5 fold of 2026-11-13. Superseded by the coordinated author revision; corrects unsupported silent-loss claims and retains the expanded decision-model account.
+
+### Chapter 3 — prior prose and caption
+
+```latex
+In the first, merge automation processed a backlog of worktrees. A convenience option resolved conflicts by automatically taking one side. An audit correctly identified conflicts affecting the engineering environment as unsafe, but only logged a warning. Oops—the merge proceeded and lost content. The repair removed the unsafe fallback and sent ambiguous merges to a human. \autoref{judgment-without-consequence} shows the missing connection between the correct judgment and the permitted operation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/judgment-without-consequence-6c9128b4cf.pdf}
+\caption{\emph{A correct warning did not prevent loss.} The merge audit detected the dangerous conflict, but no mechanism acted on its verdict. The repair removed automatic resolution for ambiguous merges and required human involvement.}
+\label{judgment-without-consequence}
+\end{figure}
+
+
+```
+
+### Chapter 5 — superseded episode prose
+
+```latex
+The factory's models and controls did not arrive fully formed. Some were designed from known obligations; others followed failures that exposed missing structure. Three episodes illustrate what the factory acquired and how those additions changed subsequent work.
+
+\textbf{Preserving document structure.} An early document operation produced a visually plausible result while discarding accessibility tags that carried existing semantic information. The result exposed a defect in the interface through which agents modified documents. A library operation could produce an apparently satisfactory artifact while violating a preservation obligation that its interface did not represent.
+
+The response combined a canonical library policy with typed format models that concentrated document mutations behind controlled interfaces. A build-time check rejected raw library access outside those boundaries. Agents could continue changing document-processing code, but they could not freely introduce new mutation paths that bypassed the format model. The checking machinery also needed maintenance: when a stale repository root caused the check to report success despite real findings, the enforcement mechanism itself had to be repaired. The factory had acquired both a product abstraction and a control over subsequent implementation.
+
+\textbf{Grounding semantic instructions in evidence.} Agents developing DocAble's remediation prompts sometimes introduced numerical requirements, such as demanding a minimum number of facts in an image description. Such a requirement was easy to state and apparently easy to evaluate, but some images did not contain enough information to satisfy it truthfully. The instruction could therefore encourage a foundation model to invent content rather than describe the source faithfully. Changing the numerical threshold would not resolve the underlying problem.
+
+I instead modeled consequential prompt properties by kind and introduced checks requiring descriptions to be grounded in source evidence. The model distinguished the obligation to communicate supported information from an arbitrary quantity of generated text. Agents retained freedom to choose wording and organization, but the factory could evaluate their instructions against a more appropriate requirement. This did not eliminate hallucination or make semantic correctness mechanically decidable in every case. It established a representation and checking mechanism for a recurring failure in agent-authored prompts, rather than relying on each subsequent agent to recognize the same mistake~\citep{davis2026docable}.
+
+\textbf{Preserving work during integration.} Concurrent agents sometimes edited the same files, leaving the merge automation to resolve conflicts. A convenience option resolved a conflict by accepting one side and discarding the other. This could allow an agent to escape a stalled merge while silently losing another agent's legitimate work. The local operation succeeded, but the factory failed to preserve the changes it was responsible for integrating.
+
+The response removed the destructive fallback and required human involvement when conflicts remained ambiguous. The integration policy thereby made preservation of already-applied work an explicit obligation. An audit could identify dangerous conflict resolution, but reporting alone was insufficient: the merge procedure had to refuse the destructive operation. The resulting control governed the factory's own workflow rather than DocAble's document-remediation behavior. It protected work produced by multiple agents without requiring the engineer to supervise every routine merge.
+
+These episodes show the factory acquiring three different forms of machinery: a controlled product interface, a model and checks for agent-authored instructions, and an integration policy that protects concurrent work. Each addressed a failure that ordinary implementation or review had not prevented. The resulting structure mattered because later work inherited it.
+
+
+```

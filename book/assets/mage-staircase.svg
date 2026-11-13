@@ -1,37 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="440pt" height="357pt" viewBox="0 0 440 357" role="img" aria-labelledby="title desc" font-family="Source Sans 3, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 260" width="446" height="260" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">DocAble’s delegation staircase</title>
-<desc id="desc">Five observed stages rise from Co-coder through QA, Review lead, and Tech lead to Architect. The environment accumulates advisory review, deterministic checks, named zones, and system models. Human responsibility shifts from inspecting changes toward unresolved judgments and strategy. The steps are qualitative, not measurements or a prescribed maturity model.</desc>
-<rect width="440" height="357" fill="white"/>
-<polygon points="8,38 88,38 88,102 70,102 70,166 52,166 52,230 34,230 34,294 16,294 16,350 8,350" fill="#e3f0e7"/>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="8" y="13" font-size="11" fill="#1c1917" font-weight="700">ENVIRONMENT ACCUMULATES</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="8" y="29" font-size="10.5" fill="#1c1917">Representation + enforcement</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="13" font-size="11" fill="#1c1917" font-weight="700">HUMAN RESPONSIBILITY</text>
-<line x1="290" y1="38" x2="290" y2="350" stroke="#bcb8b2" stroke-width="0.5"/>
-<path d="M88 94V38H280" fill="none" stroke="#1f7a4d" stroke-width="0.8"/>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="96" y="55" font-size="10.5" fill="#1c1917" font-weight="700">5. ARCHITECT</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="96" y="72.0" font-size="10.5" fill="#1c1917">System models, traceability,</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="96" y="84.5" font-size="10.5" fill="#1c1917">and controls</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="63.0" font-size="10.5" fill="#1c1917">Residual judgments</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="75.5" font-size="10.5" fill="#1c1917">and strategy</text>
-<path d="M70 158V102H280" fill="none" stroke="#1f7a4d" stroke-width="0.8"/>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="78" y="119" font-size="10.5" fill="#1c1917" font-weight="700">4. TECH LEAD</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="78" y="136.0" font-size="10.5" fill="#1c1917">Named zones and</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="78" y="148.5" font-size="10.5" fill="#1c1917">boundary rules</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="127.0" font-size="10.5" fill="#1c1917">System map</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="139.5" font-size="10.5" fill="#1c1917">and strategy</text>
-<path d="M52 222V166H280" fill="none" stroke="#1f7a4d" stroke-width="0.8"/>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="60" y="183" font-size="10.5" fill="#1c1917" font-weight="700">3. REVIEW LEAD</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="60" y="200.0" font-size="10.5" fill="#1c1917">Deterministic checks;</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="60" y="212.5" font-size="10.5" fill="#1c1917">specialized review</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="191.0" font-size="10.5" fill="#1c1917">Unresolved</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="203.5" font-size="10.5" fill="#1c1917">semantic review</text>
-<path d="M34 286V230H280" fill="none" stroke="#1f7a4d" stroke-width="0.8"/>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="42" y="247" font-size="10.5" fill="#1c1917" font-weight="700">2. QA</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="42" y="264.0" font-size="10.5" fill="#1c1917">Advisory agent review</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="255.0" font-size="10.5" fill="#1c1917">Adjudicate findings</text>
-<path d="M16 350V294H280" fill="none" stroke="#1f7a4d" stroke-width="0.8"/>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="24" y="311" font-size="10.5" fill="#1c1917" font-weight="700">1. CO-CODER</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="24" y="328.0" font-size="10.5" fill="#1c1917">Ordinary repository</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="319.0" font-size="10.5" fill="#1c1917">Read, judge, and</text>
-<text style="font-family: Source Sans 3, sans-serif" font-family="Source Sans 3" x="298" y="331.5" font-size="10.5" fill="#1c1917">admit changes</text>
+<desc id="desc">Three ascending staircase shelves show Co-coder with an ordinary repository; Tech lead with agent review, deterministic checks, ownership zones, and boundary rules; Architect with system models, traceability, and controls. A rising GEE-capability arrow identifies the accumulated models, checks, and controls. Aligned responsibilities progress from reading, judging, and admitting changes to directing work and resolving exceptions, then deciding system structure, consequential obligations, and strategy.</desc>
+<polygon points="14,253 14,49 6,49 38,17 70,49 62,49 62,253" fill="#f2f2f2"/>
+<path d="M14 253 L14 49 L6 49 L38 17 L70 49 L62 49 L62 253" fill="none" stroke="#111" stroke-width="0.85"/>
+<text x="38" y="86" text-anchor="middle" font-size="11" font-weight="700" font-style="italic">GEE</text>
+<text x="38" y="99" text-anchor="middle" font-size="10" font-weight="700" font-style="italic">capability</text>
+<text x="38" y="120" text-anchor="middle" font-size="9.5" font-style="italic">(models,</text>
+<text x="38" y="132" text-anchor="middle" font-size="9.5" font-style="italic">checks,</text>
+<text x="38" y="144" text-anchor="middle" font-size="9.5" font-style="italic">and</text>
+<text x="38" y="156" text-anchor="middle" font-size="9.5" font-style="italic">controls)</text>
+<polygon points="68,253 68,188 105,188 105,119 142,119 142,54 312,54 312,253" fill="#fafafa"/>
+<path d="M312 54 H147 Q142 54 142 59 V114 Q142 119 147 119 H312" fill="none" stroke="#111" stroke-width="1"/>
+<path d="M312 119 H110 Q105 119 105 124 V183 Q105 188 110 188 H312" fill="none" stroke="#111" stroke-width="1"/>
+<path d="M312 188 H73 Q68 188 68 193 V248 Q68 253 73 253 H312" fill="none" stroke="#111" stroke-width="1"/>
+<path d="M320 54 L320 253" fill="none" stroke="#111" stroke-width="0.45"/>
+<text x="256" y="25" text-anchor="middle" font-size="13" font-weight="700">MY ROLE</text>
+<text x="155" y="75" text-anchor="start" font-size="12" font-weight="700">3. ARCHITECT</text>
+<text x="155" y="92" text-anchor="start" font-size="9.5">System models, traceability,</text>
+<text x="155" y="105" text-anchor="start" font-size="9.5">and controls</text>
+<text x="119" y="141" text-anchor="start" font-size="12" font-weight="700">2. TECH LEAD</text>
+<text x="119" y="159" text-anchor="start" font-size="9.5">Agent review, deterministic checks,</text>
+<text x="119" y="172" text-anchor="start" font-size="9.5">ownership zones, and boundary rules</text>
+<text x="82" y="211" text-anchor="start" font-size="12" font-weight="700">1. CO-CODER</text>
+<text x="82" y="230" text-anchor="start" font-size="10">Ordinary repository</text>
+<text x="330" y="74" text-anchor="start" font-size="9.5">Decide system structure,</text>
+<text x="330" y="88" text-anchor="start" font-size="9.5">consequential obligations,</text>
+<text x="330" y="102" text-anchor="start" font-size="9.5">and strategy</text>
+<text x="330" y="148" text-anchor="start" font-size="9.5">Direct work and</text>
+<text x="330" y="162" text-anchor="start" font-size="9.5">resolve exceptions</text>
+<text x="330" y="211" text-anchor="start" font-size="9.5">Read, judge, and</text>
+<text x="330" y="225" text-anchor="start" font-size="9.5">admit changes</text>
 </svg>

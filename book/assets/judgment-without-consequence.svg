@@ -1,48 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact color geometry for Chapter 3. Original caption, title, and description retained; monochrome review partner remains unchanged. Print width is declared by stable figure label in book/data/figure-print-layout.json. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 510" width="720" height="510" role="img" aria-labelledby="figure-title figure-description" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="figure-title">Correct judgment without enforcement: the audit detected the danger and judged it unsafe, but the link from verdict to enforcement was severed, so the operation proceeded and content was lost</title>
-<desc id="figure-description">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
-    validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any
-    binding consequence is severed; the only thing emitted at the break is a warning. So the operation
-    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no enforcement
-    mechanism acted on the verdict. The durable repair removed the capability rather than making the warning
-    louder.</desc>
-<defs><marker id="ink-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1c1917"/></marker><marker id="muted-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#57534e"/></marker><marker id="rust-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#9a3f12"/></marker><marker id="blue-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f5169"/></marker><marker id="green-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1f7a4d"/></marker><marker id="red-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b23b3b"/></marker></defs>
-<rect id="n1" x="68" y="7" width="454" height="55" rx="7" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2"/>
-<text x="295" y="31" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">dangerous fallback exists</text>
-<text x="295" y="53" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">auto-resolve conflicts by taking one side</text>
-<path d="M295 62 L295 78" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<rect id="n2" x="68" y="80" width="454" height="55" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="295" y="104" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">sensor / audit detects condition</text>
-<text x="295" y="126" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">a guard sees the substrate-class conflict</text>
-<path d="M295 135 L295 151" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#muted-arrow)"/>
-<rect id="n3" x="68" y="153" width="454" height="55" rx="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="295" y="177" text-anchor="middle" font-size="20" fill="#2f5169" font-weight="700">validator: UNSAFE</text>
-<text x="295" y="199" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">correctly identified as dangerous</text>
-<path d="M526 88 H540 V202 H526" fill="none" stroke="#2f5169" stroke-width="2"/>
-<text x="550" y="127" text-anchor="start" font-size="20" fill="#2f5169" font-weight="700">Evidence existed;</text>
-<text x="550" y="151" text-anchor="start" font-size="20" fill="#2f5169" font-weight="700">the judgment</text>
-<text x="550" y="175" text-anchor="start" font-size="20" fill="#2f5169" font-weight="700">was correct.</text>
-<path d="M295 208 L295 233" fill="none" stroke="#9a3f12" stroke-width="2"/>
-<path d="M282 236 L308 224" fill="none" stroke="#9a3f12" stroke-width="2"/>
-<path d="M282 245 L308 233" fill="none" stroke="#9a3f12" stroke-width="2"/>
-<path d="M277 253 L313 277" fill="none" stroke="#9a3f12" stroke-width="2"/>
-<path d="M313 253 L277 277" fill="none" stroke="#9a3f12" stroke-width="2"/>
-<rect x="12" y="235" width="222" height="52" rx="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-<text x="123" y="258" text-anchor="middle" font-size="20" fill="#9a3f12" font-weight="700">WARNING ONLY</text>
-<text x="123" y="280" text-anchor="middle" font-size="20" fill="#9a3f12" font-style="italic">logged — not enforced</text>
-<path d="M234 262 L273 262" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="330" y="256" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">no mechanism enforces</text>
-<text x="330" y="280" text-anchor="start" font-size="20" fill="#9a3f12" font-weight="700">the verdict</text>
-<path d="M295 282 L295 300" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#rust-arrow)"/>
-<rect id="n4" x="123" y="302" width="344" height="42" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="295" y="330" text-anchor="middle" font-size="20" fill="#1c1917" font-weight="700">operation proceeds anyway</text>
-<path d="M295 344 L295 361" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#rust-arrow)"/>
-<rect id="n5" x="123" y="363" width="344" height="54" rx="7" fill="#9a3f12" stroke="#9a3f12" stroke-width="2"/>
-<text x="295" y="387" text-anchor="middle" font-size="20" fill="#ffffff" font-weight="700">content lost</text>
-<text x="295" y="409" text-anchor="middle" font-size="20" fill="#ffffff" font-style="italic">the tree silently loses content</text>
-<text x="360" y="446" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">Durable repair — remove the unsafe capability;</text>
-<text x="360" y="470" text-anchor="middle" font-size="20" fill="#1f7a4d" font-weight="700">escalate an ambiguous merge to a human.</text>
-<text x="360" y="496" text-anchor="middle" font-size="20" fill="#57534e" font-style="italic">Remove the unsafe capability, not merely make the warning louder.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 342" width="284" height="342" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<title id="title">A warning did not prevent unsafe integration</title>
+<desc id="desc">Control-gap reconstruction, not an execution trace. The integration fallback retries a rebase conflict with -X theirs. An audit detects the dangerous automatic resolution and evaluates it as unsafe, but only warns and leaves the fallback available. Observed incompatible edits made merge automation fail to load. The durable repair removed the retry and requires escalation for conflicts without a sanctioned resolution.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
+<rect x="6" y="2" width="272" height="37" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="16" text-anchor="middle" font-size="9" font-weight="700">UNSAFE FALLBACK AVAILABLE</text>
+<text x="142" y="28" text-anchor="middle" font-size="9">Rebase conflict: retry with -X theirs</text>
+<path d="M142 39V51" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="51" width="272" height="37" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="65" text-anchor="middle" font-size="9" font-weight="700">AUDIT / SENSOR</text>
+<text x="142" y="77" text-anchor="middle" font-size="9">Detects dangerous automatic resolution</text>
+<path d="M142 88V100" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="100" width="272" height="26" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="114" text-anchor="middle" font-size="9" font-weight="700">VERDICT: UNSAFE</text>
+<path d="M142 126V138" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="138" width="272" height="37" rx="3" fill="white" stroke="#111" stroke-width=".7" stroke-dasharray="4 3"/>
+<text x="142" y="152" text-anchor="middle" font-size="9" font-weight="700">WARNING ONLY</text>
+<text x="142" y="164" text-anchor="middle" font-size="9">Does not prevent operation</text>
+<path d="M142 175V187" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="187" width="272" height="26" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="201" text-anchor="middle" font-size="9" font-weight="700">UNSAFE FALLBACK REMAINS</text>
+<path d="M142 213V225" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="225" width="272" height="48" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="239" text-anchor="middle" font-size="9" font-weight="700">OBSERVED FAILURE</text>
+<text x="142" y="251" text-anchor="middle" font-size="9">Incompatible edits combined;</text>
+<text x="142" y="262" text-anchor="middle" font-size="9">merge automation fails to load</text>
+<path d="M142 273V285" fill="none" stroke="#111" stroke-width=".7" marker-end="url(#arrow)"/>
+<rect x="6" y="285" width="272" height="55" rx="3" fill="white" stroke="#111" stroke-width=".7"/>
+<text x="142" y="299" text-anchor="middle" font-size="9" font-weight="700">DURABLE REPAIR</text>
+<text x="142" y="311" text-anchor="middle" font-size="9">Remove -X theirs retry;</text>
+<text x="142" y="322" text-anchor="middle" font-size="9">require escalation on conflicts</text>
+<text x="142" y="333" text-anchor="middle" font-size="9">without a sanctioned resolution</text>
 </svg>
