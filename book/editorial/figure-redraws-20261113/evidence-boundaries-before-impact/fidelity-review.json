@@ -1,0 +1,25 @@
+{
+  "source": "book/assets/two-evidence-boundaries.svg",
+  "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+  "checks": {
+    "icons_and_symbols": "Open earliest and filled last-safe diamonds preserved.",
+    "links_and_groups": "Single timeline with separate boundary roles retained.",
+    "annotation_placement": "State-change note above axis; each boundary explanation below."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 394.6319885253906,
+  "height_bp": 107.20500183105469,
+  "monochrome": true,
+  "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
+  "candidate_sha256": "026fa835792e0d93c62112ae558c33f03cbf9876a9c038ad6abec23a37cbf477",
+  "review": "Reviewed and retained.",
+  "decision": "retained"
+}

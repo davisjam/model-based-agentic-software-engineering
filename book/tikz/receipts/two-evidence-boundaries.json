@@ -1,166 +1,567 @@
 {
   "source": "book/assets/two-evidence-boundaries.svg",
-  "claim": "*Two evidence boundaries.* Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change. [short: Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]",
+  "claim": "Explicit relationships among changes, models, obligations, and evidence guide validation effort; incomplete relationships can require broader checks.",
   "topology": "Two distinct landmarks on one timeline: early honest evidence and last safe recheck; hollow/solid diamond separates roles.",
   "required_terms": [
-    "Work begins",
-    "Consequence",
-    "Earliest legible boundary\\ cheaply near the cause",
-    "Last safe boundary\\-establish what must hold",
-    "Relevant state may change between checks."
+    "Proposed change",
+    "Execution model",
+    "Memory model",
+    "Latency model",
+    "Legal ordering",
+    "Peak memory",
+    "Latency budget",
+    "Admission decision"
   ],
-  "bw_encoding": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
-  "redesign": "Native nodes and routed edges preserve the original semantic structure, with print-sized labels and fewer decorative frames.",
+  "bw_encoding": "Light gray identifies model and obligation boxes.",
+  "redesign": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
   "questions": [],
-  "alt": "A horizontal timeline runs from work begins on the left to consequence on the right. Two diamond markers sit on the axis: an open diamond at the earliest legible boundary and a solid black diamond at the last safe boundary. The left diamond is the earliest legible boundary, where a property is caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is re-established before exposure. Between them, a note reads: relevant state may change between checks. The two boundaries answer different questions — when can this be decided honestly, and what is the last point a stale check can still be caught.",
+  "alt": "A proposed increase in worker concurrency leads through execution, memory, and latency models to legal ordering, peak-memory, and latency obligations. Correctness tests, memory analysis or measurement, and performance tests supply evidence for admission. The model and obligation boxes are shaded; all split and join rails share a central vertical spine.",
   "qa": {
-    "compiler": "LuaLaTeX TeX Live 2025; no shell escape; root mage-figures.sty",
-    "warnings": [],
-    "width_pt": 394.632,
-    "height_pt": 107.205,
-    "monochrome": true,
-    "inspection": "Original SVG/PNG and final PDF raster inspected; 10pt labels and 9pt annotations; native dimensions, no shrink."
+    "date": "2026-11-13",
+    "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+    "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+    "page": 1,
+    "width_bp": 446.122,
+    "height_bp": 377.671,
+    "minimum_prose_font_pt": 9,
+    "unapproved_compile_diagnostics": 0,
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+    "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+    "semantic_typography_checks": 33,
+    "monochrome_pixels": true,
+    "status": "passed",
+    "scope": "Native and SVG proofs visually inspected."
   },
   "style_review": {
+    "source": "book/assets/two-evidence-boundaries.svg",
+    "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+    "receipt": "book/tikz/receipts/two-evidence-boundaries.json",
+    "decision": "refined",
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
-    "candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
+    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
     "routing": "0 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
-    "visual_review": "Open and filled boundary diamonds retain earliest-versus-last-safe distinction.",
+    "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 68,
-      "width_bp": 394.632,
-      "height_bp": 106.941,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "page": 1,
+      "width_bp": 446.122,
+      "height_bp": 377.671,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 2
+      "status": "passed",
+      "scope": "Native and SVG proofs visually inspected."
     },
     "book_references": [],
-    "routing_exceptions": "Axes/region boundaries are semantic geometry, not process routes."
+    "routing_exceptions": "Orthogonal process paths with aligned central spine and split/join rails.",
+    "reviewed_visually": true,
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      }
+    ]
   },
   "typography_review": {
-    "review": "book/tikz/typography-review.json",
+    "source": "book/assets/two-evidence-boundaries.svg",
+    "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
     "decision": "refined",
-    "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
-    "candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-    "reason": "Restored source category/result weight and explanatory italics selectively; ordinary actions and explanatory bodies stay regular. Shapes, fills, routing and reference targets preserved; only minimal text widths expanded where heavier labels needed room.",
+    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
     "evidence": [
       {
-        "source_text": "relevant state may change between checks",
-        "source_style": {
-          "font-weight": "400",
-          "font-style": "italic",
-          "font-size": "20"
-        },
-        "semantic_role": "explanatory annotation or feedback relation",
-        "candidate_text": "Relevant state may change between checks.",
+        "candidate_text": "Proposed change",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Increase worker concurrency",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Execution model",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(work and dependencies)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Memory model",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(resource bounds)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Latency model",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(response time)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Related models: concurrency constrained by memory;",
         "candidate_style": "italic",
-        "source_fragments": [
-          {
-            "text": "relevant state may change between checks",
-            "style": {
-              "font-weight": "400",
-              "font-style": "italic",
-              "font-size": "20"
-            },
-            "location": {
-              "x": "500",
-              "y": "148",
-              "text_element": 3
-            }
-          }
-        ]
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "latency depends on work and memory.",
+        "candidate_style": "italic",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Affected",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "models",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Potentially",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "affected",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "obligations",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Required",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "evidence",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(evaluation)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Legal ordering",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(no violated dependencies)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Peak memory",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(within budget)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Latency budget",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(within target)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Correctness tests",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(ordering and results)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Memory analysis",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "or measurement",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(peak RSS)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Performance test",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "(end-to-end latency)",
+        "candidate_style": "regular",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Admission decision",
+        "candidate_style": "bold",
+        "semantic_role": "Heading, explanatory label, or process annotation."
+      },
+      {
+        "candidate_text": "Evaluate affected obligations with required evidence",
+        "candidate_style": "italic",
+        "semantic_role": "Heading, explanatory label, or process annotation."
       }
     ],
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
     "checks": [
       {
-        "text": "Relevant state may change between checks.",
+        "text": "Proposed change",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Increase worker concurrency",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Execution model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(work and dependencies)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Memory model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(resource bounds)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Latency model",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(response time)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Related models: concurrency constrained by memory;",
+        "bold": false,
         "italic": true
       },
       {
-        "text": "Catch cheaply near the cause",
+        "text": "latency depends on work and memory.",
+        "bold": false,
+        "italic": true
+      },
+      {
+        "text": "Affected",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "models",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Potentially",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "affected",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "obligations",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Required",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "evidence",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(evaluation)",
         "bold": false,
         "italic": false
+      },
+      {
+        "text": "Legal ordering",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(no violated dependencies)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Peak memory",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(within budget)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Latency budget",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(within target)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Correctness tests",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(ordering and results)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Memory analysis",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "or measurement",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(peak RSS)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Performance test",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "(end-to-end latency)",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "text": "Admission decision",
+        "bold": true,
+        "italic": false
+      },
+      {
+        "text": "Evaluate affected obligations with required evidence",
+        "bold": false,
+        "italic": true
       }
     ],
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "page": 68,
-      "width_bp": 394.632,
-      "height_bp": 106.941,
-      "minimum_prose_font_pt": 9.0,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "page": 1,
+      "width_bp": 446.122,
+      "height_bp": 377.671,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
+      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
-      "semantic_typography_checks": 2,
-      "book_font_inheritance": {
-        "configuration": "latex/book-fonts.tex",
-        "configuration_sha256": "9a0c63c31c54bd4394caadb6be2523244fdcc84e174c110aca69e863f802a7b4",
-        "reference": "latex/build/tikz/body-font-reference.pdf",
-        "reference_sha256": "7420c44a26086ee806bc2ba9f8572a4891723f5aefd41186af0c5f3645b8b7eb",
-        "body_faces": [
-          "SourceSans3-Bold",
-          "SourceSans3-BoldIt",
-          "SourceSans3-It",
-          "SourceSans3-Regular"
-        ]
+      "status": "passed",
+      "scope": "Native and SVG proofs visually inspected."
+    },
+    "reviewed_visually": true,
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
       }
-    }
+    ]
   },
   "layout_review": {
-    "review": "book/tikz/layout-review.json",
-    "decision": "retained",
-    "reason": "The two evidence boundaries are timeline markers with external annotations, not rectangular process peers.",
-    "candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing two evidence boundaries layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-      "after_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
-      "before_dimensions_bp": [
-        394.6319885253906,
-        106.94100189208984
-      ],
-      "after_dimensions_bp": [
-        394.6319885253906,
-        106.94100189208984
-      ],
-      "before_font_sizes_pt": [
-        9.0
-      ],
-      "after_font_sizes_pt": [
-        9.0
-      ],
-      "reviewed_visually": true
-    },
+    "source": "book/assets/two-evidence-boundaries.svg",
+    "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+    "baseline_candidate_sha256": "56780e191979de111e2dbd4dd8b419339e580764ec575ce92e2c3ee661efcbee",
+    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "decision": "redrawn",
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "reviewed_visually": true,
+    "baseline_dimensions_bp": [
+      394.6319885253906,
+      106.94100189208984
+    ],
+    "contracts": {},
     "validation": {
-      "proof": "latex/build/tikz/candidates.pdf",
-      "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-      "geometry_findings": 0,
-      "checked_terminal_approaches": 633,
-      "reviewed_peer_groups": 81,
-      "semantic_typography_checks": 875,
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "page": 1,
+      "width_bp": 446.122,
+      "height_bp": 377.671,
+      "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
-      "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-      "maximum_dimensions_bp": [
-        450,
-        560
-      ],
-      "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+      "semantic_typography_checks": 33,
+      "monochrome_pixels": true,
       "status": "passed",
-      "page": 68,
-      "width_bp": 394.632,
-      "height_bp": 106.941
-    }
-  }
+      "scope": "Native and SVG proofs visually inspected."
+    },
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      }
+    ],
+    "visual_review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+  },
+  "fidelity_review": {
+    "source": "book/assets/two-evidence-boundaries.svg",
+    "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+    "checks": {
+      "relationships": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+      "annotation_placement": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+      "source_adaptations": "Native typography and compact line breaks; external caption retained."
+    },
+    "font_qa": {
+      "minimum": 9,
+      "final_size_no_scaling": true
+    },
+    "geometry_findings": [],
+    "compiler_diagnostics": [],
+    "width_bp": 446.122,
+    "height_bp": 377.671,
+    "monochrome": true,
+    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "decision": "retained",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "page": 1,
+      "width_bp": 446.122,
+      "height_bp": 377.671,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+      "semantic_typography_checks": 33,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Native and SVG proofs visually inspected."
+    },
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      }
+    ]
+  },
+  "grayscale_review": {
+    "source": "book/assets/two-evidence-boundaries.svg",
+    "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+    "receipt": "book/tikz/receipts/two-evidence-boundaries.json",
+    "reviewed": true,
+    "decision": "retained",
+    "rationale": "Light-gray boxes distinguish models and obligations from the proposed change, evidence, and decision.",
+    "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+    "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+    "reviewed_visually": true,
+    "validation": {
+      "date": "2026-11-13",
+      "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+      "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+      "page": 1,
+      "width_bp": 446.122,
+      "height_bp": 377.671,
+      "minimum_prose_font_pt": 9,
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+      "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+      "semantic_typography_checks": 33,
+      "monochrome_pixels": true,
+      "status": "passed",
+      "scope": "Native and SVG proofs visually inspected."
+    },
+    "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+    "revision_history": [
+      {
+        "date": "2026-11-13",
+        "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+      }
+    ]
+  },
+  "reference_image_sha256": "6385e718c757d89ffaef6714ac1a73e8751756ec4392e097fb957f01ce265b22"
 }

@@ -18,25 +18,25 @@
     "Models, mechanisms, and governance remain as engineering capital for every change."
   ],
   "bw_encoding": "Light-gray panels distinguish the two alignment modes; stacks denote retained models.",
-  "redesign": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+  "redesign": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
   "questions": [],
   "alt": "Two stacked shaded panels. Active alignment uses models with new obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until correspondence and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to protect correspondence. The retained models, mechanisms, and governance are engineering capital for subsequent changes.",
   "qa": {
     "date": "2026-11-13",
     "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-    "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+    "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
     "page": 1,
     "width_bp": 448.421,
-    "height_bp": 275.423,
+    "height_bp": 242.423,
     "minimum_prose_font_pt": 9,
     "unapproved_compile_diagnostics": 0,
     "geometry_findings": 0,
-    "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-    "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-    "semantic_typography_checks": 35,
+    "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+    "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+    "semantic_typography_checks": 33,
     "monochrome_pixels": true,
     "status": "passed",
-    "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+    "scope": "Native and SVG proofs visually inspected."
   },
   "style_review": {
     "source": "book/assets/active-passive-alignment.svg",
@@ -46,38 +46,42 @@
     "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
     "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
     "status": "reviewed",
-    "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
-    "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
+    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
     "fill": "White ordinary nodes and groups; labels and boundaries carry roles without decorative tones.",
     "bold": "Source-derived emphasis includes Active alignment: convergence. Existing bold mode headings are retained; italic loop and admission annotations convey convergence versus preservation.",
     "routing": "1 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
     "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles. Restored three-card stacks for both retained Models M nodes; adjusted upper-card width and lower-card position for clear arrows and panel heading.",
-    "visual_review": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "visual_review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
       "page": 1,
       "width_bp": 448.421,
-      "height_bp": 275.423,
+      "height_bp": 242.423,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-      "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-      "semantic_typography_checks": 35,
+      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs visually inspected."
     },
     "book_references": [],
-    "routing_exceptions": "Short orthogonal feedback paths reproduce the reference.",
+    "routing_exceptions": "Short feedback paths reproduce the approved reference.",
     "reviewed_visually": true,
-    "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
       }
     ]
   },
@@ -101,8 +105,8 @@
     "source": "book/assets/active-passive-alignment.svg",
     "candidate": "book/tikz/figures/active-passive-alignment.tex",
     "decision": "refined",
-    "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
-    "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
+    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
     "evidence": [
       {
         "candidate_text": "Active Alignment",
@@ -268,19 +272,9 @@
         "candidate_text": "Continue protecting correspondence",
         "candidate_style": "italic",
         "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "Models, mechanisms, and governance remain",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
-      },
-      {
-        "candidate_text": "as engineering capital for every change.",
-        "candidate_style": "bold",
-        "semantic_role": "Heading, explanatory label, or process annotation."
       }
     ],
-    "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "checks": [
       {
         "text": "Active Alignment",
@@ -446,130 +440,86 @@
         "text": "Continue protecting correspondence",
         "bold": false,
         "italic": true
-      },
-      {
-        "text": "Models, mechanisms, and governance remain",
-        "bold": true,
-        "italic": false
-      },
-      {
-        "text": "as engineering capital for every change.",
-        "bold": true,
-        "italic": false
       }
     ],
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
       "page": 1,
       "width_bp": 448.421,
-      "height_bp": 275.423,
+      "height_bp": 242.423,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-      "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-      "semantic_typography_checks": 35,
+      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs visually inspected."
     },
     "reviewed_visually": true,
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
       }
     ]
   },
   "layout_review": {
     "source": "book/assets/active-passive-alignment.svg",
     "candidate": "book/tikz/figures/active-passive-alignment.tex",
-    "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
+    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
     "baseline_candidate_sha256": "2b3af731ed028b4a0b0c1b221f2611865a3c2175fd39e2532b417f2e8f2c14d1",
-    "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
+    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
     "decision": "refined",
-    "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "reviewed_visually": true,
     "baseline_dimensions_bp": [
       403.22601318359375,
       275.6199951171875
     ],
-    "contracts": {
-      "peer_groups": [
-        {
-          "name": "active process stages",
-          "labels": [
-            "Compare and detect gaps",
-            "Modify the system (with agents)",
-            "Evaluate and check alignment"
-          ],
-          "align": [
-            "top",
-            "bottom"
-          ],
-          "equal_height": true,
-          "tolerance_pt": 1
-        }
-      ]
-    },
+    "contracts": {},
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
       "page": 1,
       "width_bp": 448.421,
-      "height_bp": 275.423,
+      "height_bp": 242.423,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-      "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-      "semantic_typography_checks": 35,
+      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
-    },
-    "page_layout": {
-      "decision": "retained",
-      "reason": "Retain existing active passive alignment layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-      "before_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
-      "after_sha256": "fedb0ada1d95224287e32fe8e38a4876050680eec4848bf6f2e4d7bf468170d6",
-      "before_dimensions_bp": [
-        403.22601318359375,
-        275.6199951171875
-      ],
-      "after_dimensions_bp": [
-        403.22601318359375,
-        275.6199951171875
-      ],
-      "before_font_sizes_pt": [
-        7.0,
-        9.0,
-        10.0
-      ],
-      "after_font_sizes_pt": [
-        7.0,
-        9.0,
-        10.0
-      ],
-      "reviewed_visually": true
+      "scope": "Native and SVG proofs visually inspected."
     },
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
       }
     ],
-    "visual_review": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+    "visual_review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
   },
   "fidelity_review": {
     "source": "book/assets/active-passive-alignment.svg",
     "candidate": "book/tikz/figures/active-passive-alignment.tex",
     "checks": {
-      "relationships": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
-      "annotation_placement": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+      "relationships": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+      "annotation_placement": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
       "source_adaptations": "Native typography and compact line breaks; external caption retained."
     },
     "font_qa": {
@@ -579,35 +529,39 @@
     "geometry_findings": [],
     "compiler_diagnostics": [],
     "width_bp": 448.421,
-    "height_bp": 275.423,
+    "height_bp": 242.423,
     "monochrome": true,
-    "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
-    "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
-    "review": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+    "review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "decision": "retained",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
       "page": 1,
       "width_bp": 448.421,
-      "height_bp": 275.423,
+      "height_bp": 242.423,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-      "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-      "semantic_typography_checks": 35,
+      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs visually inspected."
     },
-    "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
       }
     ]
   },
@@ -617,32 +571,36 @@
     "receipt": "book/tikz/receipts/active-passive-alignment.json",
     "reviewed": true,
     "decision": "refined",
-    "rationale": "Light gray identifies the active/passive panels.",
-    "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
-    "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
+    "rationale": "Light-gray panels distinguish alignment modes.",
+    "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+    "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
     "reviewed_visually": true,
     "validation": {
       "date": "2026-11-13",
       "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-      "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+      "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
       "page": 1,
       "width_bp": 448.421,
-      "height_bp": 275.423,
+      "height_bp": 242.423,
       "minimum_prose_font_pt": 9,
       "unapproved_compile_diagnostics": 0,
       "geometry_findings": 0,
-      "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-      "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-      "semantic_typography_checks": 35,
+      "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+      "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+      "semantic_typography_checks": 33,
       "monochrome_pixels": true,
       "status": "passed",
-      "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+      "scope": "Native and SVG proofs visually inspected."
     },
-    "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+    "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
     "revision_history": [
       {
         "date": "2026-11-13",
         "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+      },
+      {
+        "date": "2026-11-13",
+        "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
       }
     ]
   },

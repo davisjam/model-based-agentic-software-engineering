@@ -1,14 +1,74 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words.
-\draw[edge] (0,0)--(13,0);\node[diamond,draw,fill=white,minimum size=.35cm] at (1.5,0) {};\node[diamond,draw,fill=black,minimum size=.35cm] at (11.5,0) {};
-\node[note,text width=3cm] (w) at (1.5,1.2) {Work begins};
-\node[note,text width=3cm] (c) at (11.5,1.2) {Consequence};
-\node[note,text width=4cm] (l) at (1.5,-1.5) {\textbf{Earliest legible boundary}\\Catch cheaply near the cause};
-\node[note,text width=4cm] (s) at (11,-1.5) {\textbf{Last safe boundary}\\Re-establish what must hold};
-\node[note,text width=6cm] (nt) at (6.5,0.7) {\textit{Relevant state may change between checks.}};
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{9}{11}\selectfont]
+\hyphenpenalty=10000
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (170,1) rectangle (344,36);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (257,15) {Proposed change};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (257,28) {Increase worker concurrency};
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (70,62) rectangle (444,149);
+\draw[line width=0.7pt] (257,36) -- (257,68);
+\draw[line width=0.7pt] (132,68) -- (382,68);
+\draw[->,line width=0.7pt] (132,68) -- (132,82);
+\draw[->,line width=0.7pt] (257,68) -- (257,82);
+\draw[->,line width=0.7pt] (382,68) -- (382,82);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (76,82) rectangle (188,117);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (132,96) {Execution model};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (132,109) {(work and dependencies)};
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (201,82) rectangle (313,117);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (257,96) {Memory model};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (257,109) {(resource bounds)};
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (326,82) rectangle (438,117);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (382,96) {Latency model};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (382,109) {(response time)};
+\draw[line width=0.7pt] (188,99) -- (201,99);
+\draw[line width=0.7pt] (313,99) -- (326,99);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (257,131) {Related models: concurrency constrained by memory;};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (257,143) {latency depends on work and memory.};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,96) {Affected};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,108) {models};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,190) {Potentially};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,202) {affected};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,214) {obligations};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,270) {Required};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (4,282) {evidence};
+\node[anchor=base west,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (4,294) {(evaluation)};
+\draw[line width=0.7pt] (257,149) -- (257,169);
+\draw[line width=0.7pt] (132,169) -- (382,169);
+\draw[->,line width=0.7pt] (132,169) -- (132,183);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (76,183) rectangle (188,219);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (132,198) {Legal ordering};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (132,211) {(no violated dependencies)};
+\draw[line width=0.7pt] (132,219) -- (132,232);
+\draw[->,line width=0.7pt] (257,169) -- (257,183);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (201,183) rectangle (313,219);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (257,198) {Peak memory};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (257,211) {(within budget)};
+\draw[line width=0.7pt] (257,219) -- (257,232);
+\draw[->,line width=0.7pt] (382,169) -- (382,183);
+\draw[draw=black,fill=black!5,line width=.7pt,rounded corners=4pt] (326,183) rectangle (438,219);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (382,198) {Latency budget};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (382,211) {(within target)};
+\draw[line width=0.7pt] (382,219) -- (382,232);
+\draw[line width=0.7pt] (132,232) -- (382,232);
+\draw[line width=0.7pt] (257,232) -- (257,245);
+\draw[line width=0.7pt] (132,245) -- (382,245);
+\draw[->,line width=0.7pt] (132,245) -- (132,259);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (76,259) rectangle (188,299);
+\draw[line width=0.7pt] (132,299) -- (132,316);
+\draw[->,line width=0.7pt] (257,245) -- (257,259);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (201,259) rectangle (313,299);
+\draw[line width=0.7pt] (257,299) -- (257,316);
+\draw[->,line width=0.7pt] (382,245) -- (382,259);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (326,259) rectangle (438,299);
+\draw[line width=0.7pt] (382,299) -- (382,316);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (132,275) {Correctness tests};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (132,289) {(ordering and results)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (257,271) {Memory analysis};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (257,282) {or measurement};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (257,294) {(peak RSS)};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (382,275) {Performance test};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (382,289) {(end-to-end latency)};
+\draw[line width=0.7pt] (132,316) -- (382,316);
+\draw[->,line width=0.7pt] (257,316) -- (257,333);
+\draw[draw=black,fill=white,line width=.7pt,rounded corners=4pt] (122,333) rectangle (392,372);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (257,348) {Admission decision};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (257,362) {Evaluate affected obligations with required evidence};
 \end{tikzpicture}

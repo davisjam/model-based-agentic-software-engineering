@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/two-evidence-boundaries.svg",
+  "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
+  "receipt": "book/tikz/receipts/two-evidence-boundaries.json",
+  "reviewed": true,
+  "decision": "retained",
+  "rationale": "Open earliest and solid last-safe diamonds already preserve original boundary distinction; retained.",
+  "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
+  "candidate_sha256": "026fa835792e0d93c62112ae558c33f03cbf9876a9c038ad6abec23a37cbf477"
+}

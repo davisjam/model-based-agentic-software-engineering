@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 273" width="446" height="273" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 240" width="446" height="240" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
 <title id="title">Active and passive alignment</title>
 <desc id="desc">Two stacked shaded panels. Active alignment uses models with new obligations to compare and detect gaps, modify the system with agents, and evaluate and check alignment, repeating until correspondence and producing an aligned system. Retain the models and mechanisms after success. Passive alignment evaluates proposed changes against the same models and known obligations, admitting or rejecting changes and continuing to protect correspondence. The retained models, mechanisms, and governance are engineering capital for subsequent changes.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
@@ -67,7 +67,4 @@
 <text x="330" y="172" text-anchor="middle" font-size="9" font-style="italic">Admit or reject</text>
 <path d="M368.5 211 L368.5 223 L148.5 223 L148.5 211" fill="none" stroke="#111" stroke-width="0.7" marker-end="url(#arrow)"/>
 <text x="258.5" y="235" text-anchor="middle" font-size="9" font-style="italic">Continue protecting correspondence</text>
-<rect x="58" y="246" width="330" height="24" rx="4" fill="#f2f2f2" stroke="#888" stroke-width=".45"/>
-<text x="223" y="256" text-anchor="middle" font-size="9" font-weight="700">Models, mechanisms, and governance remain</text>
-<text x="223" y="267" text-anchor="middle" font-size="9" font-weight="700">as engineering capital for every change.</text>
 </svg>

@@ -20131,3 +20131,22 @@ Source: Chapter 4, §4.3 at `d7b17bff2`. Figure 4.11 removed at author request: 
 \label{audit-drain-promote-beats}
 \end{figure}
 ```
+
+
+## Model-aware change impact replaces the two-boundary illustration — 13 November 2026
+
+Source: Chapter 4, §4.4 at `2ce0cd34d`, former lines 97–106. Author confirmed that this passage and Figure 4.11 (formerly 4.12), rather than the later validation-scheduling episode, are the replacement target. Preserved here before applying the supplied subsection.
+
+```latex
+Evidence also ages. \magevalue{chapter:alignment} gave the placement rule: evaluate an obligation at the earliest boundary where it becomes legible and enforceable, so a defect is caught close to its cause. Consequential work often deserves a second boundary: re-evaluate at the last safe point before the consequence becomes difficult to reverse. The two rules answer different questions --- when can this property first be decided honestly, and what is the last point at which stale or invalid evidence can still be caught?\mageaside{The security analogy is time-of-check to time-of-use (TOCTOU): a property established at one instant may no longer hold when the protected action occurs because relevant state changed in between. The problem here is broader than the classical TOCTOU race, but the engineering instinct is the same.} \autoref{evidence-two-boundaries} draws the span between them.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{book/latex/assets/two-evidence-boundaries-fcdb287cf7.pdf}
+\caption[Two evidence boundaries --- earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold]{\emph{Two evidence boundaries.} Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.}
+\label{evidence-two-boundaries}
+\end{figure}
+
+The second check need not repeat every earlier check; re-establish only the evidence whose freshness matters to admission. A test result recorded hours ago describes the revision that produced it. A review verdict describes the change that was reviewed. If relevant state can change before admission, the evidence can cease to describe the artifact now crossing the boundary. \textbf{Done is a claim, not a stored fact.} At a consequential boundary, ensure that the evidence still justifies the consequence; where freshness cannot otherwise be established cheaply, re-derive the relevant evidence rather than trusting a stale green checkmark. The gain compounds with velocity: the more often a system ships, the more a cheap re-check at the last safe boundary is worth.
+
+```

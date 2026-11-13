@@ -2204,8 +2204,8 @@
       "source": "book/assets/active-passive-alignment.svg",
       "candidate": "book/tikz/figures/active-passive-alignment.tex",
       "checks": {
-        "relationships": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
-        "annotation_placement": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+        "relationships": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
+        "annotation_placement": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
         "source_adaptations": "Native typography and compact line breaks; external caption retained."
       },
       "font_qa": {
@@ -2215,35 +2215,39 @@
       "geometry_findings": [],
       "compiler_diagnostics": [],
       "width_bp": 448.421,
-      "height_bp": 275.423,
+      "height_bp": 242.423,
       "monochrome": true,
-      "source_sha256": "842d78a9aeaf96311ff5782441254a85ed0c08ddf6c00f3ea823b681e11e82a4",
-      "candidate_sha256": "79e5f9bc2f9a90a8b6ce7df75eb800666182331b231b22d89e2c7e83842ad55d",
-      "review": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+      "source_sha256": "afb3ea3853b7d387118eb8ada4653f405a8fbcb050b52c90dd8562241ac70e1e",
+      "candidate_sha256": "7669f3a9fa369534d8197ea197bb112dfdf101c2c3c3d0c2b7a2d942093e1754",
+      "review": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
       "decision": "retained",
       "reviewed_visually": true,
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/active-passive-alignment-20261113/candidates.pdf",
-        "proof_sha256": "da68d17b837136bd64b3b71129ca0083451a6115b362dd43fb29e165ba6ce3b0",
+        "proof_sha256": "9d2c7bc36dd4b29658814f57d681a3f480621c26e538ff15e2101c59918a9a0c",
         "page": 1,
         "width_bp": 448.421,
-        "height_bp": 275.423,
+        "height_bp": 242.423,
         "minimum_prose_font_pt": 9,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
-        "geometry_audit_sha256": "14e9943219ad58b51498ca0da1baa1c10946add2b9c9495853fb64e9c625f4df",
-        "typography_audit_sha256": "6b82e8b4d78807aaee899b4c3933b3806d7fa450bc55e6c4899dbcad8689a8ec",
-        "semantic_typography_checks": 35,
+        "geometry_audit_sha256": "a111dfe2ddd9586b16e71006fe3636c236c2129526c4807b187760759490f13a",
+        "typography_audit_sha256": "856c063690608839d3becb5ad4e738ca5a6854731b76da4bdac215b1054d6d37",
+        "semantic_typography_checks": 33,
         "monochrome_pixels": true,
         "status": "passed",
-        "scope": "Native figure and SVG visually inspected; revised proof available for author review."
+        "scope": "Native and SVG proofs visually inspected."
       },
-      "reason": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption.",
+      "reason": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit.",
       "revision_history": [
         {
           "date": "2026-11-13",
           "change": "Matched author reference with two shaded horizontal panels, explanatory columns, stacked models, new versus known obligations, active correction loop, explicit retention handoff, passive preservation loop, and engineering-capital footer. Labels reflowed at native print size; no embedded figure number or caption."
+        },
+        {
+          "date": "2026-11-13",
+          "change": "Author approved after deleting the bottom engineering-capital footer and replacing the caption retention sentence with the point that retained models, mechanisms, and governance become capital when subsequent changes benefit."
         }
       ]
     },
@@ -2835,26 +2839,48 @@
       "source": "book/assets/two-evidence-boundaries.svg",
       "candidate": "book/tikz/figures/two-evidence-boundaries.tex",
       "checks": {
-        "icons_and_symbols": "Open earliest and filled last-safe diamonds preserved.",
-        "links_and_groups": "Single timeline with separate boundary roles retained.",
-        "annotation_placement": "State-change note above axis; each boundary explanation below."
+        "relationships": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+        "annotation_placement": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+        "source_adaptations": "Native typography and compact line breaks; external caption retained."
       },
       "font_qa": {
-        "rendered_prose_sizes_tex_pt": [
-          9.0
-        ],
         "minimum": 9,
         "final_size_no_scaling": true
       },
       "geometry_findings": [],
       "compiler_diagnostics": [],
-      "width_bp": 394.6319885253906,
-      "height_bp": 107.20500183105469,
+      "width_bp": 446.122,
+      "height_bp": 377.671,
       "monochrome": true,
-      "source_sha256": "c74652e26b90cb9529849402cab110be9178245de0cf6d6267c1c0911674cacd",
-      "candidate_sha256": "026fa835792e0d93c62112ae558c33f03cbf9876a9c038ad6abec23a37cbf477",
-      "review": "Reviewed and retained.",
-      "decision": "retained"
+      "source_sha256": "d9341927be5ec683a2406fdaf1306be5494dbc7521ce69cd0450850f4700e207",
+      "candidate_sha256": "f3d2db50f040025d93ef3d94be4be78fda4be6bf2597c00e72e865968bc3649d",
+      "review": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+      "decision": "retained",
+      "reviewed_visually": true,
+      "validation": {
+        "date": "2026-11-13",
+        "proof": "latex/build/tikz/two-evidence-boundaries-20261113/candidates.pdf",
+        "proof_sha256": "cfe500cdc63b2cf7ad2f1ccc7bffa343117a7bc57c9e836f4773c0a24629110e",
+        "page": 1,
+        "width_bp": 446.122,
+        "height_bp": 377.671,
+        "minimum_prose_font_pt": 9,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "geometry_audit_sha256": "5cdebd91ec6e36fd4bd2748a1c748dca892d6bb1ab68725d8c5a0554045eb413",
+        "typography_audit_sha256": "f83008d3f7ee9418bbe78a77b0f612751f325015a0f3875da94efbe5481ce671",
+        "semantic_typography_checks": 33,
+        "monochrome_pixels": true,
+        "status": "passed",
+        "scope": "Native and SVG proofs visually inspected."
+      },
+      "reason": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained.",
+      "revision_history": [
+        {
+          "date": "2026-11-13",
+          "change": "Replaced the two-boundary timeline with author-supplied model-aware change-impact structure. Worker concurrency connects related execution, memory, and latency models to potentially affected obligations and required evidence. Model and obligation boxes are shaded, with no legend. Vertical flow arrows and split/join rails align on one spine. The later validation-bottleneck episode is retained."
+        }
+      ]
     },
     {
       "source": "book/assets/process-design-and-tolerance.svg",
