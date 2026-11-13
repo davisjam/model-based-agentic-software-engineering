@@ -2365,12 +2365,38 @@
   {
     "source": "book/assets/probability-in-the-software-factory.svg",
     "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+    "source_sha256": "75c3c3cf1317a4e21d4ef7ec189b36e83f491c0f020e97c96a8aad0094a4d67a",
+    "candidate_sha256": "7e48e8e80232f2a2e065912e6dc81a1a517afc7081d205621255447f8c99763a",
+    "decision": "refined",
+    "reviewed_visually": true,
+    "reason": "Author-reference redraw separates correct encoding from fulfillment of encoded obligations while showing the encoded property also supplying the tolerance used to evaluate realizations. The lower region is correctly named Possible realizations, not a single proposed change. Its acceptable subset contains several possible realizations; one outside point illustrates revision/rejection. Bare hierarchy labels retain the established book style.",
+    "validation": {
+      "date": "2026-11-13",
+      "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+      "proof": "latex/build/tikz/factory-probability-20261113/candidates.pdf",
+      "proof_sha256": "e63457711c2d6c749bf292b4e7be024bf8fea14d56a10c082a49c961287aee81",
+      "page": 1,
+      "width_bp": 449.972,
+      "height_bp": 363.973,
+      "minimum_prose_font_pt": 9.0,
+      "authored_type_sizes_pt": [
+        9.0,
+        10.0,
+        11.0,
+        12.0
+      ],
+      "unapproved_compile_diagnostics": 0,
+      "geometry_findings": 0,
+      "monochrome_pixels": true,
+      "semantic_typography_checks": 23,
+      "audit_sha256": "95beb87a49bac8c2c1a0fdb2aae25a6f2868474d80ed2234b74863f9be2bc6bd",
+      "typography_audit_sha256": "7f8bea75c7e870a9ef53a8e617593404fb8897c6107c991efc0dfb79c023dbec",
+      "status": "passed"
+    },
+    "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/grayscale-review.json",
     "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
     "reviewed": true,
-    "decision": "refined",
-    "rationale": "Encoding and tolerance share fill; production group light gray. Encoded-property route and measurement retain their separate trajectories.",
-    "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-    "candidate_sha256": "0b7fdec5eff9be8f07061feb4bc3a6029f518d2604a2b905ecf0432cc3b13b87"
+    "rationale": "Light gray identifies the encoded property and the acceptable subset it defines. The containing Possible realizations region and ordinary production/output nodes remain white. No broad outer factory enclosure or decorative header boxes. Bare software-factory heading, process-design/production labels, tolerance label, region labels, and engineer-authority note are bold. Node labels and evidence inventories are regular. Probability expressions use12pt native math; prose stays9–11pt. No post-render scaling."
   },
   {
     "source": "book/assets/determinization-frontier.svg",

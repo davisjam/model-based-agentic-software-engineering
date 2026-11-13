@@ -1,0 +1,1 @@
+Superseded probability-in-the-software-factory sources and review rows from 4237fa108, preserved on 2026-11-13. New factory-probability drawing follows the author-supplied reference and names its lower space Possible realizations. No internal headline/caption. Author approval remains pending.

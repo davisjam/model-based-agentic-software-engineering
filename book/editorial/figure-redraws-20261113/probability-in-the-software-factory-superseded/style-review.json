@@ -1,0 +1,65 @@
+{
+  "source": "book/assets/probability-in-the-software-factory.svg",
+  "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+  "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+  "decision": "refined",
+  "guidelines": "book/tikz/README.md#publisher-grayscale-drawing-guidelines",
+  "guidelines_sha256": "3af65468a482a3e5611f65ab9dbacab2a02a4692c8ab81082588af424ca0293c",
+  "status": "reviewed",
+  "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
+  "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
+  "fill": "Encoded property and acceptable region share 5%, tying specification to tolerance.",
+  "bold": "Engineer authority and category labels remain bold; interpretation is a regular-weight mechanism within realization.",
+  "routing": "2 simple diagonal process links replaced by aligned ports or short orthogonal rails; existing feedback/dashed semantics retained.",
+  "shape": "Ordinary boxes use modest rounded corners; semantic document, state, decision, marker and quantitative shapes retain their roles.",
+  "visual_review": "Encoding and realization probability spans remain distinct from tolerance and admission. Labels and measurement routes are legible without clipping or overlap.",
+  "validation": {
+    "status": "passed",
+    "reviewed_on": "2026-11-09",
+    "proof": "latex/build/tikz/candidates.pdf",
+    "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
+    "geometry_findings": 0,
+    "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
+    "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
+    "semantic_typography_checks": 7,
+    "checked_terminal_approaches": 646,
+    "reviewed_peer_groups": 85,
+    "unapproved_compile_diagnostics": 0,
+    "page": 84,
+    "width_bp": 420.234,
+    "height_bp": 352.203,
+    "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+    "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a"
+  },
+  "book_references": [],
+  "routing_exceptions": "Outer return paths retained where needed to show feedback without crossing forward flow.",
+  "superseded_reviews": [
+    {
+      "superseded_on": "2026-11-09",
+      "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
+      "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+      "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
+      "status": "reviewed",
+      "validation": {
+        "proof": "latex/build/tikz/candidates.pdf",
+        "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
+        "page": 84,
+        "width_bp": 420.234,
+        "height_bp": 352.203,
+        "minimum_prose_font_pt": 9.0,
+        "unapproved_compile_diagnostics": 0,
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 7
+      },
+      "visual_review": "Probability bracket, two separate aligned inputs and four realizations retained; tolerance input no longer detours through outputs."
+    }
+  ],
+  "color_source_revision": {
+    "date": "2026-11-09",
+    "previous_source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
+    "source_sha256": "181d260c48deb6cffa0e2bc7f70bbdb6775c789f14121f708e12ecf5c724fee8",
+    "reason": "Selective book-wide print composition and legibility pass; original color artwork revised, native monochrome candidate retained.",
+    "native_candidate_changed": false
+  }
+}

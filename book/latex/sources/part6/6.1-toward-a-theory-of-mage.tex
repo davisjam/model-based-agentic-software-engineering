@@ -49,12 +49,12 @@ This \textbf{encoding–realization decomposition} applies the probability chain
 
 % <!-- point: the-probabilities-belong-to-a-production-system | The probabilities belong to a production system: the factory of Chapter 5, redrawn with each step of the realization path carrying the probability that it succeeds and the encoded property also supplying the tolerance the result is evaluated against. | terms: tolerance -->
 
-\autoref{probability-in-the-software-factory} places the two terms on the software factory. The encoded property also supplies a tolerance against which the result can be checked independently of the agent that produced it.
+\autoref{probability-in-the-software-factory} distinguishes encoding from realization within the software factory. The encoded property also defines which realizations are acceptable, allowing the result to be evaluated independently of the agent that produced it.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{book/latex/assets/probability-in-the-software-factory-13c48ad51e.pdf}
-\caption[Probability in the software factory --- encoding and realization, with the encoded property also supplying the tolerance]{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two factors condition on representation R, omitted here for legibility. Interpretation is a mechanism within realization. The encoded property also supplies an independently evaluable tolerance, so evidence and admission can govern it even when production fails.}
+\caption{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two probability terms condition on representation \(R\), omitted for legibility. The encoded property also defines the acceptable region for realizations, allowing independent evidence to inform admission or rejection.}
 \label{probability-in-the-software-factory}
 \end{figure}
 
@@ -74,7 +74,7 @@ Representation is not the only route to that term. A realization that misses the
 
 % <!-- point: the-two-factory-techniques-act-on-different-factors | Process design changes the conditions and cost of realization. Explicit tolerances help encode intent and make selected properties available for independent evaluation. | terms: tolerance -->
 
-Process design changes the conditions under which agents realize intent: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(F\mid E,R)\), its cost, or both. A better agent can improve the same term. Explicit tolerances help engineers state the intended property and make it available for independent evaluation. A check can then compare the realization with the represented tolerance, and a gate can reject work that violates it. This is the distinction between helping production succeed and governing what happens when it fails.
+Process design changes the conditions under which agents realize intent: context, tools, decomposition, routing, permissions, and other features of the harness can change \(P(F\mid E,R)\), its cost, or both. A better agent can improve the same term. Explicit tolerances help engineers state the intended property and make it available for independent evaluation. Tests, analysis, measurement, or human judgment can assess whether a realization falls within that tolerance. Where the evidence supports enforcement, a gate can reject work that violates the obligation. This separates helping production succeed from deciding whether its result should be admitted.
 
 % <!-- point: stronger-reasoners-can-recover-meaning | Better reasoners may reconstruct meaning from a weak representation, but some lost distinctions require a different representation or additional evidence. -->
 

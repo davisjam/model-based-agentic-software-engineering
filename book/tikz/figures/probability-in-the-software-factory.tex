@@ -1,38 +1,66 @@
-% Native black-and-white teaching figure; see matching receipt.
-\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,rounded corners=3pt,line width=.6pt,fill=white,align=center,inner sep=5pt,minimum height=.65cm},
- head/.style={box,font=\magefigurefont\fontsize{10}{12}\selectfont,fill=white},
- note/.style={align=center,font=\magefigurefont\fontsize{9}{11}\selectfont,inner sep=3pt},
- edge/.style={->,line width=.65pt},opt/.style={dashed,->,line width=.65pt}]
-\hyphenpenalty=10000 % Keep diagram labels in whole words; explicit phrase breaks below.
-\node[head,text width=13cm,font=\magefigurefont\fontsize{10}{12}\selectfont\bfseries] (h) at (0,0) {SOFTWARE FACTORY};
-\node[note,text width=13cm] (ph) at (0,-1.1) {\textbf{PROCESS DESIGN}: how production proceeds};
-\draw[dashed] (-7,-1.7) rectangle (7,-4.8);
-\node[box,text width=2.6cm,minimum height=1.1cm] (p0) at (-5.4,-2.5) {Engineering\\intent};
-\node[box,text width=2.6cm,fill=black!5,minimum height=1.1cm] (p1) at (-1.8000000000000003,-2.5) {Encoded\\property};
-\node[box,text width=2.6cm,minimum height=1.1cm] (p2) at (1.7999999999999998,-2.5) {Fabricator};
-\node[box,text width=2.6cm,minimum height=1.1cm] (p3) at (5.4,-2.5) {Realization};
-\draw[edge,] (p0) -- (p1);
-\draw[edge,] (p1) -- (p2);
-\draw[edge,] (p2) -- (p3);
-\node[note,text width=3cm] (prob0) at (-3.6,-4) {{\fontsize{12}{14}\selectfont $P(E)$}\\correct encoding};
-\node[note,text width=6cm] (prob1) at (1.8,-4) {{\fontsize{12}{14}\selectfont $P(F\mid E)$}\\fulfill encoded obligations};
-\node[note,text width=4cm] (note0) at (-4.4,-5.5) {\textbf{Engineers authorize intent.}};
-\node[note,text width=6cm] (note1) at (2,-5.5) {Agents interpret, implement,\\and correct.};
-\node[head,text width=4cm,fill=white] (tol) at (-4.7,-8) {\textbf{TOLERANCE}\\acceptable product\\variation};
-\node[box,text width=7.7cm,fill=black!5] (region) at (2,-8.7) {\textbf{ACCEPTABLE REGION}\\$\bullet\qquad\bullet\qquad\bullet\qquad\bullet$\\Distinct acceptable realizations};
-\draw[edge] (p3.south)--(5.4,-6.6)--(region.north -| p3.south);
-\node[note,text width=4.6cm] (meas) at (3,-7.2) {\textbf{Measurement}: tests, PBT, analysis,\\simulation, human judgment};
-\draw[edge] (p1.south)--(region.north -| p1.south);\node[note,text width=2.6cm] at (-.4,-7.3) {Supplies the tolerance};
-\node[box,text width=3.6cm] (rev) at (-0.3,-11) {Revise / reject};
-\node[box,text width=3.6cm] (adm) at (4.3,-11) {Admitted change};
-\draw[edge,] (region.south -| rev.north) -- node[midway,note,fill=white] {outside} (rev.north);
-\draw[edge,] (region.south -| adm.north) -- node[midway,note,fill=white] {within tolerance} (adm.north);
-\draw[black!40] (-7.3,.5) rectangle (7.3,-11.7);
-\begin{scope}[on background layer]
-
-\end{scope}
-\draw[line width=.6pt] (-5.4,-3.08)--(-5.4,-3.28)--(5.4,-3.28)--(5.4,-3.08);
-\draw[line width=.6pt] (-1.8,-3.08)--(-1.8,-3.28);
-\node[note,fill=white,anchor=west,inner sep=1pt] at (-6.7,-1.7) {\textbf{PRODUCTION PROCESS}};
+\begin{tikzpicture}[x=1bp,y=-1bp,font=\fontsize{9}{11}\selectfont,>=Stealth]
+\path[use as bounding box] (0,0) rectangle (444,358);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{11}{11}\selectfont\bfseries] at (222,12) {SOFTWARE FACTORY};
+\draw[line width=0.65bp,draw=black!85] (2,11) -- (150,11);
+\draw[line width=0.65bp,draw=black!85] (294,11) -- (442,11);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (8,36) {PROCESS DESIGN:};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (91,36) {how production proceeds};
+\draw[dashed,line width=.65bp,rounded corners=4bp,fill=white] (2,59) rectangle (442,156);
+\fill[white] (9,51) rectangle (135,65);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (13,59) {PRODUCTION PROCESS};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (12,74) rectangle (96,104);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (54,84) {Engineering};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (54,95) {intent};
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (124,74) rectangle (208,104);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (166,84) {Encoded};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (166,95) {property};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (236,74) rectangle (320,104);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (278,90) {Fabricator};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (348,74) rectangle (432,104);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (390,90) {Realization};
+\draw[-Stealth,line width=0.85bp,draw=black!85] (97,89) -- (122,89);
+\draw[-Stealth,line width=0.85bp,draw=black!85] (209,89) -- (234,89);
+\draw[-Stealth,line width=0.85bp,draw=black!85] (321,89) -- (346,89);
+\draw[line width=0.6bp,draw=black!85] (54,105) -- (54,113);
+\draw[line width=0.6bp,draw=black!85] (166,105) -- (166,113);
+\draw[line width=0.6bp,draw=black!85] (390,105) -- (390,113);
+\draw[line width=0.6bp,draw=black!85] (54,113) -- (163,113);
+\draw[line width=0.6bp,draw=black!85] (169,113) -- (390,113);
+\node[anchor=center,inner sep=0pt,font=\fontsize{12}{14}\selectfont] at (109,126) {$P(E)$};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (109,141) {correct encoding};
+\node[anchor=center,inner sep=0pt,font=\fontsize{12}{14}\selectfont] at (278,126) {$P(F\mid E)$};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (278,141) {fulfill encoded obligations};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (88,169) {Engineers authorize intent.};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (283,169) {Agents interpret, implement,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (283,180) {and correct.};
+\draw[-Stealth,line width=0.8bp,draw=black!85] (166,105) -- (166,232);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (178,201) {Supplies};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (178,212) {the tolerance};
+\draw[-Stealth,line width=0.8bp,draw=black!85] (390,105) -- (390,232);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont\bfseries] at (314,193) {Measurement:};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (314,205) {tests, PBT, analysis,};
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (314,216) {simulation, human judgment};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (127,234) rectangle (430,301);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (278.5,245) {POSSIBLE REALIZATIONS};
+\draw[fill=black!8,draw=black!85,line width=0.7bp,rounded corners=4bp] (151,258) rectangle (331,292);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (241,267) {Acceptable region};
+\fill (185,282) circle (1.8bp);
+\fill (226,285) circle (1.8bp);
+\fill (267,281) circle (1.8bp);
+\fill (309,284) circle (1.8bp);
+\fill (377,278) circle (1.8bp);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont\bfseries] at (10,252) {TOLERANCE};
+\draw[line width=0.65bp,draw=black!85] (10,262) -- (106,262);
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (10,274) {acceptable product};
+\node[anchor=west,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (10,285) {variation};
+\draw[line width=0.8bp,draw=black!85] (185,293) -- (185,307);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (185,317) {within tolerance};
+\draw[-Stealth,line width=0.8bp,draw=black!85] (185,324) -- (185,332);
+\draw[line width=0.8bp,draw=black!85] (377,283) -- (377,307);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{9}{11}\selectfont] at (377,317) {outside tolerance};
+\draw[-Stealth,line width=0.8bp,draw=black!85] (377,324) -- (377,332);
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (128,334) rectangle (242,357);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (185,346) {Admitted change};
+\draw[fill=white,draw=black!85,line width=0.7bp,rounded corners=4bp] (320,334) rectangle (434,357);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,font=\fontsize{10}{11}\selectfont] at (377,346) {Revise / reject};
 \end{tikzpicture}

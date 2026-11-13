@@ -19881,3 +19881,16 @@ This gives a practical route from weak implementation signals to explicit models
 
 \caption[Discovering latent models --- weak signals → partition \{legitimate shape · mechanical debt · latent concept\} → name the model → migrate consumers → narrower enforcement → stronger substrate]{\emph{Discovering models in a brownfield system.} Weak signals --- primitive density, repeated shapes, the component and boundary view --- identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later recovery and enforcement operate.}
 ```
+
+## Chapter 6 production probability — 13 November 2026
+
+- Source: `book/latex/sources/part6/6.1-toward-a-theory-of-mage.tex`, What Makes Production Faithful?, lines 52–77 at `29dd0fa6e`.
+- Reason: Author-requested alignment with the Figure 6.1 redraw; distinguish evaluation from mechanically decidable enforcement, clarify the acceptable region, and preserve conditioning on representation.
+
+```latex
+\autoref{probability-in-the-software-factory} places the two terms on the software factory. The encoded property also supplies a tolerance against which the result can be checked independently of the agent that produced it.
+
+Explicit tolerances help engineers state the intended property and make it available for independent evaluation. A check can then compare the realization with the represented tolerance, and a gate can reject work that violates it. This is the distinction between helping production succeed and governing what happens when it fails.
+
+\caption[Probability in the software factory --- encoding and realization, with the encoded property also supplying the tolerance]{\emph{Probability in the software factory.} Engineers encode consequential intent; agents fulfill the encoded obligations. The two factors condition on representation R, omitted here for legibility. Interpretation is a mechanism within realization. The encoded property also supplies an independently evaluable tolerance, so evidence and admission can govern it even when production fails.}
+```

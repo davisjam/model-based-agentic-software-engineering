@@ -6912,107 +6912,52 @@
     {
       "source": "book/assets/probability-in-the-software-factory.svg",
       "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
-      "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
-      "baseline_candidate_sha256": "ca524a09d76a723dc84a3a92c76fbff2f8e32568f6370eabc5a365c118ca6bea",
-      "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a",
+      "source_sha256": "75c3c3cf1317a4e21d4ef7ec189b36e83f491c0f020e97c96a8aad0094a4d67a",
+      "candidate_sha256": "7e48e8e80232f2a2e065912e6dc81a1a517afc7081d205621255447f8c99763a",
       "decision": "refined",
-      "reason": "Align four production-process peer boxes at common top/bottom.",
       "reviewed_visually": true,
-      "baseline_dimensions_bp": [
-        420.2340087890625,
-        352.2030029296875
-      ],
-      "contracts": {
-        "peer_groups": [
-          {
-            "name": "parallel rank 1",
-            "labels": [
-              "Engineering intent",
-              "Encoded property",
-              "Fabricator",
-              "Realization"
-            ],
-            "align": [
-              "top",
-              "bottom"
-            ],
-            "equal_height": true,
-            "tolerance_pt": 1
-          }
-        ],
-        "terminal_exceptions": []
-      },
+      "reason": "Author-reference redraw separates correct encoding from fulfillment of encoded obligations while showing the encoded property also supplying the tolerance used to evaluate realizations. The lower region is correctly named Possible realizations, not a single proposed change. Its acceptable subset contains several possible realizations; one outside point illustrates revision/rejection. Bare hierarchy labels retain the established book style.",
       "validation": {
-        "status": "passed",
-        "reviewed_on": "2026-11-09",
-        "proof": "latex/build/tikz/candidates.pdf",
-        "proof_sha256": "daeec9dd673f503258ecab4d237d442292d3026b74b055e6fa076ca05c5d5b24",
-        "geometry_findings": 0,
-        "geometry_audit_sha256": "17114ea3df5b2ea10225bfb5bddc944e35d805f65b675bf92fefe40d242133a1",
-        "typography_audit_sha256": "4cc4081fab305bf25570df876afdc63f5e14a12fb20566c7dcfc8c59112ba776",
-        "semantic_typography_checks": 7,
-        "checked_terminal_approaches": 646,
-        "reviewed_peer_groups": 85,
+        "date": "2026-11-13",
+        "scope": "Isolated one-figure native production-pipeline proof, not a full-book render. Pending author review.",
+        "proof": "latex/build/tikz/factory-probability-20261113/candidates.pdf",
+        "proof_sha256": "e63457711c2d6c749bf292b4e7be024bf8fea14d56a10c082a49c961287aee81",
+        "page": 1,
+        "width_bp": 449.972,
+        "height_bp": 363.973,
+        "minimum_prose_font_pt": 9.0,
+        "authored_type_sizes_pt": [
+          9.0,
+          10.0,
+          11.0,
+          12.0
+        ],
         "unapproved_compile_diagnostics": 0,
-        "page": 84,
-        "width_bp": 420.234,
-        "height_bp": 352.203,
-        "source_sha256": "3eb0166a552be99ae19abc9eb37d55d10460e15616bc77b953f5625a28cbc0ed",
-        "candidate_sha256": "b8ce305dda1455a723592e3abbf3abd352027ca74beae9a51145f5d60e78f03a"
+        "geometry_findings": 0,
+        "monochrome_pixels": true,
+        "semantic_typography_checks": 23,
+        "audit_sha256": "95beb87a49bac8c2c1a0fdb2aae25a6f2868474d80ed2234b74863f9be2bc6bd",
+        "typography_audit_sha256": "7f8bea75c7e870a9ef53a8e617593404fb8897c6107c991efc0dfb79c023dbec",
+        "status": "passed"
       },
-      "superseded_reviews": [
-        {
-          "superseded_on": "2026-11-09",
-          "reason": "Source metadata reconciled with Chapter 6 on 2026-11-09; fresh figure-pool compile and visual inspection are pending. Prior measurements apply only to the explicitly archived prior hashes.",
-          "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
-          "candidate_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
-          "reviewed_visually": true,
-          "validation": {
-            "proof": "latex/build/tikz/candidates.pdf",
-            "proof_sha256": "c366629433f19dc7f04474051c28ec12faea762051979b2956622ed8f20ac59f",
-            "geometry_findings": 0,
-            "checked_terminal_approaches": 633,
-            "reviewed_peer_groups": 81,
-            "semantic_typography_checks": 875,
-            "unapproved_compile_diagnostics": 0,
-            "audit_sha256": "b9786cf992f06c85ada34c4664690fcc993ab43190c43e8e2d893c7f6f9bc55e",
-            "maximum_dimensions_bp": [
-              450,
-              560
-            ],
-            "shared_tikz_style_sha256": "e5a78046a7a90d840d399785355827ac2d6a8c121b11693c494621c8e07a15ab",
-            "status": "passed",
-            "page": 84,
-            "width_bp": 420.234,
-            "height_bp": 352.203
-          },
-          "page_layout": {
-            "decision": "retained",
-            "reason": "Retain existing probability in the software factory layout: visual review found readable native text, separated annotations and compact semantic groups; added height would not materially improve this drawing.",
-            "before_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
-            "after_sha256": "9ee4bd5aed915a7a2e1a37debe700241a8bc141b0b26811a1d5442de0fe7ce91",
-            "before_dimensions_bp": [
-              420.2340087890625,
-              352.2030029296875
-            ],
-            "after_dimensions_bp": [
-              420.2340087890625,
-              352.2030029296875
-            ],
-            "before_font_sizes_pt": [
-              9.0,
-              10.0,
-              12.0
-            ],
-            "after_font_sizes_pt": [
-              9.0,
-              10.0,
-              12.0
-            ],
-            "reviewed_visually": true
-          }
-        }
-      ]
+      "previous_review": "book/editorial/figure-redraws-20261113/probability-in-the-software-factory-superseded/layout-review.json",
+      "contracts": {},
+      "visual_review": "Native and SVG proofs inspected at print size and2×. Four production nodes align in a dashed region. Encoding and fulfillment brackets remain distinct where the tolerance arrow descends. Bare Process Design and Tolerance labels avoid floating header boxes. The lower Possible realizations container correctly represents a space with an acceptable subset and an outside point. Evidence includes tests,PBT,analysis,simulation,and human judgment. No embedded overall figure headline or caption.",
+      "page_layout": {
+        "after_dimensions_bp": [
+          449.972,
+          363.973
+        ],
+        "after_font_sizes_pt": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "decision": "recomposed",
+        "reason": "Four aligned production nodes and separate conditional-probability brackets above; nested possibility/acceptability regions and two distinct outcomes below.",
+        "reviewed_visually": true
+      }
     },
     {
       "source": "book/assets/determinization-frontier.svg",

@@ -1,0 +1,27 @@
+{
+  "source": "book/assets/probability-in-the-software-factory.svg",
+  "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+  "checks": {
+    "icons_and_symbols": "Four realization dots retained.",
+    "links_and_groups": "Restored segmented bracket tying three probabilities to transitions; encoding-to-tolerance and measurement routes separate.",
+    "annotation_placement": "Probability terms now 12pt; 9pt explanations below terms; production label on boundary.",
+    "line_breaks": "Reproofed after deliberate phrase breaks and wider labels; automatic intraword hyphenation disabled locally, without reducing fonts or tolerating overfull boxes."
+  },
+  "font_qa": {
+    "rendered_prose_sizes_tex_pt": [
+      9.0,
+      10.0
+    ],
+    "minimum": 9,
+    "final_size_no_scaling": true
+  },
+  "geometry_findings": [],
+  "compiler_diagnostics": [],
+  "width_bp": 420.2340087890625,
+  "height_bp": 323.8559875488281,
+  "monochrome": true,
+  "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+  "candidate_sha256": "c621776fcd1561b6d875af0252855515d66dc41d88f55399d17f1cc44312ed8d",
+  "review": "Restored production label and segmented bracket associating each probability term with its transition; raised probability terms to 12pt above 9pt explanatory phrases.",
+  "decision": "refined"
+}

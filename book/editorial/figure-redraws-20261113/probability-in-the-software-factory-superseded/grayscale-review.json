@@ -1,0 +1,10 @@
+{
+  "source": "book/assets/probability-in-the-software-factory.svg",
+  "candidate": "book/tikz/figures/probability-in-the-software-factory.tex",
+  "receipt": "book/tikz/receipts/probability-in-the-software-factory.json",
+  "reviewed": true,
+  "decision": "refined",
+  "rationale": "Encoding and tolerance share fill; production group light gray. Encoded-property route and measurement retain their separate trajectories.",
+  "source_sha256": "7645b85fd995ed459aaedd72f795b0e3645006bc9387e58b648a842375f5d4e6",
+  "candidate_sha256": "0b7fdec5eff9be8f07061feb4bc3a6029f518d2604a2b905ecf0432cc3b13b87"
+}
