@@ -1,69 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Three functional governance categories around one candidate. Author-proposed companion to V8.
-     User requested paired editable SVG and TikZ; exact placement keeps the candidate spine distinct
-     from converging evidence paths. No category is a mutually exclusive product or a fixed stage. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1164" width="1100" height="1164" role="img" aria-labelledby="gpc-title gpc-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-<title id="gpc-title">Governance around a proposed reporting change</title>
-<desc id="gpc-desc">One proposed reporting change travels toward a merge gate. A language or module boundary exposes the billing API client and excludes imports of the private database connector; generic networking remains possible. Instrumented tests record caller, attempted destination, and outcome. They may reveal a direct database attempt through generic networking, but recording does not block the connection. Build-check results and recorded interactions, together with an architectural model permitting the billing API and forbidding direct database access, feed the gate. The gate checks its admission conditions and either accepts the change or returns it for repair on a required failure or missing evidence. Passing covers the selected checks and exercised tests only. The three labels describe functions; tools may combine functions, and constraints and sensors are not inherently static or dynamic.</desc>
-<defs><marker id="gpc-arrow" markerWidth="9" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#57534e"/></marker></defs>
-
-<rect id="proposed-change" x="330" y="25" width="440" height="95" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="550" y="61" font-size="22" fill="#1c1917" text-anchor="middle" font-weight="700">PROPOSED REPORTING CHANGE</text>
-<text x="550" y="94" font-size="23" fill="#57534e" text-anchor="middle" font-style="italic">candidate for merge</text>
-<rect id="constraint" x="40" y="220" width="400" height="350" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="240" y="260" font-size="26" fill="#2f5169" text-anchor="middle" font-weight="700">CONSTRAINT</text>
-<text x="240" y="297" font-size="24" fill="#1c1917" text-anchor="middle" font-style="italic">What can happen?</text>
-<text x="240" y="345" font-size="23" fill="#1c1917" text-anchor="middle">Module boundary exposes</text>
-<text x="240" y="375" font-size="23" fill="#1c1917" text-anchor="middle">billing API client; excludes</text>
-<text x="240" y="405" font-size="23" fill="#1c1917" text-anchor="middle">private DB connector.</text>
-<text x="240" y="475" font-size="22" fill="#57534e" text-anchor="middle">Scope: checked imports.</text>
-<text x="240" y="510" font-size="22" fill="#57534e" text-anchor="middle">Generic networking</text>
-<text x="240" y="540" font-size="22" fill="#57534e" text-anchor="middle">remains possible.</text>
-<rect id="sensor" x="660" y="220" width="400" height="350" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="860" y="260" font-size="26" fill="#2f5169" text-anchor="middle" font-weight="700">SENSOR</text>
-<text x="860" y="297" font-size="24" fill="#1c1917" text-anchor="middle" font-style="italic">What evidence do we have?</text>
-<text x="860" y="345" font-size="23" fill="#1c1917" text-anchor="middle">Instrumented tests record</text>
-<text x="860" y="375" font-size="23" fill="#1c1917" text-anchor="middle">caller · destination · outcome</text>
-<text x="860" y="420" font-size="23" fill="#1c1917" text-anchor="middle">May reveal a direct DB attempt</text>
-<text x="860" y="450" font-size="23" fill="#1c1917" text-anchor="middle">through generic networking.</text>
-<text x="860" y="507" font-size="22" fill="#57534e" text-anchor="middle">Recording does not block</text>
-<text x="860" y="538" font-size="22" fill="#57534e" text-anchor="middle">connections.</text>
-<rect id="architectural-model" x="40" y="685" width="340" height="185" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-<text x="210" y="727" font-size="23" fill="#9a3f12" text-anchor="middle" font-weight="700">ARCHITECTURAL MODEL</text>
-<text x="210" y="772" font-size="22" fill="#1c1917" text-anchor="middle">Reporting uses billing API.</text>
-<text x="210" y="810" font-size="22" fill="#1c1917" text-anchor="middle">No direct access to</text>
-<text x="210" y="840" font-size="22" fill="#1c1917" text-anchor="middle">billing database.</text>
-<rect id="gate" x="440" y="675" width="620" height="290" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-<text x="750" y="726" font-size="26" fill="#2f5169" text-anchor="middle" font-weight="700">GATE</text>
-<text x="750" y="765" font-size="24" fill="#1c1917" text-anchor="middle" font-style="italic">May this proceed?</text>
-<text x="750" y="819" font-size="23" fill="#1c1917" text-anchor="middle">Check build results and recorded interactions</text>
-<text x="750" y="852" font-size="23" fill="#1c1917" text-anchor="middle">against the architectural model.</text>
-<text x="750" y="907" font-size="22" fill="#57534e" text-anchor="middle">Refuse merge on required failure</text>
-<text x="750" y="939" font-size="22" fill="#57534e" text-anchor="middle">or missing evidence.</text>
-<rect id="accepted-change" x="330" y="1075" width="330" height="76" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="495" y="1120" font-size="24" fill="#1c1917" text-anchor="middle" font-weight="700">ACCEPTED CHANGE</text>
-<rect id="returned-change" x="750" y="1075" width="310" height="76" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-<text x="905" y="1120" font-size="23" fill="#1c1917" text-anchor="middle" font-weight="700">RETURNED FOR REPAIR</text>
-<!-- edge: proposed-change -> gate -->
-<path d="M550,120 L550,675" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: proposed-change -> constraint -->
-<path d="M450,120 L450,170 L240,170 L240,220" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: proposed-change -> sensor -->
-<path d="M650,120 L650,170 L860,170 L860,220" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: constraint .. gate -->
-<path d="M240,570 L240,630 L490,630 L490,675" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: sensor .. gate -->
-<path d="M860,570 L860,675" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: architectural-model .. gate -->
-<path d="M380,780 L440,780" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: gate -> accepted-change -->
-<path d="M495,965 L495,1075" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<!-- edge: gate -> returned-change -->
-<path d="M905,965 L905,1075" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#gpc-arrow)"/>
-<text x="355" y="613" font-size="22" fill="#57534e" text-anchor="middle">build-check result</text>
-<text x="879" y="613" font-size="22" fill="#57534e" text-anchor="start">recorded</text>
-<text x="879" y="642" font-size="22" fill="#57534e" text-anchor="start">interactions</text>
-<text x="478" y="1027" font-size="22" fill="#57534e" text-anchor="end">checks pass</text>
-<text x="888" y="1014" font-size="22" fill="#57534e" text-anchor="end">required failure or</text>
-<text x="888" y="1042" font-size="22" fill="#57534e" text-anchor="end">missing evidence</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 378 354" width="378" height="354" role="img" aria-labelledby="title desc" font-family="'Source Sans 3', sans-serif">
+<title id="title">Governance around a proposed reporting change</title>
+<desc id="desc">A proposed change is restricted by a module boundary. Instrumented tests record attempted interactions. A merge gate combines the build results, recorded interactions, and architectural policy to accept the change or return it for repair.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z"/></marker></defs>
+<rect x="93" y="2" width="192" height="32" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="189" y="15" text-anchor="middle" font-size="10" font-weight="700">PROPOSED REPORTING CHANGE</text>
+<text x="189" y="28" text-anchor="middle" font-size="9" font-style="italic">candidate for merge</text>
+<rect x="2" y="62" width="151" height="110" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<rect x="225" y="62" width="151" height="110" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="77.5" y="76" text-anchor="middle" font-size="10" font-weight="700">CONSTRAINT</text>
+<text x="77.5" y="89" text-anchor="middle" font-size="9" font-style="italic">What can happen?</text>
+<text x="300.5" y="76" text-anchor="middle" font-size="10" font-weight="700">SENSOR</text>
+<text x="300.5" y="89" text-anchor="middle" font-size="9" font-style="italic">What evidence do we have?</text>
+<text x="77.5" y="107" text-anchor="middle" font-size="9">Module boundary exposes</text>
+<text x="77.5" y="118" text-anchor="middle" font-size="9">billing API client; excludes</text>
+<text x="77.5" y="129" text-anchor="middle" font-size="9">private DB connector.</text>
+<text x="77.5" y="145" text-anchor="middle" font-size="9">Scope: checked imports.</text>
+<text x="77.5" y="157" text-anchor="middle" font-size="9">Generic networking remains possible.</text>
+<text x="300.5" y="107" text-anchor="middle" font-size="9">Instrumented tests record</text>
+<text x="300.5" y="118" text-anchor="middle" font-size="9">caller · destination · outcome</text>
+<text x="300.5" y="134" text-anchor="middle" font-size="9">May reveal a direct DB attempt</text>
+<text x="300.5" y="145" text-anchor="middle" font-size="9">through generic networking.</text>
+<text x="300.5" y="156" text-anchor="middle" font-size="9">Recording does not block</text>
+<text x="300.5" y="167" text-anchor="middle" font-size="9">connections.</text>
+<rect x="2" y="223" width="137" height="64" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="70.5" y="238" text-anchor="middle" font-size="9.5" font-weight="700">ARCHITECTURAL MODEL</text>
+<text x="70.5" y="256" text-anchor="middle" font-size="9">Reporting uses billing API.</text>
+<text x="70.5" y="269" text-anchor="middle" font-size="9">No direct access to</text>
+<text x="70.5" y="280" text-anchor="middle" font-size="9">billing database.</text>
+<rect x="153" y="204" width="223" height="96" rx="3" fill="#f0f0f0" stroke="#1c1917" stroke-width=".65"/>
+<text x="264.5" y="219" text-anchor="middle" font-size="10" font-weight="700">GATE</text>
+<text x="264.5" y="233" text-anchor="middle" font-size="9" font-style="italic">May this proceed?</text>
+<text x="264.5" y="252" text-anchor="middle" font-size="9">Check build results and recorded interactions</text>
+<text x="264.5" y="263" text-anchor="middle" font-size="9">against the architectural model.</text>
+<text x="264.5" y="282" text-anchor="middle" font-size="9">Refuse merge on required failure</text>
+<text x="264.5" y="293" text-anchor="middle" font-size="9">or missing evidence.</text>
+<rect x="143" y="326" width="112" height="24" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="199" y="342" text-anchor="middle" font-size="9.5" font-weight="700">ACCEPTED CHANGE</text>
+<rect x="271" y="326" width="105" height="24" rx="3" fill="#ffffff" stroke="#1c1917" stroke-width=".65"/>
+<text x="323.5" y="342" text-anchor="middle" font-size="9" font-weight="700">RETURNED FOR REPAIR</text>
+<path d="M189 34 L189 204" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M153 34 L153 46 L77.5 46 L77.5 62" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M225 34 L225 46 L300.5 46 L300.5 62" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M77.5 172 L77.5 184 L166 184 L166 204" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M300.5 172 L300.5 204" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M139 255 L153 255" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<text x="119" y="180" text-anchor="middle" font-size="9">build-check result</text>
+<text x="334" y="182" text-anchor="middle" font-size="9">recorded</text>
+<text x="334" y="193" text-anchor="middle" font-size="9">interactions</text>
+<path d="M199 300 L199 326" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<path d="M323.5 300 L323.5 326" fill="none" stroke="#1c1917" stroke-width=".65" marker-end="url(#arrow)"/>
+<text x="191" y="315" text-anchor="end" font-size="9">checks pass</text>
+<text x="315" y="312" text-anchor="end" font-size="9">required failure or</text>
+<text x="315" y="323" text-anchor="end" font-size="9">missing evidence</text>
 </svg>

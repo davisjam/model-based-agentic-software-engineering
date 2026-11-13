@@ -12296,8 +12296,8 @@
     {
       "source": "book/assets/governance-proposed-change.svg",
       "candidate": "book/tikz/figures/governance-proposed-change.tex",
-      "source_sha256": "f10511605675569244c21cf6116a88dd0cf2bc91d8dc6376a5bda88a9ed2875e",
-      "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e",
+      "source_sha256": "e7ff81a1518f349d4b77d41bba927d556e8caa5f3f4303d8a18dd2ec62a07480",
+      "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833",
       "decision": "accepted",
       "review_date": "2026-11-08",
       "reviewed_visually": true,
@@ -12478,21 +12478,21 @@
       "validation": {
         "date": "2026-11-13",
         "proof": "latex/build/tikz/governance-proposed-change-20261113/candidates.pdf",
-        "proof_sha256": "365e52298479dad214d2c1bff4cad0d7227401079cd46cd8556bc30f1a28bac0",
+        "proof_sha256": "85e643cf57e5b5f668b55b30961ac0c679dd2d37086a86df8208fb934cb801fa",
         "page": 1,
-        "width_bp": 415.006,
-        "height_bp": 453.692,
+        "width_bp": 380.621,
+        "height_bp": 354.621,
         "unapproved_compile_diagnostics": 0,
         "geometry_findings": 0,
         "semantic_typography_checks": 14,
         "status": "passed",
-        "visual_review": "Native proof inspected: all three decision-input arrows are solid; footer deleted; remaining geometry, text and role shading retained.",
+        "visual_review": "Native proof inspected: all three decision-input arrows are solid; footer deleted; text and role shading retained. Box padding and vertical gaps are compacted to about 378 by 354bp, with 9–10pt type.",
         "scope": "Verified current native proof; author approved for publication."
       },
       "author_review": {
         "approved_date": "2026-11-13",
-        "reason": "Author approved after making all arrows solid and removing the convention footer.",
-        "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
+        "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
+        "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
       }
     },
     {

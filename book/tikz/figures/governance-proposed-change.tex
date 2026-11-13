@@ -1,42 +1,54 @@
-% Native grayscale companion to governance-proposed-change.svg.
-% One candidate spine; decision inputs converge separately. See manifest.json for teaching contract.
-\begin{tikzpicture}[x=.014cm,y=-.014cm,>=Latex,
- font=\magefigurefont\fontsize{10}{12}\selectfont,
- box/.style={draw=black,line width=.65pt,rounded corners=3pt,fill=white,align=center,inner sep=6pt},
- role/.style={box,fill=black!6},
- edge/.style={->,line width=.65pt},
- label/.style={align=center,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11.5}\selectfont}]
+% Compact approved governance comparison; all arrows solid.
+\begin{tikzpicture}[x=1bp,y=-1bp,>=Latex,font=\magefigurefont\fontsize{9}{11}\selectfont]
 \hyphenpenalty=10000
-\node[box,minimum width=6.16cm,minimum height=1.33cm,text width=5.8cm] (proposed) at (550,72.5)
- {\textbf{PROPOSED REPORTING CHANGE}\\[3pt]\textit{candidate for merge}};
-\node[role,minimum width=5.6cm,minimum height=4.9cm,text width=5.2cm] (constraint) at (240,395)
- {\textbf{CONSTRAINT}\\[4pt]\textit{What can happen?}\\[10pt]
- Module boundary exposes\\billing API client; excludes\\private DB connector.\\[10pt]
- Scope: checked imports.\\Generic networking remains possible.};
-\node[role,minimum width=5.6cm,minimum height=4.9cm,text width=5.2cm] (sensor) at (860,395)
- {\textbf{SENSOR}\\[4pt]\textit{What evidence do we have?}\\[10pt]
- Instrumented tests record\\caller $\cdot$ destination $\cdot$ outcome\\[8pt]
- May reveal a direct DB attempt\\through generic networking.\\[9pt]
- {\fontsize{9.5}{11.5}\selectfont Recording does not block connections.}};
-\node[box,minimum width=4.76cm,minimum height=2.59cm,text width=4.4cm] (model) at (210,777.5)
- {\textbf{ARCHITECTURAL MODEL}\\[10pt]
- Reporting uses billing API.\\[4pt]No direct access to\\billing database.};
-\node[role,minimum width=8.68cm,minimum height=4.06cm,text width=8.25cm] (gate) at (750,820)
- {\textbf{GATE}\\[4pt]\textit{May this proceed?}\\[10pt]
- Check build results and recorded interactions\\against the architectural model.\\[10pt]
- Refuse merge on required failure\\or missing evidence.};
-\node[box,minimum width=4.62cm,minimum height=1.064cm,text width=4.3cm] (accepted) at (495,1113) {\textbf{ACCEPTED CHANGE}};
-\node[box,minimum width=4.34cm,minimum height=1.064cm,text width=4.1cm] (repair) at (905,1113) {\textbf{RETURNED FOR REPAIR}};
-\draw[edge] (550,120) -- (550,675);
-\draw[edge] (450,120) -- (450,170) -- (240,170) -- (240,220);
-\draw[edge] (650,120) -- (650,170) -- (860,170) -- (860,220);
-\draw[edge] (240,570) -- (240,630) -- (490,630) -- (490,675);
-\draw[edge] (860,570) -- (860,675);
-\draw[edge] (380,780) -- (440,780);
-\draw[edge] (495,965) -- (495,1075);
-\draw[edge] (905,965) -- (905,1075);
-\node[label,anchor=south] at (355,613) {build-check result};
-\node[label,anchor=west,align=left] at (879,627) {recorded\\interactions};
-\node[label,anchor=east] at (478,1023) {checks pass};
-\node[label,anchor=east,align=right] at (888,1028) {required failure or\\missing evidence};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (93,2) rectangle (285,34);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (189,15) {PROPOSED REPORTING CHANGE};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (189,28) {candidate for merge};
+\draw[draw=black,fill=black!6,line width=.65pt,rounded corners=3pt] (2,62) rectangle (153,172);
+\draw[draw=black,fill=black!6,line width=.65pt,rounded corners=3pt] (225,62) rectangle (376,172);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (77.5,76) {CONSTRAINT};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (77.5,89) {What can happen?};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (300.5,76) {SENSOR};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (300.5,89) {What evidence do we have?};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (77.5,107) {Module boundary exposes};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (77.5,118) {billing API client; excludes};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (77.5,129) {private DB connector.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (77.5,145) {Scope: checked imports.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (77.5,157) {Generic networking remains possible.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (300.5,107) {Instrumented tests record};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (300.5,118) {caller \textperiodcentered{} destination \textperiodcentered{} outcome};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (300.5,134) {May reveal a direct DB attempt};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (300.5,145) {through generic networking.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (300.5,156) {Recording does not block};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (300.5,167) {connections.};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (2,223) rectangle (139,287);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (70.5,238) {ARCHITECTURAL MODEL};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (70.5,256) {Reporting uses billing API.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (70.5,269) {No direct access to};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (70.5,280) {billing database.};
+\draw[draw=black,fill=black!6,line width=.65pt,rounded corners=3pt] (153,204) rectangle (376,300);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{10}{11}\selectfont\bfseries] at (264.5,219) {GATE};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\itshape] at (264.5,233) {May this proceed?};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (264.5,252) {Check build results and recorded interactions};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (264.5,263) {against the architectural model.};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (264.5,282) {Refuse merge on required failure};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (264.5,293) {or missing evidence.};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (143,326) rectangle (255,350);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9.5}{11}\selectfont\bfseries] at (199,342) {ACCEPTED CHANGE};
+\draw[draw=black,fill=white,line width=.65pt,rounded corners=3pt] (271,326) rectangle (376,350);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont\bfseries] at (323.5,342) {RETURNED FOR REPAIR};
+\draw[->,line width=.65pt] (189,34) -- (189,204);
+\draw[->,line width=.65pt] (153,34) -- (153,46) -- (77.5,46) -- (77.5,62);
+\draw[->,line width=.65pt] (225,34) -- (225,46) -- (300.5,46) -- (300.5,62);
+\draw[->,line width=.65pt] (77.5,172) -- (77.5,184) -- (166,184) -- (166,204);
+\draw[->,line width=.65pt] (300.5,172) -- (300.5,204);
+\draw[->,line width=.65pt] (139,255) -- (153,255);
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (119,180) {build-check result};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (334,182) {recorded};
+\node[anchor=base,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (334,193) {interactions};
+\draw[->,line width=.65pt] (199,300) -- (199,326);
+\draw[->,line width=.65pt] (323.5,300) -- (323.5,326);
+\node[anchor=base east,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (191,315) {checks pass};
+\node[anchor=base east,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (315,312) {required failure or};
+\node[anchor=base east,inner sep=0pt,font=\magefigurefont\fontsize{9}{11}\selectfont] at (315,323) {missing evidence};
 \end{tikzpicture}

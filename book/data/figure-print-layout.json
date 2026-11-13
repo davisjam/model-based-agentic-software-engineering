@@ -239,6 +239,11 @@
       "width_bp": 450,
       "placement": "centered",
       "float_placement": "!htb"
+    },
+    "constraint-vs-sensor": {
+      "width_bp": 378,
+      "placement": "centered",
+      "float_placement": "!htb"
     }
   }
 }

@@ -233,8 +233,8 @@
     },
     "book/assets/governance-proposed-change.svg": {
       "approved_date": "2026-11-13",
-      "reason": "Author approved after making all arrows solid and removing the convention footer.",
-      "candidate_sha256": "035e74f59ca51db2d307e4b3a5d741b7dca663c1710dc7249179df646d8a0a2e"
+      "reason": "Author approved the solid-arrow figure without the footer, then requested smaller dimensions; compact layout retains all remaining text and role shading.",
+      "candidate_sha256": "7353b7bbf2bcbdd983c93a2bbd7c611e3d5de155433ad122d19f7cadbaffe833"
     }
   }
 }
